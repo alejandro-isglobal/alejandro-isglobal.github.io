@@ -372,28 +372,29 @@ CI</code></pre>
 </div>
 <div id="intervalos-de-confianza-para-sigma_x2" class="section level2">
 <h2>Intervalos de confianza para <span class="math inline">\(\sigma_X^2\)</span></h2>
-<p>Veamos el intervalo de confianza para la varianza. Así como estimamos el parámetro <span class="math inline">\(\mu\)</span> de la distribución para <span class="math inline">\(X\)</span>, también estimamos su varianza <span class="math inline">\(\sigma^2_X\)</span> de los datos. De hecho, hemos ultizado el valor <span class="math inline">\(s\)</span> para estimar <span class="math inline">\(\sigma^2_X\)</span> en el cálculo de los intervalos de confianza cuando <span class="math inline">\(\sigma_X\)</span> es desconocido.</p>
+<p>Veamos el intervalo de confianza para la varianza. Así como estimamos el parámetro <span class="math inline">\(\mu\)</span> de la distribución para <span class="math inline">\(X\)</span>, también estimamos su varianza <span class="math inline">\(\sigma^2_X\)</span> de los datos. De hecho, hemos ultizado el valor <span class="math inline">\(s\)</span> para estimar <span class="math inline">\(\sigma_X\)</span> en el cálculo de los intervalos de confianza cuando <span class="math inline">\(\sigma_X\)</span> es desconocido.</p>
 <p>Recordemos que <span class="math inline">\(s\)</span></p>
 <pre class="r"><code>s&lt;-sd(impedancia)
 s^2</code></pre>
 <pre><code>## [1] 1.237475</code></pre>
-<p>es un valor de la variable aleatoria <span class="math display">\[S^2= \frac{1}{n-1}\Sigma_i (X_i-\mu)^2\]</span>.</p>
-<p>Si <span class="math inline">\(X\)</span> se distribye normalmente <span class="math inline">\(N(\mu, \sigma_X)\)</span> entonces se pude mostrar que la variable <span class="math inline">\(S^2(n-1)/\sigma^2\)</span> se distribuye como una <span class="math inline">\(\chi^2\)</span> con n-1 grados de libertad,<br />
-<span class="math display">\[\frac{S^2}{\sigma^2}(n-1)\rightarrow \chi^2_{n-1}\]</span> Por lo tanto buscamos <span class="math inline">\(f_{inf}\)</span> y <span class="math inline">\(f_{sup}\)</span> <span class="math display">\[P(f_{inf}\leq \frac{S^2}{\sigma^2}(n-1) \leq f_{sup})=0.95\]</span> Por lo tanto <span class="math inline">\(f_{inf}\)</span> y <span class="math inline">\(f_{sup}\)</span> son los quantiles al 2.5% Y 97.5% de esta variable</p>
-<p><span class="math display">\[P(\chi^2_{0.025,n-1} \leq \frac{S^2}{\sigma^2}(n-1) \leq \chi^2_{0.975,n-1})=0.95\]</span> En términos del intervalo aleaorio <span class="math inline">\((L,U)\)</span> tal que <span class="math inline">\(P(L\leq\sigma^2\leq U)=0.95\)</span> tenemos</p>
-<p><span class="math display">\[P(\frac{S^2 (n-1)}{\chi^2_{0.975,n-1}}\leq \sigma^2 \leq \frac{S^2(n-1)}{\chi^2_{0.025,n-1}})=0.95 \]</span></p>
+<p>es un valor de la variable aleatoria <span class="math display">\[S^2= \frac{1}{n-1}\sum_i (X_i-\mu)^2\]</span> que estima <span class="math inline">\(\sigma^2_X\)</span> insesgadamente porque <span class="math inline">\(E(S^2)=\sigma^2_X\)</span>.</p>
+<p>Si <span class="math inline">\(X\)</span> se distribye normalmente <span class="math inline">\(N(\mu, \sigma_X)\)</span> entonces se pude encontar una variable <strong>pivote</strong> <span class="math inline">\(S^2(n-1)/\sigma^2\)</span> que se distribuye como una <span class="math inline">\(\chi^2\)</span> con n-1 grados de libertad,<br />
+<span class="math display">\[\frac{S^2}{\sigma_X^2}(n-1)\rightarrow \chi^2_{n-1}\]</span> sin depender de <span class="math inline">\(\sigma_X\)</span>. Para identificar el intervalo de confianza, buscamos <span class="math inline">\(f_{inf}\)</span> y <span class="math inline">\(f_{sup}\)</span> tal que <span class="math display">\[P(f_{inf}\leq \frac{S^2}{\sigma_X^2}(n-1) \leq f_{sup})=0.95\]</span> que definen los cuantiles al 2.5% y 97.5% de esta variable aleatoria</p>
+<p><span class="math display">\[P(\chi^2_{0.025,n-1} \leq \frac{S^2}{\sigma_X^2}(n-1) \leq \chi^2_{0.975,n-1})=0.95\]</span></p>
 <pre class="r"><code>chi0.025 &lt;- qchisq(0.025, df=9)
 chi0.025</code></pre>
 <pre><code>## [1] 2.700389</code></pre>
 <pre class="r"><code>chi0.975 &lt;- qchisq(0.975, df=9)
 chi0.975</code></pre>
 <pre><code>## [1] 19.02277</code></pre>
-<p>que para nuestros datos</p>
+<p>En términos del intervalo aleaorio <span class="math inline">\((L,U)\)</span> que atrapa a <span class="math inline">\(\sigma_X^2\)</span> el 95% de las veces, de acuerdo con <span class="math inline">\(P(L\leq\sigma_X^2\leq U)=0.95\)</span> tenemos</p>
+<p><span class="math display">\[P(\frac{S^2 (n-1)}{\chi^2_{0.975,n-1}}\leq \sigma_X^2 \leq \frac{S^2(n-1)}{\chi^2_{0.025,n-1}})=0.95\]</span></p>
+<p>Para nuestros datos tenemos un valor concreto de este intervalo dado por el intervalo de confianza</p>
 <pre class="r"><code>n &lt;- 10
 CI&lt;-c(s^2*(n-1)/chi0.975, s^2*(n-1)/chi0.025)
 CI</code></pre>
 <pre><code>## [1] 0.5854708 4.1243219</code></pre>
-<p>Que R se calcula con <strong>sigma.test</strong></p>
+<p>Este se calcula en R con la función <strong>sigma.test</strong></p>
 <pre class="r"><code>sigma.test(impedancia)</code></pre>
 <pre><code>## 
 ##  One sample Chi-squared test for variance

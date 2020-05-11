@@ -216,7 +216,7 @@ Por último, si necesitamos decidir si los experimentos ofrecen evidencia sufici
 
 
 ##Intervalos de confianza para $\sigma_X^2$
-Veamos el intervalo de confianza para la varianza. Así como estimamos el parámetro $\mu$ de la distribución para $X$, también estimamos su varianza $\sigma^2_X$ de los datos. De hecho, hemos ultizado el valor $s$ para estimar $\sigma^2_X$ en el cálculo de los intervalos de confianza cuando $\sigma_X$ es desconocido.   
+Veamos el intervalo de confianza para la varianza. Así como estimamos el parámetro $\mu$ de la distribución para $X$, también estimamos su varianza $\sigma^2_X$ de los datos. De hecho, hemos ultizado el valor $s$ para estimar $\sigma_X$ en el cálculo de los intervalos de confianza cuando $\sigma_X$ es desconocido.   
 
 Recordemos que $s$
 ```{r}
@@ -224,18 +224,15 @@ s<-sd(impedancia)
 s^2
 ```
 
-es un valor de la variable aleatoria $$S^2= \frac{1}{n-1}\Sigma_i (X_i-\mu)^2$$.
+es un valor de la variable aleatoria $$S^2= \frac{1}{n-1}\sum_i (X_i-\mu)^2$$ que estima  $\sigma^2_X$ insesgadamente porque $E(S^2)=\sigma^2_X$.
 
-Si $X$ se distribye normalmente $N(\mu, \sigma_X)$ entonces se pude mostrar que la variable $S^2(n-1)/\sigma^2$ se distribuye como una $\chi^2$ con n-1 grados de libertad,  
-$$\frac{S^2}{\sigma^2}(n-1)\rightarrow \chi^2_{n-1}$$
-Por lo tanto buscamos $f_{inf}$ y $f_{sup}$
-$$P(f_{inf}\leq \frac{S^2}{\sigma^2}(n-1) \leq f_{sup})=0.95$$
-Por lo tanto $f_{inf}$ y $f_{sup}$ son los quantiles al 2.5\% Y 97.5\% de esta variable
+Si $X$ se distribye normalmente $N(\mu, \sigma_X)$ entonces se pude encontar una variable **pivote** $S^2(n-1)/\sigma^2$ que se distribuye como una $\chi^2$ con n-1 grados de libertad,  
+$$\frac{S^2}{\sigma_X^2}(n-1)\rightarrow \chi^2_{n-1}$$
+sin depender de $\sigma_X$. Para identificar el intervalo de confianza, buscamos $f_{inf}$ y $f_{sup}$ tal que
+$$P(f_{inf}\leq \frac{S^2}{\sigma_X^2}(n-1) \leq f_{sup})=0.95$$
+que definen los cuantiles al 2.5\% y 97.5\% de esta variable aleatoria
 
-$$P(\chi^2_{0.025,n-1} \leq \frac{S^2}{\sigma^2}(n-1) \leq \chi^2_{0.975,n-1})=0.95$$
-En términos del intervalo aleaorio $(L,U)$ tal que $P(L\leq\sigma^2\leq U)=0.95$ tenemos
-
-$$P(\frac{S^2 (n-1)}{\chi^2_{0.975,n-1}}\leq \sigma^2 \leq \frac{S^2(n-1)}{\chi^2_{0.025,n-1}})=0.95 $$
+$$P(\chi^2_{0.025,n-1} \leq \frac{S^2}{\sigma_X^2}(n-1) \leq \chi^2_{0.975,n-1})=0.95$$
 
 ```{r}
 chi0.025 <- qchisq(0.025, df=9)
@@ -244,14 +241,19 @@ chi0.975 <- qchisq(0.975, df=9)
 chi0.975
 ```
 
-que para nuestros datos
+
+En términos del intervalo aleaorio $(L,U)$ que atrapa a $\sigma_X^2$ el 95\% de las veces, de acuerdo con $P(L\leq\sigma_X^2\leq U)=0.95$ tenemos
+
+$$P(\frac{S^2 (n-1)}{\chi^2_{0.975,n-1}}\leq \sigma_X^2 \leq \frac{S^2(n-1)}{\chi^2_{0.025,n-1}})=0.95$$
+
+Para nuestros datos tenemos un valor concreto de este intervalo dado por el intervalo de confianza 
 ```{r}
 n <- 10
 CI<-c(s^2*(n-1)/chi0.975, s^2*(n-1)/chi0.025)
 CI
 ```
 
-Que R se calcula con **sigma.test**
+Este se calcula en R con la función  **sigma.test** 
 ```{r}
 sigma.test(impedancia)
 ```

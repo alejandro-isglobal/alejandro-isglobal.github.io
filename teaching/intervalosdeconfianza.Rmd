@@ -162,12 +162,12 @@ A las 10 mediciones de impedancia en el histograma abajo corresponden un interva
 ```{r}
 x <- seq(-0.5,8.5,0.05)
 
-hist(impedancia, br=seq(-0.5,8.5),freq=FALSE)
+hist(impedancia, br=seq(-0.5,8.5), freq=FALSE, col="lightgrey")
 
 lines(x,dnorm(x, mean=CI[1], sd=1.4), col="red")
 lines(x,dnorm(x, mean=CI[2], sd=1.4), col="blue")
 
-legend("topleft",c("ditribucion N(CIinf,1.4)", "ditribucion N(CIsup,1.4)"), col=c("blue","red"), lty=1 )
+legend("topleft",c("N(mu=CIinf,sigma=1.4)", "N(mu=CIsup,sigma=1.4)"), col=c("blue","red"), lty=1 )
 ```
 
 ##Intervalos de confianza cuando $\sigma_X$ es desconocido
@@ -271,12 +271,12 @@ Así para la medición de nuestros 10 prototipos (hitograma) tenemos que el inte
 ```{r}
 x <- seq(-0.5,8.5,0.05)
 
-hist(impedancia, br=seq(-0.5,8.5),freq=FALSE)
+hist(impedancia, br=seq(-0.5,8.5),freq=FALSE, col="lightgrey")
 
 lines(x,dnorm(x, mean=barx, sd=sqrt(CI[1])), col="red")
 lines(x,dnorm(x, mean=barx, sd=sqrt(CI[2])),col="blue")
 
-legend("topleft",c("ditribucion N(xbar,CIinf)", "ditribucion N(xbar,CIsup)"), col=c("blue","red"), lty=1 )
+legend("topleft",c("N(mu=xbar,sigma=CIinf)", "N(mu=xbar,sigma=CIsup)"), col=c("blue","red"), lty=1 )
 ```
 
 

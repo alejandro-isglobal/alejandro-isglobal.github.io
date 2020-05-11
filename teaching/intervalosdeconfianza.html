@@ -239,7 +239,7 @@ summary {
 <pre class="r"><code>impedancia &lt;- c(3.889533, 4.800898, 4.262898, 4.361508, 
 5.617505, 3.423186, 3.575229, 6.961411, 3.833203, 
 3.560329)</code></pre>
-<p>y calculamos el promedio de la mediciones defido como <span class="math display">\[\bar{x}=\sum_{i=1,...n} x_i\]</span></p>
+<p>y calculamos el promedio de la mediciones defido como <span class="math display">\[\bar{x}=\frac{1}{n}\sum_{i=1,...n} x_i\]</span></p>
 <p>usando la función <strong>mean</strong></p>
 <pre class="r"><code>barx &lt;- mean(impedancia)
 barx</code></pre>
@@ -369,6 +369,43 @@ CI</code></pre>
 ##   4.42857</code></pre>
 <p>Donde vemos claramente el intervalo de confianza y el valor para <span class="math inline">\(\bar{x}\)</span>. Notemos una propiedad imporatante para los dos tipos de intervalos de confianza que hemos calculado aquí. En ambos casos estandarización de <span class="math inline">\(\bar{X}\)</span> nos lleva a las variables aleatorias <span class="math inline">\(Z\)</span> y <span class="math inline">\(T\)</span> cuyas distribuciones no dependen de los parámetros <span class="math inline">\(\mu\)</span> y <span class="math inline">\(\sigma\)</span> de la distribución de <span class="math inline">\(X\)</span>. Esto nos permite usar estas variables repetidas veces como <strong>pivotes estadísticos</strong> para calcular <span class="math inline">\(f_{inf}\)</span> y <span class="math inline">\(f_{sup}\)</span> en muchos de los casos que podemos asumir las condiciones 1. 2. de cada caso.</p>
 <p>Por último, si necesitamos decidir si los experimentos ofrecen evidencia suficiente de que el proceso de producción de altavoces es consistente a un proceso de <span class="math inline">\(4\Omega\)</span>, debemos hacer un contraste de hipótesis.</p>
+</div>
+<div id="intervalos-de-confianza-para-sigma_x2" class="section level2">
+<h2>Intervalos de confianza para <span class="math inline">\(\sigma_X^2\)</span></h2>
+<p>Veamos el intervalo de confianza para la varianza. Así como estimamos el parámetro <span class="math inline">\(\mu\)</span> de la distribución para <span class="math inline">\(X\)</span>, también estimamos su varianza <span class="math inline">\(\sigma^2_X\)</span> de los datos. De hecho, hemos ultizado el valor <span class="math inline">\(s\)</span> para estimar <span class="math inline">\(\sigma^2_X\)</span> en el cálculo de los intervalos de confianza cuando <span class="math inline">\(\sigma_X\)</span> es desconocido.</p>
+<p>Recordemos que <span class="math inline">\(s\)</span></p>
+<pre class="r"><code>s&lt;-sd(impedancia)
+s^2</code></pre>
+<pre><code>## [1] 1.237475</code></pre>
+<p>es un valor de la variable aleatoria <span class="math display">\[S^2= \frac{1}{n-1}\Sigma_i (X_i-\mu)^2\]</span>.</p>
+<p>Si <span class="math inline">\(X\)</span> se distribye normalmente <span class="math inline">\(N(\mu, \sigma_X)\)</span> entonces se pude mostrar que la variable <span class="math inline">\(S^2(n-1)/\sigma^2\)</span> se distribuye como una <span class="math inline">\(\chi^2\)</span> con n-1 grados de libertad,<br />
+<span class="math display">\[\frac{S^2}{\sigma^2}(n-1)\rightarrow \chi^2_{n-1}\]</span> Por lo tanto buscamos <span class="math inline">\(f_{inf}\)</span> y <span class="math inline">\(f_{sup}\)</span> <span class="math display">\[P(f_{inf}\leq \frac{S^2}{\sigma^2}(n-1) \leq f_{sup})=0.95\]</span> Por lo tanto <span class="math inline">\(f_{inf}\)</span> y <span class="math inline">\(f_{sup}\)</span> son los quantiles al 2.5% Y 97.5% de esta variable</p>
+<p><span class="math display">\[P(\chi^2_{0.025,n-1} \leq \frac{S^2}{\sigma^2}(n-1) \leq \chi^2_{0.975,n-1})=0.95\]</span> En términos del intervalo aleaorio <span class="math inline">\((L,U)\)</span> tal que <span class="math inline">\(P(L\leq\sigma^2\leq U)=0.95\)</span> tenemos</p>
+<p><span class="math display">\[P(\frac{S^2 (n-1)}{\chi^2_{0.975,n-1}}\leq \sigma^2 \leq \frac{S^2(n-1)}{\chi^2_{0.025,n-1}})=0.95 \]</span></p>
+<pre class="r"><code>chi0.025 &lt;- qchisq(0.025, df=9)
+chi0.025</code></pre>
+<pre><code>## [1] 2.700389</code></pre>
+<pre class="r"><code>chi0.975 &lt;- qchisq(0.975, df=9)
+chi0.975</code></pre>
+<pre><code>## [1] 19.02277</code></pre>
+<p>que para nuestros datos</p>
+<pre class="r"><code>n &lt;- 10
+CI&lt;-c(s^2*(n-1)/chi0.975, s^2*(n-1)/chi0.025)
+CI</code></pre>
+<pre><code>## [1] 0.5854708 4.1243219</code></pre>
+<p>Que R se calcula con <strong>sigma.test</strong></p>
+<pre class="r"><code>sigma.test(impedancia)</code></pre>
+<pre><code>## 
+##  One sample Chi-squared test for variance
+## 
+## data:  impedancia
+## X-squared = 11.137, df = 9, p-value = 0.5328
+## alternative hypothesis: true variance is not equal to 1
+## 95 percent confidence interval:
+##  0.5854708 4.1243219
+## sample estimates:
+## var of impedancia 
+##          1.237475</code></pre>
 </div>
 
 

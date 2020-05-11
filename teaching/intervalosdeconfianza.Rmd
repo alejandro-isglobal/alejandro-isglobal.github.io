@@ -13,8 +13,9 @@ Claramente este ejemplo es generalizable a muchos contextos, pensemos por ejempl
 
 Volvamos a nuestro ejemplo de producción de altavoces. Supongamos que el resultado de medir la impedancia de los 10 prototipos de altavoces es:
 
-| Medición| Impedancia |  
-| --- |--- | 
+
+| Medición      | Impedancia    |  
+| ------------- |-------------- | 
 | $x_1$ | 3.889533 |  
 | $x_2$ | 4.800898 |  
 | $x_3$ | 4.262898 | 
@@ -35,7 +36,7 @@ impedancia <- c(3.889533, 4.800898, 4.262898, 4.361508,
 3.560329)
 ```
 y calculamos el promedio de la mediciones defido como 
-$$\bar{x}=\sum_{i=1,...n} x_i$$
+$$\bar{x}=\frac{1}{n}\sum_{i=1,...n} x_i$$
 
 usando la función **mean**
 ```{r}
@@ -210,7 +211,47 @@ Este intervalo se calcula con la función **t.test** de R
 ```
 
 Donde vemos claramente el intervalo de confianza y el valor para $\bar{x}$. Notemos una propiedad imporatante para los dos tipos de intervalos de confianza que hemos calculado aquí. En ambos casos  estandarización de $\bar{X}$ nos lleva a las variables aleatorias $Z$ y $T$ cuyas distribuciones no dependen de los parámetros $\mu$ y $\sigma$ de la distribución de $X$. Esto nos permite usar estas variables repetidas veces como **pivotes estadísticos** para calcular $f_{inf}$ y $f_{sup}$ en muchos de los casos que podemos asumir las condiciones 1. 2. de cada caso.   
-
-
   
 Por último, si necesitamos decidir si los experimentos ofrecen evidencia suficiente de que el proceso de producción de altavoces es consistente a un proceso de $4\Omega$, debemos hacer un contraste de hipótesis.
+
+
+##Intervalos de confianza para $\sigma_X^2$
+Veamos el intervalo de confianza para la varianza. Así como estimamos el parámetro $\mu$ de la distribución para $X$, también estimamos su varianza $\sigma^2_X$ de los datos. De hecho, hemos ultizado el valor $s$ para estimar $\sigma^2_X$ en el cálculo de los intervalos de confianza cuando $\sigma_X$ es desconocido.   
+
+Recordemos que $s$
+```{r}
+s<-sd(impedancia)
+s^2
+```
+
+es un valor de la variable aleatoria $$S^2= \frac{1}{n-1}\Sigma_i (X_i-\mu)^2$$.
+
+Si $X$ se distribye normalmente $N(\mu, \sigma_X)$ entonces se pude mostrar que la variable $S^2(n-1)/\sigma^2$ se distribuye como una $\chi^2$ con n-1 grados de libertad,  
+$$\frac{S^2}{\sigma^2}(n-1)\rightarrow \chi^2_{n-1}$$
+Por lo tanto buscamos $f_{inf}$ y $f_{sup}$
+$$P(f_{inf}\leq \frac{S^2}{\sigma^2}(n-1) \leq f_{sup})=0.95$$
+Por lo tanto $f_{inf}$ y $f_{sup}$ son los quantiles al 2.5\% Y 97.5\% de esta variable
+
+$$P(\chi^2_{0.025,n-1} \leq \frac{S^2}{\sigma^2}(n-1) \leq \chi^2_{0.975,n-1})=0.95$$
+En términos del intervalo aleaorio $(L,U)$ tal que $P(L\leq\sigma^2\leq U)=0.95$ tenemos
+
+$$P(\frac{S^2 (n-1)}{\chi^2_{0.975,n-1}}\leq \sigma^2 \leq \frac{S^2(n-1)}{\chi^2_{0.025,n-1}})=0.95 $$
+
+```{r}
+chi0.025 <- qchisq(0.025, df=9)
+chi0.025
+chi0.975 <- qchisq(0.975, df=9)
+chi0.975
+```
+
+que para nuestros datos
+```{r}
+n <- 10
+CI<-c(s^2*(n-1)/chi0.975, s^2*(n-1)/chi0.025)
+CI
+```
+
+Que R se calcula con **sigma.test**
+```{r}
+sigma.test(impedancia)
+```

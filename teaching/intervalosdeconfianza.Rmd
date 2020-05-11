@@ -3,37 +3,33 @@ title: "Intervalos de Confianza"
 output: html_document
 ---
 
-*Los intervalos de confiaza son herramientas básicas de la inferencia estadística y como tal se calculan fácilmente en R. A pesar de lo fácil que es calcularlos y de su uso extendido, muchas veces son malinterpretados. Esto tal vez se deba a que rara vez nos adentramos en las razones del por qué y el cómo de su definición, prefiriendo saltar rápidamente a su aplicación. Usando R y un ejemplo como guía, en este tutotial explico los conceptos teóricos necesarios para ententender y saber interpretar un intervalo de confianza.  Por último describo las funciones para calcularlos directamente en R.*
+*Los intervalos de confiaza son herramientas básicas de la inferencia estadística y como tal se calculan fácilmente en R. Sin embargo, a pesar de su ultidad y de su uso extendido, muchas veces son malinterpretados. Esto tal vez se deba a que rara vez nos adentramos en las razones del por qué y el cómo de su definición, prefiriendo saltar rápidamente a su aplicación. Usando R y un ejemplo como guía, en este tutotial explico conceptos teóricos que ayudan a ententender e interpretar un intervalo de confianza.  Por último describo las funciones para calcularlos directamente en R.*
 
-Imaginemos que sabemos producir altavoces de $4\Omega$ y que queremos  producirlos en serie y comercializarlos. Para etiquetarlos correctamente, tenemos que garantizar que los altavoces se producen con una media de $4\Omega$. Por lo tanto, para conocer la impedancia promedio de los altavoces, hemos producido con esfuerzo 10 prototipos. De estos diez prototipos, pretendemos saber en qué medida su impedancia promedio estima la impedancia del proceso de producción. De esto se encargan los intervalos de confianza. Cuando queramos averiguar si la impedancia del proceso es consistente con un etiquetado de $4\Omega$, el valor al que los queremos comercializar, debemos hacer una prueba de hipótesis. 
+Imaginemos que sabemos producir altavoces de $4\Omega$ y que queremos  producirlos en serie y comercializarlos. Para etiquetarlos correctamente, tenemos que garantizar que los altavoces se producen con una media de $4\Omega$. Por lo tanto, para conocer la impedancia promedio de los altavoces, hemos producido con esfuerzo 10 prototipos. De estos diez prototipos, pretendemos saber en qué medida su impedancia promedio estima la impedancia de su producción en serie. Podemos usar los intervalos de confianza para esto. Cuando queramos averiguar si la impedancia del proceso es consistente con un etiquetado de $4\Omega$, el valor al que los queremos comercializar, entonces tendremos que hacer una prueba de hipótesis. 
 
-Claramente este ejemplo es generalizable a muchos contextos, pensemos por ejemplo en un conjunto de pacientes sobre el que ensayamos un nuevo medicamento para el colesterol. En este caso queremos averigüar el nivel de colesterol medio en sangre para una futura población bajo tratamiento. La diferencia en este caso es que el proceso bajo investigación es un proceso natural sobre el que intervenimos. Sin embargo, ambos ejemplos ilustran que aquello que intentamos conocer, el proceso sea natural o artificial, es una abstracción: tanto la población bajo tratamiento como el proceso de producción de altavoces pueden no ser todavía entidades concretas. Aún así podemos intentar conocerlos parcialmente por medio de unos casos específicos. La abstracción requiere menos imaginación cuando la planta de producción en serie existe, y queremos averiguar la variación en una propiedad que desconocemos de los especímenes que produce. Y haciendo tal vez un abuso de lenguaje, cuando un proceso natural genera especímenes o fenómenos identificables y no muy variables entre ellos, asumimos un mecanismo, o fabrica natural en serie, detras de su producción. La dirección en abstracción es importante para saber interpretar mejor las herrmientas estadísticas.
-
-
+Claramente este tipo de situación es generalizable a muchos contextos, pensemos por ejemplo en un conjunto de pacientes sobre el que ensayamos un nuevo medicamento para el colesterol. En este caso queremos averigüar el nivel de colesterol medio en sangre para una futura población bajo tratamiento. La diferencia en este caso es que el proceso bajo investigación es un proceso natural sobre el que intervenimos. Sin embargo, ambos ejemplos ilustran que aquello que deseamos conocer, el proceso sea natural o artificial, es una abstracción: tanto la población bajo tratamiento como el proceso de producción de altavoces pueden no ser todavía entidades concretas. Aún así podemos intentar conocerlos parcialmente por medio de unos casos específicos. La abstracción requiere menos imaginación cuando la planta de producción en serie existe y queremos averiguar el valor medio de una propiedad de los especímenes que produce, usando un muestra de ellos. Y haciendo tal vez un abuso de lenguaje, cuando un proceso natural genera especímenes o fenómenos identificables y no muy variables entre ellos, asumimos un mecanismo, o fabrica natural en serie, detras de su producción. La dirección en abstracción es importante para entender e interpretar mejor las herramientas estadísticas.
 
 Volvamos a nuestro ejemplo de producción de altavoces. Supongamos que el resultado de medir la impedancia de los 10 prototipos de altavoces es:
 
 
 | Medición      | Impedancia    |  
 | ------------- |-------------- | 
-| $x_1$ | 3.889533 |  
-| $x_2$ | 4.800898 |  
-| $x_3$ | 4.262898 | 
-| $x_4$ | 4.361508 |
-| $x_5$ | 5.617505 |
-| $x_6$ | 3.423186 | 
-| $x_7$ | 3.575229 | 
-| $x_8$ | 6.961411 |
-| $x_9$ | 3.833203 | 
-| $x_{10}$ | 3.560329 | 
+| $x_1$ | 3.5770178 |  
+| $x_2$ | 5.0143659 |  
+| $x_3$ | 3.7070832 | 
+| $x_4$ | 2.2291746 |
+| $x_5$ | 5.8379677 |
+| $x_6$ | 6.9030882 | 
+| $x_7$ | 3.8876109 | 
+| $x_8$ | 6.3709878 |
+| $x_9$ | 5.0670940 | 
+| $x_{10}$ | 0.7123772 | 
 
-codificamos estas mediciones en el vector **impedancia**
+Desde el inicio vemos una variación considerable en las mediciones de la impedancia. Codificamos estas mediciones en el vector **impedancia**
 
 
 ```{r}
-impedancia <- c(3.889533, 4.800898, 4.262898, 4.361508, 
-5.617505, 3.423186, 3.575229, 6.961411, 3.833203, 
-3.560329)
+impedancia <- c(3.5770178, 5.0143659, 3.7070832, 2.2291746, 5.8379677, 6.9030882, 3.8876109, 6.3709878, 5.0670940, 0.7123772)
 ```
 y calculamos el promedio de la mediciones defido como 
 $$\bar{x}=\frac{1}{n}\sum_{i=1,...n} x_i$$
@@ -50,16 +46,16 @@ Pero no nos rindamos y preguntémosnos ¿Qué tan confiados estamos de que el va
 
 Consideraremos que:
 
-- A pesar de que todas las mediciones son diferentes, cada una representa igualmente una impedancia posible del proceso de producción. Por tanto, cada medición es el resultado de una variable aleatoria, aunque en el caso de altavoces esté ligada a un espécimen concreto. Lo que varía en estas mediciones no es la impedancia sobre el especimen sino los especímenes entre sí. Tenemos pues *n* valores como resulatado de *n* mediciones $(x_1,...,x_n)$ en minúsculas, que provienen de las variables aleatorias $(X_i,...X_n)$, en mayúsculas, que son *n* mediciones repetidas sobre la misma varibale aleatoria $X=X_i=...=Xn$. Recordemos que una variable aleatoria es una para la cual su medición varia cada vez que la medimos. De tal forma que entendemos $X_i$ como la $i$-ésima medición en algún experimento de $n$ mediciones, cualquiera que resulte ser el especimen concreto con impedancia $x_i$. 
+- A pesar de que todas las mediciones son diferentes, cada una representa igualmente una impedancia posible del proceso de producción. Por tanto, cada medición es el resultado de una variable aleatoria, aunque en el caso de altavoces esté ligada a un espécimen concreto. Lo que varía en estas mediciones no es la impedancia sobre el espécimen sino los especímenes entre sí. Tenemos pues *n* valores como resulatado de *n* mediciones $(x_1,...,x_n)$ en minúsculas, que provienen de las variables aleatorias $(X_i,...X_n)$, en mayúsculas, que son *n* mediciones repetidas sobre la misma varibale aleatoria $X=X_i=...=Xn$. Recordemos que una variable aleatoria es una para la cual el resultado de su medición es diferente cada vez que la medimos. De tal forma que entendemos $X_i$ como la $i$-ésima medición en algún experimento de $n$ mediciones, cualquiera que resulte ser el espécimen concreto con impedancia $x_i$. 
 
 - El **único** valor para la media muestral 
 $\bar{x}= 4.42857$ proviene de **otra** variable aleatoria 
 $$\bar{X}= \frac{1}{n} \sum X_i$$ que es función de las variables aleatorias $X_i$.
 
-Por lo tanto debemos tener en cuenta dos distribuciones de probabilidad, funciones que asignan una probabilidad a cada uno de los posibles resultados que pueden tomar las variable aleatorias. La primera distribución es para la impedancia del proceso $X$. Asumimos que existe, la llamamos la **distribución poblacional**, y le formulamos algún modelo de probabilidad, como por ejemplo binomial o de Poisson, si  $X$ es una variable aleatoria discreta, y normal o exponencial, si es aleatoria continua. La segunda distribución es la de $\bar{X}$, y la llamamos **distribución de muestreo**. En este caso es la distribución de muestreo para la media, que intentamos averiguar desde los modelos para $X$, aplicando en teorema central del límite o derivándola analíticamente, como es el caso de la distribucion t-student. Tanto la distribución para $X$ como para $\bar{X}$ son abstracciones. 
+Por lo tanto debemos tener en cuenta dos distribuciones de probabilidad, funciones que asignan una probabilidad a cada uno de los posibles resultados que pueden tomar las variable aleatorias. La primera distribución es para la impedancia del proceso $X$. Asumimos que existe, la llamamos la **distribución poblacional**, y le asignamos algún modelo de probabilidad de acuerdo a su naturaleza, como por ejemplo binomial o de Poisson, si  $X$ es una variable aleatoria discreta, y normal o exponencial, si es aleatoria continua. La segunda distribución es la de $\bar{X}$, y la llamamos **distribución de muestreo**. En este caso es la distribución de muestreo para la media, que intentamos averiguar desde los modelos para $X$, aplicando en teorema central del límite o derivándola analíticamente, como es el caso de la distribucion t-student. Tanto la distribución para $X$ como para $\bar{X}$ son abstracciones. 
 
 
-En términos matemáticos, queremos pues conocer el valor esperado de las mediciones $E(X)=\mu$, que en nuestro ejemplo es el valor medio de la impedacia para el proceso de fabricación de los altavoces. $\mu$ es un parámetro, una propiedad, de la distribución de $X$ que nunca observamos directamente pero que, si asumimos un modelo para la distribución, podemos estimarlo de los datos. El número $\bar{x}$ es un buen ejemplo de un número derivado de los datos que podemos usar para estimar $\mu$, ya que en particular $E(\bar{X})=E(X)$ y por lo tanto es un estimador insesgado.
+En términos matemáticos, queremos conocer el valor esperado de las mediciones $E(X)=\mu$, que en nuestro ejemplo es el valor medio de la impedacia para el proceso de fabricación de los altavoces. $\mu$ es un parámetro, una propiedad, de la distribución de $X$ que nunca observamos directamente pero que, si asumimos un modelo para la distribución, podemos estimarlo de los datos. El número $\bar{x}$ es un buen ejemplo de un número derivado de los datos que podemos usar para estimar $\mu$, ya que en particular $E(\bar{X})=E(X)$ y por lo tanto es un estimador insesgado.
 
 Al hacer la estimación tomamos $\mu \sim \bar{x}$ ($\hat{\mu} = \bar{x}$). Sin embargo, no sabemos **qué tan cerca** estamos de $\mu$. Esta es la motivación para los intervalos de confianza, para tener una idea de donde estaría $\mu$.
 
@@ -96,7 +92,7 @@ Para realizar un cálculo sencillo, vamos a asumir 2 condiciones:
 2. Que sabemos (o nos dan) $\sigma_{X}$ como información adicional. Una condición poco realista porque generalmente $\sigma_{X}$ es tan desconocida como $\mu$ pero que nos vale por ahora y que corregiremos después. Imaginemos que el fabricante sabe que la desviación estándard de los altavoces que produce es $\sigma_X=1.4 \Omega$.  
 
 
-Si 1 y 2 se cumplen **entonces** se puede demostrar que  $Z=\frac{\bar{X}-\mu}{\sigma_{X}/\sqrt{n}}$ es una variable aleatoria estandard $N(\mu=0, \sigma^2=1)$ y por lo tanto podemos calcular  $f_{inf}$ y $f_{sup}$ de los cuantiles de $Z$ al 2.5\% y 97.5\%. O sea, nos quedamos con
+Si 1 y 2 se cumplen **entonces** se puede demostrar que  $Z=\frac{\bar{X}-\mu}{\sigma_{X}/\sqrt{n}}$ es una variable aleatoria estandard $N(\mu=0, \sigma^2=1)$ y por lo tanto podemos calcular  $f_{inf}$ y $f_{sup}$ de los cuantiles de $Z$ al 2.5\% y 97.5\%. O sea
 
 $$P( z_{0.025} \leq Z \leq  z_{0.975} )=0.95$$
 definidos como $P(Z \leq  z_{0.025})=\Phi(z_{0.025}) = 0.025$ y  $P( Z \leq  z_{0.925}) =\Phi(z_{0.925})= 0.925$, donde $\Phi(z)$ es la función de acumulación de probabilidad para la distribución estándard. Por lo tanto, tenemos que 
@@ -113,7 +109,7 @@ z0.925
 ```
 
 
-Para nuestro experimento, tenemos n=10 y $\sigma_{X}=1.4cm$ y $f_{inf}=-f_{sup}$, porque la distribución estandard es simétrica 
+Para nuestro experimento, tenemos $n=10$ y $\sigma_{X}=1.4cm$ y $f_{inf}=-f_{sup}$, porque la distribución estandard es simétrica 
 ```{r}
 fsup <- 1.959964*1.4/sqrt(10)
 fsup
@@ -160,6 +156,19 @@ library(TeachingDemos)
 z.test(impedancia, sd=1.4)
 ```
 Con el interés exclusivo de determinar el intervalo de confianza, leemos los últimos dos resultados, en donde se reporta en intervalo $(l,u)$ con su nivel de confianza $\alpha=0.95$, junto con la media $\bar{x}$ para las observaciones en el vector *impedancia*. 
+
+A las 10 mediciones de impedancia en el histograma abajo corresponden un intervalo de confianza para $\mu$ que define dos distribuciones límite (roja y azul) que atrapan con una confianza de 95\% la distribución de $X$.  
+
+```{r}
+x <- seq(-0.5,8.5,0.05)
+
+hist(impedancia, br=seq(-0.5,8.5),freq=FALSE)
+
+lines(x,dnorm(x, mean=CI[1], sd=1.4), col="red")
+lines(x,dnorm(x, mean=CI[2], sd=1.4), col="blue")
+
+legend("topleft",c("ditribucion N(CIinf,1.4)", "ditribucion N(CIsup,1.4)"), col=c("blue","red"), lty=1 )
+```
 
 ##Intervalos de confianza cuando $\sigma_X$ es desconocido
 El caso más común es que no sepamos ni la media $E(X)=\mu$ ni la varianza $V(X)=\sigma^2_X$ de las mediciones, al fin y al cabo son paramétros de la distribución de $X$ que siempre debemos estimar en algún momento. 
@@ -218,7 +227,7 @@ Por último, si necesitamos decidir si los experimentos ofrecen evidencia sufici
 ##Intervalos de confianza para $\sigma_X^2$
 Veamos el intervalo de confianza para la varianza. Así como estimamos el parámetro $\mu$ de la distribución para $X$, también estimamos su varianza $\sigma^2_X$ de los datos. De hecho, hemos ultizado el valor $s$ para estimar $\sigma_X$ en el cálculo de los intervalos de confianza cuando $\sigma_X$ es desconocido.   
 
-Recordemos que $s$
+Recordemos que $s^2$
 ```{r}
 s<-sd(impedancia)
 s^2
@@ -257,3 +266,17 @@ Este se calcula en R con la función  **sigma.test**
 ```{r}
 sigma.test(impedancia)
 ```
+
+Así para la medición de nuestros 10 prototipos (hitograma) tenemos que el intervalo de confianza para la varianza define dos distribuciones límite (roja y azul) que atrapan con una confianza de 95\% la distribución de $X$ con varianza $\sigma_X$.  
+```{r}
+x <- seq(-0.5,8.5,0.05)
+
+hist(impedancia, br=seq(-0.5,8.5),freq=FALSE)
+
+lines(x,dnorm(x, mean=barx, sd=sqrt(CI[1])), col="red")
+lines(x,dnorm(x, mean=barx, sd=sqrt(CI[2])),col="blue")
+
+legend("topleft",c("ditribucion N(xbar,CIinf)", "ditribucion N(xbar,CIsup)"), col=c("blue","red"), lty=1 )
+```
+
+

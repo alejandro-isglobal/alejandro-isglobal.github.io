@@ -181,9 +181,10 @@ summary {
 </div>
 
 
-<p>Los intervalos de confiaza son herramientas básicas de la inferencia estadística y como tal se calculan fácilmente en R. A pesar de lo fácil que es calcularlos y de su uso extendido, frecuentemente son malinterpretados. Esto tal vez se deba a que rara vez nos adentramos a las razones del por qué y el cómo de su definición, prefiriendo saltar rápidamente a su aplicación. Usemos R para intentar entenderlos un poco mas.</p>
-<p>Consideremos un proceso de producción de altavoces de <span class="math inline">\(4\Omega\)</span>. Para su posible producción en serie, se quiere saber en la impedancia promedio los altavoces, por lo que se han creado 10 prototipos. De estos diez prototipos queremos saber en qué medida su impedancia promedio estima la impedancia del proceso.</p>
-<p>El resultado de medir la impedancia de los 10 altavoces es:</p>
+<p><em>Los intervalos de confiaza son herramientas básicas de la inferencia estadística y como tal se calculan fácilmente en R. A pesar de lo fácil que es calcularlos y de su uso extendido, muchas veces son malinterpretados. Esto tal vez se deba a que rara vez nos adentramos en las razones del por qué y el cómo de su definición, prefiriendo saltar rápidamente a su aplicación. Usando R y un ejemplo como guía, en este tutotial explico los conceptos teóricos necesarios para ententender y saber interpretar un intervalo de confianza. Por último describo las funciones para calcularlos directamente en R.</em></p>
+<p>Imaginemos que sabemos producir altavoces de <span class="math inline">\(4\Omega\)</span> y que queremos producirlos en serie y comercializarlos. Para etiquetarlos correctamente, tenemos que garantizar que los altavoces se producen con una media de <span class="math inline">\(4\Omega\)</span>. Por lo tanto, para conocer la impedancia promedio de los altavoces, hemos producido con esfuerzo 10 prototipos. Entonces, de estos diez prototipos, primero queremos saber en qué medida su impedancia promedio estima la impedancia de su proceso de producción. De esto se encargan los intervalos de confianza. Después quisieramos averiguar si la impedancia del proceso es consistente con los <span class="math inline">\(4\Omega\)</span>, el valor al que los queremos comercializar. De esto se encargan las pruebas de hipótesis.</p>
+<p>Claramente este ejemplo es generalizable a muchos contextos, pensemos por ejemplo en un conjunto de pacientes sobre el que ensayamos un nuevo medicamento para el colesterol. En este caso queremos averigüar el nivel de colesterol medio en sangre para una futura población bajo tratamiento. La diferencia es que el proceso bajo investigación es un proceso natural sobre el que intervenimos. Sin embargo, ambos ejemplos ilustran que aquello que intentamos conocer, el proceso sea natural o artificial, es una abstracción: tanto la población bajo tratamiento como el proceso de producción de altavoces pueden no ser todavía entidades concretas. Aún así podemos intentar conocerlos parcialmente por medio de unos casos específicos La abstracción requiere menos imaginación cuando la planta de producción en serie existe, y queremos averiguar la variación en una propiedad que desconocemos de los especímenes que produce. Y haciendo tal vez un abuso de lenguaje, cuando un proceso natural genera especímenes o fenómenos identificables y no muy variables entre ellos, asumimos un mecanismo, o fabrica natural en serie, detras de su producción. La dirección en abstracción es importante para saber interpretar mejor las herrmientas estadísticas.</p>
+<p>Volvamos a nuestro ejemplo de producción de altavoces. Supongamos que el resultado de medir la impedancia de los 10 prototipos de altavoces es:</p>
 <table>
 <thead>
 <tr class="header">
@@ -243,31 +244,35 @@ summary {
 <pre class="r"><code>barx &lt;- mean(impedancia)
 barx</code></pre>
 <pre><code>## [1] 4.42857</code></pre>
-<p>Si bien el promedio está se cerca del objetivo de <span class="math inline">\(4\Omega\)</span> si tomásemos otras 10 mediciones este valor cambiaría y podría alejarse de este valor.</p>
-<p>¿Qué tan confiados estamos de que el valor 4.42857 es representativo del proceso de producción? para tal vez mejorarlo y estar mas cerca de <span class="math inline">\(4\Omega\)</span>.</p>
-<p>Consideremos que:</p>
+<p>Al permitirnos calcular el promedio de estos diez valores hemos asumido que estos resultados son sumables, o sea que pertenecen a una misma categoría y que en últimas son producidos por un sólo proceso. Ahora, el proceso produce prototipos variables en su impedancia y esto tiene una consecuencia importante. Si bien el promedio de las mediciones está se cerca del objetivo de <span class="math inline">\(4\Omega\)</span>, si tomásemos otras 10 mediciones este valor cambiaría y podría alejarse de este valor. La variación del proceso nos impide tener absoluta confianza en que el promedio de las mediciones coincide con el valor medio de los altavoces que podríamos producir con el proceso.</p>
+<p>Pero no nos rindamos y preguntémosnos ¿Qué tan confiados estamos de que el valor 4.42857 es representativo del proceso de producción? para tal vez mejorarlo y estar mas cerca de <span class="math inline">\(4\Omega\)</span>.</p>
+<p>Consideraremos que:</p>
 <ul>
-<li><p>tenemos <em>n</em> valores como resulatado de <em>n</em> mediciones <span class="math inline">\((x_1,...,x_n)\)</span> en minúsculas, que provienen de las variables aleatorias <span class="math inline">\((X_i,...X_n)\)</span>, en mayúsculas, que son <em>n</em> mediciones de la misma varibale aleatoria <span class="math inline">\(X=X_i=...=Xn\)</span>.</p></li>
-<li><p>tenemos <em>un</em> valor para la media muestral <span class="math inline">\(\bar{x}= 4.42857\)</span>, que proviene de <strong>otra</strong> variable aleatoria <span class="math display">\[\bar{X}= \frac{1}{n} \sum X_i\]</span></p></li>
+<li><p>A pesar de que todas las mediciones son diferentes cada una representa igualmente una impedancia posible del proceso de producción. Por tanto, cada medición es el resultado de una variable aleatoria, aunque en el caso de altavoces esté ligada a un especimen concreto. Lo que varía en estas mediciones no es la impedancia sobre el especimen sino los especímenes entre sí. Tenemos pues <em>n</em> valores como resulatado de <em>n</em> mediciones <span class="math inline">\((x_1,...,x_n)\)</span> en minúsculas, que provienen de las variables aleatorias <span class="math inline">\((X_i,...X_n)\)</span>, en mayúsculas, que son <em>n</em> mediciones repetidas sobre la misma varibale aleatoria <span class="math inline">\(X=X_i=...=Xn\)</span>. Recordemos que una variable aleatoria es una para la cual su medición varia cada vez que la medimos. De tal forma que entendemos <span class="math inline">\(X_i\)</span> como la <span class="math inline">\(i\)</span>-ésima medición en algún experimento de <span class="math inline">\(n\)</span> mediciones, cualquiera que resulte ser el especimen concreto con impedancia <span class="math inline">\(x_i\)</span>.</p></li>
+<li><p>Tenemos tan solo <strong>un</strong> valor para la media muestral <span class="math inline">\(\bar{x}= 4.42857\)</span>, que proviene de <strong>otra</strong> variable aleatoria <span class="math display">\[\bar{X}= \frac{1}{n} \sum X_i\]</span> que es función de las variables aleatorias <span class="math inline">\(X_i\)</span>.</p></li>
 </ul>
-<p>Por lo tanto debemos considerar dos distribuciones de probabilidad. La primera para las mediciones <span class="math inline">\(X\)</span>. La llamamos la distribución poblacional, para la que asumimos modelos de probabilidad, como por ejemplo distribuciones binomial o Poisson, para variables aleatorias discretas, y normal o exponencial para variables aleatorias continuas; entre muchas otras. La segunda distribución es para <span class="math inline">\(\bar{X}\)</span>, que intentamos averiguar desde los modelos para <span class="math inline">\(X\)</span>, aplicando en teorema central del límite o derivándola analíticamente, como es el caso de la distribucion t-student.</p>
-<p>Queremos conocer el valor esperado de las mediciones <span class="math inline">\(\mu=E(X)\)</span>, que en nuestro ejemplo es el valor medio de la impedacia para el proceso de fabricación de los altavoces. <span class="math inline">\(\mu\)</span> es un parámetro de la distribución de <span class="math inline">\(X\)</span> que nunca lo observamos directamente pero que si asumimos un modelo para la distribución podemos estimarlo de los datos. El número <span class="math inline">\(\bar{x}\)</span> es un ejemplo de un número derivado de los datos que podemos usar para estimar <span class="math inline">\(\mu\)</span>, ya que en particular <span class="math inline">\(E(\bar{X})=E(X)\)</span>.</p>
-<p>Al hacer la estimación tomamos <span class="math inline">\(\mu \sim \bar{x}\)</span> (<span class="math inline">\(\hat{\mu} = \bar{x}\)</span>). Sin embargo, no sabemos <strong>qué tan cerca</strong> estamos de <span class="math inline">\(\mu\)</span>. Esta es la motivación para los intervalos de confianza. Para tener una idea de donde está <span class="math inline">\(\mu\)</span>.</p>
-<p>Busquemos los números <span class="math inline">\(f_{inf}\)</span> y <span class="math inline">\(f_{sup}\)</span> tal que</p>
+<p>Por lo tanto debemos considerar dos distribuciones de probabilidad, funciones que asignan una probabilidad a cada uno de los posibles resultados que pueden tomar las variable aleatorias. La primera distribución es para la impedancia del proceso <span class="math inline">\(X\)</span>. Asumimos que existe y la llamamos la <strong>distribución poblacional</strong>, y asumimos para ella modelos de probabilidad, como por ejemplo modelos binomiales o de Poisson, para variables aleatorias discretas, y normales o exponenciales para variables aleatorias continuas; entre muchas otras. La segunda distribución es la de <span class="math inline">\(\bar{X}\)</span>, y la llamamos <strong>distribución de muestreo</strong>. En este caso es la distribución de muestreo para la media, que intentamos averiguar desde los modelos para <span class="math inline">\(X\)</span>, aplicando en teorema central del límite o derivándola analíticamente, como es el caso de la distribucion t-student. Tanto la distribución para <span class="math inline">\(X\)</span> como para <span class="math inline">\(\bar{X}\)</span> son abstracciones.</p>
+<p>En términos matemáticos, queremos pues conocer el valor esperado de las mediciones <span class="math inline">\(E(X)=\mu\)</span>, que en nuestro ejemplo es el valor medio de la impedacia para el proceso de fabricación de los altavoces. <span class="math inline">\(\mu\)</span> es un parámetro de la distribución de <span class="math inline">\(X\)</span> que nunca observamos directamente pero que, si asumimos un modelo para la distribución, podemos estimarlo de los datos. El número <span class="math inline">\(\bar{x}\)</span> es un ejemplo de un número derivado de los datos que podemos usar para estimar <span class="math inline">\(\mu\)</span>, ya que en particular <span class="math inline">\(E(\bar{X})=E(X)\)</span>.</p>
+<p>Al hacer la estimación tomamos <span class="math inline">\(\mu \sim \bar{x}\)</span> (<span class="math inline">\(\hat{\mu} = \bar{x}\)</span>). Sin embargo, no sabemos <strong>qué tan cerca</strong> estamos de <span class="math inline">\(\mu\)</span>. Esta es la motivación para los intervalos de confianza. Para tener una idea de donde estaría <span class="math inline">\(\mu\)</span>.</p>
+<p>Para esto busquemos los números <span class="math inline">\(f_{inf}\)</span> y <span class="math inline">\(f_{sup}\)</span> tal que la probabilidad</p>
 <p><span class="math display">\[P(f_{inf} \leq \bar{X} - \mu \leq  f_{sup} )=0.95\]</span></p>
-<p>O sea los valores que contienen al 95% de las diferencias entre <span class="math inline">\(\bar{X}\)</span> y <span class="math inline">\(\mu\)</span>.</p>
-<p>Escribamos esta proabilididad como: <span class="math display">\[P(\bar{X} - f_{sup} \leq \mu \leq \bar{X} - f_{inf} )=0.95\]</span></p>
-<p>Y definimos el <strong>intervalo aleatorio</strong> <span class="math display">\[(L,U) = (\bar{X} - f_{sup},\bar{X} - f_{inf})\]</span> este intervalo tiene por definición una probailidad del 95% de contener a <span class="math inline">\(\mu\)</span>. Cada vez que hagamos un experimento de <em>n</em> mediciones y tomemos su promedio tendremos un intervalo. El intervalo asociado a un experimento <span class="math inline">\((l,u)=(\bar{x} - f_{sup},\bar{x} - f_{inf})\)</span>, en minúsculas, o contiene o no contiene a <span class="math inline">\(\mu\)</span> pero eso <strong>no lo sabemos</strong>. Lo que sabemos es que el 95% de este tipo de intervalos contienen a <span class="math inline">\(\mu\)</span>. Tenemos pues una confianza del 95% de que el intervalo <span class="math inline">\((l,u)\)</span> que obtenemos de un experimento contiene <span class="math inline">\(\mu\)</span>, y una probabilidad del 95% de que el intervalo aleatorio contenga a <span class="math inline">\(\mu\)</span>. La confianza es una propiedad de una medición mientras que la probabilidad de una variable aleatoria.</p>
+<p>O sea, busquemos el rango de valores que contienen al 95% de las diferencias entre <span class="math inline">\(\bar{X}\)</span> y <span class="math inline">\(\mu\)</span>.</p>
+<p>Escribamos esta proabilididad como <span class="math display">\[P(\bar{X} - f_{sup} \leq \mu \leq \bar{X} - f_{inf} )=0.95\]</span></p>
+<p>y definamos el <strong>intervalo aleatorio</strong> <span class="math display">\[(L,U) = (\bar{X} - f_{sup},\bar{X} - f_{inf})\]</span></p>
+<p>Este intervalo tiene por definición una probailidad del 95% de contener a <span class="math inline">\(\mu\)</span>. Cada vez que hagamos un experimento de <em>n</em> mediciones y tomemos su promedio tendremos un intervalo. El intervalo asociado a un experimento <span class="math inline">\((l,u)=(\bar{x} - f_{sup},\bar{x} - f_{inf})\)</span>, en minúsculas, o contiene o no contiene a <span class="math inline">\(\mu\)</span> pero eso <strong>no lo sabemos</strong>. Pensemos en el rasca gana. Un carton del rasca gana, o tiene un premio o no lo tiene, mientras que la probabilidad de ganar es un número que no depende de ese cartón, sino de todos los cartones que se venden; es una propiedad del juego.</p>
+<p>Para el intevalo aleatorio definido arriba sabemos que el 95% de los intervalos cocretos, producto de su medición, contienen a <span class="math inline">\(\mu\)</span>. Tenemos pues una <strong>confianza</strong> del 95% de que el intervalo <span class="math inline">\((l,u)\)</span> que obtenemos de un experimento contiene <span class="math inline">\(\mu\)</span>, mientras que una probabilidad del 95% de que el intervalo aleatorio contenga a <span class="math inline">\(\mu\)</span>. La confianza es una propiedad de una medición, o del cartón del rasca-gana, mientras que la probabilidad es una propiedad de la variable aleatoria del proceso, o de jugar al rasca-gana.</p>
 <p>Volvamos a la probabilidad incial<br />
 <span class="math display">\[P(f_{inf} \leq \bar{X} - \mu \leq  f_{sup} )=0.95\]</span> y dividamos por <span class="math inline">\(\sigma_{\bar{X}}\)</span> <span class="math display">\[P( \frac{f_{inf}}{\sigma_{\bar{X}}} \leq \frac{\bar{X}-\mu}{\sigma_{\bar{X}}} \leq  \frac{f_{sup}}{\sigma_{\bar{X}}} )=0.95\]</span></p>
-<p>remplazemos <span class="math inline">\(\sigma_{\bar{X}}=\sigma_{X}/\sqrt{n}\)</span></p>
-<p><span class="math display">\[P( \frac{f_{inf}}{\sigma_{X}/\sqrt{n}} \leq \frac{\bar{X}-\mu}{\sigma_{X}/\sqrt{n}} \leq  \frac{f_{sup}}{\sigma_{X}/\sqrt{n}} )=0.95\]</span> Para calular <span class="math inline">\(f_{inf}\)</span> y <span class="math inline">\(f_{sup}\)</span> asumimos 2</p>
+<p>remplazemos <span class="math inline">\(\sigma_{\bar{X}}=\sigma_{X}/\sqrt{n}\)</span>, una propiedad general para <span class="math inline">\(\sigma_{\bar{X}}\)</span> y que dice que mientras más medidas tomemos el cambio entre valores <span class="math inline">\(\bar{x}\)</span> para diferentes expriementos es cada vez mas pequeño.</p>
+<p><span class="math display">\[P( \frac{f_{inf}}{\sigma_{X}/\sqrt{n}} \leq \frac{\bar{X}-\mu}{\sigma_{X}/\sqrt{n}} \leq  \frac{f_{sup}}{\sigma_{X}/\sqrt{n}} )=0.95\]</span> Para calular <span class="math inline">\(f_{inf}\)</span> y <span class="math inline">\(f_{sup}\)</span> vamos a asumir 2 condiciones:</p>
 <ol style="list-style-type: decimal">
-<li><p>Que <span class="math inline">\(X\)</span> se distribye normalmente <span class="math inline">\(N(\mu, \sigma)\)</span></p></li>
-<li><p>Que sabemos (o nos dan) <span class="math inline">\(\sigma_{X}\)</span> como información adicional. Por ejemplo el fabricante sabe que la desviación estándard de los altavoces que produce es <span class="math inline">\(\sigma_X=1.4 \Omega\)</span></p></li>
+<li><p>Que <span class="math inline">\(X\)</span> se distribye normalmente <span class="math inline">\(N(\mu, \sigma_X)\)</span>.</p></li>
+<li><p>Que sabemos (o nos dan) <span class="math inline">\(\sigma_{X}\)</span> como información adicional. Por ejemplo el fabricante sabe que la desviación estándard de los altavoces que produce es <span class="math inline">\(\sigma_X=1.4 \Omega\)</span>.</p></li>
 </ol>
-<p>Si 1 y 2 se cumples <strong>entonces</strong> <span class="math inline">\(Z=\frac{\bar{X}-\mu}{\sigma_{X}/\sqrt{n}}\)</span> es una variable aleatoria estandard <span class="math inline">\(N(\mu=0, \sigma^2=1)\)</span>: <span class="math display">\[P( z_{0.025} \leq Z \leq  z_{0.975} )=0.95\]</span> Podemos pues calcular <span class="math inline">\(f_{inf}\)</span> y <span class="math inline">\(f_{sup}\)</span> de los cuantiles de <span class="math inline">\(Z\)</span> o sea: <span class="math display">\[f_{inf}=z_{0.025}*\sigma_{X}/\sqrt{n}\]</span> <span class="math display">\[f_{sup}=z_{0.925}*\sigma_{X}/\sqrt{n}\]</span></p>
-<p>que podemos calcular en R con la funcion de cuantiles para la distribucion estándard</p>
+<p>Si 1 y 2 se cumples <strong>entonces</strong> se puede demostrar que <span class="math inline">\(Z=\frac{\bar{X}-\mu}{\sigma_{X}/\sqrt{n}}\)</span> es una variable aleatoria estandard <span class="math inline">\(N(\mu=0, \sigma^2=1)\)</span> y por lo tanto podemos calcular <span class="math inline">\(f_{inf}\)</span> y <span class="math inline">\(f_{sup}\)</span> de los cuantiles de <span class="math inline">\(Z\)</span> al 2.5% y 97.5%. O sea</p>
+<p><span class="math display">\[P( z_{0.025} \leq Z \leq  z_{0.975} )=0.95\]</span> definidos como <span class="math inline">\(P(Z \leq z_{0.025})=\Phi(z_{0.025}) = 0.025\)</span> y <span class="math inline">\(P( Z \leq z_{0.925}) =\Phi(z_{0.925})= 0.925\)</span>, donde <span class="math inline">\(\Phi(z)\)</span> es la función de acumulación de probabilidad para la distribución estándard. Por lo tanto, tenemos que</p>
+<p><span class="math display">\[f_{inf}=z_{0.025}*\sigma_{X}/\sqrt{n}\]</span> <span class="math display">\[f_{sup}=z_{0.925}*\sigma_{X}/\sqrt{n}\]</span></p>
+<p>que podemos calcular en R con la funcion de cuantiles para la distribucion estándard (en R: <span class="math inline">\(\Phi^{⁻1}\)</span>=<em>qnorm</em>)</p>
 <pre class="r"><code>z0.025 &lt;- qnorm(0.025)
 z0.025 </code></pre>
 <pre><code>## [1] -1.959964</code></pre>
@@ -288,15 +293,17 @@ CI</code></pre>
 <p>El intervalo <span class="math inline">\((l,u)=c(3.503469, 5.353670)\)</span> es una observación de (L,U) y para la cual tenemos una confianza del 95% de haber atrapado a <span class="math inline">\(\mu\)</span>.</p>
 <p>Esto también lo escribimos como:</p>
 <p><span class="math display">\[\bar{x}=4.4 \pm 0.8\]</span></p>
-<p>O sea que al estimar <span class="math inline">\(\mu\)</span> con <span class="math inline">\(\bar{x}\)</span>, no podemos estar muy seguros de la precisión dada por el decimal <span class="math inline">\(.4\)</span>. Los decimales siguientes carecen de confianza y los podemos descartar. Como conclusión tenemos que el proceso de altavoces incluye los <span class="math inline">\(4\Omega\)</span> pero es claramente variable y se debe valorar si esta variación es aceptable.</p>
+<p>O sea que al estimar <span class="math inline">\(\mu\)</span> con <span class="math inline">\(\bar{x}\)</span>, no podemos estar muy seguros de la precisión dada por el decimal <span class="math inline">\(.4\)</span>. Los decimales siguientes carecen de confianza y los podemos descartar. Como conclusión tenemos que el proceso de altavoces incluye los <span class="math inline">\(4\Omega\)</span> pero es claramente variable y se debe valorar si esta variación es aceptable para etiquetar todos los altavoces producidos como altavoces <span class="math inline">\(4\Omega\)</span>.</p>
 <hr />
+<div id="intervalos-de-confianza-en-r" class="section level2">
+<h2>Intervalos de confianza en R</h2>
 <p>Los intervalos de confianza para</p>
 <ul>
 <li>un experimento de n muestras.</li>
 <li>de una distribución normal para <span class="math inline">\(X\)</span>.</li>
 <li>del que sabemos la desviación estándard para <span class="math inline">\(X\)</span>: <span class="math inline">\(\sigma_X\)</span>. \end{itemize}</li>
 </ul>
-<p>se pueden calcular con la función {} del paquete TeachingDemos</p>
+<p>se pueden calcular con la función <strong>z.test</strong> del paquete <em>TeachingDemos</em></p>
 <pre class="r"><code>library(TeachingDemos) 
 z.test(impedancia, sd=1.4)</code></pre>
 <pre><code>## 
@@ -311,26 +318,27 @@ z.test(impedancia, sd=1.4)</code></pre>
 ## sample estimates:
 ## mean of impedancia 
 ##            4.42857</code></pre>
+</div>
 <div id="intervalos-de-confianza-cuando-sigma_x-es-desconocido" class="section level2">
 <h2>Intervalos de confianza cuando <span class="math inline">\(\sigma_X\)</span> es desconocido</h2>
-<p>El caso más común es que no sepamos ni la media <span class="math inline">\(E(X)=\mu\)</span> ni la varianza <span class="math inline">\(V(X)=\sigma^2_X\)</span> de las mediciones.</p>
+<p>El caso más común es que no sepamos ni la media <span class="math inline">\(E(X)=\mu\)</span> ni la varianza <span class="math inline">\(V(X)=\sigma^2_X\)</span> de las mediciones, al fin y al cabo son estimaciones que siempre debemos hacer en algún momento.</p>
 <p>Recordemos que queremos:</p>
 <p><span class="math display">\[P( \frac{f_{inf}}{\sigma_{X}/\sqrt{n}} \leq \frac{\bar{X}-\mu}{\sigma_{X}/\sqrt{n}} \leq  \frac{f_{sup}}{\sigma_{X}/\sqrt{n}} )=0.95\]</span></p>
-<p>Ahora para calcular <span class="math inline">\(f_{inf}\)</span> y <span class="math inline">\(f_{sup}\)</span> asumimos</p>
+<p>En este caso mas general, para calcular <span class="math inline">\(f_{inf}\)</span> y <span class="math inline">\(f_{sup}\)</span> asumimos:</p>
 <ol style="list-style-type: decimal">
-<li><p>que <span class="math inline">\(\bar{X}\)</span> es una distribución normal <span class="math inline">\(N(\mu, \sigma^2)\)</span></p></li>
+<li><p>que <span class="math inline">\(X\)</span> se distribuye normamente según <span class="math inline">\(N(\mu, \sigma_X^2)\)</span></p></li>
 <li><p>que podemos sustituir <span class="math inline">\(\sigma_x\)</span> por su estimador <span class="math inline">\(s=\frac{1}{n-1} \Sigma_i(x_i -\bar{x})^2\)</span>, calculado de los datos.</p></li>
 </ol>
-<p>Si 1 y 2 se cumples <strong>entonces</strong> la variable <span class="math inline">\(T=\frac{\bar{X}-\mu}{s/\sqrt{n}}\)</span> es una variable aleatoria que sigue una distibucion t-student con n-1 grados de libertad <span class="math inline">\(t(n-1)\)</span>.</p>
+<p>Si 1 y 2 se cumplen <strong>entonces</strong> se puede demostar que la variable <span class="math inline">\(T=\frac{\bar{X}-\mu}{s/\sqrt{n}}\)</span> es una variable aleatoria que sigue una distibucion t-student con n-1 grados de libertad <span class="math inline">\(t(n-1)\)</span>.</p>
 <p><span class="math display">\[P( \frac{f_{inf}}{s/\sqrt{n}} \leq \frac{\bar{X}-\mu}{s/\sqrt{n}} \leq  \frac{f_{sup}}{s/\sqrt{n}} )=0.95\]</span></p>
-<p><span class="math display">\[P( t_{0.025,n-1} \leq T \leq  t_{0.975,n-1} )=0.95\]</span> siendo <span class="math inline">\(T\)</span> una variable aleatoria con una dostribuci'on student-t con n-1 grados de libertad</p>
+<p><span class="math display">\[P( t_{0.025,n-1} \leq T \leq  t_{0.975,n-1} )=0.95\]</span> siendo <span class="math inline">\(T\)</span> una variable aleatoria con una dostribución student-t con n-1 grados de libertad, podemos calcular sus cuantiles al 2.5% y 97.5% usando la función <strong>qt</strong> (la función inversa de la acumulación de probabilidad para la distribución t con df grados de libertad)</p>
 <pre class="r"><code>t0.025 &lt;- qt(0.025,df=9)
 t0.025</code></pre>
 <pre><code>## [1] -2.262157</code></pre>
 <pre class="r"><code>t0.975 &lt;- qt(0.975,df=9)
 t0.975</code></pre>
 <pre><code>## [1] 2.262157</code></pre>
-<p><span class="math display">\[f_{sup}=t_{0.975,n-1} \frac{s}{\sqrt{n}}=-f_{inf}\]</span> Para nuestro experimento de altavoces</p>
+<p>Por lo tanto <span class="math display">\[f_{sup}=t_{0.975,n-1} \frac{s}{\sqrt{n}}=-f_{inf}\]</span> Para nuestro experimento de altavoces tenemos</p>
 <pre class="r"><code>barx &lt;- mean(impedancia)
 barx</code></pre>
 <pre><code>## [1] 4.42857</code></pre>
@@ -344,7 +352,7 @@ fsup</code></pre>
 <pre class="r"><code>CI &lt;- c(barx-fsup,barx+fsup)
 CI</code></pre>
 <pre><code>## [1] 3.632794 5.224346</code></pre>
-<p>Este intervalo se calcula con la función {}</p>
+<p>Este intervalo se calcula con la función <strong>t.test</strong> de R</p>
 <pre class="r"><code> t.test(impedancia, conf.level = 0.95)</code></pre>
 <pre><code>## 
 ##  One Sample t-test
@@ -357,7 +365,7 @@ CI</code></pre>
 ## sample estimates:
 ## mean of x 
 ##   4.42857</code></pre>
-<p>Donde vemos claramente el intervalo de confianza y el valor para <span class="math inline">\(\bar{x}\)</span></p>
+<p>Donde vemos claramente el intervalo de confianza y el valor para <span class="math inline">\(\bar{x}\)</span>. Si necesitamos decidir si los experimentos ofrecen ecidencia suficiente de que el proceso de producción de altavoces es consistente a un proceso de <span class="math inline">\(4\Omega\)</span>, debemos hacer un contraste de hipótesis.</p>
 </div>
 
 

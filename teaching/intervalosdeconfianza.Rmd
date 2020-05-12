@@ -5,7 +5,10 @@ output: html_document
 
 *Los intervalos de confiaza son herramientas básicas de la inferencia estadística y como tal se calculan fácilmente en R. Sin embargo, a pesar de su ultidad y de su uso extendido, muchas veces son malinterpretados. Esto tal vez se deba a que rara vez nos adentramos en las razones del por qué y el cómo de su definición, prefiriendo saltar rápidamente a su aplicación. Usando R y un ejemplo como guía, en este tutotial explico conceptos teóricos que ayudan a ententender e interpretar un intervalo de confianza.  Por último describo las funciones para calcularlos directamente en R.*
 
+<img src="speaker.jpg" style="width:20%;  margin-right: 20px" align="left">
+
 Imaginemos que sabemos producir altavoces de $4\Omega$ y que queremos  producirlos en serie y comercializarlos. Para etiquetarlos correctamente, tenemos que garantizar que los altavoces se producen con una media de $4\Omega$. Por lo tanto, para conocer la impedancia media de los altavoces de nuestra fabricación, hemos producido con esfuerzo 10 prototipos. De estos diez prototipos, pretendemos saber en qué medida su impedancia promedio estima la impedancia de los altavoces de una futura producción en serie. Podemos usar los **intervalos de confianza** para esto. Cuando queramos averiguar si la impedancia del proceso es consistente con un etiquetado de $4\Omega$, el valor al que los queremos comercializar, entonces tendremos que hacer una **prueba de hipótesis**. 
+
 
 Claramente este tipo de situación es generalizable a muchos contextos, pensemos por ejemplo en un conjunto de pacientes sobre el que ensayamos un nuevo medicamento para el colesterol. En este caso queremos averigüar el nivel de colesterol medio en sangre para una futura población bajo tratamiento. La diferencia en este caso es que el proceso bajo investigación es un proceso natural sobre el que intervenimos. Sin embargo, ambos ejemplos ilustran que aquello que deseamos conocer, el proceso sea natural o artificial, es una abstracción: tanto la población bajo tratamiento como el proceso de producción de altavoces pueden no ser todavía entidades concretas. Aún así podemos intentar conocerlos parcialmente por medio de unos casos específicos. La abstracción requiere menos imaginación cuando la planta de producción en serie existe y queremos averiguar el valor medio de una propiedad de los especímenes que produce, usando un muestra de ellos. Y haciendo tal vez un abuso de lenguaje, cuando un proceso natural genera especímenes o fenómenos identificables y no muy variables entre ellos, asumimos un mecanismo, o fabrica natural en serie, detras de su producción. La dirección en abstracción es importante para entender e interpretar mejor las herramientas estadísticas.
 
@@ -14,22 +17,22 @@ Volvamos a nuestro ejemplo de producción de altavoces. Supongamos que el result
 
 | Medición      | Impedancia    |  
 | ------------- |-------------- | 
-| $x_1$ | 3.5770178 |  
-| $x_2$ | 5.0143659 |  
-| $x_3$ | 3.7070832 | 
-| $x_4$ | 2.2291746 |
-| $x_5$ | 5.8379677 |
-| $x_6$ | 6.9030882 | 
-| $x_7$ | 3.8876109 | 
-| $x_8$ | 6.3709878 |
-| $x_9$ | 5.0670940 | 
-| $x_{10}$ | 0.7123772 | 
+| $x_1$ | 3.5 |  
+| $x_2$ | 5.0 |  
+| $x_3$ | 3.7 | 
+| $x_4$ | 2.2 |
+| $x_5$ | 5.8 |
+| $x_6$ | 6.9 | 
+| $x_7$ | 3.8 | 
+| $x_8$ | 6.3 |
+| $x_9$ | 5.0 | 
+| $x_{10}$ | 0.7 | 
 
 Desde el inicio vemos una variación considerable en las mediciones de la impedancia. Codificamos estas mediciones en el vector **impedancia**
 
 
 ```{r}
-impedancia <- c(3.5770178, 5.0143659, 3.7070832, 2.2291746, 5.8379677, 6.9030882, 3.8876109, 6.3709878, 5.0670940, 0.7123772)
+impedancia <- c(3.5, 5.0, 3.72, 2.2, 5.8, 6.9, 3.8, 6.3, 5.0, 0.7)
 ```
 y calculamos el promedio de la mediciones defido como 
 $$\bar{x}=\frac{1}{n}\sum_{i=1,...n} x_i$$
@@ -42,14 +45,14 @@ barx
 
 Al permitirnos calcular el promedio de estos diez valores hemos asumido que estos resultados son sumables, o sea que pertenecen a una misma categoría y que en últimas son producidos por un sólo proceso. Ahora, el proceso fabrica especímenes variables en su impedancia y esto tiene una consecuencia importante. Si bien el promedio de las mediciones está se cerca del objetivo de $4\Omega$, si tomásemos otras 10 mediciones este valor cambiaría y podría alejarse del valor deseado. La variación en producción del proceso nos impide tener absoluta confianza de que el promedio de las impedancias de 10 epecímenes coincide con el valor medio de los altavoces del mismo proceso cuando este se serifique. 
 
-Pero no nos rindamos y preguntémosnos ¿Qué tan confiados estamos de que el valor 4.42857 es representativo del proceso de producción? para tal vez mejorar nuestro proceso y estar mas cerca de $4\Omega$.  
+Pero no nos rindamos y preguntémosnos ¿Qué tan confiados estamos de que el valor 4.292 es representativo del proceso de producción? para tal vez mejorar nuestro proceso y estar mas cerca de $4\Omega$.  
 
 Consideraremos que:
 
 - A pesar de que todas las mediciones son diferentes, cada una representa igualmente una impedancia posible del proceso de producción. Por tanto, cada medición es el resultado de una variable aleatoria, aunque en el caso de altavoces esté ligada a un espécimen concreto. Lo que varía en estas mediciones no es la impedancia sobre el espécimen sino los especímenes entre sí. Tenemos pues *n* valores como resulatado de *n* mediciones $(x_1,...,x_n)$ en minúsculas, que provienen de las variables aleatorias $(X_i,...X_n)$, en mayúsculas, que son *n* mediciones repetidas sobre la misma varibale aleatoria $X=X_i=...=Xn$. Recordemos que una variable aleatoria es una para la cual el resultado de su medición es diferente cada vez que la medimos. De tal forma que entendemos $X_i$ como la $i$-ésima medición en algún experimento de $n$ mediciones, cualquiera que resulte ser el espécimen concreto con impedancia $x_i$. 
 
 - El **único** valor para la media muestral 
-$\bar{x}= 4.42857$ proviene de **otra** variable aleatoria 
+$\bar{x}= 4.292$ proviene de **otra** variable aleatoria 
 $$\bar{X}= \frac{1}{n} \sum X_i$$ que es función de las variables aleatorias $X_i$.
 
 Por lo tanto debemos tener en cuenta dos distribuciones de probabilidad. Recordemos que estas son funciones que asignan una probabilidad a cada uno de los posibles resultados que pueden tomar las variable aleatorias. La primera distribución es para la impedancia del proceso $X$. Asumimos que existe, la llamamos la **distribución poblacional**, y le asignamos algún modelo de probabilidad de acuerdo a su naturaleza. Si $X$ es una variable aleatoria discreta podemos pensar en modelos binomial o de Poisson, entre muchos otros. Si $X$ toma valores continuos, entonces consideramos modelos como por ejemplo los modelos normal o exponencial. Los modelos probabilísticos son toda una legión y son la base sobre la cuál las teorías, algunas ilustres como la mecánica cuántica o la evolución Darwiniana, se construyen. 
@@ -131,11 +134,11 @@ CI
 ```
 
 
-El intervalo $(l,u)=c(3.503469, 5.353670)$ es una observación de $(L,U)$ y para la cual tenemos una confianza del 95\% de haber atrapado a $\mu$.
+El intervalo $(l,u)=c(3.424287, 5.159713)$ es una observación de $(L,U)$ y para la cual tenemos una confianza del 95\% de haber atrapado a $\mu$.
 
 Esto también lo escribimos como:
 
-$$\bar{x}=4.4 \pm 0.8$$
+$$\bar{x}=4.2 \pm 0.8$$
 
 Por lo tanto, al estimar $\mu$ con $\bar{x}$, no podemos estar muy seguros de la precisión dada por el decimal $.4$. Los decimales siguientes carecen de sentido práctico y los podemos descartar. Como conclusión tenemos que la media $\mu$ para el proceso de altavoces está cerca de los $4\Omega$ pero que también el proceso es claramente variable, pudiendo producir altavoces con impedancias menores 3.6 o mayores de 5.2 en 5\% de los casos. Se debe valorar si esta variación es aceptable para etiquetar todos los altavoces producidos como altavoces $4\Omega$.  
 
@@ -145,7 +148,7 @@ Ilustremos el intervalo de confianza $(l,u)$ en términos de las distribuciones 
 x <- seq(-0.5,8.5,0.05)
 
 #histograma de mediciones
-hist(impedancia, br=seq(-0.5,8.5), freq=FALSE, col="lightgrey")
+hist(impedancia, br=seq(-0.5,8.5), freq=FALSE, col="lightgrey", ylim=c(0, 0.3))
 
 #distribucion para L
 lines(x,dnorm(x, mean=CI[1], sd=1.4), col="red")
@@ -169,7 +172,7 @@ text(CI[2], 0.02, "u")
 ```
 
 
-Notemos que el intervalo de confianza $(l,u)=c(3.503469, 5.353670)$ no es una cantidad puramente empírica; es decir, el resultado exclusivo de una medición, como sí lo son $x_i$ o $\bar{x}$. El intervalo es definido de acuerdo a un modelo para $X$, con lo cual, si cambimos el modelo, cambiamos el intervalo. Como los efectos pueden ser considerables y las conclusiones dispares, requerimos de argumentos teóricos, empíricos o semi-empíricos para preferir un modelo sobre otro. En nuestro caso podemos ver que las impedancias de los 10 altavoces son consistentes con una distribución normal usando el test de Shapiro y el criterio *p-value>0.05* 
+Notemos que el intervalo de confianza $(l,u)=c(3.424287 5.159713)$ no es una cantidad puramente empírica; es decir, el resultado exclusivo de una medición, como sí lo son $x_i$ o $\bar{x}$. El intervalo es definido de acuerdo a un modelo para $X$, con lo cual, si cambimos el modelo, cambiamos el intervalo. Como los efectos pueden ser considerables y las conclusiones dispares, requerimos de argumentos teóricos, empíricos o semi-empíricos para preferir un modelo sobre otro. En nuestro caso podemos ver que las impedancias de los 10 altavoces son consistentes con una distribución normal usando el test de Shapiro y el criterio *p-value>0.05* 
 
 ```{r}
 shapiro.test(impedancia)
@@ -302,7 +305,7 @@ Así para la medición de nuestros 10 prototipos (histograma) tenemos que el int
 ```{r}
 x <- seq(-0.5,8.5,0.05)
 
-hist(impedancia, br=seq(-0.5,8.5),freq=FALSE, col="lightgrey")
+hist(impedancia, br=seq(-0.5,8.5), freq=FALSE, col="lightgrey", ylim=c(0, 0.3))
 
 lines(x,dnorm(x, mean=barx, sd=sqrt(CI[1])), col="red")
 lines(x,dnorm(x, mean=barx, sd=sqrt(CI[2])),col="blue")

@@ -152,7 +152,7 @@ lines(x,dnorm(x, mean=CI[1], sd=1.4), col="red")
 #distribucion para U
 lines(x,dnorm(x, mean=CI[2], sd=1.4), col="blue")
 
-legend("topleft",c("distribucion estimada para L", "distribucion estimada para U"), col=c("blue","red"), lty=1, cex=0.7 )
+legend("topleft",c("distribucion estimada para L", "distribucion estimada para U"), col=c("red","blue"), lty=1, cex=0.7 )
 
 #xbar
 points(barx, 0, pch=16)
@@ -250,7 +250,7 @@ Por último, si necesitamos decidir si los experimentos ofrecen evidencia sufici
 
 
 ##Intervalos de confianza para $\sigma_X^2$
-Veamos el intervalo de confianza para la varianza. Así como estimamos el parámetro $\mu$ de la distribución para $X$, también estimamos su varianza $\sigma^2_X$ de los datos. De hecho, hemos ultizado el valor $s$ para estimar $\sigma_X$ en el cálculo de los intervalos de confianza cuando $\sigma_X$ es desconocido.   
+Veamos el intervalo de confianza para la varianza. Así como estimamos el parámetro $\mu$ para hubicar dónde se encuentra la distribución para $X$, también estimamos su varianza $\sigma^2_X$ de los datos para determinar la anchura de la distribución de $X$. De hecho, hemos ultizado el valor $s$ para estimar $\sigma_X$ en el cálculo de los intervalos de confianza cuando $\sigma_X$ es desconocido.   
 
 Recordemos que $s^2$
 ```{r}
@@ -292,7 +292,7 @@ Este se calcula en R con la función  **sigma.test**
 sigma.test(impedancia)
 ```
 
-Así para la medición de nuestros 10 prototipos (hitograma) tenemos que el intervalo de confianza para la varianza define dos distribuciones límite (roja y azul) que atrapan con una confianza de 95\% la distribución de $X$ con varianza $\sigma_X$. 
+Así para la medición de nuestros 10 prototipos (histograma) tenemos que el intervalo de confianza para la varianza define dos distribuciones límite (roja y azul) que atrapan con una confianza de 95\% la distribución de $X$ con varianza $\sigma_X$. 
 
 ```{r}
 x <- seq(-0.5,8.5,0.05)
@@ -302,7 +302,7 @@ hist(impedancia, br=seq(-0.5,8.5),freq=FALSE, col="lightgrey")
 lines(x,dnorm(x, mean=barx, sd=sqrt(CI[1])), col="red")
 lines(x,dnorm(x, mean=barx, sd=sqrt(CI[2])),col="blue")
 
-legend("topleft",c("distribucion estimada para L", "distribucion estimada para U"), col=c("blue","red"), lty=1, cex=0.7 )
+legend("topleft",c("distribucion estimada para L", "distribucion estimada para U"), col=c("red","blue"), lty=1, cex=0.7 )
 ```
 
 

@@ -55,7 +55,7 @@ $$\bar{X}= \frac{1}{n} \sum X_i$$ que es función de las variables aleatorias $X
 Por lo tanto debemos tener en cuenta dos distribuciones de probabilidad, funciones que asignan una probabilidad a cada uno de los posibles resultados que pueden tomar las variable aleatorias. La primera distribución es para la impedancia del proceso $X$. Asumimos que existe, la llamamos la **distribución poblacional**, y le asignamos algún modelo de probabilidad de acuerdo a su naturaleza, como por ejemplo binomial o de Poisson, si  $X$ es una variable aleatoria discreta, y normal o exponencial, si es aleatoria continua. La segunda distribución es la de $\bar{X}$, y la llamamos **distribución de muestreo**. En este caso es la distribución de muestreo para la media, que intentamos averiguar desde los modelos para $X$, aplicando en teorema central del límite o derivándola analíticamente, como es el caso de la distribucion t-student. Tanto la distribución para $X$ como para $\bar{X}$ son abstracciones. 
 
 
-En términos matemáticos, queremos conocer el valor esperado de las mediciones $E(X)=\mu$, que en nuestro ejemplo es el valor medio de la impedacia para el proceso de fabricación de los altavoces. $\mu$ es un parámetro, una propiedad, de la distribución de $X$ que nunca observamos directamente pero que, si asumimos un modelo para la distribución, podemos estimarlo de los datos. El número $\bar{x}$ es un buen ejemplo de un número derivado de los datos que podemos usar para estimar $\mu$, ya que en particular $E(\bar{X})=E(X)$ y por lo tanto es un estimador insesgado.
+En términos matemáticos, queremos conocer el valor esperado $E(X)=\mu$, o centro de gravedad, de la disricución poblacional. En nuestro ejemplo este valor corresponde al valor medio de la impedacia para el proceso de fabricación de los altavoces. $\mu$ es un parámetro, una propiedad, de la distribución de $X$ que nunca observamos directamente pero que, si asumimos un modelo para la distribución, podemos estimarlo de los datos. El número $\bar{x}$ es un buen ejemplo de un número derivado de los datos que podemos usar para estimar $\mu$, ya que en particular $E(\bar{X})=E(X)$ y por lo tanto es un estimador insesgado.
 
 Al hacer la estimación tomamos $\mu \sim \bar{x}$ ($\hat{\mu} = \bar{x}$). Sin embargo, no sabemos **qué tan cerca** estamos de $\mu$. Esta es la motivación para los intervalos de confianza, para tener una idea de donde estaría $\mu$.
 
@@ -137,7 +137,44 @@ $$\bar{x}=4.4 \pm 0.8$$
 
 Por lo tanto, al estimar $\mu$ con $\bar{x}$, no podemos estar muy seguros de la precisión dada por el decimal $.4$. Los decimales siguientes carecen de sentido práctico y los podemos descartar. Como conclusión tenemos que la media $\mu$ para el proceso de altavoces está cerca de los $4\Omega$ pero que tembién el proceso es claramente variable, pudiendo producir altavoces con impedancias menores 3.6 o mayores de 5.2 en 5\% de los casos. Se debe valorar si esta variación es aceptable para etiquetar todos los altavoces producidos como altavoces $4\Omega$.  
 
-Notemos también que el intervalo de confianza $(l,u)=c(3.503469, 5.353670)$ no es una cantidad puramente empírica; es decir, el resultado exclusivo de una medición, como sí lo son $X_i$ o $\bar{X}$. El intervalo aquí definido presupone un modelo para $X$, con lo cual, si cambimos el modelo, cambiamos el intervalo. Como los efectos pueden ser considerables y las conclusiones dispares, requerimos de argumentos teóricos, empíricos o semi-empíricos para preferir un modelo sobre otro. 
+A las 10 mediciones de impedancia en el histograma abajo corresponden un intervalo de confianza para $\mu$ que define dos distribuciones límite (roja y azul) que atrapan con una confianza de 95\% la distribución de $X$. Estas dos distribuciones son las estimadas para las variables aleatorias $L$ y $U$, que no observamos directamente pero estimamos sus medias con $l$ y $u$.
+
+```{r}
+#rango de valores observables
+x <- seq(-0.5,8.5,0.05)
+
+#histograma de mediciones
+hist(impedancia, br=seq(-0.5,8.5), freq=FALSE, col="lightgrey")
+
+#distribucion para L
+lines(x,dnorm(x, mean=CI[1], sd=1.4), col="red")
+
+#distribucion para U
+lines(x,dnorm(x, mean=CI[2], sd=1.4), col="blue")
+
+legend("topleft",c("distribucion estimada para L", "distribucion estimada para U"), col=c("blue","red"), lty=1, cex=0.7 )
+
+#xbar
+points(barx, 0, pch=16)
+text(barx, 0.02, "barx")
+
+#l
+points(CI[1], 0, pch=16,col="red")
+text(CI[1], 0.02, "l")
+
+#u
+points(CI[2], 0, pch=16,col="blue")
+text(CI[2], 0.02, "u")
+```
+
+
+Notemos que el intervalo de confianza $(l,u)=c(3.503469, 5.353670)$ no es una cantidad puramente empírica; es decir, el resultado exclusivo de una medición, como sí lo son $x_i$ o $\bar{x}$. El intervalo es definido de acuerdo a un modelo para $X$, con lo cual, si cambimos el modelo, cambiamos el intervalo. Como los efectos pueden ser considerables y las conclusiones dispares, requerimos de argumentos teóricos, empíricos o semi-empíricos para preferir un modelo sobre otro. En nuestro podemos ver que nuestras observaciones son consistentes con una distribución normal usando el test de Shapiro con $p-value>0.05$ 
+
+```{r}
+shapiro.test(impedancia)
+```
+
+Si bien nos permitimos ignorar los parametros de la distribución $X$ como $\mu$, nos permitimos suponer la forma de $X$. Por lo que tenemos que aprender a tener una posición crítica frente a esa decisión. 
 
 ----
 ##Intervalos de confianza en R
@@ -157,18 +194,6 @@ z.test(impedancia, sd=1.4)
 ```
 Con el interés exclusivo de determinar el intervalo de confianza, leemos los últimos dos resultados, en donde se reporta en intervalo $(l,u)$ con su nivel de confianza $\alpha=0.95$, junto con la media $\bar{x}$ para las observaciones en el vector *impedancia*. 
 
-A las 10 mediciones de impedancia en el histograma abajo corresponden un intervalo de confianza para $\mu$ que define dos distribuciones límite (roja y azul) que atrapan con una confianza de 95\% la distribución de $X$.  
-
-```{r}
-x <- seq(-0.5,8.5,0.05)
-
-hist(impedancia, br=seq(-0.5,8.5), freq=FALSE, col="lightgrey")
-
-lines(x,dnorm(x, mean=CI[1], sd=1.4), col="red")
-lines(x,dnorm(x, mean=CI[2], sd=1.4), col="blue")
-
-legend("topleft",c("N(mu=CIinf,sigma=1.4)", "N(mu=CIsup,sigma=1.4)"), col=c("blue","red"), lty=1 )
-```
 
 ##Intervalos de confianza cuando $\sigma_X$ es desconocido
 El caso más común es que no sepamos ni la media $E(X)=\mu$ ni la varianza $V(X)=\sigma^2_X$ de las mediciones, al fin y al cabo son paramétros de la distribución de $X$ que siempre debemos estimar en algún momento. 

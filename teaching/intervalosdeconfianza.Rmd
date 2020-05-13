@@ -5,7 +5,7 @@ output: html_document
 
 *Los intervalos de confiaza son herramientas básicas de la inferencia estadística y como tal se calculan fácilmente en R. Sin embargo, a pesar de su ultidad y de su uso extendido, muchas veces son malinterpretados. Esto tal vez se deba a que rara vez nos adentramos en las razones del por qué y el cómo de su definición, prefiriendo saltar rápidamente a su aplicación. Usando R y un ejemplo como guía, en este tutotial explico conceptos teóricos que ayudan a ententender e interpretar un intervalo de confianza.  Por último describo las funciones para calcularlos directamente en R.*
 
-<img src="speaker.jpg" style="width:20%;  margin-right: 20px" align="left">
+<img src="speaker.jpg" style="width:30%;  margin-right: 20px" align="left">
 
 Imaginemos que sabemos producir altavoces de $4\Omega$ y que queremos  producirlos en serie y comercializarlos. Para etiquetarlos correctamente, tenemos que garantizar que los altavoces se producen con una media de $4\Omega$. Por lo tanto, para conocer la impedancia media de los altavoces de nuestra fabricación, hemos producido con esfuerzo 10 prototipos. De estos diez prototipos, pretendemos saber en qué medida su impedancia promedio estima la impedancia de los altavoces de una futura producción en serie. Podemos usar los **intervalos de confianza** para esto. Cuando queramos averiguar si la impedancia del proceso es consistente con un etiquetado de $4\Omega$, el valor al que los queremos comercializar, entonces tendremos que hacer una **prueba de hipótesis**. 
 
@@ -32,7 +32,7 @@ Desde el inicio vemos una variación considerable en las mediciones de la impeda
 
 
 ```{r}
-impedancia <- c(3.5, 5.0, 3.72, 2.2, 5.8, 6.9, 3.8, 6.3, 5.0, 0.7)
+impedancia <- c(3.5, 5.0, 3.7, 2.2, 5.8, 6.9, 3.8, 6.3, 5.0, 0.7)
 ```
 y calculamos el promedio de la mediciones defido como 
 $$\bar{x}=\frac{1}{n}\sum_{i=1,...n} x_i$$
@@ -45,14 +45,14 @@ barx
 
 Al permitirnos calcular el promedio de estos diez valores hemos asumido que estos resultados son sumables, o sea que pertenecen a una misma categoría y que en últimas son producidos por un sólo proceso. Ahora, el proceso fabrica especímenes variables en su impedancia y esto tiene una consecuencia importante. Si bien el promedio de las mediciones está se cerca del objetivo de $4\Omega$, si tomásemos otras 10 mediciones este valor cambiaría y podría alejarse del valor deseado. La variación en producción del proceso nos impide tener absoluta confianza de que el promedio de las impedancias de 10 epecímenes coincide con el valor medio de los altavoces del mismo proceso cuando este se serifique. 
 
-Pero no nos rindamos y preguntémosnos ¿Qué tan confiados estamos de que el valor 4.292 es representativo del proceso de producción? para tal vez mejorar nuestro proceso y estar mas cerca de $4\Omega$.  
+Pero no nos rindamos y preguntémosnos ¿Qué tan confiados estamos de que el valor 4.29 es representativo del proceso de producción? para tal vez mejorar nuestro proceso y estar mas cerca de $4\Omega$.  
 
 Consideraremos que:
 
 - A pesar de que todas las mediciones son diferentes, cada una representa igualmente una impedancia posible del proceso de producción. Por tanto, cada medición es el resultado de una variable aleatoria, aunque en el caso de altavoces esté ligada a un espécimen concreto. Lo que varía en estas mediciones no es la impedancia sobre el espécimen sino los especímenes entre sí. Tenemos pues *n* valores como resulatado de *n* mediciones $(x_1,...,x_n)$ en minúsculas, que provienen de las variables aleatorias $(X_i,...X_n)$, en mayúsculas, que son *n* mediciones repetidas sobre la misma varibale aleatoria $X=X_i=...=Xn$. Recordemos que una variable aleatoria es una para la cual el resultado de su medición es diferente cada vez que la medimos. De tal forma que entendemos $X_i$ como la $i$-ésima medición en algún experimento de $n$ mediciones, cualquiera que resulte ser el espécimen concreto con impedancia $x_i$. 
 
 - El **único** valor para la media muestral 
-$\bar{x}= 4.292$ proviene de **otra** variable aleatoria 
+$\bar{x}= 4.29$ proviene de **otra** variable aleatoria 
 $$\bar{X}= \frac{1}{n} \sum X_i$$ que es función de las variables aleatorias $X_i$.
 
 Por lo tanto debemos tener en cuenta dos distribuciones de probabilidad. Recordemos que estas son funciones que asignan una probabilidad a cada uno de los posibles resultados que pueden tomar las variable aleatorias. La primera distribución es para la impedancia del proceso $X$. Asumimos que existe, la llamamos la **distribución poblacional**, y le asignamos algún modelo de probabilidad de acuerdo a su naturaleza. Si $X$ es una variable aleatoria discreta podemos pensar en modelos binomial o de Poisson, entre muchos otros. Si $X$ toma valores continuos, entonces consideramos modelos como por ejemplo los modelos normal o exponencial. Los modelos probabilísticos son toda una legión y son la base sobre la cuál las teorías, algunas ilustres como la mecánica cuántica o la evolución Darwiniana, se construyen. 
@@ -62,7 +62,7 @@ La segunda distribución es la de $\bar{X}$, y la llamamos **distribución de mu
 
 En términos matemáticos, queremos conocer el valor esperado $E(X)=\mu$ de la disricución poblacional. En nuestro ejemplo este valor corresponde al valor medio de la impedacia para el proceso de fabricación de los altavoces en serie. $\mu$ es un parámetro, una propiedad de la distribución de $X$; su centro de gravedad que nunca observamos directamente pero que, si asumimos un modelo para la distribución, podemos estimarlo de los datos. El número $\bar{x}$ es un buen ejemplo de un número derivado de los datos que podemos usar para estimar $\mu$, ya que en particular $E(\bar{X})=E(X)$ y por lo tanto es un estimador insesgado.
 
-Al hacer la estimación tomamos $\mu \sim \bar{x}$ ($\hat{\mu} = \bar{x}$). Sin embargo, no sabemos **qué tan cerca** estamos de $\mu$. Esta es la motivación para los intervalos de confianza, para tener una idea de en dénde se podría encontrar $\mu$.
+Al hacer la estimación tomamos $\mu \sim \bar{x}$ ($\hat{\mu} = \bar{x}$). Sin embargo, no sabemos **qué tan cerca** estamos de $\mu$. Esta es la motivación para los intervalos de confianza, para tener una idea de en dónde se podría encontrar $\mu$.
 
 
 Para saber qué tan lejos $\bar{x}$ puede caer de $\mu$, buscaremos los números $f_{inf}$ y $f_{sup}$ tal contengan una probabilidad del 95\% de contener la distancia entre $\bar{X}$ y $\mu$
@@ -75,7 +75,7 @@ $$P(\bar{X} - f_{sup} \leq \mu \leq \bar{X} - f_{inf} )=0.95$$
 y definamos el **intervalo aleatorio** 
 $$(L,U) = (\bar{X} - f_{sup},\bar{X} - f_{inf})$$ 
 
-Este intervalo es en sí es una variable aleatoria y tiene por definición una probailidad del  95\% de contener a $\mu$. Cada vez que hagamos un experimento de *n* mediciones y tomemos su promedio obtendremos un intervalo, si sabemos $f_{inf}$ y $f_{sup}$. El intervalo asociado a un experimento $(l,u)=(\bar{x} - f_{sup},\bar{x} - f_{inf})$, en minúsculas, o contiene o no contiene a $\mu$ aunque esto **nunca lo sabremos**. Pensemos en el juego de lotería rasca y gana. Una tarjeta del rasca y gana, o tiene un premio o no lo tiene. La probabilidad de ganar no depende de esa tarjeta, sino de todos las tarjetas que se venden; es una propiedad del juego. La diferencia fundamental es que no podemos rascar el intervalo y ver a $\mu$.
+Este intervalo es en sí es una variable aleatoria y tiene por definición una probailidad del  95\% de contener a $\mu$. Cada vez que hagamos un experimento de *n* mediciones y tomemos su promedio obtendremos un intervalo, si sabemos $f_{inf}$ y $f_{sup}$. El intervalo asociado a un experimento $(l,u)=(\bar{x} - f_{sup},\bar{x} - f_{inf})$, en minúsculas, o contiene o no contiene a $\mu$ aunque esto **nunca lo sabremos**. Pensemos en el juego de lotería rasca y gana. Una tarjeta del rasca y gana, o tiene un premio o no lo tiene. La probabilidad de ganar no depende de esa tarjeta, sino de todos las tarjetas que se venden; es una propiedad del juego. La diferencia fundamental es que no podemos rascar el intervalo y ver a $\mu$. Si a pesar de no poder ver a $\mu$, creemos en su realidad entonces no nos queda alternativa que unirnos a Platón en su caverna, sin posibiliadd de escapar.
 
 Para el intervalo aleatorio definido arriba nos queda el consuelo de que los intervalos concretos, productos de mediciones en experimentos específicos, atrapan a $\mu$  el 95\% de las veces. Tenemos un gran oportunidad de ganar y decimos, mas tecnicamente, que tenemos una  **confianza** del 95\% de que un intervalo concreto $(l,u)$ atrapará a $\mu$. La probabilidad la reservamos para el intervalo aleatorio, diciendo que tiene una probabilidad del 95\% de contener a $\mu$. Objetivizamos la confianza al nombrarla propiedad de una medición, o de una tarjeta del rasca y gana, mientras que la probabilidad es una propiedad de la variable aleatoria del proceso, o del juego del rasca y gana. 
 

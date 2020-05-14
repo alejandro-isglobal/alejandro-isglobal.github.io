@@ -243,7 +243,7 @@ summary {
 <pre class="r"><code>barx &lt;- mean(impedancia)
 barx</code></pre>
 <pre><code>## [1] 4.29</code></pre>
-<p>Al permitirnos calcular el promedio de estos diez valores hemos asumido que estos resultados son sumables, o sea que pertenecen a una misma categoría y que en últimas son producidos por un sólo proceso. Ahora, el proceso fabrica especímenes variables en su impedancia y esto tiene una consecuencia importante. Si bien el promedio de las mediciones está se cerca del objetivo de <span class="math inline">\(4\Omega\)</span>, si tomásemos otras 10 mediciones este valor cambiaría y podría alejarse del valor deseado. La variación en producción del proceso nos impide tener absoluta confianza de que el promedio de las impedancias de 10 epecímenes coincide con el valor medio de los altavoces del mismo proceso cuando este se serifique.</p>
+<p>Al permitirnos calcular el promedio de estos diez valores hemos asumido que estos resultados son sumables, o sea que pertenecen a una misma categoría y que en últimas son producidos por un mismo proceso. Ahora, el proceso fabrica especímenes variables en su impedancia y esto tiene una consecuencia importante. Si bien el promedio de las mediciones está se cerca del objetivo de <span class="math inline">\(4\Omega\)</span>, si tomásemos otras 10 mediciones este valor cambiaría y podría alejarse del valor deseado. La variación en producción del proceso nos impide tener absoluta confianza de que el promedio de las impedancias de 10 epecímenes coincide con el valor medio de los altavoces del mismo proceso cuando este se serifique.</p>
 <p>Pero no nos rindamos y preguntémosnos ¿Qué tan confiados estamos de que el valor 4.29 es representativo del proceso de producción? para tal vez mejorar nuestro proceso y estar mas cerca de <span class="math inline">\(4\Omega\)</span>.</p>
 <p>Consideraremos que:</p>
 <ul>
@@ -301,10 +301,10 @@ x &lt;- seq(-0.5,8.5,0.05)
 #histograma de mediciones
 hist(impedancia, br=seq(-0.5,8.5), freq=FALSE, col=&quot;lightgrey&quot;, ylim=c(0, 0.3))
 
-#distribucion para L
+#distribucion estimada para L
 lines(x,dnorm(x, mean=CI[1], sd=1.4), col=&quot;red&quot;)
 
-#distribucion para U
+#distribucion estimada para U
 lines(x,dnorm(x, mean=CI[2], sd=1.4), col=&quot;blue&quot;)
 
 legend(&quot;topleft&quot;,c(&quot;distribucion estimada para L&quot;, &quot;distribucion estimada para U&quot;), col=c(&quot;red&quot;,&quot;blue&quot;), lty=1, cex=0.7 )
@@ -367,7 +367,7 @@ z.test(impedancia, sd=1.4)</code></pre>
 </ol>
 <p>Si 1 y 2 se cumplen <strong>entonces</strong> se puede demostar que la variable <span class="math inline">\(T=\frac{\bar{X}-\mu}{s/\sqrt{n}}\)</span> es una variable aleatoria que sigue una distibucion t-student con n-1 grados de libertad <span class="math inline">\(t(n-1)\)</span>.</p>
 <p><span class="math display">\[P( \frac{f_{inf}}{s/\sqrt{n}} \leq \frac{\bar{X}-\mu}{s/\sqrt{n}} \leq  \frac{f_{sup}}{s/\sqrt{n}} )=0.95\]</span></p>
-<p><span class="math display">\[P( t_{0.025,n-1} \leq T \leq  t_{0.975,n-1} )=0.95\]</span> siendo <span class="math inline">\(T\)</span> una variable aleatoria con una dostribución student-t con n-1 grados de libertad, podemos calcular sus cuantiles al 2.5% y 97.5% usando la función <strong>qt</strong> (la función inversa de la acumulación de probabilidad para la distribución t con df grados de libertad)</p>
+<p><span class="math display">\[P( t_{0.025,n-1} \leq T \leq  t_{0.975,n-1} )=0.95\]</span> siendo <span class="math inline">\(T\)</span> una variable aleatoria con una dostribución student-<span class="math inline">\(t\)</span> con n-1 grados de libertad, podemos calcular sus cuantiles al 2.5% y 97.5% usando la función <strong>qt</strong> (la función inversa de la acumulación de probabilidad para la distribución <span class="math inline">\(t\)</span> con <span class="math inline">\(df\)</span> grados de libertad)</p>
 <pre class="r"><code>t0.025 &lt;- qt(0.025,df=9)
 t0.025</code></pre>
 <pre><code>## [1] -2.262157</code></pre>
@@ -402,7 +402,7 @@ CI</code></pre>
 ## mean of x 
 ##      4.29</code></pre>
 <p>Donde vemos claramente el intervalo de confianza y el valor para <span class="math inline">\(\bar{x}\)</span>. Notemos una propiedad imporatante para los dos tipos de intervalos de confianza que hemos calculado hasta aquí. En ambos casos la estandarización de <span class="math inline">\(\bar{X}\)</span> nos lleva a las variables aleatorias <span class="math inline">\(Z\)</span> y <span class="math inline">\(T\)</span> cuyas distribuciones no dependen de los parámetros <span class="math inline">\(\mu\)</span> y <span class="math inline">\(\sigma\)</span> de la distribución de <span class="math inline">\(X\)</span>. Esto nos permite usar estas variables repetidas veces como <strong>pivotes estadísticos</strong> para calcular <span class="math inline">\(f_{inf}\)</span> y <span class="math inline">\(f_{sup}\)</span> en muchos de los casos que podemos asumir las condiciones 1. 2. de cada caso.</p>
-<p>Por último, si necesitamos decidir si los experimentos ofrecen evidencia suficiente de que el proceso de producción de altavoces es consistente a un proceso de <span class="math inline">\(4\Omega\)</span>, o sea si podemos asumir de que es razonablemente posible que <span class="math inline">\(\mu = 4\Omega\)</span> entonces debemos hacer una prueba de hipótesis.</p>
+<p>Por último, si necesitamos decidir si los experimentos ofrecen evidencia suficiente de que el proceso de producción de altavoces es consistente a un proceso de <span class="math inline">\(4\Omega\)</span>, o sea si podemos asumir de que es razonablemente que <span class="math inline">\(\mu = 4\Omega\)</span> entonces debemos hacer una prueba de hipótesis. Esta prueba, en términos del intervalo de confianza, nos dice que <em>no podemos rechazar</em> la hipótesis de que <span class="math inline">\(4\Omega\)</span> sea <span class="math inline">\(\mu\)</span> debido a que <span class="math inline">\(4\Omega\)</span> esta <strong>dentro</strong> del intervalo <span class="math inline">\((2.928335 5.651665)\)</span> a 95% de confianza. Así pues, los datos nos permiten etiquetar los altavoces a <span class="math inline">\(4\Omega\)</span> de acuerdo con su promedio, pero la variabilidad de su producción también debe ser evaluada para saber sí esta es acceptable.</p>
 </div>
 <div id="intervalos-de-confianza-para-sigma_x2" class="section level2">
 <h2>Intervalos de confianza para <span class="math inline">\(\sigma_X^2\)</span></h2>

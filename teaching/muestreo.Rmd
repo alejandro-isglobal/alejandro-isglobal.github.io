@@ -5,4 +5,11 @@ output: html_document
 *Las distribuciones de muestreo son la base de la inferencia estadística*
 
 
-Un contador Geiger mide el número de partículas radioactivas por segundo. Es escencial para saber que tan expuesta está una persona en un lugar con alta radiación (central nuclear, Fukushima, Chernovil). 
+Un contador Geiger mide el número de partículas radioactivas por segundo. Es escencial para saber que tan expuesta está una persona en un lugar con alta radiación (central nuclear, Fukushima, Chernovil). En  [mightyohm.com](http://mightyohm.com/files/geiger/capture.txt) hay una muestra real de este tipo de datos que también se encuentran [aquí](https://alejandro-isglobal.github.io/data/capture.txt) 
+
+```{r}
+library(RCurl)
+text <- getURL('https://alejandro-isglobal.github.io/data/capture.txt')
+geiger <- read.table(text=text, sep = ",")
+head(geiger)
+```

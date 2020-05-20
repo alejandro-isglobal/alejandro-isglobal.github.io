@@ -2,10 +2,10 @@
 title: "Distribuciones de muestreo"
 output: html_document
 ---
-*Las distribuciones de muestreo son la puerta de entrada a la inferencia estadística y de salida a la predicción. Las distribuciones de muestreo son las intermediarias entre los datos y las distribuciones pobacionales; aquellas que queremos conocer. Los estadísticos son las variables aleatorias de las distribuciones de muestreo, con lo que son fundamentales para entender cualquier razonamiento estadístico. Mediante un ejemplo de un contador Geiger ilustro refelxiono sobre el papel central de las distribuciones de muestreo.*
+*Las distribuciones de muestreo son la puerta de entrada a la inferencia estadística y de salida a la predicción. Las distribuciones de muestreo son las intermediarias entre los datos y las distribuciones poblacionales; aquellas que queremos conocer. Los estadísticos son las variables aleatorias de las distribuciones de muestreo, y por lo tanto son fundamentales para entender cualquier razonamiento estadístico. Mediante un ejemplo de un contador Geiger ilustro el papel central de las distribuciones de muestreo para el razonamiento estadístico.*
 
 
-<img src="Geiger.jpg" style="width:30%;  margin-right: 20px" align="left"> Un contador Geiger mide el número de partículas radioactivas por segundo. Es escencial para saber que tan expuesta está una persona en un lugar con alta radiación (central nuclear, Fukushima, Chernovil). En  [mightyohm.com](http://mightyohm.com/files/geiger/capture.txt) hay una muestra real de este tipo de datos que también se encuentran [aquí](https://alejandro-isglobal.github.io/data/capture.txt) 
+<img src="Geiger.jpg" style="width:30%;  margin-right: 20px" align="left"> Un contador Geiger mide el número de partículas radioactivas por segundo. Es escencial para saber que tan expuesta está una persona en un lugar con alta radiación como por ejemplo en una central nuclear o en lugares con alta radiación como Fukushima o Chernovil. Analizaremos los datos de un contador Geiger imaginando que son los datos que obtenemos al seguir a un trabajador que entra en una central nuclear a hacer una labor de limpieza. Nuestro trabajo entonces es hacer una lectura remota de los datos, para alertar al trabajador si se encuentra en una zona de alto riesgo y lo mejor es que abandone el lugar. En [mightyohm.com](http://mightyohm.com/files/geiger/capture.txt) hay una muestra real de un contadorr Geiger, que también se puede encontar [aquí](https://alejandro-isglobal.github.io/data/capture.txt). Usaremos estos datos imaginando que son los obtenidos en la situación descrita, y suponeniendo que el promedio de partículas detectadas por segundo debe ser menor de 0.4 para la salud del trabajador. Nuestro objetivo es entonces estimar el valor medio de partículas detectadas por segundo, a medida que el trabajador va pasando mas tiempo en el reactor y nosotros vamos obteniendo mas datos. Esta situación ficticia sobre datos reales dramatiza como nuestro conocimiento y decisiones cambian en función de la cantidad de datos que disponemos. Empecemos cargando los datos    
 
 ```{r}
 library(RCurl)
@@ -14,31 +14,22 @@ geiger <- read.table(text=text, sep = ",")
 head(geiger)
 ```
 
-
-Nos interesa saber cual es el promedio de detecciones por segundo (segunda columna), para saber si un trabajador está expuesto a niveles demasiado altos. 
-
-Imaginemos que seguimos en tiempo real a un trabajador que entra a limpiar un reactor nuclear. 
-
-Nuestro trabajo es garantizar que el trabajador no esté expuesto a niveles radiación excesivos.
-
-
-El promedio de partículas detectadas por segundo debe ser menor de 0.4 para la salud del trabajador. 
-
- Empezamos observando las detecciones del contados Geiger en los primeros 10 segundos depués de que el trabajador entra al reactor.
+En la columna 2 se encuentran los conteos de partículas en cada segundo (CPS, counts per second). Empezamos observando las detecciones del contados Geiger en los primeros 10 segundos depués de que el trabajador entra al reactor.
 
 ```{r}
 detecciones <- geiger[,2]
 detecciones10 <- detecciones[1:10]
 detecciones10
+```
+
+Podemos ver que en el primer segundo se detectó una partícula, así como en los segundos 4,5, 7 7 y 8. Así pues el número de promedio de partículas detectadas por segundo es
+
+```{r}
 xbar <- mean(detecciones10)
 xbar
 ```
 
-El promedio de detección debe es mayor que 0.4, pero:
-
-Qué tan confiados estamos de que el trabajador esté en una zona de peligro?
-
-Al fin y al cabo si esperamos y obervamos las detecciones de los siguientes 10 segundos (11,...20) nos dará otro valor ($xbar=0.2$).  
+Este promedio de detección es mayor al recomendado 0.4. Según estos datos deberíamos sugerirle al trabajador que salga inmediatamente. Sin embargo ¿Qué tan confiados estamos de que el trabajador realmente esté en una zona de peligro? Al fin y al cabo, si esperamos las detecciones de los siguientes 10 segundos (11,...20) nos dará otro valor (*xbar=0.2*) que nos hará cambiar de opinión.  
 
 - $\bar{X}$ (con X mayúscula) es una variable aleatoria. 
 - $\bar{x}=0.5$ (con x minúscula) es el resultado de un experimento sobre $\bar{X}$. 

@@ -29,11 +29,18 @@ xbar <- mean(detecciones10)
 xbar
 ```
 
-Este promedio de detección es mayor al recomendado 0.4. Según estos datos deberíamos sugerirle al trabajador que salga inmediatamente. Sin embargo ¿Qué tan confiados estamos de que el trabajador realmente esté en una zona de peligro? Al fin y al cabo, si esperamos las detecciones de los siguientes 10 segundos (11,...20) nos dará otro valor (*xbar=0.2*) que nos hará cambiar de opinión.  
+Este promedio de detección es mayor al recomendado 0.4. Según estos datos deberíamos sugerirle al trabajador que salga inmediatamente. Sin embargo ¿Qué tan confiados estamos de que el trabajador realmente esté en una zona de peligro? Al fin y al cabo, si esperamos las detecciones de los siguientes 10 segundos (11,...20) nos dará otro valor (*xbar=0.2*) que nos hará cambiar de opinión. Por lo tanto $\bar{x}=0.5$ (con x minúscula) es el resultado de un experimento aleatorio sobre la variable aleatoria $\bar{X}$ (con x mayúscula). De tal forma que si conocemos cómo se distribuye $\bar{X}$ podremos **predecir**  qué tan probable es obtener $\bar{x}<0.4$ en un futuros muestreos de 10 segundos. Es decir, podríamos calcular la probabilidad
 
-- $\bar{X}$ (con X mayúscula) es una variable aleatoria. 
-- $\bar{x}=0.5$ (con x minúscula) es el resultado de un experimento sobre $\bar{X}$. 
-- Si conocemos c\'omo se distribuye $\bar{X}$ podemos **predecir**  qué tan probable es obtener $\bar{x}<0.4$ en un futuros muestreos de 10 segundos.
+$$P(\bar{X} < 0.4)=F(0.4)=\int_0^{0.4} f(t) dt$$
+
+donde $F(0.4)$ es la función de distribución de probabilidad de $\bar{X}$ en $\bar{X}=0.4$ y $f(t)$ la densidad de probabilidad de $\bar{X}$ en $t$.  La pregunta es entonces ¿Cómo podemos conocer $F_{\bar{X}}$ o equivalentemente $f_{\bar{X}}$? 
+
+Recordemos que $\bar{x}$ es definida como el promedio de $n$ datos $x_1,..x_n$
+
+$$\bar{x}=\frac{1}{n}\sum_{i=1}^n x_i$$
+
+esto es la suma ponderada de los datos, o su centro de gravedad cuando cada dato tiene el mismo peso, que da una idea de la centralidad de las mediciones.  
+
 
 la función de probabilidad para $\bar{X}$ se conoce como una función de **distribución se muestreo** para la media (en nuestro caso para una muestra de tamaño  $n=10$).  
 

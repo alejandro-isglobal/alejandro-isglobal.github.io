@@ -5,7 +5,9 @@ output: html_document
 *Las distribuciones de muestreo son la puerta de entrada a la inferencia estadística y de salida a la predicción. Las distribuciones de muestreo son las intermediarias entre los datos y las distribuciones poblacionales; aquellas que queremos conocer. Los estadísticos son las variables aleatorias de las distribuciones de muestreo, y por lo tanto son fundamentales para entender cualquier razonamiento estadístico. Mediante un ejemplo de un contador Geiger ilustro el papel central de las distribuciones de muestreo para el razonamiento estadístico.*
 
 
-<img src="Geiger.jpg" style="width:30%;  margin-right: 20px" align="left"> Un contador Geiger mide el número de partículas radioactivas por segundo. Es escencial para saber que tan expuesta está una persona en un lugar con alta radiación como por ejemplo en una central nuclear o en lugares con alta radiación como Fukushima o Chernovil. Analizaremos los datos de un contador Geiger imaginando que son los datos que obtenemos al seguir a un trabajador que entra en una central nuclear a hacer una labor de limpieza. Nuestro trabajo entonces es hacer una lectura remota de los datos, para alertar al trabajador si se encuentra en una zona de alto riesgo y lo mejor es que abandone el lugar. En [mightyohm.com](http://mightyohm.com/files/geiger/capture.txt) hay una muestra real de un contadorr Geiger, que también se puede encontar [aquí](https://alejandro-isglobal.github.io/data/capture.txt). Usaremos estos datos imaginando que son los obtenidos en la situación descrita, y suponeniendo que el promedio de partículas detectadas por segundo debe ser menor de 0.4 para la salud del trabajador. Nuestro objetivo es entonces estimar el valor medio de partículas detectadas por segundo, a medida que el trabajador va pasando mas tiempo en el reactor y nosotros vamos obteniendo mas datos. Esta situación ficticia sobre datos reales dramatiza como nuestro conocimiento y decisiones cambian en función de la cantidad de datos que disponemos. Empecemos cargando los datos    
+<img src="Geiger.jpg" style="width:30%;  margin-right: 20px" align="left"> Un contador Geiger mide el número de partículas radioactivas por segundo. Es escencial para saber que tan expuesta está una persona en un lugar con alta radiación como por ejemplo en una central nuclear o en lugares con alta radiación como Fukushima o Chernovil. Analizaremos los datos de un contador Geiger imaginando que son los datos que obtenemos al seguir a un trabajador que entra en una central nuclear a hacer una labor de limpieza. Nuestro trabajo entonces es hacer una lectura remota de los datos, para alertar al trabajador cuando se encuentre en una zona de alto riesgo y que abandone el lugar. En [mightyohm.com](http://mightyohm.com/files/geiger/capture.txt) hay una muestra real de un contadorr Geiger, que también se puede encontar [aquí](https://alejandro-isglobal.github.io/data/capture.txt). Usaremos estos datos imaginando que son los obtenidos en la situación descrita, y suponeniendo que el promedio de partículas detectadas por segundo debe ser menor de 0.4 para la salud del trabajador. Nuestro objetivo es estimar el valor medio de partículas detectadas por segundo, a medida que el trabajador va pasando más tiempo en el reactor y nosotros vamos obteniendo mas datos. El propósito de plantear esta situación ficticia sobre datos reales es dramatizar cómo nuestro conocimiento y decisiones cambian en función de la cantidad de datos que disponemos. 
+
+Empecemos cargando los datos    
 
 ```{r}
 library(RCurl)
@@ -14,7 +16,7 @@ geiger <- read.table(text=text, sep = ",")
 head(geiger)
 ```
 
-En la columna 2 se encuentran los conteos de partículas en cada segundo (CPS, counts per second). Empezamos observando las detecciones del contados Geiger en los primeros 10 segundos depués de que el trabajador entra al reactor.
+En la columna 2 se encuentran los conteos de partículas en cada segundo (CPS, counts per second). Imaginemos que comenzamos observando las detecciones del contador Geiger en los primeros 10 segundos depués de que el trabajador entra al reactor.
 
 ```{r}
 detecciones <- geiger[,2]
@@ -22,36 +24,39 @@ detecciones10 <- detecciones[1:10]
 detecciones10
 ```
 
-Podemos ver que en el primer segundo se detectó una partícula, así como en los segundos 4,5, 7 7 y 8. Así pues el número de promedio de partículas detectadas por segundo es
+Podemos ver que en el primer segundo se detectó una partícula, así como en los segundos 4, 5, 7 y 8. Así pues el número de promedio de partículas detectadas por segundo es
 
 ```{r}
 xbar <- mean(detecciones10)
 xbar
 ```
 
-Este promedio de detección es mayor al recomendado 0.4. Según estos datos deberíamos sugerirle al trabajador que salga inmediatamente. Sin embargo ¿Qué tan confiados estamos de que el trabajador realmente esté en una zona de peligro? Al fin y al cabo, si esperamos las detecciones de los siguientes 10 segundos (11,...20) nos dará otro valor (*xbar=0.2*) que nos hará cambiar de opinión. Por lo tanto $\bar{x}=0.5$ (con x minúscula) es el resultado de un experimento aleatorio sobre la variable aleatoria $\bar{X}$ (con x mayúscula). De tal forma que si conocemos cómo se distribuye $\bar{X}$ podremos **predecir**  qué tan probable es obtener $\bar{x}<0.4$ en un futuros muestreos de 10 segundos. Es decir, podríamos calcular la probabilidad
+el promedio *xbar* lo denotamos como $\bar{x}$, que definido sobre $n$ datos $x_1,..x_n$ tiene la forma
 
-$$P(\bar{X} < 0.4)=F(0.4)=\int_0^{0.4} f(t) dt$$
+$$\bar{x}=\frac{1}{n}\sum_{i=1}^n x_i.$$
 
-donde $F(0.4)$ es la función de distribución de probabilidad de $\bar{X}$ en $\bar{X}=0.4$ y $f(t)$ la densidad de probabilidad de $\bar{X}$ en $t$.  La pregunta es entonces ¿Cómo podemos conocer $F_{\bar{X}}$ o equivalentemente $f_{\bar{X}}$? 
+Esta es la suma ponderada de los datos, o su centro de gravedad cuando cada dato tiene el mismo peso, y nos da una idea de la centralidad de las mediciones. Observamos que el promedio de detección en número de partículos es mayor al recomendado $0.4$ *partículas/segundo*. Según estos datos deberíamos sugerirle al trabajador que salga inmediatamente. 
 
-Recordemos que $\bar{x}$ es definida como el promedio de $n$ datos $x_1,..x_n$
+Sin embargo ¿Qué tan confiados estamos de que el trabajador realmente esté en una zona de peligro? Al fin y al cabo, si esperamos las detecciones de los siguientes 10 segundos (11,...20) nos dará otro valor (*xbar=0.2*) que nos hará cambiar de opinión. Por lo tanto $\bar{x}=0.5$ (con x minúscula) es el resultado de un experimento aleatorio sobre la variable aleatoria $\bar{X}$ (con x mayúscula). De tal forma que nos interesa conocer la probabilidad de que $\bar{X}<0.4$. Si conocemos cómo se distribuye $\bar{X}$ entonces podremos **predecir**  qué tan probable es obtener mediciones  $\bar{x}<0.4$ en un futuros muestreos de $n=10$ segundos. Es decir, podríamos calcular 
 
-$$\bar{x}=\frac{1}{n}\sum_{i=1}^n x_i$$
+$$P(\bar{X} < 0.4)=F(0.4; n=10)=\int_0^{0.4} f(t; n=10) dt$$
 
-esto es la suma ponderada de los datos, o su centro de gravedad cuando cada dato tiene el mismo peso, que da una idea de la centralidad de las mediciones.  
+donde $F(0.4; n=10)$ es la función de distribución o acumulación de probabilidad de $\bar{X}$ para $\bar{X}=0.4$ y $f(t; n=10)$ la densidad de probabilidad de $\bar{X}$ para $t$. La función de distribución para $\bar{X}$ se conoce como la **distribución se muestreo** para la media (en nuestro caso para una muestra de tamaño  $n=10$). La pregunta es entonces ¿Cómo podemos conocer $F_{\bar{X}}$ o equivalentemente $f_{\bar{X}}$?
 
+###Modelización de la probabilidad poblacional
+Primero hagamos una gran consideracón. Nuestras mediciones $x_1,..x_n$, o conteos, son eventos independientes y que provienen de un proceso común, que puede ser descrito por una única variable aleatoria $X$. La función de probabilidad de $X$, $f_X$, la llamamos **poblacional**, por el hecho de describir el resultado de todas las posibles mediciones, o si las mediciones no pudieran ser separadas del individuo que representa, entonces de todas las posibles medidas de los individuos. Es una función abstracta y tiene la libertad de representar idividuos que todavía no existen o, partículas radiactivas de átomos que todaía no ha decaído. Aún así suponemos que el proceso de craeción que representa existe y que lo podemos conocer. 
 
-la función de probabilidad para $\bar{X}$ se conoce como una función de **distribución se muestreo** para la media (en nuestro caso para una muestra de tamaño  $n=10$).  
+La suposición de medidas independientes tampoco está totalmente garantizado ya sea porque el conteo de partículas en un momento dependa de cuantas se detectan previamente, o porque los individuos estén relacionados y no representen a la población. Sin embargo, no tenemos razones para pensar que en nuestro caso esto no sea cierto. Por lo que nos vamos a permitir suponer un **modelo** de probabillidad para los datos $x_i$. Es decir, queremos derivar unas características generales de cómo se produce la variabilidad en los conteos; por qué ahora uno, después ninguno y tal vez en 10 sgundos dos. El objetivo es usar la forma de $f_X$ para deducir las posibles formas que puede tomar $f_{\bar{X}}$. 
 
-Supongamos un **modelo** de probabillidad para estos datos y estudiemos *teóricamente* cómo se comporta $\bar{X}$ bajo el modelo. 
+Para modelar $f_{X}$ solemos empezar considerando una circunstancia para la cual nuestra ignorancia sobre los eventos es razonablemente total. De este punto de patida construimos la situación que queremos describir. Imaginemos que tuviésemos un contador que pudiese detectar partículas en milésimas de segúndo. Seguramente se en un milisegundo se detectíamos una o zero partículas (no se detectarían más de una). No es mucho pedirle a nuestro proceso radiactivo. Si es así entonces detectaríamos una partícula con una probabilidad que sería igual al número promedio de detecciones por segundo que llamamos $\lambda$, dividido por 1,000. $\lambda$ es ideal, una característica del proceso imaginado. Volviendo al mundo de nuestro contador Geiger real, si contamos todas las partículas detectadas en un segundo estos son $x$ partículas detectadas en 1,000 ensayos, uno por cada milisegundo. Este tipo de conteo probabilístico sigue una distribución binomial, que no describiré, pero que nos sirve para entender que es la base para obtener la distribución de Poisson       
+\[
+    f_{X}=f(x; \lambda)=P(X=x)= \frac{\lambda^x e^{-\lambda}}{x!} 
+\]
+cuando imaginamos contadores infinitamente rápidos, en tiempo de detección 0 para acegurarnos que si bien varias partículas se pueden contar en un intervalo de tiempo, estas no se crean exactamente al mismo tiempo. Suponemos así que el proceso las crea una a una y no dos a la vez y con cierta cadencia $\lambda$. El intervalo en milisegunodos era todavía una aproximación, útil para anclarnos en un proceso binomial, pero insuficente para destilar la idea de que cada partícula es independiente entre sí. Matemáticamente hablando, una situación tan razonable como esta, se ecuentra en el límite ($t \rightarrow 0$); algo que sólo una mente prodigiosa dar a luz. La distribución de Poisson sirve para modelar cualquier proceso con el cual podamos recorrer el mismo camino de supociciones. Nosotros lo usaremos para modelar la probabilidad de contar $x$ partículas radioactivas con una medía de detección por segundo $\lambda$.   
 
-O sea: Cómo sería la distribución de valores de $\bar{x}$ cuando repetimos muchas veces el experimento de contar el número de partículas readioactivas por segundo durante 10 segundos y calculamos la media? Después volveremos a los datos...
+Ahora que tenemos un modelo para $f_X$ estudiaremos *teóricamente* cómo se comportaría $\bar{X}$ bajo una distribucion de Poissson para $f_X$. Más especificamente nos preguntamos ¿Cómo sería la distribución de valores de $\bar{x}$ cuando repetimos muchas veces el experimento de contar el número de partículas readioactivas por segundo durante 10 segundos y calculamos la media? Recoredemos que queremos tener una idea de en qué medida podemos confiar en las medidas de los primeros 10 segundos $\bar{x}$, si por ejemplo pudiéramos reperir la entrada del trabajador un sin fin de veces.
 
 Primero recordemos que de las funciones de distribución para el conteo de eventos en un intervalo determinado es la distribución de Poisson.
-\[
-    f(x; \lambda)=Pr(X=x)= \frac{\lambda^x e^{-\lambda}}{x!} 
-\]
 Donde $\lambda$, en nuestro caso, es el promedio en el n\'umero de detecciones de part\'iculas radioactivas (x) por segundo. En R: ** dpoiss(x, lambda)**
 
 Vamos a asumir que $\bar{X}$ es un estimador de $\lambda$, es decir que en ùltimas podemos remplazar $\lambda$ por el resulatdo de nuestro experimento $\bar{x}=0.5$.

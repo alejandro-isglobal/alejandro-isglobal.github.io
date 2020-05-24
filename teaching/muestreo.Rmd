@@ -44,62 +44,81 @@ $$P(\bar{X} < 0.4)=F(0.4; n=10)=\int_0^{0.4} f(t; n=10) dt$$
 donde $F(0.4; n=10)$ es la función de distribución o acumulación de probabilidad de $\bar{X}$ para $\bar{X}=0.4$ y $f(t; n=10)$ la densidad de probabilidad de $\bar{X}$ para $t$. La función de distribución para $\bar{X}$ se conoce como la **distribución se muestreo** para la media (en nuestro caso para una muestra de tamaño  $n=10$). La pregunta es entonces ¿Cómo podemos conocer $F_{\bar{X}}$ o equivalentemente $f_{\bar{X}}$?
 
 ###Modelización de la probabilidad poblacional
-Primero hagamos una gran consideracón. Nuestras mediciones $x_1,..x_n$, o conteos, son eventos independientes y que provienen de un proceso común, que puede ser descrito por una única variable aleatoria $X$. La función de probabilidad de $X$, $f_X$, la llamaremos **poblacional**, por el hecho de darnos las probabilidades de obtener cada uno de los resultado posibles que resulten de una medición. Usamos en término poblacional inspirados en un censo, donde las mediciones no pueden ser separadas de los individuos que representan y $f_x$ da la probabilidad a todas y cada uno de los posibles varoles de $X$ en la población. $f_x$ es abstracta y tiene la libertad de representar idividuos que todavía no existen o, partículas radiactivas de átomos que todaía no ha decaído. Aún así suponemos que el proceso de craeción que representa existe y que lo podemos conocer, o como mínimo modelar. 
+Primero hagamos una gran consideracón. Nuestras mediciones $x_1,..x_n$, o conteos, son eventos independientes que provienen de un proceso común. Este proceso puede ser descrito por una única variable aleatoria $X$. Denotaremos como $f_X$ la función de probabilidad de $X$, que llamaremos función de probabilidad **poblacional**. Esto es por el hecho de que $f_X$ será la función que nos de las probabilidades de obtener cada uno de los resultados posibles que resulten de una medición. Usamos en término poblacional inspirados en un censo, donde las mediciones no pueden ser separadas de los individuos que representan y por lo tanto $f_x$, en ese caso, da la probabilidad a todos y cada uno de los posibles valores que puede tomar $X$ en la población. $f_x$ es abstracta y tiene la libertad de representar individuos que todavía no existen o, partículas radioctivas de átomos que todaía no ha decaído. Aún así suponemos que el proceso de creación que representa existe y que lo podemos conocer, o como mínimo modelar. 
 
-La suposición de que $x_1,..x_n$ son independientes no está siempre garantizada, ya sea porque el conteo de partículas en un momento dependa de cuantas se detectan previamente, o porque los individuos en un censo estén relacionados y no representen a la población. Sin embargo, no tenemos razones para pensar que en nuestro caso, esto sea el caso. Nos vamos a permitir entonces suponer un **modelo** de probabillidad para los dato $x_i$ independientes. Queremos derivar características generales de cómo se producen diferentes conteos en el detector segundo a segundo por diez segundos; por qué ahora uno, después ninguno y tal vez en 10 segundos dos. El objetivo es usar la forma de $f_X$ para deducir las posibles formas que puede tomar $f_{\bar{X}}$. 
+La suposición de que $x_1,..x_n$ son independientes no está siempre garantizada, ya sea porque el conteo de nuestras partículas en un momento dependa de cuantas se detectan previamente, o porque los individuos en el caso de un censo estén relacionados y no representen a la población. Sin embargo, como no tenemos razones para pensar que  nuestras partículas radioactivas dependen de una ley de oferta y demanda, nos vamos a permitir suponer un **modelo** de probabillidad para los datos $x_i$ independientes. Queremos derivar características generales de cómo se producen diferentes conteos en el detector segundo a segundo por diez segundos; por qué ahora uno, después ninguno y tal vez en 10 segundos dos. El objetivo es usar la forma de $f_X$ para deducir las posibles formas que puede tomar $f_{\bar{X}}$. 
 
-Para modelar $f_{X}$ solemos empezar considerando una circunstancia para la cual nuestra ignorancia sobre los eventos es razonablemente total. De este punto de patida construimos la situación que queremos describir. Imaginemos que tuviésemos un contador que pudiese detectar partículas en milésimas de segúndo. Seguramente en un milisegundo detectíamos o una o cero partículas: no se detectarían más de una. No es mucho pedirle a nuestro proceso radiactivo. Si es así entonces detectaríamos una partícula con una probabilidad que sería igual al número promedio de detecciones por segundo que llamamos $\lambda$. $\lambda$ es ideal, una característica del proceso imaginado. Con esta perspectiva, volviendo al mundo de nuestro contador Geiger real, si contamos todas las partículas detectadas en un segundo estos son $x$ partículas detectadas en 1,000 ensayos, uno por cada milisegundo. Este tipo de conteo probabilístico sigue una distribución binomial, que describo en otro tutorial, pero que aquí nos sirve para decir que es una buena posición para entender que la distribución de Poisson       
-\[
-    f_{X}=f(x; \lambda)=P(X=x)= \frac{\lambda^x e^{-\lambda}}{x!} 
-\]
-surge cuando imaginamos contadores infinitamente rápidos, en tiempo de detección de 0 segundos, o cuando el número de ensayos en la distribución binomial crece a infinito. El intervalo en milisegunodos era todavía una aproximación, útil para anclarnos en un proceso binomial, pero insuficente para destilar la idea de que las partículas son independientes entre sí. Este no es un proceso, como la emisión de un par electrón-positrón, que genere múltiples partículas a la vez. En el límite de rapidez, nos acegurarnos que las partículas no se crean exactamente al mismo tiempo, es decir que el proceso las crea de una a una y con cierta cadencia $\lambda$. Pensemos otra vez en nuestro trabajador. Las partículas que él detecta son de un átomo que decae aquí y otro que decae allá. El proceso que queremos describir no es otro que la densidad de partículas radiactivas de dónde se encuentra el trabajador y $\lambda$ es una medida de esa densidad. Recordemos que nuestro objetivo es describir la peligrocidad del lugar. 
+Para modelar una función de probabilidad poblacional solemos empezar considerando una circunstancia para la cual nuestra ignorancia sobre los eventos que dan diferentes mediciones es razonablemente total. De este punto de patida construimos la situación que queremos describir. Imaginemos pues que tuviésemos un contador que pudiese detectar partículas en milésimas de segúndo. Seguramente en un milisegundo detectaríamos o una o cero partículas: no se detectarían más de una. No es mucho pedirle a nuestro proceso radiactivo. Si es así entonces detectaríamos una partícula con una probabilidad $p$ que sería igual al número promedio de detecciones por segundo que llamamos $\lambda$, dividido por $m=1000$. $\lambda$ es ideal, una característica del proceso imaginado. Con esta perspectiva, volviendo al mundo de nuestro contador Geiger real, si contamos todas las partículas detectadas en un segundo, sería un total de $x$ partículas detectadas en $m=1000$ ensayos, uno por cada milisegundo. Este tipo de conteo probabilístico sigue una distribución binomial
 
-La distribución de Poisson sirve para modelar cualquier proceso con el cual podamos recorrer el mismo camino de supociciones. Nosotros lo usaremos para modelar la probabilidad de contar $x$ partículas radioactivas con una media de detección por segundo $\lambda$.   
+$$P(X=x)=\binom m x p^x(1-p)^{m-x}$$
+que describo en otro tutorial, pero que usando $p=\lambda/m$
 
-###Modelización de la probabilidad de la media
-Ahora que tenemos un modelo para $f_X$ estudiaremos *teóricamente* cómo se comportaría $\bar{X}$ bajo una distribucion de Poissson para la distribución poblacional. Más especificamente nos preguntamos ¿Cómo sería la distribución de valores de $\bar{x}$ cuando repetimos muchas veces el experimento de contar el número de partículas readioactivas por segundo durante 10 segundos y calculamos la media? Recoredemos que queremos tener una idea de en qué medida podemos confiar en las medidas de los primeros 10 segundos $\bar{x}$, si por ejemplo pudiéramos reperir la entrada del trabajador un sin fin de veces.
+$$P(X=x)=\binom m x \big(\frac{\lambda}{m}\big)^x(1-\frac{\lambda}{m})^{m-x}$$
+podemos escribir en términos de $\lambda$. El intervalo en milisegunodos es todavía una aproximación, útil para anclarnos en un proceso binomial, pero insuficente para destilar la idea de que las partículas son independientes entre sí. El nuestro no es un proceso, como la emisión de un par electrón-positrón, que genere múltiples partículas a la vez. Entonces imaginemos ahora contadores infinitamente rápidos, en tiempo de detección de 0 segundos, o cuando el número de ensayos en la distribución binomial crece a infinito ($m \rightarrow \infty$). En el límite de rapidez, nos acegurarnos que las partículas no se crean exactamente al mismo tiempo, es decir que el proceso las crea de una a una y con cierta cadencia $\lambda$. Recordémonos de nuestro trabajador que ha quedado en una zona de posible riesgo. Las partículas que él detecta son de un átomo que decae aquí y otro que decae allá. El proceso que queremos describir no es otro que la densidad de partículas radioctivas de dónde él se encuentra, siendo $\lambda$ una medida de esa densidad. Recordemos que nuestro objetivo es describir la peligrocidad del lugar. Tomando ese límite llegamos a la distribución de Poisson       
 
-Primero recordemos que de las funciones de distribución para el conteo de eventos en un intervalo determinado es la distribución de Poisson.
-Donde $\lambda$, en nuestro caso, es el promedio en el n\'umero de detecciones de part\'iculas radioactivas (x) por segundo. En R: ** dpoiss(x, lambda)**
+$$f_{X}=f(x; \lambda)=P(X=x)= \frac{\lambda^x e^{-\lambda}}{x!}$$
 
-Vamos a asumir que $\bar{X}$ es un estimador de $\lambda$, es decir que en ùltimas podemos remplazar $\lambda$ por el resulatdo de nuestro experimento $\bar{x}=0.5$.
+La distribución de Poisson sirve para modelar cualquier proceso con el cual podamos recorrer el mismo camino de supociciones: conteos independientes en un intervalo de tiempo o espacio que se generan uno a uno con un promedio $\lambda$ por unidad de intervalo. Nosotros lo usaremos para modelar la probabilidad de contar $x$ partículas radioactivas con una media de detección por segundo dada por $\lambda$. 
 
-dibujemos la distribución: 
+Veamos la forma tendría $f_{X}$ si considereamos los primeros 10 segundos de detección, pero no conocemos el valor de $\lambda$. Vamos a asumir que $\bar{X}$ es un estimador de $\lambda$, es decir que en últimas podemos remplazar $\lambda$ por el resulatdo de nuestro experimento $\bar{x}=0.5$. ¿Por qué podemos hacer esto?. Por un lado la media de la distribución de Poisson es
+
+$$E(X)= \sum_{x=0}^\infty x f_{x}=\lambda$$
+es decir su centro de gravedad es $\lambda$, que se demuestra usando la forma para $f_{x}$ y expandiendo el exponencial $e^{-\lambda}$ en series de potencia de $\lambda$.  Por otro lado el promedio de los datos también se puede escribir como
+
+$$\bar{x}=\frac{1}{n}\sum_{i=1}^n x_i=\sum_{x=0}^\infty x \frac{n_x}{n}  $$
+donde $n_x$ es el número veces en n=10 segundos que observamos x=1, 2, 3, .. partículas. Para nuestros datos esto es 
+
+
+```{r}
+nx <- table(detecciones10)
+nx
+x <- 0:1
+n <- 10
+sum(nx/n*x)
+```
+
+que es *xbar*. Al escribir el promedio en esta forma, nos damos cuenta que cuando $n \rightarrow \infty$, $n_x \rightarrow \infty$ pero su ratio $\frac{n_x}{n} \rightarrow f_x$. Así recuperamos la noción de probabilidad como la fracción de veces que observamos un evento si hacemos infinitos experimentos. Por lo tanto $\bar{x}$ es un de las versiones aproximadas de $\lambda$, cuando sólo disponemos de 10 mediciones, esto lo denotamos $\bar{x}=\hat{\lambda}$ y decimos que $\hat{\lambda}$  es la **estimación** de $\lambda$ dada por $\bar{x}$. En términos de las variables aleatorias decimos que $\bar{X}$ es un **estimador** de $\lambda$, que además es insesgado por que
+$$E(\bar{X})=E(X)=\lambda$$
+
+Dibujemos la funcion poblacional $f(x;n)$ para $n=10$ segundos según la estimación dada por los primeros 10 segundos, o sea $\hat{\lambda}=0.5$. En R tenemos la función de probabilidad de Poisson dada por la instrucción *dpoiss(x, lambda)* de tal forma que $f(x; n=10, \lambda=\bar{x}$ es
 
 ```{r}
 x <- 0:5
-fx <- dpois(x, lambda=0.5)
+fx <- dpois(x, lambda=xbar)
 names(fx) <- x
 
 plot(x,fx, type="p", pch=16)
 for(i in 1:11)
 lines(c(x[i], x[i]), c(0, fx[i])) 
 ```
+Esta es nuestro **modelo** para $f_X$ según los conteos de partículas radiactivas en los primeros diez segundos después de que el trabajador entra a la planta. Este es nuestro estado de conocimiento en los primeros diez segundos.   
 
-Queremos saber cómo se distribuye el promedio de detecciones ($\bar{X}$) en 10 mediciones (una cada segundo), cuando cada detecci\'on (X) se distribuye $Pois(\lambda=0.5)$
+###Modelización de la probabilidad de la media
+Según nuestro estado de conocimiento, aunque limitado, queremos saber cómo se distribuye el promedio de detecciones $\bar{X}$ en 10 mediciones (una cada segundo). Queremos saber, según el modelo $f_{X}=Pois(x; n=10, \lambda=0.5)$, cuales son los valores de $\bar{x}$ que podemos esperar si pudiésemos hacer entrar al trabajador muchas veces, y cada vez calcular $\bar{x}$ sólo por 10 segundos. 
 
-La generación de $10$ valores aleatorios que siguen una Poisson se hace con **rpois(10, lambda=0.5)**
+Para simular una de estas entradas en falso del trababjador, podemos generar $10$ valores aleatorios que siguen una Poisson usando la función *rpois(10, lambda=0.5)*
 
 ```{r}
-conteos <-  rpois(10, lambda=0.5)
+conteos <-  rpois(n=10, lambda=0.5)
 conteos
 ```
 
-hagamos el histograma de un experimento (muestra) de $n=10$ mediciones.
+Cada vez que ejecutemos *rpois(10, lambda=0.5)* hacemos una nueva simulación. Hagamos el histograma de una de estas entradas en falso de $n=10$ de 10 mediciones del contador en 10 segundos.
 
 ```{r}
-hist(rpois(10, lambda=0.5), freq=FALSE, breaks=seq(-0.5,5.5))
+conteos <- rpois(10, lambda=0.5)
+hist(conteos, freq=FALSE, breaks=seq(-0.5,5.5))
 ```
 
-Este es un experimento con 10 mediciones con su media $\bar{x}=0.33$ 
+Este es un experimento con 10 mediciones con un promedio 
+```{r}
+mean(conteos)
+```
 
 Cada nuevo experimento con 10 mediciones tendrá su propia $\bar{x}$. 
+Ahora estudiemos *teóricamente* cómo se comportaría $\bar{X}$ bajo este modelo de Poissson para la función de probabilidad poblacional. Más especificamente nos preguntamos ¿Cómo sería la distribución de valores de $\bar{x}$ cuando repetimos muchas veces la entrada del trabajador por 10 segundos? Hagamos muchas simulaciones, recojamos muchos valores de $\bar{x}$ y veamos su distribución.
 
-Queremos generar muchos valores de $\bar{x}$ para ver su distribución.
-
-Podemos empezar haciendo una función general que compute $\bar{x}$ en un experimento de 10 mediciones.
-
-Creamos  la función **Xbar** tal que tome n=10 valores de una variable de Poisson con $\lambda=5$ y compute su media    
+Para esto hacemos una función general que computa $\bar{x}$ en un experimento de 10 mediciones. Creamos  la función **Xbar** tal que tome n=10 valores de una variable de Poisson con $\lambda=0.5$ y compute su media    
 
 ```{r}
 Xbar <- function(n)
@@ -110,8 +129,7 @@ Xbar <- function(n)
 
 Xbar(10)
 ```
-Queremos ver un histograma de muchos valores de **Xbar** ($\bar{X}$) para ver como se distribuye.  Hagamos 600 valores para $\bar{X}$ recordando la función **sapply**  y dibujemos el histograma de estos 600 promedios  $(\bar{x_1}, \bar{x_2}...\bar{x}_{600})$?
-
+Veamos ahora el histograma que resulta de muchos valores de **Xbar** ($\bar{X}$) para ver su distribución de valores. Creemos 600 valores para $\bar{X}$ recordando la función **sapply**  y dibujemos el histograma de estos 600 promedios  $(\bar{x_1}, \bar{x_2}...\bar{x}_{600})$?
 
 ```{r}
 distXbar <- sapply(rep(10,600), Xbar)
@@ -119,17 +137,16 @@ head(distXbar)
 hist(distXbar, freq=FALSE)
 ```
 
-
-
+Ya tenemos una versión computacional de $f(\bar{X}; n=10, \lambda=0.5)$. Entonces, bajo el modelo *Pois(x; n=10, lambda=0.5)* y nuestros primeros 10 datos $\bar{x}=0.5$ no es improbable ${\bar X}<$ 0.4 
 ```{r}
-distXbar <- sapply(rep(10,600), Xbar)
-
+mean(distXbar<0.4)
+```
+es decir que no podemos descartar que el trabajador se encuentre en zona segura, a pesar de $\bar{x}=0.5$. Sin embargo, si podríamos descartar que el trabajador esta en una zona de muy alto riesgo, digamos $\lambda>1$
+```{r}
+mean(distXbar>1)
 ```
 
-Bajo el modelo $Pois(x, lambda=0.5)$ no es improbable ${\bar X}<$ 0.4, pero si muy improbable obtener $\bar{X}>1$.
-
-Cuál es la probabilidad $Pr(\bar{X}< 0.4)$?
-
+###Teorema central del límite
 Cuando n es grande ($>30$) sabemos que por el TCL
 
 $$\bar{X}\sim N(\mu_{\bar{X}}, \sigma_{\bar{X}})$$

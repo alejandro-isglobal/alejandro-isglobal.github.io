@@ -145,13 +145,13 @@ head(distXbar)
 hist(distXbar, freq=FALSE)
 ```
 
-Ya tenemos una versión computacional de $\hat{f}(\bar{X}; n=10, \lambda=0.5)$ 
+Ya tenemos una aproximación numérica de $f(\bar{X}; n=10, \hat{\lambda}=0.5)$ 
 
 ```{r}
 fxbar <- prop.table(table(distXbar))
 fxbar
 ```
-y para $F_\bar{X}$
+y de $F_\bar{X}$
 $$F_\bar{x}(0.4)\sim \sum_{\bar{x}=0}^{0.4} \hat{f}_\bar{x}=\frac{n_{\bar{x}<0.4}}{1000}$$ 
 Que es simplemente, la proporción de veces que observamos $\bar{x}_i<0.4$ en las 1000 repeticiones. 
 ```{r}
@@ -162,6 +162,56 @@ Entonces, bajo el modelo *Pois(x; n=10, lambda=0.5)* y nuestros primeros 10 dato
 es decir que no podemos descartar que el trabajador se encuentre en zona segura, a pesar de $\bar{x}=0.5$. Sin embargo, si podríamos descartar que el trabajador esta en una zona de muy alto riesgo, digamos $\lambda>1$
 ```{r}
 mean(distXbar>1)
+```
+###Estimación de $\lambda$
+
+Si bien hemos hecho una estimación de $\lambda$ con $\bar{x}=0.5$, no sabemos que tan lejos estamos de su valor real. De hecho $\lambda$ no es observable, sólo estimable. Sin embargo, habrán unas estimaciones mejores que otras. Hemos asumido que $\bar{x}=\hat{\lambda}$ como el caso más verosimil pero ¿Cuál sería $\hat{\lambda}$ en el mejor de los casos? Es decir, consideremos que hemos tenido mala suerte y que $\bar{x}=0.4$ fue el resultado demasiado alto para una variable aleatoria con un $\lambda$ realmente bajo.  
+
+```{r}
+Xbar10 <- function(...,lambda)
+{
+  conteos <- rpois(10, lambda)   
+  mean(conteos)
+}
+
+xbar0.975 <- function(lambda) 
+{
+  quantile(sapply(rep(10,10000), Xbar10, lambda=lambda),0.975)
+}
+
+lambdaint <- seq(0,0.4,0.02)
+Xbar0.975 <- sapply(lambdaint, xbar0.975)
+
+lambdalow <- lambdaint[Xbar0.975==xbar]
+lambdalow
+
+
+
+xbar0.025 <- function(lambda) 
+{
+  quantile(sapply(rep(10,10000), Xbar10, lambda=lambda),0.025)
+}
+
+lambdaint <- seq(1,1.5,0.02)
+xbar0.025 <- sapply(lambdaint, xbar0.025)
+
+lambdahigh <- lambdaint[xbar0.025==xbar]
+lambdahigh
+```
+
+```{r}
+
+distL <- sapply(rep(10,10000), Xbar10, lambda=lambdalow[1])
+quantile(distL,0.975)
+
+hist(distL, freq=FALSE, breaks=seq(0,3,0.025), main="", col="red")
+
+distU <- sapply(rep(10,10000), Xbar10, lambda=lambdahigh[7])
+quantile(distU,0.025)
+
+hist(distU, freq=FALSE, breaks=seq(0,3,0.025), col="blue", add=TRUE)
+
+legend("topright", c("lambdahigh", "lambdalow"), lty=1, col=c("blue", "red"))
 ```
 
 ###Teorema central del límite

@@ -88,7 +88,7 @@ que es *xbar*.
 Al escribir el promedio en esta forma, nos damos cuenta con las dos ecuaciones arriba que cuando $n \rightarrow \infty$, $n_x \rightarrow \infty$ pero su ratio $\frac{n_x}{n} \rightarrow f_x$. Así recuperamos la noción de probabilidad como la fracción de veces que observamos un evento si hacemos infinitos experimentos. Por lo tanto $\bar{x}$ es un de las versiones aproximadas de $\lambda$, cuando sólo disponemos de 10 mediciones, esto lo denotamos $\bar{x}=\hat{\lambda}$ y decimos que $\hat{\lambda}$  es la **estimación** de $\lambda$ dada por $\bar{x}$. En términos de las variables aleatorias decimos que $\bar{X}$ es un **estadístico** estimador de $\lambda$, que además es insesgado por que
 $$E(\bar{X})=E(X)=\lambda.$$
 
-Dibujemos la función poblacional $f(x;n)$ para $n=10$, según la estimación dada por los primeros 10 segundos, o sea $\hat{\lambda}=0.5$. En R tenemos la función de probabilidad de Poisson dada por la instrucción *dpoiss(x, lambda)* de tal forma que $f(x; n=10, \lambda=\bar{x}$ es
+Dibujemos la función poblacional $f(x;n)$ para $n=10$, según la estimación dada por los primeros 10 segundos, o sea $\hat{\lambda}=0.5$. En R tenemos la función de probabilidad de Poisson dada por la instrucción *dpoiss(x, lambda)* de tal forma que $f(x; n=10, \lambda=\bar{x})$ es
 
 ```{r}
 x <- 0:5
@@ -168,7 +168,7 @@ Hasta aquí, hemos **asumido** que $\lambda=0.5$. Es lo mejor que podemos hacer 
 
 ###Estimación de $\lambda$
 
-Si bien hemos hecho una estimación de $\lambda$ con $\bar{x}=0.5$, no sabemos que tan lejos estamos de su valor real. De hecho $\lambda$ no es observable, sólo estimable. Sin embargo, habrán unas estimaciones mejores que otras. Hemos asumido que $\bar{x}=\hat{\lambda}$ como el caso más verosimil pero ¿Cuál sería $\hat{\lambda}$ en el mejor de los casos? Es decir, consideremos que hemos tenido mala suerte y que $\bar{x}=0.5$ fue un resultado que por azar resultó demasiado alto para una variable aleatoria con un $\lambda$ realmente bajo. En particular imaginemos que $\bar{x}=0.5$ fue un valor muy alto, por encima del cual la variable aleatoia $\bar{X}$ sólo toma valores el 2.5% de las veces. Queremos encontrar cual es el $\lambda$ que corresponde a ese caso. Reconsideremos la simulación de conteos, pero ahora como función de $\lambda$ y fijemos $n=10$ 
+Si bien hemos hecho una estimación de $\lambda$ con $\bar{x}=0.5$, no sabemos que tan lejos estamos de su valor real. De hecho $\lambda$ no es observable, sólo estimable. Sin embargo, habrán unas estimaciones mejores que otras. Hemos asumido que $\bar{x}=\hat{\lambda}$ como el caso más **verosímil** pero ¿Cuál sería $\hat{\lambda}$ en el mejor de los casos? Es decir, consideremos que hemos tenido mala suerte y que $\bar{x}=0.5$ fue un resultado que por azar resultó demasiado alto para una variable aleatoria con un $\lambda$ realmente bajo, correspondiente a nivel de contaminación por radiación bajo. Más precisamente, imaginemos que $\bar{x}=0.5$ fue un valor que por azar resulto muy alto, por encima del cual la variable aleatoia $\bar{X}$ sólo toma valores el 2.5% de las veces. Queremos encontrar cual es el $\lambda$ que corresponde a ese caso. Reconsideremos la simulación de conteos, pero ahora como función de $\lambda$ y fijemos $n=10$ 
 
 ```{r}
 Xbar10 <- function(...,lambda)
@@ -202,13 +202,13 @@ Xbar0.975 <- sapply(lambdaint, xbar0.975)
 lambdalow <- lambdaint[Xbar0.975==xbar]
 lambdalow
 ```
-Si asumumimos alguno de estos valores estimados de $\lambda$, que llamaremos $\hat{\lambda}_{low}$, creemos que hemos tenido mala suerte. Es decir que el trabajador realmente se encontraría en una zona bastante segura, sólo que $\bar{x}=0.5$ resultó en ser excepcionalmente alto. Obtengamos una versión computacional de la distribucion de valores de $\bar{X}$ para uno de estos estimadores de $\lambda$
+Cuando asumumimos alguno de estos valores estimados para $\lambda$, que llamaremos $\hat{\lambda}_{low}$, creemos que hemos tenido mala suerte. Es decir que el trabajador realmente se encontraría en una zona bastante segura, sólo que $\bar{x}=0.5$ resultó en ser excepcionalmente alto. Obtengamos una versión computacional de la distribucion de valores de $\bar{X}$ para uno de estos estimadores de $\lambda$ por ejemplo el segundo
 
 ```{r}
 distL <- sapply(rep(10,10000), Xbar10, lambda=lambdalow[2])
 quantile(distL,0.975)
 ```
-confirmando que el 2.5\% de valores para esta distribución está por encima de $\bar{x}=0.5$. Así mismo podemos suponer valores de $\lambda$ para los que hemos tenido mucha suerte (en la medición pero no para el trabajador!) y hemos detectado muy pocas partículas en una situación de extrema contaminación. Para esto calculamos el cuantíl al 2.5\% de una distribución de los valores dados por *Xbar10*, y vemos cuándo coincide con $\bar{x}=0.5$  
+confirmando que sólo 2.5\% de valores de $\bar{X}$ para esta distribución son mayores que $\bar{x}=0.5$. Así mismo podemos suponer valores de $\lambda$ para los que hemos tenido mucha suerte (en la medición pero no para el trabajador!) y hemos detectado muy pocas partículas en una situación de extrema contaminación. Para esto calculamos el cuantíl al 2.5\% de una distribución de los valores dados por *Xbar10*, y vemos cuándo coincide con $\bar{x}=0.5$  
 
 ```{r}
 xbar0.025 <- function(lambda) 
@@ -223,7 +223,7 @@ lambdahigh <- lambdaint[xbar0.025==xbar]
 lambdahigh
 ```
 
-De tal forma que usando uno de estos valores estimados de $\lambda$ reporducimos la distribución para $\bar{X}$ donde sólo el 2.5\% de los posibles resultados para esta variable aleatoria es *menor* al valor observado $\bar{x}=0.5$ 
+De tal forma que usando uno de estos valores estimados de $\lambda$ reproducimos la distribución para $\bar{X}$ donde sólo el 2.5\% de los posibles resultados para esta variable aleatoria es *menor* al valor observado $\bar{x}=0.5$ 
 ```{r}
 distU <- sapply(rep(10,10000), Xbar10, lambda=lambdahigh[6])
 quantile(distU,0.025)
@@ -238,7 +238,7 @@ hist(distU, freq=FALSE, breaks=seq(0,3,0.025), col="blue", add=TRUE)
 legend("topright", c("lambdahigh", "lambdalow"), lty=1, col=c("blue", "red"))
 ```
 
-los valores estimados $\hat{\lambda}_{low}$ y $\hat{\lambda}_{high}$ definen un intervalo, que se puede entender como el resultado de un intervalo aleatorio que captura a $\lambda$ el $95\%$ de las veces. Este es un [intervalo de confianza](https://alejandro-isglobal.github.io/teaching/intervalosdeconfianza.html) del 95\%.
+los valores estimados $\hat{\lambda}_{low}$ y $\hat{\lambda}_{high}$ definen un intervalo, que se puede entender como el resultado de un intervalo aleatorio que captura a $\lambda$ el $95\%$ de las veces. Este es un [intervalo de confianza](https://alejandro-isglobal.github.io/teaching/intervalosdeconfianza.html) del 95\%. Recordemos que $\lambda$ o está o no está en ($\hat{\lambda}_{low}, \hat{\lambda}_{high}$). Aunque eso no lo podemos saber tenemos una confianza del 95\% que así sea o equivalentemente, que la función de probabilidad para $\bar{X}$ esté capturada entre las los illustradas arriba. 
 
 
 ###Teorema central del límite

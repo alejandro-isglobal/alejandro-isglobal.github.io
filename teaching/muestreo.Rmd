@@ -102,7 +102,7 @@ for(i in 1:11)
 Este es nuestro **modelo** para $f_X$ según los conteos de partículas radiactivas en los primeros diez segundos después de que el trabajador entra a la planta. Este es nuestro estado de conocimiento en los primeros diez segundos.   
 
 ###Densidad de probabilidad para el promedio de la muestra
-Según nuestro estado de conocimiento, aunque limitado, queremos saber cómo se distribuye el promedio de detecciones $\bar{X}$ en 10 mediciones (una cada segundo). Un paréntesis para clarificar.  $\bar{X}$ es la variable aleatoria que da el promedio de la muestra, también es llamada media muestral. Yo evito esta denomicación porque puede llevar a confundirla con la otra media que es el valor esperado de una variable aleatoria $E(Y)$. En esa notación tenemos la media de la variable $X$: $E(X)$ y la media de la media muestral $\bar{X}$: $E(\bar{X})$, que aunque coinciden numéricamente no representan lo mismo, después vizualisaremos por qué. Por ahora, queremos saber, **según** el modelo $f_{X}=Pois(x; n=10, \lambda=0.5)$, cuales son los valores de $\bar{x}$ que podemos esperar si pudiésemos hacer entrar al trabajador muchas veces, y cada vez calcular $\bar{x}$ sólo por 10 segundos. 
+Según nuestro estado de conocimiento, aunque limitado, queremos saber cómo se distribuye el promedio de detecciones $\bar{X}$ en 10 mediciones (una cada segundo). Un paréntesis para clarificar.  $\bar{X}$ es la variable aleatoria que da el promedio de la muestra, $X_1...X_n$, que también es llamada media muestral. Yo evito esta denomicación porque puede llevar a confundirla con la otra media que es el valor esperado de una variable aleatoria $E(Y)$. En esa notación tenemos la media de la variable $X$: $E(X)$ y la media de la media muestral $\bar{X}$: $E(\bar{X})$, que aunque coinciden numéricamente no representan lo mismo, después vizualisaremos por qué. Por ahora, queremos saber, **según** el modelo $f_{X}=Pois(x; n=10, \lambda=0.5)$, cuales son los valores de $\bar{x}$ que podemos esperar si pudiésemos hacer entrar al trabajador muchas veces, y cada vez calcular $\bar{x}$ sólo por 10 segundos. 
 
 Para simular una de estas entradas en falso del trababjador, podemos generar $10$ valores aleatorios que siguen una Poisson usando la función *rpois(10, lambda=0.5)*
 
@@ -187,13 +187,13 @@ xbar0.975 <- function(lambda)
 }
 ```
 
-Este es el valor de $\bar{x}$, por encima del cuál se encuentra sólo el 2.5\% de los valores de $\bar{X}$ cuando $\lambda$ es por ejemplo 0.2 
+Este es el valor de $\bar{x}$, por *encima* del cuál se encuentra sólo el 2.5\% de los valores de $\bar{X}$ cuando $\lambda$ es por ejemplo 0.3 
 
 ```{r}
-xbar0.975(lambda=0.2)
+xbar0.975(lambda=0.3)
 ```
 
-Miremos varios valores de $\lambda$ y calculemos cuando $xbar0.975$ es precisamente $xbar$
+Miremos varios valores de $\lambda$ y calculemos cuándo $xbar0.975$ es precisamente $xbar$
 
 ```{r}
 lambdaint <- seq(0,0.4,0.02)
@@ -202,7 +202,13 @@ Xbar0.975 <- sapply(lambdaint, xbar0.975)
 lambdalow <- lambdaint[Xbar0.975==xbar]
 lambdalow
 ```
-Asumiendo ahora estos valores estimados de $\lambda$, que llamaremos $\hat{\lambda}_{low}$, hemos tenido mala suerte. Es decir que el trabajador realmente se encontraría en una zona bastante segura, sólo que $\bar{x}=0.5$ resultó en ser excepcionalmente alto. Así mismo podemos suponer valores de $\lambda$ para los que hemos tenido mucha suerte y hemos detectado muy pocas partículas en una situación de exptrema contaminación. Para esto calculamos el cuantíl al 2.5\% de una distribución de los valores dados por *Xbar10*, y vemos cuando coincide con $\bar{x}=0.5$  
+Si asumumimos alguno de estos valores estimados de $\lambda$, que llamaremos $\hat{\lambda}_{low}$, creemos que hemos tenido mala suerte. Es decir que el trabajador realmente se encontraría en una zona bastante segura, sólo que $\bar{x}=0.5$ resultó en ser excepcionalmente alto. Obtengamos una versión computacional de la distribucion de valores de $\bar{X}$ para uno de estos estimadores de $\lambda$
+
+```{r}
+distL <- sapply(rep(10,10000), Xbar10, lambda=lambdalow[2])
+quantile(distL,0.975)
+```
+confirmando que el 2.5\% de valores para esta distribución está por encima de $\bar{x}=0.5$. Así mismo podemos suponer valores de $\lambda$ para los que hemos tenido mucha suerte (en la medición pero no para el trabajador!) y hemos detectado muy pocas partículas en una situación de extrema contaminación. Para esto calculamos el cuantíl al 2.5\% de una distribución de los valores dados por *Xbar10*, y vemos cuándo coincide con $\bar{x}=0.5$  
 
 ```{r}
 xbar0.025 <- function(lambda) 
@@ -217,23 +223,22 @@ lambdahigh <- lambdaint[xbar0.025==xbar]
 lambdahigh
 ```
 
+De tal forma que usando uno de estos valores estimados de $\lambda$ reporducimos la distribución para $\bar{X}$ donde sólo el 2.5\% de los posibles resultados para esta variable aleatoria es *menor* al valor observado $\bar{x}=0.5$ 
+```{r}
+distU <- sapply(rep(10,10000), Xbar10, lambda=lambdahigh[6])
+quantile(distU,0.025)
+```
+
 Estas dos situaciones extremas para la distribución de $\bar{X}$, estimadas por nuestros datos, las podemos visualizar 
 
 ```{r}
-distL <- sapply(rep(10,10000), Xbar10, lambda=lambdalow[1])
-quantile(distL,0.975)
-
 hist(distL, freq=FALSE, breaks=seq(0,3,0.025), main="", col="red")
-
-distU <- sapply(rep(10,10000), Xbar10, lambda=lambdahigh[7])
-quantile(distU,0.025)
-
 hist(distU, freq=FALSE, breaks=seq(0,3,0.025), col="blue", add=TRUE)
 
 legend("topright", c("lambdahigh", "lambdalow"), lty=1, col=c("blue", "red"))
 ```
 
-los valores estimados $\hat{\lambda}_{low}$ y $\hat{\lambda}_{high}$ definen un intervalo, que se puede entender como el resultado de un intervalo aleatorio que captura a $\lambda$ el $95\%$ de las veces. Este es un intervalo de confianza del 95\%.
+los valores estimados $\hat{\lambda}_{low}$ y $\hat{\lambda}_{high}$ definen un intervalo, que se puede entender como el resultado de un intervalo aleatorio que captura a $\lambda$ el $95\%$ de las veces. Este es un [intervalo de confianza](https://alejandro-isglobal.github.io/teaching/intervalosdeconfianza.html) del 95\%.
 
 
 ###Teorema central del límite

@@ -101,8 +101,8 @@ for(i in 1:11)
 ```
 Este es nuestro **modelo** para $f_X$ según los conteos de partículas radiactivas en los primeros diez segundos después de que el trabajador entra a la planta. Este es nuestro estado de conocimiento en los primeros diez segundos.   
 
-###Modelización de la probabilidad de la media
-Según nuestro estado de conocimiento, aunque limitado, queremos saber cómo se distribuye el promedio de detecciones $\bar{X}$ en 10 mediciones (una cada segundo). Queremos saber, según el modelo $f_{X}=Pois(x; n=10, \lambda=0.5)$, cuales son los valores de $\bar{x}$ que podemos esperar si pudiésemos hacer entrar al trabajador muchas veces, y cada vez calcular $\bar{x}$ sólo por 10 segundos. 
+###Densidad de probabilidad para el promedio de la muestra
+Según nuestro estado de conocimiento, aunque limitado, queremos saber cómo se distribuye el promedio de detecciones $\bar{X}$ en 10 mediciones (una cada segundo). Un paréntesis para clarificar.  $\bar{X}$ es la variable aleatoria que da el promedio de la muestra, también es llamada media muestral. Yo evito esta denomicación porque puede llevar a confundirla con la otra media que es el valor esperado de una variable aleatoria $E(Y)$. En esa notación tenemos la media de la variable $X$: $E(X)$ y la media de la media muestral $\bar{X}$: $E(\bar{X})$, que aunque coinciden numéricamente no representan lo mismo, después vizualisaremos por qué. Por ahora, queremos saber, **según** el modelo $f_{X}=Pois(x; n=10, \lambda=0.5)$, cuales son los valores de $\bar{x}$ que podemos esperar si pudiésemos hacer entrar al trabajador muchas veces, y cada vez calcular $\bar{x}$ sólo por 10 segundos. 
 
 Para simular una de estas entradas en falso del trababjador, podemos generar $10$ valores aleatorios que siguen una Poisson usando la función *rpois(10, lambda=0.5)*
 
@@ -115,7 +115,7 @@ Cada vez que ejecutemos *rpois(10, lambda=0.5)* hacemos una nueva simulación. H
 
 ```{r}
 conteos <- rpois(10, lambda=0.5)
-hist(conteos, freq=FALSE, breaks=seq(-0.5,5.5))
+hist(conteos, freq=FALSE, breaks=seq(-0.1, 5.5, 0.2))
 ```
 
 Este es un experimento con 10 mediciones con un promedio 
@@ -142,7 +142,7 @@ Veamos ahora el histograma que resulta de muchos valores de **Xbar** ($\bar{X}$)
 ```{r}
 distXbar <- sapply(rep(10,1000), Xbar)
 head(distXbar)
-hist(distXbar, freq=FALSE)
+hist(distXbar, freq=FALSE, breaks=seq(0,3,0.025))
 ```
 
 Ya tenemos una aproximación numérica de $f(\bar{X}; n=10, \hat{\lambda}=0.5)$ 
@@ -159,13 +159,16 @@ sum(fxbar[1:4])
 mean(distXbar<0.4)
 ```
 Entonces, bajo el modelo *Pois(x; n=10, lambda=0.5)* y nuestros primeros 10 datos $\bar{x}=0.5$ no es improbable ${\bar X}<$ 0.4 
-es decir que no podemos descartar que el trabajador se encuentre en zona segura, a pesar de $\bar{x}=0.5$. Sin embargo, si podríamos descartar que el trabajador esta en una zona de muy alto riesgo, digamos $\lambda>1$
+es decir que no podemos descartar que si efectivamente $\lambda=\bar{x}=0.5$ detectemos que el trabajador se encuentre en zona segura, si lo volviésemos dejar entrar. Sin embargo, si podríamos descartar que detectemos promedios correspondientes a muy alto riesgo, digamos $\lambda>1$
 ```{r}
 mean(distXbar>1)
 ```
+
+Hasta aquí, hemos **asumido** que $\lambda=0.5$. Es lo mejor que podemos hacer con los primeros 10 segundos. Somos concientes que esto es tan sólo la estimación $\hat{\lambda}=\bar{x}$. Pero, ¿Qué tan confiados podemos estar de esta aproximación? lo que nos interesa en el fondo no es tanto evaluar esta suposición como conocer qué tan cerca estamos del valor de $\lambda$. 
+
 ###Estimación de $\lambda$
 
-Si bien hemos hecho una estimación de $\lambda$ con $\bar{x}=0.5$, no sabemos que tan lejos estamos de su valor real. De hecho $\lambda$ no es observable, sólo estimable. Sin embargo, habrán unas estimaciones mejores que otras. Hemos asumido que $\bar{x}=\hat{\lambda}$ como el caso más verosimil pero ¿Cuál sería $\hat{\lambda}$ en el mejor de los casos? Es decir, consideremos que hemos tenido mala suerte y que $\bar{x}=0.4$ fue el resultado demasiado alto para una variable aleatoria con un $\lambda$ realmente bajo.  
+Si bien hemos hecho una estimación de $\lambda$ con $\bar{x}=0.5$, no sabemos que tan lejos estamos de su valor real. De hecho $\lambda$ no es observable, sólo estimable. Sin embargo, habrán unas estimaciones mejores que otras. Hemos asumido que $\bar{x}=\hat{\lambda}$ como el caso más verosimil pero ¿Cuál sería $\hat{\lambda}$ en el mejor de los casos? Es decir, consideremos que hemos tenido mala suerte y que $\bar{x}=0.5$ fue un resultado que por azar resultó demasiado alto para una variable aleatoria con un $\lambda$ realmente bajo. En particular imaginemos que $\bar{x}=0.5$ fue un valor muy alto, por encima del cual la variable aleatoia $\bar{X}$ sólo toma valores el 2.5% de las veces. Queremos encontrar cual es el $\lambda$ que corresponde a ese caso. Reconsideremos la simulación de conteos, pero ahora como función de $\lambda$ y fijemos $n=10$ 
 
 ```{r}
 Xbar10 <- function(...,lambda)
@@ -173,20 +176,35 @@ Xbar10 <- function(...,lambda)
   conteos <- rpois(10, lambda)   
   mean(conteos)
 }
+```
 
+Hagamos otra función que nos de el cuantíl al 97.5\% de una distribución de los valores dados por *Xbar10*  
+
+```{r}
 xbar0.975 <- function(lambda) 
 {
   quantile(sapply(rep(10,10000), Xbar10, lambda=lambda),0.975)
 }
+```
 
+Este es el valor de $\bar{x}$, por encima del cuál se encuentra sólo el 2.5\% de los valores de $\bar{X}$ cuando $\lambda$ es por ejemplo 0.2 
+
+```{r}
+xbar0.975(lambda=0.2)
+```
+
+Miremos varios valores de $\lambda$ y calculemos cuando $xbar0.975$ es precisamente $xbar$
+
+```{r}
 lambdaint <- seq(0,0.4,0.02)
 Xbar0.975 <- sapply(lambdaint, xbar0.975)
 
 lambdalow <- lambdaint[Xbar0.975==xbar]
 lambdalow
+```
+Asumiendo ahora estos valores estimados de $\lambda$, que llamaremos $\hat{\lambda}_{low}$, hemos tenido mala suerte. Es decir que el trabajador realmente se encontraría en una zona bastante segura, sólo que $\bar{x}=0.5$ resultó en ser excepcionalmente alto. Así mismo podemos suponer valores de $\lambda$ para los que hemos tenido mucha suerte y hemos detectado muy pocas partículas en una situación de exptrema contaminación. Para esto calculamos el cuantíl al 2.5\% de una distribución de los valores dados por *Xbar10*, y vemos cuando coincide con $\bar{x}=0.5$  
 
-
-
+```{r}
 xbar0.025 <- function(lambda) 
 {
   quantile(sapply(rep(10,10000), Xbar10, lambda=lambda),0.025)
@@ -199,8 +217,9 @@ lambdahigh <- lambdaint[xbar0.025==xbar]
 lambdahigh
 ```
 
-```{r}
+Estas dos situaciones extremas para la distribución de $\bar{X}$, estimadas por nuestros datos, las podemos visualizar 
 
+```{r}
 distL <- sapply(rep(10,10000), Xbar10, lambda=lambdalow[1])
 quantile(distL,0.975)
 
@@ -213,6 +232,9 @@ hist(distU, freq=FALSE, breaks=seq(0,3,0.025), col="blue", add=TRUE)
 
 legend("topright", c("lambdahigh", "lambdalow"), lty=1, col=c("blue", "red"))
 ```
+
+los valores estimados $\hat{\lambda}_{low}$ y $\hat{\lambda}_{high}$ definen un intervalo, que se puede entender como el resultado de un intervalo aleatorio que captura a $\lambda$ el $95\%$ de las veces. Este es un intervalo de confianza del 95\%.
+
 
 ###Teorema central del límite
 Cuando n es grande ($>30$) sabemos que por el TCL

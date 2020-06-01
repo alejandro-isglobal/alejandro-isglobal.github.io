@@ -41,7 +41,7 @@ Presentation
 
 Analytical validation of a biomarker: Functional magnetic resonance imaging
 
-<img src="./Biomarkers-figure/fmri.png" style="width:50%"  align="center">
+<img src="./Biomarkers-figure/fmri.png" style="width:75%"  align="center">
 
 
 
@@ -51,7 +51,7 @@ Presentation
 
 Discovery of severity Biomarker: Chromsome Y function and risk of disease in men 
 
-<img src="./Biomarkers-figure/jnci.png" style="width:50%"  align="center">
+<img src="./Biomarkers-figure/jnci.png" style="width:75%"  align="center">
 
 
 Summary

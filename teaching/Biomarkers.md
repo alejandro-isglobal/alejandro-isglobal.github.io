@@ -1,7 +1,7 @@
 Statistical Analysis of Biomarkers
 ========================================================
 author: Alejandro Cáceres, PhD
-date: 10th of June 2020
+date: Almirall, 10th of June 2020
 autosize: true
 
 
@@ -21,32 +21,23 @@ Barcelona Institute of Global Health <https://www.isglobal.org/>:
 Presentation
 ========================================================
 <br />
-- Senior statistician in the Bioinformatics group 
+- <b>Senior statistician</b> in the Bioinformatics group 
 - Over 13 years of experience analysing biomedical data
-- Develop novel analysis methods for biomarker discovery
+- Develop novel analysis methods for <b>biomarker discovery</b>
 - High dimensional data including imaging and omic data: genomic, transcriptomic, exposomic, etc.
 - I write scientific articles and implement methods in software packages (R/Matlab).
 
-Presentation
+Summary
 ========================================================
+- Introduction: 
+  - Biomarkers definition
+  - Guidance for qualification and reporting
+- Analysis methods for biomarkers:
+  - Diagnostic matrix
+  - Regression analyeses (stratified and with interactions)
+  - Statistical power
+  - Multiple Biomarkers
+- Examples:   
+  - Prediction of drug effects (depresion)
+  - Response to a therapeutic intervention (psoriasis)
 
-
-
-```r
-summary(cars)
-```
-
-```
-     speed           dist       
- Min.   : 4.0   Min.   :  2.00  
- 1st Qu.:12.0   1st Qu.: 26.00  
- Median :15.0   Median : 36.00  
- Mean   :15.4   Mean   : 42.98  
- 3rd Qu.:19.0   3rd Qu.: 56.00  
- Max.   :25.0   Max.   :120.00  
-```
-
-Slide With Plot
-========================================================
-
-![plot of chunk unnamed-chunk-2](Biomarkers-figure/unnamed-chunk-2-1.png)

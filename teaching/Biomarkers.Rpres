@@ -6,26 +6,33 @@ autosize: true
 
 
 
+
 Presentation
 ========================================================
+<br />
+- <b>Senior statistician</b> in the Bioinformatics group at Barcelona Institute of Global Health <https://www.isglobal.org/>
 
-Barcelona Institute of Global Health <https://www.isglobal.org/>:
+- Adjunct <b>lecturer</b> in statustics at the Universitat Politectica de Catalunya <https://eebe.upc.edu/es>
 
-<img src="./Biomarkers-figure/isglobal.png" style="width:30%"  align="center">
-
-- Research institution/think tank on global health
-- Parc de Recera Biomedica de Barcelona (PRBB) and Hospital Clinic
-
+- Over 13 years of experience analysing biomedical data
+- Develop novel analysis methods for <b>biomarker discovery</b>
+- High dimensional data including imaging and omic data: genomic, transcriptomic, exposomic, etc.
+- I write scientific articles and implement methods in software packages (R/Matlab).
 
 
 Presentation
 ========================================================
 <br />
-- <b>Senior statistician</b> in the Bioinformatics group 
-- Over 13 years of experience analysing biomedical data
-- Develop novel analysis methods for <b>biomarker discovery</b>
-- High dimensional data including imaging and omic data: genomic, transcriptomic, exposomic, etc.
-- I write scientific articles and implement methods in software packages (R/Matlab).
+You can find me at: 
+
+- [linkedin] (https://es.linkedin.com/in/alejandro-caceres-dominguez-7449aa176)
+
+- [google scholar](https://scholar.google.es/citations?user=s1D-6WAAAAAJ&hl=es)
+
+- [gitHub](https://github.com/alejandro-isglobal)
+
+- [my blog](https://alejandro-isglobal.github.io/)
+
 
 
 Presentation

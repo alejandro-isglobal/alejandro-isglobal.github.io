@@ -122,7 +122,7 @@ Context of use (COU):
 - safety biomarker
 -susceptibility/risk biomarker
 
-See FDA's Biomarker Qualification 2018 [doc](https://alejandro-isglobal.github.io/teaching/docs)
+See FDA's Biomarker Qualification 2018 [doc](https://alejandro-isglobal.github.io/teaching/docs/fdabiomarker.pdf)
 
 Introduction
 ========================================================

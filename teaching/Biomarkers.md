@@ -172,3 +172,77 @@ Establish the relationship between a biomarker and an outcome of interest:
 - Meta-analysis
 
 Strongest evidence comes from <b>prospective studies</b> that are specifically designed but data from studies conducted for <b>other purposes</b> can be used to support biomarker qualification.
+
+
+Analysis methods: Diagnostic Matrix
+========================================================
+
+Supose we have gathered data for reponse/no-reponse (case/control) subjects and positive/negative test for each subject
+
+The Respose measurement has to events:
+- yes 
+- no
+
+The Test measurement has to events:
+- positive
+- negative
+
+Analysis methods: Diagnostic Matrix
+========================================================
+
+Each individual has two measurements: (Response, Test)
+
+| -- Subject -- | -- Reponse -- | -- Test -- |
+| ------------- | ------------- | ---------- |
+| $s_1$         |   yes        | positive |
+| $s_2$         |   no         | negative |
+| $s_3$         |   yes        | positive |
+|...            |   ...        | ...      |
+| $s_i$         |   no         | positive* |
+|...            |   ...        | ...      |
+|...            |   ...        | ...      |
+| $s_3$         |   yes        | negative* |
+|...            |   ...        | ...      |
+
+
+Analysis methods: Diagnostic Matrix
+========================================================
+
+Let's think first in terms of the response
+
+<br />
+Within those who responded (yes), how many the test was positive?
+
+- <b>Sensitivity</b> (true positive rate)
+
+$$fr(positive|yes)=\frac{n_{positive|yes}}{n_{negative|yes}+n_{negative|yes}}$$
+
+
+Analysis methods: Diagnostic Matrix
+========================================================
+
+Let's think first in terms of the response
+
+<br />
+Within those who did not respond (no), how many the test was negative?
+
+- <b>Especificity</b> (True negative rate)
+
+$$fr(negative|no)=\frac{n_{negative|no}}{n_{positive|no}+n_{negative|no}}$$
+
+
+Analysis methods: Diagnostic Matrix
+========================================================
+
+|  | -Response: Yes -- | -- Response: No -- |
+| --------- | --------- | -------- |
+| -<b>Test: positive</b>- | $fr(positive|yes)$ | $fr(positive|no)$ | 
+| -<b>Test: negative</b>- | $fr(negative|yes)$ | $fr(positive|no)$ | 
+| -<b>sum</b>-      | 1                | 1               |
+
+
+We can use model:
+$$E[Test|Response]= \beta_0 +\beta*Response$$
+or in more familiar terms
+$$y_i = \beta_0 +\beta*x_i + \epsilon_i$$
+a <b>logistic</b> regression for the observed values of $y_i=Test_i$ and $x_i=Response_i$  

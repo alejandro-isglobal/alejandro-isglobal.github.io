@@ -771,6 +771,16 @@ hljs.initHighlightingOnLoad();
 </script>
 
    
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    showProcessingMessages: false,
+    messageStyle: "none"
+  });
+</script>
+
+<script type="text/javascript" src="Biomarkers_files/mathjax-26/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
   
 
 
@@ -1039,6 +1049,160 @@ Establish the relationship between a biomarker and an outcome of interest:</p>
 </ul>
 
 <p>Strongest evidence comes from <b>prospective studies</b> that are specifically designed but data from studies conducted for <b>other purposes</b> can be used to support biomarker qualification.</p>
+
+</div>
+
+</section>
+<section data-transition="linear" data-transition-speed="default">
+<h3>Analysis methods: Diagnostic Matrix</h3>
+<div class="slideContent" >
+<p>Supose we have gathered data for reponse/no-reponse (case/control) subjects and positive/negative test for each subject</p>
+
+<p>The Respose measurement has to events:</p>
+
+<ul>
+<li>yes </li>
+<li>no</li>
+</ul>
+
+<p>The Test measurement has to events:</p>
+
+<ul>
+<li>positive</li>
+<li>negative</li>
+</ul>
+
+</div>
+
+</section>
+<section data-transition="linear" data-transition-speed="default">
+<h3>Analysis methods: Diagnostic Matrix</h3>
+<div class="slideContent" >
+<p>Each individual has two measurements: (Response, Test)</p>
+
+<table><thead>
+<tr>
+<th>&ndash; Subject &ndash;</th>
+<th>&ndash; Reponse &ndash;</th>
+<th>&ndash; Test &ndash;</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>\( s_1 \)</td>
+<td>yes</td>
+<td>positive</td>
+</tr>
+<tr>
+<td>\( s_2 \)</td>
+<td>no</td>
+<td>negative</td>
+</tr>
+<tr>
+<td>\( s_3 \)</td>
+<td>yes</td>
+<td>positive</td>
+</tr>
+<tr>
+<td>&hellip;</td>
+<td>&hellip;</td>
+<td>&hellip;</td>
+</tr>
+<tr>
+<td>\( s_i \)</td>
+<td>no</td>
+<td>positive*</td>
+</tr>
+<tr>
+<td>&hellip;</td>
+<td>&hellip;</td>
+<td>&hellip;</td>
+</tr>
+<tr>
+<td>&hellip;</td>
+<td>&hellip;</td>
+<td>&hellip;</td>
+</tr>
+<tr>
+<td>\( s_3 \)</td>
+<td>yes</td>
+<td>negative*</td>
+</tr>
+<tr>
+<td>&hellip;</td>
+<td>&hellip;</td>
+<td>&hellip;</td>
+</tr>
+</tbody></table>
+
+</div>
+
+</section>
+<section data-transition="linear" data-transition-speed="default">
+<h3>Analysis methods: Diagnostic Matrix</h3>
+<div class="slideContent" >
+<p>Let&#39;s think first in terms of the response</p>
+
+<p><br />
+Within those who responded (yes), how many the test was positive?</p>
+
+<ul>
+<li><b>Sensitivity</b> (true positive rate)</li>
+</ul>
+
+<p>\[ fr(positive|yes)=\frac{n_{positive|yes}}{n_{negative|yes}+n_{negative|yes}} \]</p>
+
+</div>
+
+</section>
+<section data-transition="linear" data-transition-speed="default">
+<h3>Analysis methods: Diagnostic Matrix</h3>
+<div class="slideContent" >
+<p>Let&#39;s think first in terms of the response</p>
+
+<p><br />
+Within those who did not respond (no), how many the test was negative?</p>
+
+<ul>
+<li><b>Especificity</b> (True negative rate)</li>
+</ul>
+
+<p>\[ fr(negative|no)=\frac{n_{negative|no}}{n_{positive|no}+n_{negative|no}} \]</p>
+
+</div>
+
+</section>
+<section data-transition="linear" data-transition-speed="default">
+<h3>Analysis methods: Diagnostic Matrix</h3>
+<div class="slideContent" >
+<table><thead>
+<tr>
+<th></th>
+<th>-Response: Yes &ndash;</th>
+<th>&ndash; Response: No &ndash;</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>-<b>Test: positive</b>-</td>
+<td>\( fr(positive|yes) \)</td>
+<td>\( fr(positive|no) \)</td>
+</tr>
+<tr>
+<td>-<b>Test: negative</b>-</td>
+<td>\( fr(negative|yes) \)</td>
+<td>\( fr(positive|no) \)</td>
+</tr>
+<tr>
+<td>-<b>sum</b>-</td>
+<td>1</td>
+<td>1</td>
+</tr>
+</tbody></table>
+
+<p>We can use model:
+\[ E[Test|Response]= \beta_0 +\beta*Response \]
+or in more familiar terms
+\[ y_i = \beta_0 +\beta*x_i + \epsilon_i \]
+a <b>logistic</b> regression for the observed values of \( y_i=Test_i \) and \( x_i=Response_i \)  </p>
 
 </div>
 

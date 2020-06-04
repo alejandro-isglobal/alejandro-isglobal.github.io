@@ -133,3 +133,42 @@ Introduction
 | Risk assessment | To identify subgroup of patients who may experience better (or worse) outcome when expose to an intervention
 | Prediction of drug effects | To identify the pharmacological response of a patient exposed to a drug (efficacy, toxicity, and pharmacokinetics) 
 | Monitoring | To assess the response to a therapeutic intervention
+
+Analysis methods for Biomarker development
+========================================================
+<br />
+<b>Is the test reliable?</b>
+
+Analytical considerations: 
+<br />
+- validation of the Biomarkers test’s technical performance
+- cost-effectives, feasability
+- assessment of measurement error 
+
+To which extent individuals obtain the same measurement, if we were to repeat it?
+
+<b>test-retest reliability studies </b>
+
+Statistics:
+- intra-class correlation coefficients
+- Cohen's kappa
+- correlation coefficients
+
+Analysis methods for Biomarker usefullness
+========================================================
+
+<b>Is the test a clinically useful biomarker?</b>
+
+<br />
+Establish the relationship between a biomarker and an outcome of interest:
+
+- Randomized controlled trial
+- Single-arm/historical control trial
+- Cohort study
+- Case-control study (including nested)
+- Cross-sectional study
+- Case series or case reports
+- Registry information
+- Meta-analysis
+
+Strongest evidence comes from <b>prospective studies</b> that are specifically designed but data from studies conducted for <b>other purposes</b> can be used to support biomarker qualification.

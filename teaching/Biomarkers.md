@@ -59,7 +59,7 @@ Summary
   - Biomarkers definition
   - Guidance for qualification and reporting
 - Analysis methods for biomarkers:
-  - Diagnostic matrix
+  - Diagnostic matrix and ROC curve
   - Regression analyeses (stratified and with interactions)
   - Statistical power
   - Multiple Biomarkers
@@ -211,7 +211,7 @@ Analysis methods: Diagnostic Matrix
 Let's think first in terms of the response
 
 <br />
-Within those who responded (yes), how many the test was positive?
+Within those who responded (yes), how many tested positive?
 
 - <b>Sensitivity</b> (true positive rate)
 
@@ -224,7 +224,7 @@ Analysis methods: Diagnostic Matrix
 Let's think first in terms of the response
 
 <br />
-Within those who did not respond (no), how many the test was negative?
+Within those who did not respond (no), how many tested negative?
 
 - <b>Especificity</b> (True negative rate)
 
@@ -237,12 +237,87 @@ Analysis methods: Diagnostic Matrix
 |  | -Response: Yes -- | -- Response: No -- |
 | --------- | --------- | -------- |
 | -<b>Test: positive</b>- | $fr(positive|yes)$ | $fr(positive|no)$ | 
-| -<b>Test: negative</b>- | $fr(negative|yes)$ | $fr(positive|no)$ | 
+| -<b>Test: negative</b>- | $fr(negative|yes)$ | $fr(negative|no)$ | 
 | -<b>sum</b>-      | 1                | 1               |
 
 
-We can use model:
-$$E[Test|Response]= \beta_0 +\beta*Response$$
-or in more familiar terms
-$$y_i = \beta_0 +\beta*x_i + \epsilon_i$$
-a <b>logistic</b> regression for the observed values of $y_i=Test_i$ and $x_i=Response_i$  
+|  | -Response: Yes -- | -- Response: No -- |
+| --------- | --------- | -------- |
+| -<b>Test: positive</b>- |True positive rate (sensitivity) | False positive rate| 
+| -<b>Test: negative</b>- | False positive rate| True negative rate (especificity)| 
+
+Trade-off between sensitivity and especificity need to be evaluated in the context of use and usefullness of the test 
+
+Analysis methods: Diagnostic Matrix
+========================================================
+
+Let's think first in terms of the test
+
+<br />
+Within those whose test was positive, how many responded (yes)?
+
+- <b>Positive predictive value</b> 
+
+$$fr(yes|positive)=\frac{n_{yes|positive}}{n_{yes|positive}+n_{no|positive}}$$
+
+Analysis methods: Diagnostic Matrix
+========================================================
+
+Let's think first in terms of the test
+
+<br />
+Within those whose test was negative, how many did not respond (no)?
+
+- <b>Negative predictive value</b> 
+
+$$fr(yes|negative)=\frac{n_{yes|negative}}{n_{yes|negative}+n_{no|negative}}$$
+
+
+Analysis methods: Diagnostic Matrix
+========================================================
+
+|  | -Response: Yes -- | -- Response: No -- | -- sum -- |
+| --------- | --------- | -------- | ------ |
+| -<b>Test: positive</b>- | $PPV: fr(yes|positive)$ | $fr(no|positive)$ | 1 |
+| -<b>Test: negative</b>- | $fr(yes|negative)$ | $NPV: fr(no|negative)$ | 1 |
+
+
+PPV: positive predicted value
+NPV: negative predicted value
+
+These are really the values that we want to know but they depend on the prevalence of the disease
+
+
+Analysis methods: Diagnostic Matrix
+========================================================
+
+There is a way to convert from sentitivity to positive predicted value (Baye's rule)
+
+$$fr(yes|possitive)=\frac{fr(positive|yes)}{fr(possitive)}fr(yes)$$
+
+which can be rewritten 
+
+$$\frac{fr(yes|possitive)}{fr(no|possitive)}=\frac{fr(positive|yes)}{1-fr(negative|no)} \frac{fr(yes)}{1-fr(yes)}$$
+
+Analysis methods: Diagnostic Matrix
+========================================================
+
+$$ODD_{posttest}=LHR*ODD_{pretest}$$
+
+$LHR+=\frac{Sensitivity}{1-Especificity}$
+
+|  | --LHR+-- |
+| --- | --- |
+| Excellent diagnostic value | >10 |
+| Good diagnostic value | 5-10 |
+| Poor diagnostic value | 1-5 |
+| No diagnostic value | 1 |
+
+
+Analysis methods: ROC curve
+========================================================
+library(cvAUC)
+out <- cvAUC(hiv$test, hiv$reponse)
+#Plot fold AUCs
+plot(out$perf, col="blue", main="ROC")
+lines(c(0,1),c(0,1)) 

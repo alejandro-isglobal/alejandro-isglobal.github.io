@@ -306,7 +306,7 @@ $$ODD_{posttest}=LHR*ODD_{pretest}$$
 
 $LHR+=\frac{Sensitivity}{1-Especificity}$
 
-|  | --LHR+-- |
+|  | LHR+ |
 | --- | --- |
 | Excellent diagnostic value | >10 |
 | Good diagnostic value | 5-10 |
@@ -322,7 +322,7 @@ Let's look at some data:
 
 - Biomarker: Resistance factor derived drom genomic data using a machine learning method
 
-- Reponse:  Antiretroviral drug resitance
+- Reponse:  Antiretroviral drug resistance
 
 ROC curve
 ========================================================
@@ -344,15 +344,25 @@ head(hiv)
 6       1  0.704040
 ```
 
+
 ROC curve
 ========================================================
 
+
 ```r
-library(cvAUC)
-out <- cvAUC(hiv$test, hiv$reponse)
-#Plot fold AUCs
-plot(out$perf, col="blue", main="ROC")
-lines(c(0,1),c(0,1)) 
+table(hiv$response)
 ```
 
-![plot of chunk unnamed-chunk-2](Biomarkers-figure/unnamed-chunk-2-1.png)
+```
+< table of extent 0 >
+```
+
+
+
+
+
+
+```
+Error in plot.window(xlim, ylim, "", ...) : 
+  se necesitan valores finitos de 'ylim'
+```

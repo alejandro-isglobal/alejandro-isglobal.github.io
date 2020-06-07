@@ -306,7 +306,7 @@ $$ODD_{posttest}=LHR*ODD_{pretest}$$
 
 $LHR+=\frac{Sensitivity}{1-Especificity}$
 
-|  | --LHR+-- |
+|  | LHR+ |
 | --- | --- |
 | Excellent diagnostic value | >10 |
 | Good diagnostic value | 5-10 |
@@ -322,7 +322,7 @@ Let's look at some data:
 
 - Biomarker: Resistance factor derived drom genomic data using a machine learning method
 
-- Reponse:  Antiretroviral drug resitance
+- Reponse:  Antiretroviral drug resistance
 
 ROC curve
 ========================================================
@@ -333,12 +333,27 @@ hiv <- read.delim("https://alejandro-isglobal.github.io/data/hiv.txt")
 head(hiv)
 ```
 
+
+ROC curve
+========================================================
+
+```{r}
+table(hiv$response)
+```
+
+
+```{r}
+hist(hiv$test[hiv$response==-1], br=seq(-2,2,0.25), freq=FALSE,xlab="RF", main="histogram")
+hist(hiv$test[hiv$response==1], br=seq(-2,2,0.25), freq=FALSE, add=TRUE, col="blue")
+legend("toprigh", legend=c("no resitance", "resistance"), col=c("black", "blue"), lty=1)
+```
+
+
 ROC curve
 ========================================================
 ```{r}
 library(cvAUC)
-out <- cvAUC(hiv$test, hiv$reponse)
-#Plot fold AUCs
-plot(out$perf, col="blue", main="ROC")
-lines(c(0,1),c(0,1)) 
+out <- cvAUC(hiv$test, hiv$reponse) #calcular ROC
+plot(out$perf, col="blue", main="ROC") #plot
+lines(c(0,1),c(0,1)) #identidad
 ```

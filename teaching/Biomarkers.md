@@ -324,11 +324,35 @@ Let's look at some data:
 
 - Reponse:  Antiretroviral drug resitance
 
+ROC curve
+========================================================
 
 
-
+```r
+library(RCurl)
+hiv <- read.delim("https://alejandro-isglobal.github.io/data/hiv.txt")
+head(hiv)
+```
 
 ```
-Error in file(file, "rt") : 
-  cannot open the connection to 'https://alejandro-isglobal.github.io/data/hiv.txt'
+  reponse      test
+1       1 -0.438185
+2       1 -0.766791
+3       1  0.695282
+4       1 -0.689079
+5       1  0.325977
+6       1  0.704040
 ```
+
+ROC curve
+========================================================
+
+```r
+library(cvAUC)
+out <- cvAUC(hiv$test, hiv$reponse)
+#Plot fold AUCs
+plot(out$perf, col="blue", main="ROC")
+lines(c(0,1),c(0,1)) 
+```
+
+![plot of chunk unnamed-chunk-2](Biomarkers-figure/unnamed-chunk-2-1.png)

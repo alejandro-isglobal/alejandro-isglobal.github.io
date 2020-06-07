@@ -335,13 +335,13 @@ head(hiv)
 ```
 
 ```
-  reponse      test
-1       1 -0.438185
-2       1 -0.766791
-3       1  0.695282
-4       1 -0.689079
-5       1  0.325977
-6       1  0.704040
+  response      test
+1        1 -0.438185
+2        1 -0.766791
+3        1  0.695282
+4        1 -0.689079
+5        1  0.325977
+6        1  0.704040
 ```
 
 
@@ -354,15 +354,36 @@ table(hiv$response)
 ```
 
 ```
-< table of extent 0 >
+
+ -1   1 
+267  78 
 ```
 
 
+ROC curve
+========================================================
 
 
-
-
+```r
+br <- seq(-2,2,0.25)
+hist(hiv$test[hiv$response==-1], br=br, freq=F,xlab="RF", main="")
+hist(hiv$test[hiv$response==1], br=br, freq=F, add=T, col="blue")
+legend("toprigh", legend=c("no res.", "res."), col=c(1,2), lty=1)
 ```
-Error in plot.window(xlim, ylim, "", ...) : 
-  se necesitan valores finitos de 'ylim'
+
+![plot of chunk unnamed-chunk-3](Biomarkers-figure/unnamed-chunk-3-1.png)
+
+
+ROC curve
+========================================================
+
+```r
+library(cvAUC)
+out <- cvAUC(hiv$test, hiv$response) #calcular ROC
+plot(out$perf, col="blue", main="ROC") #plot
+lines(c(0,1),c(0,1)) #identidad
 ```
+
+![plot of chunk unnamed-chunk-4](Biomarkers-figure/unnamed-chunk-4-1.png)
+
+

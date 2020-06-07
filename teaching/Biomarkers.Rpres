@@ -342,10 +342,14 @@ table(hiv$response)
 ```
 
 
+ROC curve
+========================================================
+
 ```{r}
-hist(hiv$test[hiv$response==-1], br=seq(-2,2,0.25), freq=FALSE,xlab="RF", main="histogram")
-hist(hiv$test[hiv$response==1], br=seq(-2,2,0.25), freq=FALSE, add=TRUE, col="blue")
-legend("toprigh", legend=c("no resitance", "resistance"), col=c("black", "blue"), lty=1)
+br <- seq(-2,2,0.25)
+hist(hiv$test[hiv$response==-1], br=br, freq=F,xlab="RF", main="")
+hist(hiv$test[hiv$response==1], br=br, freq=F, add=T, col="blue")
+legend("toprigh", legend=c("no res.", "res."), col=c(1,2), lty=1)
 ```
 
 
@@ -353,7 +357,9 @@ ROC curve
 ========================================================
 ```{r}
 library(cvAUC)
-out <- cvAUC(hiv$test, hiv$reponse) #calcular ROC
+out <- cvAUC(hiv$test, hiv$response) #calcular ROC
 plot(out$perf, col="blue", main="ROC") #plot
 lines(c(0,1),c(0,1)) #identidad
 ```
+
+

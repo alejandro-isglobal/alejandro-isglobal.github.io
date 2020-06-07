@@ -366,16 +366,48 @@ ROC curve
 
 ```r
 br <- seq(-2,2,0.25)
-hist(hiv$test[hiv$response==-1], br=br, freq=F,xlab="RF", main="")
-hist(hiv$test[hiv$response==1], br=br, freq=F, add=T, col="blue")
-legend("toprigh", legend=c("no res.", "res."), col=c(1,2), lty=1)
-```
 
-![plot of chunk unnamed-chunk-3](Biomarkers-figure/unnamed-chunk-3-1.png)
+hist(hiv$test[hiv$response==-1], 
+     br=br, freq=F,xlab="RF", main="")
+
+hist(hiv$test[hiv$response==1], 
+     br=br, freq=F, add=T, col="blue")
+
+legend("toprigh", 
+       legend=c("no res.", "res."), 
+       col=c(1,2), lty=1)
+```
 
 
 ROC curve
 ========================================================
+
+![plot of chunk unnamed-chunk-4](Biomarkers-figure/unnamed-chunk-4-1.png)
+
+ROC curve
+========================================================
+
+$Test: positive < -0.5$ (no resistance)
+ 
+True positive rate: $fr_{[cutoff=-0.5]}(positive|yes)=0.95$
+
+![plot of chunk unnamed-chunk-5](Biomarkers-figure/unnamed-chunk-5-1.png)
+
+
+ROC curve
+========================================================
+
+$Test: negative > -0.5$ (resistance)
+ 
+False positive rate: $fr_{[cutoff=-0.5]}(positive|no)=0.26$
+
+![plot of chunk unnamed-chunk-6](Biomarkers-figure/unnamed-chunk-6-1.png)
+
+
+ROC curve
+========================================================
+(true positive rate, false positive rate)$_{cutoff=0.05}$=$(0.95,0.26)$
+
 
 ```r
 library(cvAUC)
@@ -384,6 +416,6 @@ plot(out$perf, col="blue", main="ROC") #plot
 lines(c(0,1),c(0,1)) #identidad
 ```
 
-![plot of chunk unnamed-chunk-4](Biomarkers-figure/unnamed-chunk-4-1.png)
+![plot of chunk unnamed-chunk-7](Biomarkers-figure/unnamed-chunk-7-1.png)
 
 

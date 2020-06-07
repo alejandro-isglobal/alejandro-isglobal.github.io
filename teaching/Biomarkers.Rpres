@@ -345,16 +345,72 @@ table(hiv$response)
 ROC curve
 ========================================================
 
-```{r}
+```{r, eval=FALSE}
 br <- seq(-2,2,0.25)
-hist(hiv$test[hiv$response==-1], br=br, freq=F,xlab="RF", main="")
-hist(hiv$test[hiv$response==1], br=br, freq=F, add=T, col="blue")
-legend("toprigh", legend=c("no res.", "res."), col=c(1,2), lty=1)
+
+hist(hiv$test[hiv$response==-1], 
+     br=br, freq=F,xlab="RF", main="")
+
+hist(hiv$test[hiv$response==1], 
+     br=br, freq=F, add=T, col="blue")
+
+legend("toprigh", 
+       legend=c("no res.", "res."), 
+       col=c(1,2), lty=1)
 ```
 
 
 ROC curve
 ========================================================
+
+```{r, echo=FALSE}
+br <- seq(-2,2,0.25)
+
+hist(hiv$test[hiv$response==-1], 
+     br=br, freq=F,xlab="RF", main="")
+
+hist(hiv$test[hiv$response==1], 
+     br=br, freq=F, add=T, col=2)
+
+legend("toprigh", 
+       legend=c("no res.", "res."), 
+       col=c(1,2), lty=1)
+```
+
+ROC curve
+========================================================
+
+$Test: positive < -0.5$ (no resistance)
+ 
+True positive rate: $fr_{[cutoff=-0.5]}(positive|yes)=0.95$
+
+```{r, echo=FALSE}
+hist(hiv$test[hiv$response==-1], 
+     br=br, freq=F,xlab="RF", main="")
+
+lines(c(-0.5, -0.5), c(-1,5),col="blue")
+```
+
+
+ROC curve
+========================================================
+
+$Test: negative > -0.5$ (resistance)
+ 
+False positive rate: $fr_{[cutoff=-0.5]}(positive|no)=0.26$
+
+```{r, echo=FALSE}
+hist(hiv$test[hiv$response==1], 
+     br=br, freq=F,xlab="RF", main="", col=2)
+
+lines(c(-0.5, -0.5), c(-1,5),col="blue")
+```
+
+
+ROC curve
+========================================================
+(true positive rate, false positive rate)$_{cutoff=0.05}$=$(0.95,0.26)$
+
 ```{r}
 library(cvAUC)
 out <- cvAUC(hiv$test, hiv$response) #calcular ROC

@@ -869,7 +869,7 @@ You can find me at: </p>
 <li>Analysis methods for biomarkers:
 
 <ul>
-<li>Diagnostic matrix</li>
+<li>Diagnostic matrix and ROC curve</li>
 <li>Regression analyeses (stratified and with interactions)</li>
 <li>Statistical power</li>
 <li>Multiple Biomarkers</li>
@@ -1054,7 +1054,7 @@ Establish the relationship between a biomarker and an outcome of interest:</p>
 
 </section>
 <section data-transition="linear" data-transition-speed="default">
-<h3>Analysis methods: Diagnostic Matrix</h3>
+<h3>Diagnostic Matrix</h3>
 <div class="slideContent" >
 <p>Supose we have gathered data for reponse/no-reponse (case/control) subjects and positive/negative test for each subject</p>
 
@@ -1076,7 +1076,7 @@ Establish the relationship between a biomarker and an outcome of interest:</p>
 
 </section>
 <section data-transition="linear" data-transition-speed="default">
-<h3>Analysis methods: Diagnostic Matrix</h3>
+<h3>Diagnostic Matrix</h3>
 <div class="slideContent" >
 <p>Each individual has two measurements: (Response, Test)</p>
 
@@ -1138,12 +1138,12 @@ Establish the relationship between a biomarker and an outcome of interest:</p>
 
 </section>
 <section data-transition="linear" data-transition-speed="default">
-<h3>Analysis methods: Diagnostic Matrix</h3>
+<h3>Diagnostic Matrix</h3>
 <div class="slideContent" >
 <p>Let&#39;s think first in terms of the response</p>
 
 <p><br />
-Within those who responded (yes), how many the test was positive?</p>
+Within those who responded (yes), how many tested positive?</p>
 
 <ul>
 <li><b>Sensitivity</b> (true positive rate)</li>
@@ -1155,12 +1155,12 @@ Within those who responded (yes), how many the test was positive?</p>
 
 </section>
 <section data-transition="linear" data-transition-speed="default">
-<h3>Analysis methods: Diagnostic Matrix</h3>
+<h3>Diagnostic Matrix</h3>
 <div class="slideContent" >
 <p>Let&#39;s think first in terms of the response</p>
 
 <p><br />
-Within those who did not respond (no), how many the test was negative?</p>
+Within those who did not respond (no), how many tested negative?</p>
 
 <ul>
 <li><b>Especificity</b> (True negative rate)</li>
@@ -1172,7 +1172,7 @@ Within those who did not respond (no), how many the test was negative?</p>
 
 </section>
 <section data-transition="linear" data-transition-speed="default">
-<h3>Analysis methods: Diagnostic Matrix</h3>
+<h3>Diagnostic Matrix</h3>
 <div class="slideContent" >
 <table><thead>
 <tr>
@@ -1189,7 +1189,7 @@ Within those who did not respond (no), how many the test was negative?</p>
 <tr>
 <td>-<b>Test: negative</b>-</td>
 <td>\( fr(negative|yes) \)</td>
-<td>\( fr(positive|no) \)</td>
+<td>\( fr(negative|no) \)</td>
 </tr>
 <tr>
 <td>-<b>sum</b>-</td>
@@ -1198,11 +1198,160 @@ Within those who did not respond (no), how many the test was negative?</p>
 </tr>
 </tbody></table>
 
-<p>We can use model:
-\[ E[Test|Response]= \beta_0 +\beta*Response \]
-or in more familiar terms
-\[ y_i = \beta_0 +\beta*x_i + \epsilon_i \]
-a <b>logistic</b> regression for the observed values of \( y_i=Test_i \) and \( x_i=Response_i \)  </p>
+<table><thead>
+<tr>
+<th></th>
+<th>-Response: Yes &ndash;</th>
+<th>&ndash; Response: No &ndash;</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>-<b>Test: positive</b>-</td>
+<td>True positive rate (sensitivity)</td>
+<td>False positive rate</td>
+</tr>
+<tr>
+<td>-<b>Test: negative</b>-</td>
+<td>False positive rate</td>
+<td>True negative rate (especificity)</td>
+</tr>
+</tbody></table>
+
+<p>Trade-off between sensitivity and especificity need to be evaluated in the context of use and usefullness of the test </p>
+
+</div>
+
+</section>
+<section data-transition="linear" data-transition-speed="default">
+<h3>Diagnostic Matrix</h3>
+<div class="slideContent" >
+<p>Let&#39;s think first in terms of the test</p>
+
+<p><br />
+Within those whose test was positive, how many responded (yes)?</p>
+
+<ul>
+<li><b>Positive predictive value</b> </li>
+</ul>
+
+<p>\[ fr(yes|positive)=\frac{n_{yes|positive}}{n_{yes|positive}+n_{no|positive}} \]</p>
+
+</div>
+
+</section>
+<section data-transition="linear" data-transition-speed="default">
+<h3>Diagnostic Matrix</h3>
+<div class="slideContent" >
+<p>Let&#39;s think first in terms of the test</p>
+
+<p><br />
+Within those whose test was negative, how many did not respond (no)?</p>
+
+<ul>
+<li><b>Negative predictive value</b> </li>
+</ul>
+
+<p>\[ fr(yes|negative)=\frac{n_{yes|negative}}{n_{yes|negative}+n_{no|negative}} \]</p>
+
+</div>
+
+</section>
+<section data-transition="linear" data-transition-speed="default">
+<h3>Diagnostic Matrix</h3>
+<div class="slideContent" >
+<table><thead>
+<tr>
+<th></th>
+<th>-Response: Yes &ndash;</th>
+<th>&ndash; Response: No &ndash;</th>
+<th>&ndash; sum &ndash;</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>-<b>Test: positive</b>-</td>
+<td>\( PPV: fr(yes|positive) \)</td>
+<td>\( fr(no|positive) \)</td>
+<td>1</td>
+</tr>
+<tr>
+<td>-<b>Test: negative</b>-</td>
+<td>\( fr(yes|negative) \)</td>
+<td>\( NPV: fr(no|negative) \)</td>
+<td>1</td>
+</tr>
+</tbody></table>
+
+<p>PPV: positive predicted value
+NPV: negative predicted value</p>
+
+<p>These are really the values that we want to know but they depend on the prevalence of the disease</p>
+
+</div>
+
+</section>
+<section data-transition="linear" data-transition-speed="default">
+<h3>Diagnostic Matrix</h3>
+<div class="slideContent" >
+<p>There is a way to convert from sentitivity to positive predicted value (Baye&#39;s rule)</p>
+
+<p>\[ fr(yes|possitive)=\frac{fr(positive|yes)}{fr(possitive)}fr(yes) \]</p>
+
+<p>which can be rewritten </p>
+
+<p>\[ \frac{fr(yes|possitive)}{fr(no|possitive)}=\frac{fr(positive|yes)}{1-fr(negative|no)} \frac{fr(yes)}{1-fr(yes)} \]</p>
+
+</div>
+
+</section>
+<section data-transition="linear" data-transition-speed="default">
+<h3>Diagnostic Matrix</h3>
+<div class="slideContent" >
+<p>\[ ODD_{posttest}=LHR*ODD_{pretest} \]</p>
+
+<p>\( LHR+=\frac{Sensitivity}{1-Especificity} \)</p>
+
+<table><thead>
+<tr>
+<th></th>
+<th>&ndash;LHR+&ndash;</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Excellent diagnostic value</td>
+<td>&gt;10</td>
+</tr>
+<tr>
+<td>Good diagnostic value</td>
+<td>5-10</td>
+</tr>
+<tr>
+<td>Poor diagnostic value</td>
+<td>1-5</td>
+</tr>
+<tr>
+<td>No diagnostic value</td>
+<td>1</td>
+</tr>
+</tbody></table>
+
+</div>
+
+</section>
+<section data-transition="linear" data-transition-speed="default">
+<h3>ROC curve</h3>
+<div class="slideContent" >
+<p>Let&#39;s look at some data:</p>
+
+<p><a href="https://pubmed.ncbi.nlm.nih.gov/12060770">HIV resistance</a></p>
+
+<ul>
+<li><p>Biomarker: Resistance factor derived drom genomic data using a machine learning method</p></li>
+<li><p>Reponse:  Antiretroviral drug resitance</p></li>
+</ul>
+
+<pre><code>Error in file(file, &quot;rt&quot;) : 
+  cannot open the connection to &#39;https://alejandro-isglobal.github.io/data/hiv.txt&#39;
+</code></pre>
 
 </div>
 

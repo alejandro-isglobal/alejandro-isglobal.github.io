@@ -174,7 +174,7 @@ Establish the relationship between a biomarker and an outcome of interest:
 Strongest evidence comes from <b>prospective studies</b> that are specifically designed but data from studies conducted for <b>other purposes</b> can be used to support biomarker qualification.
 
 
-Analysis methods: Diagnostic Matrix
+Diagnostic Matrix
 ========================================================
 
 Supose we have gathered data for reponse/no-reponse (case/control) subjects and positive/negative test for each subject
@@ -187,7 +187,7 @@ The Test measurement has to events:
 - positive
 - negative
 
-Analysis methods: Diagnostic Matrix
+Diagnostic Matrix
 ========================================================
 
 Each individual has two measurements: (Response, Test)
@@ -205,7 +205,7 @@ Each individual has two measurements: (Response, Test)
 |...            |   ...        | ...      |
 
 
-Analysis methods: Diagnostic Matrix
+Diagnostic Matrix
 ========================================================
 
 Let's think first in terms of the response
@@ -218,7 +218,7 @@ Within those who responded (yes), how many tested positive?
 $$fr(positive|yes)=\frac{n_{positive|yes}}{n_{negative|yes}+n_{negative|yes}}$$
 
 
-Analysis methods: Diagnostic Matrix
+Diagnostic Matrix
 ========================================================
 
 Let's think first in terms of the response
@@ -231,7 +231,7 @@ Within those who did not respond (no), how many tested negative?
 $$fr(negative|no)=\frac{n_{negative|no}}{n_{positive|no}+n_{negative|no}}$$
 
 
-Analysis methods: Diagnostic Matrix
+Diagnostic Matrix
 ========================================================
 
 |  | -Response: Yes -- | -- Response: No -- |
@@ -248,7 +248,7 @@ Analysis methods: Diagnostic Matrix
 
 Trade-off between sensitivity and especificity need to be evaluated in the context of use and usefullness of the test 
 
-Analysis methods: Diagnostic Matrix
+Diagnostic Matrix
 ========================================================
 
 Let's think first in terms of the test
@@ -260,7 +260,7 @@ Within those whose test was positive, how many responded (yes)?
 
 $$fr(yes|positive)=\frac{n_{yes|positive}}{n_{yes|positive}+n_{no|positive}}$$
 
-Analysis methods: Diagnostic Matrix
+Diagnostic Matrix
 ========================================================
 
 Let's think first in terms of the test
@@ -273,7 +273,7 @@ Within those whose test was negative, how many did not respond (no)?
 $$fr(yes|negative)=\frac{n_{yes|negative}}{n_{yes|negative}+n_{no|negative}}$$
 
 
-Analysis methods: Diagnostic Matrix
+Diagnostic Matrix
 ========================================================
 
 |  | -Response: Yes -- | -- Response: No -- | -- sum -- |
@@ -288,7 +288,7 @@ NPV: negative predicted value
 These are really the values that we want to know but they depend on the prevalence of the disease
 
 
-Analysis methods: Diagnostic Matrix
+Diagnostic Matrix
 ========================================================
 
 There is a way to convert from sentitivity to positive predicted value (Baye's rule)
@@ -299,7 +299,7 @@ which can be rewritten
 
 $$\frac{fr(yes|possitive)}{fr(no|possitive)}=\frac{fr(positive|yes)}{1-fr(negative|no)} \frac{fr(yes)}{1-fr(yes)}$$
 
-Analysis methods: Diagnostic Matrix
+Diagnostic Matrix
 ========================================================
 
 $$ODD_{posttest}=LHR*ODD_{pretest}$$
@@ -314,10 +314,26 @@ $LHR+=\frac{Sensitivity}{1-Especificity}$
 | No diagnostic value | 1 |
 
 
-Analysis methods: ROC curve
+ROC curve
 ========================================================
+Let's look at some data:
+
+[HIV resistance](https://pubmed.ncbi.nlm.nih.gov/12060770)
+
+- Biomarker: Resistance factor derived drom genomic data using a machine learning method
+
+- Reponse:  Antiretroviral drug resitance
+
+```{r}
+library(RCurl)
+hiv <- read.delim("https://alejandro-isglobal.github.io/data/hiv.txt")
+head(hiv)
+```
+
+```{r}
 library(cvAUC)
 out <- cvAUC(hiv$test, hiv$reponse)
 #Plot fold AUCs
 plot(out$perf, col="blue", main="ROC")
 lines(c(0,1),c(0,1)) 
+```

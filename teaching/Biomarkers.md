@@ -359,6 +359,8 @@ table(hiv$response)
 267  78 
 ```
 
+- response: <b>yes</b>, resitstance to drug treatment: <b>1</b>
+- response: <b>no</b>, no resitstance to drug treatmen: <b>-1</b>
 
 ROC curve
 ========================================================
@@ -374,7 +376,7 @@ hist(hiv$test[hiv$response==1],
      br=br, freq=F, add=T, col="blue")
 
 legend("toprigh", 
-       legend=c("no res.", "res."), 
+       legend=c("no resis.", "resis."), 
        col=c(1,2), lty=1)
 ```
 
@@ -387,9 +389,9 @@ ROC curve
 ROC curve
 ========================================================
 
-$Test: positive < -0.5$ (no resistance)
+$Test: positive > -0.5$ when there was no resistance
  
-True positive rate: $fr_{[cutoff=-0.5]}(positive|yes)=0.95$
+False positive rate: $fr_{[cutoff=-0.5]}(positive|no)=0.05$
 
 ![plot of chunk unnamed-chunk-5](Biomarkers-figure/unnamed-chunk-5-1.png)
 
@@ -397,25 +399,48 @@ True positive rate: $fr_{[cutoff=-0.5]}(positive|yes)=0.95$
 ROC curve
 ========================================================
 
-$Test: negative > -0.5$ (resistance)
+$Test: positive > -0.5$ when there was resistance
  
-False positive rate: $fr_{[cutoff=-0.5]}(positive|no)=0.26$
+True positive rate: $fr_{[cutoff=-0.5]}(positive|yes)=0.73$
 
 ![plot of chunk unnamed-chunk-6](Biomarkers-figure/unnamed-chunk-6-1.png)
 
 
 ROC curve
 ========================================================
-(true positive rate, false positive rate)$_{cutoff=0.05}$=$(0.95,0.26)$
+(false positive rate,true positive rate)$_{cutoff=-0.05}$=$(0.05, 0.73)$
 
 
 ```r
 library(cvAUC)
 out <- cvAUC(hiv$test, hiv$response) #calcular ROC
 plot(out$perf, col="blue", main="ROC") #plot
-lines(c(0,1),c(0,1)) #identidad
+lines(c(0,1),c(0,1)); points(0.05, 0.73) #cutoff=-0.05
 ```
 
 ![plot of chunk unnamed-chunk-7](Biomarkers-figure/unnamed-chunk-7-1.png)
 
+ROC curve
+========================================================
+Area under the curve
 
+$AUC=Pr(Test_2|negative < Test_1|positive)$
+
+
+```r
+ci.cvAUC(hiv$test, hiv$response)
+```
+
+```
+$cvAUC
+[1] 0.9047825
+
+$se
+[1] 0.02276935
+
+$ci
+[1] 0.8601554 0.9494096
+
+$confidence
+[1] 0.95
+```

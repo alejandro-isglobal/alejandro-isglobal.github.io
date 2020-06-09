@@ -193,7 +193,7 @@ Este es el valor de $\bar{x}$, por *encima* del cuál se encuentra sólo el 2.5\
 xbar0.975(lambda=0.3)
 ```
 
-Miremos varios valores de $\lambda$ y calculemos cuándo $xbar0.975$ es precisamente $xbar$
+Miremos varios valores de $\lambda$ y calculemos cuando $xbar=0.975$ es precisamente $xbar$
 
 ```{r}
 lambdaint <- seq(0,0.4,0.02)
@@ -242,47 +242,64 @@ los valores estimados $\hat{\lambda}_{low}$ y $\hat{\lambda}_{high}$ definen un 
 
 
 ###Teorema central del límite
-Cuando n es grande ($>30$) sabemos que por el TCL
+Aunque la distribución para $\bar{X}$ la hemos calculado computacionalmente (*distXbar*), no conocemos su forma funcional. Es decir, no diponemos de una función de probabilidad conocida y con parámetros que se puedan calcular mediante una fórmula, decimos pues que no tenemos una función de distribución *parametrica*. Si bien tenemos un **algoritmo** para calcular la función, este depende de una generación aleatoria de miles de medias de distribuciones de Piosson. Para muchos casos, esto no es un problema. Los ordenadores actuales nos permiten esto. Pero si queremos analyzar simultaneamente no un contador de Geiger sino miles de ellos que se encuentren distribuidos por una zona contaminada entonces tendremos problemas de computar tantas números aleatorios. Afortunadamente, si decidimos esperar un por lo menos un minuto ($n=60$), en vez de 10 segundos, podremos conseguir suficientes datos que nos permite simplificar el cálculo de la estimación de de la función de probabilidad para $\bar{X}$, recobrando una forma paramétrica para ella. El teorema central del límite (TCL) nos dice que $\bar{X}$ se puede aproximar a una distribución normal
 
-$$\bar{X}\sim N(\mu_{\bar{X}}, \sigma_{\bar{X}})$$
-$$\mu_{\bar{X}}=E(X)=\mu=0.5$$
-$$\sigma^2_{\bar{X}}=Var(X)/\sqrt{n}=\sigma^2_{X}/\sqrt{n}=0.5/\sqrt{n}$$
+$$N(\mu_{\bar{X}}, \sigma_{\bar{X}})$$
+cuando $n>30$. Donde la media y la varianza están dadas por
+
+$$\mu_{\bar{X}}=E(X)=\mu=\lambda$$
+$$\sigma^2_{\bar{X}}=Var(X)/n=\sigma^2_{X}/n=\lambda/n$$
 
 
-Recordemos que para una distribución de Poisson $\mu=\sigma^2=\lambda$ (=0.5 para nuestros datos).
-
-Entonces:
-Bajo el TCL podemos usar la distibución normal para calcular
+Estos últimos valores son los que corresponden a una distribución de Poisson $\mu=\sigma^2=\lambda$ para nuestros datos. De tal forma que el TCL nos permite usar la distibución normal para calcular
 
 $$P(\bar{X}<0.4)$$
-
-
-Pero con n=10 no podemos usar este teorema: Veamos por qué.
-
-Pinta la distribución normal; **dnrom(x,mu,sigma)** 
-que le corresponde a la distribución de 
-**Xbar(100)** en el intervalo: **xprom<-seq(0,1.5,0.01)}**
+Illustremos el teorema con nuestros datos. Para esto debemos esperar 30 segundos y por lo tanto hacer estimar de nuevo $\lambda$ con $\bar{x}$ para $n=60$. 
 
 ```{r}
-sim <- sapply(rep(100,1000), Xbar)
-hist(sim, freq=FALSE)
+detecciones60 <- detecciones[1:60]
+xbar <- mean(detecciones60)
+xbar
+```
+Vemos de paso que esperar 60 segundos nos permite ser mas prudentes. Ahora estaríamos por debajo del límite de seguridad (0.4). Para ilustrar el TCL calculamos computacionalmente la distribucion de $\bar{X}$ 
+para $\hat{\lambda}=0.3$
+```{r}
+Xbar <- function(n)
+{
+  conteos <- rpois(n, lambda=xbar)   
+  mean(conteos)
+}
+```
+y le superponemos la distribución normal con media y varianza estimada $\hat{\lambda}$ y  $\hat{\lambda}/\sqrt{60}$ usando la función **dnrom(x,mu,sigma)** 
 
-xprom <- seq(0,1.5,0.01)
-normvals <- dnorm(xprom, mean=0.5, sd=sqrt(0.5)/sqrt(100))
+```{r}
+n <- 60
+lambda <- xbar
+distXbar <- sapply(rep(n,1000), Xbar)
+hist(distXbar, freq=FALSE)
+
+xprom <- seq(0,1,0.005)
+normvals <- dnorm(xprom, mean=lambda, sd=sqrt(lambda)/sqrt(n))
 lines(xprom, normvals, col="red")
 ```
 
-$\mu=0.5$, $\sigma=\frac{\sqrt{0.5}}{\sqrt{n}}$
-
-
-Podemos confirmar que la aproximación no es buena para n=5
+El TCL nos perminte usar la distribución de acumulación de probabilidad de la función normal para calcular  
+$$P(\bar{X}<0.4)=\Phi(0.4; \hat{\lambda}, \hat{\lambda}/\sqrt{60})$$
 
 ```{r}
-sim <- sapply(rep(5,1000), Xbar)
-hist(sim, freq=FALSE)
+pnorm(0.4, xbar, sqrt(lambda)/sqrt(n))
+```
 
-xprom <- seq(0,1.5,0.01)
-normvals <- dnorm(xprom, mean=0.5, sd=sqrt(0.5)/sqrt(5))
+Es decir, que ahora estamos mucho mas seguros de que el trabajador se encuentra en zona segura. El TCL permite tambien estimar $\lambda$ y su [intervalo de confianza](https://alejandro-isglobal.github.io/teaching/intervalosdeconfianza.html) usando las fórmulas para la distribución normal, y ahorarnos tiempo de computo sin perder precisión. Podemos también confirmar que la aproximación no es buena para $n=10$, requiriendo para estos casos usar las simulaciones
+
+```{r}
+n <- 10
+lambda <- xbar
+distXbar <- sapply(rep(n,1000), Xbar)
+hist(distXbar, freq=FALSE)
+
+xprom <- seq(0,1,0.005)
+normvals <- dnorm(xprom, mean=lambda, sd=sqrt(lambda)/sqrt(n))
 lines(xprom, normvals, col="red")
 ```
 

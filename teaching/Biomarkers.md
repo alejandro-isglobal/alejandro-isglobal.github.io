@@ -389,7 +389,7 @@ ROC curve
 ROC curve
 ========================================================
 
-$Test: positive > -0.5$ when there was no resistance
+$Test: positive > -0.5$ when there was no resistance (no)
  
 False positive rate: $fr_{[cutoff=-0.5]}(positive|no)=0.05$
 
@@ -399,7 +399,7 @@ False positive rate: $fr_{[cutoff=-0.5]}(positive|no)=0.05$
 ROC curve
 ========================================================
 
-$Test: positive > -0.5$ when there was resistance
+$Test: positive > -0.5$ when there was resistance (yes)
  
 True positive rate: $fr_{[cutoff=-0.5]}(positive|yes)=0.73$
 
@@ -408,14 +408,14 @@ True positive rate: $fr_{[cutoff=-0.5]}(positive|yes)=0.73$
 
 ROC curve
 ========================================================
-(false positive rate,true positive rate)$_{cutoff=-0.05}$=$(0.05, 0.73)$
+(false positive rate,true positive rate)$_{cutoff}$=$(0.05, 0.73)_{-0.05}$
 
 
 ```r
 library(cvAUC)
 out <- cvAUC(hiv$test, hiv$response) #calcular ROC
 plot(out$perf, col="blue", main="ROC") #plot
-lines(c(0,1),c(0,1)); points(0.05, 0.73, pch=16) #cutoff=-0.05
+lines(c(0,1),c(0,1)); points(0.05, 0.73, pch=16) #cutoff=-0.5
 ```
 
 ![plot of chunk unnamed-chunk-7](Biomarkers-figure/unnamed-chunk-7-1.png)
@@ -424,7 +424,7 @@ ROC curve
 ========================================================
 Area under the curve
 
-$AUC=Pr(Test_2|negative < Test_1|positive)$
+$AUC=Pr(Test_2|no < Test_1|yes)$
 
 
 ```r

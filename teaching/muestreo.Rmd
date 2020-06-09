@@ -303,69 +303,74 @@ normvals <- dnorm(xprom, mean=lambda, sd=sqrt(lambda)/sqrt(n))
 lines(xprom, normvals, col="red")
 ```
 
-Tomemos más datos, ahora 50 mediciones (los primeros 50 segundos)
+###Estimación de la varianza de $\bar{X}$
 
+Tomemos más datos, ahora seamos mas pacientes, esperemos 2 minutos y registremos $n=120$ mediciones del contador.
 
 ```{r}
-detecciones50 <- detecciones[1:50]
-xbar <- mean(detecciones50)
+detecciones120 <- detecciones[1:120]
+xbar <- mean(detecciones120)
 xbar
 ```
 
-La situación cambia! ahora $xbar < 0.4$ y el trabajador estaría en zona segura. Pero con qué probabilidad $Pr(\bar{X}<0.4$)?
-
-
-Ahora tenemos mas datos (50) y podemos calcular $Pr(\bar{X}<0.4)$ con el TCL
+La situación sigue mejorando $xbar < 0.4$ y el trabajador estaría claramente en zona segura, podemos calcular de nuevo la probabilidad $Pr(\bar{X}<0.4$) usando el TCL
 
 ```{r}
-pnorm(0.4, mean=0.36, sd=sqrt(0.36/50))
+pnorm(0.4, mean=xbar, sd=sqrt(xbar/120))
 ```
 
-Según los 50 primeros datos el trabajador tiene una probabilidad de 0.68 de estar en zona segura.
+y vemos que si asumimos que el valor medio de particulas emitidas por segundo es $0.275$ entonces tenemos una probabilidad de $0.0045$ de obtener un valor mas grande que $0.4$; o sea que **la hipótesis** de que  el trabajador se encuentra en zona peligrosa es poco probable según los datos; y la podríamos rechazar con un límite de significancia de puesto al $0.05$ o de confianza al $95\%$. 
 
-Cuántos datos necesitamos para estar muy seguros?
-
-El modelo ha cambiado ahora para estos 50 datos el estimador de $\hat{\lambda}=\bar{x}=0.36$ (le ponemos el gorro a $\lambda$ para remarcar que es un valor estimado)
+Veamos como aumenta la precisión, o como disminuye la varianza de $\bar{X}$ con el número de mediciones.     
+El modelo ha vueto a cambiar ahora para estos 120 datos el estimador de $\hat{\lambda}=\bar{x}=0.275$ 
 
 ```{r}
 Xbar <- function(n)
 {
-  conteos <- rpois(n, lambda=0.36)   
+  conteos <- rpois(n, lambda=0.275)   
   mean(conteos)
 }
 ```
-Hagamos los histogramas para muestras  de n=5, n=30 (blue), n=100(orange) 
+Hagamos los histogramas para la versión computacional de $\bar{X}$ con $n=5$, $n=30$ y $n=100$ 
 
 ```{r}
-sim1 <- sapply(rep(5,1000), Xbar)
-hist(sim1, freq=FALSE, ylim=c(0,7))
+distXbar5 <- sapply(rep(5,1000), Xbar)
+hist(distXbar5, freq=FALSE, ylim=c(0,15), breaks=seq(0,2.5,0.025))
 
-sim2 <- sapply(rep(30,1000), Xbar)
-hist(sim2, freq=FALSE, add=TRUE, col="blue")
+distXbar60 <- sapply(rep(60,1000), Xbar)
+hist(distXbar60, freq=FALSE, add=TRUE, breaks=seq(0,2.5,0.025), col="blue")
 
-sim3 <- sapply(rep(100,1000), Xbar)
-hist(sim3, freq=FALSE, add=TRUE, col="orange")
+distXbar120 <- sapply(rep(120,1000), Xbar)
+hist(distXbar120, freq=FALSE, add=TRUE, breaks=seq(0,2.5,0.025), col="orange")
+
+legend("topright", legend=c("n=5", "n=60", "n=120"), col=c("black", "blue", "orange"), lty=1)
 ```
 
-A medida que las medidas aumentan (n) la varianza de $\bar{X}$, que llamamos $\sigma^2_{\bar{X}}$, es cada vez mas pequeña  ($\sqrt{0.5/n}$) y cada vez tenemos mas confianza de que nuestro promedio dado por los datos $\hat{\lambda}=\bar{x}$ está cerca del verdadero valor de $\lambda$: $\lambda \sim \hat{\lambda} = 0.36$
+Vemos que a medida que las medidas aumentan ($n$), la varianza de $\bar{X}$, que llamamos $\sigma^2_{\bar{X}}$, es cada vez mas pequeña  ($\sqrt{\lambda/n}$) y cada vez tenemos mas confianza de que nuestro promedio dado por los datos $\hat{\lambda}=\bar{x}$ está cerca del verdadero valor de $\lambda$: $\lambda \sim \hat{\lambda} = 0.275$. 
+
+Tomemos por último todas las 1238 mediciones del contador, que son aproximadamente 20 minutos. Podemos otra vez usar el TCL para calcular $Pr(\bar{X}<0.4$) con el nuevo valor estimado de $\lambda$ dado por $\bar{x}$
 
 
 ```{r}
-mean(detecciones)
-pnorm(0.4, mean=0.2899838, sd=sqrt(0.2899838/1238))
+length(detecciones)
+xbar <- mean(detecciones)
+xbar
+pnorm(0.4, mean=xbar, sd=sqrt(xbar/1238))
 ```
 
-y muestran una probabilidad de 1 de que nuestro trabajador esta en zona segura.
+Vemos que estos 20 minutos nos dan una probabilidad de 1 de que nuestro trabajador esta en zona segura. Por lo tanto nuestro conocimiento y recomendación sobre la seguridad del trabajador cambia dramáticamente de acuerdo con la cantidad de datos que disponemos.
 
-También podemos comprobar que estos datos reales están muy bien descritos por una distribución de Poisson.
+Finalmente podemos comprobar que estos datos reales están muy bien descritos por una distribución de Poisson
 
 ```{r}
 hist(detecciones, freq=FALSE, breaks=seq(-0.5,5.5))
 
 x <- 0:5
-fx <- dpois(x, lambda= 0.2899838)
+fx <- dpois(x, lambda= xbar)
 
 points(x,fx, type="p", pch=16)
 for(i in 1:6)
 lines(c(x[i], x[i]), c(0, fx[i]))
-```{r}
+```
+
+pues existe muy poca variación entre el histograma de los datos y la distribución de Poisson con $\lambda$, el valor medio de partículas detectadas por segundo en el reactor, estimado por $\bar{x}$ con datos correspondientes a 20 minutos de mediciones; una por cada segundo.

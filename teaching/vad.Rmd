@@ -2,11 +2,16 @@
 title: "Variables aleatorias discretas"
 output: html_document
 ---
+**Nota: este artículo está en construcción!!**
 
+
+*Los funciones de probabilidad son los objetos matemáticos que usamos para entender experimentos aletorios. Cuando asignamos a un experimento aleatorio una función de probabilidad decimos que modelamos el proceso de medición. Usando R y como ejemplo el error aleatorio cometido al trasmitir los píxeles de de una foto, explico como las distribuciones binomial, binomial negativa y geométrica se obtienen de la distribución de Bernoulli.*
+
+<img src="pixel.jpg" style="width:30%;  margin-right: 20px" align="left"> Imaginemos un sistema de trasmisión de información binaria. Cualquier sistema digital sirve como ejemplo. En particular, imaginemos que el sistema consiste en trasmitir el valor de los pixeles (0:blanco, 1:negro) de una foto digital. El sistema puede consistir simplemente en tomar una foto en blanco y negro y enviarla por correo a una cuenta de email. El receptor de la foto al abrirla observará una perdida de calidad inicial, dada por la acumulación de errores en el almacenamiento, envío, procesamiento y visualización. Nuestro objetivo es analizar teóricamente esta situación para disponer de una herramienta matemática que nos permita describir este proceso aleatorio, es decir del error en la trasmisión. Insisto en que lo que presentamos es un construcción analítica, lógica y abstracta de la que queremos **derivar** el comportamiento que podríamos esperar de este sistema bajo unas suposiciones razonables. El ejercicio es pues de carácter **deductivo**, sin apelar a datos ni observaciones de un experimento en concreto, sino a unos supuestos y a sus consequencias lógicas. Intentaremos construir un *modelo* de probabilidad para el error en transmisión de una foto en blanco y negro.       
 
 ##Bernoulli
 
-El caso mas sencillo de una funci\'on de distribuci\'on es un ensayo de Bernoulli donde s\'olo hay dos posibles eventos (A y B) 
+El caso mas sencillo de una función de distribución es un ensayo de Bernoulli donde sólo hay dos posibles eventos (A y B) 
 
 - evento A (k=1): tiene probabilidad $p$
 - outcome B (k=0): tiene probabilidad $q=1-p$
@@ -16,13 +21,13 @@ $$f(k)=(1-p)^{1-k} p^k $$
 
 El lanzamiendo de una moneda es un ensayo de Bernoulli con $p=1/2$
 
-La funci\'on de probabilidad de
+La función de probabilidad de
 $$f(k)=(1-p)^{1-k} p^k $$
 
 Cuya media y valor desviaci\'on estandard son 
 $$E(x)=\mu=p$$ $$V(X)=\sigma^2=p(1-p)$$
 
-Un pixel tiene probabilidad p=0.2 de ser transmitido incorrectamente (error:k=1) y 0.8 de ser transmitido correctamente (correcto:k=0)  
+Imaginemos que tenemos un sistema para transmitir el valor de un pixel con un probabilidad p=0.2 transmitirlo incorrectamente (error:k=1) y 0.8 de ser transmitirlo correctamente (correcto:k=0)  
 
 $$
     f(k)= 

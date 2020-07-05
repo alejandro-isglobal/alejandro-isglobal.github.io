@@ -1,0 +1,334 @@
+---
+title: "Variables aleatorias discretas"
+output: html_document
+---
+
+
+##Bernoulli
+
+El caso mas sencillo de una funci\'on de distribuci\'on es un ensayo de Bernoulli donde s\'olo hay dos posibles eventos (A y B) 
+
+- evento A (k=1): tiene probabilidad $p$
+- outcome B (k=0): tiene probabilidad $q=1-p$
+
+La funci\'on de probabilidad de
+$$f(k)=(1-p)^{1-k} p^k $$
+
+El lanzamiendo de una moneda es un ensayo de Bernoulli con $p=1/2$
+
+La funci\'on de probabilidad de
+$$f(k)=(1-p)^{1-k} p^k $$
+
+Cuya media y valor desviaci\'on estandard son 
+$$E(x)=\mu=p$$ $$V(X)=\sigma^2=p(1-p)$$
+
+Un pixel tiene probabilidad p=0.2 de ser transmitido incorrectamente (error:k=1) y 0.8 de ser transmitido correctamente (correcto:k=0)  
+
+$$
+    f(k)= 
+\begin{cases}
+    0.8,& \text{si } k=0 \\
+    0.2,& \text{si } k=1\\
+\end{cases}
+$$
+
+asigna a k el vector (0,1) y a fk el vector (0.8,0.2) y transmite una foto de 100 pixels con 
+
+```{r}
+k <- c(0,1)
+fk <- c(0.8,0.2)
+names(fk) <- k
+
+foto <- sample(k, size=100, prob=fk, replace=TRUE)
+foto
+```
+
+
+puedes conseguir?
+\begin{figure}[htbp]
+\includegraphics[width=0.3\linewidth]{figures/pixels} 
+\end{figure}
+
+
+- usa {\bf hist} como antes pero a\~nade par\'ametro ylim=c(0,1) como l\'imites para el eje y; modifica el par\'ametro breaks de acuerdo al los nuevos valores de k.
+- usa {\bf points} como antes. 
+- usa {\bf lines} con el {\bf for} pero modifica hasta cu\'ando se hace el bucle. 
+
+
+Qu\'e tan cerca es la media y la varianza de los datos a sus valores te\'oricos?
+
+\vspace{0.5cm}
+Recuerda que la media del ensayo de Bernoulli es $\mu=p=0.2$ y su varianza es $\sigma^2=p*(1-p)=0.16$
+
+
+La distribuci\'on Binomial da la probabilidad de observar $x$ eventos de un tipo (A) con probabilidad $p$ en $n$ ensayos de Bernoulli. 
+
+$$Bin(x; n,p)=\binom n x p^x(1-p)^{n-x}$$
+x=0,1,...n
+
+
+- $E(X)=\mu=np$
+- $V(X)=\sigma^2=np(1-p)$
+
+Enviemos una foto de 100 pixels y contemos cuantas veces aparece el 1 (x=cuantos errores hay).
+
+```{r}
+foto <- sample(x=c(0,1),size=100, prob=fk, replace=TRUE)
+foto
+```
+
+```{r}
+sum(foto)
+```
+
+esta foto tuvo x=12 errores. 
+
+
+Pero cu\'al es la probabilidad de observar fotos con 1 error, 2 errores, ... 12 errores, ... 100 errores?  Pr(x=2), Pr(x=3), ... Pr(x=100)?
+
+
+Tenemos que enviar muchas fotos de 100 pixeles (p.ej. 1000) y contar cuantas fotos tienen 1 error, 2 errores, .... 100 errores (fr(x=2), fr(x=3), ... fr(x=100))
+
+
+
+Hagamos una funci\'on para que simule los errores en eviar fotos de 100 pixels (cuando la probabilidad de error por pixel (k=1) es 0.2 -Bernoulli)
+
+```{r}
+enviar <- function(...)
+{
+   foto <- sample(c(0,1),size=100, 
+                  replace=TRUE,prob=fk)
+   sum(foto)
+}
+```
+
+
+los tres puntos indican que no importa el argumento en la funci\'on, esta siempre hara lo mismo.
+
+```{r}
+enviar()
+enviar(1)
+enviar(1)
+enviar("hola")
+```
+
+
+cada vez que llamamos a enviar con cualquier argumento, envía una foto de 100 pixels y cuenta los errores. 
+
+Podemos simular los errores producidos en el env\'io de tres fotos de 100 pixeles  
+
+```{r}
+c(enviar(1), enviar(1), enviar(1))
+```
+
+en R esto se pueden hacer con la funci\'on {\bf sapply}
+
+```{r}
+Tresfotos <- sapply(rep(1,3), enviar)
+Tresfotos
+```
+
+
+Simula los errores al enviar mil fotos, as\'ignalo a {\bf Milfotos} y pinta su histograma
+
+
+puedes conseguir?
+- usa {\bf hist} como antes pero a\~nade par\'ametro ylim=c(0,0.15) como l\'imites para el eje y; modifica el par\'ametro breaks de acuerdo al los nuevos valores de x, breaks=seq(1.5, 100.5); usa xlim=c(0,40) como l\'imites para el eje x.
+
+Cuales son la media (mean) y varianza (sd$()^2$) de Milfotos?
+
+Coinciden con los valores de la media y varianza de una distribuci\'on binomial?
+
+- $E(X)=\mu=np=100*0.2=20$
+- $V(X)=\sigma=np(1-p)=10*0.3*0.7=16$
+
+Qu\'e tanto coincide el histograma con la distribuci\'on binomial?
+
+Necesitamos los valores de la distribucio\'n binomial para n=100 y p=0.2. Esto se hace con la funci\'on {\bf dbinom}
+
+Bin(x; n,p) en R es {\tt dbinom(x, size=n, prob=p)}
+
+
+```{r}
+x <- 0:100
+binomial <- dbinom(x, size=100, prob=0.2)
+names(binomial) <- x
+head(binomial)
+```
+
+```{r}
+Milfotos <- sapply(rep(1,1000), enviar)
+head(Milfotos)
+
+hist(Milfotos,breaks=seq(1.5,100.5), 
+freq=FALSE, ylim=c(0,0.15), xlim=c(0,40))
+
+points(x, binomial, pch= 16, col="red")
+
+for(i in 1:101)
+{lines(c(x[i], x[i]), c(0, binomial[i]), 
+  col="red")}
+```
+
+
+
+
+Usando la funci\'on  {\bf dbinom} responde:
+
+- Cu\'al es la probabilidad de observar {\bf exactamente} 5 errores en la tranmisi\'on de una foto de 50 pixeles cuando la probabilidad de error es 0.1? (R/ 0.1849246) 
+- Cu\'al es la probabilidad de que haya {\bf exactamente} un error en una foto de 3.1 mega pixels cuando el error en un pixel es de 1e-6?  (R/ 0.1396525)
+
+En R est\'a la funci\'on {\bf pbinom} que es la funci\'on de acumulaci\'on de probabilidad para una distribuci\'on binomial $F_{bin}(x; n, p)$
+
+$F_{bin}(x; n, p)$ en R es {\tt pbinom(x, size=n, prob=p)}
+
+
+```{r}
+binCum <- pbinom(x, size=100, prob=0.2)
+head(binCum)
+plot(x, binCum, ylim=c(0,1), type="s",
+       col="red", ylab="F(x)", xlab="x")
+```
+
+
+Cu\'al es la probabilidad de que haya {\bf al menos} un error en una foto de 3,1 mega pixels cuando el error en un pixel es de 1e-6?  (R/ 0.1847016)
+
+## Distribuci\'on Geom\'etrica
+
+La distribuci\'on geom\'etrica da la probabilidad de en n\'umero de eventos (x) de un tipo (B) que hay que esperar hasta obtener un evento del otro tipo (A) de probabilidad p
+
+$$P(X=x)=f(x)=(1-p)^{x}p,$$ $x=0,1,2,...$
+
+Su media y varianza muestral son 
+
+$E(X)= \mu =\frac{1-p}{p}$ y $V(X)= \sigma^2 =\frac{1-p}{p^2}$
+
+
+Cu\'al es la probabilidad de observar fotos con 1 pixel correcto antes del primer error, 2 pixels correctos antes del primer error, ... 100 pixeles correctos (sin error)?  Pr(x=2), Pr(x=3), ... Pr(x=100)?
+
+Tenemos que enviar muchas fotos de 100 pixeles (p.ej. 1000) y contar cuantos ceros hay antes del primer 1.
+Hagamos una foto:
+
+- hagamos 100 ensayos de Bernoulli (p=0.2) 
+```{r}
+foto <- sample(c(0,1),100, replace=TRUE, prob=fk)
+foto
+```
+
+Ahora identificemos cuantos ceros aparecieron antes del primer 1 (en mi caso hubo 2)
+
+Con la funci\'on {\bf which} tenemos las posiciones de un vector que satisfacen una condici\'on (Qu\'e elemento en foto es igual a 1? usa {\bf ==} )
+
+```{r}
+which(foto==1)
+```
+
+Si asignamos la variable {\bf ones} al resultado de {\bf which}, Cu\'al ser\'ia la posici\'on del \'ultimo cero?
+
+
+Pong\'amolo todo junto.
+
+Esta es uan foto con su n\'umero de ceros antes del primer 1, asignado a la variable {\bf lastzero}
+
+```{r}
+foto <- sample(c(0,1),100, replace=TRUE, prob=fk)
+ones <- which(foto==1)
+firstone <- ones[1]  
+lastzero <- firstone-1
+lastzero
+```
+
+Esta es s\'olo una foto, queremos enviar 1000 fotos y hacer un histograma?
+
+- Hay que hacer una funci\'on llam\'emosla ({\bf enviar})
+
+```{r}
+enviar <- function(x)
+          {
+             foto <- sample(c(0,1),100, 
+                      replace=TRUE, prob=fk)
+             ones <- which(foto==1)
+             firstone <- ones[1]  
+             lastzero <- firstone-1
+             lastzero
+          }   
+          
+enviar()
+```
+
+esta funci\'on crea una foto la envía y cuenta el n\'umero de pixels bien trasmitidos hasta el primer error
+
+- Hagamos un bucle de 1000 iteraciones de la funci\'on ({\bf sapply})
+
+```{r}
+Milfotos <- sapply(rep(1,1000), enviar)
+head(Milfotos)
+head(Milfotos)
+mean(Milfotos)
+sd(Milfotos)^2
+```
+
+La media y la varianza de la distribuci\'on geom\'etrica son
+
+$E(X) =\frac{1-p}{p}=4$ y $V(X)= \frac{1-p}{p^2}=20$
+
+
+
+
+```{r}
+hist(Milfotos,breaks=seq(-0.5,100.5), 
+freq=FALSE, ylim=c(0,0.25), xlim=c(0,40))
+
+geom <- dgeom(x, prob=0.2)
+
+points(x, geom, pch= 16, col="red")
+
+for(i in 1:101)
+{lines(c(x[i], x[i]), c(0, geom[i]), 
+  col="red")}
+```
+
+puedes conseguir?
+
+##Distribución Binomial Negativa 
+
+Enviemos una foto y contemos en qu\'e pixel aparece antes del cuarto error (r=4). Imagina que no queremos fotos con mas de 4 errores. El n\'umero de pixels antes del cuarto error se distribuye bajo una binomial gegativa NegBin(x; r,p) o en R dnbinom(x, size=r, prob=p). 
+
+Enviemos una foto y veamos que pixel tiene el cuarto error
+
+```{r}
+fotos <- sample(c(0,1),100, replace=TRUE,prob=fk)
+ones <- which(fotos==1)
+fourthone <- ones[4]  
+lastzero <- fourthone-1
+#le quitamos los primeros tres errores
+goodpixels <- lastzero-3
+```
+puedes conseguir?
+
+```{r}
+enviar <- function(x)
+ {
+ foto <- sample(c(0,1),100,
+ replace=TRUE, prob=fk)
+ ones <- which(foto==1)
+ firstone <- ones[4]
+ lastzero <- firstone-1
+ goodpixels <- lastzero-3
+ goodpixels
+ }
+
+Milfotos <- sapply(rep(1,1000), enviar)
+
+hist(Milfotos,breaks=seq(-0.5,100.5), 
+ freq=FALSE, ylim=c(0,0.25), xlim=c(0,40))
+
+nb <- dnbinom(x, size=4, prob=0.2)
+
+points(x, nb, pch= 16, col="red")
+
+for(i in 1:101)
+ {lines(c(x[i], x[i]), c(0, nb[i]), 
+   col="red")}
+```
+

@@ -5,29 +5,33 @@ output: html_document
 **Nota: este artículo está en construcción!!**
 
 
-*Los funciones de probabilidad son los objetos matemáticos que usamos para entender experimentos aletorios. Cuando asignamos a un experimento aleatorio una función de probabilidad decimos que modelamos el proceso de medición. Usando R y como ejemplo el error aleatorio cometido al trasmitir los píxeles de de una foto, explico como las distribuciones binomial, binomial negativa y geométrica se obtienen de la distribución de Bernoulli.*
+*Las funciones de probabilidad son los objetos matemáticos que usamos para entender experimentos aletorios. Cuando describimos un tipo de experimento aleatorio por una familia de funciones de probabilidad decimos que modelamos el proceso de medición del experimento. Cuando escogemos una función en particular para unos datos decimos que ajustamos el modelo. Usando R y como ejemplo el error aleatorio cometido al trasmitir los píxeles de de una foto, explico como las distribuciones binomial, binomial negativa y geométrica se obtienen de la distribución de Bernoulli.*
 
-<img src="pixel.jpg" style="width:30%;  margin-right: 20px" align="left"> Imaginemos un sistema de trasmisión de información binaria. Cualquier sistema digital sirve como ejemplo. En particular, imaginemos que el sistema consiste en trasmitir el valor de los pixeles (0:blanco, 1:negro) de una foto digital. El sistema puede consistir simplemente en tomar una foto en blanco y negro y enviarla por correo a una cuenta de email. El receptor de la foto al abrirla observará una perdida de calidad inicial, dada por la acumulación de errores en el almacenamiento, envío, procesamiento y visualización. Nuestro objetivo es analizar teóricamente esta situación para disponer de una herramienta matemática que nos permita describir este proceso aleatorio, es decir del error en la trasmisión. Insisto en que lo que presentamos es un construcción analítica, lógica y abstracta de la que queremos **derivar** el comportamiento que podríamos esperar de este sistema bajo unas suposiciones razonables. El ejercicio es pues de carácter **deductivo**, sin apelar a datos ni observaciones de un experimento en concreto, sino a unos supuestos y a sus consequencias lógicas. Intentaremos construir un *modelo* de probabilidad para el error en transmisión de una foto en blanco y negro.       
+<img src="pixel.jpg" style="width:30%;  margin-right: 20px" align="left"> Imaginemos un sistema de trasmisión de información binaria. Cualquier sistema digital sirve como ejemplo. En particular, imaginemos que el sistema consiste en trasmitir el valor de los pixeles (0:blanco, 1:negro) de una foto digital. El sistema puede consistir simplemente en tomar una foto en blanco y negro y enviarla por correo a una cuenta de email. El receptor de la foto al abrirla observará una perdida de calidad inicial, dada por la acumulación de errores en el almacenamiento, envío, procesamiento y visualización. Nuestro objetivo es analizar teóricamente esta situación para disponer de una herramienta matemática que nos permita describir este proceso aleatorio, es decir del error en la trasmisión que da origen a la pérdida en calidad de la foto. Insisto, lo que presentamos es un construcción analítica, lógica y abstracta de lo que queremos **derivar**; el comportamiento que podríamos esperar de este sistema bajo unas suposiciones razonables. El ejercicio es pues de carácter **deductivo**, sin apelar a datos ni observaciones de un experimento en concreto, sino a unos supuestos y a sus consequencias lógicas. Intentaremos construir un *modelo* de probabilidad para el error en transmisión de una foto en blanco y negro.       
 
-##Bernoulli
+##Función de probabilidad de Bernoulli
 
-El caso mas sencillo de una función de distribución es un ensayo de Bernoulli donde sólo hay dos posibles eventos (A y B) 
+¿Qué es un modelo probabilístico? Supongamos la medición de un experimento $X$ que al repetirla bajo las mismas condiciones cada vez nos da un número diferente $\{x_1, x_2, ...\}$. Usamos $X$ mayúscula para la medición y nos referimos a ella como una variable aleatoria. Las letras en minúsculas son los valores que puede tomar $X$ depués de una medición en particular. Consideremos que $X$ sólo pueda tomar valores discretos entonces unos serán mas frecuentes que otros. Podemos calcular la frecuencia de $x_1$ como el número de experimentos que dieron como resultado $x_i$ dividido por el número total de experimentos $N$, o sea $fr(x_i)=N_{x_i}/N$. Si repitieramos infinitas veces el experimento entonces $fr(x_i)$ tiende a un número $P(X=x_i)$ que llamamos la probabilidad de que $X$ tome el valor $x_i$. O sea, $$lim_{N \rightarrow \infty} fr(x_i) =P(X=x_i).$$
+La idea de concebir la probabilidad como el límite de una frecuencia ya nos indica su caracter abstracto y su naturaleza no observable, por lo menos de forma directa. Sin embargo, podemos ir a límite y desde allí definir las caracterésticas mas importantes que esperamos sobre la probabilidad y de forma lógica derivar sus consecuencias observables. Pansemos que la probabilidad para cada una de las posibles observaciones de $X$ está dada por una función $f(x_i)$ que llamaremos función de probabilidad y defnimos como 
 
-- evento A (k=1): tiene probabilidad $p$
-- outcome B (k=0): tiene probabilidad $q=1-p$
+$$f(x_i)=P(X=x_i).$$        
+Lo más básico que le podemos pedir a esta función es que 
 
-La funci\'on de probabilidad de
+1. Sea siempre positiva para cualquier valor de $x_i$: $f(x_i)=P(X=x_i)$. No concebimos frequencias negativas ni que sus límites lo sean
+2. Que la suma sobre todos sus valores sea 1 $\sum_{i=1}^{n}f(x_i)=1$. Las frecuecias relativas deben sumar 1, o $\sum_{i=1}^{n} N_{x_i}=N$, así como las sumas de sus valores límites. 
+
+
+Estas exigencias son la definición de una función de probabilidad cualquiera. Veamos casos particulares que nos ayuden a describir procesos de medición específicos. El caso mas sencillo de una función de distribución es para un ensayo de Bernoulli donde sólo hay dos posibles resultados $\{x_1=A, x_2=B\}$. Si el resultado A (k=1) tiene una probabilidad $p$, el evento B (k=0) por lo tanto tiene probabilidad $q=1-p$. La función de distribución de Bernoulli se puede escribir como 
 $$f(k)=(1-p)^{1-k} p^k $$
 
-El lanzamiendo de una moneda es un ensayo de Bernoulli con $p=1/2$
+El lanzamiendo de una moneda es un ensayo de Bernoulli con $p=1/2$. Dos características importantes de las funciones de probabilidad son su valor medio y su varianza. La media de la distribución es definida como 
+$$E(X)=\mu=\sum_{i=1}^{n}f(x_i)x_{i}$$
+y nos da su centro gravedad; como si cada $x_i$ fuese un punto con masa $f(x_i)$. La varianza es la distancia cuadrática media de cada uno de los valores de $x_i$ a la media 
 
-La función de probabilidad de
-$$f(k)=(1-p)^{1-k} p^k $$
+$$V(X)=\sum_{i=1}^{n}(x_i-\mu)^2 f(x_i)$$
+es decir su momento de inercia que indica cuanto de dispersos son los valores $x_i$.  Para la distribución de Bernulli la media y la varianza son $$E(x)=\mu=p$$ $$V(X)=\sigma^2=p(1-p)$$. La función de probabilidad de Bernoulli es un modelo de probabilidad que define realmente una familia de funciones. Cada función es totalmente definida por el número, o parámtro, $p$. Este número es sucifiente para calcular $f(x_i)$ y por lo tanto $E(X)$ y $V(X)$.  
 
-Cuya media y valor desviaci\'on estandard son 
-$$E(x)=\mu=p$$ $$V(X)=\sigma^2=p(1-p)$$
-
-Imaginemos que tenemos un sistema para transmitir el valor de un pixel con un probabilidad p=0.2 transmitirlo incorrectamente (error:k=1) y 0.8 de ser transmitirlo correctamente (correcto:k=0)  
+Pensemos en un ejemplo en concreto. Imaginemos que nuestro sistema para transmitir el valor de un pixel lo hace con un probabilidad $p=0.8$ de transmitirlo correctamente (correcto:k=0) y 0.2 de transmitirlo incorrectamente (error:k=1)  
 
 $$
     f(k)= 
@@ -37,7 +41,7 @@ $$
 \end{cases}
 $$
 
-asigna a k el vector (0,1) y a fk el vector (0.8,0.2) y transmite una foto de 100 pixels con 
+Asignemmos $k$ el vector $(0,1)$ y a $fk$ el vector $(0.8,0.2)$ y trasmitamos una foto de 100 pixels blancos. Al pasar la foto por nuestro sistema unos pixeles serán blancos (correcto: k=0) y otros negros (error: k=1). La función **sample** toma 100 valores aletorios entre (0,1) con probabilidad (0.8,0.2); es decir que hace 100 ensayos de Bernoulli
 
 ```{r}
 k <- c(0,1)
@@ -45,26 +49,31 @@ fk <- c(0.8,0.2)
 names(fk) <- k
 
 foto <- sample(k, size=100, prob=fk, replace=TRUE)
-foto
+image(matrix(foto, ncol=10), col=c("white", "black"), 
+      main= "Recepción de foto en blanco con 20% de errores aleatorios")
+
 ```
 
+En cada pixel tenemos un ensayo de Bernoulli, cuya función de probabilidad se puede representar por las frecuencias de cada resultado $fr(0)=N_0/100$, $fr(1)=N_1/100$, siendo $N=100$ un número suficientemente grande como para pensar que estas frecuencias están cerca de las probabilidades $f(0)$ y $fr(1)$.  
 
-puedes conseguir?
-\begin{figure}[htbp]
-\includegraphics[width=0.3\linewidth]{figures/pixels} 
-\end{figure}
+```{r}
+hist(foto, freq=FALSE, breaks=seq(-0.5,1.5), ylim=c(0,1), main="Función de probabilidad de Bernoulli")
+points(k, fk, pch=16, col="red")
+for(i in 1:2) {lines(c(k[i],k[i]), c(0,fk[i]), col="red")}
 
+```
 
-- usa {\bf hist} como antes pero a\~nade par\'ametro ylim=c(0,1) como l\'imites para el eje y; modifica el par\'ametro breaks de acuerdo al los nuevos valores de k.
-- usa {\bf points} como antes. 
-- usa {\bf lines} con el {\bf for} pero modifica hasta cu\'ando se hace el bucle. 
+Podemos ver sin embargo que todavía permanecen diferencias entre las frecuencias y la probabilidades definidas para el ensayo de Bernoulli $(p, 1-p)$. El promedio de 100 ensayos de Bernoulli $\bar{X}$ y su desviación estándard $S$ son funciones de [muestreo](https://alejandro-isglobal.github.io/teaching/muestreo.html) que se calculan con $mean$ and $sd$
 
+```{r}
+xbar <- mean(foto) 
+xbar
+s <- sd(foto)
+s^2
+```
+y cuyos valores se acercan a $\mu=p=0.2$ y la varianza $\sigma^2=p*(1-p)=0.16$ de la distribución de Bernoulli.
 
-Qu\'e tan cerca es la media y la varianza de los datos a sus valores te\'oricos?
-
-\vspace{0.5cm}
-Recuerda que la media del ensayo de Bernoulli es $\mu=p=0.2$ y su varianza es $\sigma^2=p*(1-p)=0.16$
-
+##Función de probabilidad Binomial
 
 La distribuci\'on Binomial da la probabilidad de observar $x$ eventos de un tipo (A) con probabilidad $p$ en $n$ ensayos de Bernoulli. 
 

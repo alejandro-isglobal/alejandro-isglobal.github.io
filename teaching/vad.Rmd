@@ -29,7 +29,7 @@ $$E(X)=\mu=\sum_{i=1}^{n}f(x_i)x_{i}$$
 y nos da su centro gravedad; como si cada $x_i$ fuese un punto con masa $f(x_i)$. La varianza es la distancia cuadrática media de cada uno de los valores de $x_i$ a la media 
 
 $$V(X)=\sum_{i=1}^{n}(x_i-\mu)^2 f(x_i)$$
-es decir su momento de inercia que indica cuanto de dispersos son los valores $x_i$.  Para la distribución de Bernulli la media y la varianza son $$E(x)=\mu=p$$ $$V(X)=\sigma^2=p(1-p)$$. La función de probabilidad de Bernoulli es un modelo de probabilidad que define realmente una familia de funciones. Cada función es totalmente definida por el número, o parámtro, $p$. Este número es sucifiente para calcular $f(x_i)$ y por lo tanto $E(X)$ y $V(X)$.  
+es decir su momento de inercia que indica cuanto de dispersos son los valores $x_i$.  Para la distribución de Bernulli la media y la varianza son $$E(k)=\mu=p$$ $$V(k)=\sigma^2=p(1-p)$$. La función de probabilidad de Bernoulli es un modelo de probabilidad que define realmente una familia de funciones. Cada función es totalmente definida por el número, o parámtro, $p$. Este número es sucifiente para calcular $f(0)$ y $f(1)$ y por lo tanto $E(k)$ y $V(k)$.  
 
 Pensemos en un ejemplo en concreto. Imaginemos un sistema para transmitir el valor de un pixel que lo hace con un probabilidad $p=0.8$ de transmitirlo correctamente (correcto:k=0) y 0.2 de transmitirlo incorrectamente (error:k=1)  
 
@@ -41,7 +41,13 @@ $$
 \end{cases}
 $$
 
-Notemos que esta función da dos valores precisos para k=0,1. No hay nada aleatorio en está función. ¿Cómo reproducimos entonces el resultado de un experimento aleatorio?   Asignemmos $k$ el vector $(0,1)$ y a $fk$ el vector $(0.8,0.2)$ y trasmitamos un pixel. La función **sample** toma 1 valore aletorios entre (0,1) con probabilidad (0.8,0.2); es decir que hace un ensayo de Bernoulli
+Notemos que esta función da dos valores precisos para k=0,1. No hay nada aleatorio en está función. 
+
+¿Cómo podemos reproducir entonces el resultado de un experimento aleatorio?. Queremos usar $f(k)$ para recrear un experimento
+
+$$f(k) \Longrightarrow0, 1, 0, 0, 0, 1, ...$$ 
+
+y traducir su certeza matemática en azar. Esto lo hacemos con un generador de números aleatorios o un **simulador**. La función **sample** es un generador de números aleatorio implmentado en R, el cual lo conficuramos para que tome 1 valor aletorio entre (0,1) con probabilidad (0.8,0.2); es decir para que haga un ensayo de Bernoulli. Asignemmos *k* el vector $(0,1)$ y a *fk* el vector $(0.8,0.2)$ y simulemos la trasmision de un pixel
 ```{r}
 k <- c(0,1)
 fk <- c(0.8,0.2)
@@ -49,7 +55,14 @@ names(fk) <- k
 
 sample(k, size=1, prob=fk, replace=TRUE)
 ```
-Cada vez que ejecutemos la función R simulará el resultado de un experimento aleatorio, o ensayo de Bernoulli (20% de las veces data 1 o error). Hemos usado una función abstracta, la función de probabilidad de Bernoulli, para recrear lo que ocurriría si nuestro sistema de trasmisión estuviera dado por esta función en particular. Si imitamos la realidad de esta forma, nos podríamos preguntar si esta modelización es por lo menos consistente con la idea de que al repetir el experimento muchas veces nos acercamos al los valores de probabilidad. Recreemos una foto de 100 pixels blancos. Es decir trasmitamos 100 pixels cada uno con una probabilidad de 0.8 de ser transmitido. Para esto sólo tenemos que incrementar el numero de ensayos de Bernoulli un **sample** 
+Cada vez que ejecutemos la función, esta simulará el resultado de un experimento aleatorio, o ensayo de Bernoulli bajo $f(k)$ (20% de las veces da error). Hemos usado una función abstracta, la función de probabilidad de Bernoulli, para configurar un simulador que recree lo que ocurriría si nuestro sistema de trasmisión estuviera dado por esta función en particular. Si imitamos la realidad de esta forma, nos podríamos preguntar si esta modelización es por lo menos consistente con la idea de que al repetir el experimento muchas veces ($N$) recuperamos la función de probabilidad. 
+
+$$f(k) \Longrightarrow  1, 0, 0, 0, 1, ... 0 \begin{cases}
+    fr(0)=\frac{N_0}{N} \rightarrow f(0) \\
+    fr(1)=\frac{N_1}{N} \rightarrow f(1) \\
+\end{cases} cuando \, N\rightarrow \infty$$ 
+
+Simulemos la transmisión de una foto de 100 píxeles blancos. Es decir, transmitamos 100 pixels cada uno con una probabilidad de 0.2 de ser transmitido erroneamente. Para esto sólo tenemos que incrementar el número de ensayos de Bernoulli en **sample** 
 ```{r}
 foto <- sample(k, size=100, prob=fk, replace=TRUE)
 image(matrix(foto, ncol=10), col=c("white", "black"), 
@@ -60,7 +73,8 @@ En cada pixel tenemos un ensayo de Bernoulli, cuya función de probabilidad se p
 
 ```{r}
 hist(foto, freq=FALSE, breaks=seq(-0.5,1.5), ylim=c(0,1), 
-     main="Función de probabilidad de Bernoulli")
+     main="Función de probabilidad de Bernoulli",
+     xlab="k")
 points(k, fk, pch=16, col="red")
 
 for(i in 1:2)
@@ -73,7 +87,7 @@ legend("topright",
 
 ```
 
-Es decir que computacionalmente vemos que  $$lim_{N \rightarrow \infty} fr(x_i)=f(x_i),$$ rocobrando la idea límite de probabilidad y confirmando que la definición de la función de probabilidad y su simulación son consistentes. Podemos ver sin embargo que todavía permanecen diferencias entre las frecuencias y la probabilidades definidas para el ensayo de Bernoulli $(p, 1-p)$. El promedio de 100 ensayos de Bernoulli $\bar{X}$ y su desviación estándard $S$ son funciones de [muestreo](https://alejandro-isglobal.github.io/teaching/muestreo.html) que se calculan con $mean$ and $sd$
+Así, computacionalmente ilustramos  $$lim_{N \rightarrow \infty} fr(x_i)=f(x_i),$$ rocobrando la idea límite de probabilidad y confirmando que la definición de la función de probabilidad y su simulación son consistentes. Podemos ver sin embargo que todavía permanecen diferencias entre las frecuencias y la probabilidades definidas para el ensayo de Bernoulli $(p, 1-p)$. El promedio de 100 ensayos de Bernoulli $\bar{X}$ y su desviación estándard $S$ son funciones de [muestreo](https://alejandro-isglobal.github.io/teaching/muestreo.html) que se calculan con $mean$ and $sd$
 
 ```{r}
 xbar <- mean(foto) 
@@ -183,7 +197,8 @@ Es decir que para $x=0$ tenemos una probabilidad de $2.037036e-10$, para $x=1$ d
 hist(Milfotos,breaks=seq(1.5,100.5), 
      freq=FALSE, ylim=c(0,0.15), 
      xlim=c(0,40), 
-     main="Función de probabilidad binomial")
+     main="Función de probabilidad binomial",
+     xlab="x" )
 
 points(x, binomial, pch= 16, col="red")
 
@@ -292,7 +307,8 @@ $$Geom(x; p) = dgeom(x, prob)$$
 ```{r}
 hist(Milfotos,breaks=seq(-0.5,100.5), 
 freq=FALSE, ylim=c(0,0.25), xlim=c(0,40),
- main="Función de probabilidad geométrica")
+ main="Función de probabilidad geométrica",
+, xlab="x")
 
 geom <- dgeom(x, prob=0.2)
 
@@ -337,7 +353,7 @@ Milfotos <- sapply(rep(1,1000), enviar)
 
 hist(Milfotos,breaks=seq(-0.5,100.5), 
      freq=FALSE, ylim=c(0,0.1), xlim=c(0,40),
-     main="Función binomial negativa" )
+     main="Función binomial negativa", xlab="x")
 
 nb <- dnbinom(x, size=4, prob=0.2)
 
@@ -348,6 +364,6 @@ for(i in 1:101)
    col="red")}
 ```
 
-Vemos que la distribución binomial negativa se acerca al número de éxitos en sucesivos ensayos de Bernoulli hasta enconstrar el primer fallo.   
+Vemos como la distribución binomial negativa describe en el ĺimite de infinitas repeticiiones ($N \rightarrow \infty$) el número de éxitos en sucesivos hasta enconstrar el $r$-ésimo ($r=4$) fallo.   
 
 

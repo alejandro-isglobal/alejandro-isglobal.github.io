@@ -29,7 +29,7 @@ $$E(X)=\mu=\sum_{i=1}^{n}f(x_i)x_{i}$$
 y nos da su centro gravedad; como si cada $x_i$ fuese un punto con masa $f(x_i)$. La varianza es la distancia cuadrática media de cada uno de los valores de $x_i$ a la media 
 
 $$V(X)=\sum_{i=1}^{n}(x_i-\mu)^2 f(x_i)$$
-es decir su momento de inercia que indica cuanto de dispersos son los valores $x_i$.  Para la distribución de Bernulli la media y la varianza son $$E(k)=\mu=p$$ $$V(k)=\sigma^2=p(1-p)$$. La función de probabilidad de Bernoulli es un modelo de probabilidad que define realmente una familia de funciones. Cada función es totalmente definida por el número, o parámtro, $p$. Este número es sucifiente para calcular $f(0)$ y $f(1)$ y por lo tanto $E(k)$ y $V(k)$.  
+es decir su momento de inercia que indica cuanto de dispersos son los valores $x_i$.  Para la distribución de Bernulli la media y la varianza son $$E(k)=\mu=p$$ $$V(k)=\sigma^2=p(1-p).$$ La función de probabilidad de Bernoulli es un modelo de probabilidad que define realmente una familia de funciones. Cada función es totalmente definida por el número, o parámtro, $p$. Este número es sucifiente para calcular $f(0)$ y $f(1)$ y por lo tanto $E(k)$ y $V(k)$.  
 
 Pensemos en un ejemplo en concreto. Imaginemos un sistema para transmitir el valor de un pixel que lo hace con un probabilidad $p=0.8$ de transmitirlo correctamente (correcto:k=0) y 0.2 de transmitirlo incorrectamente (error:k=1)  
 
@@ -47,7 +47,7 @@ Notemos que esta función da dos valores precisos para k=0,1. No hay nada aleato
 
 $$f(k) \Longrightarrow0, 1, 0, 0, 0, 1, ...$$ 
 
-y traducir su certeza matemática en azar. Esto lo hacemos con un generador de números aleatorios o un **simulador**. La función **sample** es un generador de números aleatorio implmentado en R, el cual lo conficuramos para que tome 1 valor aletorio entre (0,1) con probabilidad (0.8,0.2); es decir para que haga un ensayo de Bernoulli. Asignemmos *k* el vector $(0,1)$ y a *fk* el vector $(0.8,0.2)$ y simulemos la trasmision de un pixel
+y traducir su certeza matemática en azar. Esto lo hacemos con un generador de números aleatorios o un **simulador**. La función **sample** es un generador de números aleatorio implmentado en R, el cual lo conficuramos para que tome 1 valor aletorio entre (0,1) con probabilidad (0.8,0.2); es decir para que haga un ensayo de Bernoulli. Asignemmos *k* el vector $(0,1)$ y a *fk* el vector $(0.8,0.2)$ y simulemos el error al trasmitir un sólo pixel
 ```{r}
 k <- c(0,1)
 fk <- c(0.8,0.2)
@@ -62,7 +62,7 @@ $$f(k) \Longrightarrow  1, 0, 0, 0, 1, ... 0 \begin{cases}
     fr(1)=\frac{N_1}{N} \rightarrow f(1) \\
 \end{cases} cuando \, N\rightarrow \infty$$ 
 
-Simulemos la transmisión de una foto de 100 píxeles blancos. Es decir, transmitamos 100 pixels cada uno con una probabilidad de 0.2 de ser transmitido erroneamente. Para esto sólo tenemos que incrementar el número de ensayos de Bernoulli en **sample** 
+Simulemos la transmisión de una foto de 100 píxeles, todos blancos. Es decir, transmitamos 100 pixels cada uno con una probabilidad de 0.2 de ser transmitido erroneamente. Los trasmitidos con error se verán negros en la foto final. Para esto sólo tenemos que incrementar el número de ensayos de Bernoulli en **sample** 
 ```{r}
 foto <- sample(k, size=100, prob=fk, replace=TRUE)
 image(matrix(foto, ncol=10), col=c("white", "black"), 

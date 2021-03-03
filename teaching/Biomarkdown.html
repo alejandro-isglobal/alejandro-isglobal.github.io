@@ -532,10 +532,8 @@ summary {
 <li><p>Diagnostic (selection)</p></li>
 <li><p>Prognostic (stratification)</p></li>
 <li><p>Susceptibility/risk (enrich)</p></li>
-<li><p>Treatment-related:</p>
-<ul>
-<li>Predictive (Who should be treated?)</li>
-</ul></li>
+<li><p>Treatment-related:</p></li>
+<li><p>Predictive (Who should be treated?)</p></li>
 <li><p>Safety (Should we stop treatment?)</p></li>
 <li><p>Monitoring (Should we continue with treatment?)</p></li>
 <li><p>Pharmacodynamic/response biomarker (What is the outcome of treatment? surrogate endpoint)</p></li>
@@ -1088,12 +1086,12 @@ head(hiv)</code></pre>
 ##  -1   1 
 ## 267  78</code></pre>
 <ul>
-<li>response: <b>no</b>, resistance to drug treatment: <b>1</b>
-<ul>
+<li>response: <b>no</b>, resistance to drug treatment: <b>1</b></li>
 <li>response: <b>yes</b>, no resistance to drug treatment: <b>-1</b></li>
 </ul>
-<h1 id="roc-curve-2">ROC curve</h1></li>
-</ul>
+</div>
+<div id="roc-curve-2" class="section level1">
+<h1>ROC curve</h1>
 <pre class="r"><code>br &lt;- seq(-2,2,0.25)
 
 hist(hiv$test[hiv$response==-1], 
@@ -1301,7 +1299,7 @@ dotplot(GO)</code></pre>
 <div id="prediction-of-treatment-effects-13" class="section level1">
 <h1>Prediction of treatment effects</h1>
 <ul>
-<li><code>pasi_imp</code> is PASI improvement: <span class="math inline">\(\Delta PASI = 100*\frac{PASI_{W0-W12}}{PASI_{W0}}\)</span></li>
+<li><code>pasi_imp</code> is PASI improvement: <span class="math inline">\(\Delta PASI = \frac{PASI_{W0}-PASI_{W12}}{PASI_{W0}}\)</span></li>
 <li><code>prob</code> probability of brodalumab response</li>
 <li><code>t</code> 1:Placebo, 2:Brodalumab</li>
 </ul>

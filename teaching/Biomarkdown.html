@@ -371,7 +371,7 @@ class: middle
   - yes (the patient responded to treatment)
   - no (the patient did not respond to treatment)
 
-- The **Biomarker** measurement is dichotomous (dichotomized by a cutoff) and has the events:
+- The **Biomarker** measurement is dichotomous (dichotomized by a cut-off) and has the events:
   - positive (the biomarker was detected)
   - negative (the biomarker was not detection detected)
 
@@ -858,14 +858,19 @@ library(limma)
 library(repmis)
 ```
 
+---
 
+class: middle, center
+      
+
+## Example 1
 
 ---
 
 class: middle
       
 
-## Examples 
+## Example 1 
   
   
   If we have detected one biomarker with continuous levels that is associated with efficacy, how do we select the threshold for clinical applications?
@@ -877,12 +882,7 @@ class: middle
 - Biomarker: Score that stratifies patients with genomic data using a machine learning method
 
 
----
 
-class: middle, center
-      
-
-## Example 1
 
 
 ---
@@ -935,6 +935,22 @@ table(hiv$response)
 ---
 
 class: middle
+
+## Example 1: ROC curve 
+  
+
+```r
+hist(hiv$test)
+```
+
+&lt;img src="Biomarkdown_files/figure-html/unnamed-chunk-5-1.png" width="50%" /&gt;
+
+- Biomarkers test: ranges from `\(-2\)` to `\(2\)`
+
+
+---
+
+class: middle
       
 
 ## Example 1: ROC curve 
@@ -963,12 +979,12 @@ class: middle
 
 ## Example 1: ROC curve 
 
-cutoff at `\(-1\)`
+cut-off at `\(-1\)`
   
 - Biomarker: &lt;b&gt;negative&lt;/b&gt;: `\(test &lt; -1\)` 
 - Biomarker: &lt;b&gt;positive&lt;/b&gt;: `\(test &gt; -1\)` 
   
-&lt;img src="Biomarkdown_files/figure-html/unnamed-chunk-6-1.png" width="50%" /&gt;
+&lt;img src="Biomarkdown_files/figure-html/unnamed-chunk-7-1.png" width="50%" /&gt;
 
   
   
@@ -983,7 +999,7 @@ class: middle
   
 Biomarker was *positive* ( `\(&gt; -1\)` ) when there was  resistance (yes)
   
-**Sensitivity**: `\(fr_{[cutoff=-1]}(positive|yes)\)`
+**Sensitivity**: `\(fr_{[cut-off=-1]}(positive|yes)\)`
   
 
 ```r
@@ -994,7 +1010,7 @@ mean(hiv$test[hiv$response==1] &gt; -1 )
 ## [1] 0.8846154
 ```
 
-&lt;img src="Biomarkdown_files/figure-html/unnamed-chunk-8-1.png" width="50%" /&gt;
+&lt;img src="Biomarkdown_files/figure-html/unnamed-chunk-9-1.png" width="50%" /&gt;
 
 ---
 
@@ -1006,7 +1022,7 @@ class: middle
   
 Biomarker was *positive* ( `\(&gt; -1\)` ) when there was no resistance (no)
 
-**False positive rate** ( `\(1 - specificity\)` ): `\(fr_{[cutoff=-1]}(positive|no)\)`
+**False positive rate** ( `\(1 - specificity\)` ): `\(fr_{[cut-off=-1]}(positive|no)\)`
   
 
 ```r
@@ -1019,7 +1035,7 @@ mean(hiv$test[hiv$response==-1] &gt; -1 )
 
 
 
-&lt;img src="Biomarkdown_files/figure-html/unnamed-chunk-10-1.png" width="50%" /&gt;
+&lt;img src="Biomarkdown_files/figure-html/unnamed-chunk-11-1.png" width="50%" /&gt;
 
 
 ---
@@ -1029,8 +1045,9 @@ class: middle
 
 ## Example 1: ROC curve 
 
-(*1 - specificity*, *Sensitivity*)$_{cut-off}$
-&lt;/br&gt;=(*false positive rate*, *true positive rate*)$_{cut-off}$=$(0.28, 0.88)_{-1}$
+`\((1 - specificity, sensitivity)_{[cut-off]}= (FPR, TPR)_{[cut-off]}\)`
+
+for each cutt-off we get one point, i.e: `\((0.280, 0.884)_{[-1]}\)`
   
 
 ```r
@@ -1039,7 +1056,7 @@ plot(out$perf, col="blue", main="ROC") #plot
 lines(c(0,1),c(0,1)); points(0.28, 0.88, pch=16) #cutoff=-0.5
 ```
 
-&lt;img src="Biomarkdown_files/figure-html/unnamed-chunk-11-1.png" width="50%" /&gt;
+&lt;img src="Biomarkdown_files/figure-html/unnamed-chunk-12-1.png" width="40%" /&gt;
 
 ---
 
@@ -1119,18 +1136,18 @@ class: middle
 out &lt;- cvAUC(hiv$test, hiv$response) #calcular ROC
 plot(out$perf, col="blue", main="ROC") #plot
 lines(c(0,1),c(0,1)); 
-points(0.28, 0.88, pch=16)#cutoff=-0.5
+points(0.280, 0.884, pch=16)#cutoff=-0.5
 points(1-0.9138, 0.7948, pch=16, col="red")  #optimal
 ```
 
-&lt;img src="Biomarkdown_files/figure-html/unnamed-chunk-14-1.png" width="50%" /&gt;
+&lt;img src="Biomarkdown_files/figure-html/unnamed-chunk-15-1.png" width="50%" /&gt;
 
 ---
 
 class: middle, center
       
 
-## Example 1
+## Example 2
 
    
 ---
@@ -1350,7 +1367,7 @@ class: middle
 
 **Volcano plot**
  
-![](Biomarkdown_files/figure-html/unnamed-chunk-22-1.png)&lt;!-- --&gt;
+![](Biomarkdown_files/figure-html/unnamed-chunk-23-1.png)&lt;!-- --&gt;
 
 
   
@@ -1410,7 +1427,7 @@ class: middle
 
 **pathways**
 
-![](Biomarkdown_files/figure-html/unnamed-chunk-25-1.png)&lt;!-- --&gt;
+![](Biomarkdown_files/figure-html/unnamed-chunk-26-1.png)&lt;!-- --&gt;
 
 
   
@@ -1502,7 +1519,7 @@ met &lt;- drm(pasi_imp ~ prob, t, fct=LL.4(), data=pred)
 plot(met, legendPos=c(0.36,-0.25))    
 ```
 
-&lt;img src="Biomarkdown_files/figure-html/unnamed-chunk-28-1.png" width="50%" /&gt;
+&lt;img src="Biomarkdown_files/figure-html/unnamed-chunk-29-1.png" width="50%" /&gt;
 
 
 ---

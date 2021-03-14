@@ -77,7 +77,7 @@ class: middle, center
 
 ##Some examples of my work 
 
-Discovery of severity Biomarker: Chromosome Y function and risk of disease in men 
+Discovery of risk Biomarker: Chromosome Y function and risk of disease in men 
 
 &lt;img src="img/jnci.png" style="width:75%"  align="center"&gt;
 
@@ -410,7 +410,7 @@ Let's think first in terms of the response
 &lt;/br&gt;
 
 Within those who responded to treatment (yes), how many 
-detected with the biomarker (positive)?
+were detected with the biomarker (positive)?
 
 &lt;/br&gt;
 
@@ -661,7 +661,7 @@ class: middle
 
 - TNF-α, IL-6, IL-10 and CRP significantly reduced with `\(\Delta D\)` in the paroxetine study, none in the venlafaxine.
 
-- IL-10 reduced with `\(\Delta D\)` in males in both **studies** 
+
 
 
 ---
@@ -741,7 +741,7 @@ class: middle
 
 Associations of symptoms changes and the interaction between baseline biomarkers' levels and treatment (CUO: Predictive biomarkers for treatment) 
     
-`$$B_{base|placebo}\times T \rightarrow \Delta D$$`
+`$$B_{base}\times T \rightarrow \Delta D$$`
       
 - Adjusting by `\(D_{base}\)` and sex
 
@@ -824,7 +824,7 @@ class: middle
     
 - We convert 1000 biomarkers into 1 with biological sense. 
     
-- We have shown that the ost of transcription of chromosome Y is associates with cancer, BMI, lower immune cell count in the blood.          
+- We have shown that the lost of transcription of chromosome Y is associates with cancer, BMI, lower immune cell count in the blood.          
 
 ---
 
@@ -1102,7 +1102,7 @@ for each cutt-off we get one point, i.e: `\((0.280, 0.884)_{[-1]}\)`
 ```r
 out &lt;- cvAUC(hiv$test, hiv$response) #compute ROC
 plot(out$perf, col="blue", main="ROC") #plot
-lines(c(0,1),c(0,1)); points(0.28, 0.88, pch=16) #cutoff=-0.5
+lines(c(0,1),c(0,1)); points(0.28, 0.88, pch=16) #cutoff=-1
 ```
 
 &lt;img src="Biomarkdown_files/figure-html/unnamed-chunk-13-1.png" width="40%" /&gt;
@@ -1185,7 +1185,7 @@ class: middle
 out &lt;- cvAUC(hiv$test, hiv$response) #calcular ROC
 plot(out$perf, col="blue", main="ROC") #plot
 lines(c(0,1),c(0,1)); 
-points(0.280, 0.884, pch=16)#cutoff=-0.5
+points(0.280, 0.884, pch=16)#cutoff=-1
 points(1-0.9138, 0.7948, pch=16, col="red")  #optimal
 ```
 
@@ -1327,7 +1327,7 @@ class: middle
 
 I aimed to test for which biomarkers significantly correlated with improvement in PASI (predictors of efficacy)
 
-`$$\Delta PASI*T \rightarrow B_{base}$$`
+`$$\Delta PASI \times T \rightarrow B_{base}$$`
   
   
 
@@ -1389,6 +1389,34 @@ source_data("https://github.com/alejandro-isglobal/Biomarkers/raw/master/data/tt
 ## [1] "fit" "tt"
 ```
 
+
+
+
+  
+---
+
+class: middle
+      
+
+## Example2. Prediction of response to treatment
+
+
+
+```r
+head(tt)
+```
+
+```
+##                 logFC  AveExpr         t      P.Value    adj.P.Val        B
+## 204622_x_at -3.110576 6.517228 -8.155612 4.312802e-12 2.326800e-07 14.25881
+## 211868_x_at -3.644099 4.872004 -7.726811 2.949329e-11 7.955961e-07 12.79006
+## 215565_at   -2.831032 2.754007 -7.551538 6.452170e-11 1.160337e-06 12.18802
+## 210090_at   -2.534860 3.629721 -7.344970 1.618297e-10 2.182719e-06 11.47802
+## 215036_at   -2.370792 4.318090 -7.178871 3.380056e-10 3.647148e-06 10.90720
+## 234884_x_at -3.816265 4.428421 -7.019798 6.824035e-10 6.004875e-06 10.36100
+```
+
+
   
 ---
 
@@ -1416,7 +1444,7 @@ class: middle
 
 **Volcano plot**
  
-![](Biomarkdown_files/figure-html/unnamed-chunk-24-1.png)&lt;!-- --&gt;
+![](Biomarkdown_files/figure-html/unnamed-chunk-25-1.png)&lt;!-- --&gt;
 
 
   
@@ -1476,7 +1504,7 @@ class: middle
 
 **pathways**
 
-![](Biomarkdown_files/figure-html/unnamed-chunk-27-1.png)&lt;!-- --&gt;
+![](Biomarkdown_files/figure-html/unnamed-chunk-28-1.png)&lt;!-- --&gt;
 
 
   
@@ -1568,7 +1596,37 @@ met &lt;- drm(pasi_imp ~ prob, t, fct=LL.4(), data=pred)
 plot(met, legendPos=c(0.36,-0.25))    
 ```
 
-&lt;img src="Biomarkdown_files/figure-html/unnamed-chunk-30-1.png" width="50%" /&gt;
+&lt;img src="Biomarkdown_files/figure-html/unnamed-chunk-31-1.png" width="50%" /&gt;
+
+---
+
+class: middle
+      
+## Example2. Prediction of response to treatment
+
+We can test if the dose-response model is significant
+
+
+
+```r
+noEffect(met)
+```
+
+```
+## Chi-square test              Df         p-value 
+##    4.163001e+01    7.000000e+00    6.126367e-07
+```
+---
+
+class: middle
+      
+## Example2. Prediction of response to treatment
+
+- Gene expression data at baseline in nonelesional skin can strongly predict the level of response to brodalumab 12-week treatment.
+
+- The top gene *NR4A2* is mechanistically involved in the  IL-23/Th17 axis. Blockage of *NR4A2* prevents Th17 from producing IL-17 and IL-21 in vitro.  
+
+- *NR4A2* offers additional treatment targeting or biomarker testing for response. 
 
 
 ---

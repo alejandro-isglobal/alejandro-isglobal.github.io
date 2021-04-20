@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Using causal random forest to determine exposure environmenents with high sexual</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Alejandro Cáceres" />
+    <link href="slidesCaceres_files/remark-css/default.css" rel="stylesheet" />
+    <link href="slidesCaceres_files/remark-css/default-fonts.css" rel="stylesheet" />
+    <link rel="stylesheet" href="my.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Using causal random forest to determine exposure environmenents with high sexual
+## Exposome Data Challenge/ISGlobal 2021
+### <a href="#alejandro-caceres">Alejandro Cáceres</a>
+### 04/28
+
+---
+
+
+
+
+
+class: middle, center
+
+## Can we identify exposure environments with high sexual dimorphism in human development?
+
+---
+
+
+
+
+class: middle, center
+
+## Can we identify exposure environments with high sexual dimorphism in human development?
+
+---
+
+
+class: middle
+
+## Boys and girls develop differently
+
+- Their immune response to infections differ from an early age.
+
+- Their brains grow at different rates.
+
+- The prevalence of numerous common diseases, like obesity, is different.
+
+
+
+---
+
+
+class: middle
+
+## Why studying sex differences?
+
+- The main difference between people is sex, underlying differences in disease risk and outcome. 
+
+- Precision public health and medicine aim to apply the best intervention at the right time to the right population. 
+
+- Sex differences in disease can inform on etiology. 
+
+- Age-related diseases like cancer, Alzheimer's and autoimune diseases are strongly influenced by sex hormones. 
+
+- Studying preteeens can inform on other non-hormonal mechanisms.  
+
+
+---
+
+
+class: middle
+
+## Do exposures affect differently boys and girls?
+
+
+- Sex-specific environments are known to shape adaptation and evolution (Darwin). 
+
+- For the same level of exposure, if a trait under pressure is highly dimorphic one can expect different responses between sexes. 
+
+---
+
+
+class: middle
+
+## Complex traits
+
+- But what happen if the trait is complex and many factors can affect it?
+
+
+- Can we identify the combination of factors that increase the differences between boys and girls? 
+
+- In an exposomic context, can we identify the combination of exposures that increases the difference in BMI between boys and girls? 
+
+
+---
+
+
+class: middle
+
+
+## Hypothesis
+
+*A co-ocurrence of environmental conditions can be identified from exposomic data such that the differences in BMI between boys and girls is highest.*
+
+
+---
+
+
+class: middle
+
+## The exposome
+
+
+
+High-dimensional exposure data that overspecifies each individual. 
+
+&lt;img src="./img/exp.JPG" style="width:100%"  align="center"&gt;
+
+
+
+---
+
+
+class: middle
+
+## The exposome, sex and BMI
+
+We want to link it with BMI differences between boys and girls. 
+
+&lt;img src="./img/bmiexp.JPG" style="width:100%"  align="center"&gt;
+
+
+---
+
+
+class: middle
+
+## Causal inference
+
+We propose to estimate sexual dimorphism as a causal inference problem.
+
+&lt;img src="./img/causal.JPG" style="width:100%"  align="center"&gt;
+
+`\(\tau(\mathbf{p}) = E[BMI_j(1)- BMI_j(0) | \mathbf{P}_j = \mathbf{p}]\)`
+
+
+
+---
+
+
+class: middle
+
+## Random Causal Forest
+
+&lt;img src="./img/RCF.JPG" style="width:100%"  align="center"&gt;
+
+Athey, et al. Ann. Statist. 2019, 47(2): 1148-1178
+
+
+
+---
+
+
+class: middle
+
+## teff (treatment effects prediction)
+
+&lt;img src="./img/teff.JPG" style="width:100%"  align="center"&gt;
+
+
+
+---
+
+
+class: middle
+
+## teff (treatment effects prediction)
+
+We have developed the package to estimate **transcriptomic** groups where the effect of treatment is maximum.
+
+Two applications include
+
+- Estimating the effect of treating psoriasis patients at base-line with brodalumab and prediciting its final response. 
+
+&lt;img src="./img/brod.png" style="width:50%"  align="center"&gt;
+
+---
+
+
+class: middle
+
+## teff (treatment effects prediction)
+
+
+- Estimating *transcriptomic* groups where **sexual dimosphism** in immune cell differences is highest and its association with cancer survival. 
+
+
+
+&lt;img src="./img/cancer.JPG" style="width:100%"  align="center"&gt;
+
+
+
+---
+
+
+class: middle
+
+## Exposomic groups of high sexual dimosphism in BMI
+
+
+---
+
+
+class: middle
+
+## Analysis
+
+The analysis strategy included the followin steps:
+
+- Selection of informative exposures: Those whose interaction with sex significantly associated (nominal level) with zBMI. 
+
+- Application of &lt;code&gt;teff&lt;/code&gt; to identify individuals with significant sex-effects (CI not overapping zero). 
+
+- Infering a consensus exposure environment of high dimorphism based on the individuals with significant sex-effects, and targeting individuals.
+
+- Searching for molecular correlates of the exposure 
+environment. 
+
+
+---
+
+
+class: middle
+
+## Selection of informative exposures
+
+`\(BMI_{j} = \alpha_{i} + \beta_{i} (exposure_{ji} \times sex_j) + \sum_{r=1...k} \gamma_{ri} c_{jir} + \epsilon_{ji}\)`
+
+
+
+```
+##                          labels   Estimate    Pr(&gt;|t|)
+## hs_org_food_Ter     Organicfood  0.1595160 0.001665935
+## hs_pcb118_cadj_Log2     PCB 118  0.1607125 0.001952691
+## hs_pcb170_cadj_Log2     PCB 170  0.0442046 0.002080180
+## hs_meohp_cadj_Log2        MEOHP -0.1174503 0.002566430
+## hs_mehhp_cadj_Log2        MEHHP -0.1189231 0.002570413
+## hs_mecpp_cadj_Log2        MECPP -0.1105356 0.005507512
+```
+
+- We selected 31 (nominally) significant exposures 
+
+- Most represented families included meteorological, natural spaces, organochlorines and phthalates. 
+
+(we adjusted by all covariates available in the exposome dataset)
+---
+
+
+class: middle
+
+## Identification of individuals with significant sex-effects by teff
+
+
+
+```r
+#...FORMATIG DATA
+
+#data for teff
+data4teff &lt;- list(features=data.frame(modexp), 
+                  teffdata = data.frame(mod))
+
+#appluy RCF
+pred &lt;- predicteff(data4teff, 
+                   featuresinf = rownames(texpsig))
+
+ctrl &lt;- list(lb=c("Male", "Female"), 
+             wht="bottomright", whs = "topleft")
+
+plotPredict(pred, 
+            lb="Associated sexual dimorphism",
+            ctrl.plot=ctrl)
+```
+
+---
+
+
+class: middle
+
+## Individuals with significant sex-effects on BMI
+
+We found 46 individuals from 155 (test set) with significantly negative sexual dimorphism in BMI (M&gt;F). 
+
+&lt;img src="./img/bmitau.png" style="width:100%"  align="center"&gt;
+
+---
+
+class: middle
+
+## Exposure environment of high dimorphism 
+
+
+
+```r
+pred &lt;- predicteff(data4teff, 
+                   featuresinf = rownames(texpsig),
+                   profile = TRUE, quant = 0.7)
+
+tar &lt;- target(data4teff, pred, 
+              effect = "negative", 
+              mat = 0.7,
+              lb = code[pred$featurenames$featurenames,"labels"])
+```
+
+
+---
+
+class: middle
+
+## Exposure environment of high dimorphism 
+
+&lt;img src="./img/imp.png" style="width:40%"  align="center"&gt;&lt;img src="./img/tar.png" style="width:60%"  align="center"&gt;
+
+- Red: adjusted exposures that were **higher** than the overall mean
+
+- Green: adjusted exposures that were **lower** than the overall mean
+
+
+
+---
+
+class: middle
+
+## Exposure environment of high dimorphism 
+
+
+```r
+tar
+```
+
+
+```
+## object of class: tarteff 
+## 
+## classification into 
+##   negative treatment effect: 1
+##   neutral: 0
+##  
+##   0   1 
+## 790 217 
+## 
+## interaction fitted model: gaussian
+##     Estimate   Std. Error      t value     Pr(&gt;|t|) 
+## -0.524140672  0.177261958 -2.956870600  0.003180596
+```
+
+
+---
+
+class: middle
+
+## Exposure environment of high dimorphism 
+
+&lt;img src="./img/int.png" style="width:100%"  align="center"&gt;
+
+
+---
+
+class: middle
+
+## Molecular correlates of the exposure environment
+
+&lt;img src="./img/volcexp.png" style="width:50%"  align="center"&gt;
+
+- *METLL3* a subunit of the most abundant methyltransferase of mRNA (m6A).
+
+- Upregulation of *METLL3* is involved in adipogenesis and in M1 magrophague polirization (PMC6066751, PMID: 31365297). 
+
+- *FTO* (fat mass and obesity-associated protein) reverses the action of m6A (PMID: 28002401). 
+ 
+
+- *METLL3* also regulates chromosome-X inactivation in females.
+
+---
+
+class: middle
+
+## Molecular correlates of the exposure environment
+
+&lt;img src="./img/enrich.png" style="width:60%"  align="center"&gt;
+
+These erichment associations were led by 4 genes: *SLC5A9*, *SLC2A8*, *SLC2A6* and  *SLC5A1* that encode glucose transporters GLUT9, GLUT8, GLUT6 and SGLT1; respectively.
+
+
+
+---
+
+class: middle
+
+## Molecular correlates of the exposure environment
+
+&lt;img src="./img/expmet.png" style="width:70%"  align="center"&gt;
+
+- Increased expression of *METLL3* associated with more methylation and less expression of *SLC2A6*
+
+- *SLC2A6* is involved in the activation of inflammatory macrophages M1 (PMID: 30700586)
+
+
+
+---
+
+class: middle
+
+## Molecular correlates of the exposure environment
+
+Association of immune cell abundance with BMI and the interaction between the exposure environment and sex. 
+
+
+```
+##             BMI      P envExp*sex      P
+## NK_6     0.0002 0.8255     0.0010 0.9126
+## Bcell_6  0.0001 0.9415     0.0070 0.3883
+## CD4T_6  -0.0063 0.0002     0.0010 0.9415
+## CD8T_6  -0.0029 0.0255     0.0209 0.0469
+## Gran_6   0.0079 0.0070    -0.0248 0.2883
+## Mono_6   0.0017 0.0267    -0.0046 0.4452
+```
+
+---
+
+class: middle
+
+## Molecular correlates of the exposure environment
+
+Association of immune cell abundance with *SLC2A6*  and the interaction between *METTL3* and sex. 
+
+
+```
+##          SLC2A6      P METTL3*sex      P
+## NK_6    -0.0115 0.4441    -0.0652 0.0059
+## Bcell_6 -0.0005 0.9719     0.0356 0.1082
+## CD4T_6  -0.0077 0.7464     0.0237 0.5271
+## CD8T_6  -0.0167 0.3611     0.0148 0.6077
+## Gran_6   0.0110 0.7864     0.0007 0.9911
+## Mono_6   0.0232 0.0253    -0.0062 0.7074
+```
+
+---
+
+class: middle
+
+## Molecular correlates of the exposure environment
+
+
+&lt;img src="./img/methyl.png" style="width:50%"  align="center"&gt;
+
+Significant methlylome-wide CpGs in genes with immune function:
+
+- cg16406960 is at *GNLY* that enocodes granulysin an antimicrobial peptide relased by cytolytic T cells
+
+- cg20839991 is at *HLA-DPB2*, major Histocompatibility Complex, Class II, DP Beta 2. 
+
+
+---
+
+
+class: middle
+
+## Final remaks
+
+- We identified an environment of negative dimorphism in BMI that coudl be linked to meaningful molecular mechanisms
+
+- These included genes involeved in adipogenenis and immune response, in particular M1 macrophagues. 
+
+- The exposure environment should be validated with external data  and simplified (standardized) for public health interventions.
+
+- The method is sensitive on variable selection. 
+
+- We found exposure environments of high dimorphism for IQ and asthma but they could not be linked to molecular function 
+
+
+
+
+---
+
+class: middle
+name: Alejandro-Caceres
+
+.left-col-50[
+&lt;img src="img/caceres.jfif" width = "180px"/&gt;
+### Alejandro Cáceres
+&lt;i class="fas fa-flask"&gt;&lt;/i&gt;&amp;nbsp;ISGlobal Bioinformatics Research Group in Epidemiology (BRGE)&lt;br /&gt;
+&lt;i class="fas fa-envelope"&gt;&lt;/i&gt;&amp;nbsp;alejandro.caceres@isglobal.org&lt;br /&gt;
+]
+
+.rigth-col-50[
+
+## Thank you for your attention
+
+### Find the slides [online]().
+]
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

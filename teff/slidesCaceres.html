@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="" xml:lang="">
   <head>
-    <title>Using causal random forest to determine exposure environmenents with high sexual</title>
+    <title>Using causal random forest to determine exposure environmenents with high sexual dimorphism</title>
     <meta charset="utf-8" />
     <meta name="author" content="Alejandro Cáceres" />
     <link href="slidesCaceres_files/remark-css/default.css" rel="stylesheet" />
@@ -12,7 +12,7 @@
     <textarea id="source">
 class: center, middle, inverse, title-slide
 
-# Using causal random forest to determine exposure environmenents with high sexual
+# Using causal random forest to determine exposure environmenents with high sexual dimorphism
 ## Exposome Data Challenge/ISGlobal 2021
 ### <a href="#alejandro-caceres">Alejandro Cáceres</a>
 ### 04/28
@@ -79,7 +79,7 @@ class: middle
 
 - Sex-specific environments are known to shape adaptation and evolution (Darwin). 
 
-- For the same level of exposure, if a trait under pressure is highly dimorphic one can expect different responses between sexes. 
+- For the same level of exposure that affects a highly dimorphic outcome one can expect different responses between sexes. 
 
 ---
 
@@ -88,7 +88,7 @@ class: middle
 
 ## Complex traits
 
-- But what happen if the trait is complex and many factors can affect it?
+- But what happen if the trait is complex and many factors affect it?
 
 
 - Can we identify the combination of factors that increase the differences between boys and girls? 
@@ -180,11 +180,11 @@ class: middle
 
 ## teff (treatment effects prediction)
 
-We have developed the package to estimate **transcriptomic** groups where the effect of treatment is maximum.
+The package estimates **transcriptomic** groups where the effect of a treatment is maximum.
 
-Two applications include
+We have used the package to
 
-- Estimating the effect of treating psoriasis patients at base-line with brodalumab and prediciting its final response. 
+- Predict the effect of treating psoriasis patients at baseline and validating its final response after treatment. 
 
 &lt;img src="img/brod.png" style="width:50%"  align="center"&gt;
 
@@ -196,7 +196,7 @@ class: middle
 ## teff (treatment effects prediction)
 
 
-- Estimating *transcriptomic* groups where **sexual dimosphism** in immune cell differences is highest and its association with cancer survival. 
+- Estimate the *transcriptomic* groups where **sexual dimosphism** in immune cell differences is highest and test their association with cancer survival. 
 
 
 
@@ -219,15 +219,15 @@ class: middle
 
 ## Analysis
 
-The analysis strategy included the followin steps:
+The analysis strategy included the following steps:
 
-- Selection of informative exposures: Those whose interaction with sex significantly associated (nominal level) with zBMI. 
+- **Select** informative exposures: Those whose interaction with sex significantly associated (nominal level) with zBMI. 
 
-- Application of &lt;code&gt;teff&lt;/code&gt; to identify individuals with significant sex-effects (CI not overapping zero). 
+- **Apply** &lt;code&gt;teff&lt;/code&gt; to identify individuals with significant sex-effects (CI not overlapping zero). 
 
-- Infering a consensus exposure environment of high dimorphism based on the individuals with significant sex-effects, and targeting individuals.
+- **Target** individuals to a consensus exposure environment of high dimorphism derived from the individuals with significant sex-effects.
 
-- Searching for molecular correlates of the exposure 
+- **Search** for molecular correlates of the exposure 
 environment. 
 
 
@@ -294,7 +294,7 @@ class: middle
 
 We found 46 individuals from 155 (test set) with significantly negative sexual dimorphism in BMI (M&gt;F). 
 
-&lt;img src="img/bmitau.png" style="width:100%"  align="center"&gt;
+&lt;img src="img/bmitau.png" style="width:50%"  align="center"&gt;&lt;img src="img/imp.png" style="width:50%"  align="center"&gt;
 
 ---
 
@@ -322,7 +322,7 @@ class: middle
 
 ## Exposure environment of high dimorphism 
 
-&lt;img src="img/imp.png" style="width:40%"  align="center"&gt;&lt;img src="img/tar.png" style="width:60%"  align="center"&gt;
+&lt;img src="img/tar.png" style="width:100%"  align="center"&gt;
 
 - Red: adjusted exposures that were **higher** than the overall mean
 
@@ -375,14 +375,14 @@ class: middle
 
 &lt;img src="img/volcexp.png" style="width:50%"  align="center"&gt;
 
-- *METLL3* a subunit of the most abundant methyltransferase of mRNA (m6A).
+- *METTL3* a subunit of the most abundant methyltransferase of mRNA (m6A).
 
-- Upregulation of *METLL3* is involved in adipogenesis and in M1 magrophague polirization (PMC6066751, PMID: 31365297). 
+- Upregulation of *METTL3* is involved in adipogenesis and in M1 magrophague polirization (PMC6066751, PMID: 31365297). 
 
 - *FTO* (fat mass and obesity-associated protein) reverses the action of m6A (PMID: 28002401). 
  
 
-- *METLL3* also regulates chromosome-X inactivation in females.
+- *METTL3* also regulates chromosome-X inactivation in females.
 
 ---
 
@@ -404,7 +404,7 @@ class: middle
 
 &lt;img src="img/expmet.png" style="width:70%"  align="center"&gt;
 
-- Increased expression of *METLL3* associated with more methylation and less expression of *SLC2A6*
+- Increased expression of *METTL3* associated with more methylation and less expression of *SLC2A6*
 
 - *SLC2A6* is involved in the activation of inflammatory macrophages M1 (PMID: 30700586)
 
@@ -471,7 +471,7 @@ class: middle
 
 ## Final remaks
 
-- We identified an environment of negative dimorphism in BMI that coudl be linked to meaningful molecular mechanisms
+- We identified an environment of negative dimorphism in BMI that could be linked to meaningful molecular mechanisms
 
 - These included genes involeved in adipogenenis and immune response, in particular M1 macrophagues. 
 

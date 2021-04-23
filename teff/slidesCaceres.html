@@ -169,100 +169,36 @@ class: middle
 
 ## teff (treatment effects prediction)
 
-&lt;img src="img/teff.JPG" style="width:100%"  align="center"&gt;
+&lt;img src="img/teff.JPG" style="width:60%"  align="center"&gt;
+
+The package uses RCF to estimate the **transcriptomic** groups where the effect of a **treatment** on an **outcome**  is maximum.
+
+#### For the data challenge:
+
+- Transcriptomic data `\(\rightarrow\)` Exposomic data
+- Treatment `\(\rightarrow\)` Sex
+- Outcome `\(\rightarrow\)` BMI
+
+---
 
 
+
+class: middle
+
+## Individuals with significant sex-effects on BMI
+
+We found 46 individuals from 155 (test set) with significantly negative sexual dimorphism in BMI (M&gt;F). 
+
+&lt;img src="img/bmitau.png" style="width:50%"  align="center"&gt;&lt;img src="img/imp.png" style="width:50%"  align="center"&gt;
+
+- We **selected** 31 informative exposures: Those whose interaction with sex significantly associated (nominal level) with zBMI. we adjusted by all covariates available in the exposome dataset.
 
 ---
 
 
 class: middle
 
-## teff (treatment effects prediction)
-
-The package estimates **transcriptomic** groups where the effect of a treatment is maximum.
-
-We have used the package to
-
-- Predict the effect of treating psoriasis patients at baseline and validating its final response after treatment. 
-
-&lt;img src="img/brod.png" style="width:50%"  align="center"&gt;
-
----
-
-
-class: middle
-
-## teff (treatment effects prediction)
-
-
-- Estimate the *transcriptomic* groups where **sexual dimosphism** in immune cell differences is highest and test their association with cancer survival. 
-
-
-
-&lt;img src="img/cancer.jpg" style="width:100%"  align="center"&gt;
-
-
-
----
-
-
-class: middle
-
-## Exposomic groups of high sexual dimosphism in BMI
-
-
----
-
-
-class: middle
-
-## Analysis
-
-The analysis strategy included the following steps:
-
-- **Select** informative exposures: Those whose interaction with sex significantly associated (nominal level) with zBMI. 
-
-- **Apply** &lt;code&gt;teff&lt;/code&gt; to identify individuals with significant sex-effects (CI not overlapping zero). 
-
-- **Target** individuals to a consensus exposure environment of high dimorphism derived from the individuals with significant sex-effects.
-
-- **Search** for molecular correlates of the exposure 
-environment. 
-
-
----
-
-
-class: middle
-
-## Selection of informative exposures
-
-`\(BMI_{j} = \alpha_{i} + \beta_{i} (exposure_{ji} \times sex_j) + \sum_{r=1...k} \gamma_{ri} c_{jir} + \epsilon_{ji}\)`
-
-
-
-```
-##                          labels   Estimate    Pr(&gt;|t|)
-## hs_org_food_Ter     Organicfood  0.1595160 0.001665935
-## hs_pcb118_cadj_Log2     PCB 118  0.1607125 0.001952691
-## hs_pcb170_cadj_Log2     PCB 170  0.0442046 0.002080180
-## hs_meohp_cadj_Log2        MEOHP -0.1174503 0.002566430
-## hs_mehhp_cadj_Log2        MEHHP -0.1189231 0.002570413
-## hs_mecpp_cadj_Log2        MECPP -0.1105356 0.005507512
-```
-
-- We selected 31 (nominally) significant exposures 
-
-- Most represented families included meteorological, natural spaces, organochlorines and phthalates. 
-
-(we adjusted by all covariates available in the exposome dataset)
----
-
-
-class: middle
-
-## Identification of individuals with significant sex-effects by teff
+## teff Code
 
 
 
@@ -285,35 +221,18 @@ plotPredict(pred,
             ctrl.plot=ctrl)
 ```
 
+
 ---
+
 
 
 class: middle
 
-## Individuals with significant sex-effects on BMI
-
-We found 46 individuals from 155 (test set) with significantly negative sexual dimorphism in BMI (M&gt;F). 
-
-&lt;img src="img/bmitau.png" style="width:50%"  align="center"&gt;&lt;img src="img/imp.png" style="width:50%"  align="center"&gt;
-
----
-
-class: middle
-
-## Exposure environment of high dimorphism 
+## Targetting individuals on an exposure environment
 
 
 
-```r
-pred &lt;- predicteff(data4teff, 
-                   featuresinf = rownames(texpsig),
-                   profile = TRUE, quant = 0.7)
-
-tar &lt;- target(data4teff, pred, 
-              effect = "negative", 
-              mat = 0.7,
-              lb = code[pred$featurenames$featurenames,"labels"])
-```
+&lt;img src="img/target.jpg" style="width:80%"  align="center"&gt;
 
 
 ---
@@ -331,7 +250,6 @@ class: middle
 
 
 
-
 ---
 
 class: middle
@@ -339,6 +257,27 @@ class: middle
 ## Exposure environment of high dimorphism 
 
 &lt;img src="img/int.png" style="width:100%"  align="center"&gt;
+
+
+---
+
+
+class: middle
+
+## teff code 
+
+
+
+```r
+pred &lt;- predicteff(data4teff, 
+                   featuresinf = rownames(texpsig),
+                   profile = TRUE, quant = 0.7)
+
+tar &lt;- target(data4teff, pred, 
+              effect = "negative", 
+              mat = 0.7,
+              lb = code[pred$featurenames$featurenames,"labels"])
+```
 
 
 ---
@@ -472,19 +411,28 @@ class: middle
 
 ## Final remaks
 
-- We identified an environment of negative dimorphism in BMI (M&gt;F) that could be linked to meaningful molecular mechanisms.
+- We identified an **environment of negative dimorphism in BMI** (M&gt;F) that could be linked to meaningful molecular mechanisms.
 
-- These included genes involved in adipogenenis and immune response, in particular M1 macrophagues. 
+- These included genes involved in **immune response** and **adipogenenis**. 
 
-- The exposure environment should be validated with external data  and simplified (standardized) for public health interventions.
+- The exposure environment **should be validated** with external data  and simplified (standardized) for public health interventions.
 
-- The method is sensitive on variable selection. 
+- The method is sensitive on **variable selection**. 
 
-- We found exposure environments of high dimorphism for IQ and asthma but they could not be linked to molecular function. 
+- We found exposure environments of high dimorphism for **IQ** and **asthma** but they could not be linked to molecular function. 
 
-- We did not find an exposure environments of high dimorphism for Obesity. 
+- We **did not find** an exposure environments of high dimorphism for **obesity**, but the BMI exposure environment significantly modulated the obeseity dimorphism.
 
 
+
+---
+
+
+class: middle
+
+## Further question 
+
+### To which extent alterations of the immune system are a cause of obesity?
 
 
 ---

@@ -103,6 +103,15 @@ class: middle, center
 
 &lt;img src="img/study1.JPG" style="width:75%"  align="center"&gt;
 
+
+---
+
+class: middle, center
+
+
+&lt;img src="img/study2.JPG" style="width:60%"  align="center"&gt;
+
+
 ---
 
 class: middle
@@ -114,14 +123,6 @@ class: middle
 - IL-23 p19 treatments may be &lt;b&gt;more&lt;/b&gt; efficacious than TNF and IL-12/IL-23 p40 treatments but &lt;b&gt;less&lt;/b&gt; than IL-17 treatments.
 
 - There is &lt;b&gt;substantial room&lt;/b&gt; for increasing efficacy in all treatments, efficacy substantially drops for PASI90 and PASI100 (although they remain stable over long periods of treatment).
-
-
----
-
-class: middle, center
-
-
-&lt;img src="img/study2.jpg" style="width:70%"  align="center"&gt;
 
 
 
@@ -147,15 +148,20 @@ I **propose** to answer this question from the most simple to more complex scena
 
 ---
 
-class: middle, center
+class: middle
 
-&lt;img src="img/study1.JPG" style="width:75%"  align="center"&gt;
+## Main effects
+
+
+- Is there a consistent and significant increase in PASI improvement for 200mg in relation to 100mg?
+
+- Is it on average better to treat with 200mg than 100mg?
 
 ---
 
 class: middle
 
-##Logistic regression
+##Main effects, logistic regression
 
 Are the PASI75 response trajectories at 200mg consistently higher than those at 100mg?
 
@@ -175,11 +181,31 @@ where `\(r_i\)` and `\(t_i\)` are response and treatment of `\(i\)` at a given w
 
 inR: &lt;code&gt;glm(r ~t, family="binomial")&lt;/code&gt;   
 
+
+
+---
+
+class: middle, center
+
+## Main effects, long term
+
+&lt;img src="img/study2.JPG" style="width:60%"  align="center"&gt;
+
+
+---
+
+class: middle, center
+
+## Main effects, long term: individual data?
+
+&lt;img src="img/random.png" style="width:60%"  align="center"&gt;
+
+
 ---
 
 class: middle
 
-## Long term mixed effect modelling 
+## Main effects, long term mixed effects 
 
 
 Are the PASI75 response trajectories at 200mg consistently higher than those at 100mg?
@@ -199,11 +225,36 @@ a fixed effect on dose and a random effect on patients.
 In R: &lt;code&gt; lme(R ∼ t, random = ∼1 | patient)&lt;/code&gt;   
 
 
+
+
+---
+
+
+class: middle, center
+
+## Main effects, short term
+
+&lt;img src="img/study1.JPG" style="width:60%"  align="center"&gt;
+
+
 ---
 
 class: middle
 
-## Short term mixed effect modelling 
+## Main effects, short term: individual data? 
+
+
+The objective is to achieve a model that allows comparisons of the maximum PASI achieved between doses. 
+
+&lt;img src="img/mx.png" style="width:70%"  align="center"&gt;
+
+
+
+---
+
+class: middle
+
+## Main effects, short term mixed effect modelling 
 
 
 - We can model the &lt;b&gt;maximum short term efficacy&lt;/b&gt; using a logistic model of three parameters, with a
@@ -218,17 +269,6 @@ where `\(w\)` is the week, `\(d_i\)` is the effect for the maximum PASI improvem
 In R: &lt;code&gt;medrm(r ~ t, random=b + d + e ~ 1|patient, fct=LL.3())&lt;/code&gt;
 
 
----
-
-class: middle
-
-## Short term mixed effect modelling 
-
-
-The objective is to achieve a model that allows comparisons of the maximum PASI achieved between doses. 
-
-&lt;img src="img/mx.png" style="width:70%"  align="center"&gt;
-
 
 
 ---
@@ -238,9 +278,11 @@ class: middle
 ## Expectation 
 
 
-- If a consistent and significant increase in PASI is found for 200mg &gt; 100mg then the recommendation, depending on size effect and other factors, is to use 200mg instead of 100mg for all patients. 
+- If a consistent and significant increase in PASI is found for 200mg &gt; 100mg then the recommendation, depending on size effect and other factors, would be to prescribe 200mg instead of 100mg for **all patients**. 
 
-- However, it can already be seen that the size of the effect is **small**
+- We can already see that the size of the effect is **small**
+
+- However, it is important to accurately model the main effects to gain a proper **understanding** of data.
 
 - Higher gains in efficacy may be obtained from finding a **group** of patients that responds better to 200mg treatment. 
 
@@ -250,7 +292,7 @@ class: middle
 
 class: middle
 
-## Interaction analysis 
+## Modulators of main effects 
 
 Known risk factors for psoriasis include:
 
@@ -261,16 +303,25 @@ Known risk factors for psoriasis include:
 - genetic
 - smoking, alcohol, air pollution
 
-Do any of these factors modulate the response to Tildrakizumab dose?
+Do any of these factors **modulate** the association between response and Tildrakizumab dose?
 
 
 ---
 
 class: middle
 
-## Interaction analysis: AGE 
+## Interaction analysis
 
-&lt;img src="img/age.jpg" style="width:80%"  align="center"&gt;
+&lt;img src="img/age.JPG" style="width:80%"  align="center"&gt;
+
+For instance: age of onset 
+
+---
+
+class: middle
+
+## Interaction analysis
+
 
 At a given week ( `\(w28\)`, `\(w148\)` ) one can test the interaction in the logistic model: 
 
@@ -302,7 +353,16 @@ class: middle
 
 class: middle
 
-## Finding heterogenous response to treatment in longitudinal data
+## Modulators of heterogeneity 
+
+
+&lt;img src="img/sex.JPG" style="width:100%"  align="center"&gt;
+
+---
+
+class: middle
+
+## Intraclass correlation differences
 
 The long term longitudinal data suggest the PASI assessments across weeks can be treated as repeated measures on patients. 
 
@@ -310,15 +370,13 @@ Higher ICC= `\(d^2/(d^2+\sigma^2)\)` (mixed model) means higher heterogeneity in
 
 (U Ettinger, SCR Williams, D Patel, TM Michel, A Nwaigwe, &lt;b&gt;A Caceres&lt;/b&gt;, et al. Neuroimage 45 (2), 549-561)
 
-&lt;img src="img/sex.jpg" style="width:100%"  align="center"&gt;
-
 
 
 ---
 
 class: middle
 
-## Finding heterogenous response to treatment in longitudinal data
+## Intraclass correlation differences: all modulators
 
 - we can run **massive univariate** associations for differences in ICC analyses across all modulators available and select those whose difference between groups is significant (adjusted by multiple testing). 
 
@@ -331,7 +389,7 @@ class: middle
 
 class: middle
 
-## Composite biomarkers from high dimensional data
+## Biomarkers of reponse derived from high dimensional data
 
 The acquisition (availability) of high dimensional data that fully specifies each subject can be used to determine &lt;b&gt;composite biomarkers&lt;/b&gt; that modulate response to tildrakizumab dose. 
 
@@ -380,7 +438,7 @@ Other composite biological biomarkers:
 
 class: middle
 
-## Other composite biomarkers:
+## Biomarkers of reponse derived from machine learning on high dimensional data
 
 - Supervised &lt;b&gt;machine learning classifiers&lt;/b&gt; (linear discriminants, neural networks, support vector machines) can be used to predict responders from no responders at 200mg.
 
@@ -393,7 +451,7 @@ Further interpretation and validation of the classifier may be required for clin
 
 class: middle
 
-## Detecting groups of high benefit from 200mg with high dimensional data
+## Modulators that define groups of high benefit from 200mg with high dimensional data
 
 - Individuals fully characterized by their values in &lt;b&gt;big number&lt;/b&gt; of features.
 
@@ -430,7 +488,7 @@ class: middle
 
 
 
-&lt;img src="img/vol.jpg" style="width:60%"  align="center"&gt;
+&lt;img src="img/vol.JPG" style="width:60%"  align="center"&gt;
 
   
 ---
@@ -442,7 +500,7 @@ class: middle
  2) Apply causal random forest  on a set of fetures `\(p\)` at *baseline* (Athey et al. 2019 Ann Stat; 47, 1179, 1203).
     
       
-&lt;img src="img/rcf.jpg" style="width:75%"  align="center"&gt;
+&lt;img src="img/rcf.JPG" style="width:75%"  align="center"&gt;
     
   
 ---
@@ -454,7 +512,7 @@ class: middle
  3) Create profile of high responders.
     
       
-&lt;img src="img/target.jpg" style="width:75%"  align="center"&gt;
+&lt;img src="img/target.JPG" style="width:75%"  align="center"&gt;
  
  
 ---
@@ -467,7 +525,7 @@ class: middle
  4) Target high responders in reSURFACE2.
     
       
-&lt;img src="img/mat.jpg" style="width:75%"  align="center"&gt;
+&lt;img src="img/mat.JPG" style="width:75%"  align="center"&gt;
  
 
 
@@ -480,7 +538,7 @@ class: middle
 
 5) Confirm that the profiles modulate the response for different doses 
 
-&lt;img src="img/resp.jpg" style="width:75%"  align="center"&gt;
+&lt;img src="img/resp.JPG" style="width:75%"  align="center"&gt;
 
 Conclusion: Individuals who belong to the profile should be targeted with 200mg. 
 
@@ -503,6 +561,14 @@ class: middle
 - Individuals that did not respond to brodalumab and had low T cell counts in blood are the highest potential responders to [brodalumab](https://github.com/alejandro-isglobal/alejandro-isglobal.github.io/blob/master/supplementary.pdf).
 
 
+---
+
+class: middle
+   
+## Advantages of the method: Brodalumab Vs Etarnecept
+
+
+&lt;img src="img/tcellad.jpg" style="width:70%"  align="center"&gt;
 
 ---
 
@@ -513,7 +579,7 @@ class: middle
 
 - I applied the method in a different context for high dimensional epidemiological data (high differences in obesity between sexes). I won the exposome data challenge 2021 with this application.
 
-&lt;img src="img/datch.jpg" style="width:75%"  align="center"&gt;
+&lt;img src="img/datch.JPG" style="width:75%"  align="center"&gt;
 
 
 ---

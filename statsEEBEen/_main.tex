@@ -1,0 +1,3292 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{book}
+\title{Stats theory (SDA)}
+\author{Alejandro Caceres}
+\date{2022-09-05}
+
+\usepackage{amsmath,amssymb}
+\usepackage{lmodern}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  pdftitle={Stats theory (SDA)},
+  pdfauthor={Alejandro Caceres},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
+\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{5}
+\usepackage{booktabs}
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\usepackage[]{natbib}
+\bibliographystyle{plainnat}
+
+\begin{document}
+\maketitle
+
+{
+\setcounter{tocdepth}{1}
+\tableofcontents
+}
+\hypertarget{about}{%
+\chapter{About}\label{about}}
+
+\begin{itemize}
+\item
+  This is the introduction to statistics course from EEBE (UPC).
+\item
+  Exam dates and additional study material can be found in ATENEA
+\end{itemize}
+
+\hypertarget{recommended-reading-list}{%
+\section{Recommended reading list}\label{recommended-reading-list}}
+
+\begin{itemize}
+\tightlist
+\item
+  Douglas C. Montgomery and George C. Runger. ``Applied Statistics and Probability for Engineers'' 4th Edition. Wiley 2007.
+\end{itemize}
+
+\hypertarget{data-description}{%
+\chapter{Data description}\label{data-description}}
+
+\hypertarget{objective}{%
+\section{Objective}\label{objective}}
+
+\begin{itemize}
+\tightlist
+\item
+  Data: discrete, continuous
+\item
+  Summarizing data in tables and figures
+\end{itemize}
+
+\hypertarget{statistics}{%
+\section{Statistics}\label{statistics}}
+
+\begin{itemize}
+\item
+  Solve problems in a systematic way (science, engineering and technology)
+\item
+  Modern humans use a general \textbf{method} historically developed for thousands of years! \ldots{} and still under development.
+\item
+  It has three main components: observation, logic, and generation of new knowledge
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{scientific-method}{%
+\section{Scientific method}\label{scientific-method}}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{outcome}{%
+\section{Outcome}\label{outcome}}
+
+\textbf{Observation} or \emph{Realization}
+
+\begin{itemize}
+\tightlist
+\item
+  an \textbf{observation} is the acquisition of a number or a characteristic from an experiment
+\end{itemize}
+
+\ldots{} 1 0 0 1 0 \textbf{1} 0 1 1 \ldots{} (the number in bold is an observation in a repetition of the experiment)
+
+\textbf{Outcome}
+
+\begin{itemize}
+\tightlist
+\item
+  An \textbf{outcome} is a possible observation that is the result of an experiment.
+\end{itemize}
+
+\textbf{1} is an outcome, \textbf{0} is the other outcome
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{types-of-outcome}{%
+\section{Types of outcome}\label{types-of-outcome}}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Categorical}: If the result of an experiment can only take discrete values (number of car pieces produced per hour, number of leukocytes in blood)
+\end{itemize}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Continuous}: If the result of an experiment can only take continuous values (battery state of charge, engine temperature).
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{random-experiments}{%
+\section{Random experiments}\label{random-experiments}}
+
+\textbf{Definition:}
+
+A \textbf{random experiment} is an experiment that gives different outcomes when repeated in the same manner.
+
+\textbf{Examples:}
+
+\begin{itemize}
+\tightlist
+\item
+  on the same object (person): temperature, sugar levels.\\
+\item
+  on different objects but the same measurement: the weight of an animal.
+\item
+  on events: a number of emails received in an hour.
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{absolute-frequencies}{%
+\section{Absolute frequencies}\label{absolute-frequencies}}
+
+When we repeat a random experiment, we record a list of outcomes.
+
+We summarize the \textbf{categorical} observations by counting how many times we saw a particular outcome.
+
+\textbf{Absolute frequency}:
+
+\[n_i\]
+
+is the number of times we observed the outcome \(i\)
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{example}{%
+\section{Example}\label{example}}
+
+\textbf{Random experiment}: Extract a leukocyte from \textbf{one} donor and write down its type. Repeat experiment \(N=119\) times.
+
+\begin{verbatim}
+(T cell, Tcell, Neutrophil, ..., B cell)
+\end{verbatim}
+
+\begin{verbatim}
+##      outcome ni
+## 1     T Cell 34
+## 2     B cell 50
+## 3   basophil 20
+## 4   Monocyte  5
+## 5 Neutrophil 10
+\end{verbatim}
+
+\begin{itemize}
+\tightlist
+\item
+  For instance: \(n_1=34\) is total number of T cells
+\item
+  \(N=\sum_i n_i=119\)
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{relative-frequencies}{%
+\section{Relative frequencies}\label{relative-frequencies}}
+
+We can also summarize the observations by computing the \textbf{proportion} of how many times we saw a particular outcome.
+
+\[f_i=n_i/N\] where \(N\) is the total number of observations
+
+In our example there are recorded \(n_1=34\) T cells, so we ask for the proportion of T cells from the total of \(119\).
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{example-1}{%
+\section{Example}\label{example-1}}
+
+\begin{verbatim}
+##      outcome ni         fi
+## 1     T Cell 34 0.28571429
+## 2     B cell 50 0.42016807
+## 3   basophil 20 0.16806723
+## 4   Monocyte  5 0.04201681
+## 5 Neutrophil 10 0.08403361
+\end{verbatim}
+
+We have
+
+\(\sum_{i=1..M} n_i = N\)
+
+\(\sum_{i=1..M} f_i = 1\)
+
+where \(M\) is the number of outcomes.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{bar-plot}{%
+\section{Bar plot}\label{bar-plot}}
+
+We can plot \(n_i\) Vs the outcomes, giving us a bar plot
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-3-1.pdf}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{pie-chart}{%
+\section{Pie chart}\label{pie-chart}}
+
+We can visualize the relative frequencies with a pie chart
+
+\begin{itemize}
+\tightlist
+\item
+  Where the area of the circle represents 100\% of observations (proportion = 1) and the sections the relative frequencies of all the outcomes.
+\end{itemize}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-4-1.pdf}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{categorical-and-ordered-variables}{%
+\section{Categorical and ordered variables}\label{categorical-and-ordered-variables}}
+
+Cell types are not meaningfully ordered concerning the outcomes. However, sometimes \textbf{categorical} variables can be \textbf{ordered}.
+
+Misophonia study:
+
+\begin{itemize}
+\item
+  123 patients were examined for misophonia: anxiety/anger produced by certain sounds
+\item
+  They were categorized into 4 different groups according to severity.
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{example-2}{%
+\section{Example}\label{example-2}}
+
+The results of the study are:
+
+\begin{verbatim}
+##   [1] 4 2 0 3 0 0 2 3 0 3 0 2 2 0 2 0 0 3 3 0 3 3 2 0 0 0 4 2 2 0 2 0 0 0 3 0 2
+##  [38] 3 2 2 0 2 3 0 0 2 2 3 3 0 0 4 3 3 2 0 2 0 0 0 2 2 0 0 2 3 0 1 3 2 4 3 2 3
+##  [75] 0 2 3 2 4 1 2 0 2 0 2 0 2 2 4 3 0 3 0 0 0 2 2 1 3 0 0 3 2 1 3 0 4 4 2 3 3
+## [112] 3 0 3 2 1 2 3 3 4 2 3 2
+\end{verbatim}
+
+And its frequency table
+
+\begin{verbatim}
+##   outcome ni         fi
+## 1       0 41 0.33333333
+## 2       1  5 0.04065041
+## 3       2 37 0.30081301
+## 4       3 31 0.25203252
+## 5       4  9 0.07317073
+\end{verbatim}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{absolute-and-relative-cumulative-frequencies}{%
+\section{Absolute and relative cumulative frequencies}\label{absolute-and-relative-cumulative-frequencies}}
+
+Misophonia severity is \textbf{categorical} and \textbf{ordered}.
+
+When outcomes can be ordered then it is useful to ask how many observations were obtained up to a given outcome we call this number the absolute cumulative frequency up to the outcome \(i\):
+\[N_i=\sum_{k=1..i} n_k\]
+It is also useful to compute the \textbf{proportion} of the observations that was obtained up to a given outcome
+
+\[F_i=\sum_{k=1..i} f_k\]
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{frequency-table}{%
+\section{Frequency table}\label{frequency-table}}
+
+\begin{verbatim}
+##   outcome ni         fi  Ni        Fi
+## 0       0 41 0.33333333  41 0.3333333
+## 1       1  5 0.04065041  46 0.3739837
+## 2       2 37 0.30081301  83 0.6747967
+## 3       3 31 0.25203252 114 0.9268293
+## 4       4  9 0.07317073 123 1.0000000
+\end{verbatim}
+
+\begin{itemize}
+\item
+  \textbf{67\%} of patients had misophonia up to severity \textbf{2}
+\item
+  \textbf{37\%} of patients have severity less or equal than \textbf{1}
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{cumulative-frequency-plot}{%
+\section{Cumulative frequency plot}\label{cumulative-frequency-plot}}
+
+We can also plot the cumulative frequency Vs the outcomes
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-8-1.pdf}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{continuous-variables}{%
+\section{Continuous variables}\label{continuous-variables}}
+
+The result of a random experiment can also give continuous outcomes.
+
+In the misophonia study, the researchers asked whether the convexity of the jaw would affect the misophonia severity (the scientific hypothesis is that the convexity angle of the jaw can influence the ear and its sensitivity). These are the results for the convexity of the jaw (degrees)
+
+\begin{verbatim}
+##   [1]  7.97 18.23 12.27  7.81  9.81 13.50 19.30  7.70 12.30  7.90 12.60 19.00
+##  [13]  7.27 14.00  5.40  8.00 11.20  7.75  7.94 16.69  7.62  7.02  7.00 19.20
+##  [25]  7.96 14.70  7.24  7.80  7.90  4.70  4.40 14.00 14.40 16.00  1.40  9.76
+##  [37]  7.90  7.90  7.40  6.30  7.76  7.30  7.00 11.23 16.00  7.90  7.29  6.91
+##  [49]  7.10 13.40 11.60 -1.00  6.00  7.82  4.80 11.00  9.00 11.50 16.00 15.00
+##  [61]  1.40 16.80  7.70 16.14  7.12 -1.00 17.00  9.26 18.70  3.40 21.30  7.50
+##  [73]  6.03  7.50 19.00 19.01  8.10  7.80  6.10 15.26  7.95 18.00  4.60 15.00
+##  [85]  7.50  8.00 16.80  8.54  7.00 18.30  7.80 16.00 14.00 12.30 11.40  8.50
+##  [97]  7.00  7.96 17.60 10.00  3.50  6.70 17.00 20.26  6.64  1.80  7.02  2.46
+## [109] 19.00 17.86  6.10  6.64 12.00  6.60  8.70 14.05  7.20 19.70  7.70  6.02
+## [121]  2.50 19.00  6.80
+\end{verbatim}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{bins}{%
+\section{Bins}\label{bins}}
+
+Continuous outcomes cannot be counted!
+
+We transform them into ordered categorical variables
+
+\begin{itemize}
+\tightlist
+\item
+  We cover the range of the observations into regular intervals of the same size (bins)
+\end{itemize}
+
+\begin{verbatim}
+## [1] "[-1.02,3.46]" "(3.46,7.92]"  "(7.92,12.4]"  "(12.4,16.8]"  "(16.8,21.3]"
+\end{verbatim}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{create-a-categorical-variable-from-a-continuous-one}{%
+\section{Create a categorical variable from a continuous one}\label{create-a-categorical-variable-from-a-continuous-one}}
+
+\begin{itemize}
+\tightlist
+\item
+  We map each observation to its interval: creating an \textbf{ordered categorical} variable; in this case with 5 possible outcomes
+\end{itemize}
+
+\begin{verbatim}
+##   [1] "(7.92,12.4]"  "(16.8,21.3]"  "(7.92,12.4]"  "(3.46,7.92]"  "(7.92,12.4]" 
+##   [6] "(12.4,16.8]"  "(16.8,21.3]"  "(3.46,7.92]"  "(7.92,12.4]"  "(3.46,7.92]" 
+##  [11] "(12.4,16.8]"  "(16.8,21.3]"  "(3.46,7.92]"  "(12.4,16.8]"  "(3.46,7.92]" 
+##  [16] "(7.92,12.4]"  "(7.92,12.4]"  "(3.46,7.92]"  "(7.92,12.4]"  "(12.4,16.8]" 
+##  [21] "(3.46,7.92]"  "(3.46,7.92]"  "(3.46,7.92]"  "(16.8,21.3]"  "(7.92,12.4]" 
+##  [26] "(12.4,16.8]"  "(3.46,7.92]"  "(3.46,7.92]"  "(3.46,7.92]"  "(3.46,7.92]" 
+##  [31] "(3.46,7.92]"  "(12.4,16.8]"  "(12.4,16.8]"  "(12.4,16.8]"  "[-1.02,3.46]"
+##  [36] "(7.92,12.4]"  "(3.46,7.92]"  "(3.46,7.92]"  "(3.46,7.92]"  "(3.46,7.92]" 
+##  [41] "(3.46,7.92]"  "(3.46,7.92]"  "(3.46,7.92]"  "(7.92,12.4]"  "(12.4,16.8]" 
+##  [46] "(3.46,7.92]"  "(3.46,7.92]"  "(3.46,7.92]"  "(3.46,7.92]"  "(12.4,16.8]" 
+##  [51] "(7.92,12.4]"  "[-1.02,3.46]" "(3.46,7.92]"  "(3.46,7.92]"  "(3.46,7.92]" 
+##  [56] "(7.92,12.4]"  "(7.92,12.4]"  "(7.92,12.4]"  "(12.4,16.8]"  "(12.4,16.8]" 
+##  [61] "[-1.02,3.46]" "(12.4,16.8]"  "(3.46,7.92]"  "(12.4,16.8]"  "(3.46,7.92]" 
+##  [66] "[-1.02,3.46]" "(16.8,21.3]"  "(7.92,12.4]"  "(16.8,21.3]"  "[-1.02,3.46]"
+##  [71] "(16.8,21.3]"  "(3.46,7.92]"  "(3.46,7.92]"  "(3.46,7.92]"  "(16.8,21.3]" 
+##  [76] "(16.8,21.3]"  "(7.92,12.4]"  "(3.46,7.92]"  "(3.46,7.92]"  "(12.4,16.8]" 
+##  [81] "(7.92,12.4]"  "(16.8,21.3]"  "(3.46,7.92]"  "(12.4,16.8]"  "(3.46,7.92]" 
+##  [86] "(7.92,12.4]"  "(12.4,16.8]"  "(7.92,12.4]"  "(3.46,7.92]"  "(16.8,21.3]" 
+##  [91] "(3.46,7.92]"  "(12.4,16.8]"  "(12.4,16.8]"  "(7.92,12.4]"  "(7.92,12.4]" 
+##  [96] "(7.92,12.4]"  "(3.46,7.92]"  "(7.92,12.4]"  "(16.8,21.3]"  "(7.92,12.4]" 
+## [101] "(3.46,7.92]"  "(3.46,7.92]"  "(16.8,21.3]"  "(16.8,21.3]"  "(3.46,7.92]" 
+## [106] "[-1.02,3.46]" "(3.46,7.92]"  "[-1.02,3.46]" "(16.8,21.3]"  "(16.8,21.3]" 
+## [111] "(3.46,7.92]"  "(3.46,7.92]"  "(7.92,12.4]"  "(3.46,7.92]"  "(7.92,12.4]" 
+## [116] "(12.4,16.8]"  "(3.46,7.92]"  "(16.8,21.3]"  "(3.46,7.92]"  "(3.46,7.92]" 
+## [121] "[-1.02,3.46]" "(16.8,21.3]"  "(3.46,7.92]"
+\end{verbatim}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{frequency-table-for-a-continuous-variable}{%
+\section{Frequency table for a continuous variable}\label{frequency-table-for-a-continuous-variable}}
+
+\begin{verbatim}
+##        outcome ni         fi  Ni         Fi
+## 1 [-1.02,3.46]  8 0.06504065   8 0.06504065
+## 2  (3.46,7.92] 51 0.41463415  59 0.47967480
+## 3  (7.92,12.4] 26 0.21138211  85 0.69105691
+## 4  (12.4,16.8] 20 0.16260163 105 0.85365854
+## 5  (16.8,21.3] 18 0.14634146 123 1.00000000
+\end{verbatim}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{histogram}{%
+\section{Histogram}\label{histogram}}
+
+The histogram is the plot of \(n_i\) or \(f_i\) Vs the outcomes (bins). The histogram depends on the size of the bins
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-13-1.pdf}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{histogram-1}{%
+\section{Histogram}\label{histogram-1}}
+
+The histogram is the plot of \(n_i\) or \(f_i\) Vs the outcomes (bins). The histogram depends on the size of the bins
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-14-1.pdf}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{cumulative-frequency-plot-continous-variables}{%
+\section{Cumulative frequency plot: Continous variables}\label{cumulative-frequency-plot-continous-variables}}
+
+We can also plot the cumulative frequency Vs the outcomes
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-15-1.pdf}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{summary-statistics}{%
+\section{Summary statistics}\label{summary-statistics}}
+
+The summary statistics are numbers computed from the data that tell us important features of numerical variables (categorical or continuous).
+
+Limiting values:
+
+\begin{itemize}
+\tightlist
+\item
+  minimum: the minimum outcome observed
+\item
+  maximum: the maximum outcome observed
+\end{itemize}
+
+Central value for the outcomes
+
+\begin{itemize}
+\tightlist
+\item
+  The average is defined as
+\end{itemize}
+
+\[\bar{x}=\frac{1}{N} \sum_{j=1..N} x_j\]
+
+where \(x_j\) is the \textbf{observation} \(j\) (convexity) from a total of \(N\).
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{average}{%
+\section{Average}\label{average}}
+
+The average convexity can be computed directly from the \textbf{observations}
+
+\(\bar{x}= \frac{1}{N}\sum_j x_j\)
+
+\(= \frac{1}{N}(7.97 + 18.23 + 12.27... + 6.80) = 10.19894\)
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{average-categorical-ordered}{%
+\section{Average (categorical ordered)}\label{average-categorical-ordered}}
+
+For \textbf{categorical ordered} variables we can use the frequency table to compute the average
+
+\begin{verbatim}
+##   outcome ni         fi
+## 1       0 41 0.33333333
+## 2       1  5 0.04065041
+## 3       2 37 0.30081301
+## 4       3 31 0.25203252
+## 5       4  9 0.07317073
+\end{verbatim}
+
+The average \textbf{severity} of misophonia in the study
+can \textbf{also} be computed from the relative frequencies of the \textbf{outcomes}
+
+\(\bar{x}=\frac{1}{N}\sum_{i=1...N} x_j=\frac{1}{N}\sum_{i=1...M} x_i*n_{i}=\sum_{i=1...M} x_i*f_{i}\)
+
+\(=0*f_{0}+1*f_{1}+2*f_{2}+3*f_{3}+4*f_{4}=1.691057\)
+
+(note the change from \(N\) to \(M\) in the second summation)
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{average-categorical-ordered-1}{%
+\section{Average (categorical ordered)}\label{average-categorical-ordered-1}}
+
+In terms of the \textbf{outcomes} of categorical ordered variables, the \textbf{average} can be written as
+
+\[\bar{x}= \sum_{i = 1...M} x_i f_i\]
+
+from a total of \(M\) possible outcomes (number of severity levels).
+
+\(\bar{x}\) is the \textbf{central value} or center of gravity of the outcomes. As if each outcome had a mass density given by \(f_i\).
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{average-1}{%
+\section{Average}\label{average-1}}
+
+\begin{itemize}
+\item
+  The average is not the result of one observation (random experiment).
+\item
+  It is the result of a series of observations (sample).
+\item
+  It describes the number where the observed values balance.
+\end{itemize}
+
+That is why we hear, for instance, that a patient with an infection can infect an average of 2.5 people.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{average-2}{%
+\section{Average}\label{average-2}}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-17-1.pdf}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{median}{%
+\section{Median}\label{median}}
+
+Another measure of centrality is the median. The median \(q_{0.5}\) is the value \(x_p\)
+
+\[median(x)=q_{0.5}=x_p\]
+
+below which we find half of the observations
+
+\[\sum_{x\leq x_p} 1 = \frac{N}{2}\]
+
+or in terms of the frequencies, is the value \(x_p\) that makes the cumulative frequency \(F_p\) equal to \(0.5\)
+
+\[q_{0.5}=\sum_{x\leq x_p} f_x =F_p=0.5\]
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{median-vs-average}{%
+\section{Median Vs Average}\label{median-vs-average}}
+
+\begin{itemize}
+\tightlist
+\item
+  Average: Center of mass (compensates distant values)
+\item
+  Median: Half of the mass
+\end{itemize}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-18-1.pdf}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{dispersion}{%
+\section{Dispersion}\label{dispersion}}
+
+An important measure of the outcomes is their \textbf{dispersion}. Many experiments can share their mean but differ on how dispersed the values are.
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-19-1.pdf}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{dispersion-1}{%
+\section{Dispersion}\label{dispersion-1}}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-20-1.pdf}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{sample-variance}{%
+\section{Sample variance}\label{sample-variance}}
+
+Dispersion about the mean is measured with the
+
+\begin{itemize}
+\tightlist
+\item
+  The sample variance:
+\end{itemize}
+
+\[s^2=\frac{1}{N-1} \sum_{j=1..N} (x_j-\bar{x})^2\]
+
+It measures the average square distance of the \textbf{observations} to the average. The reason for \(N-1\) will be explained when we talk about inference.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{sample-variance-1}{%
+\section{Sample variance}\label{sample-variance-1}}
+
+\begin{itemize}
+\tightlist
+\item
+  In terms of the frequencies of \textbf{categorical and ordered} variables
+\end{itemize}
+
+\[s^2=\frac{N}{N-1} \sum_{x} (x-\bar{x})^2 f_x\]
+
+\(s^2\) can be thought of as the moment of inertia of the observations.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{standard-deviation}{%
+\section{Standard deviation}\label{standard-deviation}}
+
+The squared root of the sample variance is called the \textbf{standard deviation} \(s\).
+
+The standard deviation of the convexity angle is
+
+\(s= [\frac{1}{123-1}((7.97-10.19894)^2+ (18.23-10.19894)^2\)\\
+\(+ (12.27-10.19894)^2 + ...)]^{1/2} = 5.086707\)
+
+The jaw convexity deviates from its mean by \(5.086707\).
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{iqr}{%
+\section{IQR}\label{iqr}}
+
+\begin{itemize}
+\item
+  Dispersion of data can also be measured with respect to the median by the \textbf{interquartile range}
+\item
+  We define the \textbf{first} quartile as the value \(x_p\) that makes the cumulative frequency \(F_p\) equal to \(0.25\)
+\end{itemize}
+
+\[q_{0.25}=\sum_{x\leq x_p} f_x =F_p=0.25\]
+
+\begin{itemize}
+\tightlist
+\item
+  We also define the \textbf{third} quartile as the value \(x_p\) that makes the cumulative frequency \(F_p\) equal to \(0.75\)
+\end{itemize}
+
+\[q_{0.75}=\sum_{x\leq x_p} f_x =F_p=0.75\]
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{iqr-1}{%
+\section{IQR}\label{iqr-1}}
+
+The distance between the third quartile and the first quartile is called the \textbf{interquartile range} (IQR) and captures the central 50\% of the observations
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-21-1.pdf}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{box-plot}{%
+\section{Box plot}\label{box-plot}}
+
+The interquartile range, the median, and the 5\% and 95\% of the data can be visualized in a \textbf{boxplot}, here the values of the outcomes are on the y-axis. The IQR is the box, the median is the line in the middle and the whiskers mark the 5\% and 95\% of the data.
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-22-1.pdf}
+
+\hypertarget{probability}{%
+\chapter{Probability}\label{probability}}
+
+\hypertarget{objective-1}{%
+\section{Objective}\label{objective-1}}
+
+\begin{itemize}
+\tightlist
+\item
+  Definition of probability
+\item
+  Probability algebra
+\item
+  Joint probability
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{random-experiments-1}{%
+\section{Random experiments}\label{random-experiments-1}}
+
+\textbf{Observation}
+
+\begin{itemize}
+\tightlist
+\item
+  An \textbf{observation} is the acquisition of a number or a characteristic from an experiment
+\end{itemize}
+
+\textbf{Outcome}
+
+\begin{itemize}
+\tightlist
+\item
+  An \textbf{outcome} is a possible observation that is the result of an experiment.
+\end{itemize}
+
+\textbf{Random experiment}
+
+\begin{itemize}
+\tightlist
+\item
+  An experiment that gives \textbf{different} outcomes when repeated in the same manner.
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{probability-1}{%
+\section{Probability}\label{probability-1}}
+
+The \textbf{probability} of an outcome is a measure of how sure we are to observe that outcome when performing a random experiment.
+
+\begin{itemize}
+\item
+  0: We are sure that the observation will \textbf{not} happen.
+\item
+  1: We are sure that the observation will happen.
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{example-3}{%
+\section{Example}\label{example-3}}
+
+\begin{itemize}
+\tightlist
+\item
+  Consider the following observations of a random experiment:
+\end{itemize}
+
+1 5 1 2 2 1 2 2
+
+\begin{itemize}
+\tightlist
+\item
+  How sure we are to obtain \(2\) in the following observation?
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{example-4}{%
+\section{Example}\label{example-4}}
+
+The frequency table is
+
+\begin{verbatim}
+##   outcome ni    fi
+## 1       1  3 0.375
+## 2       2  4 0.500
+## 3       5  1 0.125
+\end{verbatim}
+
+The \textbf{relative frequency} \(f_i\)
+
+\begin{itemize}
+\tightlist
+\item
+  is a number between \(0\) and \(1\).
+\item
+  measures the proportion of total observations that we observed a particular outcome.
+\item
+  seems a reasonable probability measure.
+\end{itemize}
+
+As \(f_2=0.5\) then we would be half certain to obtain a \(2\) in the next repetition of the experiment.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{relative-frequency}{%
+\section{Relative frequency}\label{relative-frequency}}
+
+As a measure of certainty is \(f_i\) enough?
+
+Say we repeated the experiment 12 times more:
+
+1 5 1 2 2 1 2 2 \textbf{3 1 1 3 3 1 6 3 5 6 4 4}
+
+The frequency table is now
+
+\begin{verbatim}
+##   outcome ni  fi
+## 1       1  6 0.3
+## 2       2  4 0.2
+## 3       3  4 0.2
+## 4       4  2 0.1
+## 5       5  2 0.1
+## 6       6  2 0.1
+\end{verbatim}
+
+New outcomes appeared and \(f_2\) is now \(0.2\), we are now a fifth certain of obtaining \(2\) in the next experiment\ldots{} probability should not depend on \(N\)
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{at-infinity}{%
+\section{At infinity}\label{at-infinity}}
+
+Say we repeated the experiment 1000 times:
+
+\begin{verbatim}
+##   outcome  ni    fi
+## 1       1 180 0.180
+## 2       2 159 0.159
+## 3       3 158 0.158
+## 4       4 168 0.168
+## 5       5 150 0.150
+## 6       6 185 0.185
+\end{verbatim}
+
+We find that \(f_i\) is converging to a constant value
+
+\[lim_{N\rightarrow \infty} f_i = P_i\]
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-26-1.pdf}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{frequentist-probability}{%
+\section{Frequentist probability}\label{frequentist-probability}}
+
+We call \textbf{Probability} \(P_i\) to the limit when \(N \rightarrow \infty\) of the \textbf{relative frequency} of observing the outcome \(i\) in a random experiment.
+
+Championed by \href{https://plato.stanford.edu/entries/probability-interpret/\#ClaPro}{Venn (1876)}
+
+The frequentist interpretation of probabilities is derived from data/experience (empirical).
+
+\begin{itemize}
+\tightlist
+\item
+  We do not observe \(P_i\), we observe \(f_i\)
+\item
+  When we \textbf{estimate} \(P_i\) with \(f_i\) (typically when \(N\) is large), we write: \[\hat{P_i}=f_i\]
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{classical-probability}{%
+\section{Classical Probability}\label{classical-probability}}
+
+Whenever a random experiment has \(M\) possible outcomes that are all \textbf{equally likely}, the probability of each outcome is \(\frac{1}{M}\).
+
+Championed by \href{https://plato.stanford.edu/entries/probability-interpret/\#ClaPro}{Laplace (1814)}.
+
+Since each outcome is \textbf{equally probable} we declare complete ignorance and the best we can do is to fairly distribute the same probability to each outcome.
+
+What if I told you that our experiment was the throw of the dice? then
+
+\(P_2=1/6=0.166666\).
+
+\[P_i=lim_{N\rightarrow \infty} \frac{n_i}{N}=\frac{1}{M}\]
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{classical-and-frequentist-probabilities}{%
+\section{Classical and frequentist probabilities}\label{classical-and-frequentist-probabilities}}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{probability-2}{%
+\section{Probability}\label{probability-2}}
+
+Probability is a number between \(0\) and \(1\) that is assigned to each member \(E\) of a collection of \textbf{events} of a \textbf{sample space} (\(S\)) from a random experiment.
+
+\[P(E) \in (0,1)\]
+
+where \(E \in S\)
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{sample-space}{%
+\section{Sample space}\label{sample-space}}
+
+We start by reasoning what are all the possible values (outcomes) that a random experiment could give.
+
+Note that we do not have to observe them in a particular experiment: We are using \textbf{reason/logic} and not observation.
+
+\textbf{Definition:}
+
+\begin{itemize}
+\item
+  The set of all possible outcomes of a random experiment is called the \textbf{sample space}
+  of the experiment.
+\item
+  The sample space is denoted as \(S\).
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{examples-of-sample-spaces}{%
+\section{Examples of sample spaces}\label{examples-of-sample-spaces}}
+
+\begin{itemize}
+\tightlist
+\item
+  temperature 35 and 42 degrees Celcius
+\item
+  sugar levels: 70-80mg/dL
+\item
+  the size of one screw from a production line: 70mm-72mm
+\item
+  number of emails received in an hour: 0-100
+\item
+  a dice throw: 1, 2, 3, 4, 5, 6
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{discrete-and-continuous-sample-spaces}{%
+\section{Discrete and continuous sample spaces}\label{discrete-and-continuous-sample-spaces}}
+
+\begin{itemize}
+\item
+  A sample space is discrete if it consists of a finite or countable infinite set of outcomes.
+\item
+  A sample space is continuous if it contains an interval (either finite or infinite in length) of
+  real numbers.
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{event}{%
+\section{Event}\label{event}}
+
+\textbf{Definition:}
+
+An \textbf{event} is a \textbf{subset} of the sample space of a random experiment. It is a \textbf{collection} of outcomes.
+
+Examples of events:
+
+\begin{itemize}
+\tightlist
+\item
+  The event of a healthy temperature: temperature 37-38 degrees Celsius
+\item
+  The event of producing a screw with a size: of 71.5mm
+\item
+  The event of receiving more than 4 emails in an hour.
+\item
+  The event of obtaining a number less than 3 in the throw of a dice
+\end{itemize}
+
+One event refers to a possible set of \textbf{outcomes}.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{event-operations}{%
+\section{Event operations}\label{event-operations}}
+
+For two events \(A\) and \(B\), we can construct the following derived events:
+
+\begin{itemize}
+\tightlist
+\item
+  Complement \(A'\): the event of \textbf{not} \(A\)
+\item
+  Union \(A \cup B\): the event of \(A\) \textbf{or} \(B\)\\
+\item
+  Intersection \(A \cap B\): the event of \(A\) \textbf{and} \(B\)
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{event-operations-example}{%
+\section{Event operations example}\label{event-operations-example}}
+
+Take
+
+\begin{itemize}
+\tightlist
+\item
+  Event \(A:\{1,2,3\}\) a number less or equal to three in the throw of a dice\\
+\item
+  Event \(B:\{2,4,6\}\) an even number in the throw of a dice
+\end{itemize}
+
+New events:
+
+\begin{itemize}
+\tightlist
+\item
+  Not less than three: \(A':\{4,5,6\}\)
+\item
+  Less or equal to three \textbf{or} even: \(A \cup B: \{1,2,3,4,6\}\)
+\item
+  Less or equal to three \textbf{and} even \(A \cap B: \{2\}\)
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{outcomes}{%
+\section{Outcomes}\label{outcomes}}
+
+Outcomes are events that are \textbf{mutually exclusive}
+
+\textbf{Definition:}
+
+Two events denoted as \(E_1\) and \(E_2\), such that
+
+\[E_1\cap E_2=\emptyset\]
+They cannot occur at the same time.
+
+Example:
+
+\begin{itemize}
+\item
+  The outcome of obtaining \(1\) \textbf{and} the outcome of obtaining \(5\) in the throw of one dice are mutually exclusive:
+\item
+  The event of obtaining \(1\) and \(5\) is empty:\[\{1\}\cap \{5\}=\emptyset\]
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{probability-definition}{%
+\section{Probability definition}\label{probability-definition}}
+
+A probability is a number that is assigned to each possible event (\(E\)) of a sample space (\(S\)) of a random experiment that satisfies the following properties:
+
+\begin{itemize}
+\tightlist
+\item
+  \(P(S)=1\)
+\item
+  \(0 \leq P(E) \leq 1\)
+\item
+  when \(E_1\cap E_2=\emptyset\) \[P(E_1\cup E_2) = P(E_1) + P(E_2)\]
+\end{itemize}
+
+Proposed by Kolmogorov's (1933)
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{probability-properties}{%
+\section{Probability properties}\label{probability-properties}}
+
+Kolmogorov says that we can build a probability table (likewise the relative frequency table)
+
+\begin{longtable}[]{@{}cc@{}}
+\toprule
+outcome & Probability \\
+\midrule
+\endhead
+\(1\) & 1/6 \\
+\(2\) & 1/6 \\
+\(3\) & 1/6 \\
+\(4\) & 1/6 \\
+\(5\) & 1/6 \\
+\(6\) & 1/6 \\
+\(P(1 \cup 2\cup ... \cup 6)\) & 1 \\
+\bottomrule
+\end{longtable}
+
+As \(\{1,2,3,4,5,6\}\) are mutually exclusive then
+
+\[P(S)=P(1\cup 2\cup ... \cup 6) = P(1)+P(2)+ ...+P(n)=1\]
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{addition-rule}{%
+\section{Addition Rule}\label{addition-rule}}
+
+When \(A\) and \(B\) are not mutually exclusive then:
+
+\[P(A \cup B)=P(A) + P(B) - P(A\cap B)\]
+
+Where \(P(A)\) and \(P(B)\) are called the \textbf{marginal probabilities}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{example-addition-rule}{%
+\section{Example Addition Rule}\label{example-addition-rule}}
+
+Take
+
+\begin{itemize}
+\tightlist
+\item
+  Event \(A:\{1,2,3\}\) a number less or equal to three in the throw of a dice\\
+\item
+  Event \(B:\{2,4,6\}\) an even number in the throw of a dice
+\end{itemize}
+
+then:
+
+\begin{itemize}
+\tightlist
+\item
+  \(P(A): P(1) + P(2) + P(3)=3/6\)
+\item
+  \(P(B): P(2) + P(4) + P(6)=3/6\)
+\item
+  \(P(A \cap B): P(2) = 1/6\)
+\end{itemize}
+
+\(P(A \cup B)=P(A) + P(B) - P(A\cap B)=3/6+3/6-1/6=5/6\)
+
+Note: \(P(2)\) appears in \(P(A)\) and \(P(B)\) that's why we subtract it with the intersection
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{venn-diagram}{%
+\section{Venn diagram}\label{venn-diagram}}
+
+Note that can always break down the sample space in \textbf{mutually exclusive} sets involving the intersections:
+
+\(S=\{A\cap B, A \cap B', A'\cap B, A'\cap B'\}\)
+
+Marginals:
+
+\begin{itemize}
+\tightlist
+\item
+  \(P(A)=P(A\cap B') + P(A \cap B)=2/6+1/6=3/6\)
+\item
+  \(P(B)=P(A'\cap B) +P(A \cap B)=2/6+1/6=3/6\)
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{probability-table}{%
+\section{Probability table}\label{probability-table}}
+
+Let's look at the probability table
+
+\begin{longtable}[]{@{}cc@{}}
+\toprule
+outcome & Probability \\
+\midrule
+\endhead
+\(A\cap B\) & \(P(A\cap B)\) \\
+\(A\cap B'\) & \(P(A\cap B')\) \\
+\(A'\cap B\) & \(P(A'\cap B)\) \\
+\(A'\cap B'\) & \(P(A'\cap B')\) \\
+sum & \(1\) \\
+\bottomrule
+\end{longtable}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{example-probability-table}{%
+\section{Example probability table}\label{example-probability-table}}
+
+We also write \(A \cap B\) as \((A,B)\) and call it the \textbf{joint probability} of \(A\) and \(B\)
+
+In our example:
+
+\begin{longtable}[]{@{}cc@{}}
+\toprule
+outcome & Probability \\
+\midrule
+\endhead
+\((A, B)\) & \(P(A, B)=1/6\) \\
+\((A, B')\) & \(P(A, B')=2/6\) \\
+\((A', B)\) & \(P(A', B)=2/6\) \\
+\((A', B')\) & \(P(A', B')=1/6\) \\
+sum & \(1\) \\
+\bottomrule
+\end{longtable}
+
+Note: each outcome has \(two\) values (one for the characteristic of type \(A\) and another for type \(B\))
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{contingency-table}{%
+\section{Contingency table}\label{contingency-table}}
+
+We can organize the probability of \textbf{joint outcomes} in a \textbf{contingency table}
+
+\begin{longtable}[]{@{}cccc@{}}
+\toprule
+& \(B\) & \(B'\) & sum \\
+\midrule
+\endhead
+\(A\) & \(P(A, B )\) & \(P(A, B' )\) & \(P(A)\) \\
+\(A'\) & \(P(A', B )\) & \(P(A', B' )\) & \(P(A')\) \\
+sum & \(P(B)\) & \(P(B')\) & 1 \\
+\bottomrule
+\end{longtable}
+
+Marginals:
+
+\begin{itemize}
+\tightlist
+\item
+  \(P(A)=P(A, B') + P(A, B)\)
+\item
+  \(P(B)=P(A', B) +P(A, B)\)
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{example-contingency-table}{%
+\section{Example contingency table}\label{example-contingency-table}}
+
+\begin{itemize}
+\tightlist
+\item
+  Event \(A:\{1,2,3\}\) a number less or equal to three in the throw of a dice\\
+\item
+  Event \(B:\{2,4,6\}\) an even number in the throw of a dice
+\end{itemize}
+
+\begin{longtable}[]{@{}cccc@{}}
+\toprule
+& \(B\) & \(B'\) & sum \\
+\midrule
+\endhead
+\(A\) & \(1/6\) & \(2/6\) & \(3/6\) \\
+\(A'\) & \(2/6\) & \(1/6\) & \(3/6\) \\
+sum & \(3/6\) & \(3/6\) & 1 \\
+\bottomrule
+\end{longtable}
+
+Three forms of the \textbf{addition rule}:
+
+\(P(A \cup B)\)\[=P(A) + P(B) - P(A\cap B)\]
+\[=P(A \cap B)+P(A\cap B')+P(A\cap B')\]
+\[=1-P(A'\cap B')\]
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{misophonia-study}{%
+\section{Misophonia study}\label{misophonia-study}}
+
+In the misophonia study, the patients were assessed for their misophonia severity \textbf{and} if they were depressed.
+
+The outcome of one random experiment is to measure the misophonia severity \textbf{and} depression status of one patient. The repetition of the random experiment was to perform the same two measurements on another patient.
+
+\begin{verbatim}
+##     Misofonia.dic depresion.dic
+## 1               4             1
+## 2               2             0
+## 3               0             0
+## 4               3             0
+## 5               0             0
+## 6               0             0
+## 7               2             0
+## 8               3             0
+## 9               0             1
+## 10              3             0
+## 11              0             0
+## 12              2             0
+## 13              2             1
+## 14              0             0
+## 15              2             0
+## 16              0             0
+## 17              0             0
+## 18              3             0
+## 19              3             0
+## 20              0             0
+## 21              3             0
+## 22              3             0
+## 23              2             0
+## 24              0             0
+## 25              0             0
+## 26              0             0
+## 27              4             1
+## 28              2             0
+## 29              2             0
+## 30              0             0
+## 31              2             0
+## 32              0             0
+## 33              0             0
+## 34              0             0
+## 35              3             0
+## 36              0             0
+## 37              2             0
+## 38              3             1
+## 39              2             0
+## 40              2             0
+## 41              0             0
+## 42              2             0
+## 43              3             0
+## 44              0             0
+## 45              0             0
+## 46              2             0
+## 47              2             0
+## 48              3             0
+## 49              3             0
+## 50              0             0
+## 51              0             0
+## 52              4             1
+## 53              3             0
+## 54              3             1
+## 55              2             1
+## 56              0             1
+## 57              2             0
+## 58              0             0
+## 59              0             0
+## 60              0             0
+## 61              2             0
+## 62              2             0
+## 63              0             0
+## 64              0             0
+## 65              2             0
+## 66              3             1
+## 67              0             0
+## 68              1             0
+## 69              3             0
+## 70              2             0
+## 71              4             1
+## 72              3             0
+## 73              2             1
+## 74              3             0
+## 75              0             1
+## 76              2             0
+## 77              3             0
+## 78              2             0
+## 79              4             1
+## 80              1             0
+## 81              2             0
+## 82              0             0
+## 83              2             0
+## 84              0             0
+## 85              2             0
+## 86              0             1
+## 87              2             0
+## 88              2             0
+## 89              4             1
+## 90              3             0
+## 91              0             1
+## 92              3             0
+## 93              0             0
+## 94              0             0
+## 95              0             0
+## 96              2             0
+## 97              2             0
+## 98              1             0
+## 99              3             0
+## 100             0             0
+## 101             0             0
+## 102             3             1
+## 103             2             0
+## 104             1             0
+## 105             3             0
+## 106             0             0
+## 107             4             1
+## 108             4             1
+## 109             2             0
+## 110             3             0
+## 111             3             0
+## 112             3             1
+## 113             0             0
+## 114             3             0
+## 115             2             0
+## 116             1             0
+## 117             2             0
+## 118             3             1
+## 119             3             0
+## 120             4             1
+## 121             2             0
+## 122             3             0
+## 123             2             0
+\end{verbatim}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{contingency-table-for-frequencies}{%
+\section{Contingency table for frequencies}\label{contingency-table-for-frequencies}}
+
+\begin{itemize}
+\tightlist
+\item
+  For the number of observations \(n_{i,j}\) of each outcome \((x_i, y_i)\), misophonia: \(x\in \{0,1,2,3,4\}\) and depression \(y\in \{0,1\}\) (no:\(0\), yes:\(1\))
+\end{itemize}
+
+\begin{verbatim}
+##               
+##                Depression:0 Depression:1
+##   Misophonia:4            0            9
+##   Misophonia:3           25            6
+##   Misophonia:2           34            3
+##   Misophonia:1            5            0
+##   Misophonia:0           36            5
+\end{verbatim}
+
+\begin{itemize}
+\tightlist
+\item
+  For the relative frequencies \(f_{i,j}\)
+\end{itemize}
+
+\begin{verbatim}
+##               
+##                Depression:0 Depression:1
+##   Misophonia:4   0.00000000   0.07317073
+##   Misophonia:3   0.20325203   0.04878049
+##   Misophonia:2   0.27642276   0.02439024
+##   Misophonia:1   0.04065041   0.00000000
+##   Misophonia:0   0.29268293   0.04065041
+\end{verbatim}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{heat-map}{%
+\section{Heat map}\label{heat-map}}
+
+The contingency table can be plotted as a \textbf{heat map}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-30-1.pdf}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{continous-variables}{%
+\section{Continous variables}\label{continous-variables}}
+
+In the misophonia study, the jaw protrusion was also measured as a possible cephalometric factor for de disease.
+
+\begin{verbatim}
+##     Angulo_convexidad protusion.mandibular
+## 1                7.97                13.00
+## 2               18.23                -5.00
+## 3               12.27                11.50
+## 4                7.81                16.80
+## 5                9.81                33.00
+## 6               13.50                 2.00
+## 7               19.30                -3.90
+## 8                7.70                16.80
+## 9               12.30                 8.00
+## 10               7.90                28.80
+## 11              12.60                 3.00
+## 12              19.00                -7.90
+## 13               7.27                28.30
+## 14              14.00                 4.00
+## 15               5.40                22.20
+## 16               8.00                 0.00
+## 17              11.20                15.00
+## 18               7.75                17.00
+## 19               7.94                49.00
+## 20              16.69                 5.00
+## 21               7.62                42.00
+## 22               7.02                28.00
+## 23               7.00                 9.40
+## 24              19.20               -13.20
+## 25               7.96                23.00
+## 26              14.70                 2.30
+## 27               7.24                25.00
+## 28               7.80                 4.90
+## 29               7.90                92.00
+## 30               4.70                 6.00
+## 31               4.40                17.00
+## 32              14.00                 3.30
+## 33              14.40                10.30
+## 34              16.00                 6.30
+## 35               1.40                19.50
+## 36               9.76                22.00
+## 37               7.90                 5.00
+## 38               7.90                78.00
+## 39               7.40                 9.30
+## 40               6.30                50.60
+## 41               7.76                18.00
+## 42               7.30                18.00
+## 43               7.00                10.00
+## 44              11.23                 4.00
+## 45              16.00                13.30
+## 46               7.90                48.00
+## 47               7.29                23.50
+## 48               6.91                37.60
+## 49               7.10                15.00
+## 50              13.40                 5.10
+## 51              11.60                -2.20
+## 52              -1.00                32.00
+## 53               6.00                25.00
+## 54               7.82                24.00
+## 55               4.80                33.60
+## 56              11.00                 3.30
+## 57               9.00                31.50
+## 58              11.50                12.80
+## 59              16.00                 3.00
+## 60              15.00                 6.00
+## 61               1.40                21.40
+## 62              16.80               -10.00
+## 63               7.70                19.00
+## 64              16.14                32.00
+## 65               7.12                15.00
+## 66              -1.00                10.00
+## 67              17.00               -16.90
+## 68               9.26                 2.00
+## 69              18.70               -10.10
+## 70               3.40                12.20
+## 71              21.30               -11.00
+## 72               7.50                 5.20
+## 73               6.03                16.00
+## 74               7.50                 5.80
+## 75              19.00                 5.20
+## 76              19.01                13.00
+## 77               8.10                13.60
+## 78               7.80                16.10
+## 79               6.10                33.20
+## 80              15.26                 4.00
+## 81               7.95                12.00
+## 82              18.00                -1.50
+## 83               4.60                18.30
+## 84              15.00                 3.00
+## 85               7.50                15.80
+## 86               8.00                27.10
+## 87              16.80               -10.00
+## 88               8.54                25.00
+## 89               7.00                27.10
+## 90              18.30                -8.00
+## 91               7.80                12.00
+## 92              16.00                -8.00
+## 93              14.00                23.00
+## 94              12.30                 5.00
+## 95              11.40                 1.00
+## 96               8.50                18.90
+## 97               7.00                15.00
+## 98               7.96                22.00
+## 99              17.60                -3.50
+## 100             10.00                20.00
+## 101              3.50                12.20
+## 102              6.70                14.70
+## 103             17.00                -5.00
+## 104             20.26                -4.15
+## 105              6.64                11.00
+## 106              1.80                -4.00
+## 107              7.02                25.00
+## 108              2.46                35.00
+## 109             19.00                -5.00
+## 110             17.86               -30.00
+## 111              6.10                12.20
+## 112              6.64                19.00
+## 113             12.00                 1.60
+## 114              6.60                20.00
+## 115              8.70                17.10
+## 116             14.05                24.00
+## 117              7.20                 7.10
+## 118             19.70               -11.00
+## 119              7.70                21.30
+## 120              6.02                 5.00
+## 121              2.50                12.90
+## 122             19.00                 5.90
+## 123              6.80                 5.80
+\end{verbatim}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{heat-map-for-continuous-variables}{%
+\section{Heat map for continuous variables}\label{heat-map-for-continuous-variables}}
+
+\begin{itemize}
+\item
+  Two dimensional \textbf{histogram}.
+\item
+  It illustrates the ``continuous contingency'' table for continuous variables
+\end{itemize}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-32-1.pdf}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{scatter-plot}{%
+\section{Scatter plot}\label{scatter-plot}}
+
+\begin{itemize}
+\item
+  The \textbf{histogram} depends on the size of the bin (pixel).
+\item
+  If the pixel is small enough to contain a single observation then the heat map results in a \textbf{scatter plot}
+\end{itemize}
+
+The scatter plot is the illustration of a ``contingency table'' for continuous variables when the bin (pixel) is small enough to contain one single observation (consisting of a pair of values).
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-33-1.pdf}
+
+\hypertarget{conditional-probability}{%
+\chapter{Conditional Probability}\label{conditional-probability}}
+
+\hypertarget{objective-2}{%
+\section{Objective}\label{objective-2}}
+
+\begin{itemize}
+\tightlist
+\item
+  Conditional probability
+\item
+  Independence
+\item
+  Bayes' theorem
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{joint-probability}{%
+\section{Joint Probability}\label{joint-probability}}
+
+The joint probability of two events \(A\) and \(B\) is
+\[P(A,B)=P(A \cap B)\]
+
+Let's imagine a random experiment that measures two different types of outcomes.
+
+\begin{itemize}
+\item
+  height and weight of an individual: \((h, w)\)
+\item
+  time and place of an electric charge: \((p, t)\)
+\item
+  a throw of two dice: (\(n_1\),\(n_2\))
+\item
+  cross two traffic lights in green: (\(\bar{R_1}\), \(\bar{R_2}\))
+\end{itemize}
+
+In many cases, we are interested in finding out whether the values of one outcome \textbf{condition} the values of the other.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{diagnostics}{%
+\section{Diagnostics}\label{diagnostics}}
+
+Let's consider a \textbf{diagnostic tool}
+
+We want to find the state of a system (s):
+
+\begin{itemize}
+\tightlist
+\item
+  inadequate (yes)
+\item
+  adequate (no)
+\end{itemize}
+
+with a test (t):
+
+\begin{itemize}
+\tightlist
+\item
+  positive
+\item
+  negative
+\end{itemize}
+
+We test a battery to find how long it can live. We stress a cable to find if it resists carrying a certain load. We perform a PCR to see if someone is infected.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{diagnostics-test}{%
+\section{Diagnostics Test}\label{diagnostics-test}}
+
+Let's consider diagnosing infection with a new test.
+
+Infection status:
+
+\begin{itemize}
+\tightlist
+\item
+  yes (infected)
+\item
+  no (not infected)
+\end{itemize}
+
+Test:
+
+\begin{itemize}
+\tightlist
+\item
+  positive
+\item
+  negative
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{observations}{%
+\section{Observations}\label{observations}}
+
+Each individual is a random experiment with two measurements: (Infection, Test)
+
+\begin{longtable}[]{@{}ccc@{}}
+\toprule
+Subject & Infection & Test \\
+\midrule
+\endhead
+\(s_1\) & yes & positive \\
+\(s_2\) & no & negative \\
+\(s_3\) & yes & positive \\
+\ldots{} & \ldots{} & \ldots{} \\
+\(s_i\) & no & positive* \\
+\ldots{} & \ldots{} & \ldots{} \\
+\ldots{} & \ldots{} & \ldots{} \\
+\(s_n\) & yes & negative* \\
+\bottomrule
+\end{longtable}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{contingency-tables}{%
+\section{Contingency tables}\label{contingency-tables}}
+
+\begin{itemize}
+\tightlist
+\item
+  For the number of observations of each outcome
+\end{itemize}
+
+\begin{longtable}[]{@{}cccc@{}}
+\toprule
+& Infection: yes & Infection: no & sum \\
+\midrule
+\endhead
+Test: positive & 18 & 12 & 30 \\
+Test: negative & 30 & 300 & 330 \\
+sum & 48 & 312 & 360 \\
+\bottomrule
+\end{longtable}
+
+\begin{itemize}
+\tightlist
+\item
+  For the relative frequencies, if \(N>>0\) we will take \(f_{i,j}=\hat{P}(x_i, y_j)\)
+\end{itemize}
+
+\begin{longtable}[]{@{}cccc@{}}
+\toprule
+& Infection: yes & Infection: no & sum \\
+\midrule
+\endhead
+Test: positive & 0.05 & 0.0333 & 0.0833 \\
+Test: negative & 0.0833 & 0.833 & 0.9166 \\
+sum & 0.133 & 0.866 & 1 \\
+\bottomrule
+\end{longtable}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{conditional-probability-1}{%
+\section{Conditional probability}\label{conditional-probability-1}}
+
+Let's think first in terms of those who are \textbf{infected}
+
+Within those who are infected (\textbf{yes}), what is the probability of those who tested positive?
+
+\begin{itemize}
+\tightlist
+\item
+  Sensitivity (true positive rate)
+\end{itemize}
+
+\[\hat{P}(positive|yes)=\frac{n_{positive,yes}}{n_{yes}}\]
+
+\[=\frac{\frac{n_{positive,yes}}{N}}{\frac{n_{yes}}{N}}=\frac{f_{positive,yes}}{f_{yes}}\]
+
+Therefore, in the limit, we expect to have a probability of the type
+
+\[P(positive|yes)=\frac{P(positive, yes)}{P(yes)}=\frac{P(positive \cap yes)}{P(yes)}\]
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{conditional-probability-2}{%
+\section{Conditional probability}\label{conditional-probability-2}}
+
+\textbf{Definition:}
+The conditional probability of an event B given an event A, denoted as \(P(A|B)\), is
+\[P(A|B) = \frac{P(A\cap B)}{P(B)}\]
+
+\begin{itemize}
+\tightlist
+\item
+  you can prove that the conditional probability satisfies the axioms of probability.
+\item
+  it is the probability with the sampling space given by \(B\): \(S_B\).
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{conditional-contingency-table}{%
+\section{Conditional contingency table}\label{conditional-contingency-table}}
+
+\begin{longtable}[]{@{}ccc@{}}
+\toprule
+& Infection: Yes & Infection: No \\
+\midrule
+\endhead
+Test: positive & P(positive {\textbar{}} yes) & P(positive {\textbar{}} no) \\
+Test: negative & P(negative {\textbar{}} yes) & P(negative {\textbar{}} no) \\
+sum & 1 & 1 \\
+\bottomrule
+\end{longtable}
+
+\begin{itemize}
+\item
+  True positive rate (Sensitivity): The probability of testing positive \textbf{if} having the disease \(P(positive|yes)\)
+\item
+  True negative rate (Specificity): The probability of testing negative \textbf{if} not having the disease \(P(negative|no)\)
+\item
+  False-positive rate: The probability of testing positive \textbf{if} not having the disease \(P(positive|no)\)
+\item
+  False-negative rate: The probability of testing negative \textbf{if} having the disease \(P(negative|yes)\)
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{example-conditional-contingency-table}{%
+\section{Example conditional contingency table}\label{example-conditional-contingency-table}}
+
+Taking the frequencies as estimates of the probabilities then
+
+\begin{longtable}[]{@{}ccc@{}}
+\toprule
+& Infection: Yes & Infection: No \\
+\midrule
+\endhead
+Test: positive & 18/48 = 0.375 & 12/312 = 0.038 \\
+Test: negative & 30/48 = 0.625 & 300/312 =0.962 \\
+sum & 1 & 1 \\
+\bottomrule
+\end{longtable}
+
+Our diagnostic tool has low sensitivity (0.375) but high
+specificity (0.962).
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{multiplication-rule}{%
+\section{Multiplication rule}\label{multiplication-rule}}
+
+Now let's imagine the real situation.
+
+\begin{itemize}
+\item
+  PCRs for coronavirus were (performed){[}\url{https://www.nejm.org/doi/full/10.1056/NEJMp2015897}{]} in people in the hospital who we are sure to be infected. They have a sensitivity of 70\%. They have also been tested in the lab in conditions of no infection with 96\% sensitivity.
+\item
+  A prevalence study in Spain showed that \(P(yes)=0.05\), \(P(no)=0.95\) before summer.
+\end{itemize}
+
+With this data, what was the probability that a randomly selected person in the population tested positive \textbf{and} was infected: \(P(yes \cap positive)=P(yes, positive)\)?
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{diagnostic-performance}{%
+\section{Diagnostic performance}\label{diagnostic-performance}}
+
+To study the performance of a new diagnostic test:
+
+\begin{itemize}
+\item
+  you select specimens that are inadequate (disease: \textbf{yes}) and apply the test, trying to find its sensitivity: \(P(positive|yes)\) (0.70 for PCRs)
+\item
+  you select specimens that are adequate (disease: \textbf{no}) and apply the test, trying to find its specificity: \(P(negative|no)\) (0.96 for PCRs)
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{longtable}[]{@{}lll@{}}
+\toprule
+& Infection: Yes & Infection: No \\
+\midrule
+\endhead
+Test: positive & P(positive{\textbar{}}yes)=0.7 & P(positive{\textbar{}}no)=0.06 \\
+Test: negative & P(negative{\textbar{}}yes)=0.3 & P(negative{\textbar{}}no)=0.94 \\
+sum & 1 & 1 \\
+\bottomrule
+\end{longtable}
+
+From this matrix, can we obtain \(P(yes, positive)\)?
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{multiplication-rule-1}{%
+\section{Multiplication rule}\label{multiplication-rule-1}}
+
+How do you recover the joint probability from the conditional probability?
+
+For two events \(A\) and \(B\) we have the multiplication rule
+
+\[P(A, B) =  P(A|B) P(B)\]
+
+that follows from the definition of the conditional probability.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{contingency-table-in-terms-of-conditional-probabilities}{%
+\section{Contingency table in terms of conditional probabilities}\label{contingency-table-in-terms-of-conditional-probabilities}}
+
+\begin{longtable}[]{@{}cccc@{}}
+\toprule
+& Infection: Yes & Infection: No & sum \\
+\midrule
+\endhead
+Test: positive & P(positive {\textbar{}} yes)P(yes) & P(positive {\textbar{}} no)P(no) & P(positive) \\
+Test: negative & P(negative {\textbar{}} yes)P(yes) & P(negative {\textbar{}} no) P(no) & P(negative) \\
+sum & P(yes) & P(no) & 1 \\
+\bottomrule
+\end{longtable}
+
+For instance the probability of testing \(positive\) and being infected \(yes\):
+
+\begin{itemize}
+\tightlist
+\item
+  \(P(positive, yes)=P(positive \cap yes) = P(positive|yes) P(yes)\)
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{conditional-tree}{%
+\section{Conditional tree}\label{conditional-tree}}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{contingency-table-in-terms-of-conditional-probabilities-1}{%
+\section{Contingency table in terms of conditional probabilities}\label{contingency-table-in-terms-of-conditional-probabilities-1}}
+
+\begin{longtable}[]{@{}cccc@{}}
+\toprule
+& Infection: yes & Infection: no & sum \\
+\midrule
+\endhead
+Test: positive & 0.035 & 0.057 & 0.092 \\
+Test: negative & 0.015 & 0.893 & 0.908 \\
+sum & 0.05 & 0.95 & 1 \\
+\bottomrule
+\end{longtable}
+
+\begin{itemize}
+\tightlist
+\item
+  \(P(positive,yes)= 0.035\)
+\end{itemize}
+
+But we also found the marginal of being positive:
+
+\begin{itemize}
+\tightlist
+\item
+  \(P(positive)=0.092\)
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{total-probability-rule}{%
+\section{Total probability rule}\label{total-probability-rule}}
+
+\begin{longtable}[]{@{}llll@{}}
+\toprule
+& Infection: Yes & Infection: No & sum \\
+\midrule
+\endhead
+Test: positive & P(positive {\textbar{}} yes)P(yes) & P(positive {\textbar{}} no)P(no) & P(positive) \\
+Test: negative & P(negative {\textbar{}} yes)P(yes) & P(negative {\textbar{}} no) P(no) & P(negative) \\
+sum & P(yes) & P(no) & 1 \\
+\bottomrule
+\end{longtable}
+
+When we write the unknown marginals in terms of their conditional probabilities we call it the \textbf{total probability rule}
+
+\begin{itemize}
+\tightlist
+\item
+  \(P(positive)=P(positive|yes)P(yes)+P(positive|no)P(no)\)
+\item
+  \(P(negative)=P(negative|yes)P(yes)+P(negative|no)P(no)\)
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{conditional-tree-1}{%
+\section{Conditional tree}\label{conditional-tree-1}}
+
+\textbf{Total probability rule} for the marginal of \(B\): In how many ways I can obtain the outcome \(B\)?
+
+\(P(B)=P(B|A)P(A)+P(B|A')P(A')\)
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{statistical-independence}{%
+\section{Statistical independence}\label{statistical-independence}}
+
+In many applications, we want to know if the knowledge of one event conditions the outcome of another event.
+
+\begin{itemize}
+\tightlist
+\item
+  there are cases where we want to know if the events are not conditioned
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{statistical-independence-1}{%
+\section{Statistical independence}\label{statistical-independence-1}}
+
+Consider conductors for which we measure their surface flaws and if their conduction capacity is defective
+
+The estimated \textbf{joint probabilities} are
+
+\begin{longtable}[]{@{}cccc@{}}
+\toprule
+& flaws (F) & no flaws (F') & sum \\
+\midrule
+\endhead
+defective (D) & \(0.005\) & \(0.045\) & \(0.05\) \\
+no defective (D') & \(0.095\) & \(0.855\) & \(0.95\) \\
+sum & \(0.1\) & \(0.9\) & 1 \\
+\bottomrule
+\end{longtable}
+
+where, for instance, the joint probability of \(F\) and \(D\) is
+
+\begin{itemize}
+\tightlist
+\item
+  \(P(D,F)=0.005\)
+\end{itemize}
+
+The marginal probabilities are
+
+\begin{itemize}
+\tightlist
+\item
+  \(P(D)=P(D, F) + P(D, F')=0.05\)
+\item
+  \(P(F)=P(D, F) + P(D', F)= 0.1\).
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{statistical-independence-2}{%
+\section{Statistical independence}\label{statistical-independence-2}}
+
+What is the \textbf{conditional probability} of observing a defective conductor if they have a flaw?
+
+\begin{longtable}[]{@{}ccc@{}}
+\toprule
+& F & F' \\
+\midrule
+\endhead
+D & P(D{\textbar{}}F) = 0.05 & P(D{\textbar{}}F')=0.05 \\
+D' & P(D'{\textbar{}}F)=0.95 & P(D'{\textbar{}}F')=0.95 \\
+sum & 1 & 1 \\
+\bottomrule
+\end{longtable}
+
+The marginals and the conditional probabilities are the same!
+
+\begin{itemize}
+\tightlist
+\item
+  \(P(D|F)=P(D|F')=P(D)\)
+\item
+  \(P(D'|F)=P(D'|F')=P(D')\)
+\end{itemize}
+
+The probability of observing a defective conductor \textbf{does not} depend on having observed or not a flaw.
+
+\[P(D) = P(D|F)\]
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{statistical-independence-3}{%
+\section{Statistical independence}\label{statistical-independence-3}}
+
+Two events \(A\) and \(B\) are statistically independent if
+
+\begin{itemize}
+\tightlist
+\item
+  \(P(A|B)=P(A)\); \(A\) is independent of \(B\)
+\item
+  \(P(B|A)=P(B)\); \(B\) is independent of \(A\)
+\end{itemize}
+
+and by the multiplication rule, their joint probability is
+
+\begin{itemize}
+\tightlist
+\item
+  \(P(A\cap B)=P(A|B)P(B)=P(A)P(B)\)
+\end{itemize}
+
+the multiplication of their marginal probabilities.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{products-of-marginals-products}{%
+\section{Products of marginals products}\label{products-of-marginals-products}}
+
+\begin{longtable}[]{@{}cccc@{}}
+\toprule
+& F & F' & sum \\
+\midrule
+\endhead
+D & \(0.005\) & \(0.045\) & \(0.05\) \\
+D' & \(0.095\) & \(0.855\) & \(0.95\) \\
+sum & \(0.1\) & \(0.9\) & 1 \\
+\bottomrule
+\end{longtable}
+
+Confirm that all the entries of the matrix are the product of the marginals.
+
+For example:
+
+\begin{itemize}
+\tightlist
+\item
+  \(P(F)P(D)= P(D \cap F)\)
+\item
+  \(P(D')P(F')=P(D' \cap F')\)
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{example-5}{%
+\section{Example}\label{example-5}}
+
+Outcomes of throwing two coins: \(S={(H,H), (H,T), (T,H), (T,T)}\)
+
+\begin{longtable}[]{@{}cccc@{}}
+\toprule
+& H & T & sum \\
+\midrule
+\endhead
+H & \(1/4\) & \(1/4\) & \(1/2\) \\
+T & \(1/4\) & \(1/4\) & \(1/2\) \\
+sum & \(1/2\) & \(1/2\) & 1 \\
+\bottomrule
+\end{longtable}
+
+\begin{itemize}
+\tightlist
+\item
+  Obtaining a head in the first coin does not condition obtaining a tail in the result of the second coin \(P(T|H)=P(T)=1/2\)
+\item
+  the probability of obtaining a head and then a tail is the product of each independent outcome \(P(H, T)=P(H)*P(T)=1/4\)
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{finding-reverse-probabilities}{%
+\section{Finding reverse probabilities}\label{finding-reverse-probabilities}}
+
+From the conditional contingency table
+
+\begin{longtable}[]{@{}ccc@{}}
+\toprule
+& Infection: Yes & Infection: No \\
+\midrule
+\endhead
+Test: positive & P(positive {\textbar{}} yes) & P(positive {\textbar{}} no) \\
+Test: negative & P(negative {\textbar{}} yes) & P(negative {\textbar{}} no) \\
+sum & 1 & 1 \\
+\bottomrule
+\end{longtable}
+
+How can we calculate the probability of being infected if tested positive: \(P(yes|positive)\)?
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{recover-joint-probabilities}{%
+\section{Recover joint probabilities}\label{recover-joint-probabilities}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  We recover the contingency table for joint probabilities
+\end{enumerate}
+
+\begin{longtable}[]{@{}cccc@{}}
+\toprule
+& Infection: Yes & Infection: No & sum \\
+\midrule
+\endhead
+Test: positive & P(positive {\textbar{}} yes)P(yes) & P(positive {\textbar{}} no)P(no) & P(positive) \\
+Test: negative & P(negative {\textbar{}} yes)P(yes) & P(negative {\textbar{}} no) P(no) & P(negative) \\
+sum & P(yes) & P(no) & 1 \\
+\bottomrule
+\end{longtable}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{reverse-conditionals}{%
+\section{Reverse conditionals}\label{reverse-conditionals}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  We compute the conditional probabilities for the test:
+\end{enumerate}
+
+\[P(infection|test)=\frac{P(test|infection)P(infection)}{P(test)}\]
+
+\begin{longtable}[]{@{}cccc@{}}
+\toprule
+& Infection: Yes & Infection: No & sum \\
+\midrule
+\endhead
+Test: positive & P(yes{\textbar{}}positive) & P(no{\textbar{}}positive) & 1 \\
+Test: negative & P(yes{\textbar{}}negative) & P(no{\textbar{}}negative) & 1 \\
+\bottomrule
+\end{longtable}
+
+For instance:
+\[P(yes|positive)=\frac{P(positive|yes)P(yes)}{P(positive)}\]
+since we usually don't have \(P(positive)\) we use the \textbf{total probability} rule in the denominator
+
+\[P(yes|positive)=\frac{P(positive|yes)P(yes)}{P(positive|yes)P(yes)+P(positive|no)P(no)}\]
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{bayes-theorem}{%
+\section{Baye's theorem}\label{bayes-theorem}}
+
+The expression:
+
+\[P(yes|positive)=\frac{P(positive|yes)P(yes)}{P(positive|yes)P(yes)+P(positive|no)P(no)}\]
+
+is called the \textbf{Bayes theorem}
+
+\textbf{Theorem}
+
+If \(E1, E2, ..., Ek\) are \(k\) mutually exclusive and exhaustive events and \(B\) is any event,
+
+\[P(Ei|B)=\frac{P(B|Ei)P(Ei)}{P(B|E1)P(E1) +...+ P(B|Ek)P(Ek)}\]
+
+It allows to reverse the conditionals:
+
+\[P(B|A) \rightarrow P(A|B)\]
+
+Or \textbf{design} a test \(B\) in controlled condition \(A\) and then use it to \textbf{infer} the probability of the condition when the test is positive.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{example-bayes-theorem}{%
+\section{Example: Bayes' theorem}\label{example-bayes-theorem}}
+
+Baye's theorem:
+
+\[P(yes|positive)  = \frac{P(positive|yes) P(yes)}{P(possitive|yes)P(yes)+P(positive|no)P(no)}\]
+
+we know:
+
+\begin{itemize}
+\item
+  \(P(positive|yes)=0.70\)
+\item
+  \(P(positive|no)=1- P(negative|no)=0.06\)
+\item
+  the probability of infection and not infection in the population: \(P(yes)=0.05\) and \(P(no)=1-P(yes)=0.95\).
+\end{itemize}
+
+Therefore:
+
+\[P(yes|positive)=0.47\]
+
+Tests are not so good to \textbf{confirm} infections.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{example-bayes-theorem-1}{%
+\section{Example: Bayes' theorem}\label{example-bayes-theorem-1}}
+
+Let's now apply it to the probability of not being infected if the test is negative
+
+\[P(no|negative)  = \frac{P(negative|no)  P(no)}{P(negative|no) P(no)+P(negative|yes)P(yes)}\]
+
+Substitution of all the values gives
+
+\[P(no|negative)=0.98\]
+
+Tests are good to \textbf{rule out} infections.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{exercises}{%
+\chapter{Exercises}\label{exercises}}
+
+\hypertarget{data-description-1}{%
+\section{Data description}\label{data-description-1}}
+
+\hypertarget{exercise-1}{%
+\subsubsection{Exercise 1}\label{exercise-1}}
+
+We have performed an experiment 12 times with the following results
+
+\begin{verbatim}
+## [1]  3  3 10  2  6 11  5  4
+\end{verbatim}
+
+Answer the following questions:
+
+\begin{itemize}
+\tightlist
+\item
+  Compute the relative frequencies of each outcome.
+\item
+  Compute the cumulative frequencies of each outcome.
+\item
+  What is the average of the observations?
+\item
+  What is the median?
+\item
+  What is the third quartile?
+\item
+  What is the first quartile?
+\end{itemize}
+
+\hypertarget{exercise-2}{%
+\subsubsection{Exercise 2}\label{exercise-2}}
+
+We have performed an experiment 10 times with the following results
+
+\begin{verbatim}
+##  [1] 2.875775 7.883051 4.089769 8.830174 9.404673 0.455565 5.281055 8.924190
+##  [9] 5.514350 4.566147
+\end{verbatim}
+
+Consider 10 bins of size 1: {[}0,1{]}, (1,2{]}\ldots(9,10{]}.
+
+Answer the following questions:
+
+\begin{itemize}
+\item
+  Compute the relative frequencies of each outcome and draw the histogram
+\item
+  Compute the cumulative frequencies of each outcome and sketch the cumulative plot.
+\item
+  Sketch a boxplot.
+\end{itemize}
+
+\hypertarget{probability-3}{%
+\section{Probability}\label{probability-3}}
+
+\hypertarget{exercise-1-1}{%
+\subsubsection{Exercise 1}\label{exercise-1-1}}
+
+The outcome of one random experiment is to measure the misophonia severity \textbf{and} depression status of one patient.
+
+\begin{itemize}
+\tightlist
+\item
+  Misophonia severity: \(x\in \{0,1,2,3,4\}\)
+\item
+  Depression: \(y\in \{0,1\}\) (no:\(0\), yes:\(1\))
+\end{itemize}
+
+\begin{verbatim}
+##   Misofonia.dic depresion.dic
+## 1             4             1
+## 2             2             0
+## 3             0             0
+## 4             3             0
+## 5             0             0
+## 6             0             0
+\end{verbatim}
+
+A large study showed the relative frequencies \(f_i\) given in the contingency table:
+
+\begin{verbatim}
+##               
+##                Depression:0 Depression:1
+##   Misophonia:4   0.00000000   0.07317073
+##   Misophonia:3   0.20325203   0.04878049
+##   Misophonia:2   0.27642276   0.02439024
+##   Misophonia:1   0.04065041   0.00000000
+##   Misophonia:0   0.29268293   0.04065041
+\end{verbatim}
+
+Let's assume that \(N>>0\) and that the frequencies \textbf{estimate} the probabilities \(f_{i,j}=\hat{P}(x_i, y_j)\)
+
+\begin{itemize}
+\tightlist
+\item
+  What is the marginal probability of misophonia severity 3?
+\item
+  What is the probability of not being misophonic \textbf{and} not depressed?
+\item
+  What is the probability of being misophonic \textbf{or} depressed?
+\item
+  What is the probability of being misophonic \textbf{and} depressed?
+\item
+  Describe in English the outcomes with probability 0.
+\end{itemize}
+
+\hypertarget{exercise-2-1}{%
+\subsubsection{Exercise 2}\label{exercise-2-1}}
+
+We have performed an experiment 10 times with the following results
+
+\begin{verbatim}
+##         A     B
+## 1    male  dead
+## 2    male  dead
+## 3    male  dead
+## 4  female alive
+## 5    male  dead
+## 6  female alive
+## 7  female  dead
+## 8  female alive
+## 9    male alive
+## 10   male alive
+\end{verbatim}
+
+\begin{itemize}
+\tightlist
+\item
+  Create the contingency table for the number (\(n_{i,j}\)) of observations of each outcome (\(A,B\))
+\item
+  Create the contingency table for the relative frequency (\(f_{i,j}\)) of the outcomes
+\item
+  What is the marginal frequency of being male?
+\item
+  What is the marginal frequency of being alive?
+\item
+  What is the frequency of being alive \textbf{or} female?
+\end{itemize}
+
+\hypertarget{conditional-probability-3}{%
+\section{Conditional Probability}\label{conditional-probability-3}}
+
+\hypertarget{exercise-1-2}{%
+\subsubsection{Exercise 1}\label{exercise-1-2}}
+
+A machine is tested for its performance to produce high-quality turning rods. These are the results of the testing
+
+\begin{longtable}[]{@{}ccc@{}}
+\toprule
+& Rounded: Yes & Rounded: No \\
+\midrule
+\endhead
+smooth surface: yes & 200 & 1 \\
+smooth surface: no & 4 & 2 \\
+\bottomrule
+\end{longtable}
+
+\begin{itemize}
+\item
+  What is the estimated probability that the machine produces a rod that does not satisfy any quality control?
+\item
+  What is the estimated probability that the machine produces a rod that does not satisfy at least one quality control?
+\item
+  What is the estimated probability that the machine produces rounded and smoothed surfaced rods?
+\item
+  what is the estimated probability that the rod is rounded if the rod is smooth?
+\item
+  what is the estimated probability that the rod is smooth if it is rounded?
+\item
+  Are smoothness and roundness independent events?
+\end{itemize}
+
+\hypertarget{exercise-2-2}{%
+\subsubsection{Exercise 2}\label{exercise-2-2}}
+
+We develop a test to detect the presence of bacteria in a lake. We find that if the lake contains the bacteria the test is positive 70\% of the time. If there are no bacteria then the test is negative 60\% of the time. We deploy the test in a region where we know that 20\% of the lakes have bacteria.
+
+\begin{itemize}
+\tightlist
+\item
+  What is the probability that one lake that tests positive is contaminated with bacteria?
+\end{itemize}
+
+\hypertarget{exercise-3}{%
+\subsubsection{Exercise 3}\label{exercise-3}}
+
+Two machines are tested for their performance to produce high-quality turning rods. These are the results of the testing
+
+\textbf{Machine 1}
+
+\begin{longtable}[]{@{}ccc@{}}
+\toprule
+& Rounded: Yes & Rounded: No \\
+\midrule
+\endhead
+smooth surface: yes & 200 & 1 \\
+smooth surface: no & 4 & 2 \\
+\bottomrule
+\end{longtable}
+
+\textbf{Machine 2}
+
+\begin{longtable}[]{@{}ccc@{}}
+\toprule
+& Rounded: Yes & Rounded: No \\
+\midrule
+\endhead
+smooth surface: yes & 145 & 4 \\
+smooth surface: no & 8 & 6 \\
+\bottomrule
+\end{longtable}
+
+\begin{itemize}
+\tightlist
+\item
+  what is the probability that the rod is rounded?
+\item
+  What is the probability that the rod has been produced by machine 1?
+\item
+  what is the probability that the rod is not smooth?
+\item
+  What is the probability that the rod is smooth or rounded or produced by machine 1?
+\item
+  what is the probability that the rod has come from machine 2 if it does not pass at least one of the quality controls?
+\end{itemize}
+
+\hypertarget{exercise-4}{%
+\subsubsection{Exercise 4}\label{exercise-4}}
+
+We want to cross an avenue with three traffic lights. The probability of finding one traffic light in red given that the previous one was in red is 0.15. Whereas, the probability of finding one traffic right in red given that the previous one was in green is 0.25. If the probability of finding the first traffic light in red is 0.6 then
+
+\begin{itemize}
+\tightlist
+\item
+  What is the probability of having to stop at each traffic light?
+\item
+  What is the probability of having to stop at at least one traffic light?
+\item
+  What is the probability of having to stop at only one traffic light?
+\end{itemize}
+
+Assume that the probability of one traffic light depends only on the previews one
+
+hints:
+
+\begin{itemize}
+\item
+  The joint probability of finding three traffic lights in red can be written as:
+  \(P(R_1,R_2,R_3)=P(R_3|R_2,R_1)P(R_2|R_1)P(R_1)\)
+\item
+  If the probability of one traffic light depends only on the previous one then
+  \(P(R_3|R_2,R_1)=P(R_3|R_2)\)
+\end{itemize}
+
+\hypertarget{exercise-5}{%
+\subsubsection{Exercise 5}\label{exercise-5}}
+
+A quality test on a random brick is defined by the events:
+
+\begin{itemize}
+\tightlist
+\item
+  Pass quality test: \(E\), do no pass quality test: \(\bar{E}\)
+\item
+  Defective: \(D\), non-defective: \(\bar{D}\)
+\end{itemize}
+
+If the diagnostic test has sensitivity \(P(E|\bar{D})=0.99\) and specificity \(P(\bar{E}|D)=0.98\), and the probability of passing a test is \(P(E)=0.893\) then
+
+\begin{itemize}
+\item
+  what is the probability that a brick chosen at random is defective \(P(D)\)?
+\item
+  What is the probability that a brick that has passed the test is really defective?
+\item
+  The probability that a brick is not defective \textbf{and} that it does not pass the test
+\item
+  Are \(D\) and \(\bar{E}\) statistical independent?
+\end{itemize}
+
+\hypertarget{random-variables}{%
+\section{Random variables}\label{random-variables}}
+
+\hypertarget{exercise-1-3}{%
+\subsubsection{Exercise 1}\label{exercise-1-3}}
+
+Given the probability distribution for a discrete variable \(X\)
+
+\[
+    F(x)= 
+\begin{cases}
+0, & x \leq -1 \\
+0.2,& x \in [-1,0)\\
+0.35,& x \in [0,1)\\
+0.45,& x \in [1,2)\\
+1,& x \geq 2\\
+\end{cases}
+\]
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi})}
+\tightlist
+\item
+  find \(f(X)\)
+\item
+  find \(E(X)\) and \(V(X)\)
+\item
+  what is the expected value and variance of \(Y=2X+3\)
+\item
+  what is the median of \(X\)?
+\end{enumerate}
+
+\hypertarget{exercise-2-3}{%
+\subsubsection{Exercise 2}\label{exercise-2-3}}
+
+We have a system of transmission of pixels that is totally noisy. We are testing the system and have designed an experiment to transmit 3 pixels.
+
+\begin{itemize}
+\item
+  What is the probability of receiving 0, 1, 2, or 3 errors in the transmission of 3 pixels?
+\item
+  Sketch the probability mass function
+\item
+  What is the expected value of the error?
+\item
+  What is its variance?
+\item
+  Sketch the probability distribution
+\item
+  What is the probability of transmitting at least 1 error?
+\end{itemize}
+
+hints:
+
+\begin{itemize}
+\item
+  Sample space: \(\{(0,0,0), (1,0,0), (0,1,0), (0,0,1), (0,1,1), (1,0,1), (1,1,0), (1,1,1)\}\)
+\item
+  where, for example, the event \((0,1,1)\) is the event of receiving the first pixel with no error and the second and third pixels with errors.
+\item
+  All events are equally probable.
+\end{itemize}
+
+\hypertarget{exercise-3-1}{%
+\subsubsection{Exercise 3}\label{exercise-3-1}}
+
+\begin{itemize}
+\tightlist
+\item
+  for the probability density
+\end{itemize}
+
+\[
+    f(x)= 
+\begin{cases}
+    \frac{1}{100},& \text{if } x\in (0,100)\\
+    0,& otherwise 
+\end{cases}
+\]
+
+\begin{itemize}
+\tightlist
+\item
+  compute the mean
+\item
+  compute variance using \(E(X^2)=V(X)+E(X)^2\)
+\item
+  compute \(P(\mu-\sigma\leq X \leq \mu+\sigma)\)
+\item
+  What are the first and third quartiles?
+\end{itemize}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-39-1.pdf}
+
+\hypertarget{exercise-4-1}{%
+\subsubsection{Exercise 4}\label{exercise-4-1}}
+
+For the probability density
+
+\[
+    f(x)= 
+\begin{cases}
+    \lambda e^{-\lambda x},& \text{if } 0 \leq x\\
+    0,& otherwise 
+\end{cases}
+\]
+
+\begin{itemize}
+\tightlist
+\item
+  Confirm that this is a probability density
+\item
+  Find the probability distribution \(F(a)\)
+\item
+  Compute the mean
+\item
+  Compute variance using \(E(X^2)=V(X)+E(X)^2\)
+\end{itemize}
+
+\hypertarget{exercise-5-1}{%
+\subsubsection{Exercise 5}\label{exercise-5-1}}
+
+Given the cumulative distribution for a random variable X
+
+\[
+    F(x)= 
+\begin{cases}
+0, & x  < -1 \\
+\frac{1}{80}(17+16x-x^2),& x \in [-1,7)\\
+1,& x \geq 7\\
+\end{cases}
+\]
+
+compute:
+
+\begin{itemize}
+\tightlist
+\item
+  \(P(X>0)\)
+\item
+  \(E(X)\)
+\item
+  \(P(X>0|X<2)\)
+\end{itemize}
+
+\hypertarget{probability-models}{%
+\section{Probability Models}\label{probability-models}}
+
+\hypertarget{exercise-1-4}{%
+\subsubsection{Exercise 1}\label{exercise-1-4}}
+
+A search engine fails to retrieve information with a probability \(0.1\)
+
+\begin{itemize}
+\item
+  If we system receives \(50\) search requests, what is the probability that the system fails to answer three of them?
+\item
+  What is the probability that the engine successfully completes \(15\) searches before the first failure?
+\item
+  We consider that a search engine works sufficiently well when it is able to find information for \(10\) requests for every \(2\) failures. What is the probability that in a reliability trial our search engine is satisfactory?
+\end{itemize}
+
+\hypertarget{exercise-2-4}{%
+\subsubsection{Exercise 2}\label{exercise-2-4}}
+
+In a population, the probability that a baby boy is born is \(p=0.51\). Consider a family of 4 children
+
+\begin{itemize}
+\tightlist
+\item
+  What is the probability that a family has only one boy?
+\item
+  What is the probability that a family has only one girl?
+\item
+  What is the probability that a family has only one boy or only one girl?
+\item
+  What is the probability that the family has at least two boys?
+\item
+  What is the number of children that a family should have such that the probability of having at least a girl is more than 0.75?
+\end{itemize}
+
+\hypertarget{exercise-3-2}{%
+\subsubsection{Exercise 3}\label{exercise-3-2}}
+
+The average number of radioactive particles hitting a Geiger counter is \(2.3\) seconds.
+
+\begin{itemize}
+\item
+  What is the probability of counting exactly 2 particles in a second?
+\item
+  What is the probability of detecting exactly \(10\) particles in \(5\) seconds?
+\item
+  What is the probability of at least one count in two seconds?
+\item
+  What is the probability of having to wait \(2.5\) seconds after we switch on the detector?
+\end{itemize}
+
+\hypertarget{exercise-4-2}{%
+\subsubsection{Exercise 4}\label{exercise-4-2}}
+
+\begin{itemize}
+\item
+  What is the probability that a man's height is at least
+  \(165\)cm if the population mean is \(175\)cm y the standard deviation is \(10\)cm?
+\item
+  What is the probability that a man's height is between
+  \(165\)cm and \(180\)cm.
+\item
+  What is the height that defines the \(5\%\) of the smallest men?
+\end{itemize}
+
+\hypertarget{point-estimators}{%
+\section{Point Estimators}\label{point-estimators}}
+
+\hypertarget{exercise-1-5}{%
+\subsubsection{Exercise 1}\label{exercise-1-5}}
+
+Consider the probability model
+
+\[
+    f(x)= 
+\begin{cases}
+    1/2-a,& \text{if } x=-1 \\ 
+    1/2,& \text{if } x=0\\
+    a,& 1 \text{if } x=1\\ 
+\end{cases}
+\]
+
+where \(a\) is a parameter.
+
+Compute the mean and variance of the statistic: \[T=\frac{\bar{X}}{2}+\frac{1}{4}\]
+
+where \(\bar{X}=\frac{1}{N}\sum_{i=1}^N X_i\)
+
+\begin{itemize}
+\item
+  is \(T\) a biased estimator of \(a\)?
+\item
+  is \(T\) consistent? i.e.~\(V(T) \rightarrow 0\) when \(N\rightarrow \infty\)
+\end{itemize}
+
+\hypertarget{exercise-2-5}{%
+\subsubsection{Exercise 2}\label{exercise-2-5}}
+
+\begin{itemize}
+\tightlist
+\item
+  Is \(\bar{X}^2=(\frac{1}{N}\sum_{i=1}^N X_i)^2\) an unbiased estimator of \(E(X)^2\)?
+\end{itemize}
+
+\hypertarget{sampling-and-central-limit-theorem}{%
+\section{Sampling and Central Limit Theorem}\label{sampling-and-central-limit-theorem}}
+
+\hypertarget{exercise-1-6}{%
+\subsubsection{Exercise 1}\label{exercise-1-6}}
+
+A battery model charges up to \(75\%\) of its capacity within an hour with a standard deviation of \(15\%\).
+
+\begin{itemize}
+\item
+  If we charge \(25\), what is the probability that the sample average is within a distance of \(5\%\) charge from the mean?
+\item
+  If we charge \(100\), what is that probability?
+\item
+  If, instead we only charge \(9\) batteries, what is the charge that is surpassed by the sample average with only \(0.015\) probability?
+\end{itemize}
+
+\hypertarget{exercise-2-6}{%
+\subsubsection{Exercise 2}\label{exercise-2-6}}
+
+An electronic component is needed for the correct functioning of a telescope. It needs to be replaced immediately when it wears out.
+
+The mean life of the component (\(\mu\)) is \(100\) hours and its standard deviation \(\sigma\) is \(30\) hours.
+
+\begin{itemize}
+\item
+  what is the probability that the average of the mean life of \(50\) components is within \(1\) hour from the mean life of a single component?
+\item
+  How many components do we need such that the telescope is operational \(2750\) consecutive hours with \(0.95\) probability?
+\end{itemize}
+
+\hypertarget{exercise-3-3}{%
+\subsubsection{Exercise 3}\label{exercise-3-3}}
+
+An automated machine fills test tubes with biological samples with mean \(\mu=130\)mg and a standard deviation of \(\sigma=5\)mg.
+
+\begin{itemize}
+\item
+  for a random sample of size \(50\). What is the probability that
+  the sample mean (average) is between \(128\) and \(132\)gr?
+\item
+  what should be the size of the sample (\(n\)) such that the sample mean \(\bar{X}\) is higher than \(131\)gr with a probability less or equal than \(0.025\)?
+\end{itemize}
+
+\hypertarget{exercise-4-3}{%
+\subsubsection{Exercise 4}\label{exercise-4-3}}
+
+In the Caribbean, there appears to be an average of \(6\) hurricanes per year. Considering that hurricane formation is a Poisson process, meteorologists plan to estimate the mean time between the formation of two hurricanes. They plan to collect a sample of size \(36\) for the times between two hurricanes.
+
+\begin{itemize}
+\item
+  What is the probability that their sample average is between \(45\) and \(60\) days?
+\item
+  Which should be the sample size such that they have a probability of \(0.025\) that the sample mean is greater than \(70\) days?
+\end{itemize}
+
+\hypertarget{exercise-5-2}{%
+\subsubsection{Exercise 5}\label{exercise-5-2}}
+
+The probability that a particular mutation is found in the population is \(0.4\). If we test \(2000\) people for the mutation:
+
+\begin{itemize}
+\tightlist
+\item
+  What is the probability that the total number of people with the mutation is between \(791\) and \(809\)?
+\end{itemize}
+
+hint: Use the CLT with a sample of \(2000\) Bernoulli trials. This is known as the normal approximation of the binomial distribution.
+
+\hypertarget{maximum-likelihood}{%
+\section{Maximum likelihood}\label{maximum-likelihood}}
+
+\hypertarget{exercise-1-7}{%
+\subsubsection{Exercise 1}\label{exercise-1-7}}
+
+For a random variable with a binomial probability function
+
+\[f(x; p)=\binom n x p^x(1-p)^{n-x}\]
+
+\begin{itemize}
+\item
+  What is the maximum-likelihood estimator of \(p\) for a sample of size \(1\) of this random variable?
+\item
+  In \textbf{one} exam of \(100\) students we observed \(x_1=68\) students that passed the exam. What is the estimate of the \(p\)?
+\end{itemize}
+
+\hypertarget{exercise-2-7}{%
+\subsubsection{Exercise 2}\label{exercise-2-7}}
+
+Take a random variable with the following probability density function
+
+\[
+f(x)=
+\begin{cases}
+    (1+\theta)x^\theta,& \text{if } x\in (0,1)\\
+    0,&  x\notin (0,1)
+\end{cases}
+\]
+
+\begin{itemize}
+\item
+  What is the maximum likelihood estimate for \(\theta\)?
+\item
+  If we take a \(5\)-sample with observations
+  \(x_1 = 0.92; \qquad x_2 = 0.79; \qquad x_3 = 0.90; \qquad x_4 = 0.65; \qquad x_5 = 0.86\)
+\end{itemize}
+
+What is the estimated value of the parameter \(\theta\)?
+
+\hypertarget{exercise-3-4}{%
+\subsubsection{Exercise 3}\label{exercise-3-4}}
+
+Take a random variable with the following probability density function
+
+\[
+    f(x)= 
+\begin{cases}
+    \lambda e^{-\lambda x},& \text{if } 0 \leq x\\
+    0,& otherwise 
+\end{cases}
+\]
+
+\begin{itemize}
+\item
+  What is the maximum likelihood estimate for \(\lambda\)?
+\item
+  If we take a \(5\)-sample with observations
+  \(x_1 = 0.223 \qquad x_2 = 0.681; \qquad x_3 = 0.117; \qquad x_4 = 0.150; \qquad x_5 = 0.520\)
+\end{itemize}
+
+What is the estimated value of the parameter \(\lambda\)?
+
+\hypertarget{method-of-moments}{%
+\section{Method of moments}\label{method-of-moments}}
+
+\hypertarget{exercise-1-8}{%
+\subsubsection{Exercise 1}\label{exercise-1-8}}
+
+What are the estimators of the following parametric models given by the method of moments?
+
+\begin{longtable}[]{@{}lll@{}}
+\toprule
+Model & f(x) & E(X) \\
+\midrule
+\endhead
+Bernoulli & \(p^x(1-p)^{1-x}\) & \(p\) \\
+Binomial & \(\binom n x p^x(1-p)^{n-x}\) & \(np\) \\
+Shifted geometric & \(p(1-p)^{x-1}\) & \(\frac{1}{p}\) \\
+Negative Binomial & \(\binom {x+r-1} x p^r(1-p)^x\) & \(r\frac{1-p}{p}\) \\
+Poisson & \(\frac{e^{-\lambda}\lambda^x}{x!}\) & \(\lambda\) \\
+Exponential & \(\lambda e^{-\lambda x}\) & \(\frac{1}{\lambda}\) \\
+Normal & \(\frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{(x-\mu)^2}{2\sigma^2}}\) & \(\mu\) \\
+\bottomrule
+\end{longtable}
+
+\hypertarget{exercise-2-8}{%
+\subsubsection{Exercise 2}\label{exercise-2-8}}
+
+Take a random variable with the following probability density function
+
+\[
+f(x)=
+\begin{cases}
+    (1+\theta)x^\theta,& \text{if } x\in (0,1)\\
+    0,& x\notin (0,1)
+\end{cases}
+\]
+
+\begin{itemize}
+\tightlist
+\item
+  Compute \(E(X)\) as a function of \(\theta\)
+\item
+  What is the estimate for \(\theta\) using the method of moments?
+\item
+  If we take a \(5\)-sample with observations
+  \(x_1 = 0.92; \qquad x_2 = 0.79; \qquad x_3 = 0.90; \qquad x_4 = 0.65; \qquad x_5 = 0.86\)
+\end{itemize}
+
+What is the estimated value of the parameter \(\theta\)?
+
+\hypertarget{exercise-3-5}{%
+\subsubsection{Exercise 3}\label{exercise-3-5}}
+
+Consider a discrete random variable \(X\) that follows a negative binomial distribution with probability mass function:
+
+\[f(x) = \binom{x+r-1}{x}p^r(1-p)^x\]
+
+Given that
+
+\begin{itemize}
+\tightlist
+\item
+  \(E(X)=\dfrac{r(1-p)}{p}\)
+\item
+  \(V(X) =\dfrac{r(1-p)}{p^2}\)
+\end{itemize}
+
+compute:
+
+\begin{itemize}
+\item
+  An estimate for the parameter \(r\) and an estimate for the parameter \(p\) obtained from a random sample of size \(n\) using the method of moments.
+\item
+  The values of the estimates of \(r\) y \(p\) for the folowing random sample:
+\end{itemize}
+
+\[x_1 = 27; \qquad x_2 = 8; \qquad  x_3 = 22; \qquad  x_4 = 29; \qquad  x_5 = 19; \qquad  x_5 = 32\]
+
+  \bibliography{book.bib,packages.bib}
+
+\end{document}

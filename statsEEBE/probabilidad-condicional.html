@@ -1,0 +1,1132 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 4 Probabilidad condicional | Estadística</title>
+  <meta name="description" content="This are slides for the Stats theory of the BIST master" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 4 Probabilidad condicional | Estadística" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This are slides for the Stats theory of the BIST master" />
+  <meta name="github-repo" content="alejandro-isglobal/master" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 4 Probabilidad condicional | Estadística" />
+  
+  <meta name="twitter:description" content="This are slides for the Stats theory of the BIST master" />
+  
+
+<meta name="author" content="Alejandro Caceres" />
+
+
+<meta name="date" content="2022-09-05" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="probabilidad.html"/>
+<link rel="next" href="ejercicios.html"/>
+<script src="libs/header-attrs-2.12/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">A Minimal Book Example</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Objetivo<span></span></a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#lectura-recomendada"><i class="fa fa-check"></i><b>1.1</b> Lectura recomendada<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="descripción-de-datos.html"><a href="descripción-de-datos.html"><i class="fa fa-check"></i><b>2</b> Descripción de datos<span></span></a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="descripción-de-datos.html"><a href="descripción-de-datos.html#objetivo-1"><i class="fa fa-check"></i><b>2.1</b> Objetivo<span></span></a></li>
+<li class="chapter" data-level="2.2" data-path="descripción-de-datos.html"><a href="descripción-de-datos.html#estadísticas"><i class="fa fa-check"></i><b>2.2</b> Estadísticas<span></span></a></li>
+<li class="chapter" data-level="2.3" data-path="descripción-de-datos.html"><a href="descripción-de-datos.html#metodo-científico"><i class="fa fa-check"></i><b>2.3</b> Metodo científico<span></span></a></li>
+<li class="chapter" data-level="2.4" data-path="descripción-de-datos.html"><a href="descripción-de-datos.html#resultado"><i class="fa fa-check"></i><b>2.4</b> Resultado<span></span></a></li>
+<li class="chapter" data-level="2.5" data-path="descripción-de-datos.html"><a href="descripción-de-datos.html#tipos-de-resultado"><i class="fa fa-check"></i><b>2.5</b> Tipos de resultado<span></span></a></li>
+<li class="chapter" data-level="2.6" data-path="descripción-de-datos.html"><a href="descripción-de-datos.html#experimentos-aleatorios"><i class="fa fa-check"></i><b>2.6</b> Experimentos aleatorios<span></span></a></li>
+<li class="chapter" data-level="2.7" data-path="descripción-de-datos.html"><a href="descripción-de-datos.html#frecuencias-absolutas"><i class="fa fa-check"></i><b>2.7</b> Frecuencias absolutas<span></span></a></li>
+<li class="chapter" data-level="2.8" data-path="descripción-de-datos.html"><a href="descripción-de-datos.html#ejemplo"><i class="fa fa-check"></i><b>2.8</b> Ejemplo<span></span></a></li>
+<li class="chapter" data-level="2.9" data-path="descripción-de-datos.html"><a href="descripción-de-datos.html#frecuencias-relativas"><i class="fa fa-check"></i><b>2.9</b> Frecuencias relativas<span></span></a></li>
+<li class="chapter" data-level="2.10" data-path="descripción-de-datos.html"><a href="descripción-de-datos.html#ejemplo-1"><i class="fa fa-check"></i><b>2.10</b> Ejemplo<span></span></a></li>
+<li class="chapter" data-level="2.11" data-path="descripción-de-datos.html"><a href="descripción-de-datos.html#diagrama-de-barras"><i class="fa fa-check"></i><b>2.11</b> Diagrama de barras<span></span></a></li>
+<li class="chapter" data-level="2.12" data-path="descripción-de-datos.html"><a href="descripción-de-datos.html#gráfico-de-sectores"><i class="fa fa-check"></i><b>2.12</b> Gráfico de sectores<span></span></a></li>
+<li class="chapter" data-level="2.13" data-path="descripción-de-datos.html"><a href="descripción-de-datos.html#variables-categóricas-y-ordenadas"><i class="fa fa-check"></i><b>2.13</b> Variables categóricas y ordenadas<span></span></a></li>
+<li class="chapter" data-level="2.14" data-path="descripción-de-datos.html"><a href="descripción-de-datos.html#ejemplo-2"><i class="fa fa-check"></i><b>2.14</b> Ejemplo<span></span></a></li>
+<li class="chapter" data-level="2.15" data-path="descripción-de-datos.html"><a href="descripción-de-datos.html#frecuencias-acumuladas-absolutas-y-relativas"><i class="fa fa-check"></i><b>2.15</b> Frecuencias acumuladas absolutas y relativas<span></span></a></li>
+<li class="chapter" data-level="2.16" data-path="descripción-de-datos.html"><a href="descripción-de-datos.html#tabla-de-frecuencia"><i class="fa fa-check"></i><b>2.16</b> Tabla de frecuencia<span></span></a></li>
+<li class="chapter" data-level="2.17" data-path="descripción-de-datos.html"><a href="descripción-de-datos.html#gráfica-de-frecuencia-acumulada"><i class="fa fa-check"></i><b>2.17</b> Gráfica de frecuencia acumulada<span></span></a></li>
+<li class="chapter" data-level="2.18" data-path="descripción-de-datos.html"><a href="descripción-de-datos.html#variables-continuas"><i class="fa fa-check"></i><b>2.18</b> Variables continuas<span></span></a></li>
+<li class="chapter" data-level="2.19" data-path="descripción-de-datos.html"><a href="descripción-de-datos.html#contenedores"><i class="fa fa-check"></i><b>2.19</b> Contenedores<span></span></a></li>
+<li class="chapter" data-level="2.20" data-path="descripción-de-datos.html"><a href="descripción-de-datos.html#crear-una-variable-categórica-a-partir-de-una-continua"><i class="fa fa-check"></i><b>2.20</b> Crear una variable categórica a partir de una continua<span></span></a></li>
+<li class="chapter" data-level="2.21" data-path="descripción-de-datos.html"><a href="descripción-de-datos.html#tabla-de-frecuencias-para-una-variable-continua"><i class="fa fa-check"></i><b>2.21</b> Tabla de frecuencias para una variable continua<span></span></a></li>
+<li class="chapter" data-level="2.22" data-path="descripción-de-datos.html"><a href="descripción-de-datos.html#histograma"><i class="fa fa-check"></i><b>2.22</b> Histograma<span></span></a></li>
+<li class="chapter" data-level="2.23" data-path="descripción-de-datos.html"><a href="descripción-de-datos.html#tabla-de-frecuencias-para-una-variable-continua-1"><i class="fa fa-check"></i><b>2.23</b> Tabla de frecuencias para una variable continua<span></span></a></li>
+<li class="chapter" data-level="2.24" data-path="descripción-de-datos.html"><a href="descripción-de-datos.html#histograma-1"><i class="fa fa-check"></i><b>2.24</b> Histograma<span></span></a></li>
+<li class="chapter" data-level="2.25" data-path="descripción-de-datos.html"><a href="descripción-de-datos.html#gráfica-de-frecuencia-acumulada-variables-continuas"><i class="fa fa-check"></i><b>2.25</b> Gráfica de frecuencia acumulada: Variables continuas<span></span></a></li>
+<li class="chapter" data-level="2.26" data-path="descripción-de-datos.html"><a href="descripción-de-datos.html#resumen-estadístico"><i class="fa fa-check"></i><b>2.26</b> Resumen estadístico<span></span></a></li>
+<li class="chapter" data-level="2.27" data-path="descripción-de-datos.html"><a href="descripción-de-datos.html#promedio"><i class="fa fa-check"></i><b>2.27</b> Promedio<span></span></a></li>
+<li class="chapter" data-level="2.28" data-path="descripción-de-datos.html"><a href="descripción-de-datos.html#promedio-ordenado-categóricamente"><i class="fa fa-check"></i><b>2.28</b> Promedio (ordenado categóricamente)<span></span></a></li>
+<li class="chapter" data-level="2.29" data-path="descripción-de-datos.html"><a href="descripción-de-datos.html#promedio-ordenado-categóricamente-1"><i class="fa fa-check"></i><b>2.29</b> Promedio (ordenado categóricamente)<span></span></a></li>
+<li class="chapter" data-level="2.30" data-path="descripción-de-datos.html"><a href="descripción-de-datos.html#promedio-1"><i class="fa fa-check"></i><b>2.30</b> Promedio<span></span></a></li>
+<li class="chapter" data-level="2.31" data-path="descripción-de-datos.html"><a href="descripción-de-datos.html#promedio-2"><i class="fa fa-check"></i><b>2.31</b> Promedio<span></span></a></li>
+<li class="chapter" data-level="2.32" data-path="descripción-de-datos.html"><a href="descripción-de-datos.html#mediana"><i class="fa fa-check"></i><b>2.32</b> mediana<span></span></a></li>
+<li class="chapter" data-level="2.33" data-path="descripción-de-datos.html"><a href="descripción-de-datos.html#mediana-vs-promedio"><i class="fa fa-check"></i><b>2.33</b> Mediana Vs Promedio<span></span></a></li>
+<li class="chapter" data-level="2.34" data-path="descripción-de-datos.html"><a href="descripción-de-datos.html#dispersión"><i class="fa fa-check"></i><b>2.34</b> Dispersión<span></span></a></li>
+<li class="chapter" data-level="2.35" data-path="descripción-de-datos.html"><a href="descripción-de-datos.html#dispersión-1"><i class="fa fa-check"></i><b>2.35</b> Dispersión<span></span></a></li>
+<li class="chapter" data-level="2.36" data-path="descripción-de-datos.html"><a href="descripción-de-datos.html#variación-de-la-muestra"><i class="fa fa-check"></i><b>2.36</b> Variación de la muestra<span></span></a></li>
+<li class="chapter" data-level="2.37" data-path="descripción-de-datos.html"><a href="descripción-de-datos.html#variación-de-la-muestra-1"><i class="fa fa-check"></i><b>2.37</b> Variación de la muestra<span></span></a></li>
+<li class="chapter" data-level="2.38" data-path="descripción-de-datos.html"><a href="descripción-de-datos.html#desviación-estándar"><i class="fa fa-check"></i><b>2.38</b> Desviación Estándar<span></span></a></li>
+<li class="chapter" data-level="2.39" data-path="descripción-de-datos.html"><a href="descripción-de-datos.html#ric"><i class="fa fa-check"></i><b>2.39</b> RIC<span></span></a></li>
+<li class="chapter" data-level="2.40" data-path="descripción-de-datos.html"><a href="descripción-de-datos.html#ric-1"><i class="fa fa-check"></i><b>2.40</b> RIC<span></span></a></li>
+<li class="chapter" data-level="2.41" data-path="descripción-de-datos.html"><a href="descripción-de-datos.html#diagrama-de-caja"><i class="fa fa-check"></i><b>2.41</b> Diagrama de caja<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="probabilidad.html"><a href="probabilidad.html"><i class="fa fa-check"></i><b>3</b> Probabilidad<span></span></a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="probabilidad.html"><a href="probabilidad.html#objetivo-2"><i class="fa fa-check"></i><b>3.1</b> Objetivo<span></span></a></li>
+<li class="chapter" data-level="3.2" data-path="probabilidad.html"><a href="probabilidad.html#experimentos-aleatorios-1"><i class="fa fa-check"></i><b>3.2</b> Experimentos aleatorios<span></span></a></li>
+<li class="chapter" data-level="3.3" data-path="probabilidad.html"><a href="probabilidad.html#probabilidad-1"><i class="fa fa-check"></i><b>3.3</b> Probabilidad<span></span></a></li>
+<li class="chapter" data-level="3.4" data-path="probabilidad.html"><a href="probabilidad.html#ejemplo-3"><i class="fa fa-check"></i><b>3.4</b> Ejemplo<span></span></a></li>
+<li class="chapter" data-level="3.5" data-path="probabilidad.html"><a href="probabilidad.html#ejemplo-4"><i class="fa fa-check"></i><b>3.5</b> Ejemplo<span></span></a></li>
+<li class="chapter" data-level="3.6" data-path="probabilidad.html"><a href="probabilidad.html#frecuencia-relativa"><i class="fa fa-check"></i><b>3.6</b> Frecuencia relativa<span></span></a></li>
+<li class="chapter" data-level="3.7" data-path="probabilidad.html"><a href="probabilidad.html#en-el-infinito"><i class="fa fa-check"></i><b>3.7</b> En el infinito<span></span></a></li>
+<li class="chapter" data-level="3.8" data-path="probabilidad.html"><a href="probabilidad.html#probabilidad-frecuentista"><i class="fa fa-check"></i><b>3.8</b> Probabilidad frecuentista<span></span></a></li>
+<li class="chapter" data-level="3.9" data-path="probabilidad.html"><a href="probabilidad.html#probabilidad-clásica"><i class="fa fa-check"></i><b>3.9</b> Probabilidad clásica<span></span></a></li>
+<li class="chapter" data-level="3.10" data-path="probabilidad.html"><a href="probabilidad.html#probabilidades-clásicas-y-frecuentistas"><i class="fa fa-check"></i><b>3.10</b> Probabilidades clásicas y frecuentistas<span></span></a></li>
+<li class="chapter" data-level="3.11" data-path="probabilidad.html"><a href="probabilidad.html#probabilidad-2"><i class="fa fa-check"></i><b>3.11</b> Probabilidad<span></span></a></li>
+<li class="chapter" data-level="3.12" data-path="probabilidad.html"><a href="probabilidad.html#espacio-muestral"><i class="fa fa-check"></i><b>3.12</b> Espacio muestral<span></span></a></li>
+<li class="chapter" data-level="3.13" data-path="probabilidad.html"><a href="probabilidad.html#ejemplos-de-espacios-muestrales"><i class="fa fa-check"></i><b>3.13</b> Ejemplos de espacios muestrales<span></span></a></li>
+<li class="chapter" data-level="3.14" data-path="probabilidad.html"><a href="probabilidad.html#espacios-muestrales-discretos-y-continuos"><i class="fa fa-check"></i><b>3.14</b> Espacios muestrales discretos y continuos<span></span></a></li>
+<li class="chapter" data-level="3.15" data-path="probabilidad.html"><a href="probabilidad.html#evento"><i class="fa fa-check"></i><b>3.15</b> Evento<span></span></a></li>
+<li class="chapter" data-level="3.16" data-path="probabilidad.html"><a href="probabilidad.html#operaciones-de-eventos"><i class="fa fa-check"></i><b>3.16</b> Operaciones de eventos<span></span></a></li>
+<li class="chapter" data-level="3.17" data-path="probabilidad.html"><a href="probabilidad.html#ejemplo-de-operaciones-de-eventos"><i class="fa fa-check"></i><b>3.17</b> Ejemplo de operaciones de eventos<span></span></a></li>
+<li class="chapter" data-level="3.18" data-path="probabilidad.html"><a href="probabilidad.html#resultados"><i class="fa fa-check"></i><b>3.18</b> Resultados<span></span></a></li>
+<li class="chapter" data-level="3.19" data-path="probabilidad.html"><a href="probabilidad.html#definición-de-probabilidad"><i class="fa fa-check"></i><b>3.19</b> Definición de probabilidad<span></span></a></li>
+<li class="chapter" data-level="3.20" data-path="probabilidad.html"><a href="probabilidad.html#propiedades-de-probabilidad"><i class="fa fa-check"></i><b>3.20</b> Propiedades de probabilidad<span></span></a></li>
+<li class="chapter" data-level="3.21" data-path="probabilidad.html"><a href="probabilidad.html#regla-de-adición"><i class="fa fa-check"></i><b>3.21</b> Regla de adición<span></span></a></li>
+<li class="chapter" data-level="3.22" data-path="probabilidad.html"><a href="probabilidad.html#ejemplo-de-regla-de-adición"><i class="fa fa-check"></i><b>3.22</b> Ejemplo de regla de adición<span></span></a></li>
+<li class="chapter" data-level="3.23" data-path="probabilidad.html"><a href="probabilidad.html#diagrama-de-venn"><i class="fa fa-check"></i><b>3.23</b> Diagrama de Venn<span></span></a></li>
+<li class="chapter" data-level="3.24" data-path="probabilidad.html"><a href="probabilidad.html#tabla-de-probabilidades"><i class="fa fa-check"></i><b>3.24</b> Tabla de probabilidades<span></span></a></li>
+<li class="chapter" data-level="3.25" data-path="probabilidad.html"><a href="probabilidad.html#ejemplo-de-tabla-de-probabilidades"><i class="fa fa-check"></i><b>3.25</b> Ejemplo de tabla de probabilidades<span></span></a></li>
+<li class="chapter" data-level="3.26" data-path="probabilidad.html"><a href="probabilidad.html#mesa-de-contingencia"><i class="fa fa-check"></i><b>3.26</b> Mesa de contingencia<span></span></a></li>
+<li class="chapter" data-level="3.27" data-path="probabilidad.html"><a href="probabilidad.html#ejemplo-de-tabla-de-contingencia"><i class="fa fa-check"></i><b>3.27</b> Ejemplo de tabla de contingencia<span></span></a></li>
+<li class="chapter" data-level="3.28" data-path="probabilidad.html"><a href="probabilidad.html#estudio-de-misofonía"><i class="fa fa-check"></i><b>3.28</b> Estudio de misofonía<span></span></a></li>
+<li class="chapter" data-level="3.29" data-path="probabilidad.html"><a href="probabilidad.html#tabla-de-contingencia-para-frecuencias"><i class="fa fa-check"></i><b>3.29</b> Tabla de contingencia para frecuencias<span></span></a></li>
+<li class="chapter" data-level="3.30" data-path="probabilidad.html"><a href="probabilidad.html#mapa-de-calor"><i class="fa fa-check"></i><b>3.30</b> Mapa de calor<span></span></a></li>
+<li class="chapter" data-level="3.31" data-path="probabilidad.html"><a href="probabilidad.html#variables-continuas-1"><i class="fa fa-check"></i><b>3.31</b> Variables continuas<span></span></a></li>
+<li class="chapter" data-level="3.32" data-path="probabilidad.html"><a href="probabilidad.html#variables-continuas-2"><i class="fa fa-check"></i><b>3.32</b> Variables continuas<span></span></a></li>
+<li class="chapter" data-level="3.33" data-path="probabilidad.html"><a href="probabilidad.html#gráfico-de-dispersión"><i class="fa fa-check"></i><b>3.33</b> Gráfico de dispersión<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="probabilidad-condicional.html"><a href="probabilidad-condicional.html"><i class="fa fa-check"></i><b>4</b> Probabilidad condicional<span></span></a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="probabilidad-condicional.html"><a href="probabilidad-condicional.html#objetivo-3"><i class="fa fa-check"></i><b>4.1</b> Objetivo<span></span></a></li>
+<li class="chapter" data-level="4.2" data-path="probabilidad-condicional.html"><a href="probabilidad-condicional.html#probabilidad-conjunta"><i class="fa fa-check"></i><b>4.2</b> Probabilidad conjunta<span></span></a></li>
+<li class="chapter" data-level="4.3" data-path="probabilidad-condicional.html"><a href="probabilidad-condicional.html#diagnósticos"><i class="fa fa-check"></i><b>4.3</b> Diagnósticos<span></span></a></li>
+<li class="chapter" data-level="4.4" data-path="probabilidad-condicional.html"><a href="probabilidad-condicional.html#prueba-de-diagnóstico"><i class="fa fa-check"></i><b>4.4</b> Prueba de diagnóstico<span></span></a></li>
+<li class="chapter" data-level="4.5" data-path="probabilidad-condicional.html"><a href="probabilidad-condicional.html#observaciones"><i class="fa fa-check"></i><b>4.5</b> Observaciones<span></span></a></li>
+<li class="chapter" data-level="4.6" data-path="probabilidad-condicional.html"><a href="probabilidad-condicional.html#tablas-de-contingencia"><i class="fa fa-check"></i><b>4.6</b> Tablas de contingencia<span></span></a></li>
+<li class="chapter" data-level="4.7" data-path="probabilidad-condicional.html"><a href="probabilidad-condicional.html#la-probabilidad-condicional"><i class="fa fa-check"></i><b>4.7</b> La probabilidad condicional<span></span></a></li>
+<li class="chapter" data-level="4.8" data-path="probabilidad-condicional.html"><a href="probabilidad-condicional.html#la-probabilidad-condicional-1"><i class="fa fa-check"></i><b>4.8</b> La probabilidad condicional<span></span></a></li>
+<li class="chapter" data-level="4.9" data-path="probabilidad-condicional.html"><a href="probabilidad-condicional.html#tabla-de-contingencia-condicional"><i class="fa fa-check"></i><b>4.9</b> Tabla de contingencia condicional<span></span></a></li>
+<li class="chapter" data-level="4.10" data-path="probabilidad-condicional.html"><a href="probabilidad-condicional.html#ejemplo-de-tabla-de-contingencia-condicional"><i class="fa fa-check"></i><b>4.10</b> Ejemplo de tabla de contingencia condicional<span></span></a></li>
+<li class="chapter" data-level="4.11" data-path="probabilidad-condicional.html"><a href="probabilidad-condicional.html#regla-de-multiplicación"><i class="fa fa-check"></i><b>4.11</b> Regla de multiplicación<span></span></a></li>
+<li class="chapter" data-level="4.12" data-path="probabilidad-condicional.html"><a href="probabilidad-condicional.html#rendimiento-de-diagnóstico"><i class="fa fa-check"></i><b>4.12</b> Rendimiento de diagnóstico<span></span></a></li>
+<li class="chapter" data-level="4.13" data-path="probabilidad-condicional.html"><a href="probabilidad-condicional.html#regla-de-multiplicación-1"><i class="fa fa-check"></i><b>4.13</b> Regla de multiplicación<span></span></a></li>
+<li class="chapter" data-level="4.14" data-path="probabilidad-condicional.html"><a href="probabilidad-condicional.html#tabla-de-contingencia-en-términos-de-probabilidades-condicionales"><i class="fa fa-check"></i><b>4.14</b> Tabla de contingencia en términos de probabilidades condicionales<span></span></a></li>
+<li class="chapter" data-level="4.15" data-path="probabilidad-condicional.html"><a href="probabilidad-condicional.html#árbol-condicional"><i class="fa fa-check"></i><b>4.15</b> Árbol condicional<span></span></a></li>
+<li class="chapter" data-level="4.16" data-path="probabilidad-condicional.html"><a href="probabilidad-condicional.html#tabla-de-contingencia-en-términos-de-probabilidades-condicionales-1"><i class="fa fa-check"></i><b>4.16</b> Tabla de contingencia en términos de probabilidades condicionales<span></span></a></li>
+<li class="chapter" data-level="4.17" data-path="probabilidad-condicional.html"><a href="probabilidad-condicional.html#regla-de-probabilidad-total"><i class="fa fa-check"></i><b>4.17</b> Regla de probabilidad total<span></span></a></li>
+<li class="chapter" data-level="4.18" data-path="probabilidad-condicional.html"><a href="probabilidad-condicional.html#árbol-condicional-1"><i class="fa fa-check"></i><b>4.18</b> Árbol condicional<span></span></a></li>
+<li class="chapter" data-level="4.19" data-path="probabilidad-condicional.html"><a href="probabilidad-condicional.html#independencia-estadística"><i class="fa fa-check"></i><b>4.19</b> Independencia estadística<span></span></a></li>
+<li class="chapter" data-level="4.20" data-path="probabilidad-condicional.html"><a href="probabilidad-condicional.html#independencia-estadística-1"><i class="fa fa-check"></i><b>4.20</b> Independencia estadística<span></span></a></li>
+<li class="chapter" data-level="4.21" data-path="probabilidad-condicional.html"><a href="probabilidad-condicional.html#independencia-estadística-2"><i class="fa fa-check"></i><b>4.21</b> Independencia estadística<span></span></a></li>
+<li class="chapter" data-level="4.22" data-path="probabilidad-condicional.html"><a href="probabilidad-condicional.html#independencia-estadística-3"><i class="fa fa-check"></i><b>4.22</b> Independencia estadística<span></span></a></li>
+<li class="chapter" data-level="4.23" data-path="probabilidad-condicional.html"><a href="probabilidad-condicional.html#productos-de-productos-marginales"><i class="fa fa-check"></i><b>4.23</b> Productos de productos marginales<span></span></a></li>
+<li class="chapter" data-level="4.24" data-path="probabilidad-condicional.html"><a href="probabilidad-condicional.html#ejemplo-5"><i class="fa fa-check"></i><b>4.24</b> Ejemplo<span></span></a></li>
+<li class="chapter" data-level="4.25" data-path="probabilidad-condicional.html"><a href="probabilidad-condicional.html#encontrar-probabilidades-inversas"><i class="fa fa-check"></i><b>4.25</b> Encontrar probabilidades inversas<span></span></a></li>
+<li class="chapter" data-level="4.26" data-path="probabilidad-condicional.html"><a href="probabilidad-condicional.html#recuperar-probabilidades-conjuntas"><i class="fa fa-check"></i><b>4.26</b> Recuperar probabilidades conjuntas<span></span></a></li>
+<li class="chapter" data-level="4.27" data-path="probabilidad-condicional.html"><a href="probabilidad-condicional.html#condicionales-inversas"><i class="fa fa-check"></i><b>4.27</b> Condicionales inversas<span></span></a></li>
+<li class="chapter" data-level="4.28" data-path="probabilidad-condicional.html"><a href="probabilidad-condicional.html#teorema-de-bayes"><i class="fa fa-check"></i><b>4.28</b> Teorema de Bayes<span></span></a></li>
+<li class="chapter" data-level="4.29" data-path="probabilidad-condicional.html"><a href="probabilidad-condicional.html#ejemplo-teorema-de-bayes"><i class="fa fa-check"></i><b>4.29</b> Ejemplo: teorema de Bayes<span></span></a></li>
+<li class="chapter" data-level="4.30" data-path="probabilidad-condicional.html"><a href="probabilidad-condicional.html#ejemplo-teorema-de-bayes-1"><i class="fa fa-check"></i><b>4.30</b> Ejemplo: teorema de Bayes<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="ejercicios.html"><a href="ejercicios.html"><i class="fa fa-check"></i><b>5</b> Ejercicios<span></span></a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="ejercicios.html"><a href="ejercicios.html#descripción-de-datos-1"><i class="fa fa-check"></i><b>5.1</b> Descripción de datos<span></span></a></li>
+<li class="chapter" data-level="5.2" data-path="ejercicios.html"><a href="ejercicios.html#probabilidad-3"><i class="fa fa-check"></i><b>5.2</b> Probabilidad<span></span></a></li>
+<li class="chapter" data-level="5.3" data-path="ejercicios.html"><a href="ejercicios.html#la-probabilidad-condicional-2"><i class="fa fa-check"></i><b>5.3</b> La probabilidad condicional<span></span></a></li>
+<li class="chapter" data-level="5.4" data-path="ejercicios.html"><a href="ejercicios.html#variables-aleatorias"><i class="fa fa-check"></i><b>5.4</b> Variables aleatorias<span></span></a></li>
+<li class="chapter" data-level="5.5" data-path="ejercicios.html"><a href="ejercicios.html#modelos-de-probabilidad"><i class="fa fa-check"></i><b>5.5</b> Modelos de probabilidad<span></span></a></li>
+<li class="chapter" data-level="5.6" data-path="ejercicios.html"><a href="ejercicios.html#estimadores-puntuales"><i class="fa fa-check"></i><b>5.6</b> Estimadores puntuales<span></span></a></li>
+<li class="chapter" data-level="5.7" data-path="ejercicios.html"><a href="ejercicios.html#muestreo-y-teorema-del-límite-central"><i class="fa fa-check"></i><b>5.7</b> Muestreo y teorema del límite central<span></span></a></li>
+<li class="chapter" data-level="5.8" data-path="ejercicios.html"><a href="ejercicios.html#máxima-verosimilitud"><i class="fa fa-check"></i><b>5.8</b> Máxima verosimilitud<span></span></a></li>
+<li class="chapter" data-level="5.9" data-path="ejercicios.html"><a href="ejercicios.html#método-de-los-momentos"><i class="fa fa-check"></i><b>5.9</b> Método de los momentos<span></span></a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Estadística</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="probabilidad-condicional" class="section level1 hasAnchor" number="4">
+<h1><span class="header-section-number">Chapter 4</span> Probabilidad condicional<a href="probabilidad-condicional.html#probabilidad-condicional" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="objetivo-3" class="section level2 hasAnchor" number="4.1">
+<h2><span class="header-section-number">4.1</span> Objetivo<a href="probabilidad-condicional.html#objetivo-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li>Probabilidad condicional</li>
+<li>Independencia</li>
+<li>Teorema de Bayes</li>
+</ul>
+<hr />
+<hr />
+</div>
+<div id="probabilidad-conjunta" class="section level2 hasAnchor" number="4.2">
+<h2><span class="header-section-number">4.2</span> Probabilidad conjunta<a href="probabilidad-condicional.html#probabilidad-conjunta" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>La probabilidad conjunta de dos eventos <span class="math inline">\(A\)</span> y <span class="math inline">\(B\)</span> es
+<span class="math display">\[P(A,B)=P(A \cap B)\]</span></p>
+<p>Imaginemos un experimento aleatorio que mide dos tipos diferentes de resultados.</p>
+<ul>
+<li><p>altura y peso de un individuo: <span class="math inline">\((h, w)\)</span></p></li>
+<li><p>hora y lugar de una carga eléctrica: <span class="math inline">\((p, t)\)</span></p></li>
+<li><p>una tirada de dos dados: (<span class="math inline">\(n_1\)</span>,<span class="math inline">\(n_2\)</span>)</p></li>
+<li><p>cruzar dos semáforos en verde: (<span class="math inline">\(\bar{R_1}\)</span>, <span class="math inline">\(\bar{R_2}\)</span>)</p></li>
+</ul>
+<p>En muchos casos, nos interesa saber si los valores de un resultado <strong>condicionan</strong> los valores del otro.</p>
+<hr />
+<hr />
+</div>
+<div id="diagnósticos" class="section level2 hasAnchor" number="4.3">
+<h2><span class="header-section-number">4.3</span> Diagnósticos<a href="probabilidad-condicional.html#diagnósticos" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Consideremos una <strong>herramienta de diagnóstico</strong></p>
+<p>Queremos encontrar el estado de un sistema (s):</p>
+<ul>
+<li>inadecuado (sí)</li>
+<li>adecuado (no)</li>
+</ul>
+<p>con una prueba (t):</p>
+<ul>
+<li>positivo</li>
+<li>negativo</li>
+</ul>
+<p>Probamos una batería para saber cuánto tiempo puede vivir. Tensamos un cable para saber si resiste llevar cierta carga. Realizamos una PCR para ver si alguien está infectado.</p>
+<hr />
+<hr />
+</div>
+<div id="prueba-de-diagnóstico" class="section level2 hasAnchor" number="4.4">
+<h2><span class="header-section-number">4.4</span> Prueba de diagnóstico<a href="probabilidad-condicional.html#prueba-de-diagnóstico" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Consideremos diagnosticar una infección con una nueva prueba.</p>
+<p>Estado de infección:</p>
+<ul>
+<li>si (infectado)</li>
+<li>no (no infectado)</li>
+</ul>
+<p>Prueba:</p>
+<ul>
+<li>positivo</li>
+<li>negativo</li>
+</ul>
+<hr />
+<hr />
+</div>
+<div id="observaciones" class="section level2 hasAnchor" number="4.5">
+<h2><span class="header-section-number">4.5</span> Observaciones<a href="probabilidad-condicional.html#observaciones" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Cada individuo es un experimento aleatorio con dos medidas: (Infección, Prueba)</p>
+<table>
+<thead>
+<tr class="header">
+<th align="center">Asunto</th>
+<th align="center">Infección</th>
+<th align="center">Prueba</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><span class="math inline">\(s_1\)</span></td>
+<td align="center">si</td>
+<td align="center">positivo</td>
+</tr>
+<tr class="even">
+<td align="center"><span class="math inline">\(s_2\)</span></td>
+<td align="center">no</td>
+<td align="center">negativo</td>
+</tr>
+<tr class="odd">
+<td align="center"><span class="math inline">\(s_3\)</span></td>
+<td align="center">si</td>
+<td align="center">positivo</td>
+</tr>
+<tr class="even">
+<td align="center">…</td>
+<td align="center">…</td>
+<td align="center">…</td>
+</tr>
+<tr class="odd">
+<td align="center"><span class="math inline">\(s_i\)</span></td>
+<td align="center">no</td>
+<td align="center">positivo*</td>
+</tr>
+<tr class="even">
+<td align="center">…</td>
+<td align="center">…</td>
+<td align="center">…</td>
+</tr>
+<tr class="odd">
+<td align="center">…</td>
+<td align="center">…</td>
+<td align="center">…</td>
+</tr>
+<tr class="even">
+<td align="center"><span class="math inline">\(s_n\)</span></td>
+<td align="center">si</td>
+<td align="center">negativo*</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<hr />
+</div>
+<div id="tablas-de-contingencia" class="section level2 hasAnchor" number="4.6">
+<h2><span class="header-section-number">4.6</span> Tablas de contingencia<a href="probabilidad-condicional.html#tablas-de-contingencia" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li>Por el número de observaciones de cada resultado</li>
+</ul>
+<table>
+<thead>
+<tr class="header">
+<th align="center"></th>
+<th align="center">Infección: sí</th>
+<th align="center">Infección: sí</th>
+<th align="center">suma</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><b>Test: positivo</b></td>
+<td align="center">18</td>
+<td align="center">12</td>
+<td align="center">30</td>
+</tr>
+<tr class="even">
+<td align="center"><b>Test: negativo</b></td>
+<td align="center">30</td>
+<td align="center">300</td>
+<td align="center">330</td>
+</tr>
+<tr class="odd">
+<td align="center"><b>suma</b></td>
+<td align="center">48</td>
+<td align="center">312</td>
+<td align="center">360</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Para las frecuencias relativas, si <span class="math inline">\(N&gt;&gt;0\)</span> tomaremos <span class="math inline">\(f_{i,j}=\hat{P}(x_i, y_j)\)</span></li>
+</ul>
+<table>
+<thead>
+<tr class="header">
+<th align="center"></th>
+<th align="center">Infección: sí</th>
+<th align="center">Infección: sí</th>
+<th align="center">suma</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><b>Test: positivo</b></td>
+<td align="center">0.05</td>
+<td align="center">0.0333</td>
+<td align="center">0.0833</td>
+</tr>
+<tr class="even">
+<td align="center"><b>Test: negativo</b></td>
+<td align="center">0.0833</td>
+<td align="center">0.833</td>
+<td align="center">0.9166</td>
+</tr>
+<tr class="odd">
+<td align="center"><b>suma</b></td>
+<td align="center">0.133</td>
+<td align="center">0.866</td>
+<td align="center">1</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<hr />
+</div>
+<div id="la-probabilidad-condicional" class="section level2 hasAnchor" number="4.7">
+<h2><span class="header-section-number">4.7</span> La probabilidad condicional<a href="probabilidad-condicional.html#la-probabilidad-condicional" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Pensemos primero en términos de aquellos que están <strong>infectados</strong></p>
+<p><br />
+Dentro de los que están infectados (<strong>sí</strong>), ¿cuál es la probabilidad de que los que dieron positivo?</p>
+<ul>
+<li><b>Sensibilidad</b> (tasa de verdaderos positivos)</li>
+</ul>
+<p><span class="math display">\[\hat{P}(positivo|sí)=\frac{n_{positivo,sí}}{n_{sí}}\]</span></p>
+<p><span class="math display">\[=\frac{\frac{n_{positivo,sí}}{N}}{\frac{n_{sí}}{N}}=\frac{f_{positivo,sí}}{f_{sí}} \]</span></p>
+<p>Por lo tanto, en el límite, esperamos tener una probabilidad del tipo</p>
+<p><span class="math display">\[P(positivo|sí)=\frac{P(positivo, sí)}{P(sí)}=\frac{P(positivo \cap sí)}{P(sí)}\]</span></p>
+<hr />
+<hr />
+</div>
+<div id="la-probabilidad-condicional-1" class="section level2 hasAnchor" number="4.8">
+<h2><span class="header-section-number">4.8</span> La probabilidad condicional<a href="probabilidad-condicional.html#la-probabilidad-condicional-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><strong>Definición:</strong>
+La probabilidad condicional de un evento B dado un evento A, denotado como <span class="math inline">\(P(A|B)\)</span>, es
+<span class="math display">\[P(A|B) = \frac{P(A\cap B)}{P(B)}\]</span></p>
+<ul>
+<li>se puede probar que la probabilidad condicional satisface los axiomas de probabilidad.</li>
+<li>la probabilidad condicional es la probabilidad bajo el espacio muestral dado por <span class="math inline">\(B\)</span>: <span class="math inline">\(S_B\)</span>.</li>
+</ul>
+<hr />
+<hr />
+</div>
+<div id="tabla-de-contingencia-condicional" class="section level2 hasAnchor" number="4.9">
+<h2><span class="header-section-number">4.9</span> Tabla de contingencia condicional<a href="probabilidad-condicional.html#tabla-de-contingencia-condicional" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<table>
+<thead>
+<tr class="header">
+<th align="center"></th>
+<th align="center">Infección: Sí</th>
+<th align="center">Infección: Sí</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><b>Test: positivo</b></td>
+<td align="center">P(positivo <span>|</span> sí)</td>
+<td align="center">P(positivo <span>|</span> no)</td>
+</tr>
+<tr class="even">
+<td align="center"><b>Test: negativo</b></td>
+<td align="center">P(negativo <span>|</span> sí)</td>
+<td align="center">P(negativo <span>|</span> no)</td>
+</tr>
+<tr class="odd">
+<td align="center"><b>suma</b></td>
+<td align="center">1</td>
+<td align="center">1</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><p>Tasa de verdaderos positivos (Sensibilidad): La probabilidad de dar positivo <strong>si</strong> se tiene la enfermedad <span class="math inline">\(P(positivo|sí)\)</span></p></li>
+<li><p>Tasa de verdaderos negativos (Especificidad): La probabilidad de dar negativo <strong>si</strong> no se tiene la enfermedad <span class="math inline">\(P(negativo|no)\)</span></p></li>
+<li><p>Tasa de falsos positivos: La probabilidad de dar positivo <strong>si</strong> no se tiene la enfermedad <span class="math inline">\(P(positivo|no)\)</span></p></li>
+<li><p>Tasa de falsos negativos: la probabilidad de dar negativo <strong>si</strong> se tiene la enfermedad <span class="math inline">\(P(negativo|sí)\)</span></p></li>
+</ul>
+<hr />
+<hr />
+</div>
+<div id="ejemplo-de-tabla-de-contingencia-condicional" class="section level2 hasAnchor" number="4.10">
+<h2><span class="header-section-number">4.10</span> Ejemplo de tabla de contingencia condicional<a href="probabilidad-condicional.html#ejemplo-de-tabla-de-contingencia-condicional" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Tomando las frecuencias como estimaciones de las probabilidades, entonces</p>
+<table>
+<thead>
+<tr class="header">
+<th align="center"></th>
+<th align="center">Infección: Sí</th>
+<th align="center">Infección: Sí</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><b>Test: positivo</b></td>
+<td align="center">18/48 = 0.375</td>
+<td align="center">12/312 = 0.038</td>
+</tr>
+<tr class="even">
+<td align="center"><b>Test: negativo</b></td>
+<td align="center">30/48 = 0.625</td>
+<td align="center">300/312 =0.962</td>
+</tr>
+<tr class="odd">
+<td align="center"><b>suma</b></td>
+<td align="center">1</td>
+<td align="center">1</td>
+</tr>
+</tbody>
+</table>
+<p>Nuestra herramienta de diagnóstico tiene baja sensibilidad (0.375) pero alta
+especificidad (0.962).</p>
+<hr />
+<hr />
+</div>
+<div id="regla-de-multiplicación" class="section level2 hasAnchor" number="4.11">
+<h2><span class="header-section-number">4.11</span> Regla de multiplicación<a href="probabilidad-condicional.html#regla-de-multiplicación" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Ahora imaginemos la situación real.</p>
+<ul>
+<li><p>Se (realizaron) PCR para coronavirus [<a href="https://www.nejm.org/doi/full/10.1056/NEJMp2015897" class="uri">https://www.nejm.org/doi/full/10.1056/NEJMp2015897</a>] en personas en el hospital que estamos seguros de estar infectadas. Es test tiene una sensibilidad del 70%. También se ha probado en el laboratorio en condiciones sin infección con una sensibilidad del 96 %.</p></li>
+<li><p>Un estudio de prevalencia en España mostró que <span class="math inline">\(P(sí)=0.05\)</span>, <span class="math inline">\(P(no)=0.95\)</span> antes del verano.</p></li>
+</ul>
+<p>Con estos datos, ¿cuál era la probabilidad de que una persona seleccionada al azar de la población diera positivo <strong>y</strong> estuviera infectada: <span class="math inline">\(P(sí \cap positivo)=P(sí, positivo)\)</span>?</p>
+<hr />
+<hr />
+</div>
+<div id="rendimiento-de-diagnóstico" class="section level2 hasAnchor" number="4.12">
+<h2><span class="header-section-number">4.12</span> Rendimiento de diagnóstico<a href="probabilidad-condicional.html#rendimiento-de-diagnóstico" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Para estudiar el rendimiento de una nueva prueba diagnóstica:</p>
+<ul>
+<li><p>selecciona muestras que son inadecuadas (enfermedad: <strong>sí</strong>) y aplica la prueba, tratando de encontrar su sensibilidad: <span class="math inline">\(P(positivo|sí)\)</span> (<span class="math inline">\(0.70\)</span> para PCR)</p></li>
+<li><p>selecciona muestras que son adecuadas (enfermedad: <strong>no</strong>) y aplica la prueba, tratando de encontrar su especificidad: <span class="math inline">\(P(negativo|no)\)</span> (<span class="math inline">\(0.96\)</span> para PCR)</p></li>
+</ul>
+<hr />
+<hr />
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th>Infección: Sí</th>
+<th>Infección: Sí</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><b>Test: positivo</b></td>
+<td>P(positivo<span>|</span>sí)=0.7</td>
+<td>P(positivo<span>|</span>no)=0.06</td>
+</tr>
+<tr class="even">
+<td><b>Test: negativo</b></td>
+<td>P(negativo<span>|</span>sí)=0.3</td>
+<td>P(negativo<span>|</span>no)=0.94</td>
+</tr>
+<tr class="odd">
+<td><b>suma</b></td>
+<td>1</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+<p>De esta matriz, ¿podemos obtener <span class="math inline">\(P(sí, positivo)\)</span>?</p>
+<hr />
+<hr />
+</div>
+<div id="regla-de-multiplicación-1" class="section level2 hasAnchor" number="4.13">
+<h2><span class="header-section-number">4.13</span> Regla de multiplicación<a href="probabilidad-condicional.html#regla-de-multiplicación-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><br>
+<br></p>
+<p>¿Cómo se recupera la probabilidad conjunta de la probabilidad condicional?</p>
+<p>Para dos eventos <span class="math inline">\(A\)</span> y <span class="math inline">\(B\)</span> tenemos la regla de la multiplicación</p>
+<p><span class="math display">\[P(A, B) = P(A|B) P(B)\]</span></p>
+<p>que se sigue de la definición de probabilidad condicional.</p>
+<p><br>
+<br></p>
+<hr />
+<hr />
+</div>
+<div id="tabla-de-contingencia-en-términos-de-probabilidades-condicionales" class="section level2 hasAnchor" number="4.14">
+<h2><span class="header-section-number">4.14</span> Tabla de contingencia en términos de probabilidades condicionales<a href="probabilidad-condicional.html#tabla-de-contingencia-en-términos-de-probabilidades-condicionales" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<table>
+<thead>
+<tr class="header">
+<th align="center"></th>
+<th align="center">Infección: Sí</th>
+<th align="center">Infección: Sí</th>
+<th align="center"><b>suma</b></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><b>Test: positivo</b></td>
+<td align="center">P(positivo <span>|</span> sí)P(sí)</td>
+<td align="center">P(positivo <span>|</span> no)P(no)</td>
+<td align="center">P(positivo)</td>
+</tr>
+<tr class="even">
+<td align="center"><b>Test: negativo</b></td>
+<td align="center">P(negativo <span>|</span> sí)P(sí)</td>
+<td align="center">P(negativo <span>|</span> no) P(no)</td>
+<td align="center">P(negativo)</td>
+</tr>
+<tr class="odd">
+<td align="center"><b>suma</b></td>
+<td align="center">P(sí)</td>
+<td align="center">P(no)</td>
+<td align="center">1</td>
+</tr>
+</tbody>
+</table>
+<p>Por ejemplo, la probabilidad de dar <span class="math inline">\(positivo\)</span> y estar infectado <span class="math inline">\(sí\)</span>:</p>
+<ul>
+<li><span class="math inline">\(P(positivo, sí)=P(positivo \cap sí) = P(positivo|sí) P(sí)\)</span></li>
+</ul>
+<hr />
+<hr />
+</div>
+<div id="árbol-condicional" class="section level2 hasAnchor" number="4.15">
+<h2><span class="header-section-number">4.15</span> Árbol condicional<a href="probabilidad-condicional.html#árbol-condicional" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><img src="figures/Tree.png" style="width:75%"  align="center"></p>
+<hr />
+<hr />
+</div>
+<div id="tabla-de-contingencia-en-términos-de-probabilidades-condicionales-1" class="section level2 hasAnchor" number="4.16">
+<h2><span class="header-section-number">4.16</span> Tabla de contingencia en términos de probabilidades condicionales<a href="probabilidad-condicional.html#tabla-de-contingencia-en-términos-de-probabilidades-condicionales-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<table>
+<thead>
+<tr class="header">
+<th align="center"></th>
+<th align="center">Infección: sí</th>
+<th align="center">Infección: sí</th>
+<th align="center">suma</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><b>Test: positivo</b></td>
+<td align="center">0.035</td>
+<td align="center">0.057</td>
+<td align="center">0.092</td>
+</tr>
+<tr class="even">
+<td align="center"><b>Test: negativo</b></td>
+<td align="center">0.015</td>
+<td align="center">0.893</td>
+<td align="center">0.908</td>
+</tr>
+<tr class="odd">
+<td align="center"><b>suma</b></td>
+<td align="center">0.05</td>
+<td align="center">0.95</td>
+<td align="center">1</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><span class="math inline">\(P(positivo,si)= 0.035\)</span></li>
+</ul>
+<p>Pero también encontramos el marginal de ser positivo:</p>
+<ul>
+<li><span class="math inline">\(P(positivo)=0.092\)</span></li>
+</ul>
+<hr />
+<hr />
+</div>
+<div id="regla-de-probabilidad-total" class="section level2 hasAnchor" number="4.17">
+<h2><span class="header-section-number">4.17</span> Regla de probabilidad total<a href="probabilidad-condicional.html#regla-de-probabilidad-total" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th>Infección: Sí</th>
+<th>Infección: Sí</th>
+<th><b>suma</b></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><b>Test: positivo</b></td>
+<td>P(positivo <span>|</span> sí)P(sí)</td>
+<td>P(positivo <span>|</span> no)P(no)</td>
+<td>P(positivo)</td>
+</tr>
+<tr class="even">
+<td><b>Test: negativo</b></td>
+<td>P(negativo <span>|</span> sí)P(sí)</td>
+<td>P(negativo <span>|</span> no) P(no)</td>
+<td>P(negativo)</td>
+</tr>
+<tr class="odd">
+<td><b>suma</b></td>
+<td>P(sí)</td>
+<td>P(no)</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+<p>Cuando escribimos las marginales desconocidas en términos de sus probabilidades condicionales, lo llamamos <strong>regla de probabilidad total</strong></p>
+<ul>
+<li><span class="math inline">\(P(positivo)=P(positivo|sí)P(sí)+P(positivo|no)P(no)\)</span></li>
+<li><span class="math inline">\(P(negativo)=P(negativo|sí)P(sí)+P(negativo|no)P(no)\)</span></li>
+</ul>
+<hr />
+<hr />
+</div>
+<div id="árbol-condicional-1" class="section level2 hasAnchor" number="4.18">
+<h2><span class="header-section-number">4.18</span> Árbol condicional<a href="probabilidad-condicional.html#árbol-condicional-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><img src="figures/Treetot.png" style="width:75%"  align="center"></p>
+<p><strong>Regla de probabilidad total</strong> para la marginal de <span class="math inline">\(B\)</span>: ¿De cuántas maneras puedo obtener el resultado <span class="math inline">\(B\)</span>?</p>
+<p><span class="math inline">\(P(B)=P(B|A)P(A)+P(B|A&#39;)P(A&#39;)\)</span></p>
+<hr />
+<hr />
+</div>
+<div id="independencia-estadística" class="section level2 hasAnchor" number="4.19">
+<h2><span class="header-section-number">4.19</span> Independencia estadística<a href="probabilidad-condicional.html#independencia-estadística" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><br>
+<br></p>
+<p>En muchas aplicaciones, queremos saber si el conocimiento de un evento condiciona el resultado de otro evento.</p>
+<ul>
+<li>hay casos en los que queremos saber si los eventos no están condicionados</li>
+</ul>
+<p><br>
+<br></p>
+<hr />
+<hr />
+</div>
+<div id="independencia-estadística-1" class="section level2 hasAnchor" number="4.20">
+<h2><span class="header-section-number">4.20</span> Independencia estadística<a href="probabilidad-condicional.html#independencia-estadística-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Considere los conductores para los cuales medimos sus fallas superficiales y si su capacidad de conducción es defectuosa.</p>
+<p>Las <strong>probabilidades conjuntas</strong> estimadas son</p>
+<table>
+<thead>
+<tr class="header">
+<th align="center"></th>
+<th align="center">defectos (F)</th>
+<th align="center">sin defectos (F’)</th>
+<th align="center">suma</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><b>defectuoso (D) </b></td>
+<td align="center"><span class="math inline">\(0.005\)</span></td>
+<td align="center"><span class="math inline">\(0.045\)</span></td>
+<td align="center"><span class="math inline">\(0.05\)</span></td>
+</tr>
+<tr class="even">
+<td align="center"><b>sin defectos (D’) </b></td>
+<td align="center"><span class="math inline">\(0.095\)</span></td>
+<td align="center"><span class="math inline">\(0.855\)</span></td>
+<td align="center"><span class="math inline">\(0.95\)</span></td>
+</tr>
+<tr class="odd">
+<td align="center"><b>suma</b></td>
+<td align="center"><span class="math inline">\(0.1\)</span></td>
+<td align="center"><span class="math inline">\(0.9\)</span></td>
+<td align="center">1</td>
+</tr>
+</tbody>
+</table>
+<p>donde, por ejemplo, la probabilidad conjunta de <span class="math inline">\(F\)</span> y <span class="math inline">\(D\)</span> es</p>
+<ul>
+<li><span class="math inline">\(P(D,F)=0.005\)</span></li>
+</ul>
+<p>Las probabilidades marginales son</p>
+<ul>
+<li><span class="math inline">\(P(D)=P(D, F) + P(D, F&#39;)=0.05\)</span></li>
+<li><span class="math inline">\(P(F)=P(D, F) + P(D&#39;, F)= 0.1\)</span>.</li>
+</ul>
+<hr />
+<hr />
+</div>
+<div id="independencia-estadística-2" class="section level2 hasAnchor" number="4.21">
+<h2><span class="header-section-number">4.21</span> Independencia estadística<a href="probabilidad-condicional.html#independencia-estadística-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>¿Cuál es la <strong>probabilidad condicional</strong> de observar un conductor defectuoso si tiene un defecto?</p>
+<table>
+<thead>
+<tr class="header">
+<th align="center"></th>
+<th align="center">F</th>
+<th align="center">F’</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><b> D </b></td>
+<td align="center">P(D<span>|</span>F) = 0.05</td>
+<td align="center">P(D<span>|</span>F’)=0.05</td>
+</tr>
+<tr class="even">
+<td align="center"><b> D’ </b></td>
+<td align="center">P(D’<span>|</span>F)=0.95</td>
+<td align="center">P(D’<span>|</span>F’)=0.95</td>
+</tr>
+<tr class="odd">
+<td align="center"><b>suma</b></td>
+<td align="center">1</td>
+<td align="center">1</td>
+</tr>
+</tbody>
+</table>
+<p>¡Las probabilidades marginales y condicionales son las mismas!</p>
+<ul>
+<li><span class="math inline">\(P(D|F)=P(D|F&#39;)=P(D)\)</span></li>
+<li><span class="math inline">\(P(D&#39;|F)=P(D&#39;|F&#39;)=P(D&#39;)\)</span></li>
+</ul>
+<p>La probabilidad de observar un conductor defectuoso <strong>no</strong> depende de haber observado o no un defecto.</p>
+<p><span class="math display">\[P(D) = P(D|F)\]</span></p>
+<hr />
+<hr />
+</div>
+<div id="independencia-estadística-3" class="section level2 hasAnchor" number="4.22">
+<h2><span class="header-section-number">4.22</span> Independencia estadística<a href="probabilidad-condicional.html#independencia-estadística-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Dos eventos <span class="math inline">\(A\)</span> y <span class="math inline">\(B\)</span> son estadísticamente independientes si</p>
+<ul>
+<li><span class="math inline">\(P(A|B)=P(A)\)</span>; <span class="math inline">\(A\)</span> es independiente de <span class="math inline">\(B\)</span></li>
+<li><span class="math inline">\(P(B|A)=P(B)\)</span>; <span class="math inline">\(B\)</span> es independiente de <span class="math inline">\(A\)</span></li>
+</ul>
+<p>y por la regla de la multiplicación, su probabilidad conjunta es</p>
+<ul>
+<li><span class="math inline">\(P(A\cap B)=P(A|B)P(B)=P(A)P(B)\)</span></li>
+</ul>
+<p>la multiplicación de sus probabilidades marginales.</p>
+<hr />
+<hr />
+</div>
+<div id="productos-de-productos-marginales" class="section level2 hasAnchor" number="4.23">
+<h2><span class="header-section-number">4.23</span> Productos de productos marginales<a href="probabilidad-condicional.html#productos-de-productos-marginales" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<table>
+<thead>
+<tr class="header">
+<th align="center"></th>
+<th align="center">F</th>
+<th align="center">F’</th>
+<th align="center">suma</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><b> D </b></td>
+<td align="center"><span class="math inline">\(0.005\)</span></td>
+<td align="center"><span class="math inline">\(0.045\)</span></td>
+<td align="center"><span class="math inline">\(0.05\)</span></td>
+</tr>
+<tr class="even">
+<td align="center"><b> D’ </b></td>
+<td align="center"><span class="math inline">\(0.095\)</span></td>
+<td align="center"><span class="math inline">\(0.855\)</span></td>
+<td align="center"><span class="math inline">\(0.95\)</span></td>
+</tr>
+<tr class="odd">
+<td align="center"><b>suma</b></td>
+<td align="center"><span class="math inline">\(0.1\)</span></td>
+<td align="center"><span class="math inline">\(0.9\)</span></td>
+<td align="center">1</td>
+</tr>
+</tbody>
+</table>
+<p>Confirme que todas las entradas de la matriz son el producto de los marginales.</p>
+<p>Por ejemplo:</p>
+<ul>
+<li><span class="math inline">\(P(F)P(D)= P(D \cap F)\)</span></li>
+<li><span class="math inline">\(P(D&#39;)P(F&#39;)=P(D&#39; \cap F&#39;)\)</span></li>
+</ul>
+<hr />
+<hr />
+</div>
+<div id="ejemplo-5" class="section level2 hasAnchor" number="4.24">
+<h2><span class="header-section-number">4.24</span> Ejemplo<a href="probabilidad-condicional.html#ejemplo-5" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Resultados de lanzar dos monedas: <span class="math inline">\(S={(H,H), (H,T), (T,H), (T,T)}\)</span></p>
+<table>
+<thead>
+<tr class="header">
+<th align="center"></th>
+<th align="center">H</th>
+<th align="center">T</th>
+<th align="center">suma</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><b> H </b></td>
+<td align="center"><span class="math inline">\(1/4\)</span></td>
+<td align="center"><span class="math inline">\(1/4\)</span></td>
+<td align="center"><span class="math inline">\(1/2\)</span></td>
+</tr>
+<tr class="even">
+<td align="center"><b> camiseta </b></td>
+<td align="center"><span class="math inline">\(1/4\)</span></td>
+<td align="center"><span class="math inline">\(1/4\)</span></td>
+<td align="center"><span class="math inline">\(1/2\)</span></td>
+</tr>
+<tr class="odd">
+<td align="center"><b>suma</b></td>
+<td align="center"><span class="math inline">\(1/2\)</span></td>
+<td align="center"><span class="math inline">\(1/2\)</span></td>
+<td align="center">1</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Obtener cara en la primera moneda no condiciona obtener cruz en el resultado de la segunda moneda <span class="math inline">\(P(T|H)=P(T)=1/2\)</span></li>
+<li>la probabilidad de obtener cara y después cruz es el producto de cada resultado independiente <span class="math inline">\(P(H, T)=P(H)*P(T)=1/4\)</span></li>
+</ul>
+<hr />
+<hr />
+</div>
+<div id="encontrar-probabilidades-inversas" class="section level2 hasAnchor" number="4.25">
+<h2><span class="header-section-number">4.25</span> Encontrar probabilidades inversas<a href="probabilidad-condicional.html#encontrar-probabilidades-inversas" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>De la tabla de contingencia condicional</p>
+<table>
+<thead>
+<tr class="header">
+<th align="center"></th>
+<th align="center">Infección: Sí</th>
+<th align="center">Infección: Sí</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><b>Test: positivo</b></td>
+<td align="center">P(positivo <span>|</span> sí)</td>
+<td align="center">P(positivo <span>|</span> no)</td>
+</tr>
+<tr class="even">
+<td align="center"><b>Test: negativo</b></td>
+<td align="center">P(negativo <span>|</span> sí)</td>
+<td align="center">P(negativo <span>|</span> no)</td>
+</tr>
+<tr class="odd">
+<td align="center"><b>suma</b></td>
+<td align="center">1</td>
+<td align="center">1</td>
+</tr>
+</tbody>
+</table>
+<p>¿Cómo podemos calcular la probabilidad de estar infectado si la prueba da positivo: <span class="math inline">\(P(sí|positivo)\)</span>?</p>
+<hr />
+<hr />
+</div>
+<div id="recuperar-probabilidades-conjuntas" class="section level2 hasAnchor" number="4.26">
+<h2><span class="header-section-number">4.26</span> Recuperar probabilidades conjuntas<a href="probabilidad-condicional.html#recuperar-probabilidades-conjuntas" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ol style="list-style-type: decimal">
+<li>Recuperamos la tabla de contingencia para probabilidades conjuntas</li>
+</ol>
+<table>
+<thead>
+<tr class="header">
+<th align="center"></th>
+<th align="center">Infección: Sí</th>
+<th align="center">Infección: Sí</th>
+<th align="center"><b>suma</b></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><b>Test: positivo</b></td>
+<td align="center">P(positivo <span>|</span> sí)P(sí)</td>
+<td align="center">P(positivo <span>|</span> no)P(no)</td>
+<td align="center">P(positivo)</td>
+</tr>
+<tr class="even">
+<td align="center"><b>Test: negativo</b></td>
+<td align="center">P(negativo <span>|</span> sí)P(sí)</td>
+<td align="center">P(negativo <span>|</span> no) P(no)</td>
+<td align="center">P(negativo)</td>
+</tr>
+<tr class="odd">
+<td align="center"><b>suma</b></td>
+<td align="center">P(sí)</td>
+<td align="center">P(no)</td>
+<td align="center">1</td>
+</tr>
+</tbody>
+</table>
+<p><br>
+<br></p>
+<hr />
+<hr />
+</div>
+<div id="condicionales-inversas" class="section level2 hasAnchor" number="4.27">
+<h2><span class="header-section-number">4.27</span> Condicionales inversas<a href="probabilidad-condicional.html#condicionales-inversas" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ol start="2" style="list-style-type: decimal">
+<li>Calculamos las probabilidades condicionales para la prueba:</li>
+</ol>
+<p><span class="math display">\[P(infección|prueba)=\frac{P(prueba|infección)P(infección)}{P(prueba)}\]</span></p>
+<table>
+<thead>
+<tr class="header">
+<th align="center"></th>
+<th align="center">Infección: Sí</th>
+<th align="center">Infección: Sí</th>
+<th align="center">suma</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><b>Test: positivo</b></td>
+<td align="center">P(sí<span>|</span>positivo)</td>
+<td align="center">P(sin<span>|</span>positivo)</td>
+<td align="center">1</td>
+</tr>
+<tr class="even">
+<td align="center"><b>Test: negativo</b></td>
+<td align="center">P(sí<span>|</span>negativo)</td>
+<td align="center">P(sin<span>|</span>negativo)</td>
+<td align="center">1</td>
+</tr>
+</tbody>
+</table>
+<p>Por ejemplo:
+<span class="math display">\[P(sí|positivo)=\frac{P(positivo|sí)P(sí)}{P(positivo)}\]</span>
+como normalmente no tenemos <span class="math inline">\(P(positivo)\)</span>, usamos la regla de <strong>probabilidad total</strong> en el denominador</p>
+<p><span class="math display">\[P(sí|positivo)=\frac{P(positivo|sí)P(sí)}{P(positivo|sí)P(sí)+P(positivo|no)P(no)}\]</span></p>
+<hr />
+<hr />
+</div>
+<div id="teorema-de-bayes" class="section level2 hasAnchor" number="4.28">
+<h2><span class="header-section-number">4.28</span> Teorema de Bayes<a href="probabilidad-condicional.html#teorema-de-bayes" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>La expresion:</p>
+<p><span class="math display">\[P(sí|positivo)=\frac{P(positivo|sí)P(sí)}{P(positivo|sí)P(sí)+P(positivo|no)P(no)}\]</span></p>
+<p>se llama <strong>teorema de Bayes</strong></p>
+<p><strong>Teorema</strong></p>
+<p>Si <span class="math inline">\(E1, E2, ..., Ek\)</span> son <span class="math inline">\(k\)</span> eventos mutuamente excluyentes y exhaustivos y <span class="math inline">\(B\)</span> es cualquier evento,</p>
+<p><span class="math display">\[P(Ei|B)=\frac{P(B|Ei)P(Ei)}{P(B|E1)P(E1) +...+ P(B|Ek)P(Ek)} \]</span></p>
+<p>Permite invertir los condicionales:</p>
+<p><span class="math display">\[P(B|A) \rightarrow P(A|B)\]</span></p>
+<p>O <strong>diseñe</strong> una prueba <span class="math inline">\(B\)</span> en condición controlada <span class="math inline">\(A\)</span> y luego utilícela para <strong>inferir</strong> la probabilidad de la condición cuando la prueba es positiva.</p>
+<hr />
+<hr />
+</div>
+<div id="ejemplo-teorema-de-bayes" class="section level2 hasAnchor" number="4.29">
+<h2><span class="header-section-number">4.29</span> Ejemplo: teorema de Bayes<a href="probabilidad-condicional.html#ejemplo-teorema-de-bayes" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Teorema de Bayes:</p>
+<p><span class="math display">\[P(sí|positivo) = \frac{P(positivo|sí) P(sí)}{P(positivo|sí)P(sí)+P(positivo|no)P(no)}\]</span></p>
+<p>sabemos:</p>
+<ul>
+<li><p><span class="math inline">\(P(positivo|sí)=0.70\)</span></p></li>
+<li><p><span class="math inline">\(P(positivo|no)=1- P(negativo|no)=0.06\)</span></p></li>
+<li><p>la probabilidad de infección y no infección en la población: <span class="math inline">\(P(sí)=0.05\)</span> y <span class="math inline">\(P(no)=1-P(sí)=0.95\)</span>.</p></li>
+</ul>
+<p>Por lo tanto:</p>
+<p><span class="math display">\[P(sí|positivo)=0.47\]</span></p>
+<p>Las pruebas no son tan buenas para <strong>confirmar</strong> infecciones.</p>
+<hr />
+<hr />
+</div>
+<div id="ejemplo-teorema-de-bayes-1" class="section level2 hasAnchor" number="4.30">
+<h2><span class="header-section-number">4.30</span> Ejemplo: teorema de Bayes<a href="probabilidad-condicional.html#ejemplo-teorema-de-bayes-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Apliquémoslo ahora a la probabilidad de no estar infectado si la prueba es negativa.</p>
+<p><span class="math display">\[P(no|negativo) = \frac{P(negativo|no) P(no)}{P(negativo|no) P(no)+P(negativo|sí)P(sí)}\]</span></p>
+<p>La sustitución de todos los valores da</p>
+<p><span class="math display">\[P(no|negativo)=0.98\]</span></p>
+<p>Las pruebas son buenas para <strong>descartar</strong> infecciones.</p>
+<hr />
+<hr />
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="probabilidad.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="ejercicios.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/03-ConditionalProbability.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

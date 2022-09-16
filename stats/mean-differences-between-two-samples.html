@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 3 Probability | Stats theory (SDA)</title>
+  <title>Chapter 17 Mean differences between two samples | Stats theory (SDA)</title>
   <meta name="description" content="This are slides for the Stats theory of the BIST master" />
   <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 3 Probability | Stats theory (SDA)" />
+  <meta property="og:title" content="Chapter 17 Mean differences between two samples | Stats theory (SDA)" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="alejandro-isglobal/master" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 3 Probability | Stats theory (SDA)" />
+  <meta name="twitter:title" content="Chapter 17 Mean differences between two samples | Stats theory (SDA)" />
   
   <meta name="twitter:description" content="This are slides for the Stats theory of the BIST master" />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="data-description.html"/>
-<link rel="next" href="conditional-probability.html"/>
+<link rel="prev" href="contingency-tables-1.html"/>
+<link rel="next" href="mean-differences-between-several-samples.html"/>
 <script src="libs/header-attrs-2.12/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -797,839 +797,329 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="probability" class="section level1 hasAnchor" number="3">
-<h1><span class="header-section-number">Chapter 3</span> Probability<a href="probability.html#probability" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<div id="objective-1" class="section level2 hasAnchor" number="3.1">
-<h2><span class="header-section-number">3.1</span> Objective<a href="probability.html#objective-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="mean-differences-between-two-samples" class="section level1 hasAnchor" number="17">
+<h1><span class="header-section-number">Chapter 17</span> Mean differences between two samples<a href="mean-differences-between-two-samples.html#mean-differences-between-two-samples" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="objective-15" class="section level2 hasAnchor" number="17.1">
+<h2><span class="header-section-number">17.1</span> Objective<a href="mean-differences-between-two-samples.html#objective-15" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ul>
-<li>Definition of probability</li>
-<li>Probability algebra</li>
-<li>Joint probability</li>
+<li>large <span class="math inline">\(n\)</span>: <span class="math inline">\(Z\)</span> test</li>
+<li>small <span class="math inline">\(n\)</span> with equal and unequal variances: <span class="math inline">\(t\)</span> test</li>
 </ul>
 <hr />
 <hr />
 </div>
-<div id="random-experiments-1" class="section level2 hasAnchor" number="3.2">
-<h2><span class="header-section-number">3.2</span> Random experiments<a href="probability.html#random-experiments-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><strong>Observation</strong></p>
+<div id="difference-between-means" class="section level2 hasAnchor" number="17.2">
+<h2><span class="header-section-number">17.2</span> Difference between means<a href="mean-differences-between-two-samples.html#difference-between-means" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Let’s consider an outcome of interest <span class="math inline">\(Y\)</span></p>
+<p><span class="math display">\[ Y \rightarrow N(\mu, \sigma^2)\]</span></p>
+<p>we repeat the random experiment under two conditions <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span>, to determine if the means between conditions change.</p>
+<hr />
+<hr />
+</div>
+<div id="difference-between-means-1" class="section level2 hasAnchor" number="17.3">
+<h2><span class="header-section-number">17.3</span> Difference between means<a href="mean-differences-between-two-samples.html#difference-between-means-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Leptin is an adipose tissue hormone that creates the sensation of satiety after eating. We want to study the serum leptin levels in obese children (PMID: 18755049) under different conditions, such as sex.</p>
 <ul>
-<li>An <strong>observation</strong> is the acquisition of a number or a characteristic from an experiment</li>
+<li>We assume that the levels of leptin in girls have a probability density</li>
 </ul>
-<p><strong>Outcome</strong></p>
+<p><span class="math display">\[Y_A \rightarrow N(\mu_A, \sigma_A^2)\]</span></p>
 <ul>
-<li>An <strong>outcome</strong> is a possible observation that is the result of an experiment.</li>
+<li>We assume a normal distribution of leptin in boys.</li>
 </ul>
-<p><strong>Random experiment</strong></p>
+<p><span class="math display">\[Y_B \rightarrow N(\mu_B, \sigma_B^2)\]</span></p>
+<hr />
+<hr />
+</div>
+<div id="difference-between-means-2" class="section level2 hasAnchor" number="17.4">
+<h2><span class="header-section-number">17.4</span> Difference between means<a href="mean-differences-between-two-samples.html#difference-between-means-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>One random experiment has two outcomes: <span class="math inline">\((leptin, sex)\)</span>.</p>
+<p>Continuous variable (outcome of interest)</p>
 <ul>
-<li>An experiment that gives <strong>different</strong> outcomes when repeated in the same manner.</li>
+<li><span class="math inline">\(leptin \in (0, 200)\)</span></li>
 </ul>
-<hr />
-<hr />
-</div>
-<div id="probability-1" class="section level2 hasAnchor" number="3.3">
-<h2><span class="header-section-number">3.3</span> Probability<a href="probability.html#probability-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><br>
-<br></p>
-<p>The <strong>probability</strong> of an outcome is a measure of how sure we are to observe that outcome when performing a random experiment.</p>
+<p>Categorical variable:</p>
 <ul>
-<li><p>0: We are sure that the observation will <strong>not</strong> happen.</p></li>
-<li><p>1: We are sure that the observation will happen.</p></li>
+<li><span class="math inline">\(sex \in \{girl:A,boy:B\}\)</span></li>
 </ul>
-<p><br>
-<br></p>
+<p>Repeating the experiment <span class="math inline">\(n\)</span> times, the data for the first five repetitions look like</p>
+<pre><code>##   leptin sex
+## 1   37.8   B
+## 2   40.1   B
+## 3   48.6   A
+## 4   39.0   A
+## 5   43.9   A</code></pre>
+<p><strong>Question:</strong> <span class="math inline">\(Sex\)</span> and <span class="math inline">\(Leptin\)</span> statistically independent variables?</p>
+<p>Let’s formulate the null hypothesis.</p>
 <hr />
 <hr />
 </div>
-<div id="example-3" class="section level2 hasAnchor" number="3.4">
-<h2><span class="header-section-number">3.4</span> Example<a href="probability.html#example-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><br>
-<br></p>
+<div id="difference-between-means-3" class="section level2 hasAnchor" number="17.5">
+<h2><span class="header-section-number">17.5</span> Difference between means<a href="mean-differences-between-two-samples.html#difference-between-means-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>We take leptin levels <strong>conditioned to</strong> each sex, and observed:</p>
 <ul>
-<li>Consider the following observations of a random experiment:</li>
+<li><p><span class="math inline">\(n_A=190\)</span> girls had a mean of <span class="math inline">\(\bar{y}_A=48.0\)</span> and <span class="math inline">\(s=27.1\)</span></p></li>
+<li><p><span class="math inline">\(n_B=166\)</span> boys has a mean of <span class="math inline">\(\bar{y}_B=34.4\)</span> and <span class="math inline">\(s=22.4\)</span></p></li>
 </ul>
-<p>1 5 1 2 2 1 2 2</p>
+<p>Instead of a conditional table, we draw histograms of leptin for each condition</p>
+<p><img src="_main_files/figure-html/unnamed-chunk-130-1.png" width="672" /></p>
+<p>boxplots are also popular</p>
+<p><img src="_main_files/figure-html/unnamed-chunk-131-1.png" width="672" /></p>
+<hr />
+<hr />
+</div>
+<div id="difference-between-means-4" class="section level2 hasAnchor" number="17.6">
+<h2><span class="header-section-number">17.6</span> Difference between means<a href="mean-differences-between-two-samples.html#difference-between-means-4" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="null-hypothesis-4" class="section level3 hasAnchor" number="17.6.1">
+<h3><span class="header-section-number">17.6.1</span> Null hypothesis:<a href="mean-differences-between-two-samples.html#null-hypothesis-4" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ul>
-<li>How sure we are to obtain <span class="math inline">\(2\)</span> in the following observation?</li>
+<li><p>The null hypothesis (status quo) assumes that both sexes have the same mean <span class="math inline">\(H_0: \mu_A=\mu_B\)</span> or <span class="math inline">\(H_0: \delta=\mu_A-\mu_B=0\)</span></p></li>
+<li><p>Therefore, the alternative hypothesis is that they are different, that is <span class="math inline">\(H_1: \delta \neq 0\)</span></p></li>
 </ul>
-<p><br>
-<br></p>
+<p>We need an estimator of <span class="math inline">\(\delta\)</span>.</p>
 <hr />
 <hr />
 </div>
-<div id="example-4" class="section level2 hasAnchor" number="3.5">
-<h2><span class="header-section-number">3.5</span> Example<a href="probability.html#example-4" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>The frequency table is</p>
-<pre><code>##   outcome ni    fi
-## 1       1  3 0.375
-## 2       2  4 0.500
-## 3       5  1 0.125</code></pre>
-<p>The <strong>relative frequency</strong> <span class="math inline">\(f_i\)</span></p>
+</div>
+<div id="estiamtor-of-the-mean-differnce" class="section level2 hasAnchor" number="17.7">
+<h2><span class="header-section-number">17.7</span> Estiamtor of the mean differnce<a href="mean-differences-between-two-samples.html#estiamtor-of-the-mean-differnce" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The statistic <span class="math inline">\(D=\bar{Y}_A-\bar{Y}_B\)</span> is an estimator of <span class="math inline">\(\delta\)</span></p>
 <ul>
-<li>is a number between <span class="math inline">\(0\)</span> and <span class="math inline">\(1\)</span>.</li>
-<li>measures the proportion of total observations that we observed a particular outcome.</li>
-<li>seems a reasonable probability measure.</li>
+<li><p><span class="math inline">\(E(D)=E(\bar{Y}_A-\bar{Y}_B)=\mu_A-\mu_B=\delta\)</span> (unbiased estimator)</p></li>
+<li><p><span class="math inline">\(V(D)=V(\bar{Y}_A-\bar{Y}_B)=\frac{\sigma^2_A}{n_A}+\frac{\sigma^2_B}{n_B}\)</span> (consistent estimator)</p></li>
 </ul>
-<p>As <span class="math inline">\(f_2=0.5\)</span> then we would be half certain to obtain a <span class="math inline">\(2\)</span> in the next repetition of the experiment.</p>
+<p>More over if <span class="math inline">\(n_A\)</span> and <span class="math inline">\(n_B\)</span> are large (by CLT) then</p>
+<p><span class="math display">\[Z=\frac{E(D)-\delta}{\sqrt{V(D)}}=\frac{\bar{Y}_A-\bar{Y}_B -\delta}{\sqrt{\frac{\sigma^2_A}{n_A}+\frac{\sigma^2_B}{n_B}}} \rightarrow N(0,1)\]</span></p>
+<p>is a normal standard variable.</p>
 <hr />
 <hr />
 </div>
-<div id="relative-frequency" class="section level2 hasAnchor" number="3.6">
-<h2><span class="header-section-number">3.6</span> Relative frequency<a href="probability.html#relative-frequency" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>As a measure of certainty is <span class="math inline">\(f_i\)</span> enough?</p>
-<p>Say we repeated the experiment 12 times more:</p>
-<p>1 5 1 2 2 1 2 2 <strong>3 1 1 3 3 1 6 3 5 6 4 4</strong></p>
-<p>The frequency table is now</p>
-<pre><code>##   outcome ni  fi
-## 1       1  6 0.3
-## 2       2  4 0.2
-## 3       3  4 0.2
-## 4       4  2 0.1
-## 5       5  2 0.1
-## 6       6  2 0.1</code></pre>
-<p>New outcomes appeared and <span class="math inline">\(f_2\)</span> is now <span class="math inline">\(0.2\)</span>, we are now a fifth certain of obtaining <span class="math inline">\(2\)</span> in the next experiment… probability should not depend on <span class="math inline">\(N\)</span></p>
-<hr />
-<hr />
-</div>
-<div id="at-infinity" class="section level2 hasAnchor" number="3.7">
-<h2><span class="header-section-number">3.7</span> At infinity<a href="probability.html#at-infinity" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Say we repeated the experiment 1000 times:</p>
-<pre><code>##   outcome  ni    fi
-## 1       1 168 0.168
-## 2       2 177 0.177
-## 3       3 151 0.151
-## 4       4 179 0.179
-## 5       5 163 0.163
-## 6       6 162 0.162</code></pre>
-<p>We find that <span class="math inline">\(f_i\)</span> is converging to a constant value</p>
-<p><span class="math display">\[lim_{N\rightarrow \infty} f_i = P_i\]</span></p>
-<p><img src="_main_files/figure-html/unnamed-chunk-26-1.png" width="672" /></p>
-<hr />
-<hr />
-</div>
-<div id="frequentist-probability" class="section level2 hasAnchor" number="3.8">
-<h2><span class="header-section-number">3.8</span> Frequentist probability<a href="probability.html#frequentist-probability" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>We call <strong>Probability</strong> <span class="math inline">\(P_i\)</span> to the limit when <span class="math inline">\(N \rightarrow \infty\)</span> of the <strong>relative frequency</strong> of observing the outcome <span class="math inline">\(i\)</span> in a random experiment.</p>
-<p>Championed by <a href="https://plato.stanford.edu/entries/probability-interpret/#ClaPro">Venn (1876)</a></p>
-<p>The frequentist interpretation of probabilities is derived from data/experience (empirical).</p>
+<div id="standardized-error" class="section level2 hasAnchor" number="17.8">
+<h2><span class="header-section-number">17.8</span> Standardized error<a href="mean-differences-between-two-samples.html#standardized-error" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Then the <strong>standardized error</strong> from the null hypothesis (<span class="math inline">\(\delta=0\)</span>) follows a standard distribution</p>
+<p><span class="math display">\[Z=\frac{\bar{Y}_A-\bar{Y}_B}{\sqrt{\frac{\sigma^2_A}{n_A}+\frac{\sigma^2_B}{n_B}}}\]</span></p>
 <ul>
-<li>We do not observe <span class="math inline">\(P_i\)</span>, we observe <span class="math inline">\(f_i\)</span></li>
-<li>When we <strong>estimate</strong> <span class="math inline">\(P_i\)</span> with <span class="math inline">\(f_i\)</span> (typically when <span class="math inline">\(N\)</span> is large), we write: <span class="math display">\[\hat{P_i}=f_i\]</span></li>
+<li>Is our observed <span class="math inline">\(\delta_{obs}\)</span> within the acceptance region of the null hypothesis?</li>
 </ul>
-<p><br>
-<br></p>
-<hr />
-<hr />
-</div>
-<div id="classical-probability" class="section level2 hasAnchor" number="3.9">
-<h2><span class="header-section-number">3.9</span> Classical Probability<a href="probability.html#classical-probability" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Whenever a random experiment has <span class="math inline">\(M\)</span> possible outcomes that are all <strong>equally likely</strong>, the probability of each outcome is <span class="math inline">\(\frac{1}{M}\)</span>.</p>
-<p>Championed by <a href="https://plato.stanford.edu/entries/probability-interpret/#ClaPro">Laplace (1814)</a>.</p>
-<p>Since each outcome is <strong>equally probable</strong> we declare complete ignorance and the best we can do is to fairly distribute the same probability to each outcome.</p>
-<p>What if I told you that our experiment was the throw of the dice? then</p>
-<p><span class="math inline">\(P_2=1/6=0.166666\)</span>.</p>
-<p><br></p>
-<p><span class="math display">\[P_i=lim_{N\rightarrow \infty} \frac{n_i}{N}=\frac{1}{M}\]</span></p>
-<hr />
-<hr />
-</div>
-<div id="classical-and-frequentist-probabilities" class="section level2 hasAnchor" number="3.10">
-<h2><span class="header-section-number">3.10</span> Classical and frequentist probabilities<a href="probability.html#classical-and-frequentist-probabilities" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><img src="figures/prob.jpg" style="width:75%"  align="center"></p>
-<hr />
-<hr />
-</div>
-<div id="probability-2" class="section level2 hasAnchor" number="3.11">
-<h2><span class="header-section-number">3.11</span> Probability<a href="probability.html#probability-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><br>
-<br></p>
-<p>Probability is a number between <span class="math inline">\(0\)</span> and <span class="math inline">\(1\)</span> that is assigned to each member <span class="math inline">\(E\)</span> of a collection of <strong>events</strong> of a <strong>sample space</strong> (<span class="math inline">\(S\)</span>) from a random experiment.</p>
-<p><span class="math display">\[P(E) \in (0,1)\]</span></p>
-<p>where <span class="math inline">\(E \in S\)</span></p>
-<p><br>
-<br></p>
-<hr />
-<hr />
-</div>
-<div id="sample-space" class="section level2 hasAnchor" number="3.12">
-<h2><span class="header-section-number">3.12</span> Sample space<a href="probability.html#sample-space" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>We start by reasoning what are all the possible values (outcomes) that a random experiment could give.</p>
-<p>Note that we do not have to observe them in a particular experiment: We are using <strong>reason/logic</strong> and not observation.</p>
-<p><strong>Definition:</strong></p>
+<p><span class="math display">\[P(-z_{0.025} \leq Z \leq z_{0.025})=P(-1.96 \leq Z \leq 1.96)=0.95\]</span></p>
 <ul>
-<li><p>The set of all possible outcomes of a random experiment is called the <strong>sample space</strong>
-of the experiment.</p></li>
-<li><p>The sample space is denoted as <span class="math inline">\(S\)</span>.</p></li>
+<li>Is the of <span class="math inline">\(d_{obs}\)</span> lower than <span class="math inline">\(\alpha=0.05\)</span>?</li>
 </ul>
 <hr />
 <hr />
 </div>
-<div id="examples-of-sample-spaces" class="section level2 hasAnchor" number="3.13">
-<h2><span class="header-section-number">3.13</span> Examples of sample spaces<a href="probability.html#examples-of-sample-spaces" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><br>
-<br></p>
-<ul>
-<li>temperature 35 and 42 degrees Celcius</li>
-<li>sugar levels: 70-80mg/dL</li>
-<li>the size of one screw from a production line: 70mm-72mm</li>
-<li>number of emails received in an hour: 0-100</li>
-<li>a dice throw: 1, 2, 3, 4, 5, 6</li>
-</ul>
-<p><br>
-<br></p>
+<div id="mean-comparison" class="section level2 hasAnchor" number="17.9">
+<h2><span class="header-section-number">17.9</span> Mean comparison<a href="mean-differences-between-two-samples.html#mean-comparison" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><img src="_main_files/figure-html/unnamed-chunk-132-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-133-1.png" width="672" /></p>
 <hr />
 <hr />
 </div>
-<div id="discrete-and-continuous-sample-spaces" class="section level2 hasAnchor" number="3.14">
-<h2><span class="header-section-number">3.14</span> Discrete and continuous sample spaces<a href="probability.html#discrete-and-continuous-sample-spaces" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><br>
-<br></p>
+<div id="hypothesis-testing-1" class="section level2 hasAnchor" number="17.10">
+<h2><span class="header-section-number">17.10</span> Hypothesis testing<a href="mean-differences-between-two-samples.html#hypothesis-testing-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ul>
-<li><p>A sample space is discrete if it consists of a finite or countable infinite set of outcomes.</p></li>
-<li><p>A sample space is continuous if it contains an interval (either finite or infinite in length) of
-real numbers.</p></li>
+<li>The <strong>observed mean difference</strong></li>
 </ul>
-<p><br>
-<br></p>
+<p><span class="math display">\[d_{obs}=\frac{\bar{y}_A-\bar{y}_B }{\sqrt{\frac{s^2_A}{n_A}+\frac{s^2_B}{n_B}}}=\frac{48-34.4}{\sqrt{\frac{27.1^2}{190}+\frac{22.4^2}{166}}}=5.181952\]</span>
+is outside of the acceptance region.</p>
+<ul>
+<li>The two-tailed <span class="math inline">\(pvalue\)</span>:</li>
+</ul>
+<p><span class="math display">\[Pval=2*(1-\phi(5.181952))=2.195757 \times 10^{-7}\]</span></p>
+<p>is lower than <span class="math inline">\(\alpha\)</span>.</p>
+<p>Therefore, we reject the null hypothesis that the leptin levels in obese children are equal between boys and girls.</p>
 <hr />
 <hr />
 </div>
-<div id="event" class="section level2 hasAnchor" number="3.15">
-<h2><span class="header-section-number">3.15</span> Event<a href="probability.html#event" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><strong>Definition:</strong></p>
-<p>An <strong>event</strong> is a <strong>subset</strong> of the sample space of a random experiment. It is a <strong>collection</strong> of outcomes.</p>
-<p>Examples of events:</p>
-<ul>
-<li>The event of a healthy temperature: temperature 37-38 degrees Celsius</li>
-<li>The event of producing a screw with a size: of 71.5mm</li>
-<li>The event of receiving more than 4 emails in an hour.</li>
-<li>The event of obtaining a number less than 3 in the throw of a dice</li>
-</ul>
-<p>One event refers to a possible set of <strong>outcomes</strong>.</p>
+<div id="reporting" class="section level2 hasAnchor" number="17.11">
+<h2><span class="header-section-number">17.11</span> Reporting<a href="mean-differences-between-two-samples.html#reporting" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="abstract" class="section level3 hasAnchor" number="17.11.1">
+<h3><span class="header-section-number">17.11.1</span> Abstract<a href="mean-differences-between-two-samples.html#abstract" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Obesity rates are different between boys and girls, suggesting that the physiopathology of the disease is different between the sexes.</p>
+<p>In this study, we tested the hypothesis that the leptin levels in serum are different between boys and girls.</p>
+<p>We analyzed data from 190 obese girls and 166 obese boys and found a significant difference in leptin between sexes (mean difference <span class="math inline">\(13.6\)</span>, <span class="math inline">\(P=2.195757 \times 10^{-7}\)</span>)</p>
+<p><img src="_main_files/figure-html/unnamed-chunk-134-1.png" width="672" /></p>
 <hr />
 <hr />
 </div>
-<div id="event-operations" class="section level2 hasAnchor" number="3.16">
-<h2><span class="header-section-number">3.16</span> Event operations<a href="probability.html#event-operations" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><br>
-<br></p>
-<p>For two events <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span>, we can construct the following derived events:</p>
+</div>
+<div id="mean-difference-small-n" class="section level2 hasAnchor" number="17.12">
+<h2><span class="header-section-number">17.12</span> Mean difference small <span class="math inline">\(n\)</span><a href="mean-differences-between-two-samples.html#mean-difference-small-n" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>For performing the statistical test we computed</p>
 <ul>
-<li>Complement <span class="math inline">\(A&#39;\)</span>: the event of <strong>not</strong> <span class="math inline">\(A\)</span></li>
-<li>Union <span class="math inline">\(A \cup B\)</span>: the event of <span class="math inline">\(A\)</span> <strong>or</strong> <span class="math inline">\(B\)</span><br />
-</li>
-<li>Intersection <span class="math inline">\(A \cap B\)</span>: the event of <span class="math inline">\(A\)</span> <strong>and</strong> <span class="math inline">\(B\)</span></li>
+<li>The <strong>observed mean difference</strong></li>
 </ul>
-<p><br>
-<br></p>
+<p><span class="math display">\[d_{obs}=\frac{\bar{y}_A-\bar{y}_B }{\sqrt{\frac{s^2_A}{n_A}+\frac{s^2_B}{n_B}}}\]</span>
+where we replaced the values of <span class="math inline">\(\sigma_A\)</span> and <span class="math inline">\(\sigma_B\)</span> for their estimated values <span class="math inline">\(s_A\)</span> and <span class="math inline">\(s_B\)</span>. The statistic <span class="math inline">\(D\)</span> is approximately normal because <span class="math inline">\(n\ge 30\)</span> (CLT).</p>
+<p>What happens when <span class="math inline">\(n\)</span> is small?</p>
 <hr />
 <hr />
 </div>
-<div id="event-operations-example" class="section level2 hasAnchor" number="3.17">
-<h2><span class="header-section-number">3.17</span> Event operations example<a href="probability.html#event-operations-example" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Take</p>
+<div id="mean-difference-small-n-1" class="section level2 hasAnchor" number="17.13">
+<h2><span class="header-section-number">17.13</span> Mean difference small <span class="math inline">\(n\)</span><a href="mean-differences-between-two-samples.html#mean-difference-small-n-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In a study that wanted to test the effect of leptin in neurodevelopment, 7 male mice had their leptin gene knocked out. While 16 mice were left with normal leptin function (PMID: 30694175). An initial question was to test the effect of leptin on the body weight of the animals.</p>
 <ul>
-<li>Event <span class="math inline">\(A:\{1,2,3\}\)</span> a number less or equal to three in the throw of a dice<br />
-</li>
-<li>Event <span class="math inline">\(B:\{2,4,6\}\)</span> an even number in the throw of a dice</li>
+<li>We assume that the weight of the control animals has a probability density</li>
 </ul>
-<p>New events:</p>
+<p><span class="math display">\[Y_A \rightarrow N(\mu_A, \sigma_A^2)\]</span></p>
 <ul>
-<li>Not less than three: <span class="math inline">\(A&#39;:\{4,5,6\}\)</span></li>
-<li>Less or equal to three <strong>or</strong> even: <span class="math inline">\(A \cup B: \{1,2,3,4,6\}\)</span></li>
-<li>Less or equal to three <strong>and</strong> even <span class="math inline">\(A \cap B: \{2\}\)</span></li>
+<li>We assume a normal distribution weight for the mice with no leptin.</li>
 </ul>
+<p><span class="math display">\[Y_B \rightarrow N(\mu_B, \sigma_B^2)\]</span></p>
 <hr />
 <hr />
 </div>
-<div id="outcomes" class="section level2 hasAnchor" number="3.18">
-<h2><span class="header-section-number">3.18</span> Outcomes<a href="probability.html#outcomes" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Outcomes are events that are <strong>mutually exclusive</strong></p>
-<p><strong>Definition:</strong></p>
-<p>Two events denoted as <span class="math inline">\(E_1\)</span> and <span class="math inline">\(E_2\)</span>, such that</p>
-<p><span class="math display">\[E_1\cap E_2=\emptyset\]</span>
-They cannot occur at the same time.</p>
-<p>Example:</p>
+<div id="difference-between-means-5" class="section level2 hasAnchor" number="17.14">
+<h2><span class="header-section-number">17.14</span> Difference between means<a href="mean-differences-between-two-samples.html#difference-between-means-5" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>One random experiment has two outcomes: <span class="math inline">\((weight, leptin)\)</span>.</p>
+<p>Continuous variable (outcome of interest)</p>
 <ul>
-<li><p>The outcome of obtaining <span class="math inline">\(1\)</span> <strong>and</strong> the outcome of obtaining <span class="math inline">\(5\)</span> in the throw of one dice are mutually exclusive:</p></li>
-<li><p>The event of obtaining <span class="math inline">\(1\)</span> and <span class="math inline">\(5\)</span> is empty:<span class="math display">\[\{1\}\cap \{5\}=\emptyset\]</span></p></li>
+<li><span class="math inline">\(weigth \in (20, 60)\)</span></li>
 </ul>
-<hr />
-<hr />
-</div>
-<div id="probability-definition" class="section level2 hasAnchor" number="3.19">
-<h2><span class="header-section-number">3.19</span> Probability definition<a href="probability.html#probability-definition" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><br></p>
-<p>A probability is a number that is assigned to each possible event (<span class="math inline">\(E\)</span>) of a sample space (<span class="math inline">\(S\)</span>) of a random experiment that satisfies the following properties:</p>
+<p>Categorical variable:</p>
 <ul>
-<li><span class="math inline">\(P(S)=1\)</span></li>
-<li><span class="math inline">\(0 \leq P(E) \leq 1\)</span></li>
-<li>when <span class="math inline">\(E_1\cap E_2=\emptyset\)</span> <span class="math display">\[P(E_1\cup E_2) = P(E_1) + P(E_2)\]</span></li>
+<li><span class="math inline">\(leptin \in \{control:A,knockout:B\}\)</span></li>
 </ul>
-<p>Proposed by Kolmogorov’s (1933)</p>
-<p><br></p>
+<p>The data looks like</p>
+<pre><code>##    weight    group
+## 1   27.67  Control
+## 2   27.40  Control
+## 3   25.77  Control
+## 4   25.60  Control
+## 5   25.03  Control
+## 6   25.90  Control
+## 7   26.67  Control
+## 8   25.60  Control
+## 9   28.93  Control
+## 10  31.83  Control
+## 11  25.90  Control
+## 12  26.30  Control
+## 13  27.90  Control
+## 14  26.77  Control
+## 15  25.83  Control
+## 16  20.87  Control
+## 17  46.57 leptinKO
+## 18  40.43 leptinKO
+## 19  41.97 leptinKO
+## 20  41.17 leptinKO
+## 21  41.57 leptinKO
+## 22  46.17 leptinKO
+## 23  53.83 leptinKO</code></pre>
 <hr />
 <hr />
 </div>
-<div id="probability-properties" class="section level2 hasAnchor" number="3.20">
-<h2><span class="header-section-number">3.20</span> Probability properties<a href="probability.html#probability-properties" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Kolmogorov says that we can build a probability table (likewise the relative frequency table)</p>
-<table>
-<thead>
-<tr class="header">
-<th align="center">outcome</th>
-<th align="center">Probability</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="center"><span class="math inline">\(1\)</span></td>
-<td align="center">1/6</td>
-</tr>
-<tr class="even">
-<td align="center"><span class="math inline">\(2\)</span></td>
-<td align="center">1/6</td>
-</tr>
-<tr class="odd">
-<td align="center"><span class="math inline">\(3\)</span></td>
-<td align="center">1/6</td>
-</tr>
-<tr class="even">
-<td align="center"><span class="math inline">\(4\)</span></td>
-<td align="center">1/6</td>
-</tr>
-<tr class="odd">
-<td align="center"><span class="math inline">\(5\)</span></td>
-<td align="center">1/6</td>
-</tr>
-<tr class="even">
-<td align="center"><span class="math inline">\(6\)</span></td>
-<td align="center">1/6</td>
-</tr>
-<tr class="odd">
-<td align="center"><span class="math inline">\(P(1 \cup 2\cup ... \cup 6)\)</span></td>
-<td align="center">1</td>
-</tr>
-</tbody>
-</table>
-<p>As <span class="math inline">\(\{1,2,3,4,5,6\}\)</span> are mutually exclusive then</p>
-<p><span class="math display">\[P(S)=P(1\cup 2\cup ... \cup 6) = P(1)+P(2)+ ...+P(n)=1\]</span></p>
-<hr />
-<hr />
-</div>
-<div id="addition-rule" class="section level2 hasAnchor" number="3.21">
-<h2><span class="header-section-number">3.21</span> Addition Rule<a href="probability.html#addition-rule" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><br>
-<br></p>
-<p>When <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are not mutually exclusive then:</p>
-<p><span class="math display">\[P(A \cup B)=P(A) + P(B) - P(A\cap B)\]</span></p>
-<p>Where <span class="math inline">\(P(A)\)</span> and <span class="math inline">\(P(B)\)</span> are called the <strong>marginal probabilities</strong></p>
-<p><br>
-<br></p>
-<hr />
-<hr />
-</div>
-<div id="example-addition-rule" class="section level2 hasAnchor" number="3.22">
-<h2><span class="header-section-number">3.22</span> Example Addition Rule<a href="probability.html#example-addition-rule" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Take</p>
+<div id="difference-between-means-6" class="section level2 hasAnchor" number="17.15">
+<h2><span class="header-section-number">17.15</span> Difference between means<a href="mean-differences-between-two-samples.html#difference-between-means-6" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>We take weights <strong>conditioned to</strong> each lepting condition, and observed:</p>
 <ul>
-<li>Event <span class="math inline">\(A:\{1,2,3\}\)</span> a number less or equal to three in the throw of a dice<br />
-</li>
-<li>Event <span class="math inline">\(B:\{2,4,6\}\)</span> an even number in the throw of a dice</li>
+<li><p><span class="math inline">\(n_A=16\)</span> control mice had a weight mean of <span class="math inline">\(\bar{y}_A=26.49813\)</span> and <span class="math inline">\(s_A=2.247577\)</span></p></li>
+<li><p><span class="math inline">\(n_B=7\)</span> leptin KO mice had a weight mean of <span class="math inline">\(\bar{y}_B=44.53\)</span> and <span class="math inline">\(s_B=4.774167\)</span></p></li>
 </ul>
-<p>then:</p>
-<ul>
-<li><span class="math inline">\(P(A): P(1) + P(2) + P(3)=3/6\)</span></li>
-<li><span class="math inline">\(P(B): P(2) + P(4) + P(6)=3/6\)</span></li>
-<li><span class="math inline">\(P(A \cap B): P(2) = 1/6\)</span></li>
-</ul>
-<p><span class="math inline">\(P(A \cup B)=P(A) + P(B) - P(A\cap B)=3/6+3/6-1/6=5/6\)</span></p>
-<p>Note: <span class="math inline">\(P(2)\)</span> appears in <span class="math inline">\(P(A)\)</span> and <span class="math inline">\(P(B)\)</span> that’s why we subtract it with the intersection</p>
+<p>We can draw boxplots per group</p>
+<p><img src="_main_files/figure-html/unnamed-chunk-136-1.png" width="672" /></p>
 <hr />
 <hr />
 </div>
-<div id="venn-diagram" class="section level2 hasAnchor" number="3.23">
-<h2><span class="header-section-number">3.23</span> Venn diagram<a href="probability.html#venn-diagram" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Note that can always break down the sample space in <strong>mutually exclusive</strong> sets involving the intersections:</p>
-<p><span class="math inline">\(S=\{A\cap B, A \cap B&#39;, A&#39;\cap B, A&#39;\cap B&#39;\}\)</span></p>
-<p><img src="figures/Venn.jpg" style="width:75%"  align="center"></p>
-<p>Marginals:</p>
+<div id="difference-between-means-7" class="section level2 hasAnchor" number="17.16">
+<h2><span class="header-section-number">17.16</span> Difference between means<a href="mean-differences-between-two-samples.html#difference-between-means-7" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="null-hypothesis-5" class="section level3 hasAnchor" number="17.16.1">
+<h3><span class="header-section-number">17.16.1</span> Null hypothesis:<a href="mean-differences-between-two-samples.html#null-hypothesis-5" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ul>
-<li><span class="math inline">\(P(A)=P(A\cap B&#39;) + P(A \cap B)=2/6+1/6=3/6\)</span></li>
-<li><span class="math inline">\(P(B)=P(A&#39;\cap B) +P(A \cap B)=2/6+1/6=3/6\)</span></li>
+<li><p>The null hypothesis (status quo) assumes that both mice (control, leptin KO) have the same mean <span class="math inline">\(H_0: \delta=\mu_A-\mu_B=0\)</span></p></li>
+<li><p>Therefore, the alternative hypothesis is that they are different, that is <span class="math inline">\(H_1: \delta \neq 0\)</span></p></li>
 </ul>
 <hr />
 <hr />
 </div>
-<div id="probability-table" class="section level2 hasAnchor" number="3.24">
-<h2><span class="header-section-number">3.24</span> Probability table<a href="probability.html#probability-table" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Let’s look at the probability table</p>
-<table>
-<thead>
-<tr class="header">
-<th align="center">outcome</th>
-<th align="center">Probability</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="center"><span class="math inline">\(A\cap B\)</span></td>
-<td align="center"><span class="math inline">\(P(A\cap B)\)</span></td>
-</tr>
-<tr class="even">
-<td align="center"><span class="math inline">\(A\cap B&#39;\)</span></td>
-<td align="center"><span class="math inline">\(P(A\cap B&#39;)\)</span></td>
-</tr>
-<tr class="odd">
-<td align="center"><span class="math inline">\(A&#39;\cap B\)</span></td>
-<td align="center"><span class="math inline">\(P(A&#39;\cap B)\)</span></td>
-</tr>
-<tr class="even">
-<td align="center"><span class="math inline">\(A&#39;\cap B&#39;\)</span></td>
-<td align="center"><span class="math inline">\(P(A&#39;\cap B&#39;)\)</span></td>
-</tr>
-<tr class="odd">
-<td align="center">sum</td>
-<td align="center"><span class="math inline">\(1\)</span></td>
-</tr>
-</tbody>
-</table>
-<hr />
-<hr />
 </div>
-<div id="example-probability-table" class="section level2 hasAnchor" number="3.25">
-<h2><span class="header-section-number">3.25</span> Example probability table<a href="probability.html#example-probability-table" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>We also write <span class="math inline">\(A \cap B\)</span> as <span class="math inline">\((A,B)\)</span> and call it the <strong>joint probability</strong> of <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span></p>
-<p>In our example:</p>
-<table>
-<thead>
-<tr class="header">
-<th align="center">outcome</th>
-<th align="center">Probability</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="center"><span class="math inline">\((A, B)\)</span></td>
-<td align="center"><span class="math inline">\(P(A, B)=1/6\)</span></td>
-</tr>
-<tr class="even">
-<td align="center"><span class="math inline">\((A, B&#39;)\)</span></td>
-<td align="center"><span class="math inline">\(P(A, B&#39;)=2/6\)</span></td>
-</tr>
-<tr class="odd">
-<td align="center"><span class="math inline">\((A&#39;, B)\)</span></td>
-<td align="center"><span class="math inline">\(P(A&#39;, B)=2/6\)</span></td>
-</tr>
-<tr class="even">
-<td align="center"><span class="math inline">\((A&#39;, B&#39;)\)</span></td>
-<td align="center"><span class="math inline">\(P(A&#39;, B&#39;)=1/6\)</span></td>
-</tr>
-<tr class="odd">
-<td align="center">sum</td>
-<td align="center"><span class="math inline">\(1\)</span></td>
-</tr>
-</tbody>
-</table>
-<p>Note: each outcome has <span class="math inline">\(two\)</span> values (one for the characteristic of type <span class="math inline">\(A\)</span> and another for type <span class="math inline">\(B\)</span>)</p>
-<hr />
-<hr />
-</div>
-<div id="contingency-table" class="section level2 hasAnchor" number="3.26">
-<h2><span class="header-section-number">3.26</span> Contingency table<a href="probability.html#contingency-table" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>We can organize the probability of <strong>joint outcomes</strong> in a <strong>contingency table</strong></p>
-<table>
-<thead>
-<tr class="header">
-<th align="center"></th>
-<th align="center"><span class="math inline">\(B\)</span></th>
-<th align="center"><span class="math inline">\(B&#39;\)</span></th>
-<th align="center"><b>sum</b></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="center"><span class="math inline">\(A\)</span></td>
-<td align="center"><span class="math inline">\(P(A, B )\)</span></td>
-<td align="center"><span class="math inline">\(P(A, B&#39; )\)</span></td>
-<td align="center"><span class="math inline">\(P(A)\)</span></td>
-</tr>
-<tr class="even">
-<td align="center"><span class="math inline">\(A&#39;\)</span></td>
-<td align="center"><span class="math inline">\(P(A&#39;, B )\)</span></td>
-<td align="center"><span class="math inline">\(P(A&#39;, B&#39; )\)</span></td>
-<td align="center"><span class="math inline">\(P(A&#39;)\)</span></td>
-</tr>
-<tr class="odd">
-<td align="center"><b>sum</b></td>
-<td align="center"><span class="math inline">\(P(B)\)</span></td>
-<td align="center"><span class="math inline">\(P(B&#39;)\)</span></td>
-<td align="center">1</td>
-</tr>
-</tbody>
-</table>
-<p>Marginals:</p>
+<div id="estimator-of-the-mean-difference" class="section level2 hasAnchor" number="17.17">
+<h2><span class="header-section-number">17.17</span> Estimator of the mean difference<a href="mean-differences-between-two-samples.html#estimator-of-the-mean-difference" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The statistic <span class="math inline">\(D=\bar{Y}_A-\bar{Y}_B\)</span> is an estimator of <span class="math inline">\(\delta\)</span></p>
 <ul>
-<li><span class="math inline">\(P(A)=P(A, B&#39;) + P(A, B)\)</span></li>
-<li><span class="math inline">\(P(B)=P(A&#39;, B) +P(A, B)\)</span></li>
+<li><span class="math inline">\(E(D)=\delta\)</span> (unbiased estimator)</li>
+</ul>
+<p>If <span class="math inline">\(Y_A\)</span> and <span class="math inline">\(Y_B\)</span> are normal variables with the same variance <span class="math display">\[\sigma^2=\sigma^2_A=\sigma^2_B\]</span></p>
+<p>The <strong>standardized error</strong></p>
+<p><span class="math display">\[T=\frac{\bar{Y}_A-\bar{Y}_B -\delta}{\sqrt{\frac{s_p^2}{n_A}+\frac{s_p^2}{n_B}}} \rightarrow T(n_A+n_B-2)\]</span></p>
+<p>follows exactly a T-distribution with <span class="math inline">\(n_A+n_B-2\)</span> degrees of freedom.</p>
+<p>The <strong>pooled variance</strong> <span class="math inline">\(s_p^2\)</span>, is an estimator of <span class="math inline">\(\sigma^2\)</span></p>
+<p><span class="math display">\[\hat{\sigma}^2=s_p^2= \frac{(n_A-1) s^2_A+(n_B-1) s^2_B}{n_A+n_B-2}\]</span></p>
+<hr />
+<hr />
+</div>
+<div id="hypothesis-testing-2" class="section level2 hasAnchor" number="17.18">
+<h2><span class="header-section-number">17.18</span> Hypothesis testing<a href="mean-differences-between-two-samples.html#hypothesis-testing-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li>Is our observed <span class="math inline">\(d_{obs}\)</span> within the acceptance region of the null hypothesis?</li>
+</ul>
+<p><span class="math display">\[P(-t_{0.025, 21} \leq T \leq t_{0.025, 21})=P(-2.079614 \leq T \leq -2.079614)=0.95\]</span></p>
+<ul>
+<li>Is the of <span class="math inline">\(value\)</span> lower than <span class="math inline">\(\alpha=0.05\)</span>?</li>
 </ul>
 <hr />
 <hr />
 </div>
-<div id="example-contingency-table" class="section level2 hasAnchor" number="3.27">
-<h2><span class="header-section-number">3.27</span> Example contingency table<a href="probability.html#example-contingency-table" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="hypothesis-testing-3" class="section level2 hasAnchor" number="17.19">
+<h2><span class="header-section-number">17.19</span> Hypothesis testing<a href="mean-differences-between-two-samples.html#hypothesis-testing-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ul>
-<li>Event <span class="math inline">\(A:\{1,2,3\}\)</span> a number less or equal to three in the throw of a dice<br />
-</li>
-<li>Event <span class="math inline">\(B:\{2,4,6\}\)</span> an even number in the throw of a dice</li>
+<li>The <strong>observed mean difference</strong></li>
 </ul>
-<table>
-<thead>
-<tr class="header">
-<th align="center"></th>
-<th align="center"><span class="math inline">\(B\)</span></th>
-<th align="center"><span class="math inline">\(B&#39;\)</span></th>
-<th align="center"><b>sum</b></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="center"><span class="math inline">\(A\)</span></td>
-<td align="center"><span class="math inline">\(1/6\)</span></td>
-<td align="center"><span class="math inline">\(2/6\)</span></td>
-<td align="center"><span class="math inline">\(3/6\)</span></td>
-</tr>
-<tr class="even">
-<td align="center"><span class="math inline">\(A&#39;\)</span></td>
-<td align="center"><span class="math inline">\(2/6\)</span></td>
-<td align="center"><span class="math inline">\(1/6\)</span></td>
-<td align="center"><span class="math inline">\(3/6\)</span></td>
-</tr>
-<tr class="odd">
-<td align="center"><b>sum</b></td>
-<td align="center"><span class="math inline">\(3/6\)</span></td>
-<td align="center"><span class="math inline">\(3/6\)</span></td>
-<td align="center">1</td>
-</tr>
-</tbody>
-</table>
-<p>Three forms of the <strong>addition rule</strong>:</p>
-<p><span class="math inline">\(P(A \cup B)\)</span><span class="math display">\[=P(A) + P(B) - P(A\cap B)\]</span>
-<span class="math display">\[=P(A \cap B)+P(A\cap B&#39;)+P(A&#39;\cap B)\]</span>
-<span class="math display">\[=1-P(A&#39;\cap B&#39;)\]</span></p>
-<hr />
-<hr />
-</div>
-<div id="misophonia-study" class="section level2 hasAnchor" number="3.28">
-<h2><span class="header-section-number">3.28</span> Misophonia study<a href="probability.html#misophonia-study" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>In the misophonia study, the patients were assessed for their misophonia severity <strong>and</strong> if they were depressed.</p>
-<p>The outcome of one random experiment is to measure the misophonia severity <strong>and</strong> depression status of one patient. The repetition of the random experiment was to perform the same two measurements on another patient.</p>
-<pre><code>##     Misofonia.dic depresion.dic
-## 1               4             1
-## 2               2             0
-## 3               0             0
-## 4               3             0
-## 5               0             0
-## 6               0             0
-## 7               2             0
-## 8               3             0
-## 9               0             1
-## 10              3             0
-## 11              0             0
-## 12              2             0
-## 13              2             1
-## 14              0             0
-## 15              2             0
-## 16              0             0
-## 17              0             0
-## 18              3             0
-## 19              3             0
-## 20              0             0
-## 21              3             0
-## 22              3             0
-## 23              2             0
-## 24              0             0
-## 25              0             0
-## 26              0             0
-## 27              4             1
-## 28              2             0
-## 29              2             0
-## 30              0             0
-## 31              2             0
-## 32              0             0
-## 33              0             0
-## 34              0             0
-## 35              3             0
-## 36              0             0
-## 37              2             0
-## 38              3             1
-## 39              2             0
-## 40              2             0
-## 41              0             0
-## 42              2             0
-## 43              3             0
-## 44              0             0
-## 45              0             0
-## 46              2             0
-## 47              2             0
-## 48              3             0
-## 49              3             0
-## 50              0             0
-## 51              0             0
-## 52              4             1
-## 53              3             0
-## 54              3             1
-## 55              2             1
-## 56              0             1
-## 57              2             0
-## 58              0             0
-## 59              0             0
-## 60              0             0
-## 61              2             0
-## 62              2             0
-## 63              0             0
-## 64              0             0
-## 65              2             0
-## 66              3             1
-## 67              0             0
-## 68              1             0
-## 69              3             0
-## 70              2             0
-## 71              4             1
-## 72              3             0
-## 73              2             1
-## 74              3             0
-## 75              0             1
-## 76              2             0
-## 77              3             0
-## 78              2             0
-## 79              4             1
-## 80              1             0
-## 81              2             0
-## 82              0             0
-## 83              2             0
-## 84              0             0
-## 85              2             0
-## 86              0             1
-## 87              2             0
-## 88              2             0
-## 89              4             1
-## 90              3             0
-## 91              0             1
-## 92              3             0
-## 93              0             0
-## 94              0             0
-## 95              0             0
-## 96              2             0
-## 97              2             0
-## 98              1             0
-## 99              3             0
-## 100             0             0
-## 101             0             0
-## 102             3             1
-## 103             2             0
-## 104             1             0
-## 105             3             0
-## 106             0             0
-## 107             4             1
-## 108             4             1
-## 109             2             0
-## 110             3             0
-## 111             3             0
-## 112             3             1
-## 113             0             0
-## 114             3             0
-## 115             2             0
-## 116             1             0
-## 117             2             0
-## 118             3             1
-## 119             3             0
-## 120             4             1
-## 121             2             0
-## 122             3             0
-## 123             2             0</code></pre>
-<hr />
-<hr />
-</div>
-<div id="contingency-table-for-frequencies" class="section level2 hasAnchor" number="3.29">
-<h2><span class="header-section-number">3.29</span> Contingency table for frequencies<a href="probability.html#contingency-table-for-frequencies" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><span class="math display">\[d_{obs}=\frac{\bar{y}_A-\bar{y}_B }{\sqrt{\frac{s^2_p}{n_A}+\frac{s^2_p}{n_B}}}=\frac{26.49813-44.53}{\sqrt{\frac{3.18127^2}{16}+\frac{3.18127^2}{7}}}=-12.508\]</span></p>
+<p>is outside of the acceptance region.</p>
 <ul>
-<li>For the number of observations <span class="math inline">\(n_{i,j}\)</span> of each outcome <span class="math inline">\((x_i, y_i)\)</span>, misophonia: <span class="math inline">\(x\in \{0,1,2,3,4\}\)</span> and depression <span class="math inline">\(y\in \{0,1\}\)</span> (no:<span class="math inline">\(0\)</span>, yes:<span class="math inline">\(1\)</span>)</li>
+<li>The two-tailed <span class="math inline">\(pvalue\)</span>:</li>
 </ul>
-<pre><code>##               
-##                Depression:0 Depression:1
-##   Misophonia:4            0            9
-##   Misophonia:3           25            6
-##   Misophonia:2           34            3
-##   Misophonia:1            5            0
-##   Misophonia:0           36            5</code></pre>
-<ul>
-<li>For the relative frequencies <span class="math inline">\(f_{i,j}\)</span></li>
-</ul>
-<pre><code>##               
-##                Depression:0 Depression:1
-##   Misophonia:4   0.00000000   0.07317073
-##   Misophonia:3   0.20325203   0.04878049
-##   Misophonia:2   0.27642276   0.02439024
-##   Misophonia:1   0.04065041   0.00000000
-##   Misophonia:0   0.29268293   0.04065041</code></pre>
+<p><span class="math display">\[pvalue=2*(1-F^{-1}_{t,21}(12.508))=3.376854 \times 10^{-11}\]</span></p>
+<p>is lower than <span class="math inline">\(\alpha\)</span>.</p>
+<p>Therefore, the data shows a very significant increase in <span class="math inline">\(18.03\)</span>gr (<span class="math inline">\(P=3.376854 \times 10^{-11}\)</span>) in weight between the wild-type mice and leptin knockouts. “Absence of leptin signaling in early life alters the energy balance and predisposes the animals to obesity”</p>
 <hr />
 <hr />
 </div>
-<div id="heat-map" class="section level2 hasAnchor" number="3.30">
-<h2><span class="header-section-number">3.30</span> Heat map<a href="probability.html#heat-map" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>The contingency table can be plotted as a <strong>heat map</strong></p>
-<p><img src="_main_files/figure-html/unnamed-chunk-30-1.png" width="672" /></p>
+<div id="hypothesis-testing-4" class="section level2 hasAnchor" number="17.20">
+<h2><span class="header-section-number">17.20</span> Hypothesis testing<a href="mean-differences-between-two-samples.html#hypothesis-testing-4" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>in R</p>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="mean-differences-between-two-samples.html#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(control, leptinKO, <span class="at">var.equal =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<pre><code>## 
+##  Two Sample t-test
+## 
+## data:  control and leptinKO
+## t = -12.508, df = 21, p-value = 3.377e-11
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##  -21.02992 -15.03383
+## sample estimates:
+## mean of x mean of y 
+##  26.49813  44.53000</code></pre>
 <hr />
 <hr />
 </div>
-<div id="continous-variables" class="section level2 hasAnchor" number="3.31">
-<h2><span class="header-section-number">3.31</span> Continous variables<a href="probability.html#continous-variables" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>In the misophonia study, the jaw protrusion was also measured as a possible cephalometric factor for de disease.</p>
-<pre><code>##     Angulo_convexidad protusion.mandibular
-## 1                7.97                13.00
-## 2               18.23                -5.00
-## 3               12.27                11.50
-## 4                7.81                16.80
-## 5                9.81                33.00
-## 6               13.50                 2.00
-## 7               19.30                -3.90
-## 8                7.70                16.80
-## 9               12.30                 8.00
-## 10               7.90                28.80
-## 11              12.60                 3.00
-## 12              19.00                -7.90
-## 13               7.27                28.30
-## 14              14.00                 4.00
-## 15               5.40                22.20
-## 16               8.00                 0.00
-## 17              11.20                15.00
-## 18               7.75                17.00
-## 19               7.94                49.00
-## 20              16.69                 5.00
-## 21               7.62                42.00
-## 22               7.02                28.00
-## 23               7.00                 9.40
-## 24              19.20               -13.20
-## 25               7.96                23.00
-## 26              14.70                 2.30
-## 27               7.24                25.00
-## 28               7.80                 4.90
-## 29               7.90                92.00
-## 30               4.70                 6.00
-## 31               4.40                17.00
-## 32              14.00                 3.30
-## 33              14.40                10.30
-## 34              16.00                 6.30
-## 35               1.40                19.50
-## 36               9.76                22.00
-## 37               7.90                 5.00
-## 38               7.90                78.00
-## 39               7.40                 9.30
-## 40               6.30                50.60
-## 41               7.76                18.00
-## 42               7.30                18.00
-## 43               7.00                10.00
-## 44              11.23                 4.00
-## 45              16.00                13.30
-## 46               7.90                48.00
-## 47               7.29                23.50
-## 48               6.91                37.60
-## 49               7.10                15.00
-## 50              13.40                 5.10
-## 51              11.60                -2.20
-## 52              -1.00                32.00
-## 53               6.00                25.00
-## 54               7.82                24.00
-## 55               4.80                33.60
-## 56              11.00                 3.30
-## 57               9.00                31.50
-## 58              11.50                12.80
-## 59              16.00                 3.00
-## 60              15.00                 6.00
-## 61               1.40                21.40
-## 62              16.80               -10.00
-## 63               7.70                19.00
-## 64              16.14                32.00
-## 65               7.12                15.00
-## 66              -1.00                10.00
-## 67              17.00               -16.90
-## 68               9.26                 2.00
-## 69              18.70               -10.10
-## 70               3.40                12.20
-## 71              21.30               -11.00
-## 72               7.50                 5.20
-## 73               6.03                16.00
-## 74               7.50                 5.80
-## 75              19.00                 5.20
-## 76              19.01                13.00
-## 77               8.10                13.60
-## 78               7.80                16.10
-## 79               6.10                33.20
-## 80              15.26                 4.00
-## 81               7.95                12.00
-## 82              18.00                -1.50
-## 83               4.60                18.30
-## 84              15.00                 3.00
-## 85               7.50                15.80
-## 86               8.00                27.10
-## 87              16.80               -10.00
-## 88               8.54                25.00
-## 89               7.00                27.10
-## 90              18.30                -8.00
-## 91               7.80                12.00
-## 92              16.00                -8.00
-## 93              14.00                23.00
-## 94              12.30                 5.00
-## 95              11.40                 1.00
-## 96               8.50                18.90
-## 97               7.00                15.00
-## 98               7.96                22.00
-## 99              17.60                -3.50
-## 100             10.00                20.00
-## 101              3.50                12.20
-## 102              6.70                14.70
-## 103             17.00                -5.00
-## 104             20.26                -4.15
-## 105              6.64                11.00
-## 106              1.80                -4.00
-## 107              7.02                25.00
-## 108              2.46                35.00
-## 109             19.00                -5.00
-## 110             17.86               -30.00
-## 111              6.10                12.20
-## 112              6.64                19.00
-## 113             12.00                 1.60
-## 114              6.60                20.00
-## 115              8.70                17.10
-## 116             14.05                24.00
-## 117              7.20                 7.10
-## 118             19.70               -11.00
-## 119              7.70                21.30
-## 120              6.02                 5.00
-## 121              2.50                12.90
-## 122             19.00                 5.90
-## 123              6.80                 5.80</code></pre>
+<div id="unequal-variances" class="section level2 hasAnchor" number="17.21">
+<h2><span class="header-section-number">17.21</span> Unequal variances<a href="mean-differences-between-two-samples.html#unequal-variances" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The boxplot suggests that the variances for each group are different.</p>
+<p>The <strong>standardized error</strong></p>
+<p><span class="math display">\[T=\frac{\bar{Y}_A-\bar{Y}_B -\delta}{\sqrt{\frac{s_A^2}{n_A}+\frac{s_B^2}{n_B}}} \rightarrow_{aprox} T(\nu)\]</span>
+approximately follows a t-distribution with
+<span class="math display">\[\nu=\frac{(\frac{s_A^2}{n_A}+\frac{s_B^2}{n_B})^2}{\frac{(s_A^2/n_B)^2}{n_A-1}+\frac{(s_B^2/n_B)^2}{n_B-1}}\]</span>
+degrees of freedom</p>
 <hr />
 <hr />
 </div>
-<div id="heat-map-for-continuous-variables" class="section level2 hasAnchor" number="3.32">
-<h2><span class="header-section-number">3.32</span> Heat map for continuous variables<a href="probability.html#heat-map-for-continuous-variables" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<ul>
-<li><p>Two dimensional <strong>histogram</strong>.</p></li>
-<li><p>It illustrates the “continuous contingency” table for continuous variables</p></li>
-</ul>
-<p><img src="_main_files/figure-html/unnamed-chunk-32-1.png" width="672" /></p>
-<hr />
-<hr />
-</div>
-<div id="scatter-plot" class="section level2 hasAnchor" number="3.33">
-<h2><span class="header-section-number">3.33</span> Scatter plot<a href="probability.html#scatter-plot" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<ul>
-<li><p>The <strong>histogram</strong> depends on the size of the bin (pixel).</p></li>
-<li><p>If the pixel is small enough to contain a single observation then the heat map results in a <strong>scatter plot</strong></p></li>
-</ul>
-<p>The scatter plot is the illustration of a “contingency table” for continuous variables when the bin (pixel) is small enough to contain one single observation (consisting of a pair of values).</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-33-1.png" width="672" /></p>
+<div id="hypothesis-testing-5" class="section level2 hasAnchor" number="17.22">
+<h2><span class="header-section-number">17.22</span> Hypothesis testing<a href="mean-differences-between-two-samples.html#hypothesis-testing-5" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>in R</p>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="mean-differences-between-two-samples.html#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(control, leptinKO, <span class="at">var.equal =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<pre><code>## 
+##  Welch Two Sample t-test
+## 
+## data:  control and leptinKO
+## t = -9.541, df = 7.1929, p-value = 2.444e-05
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##  -22.47665 -13.58710
+## sample estimates:
+## mean of x mean of y 
+##  26.49813  44.53000</code></pre>
+<p>Therefore, the data <strong>still</strong> shows a very significant increase in <span class="math inline">\(18.03\)</span>gr (<span class="math inline">\(P=2.444 \times 10^{-5}\)</span>) in weight between the wild-type mice and leptin knockouts (under a more appropriate test).</p>
+<p><img src="_main_files/figure-html/unnamed-chunk-139-1.png" width="672" /></p>
 
 </div>
 </div>
@@ -1638,8 +1128,8 @@ They cannot occur at the same time.</p>
           </div>
         </div>
       </div>
-<a href="data-description.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="conditional-probability.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="contingency-tables-1.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="mean-differences-between-several-samples.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -1670,7 +1160,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/USERNAME/REPO/edit/BRANCH/02-Probability.Rmd",
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/16-MeanDifferences.Rmd",
 "text": "Edit"
 },
 "history": {

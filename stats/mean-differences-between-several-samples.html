@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 3 Probability | Stats theory (SDA)</title>
+  <title>Chapter 18 Mean differences between several samples | Stats theory (SDA)</title>
   <meta name="description" content="This are slides for the Stats theory of the BIST master" />
   <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 3 Probability | Stats theory (SDA)" />
+  <meta property="og:title" content="Chapter 18 Mean differences between several samples | Stats theory (SDA)" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="alejandro-isglobal/master" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 3 Probability | Stats theory (SDA)" />
+  <meta name="twitter:title" content="Chapter 18 Mean differences between several samples | Stats theory (SDA)" />
   
   <meta name="twitter:description" content="This are slides for the Stats theory of the BIST master" />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="data-description.html"/>
-<link rel="next" href="conditional-probability.html"/>
+<link rel="prev" href="mean-differences-between-two-samples.html"/>
+<link rel="next" href="regression-and-correlation.html"/>
 <script src="libs/header-attrs-2.12/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -797,839 +797,625 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="probability" class="section level1 hasAnchor" number="3">
-<h1><span class="header-section-number">Chapter 3</span> Probability<a href="probability.html#probability" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<div id="objective-1" class="section level2 hasAnchor" number="3.1">
-<h2><span class="header-section-number">3.1</span> Objective<a href="probability.html#objective-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="mean-differences-between-several-samples" class="section level1 hasAnchor" number="18">
+<h1><span class="header-section-number">Chapter 18</span> Mean differences between several samples<a href="mean-differences-between-several-samples.html#mean-differences-between-several-samples" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="objective-16" class="section level2 hasAnchor" number="18.1">
+<h2><span class="header-section-number">18.1</span> Objective<a href="mean-differences-between-several-samples.html#objective-16" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ul>
-<li>Definition of probability</li>
-<li>Probability algebra</li>
-<li>Joint probability</li>
+<li>Two group ANOVA</li>
+<li>Several groups ANOVA</li>
+<li>Two-factor ANOVA</li>
+<li>Two-factor ANOVA with interaction</li>
 </ul>
 <hr />
 <hr />
 </div>
-<div id="random-experiments-1" class="section level2 hasAnchor" number="3.2">
-<h2><span class="header-section-number">3.2</span> Random experiments<a href="probability.html#random-experiments-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><strong>Observation</strong></p>
+<div id="analisis-of-variance" class="section level2 hasAnchor" number="18.2">
+<h2><span class="header-section-number">18.2</span> Analisis of variance<a href="mean-differences-between-several-samples.html#analisis-of-variance" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Let’s analyze the leptin experiment from a different perspective: Fisher’s analysis of variance.</p>
+<p>If the <strong>null hypothesis is true</strong>, then mice with and without leptin are <strong>identical</strong> and then split into groups are two random samples of size <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> from the same population.</p>
 <ul>
-<li>An <strong>observation</strong> is the acquisition of a number or a characteristic from an experiment</li>
+<li><p>The overall variance is equal to the <strong>within group</strong> variances <span class="math display">\[\sigma^2=\sigma^2_A=\sigma^2_B\]</span></p></li>
+<li><p>There is no difference between means <span class="math display">\[\delta=(\mu_A-\mu)-(\mu_B-\mu)=0\]</span></p></li>
 </ul>
-<p><strong>Outcome</strong></p>
+<pre><code>##    weight    group
+## 1   27.67  Control
+## 2   27.40  Control
+## 3   25.77  Control
+## 4   25.60  Control
+## 5   25.03  Control
+## 6   25.90  Control
+## 7   26.67  Control
+## 8   25.60  Control
+## 9   28.93  Control
+## 10  31.83  Control
+## 11  25.90  Control
+## 12  26.30  Control
+## 13  27.90  Control
+## 14  26.77  Control
+## 15  25.83  Control
+## 16  20.87  Control
+## 17  46.57 leptinKO
+## 18  40.43 leptinKO
+## 19  41.97 leptinKO
+## 20  41.17 leptinKO
+## 21  41.57 leptinKO
+## 22  46.17 leptinKO
+## 23  53.83 leptinKO</code></pre>
+<p><img src="_main_files/figure-html/unnamed-chunk-140-1.png" width="672" /></p>
+<hr />
+<hr />
+</div>
+<div id="analisis-of-variance-1" class="section level2 hasAnchor" number="18.3">
+<h2><span class="header-section-number">18.3</span> Analisis of variance<a href="mean-differences-between-several-samples.html#analisis-of-variance-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>If the <strong>null hypothesis is not true</strong>, then the mean weight of the mice is <strong>different</strong> with and without leptin and the split into groups are two random samples of size <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> from <strong>different</strong> populations.</p>
 <ul>
-<li>An <strong>outcome</strong> is a possible observation that is the result of an experiment.</li>
+<li><p>The overall variance is greater than the within-group variances <span class="math display">\[\sigma^2&gt; \sigma^2_A=\sigma^2_B\]</span></p></li>
+<li><p>The group means are different <span class="math display">\[\delta=(\mu_A-\mu)-(\mu_B-\mu)\neq 0\]</span></p></li>
 </ul>
-<p><strong>Random experiment</strong></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-141-1.png" width="672" /></p>
+<hr />
+<hr />
+</div>
+<div id="linear-model" class="section level2 hasAnchor" number="18.4">
+<h2><span class="header-section-number">18.4</span> Linear model<a href="mean-differences-between-several-samples.html#linear-model" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Under the <strong>alternative hypothesis</strong>, let’s consider the observations of mice weight conditioned to the leptin groups</p>
+<p><span class="math inline">\(Y_{Aj}\)</span> for <span class="math inline">\(i=1...16\)</span>. For example: <span class="math inline">\(Y_{A5}=25.03\)</span>,</p>
+<pre><code>##    weight group
+## 1   27.67     A
+## 2   27.40     A
+## 3   25.77     A
+## 4   25.60     A
+## 5   25.03     A
+## 6   25.90     A
+## 7   26.67     A
+## 8   25.60     A
+## 9   28.93     A
+## 10  31.83     A
+## 11  25.90     A
+## 12  26.30     A
+## 13  27.90     A
+## 14  26.77     A
+## 15  25.83     A
+## 16  20.87     A</code></pre>
+<p><span class="math inline">\(Y_{Bj}\)</span> for <span class="math inline">\(i=1...7\)</span>. For example: <span class="math inline">\(Y_{B2}=40.43\)</span>,</p>
+<pre><code>##   weight group
+## 1  46.57     B
+## 2  40.43     B
+## 3  41.97     B
+## 4  41.17     B
+## 5  41.57     B
+## 6  46.17     B
+## 7  53.83     B</code></pre>
+<hr />
+<hr />
+</div>
+<div id="linear-model-1" class="section level2 hasAnchor" number="18.5">
+<h2><span class="header-section-number">18.5</span> Linear model<a href="mean-differences-between-several-samples.html#linear-model-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Let’s assume that for all observations we can extract a
+<strong>random error</strong></p>
+<p><span class="math display">\[Y_{ij} = \mu + \alpha_i +\epsilon_{ij}\]</span></p>
+<p><strong>Fixed parameters</strong>:</p>
 <ul>
-<li>An experiment that gives <strong>different</strong> outcomes when repeated in the same manner.</li>
+<li><span class="math inline">\(\mu\)</span> is the overall mean</li>
+<li><span class="math inline">\(\alpha_i\)</span> is the deviation of group <span class="math inline">\(i\)</span> to the overall mean: <span class="math inline">\(i \in (A,B)\)</span> and <span class="math inline">\(\alpha_A=\mu_A-\mu\)</span>, <span class="math inline">\(\alpha_B=\mu_B-\mu\)</span>.</li>
+<li><span class="math inline">\(j \in {1,...n}\)</span> (all groups have the same number of observations <span class="math inline">\(n_A=n_B=n\)</span> for simplicity with no loss of generality)</li>
 </ul>
-<hr />
-<hr />
-</div>
-<div id="probability-1" class="section level2 hasAnchor" number="3.3">
-<h2><span class="header-section-number">3.3</span> Probability<a href="probability.html#probability-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><br>
-<br></p>
-<p>The <strong>probability</strong> of an outcome is a measure of how sure we are to observe that outcome when performing a random experiment.</p>
+<p><strong>Random error</strong>:</p>
 <ul>
-<li><p>0: We are sure that the observation will <strong>not</strong> happen.</p></li>
-<li><p>1: We are sure that the observation will happen.</p></li>
+<li><span class="math inline">\(\epsilon_{ij}\)</span> is a <strong>random variable</strong> with <span class="math inline">\(E(\epsilon_{ij})=0\)</span>, <span class="math inline">\(V(\epsilon_{ij})=\sigma^2\)</span></li>
 </ul>
-<p><br>
-<br></p>
-<hr />
-<hr />
-</div>
-<div id="example-3" class="section level2 hasAnchor" number="3.4">
-<h2><span class="header-section-number">3.4</span> Example<a href="probability.html#example-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><br>
-<br></p>
+<p>Then</p>
 <ul>
-<li>Consider the following observations of a random experiment:</li>
+<li><span class="math inline">\(E(Y_{ij})=\)</span> <span class="math display">\[E(Y|i)=\mu + \alpha_i\]</span></li>
 </ul>
-<p>1 5 1 2 2 1 2 2</p>
+<p>for instance: <span class="math inline">\(E(Y|A)=\mu_A=\mu + \alpha_A\)</span></p>
 <ul>
-<li>How sure we are to obtain <span class="math inline">\(2\)</span> in the following observation?</li>
-</ul>
-<p><br>
-<br></p>
-<hr />
-<hr />
-</div>
-<div id="example-4" class="section level2 hasAnchor" number="3.5">
-<h2><span class="header-section-number">3.5</span> Example<a href="probability.html#example-4" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>The frequency table is</p>
-<pre><code>##   outcome ni    fi
-## 1       1  3 0.375
-## 2       2  4 0.500
-## 3       5  1 0.125</code></pre>
-<p>The <strong>relative frequency</strong> <span class="math inline">\(f_i\)</span></p>
-<ul>
-<li>is a number between <span class="math inline">\(0\)</span> and <span class="math inline">\(1\)</span>.</li>
-<li>measures the proportion of total observations that we observed a particular outcome.</li>
-<li>seems a reasonable probability measure.</li>
-</ul>
-<p>As <span class="math inline">\(f_2=0.5\)</span> then we would be half certain to obtain a <span class="math inline">\(2\)</span> in the next repetition of the experiment.</p>
-<hr />
-<hr />
-</div>
-<div id="relative-frequency" class="section level2 hasAnchor" number="3.6">
-<h2><span class="header-section-number">3.6</span> Relative frequency<a href="probability.html#relative-frequency" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>As a measure of certainty is <span class="math inline">\(f_i\)</span> enough?</p>
-<p>Say we repeated the experiment 12 times more:</p>
-<p>1 5 1 2 2 1 2 2 <strong>3 1 1 3 3 1 6 3 5 6 4 4</strong></p>
-<p>The frequency table is now</p>
-<pre><code>##   outcome ni  fi
-## 1       1  6 0.3
-## 2       2  4 0.2
-## 3       3  4 0.2
-## 4       4  2 0.1
-## 5       5  2 0.1
-## 6       6  2 0.1</code></pre>
-<p>New outcomes appeared and <span class="math inline">\(f_2\)</span> is now <span class="math inline">\(0.2\)</span>, we are now a fifth certain of obtaining <span class="math inline">\(2\)</span> in the next experiment… probability should not depend on <span class="math inline">\(N\)</span></p>
-<hr />
-<hr />
-</div>
-<div id="at-infinity" class="section level2 hasAnchor" number="3.7">
-<h2><span class="header-section-number">3.7</span> At infinity<a href="probability.html#at-infinity" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Say we repeated the experiment 1000 times:</p>
-<pre><code>##   outcome  ni    fi
-## 1       1 168 0.168
-## 2       2 177 0.177
-## 3       3 151 0.151
-## 4       4 179 0.179
-## 5       5 163 0.163
-## 6       6 162 0.162</code></pre>
-<p>We find that <span class="math inline">\(f_i\)</span> is converging to a constant value</p>
-<p><span class="math display">\[lim_{N\rightarrow \infty} f_i = P_i\]</span></p>
-<p><img src="_main_files/figure-html/unnamed-chunk-26-1.png" width="672" /></p>
-<hr />
-<hr />
-</div>
-<div id="frequentist-probability" class="section level2 hasAnchor" number="3.8">
-<h2><span class="header-section-number">3.8</span> Frequentist probability<a href="probability.html#frequentist-probability" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>We call <strong>Probability</strong> <span class="math inline">\(P_i\)</span> to the limit when <span class="math inline">\(N \rightarrow \infty\)</span> of the <strong>relative frequency</strong> of observing the outcome <span class="math inline">\(i\)</span> in a random experiment.</p>
-<p>Championed by <a href="https://plato.stanford.edu/entries/probability-interpret/#ClaPro">Venn (1876)</a></p>
-<p>The frequentist interpretation of probabilities is derived from data/experience (empirical).</p>
-<ul>
-<li>We do not observe <span class="math inline">\(P_i\)</span>, we observe <span class="math inline">\(f_i\)</span></li>
-<li>When we <strong>estimate</strong> <span class="math inline">\(P_i\)</span> with <span class="math inline">\(f_i\)</span> (typically when <span class="math inline">\(N\)</span> is large), we write: <span class="math display">\[\hat{P_i}=f_i\]</span></li>
-</ul>
-<p><br>
-<br></p>
-<hr />
-<hr />
-</div>
-<div id="classical-probability" class="section level2 hasAnchor" number="3.9">
-<h2><span class="header-section-number">3.9</span> Classical Probability<a href="probability.html#classical-probability" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Whenever a random experiment has <span class="math inline">\(M\)</span> possible outcomes that are all <strong>equally likely</strong>, the probability of each outcome is <span class="math inline">\(\frac{1}{M}\)</span>.</p>
-<p>Championed by <a href="https://plato.stanford.edu/entries/probability-interpret/#ClaPro">Laplace (1814)</a>.</p>
-<p>Since each outcome is <strong>equally probable</strong> we declare complete ignorance and the best we can do is to fairly distribute the same probability to each outcome.</p>
-<p>What if I told you that our experiment was the throw of the dice? then</p>
-<p><span class="math inline">\(P_2=1/6=0.166666\)</span>.</p>
-<p><br></p>
-<p><span class="math display">\[P_i=lim_{N\rightarrow \infty} \frac{n_i}{N}=\frac{1}{M}\]</span></p>
-<hr />
-<hr />
-</div>
-<div id="classical-and-frequentist-probabilities" class="section level2 hasAnchor" number="3.10">
-<h2><span class="header-section-number">3.10</span> Classical and frequentist probabilities<a href="probability.html#classical-and-frequentist-probabilities" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><img src="figures/prob.jpg" style="width:75%"  align="center"></p>
-<hr />
-<hr />
-</div>
-<div id="probability-2" class="section level2 hasAnchor" number="3.11">
-<h2><span class="header-section-number">3.11</span> Probability<a href="probability.html#probability-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><br>
-<br></p>
-<p>Probability is a number between <span class="math inline">\(0\)</span> and <span class="math inline">\(1\)</span> that is assigned to each member <span class="math inline">\(E\)</span> of a collection of <strong>events</strong> of a <strong>sample space</strong> (<span class="math inline">\(S\)</span>) from a random experiment.</p>
-<p><span class="math display">\[P(E) \in (0,1)\]</span></p>
-<p>where <span class="math inline">\(E \in S\)</span></p>
-<p><br>
-<br></p>
-<hr />
-<hr />
-</div>
-<div id="sample-space" class="section level2 hasAnchor" number="3.12">
-<h2><span class="header-section-number">3.12</span> Sample space<a href="probability.html#sample-space" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>We start by reasoning what are all the possible values (outcomes) that a random experiment could give.</p>
-<p>Note that we do not have to observe them in a particular experiment: We are using <strong>reason/logic</strong> and not observation.</p>
-<p><strong>Definition:</strong></p>
-<ul>
-<li><p>The set of all possible outcomes of a random experiment is called the <strong>sample space</strong>
-of the experiment.</p></li>
-<li><p>The sample space is denoted as <span class="math inline">\(S\)</span>.</p></li>
+<li><span class="math inline">\(V(Y_{ij})=\sigma^2\)</span></li>
 </ul>
 <hr />
 <hr />
 </div>
-<div id="examples-of-sample-spaces" class="section level2 hasAnchor" number="3.13">
-<h2><span class="header-section-number">3.13</span> Examples of sample spaces<a href="probability.html#examples-of-sample-spaces" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><br>
-<br></p>
+<div id="variance-components" class="section level2 hasAnchor" number="18.6">
+<h2><span class="header-section-number">18.6</span> Variance components<a href="mean-differences-between-several-samples.html#variance-components" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The squared deviations of the observations to the overall average is</p>
+<p><span class="math display">\[\sum_{i=A,B}\sum_{j=1}^n(Y_{ij}-\bar{Y})^2= \sum_{i=A,B}\sum_{j=1}^n(Y_{ij}-\bar{Y}_i)^2+n\sum_{i=A,B}(\bar{Y}_{i}-\bar{Y})^2\]</span></p>
 <ul>
-<li>temperature 35 and 42 degrees Celcius</li>
-<li>sugar levels: 70-80mg/dL</li>
-<li>the size of one screw from a production line: 70mm-72mm</li>
-<li>number of emails received in an hour: 0-100</li>
-<li>a dice throw: 1, 2, 3, 4, 5, 6</li>
+<li>Sum of squares (total)</li>
 </ul>
-<p><br>
-<br></p>
-<hr />
-<hr />
-</div>
-<div id="discrete-and-continuous-sample-spaces" class="section level2 hasAnchor" number="3.14">
-<h2><span class="header-section-number">3.14</span> Discrete and continuous sample spaces<a href="probability.html#discrete-and-continuous-sample-spaces" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><br>
-<br></p>
+<p><span class="math display">\[SS_T=\sum_{i=A,B}\sum_{j=1}^n(Y_{ij}-\bar{Y})^2\]</span></p>
 <ul>
-<li><p>A sample space is discrete if it consists of a finite or countable infinite set of outcomes.</p></li>
-<li><p>A sample space is continuous if it contains an interval (either finite or infinite in length) of
-real numbers.</p></li>
+<li>Sum of squares (error)</li>
 </ul>
-<p><br>
-<br></p>
-<hr />
-<hr />
-</div>
-<div id="event" class="section level2 hasAnchor" number="3.15">
-<h2><span class="header-section-number">3.15</span> Event<a href="probability.html#event" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><strong>Definition:</strong></p>
-<p>An <strong>event</strong> is a <strong>subset</strong> of the sample space of a random experiment. It is a <strong>collection</strong> of outcomes.</p>
-<p>Examples of events:</p>
+<p><span class="math display">\[SSE=\sum_{i=A,B}\sum_{j=1}^n(Y_{ij}-\bar{Y}_i)^2\]</span></p>
 <ul>
-<li>The event of a healthy temperature: temperature 37-38 degrees Celsius</li>
-<li>The event of producing a screw with a size: of 71.5mm</li>
-<li>The event of receiving more than 4 emails in an hour.</li>
-<li>The event of obtaining a number less than 3 in the throw of a dice</li>
+<li>Sum of squares (treatment)</li>
 </ul>
-<p>One event refers to a possible set of <strong>outcomes</strong>.</p>
+<p><span class="math display">\[SS_{treatment}=n\sum_{i=A,B}(\bar{Y}_{i}-\bar{Y})^2\]</span></p>
 <hr />
 <hr />
 </div>
-<div id="event-operations" class="section level2 hasAnchor" number="3.16">
-<h2><span class="header-section-number">3.16</span> Event operations<a href="probability.html#event-operations" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><br>
-<br></p>
-<p>For two events <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span>, we can construct the following derived events:</p>
+<div id="variance-components-1" class="section level2 hasAnchor" number="18.7">
+<h2><span class="header-section-number">18.7</span> Variance components<a href="mean-differences-between-several-samples.html#variance-components-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ul>
-<li>Complement <span class="math inline">\(A&#39;\)</span>: the event of <strong>not</strong> <span class="math inline">\(A\)</span></li>
-<li>Union <span class="math inline">\(A \cup B\)</span>: the event of <span class="math inline">\(A\)</span> <strong>or</strong> <span class="math inline">\(B\)</span><br />
-</li>
-<li>Intersection <span class="math inline">\(A \cap B\)</span>: the event of <span class="math inline">\(A\)</span> <strong>and</strong> <span class="math inline">\(B\)</span></li>
+<li>The <strong>mean square error</strong> (MSE)</li>
 </ul>
-<p><br>
-<br></p>
-<hr />
-<hr />
-</div>
-<div id="event-operations-example" class="section level2 hasAnchor" number="3.17">
-<h2><span class="header-section-number">3.17</span> Event operations example<a href="probability.html#event-operations-example" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Take</p>
+<p><span class="math inline">\(MSE=\frac{1}{2n-2} SSE\)</span> <span class="math display">\[= \frac{1}{2n-2} \sum_{i=A,B}\sum_{j=1}^n(Y_{ij}-\bar{Y}_i)^2= \frac{(n-1)S_A^2+(n-1)S_B^2}{2n-2}\]</span></p>
+<p>is the <strong>pooled variance estimator</strong> <span class="math display">\[E(MSE)=\sigma^2\]</span></p>
 <ul>
-<li>Event <span class="math inline">\(A:\{1,2,3\}\)</span> a number less or equal to three in the throw of a dice<br />
-</li>
-<li>Event <span class="math inline">\(B:\{2,4,6\}\)</span> an even number in the throw of a dice</li>
+<li>The <strong>mean square of treatments</strong> (MST)</li>
 </ul>
-<p>New events:</p>
+<p><span class="math inline">\(MST=\frac{1}{2-1} SS_{treatment}\)</span> <span class="math display">\[ =  n\sum_{i=A,B}(\bar{Y}_{i}-\bar{Y})^2\]</span></p>
+<p>is a <strong>biased estimator</strong> of the variance <span class="math display">\[E(MST)=\sigma^2+n(\alpha_A^2+\alpha_B^2)\]</span></p>
+<hr />
+<hr />
+</div>
+<div id="linear-model-2" class="section level2 hasAnchor" number="18.8">
+<h2><span class="header-section-number">18.8</span> Linear model<a href="mean-differences-between-several-samples.html#linear-model-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In the linear model for the weight:</p>
+<p><span class="math inline">\(Y_{ij} = \mu + \alpha_i +E_{ij}\)</span></p>
+<p>The null hypothesis is <span class="math inline">\(H_0=\mu_A=\mu_B=\mu\)</span> therefore <span class="math inline">\(H_0:\alpha_i=0\)</span></p>
 <ul>
-<li>Not less than three: <span class="math inline">\(A&#39;:\{4,5,6\}\)</span></li>
-<li>Less or equal to three <strong>or</strong> even: <span class="math inline">\(A \cup B: \{1,2,3,4,6\}\)</span></li>
-<li>Less or equal to three <strong>and</strong> even <span class="math inline">\(A \cap B: \{2\}\)</span></li>
+<li><p>If the null hypothesis is true both <span class="math inline">\(MSE\)</span> and <span class="math inline">\(MST\)</span> are estimators of <span class="math inline">\(\sigma^2\)</span>.</p></li>
+<li><p>If <span class="math inline">\(Y_i \rightarrow N(\mu_i, \sigma^2_i)\)</span> then <span class="math inline">\(MSE \rightarrow \chi^2(2n-2)\)</span> and <span class="math inline">\(MST \rightarrow \chi^2(n-1)\)</span></p></li>
 </ul>
+<p>and the ratio of squares</p>
+<p><span class="math display">\[\frac{MST}{MSE} \rightarrow F(2n-2, n-1)\]</span></p>
+<p>follows a <span class="math inline">\(F\)</span> distribution with <span class="math inline">\(2n-2\)</span> and <span class="math inline">\(n-1\)</span> degrees of freedom.</p>
 <hr />
 <hr />
 </div>
-<div id="outcomes" class="section level2 hasAnchor" number="3.18">
-<h2><span class="header-section-number">3.18</span> Outcomes<a href="probability.html#outcomes" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Outcomes are events that are <strong>mutually exclusive</strong></p>
-<p><strong>Definition:</strong></p>
-<p>Two events denoted as <span class="math inline">\(E_1\)</span> and <span class="math inline">\(E_2\)</span>, such that</p>
-<p><span class="math display">\[E_1\cap E_2=\emptyset\]</span>
-They cannot occur at the same time.</p>
-<p>Example:</p>
+<div id="anova" class="section level2 hasAnchor" number="18.9">
+<h2><span class="header-section-number">18.9</span> ANOVA<a href="mean-differences-between-several-samples.html#anova" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ul>
-<li><p>The outcome of obtaining <span class="math inline">\(1\)</span> <strong>and</strong> the outcome of obtaining <span class="math inline">\(5\)</span> in the throw of one dice are mutually exclusive:</p></li>
-<li><p>The event of obtaining <span class="math inline">\(1\)</span> and <span class="math inline">\(5\)</span> is empty:<span class="math display">\[\{1\}\cap \{5\}=\emptyset\]</span></p></li>
+<li><p><span class="math inline">\(H_0\)</span>: observed values of <span class="math inline">\(\frac{MST}{MSE}\)</span> near <span class="math inline">\(1\)</span> suggest that the means between groups <strong>do not</strong> differ.</p></li>
+<li><p><span class="math inline">\(H_1\)</span>: observed values of <span class="math inline">\(\frac{MST}{MSE}\)</span> far from <span class="math inline">\(1\)</span> suggest that the means between groups <strong>differ</strong>.</p></li>
 </ul>
+<p><span class="math display">\[\frac{MST}{MSE}_{obs}=\frac{(\bar{y}_{A}-\bar{y}_{B})^2}{\frac{s^2_p}{n}}=d_{obs}^2\]</span></p>
 <hr />
 <hr />
 </div>
-<div id="probability-definition" class="section level2 hasAnchor" number="3.19">
-<h2><span class="header-section-number">3.19</span> Probability definition<a href="probability.html#probability-definition" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><br></p>
-<p>A probability is a number that is assigned to each possible event (<span class="math inline">\(E\)</span>) of a sample space (<span class="math inline">\(S\)</span>) of a random experiment that satisfies the following properties:</p>
+<div id="anova-1" class="section level2 hasAnchor" number="18.10">
+<h2><span class="header-section-number">18.10</span> ANOVA<a href="mean-differences-between-several-samples.html#anova-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>We have assumed the same number of observations in each group but when there are two groups the results above holds</p>
+<p><span class="math display">\[f_{obs}=d_{obs}^2=(−12.508)^2=156.45\]</span>
+The upper tailed pvalue for <span class="math inline">\(f_{obs}\)</span> is</p>
+<p><span class="math display">\[Pval=1-F^{-1}_{F,1,21}(156.45)=3.377 \times 10^{-11}\]</span>
+in R: <code>1-pf(156.45, 1,21)</code></p>
+<p>Which is the same as the one obtained with the t-test with equal variances.</p>
+<hr />
+<hr />
+</div>
+<div id="anova-2" class="section level2 hasAnchor" number="18.11">
+<h2><span class="header-section-number">18.11</span> ANOVA<a href="mean-differences-between-several-samples.html#anova-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<pre><code>## Analysis of Variance Table
+## 
+## Response: weight
+##           Df  Sum Sq Mean Sq F value    Pr(&gt;F)    
+## group      1 1583.33 1583.33  156.45 3.377e-11 ***
+## Residuals 21  212.53   10.12                      
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<hr />
+<hr />
+<p><img src="_main_files/figure-html/unnamed-chunk-145-1.png" width="672" /></p>
+<hr />
+<hr />
+</div>
+<div id="anova-several-groups" class="section level2 hasAnchor" number="18.12">
+<h2><span class="header-section-number">18.12</span> ANOVA several groups<a href="mean-differences-between-several-samples.html#anova-several-groups" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The ANOVA approach allows for the analysis of many groups.</p>
+<p>Consider the <strong>linear model</strong></p>
+<p><span class="math display">\[Y_{ij} = \mu + \alpha_i +\epsilon_{ij}\]</span></p>
+<p>with <strong>Random error</strong>:</p>
 <ul>
-<li><span class="math inline">\(P(S)=1\)</span></li>
-<li><span class="math inline">\(0 \leq P(E) \leq 1\)</span></li>
-<li>when <span class="math inline">\(E_1\cap E_2=\emptyset\)</span> <span class="math display">\[P(E_1\cup E_2) = P(E_1) + P(E_2)\]</span></li>
+<li><span class="math inline">\(\epsilon_{ij}\)</span> is a <strong>random variable</strong> with <span class="math inline">\(E(\epsilon_{ij})=0\)</span>, <span class="math inline">\(V(\epsilon_{ij})=\sigma^2\)</span></li>
 </ul>
-<p>Proposed by Kolmogorov’s (1933)</p>
-<p><br></p>
-<hr />
-<hr />
-</div>
-<div id="probability-properties" class="section level2 hasAnchor" number="3.20">
-<h2><span class="header-section-number">3.20</span> Probability properties<a href="probability.html#probability-properties" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Kolmogorov says that we can build a probability table (likewise the relative frequency table)</p>
-<table>
-<thead>
-<tr class="header">
-<th align="center">outcome</th>
-<th align="center">Probability</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="center"><span class="math inline">\(1\)</span></td>
-<td align="center">1/6</td>
-</tr>
-<tr class="even">
-<td align="center"><span class="math inline">\(2\)</span></td>
-<td align="center">1/6</td>
-</tr>
-<tr class="odd">
-<td align="center"><span class="math inline">\(3\)</span></td>
-<td align="center">1/6</td>
-</tr>
-<tr class="even">
-<td align="center"><span class="math inline">\(4\)</span></td>
-<td align="center">1/6</td>
-</tr>
-<tr class="odd">
-<td align="center"><span class="math inline">\(5\)</span></td>
-<td align="center">1/6</td>
-</tr>
-<tr class="even">
-<td align="center"><span class="math inline">\(6\)</span></td>
-<td align="center">1/6</td>
-</tr>
-<tr class="odd">
-<td align="center"><span class="math inline">\(P(1 \cup 2\cup ... \cup 6)\)</span></td>
-<td align="center">1</td>
-</tr>
-</tbody>
-</table>
-<p>As <span class="math inline">\(\{1,2,3,4,5,6\}\)</span> are mutually exclusive then</p>
-<p><span class="math display">\[P(S)=P(1\cup 2\cup ... \cup 6) = P(1)+P(2)+ ...+P(n)=1\]</span></p>
-<hr />
-<hr />
-</div>
-<div id="addition-rule" class="section level2 hasAnchor" number="3.21">
-<h2><span class="header-section-number">3.21</span> Addition Rule<a href="probability.html#addition-rule" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><br>
-<br></p>
-<p>When <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are not mutually exclusive then:</p>
-<p><span class="math display">\[P(A \cup B)=P(A) + P(B) - P(A\cap B)\]</span></p>
-<p>Where <span class="math inline">\(P(A)\)</span> and <span class="math inline">\(P(B)\)</span> are called the <strong>marginal probabilities</strong></p>
-<p><br>
-<br></p>
-<hr />
-<hr />
-</div>
-<div id="example-addition-rule" class="section level2 hasAnchor" number="3.22">
-<h2><span class="header-section-number">3.22</span> Example Addition Rule<a href="probability.html#example-addition-rule" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Take</p>
+<p>and <span class="math inline">\(k\)</span> groups.</p>
 <ul>
-<li>Event <span class="math inline">\(A:\{1,2,3\}\)</span> a number less or equal to three in the throw of a dice<br />
-</li>
-<li>Event <span class="math inline">\(B:\{2,4,6\}\)</span> an even number in the throw of a dice</li>
+<li><span class="math inline">\(\alpha_i, i \in\{1...k\}\)</span> such that <span class="math inline">\(\sum_i \alpha_i=0\)</span> are the deviations of the group means to the the overall mean.</li>
 </ul>
-<p>then:</p>
+<p><span class="math display">\[E(Y|i)=\mu + \alpha_i\]</span></p>
+<hr />
+<hr />
+</div>
+<div id="anova-several-groups-1" class="section level2 hasAnchor" number="18.13">
+<h2><span class="header-section-number">18.13</span> ANOVA several groups<a href="mean-differences-between-several-samples.html#anova-several-groups-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ul>
-<li><span class="math inline">\(P(A): P(1) + P(2) + P(3)=3/6\)</span></li>
-<li><span class="math inline">\(P(B): P(2) + P(4) + P(6)=3/6\)</span></li>
-<li><span class="math inline">\(P(A \cap B): P(2) = 1/6\)</span></li>
+<li><span class="math inline">\(H_0: \alpha_1=\alpha_2, ...=\alpha_k=0\)</span> There are no difference between group means</li>
 </ul>
-<p><span class="math inline">\(P(A \cup B)=P(A) + P(B) - P(A\cap B)=3/6+3/6-1/6=5/6\)</span></p>
-<p>Note: <span class="math inline">\(P(2)\)</span> appears in <span class="math inline">\(P(A)\)</span> and <span class="math inline">\(P(B)\)</span> that’s why we subtract it with the intersection</p>
-<hr />
-<hr />
-</div>
-<div id="venn-diagram" class="section level2 hasAnchor" number="3.23">
-<h2><span class="header-section-number">3.23</span> Venn diagram<a href="probability.html#venn-diagram" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Note that can always break down the sample space in <strong>mutually exclusive</strong> sets involving the intersections:</p>
-<p><span class="math inline">\(S=\{A\cap B, A \cap B&#39;, A&#39;\cap B, A&#39;\cap B&#39;\}\)</span></p>
-<p><img src="figures/Venn.jpg" style="width:75%"  align="center"></p>
-<p>Marginals:</p>
+<p>Then, observed values of <span class="math inline">\(\frac{MST}{MSE}\)</span> near <span class="math inline">\(1\)</span> suggest that the means between groups <strong>do not</strong>.</p>
 <ul>
-<li><span class="math inline">\(P(A)=P(A\cap B&#39;) + P(A \cap B)=2/6+1/6=3/6\)</span></li>
-<li><span class="math inline">\(P(B)=P(A&#39;\cap B) +P(A \cap B)=2/6+1/6=3/6\)</span></li>
+<li><span class="math inline">\(H_1\)</span> at least one <span class="math inline">\(\alpha_i\)</span> is different</li>
 </ul>
-<hr />
-<hr />
-</div>
-<div id="probability-table" class="section level2 hasAnchor" number="3.24">
-<h2><span class="header-section-number">3.24</span> Probability table<a href="probability.html#probability-table" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Let’s look at the probability table</p>
-<table>
-<thead>
-<tr class="header">
-<th align="center">outcome</th>
-<th align="center">Probability</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="center"><span class="math inline">\(A\cap B\)</span></td>
-<td align="center"><span class="math inline">\(P(A\cap B)\)</span></td>
-</tr>
-<tr class="even">
-<td align="center"><span class="math inline">\(A\cap B&#39;\)</span></td>
-<td align="center"><span class="math inline">\(P(A\cap B&#39;)\)</span></td>
-</tr>
-<tr class="odd">
-<td align="center"><span class="math inline">\(A&#39;\cap B\)</span></td>
-<td align="center"><span class="math inline">\(P(A&#39;\cap B)\)</span></td>
-</tr>
-<tr class="even">
-<td align="center"><span class="math inline">\(A&#39;\cap B&#39;\)</span></td>
-<td align="center"><span class="math inline">\(P(A&#39;\cap B&#39;)\)</span></td>
-</tr>
-<tr class="odd">
-<td align="center">sum</td>
-<td align="center"><span class="math inline">\(1\)</span></td>
-</tr>
-</tbody>
-</table>
-<hr />
-<hr />
-</div>
-<div id="example-probability-table" class="section level2 hasAnchor" number="3.25">
-<h2><span class="header-section-number">3.25</span> Example probability table<a href="probability.html#example-probability-table" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>We also write <span class="math inline">\(A \cap B\)</span> as <span class="math inline">\((A,B)\)</span> and call it the <strong>joint probability</strong> of <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span></p>
-<p>In our example:</p>
-<table>
-<thead>
-<tr class="header">
-<th align="center">outcome</th>
-<th align="center">Probability</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="center"><span class="math inline">\((A, B)\)</span></td>
-<td align="center"><span class="math inline">\(P(A, B)=1/6\)</span></td>
-</tr>
-<tr class="even">
-<td align="center"><span class="math inline">\((A, B&#39;)\)</span></td>
-<td align="center"><span class="math inline">\(P(A, B&#39;)=2/6\)</span></td>
-</tr>
-<tr class="odd">
-<td align="center"><span class="math inline">\((A&#39;, B)\)</span></td>
-<td align="center"><span class="math inline">\(P(A&#39;, B)=2/6\)</span></td>
-</tr>
-<tr class="even">
-<td align="center"><span class="math inline">\((A&#39;, B&#39;)\)</span></td>
-<td align="center"><span class="math inline">\(P(A&#39;, B&#39;)=1/6\)</span></td>
-</tr>
-<tr class="odd">
-<td align="center">sum</td>
-<td align="center"><span class="math inline">\(1\)</span></td>
-</tr>
-</tbody>
-</table>
-<p>Note: each outcome has <span class="math inline">\(two\)</span> values (one for the characteristic of type <span class="math inline">\(A\)</span> and another for type <span class="math inline">\(B\)</span>)</p>
-<hr />
-<hr />
-</div>
-<div id="contingency-table" class="section level2 hasAnchor" number="3.26">
-<h2><span class="header-section-number">3.26</span> Contingency table<a href="probability.html#contingency-table" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>We can organize the probability of <strong>joint outcomes</strong> in a <strong>contingency table</strong></p>
-<table>
-<thead>
-<tr class="header">
-<th align="center"></th>
-<th align="center"><span class="math inline">\(B\)</span></th>
-<th align="center"><span class="math inline">\(B&#39;\)</span></th>
-<th align="center"><b>sum</b></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="center"><span class="math inline">\(A\)</span></td>
-<td align="center"><span class="math inline">\(P(A, B )\)</span></td>
-<td align="center"><span class="math inline">\(P(A, B&#39; )\)</span></td>
-<td align="center"><span class="math inline">\(P(A)\)</span></td>
-</tr>
-<tr class="even">
-<td align="center"><span class="math inline">\(A&#39;\)</span></td>
-<td align="center"><span class="math inline">\(P(A&#39;, B )\)</span></td>
-<td align="center"><span class="math inline">\(P(A&#39;, B&#39; )\)</span></td>
-<td align="center"><span class="math inline">\(P(A&#39;)\)</span></td>
-</tr>
-<tr class="odd">
-<td align="center"><b>sum</b></td>
-<td align="center"><span class="math inline">\(P(B)\)</span></td>
-<td align="center"><span class="math inline">\(P(B&#39;)\)</span></td>
-<td align="center">1</td>
-</tr>
-</tbody>
-</table>
-<p>Marginals:</p>
+<p>Then, observed values of <span class="math inline">\(\frac{MST}{MSE}\)</span> far from <span class="math inline">\(1\)</span> suggest that the means between groups <strong>differ</strong>.</p>
+<p><span class="math display">\[\frac{MST}{MSE} \rightarrow F(k-1, k(n-1))\]</span></p>
 <ul>
-<li><span class="math inline">\(P(A)=P(A, B&#39;) + P(A, B)\)</span></li>
-<li><span class="math inline">\(P(B)=P(A&#39;, B) +P(A, B)\)</span></li>
+<li>where MSE is the estimated variance within groups</li>
+</ul>
+<p><span class="math display">\[MSE=\frac{1}{k(n-1)} \sum_{i=1}^k\sum_{j=1}^n(Y_{ij}-\bar{Y}_i)^2\]</span></p>
+<ul>
+<li>MST is the estimated variance between groups</li>
+</ul>
+<p><span class="math display">\[MST= \frac{n}{k-1}\sum_{i=A,B}(\bar{Y}_{i}-\bar{Y})^2\]</span></p>
+<hr />
+<hr />
+</div>
+<div id="anova-several-groups-2" class="section level2 hasAnchor" number="18.14">
+<h2><span class="header-section-number">18.14</span> ANOVA several groups<a href="mean-differences-between-several-samples.html#anova-several-groups-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In a study that wanted to test the effect of leptin in neurodevelopment, 7 male mice had their leptin gene knocked out. While 16 mice were left with normal leptin function. In a third group, 10 mice with knocked out leptin were injected leptin (PMID: 30694175). An initial question was to test the effect of the leptin group on the body weight of the animals.</p>
+<ul>
+<li>We assume that the weight of the control animals has a probability density</li>
+</ul>
+<p><span class="math display">\[Y_A \rightarrow N(\mu_A, \sigma_A^2)\]</span></p>
+<ul>
+<li>We assume a normal distribution weight for the mice with no leptin.</li>
+</ul>
+<p><span class="math display">\[Y_B \rightarrow N(\mu_B, \sigma_B^2)\]</span></p>
+<ul>
+<li>We assume a normal distribution weight for the mice with no leptin gene but were injected leptin.</li>
+</ul>
+<p><span class="math display">\[Y_C \rightarrow N(\mu_C, \sigma_C^2)\]</span></p>
+<hr />
+<hr />
+</div>
+<div id="difference-between-means-8" class="section level2 hasAnchor" number="18.15">
+<h2><span class="header-section-number">18.15</span> Difference between means<a href="mean-differences-between-several-samples.html#difference-between-means-8" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>One random experiment has two outcomes: <span class="math inline">\((weight, leptin)\)</span>.</p>
+<p>Continuous variable (outcome of interest)</p>
+<ul>
+<li><span class="math inline">\(weigth \in (20, 60)\)</span></li>
+</ul>
+<p>Categorical variable:</p>
+<ul>
+<li><span class="math inline">\(leptin \in \{control:A,knockout:B, replace:C\}\)</span></li>
+</ul>
+<p>The data looks like</p>
+<pre><code>##    weight    group
+## 1   27.67  Control
+## 2   27.40  Control
+## 3   25.77  Control
+## 4   25.60  Control
+## 5   25.03  Control
+## 6   25.90  Control
+## 7   26.67  Control
+## 8   25.60  Control
+## 9   28.93  Control
+## 10  31.83  Control
+## 11  25.90  Control
+## 12  26.30  Control
+## 13  27.90  Control
+## 14  26.77  Control
+## 15  25.83  Control
+## 16  20.87  Control
+## 17  46.57 leptinKO
+## 18  40.43 leptinKO
+## 19  41.97 leptinKO
+## 20  41.17 leptinKO
+## 21  41.57 leptinKO
+## 22  46.17 leptinKO
+## 23  53.83 leptinKO</code></pre>
+<hr />
+<hr />
+</div>
+<div id="difference-between-means-9" class="section level2 hasAnchor" number="18.16">
+<h2><span class="header-section-number">18.16</span> Difference between means<a href="mean-differences-between-several-samples.html#difference-between-means-9" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>We take weights <strong>conditioned to</strong> each leptin condition, and observed:</p>
+<ul>
+<li><p><span class="math inline">\(n_A=16\)</span> control mice had a weight mean of <span class="math inline">\(\bar{y}_A=26.49813\)</span> and <span class="math inline">\(s_A=2.247577\)</span></p></li>
+<li><p><span class="math inline">\(n_B=10\)</span> leptin KO mice with leptin replacement had a weight mean of <span class="math inline">\(\bar{y}_B=25.668\)</span> and <span class="math inline">\(s_B=5.034161\)</span>
+We can draw boxplots per group</p></li>
+<li><p><span class="math inline">\(n_C=7\)</span> leptin KO mice had a weight mean of <span class="math inline">\(\bar{y}_C=44.53\)</span> and <span class="math inline">\(s_C=4.774167\)</span></p></li>
+</ul>
+<pre><code>##    weight    group
+## 1   27.67  Control
+## 2   27.40  Control
+## 3   25.77  Control
+## 4   25.60  Control
+## 5   25.03  Control
+## 6   25.90  Control
+## 7   26.67  Control
+## 8   25.60  Control
+## 9   28.93  Control
+## 10  31.83  Control
+## 11  25.90  Control
+## 12  26.30  Control
+## 13  27.90  Control
+## 14  26.77  Control
+## 15  25.83  Control
+## 16  20.87  Control
+## 17  46.57 leptinKO
+## 18  40.43 leptinKO
+## 19  41.97 leptinKO
+## 20  41.17 leptinKO
+## 21  41.57 leptinKO
+## 22  46.17 leptinKO
+## 23  53.83 leptinKO
+## 24  24.33   KOplus
+## 25  22.37   KOplus
+## 26  26.10   KOplus
+## 27  17.50   KOplus
+## 28  35.17   KOplus
+## 29  25.97   KOplus
+## 30  27.67   KOplus
+## 31  23.37   KOplus
+## 32  31.83   KOplus
+## 33  22.37   KOplus</code></pre>
+<p>We can see the differences in distributions with a boxplot</p>
+<p><img src="_main_files/figure-html/unnamed-chunk-148-1.png" width="672" /></p>
+<hr />
+<hr />
+</div>
+<div id="anova-several-groups-3" class="section level2 hasAnchor" number="18.17">
+<h2><span class="header-section-number">18.17</span> ANOVA several groups<a href="mean-differences-between-several-samples.html#anova-several-groups-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The observed value of the statistics is</p>
+<p><span class="math display">\[\frac{MST}{MSE}=63.373\]</span></p>
+<p>which is still a <strong>rare</strong> observation of an <span class="math inline">\(F\)</span> distribution with <span class="math inline">\(2\)</span> and <span class="math inline">\(30=(16+7+10)/3-1\)</span> degrees of freedom</p>
+<p><span class="math display">\[pvalue=1-F^{-1}_{F,2,30}(63.373)=1.694 \times 10^{-11}\]</span></p>
+<p>Suggesting significant differences in at least one group mean.</p>
+<hr />
+<hr />
+</div>
+<div id="anova-several-groups-4" class="section level2 hasAnchor" number="18.18">
+<h2><span class="header-section-number">18.18</span> ANOVA several groups<a href="mean-differences-between-several-samples.html#anova-several-groups-4" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<pre><code>## Analysis of Variance Table
+## 
+## Response: weight
+##           Df  Sum Sq Mean Sq F value    Pr(&gt;F)    
+## group      2 1861.55  930.77  63.373 1.694e-11 ***
+## Residuals 30  440.62   14.69                      
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<p><img src="_main_files/figure-html/unnamed-chunk-150-1.png" width="672" /></p>
+<p>We observed a significant difference between groups (ANOVA test <span class="math inline">\(F(2,30)=63.373, P= 1.69 \times 10^{-11}\)</span>), due to the higher gain in weight of the knockout mice. Note that knocked-out mice with replacement recovered wild-type weight (t-test difference between means <span class="math inline">\(-0.83\)</span>, <span class="math inline">\(P=0.63\)</span>)</p>
+<hr />
+<hr />
+</div>
+<div id="anova-two-factor" class="section level2 hasAnchor" number="18.19">
+<h2><span class="header-section-number">18.19</span> ANOVA two factor<a href="mean-differences-between-several-samples.html#anova-two-factor" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The ANOVA approach allows for the analysis of the joint effect of <strong>two random</strong> variables.</p>
+<p>Let us include an additional sample of female mice in the leptin study and ask: Is the change in weight across different leptin groups that we observed in male mice the same in female mice?</p>
+<ul>
+<li><p>Is there an effect of <strong>sex</strong> on the weight of the mice?</p></li>
+<li><p>Is that effect different between leptin groups?</p></li>
 </ul>
 <hr />
 <hr />
 </div>
-<div id="example-contingency-table" class="section level2 hasAnchor" number="3.27">
-<h2><span class="header-section-number">3.27</span> Example contingency table<a href="probability.html#example-contingency-table" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="two-factor" class="section level2 hasAnchor" number="18.20">
+<h2><span class="header-section-number">18.20</span> Two factor<a href="mean-differences-between-several-samples.html#two-factor" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>One random experiment has three outcomes: <span class="math inline">\((weight, leptin, sex)\)</span>.</p>
+<p>Continuous variable (outcome of interest)</p>
 <ul>
-<li>Event <span class="math inline">\(A:\{1,2,3\}\)</span> a number less or equal to three in the throw of a dice<br />
-</li>
-<li>Event <span class="math inline">\(B:\{2,4,6\}\)</span> an even number in the throw of a dice</li>
+<li><span class="math inline">\(weigth \in (20, 60)\)</span></li>
 </ul>
-<table>
-<thead>
-<tr class="header">
-<th align="center"></th>
-<th align="center"><span class="math inline">\(B\)</span></th>
-<th align="center"><span class="math inline">\(B&#39;\)</span></th>
-<th align="center"><b>sum</b></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="center"><span class="math inline">\(A\)</span></td>
-<td align="center"><span class="math inline">\(1/6\)</span></td>
-<td align="center"><span class="math inline">\(2/6\)</span></td>
-<td align="center"><span class="math inline">\(3/6\)</span></td>
-</tr>
-<tr class="even">
-<td align="center"><span class="math inline">\(A&#39;\)</span></td>
-<td align="center"><span class="math inline">\(2/6\)</span></td>
-<td align="center"><span class="math inline">\(1/6\)</span></td>
-<td align="center"><span class="math inline">\(3/6\)</span></td>
-</tr>
-<tr class="odd">
-<td align="center"><b>sum</b></td>
-<td align="center"><span class="math inline">\(3/6\)</span></td>
-<td align="center"><span class="math inline">\(3/6\)</span></td>
-<td align="center">1</td>
-</tr>
-</tbody>
-</table>
-<p>Three forms of the <strong>addition rule</strong>:</p>
-<p><span class="math inline">\(P(A \cup B)\)</span><span class="math display">\[=P(A) + P(B) - P(A\cap B)\]</span>
-<span class="math display">\[=P(A \cap B)+P(A\cap B&#39;)+P(A&#39;\cap B)\]</span>
-<span class="math display">\[=1-P(A&#39;\cap B&#39;)\]</span></p>
-<hr />
-<hr />
-</div>
-<div id="misophonia-study" class="section level2 hasAnchor" number="3.28">
-<h2><span class="header-section-number">3.28</span> Misophonia study<a href="probability.html#misophonia-study" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>In the misophonia study, the patients were assessed for their misophonia severity <strong>and</strong> if they were depressed.</p>
-<p>The outcome of one random experiment is to measure the misophonia severity <strong>and</strong> depression status of one patient. The repetition of the random experiment was to perform the same two measurements on another patient.</p>
-<pre><code>##     Misofonia.dic depresion.dic
-## 1               4             1
-## 2               2             0
-## 3               0             0
-## 4               3             0
-## 5               0             0
-## 6               0             0
-## 7               2             0
-## 8               3             0
-## 9               0             1
-## 10              3             0
-## 11              0             0
-## 12              2             0
-## 13              2             1
-## 14              0             0
-## 15              2             0
-## 16              0             0
-## 17              0             0
-## 18              3             0
-## 19              3             0
-## 20              0             0
-## 21              3             0
-## 22              3             0
-## 23              2             0
-## 24              0             0
-## 25              0             0
-## 26              0             0
-## 27              4             1
-## 28              2             0
-## 29              2             0
-## 30              0             0
-## 31              2             0
-## 32              0             0
-## 33              0             0
-## 34              0             0
-## 35              3             0
-## 36              0             0
-## 37              2             0
-## 38              3             1
-## 39              2             0
-## 40              2             0
-## 41              0             0
-## 42              2             0
-## 43              3             0
-## 44              0             0
-## 45              0             0
-## 46              2             0
-## 47              2             0
-## 48              3             0
-## 49              3             0
-## 50              0             0
-## 51              0             0
-## 52              4             1
-## 53              3             0
-## 54              3             1
-## 55              2             1
-## 56              0             1
-## 57              2             0
-## 58              0             0
-## 59              0             0
-## 60              0             0
-## 61              2             0
-## 62              2             0
-## 63              0             0
-## 64              0             0
-## 65              2             0
-## 66              3             1
-## 67              0             0
-## 68              1             0
-## 69              3             0
-## 70              2             0
-## 71              4             1
-## 72              3             0
-## 73              2             1
-## 74              3             0
-## 75              0             1
-## 76              2             0
-## 77              3             0
-## 78              2             0
-## 79              4             1
-## 80              1             0
-## 81              2             0
-## 82              0             0
-## 83              2             0
-## 84              0             0
-## 85              2             0
-## 86              0             1
-## 87              2             0
-## 88              2             0
-## 89              4             1
-## 90              3             0
-## 91              0             1
-## 92              3             0
-## 93              0             0
-## 94              0             0
-## 95              0             0
-## 96              2             0
-## 97              2             0
-## 98              1             0
-## 99              3             0
-## 100             0             0
-## 101             0             0
-## 102             3             1
-## 103             2             0
-## 104             1             0
-## 105             3             0
-## 106             0             0
-## 107             4             1
-## 108             4             1
-## 109             2             0
-## 110             3             0
-## 111             3             0
-## 112             3             1
-## 113             0             0
-## 114             3             0
-## 115             2             0
-## 116             1             0
-## 117             2             0
-## 118             3             1
-## 119             3             0
-## 120             4             1
-## 121             2             0
-## 122             3             0
-## 123             2             0</code></pre>
-<hr />
-<hr />
-</div>
-<div id="contingency-table-for-frequencies" class="section level2 hasAnchor" number="3.29">
-<h2><span class="header-section-number">3.29</span> Contingency table for frequencies<a href="probability.html#contingency-table-for-frequencies" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Categorical variable:</p>
 <ul>
-<li>For the number of observations <span class="math inline">\(n_{i,j}\)</span> of each outcome <span class="math inline">\((x_i, y_i)\)</span>, misophonia: <span class="math inline">\(x\in \{0,1,2,3,4\}\)</span> and depression <span class="math inline">\(y\in \{0,1\}\)</span> (no:<span class="math inline">\(0\)</span>, yes:<span class="math inline">\(1\)</span>)</li>
+<li><span class="math inline">\(leptin \in \{control:A,knockout:B\}\)</span></li>
 </ul>
-<pre><code>##               
-##                Depression:0 Depression:1
-##   Misophonia:4            0            9
-##   Misophonia:3           25            6
-##   Misophonia:2           34            3
-##   Misophonia:1            5            0
-##   Misophonia:0           36            5</code></pre>
+<p>Categorical variable:</p>
 <ul>
-<li>For the relative frequencies <span class="math inline">\(f_{i,j}\)</span></li>
+<li><span class="math inline">\(sex \in \{male:a,female:b\}\)</span></li>
 </ul>
-<pre><code>##               
-##                Depression:0 Depression:1
-##   Misophonia:4   0.00000000   0.07317073
-##   Misophonia:3   0.20325203   0.04878049
-##   Misophonia:2   0.27642276   0.02439024
-##   Misophonia:1   0.04065041   0.00000000
-##   Misophonia:0   0.29268293   0.04065041</code></pre>
+<p>The data looks like</p>
+<pre><code>##    weight    group sex
+## 1   27.67  Control   M
+## 2   27.40  Control   M
+## 3   25.77  Control   M
+## 4   25.60  Control   M
+## 5   25.03  Control   M
+## 6   25.90  Control   M
+## 7   26.67  Control   M
+## 8   25.60  Control   M
+## 9   28.93  Control   M
+## 10  31.83  Control   M
+## 11  25.90  Control   M
+## 12  26.30  Control   M
+## 13  27.90  Control   M
+## 14  26.77  Control   M
+## 15  25.83  Control   M
+## 16  20.87  Control   M
+## 17  46.57 leptinKO   M
+## 18  40.43 leptinKO   M
+## 19  41.97 leptinKO   M
+## 20  41.17 leptinKO   M
+## 21  41.57 leptinKO   M
+## 22  46.17 leptinKO   M
+## 23  53.83 leptinKO   M
+## 34  22.30  Control   F
+## 35  23.30  Control   F
+## 36  23.10  Control   F
+## 37  22.20  Control   F
+## 38  22.30  Control   F
+## 39  19.90  Control   F
+## 40  22.20  Control   F
+## 41  20.60  Control   F
+## 42  22.00  Control   F
+## 43  20.40  Control   F
+## 44  21.00  Control   F
+## 45  22.00  Control   F
+## 46  23.20  Control   F
+## 47  22.00  Control   F
+## 48  23.30  Control   F
+## 49  20.60  Control   F
+## 50  22.80  Control   F
+## 51  19.50  Control   F
+## 52  20.80  Control   F
+## 53  20.20  Control   F
+## 54  20.00  Control   F
+## 55  20.80  Control   F
+## 56  17.60  Control   F
+## 57  16.30  Control   F
+## 58  65.80 leptinKO   F
+## 59  51.40 leptinKO   F
+## 60  54.60 leptinKO   F
+## 61  48.30 leptinKO   F
+## 62  50.60 leptinKO   F
+## 63  48.90 leptinKO   F
+## 64  51.20 leptinKO   F
+## 65  46.80 leptinKO   F
+## 66  50.90 leptinKO   F
+## 67  42.70 leptinKO   F</code></pre>
 <hr />
 <hr />
 </div>
-<div id="heat-map" class="section level2 hasAnchor" number="3.30">
-<h2><span class="header-section-number">3.30</span> Heat map<a href="probability.html#heat-map" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>The contingency table can be plotted as a <strong>heat map</strong></p>
-<p><img src="_main_files/figure-html/unnamed-chunk-30-1.png" width="672" /></p>
-<hr />
-<hr />
-</div>
-<div id="continous-variables" class="section level2 hasAnchor" number="3.31">
-<h2><span class="header-section-number">3.31</span> Continous variables<a href="probability.html#continous-variables" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>In the misophonia study, the jaw protrusion was also measured as a possible cephalometric factor for de disease.</p>
-<pre><code>##     Angulo_convexidad protusion.mandibular
-## 1                7.97                13.00
-## 2               18.23                -5.00
-## 3               12.27                11.50
-## 4                7.81                16.80
-## 5                9.81                33.00
-## 6               13.50                 2.00
-## 7               19.30                -3.90
-## 8                7.70                16.80
-## 9               12.30                 8.00
-## 10               7.90                28.80
-## 11              12.60                 3.00
-## 12              19.00                -7.90
-## 13               7.27                28.30
-## 14              14.00                 4.00
-## 15               5.40                22.20
-## 16               8.00                 0.00
-## 17              11.20                15.00
-## 18               7.75                17.00
-## 19               7.94                49.00
-## 20              16.69                 5.00
-## 21               7.62                42.00
-## 22               7.02                28.00
-## 23               7.00                 9.40
-## 24              19.20               -13.20
-## 25               7.96                23.00
-## 26              14.70                 2.30
-## 27               7.24                25.00
-## 28               7.80                 4.90
-## 29               7.90                92.00
-## 30               4.70                 6.00
-## 31               4.40                17.00
-## 32              14.00                 3.30
-## 33              14.40                10.30
-## 34              16.00                 6.30
-## 35               1.40                19.50
-## 36               9.76                22.00
-## 37               7.90                 5.00
-## 38               7.90                78.00
-## 39               7.40                 9.30
-## 40               6.30                50.60
-## 41               7.76                18.00
-## 42               7.30                18.00
-## 43               7.00                10.00
-## 44              11.23                 4.00
-## 45              16.00                13.30
-## 46               7.90                48.00
-## 47               7.29                23.50
-## 48               6.91                37.60
-## 49               7.10                15.00
-## 50              13.40                 5.10
-## 51              11.60                -2.20
-## 52              -1.00                32.00
-## 53               6.00                25.00
-## 54               7.82                24.00
-## 55               4.80                33.60
-## 56              11.00                 3.30
-## 57               9.00                31.50
-## 58              11.50                12.80
-## 59              16.00                 3.00
-## 60              15.00                 6.00
-## 61               1.40                21.40
-## 62              16.80               -10.00
-## 63               7.70                19.00
-## 64              16.14                32.00
-## 65               7.12                15.00
-## 66              -1.00                10.00
-## 67              17.00               -16.90
-## 68               9.26                 2.00
-## 69              18.70               -10.10
-## 70               3.40                12.20
-## 71              21.30               -11.00
-## 72               7.50                 5.20
-## 73               6.03                16.00
-## 74               7.50                 5.80
-## 75              19.00                 5.20
-## 76              19.01                13.00
-## 77               8.10                13.60
-## 78               7.80                16.10
-## 79               6.10                33.20
-## 80              15.26                 4.00
-## 81               7.95                12.00
-## 82              18.00                -1.50
-## 83               4.60                18.30
-## 84              15.00                 3.00
-## 85               7.50                15.80
-## 86               8.00                27.10
-## 87              16.80               -10.00
-## 88               8.54                25.00
-## 89               7.00                27.10
-## 90              18.30                -8.00
-## 91               7.80                12.00
-## 92              16.00                -8.00
-## 93              14.00                23.00
-## 94              12.30                 5.00
-## 95              11.40                 1.00
-## 96               8.50                18.90
-## 97               7.00                15.00
-## 98               7.96                22.00
-## 99              17.60                -3.50
-## 100             10.00                20.00
-## 101              3.50                12.20
-## 102              6.70                14.70
-## 103             17.00                -5.00
-## 104             20.26                -4.15
-## 105              6.64                11.00
-## 106              1.80                -4.00
-## 107              7.02                25.00
-## 108              2.46                35.00
-## 109             19.00                -5.00
-## 110             17.86               -30.00
-## 111              6.10                12.20
-## 112              6.64                19.00
-## 113             12.00                 1.60
-## 114              6.60                20.00
-## 115              8.70                17.10
-## 116             14.05                24.00
-## 117              7.20                 7.10
-## 118             19.70               -11.00
-## 119              7.70                21.30
-## 120              6.02                 5.00
-## 121              2.50                12.90
-## 122             19.00                 5.90
-## 123              6.80                 5.80</code></pre>
-<hr />
-<hr />
-</div>
-<div id="heat-map-for-continuous-variables" class="section level2 hasAnchor" number="3.32">
-<h2><span class="header-section-number">3.32</span> Heat map for continuous variables<a href="probability.html#heat-map-for-continuous-variables" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="difference-between-means-10" class="section level2 hasAnchor" number="18.21">
+<h2><span class="header-section-number">18.21</span> Difference between means<a href="mean-differences-between-several-samples.html#difference-between-means-10" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>We take weights <strong>conditioned to</strong> each leptin by sex condition, and observed:</p>
 <ul>
-<li><p>Two dimensional <strong>histogram</strong>.</p></li>
-<li><p>It illustrates the “continuous contingency” table for continuous variables</p></li>
+<li><p><span class="math inline">\(n_{Aa}=16\)</span> control <strong>male</strong> mice had a weight mean of <span class="math inline">\(\bar{y}_{Aa}=26.49813\)</span> and <span class="math inline">\(s_{Aa}=2.247577\)</span></p></li>
+<li><p><span class="math inline">\(n_{Ba}=7\)</span> leptin KO <strong>male</strong> mice had a weight mean of <span class="math inline">\(\bar{y}_{Ba}=44.53\)</span> and <span class="math inline">\(s_{Ba}=4.774167\)</span></p></li>
+<li><p><span class="math inline">\(n_{Ab}=24\)</span> control <strong>female</strong> mice had a weight mean of <span class="math inline">\(\bar{y}_{Ab}=21.18333\)</span> and <span class="math inline">\(s_{Ab}=1.757386\)</span></p></li>
+<li><p><span class="math inline">\(n_{Bb}=10\)</span> leptin KO <strong>female</strong> mice had a weight mean of <span class="math inline">\(\bar{y}_{Bb}=51.12\)</span> and <span class="math inline">\(s_{Bb}=6.059483\)</span></p></li>
 </ul>
-<p><img src="_main_files/figure-html/unnamed-chunk-32-1.png" width="672" /></p>
 <hr />
 <hr />
 </div>
-<div id="scatter-plot" class="section level2 hasAnchor" number="3.33">
-<h2><span class="header-section-number">3.33</span> Scatter plot<a href="probability.html#scatter-plot" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="difference-between-means-11" class="section level2 hasAnchor" number="18.22">
+<h2><span class="header-section-number">18.22</span> Difference between means<a href="mean-differences-between-several-samples.html#difference-between-means-11" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>We draw the boxplot, grouping leptin conditions, and observe a strong overall effect of leptin</p>
+<p><img src="_main_files/figure-html/unnamed-chunk-152-1.png" width="672" /></p>
+<hr />
+<hr />
+</div>
+<div id="difference-between-means-12" class="section level2 hasAnchor" number="18.23">
+<h2><span class="header-section-number">18.23</span> Difference between means<a href="mean-differences-between-several-samples.html#difference-between-means-12" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>If we draw the boxplot grouping by sex, we observe that sex is not have such a strong effect on weight</p>
+<p><img src="_main_files/figure-html/unnamed-chunk-153-1.png" width="672" /></p>
+<hr />
+<hr />
+</div>
+<div id="anova-two-factor-1" class="section level2 hasAnchor" number="18.24">
+<h2><span class="header-section-number">18.24</span> ANOVA two factor<a href="mean-differences-between-several-samples.html#anova-two-factor-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The ANOVA approach allows for the analysis of two factors (each with many groups-levels).</p>
+<p>Consider the <strong>linear model</strong></p>
+<p><span class="math display">\[Y_{ijr} = \mu + \alpha_i + \beta_j + \epsilon_{ijr}\]</span></p>
+<p>with <strong>Random error</strong>:</p>
 <ul>
-<li><p>The <strong>histogram</strong> depends on the size of the bin (pixel).</p></li>
-<li><p>If the pixel is small enough to contain a single observation then the heat map results in a <strong>scatter plot</strong></p></li>
+<li><span class="math inline">\(\epsilon_{ijr}\)</span> is a <strong>random variable</strong> with <span class="math inline">\(E(\epsilon_{ijr})=0\)</span>, <span class="math inline">\(V(\epsilon_{ijr})=\sigma^2\)</span></li>
 </ul>
-<p>The scatter plot is the illustration of a “contingency table” for continuous variables when the bin (pixel) is small enough to contain one single observation (consisting of a pair of values).</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-33-1.png" width="672" /></p>
+<p>and <span class="math inline">\(k\)</span> groups for factor 1 (leptin).</p>
+<ul>
+<li><span class="math inline">\(\alpha_i, i \in\{1...k\}\)</span> such that <span class="math inline">\(\sum_i \alpha_i=0\)</span> are the deviations of the group means to the the overall mean.</li>
+</ul>
+<p><span class="math display">\[E(Y|i)=\mu + \alpha_i\]</span></p>
+<p>and <span class="math inline">\(m\)</span> groups for factor 2 (sex).</p>
+<p><span class="math display">\[E(Y|j)=\mu + \beta_j\]</span>
+Each experiment is defined by a given group in factor 1 and a given group in factor 2 (e.g <span class="math inline">\((control, male)\)</span>) and repeated <span class="math inline">\(n\)</span> times (for simplicity but not loss of generality)</p>
+<hr />
+<hr />
+</div>
+<div id="variance-components-2" class="section level2 hasAnchor" number="18.25">
+<h2><span class="header-section-number">18.25</span> Variance components<a href="mean-differences-between-several-samples.html#variance-components-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The squared deviations of the observations to the overall average can be decomposed into their variations within each experiment (<span class="math inline">\(SSE\)</span>) and the variations between factor 1 <span class="math inline">\((SS_{Fac1})\)</span> and factor 2 <span class="math inline">\((SS_{Fac2})\)</span>.</p>
+<p><span class="math display">\[SS_T= SSE + SS_{Fac1} + SS_{Fac2}\]</span></p>
+<p>That defines <span class="math inline">\(F\)</span> statistics</p>
+<p><span class="math display">\[\frac{MS1}{MSE} \rightarrow F(k-1,(m-1)(nk-1))\]</span></p>
+<p>and <span class="math display">\[\frac{MS2}{MSE}\rightarrow F(n-1,(m-1)(nk-1))\]</span></p>
+<hr />
+<hr />
+</div>
+<div id="anova-several-groups-5" class="section level2 hasAnchor" number="18.26">
+<h2><span class="header-section-number">18.26</span> ANOVA several groups<a href="mean-differences-between-several-samples.html#anova-several-groups-5" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>ANOVA allows testing two null hypothesis</p>
+<p>First</p>
+<ul>
+<li><p><span class="math inline">\(H_0: \alpha_1=\alpha_2, ...=\alpha_k=0\)</span> There are no difference between group means for the fist factor</p></li>
+<li><p><span class="math inline">\(H_1\)</span> at least one <span class="math inline">\(\alpha_i\)</span> is different</p></li>
+</ul>
+<p>Then, observed values of <span class="math inline">\(\frac{MS1}{MSE}\)</span> far from <span class="math inline">\(1\)</span> suggest that the means between groups of the first factor <strong>differ</strong>.</p>
+<p>Second</p>
+<ul>
+<li><p><span class="math inline">\(H_0: \beta_1=\beta_2, ...=\beta_k\)</span> There are no difference between group means for the second factor</p></li>
+<li><p><span class="math inline">\(H_1\)</span> at least one <span class="math inline">\(\beta_i\)</span> is different</p></li>
+</ul>
+<p>Then, observed values of <span class="math inline">\(\frac{MS1}{MSE}\)</span> far from <span class="math inline">\(1\)</span> suggest that the means between groups of the second factor <strong>differ</strong>.</p>
+<hr />
+<hr />
+<pre><code>## Analysis of Variance Table
+## 
+## Response: weight
+##           Df Sum Sq Mean Sq  F value Pr(&gt;F)    
+## group      1 7514.2  7514.2 396.8721 &lt;2e-16 ***
+## sex        1   41.6    41.6   2.1968 0.1441    
+## Residuals 54 1022.4    18.9                    
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<p>As we observed from the boxplots, the statistical inference confirms that there are significant differences in weight between leptin conditions but no significant differences between sexes.</p>
+<hr />
+<hr />
+</div>
+<div id="anova-interaction" class="section level2 hasAnchor" number="18.27">
+<h2><span class="header-section-number">18.27</span> ANOVA interaction<a href="mean-differences-between-several-samples.html#anova-interaction" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>From the <strong>linear model</strong></p>
+<p><span class="math display">\[Y_{ijr} = \mu + \alpha_i + \beta_j + \epsilon_{ijr}\]</span></p>
+<p>We have that the expected value of any observation</p>
+<p><span class="math display">\[E(Y|ij)=\mu + \alpha_i+ \beta_j\]</span></p>
+<p>is the sum of the overall mean and the means of each factor (the factors superimpose).</p>
+<hr />
+<hr />
+</div>
+<div id="anova-interaction-1" class="section level2 hasAnchor" number="18.28">
+<h2><span class="header-section-number">18.28</span> ANOVA interaction<a href="mean-differences-between-several-samples.html#anova-interaction-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>This is only true if he had observed for the condition (<span class="math inline">\(male, leptinKO\)</span>) something like (white box)</p>
+<p><img src="_main_files/figure-html/unnamed-chunk-155-1.png" width="672" /></p>
+<hr />
+<hr />
+</div>
+<div id="anova-interaction-2" class="section level2 hasAnchor" number="18.29">
+<h2><span class="header-section-number">18.29</span> ANOVA interaction<a href="mean-differences-between-several-samples.html#anova-interaction-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The apparent less-than-expected gain in weight of leptin KO males seems like a specific interaction between these two conditions.</p>
+<p>We then formulate the <strong>linear model</strong> with an <strong>interaction term</strong></p>
+<p><span class="math display">\[Y_{ijr} = \mu + \alpha_i + \beta_j + (\alpha\beta)_{ij} + \epsilon_{ijr}\]</span></p>
+<p>Such that each observation in each experiment have a specific contribution from the conditions in each factor</p>
+<p><span class="math display">\[E(Y|ij)=\mu + \alpha_i+ \beta_j + (\alpha\beta)_{ij}\]</span></p>
+<hr />
+<hr />
+</div>
+<div id="anova-interaction-3" class="section level2 hasAnchor" number="18.30">
+<h2><span class="header-section-number">18.30</span> ANOVA interaction<a href="mean-differences-between-several-samples.html#anova-interaction-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The squared deviations of the observations to the overall average can be decomposed into their variations within each experiment (<span class="math inline">\(SSE\)</span>) and the variations between factor 1 <span class="math inline">\((SS_{Fac1})\)</span>, factor 2 <span class="math inline">\((SS_{Fac2})\)</span> and their interaction terms <span class="math inline">\((SS_{Int})\)</span>.</p>
+<p><span class="math display">\[SS_T= SSE + SS_{Fac1} + SS_{Fac2}+ SS_{Int}\]</span></p>
+<p>That defines <span class="math inline">\(F\)</span> statistics</p>
+<p><span class="math display">\[\frac{MS1}{MSE} \rightarrow F(k-1,(m-1)(nk-1))\]</span></p>
+<p><span class="math display">\[\frac{MS2}{MSE}\rightarrow F(n-1,(m-1)(nk-1))\]</span>
+and
+<span class="math display">\[\frac{MSI}{MSE}\rightarrow F((n-1)(k-1),(m-1)(nk-1))\]</span></p>
+<hr />
+<hr />
+</div>
+<div id="anova-interaction-4" class="section level2 hasAnchor" number="18.31">
+<h2><span class="header-section-number">18.31</span> ANOVA interaction<a href="mean-differences-between-several-samples.html#anova-interaction-4" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>ANOVA allows testing three null hypothesis</p>
+<p>First</p>
+<ul>
+<li><span class="math inline">\(H_0: \alpha_1=\alpha_2, ...=\alpha_k=0\)</span> There are no difference between group means for the fist factor</li>
+</ul>
+<p>Second</p>
+<ul>
+<li><span class="math inline">\(H_0: \beta_1=\beta_2, ...=\beta_k=0\)</span> There are no difference between group means for the second factor</li>
+</ul>
+<p>Third</p>
+<ul>
+<li><span class="math inline">\(H_0: (\alpha\beta)_{ij}=0\)</span> There is no difference between group means for the second factor</li>
+</ul>
+<p>And the alternatives are that at least one of the terms is different from <span class="math inline">\(0\)</span></p>
+<hr />
+<hr />
+</div>
+<div id="anova-interaction-5" class="section level2 hasAnchor" number="18.32">
+<h2><span class="header-section-number">18.32</span> ANOVA interaction<a href="mean-differences-between-several-samples.html#anova-interaction-5" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<pre><code>## Analysis of Variance Table
+## 
+## Response: weight
+##           Df Sum Sq Mean Sq  F value    Pr(&gt;F)    
+## group      2 7939.7  3969.8 299.5748 &lt; 2.2e-16 ***
+## sex        1   31.0    31.0   2.3422    0.1302    
+## group:sex  2  419.0   209.5  15.8095 1.975e-06 ***
+## Residuals 73  967.4    13.3                       
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<p>As we observed from the boxplots, the statistical inference confirms that there are significant differences in weight between leptin conditions, no significant differences between sexes, and significant interactions between sex and leptin condition. In particular, the effect of leptin knockout in weight is higher in females than males, opposite to what was observed in controls.</p>
 
 </div>
 </div>
@@ -1638,8 +1424,8 @@ They cannot occur at the same time.</p>
           </div>
         </div>
       </div>
-<a href="data-description.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="conditional-probability.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="mean-differences-between-two-samples.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="regression-and-correlation.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -1670,7 +1456,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/USERNAME/REPO/edit/BRANCH/02-Probability.Rmd",
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/17-ANOVA.Rmd",
 "text": "Edit"
 },
 "history": {

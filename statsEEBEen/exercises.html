@@ -24,7 +24,7 @@
 <meta name="author" content="Alejandro Caceres" />
 
 
-<meta name="date" content="2022-09-18" />
+<meta name="date" content="2022-09-21" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -201,6 +201,7 @@
 <li class="chapter" data-level="5.7" data-path="exercises.html"><a href="exercises.html#sampling-and-central-limit-theorem"><i class="fa fa-check"></i><b>5.7</b> Sampling and Central Limit Theorem<span></span></a></li>
 <li class="chapter" data-level="5.8" data-path="exercises.html"><a href="exercises.html#maximum-likelihood"><i class="fa fa-check"></i><b>5.8</b> Maximum likelihood<span></span></a></li>
 <li class="chapter" data-level="5.9" data-path="exercises.html"><a href="exercises.html#method-of-moments"><i class="fa fa-check"></i><b>5.9</b> Method of moments<span></span></a></li>
+<li class="chapter" data-level="5.10" data-path="exercises.html"><a href="exercises.html#confidence-intervals"><i class="fa fa-check"></i><b>5.10</b> Confidence intervals<span></span></a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -349,6 +350,7 @@
 <li><p>What is the estimated probability that the machine produces rounded and smoothed surfaced rods?</p></li>
 <li><p>what is the estimated probability that the rod is rounded if the rod is smooth?</p></li>
 <li><p>what is the estimated probability that the rod is smooth if it is rounded?</p></li>
+<li><p>what is the estimated probability that the rod is neither smooth nor rounded if it does not satisfy any quality control?</p></li>
 <li><p>Are smoothness and roundness independent events?</p></li>
 </ul>
 </div>
@@ -411,6 +413,9 @@
 <li>What is the probability that the rod has been produced by machine 1?</li>
 <li>what is the probability that the rod is not smooth?</li>
 <li>What is the probability that the rod is smooth or rounded or produced by machine 1?</li>
+<li>What is the probability that the rod is rounded if it is smoothed and from machine 1?</li>
+<li>What is the probability that the rod is not rounded if it is not smoothed and is from machine 2?</li>
+<li>what is the probability that the rod has come from machine 1 if it it is smoothed and rounded?</li>
 <li>what is the probability that the rod has come from machine 2 if it does not pass at least one of the quality controls?</li>
 </ul>
 </div>
@@ -791,6 +796,34 @@ f(x)=
 <li><p>The values of the estimates of <span class="math inline">\(r\)</span> y <span class="math inline">\(p\)</span> for the folowing random sample:</p></li>
 </ul>
 <p><span class="math display">\[x_1 = 27; \qquad x_2 = 8; \qquad  x_3 = 22; \qquad  x_4 = 29; \qquad  x_5 = 19; \qquad  x_5 = 32\]</span></p>
+</div>
+</div>
+<div id="confidence-intervals" class="section level2 hasAnchor" number="5.10">
+<h2><span class="header-section-number">5.10</span> Confidence intervals<a href="exercises.html#confidence-intervals" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="exercise-1-9" class="section level4 hasAnchor" number="5.10.0.1">
+<h4><span class="header-section-number">5.10.0.1</span> Exercise 1<a href="exercises.html#exercise-1-9" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>In a scientific paper the authors report a <span class="math inline">\(95\%\)</span> confidence interval of <span class="math inline">\((228, 232)\)</span> for the natural frequency (Hz) of metallic beam. They useda sample of size <span class="math inline">\(25\)</span> and considered that the measurements distributed normally.</p>
+<ul>
+<li><p>What is the mean and the standard deviation of the measurements?</p></li>
+<li><p>Compute the <span class="math inline">\(99\%\)</span> confidence interval.</p></li>
+</ul>
+<p>hints:
+- in R the <span class="math inline">\(t_{0.025, 24}=\)</span> <code>qt(0.975, 24)</code><span class="math inline">\(\sim 2\)</span></p>
+<ul>
+<li>in R the <span class="math inline">\(t_{0.005, 24}=\)</span><code>qt(0.995, 24)</code><span class="math inline">\(\sim 2.8\)</span></li>
+</ul>
+</div>
+<div id="exercise-2-9" class="section level4 hasAnchor" number="5.10.0.2">
+<h4><span class="header-section-number">5.10.0.2</span> Exercise 2<a href="exercises.html#exercise-2-9" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>compute <span class="math inline">\(95\%\)</span> CI for the mean of a normal variable with known variance <span class="math inline">\(\sigma^2=9\)</span> and <span class="math inline">\(\mu=22\)</span></p>
+</div>
+<div id="exercise-3-6" class="section level4 hasAnchor" number="5.10.0.3">
+<h4><span class="header-section-number">5.10.0.3</span> Exercise 3<a href="exercises.html#exercise-3-6" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>This year a <span class="math inline">\(1000\)</span> sample of patients with influenza developed complications.</p>
+<ul>
+<li><p>Compute the <span class="math inline">\(99\%\)</span> confidence interval for the proportion of complications.</p></li>
+<li><p>The previous year <span class="math inline">\(2\%\)</span> showed complications. Can we say with <span class="math inline">\(99\%\)</span> confidence that this year there is a significnat drop in influenza complications?</p></li>
+</ul>
 
 </div>
 </div>

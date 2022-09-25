@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 18 Mean differences between several samples | Stats theory (SDA)</title>
+  <title>Chapter 22 Hypothesis testing | Stats theory (SDA)</title>
   <meta name="description" content="This are slides for the Stats theory of the BIST master" />
   <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 18 Mean differences between several samples | Stats theory (SDA)" />
+  <meta property="og:title" content="Chapter 22 Hypothesis testing | Stats theory (SDA)" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="alejandro-isglobal/master" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 18 Mean differences between several samples | Stats theory (SDA)" />
+  <meta name="twitter:title" content="Chapter 22 Hypothesis testing | Stats theory (SDA)" />
   
   <meta name="twitter:description" content="This are slides for the Stats theory of the BIST master" />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="mean-differences-between-two-samples.html"/>
-<link rel="next" href="regression-and-correlation.html"/>
+<link rel="prev" href="exercises.html"/>
+
 <script src="libs/header-attrs-2.12/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -777,8 +777,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="21.8" data-path="exercises.html"><a href="exercises.html#maximum-likelihood-7"><i class="fa fa-check"></i><b>21.8</b> Maximum likelihood<span></span></a></li>
 <li class="chapter" data-level="21.9" data-path="exercises.html"><a href="exercises.html#method-of-moments-11"><i class="fa fa-check"></i><b>21.9</b> Method of moments<span></span></a></li>
 <li class="chapter" data-level="21.10" data-path="exercises.html"><a href="exercises.html#confidence-intervals"><i class="fa fa-check"></i><b>21.10</b> Confidence intervals<span></span></a></li>
-<li class="chapter" data-level="21.11" data-path="exercises.html"><a href="exercises.html#hypothesis-testing-7"><i class="fa fa-check"></i><b>21.11</b> Hypothesis testing<span></span></a></li>
 </ul></li>
+<li class="chapter" data-level="22" data-path="hypothesis-testing-7.html"><a href="hypothesis-testing-7.html"><i class="fa fa-check"></i><b>22</b> Hypothesis testing<span></span></a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -799,625 +799,28 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="mean-differences-between-several-samples" class="section level1 hasAnchor" number="18">
-<h1><span class="header-section-number">Chapter 18</span> Mean differences between several samples<a href="mean-differences-between-several-samples.html#mean-differences-between-several-samples" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<div id="objective-16" class="section level2 hasAnchor" number="18.1">
-<h2><span class="header-section-number">18.1</span> Objective<a href="mean-differences-between-several-samples.html#objective-16" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="hypothesis-testing-7" class="section level1 hasAnchor" number="22">
+<h1><span class="header-section-number">Chapter 22</span> Hypothesis testing<a href="hypothesis-testing-7.html#hypothesis-testing-7" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="exercise-1-10" class="section level4 hasAnchor" number="22.0.0.1">
+<h4><span class="header-section-number">22.0.0.1</span> Exercise 1<a href="hypothesis-testing-7.html#exercise-1-10" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>If <span class="math inline">\(X\)</span> is normal random variable. We take a
+random sample of <span class="math inline">\(n = 41\)</span> and find that the sample average is <span class="math inline">\(10\)</span> the sample variance is <span class="math inline">\(1.5\)</span></p>
 <ul>
-<li>Two group ANOVA</li>
-<li>Several groups ANOVA</li>
-<li>Two-factor ANOVA</li>
-<li>Two-factor ANOVA with interaction</li>
+<li><p>What is the confidence interval at confidence level of <span class="math inline">\(0.9\)</span>?</p></li>
+<li><p>Test the hypothesis that the mean of <span class="math inline">\(X\)</span> is greater than <span class="math inline">\(10.5\)</span>, with a significance of
+<span class="math inline">\(5\%\)</span>.</p></li>
 </ul>
-<hr />
-<hr />
 </div>
-<div id="analisis-of-variance" class="section level2 hasAnchor" number="18.2">
-<h2><span class="header-section-number">18.2</span> Analisis of variance<a href="mean-differences-between-several-samples.html#analisis-of-variance" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Let’s analyze the leptin experiment from a different perspective: Fisher’s analysis of variance.</p>
-<p>If the <strong>null hypothesis is true</strong>, then mice with and without leptin are <strong>identical</strong> and then split into groups are two random samples of size <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> from the same population.</p>
-<ul>
-<li><p>The overall variance is equal to the <strong>within group</strong> variances <span class="math display">\[\sigma^2=\sigma^2_A=\sigma^2_B\]</span></p></li>
-<li><p>There is no difference between means <span class="math display">\[\delta=(\mu_A-\mu)-(\mu_B-\mu)=0\]</span></p></li>
-</ul>
-<pre><code>##    weight    group
-## 1   27.67  Control
-## 2   27.40  Control
-## 3   25.77  Control
-## 4   25.60  Control
-## 5   25.03  Control
-## 6   25.90  Control
-## 7   26.67  Control
-## 8   25.60  Control
-## 9   28.93  Control
-## 10  31.83  Control
-## 11  25.90  Control
-## 12  26.30  Control
-## 13  27.90  Control
-## 14  26.77  Control
-## 15  25.83  Control
-## 16  20.87  Control
-## 17  46.57 leptinKO
-## 18  40.43 leptinKO
-## 19  41.97 leptinKO
-## 20  41.17 leptinKO
-## 21  41.57 leptinKO
-## 22  46.17 leptinKO
-## 23  53.83 leptinKO</code></pre>
-<p><img src="_main_files/figure-html/unnamed-chunk-140-1.png" width="672" /></p>
-<hr />
-<hr />
+<div id="exercise-2-10" class="section level4 hasAnchor" number="22.0.0.2">
+<h4><span class="header-section-number">22.0.0.2</span> Exercise 2<a href="hypothesis-testing-7.html#exercise-2-10" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p><span class="math inline">\(10\)</span> measurements of the concentration of mercury in a gas condensate were (in <span class="math inline">\(ng/ml\)</span>):
+<span class="math inline">\(23.3\)</span>; <span class="math inline">\(22.5\)</span>; <span class="math inline">\(21.9\)</span>; <span class="math inline">\(21.5\)</span>; <span class="math inline">\(19.9\)</span>; <span class="math inline">\(21.3\)</span>; <span class="math inline">\(21.7\)</span>; <span class="math inline">\(23.8\)</span>; <span class="math inline">\(22.6\)</span>; <span class="math inline">\(24.7\)</span></p>
+<p>Assuming that the mercury concentration is distributed normally, test the hypothesis that the the condensate does not surpass the toxicity limit established at <span class="math inline">\(24 ng/ml\)</span>.</p>
 </div>
-<div id="analisis-of-variance-1" class="section level2 hasAnchor" number="18.3">
-<h2><span class="header-section-number">18.3</span> Analisis of variance<a href="mean-differences-between-several-samples.html#analisis-of-variance-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>If the <strong>null hypothesis is not true</strong>, then the mean weight of the mice is <strong>different</strong> with and without leptin and the split into groups are two random samples of size <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> from <strong>different</strong> populations.</p>
-<ul>
-<li><p>The overall variance is greater than the within-group variances <span class="math display">\[\sigma^2&gt; \sigma^2_A=\sigma^2_B\]</span></p></li>
-<li><p>The group means are different <span class="math display">\[\delta=(\mu_A-\mu)-(\mu_B-\mu)\neq 0\]</span></p></li>
-</ul>
-<p><img src="_main_files/figure-html/unnamed-chunk-141-1.png" width="672" /></p>
-<hr />
-<hr />
-</div>
-<div id="linear-model" class="section level2 hasAnchor" number="18.4">
-<h2><span class="header-section-number">18.4</span> Linear model<a href="mean-differences-between-several-samples.html#linear-model" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Under the <strong>alternative hypothesis</strong>, let’s consider the observations of mice weight conditioned to the leptin groups</p>
-<p><span class="math inline">\(Y_{Aj}\)</span> for <span class="math inline">\(i=1...16\)</span>. For example: <span class="math inline">\(Y_{A5}=25.03\)</span>,</p>
-<pre><code>##    weight group
-## 1   27.67     A
-## 2   27.40     A
-## 3   25.77     A
-## 4   25.60     A
-## 5   25.03     A
-## 6   25.90     A
-## 7   26.67     A
-## 8   25.60     A
-## 9   28.93     A
-## 10  31.83     A
-## 11  25.90     A
-## 12  26.30     A
-## 13  27.90     A
-## 14  26.77     A
-## 15  25.83     A
-## 16  20.87     A</code></pre>
-<p><span class="math inline">\(Y_{Bj}\)</span> for <span class="math inline">\(i=1...7\)</span>. For example: <span class="math inline">\(Y_{B2}=40.43\)</span>,</p>
-<pre><code>##   weight group
-## 1  46.57     B
-## 2  40.43     B
-## 3  41.97     B
-## 4  41.17     B
-## 5  41.57     B
-## 6  46.17     B
-## 7  53.83     B</code></pre>
-<hr />
-<hr />
-</div>
-<div id="linear-model-1" class="section level2 hasAnchor" number="18.5">
-<h2><span class="header-section-number">18.5</span> Linear model<a href="mean-differences-between-several-samples.html#linear-model-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Let’s assume that for all observations we can extract a
-<strong>random error</strong></p>
-<p><span class="math display">\[Y_{ij} = \mu + \alpha_i +\epsilon_{ij}\]</span></p>
-<p><strong>Fixed parameters</strong>:</p>
-<ul>
-<li><span class="math inline">\(\mu\)</span> is the overall mean</li>
-<li><span class="math inline">\(\alpha_i\)</span> is the deviation of group <span class="math inline">\(i\)</span> to the overall mean: <span class="math inline">\(i \in (A,B)\)</span> and <span class="math inline">\(\alpha_A=\mu_A-\mu\)</span>, <span class="math inline">\(\alpha_B=\mu_B-\mu\)</span>.</li>
-<li><span class="math inline">\(j \in {1,...n}\)</span> (all groups have the same number of observations <span class="math inline">\(n_A=n_B=n\)</span> for simplicity with no loss of generality)</li>
-</ul>
-<p><strong>Random error</strong>:</p>
-<ul>
-<li><span class="math inline">\(\epsilon_{ij}\)</span> is a <strong>random variable</strong> with <span class="math inline">\(E(\epsilon_{ij})=0\)</span>, <span class="math inline">\(V(\epsilon_{ij})=\sigma^2\)</span></li>
-</ul>
-<p>Then</p>
-<ul>
-<li><span class="math inline">\(E(Y_{ij})=\)</span> <span class="math display">\[E(Y|i)=\mu + \alpha_i\]</span></li>
-</ul>
-<p>for instance: <span class="math inline">\(E(Y|A)=\mu_A=\mu + \alpha_A\)</span></p>
-<ul>
-<li><span class="math inline">\(V(Y_{ij})=\sigma^2\)</span></li>
-</ul>
-<hr />
-<hr />
-</div>
-<div id="variance-components" class="section level2 hasAnchor" number="18.6">
-<h2><span class="header-section-number">18.6</span> Variance components<a href="mean-differences-between-several-samples.html#variance-components" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>The squared deviations of the observations to the overall average is</p>
-<p><span class="math display">\[\sum_{i=A,B}\sum_{j=1}^n(Y_{ij}-\bar{Y})^2= \sum_{i=A,B}\sum_{j=1}^n(Y_{ij}-\bar{Y}_i)^2+n\sum_{i=A,B}(\bar{Y}_{i}-\bar{Y})^2\]</span></p>
-<ul>
-<li>Sum of squares (total)</li>
-</ul>
-<p><span class="math display">\[SS_T=\sum_{i=A,B}\sum_{j=1}^n(Y_{ij}-\bar{Y})^2\]</span></p>
-<ul>
-<li>Sum of squares (error)</li>
-</ul>
-<p><span class="math display">\[SSE=\sum_{i=A,B}\sum_{j=1}^n(Y_{ij}-\bar{Y}_i)^2\]</span></p>
-<ul>
-<li>Sum of squares (treatment)</li>
-</ul>
-<p><span class="math display">\[SS_{treatment}=n\sum_{i=A,B}(\bar{Y}_{i}-\bar{Y})^2\]</span></p>
-<hr />
-<hr />
-</div>
-<div id="variance-components-1" class="section level2 hasAnchor" number="18.7">
-<h2><span class="header-section-number">18.7</span> Variance components<a href="mean-differences-between-several-samples.html#variance-components-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<ul>
-<li>The <strong>mean square error</strong> (MSE)</li>
-</ul>
-<p><span class="math inline">\(MSE=\frac{1}{2n-2} SSE\)</span> <span class="math display">\[= \frac{1}{2n-2} \sum_{i=A,B}\sum_{j=1}^n(Y_{ij}-\bar{Y}_i)^2= \frac{(n-1)S_A^2+(n-1)S_B^2}{2n-2}\]</span></p>
-<p>is the <strong>pooled variance estimator</strong> <span class="math display">\[E(MSE)=\sigma^2\]</span></p>
-<ul>
-<li>The <strong>mean square of treatments</strong> (MST)</li>
-</ul>
-<p><span class="math inline">\(MST=\frac{1}{2-1} SS_{treatment}\)</span> <span class="math display">\[ =  n\sum_{i=A,B}(\bar{Y}_{i}-\bar{Y})^2\]</span></p>
-<p>is a <strong>biased estimator</strong> of the variance <span class="math display">\[E(MST)=\sigma^2+n(\alpha_A^2+\alpha_B^2)\]</span></p>
-<hr />
-<hr />
-</div>
-<div id="linear-model-2" class="section level2 hasAnchor" number="18.8">
-<h2><span class="header-section-number">18.8</span> Linear model<a href="mean-differences-between-several-samples.html#linear-model-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>In the linear model for the weight:</p>
-<p><span class="math inline">\(Y_{ij} = \mu + \alpha_i +E_{ij}\)</span></p>
-<p>The null hypothesis is <span class="math inline">\(H_0=\mu_A=\mu_B=\mu\)</span> therefore <span class="math inline">\(H_0:\alpha_i=0\)</span></p>
-<ul>
-<li><p>If the null hypothesis is true both <span class="math inline">\(MSE\)</span> and <span class="math inline">\(MST\)</span> are estimators of <span class="math inline">\(\sigma^2\)</span>.</p></li>
-<li><p>If <span class="math inline">\(Y_i \rightarrow N(\mu_i, \sigma^2_i)\)</span> then <span class="math inline">\(MSE \rightarrow \chi^2(2n-2)\)</span> and <span class="math inline">\(MST \rightarrow \chi^2(n-1)\)</span></p></li>
-</ul>
-<p>and the ratio of squares</p>
-<p><span class="math display">\[\frac{MST}{MSE} \rightarrow F(2n-2, n-1)\]</span></p>
-<p>follows a <span class="math inline">\(F\)</span> distribution with <span class="math inline">\(2n-2\)</span> and <span class="math inline">\(n-1\)</span> degrees of freedom.</p>
-<hr />
-<hr />
-</div>
-<div id="anova" class="section level2 hasAnchor" number="18.9">
-<h2><span class="header-section-number">18.9</span> ANOVA<a href="mean-differences-between-several-samples.html#anova" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<ul>
-<li><p><span class="math inline">\(H_0\)</span>: observed values of <span class="math inline">\(\frac{MST}{MSE}\)</span> near <span class="math inline">\(1\)</span> suggest that the means between groups <strong>do not</strong> differ.</p></li>
-<li><p><span class="math inline">\(H_1\)</span>: observed values of <span class="math inline">\(\frac{MST}{MSE}\)</span> far from <span class="math inline">\(1\)</span> suggest that the means between groups <strong>differ</strong>.</p></li>
-</ul>
-<p><span class="math display">\[\frac{MST}{MSE}_{obs}=\frac{(\bar{y}_{A}-\bar{y}_{B})^2}{\frac{s^2_p}{n}}=d_{obs}^2\]</span></p>
-<hr />
-<hr />
-</div>
-<div id="anova-1" class="section level2 hasAnchor" number="18.10">
-<h2><span class="header-section-number">18.10</span> ANOVA<a href="mean-differences-between-several-samples.html#anova-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>We have assumed the same number of observations in each group but when there are two groups the results above holds</p>
-<p><span class="math display">\[f_{obs}=d_{obs}^2=(−12.508)^2=156.45\]</span>
-The upper tailed pvalue for <span class="math inline">\(f_{obs}\)</span> is</p>
-<p><span class="math display">\[Pval=1-F^{-1}_{F,1,21}(156.45)=3.377 \times 10^{-11}\]</span>
-in R: <code>1-pf(156.45, 1,21)</code></p>
-<p>Which is the same as the one obtained with the t-test with equal variances.</p>
-<hr />
-<hr />
-</div>
-<div id="anova-2" class="section level2 hasAnchor" number="18.11">
-<h2><span class="header-section-number">18.11</span> ANOVA<a href="mean-differences-between-several-samples.html#anova-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<pre><code>## Analysis of Variance Table
-## 
-## Response: weight
-##           Df  Sum Sq Mean Sq F value    Pr(&gt;F)    
-## group      1 1583.33 1583.33  156.45 3.377e-11 ***
-## Residuals 21  212.53   10.12                      
-## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
-<hr />
-<hr />
-<p><img src="_main_files/figure-html/unnamed-chunk-145-1.png" width="672" /></p>
-<hr />
-<hr />
-</div>
-<div id="anova-several-groups" class="section level2 hasAnchor" number="18.12">
-<h2><span class="header-section-number">18.12</span> ANOVA several groups<a href="mean-differences-between-several-samples.html#anova-several-groups" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>The ANOVA approach allows for the analysis of many groups.</p>
-<p>Consider the <strong>linear model</strong></p>
-<p><span class="math display">\[Y_{ij} = \mu + \alpha_i +\epsilon_{ij}\]</span></p>
-<p>with <strong>Random error</strong>:</p>
-<ul>
-<li><span class="math inline">\(\epsilon_{ij}\)</span> is a <strong>random variable</strong> with <span class="math inline">\(E(\epsilon_{ij})=0\)</span>, <span class="math inline">\(V(\epsilon_{ij})=\sigma^2\)</span></li>
-</ul>
-<p>and <span class="math inline">\(k\)</span> groups.</p>
-<ul>
-<li><span class="math inline">\(\alpha_i, i \in\{1...k\}\)</span> such that <span class="math inline">\(\sum_i \alpha_i=0\)</span> are the deviations of the group means to the the overall mean.</li>
-</ul>
-<p><span class="math display">\[E(Y|i)=\mu + \alpha_i\]</span></p>
-<hr />
-<hr />
-</div>
-<div id="anova-several-groups-1" class="section level2 hasAnchor" number="18.13">
-<h2><span class="header-section-number">18.13</span> ANOVA several groups<a href="mean-differences-between-several-samples.html#anova-several-groups-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<ul>
-<li><span class="math inline">\(H_0: \alpha_1=\alpha_2, ...=\alpha_k=0\)</span> There are no difference between group means</li>
-</ul>
-<p>Then, observed values of <span class="math inline">\(\frac{MST}{MSE}\)</span> near <span class="math inline">\(1\)</span> suggest that the means between groups <strong>do not</strong>.</p>
-<ul>
-<li><span class="math inline">\(H_1\)</span> at least one <span class="math inline">\(\alpha_i\)</span> is different</li>
-</ul>
-<p>Then, observed values of <span class="math inline">\(\frac{MST}{MSE}\)</span> far from <span class="math inline">\(1\)</span> suggest that the means between groups <strong>differ</strong>.</p>
-<p><span class="math display">\[\frac{MST}{MSE} \rightarrow F(k-1, k(n-1))\]</span></p>
-<ul>
-<li>where MSE is the estimated variance within groups</li>
-</ul>
-<p><span class="math display">\[MSE=\frac{1}{k(n-1)} \sum_{i=1}^k\sum_{j=1}^n(Y_{ij}-\bar{Y}_i)^2\]</span></p>
-<ul>
-<li>MST is the estimated variance between groups</li>
-</ul>
-<p><span class="math display">\[MST= \frac{n}{k-1}\sum_{i=A,B}(\bar{Y}_{i}-\bar{Y})^2\]</span></p>
-<hr />
-<hr />
-</div>
-<div id="anova-several-groups-2" class="section level2 hasAnchor" number="18.14">
-<h2><span class="header-section-number">18.14</span> ANOVA several groups<a href="mean-differences-between-several-samples.html#anova-several-groups-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>In a study that wanted to test the effect of leptin in neurodevelopment, 7 male mice had their leptin gene knocked out. While 16 mice were left with normal leptin function. In a third group, 10 mice with knocked out leptin were injected leptin (PMID: 30694175). An initial question was to test the effect of the leptin group on the body weight of the animals.</p>
-<ul>
-<li>We assume that the weight of the control animals has a probability density</li>
-</ul>
-<p><span class="math display">\[Y_A \rightarrow N(\mu_A, \sigma_A^2)\]</span></p>
-<ul>
-<li>We assume a normal distribution weight for the mice with no leptin.</li>
-</ul>
-<p><span class="math display">\[Y_B \rightarrow N(\mu_B, \sigma_B^2)\]</span></p>
-<ul>
-<li>We assume a normal distribution weight for the mice with no leptin gene but were injected leptin.</li>
-</ul>
-<p><span class="math display">\[Y_C \rightarrow N(\mu_C, \sigma_C^2)\]</span></p>
-<hr />
-<hr />
-</div>
-<div id="difference-between-means-8" class="section level2 hasAnchor" number="18.15">
-<h2><span class="header-section-number">18.15</span> Difference between means<a href="mean-differences-between-several-samples.html#difference-between-means-8" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>One random experiment has two outcomes: <span class="math inline">\((weight, leptin)\)</span>.</p>
-<p>Continuous variable (outcome of interest)</p>
-<ul>
-<li><span class="math inline">\(weigth \in (20, 60)\)</span></li>
-</ul>
-<p>Categorical variable:</p>
-<ul>
-<li><span class="math inline">\(leptin \in \{control:A,knockout:B, replace:C\}\)</span></li>
-</ul>
-<p>The data looks like</p>
-<pre><code>##    weight    group
-## 1   27.67  Control
-## 2   27.40  Control
-## 3   25.77  Control
-## 4   25.60  Control
-## 5   25.03  Control
-## 6   25.90  Control
-## 7   26.67  Control
-## 8   25.60  Control
-## 9   28.93  Control
-## 10  31.83  Control
-## 11  25.90  Control
-## 12  26.30  Control
-## 13  27.90  Control
-## 14  26.77  Control
-## 15  25.83  Control
-## 16  20.87  Control
-## 17  46.57 leptinKO
-## 18  40.43 leptinKO
-## 19  41.97 leptinKO
-## 20  41.17 leptinKO
-## 21  41.57 leptinKO
-## 22  46.17 leptinKO
-## 23  53.83 leptinKO</code></pre>
-<hr />
-<hr />
-</div>
-<div id="difference-between-means-9" class="section level2 hasAnchor" number="18.16">
-<h2><span class="header-section-number">18.16</span> Difference between means<a href="mean-differences-between-several-samples.html#difference-between-means-9" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>We take weights <strong>conditioned to</strong> each leptin condition, and observed:</p>
-<ul>
-<li><p><span class="math inline">\(n_A=16\)</span> control mice had a weight mean of <span class="math inline">\(\bar{y}_A=26.49813\)</span> and <span class="math inline">\(s_A=2.247577\)</span></p></li>
-<li><p><span class="math inline">\(n_B=10\)</span> leptin KO mice with leptin replacement had a weight mean of <span class="math inline">\(\bar{y}_B=25.668\)</span> and <span class="math inline">\(s_B=5.034161\)</span>
-We can draw boxplots per group</p></li>
-<li><p><span class="math inline">\(n_C=7\)</span> leptin KO mice had a weight mean of <span class="math inline">\(\bar{y}_C=44.53\)</span> and <span class="math inline">\(s_C=4.774167\)</span></p></li>
-</ul>
-<pre><code>##    weight    group
-## 1   27.67  Control
-## 2   27.40  Control
-## 3   25.77  Control
-## 4   25.60  Control
-## 5   25.03  Control
-## 6   25.90  Control
-## 7   26.67  Control
-## 8   25.60  Control
-## 9   28.93  Control
-## 10  31.83  Control
-## 11  25.90  Control
-## 12  26.30  Control
-## 13  27.90  Control
-## 14  26.77  Control
-## 15  25.83  Control
-## 16  20.87  Control
-## 17  46.57 leptinKO
-## 18  40.43 leptinKO
-## 19  41.97 leptinKO
-## 20  41.17 leptinKO
-## 21  41.57 leptinKO
-## 22  46.17 leptinKO
-## 23  53.83 leptinKO
-## 24  24.33   KOplus
-## 25  22.37   KOplus
-## 26  26.10   KOplus
-## 27  17.50   KOplus
-## 28  35.17   KOplus
-## 29  25.97   KOplus
-## 30  27.67   KOplus
-## 31  23.37   KOplus
-## 32  31.83   KOplus
-## 33  22.37   KOplus</code></pre>
-<p>We can see the differences in distributions with a boxplot</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-148-1.png" width="672" /></p>
-<hr />
-<hr />
-</div>
-<div id="anova-several-groups-3" class="section level2 hasAnchor" number="18.17">
-<h2><span class="header-section-number">18.17</span> ANOVA several groups<a href="mean-differences-between-several-samples.html#anova-several-groups-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>The observed value of the statistics is</p>
-<p><span class="math display">\[\frac{MST}{MSE}=63.373\]</span></p>
-<p>which is still a <strong>rare</strong> observation of an <span class="math inline">\(F\)</span> distribution with <span class="math inline">\(2\)</span> and <span class="math inline">\(30=(16+7+10)/3-1\)</span> degrees of freedom</p>
-<p><span class="math display">\[pvalue=1-F^{-1}_{F,2,30}(63.373)=1.694 \times 10^{-11}\]</span></p>
-<p>Suggesting significant differences in at least one group mean.</p>
-<hr />
-<hr />
-</div>
-<div id="anova-several-groups-4" class="section level2 hasAnchor" number="18.18">
-<h2><span class="header-section-number">18.18</span> ANOVA several groups<a href="mean-differences-between-several-samples.html#anova-several-groups-4" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<pre><code>## Analysis of Variance Table
-## 
-## Response: weight
-##           Df  Sum Sq Mean Sq F value    Pr(&gt;F)    
-## group      2 1861.55  930.77  63.373 1.694e-11 ***
-## Residuals 30  440.62   14.69                      
-## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
-<p><img src="_main_files/figure-html/unnamed-chunk-150-1.png" width="672" /></p>
-<p>We observed a significant difference between groups (ANOVA test <span class="math inline">\(F(2,30)=63.373, P= 1.69 \times 10^{-11}\)</span>), due to the higher gain in weight of the knockout mice. Note that knocked-out mice with replacement recovered wild-type weight (t-test difference between means <span class="math inline">\(-0.83\)</span>, <span class="math inline">\(P=0.63\)</span>)</p>
-<hr />
-<hr />
-</div>
-<div id="anova-two-factor" class="section level2 hasAnchor" number="18.19">
-<h2><span class="header-section-number">18.19</span> ANOVA two factor<a href="mean-differences-between-several-samples.html#anova-two-factor" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>The ANOVA approach allows for the analysis of the joint effect of <strong>two random</strong> variables.</p>
-<p>Let us include an additional sample of female mice in the leptin study and ask: Is the change in weight across different leptin groups that we observed in male mice the same in female mice?</p>
-<ul>
-<li><p>Is there an effect of <strong>sex</strong> on the weight of the mice?</p></li>
-<li><p>Is that effect different between leptin groups?</p></li>
-</ul>
-<hr />
-<hr />
-</div>
-<div id="two-factor" class="section level2 hasAnchor" number="18.20">
-<h2><span class="header-section-number">18.20</span> Two factor<a href="mean-differences-between-several-samples.html#two-factor" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>One random experiment has three outcomes: <span class="math inline">\((weight, leptin, sex)\)</span>.</p>
-<p>Continuous variable (outcome of interest)</p>
-<ul>
-<li><span class="math inline">\(weigth \in (20, 60)\)</span></li>
-</ul>
-<p>Categorical variable:</p>
-<ul>
-<li><span class="math inline">\(leptin \in \{control:A,knockout:B\}\)</span></li>
-</ul>
-<p>Categorical variable:</p>
-<ul>
-<li><span class="math inline">\(sex \in \{male:a,female:b\}\)</span></li>
-</ul>
-<p>The data looks like</p>
-<pre><code>##    weight    group sex
-## 1   27.67  Control   M
-## 2   27.40  Control   M
-## 3   25.77  Control   M
-## 4   25.60  Control   M
-## 5   25.03  Control   M
-## 6   25.90  Control   M
-## 7   26.67  Control   M
-## 8   25.60  Control   M
-## 9   28.93  Control   M
-## 10  31.83  Control   M
-## 11  25.90  Control   M
-## 12  26.30  Control   M
-## 13  27.90  Control   M
-## 14  26.77  Control   M
-## 15  25.83  Control   M
-## 16  20.87  Control   M
-## 17  46.57 leptinKO   M
-## 18  40.43 leptinKO   M
-## 19  41.97 leptinKO   M
-## 20  41.17 leptinKO   M
-## 21  41.57 leptinKO   M
-## 22  46.17 leptinKO   M
-## 23  53.83 leptinKO   M
-## 34  22.30  Control   F
-## 35  23.30  Control   F
-## 36  23.10  Control   F
-## 37  22.20  Control   F
-## 38  22.30  Control   F
-## 39  19.90  Control   F
-## 40  22.20  Control   F
-## 41  20.60  Control   F
-## 42  22.00  Control   F
-## 43  20.40  Control   F
-## 44  21.00  Control   F
-## 45  22.00  Control   F
-## 46  23.20  Control   F
-## 47  22.00  Control   F
-## 48  23.30  Control   F
-## 49  20.60  Control   F
-## 50  22.80  Control   F
-## 51  19.50  Control   F
-## 52  20.80  Control   F
-## 53  20.20  Control   F
-## 54  20.00  Control   F
-## 55  20.80  Control   F
-## 56  17.60  Control   F
-## 57  16.30  Control   F
-## 58  65.80 leptinKO   F
-## 59  51.40 leptinKO   F
-## 60  54.60 leptinKO   F
-## 61  48.30 leptinKO   F
-## 62  50.60 leptinKO   F
-## 63  48.90 leptinKO   F
-## 64  51.20 leptinKO   F
-## 65  46.80 leptinKO   F
-## 66  50.90 leptinKO   F
-## 67  42.70 leptinKO   F</code></pre>
-<hr />
-<hr />
-</div>
-<div id="difference-between-means-10" class="section level2 hasAnchor" number="18.21">
-<h2><span class="header-section-number">18.21</span> Difference between means<a href="mean-differences-between-several-samples.html#difference-between-means-10" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>We take weights <strong>conditioned to</strong> each leptin by sex condition, and observed:</p>
-<ul>
-<li><p><span class="math inline">\(n_{Aa}=16\)</span> control <strong>male</strong> mice had a weight mean of <span class="math inline">\(\bar{y}_{Aa}=26.49813\)</span> and <span class="math inline">\(s_{Aa}=2.247577\)</span></p></li>
-<li><p><span class="math inline">\(n_{Ba}=7\)</span> leptin KO <strong>male</strong> mice had a weight mean of <span class="math inline">\(\bar{y}_{Ba}=44.53\)</span> and <span class="math inline">\(s_{Ba}=4.774167\)</span></p></li>
-<li><p><span class="math inline">\(n_{Ab}=24\)</span> control <strong>female</strong> mice had a weight mean of <span class="math inline">\(\bar{y}_{Ab}=21.18333\)</span> and <span class="math inline">\(s_{Ab}=1.757386\)</span></p></li>
-<li><p><span class="math inline">\(n_{Bb}=10\)</span> leptin KO <strong>female</strong> mice had a weight mean of <span class="math inline">\(\bar{y}_{Bb}=51.12\)</span> and <span class="math inline">\(s_{Bb}=6.059483\)</span></p></li>
-</ul>
-<hr />
-<hr />
-</div>
-<div id="difference-between-means-11" class="section level2 hasAnchor" number="18.22">
-<h2><span class="header-section-number">18.22</span> Difference between means<a href="mean-differences-between-several-samples.html#difference-between-means-11" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>We draw the boxplot, grouping leptin conditions, and observe a strong overall effect of leptin</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-152-1.png" width="672" /></p>
-<hr />
-<hr />
-</div>
-<div id="difference-between-means-12" class="section level2 hasAnchor" number="18.23">
-<h2><span class="header-section-number">18.23</span> Difference between means<a href="mean-differences-between-several-samples.html#difference-between-means-12" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>If we draw the boxplot grouping by sex, we observe that sex is not have such a strong effect on weight</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-153-1.png" width="672" /></p>
-<hr />
-<hr />
-</div>
-<div id="anova-two-factor-1" class="section level2 hasAnchor" number="18.24">
-<h2><span class="header-section-number">18.24</span> ANOVA two factor<a href="mean-differences-between-several-samples.html#anova-two-factor-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>The ANOVA approach allows for the analysis of two factors (each with many groups-levels).</p>
-<p>Consider the <strong>linear model</strong></p>
-<p><span class="math display">\[Y_{ijr} = \mu + \alpha_i + \beta_j + \epsilon_{ijr}\]</span></p>
-<p>with <strong>Random error</strong>:</p>
-<ul>
-<li><span class="math inline">\(\epsilon_{ijr}\)</span> is a <strong>random variable</strong> with <span class="math inline">\(E(\epsilon_{ijr})=0\)</span>, <span class="math inline">\(V(\epsilon_{ijr})=\sigma^2\)</span></li>
-</ul>
-<p>and <span class="math inline">\(k\)</span> groups for factor 1 (leptin).</p>
-<ul>
-<li><span class="math inline">\(\alpha_i, i \in\{1...k\}\)</span> such that <span class="math inline">\(\sum_i \alpha_i=0\)</span> are the deviations of the group means to the the overall mean.</li>
-</ul>
-<p><span class="math display">\[E(Y|i)=\mu + \alpha_i\]</span></p>
-<p>and <span class="math inline">\(m\)</span> groups for factor 2 (sex).</p>
-<p><span class="math display">\[E(Y|j)=\mu + \beta_j\]</span>
-Each experiment is defined by a given group in factor 1 and a given group in factor 2 (e.g <span class="math inline">\((control, male)\)</span>) and repeated <span class="math inline">\(n\)</span> times (for simplicity but not loss of generality)</p>
-<hr />
-<hr />
-</div>
-<div id="variance-components-2" class="section level2 hasAnchor" number="18.25">
-<h2><span class="header-section-number">18.25</span> Variance components<a href="mean-differences-between-several-samples.html#variance-components-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>The squared deviations of the observations to the overall average can be decomposed into their variations within each experiment (<span class="math inline">\(SSE\)</span>) and the variations between factor 1 <span class="math inline">\((SS_{Fac1})\)</span> and factor 2 <span class="math inline">\((SS_{Fac2})\)</span>.</p>
-<p><span class="math display">\[SS_T= SSE + SS_{Fac1} + SS_{Fac2}\]</span></p>
-<p>That defines <span class="math inline">\(F\)</span> statistics</p>
-<p><span class="math display">\[\frac{MS1}{MSE} \rightarrow F(k-1,(m-1)(nk-1))\]</span></p>
-<p>and <span class="math display">\[\frac{MS2}{MSE}\rightarrow F(n-1,(m-1)(nk-1))\]</span></p>
-<hr />
-<hr />
-</div>
-<div id="anova-several-groups-5" class="section level2 hasAnchor" number="18.26">
-<h2><span class="header-section-number">18.26</span> ANOVA several groups<a href="mean-differences-between-several-samples.html#anova-several-groups-5" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>ANOVA allows testing two null hypothesis</p>
-<p>First</p>
-<ul>
-<li><p><span class="math inline">\(H_0: \alpha_1=\alpha_2, ...=\alpha_k=0\)</span> There are no difference between group means for the fist factor</p></li>
-<li><p><span class="math inline">\(H_1\)</span> at least one <span class="math inline">\(\alpha_i\)</span> is different</p></li>
-</ul>
-<p>Then, observed values of <span class="math inline">\(\frac{MS1}{MSE}\)</span> far from <span class="math inline">\(1\)</span> suggest that the means between groups of the first factor <strong>differ</strong>.</p>
-<p>Second</p>
-<ul>
-<li><p><span class="math inline">\(H_0: \beta_1=\beta_2, ...=\beta_k\)</span> There are no difference between group means for the second factor</p></li>
-<li><p><span class="math inline">\(H_1\)</span> at least one <span class="math inline">\(\beta_i\)</span> is different</p></li>
-</ul>
-<p>Then, observed values of <span class="math inline">\(\frac{MS1}{MSE}\)</span> far from <span class="math inline">\(1\)</span> suggest that the means between groups of the second factor <strong>differ</strong>.</p>
-<hr />
-<hr />
-<pre><code>## Analysis of Variance Table
-## 
-## Response: weight
-##           Df Sum Sq Mean Sq  F value Pr(&gt;F)    
-## group      1 7514.2  7514.2 396.8721 &lt;2e-16 ***
-## sex        1   41.6    41.6   2.1968 0.1441    
-## Residuals 54 1022.4    18.9                    
-## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
-<p>As we observed from the boxplots, the statistical inference confirms that there are significant differences in weight between leptin conditions but no significant differences between sexes.</p>
-<hr />
-<hr />
-</div>
-<div id="anova-interaction" class="section level2 hasAnchor" number="18.27">
-<h2><span class="header-section-number">18.27</span> ANOVA interaction<a href="mean-differences-between-several-samples.html#anova-interaction" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>From the <strong>linear model</strong></p>
-<p><span class="math display">\[Y_{ijr} = \mu + \alpha_i + \beta_j + \epsilon_{ijr}\]</span></p>
-<p>We have that the expected value of any observation</p>
-<p><span class="math display">\[E(Y|ij)=\mu + \alpha_i+ \beta_j\]</span></p>
-<p>is the sum of the overall mean and the means of each factor (the factors superimpose).</p>
-<hr />
-<hr />
-</div>
-<div id="anova-interaction-1" class="section level2 hasAnchor" number="18.28">
-<h2><span class="header-section-number">18.28</span> ANOVA interaction<a href="mean-differences-between-several-samples.html#anova-interaction-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>This is only true if he had observed for the condition (<span class="math inline">\(male, leptinKO\)</span>) something like (white box)</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-155-1.png" width="672" /></p>
-<hr />
-<hr />
-</div>
-<div id="anova-interaction-2" class="section level2 hasAnchor" number="18.29">
-<h2><span class="header-section-number">18.29</span> ANOVA interaction<a href="mean-differences-between-several-samples.html#anova-interaction-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>The apparent less-than-expected gain in weight of leptin KO males seems like a specific interaction between these two conditions.</p>
-<p>We then formulate the <strong>linear model</strong> with an <strong>interaction term</strong></p>
-<p><span class="math display">\[Y_{ijr} = \mu + \alpha_i + \beta_j + (\alpha\beta)_{ij} + \epsilon_{ijr}\]</span></p>
-<p>Such that each observation in each experiment have a specific contribution from the conditions in each factor</p>
-<p><span class="math display">\[E(Y|ij)=\mu + \alpha_i+ \beta_j + (\alpha\beta)_{ij}\]</span></p>
-<hr />
-<hr />
-</div>
-<div id="anova-interaction-3" class="section level2 hasAnchor" number="18.30">
-<h2><span class="header-section-number">18.30</span> ANOVA interaction<a href="mean-differences-between-several-samples.html#anova-interaction-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>The squared deviations of the observations to the overall average can be decomposed into their variations within each experiment (<span class="math inline">\(SSE\)</span>) and the variations between factor 1 <span class="math inline">\((SS_{Fac1})\)</span>, factor 2 <span class="math inline">\((SS_{Fac2})\)</span> and their interaction terms <span class="math inline">\((SS_{Int})\)</span>.</p>
-<p><span class="math display">\[SS_T= SSE + SS_{Fac1} + SS_{Fac2}+ SS_{Int}\]</span></p>
-<p>That defines <span class="math inline">\(F\)</span> statistics</p>
-<p><span class="math display">\[\frac{MS1}{MSE} \rightarrow F(k-1,(m-1)(nk-1))\]</span></p>
-<p><span class="math display">\[\frac{MS2}{MSE}\rightarrow F(n-1,(m-1)(nk-1))\]</span>
-and
-<span class="math display">\[\frac{MSI}{MSE}\rightarrow F((n-1)(k-1),(m-1)(nk-1))\]</span></p>
-<hr />
-<hr />
-</div>
-<div id="anova-interaction-4" class="section level2 hasAnchor" number="18.31">
-<h2><span class="header-section-number">18.31</span> ANOVA interaction<a href="mean-differences-between-several-samples.html#anova-interaction-4" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>ANOVA allows testing three null hypothesis</p>
-<p>First</p>
-<ul>
-<li><span class="math inline">\(H_0: \alpha_1=\alpha_2, ...=\alpha_k=0\)</span> There are no difference between group means for the fist factor</li>
-</ul>
-<p>Second</p>
-<ul>
-<li><span class="math inline">\(H_0: \beta_1=\beta_2, ...=\beta_k=0\)</span> There are no difference between group means for the second factor</li>
-</ul>
-<p>Third</p>
-<ul>
-<li><span class="math inline">\(H_0: (\alpha\beta)_{ij}=0\)</span> There is no difference between group means for the second factor</li>
-</ul>
-<p>And the alternatives are that at least one of the terms is different from <span class="math inline">\(0\)</span></p>
-<hr />
-<hr />
-</div>
-<div id="anova-interaction-5" class="section level2 hasAnchor" number="18.32">
-<h2><span class="header-section-number">18.32</span> ANOVA interaction<a href="mean-differences-between-several-samples.html#anova-interaction-5" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<pre><code>## Analysis of Variance Table
-## 
-## Response: weight
-##           Df Sum Sq Mean Sq  F value    Pr(&gt;F)    
-## group      2 7939.7  3969.8 299.5748 &lt; 2.2e-16 ***
-## sex        1   31.0    31.0   2.3422    0.1302    
-## group:sex  2  419.0   209.5  15.8095 1.975e-06 ***
-## Residuals 73  967.4    13.3                       
-## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
-<p>As we observed from the boxplots, the statistical inference confirms that there are significant differences in weight between leptin conditions, no significant differences between sexes, and significant interactions between sex and leptin condition. In particular, the effect of leptin knockout in weight is higher in females than males, opposite to what was observed in controls.</p>
+<div id="exercise-3-7" class="section level4 hasAnchor" number="22.0.0.3">
+<h4><span class="header-section-number">22.0.0.3</span> Exercise 3<a href="hypothesis-testing-7.html#exercise-3-7" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>The manufacturer gene expression microarrays guarantees that at least <span class="math inline">\(97\%\)</span> of microarrys they produce produce high quality signals. A customer receives a batch of <span class="math inline">\(200\)</span> pieces and finds that <span class="math inline">\(8\)</span> unperformed.</p>
+<p>Should the costumer return the lot for poor quality?</p>
 
 </div>
 </div>
@@ -1426,8 +829,8 @@ and
           </div>
         </div>
       </div>
-<a href="mean-differences-between-two-samples.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="regression-and-correlation.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="exercises.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -1458,7 +861,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/USERNAME/REPO/edit/BRANCH/17-ANOVA.Rmd",
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/20-Exercises.Rmd",
 "text": "Edit"
 },
 "history": {

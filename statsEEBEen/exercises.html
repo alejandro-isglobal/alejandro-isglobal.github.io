@@ -24,7 +24,7 @@
 <meta name="author" content="Alejandro Caceres" />
 
 
-<meta name="date" content="2022-09-21" />
+<meta name="date" content="2022-09-25" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -350,7 +350,7 @@
 <li><p>What is the estimated probability that the machine produces rounded and smoothed surfaced rods?</p></li>
 <li><p>what is the estimated probability that the rod is rounded if the rod is smooth?</p></li>
 <li><p>what is the estimated probability that the rod is smooth if it is rounded?</p></li>
-<li><p>what is the estimated probability that the rod is neither smooth nor rounded if it does not satisfy any quality control?</p></li>
+<li><p>what is the estimated probability that the rod is neither smooth nor rounded if it does not satisfy at least one quality control?</p></li>
 <li><p>Are smoothness and roundness independent events?</p></li>
 </ul>
 </div>
@@ -421,19 +421,29 @@
 </div>
 <div id="exercise-4" class="section level4 hasAnchor" number="5.3.0.4">
 <h4><span class="header-section-number">5.3.0.4</span> Exercise 4<a href="exercises.html#exercise-4" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>We want to cross an avenue with three traffic lights. The probability of finding one traffic light in red given that the previous one was in red is 0.15. Whereas, the probability of finding one traffic right in red given that the previous one was in green is 0.25. If the probability of finding the first traffic light in red is 0.6 then</p>
+<p>We want to cross an avenue with two traffic lights. The probability of finding the first traffic light in red is 0.6. If we stopped at the first traffic light, the probability of stopping at the second one is 0.15. Whereas the probability of stopping on the second one if we do not stop on the first one is 0.25.</p>
+<p>When we try to cross both traffic lights:</p>
+<ul>
+<li>what is the probability of having to stop at each traffic light?</li>
+<li>What is the probability of having to stop at at least one traffic light?</li>
+<li>What is the probability of having to stop at only one traffic light?</li>
+<li>If I stopped at the second traffic light, what is the probability that I had to stop at the first one?<br />
+</li>
+<li>If I had to stop at any traffic light, what is the probability that I had to do it twice?</li>
+<li>Is stopping at the first traffic light an independent event from stopping at the second traffic light?</li>
+</ul>
+<p>Now, we want to cross an avenue with three traffic lights. The probability of finding a traffic light in red only depends on the previous one. In particular, the probability of finding one traffic light in red given that the previous one was in red is 0.15. Whereas, the probability of finding one traffic right in red given that the previous one was in green is 0.25. Also, the probability of finding the first traffic light in red is 0.6.</p>
 <ul>
 <li>What is the probability of having to stop at each traffic light?</li>
 <li>What is the probability of having to stop at at least one traffic light?</li>
 <li>What is the probability of having to stop at only one traffic light?</li>
 </ul>
-<p>Assume that the probability of one traffic light depends only on the previews one</p>
 <p>hints:</p>
 <ul>
+<li><p>If the probability that one traffic light is red depends only on the previous one then
+<span class="math inline">\(P(R_3|R_2,R_1)=P(R_3|R_2,\bar{R}_1)=P(R_3|R_2)\)</span> and <span class="math inline">\(P(R_3|\bar{R}_2,R_1)=P(R_3|\bar{R}_2,\bar{R}_1)=P(R_3|\bar{R}_2)\)</span></p></li>
 <li><p>The joint probability of finding three traffic lights in red can be written as:
-<span class="math inline">\(P(R_1,R_2,R_3)=P(R_3|R_2,R_1)P(R_2|R_1)P(R_1)\)</span></p></li>
-<li><p>If the probability of one traffic light depends only on the previous one then
-<span class="math inline">\(P(R_3|R_2,R_1)=P(R_3|R_2)\)</span></p></li>
+<span class="math inline">\(P(R_1,R_2,R_3)=P(R_3|R_2)P(R_2|R_1)P(R_1)\)</span></p></li>
 </ul>
 </div>
 <div id="exercise-5" class="section level4 hasAnchor" number="5.3.0.5">
@@ -807,10 +817,10 @@ f(x)=
 <li><p>What is the mean and the standard deviation of the measurements?</p></li>
 <li><p>Compute the <span class="math inline">\(99\%\)</span> confidence interval.</p></li>
 </ul>
-<p>hints:
-- in R the <span class="math inline">\(t_{0.025, 24}=\)</span> <code>qt(0.975, 24)</code><span class="math inline">\(\sim 2\)</span></p>
+<p>hints:</p>
 <ul>
-<li>in R the <span class="math inline">\(t_{0.005, 24}=\)</span><code>qt(0.995, 24)</code><span class="math inline">\(\sim 2.8\)</span></li>
+<li><p>in R <span class="math inline">\(t_{0.025, 24}=\)</span> <code>qt(0.975, 24)</code><span class="math inline">\(\sim 2\)</span></p></li>
+<li><p>in R <span class="math inline">\(t_{0.005, 24}=\)</span><code>qt(0.995, 24)</code><span class="math inline">\(\sim 2.8\)</span></p></li>
 </ul>
 </div>
 <div id="exercise-2-9" class="section level4 hasAnchor" number="5.10.0.2">

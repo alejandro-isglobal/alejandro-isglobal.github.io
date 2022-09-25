@@ -24,7 +24,7 @@
 <meta name="author" content="Alejandro Caceres" />
 
 
-<meta name="date" content="2022-09-21" />
+<meta name="date" content="2022-09-25" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -149,7 +149,7 @@
 <li class="chapter" data-level="3.23" data-path="probabilidad.html"><a href="probabilidad.html#diagrama-de-venn"><i class="fa fa-check"></i><b>3.23</b> Diagrama de Venn<span></span></a></li>
 <li class="chapter" data-level="3.24" data-path="probabilidad.html"><a href="probabilidad.html#tabla-de-probabilidades"><i class="fa fa-check"></i><b>3.24</b> Tabla de probabilidades<span></span></a></li>
 <li class="chapter" data-level="3.25" data-path="probabilidad.html"><a href="probabilidad.html#ejemplo-de-tabla-de-probabilidades"><i class="fa fa-check"></i><b>3.25</b> Ejemplo de tabla de probabilidades<span></span></a></li>
-<li class="chapter" data-level="3.26" data-path="probabilidad.html"><a href="probabilidad.html#mesa-de-contingencia"><i class="fa fa-check"></i><b>3.26</b> Mesa de contingencia<span></span></a></li>
+<li class="chapter" data-level="3.26" data-path="probabilidad.html"><a href="probabilidad.html#tabla-de-contingencia"><i class="fa fa-check"></i><b>3.26</b> Tabla de contingencia<span></span></a></li>
 <li class="chapter" data-level="3.27" data-path="probabilidad.html"><a href="probabilidad.html#ejemplo-de-tabla-de-contingencia"><i class="fa fa-check"></i><b>3.27</b> Ejemplo de tabla de contingencia<span></span></a></li>
 <li class="chapter" data-level="3.28" data-path="probabilidad.html"><a href="probabilidad.html#estudio-de-misofonía"><i class="fa fa-check"></i><b>3.28</b> Estudio de misofonía<span></span></a></li>
 <li class="chapter" data-level="3.29" data-path="probabilidad.html"><a href="probabilidad.html#tabla-de-contingencia-para-frecuencias"><i class="fa fa-check"></i><b>3.29</b> Tabla de contingencia para frecuencias<span></span></a></li>
@@ -350,7 +350,7 @@
 <li><p>¿Cuál es la probabilidad estimada de que la máquina produzca varillas de superficie redondeada y alisada?</p></li>
 <li><p>¿Cuál es la probabilidad estimada de que la barra sea redondeada si la barra es lisa?</p></li>
 <li><p>¿Cuál es la probabilidad estimada de que la varilla sea lisa si es redondeada?</p></li>
-<li><p>¿Cuál es la probabilidad estimada de que la varilla no sea ni lisa ni redondeada si no cumple ningún control de calidad?</p></li>
+<li><p>¿Cuál es la probabilidad estimada de que la varilla no sea ni lisa ni redondeada si no cumple al menos un control de calidad?</p></li>
 <li><p>¿Son eventos independientes la suavidad y la redondez?</p></li>
 </ul>
 </div>
@@ -421,19 +421,28 @@
 </div>
 <div id="ejercicio-4" class="section level4 hasAnchor" number="5.3.0.4">
 <h4><span class="header-section-number">5.3.0.4</span> Ejercicio 4<a href="ejercicios.html#ejercicio-4" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>Queremos cruzar una avenida con tres semáforos. La probabilidad de encontrar un semáforo en rojo dado que el anterior estaba en rojo es 0,15. Mientras que la probabilidad de encontrar un tráfico justo en rojo dado que el anterior estaba en verde es de 0,25. Si la probabilidad de encontrar el primer semáforo en rojo es 0,6 entonces</p>
+<p>Queremos cruzar una avenida con dos semáforos. La probabilidad de encontrar el primer semáforo en rojo es 0,6. Si paramos en el primer semáforo, la probabilidad de parar en el segundo es 0,15. Mientras que la probabilidad de detenernos en el segundo si no nos detenemos en el primero es 0,25.</p>
+<p>Cuando intentamos cruzar ambos semáforos:</p>
+<ul>
+<li>¿Cuál es la probabilidad de tener que detenerse en cada semáforo?</li>
+<li>¿Cuál es la probabilidad de tener que parar en al menos un semáforo?</li>
+<li>¿Cuál es la probabilidad de tener que detenerse en un solo semáforo?</li>
+<li>Si paré en el segundo semáforo, ¿cuál es la probabilidad de que hubiera tenido que parar en el primero?</li>
+<li>Si tuviera que parar en cualquier semáforo, ¿cuál es la probabilidad de que tuviera que hacerlo dos veces?</li>
+<li>¿Parar en el primer semáforo es un evento independiente de detenerse en el segundo semáforo?</li>
+</ul>
+<p>Ahora, queremos cruzar una avenida con tres semáforos. La probabilidad de encontrar un semáforo en rojo solo depende de la anterior. En concreto, la probabilidad de encontrar un semáforo en rojo dado que el anterior estaba en rojo es de 0,15. Mientras que la probabilidad de encontrar un tráfico justo en rojo dado que el anterior estaba en verde es de 0,25. Además, la probabilidad de encontrar el primer semáforo en rojo es de 0,6.</p>
 <ul>
 <li>¿Cuál es la probabilidad de tener que parar en cada semáforo?</li>
 <li>¿Cuál es la probabilidad de tener que parar en al menos un semáforo?</li>
 <li>¿Cuál es la probabilidad de tener que detenerse en un solo semáforo?</li>
 </ul>
-<p>Suponga que la probabilidad de un semáforo depende solo de las vistas previas</p>
 <p>consejos:</p>
 <ul>
+<li><p>Si la probabilidad de que un semáforo esté en rojo depende únicamente del anterior, entonces
+<span class="math inline">\(P(R_3|R_2,R_1)=P(R_3|R_2,\bar{R}_1)=P(R_3|R_2)\)</span> y <span class="math inline">\(P(R_3|\bar{R}_2,R_1)=P(R_3 |\bar{R}_2,\bar{R}_1)=P(R_3|\bar{R}_2)\)</span></p></li>
 <li><p>La probabilidad conjunta de encontrar tres semáforos en rojo se puede escribir como:
-<span class="math inline">\(P(R_1,R_2,R_3)=P(R_3|R_2,R_1)P(R_2|R_1)P(R_1)\)</span></p></li>
-<li><p>Si la probabilidad de un semáforo depende solo del anterior entonces
-<span class="math inline">\(P(R_3|R_2,R_1)=P(R_3|R_2)\)</span></p></li>
+<span class="math inline">\(P(R_1,R_2,R_3)=P(R_3|R_2)P(R_2|R_1)P(R_1)\)</span></p></li>
 </ul>
 </div>
 <div id="ejercicio-5" class="section level4 hasAnchor" number="5.3.0.5">

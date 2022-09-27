@@ -6,7 +6,7 @@
 ]{book}
 \title{Stats theory (SDA)}
 \author{Alejandro Caceres}
-\date{2022-09-16}
+\date{2022-09-27}
 
 \usepackage{amsmath,amssymb}
 \usepackage{lmodern}
@@ -1018,12 +1018,12 @@ Say we repeated the experiment 1000 times:
 
 \begin{verbatim}
 ##   outcome  ni    fi
-## 1       1 159 0.159
-## 2       2 183 0.183
-## 3       3 160 0.160
-## 4       4 170 0.170
-## 5       5 161 0.161
-## 6       6 167 0.167
+## 1       1 165 0.165
+## 2       2 165 0.165
+## 3       3 168 0.168
+## 4       4 166 0.166
+## 5       5 170 0.170
+## 6       6 166 0.166
 \end{verbatim}
 
 We find that \(f_i\) is converging to a constant value
@@ -2103,7 +2103,7 @@ specificity (0.962).
 \hypertarget{multiplication-rule}{%
 \section{Multiplication rule}\label{multiplication-rule}}
 
-Now let's imagine the real situation.
+Now let's imagine the real situation where we want to compute \textbf{joint} probabilities from conditional \textbf{probabilities}
 
 \begin{itemize}
 \item
@@ -7355,18 +7355,18 @@ Then
 \hypertarget{examples-1-average-sample-mean}{%
 \section{Examples 1: Average (Sample mean)}\label{examples-1-average-sample-mean}}
 
-When \[X \rightarrow N(\mu_X, \sigma^2_X)\]
+When \[X \rightarrow N(\mu, \sigma^2)\]
 
 For the mean:
 
 \begin{itemize}
 \tightlist
 \item
-  \(\mu_X\) is a \textbf{parameter} of the population distribution \(N(\mu_X, \sigma^2_X)\)
+  \(\mu\) is a \textbf{parameter} of the \textbf{population} distribution: distribution of \(X\), \(N(\mu, \sigma^2)\)
 \item
-  \(\bar{X}\) is an \textbf{estimator} of \(\mu_X\)
+  \(\bar{X}\) is an \textbf{estimator} of \(\mu\)
 \item
-  \(\bar{x}=\hat{\mu}=13.21 \, Tons\) is the \textbf{estimate} of \(\mu_X\)
+  \(\bar{x}=\hat{\mu}=13.21 \, Tons\) is the \textbf{estimate} of \(\mu\)
 \end{itemize}
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
@@ -7376,18 +7376,18 @@ For the mean:
 \hypertarget{examples-2-sample-variance}{%
 \section{Examples 2: Sample Variance}\label{examples-2-sample-variance}}
 
-When \[X \rightarrow N(\mu_X, \sigma^2_X)\]
+When \[X \rightarrow N(\mu, \sigma^2)\]
 
 For the variance:
 
 \begin{itemize}
 \tightlist
 \item
-  \(\sigma^2_X\) is a \textbf{parameter} of the population distribution \(N(\mu_X, \sigma^2_X)\)
+  \(\sigma^2\) is a \textbf{parameter} of the population distribution \(N(\mu, \sigma^2)\)
 \item
-  \(S^2\) is an \textbf{estimator} of \(\sigma^2_X\)
+  \(S^2\) is an \textbf{estimator} of \(\sigma^2\)
 \item
-  \(s^2=\hat{\sigma^2_X}=0.127 \, Tons^2\) is the \textbf{estimate} of \(\sigma^2_X\)
+  \(s^2=\hat{\sigma^2}=0.127 \, Tons^2\) is the \textbf{estimate} of \(\sigma^2\)
 \end{itemize}
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
@@ -7401,9 +7401,9 @@ An estimator is unbiased if \(E(\Theta)=\theta\)
 
 \begin{itemize}
 \item
-  \(\bar{X}\) is an \textbf{unbiased} estimator of \(\mu_X\) because \(E(\bar{X})=\mu_X\)
+  \(\bar{X}\) is an \textbf{unbiased} estimator of \(\mu\) because \(E(\bar{X})=\mu\)
 \item
-  \(S^2\) is an \textbf{unbiased} estimator of \(\sigma^2_X\) because \(E(S^2)=\sigma^2_X\)
+  \(S^2\) is an \textbf{unbiased} estimator of \(\sigma^2\) because \(E(S^2)=\sigma^2\)
 \end{itemize}
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
@@ -7417,7 +7417,7 @@ An estimator is consistent if \(V(\Theta) \rightarrow 0\) when \(n \rightarrow \
 
 \begin{itemize}
 \item
-  \(\bar{X}\) is \textbf{consistent} because \(V(\bar{X})=\frac{\sigma_X}{n}\rightarrow 0\) when \(n \rightarrow \infty\).
+  \(\bar{X}\) is \textbf{consistent} because \(V(\bar{X})=\frac{\sigma^2}{n}\rightarrow 0\) when \(n \rightarrow \infty\).
 \item
   \(S^2\) is also \textbf{consistent} (we will not show).
 \end{itemize}
@@ -7433,11 +7433,11 @@ How can we \textbf{estimate} the parameter of \textbf{any} parametric model?
 
 \begin{itemize}
 \item
-  Imagine we design a laser with a diameter of 1mm that we want to use for clinical applications.
+  Imagine we design a laser with a diameter of \(1mm\) that we want to use for clinical applications.
 \item
   We want to characterize the diameter of a piercing in a tissue made with the laser
 \item
-  and take a random sample of 30 cuts made with the laser
+  and take a random sample of \(30\) cuts made with the laser
 \end{itemize}
 
 \begin{verbatim}
@@ -7463,19 +7463,19 @@ with histogram
 \hypertarget{probability-density}{%
 \section{Probability density}\label{probability-density}}
 
-We consider that maximum probability should be given to diameters of \(x=1mm\), and that the diameters should decrease exponentially in probability as they get larger with a limit of \(2mm\) beyond which the probability is \(0\).
+We consider that maximum probability should be given to diameters of \(x=1mm\), and that the diameters should decrease as the inverse power of some \textbf{unknown} parameter \(\alpha\), with a limit of \(2mm\) beyond which the probability is \(0\).
 
 A suitable probability density distribution is
 
 \[
     f(x)= 
 \begin{cases}
-\frac{1}{\alpha}(x-1)^{\frac{1-\alpha}{\alpha}},& \text{if } x \in (1,2)\\
+\frac{1}{\alpha}(x-1)^{\frac{1}{\alpha}-1},& \text{if } x \in (1,2)\\
     0,& x \notin (1,2)\\
 \end{cases}
 \]
 
-Where \(\alpha\) is a parameter.
+Where \(\alpha\) is a parameter. This is a probability density.
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
@@ -7484,18 +7484,19 @@ Where \(\alpha\) is a parameter.
 \hypertarget{probability-density-1}{%
 \section{Probability density}\label{probability-density-1}}
 
+In particular, for \(\alpha=2\) we can plot it
+
 \includegraphics{_main_files/figure-latex/unnamed-chunk-85-1.pdf}
 
-If we were to perform a \(n\)-sample: \(X_1,...X_n\)
+If we were to perform a \(n\)-sample: \(X_1,...X_n\), how should we combine the data for obtaining the best value of \(\alpha\)?
 
 \begin{itemize}
 \tightlist
 \item
-  The \textbf{maximum likelihood} is a method that \textbf{gives us the estimator} for \(\alpha\)
+  The \textbf{maximum likelihood} method \textbf{gives us the estimator} for \(\alpha\)
 \end{itemize}
 
 \[\hat{\alpha}_{ml}\]
-How should we combine the data for obtaining the best value of \(\hat{\alpha}_{ml}\)?
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
@@ -7513,7 +7514,7 @@ How should we combine the data for obtaining the best value of \(\hat{\alpha}_{m
 \hypertarget{maximum-likelihood-2}{%
 \section{Maximum likelihood}\label{maximum-likelihood-2}}
 
-The objective is to find the value of the parameter that we \textbf{believe} can represent \textbf{best} the data.
+The objective is to find the value of the parameter that we \textbf{believe} can \textbf{best} represent the data.
 
 We search for the parameter that makes the \textbf{observation} of the sample the most \textbf{probable}.
 
@@ -7522,9 +7523,9 @@ Note:
 \begin{itemize}
 \tightlist
 \item
-  Probabilities are assigned to observations.
+  \textbf{Probabilities} are assigned \textbf{to observations}.
 \item
-  Probabilities are not assigned to parameters (we assign beliefs, and likelihoods).
+  Probabilities are \textbf{not} assigned to \textbf{parameters} (we assign beliefs, and likelihoods).
 \end{itemize}
 
 Parameters are not supposed to change, they are properties of the system.
@@ -7540,14 +7541,21 @@ Parameters are not supposed to change, they are properties of the system.
 \def\labelenumi{\arabic{enumi}.}
 \tightlist
 \item
-  We calculate the probability of having observed the \(n\)-sample: \(x_1,...x_n\)
+  We calculate the probability of having observed the \(n\)-sample: \(x_1,...x_n\). It is the product of probabilities because observations are independent of one another:
 \end{enumerate}
 
-\(P(x_1,...x_n)=P(x_1)P(X_2)...P(x_n)\)
+\(P(M=x_1,...x_n)=P(X_1=x_1)P(X_2=x_2)...P(X_n=x_n)\)
 \[=f(x_1;\alpha)f(x_2;\alpha) ...f(x_n;\alpha)\]
-- Once the data is observed they are \textbf{fixed}.
-- The unknown is \(\alpha\)
-- This probability as a function of the \(\alpha\) we call it the \textbf{likelihood function}
+
+\begin{itemize}
+\tightlist
+\item
+  Once the data is observed they are \textbf{fixed}.
+\item
+  The unknown is \(\alpha\)
+\item
+  This probability as a function of the \(\alpha\) we call it the \textbf{likelihood function}
+\end{itemize}
 
 \[L(\alpha)= \Pi_{i=1..n} f(x_i; \alpha)\]
 
@@ -7562,7 +7570,7 @@ then in our case
 \hypertarget{method-step-2}{%
 \section{Method step 2}\label{method-step-2}}
 
-We want to maximize \(L(\alpha)\) with respect to \(\alpha\).
+We ask: what is the value of \(\alpha\) that makes the observations the most probable? We thus want to maximize \(L(\alpha)\) with respect to \(\alpha\).
 
 Since we have the multiplication of many factors is easier to maximize the logarithm of \(L(\alpha)\)
 
@@ -7599,7 +7607,7 @@ Therefore,
   we differentiate with respect to \(\alpha\)
 \end{itemize}
 
-\(\frac{d \ln L(\alpha)}{d \alpha}= -\frac{n}{\alpha} - \frac{1}{\alpha^2} \Sigma_{i=1...n} \ln (x_i)\)
+\[\frac{d \ln L(\alpha)}{d \alpha}= -\frac{n}{\alpha} - \frac{1}{\alpha^2}  \Sigma_{i=1...n} \ln (x_i)\]
 
 \begin{itemize}
 \tightlist
@@ -7607,7 +7615,7 @@ Therefore,
   The maximum is where the derivative is \(0\). This maximum is the value of our estimator \(\hat{\alpha}_{ml}\).
 \end{itemize}
 
-\(\hat{\alpha}_{ml}=-\frac{1}{n}\Sigma_{i=1...n} \ln (x_i-1)\)
+\[\hat{\alpha}_{ml}=-\frac{1}{n}\Sigma_{i=1...n} \ln (x_i-1)\]
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
@@ -7618,9 +7626,9 @@ Therefore,
 
 \(\hat{\alpha}_{ml}=-\frac{1}{n}\Sigma_{i=1...n} \ln (x_i-1)\)
 
-is the \textbf{statistic} that estimate the parameter.
+is the \textbf{statistic} that estimates the parameter.
 
-In our example we compute:
+In our example we thus compute:
 
 \(\hat{\alpha}_{ml}=-\frac{1}{n}\{ \ln (1.11-1)+ \ln (1.64-1)+...\ln (1.04-1)\}=1.320\)
 
@@ -7640,14 +7648,11 @@ In our example we compute:
 \hypertarget{estimation-2}{%
 \section{Estimation}\label{estimation-2}}
 
-\begin{itemize}
-\item
-  This is the log-likelihood for our 30 laser cuts.
-\item
-  If we take another sample this function changes and so does its maximum.
-\end{itemize}
+Let's look at the log-likelihood for our \(30\) laser cuts. Remember, data is fixed by our experiment and \(\alpha\) varies
 
 \includegraphics{_main_files/figure-latex/unnamed-chunk-88-1.pdf}
+
+Note: If we take another sample this function changes and so does its maximum.
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
@@ -7711,7 +7716,7 @@ Gauss proposed that at a \textbf{given} time
 
 Gauss discovered that if the average (\(\bar{x}\)) is the \textbf{most likely} value for the real position of Ceres (\(\mu\)), then the probability density for the errors is
 
-\[\frac{h}{\sqrt{\pi}}e^{-h^2(y-\mu_Y)^2}\]
+\[\frac{h}{\sqrt{\pi}}e^{-h^2(x-\mu)^2}\]
 
 which we call the Gaussian and Pearson (1920) baptized it as the normal curve.
 
@@ -7726,16 +7731,20 @@ Can we say the same about the height of men? is there a \textbf{true} mean heigh
 \hypertarget{normal-distribution-9}{%
 \section{Normal distribution}\label{normal-distribution-9}}
 
-Imagine that we take a \(8\)-sample for the breaking load of cables and
+Imagine that we take a \(8\)-sample for the breaking load of cables
+
+\begin{verbatim}
+## [1] 13.34642 13.32620 13.01459 13.10811 12.96999 13.55309 13.75557 12.62747
+\end{verbatim}
+
+and
 
 \begin{itemize}
 \item
   \textbf{assume} that \[X \rightarrow N(\mu, \sigma^2)\].
 \item
-  What are the estimators of \(\mu\) and \(\sigma^2\) from the sample?
+  What are the estimators of \(\mu\) and \(\sigma^2\) that maximize the probability of the observed data?
 \end{itemize}
-
-Which values of the parameters best describe the data?
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
@@ -7753,7 +7762,7 @@ Which values of the parameters best describe the data?
 
 \(L(\mu, \sigma^2)=\Pi_{i=1..n} N(x_i;\mu,\sigma)\)
 
-\(=\big( \frac{1}{\sigma \sqrt{2 \pi}}\big)^n e^{-\frac{1}{2\sigma^2} \sum_i(x_i-\mu)^2}\)
+\[=\big( \frac{1}{\sigma \sqrt{2 \pi}}\big)^n e^{-\frac{1}{2\sigma^2} \sum_i(x_i-\mu)^2}\]
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -7763,7 +7772,7 @@ Which values of the parameters best describe the data?
   We can take the log of \(L\), and compute the \textbf{log-likelihood}
 \end{enumerate}
 
-\(\ln L(\mu, \sigma^2)=-n \ln(\sigma \sqrt{2 \pi})-\frac{1}{2\sigma^2} \Sigma_i(x_i-\mu)^2\)
+\[\ln L(\mu, \sigma^2)=-n \ln(\sigma \sqrt{2 \pi})-\frac{1}{2\sigma^2} \Sigma_i(x_i-\mu)^2\]
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
@@ -7811,12 +7820,12 @@ solving for the parameters we find
 \begin{itemize}
 \tightlist
 \item
-  \(\hat{\mu}_{ml}=\frac{1}{n}\sum_i x_i=\bar{x}\) (the average)
+  \(\hat{\mu}_{ml}=\frac{1}{n}\sum_i x_i=\bar{x}\) (the \textbf{average})
 \item
   \(\hat{\sigma^2}_{ml}=\frac{1}{n}\sum_i(x_i-\bar{x})^2\) (the \textbf{uncorrected} sample variance)
 \end{itemize}
 
-The maximum likelihood estimator of \(\sigma^2\) is a \textbf{biased} estimator as: \(E(\hat{\sigma}^2_{ml})\neq \sigma^2\)
+The maximum likelihood estimator of \(\sigma^2\) is a \textbf{biased} estimator as: \[E(\hat{\sigma}^2_{ml})=\sigma^2-\frac{\sigma^2}{n}\neq \sigma^2\]
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
@@ -7825,7 +7834,7 @@ The maximum likelihood estimator of \(\sigma^2\) is a \textbf{biased} estimator 
 \hypertarget{method-of-moments}{%
 \section{Method of Moments}\label{method-of-moments}}
 
-The method of maximum likelihood is aimed to produce the estimators of probability distributions from data.
+The method of maximum likelihood aims to produce the estimators of probability distributions from data.
 
 \begin{itemize}
 \tightlist
@@ -8017,6 +8026,13 @@ Method of moments gives the equations:
   \(E(X^2)=\frac{1}{n}\sum_i x^2_i\)
 \end{itemize}
 
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{normal-distribution-14}{%
+\section{Normal distribution}\label{normal-distribution-14}}
+
 A substitution of \(E(X)\) into the first equation gives the estimator for the mean \(\mu\).
 
 \begin{itemize}
@@ -8038,6 +8054,8 @@ then
 which can also be written as:
 \(\frac{1}{n} \sum_i(x_i-\hat{\mu})^2\)
 
+The method of moments and the maximum likelihood method give the same result for the normal distribution. Is this always the case?
+
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
@@ -8050,7 +8068,7 @@ What is the estimator of parameter \(\alpha\) for the laser cut given by the met
 \[
     f(x; \alpha)= 
 \begin{cases}
-\frac{1}{\alpha}(x-1)^{\frac{1-\alpha}{\alpha}},& \text{if } x \in (1,2)\\
+\frac{1}{\alpha}(x-1)^{\frac{1}{\alpha}-1},& \text{if } x \in (1,2)\\
     0,& x \notin (1,2)\\
 \end{cases}
 \]
@@ -8093,7 +8111,7 @@ Therefore, the method of moments gives us the equation
 
 which solving for \(\hat{\alpha}\) gives us the estimate
 
-\(\hat{\alpha}_m=\frac{1}{\bar{x}-1}-1\)
+\[\hat{\alpha}_m=\frac{1}{\bar{x}-1}-1\]
 
 For our 30 lasers, this is
 
@@ -8106,7 +8124,7 @@ For our 30 lasers, this is
 \hypertarget{method-of-moments-10}{%
 \section{Method of Moments}\label{method-of-moments-10}}
 
-Note that this is an example for which the estimates by maximum likelihood and the method of moments are different
+Note that this is an example for which the estimates by maximum likelihood and the method of moments are \textbf{different}
 
 \begin{itemize}
 \item
@@ -8115,9 +8133,9 @@ Note that this is an example for which the estimates by maximum likelihood and t
   \(\hat{\alpha}_m=\frac{1-\bar{x}}{\bar{x}}=1.314\)
 \end{itemize}
 
-We need simulation studies, where we know the true value of the parameter \(\alpha\), to find which of these statistics have less mean squared error.
+We need \textbf{simulation} studies, where \textbf{we know} the true value of the parameter \(\alpha\), to find which of these statistics have less mean squared error.
 
-Note: the data for 30 laser piercings were simulated with \(\alpha=2\), therefore we should prefer the maximum likelihood estimate.
+Note: the data for \(30\) laser piercings were simulated with \(\alpha=2\), therefore we should prefer the maximum likelihood estimate.
 
 To obtain better estimates of \(\alpha\) we need to increase the size of the sample.
 
@@ -8191,7 +8209,7 @@ If we \textbf{know} that our cables truly distribute as \[X \rightarrow N(\mu=13
 \item
   \(E(\bar{X})=13\)
 \item
-  \(V(X)=\frac{0.35^2}{8}=0.01530169\); \(se=\frac{0.35}{\sqrt{8}}=0.1237\)
+  \(V(\bar{X})=\frac{0.35^2}{8}=0.01530169\); \(se=\frac{0.35}{\sqrt{8}}=0.1237\)
 \end{itemize}
 
 then the \textbf{observed error} in the estimation is the difference
@@ -8223,7 +8241,7 @@ When deciding whether the \textbf{error} in estimation: \(\bar{X}-\mu\) is large
 
 In our example, we assume that \(\bar{X}\) is normally distributed then
 
-\[m=z_{0.025} \frac{\sigma}{\sqrt{n}}=1.96*se=1.96\frac{0.35}{\sqrt{8}}=0.24\]
+\[m=z_{0.025} \frac{\sigma}{\sqrt{n}}=1.96\times se=1.96\frac{0.35}{\sqrt{8}}=0.24\]
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
@@ -8232,9 +8250,9 @@ In our example, we assume that \(\bar{X}\) is normally distributed then
 \hypertarget{outcome-probability-density-vs-sample-mean-probability-density}{%
 \section{Outcome probability density Vs sample mean probability density}\label{outcome-probability-density-vs-sample-mean-probability-density}}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-90-1.pdf}
-
 \includegraphics{_main_files/figure-latex/unnamed-chunk-91-1.pdf}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-92-1.pdf}
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
@@ -8243,9 +8261,9 @@ In our example, we assume that \(\bar{X}\) is normally distributed then
 \hypertarget{real-life}{%
 \section{Real life}\label{real-life}}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-92-1.pdf}
-
 \includegraphics{_main_files/figure-latex/unnamed-chunk-93-1.pdf}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-94-1.pdf}
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
@@ -8254,7 +8272,7 @@ In our example, we assume that \(\bar{X}\) is normally distributed then
 \hypertarget{interval-estimation-1}{%
 \section{Interval estimation}\label{interval-estimation-1}}
 
-We could estimate the margin of errors and errors because we ``knew'':
+We could estimate the margin of errors and errors because we ``\textbf{knew}'':
 
 \begin{itemize}
 \tightlist
@@ -8317,10 +8335,10 @@ When we perform \(n\)-random experiments (\(n\)-sample) we can calculate \(m\) i
 \begin{itemize}
 \tightlist
 \item
-  the interval that we obtain from the experiment is
+  the interval that we obtain from the experiment is (script size)
 \end{itemize}
 
-\((l,u)=(\bar{x} - m,\bar{x} + m)\) (script size)
+\[(l,u)=(\bar{x} - m,\bar{x} + m)\]
 
 \begin{itemize}
 \item
@@ -8358,7 +8376,7 @@ It also means that, in the estimation, we are confident about the units but not 
 
 For a sample of 8 observations, we have one estimate of the mean and one confidence interval
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-94-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-95-1.pdf}
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
@@ -8370,7 +8388,7 @@ For a sample of 8 observations, we have one estimate of the mean and one confide
 Every time that we obtain a new sample then the estimates change. If we perform 100 samples then \(95%
 \) of the confidence intervals will contain \(\mu\) (we do not know which!)
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-95-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-96-1.pdf}
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
@@ -8457,7 +8475,7 @@ or
 
 this tells us that we can be sure on the first digit (6), somewhat confident on the second (4), and unsure on the decimals (46).
 
-What if \(\sigma^2\) is unknown?
+What if \(\sigma^2\) is \textbf{unknown}?
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
@@ -8489,7 +8507,7 @@ Follows a \(t\)-distribution with \(n-1\) degrees of freedom, and we can compute
 \hypertarget{t-statistic-4}{%
 \section{T-statistic}\label{t-statistic-4}}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-96-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-97-1.pdf}
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
@@ -8506,7 +8524,7 @@ To compute the margin of error \(m\) at \(5\%\) level when \(n\) is small, \(\si
 We use the \(t\)-distribution
 
 \[m=t_{0.025, n-1} \frac{s}{\sqrt{n}}\]
-where \(t_{0.025, n-1}\) is the value \(T\) that leaves \(2.5\%\) at each side of \(t\)-distribution with \(n-1\) degrees of freedom (\(0.025\)-quantile)
+where \(t_{0.025, n-1}\) is the value \(T\) that leaves \(2.5\%\) at right hand side of \(t\)-distribution with \(n-1\) degrees of freedom (\(0.025\)-quantile)
 
 the \(95\%\) confidence interval is then
 
@@ -8601,7 +8619,7 @@ Consider an experiment where we measure the concentration in blood of a drug aft
   the histogram of the results is:
 \end{itemize}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-98-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-99-1.pdf}
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
@@ -8633,7 +8651,7 @@ The error was
 \hypertarget{ci-with-clt}{%
 \section{CI with CLT}\label{ci-with-clt}}
 
-What happens if we do not know the value of \(E(X)\)?
+What happens if we \textbf{do not know} the value of \(E(X)\)?
 
 \begin{itemize}
 \tightlist
@@ -8641,7 +8659,7 @@ What happens if we do not know the value of \(E(X)\)?
   We use a 95\% CI to estimate it
 \end{itemize}
 
-Since \(n \geq 30\)
+Since \(n \geq 30\) we can use the CLT
 
 \[\bar{X} \sim_{aprox}  N(\lambda, \frac{1}{n\lambda^2})\]
 
@@ -8656,11 +8674,24 @@ or
 
 \[\hat{\mu}=0.45 \pm 0.15\]
 
-\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-100-1.pdf}
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-99-1.pdf} \includegraphics{_main_files/figure-latex/unnamed-chunk-99-2.pdf}
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{parameter-estimation}{%
+\section{Parameter estimation}\label{parameter-estimation}}
+
+Since \(E(X)=\mu=\frac{1}{\lambda}\) then
+
+\[\hat{\lambda}=\frac{1}{\hat{\mu}}=2.194812\]
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-101-1.pdf}
+
+or its \(95\%\) CI:
+
+\[\hat{\lambda}= (1.66, 3.33) \]
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
@@ -8687,7 +8718,7 @@ with:
 \begin{itemize}
 \tightlist
 \item
-  the probability \(p\) of failure for one person (\(k=1\))
+  the probability \(p\) of failure for one person (\(x=1\))
 \item
   mean \(E (X) = p\)
 \item
@@ -8791,7 +8822,7 @@ When \textbf{we know} the probability distribution of our random experiment we a
 
 What is the \textbf{probability} that a \textbf{new} value of \(\bar{X}\) is close to \(\mu\) ?
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-100-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-102-1.pdf}
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
@@ -8812,7 +8843,7 @@ What is the range of values of \(\bar{X}\) where we \textbf{believe} that \(\mu\
 
 We use the \textbf{margin of error} to compute the CI, but it does not mean we have calculated an error (we don't know where \(\mu\) is).
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-101-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-103-1.pdf}
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
@@ -8830,7 +8861,7 @@ A metallic material is tested for impact to measure the energy required to cut i
   \(64.1, 64.7, 64.5, 64.6, 64.5, 64.3, 64.6, 64.8, 64.2, 64.3\)
 \end{itemize}
 
-We know that the estimate for \(s^2=0.227^2=0.05\), but what is its confidence interval?
+We know that the estimate for \(s^2=0.227^2=0.051\), but what is its confidence interval?
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
@@ -8864,7 +8895,7 @@ We can use the \(\chi^2\) to determine the \(95\%\) of the distribution about \(
 \hypertarget{chi2-statistic-2}{%
 \section{\texorpdfstring{\(\chi^2\)-statistic}{\textbackslash chi\^{}2-statistic}}\label{chi2-statistic-2}}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-102-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-104-1.pdf}
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
@@ -8875,11 +8906,11 @@ We can use the \(\chi^2\) to determine the \(95\%\) of the distribution about \(
 
 replacing the value of \(W\)
 
-\[P(\chi^2_{0.975,n-1} \leq \frac{S^2}{\sigma_X^2}(n-1) \leq \chi^2_{0.025,n-1})=0.95\]
+\[P(\chi^2_{0.975,n-1} \leq \frac{S^2}{\sigma^2}(n-1) \leq \chi^2_{0.025,n-1})=0.95\]
 
-and solving for \(\sigma_X^2\)
+and solving for \(\sigma^2\)
 
-\[P(\frac{S^2 (n-1)}{\chi^2_{0.025,n-1}}\leq \sigma_X^2 \leq \frac{S^2(n-1)}{\chi^2_{0.975,n-1}})=0.95\]
+\[P(\frac{S^2 (n-1)}{\chi^2_{0.025,n-1}}\leq \sigma^2 \leq \frac{S^2(n-1)}{\chi^2_{0.975,n-1}})=0.95\]
 
 The random interval at \(95\%\) confidence
 
@@ -8942,7 +8973,13 @@ In our example
 
 \[= (\frac{0.227^2 (10-1)}{19.02277},\frac{0.227^2(10-1)}{2.700389})=(0.02,0.17)\]
 
-According to the data \(\sigma^2 \neq 1\) at \(95\%\) confidence: Had we made an error considering \(\sigma=1\) when we calculated the first CI for this data?
+According to the data \(\sigma^2 \neq 1\) at \(95\%\) confidence.
+
+\begin{itemize}
+\tightlist
+\item
+  Had we made an error considering \(\sigma=1\) when we calculated the first CI for this data?
+\end{itemize}
 
 in R: library(Ecfun);
 confint.var(0.05, 9)
@@ -8956,7 +8993,7 @@ confint.var(0.05, 9)
 
 The interval for the variance is \textbf{not symmetric} and we cannot formulate it as an estimate \(\pm\) margin of error.
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-103-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-105-1.pdf}
 
 \hypertarget{hypothesis-testing}{%
 \chapter{Hypothesis testing}\label{hypothesis-testing}}
@@ -9203,7 +9240,7 @@ The interval: \[(-z_{0.025}, z_{0.025})\] is called acceptance interval of \(H_0
   \(\alpha=0.05=2\times 0.025=1-0.95\) is called the \textbf{significance} limit.
 \end{itemize}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-105-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-107-1.pdf}
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
@@ -9228,7 +9265,7 @@ We conclude:
   We accept that the \(H_0\) is true and give up on the idea that we have stronger cables than expected.
 \end{itemize}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-106-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-108-1.pdf}
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
@@ -9247,7 +9284,7 @@ We can also contrast the hypothesis by calculating the probability that the aver
   We reject \(H_0\) if \(pvalue \leq \alpha =0.05\)
 \end{itemize}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-107-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-109-1.pdf}
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
@@ -9323,7 +9360,7 @@ We conclude:
   We accept that \(H_0\) could have produced our interval and give up on the idea that we have stronger cables than expected.
 \end{itemize}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-108-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-110-1.pdf}
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
@@ -9422,7 +9459,7 @@ in R:
 t.test(c(13.34642, 13.32620, 13.01459, 13.10811,
 12.96999, 13.55309, 13.75557, 12.62747), mu=13)
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-109-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-111-1.pdf}
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
@@ -9505,7 +9542,7 @@ in R:
 t.test(c(13.34642, 13.32620, 13.01459, 13.10811,
 12.96999, 13.55309, 13.75557, 12.62747), mu=13, alternative=``greater'')
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-110-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-112-1.pdf}
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
@@ -9697,7 +9734,7 @@ which is also known as the \textbf{noise} to \textbf{signal} ratio.
 ##                    1.58
 \end{verbatim}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-118-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-120-1.pdf}
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
@@ -9829,7 +9866,7 @@ is lower than \(\alpha=0.05\)
 
 In R: prop.test(188, 200, p=0.9, alternative = ``greater'', correct=FALSE)
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-119-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-121-1.pdf}
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
@@ -10000,7 +10037,7 @@ Therefore we need to conclude that yes! the process is out of control.
 in R: library(EnvStats);
 varTest(thickness, sigma.squared = 0.6\^{}2, alternative = ``greater'')
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-121-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-123-1.pdf}
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
@@ -10323,9 +10360,9 @@ We don't know \(p\), but we can take as the null hypothesis the value of \(p\) e
 
 \[W= \frac{(\bar{K}_A-f_{yes})^2}{\frac{f_{yes}(1-f_{yes})}{n_A}} + \frac{(\bar{K}_B-f_{yes})^2}{\frac{f_{yes}(1-f_{yes})}{n_B}}\rightarrow \chi^2(1)\]
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-123-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-125-1.pdf}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-124-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-126-1.pdf}
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
@@ -10494,11 +10531,11 @@ when \(p=K/N\) is the proportion of hepatitis C in a population of size \(N\).
 \hypertarget{hypergeometric-distribution-2}{%
 \section{Hypergeometric distribution}\label{hypergeometric-distribution-2}}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-125-1.pdf}
-
-\includegraphics{_main_files/figure-latex/unnamed-chunk-126-1.pdf}
-
 \includegraphics{_main_files/figure-latex/unnamed-chunk-127-1.pdf}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-128-1.pdf}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-129-1.pdf}
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
@@ -10643,7 +10680,7 @@ Which is lower than the significance level \(\alpha=0.05\) and therefore we \tex
 \hypertarget{difference-between-several-proportions-3}{%
 \section{Difference between several proportions}\label{difference-between-several-proportions-3}}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-128-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-130-1.pdf}
 
 \hypertarget{mean-differences-between-two-samples}{%
 \chapter{Mean differences between two samples}\label{mean-differences-between-two-samples}}
@@ -10755,11 +10792,11 @@ We take leptin levels \textbf{conditioned to} each sex, and observed:
 
 Instead of a conditional table, we draw histograms of leptin for each condition
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-130-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-132-1.pdf}
 
 boxplots are also popular
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-131-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-133-1.pdf}
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
@@ -10834,9 +10871,9 @@ Then the \textbf{standardized error} from the null hypothesis (\(\delta=0\)) fol
 \hypertarget{mean-comparison}{%
 \section{Mean comparison}\label{mean-comparison}}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-132-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-134-1.pdf}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-133-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-135-1.pdf}
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
@@ -10882,7 +10919,7 @@ In this study, we tested the hypothesis that the leptin levels in serum are diff
 
 We analyzed data from 190 obese girls and 166 obese boys and found a significant difference in leptin between sexes (mean difference \(13.6\), \(P=2.195757 \times 10^{-7}\))
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-134-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-136-1.pdf}
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
@@ -11001,7 +11038,7 @@ We take weights \textbf{conditioned to} each lepting condition, and observed:
 
 We can draw boxplots per group
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-136-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-138-1.pdf}
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
@@ -11173,7 +11210,7 @@ in R
 
 Therefore, the data \textbf{still} shows a very significant increase in \(18.03\)gr (\(P=2.444 \times 10^{-5}\)) in weight between the wild-type mice and leptin knockouts (under a more appropriate test).
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-139-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-141-1.pdf}
 
 \hypertarget{mean-differences-between-several-samples}{%
 \chapter{Mean differences between several samples}\label{mean-differences-between-several-samples}}
@@ -11238,7 +11275,7 @@ If the \textbf{null hypothesis is true}, then mice with and without leptin are \
 ## 23  53.83 leptinKO
 \end{verbatim}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-140-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-142-1.pdf}
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
@@ -11256,7 +11293,7 @@ If the \textbf{null hypothesis is not true}, then the mean weight of the mice is
   The group means are different \[\delta=(\mu_A-\mu)-(\mu_B-\mu)\neq 0\]
 \end{itemize}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-141-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-143-1.pdf}
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
@@ -11493,7 +11530,7 @@ Which is the same as the one obtained with the t-test with equal variances.
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-145-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-147-1.pdf}
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
@@ -11712,7 +11749,7 @@ We take weights \textbf{conditioned to} each leptin condition, and observed:
 
 We can see the differences in distributions with a boxplot
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-148-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-150-1.pdf}
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
@@ -11749,7 +11786,7 @@ Suggesting significant differences in at least one group mean.
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 \end{verbatim}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-150-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-152-1.pdf}
 
 We observed a significant difference between groups (ANOVA test \(F(2,30)=63.373, P= 1.69 \times 10^{-11}\)), due to the higher gain in weight of the knockout mice. Note that knocked-out mice with replacement recovered wild-type weight (t-test difference between means \(-0.83\), \(P=0.63\))
 
@@ -11896,7 +11933,7 @@ We take weights \textbf{conditioned to} each leptin by sex condition, and observ
 
 We draw the boxplot, grouping leptin conditions, and observe a strong overall effect of leptin
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-152-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-154-1.pdf}
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
@@ -11907,7 +11944,7 @@ We draw the boxplot, grouping leptin conditions, and observe a strong overall ef
 
 If we draw the boxplot grouping by sex, we observe that sex is not have such a strong effect on weight
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-153-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-155-1.pdf}
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
@@ -12037,7 +12074,7 @@ is the sum of the overall mean and the means of each factor (the factors superim
 
 This is only true if he had observed for the condition (\(male, leptinKO\)) something like (white box)
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-155-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-157-1.pdf}
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
@@ -12262,9 +12299,9 @@ on the correlation:
 \hypertarget{normal-bivariate-1}{%
 \section{Normal bivariate}\label{normal-bivariate-1}}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-159-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-161-1.pdf}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-160-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-162-1.pdf}
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
@@ -12273,7 +12310,7 @@ on the correlation:
 \hypertarget{normal-bivariate-2}{%
 \section{Normal bivariate}\label{normal-bivariate-2}}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-161-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-163-1.pdf}
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
@@ -12410,7 +12447,7 @@ We should take this result with care:
   As we increase fat mass we should obtain more leptin, as it is released from adipose tissue.
 \end{itemize}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-163-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-165-1.pdf}
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
@@ -12435,7 +12472,7 @@ with
   variance: \(V(Y|X)=\sigma^2_{y|x}= \sigma_y^2(1-\rho^2)\)
 \end{itemize}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-164-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-166-1.pdf}
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
@@ -12444,7 +12481,7 @@ with
 \hypertarget{sums-of-squares}{%
 \section{Sums of squares}\label{sums-of-squares}}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-165-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-167-1.pdf}
 
 \begin{itemize}
 \tightlist
@@ -12552,9 +12589,9 @@ Alternative hypothesis:
   \(Y\) and \(X\) are statistically dependent, therefore \(H_1: \beta\neq 0\)
 \end{itemize}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-166-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-168-1.pdf}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-167-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-169-1.pdf}
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
@@ -12636,7 +12673,7 @@ Is our \(t_{obs}\) a rare observation from this distribution?
 
 \[\beta_{obs}= \frac{\sum_{i=1}^m(x_i-\bar{x})(y_i-\bar{y})}{\sum_{i=1}^n(x_i-\bar{x})^2}= -0.02262\]
 \[\alpha_{obs}=\bar{x}-\beta_{obs}\bar{y}= 3.72012\]
-\includegraphics{_main_files/figure-latex/unnamed-chunk-168-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-170-1.pdf}
 
 But leptin should increase with fat mass \ldots{}
 
@@ -12710,7 +12747,7 @@ We can now have one outcome \(Y\) with multiple regressors
 
 Consider the previous regression and color the points according to their sex
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-171-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-173-1.pdf}
 
 We find that the negative association between leptin and fat mass is given by the effect of sex.
 
@@ -12723,7 +12760,7 @@ We find that the negative association between leptin and fat mass is given by th
 
 If we run regression separating by sex we find a positive association between leptin and fat mass, as expected.
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-172-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-174-1.pdf}
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
@@ -12830,7 +12867,7 @@ All linear models have been made on the supposition that
 
 There are a number of plots to check that at least the data is consistent with these suppositions
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-175-1.pdf} \includegraphics{_main_files/figure-latex/unnamed-chunk-175-2.pdf} \includegraphics{_main_files/figure-latex/unnamed-chunk-175-3.pdf} \includegraphics{_main_files/figure-latex/unnamed-chunk-175-4.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-177-1.pdf} \includegraphics{_main_files/figure-latex/unnamed-chunk-177-2.pdf} \includegraphics{_main_files/figure-latex/unnamed-chunk-177-3.pdf} \includegraphics{_main_files/figure-latex/unnamed-chunk-177-4.pdf}
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
@@ -13094,7 +13131,7 @@ We load the data
 ## 0.3658537 0.6341463
 \end{verbatim}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-178-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-180-1.pdf}
 
 \begin{enumerate}
 \def\labelenumi{\alph{enumi}.}
@@ -13112,7 +13149,7 @@ We load the data
 ## [1] 14.18654
 \end{verbatim}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-179-1.pdf} \includegraphics{_main_files/figure-latex/unnamed-chunk-179-2.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-181-1.pdf} \includegraphics{_main_files/figure-latex/unnamed-chunk-181-2.pdf}
 
 \begin{enumerate}
 \def\labelenumi{\alph{enumi}.}
@@ -13138,7 +13175,7 @@ We load the data
 ## [1] 15.58339
 \end{verbatim}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-180-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-182-1.pdf}
 
 \begin{enumerate}
 \def\labelenumi{\alph{enumi}.}
@@ -13154,7 +13191,7 @@ We load the data
 ## 0.52032520 0.21138211 0.23577236 0.03252033
 \end{verbatim}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-181-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-183-1.pdf}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -13192,7 +13229,7 @@ we describe these clinical outcomes
 ##    1.00   60.00   80.00   68.77   89.00   99.00      15
 \end{verbatim}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-183-1.pdf} \includegraphics{_main_files/figure-latex/unnamed-chunk-183-2.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-185-1.pdf} \includegraphics{_main_files/figure-latex/unnamed-chunk-185-2.pdf}
 
 \begin{enumerate}
 \def\labelenumi{\alph{enumi}.}
@@ -13207,7 +13244,7 @@ we describe these clinical outcomes
 ##    1.00   45.00   77.00   67.85   90.00   99.00      15
 \end{verbatim}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-184-1.pdf} \includegraphics{_main_files/figure-latex/unnamed-chunk-184-2.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-186-1.pdf} \includegraphics{_main_files/figure-latex/unnamed-chunk-186-2.pdf}
 
 \begin{enumerate}
 \def\labelenumi{\alph{enumi}.}
@@ -13217,7 +13254,7 @@ we describe these clinical outcomes
   Diagnosed
 \end{enumerate}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-185-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-187-1.pdf}
 
 We can look at relationships between outcomes
 
@@ -13229,7 +13266,7 @@ We can look at relationships between outcomes
   Trait Vs Estate
 \end{enumerate}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-186-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-188-1.pdf}
 
 We can also look at the relationships between the clinical outcomes and the features of the participants
 
@@ -13241,7 +13278,7 @@ We can also look at the relationships between the clinical outcomes and the feat
   Trait by sex
 \end{enumerate}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-187-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-189-1.pdf}
 
 \begin{enumerate}
 \def\labelenumi{\alph{enumi}.}
@@ -13251,7 +13288,7 @@ We can also look at the relationships between the clinical outcomes and the feat
   State by sex
 \end{enumerate}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-188-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-190-1.pdf}
 
 \begin{enumerate}
 \def\labelenumi{\alph{enumi}.}
@@ -13268,7 +13305,7 @@ We can also look at the relationships between the clinical outcomes and the feat
 ##        si  3  7
 \end{verbatim}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-189-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-191-1.pdf}
 
 \begin{verbatim}
 ##          sex
@@ -13285,7 +13322,7 @@ We can also look at the relationships between the clinical outcomes and the feat
   Trait Vs age
 \end{enumerate}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-190-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-192-1.pdf}
 
 \begin{enumerate}
 \def\labelenumi{\roman{enumi}.}
@@ -13294,7 +13331,7 @@ We can also look at the relationships between the clinical outcomes and the feat
   State Vs age
 \end{enumerate}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-191-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-193-1.pdf}
 
 \begin{enumerate}
 \def\labelenumi{\alph{enumi}.}
@@ -13304,7 +13341,7 @@ We can also look at the relationships between the clinical outcomes and the feat
   age by diagnosis
 \end{enumerate}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-192-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-194-1.pdf}
 
 \hypertarget{group-work-session-2-inference}{%
 \section{Group Work session 2: Inference}\label{group-work-session-2-inference}}
@@ -13363,7 +13400,7 @@ We are interested in the variable misofonia.dif, that is the observed \textbf{ex
   Are the state and trait of anxiety correlated?
 \end{enumerate}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-193-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-195-1.pdf}
 
 \begin{verbatim}
 ## 
@@ -13394,7 +13431,7 @@ We are interested in the variable misofonia.dif, that is the observed \textbf{ex
   We describe the Excess variable with summary statistics and figures (histogram)
 \end{enumerate}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-194-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-196-1.pdf}
 
 \begin{verbatim}
 ##     Min.  1st Qu.   Median     Mean  3rd Qu.     Max.     NA's 
@@ -13446,7 +13483,7 @@ We are interested in the variable misofonia.dif, that is the observed \textbf{ex
   We first describe the conditional distributions
 \end{enumerate}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-196-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-198-1.pdf}
 
 \begin{enumerate}
 \def\labelenumi{\alph{enumi}.}
@@ -13566,7 +13603,7 @@ We are interested in the variable misofonia.dif, that is the observed \textbf{ex
   We make a plot between anxiety and age
 \end{enumerate}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-200-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-202-1.pdf}
 
 \begin{enumerate}
 \def\labelenumi{\alph{enumi}.}
@@ -13600,7 +13637,7 @@ and test the hypothesis \(H_0: \beta=0\) against \(H_1: \beta\neq 0\)
 ## F-statistic: 1.615 on 1 and 121 DF,  p-value: 0.2062
 \end{verbatim}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-201-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-203-1.pdf}
 
 \begin{enumerate}
 \def\labelenumi{\alph{enumi}.}
@@ -13645,7 +13682,7 @@ and test the hypothesis \(H_0: \beta=0\) against \(H_1: \beta\neq 0\)
 \def\labelenumi{\alph{enumi}.}
 \item
   We plot the excess anxiety across groups (boxplot)
-  \includegraphics{_main_files/figure-latex/unnamed-chunk-203-1.pdf}
+  \includegraphics{_main_files/figure-latex/unnamed-chunk-205-1.pdf}
 \item
   We test the hypothesizes \(H_0: \mu_{0}=\mu_{1} ... =\mu_{4}\) against \(H_1:\) at least one of them is different. We fit an ANOVA model.
 \end{enumerate}
@@ -13709,7 +13746,7 @@ and test the hypothesis \(H_0: \beta=0\) against \(H_1: \beta\neq 0\)
   We plot excess anxiety for each misophonic group, for men and women separately
 \end{enumerate}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-205-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-207-1.pdf}
 
 \begin{enumerate}
 \def\labelenumi{\alph{enumi}.}
@@ -13822,7 +13859,19 @@ The outcome of one random experiment is to measure the misophonia severity \text
 ## 6             0             0
 \end{verbatim}
 
-A large study showed the relative frequencies \(f_i\) given in the contingency table:
+A large study on 123 patients showed the frequencies \(n_{x,y}\) given in the contingency table:
+
+\begin{verbatim}
+##               
+##                Depression:0 Depression:1
+##   Misophonia:4            0            9
+##   Misophonia:3           25            6
+##   Misophonia:2           34            3
+##   Misophonia:1            5            0
+##   Misophonia:0           36            5
+\end{verbatim}
+
+Let's assume that \(N>>0\) and that the frequencies \textbf{estimate} the probabilities \(f_{x,y}=\hat{P}(X, Y)\)
 
 \begin{verbatim}
 ##               
@@ -13833,8 +13882,6 @@ A large study showed the relative frequencies \(f_i\) given in the contingency t
 ##   Misophonia:1   0.04065041   0.00000000
 ##   Misophonia:0   0.29268293   0.04065041
 \end{verbatim}
-
-Let's assume that \(N>>0\) and that the frequencies \textbf{estimate} the probabilities \(f_{i,j}=\hat{P}(x_i, y_j)\)
 
 \begin{itemize}
 \tightlist
@@ -13913,6 +13960,8 @@ smooth surface: no & 4 & 2 \\
 \item
   what is the estimated probability that the rod is smooth if it is rounded?
 \item
+  what is the estimated probability that the rod is neither smooth nor rounded if it does not satisfy at least one quality control?
+\item
   Are smoothness and roundness independent events?
 \end{itemize}
 
@@ -13967,13 +14016,39 @@ smooth surface: no & 8 & 6 \\
 \item
   What is the probability that the rod is smooth or rounded or produced by machine 1?
 \item
+  What is the probability that the rod is rounded if it is smoothed and from machine 1?
+\item
+  What is the probability that the rod is not rounded if it is not smoothed and is from machine 2?
+\item
+  what is the probability that the rod has come from machine 1 if it it is smoothed and rounded?
+\item
   what is the probability that the rod has come from machine 2 if it does not pass at least one of the quality controls?
 \end{itemize}
 
 \hypertarget{exercise-4}{%
 \subsubsection{Exercise 4}\label{exercise-4}}
 
-We want to cross an avenue with three traffic lights. The probability of finding one traffic light in red given that the previous one was in red is 0.15. Whereas, the probability of finding one traffic right in red given that the previous one was in green is 0.25. If the probability of finding the first traffic light in red is 0.6 then
+We want to cross an avenue with two traffic lights. The probability of finding the first traffic light in red is 0.6. If we stopped at the first traffic light, the probability of stopping at the second one is 0.15. Whereas the probability of stopping on the second one if we do not stop on the first one is 0.25.
+
+When we try to cross both traffic lights:
+
+\begin{itemize}
+\tightlist
+\item
+  what is the probability of having to stop at each traffic light?
+\item
+  What is the probability of having to stop at at least one traffic light?
+\item
+  What is the probability of having to stop at only one traffic light?
+\item
+  If I stopped at the second traffic light, what is the probability that I had to stop at the first one?\\
+\item
+  If I had to stop at any traffic light, what is the probability that I had to do it twice?
+\item
+  Is stopping at the first traffic light an independent event from stopping at the second traffic light?
+\end{itemize}
+
+Now, we want to cross an avenue with three traffic lights. The probability of finding a traffic light in red only depends on the previous one. In particular, the probability of finding one traffic light in red given that the previous one was in red is 0.15. Whereas, the probability of finding one traffic right in red given that the previous one was in green is 0.25. Also, the probability of finding the first traffic light in red is 0.6.
 
 \begin{itemize}
 \tightlist
@@ -13985,17 +14060,15 @@ We want to cross an avenue with three traffic lights. The probability of finding
   What is the probability of having to stop at only one traffic light?
 \end{itemize}
 
-Assume that the probability of one traffic light depends only on the previews one
-
 hints:
 
 \begin{itemize}
 \item
-  The joint probability of finding three traffic lights in red can be written as:
-  \(P(R_1,R_2,R_3)=P(R_3|R_2,R_1)P(R_2|R_1)P(R_1)\)
+  If the probability that one traffic light is red depends only on the previous one then
+  \(P(R_3|R_2,R_1)=P(R_3|R_2,\bar{R}_1)=P(R_3|R_2)\) and \(P(R_3|\bar{R}_2,R_1)=P(R_3|\bar{R}_2,\bar{R}_1)=P(R_3|\bar{R}_2)\)
 \item
-  If the probability of one traffic light depends only on the previous one then
-  \(P(R_3|R_2,R_1)=P(R_3|R_2)\)
+  The joint probability of finding three traffic lights in red can be written as:
+  \(P(R_1,R_2,R_3)=P(R_3|R_2)P(R_2|R_1)P(R_1)\)
 \end{itemize}
 
 \hypertarget{exercise-5}{%
@@ -14116,7 +14189,7 @@ hints:
   What are the first and third quartiles?
 \end{itemize}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-212-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-215-1.pdf}
 
 \hypertarget{exercise-4-1}{%
 \subsubsection{Exercise 4}\label{exercise-4-1}}
@@ -14482,6 +14555,78 @@ compute:
 \end{itemize}
 
 \[x_1 = 27; \qquad x_2 = 8; \qquad  x_3 = 22; \qquad  x_4 = 29; \qquad  x_5 = 19; \qquad  x_5 = 32\]
+
+\hypertarget{confidence-intervals}{%
+\section{Confidence intervals}\label{confidence-intervals}}
+
+\hypertarget{exercise-1-9}{%
+\subsubsection{Exercise 1}\label{exercise-1-9}}
+
+In a scientific paper the authors report a \(95\%\) confidence interval of \((228, 232)\) for the natural frequency (Hz) of metallic beam. They useda sample of size \(25\) and considered that the measurements distributed normally.
+
+\begin{itemize}
+\item
+  What is the mean and the standard deviation of the measurements?
+\item
+  Compute the \(99\%\) confidence interval.
+\end{itemize}
+
+hints:
+
+\begin{itemize}
+\item
+  in R \(t_{0.025, 24}=\) qt(0.975, 24)\(\sim 2\)
+\item
+  in R \(t_{0.005, 24}=\)qt(0.995, 24)\(\sim 2.8\)
+\end{itemize}
+
+\hypertarget{exercise-2-9}{%
+\subsubsection{Exercise 2}\label{exercise-2-9}}
+
+compute \(95\%\) CI for the mean of a normal variable with known variance \(\sigma^2=9\) and \(\mu=22\)
+
+\hypertarget{exercise-3-6}{%
+\subsubsection{Exercise 3}\label{exercise-3-6}}
+
+This year a \(1000\) sample of patients with influenza developed complications.
+
+\begin{itemize}
+\item
+  Compute the \(99\%\) confidence interval for the proportion of complications.
+\item
+  The previous year \(2\%\) showed complications. Can we say with \(99\%\) confidence that this year there is a significnat drop in influenza complications?
+\end{itemize}
+
+\hypertarget{hypothesis-testing-7}{%
+\section{Hypothesis testing}\label{hypothesis-testing-7}}
+
+\hypertarget{exercise-1-10}{%
+\subsubsection{Exercise 1}\label{exercise-1-10}}
+
+Imagine we take a random sample of size \(n = 41\) of a normal random variable \(X\), and find that the sample average is \(10\) and the sample variance is \(1.5\).
+
+\begin{itemize}
+\item
+  What is then the confidence interval at \(90\%\) confidence level?
+\item
+  Test the hypothesis that the mean of \(X\) is greater than \(10.5\), using a \(5\%\) significance threshold.
+\end{itemize}
+
+\hypertarget{exercise-2-10}{%
+\subsubsection{Exercise 2}\label{exercise-2-10}}
+
+\(10\) gas condensates showed the following concentrations of mercury (in \(ng/ml\)):
+
+\(23.3\), \(22.5\), \(21.9\), \(21.5\), \(19.9\), \(21.3\), \(21.7\), \(23.8\), \(22.6\), \(24.7\)
+
+Assuming that the mercury concentration is distributed normally a across gas condensates, test the hypothesis that a condensate does not surpass the toxicity limit established at \(24 ng/ml\).
+
+\hypertarget{exercise-3-7}{%
+\subsubsection{Exercise 3}\label{exercise-3-7}}
+
+The manufacturer of gene expression microarrays guarantees that at least \(97\%\) of the microarrys they produce have high quality signals. A customer receives a batch of \(200\) pieces and finds that \(8\) unperformed.
+
+Should the costumer return the lot due to poor quality?
 
   \bibliography{book.bib,packages.bib}
 

@@ -24,7 +24,7 @@
 <meta name="author" content="Alejandro Caceres" />
 
 
-<meta name="date" content="2022-09-27" />
+<meta name="date" content="2022-09-28" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -960,7 +960,7 @@ We conclude:</p>
 </div>
 <div id="hypothesis-test-with-p-value" class="section level2 hasAnchor" number="15.12">
 <h2><span class="header-section-number">15.12</span> Hypothesis test with P-value<a href="hypothesis-testing.html#hypothesis-test-with-p-value" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>We can also contrast the hypothesis by calculating the probability that the average of another sample will be rarer than the average we just observe.</p>
+<p>We can also contrast the hypothesis by calculating the probability that the average of another sample will be rarer than the average we just observed.</p>
 <p><span class="math display">\[pvalue = P(Z \leq -z_{obs}) + P(z_{obs} \leq Z) = 2 (1-\phi(|z_{obs}|))\]</span></p>
 <ul>
 <li>We reject <span class="math inline">\(H_0\)</span> if <span class="math inline">\(pvalue \leq \alpha =0.05\)</span></li>
@@ -978,7 +978,7 @@ We conclude:</p>
 R: <code>2*(1-pnorm(1.697056))</code></p>
 <p>We conclude:</p>
 <ul>
-<li><p>If we performed a new sample is not unlikely that we can get a more extreme result for the average at limit <span class="math inline">\(\alpha=0.05\)</span> if the null hypothesis is true.</p></li>
+<li><p>If we performed a new sample is likely that we can get a more extreme result for the average at limit <span class="math inline">\(\alpha=0.05\)</span> if the null hypothesis is true.</p></li>
 <li><p>We accept that <span class="math inline">\(H_0\)</span> could have produced our data and give up on the idea that we have stronger cables than expected.</p></li>
 </ul>
 <hr />
@@ -994,7 +994,7 @@ R: <code>2*(1-pnorm(1.697056))</code></p>
 <p><span class="math display">\[(l,u)=(\bar{x}-z_{0.025} \frac{\sigma}{\sqrt{n}}, \bar{x}+z_{0.025} \frac{\sigma}{\sqrt{n}})= (12.97,13.45)\]</span></p>
 <ul>
 <li><p>The CI tells us that we can be <span class="math inline">\(95\%\)</span> confident that we have captured the true value of <span class="math inline">\(\mu\)</span>.</p></li>
-<li><p>We don’t know the true value of <span class="math inline">\(\mu\)</span> but <span class="math inline">\(H_0: \mu=13\)</span> tons could be it.</p></li>
+<li><p>We don’t know the true value of <span class="math inline">\(\mu\)</span> but <span class="math inline">\(H_0: \mu=13\)</span> Tons could be it.</p></li>
 </ul>
 <hr />
 <hr />
@@ -1074,9 +1074,10 @@ We ask again:</p>
 <p>We may be interested in only testing for the fact that our estimate is higher than the null hypothesis (we do not care if it is lower)</p>
 <p>Upper-tailed test:</p>
 <ul>
-<li><span class="math inline">\(H_0:\mu = 13\)</span> (cables break as usual)</li>
-<li><span class="math inline">\(H_1:\mu &gt; 13\)</span> (cables break at a higher load) -We will test the higher tail of the distribution.</li>
+<li><span class="math inline">\(H_0:\mu \leq 13\)</span> (at most cables break as usual)</li>
+<li><span class="math inline">\(H_1:\mu &gt; 13\)</span> (cables break at a higher load)</li>
 </ul>
+<p>We will test the higher tail of the distribution.</p>
 <hr />
 <hr />
 </div>
@@ -1116,10 +1117,8 @@ We ask again:</p>
 </div>
 <div id="example-1-4" class="section level2 hasAnchor" number="15.23">
 <h2><span class="header-section-number">15.23</span> Example 1:<a href="hypothesis-testing.html#example-1-4" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><span class="math inline">\(11.6\)</span> g of NaCl is dissolved in <span class="math inline">\(100\)</span> g of water and has a molar concentration of <span class="math inline">\(1.92 mol/L\)</span></p>
+<p><span class="math inline">\(11.6g\)</span> of NaCl is dissolved in <span class="math inline">\(100 g\)</span> of water and has a molar concentration of <span class="math inline">\(1.92 mol/L\)</span></p>
 <p>We design a process to remove salt from this concentration and obtain the following results</p>
-<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="hypothesis-testing.html#cb34-1" aria-hidden="true" tabindex="-1"></a>concentration <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">1.716</span>, <span class="fl">1.889</span>, <span class="fl">1.783</span>, <span class="fl">1.849</span>, <span class="fl">1.891</span>)</span>
-<span id="cb34-2"><a href="hypothesis-testing.html#cb34-2" aria-hidden="true" tabindex="-1"></a>concentration</span></code></pre></div>
 <pre><code>## [1] 1.716 1.889 1.783 1.849 1.891</code></pre>
 <ul>
 <li>We want to test at <span class="math inline">\(0.05\)</span> significant threshold if the process does remove salt from the concentration.</li>
@@ -1133,8 +1132,8 @@ We ask again:</p>
 <ul>
 <li><span class="math inline">\(H_0:\mu=1.92\)</span>; <span class="math inline">\(H_1:\mu \neq 1.92\)</span></li>
 </ul>
-<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="hypothesis-testing.html#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(<span class="fu">c</span>(<span class="fl">1.716</span>, <span class="fl">1.901</span>, <span class="fl">1.783</span>, <span class="fl">1.849</span>, <span class="fl">1.891</span>), </span>
-<span id="cb36-2"><a href="hypothesis-testing.html#cb36-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">mu=</span><span class="fl">1.92</span>, <span class="at">alternative =</span> <span class="st">&quot;two.sided&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="hypothesis-testing.html#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(<span class="fu">c</span>(<span class="fl">1.716</span>, <span class="fl">1.901</span>, <span class="fl">1.783</span>, <span class="fl">1.849</span>, <span class="fl">1.891</span>), </span>
+<span id="cb35-2"><a href="hypothesis-testing.html#cb35-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">mu=</span><span class="fl">1.92</span>, <span class="at">alternative =</span> <span class="st">&quot;two.sided&quot;</span>)</span></code></pre></div>
 <pre><code>## 
 ##  One Sample t-test
 ## 
@@ -1148,10 +1147,10 @@ We ask again:</p>
 ##     1.828</code></pre>
 <p>Lower-tailed test:</p>
 <ul>
-<li><span class="math inline">\(H_0:\mu=1.92\)</span>; <span class="math inline">\(H_1:\mu &lt; 1.92\)</span></li>
+<li><span class="math inline">\(H_0:\mu \geq 1.92\)</span>; <span class="math inline">\(H_1:\mu &lt; 1.92\)</span></li>
 </ul>
-<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="hypothesis-testing.html#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(<span class="fu">c</span>(<span class="fl">1.716</span>, <span class="fl">1.901</span>, <span class="fl">1.783</span>, <span class="fl">1.849</span>, <span class="fl">1.891</span>), </span>
-<span id="cb38-2"><a href="hypothesis-testing.html#cb38-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">mu=</span><span class="fl">1.92</span>, <span class="at">alternative =</span> <span class="st">&quot;less&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="hypothesis-testing.html#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(<span class="fu">c</span>(<span class="fl">1.716</span>, <span class="fl">1.901</span>, <span class="fl">1.783</span>, <span class="fl">1.849</span>, <span class="fl">1.891</span>), </span>
+<span id="cb37-2"><a href="hypothesis-testing.html#cb37-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">mu=</span><span class="fl">1.92</span>, <span class="at">alternative =</span> <span class="st">&quot;less&quot;</span>)</span></code></pre></div>
 <pre><code>## 
 ##  One Sample t-test
 ## 
@@ -1171,11 +1170,11 @@ We ask again:</p>
 <p>In some cases, we are not sure about the numerical value of the hypothesis to test, but we know that we want to improve the value of a parameter in two different conditions.</p>
 <p>In the original paper of Gosset, he analyzed the effect of two soporific medicines.</p>
 <ul>
-<li>10 individuals were given <strong>soporific 1</strong> and write down the additional hours slept under treatment, with a mean <span class="math inline">\(0.75\)</span></li>
+<li>10 individuals were given <strong>soporific 1</strong> and wrote down the additional hours slept under treatment, with a mean <span class="math inline">\(0.75\)</span></li>
 </ul>
 <pre><code>##  [1]  0.7 -1.6 -0.2 -1.2 -0.1  3.4  3.7  0.8  0.0  2.0</code></pre>
 <ul>
-<li>The same 10 individuals were given <strong>soporific 2</strong> and write down the additional hours slept under treatment, with a mean <span class="math inline">\(2.33\)</span></li>
+<li>The same 10 individuals were given <strong>soporific 2</strong> and wrote down the additional hours slept under treatment, with a mean <span class="math inline">\(2.33\)</span></li>
 </ul>
 <pre><code>##  [1]  1.9  0.8  1.1  0.1 -0.1  4.4  5.5  1.6  4.6  3.4</code></pre>
 <p>Scientific hypothesis: Soporific 2 is better than soporific 1</p>
@@ -1189,7 +1188,7 @@ We ask again:</p>
 <p>finding an average of treatment gain from soporific 2 with respect to soporific 1 of <span class="math inline">\(1.58\)</span>, and <span class="math inline">\(s=1.229995\)</span></p>
 <p><strong>Upper-tailed paired t-test</strong>:</p>
 <ul>
-<li><span class="math inline">\(H_0:\mu=0\)</span>; <span class="math inline">\(H_1:\mu &gt;\)</span></li>
+<li><span class="math inline">\(H_0:\mu \leq 0\)</span> (no treatment difference); <span class="math inline">\(H_1:\mu &gt; 0\)</span> (gain in treatment 2)</li>
 </ul>
 <p>Where <span class="math inline">\(\mu\)</span> is the mean of the differences between treatments.</p>
 <hr />
@@ -1201,11 +1200,11 @@ We ask again:</p>
 <p><span class="math display">\[T=\frac{\bar{X}}{\frac{S}{\sqrt{n}}}\]</span></p>
 <p>and its observation</p>
 <p><span class="math display">\[t_{obs}=\frac{\bar{x}}{\frac{s}{\sqrt{n}}}\]</span>
-which is also known as the <strong>noise</strong> to <strong>signal</strong> ratio.</p>
-<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="hypothesis-testing.html#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(<span class="fu">c</span>(<span class="fl">1.9</span>,<span class="fl">0.8</span>,<span class="fl">1.1</span>,<span class="fl">0.1</span>,<span class="sc">-</span><span class="fl">0.1</span>,<span class="fl">4.4</span>,<span class="fl">5.5</span>,<span class="fl">1.6</span>,<span class="fl">4.6</span>,<span class="fl">3.4</span>),</span>
-<span id="cb43-2"><a href="hypothesis-testing.html#cb43-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">c</span>(<span class="fl">0.7</span>,<span class="sc">-</span><span class="fl">1.6</span>,<span class="sc">-</span><span class="fl">0.2</span>,<span class="sc">-</span><span class="fl">1.2</span>,<span class="sc">-</span><span class="fl">0.1</span>,<span class="fl">3.4</span>,<span class="fl">3.7</span>,<span class="fl">0.8</span>,<span class="dv">0</span>,<span class="dv">2</span>),</span>
-<span id="cb43-3"><a href="hypothesis-testing.html#cb43-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">paired =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb43-4"><a href="hypothesis-testing.html#cb43-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">alternative=</span><span class="st">&quot;greater&quot;</span>)</span></code></pre></div>
+which is also known as the <strong>signal</strong> to <strong>noise</strong> ratio.</p>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="hypothesis-testing.html#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(<span class="fu">c</span>(<span class="fl">1.9</span>,<span class="fl">0.8</span>,<span class="fl">1.1</span>,<span class="fl">0.1</span>,<span class="sc">-</span><span class="fl">0.1</span>,<span class="fl">4.4</span>,<span class="fl">5.5</span>,<span class="fl">1.6</span>,<span class="fl">4.6</span>,<span class="fl">3.4</span>),</span>
+<span id="cb42-2"><a href="hypothesis-testing.html#cb42-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">c</span>(<span class="fl">0.7</span>,<span class="sc">-</span><span class="fl">1.6</span>,<span class="sc">-</span><span class="fl">0.2</span>,<span class="sc">-</span><span class="fl">1.2</span>,<span class="sc">-</span><span class="fl">0.1</span>,<span class="fl">3.4</span>,<span class="fl">3.7</span>,<span class="fl">0.8</span>,<span class="dv">0</span>,<span class="dv">2</span>),</span>
+<span id="cb42-3"><a href="hypothesis-testing.html#cb42-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">paired =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb42-4"><a href="hypothesis-testing.html#cb42-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">alternative=</span><span class="st">&quot;greater&quot;</span>)</span></code></pre></div>
 <pre><code>## 
 ##  Paired t-test
 ## 
@@ -1246,14 +1245,14 @@ which is also known as the <strong>noise</strong> to <strong>signal</strong> rat
 <p><span class="math display">\[X \rightarrow Bernoulli (p)\]</span>
 with an upper-tailed hypothesis contrast for <span class="math inline">\(p\)</span>:</p>
 <ul>
-<li><span class="math inline">\(H_0: p=0.1\)</span> (Not satisfactory)</li>
+<li><span class="math inline">\(H_0: p \leq 0.9\)</span> (Not satisfactory)</li>
 <li><span class="math inline">\(H_1: p&gt; 0.9\)</span> (Satisfactory)</li>
 </ul>
 <p>Then if the null hypothesis is true <span class="math inline">\(\bar{X}\)</span> has</p>
 <ul>
 <li><p>mean <span class="math inline">\(E(\bar{X})=E(X)=p=0.9\)</span> (unbiased estimator of <span class="math inline">\(p\)</span>)<br />
 </p></li>
-<li><p>variance <span class="math inline">\(V(\bar{X})=\frac{V(X)}{n}=\frac{p(p-1)}{n}=0.00045\)</span> (consistent estimator of <span class="math inline">\(p\)</span>)</p></li>
+<li><p>variance <span class="math inline">\(V(\bar{X})=\frac{V(X)}{n}=\frac{p(1-p)}{n}=0.00045\)</span> (consistent estimator of <span class="math inline">\(p\)</span>)</p></li>
 <li><p>The observed <span class="math inline">\(\bar{X}\)</span> was <span class="math inline">\(\bar{x}=188/200=0.94\)</span></p></li>
 </ul>
 <hr />
@@ -1294,7 +1293,7 @@ is a standard normal variable, when <span class="math inline">\(pn&gt;5\)</span>
 </div>
 <div id="interval-estimation-for-proportions-8" class="section level2 hasAnchor" number="15.34">
 <h2><span class="header-section-number">15.34</span> Interval estimation for proportions<a href="hypothesis-testing.html#interval-estimation-for-proportions-8" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>In R: <code>prop.test(188, 200, p=0.9, alternative = “greater,” correct=FALSE)</code></p>
+<p>In R: <code>prop.test(188, 200, p=0.9, alternative = “greater” , correct=FALSE)</code></p>
 <p><img src="_main_files/figure-html/unnamed-chunk-121-1.png" width="672" /></p>
 <hr />
 <hr />
@@ -1361,11 +1360,11 @@ is a standard normal variable, when <span class="math inline">\(pn&gt;5\)</span>
 <h2><span class="header-section-number">15.40</span> Test for variances<a href="hypothesis-testing.html#test-for-variances-4" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>We want to contrast the hypotheses</p>
 <ul>
-<li><p><span class="math inline">\(H_0:\sigma=0.6\)</span> (Process under control)</p></li>
+<li><p><span class="math inline">\(H_0:\sigma \leq 0.6\)</span> (Process under control)</p></li>
 <li><p><span class="math inline">\(H_1:\sigma &gt; 0.6\)</span> (Process out of control)</p></li>
 <li><p>Statistic: <span class="math inline">\(W=\frac{(n-1)S^2}{\sigma_0^2} \rightarrow \chi^2(n-1)\)</span></p></li>
 <li><p>Threshold limit <span class="math inline">\(\alpha=0.01\)</span></p></li>
-<li><p>The acceptance region for <span class="math inline">\(H_0\)</span>: <span class="math inline">\(P(W\leq \chi^2_{0.01,19})=0.9\)</span></p></li>
+<li><p>The acceptance region for <span class="math inline">\(H_0\)</span>: <span class="math inline">\(P(W\leq \chi^2_{0.01,19})=0.99\)</span></p></li>
 </ul>
 <p><span class="math display">\[(0, \chi^2_{0.01,19})=(0,36.19)\]</span></p>
 <p>In R: <span class="math inline">\(\chi^2_{0.01,19}=\)</span><code>qchisq(0.99,19)</code><span class="math inline">\(= 36.19\)</span></p>
@@ -1381,7 +1380,7 @@ is a standard normal variable, when <span class="math inline">\(pn&gt;5\)</span>
 <p><span class="math display">\[w_{obs}=\frac{19 (0.8462188)^2}{0.60^2}=37.79344\]</span></p>
 <p>That falls outside the acceptance region (inside the rejection zone)</p>
 <ol start="2" style="list-style-type: decimal">
-<li>For the upper tail <span class="math display">\[pvalue=1-F_{\chi,19}^{-1}(37.24)= 0.006\]</span></li>
+<li>For the upper tail <span class="math display">\[pvalue=1-F_{\chi,19}^{-1}(37.79344)= 0.006\]</span></li>
 </ol>
 <p>R: <code>1-pchisq(37.79344, 19)</code></p>
 <p>is lower than <span class="math inline">\(\alpha=0.05\)</span></p>
@@ -1432,7 +1431,7 @@ varTest(thickness, sigma.squared = 0.6^2, alternative = “greater”) </code></
 </div>
 <div id="errors-in-hypothesis-testing-1" class="section level2 hasAnchor" number="15.44">
 <h2><span class="header-section-number">15.44</span> Errors in hypothesis testing<a href="hypothesis-testing.html#errors-in-hypothesis-testing-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>You take a sample of <span class="math inline">\(5\)</span> PCR tests to test infection; <span class="math inline">\(H_0\)</span> you are **not infected*</p>
+<p>You take <strong>one</strong> PCR to test infection; <span class="math inline">\(H_0\)</span> you are <strong>not infected</strong></p>
 <ul>
 <li><span class="math inline">\(H_0\)</span> unknown reality is: <strong>true</strong>, <strong>false</strong></li>
 <li><span class="math inline">\(H_0\)</span> test is: <strong>negative</strong> (accept), <strong>positive</strong> (reject)</li>

@@ -24,7 +24,7 @@
 <meta name="author" content="Alejandro Caceres" />
 
 
-<meta name="date" content="2022-09-27" />
+<meta name="date" content="2022-09-29" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -989,13 +989,13 @@ The parameter <span class="math inline">\(p_A\)</span> is the probability of hep
 <div id="chi2-test-2" class="section level2 hasAnchor" number="16.9">
 <h2><span class="header-section-number">16.9</span> <span class="math inline">\(\chi^2\)</span> test<a href="contingency-tables-1.html#chi2-test-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>In this context, the same <strong>standardized squared error</strong> of before can be re-written as:</p>
-<p><span class="math display">\[W= \frac{(f_{no,A}-f_{no}f_{A})^2}{f_{no}f_{A}}+\frac{(f_{no,A}-f_{no}f_{B})^2}{f_{no}f_{B}}+\frac{(f_{yes,A}-f_{yes}f_{A})^2}{f_{yes}f_{A}}+\frac{(f_{yes,B}-f_{yes}f_{B})^2}{f_{yes}f_{B}}\]</span></p>
+<p><span class="math display">\[W= \frac{(f_{no,A}-f_{no}f_{A})^2}{f_{no}f_{A}}+\frac{(f_{no,B}-f_{no}f_{B})^2}{f_{no}f_{B}}+\frac{(f_{yes,A}-f_{yes}f_{A})^2}{f_{yes}f_{A}}+\frac{(f_{yes,B}-f_{yes}f_{B})^2}{f_{yes}f_{B}}\]</span></p>
 <p>Which are the squared differences between the</p>
 <ul>
 <li><strong>observed</strong> frequencies <span class="math inline">\(f_{disease, hospital}\)</span> and</li>
 <li>the <strong>expected</strong> frequencies under statistical independence <span class="math inline">\(f_{disease}*f_{hospital}\)</span> (multiplication of marginals)</li>
 </ul>
-<p>Therefore, equivalently, we can state that:</p>
+<p>Therefore, our hypothesis test is now:</p>
 <ul>
 <li><span class="math inline">\(H_0:p_{disease, hospital}=p_{disease}*p_{hospital}\)</span> (Disease and Hospital are statistically <strong>independent</strong>)</li>
 <li><span class="math inline">\(H_1:p_{disease, hospital}\neq p_{disease}*p_{hospital}\)</span>
@@ -1040,8 +1040,8 @@ The parameter <span class="math inline">\(p_A\)</span> is the probability of hep
 <div id="fishers-exact-test-1" class="section level2 hasAnchor" number="16.12">
 <h2><span class="header-section-number">16.12</span> Fisher’s exact test<a href="contingency-tables-1.html#fishers-exact-test-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ul>
-<li><p>The null hypothesis (status quo) assumes that hospital <span class="math inline">\(A\)</span> has the same parameter of both hospitals together <span class="math inline">\(H_0: p=\hat{p}\)</span></p></li>
-<li><p>The alternative hypothesis is the parameter of hospital <span class="math inline">\(A\)</span> is lower than the parameter for both hospitals together <span class="math inline">\(H_1: p &lt; \hat{p}\)</span></p></li>
+<li><p>The null hypothesis (status quo) assumes that hospital <span class="math inline">\(A\)</span> has the same parameter of both hospitals together <span class="math inline">\(H_0: p=64/600\)</span></p></li>
+<li><p>The alternative hypothesis is the parameter of hospital <span class="math inline">\(A\)</span> is lower than the parameter for both hospitals together <span class="math inline">\(H_1: p &lt; 64/600\)</span></p></li>
 </ul>
 <hr />
 <hr />
@@ -1050,7 +1050,7 @@ The parameter <span class="math inline">\(p_A\)</span> is the probability of hep
 <h2><span class="header-section-number">16.13</span> Hypergeometric distribution<a href="contingency-tables-1.html#hypergeometric-distribution" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>The probability of obtaining <span class="math inline">\(x\)</span> hepatitis C cases in a sample of <span class="math inline">\(n\)</span> drawn from a population of <span class="math inline">\(N\)</span> where <span class="math inline">\(K\)</span> have hepatitis C is</p>
 <p><span class="math inline">\(P(X=x)=P(one\,sample) \times (Number\, of\, ways\, of\, obtaining\, x)\)</span></p>
-<p><span class="math inline">\(=\frac{1}{\binom N n}\binom K x \binom {N-K} {n-x}\)</span></p>
+<p><span class="math display">\[=\frac{1}{\binom N n}\binom K x \binom {N-K} {n-x}\]</span></p>
 <p>where <span class="math inline">\(k \in \{\max(0, n+K-N), ... \min(K, n) \}\)</span></p>
 <p><span class="math display">\[X \rightarrow Hypergeometric(N,K,n)\]</span></p>
 <hr />
@@ -1060,10 +1060,10 @@ The parameter <span class="math inline">\(p_A\)</span> is the probability of hep
 <h2><span class="header-section-number">16.14</span> Hypergeometric distribution<a href="contingency-tables-1.html#hypergeometric-distribution-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>It has</p>
 <ul>
-<li><p>mean: <span class="math inline">\(E (X) = n * K / N = np\)</span></p></li>
-<li><p>variance: <span class="math inline">\(V(X) = np (1-p)\frac{N-n}{N-1}\)</span></p></li>
+<li><p>mean: <span class="math inline">\(E (X) = n \frac{K}{N} = np_0\)</span></p></li>
+<li><p>variance: <span class="math inline">\(V(X) = np_0(1-p_0)\frac{N-n}{N-1}\)</span></p></li>
 </ul>
-<p>when <span class="math inline">\(p=K/N\)</span> is the proportion of hepatitis C in a population of size <span class="math inline">\(N\)</span>.</p>
+<p>when <span class="math inline">\(p_0=\frac{K}{N}\)</span> is the proportion of hepatitis C in a population of size <span class="math inline">\(N\)</span>.</p>
 <hr />
 <hr />
 </div>

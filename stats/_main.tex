@@ -6,7 +6,7 @@
 ]{book}
 \title{Stats theory (SDA)}
 \author{Alejandro Caceres}
-\date{2022-09-27}
+\date{2022-09-29}
 
 \usepackage{amsmath,amssymb}
 \usepackage{lmodern}
@@ -1018,12 +1018,12 @@ Say we repeated the experiment 1000 times:
 
 \begin{verbatim}
 ##   outcome  ni    fi
-## 1       1 165 0.165
-## 2       2 165 0.165
-## 3       3 168 0.168
-## 4       4 166 0.166
-## 5       5 170 0.170
-## 6       6 166 0.166
+## 1       1 170 0.170
+## 2       2 157 0.157
+## 3       3 177 0.177
+## 4       4 187 0.187
+## 5       5 167 0.167
+## 6       6 142 0.142
 \end{verbatim}
 
 We find that \(f_i\) is converging to a constant value
@@ -9274,7 +9274,7 @@ We conclude:
 \hypertarget{hypothesis-test-with-p-value}{%
 \section{Hypothesis test with P-value}\label{hypothesis-test-with-p-value}}
 
-We can also contrast the hypothesis by calculating the probability that the average of another sample will be rarer than the average we just observe.
+We can also contrast the hypothesis by calculating the probability that the average of another sample will be rarer than the average we just observed.
 
 \[pvalue = P(Z \leq -z_{obs}) + P(z_{obs} \leq Z) = 2 (1-\phi(|z_{obs}|))\]
 
@@ -9306,7 +9306,7 @@ We conclude:
 
 \begin{itemize}
 \item
-  If we performed a new sample is not unlikely that we can get a more extreme result for the average at limit \(\alpha=0.05\) if the null hypothesis is true.
+  If we performed a new sample is likely that we can get a more extreme result for the average at limit \(\alpha=0.05\) if the null hypothesis is true.
 \item
   We accept that \(H_0\) could have produced our data and give up on the idea that we have stronger cables than expected.
 \end{itemize}
@@ -9334,7 +9334,7 @@ The CI is:
 \item
   The CI tells us that we can be \(95\%\) confident that we have captured the true value of \(\mu\).
 \item
-  We don't know the true value of \(\mu\) but \(H_0: \mu=13\) tons could be it.
+  We don't know the true value of \(\mu\) but \(H_0: \mu=13\) Tons could be it.
 \end{itemize}
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
@@ -9475,10 +9475,12 @@ Upper-tailed test:
 \begin{itemize}
 \tightlist
 \item
-  \(H_0:\mu = 13\) (cables break as usual)
+  \(H_0:\mu \leq 13\) (at most cables break as usual)
 \item
-  \(H_1:\mu > 13\) (cables break at a higher load) -We will test the higher tail of the distribution.
+  \(H_1:\mu > 13\) (cables break at a higher load)
 \end{itemize}
+
+We will test the higher tail of the distribution.
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
@@ -9551,16 +9553,9 @@ t.test(c(13.34642, 13.32620, 13.01459, 13.10811,
 \hypertarget{example-1-4}{%
 \section{Example 1:}\label{example-1-4}}
 
-\(11.6\) g of NaCl is dissolved in \(100\) g of water and has a molar concentration of \(1.92 mol/L\)
+\(11.6g\) of NaCl is dissolved in \(100 g\) of water and has a molar concentration of \(1.92 mol/L\)
 
 We design a process to remove salt from this concentration and obtain the following results
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{concentration }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\FloatTok{1.716}\NormalTok{, }\FloatTok{1.889}\NormalTok{, }\FloatTok{1.783}\NormalTok{, }\FloatTok{1.849}\NormalTok{, }\FloatTok{1.891}\NormalTok{)}
-\NormalTok{concentration}
-\end{Highlighting}
-\end{Shaded}
 
 \begin{verbatim}
 ## [1] 1.716 1.889 1.783 1.849 1.891
@@ -9613,7 +9608,7 @@ Lower-tailed test:
 \begin{itemize}
 \tightlist
 \item
-  \(H_0:\mu=1.92\); \(H_1:\mu < 1.92\)
+  \(H_0:\mu \geq 1.92\); \(H_1:\mu < 1.92\)
 \end{itemize}
 
 \begin{Shaded}
@@ -9651,7 +9646,7 @@ In the original paper of Gosset, he analyzed the effect of two soporific medicin
 \begin{itemize}
 \tightlist
 \item
-  10 individuals were given \textbf{soporific 1} and write down the additional hours slept under treatment, with a mean \(0.75\)
+  10 individuals were given \textbf{soporific 1} and wrote down the additional hours slept under treatment, with a mean \(0.75\)
 \end{itemize}
 
 \begin{verbatim}
@@ -9661,7 +9656,7 @@ In the original paper of Gosset, he analyzed the effect of two soporific medicin
 \begin{itemize}
 \tightlist
 \item
-  The same 10 individuals were given \textbf{soporific 2} and write down the additional hours slept under treatment, with a mean \(2.33\)
+  The same 10 individuals were given \textbf{soporific 2} and wrote down the additional hours slept under treatment, with a mean \(2.33\)
 \end{itemize}
 
 \begin{verbatim}
@@ -9690,7 +9685,7 @@ finding an average of treatment gain from soporific 2 with respect to soporific 
 \begin{itemize}
 \tightlist
 \item
-  \(H_0:\mu=0\); \(H_1:\mu >\)
+  \(H_0:\mu \leq 0\) (no treatment difference); \(H_1:\mu > 0\) (gain in treatment 2)
 \end{itemize}
 
 Where \(\mu\) is the mean of the differences between treatments.
@@ -9709,7 +9704,7 @@ The \textbf{standardized error} is:
 and its observation
 
 \[t_{obs}=\frac{\bar{x}}{\frac{s}{\sqrt{n}}}\]
-which is also known as the \textbf{noise} to \textbf{signal} ratio.
+which is also known as the \textbf{signal} to \textbf{noise} ratio.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -9783,7 +9778,7 @@ with an upper-tailed hypothesis contrast for \(p\):
 \begin{itemize}
 \tightlist
 \item
-  \(H_0: p=0.1\) (Not satisfactory)
+  \(H_0: p \leq 0.9\) (Not satisfactory)
 \item
   \(H_1: p> 0.9\) (Satisfactory)
 \end{itemize}
@@ -9794,7 +9789,7 @@ Then if the null hypothesis is true \(\bar{X}\) has
 \item
   mean \(E(\bar{X})=E(X)=p=0.9\) (unbiased estimator of \(p\))\\
 \item
-  variance \(V(\bar{X})=\frac{V(X)}{n}=\frac{p(p-1)}{n}=0.00045\) (consistent estimator of \(p\))
+  variance \(V(\bar{X})=\frac{V(X)}{n}=\frac{p(1-p)}{n}=0.00045\) (consistent estimator of \(p\))
 \item
   The observed \(\bar{X}\) was \(\bar{x}=188/200=0.94\)
 \end{itemize}
@@ -9864,7 +9859,7 @@ is lower than \(\alpha=0.05\)
 \hypertarget{interval-estimation-for-proportions-8}{%
 \section{Interval estimation for proportions}\label{interval-estimation-for-proportions-8}}
 
-In R: prop.test(188, 200, p=0.9, alternative = ``greater'', correct=FALSE)
+In R: prop.test(188, 200, p=0.9, alternative = ``greater'' , correct=FALSE)
 
 \includegraphics{_main_files/figure-latex/unnamed-chunk-121-1.pdf}
 
@@ -9978,7 +9973,7 @@ We want to contrast the hypotheses
 
 \begin{itemize}
 \item
-  \(H_0:\sigma=0.6\) (Process under control)
+  \(H_0:\sigma \leq 0.6\) (Process under control)
 \item
   \(H_1:\sigma > 0.6\) (Process out of control)
 \item
@@ -9986,7 +9981,7 @@ We want to contrast the hypotheses
 \item
   Threshold limit \(\alpha=0.01\)
 \item
-  The acceptance region for \(H_0\): \(P(W\leq \chi^2_{0.01,19})=0.9\)
+  The acceptance region for \(H_0\): \(P(W\leq \chi^2_{0.01,19})=0.99\)
 \end{itemize}
 
 \[(0, \chi^2_{0.01,19})=(0,36.19)\]
@@ -10018,7 +10013,7 @@ That falls outside the acceptance region (inside the rejection zone)
 \setcounter{enumi}{1}
 \tightlist
 \item
-  For the upper tail \[pvalue=1-F_{\chi,19}^{-1}(37.24)= 0.006\]
+  For the upper tail \[pvalue=1-F_{\chi,19}^{-1}(37.79344)= 0.006\]
 \end{enumerate}
 
 R: 1-pchisq(37.79344, 19)
@@ -10077,7 +10072,7 @@ We usually aim to reject \(H_0\) (prosecutor):
 \hypertarget{errors-in-hypothesis-testing-1}{%
 \section{Errors in hypothesis testing}\label{errors-in-hypothesis-testing-1}}
 
-You take a sample of \(5\) PCR tests to test infection; \(H_0\) you are **not infected*
+You take \textbf{one} PCR to test infection; \(H_0\) you are \textbf{not infected}
 
 \begin{itemize}
 \tightlist
@@ -10393,7 +10388,7 @@ Under the \textbf{null hypothesis}, we consider that Hospital labeling, \(A\) or
 
 In this context, the same \textbf{standardized squared error} of before can be re-written as:
 
-\[W= \frac{(f_{no,A}-f_{no}f_{A})^2}{f_{no}f_{A}}+\frac{(f_{no,A}-f_{no}f_{B})^2}{f_{no}f_{B}}+\frac{(f_{yes,A}-f_{yes}f_{A})^2}{f_{yes}f_{A}}+\frac{(f_{yes,B}-f_{yes}f_{B})^2}{f_{yes}f_{B}}\]
+\[W= \frac{(f_{no,A}-f_{no}f_{A})^2}{f_{no}f_{A}}+\frac{(f_{no,B}-f_{no}f_{B})^2}{f_{no}f_{B}}+\frac{(f_{yes,A}-f_{yes}f_{A})^2}{f_{yes}f_{A}}+\frac{(f_{yes,B}-f_{yes}f_{B})^2}{f_{yes}f_{B}}\]
 
 Which are the squared differences between the
 
@@ -10405,7 +10400,7 @@ Which are the squared differences between the
   the \textbf{expected} frequencies under statistical independence \(f_{disease}*f_{hospital}\) (multiplication of marginals)
 \end{itemize}
 
-Therefore, equivalently, we can state that:
+Therefore, our hypothesis test is now:
 
 \begin{itemize}
 \tightlist
@@ -10484,9 +10479,9 @@ Then, if we take a sample of \(n=200\) (similar in number to hospital \(A\))
 
 \begin{itemize}
 \item
-  The null hypothesis (status quo) assumes that hospital \(A\) has the same parameter of both hospitals together \(H_0: p=\hat{p}\)
+  The null hypothesis (status quo) assumes that hospital \(A\) has the same parameter of both hospitals together \(H_0: p=64/600\)
 \item
-  The alternative hypothesis is the parameter of hospital \(A\) is lower than the parameter for both hospitals together \(H_1: p < \hat{p}\)
+  The alternative hypothesis is the parameter of hospital \(A\) is lower than the parameter for both hospitals together \(H_1: p < 64/600\)
 \end{itemize}
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
@@ -10500,7 +10495,7 @@ The probability of obtaining \(x\) hepatitis C cases in a sample of \(n\) drawn 
 
 \(P(X=x)=P(one\,sample) \times (Number\, of\, ways\, of\, obtaining\, x)\)
 
-\(=\frac{1}{\binom N n}\binom K x \binom {N-K} {n-x}\)
+\[=\frac{1}{\binom N n}\binom K x \binom {N-K} {n-x}\]
 
 where \(k \in \{\max(0, n+K-N), ... \min(K, n) \}\)
 
@@ -10517,12 +10512,12 @@ It has
 
 \begin{itemize}
 \item
-  mean: \(E (X) = n * K / N = np\)
+  mean: \(E (X) = n \frac{K}{N} = np_0\)
 \item
-  variance: \(V(X) = np (1-p)\frac{N-n}{N-1}\)
+  variance: \(V(X) = np_0(1-p_0)\frac{N-n}{N-1}\)
 \end{itemize}
 
-when \(p=K/N\) is the proportion of hepatitis C in a population of size \(N\).
+when \(p_0=\frac{K}{N}\) is the proportion of hepatitis C in a population of size \(N\).
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
@@ -10835,7 +10830,7 @@ The statistic \(D=\bar{Y}_A-\bar{Y}_B\) is an estimator of \(\delta\)
 
 More over if \(n_A\) and \(n_B\) are large (by CLT) then
 
-\[Z=\frac{E(D)-\delta}{\sqrt{V(D)}}=\frac{\bar{Y}_A-\bar{Y}_B -\delta}{\sqrt{\frac{\sigma^2_A}{n_A}+\frac{\sigma^2_B}{n_B}}} \rightarrow N(0,1)\]
+\[Z=\frac{D-\delta}{\sqrt{V(D)}}=\frac{\bar{Y}_A-\bar{Y}_B -\delta}{\sqrt{\frac{\sigma^2_A}{n_A}+\frac{\sigma^2_B}{n_B}}} \rightarrow N(0,1)\]
 
 is a normal standard variable.
 
@@ -11102,7 +11097,7 @@ The \textbf{pooled variance} \(s_p^2\), is an estimator of \(\sigma^2\)
 \begin{itemize}
 \tightlist
 \item
-  Is the of \(value\) lower than \(\alpha=0.05\)?
+  Is the \(pvalue\) lower than \(\alpha=0.05\)?
 \end{itemize}
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
@@ -14583,18 +14578,18 @@ hints:
 \hypertarget{exercise-2-9}{%
 \subsubsection{Exercise 2}\label{exercise-2-9}}
 
-compute \(95\%\) CI for the mean of a normal variable with known variance \(\sigma^2=9\) and \(\mu=22\)
+compute \(95\%\) CI the mean of a normal variable with known variance \(\sigma^2=9\) and \(\bar{x}=22\), using a sample of size \(36\).
 
 \hypertarget{exercise-3-6}{%
 \subsubsection{Exercise 3}\label{exercise-3-6}}
 
-This year a \(1000\) sample of patients with influenza developed complications.
+This year, \(17\) from \(1000\) of patients with influenza developed complications.
 
 \begin{itemize}
 \item
   Compute the \(99\%\) confidence interval for the proportion of complications.
 \item
-  The previous year \(2\%\) showed complications. Can we say with \(99\%\) confidence that this year there is a significnat drop in influenza complications?
+  The previous year \(2\%\) showed complications. Can we say with \(99\%\) confidence that this year there is a significant drop in influenza complications?
 \end{itemize}
 
 \hypertarget{hypothesis-testing-7}{%
@@ -14606,11 +14601,21 @@ This year a \(1000\) sample of patients with influenza developed complications.
 Imagine we take a random sample of size \(n = 41\) of a normal random variable \(X\), and find that the sample average is \(10\) and the sample variance is \(1.5\).
 
 \begin{itemize}
+\tightlist
 \item
-  What is then the confidence interval at \(90\%\) confidence level?
-\item
-  Test the hypothesis that the mean of \(X\) is greater than \(10.5\), using a \(5\%\) significance threshold.
+  What is then the confidence interval for the mean of \(X\) at \(95\%\) confidence level?
 \end{itemize}
+
+Consider that \(t_{0.025,40}=\) qt(0.975, 40) \(\sim 2\).
+
+\begin{itemize}
+\item
+  Test the hypothesis that the mean of \(X\) is \textbf{different} than \(10.5\), using a \(5\%\) significance threshold.
+\item
+  Write the code to calculate the P-value to test the hypothesis that the mean of \(\mu\) is \textbf{lower} than \(10.5\), using a \(5\%\) significance threshold.
+\end{itemize}
+
+Consider that the code for the T probability distribution with \(n-1\) degrees of freedom is pt(tobs, n-1).
 
 \hypertarget{exercise-2-10}{%
 \subsubsection{Exercise 2}\label{exercise-2-10}}

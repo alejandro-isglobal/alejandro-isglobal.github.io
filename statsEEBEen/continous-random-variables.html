@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 6 Continous Random Variables | Stats theory (SDA)</title>
+  <meta name="description" content="This are slides for the Stats theory of the BIST master" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 6 Continous Random Variables | Stats theory (SDA)" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This are slides for the Stats theory of the BIST master" />
+  <meta name="github-repo" content="alejandro-isglobal/master" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 6 Continous Random Variables | Stats theory (SDA)" />
+  
+  <meta name="twitter:description" content="This are slides for the Stats theory of the BIST master" />
+  
+
+<meta name="author" content="Alejandro Caceres" />
+
+
+<meta name="date" content="2022-09-29" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="discrete-random-variables.html"/>
+<link rel="next" href="exercises.html"/>
+<script src="libs/header-attrs-2.12/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">A Minimal Book Example</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> About<span></span></a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#recommended-reading-list"><i class="fa fa-check"></i><b>1.1</b> Recommended reading list<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="data-description.html"><a href="data-description.html"><i class="fa fa-check"></i><b>2</b> Data description<span></span></a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="data-description.html"><a href="data-description.html#objective"><i class="fa fa-check"></i><b>2.1</b> Objective<span></span></a></li>
+<li class="chapter" data-level="2.2" data-path="data-description.html"><a href="data-description.html#statistics"><i class="fa fa-check"></i><b>2.2</b> Statistics<span></span></a></li>
+<li class="chapter" data-level="2.3" data-path="data-description.html"><a href="data-description.html#scientific-method"><i class="fa fa-check"></i><b>2.3</b> Scientific method<span></span></a></li>
+<li class="chapter" data-level="2.4" data-path="data-description.html"><a href="data-description.html#outcome"><i class="fa fa-check"></i><b>2.4</b> Outcome<span></span></a></li>
+<li class="chapter" data-level="2.5" data-path="data-description.html"><a href="data-description.html#types-of-outcome"><i class="fa fa-check"></i><b>2.5</b> Types of outcome<span></span></a></li>
+<li class="chapter" data-level="2.6" data-path="data-description.html"><a href="data-description.html#random-experiments"><i class="fa fa-check"></i><b>2.6</b> Random experiments<span></span></a></li>
+<li class="chapter" data-level="2.7" data-path="data-description.html"><a href="data-description.html#absolute-frequencies"><i class="fa fa-check"></i><b>2.7</b> Absolute frequencies<span></span></a></li>
+<li class="chapter" data-level="2.8" data-path="data-description.html"><a href="data-description.html#example"><i class="fa fa-check"></i><b>2.8</b> Example<span></span></a></li>
+<li class="chapter" data-level="2.9" data-path="data-description.html"><a href="data-description.html#relative-frequencies"><i class="fa fa-check"></i><b>2.9</b> Relative frequencies<span></span></a></li>
+<li class="chapter" data-level="2.10" data-path="data-description.html"><a href="data-description.html#example-1"><i class="fa fa-check"></i><b>2.10</b> Example<span></span></a></li>
+<li class="chapter" data-level="2.11" data-path="data-description.html"><a href="data-description.html#bar-plot"><i class="fa fa-check"></i><b>2.11</b> Bar plot<span></span></a></li>
+<li class="chapter" data-level="2.12" data-path="data-description.html"><a href="data-description.html#pie-chart"><i class="fa fa-check"></i><b>2.12</b> Pie chart<span></span></a></li>
+<li class="chapter" data-level="2.13" data-path="data-description.html"><a href="data-description.html#categorical-and-ordered-variables"><i class="fa fa-check"></i><b>2.13</b> Categorical and ordered variables<span></span></a></li>
+<li class="chapter" data-level="2.14" data-path="data-description.html"><a href="data-description.html#example-2"><i class="fa fa-check"></i><b>2.14</b> Example<span></span></a></li>
+<li class="chapter" data-level="2.15" data-path="data-description.html"><a href="data-description.html#absolute-and-relative-cumulative-frequencies"><i class="fa fa-check"></i><b>2.15</b> Absolute and relative cumulative frequencies<span></span></a></li>
+<li class="chapter" data-level="2.16" data-path="data-description.html"><a href="data-description.html#frequency-table"><i class="fa fa-check"></i><b>2.16</b> Frequency table<span></span></a></li>
+<li class="chapter" data-level="2.17" data-path="data-description.html"><a href="data-description.html#cumulative-frequency-plot"><i class="fa fa-check"></i><b>2.17</b> Cumulative frequency plot<span></span></a></li>
+<li class="chapter" data-level="2.18" data-path="data-description.html"><a href="data-description.html#continuous-variables"><i class="fa fa-check"></i><b>2.18</b> Continuous variables<span></span></a></li>
+<li class="chapter" data-level="2.19" data-path="data-description.html"><a href="data-description.html#bins"><i class="fa fa-check"></i><b>2.19</b> Bins<span></span></a></li>
+<li class="chapter" data-level="2.20" data-path="data-description.html"><a href="data-description.html#create-a-categorical-variable-from-a-continuous-one"><i class="fa fa-check"></i><b>2.20</b> Create a categorical variable from a continuous one<span></span></a></li>
+<li class="chapter" data-level="2.21" data-path="data-description.html"><a href="data-description.html#frequency-table-for-a-continuous-variable"><i class="fa fa-check"></i><b>2.21</b> Frequency table for a continuous variable<span></span></a></li>
+<li class="chapter" data-level="2.22" data-path="data-description.html"><a href="data-description.html#histogram"><i class="fa fa-check"></i><b>2.22</b> Histogram<span></span></a></li>
+<li class="chapter" data-level="2.23" data-path="data-description.html"><a href="data-description.html#histogram-1"><i class="fa fa-check"></i><b>2.23</b> Histogram<span></span></a></li>
+<li class="chapter" data-level="2.24" data-path="data-description.html"><a href="data-description.html#cumulative-frequency-plot-continous-variables"><i class="fa fa-check"></i><b>2.24</b> Cumulative frequency plot: Continous variables<span></span></a></li>
+<li class="chapter" data-level="2.25" data-path="data-description.html"><a href="data-description.html#summary-statistics"><i class="fa fa-check"></i><b>2.25</b> Summary statistics<span></span></a></li>
+<li class="chapter" data-level="2.26" data-path="data-description.html"><a href="data-description.html#average"><i class="fa fa-check"></i><b>2.26</b> Average<span></span></a></li>
+<li class="chapter" data-level="2.27" data-path="data-description.html"><a href="data-description.html#average-categorical-ordered"><i class="fa fa-check"></i><b>2.27</b> Average (categorical ordered)<span></span></a></li>
+<li class="chapter" data-level="2.28" data-path="data-description.html"><a href="data-description.html#average-categorical-ordered-1"><i class="fa fa-check"></i><b>2.28</b> Average (categorical ordered)<span></span></a></li>
+<li class="chapter" data-level="2.29" data-path="data-description.html"><a href="data-description.html#average-1"><i class="fa fa-check"></i><b>2.29</b> Average<span></span></a></li>
+<li class="chapter" data-level="2.30" data-path="data-description.html"><a href="data-description.html#average-2"><i class="fa fa-check"></i><b>2.30</b> Average<span></span></a></li>
+<li class="chapter" data-level="2.31" data-path="data-description.html"><a href="data-description.html#median"><i class="fa fa-check"></i><b>2.31</b> Median<span></span></a></li>
+<li class="chapter" data-level="2.32" data-path="data-description.html"><a href="data-description.html#median-vs-average"><i class="fa fa-check"></i><b>2.32</b> Median Vs Average<span></span></a></li>
+<li class="chapter" data-level="2.33" data-path="data-description.html"><a href="data-description.html#dispersion"><i class="fa fa-check"></i><b>2.33</b> Dispersion<span></span></a></li>
+<li class="chapter" data-level="2.34" data-path="data-description.html"><a href="data-description.html#dispersion-1"><i class="fa fa-check"></i><b>2.34</b> Dispersion<span></span></a></li>
+<li class="chapter" data-level="2.35" data-path="data-description.html"><a href="data-description.html#sample-variance"><i class="fa fa-check"></i><b>2.35</b> Sample variance<span></span></a></li>
+<li class="chapter" data-level="2.36" data-path="data-description.html"><a href="data-description.html#sample-variance-1"><i class="fa fa-check"></i><b>2.36</b> Sample variance<span></span></a></li>
+<li class="chapter" data-level="2.37" data-path="data-description.html"><a href="data-description.html#standard-deviation"><i class="fa fa-check"></i><b>2.37</b> Standard deviation<span></span></a></li>
+<li class="chapter" data-level="2.38" data-path="data-description.html"><a href="data-description.html#iqr"><i class="fa fa-check"></i><b>2.38</b> IQR<span></span></a></li>
+<li class="chapter" data-level="2.39" data-path="data-description.html"><a href="data-description.html#iqr-1"><i class="fa fa-check"></i><b>2.39</b> IQR<span></span></a></li>
+<li class="chapter" data-level="2.40" data-path="data-description.html"><a href="data-description.html#box-plot"><i class="fa fa-check"></i><b>2.40</b> Box plot<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="probability.html"><a href="probability.html"><i class="fa fa-check"></i><b>3</b> Probability<span></span></a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="probability.html"><a href="probability.html#objective-1"><i class="fa fa-check"></i><b>3.1</b> Objective<span></span></a></li>
+<li class="chapter" data-level="3.2" data-path="probability.html"><a href="probability.html#random-experiments-1"><i class="fa fa-check"></i><b>3.2</b> Random experiments<span></span></a></li>
+<li class="chapter" data-level="3.3" data-path="probability.html"><a href="probability.html#probability-1"><i class="fa fa-check"></i><b>3.3</b> Probability<span></span></a></li>
+<li class="chapter" data-level="3.4" data-path="probability.html"><a href="probability.html#example-3"><i class="fa fa-check"></i><b>3.4</b> Example<span></span></a></li>
+<li class="chapter" data-level="3.5" data-path="probability.html"><a href="probability.html#example-4"><i class="fa fa-check"></i><b>3.5</b> Example<span></span></a></li>
+<li class="chapter" data-level="3.6" data-path="probability.html"><a href="probability.html#relative-frequency"><i class="fa fa-check"></i><b>3.6</b> Relative frequency<span></span></a></li>
+<li class="chapter" data-level="3.7" data-path="probability.html"><a href="probability.html#at-infinity"><i class="fa fa-check"></i><b>3.7</b> At infinity<span></span></a></li>
+<li class="chapter" data-level="3.8" data-path="probability.html"><a href="probability.html#frequentist-probability"><i class="fa fa-check"></i><b>3.8</b> Frequentist probability<span></span></a></li>
+<li class="chapter" data-level="3.9" data-path="probability.html"><a href="probability.html#classical-probability"><i class="fa fa-check"></i><b>3.9</b> Classical Probability<span></span></a></li>
+<li class="chapter" data-level="3.10" data-path="probability.html"><a href="probability.html#classical-and-frequentist-probabilities"><i class="fa fa-check"></i><b>3.10</b> Classical and frequentist probabilities<span></span></a></li>
+<li class="chapter" data-level="3.11" data-path="probability.html"><a href="probability.html#probability-2"><i class="fa fa-check"></i><b>3.11</b> Probability<span></span></a></li>
+<li class="chapter" data-level="3.12" data-path="probability.html"><a href="probability.html#sample-space"><i class="fa fa-check"></i><b>3.12</b> Sample space<span></span></a></li>
+<li class="chapter" data-level="3.13" data-path="probability.html"><a href="probability.html#examples-of-sample-spaces"><i class="fa fa-check"></i><b>3.13</b> Examples of sample spaces<span></span></a></li>
+<li class="chapter" data-level="3.14" data-path="probability.html"><a href="probability.html#discrete-and-continuous-sample-spaces"><i class="fa fa-check"></i><b>3.14</b> Discrete and continuous sample spaces<span></span></a></li>
+<li class="chapter" data-level="3.15" data-path="probability.html"><a href="probability.html#event"><i class="fa fa-check"></i><b>3.15</b> Event<span></span></a></li>
+<li class="chapter" data-level="3.16" data-path="probability.html"><a href="probability.html#event-operations"><i class="fa fa-check"></i><b>3.16</b> Event operations<span></span></a></li>
+<li class="chapter" data-level="3.17" data-path="probability.html"><a href="probability.html#event-operations-example"><i class="fa fa-check"></i><b>3.17</b> Event operations example<span></span></a></li>
+<li class="chapter" data-level="3.18" data-path="probability.html"><a href="probability.html#outcomes"><i class="fa fa-check"></i><b>3.18</b> Outcomes<span></span></a></li>
+<li class="chapter" data-level="3.19" data-path="probability.html"><a href="probability.html#probability-definition"><i class="fa fa-check"></i><b>3.19</b> Probability definition<span></span></a></li>
+<li class="chapter" data-level="3.20" data-path="probability.html"><a href="probability.html#probability-properties"><i class="fa fa-check"></i><b>3.20</b> Probability properties<span></span></a></li>
+<li class="chapter" data-level="3.21" data-path="probability.html"><a href="probability.html#addition-rule"><i class="fa fa-check"></i><b>3.21</b> Addition Rule<span></span></a></li>
+<li class="chapter" data-level="3.22" data-path="probability.html"><a href="probability.html#example-addition-rule"><i class="fa fa-check"></i><b>3.22</b> Example Addition Rule<span></span></a></li>
+<li class="chapter" data-level="3.23" data-path="probability.html"><a href="probability.html#venn-diagram"><i class="fa fa-check"></i><b>3.23</b> Venn diagram<span></span></a></li>
+<li class="chapter" data-level="3.24" data-path="probability.html"><a href="probability.html#probability-table"><i class="fa fa-check"></i><b>3.24</b> Probability table<span></span></a></li>
+<li class="chapter" data-level="3.25" data-path="probability.html"><a href="probability.html#example-probability-table"><i class="fa fa-check"></i><b>3.25</b> Example probability table<span></span></a></li>
+<li class="chapter" data-level="3.26" data-path="probability.html"><a href="probability.html#contingency-table"><i class="fa fa-check"></i><b>3.26</b> Contingency table<span></span></a></li>
+<li class="chapter" data-level="3.27" data-path="probability.html"><a href="probability.html#example-contingency-table"><i class="fa fa-check"></i><b>3.27</b> Example contingency table<span></span></a></li>
+<li class="chapter" data-level="3.28" data-path="probability.html"><a href="probability.html#misophonia-study"><i class="fa fa-check"></i><b>3.28</b> Misophonia study<span></span></a></li>
+<li class="chapter" data-level="3.29" data-path="probability.html"><a href="probability.html#contingency-table-for-frequencies"><i class="fa fa-check"></i><b>3.29</b> Contingency table for frequencies<span></span></a></li>
+<li class="chapter" data-level="3.30" data-path="probability.html"><a href="probability.html#heat-map"><i class="fa fa-check"></i><b>3.30</b> Heat map<span></span></a></li>
+<li class="chapter" data-level="3.31" data-path="probability.html"><a href="probability.html#continous-variables"><i class="fa fa-check"></i><b>3.31</b> Continous variables<span></span></a></li>
+<li class="chapter" data-level="3.32" data-path="probability.html"><a href="probability.html#heat-map-for-continuous-variables"><i class="fa fa-check"></i><b>3.32</b> Heat map for continuous variables<span></span></a></li>
+<li class="chapter" data-level="3.33" data-path="probability.html"><a href="probability.html#scatter-plot"><i class="fa fa-check"></i><b>3.33</b> Scatter plot<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="conditional-probability.html"><a href="conditional-probability.html"><i class="fa fa-check"></i><b>4</b> Conditional Probability<span></span></a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="conditional-probability.html"><a href="conditional-probability.html#objective-2"><i class="fa fa-check"></i><b>4.1</b> Objective<span></span></a></li>
+<li class="chapter" data-level="4.2" data-path="conditional-probability.html"><a href="conditional-probability.html#joint-probability"><i class="fa fa-check"></i><b>4.2</b> Joint Probability<span></span></a></li>
+<li class="chapter" data-level="4.3" data-path="conditional-probability.html"><a href="conditional-probability.html#diagnostics"><i class="fa fa-check"></i><b>4.3</b> Diagnostics<span></span></a></li>
+<li class="chapter" data-level="4.4" data-path="conditional-probability.html"><a href="conditional-probability.html#diagnostics-test"><i class="fa fa-check"></i><b>4.4</b> Diagnostics Test<span></span></a></li>
+<li class="chapter" data-level="4.5" data-path="conditional-probability.html"><a href="conditional-probability.html#observations"><i class="fa fa-check"></i><b>4.5</b> Observations<span></span></a></li>
+<li class="chapter" data-level="4.6" data-path="conditional-probability.html"><a href="conditional-probability.html#contingency-tables"><i class="fa fa-check"></i><b>4.6</b> Contingency tables<span></span></a></li>
+<li class="chapter" data-level="4.7" data-path="conditional-probability.html"><a href="conditional-probability.html#conditional-probability-1"><i class="fa fa-check"></i><b>4.7</b> Conditional probability<span></span></a></li>
+<li class="chapter" data-level="4.8" data-path="conditional-probability.html"><a href="conditional-probability.html#conditional-probability-2"><i class="fa fa-check"></i><b>4.8</b> Conditional probability<span></span></a></li>
+<li class="chapter" data-level="4.9" data-path="conditional-probability.html"><a href="conditional-probability.html#conditional-contingency-table"><i class="fa fa-check"></i><b>4.9</b> Conditional contingency table<span></span></a></li>
+<li class="chapter" data-level="4.10" data-path="conditional-probability.html"><a href="conditional-probability.html#example-conditional-contingency-table"><i class="fa fa-check"></i><b>4.10</b> Example conditional contingency table<span></span></a></li>
+<li class="chapter" data-level="4.11" data-path="conditional-probability.html"><a href="conditional-probability.html#multiplication-rule"><i class="fa fa-check"></i><b>4.11</b> Multiplication rule<span></span></a></li>
+<li class="chapter" data-level="4.12" data-path="conditional-probability.html"><a href="conditional-probability.html#diagnostic-performance"><i class="fa fa-check"></i><b>4.12</b> Diagnostic performance<span></span></a></li>
+<li class="chapter" data-level="4.13" data-path="conditional-probability.html"><a href="conditional-probability.html#multiplication-rule-1"><i class="fa fa-check"></i><b>4.13</b> Multiplication rule<span></span></a></li>
+<li class="chapter" data-level="4.14" data-path="conditional-probability.html"><a href="conditional-probability.html#contingency-table-in-terms-of-conditional-probabilities"><i class="fa fa-check"></i><b>4.14</b> Contingency table in terms of conditional probabilities<span></span></a></li>
+<li class="chapter" data-level="4.15" data-path="conditional-probability.html"><a href="conditional-probability.html#conditional-tree"><i class="fa fa-check"></i><b>4.15</b> Conditional tree<span></span></a></li>
+<li class="chapter" data-level="4.16" data-path="conditional-probability.html"><a href="conditional-probability.html#contingency-table-in-terms-of-conditional-probabilities-1"><i class="fa fa-check"></i><b>4.16</b> Contingency table in terms of conditional probabilities<span></span></a></li>
+<li class="chapter" data-level="4.17" data-path="conditional-probability.html"><a href="conditional-probability.html#total-probability-rule"><i class="fa fa-check"></i><b>4.17</b> Total probability rule<span></span></a></li>
+<li class="chapter" data-level="4.18" data-path="conditional-probability.html"><a href="conditional-probability.html#conditional-tree-1"><i class="fa fa-check"></i><b>4.18</b> Conditional tree<span></span></a></li>
+<li class="chapter" data-level="4.19" data-path="conditional-probability.html"><a href="conditional-probability.html#finding-reverse-probabilities"><i class="fa fa-check"></i><b>4.19</b> Finding reverse probabilities<span></span></a></li>
+<li class="chapter" data-level="4.20" data-path="conditional-probability.html"><a href="conditional-probability.html#recover-joint-probabilities"><i class="fa fa-check"></i><b>4.20</b> Recover joint probabilities<span></span></a></li>
+<li class="chapter" data-level="4.21" data-path="conditional-probability.html"><a href="conditional-probability.html#reverse-conditionals"><i class="fa fa-check"></i><b>4.21</b> Reverse conditionals<span></span></a></li>
+<li class="chapter" data-level="4.22" data-path="conditional-probability.html"><a href="conditional-probability.html#bayes-theorem"><i class="fa fa-check"></i><b>4.22</b> Baye’s theorem<span></span></a></li>
+<li class="chapter" data-level="4.23" data-path="conditional-probability.html"><a href="conditional-probability.html#example-bayes-theorem"><i class="fa fa-check"></i><b>4.23</b> Example: Bayes’ theorem<span></span></a></li>
+<li class="chapter" data-level="4.24" data-path="conditional-probability.html"><a href="conditional-probability.html#example-bayes-theorem-1"><i class="fa fa-check"></i><b>4.24</b> Example: Bayes’ theorem<span></span></a></li>
+<li class="chapter" data-level="4.25" data-path="conditional-probability.html"><a href="conditional-probability.html#statistical-independence"><i class="fa fa-check"></i><b>4.25</b> Statistical independence<span></span></a></li>
+<li class="chapter" data-level="4.26" data-path="conditional-probability.html"><a href="conditional-probability.html#statistical-independence-1"><i class="fa fa-check"></i><b>4.26</b> Statistical independence<span></span></a></li>
+<li class="chapter" data-level="4.27" data-path="conditional-probability.html"><a href="conditional-probability.html#statistical-independence-2"><i class="fa fa-check"></i><b>4.27</b> Statistical independence<span></span></a></li>
+<li class="chapter" data-level="4.28" data-path="conditional-probability.html"><a href="conditional-probability.html#statistical-independence-3"><i class="fa fa-check"></i><b>4.28</b> Statistical independence<span></span></a></li>
+<li class="chapter" data-level="4.29" data-path="conditional-probability.html"><a href="conditional-probability.html#products-of-marginals-products"><i class="fa fa-check"></i><b>4.29</b> Products of marginals products<span></span></a></li>
+<li class="chapter" data-level="4.30" data-path="conditional-probability.html"><a href="conditional-probability.html#example-5"><i class="fa fa-check"></i><b>4.30</b> Example<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html"><i class="fa fa-check"></i><b>5</b> Discrete Random Variables<span></span></a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html#objective-3"><i class="fa fa-check"></i><b>5.1</b> Objective<span></span></a></li>
+<li class="chapter" data-level="5.2" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html#how-do-we-assign-probability-values-to-outcomes"><i class="fa fa-check"></i><b>5.2</b> How do we assign probability values to outcomes?<span></span></a></li>
+<li class="chapter" data-level="5.3" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html#random-variable"><i class="fa fa-check"></i><b>5.3</b> Random variable<span></span></a></li>
+<li class="chapter" data-level="5.4" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html#random-variable-1"><i class="fa fa-check"></i><b>5.4</b> Random variable<span></span></a></li>
+<li class="chapter" data-level="5.5" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html#events-of-observing-a-random-variable"><i class="fa fa-check"></i><b>5.5</b> Events of observing a random variable<span></span></a></li>
+<li class="chapter" data-level="5.6" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html#probability-of-random-variables"><i class="fa fa-check"></i><b>5.6</b> Probability of random variables<span></span></a></li>
+<li class="chapter" data-level="5.7" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html#probability-functions"><i class="fa fa-check"></i><b>5.7</b> Probability functions<span></span></a></li>
+<li class="chapter" data-level="5.8" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html#probability-functions-1"><i class="fa fa-check"></i><b>5.8</b> Probability functions<span></span></a></li>
+<li class="chapter" data-level="5.9" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html#probability-functions-2"><i class="fa fa-check"></i><b>5.9</b> Probability functions<span></span></a></li>
+<li class="chapter" data-level="5.10" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html#probability-functions-3"><i class="fa fa-check"></i><b>5.10</b> Probability functions<span></span></a></li>
+<li class="chapter" data-level="5.11" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html#example-probability-mass-function"><i class="fa fa-check"></i><b>5.11</b> Example: Probability mass function<span></span></a></li>
+<li class="chapter" data-level="5.12" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html#probability-table-for-equally-likely-outcomes"><i class="fa fa-check"></i><b>5.12</b> Probability table for equally likely outcomes<span></span></a></li>
+<li class="chapter" data-level="5.13" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html#probability-table-for-x"><i class="fa fa-check"></i><b>5.13</b> Probability table for <span class="math inline">\(X\)</span><span></span></a></li>
+<li class="chapter" data-level="5.14" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html#example-6"><i class="fa fa-check"></i><b>5.14</b> Example<span></span></a></li>
+<li class="chapter" data-level="5.15" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html#example-7"><i class="fa fa-check"></i><b>5.15</b> Example<span></span></a></li>
+<li class="chapter" data-level="5.16" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html#probabilities-and-frequencies"><i class="fa fa-check"></i><b>5.16</b> Probabilities and frequencies<span></span></a></li>
+<li class="chapter" data-level="5.17" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html#probabilities-and-relative-frequencies"><i class="fa fa-check"></i><b>5.17</b> Probabilities and relative frequencies<span></span></a></li>
+<li class="chapter" data-level="5.18" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html#mean-and-variance"><i class="fa fa-check"></i><b>5.18</b> Mean and Variance<span></span></a></li>
+<li class="chapter" data-level="5.19" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html#mean-and-variance-1"><i class="fa fa-check"></i><b>5.19</b> Mean and Variance<span></span></a></li>
+<li class="chapter" data-level="5.20" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html#mean"><i class="fa fa-check"></i><b>5.20</b> Mean<span></span></a></li>
+<li class="chapter" data-level="5.21" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html#example-mean"><i class="fa fa-check"></i><b>5.21</b> Example: Mean<span></span></a></li>
+<li class="chapter" data-level="5.22" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html#variance"><i class="fa fa-check"></i><b>5.22</b> Variance<span></span></a></li>
+<li class="chapter" data-level="5.23" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html#example-variance"><i class="fa fa-check"></i><b>5.23</b> Example: Variance<span></span></a></li>
+<li class="chapter" data-level="5.24" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html#functions-of-x"><i class="fa fa-check"></i><b>5.24</b> Functions of <span class="math inline">\(X\)</span><span></span></a></li>
+<li class="chapter" data-level="5.25" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html#example-variance-about-the-origin"><i class="fa fa-check"></i><b>5.25</b> Example: Variance about the origin<span></span></a></li>
+<li class="chapter" data-level="5.26" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html#probability-distribution"><i class="fa fa-check"></i><b>5.26</b> Probability distribution<span></span></a></li>
+<li class="chapter" data-level="5.27" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html#example-probability-distribution"><i class="fa fa-check"></i><b>5.27</b> Example: Probability distribution<span></span></a></li>
+<li class="chapter" data-level="5.28" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html#probability-distribution-1"><i class="fa fa-check"></i><b>5.28</b> Probability distribution<span></span></a></li>
+<li class="chapter" data-level="5.29" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html#probability-function-and-probability-distribution"><i class="fa fa-check"></i><b>5.29</b> Probability function and Probability distribution<span></span></a></li>
+<li class="chapter" data-level="5.30" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html#probability-function-and-probability-distribution-1"><i class="fa fa-check"></i><b>5.30</b> Probability function and Probability distribution<span></span></a></li>
+<li class="chapter" data-level="5.31" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html#quantiles"><i class="fa fa-check"></i><b>5.31</b> Quantiles<span></span></a></li>
+<li class="chapter" data-level="5.32" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html#summary"><i class="fa fa-check"></i><b>5.32</b> Summary<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="continous-random-variables.html"><a href="continous-random-variables.html"><i class="fa fa-check"></i><b>6</b> Continous Random Variables<span></span></a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="continous-random-variables.html"><a href="continous-random-variables.html#objective-4"><i class="fa fa-check"></i><b>6.1</b> Objective<span></span></a></li>
+<li class="chapter" data-level="6.2" data-path="continous-random-variables.html"><a href="continous-random-variables.html#continuous-random-variable"><i class="fa fa-check"></i><b>6.2</b> Continuous random variable<span></span></a></li>
+<li class="chapter" data-level="6.3" data-path="continous-random-variables.html"><a href="continous-random-variables.html#continuous-random-variable-1"><i class="fa fa-check"></i><b>6.3</b> Continuous random variable<span></span></a></li>
+<li class="chapter" data-level="6.4" data-path="continous-random-variables.html"><a href="continous-random-variables.html#continuous-random-variable-2"><i class="fa fa-check"></i><b>6.4</b> Continuous random variable<span></span></a></li>
+<li class="chapter" data-level="6.5" data-path="continous-random-variables.html"><a href="continous-random-variables.html#continuous-random-variable-3"><i class="fa fa-check"></i><b>6.5</b> Continuous random variable<span></span></a></li>
+<li class="chapter" data-level="6.6" data-path="continous-random-variables.html"><a href="continous-random-variables.html#continuous-random-variable-4"><i class="fa fa-check"></i><b>6.6</b> Continuous random variable<span></span></a></li>
+<li class="chapter" data-level="6.7" data-path="continous-random-variables.html"><a href="continous-random-variables.html#total-area-under-the-curve"><i class="fa fa-check"></i><b>6.7</b> Total area under the curve<span></span></a></li>
+<li class="chapter" data-level="6.8" data-path="continous-random-variables.html"><a href="continous-random-variables.html#area-under-the-curve"><i class="fa fa-check"></i><b>6.8</b> Area under the curve<span></span></a></li>
+<li class="chapter" data-level="6.9" data-path="continous-random-variables.html"><a href="continous-random-variables.html#area-under-the-curve-1"><i class="fa fa-check"></i><b>6.9</b> Area under the curve<span></span></a></li>
+<li class="chapter" data-level="6.10" data-path="continous-random-variables.html"><a href="continous-random-variables.html#probability-distribution-2"><i class="fa fa-check"></i><b>6.10</b> Probability distribution<span></span></a></li>
+<li class="chapter" data-level="6.11" data-path="continous-random-variables.html"><a href="continous-random-variables.html#probability-distribution-3"><i class="fa fa-check"></i><b>6.11</b> Probability distribution<span></span></a></li>
+<li class="chapter" data-level="6.12" data-path="continous-random-variables.html"><a href="continous-random-variables.html#probability-distribution-4"><i class="fa fa-check"></i><b>6.12</b> Probability distribution<span></span></a></li>
+<li class="chapter" data-level="6.13" data-path="continous-random-variables.html"><a href="continous-random-variables.html#probability-distribution-5"><i class="fa fa-check"></i><b>6.13</b> Probability distribution<span></span></a></li>
+<li class="chapter" data-level="6.14" data-path="continous-random-variables.html"><a href="continous-random-variables.html#probability-graphics"><i class="fa fa-check"></i><b>6.14</b> Probability graphics<span></span></a></li>
+<li class="chapter" data-level="6.15" data-path="continous-random-variables.html"><a href="continous-random-variables.html#probability-graphics-1"><i class="fa fa-check"></i><b>6.15</b> Probability graphics<span></span></a></li>
+<li class="chapter" data-level="6.16" data-path="continous-random-variables.html"><a href="continous-random-variables.html#mean-1"><i class="fa fa-check"></i><b>6.16</b> Mean<span></span></a></li>
+<li class="chapter" data-level="6.17" data-path="continous-random-variables.html"><a href="continous-random-variables.html#mean-2"><i class="fa fa-check"></i><b>6.17</b> Mean<span></span></a></li>
+<li class="chapter" data-level="6.18" data-path="continous-random-variables.html"><a href="continous-random-variables.html#variance-1"><i class="fa fa-check"></i><b>6.18</b> Variance<span></span></a></li>
+<li class="chapter" data-level="6.19" data-path="continous-random-variables.html"><a href="continous-random-variables.html#functions-of-x-1"><i class="fa fa-check"></i><b>6.19</b> Functions of <span class="math inline">\(X\)</span><span></span></a></li>
+<li class="chapter" data-level="6.20" data-path="continous-random-variables.html"><a href="continous-random-variables.html#example-8"><i class="fa fa-check"></i><b>6.20</b> Example<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="exercises.html"><a href="exercises.html"><i class="fa fa-check"></i><b>7</b> Exercises<span></span></a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="exercises.html"><a href="exercises.html#data-description-1"><i class="fa fa-check"></i><b>7.1</b> Data description<span></span></a></li>
+<li class="chapter" data-level="7.2" data-path="exercises.html"><a href="exercises.html#probability-3"><i class="fa fa-check"></i><b>7.2</b> Probability<span></span></a></li>
+<li class="chapter" data-level="7.3" data-path="exercises.html"><a href="exercises.html#conditional-probability-3"><i class="fa fa-check"></i><b>7.3</b> Conditional Probability<span></span></a></li>
+<li class="chapter" data-level="7.4" data-path="exercises.html"><a href="exercises.html#random-variables"><i class="fa fa-check"></i><b>7.4</b> Random variables<span></span></a></li>
+<li class="chapter" data-level="7.5" data-path="exercises.html"><a href="exercises.html#probability-models"><i class="fa fa-check"></i><b>7.5</b> Probability Models<span></span></a></li>
+<li class="chapter" data-level="7.6" data-path="exercises.html"><a href="exercises.html#point-estimators"><i class="fa fa-check"></i><b>7.6</b> Point Estimators<span></span></a></li>
+<li class="chapter" data-level="7.7" data-path="exercises.html"><a href="exercises.html#sampling-and-central-limit-theorem"><i class="fa fa-check"></i><b>7.7</b> Sampling and Central Limit Theorem<span></span></a></li>
+<li class="chapter" data-level="7.8" data-path="exercises.html"><a href="exercises.html#maximum-likelihood"><i class="fa fa-check"></i><b>7.8</b> Maximum likelihood<span></span></a></li>
+<li class="chapter" data-level="7.9" data-path="exercises.html"><a href="exercises.html#method-of-moments"><i class="fa fa-check"></i><b>7.9</b> Method of moments<span></span></a></li>
+<li class="chapter" data-level="7.10" data-path="exercises.html"><a href="exercises.html#confidence-intervals"><i class="fa fa-check"></i><b>7.10</b> Confidence intervals<span></span></a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Stats theory (SDA)</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="continous-random-variables" class="section level1 hasAnchor" number="6">
+<h1><span class="header-section-number">Chapter 6</span> Continous Random Variables<a href="continous-random-variables.html#continous-random-variables" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="objective-4" class="section level2 hasAnchor" number="6.1">
+<h2><span class="header-section-number">6.1</span> Objective<a href="continous-random-variables.html#objective-4" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li>Probability density function</li>
+<li>Mean and variance</li>
+<li>Probability distribution</li>
+</ul>
+<hr />
+<hr />
+</div>
+<div id="continuous-random-variable" class="section level2 hasAnchor" number="6.2">
+<h2><span class="header-section-number">6.2</span> Continuous random variable<a href="continous-random-variables.html#continuous-random-variable" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>What happens with continuous random variables?</p>
+<p>Let’s reconsider the convexity angle of misophonia patients (Section 2.21).</p>
+<ul>
+<li>We redefined the outcomes as little regular intervals (bins) and computed the relative frequency for each of them as we did in the discrete case.</li>
+</ul>
+<pre><code>##        outcome ni         fi
+## 1 [-1.02,3.46]  8 0.06504065
+## 2  (3.46,7.92] 51 0.41463415
+## 3  (7.92,12.4] 26 0.21138211
+## 4  (12.4,16.8] 20 0.16260163
+## 5  (16.8,21.3] 18 0.14634146</code></pre>
+<hr />
+<hr />
+</div>
+<div id="continuous-random-variable-1" class="section level2 hasAnchor" number="6.3">
+<h2><span class="header-section-number">6.3</span> Continuous random variable<a href="continous-random-variables.html#continuous-random-variable-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Let’s consider again that their relative frequencies are the probabilities when <span class="math inline">\(N \rightarrow \infty\)</span></p>
+<p><span class="math display">\[f_i=\frac{n_i}{N} \rightarrow f(x_i)=P(X=x_i)\]</span></p>
+<p>The probability depends now on the length of the bins <span class="math inline">\(\Delta x\)</span>. If we make the bins smaller and smaller then the frequencies get smaller and therefore</p>
+<p><span class="math inline">\(P(X=x_i) \rightarrow 0\)</span> when <span class="math inline">\(\Delta x \rightarrow 0\)</span>, because <span class="math inline">\(n_i \rightarrow 0\)</span></p>
+<pre><code>##          outcome ni         fi
+## 1  [-1.02,0.115]  2 0.01626016
+## 2   (0.115,1.23]  0 0.00000000
+## 3    (1.23,2.34]  3 0.02439024
+## 4    (2.34,3.46]  3 0.02439024
+## 5    (3.46,4.58]  2 0.01626016
+## 6    (4.58,5.69]  4 0.03252033
+## 7     (5.69,6.8] 11 0.08943089
+## 8     (6.8,7.92] 34 0.27642276
+## 9    (7.92,9.04] 12 0.09756098
+## 10   (9.04,10.2]  4 0.03252033
+## 11   (10.2,11.3]  3 0.02439024
+## 12   (11.3,12.4]  7 0.05691057
+## 13   (12.4,13.5]  2 0.01626016
+## 14   (13.5,14.6]  6 0.04878049
+## 15   (14.6,15.7]  4 0.03252033
+## 16   (15.7,16.8]  8 0.06504065
+## 17     (16.8,18]  4 0.03252033
+## 18     (18,19.1]  9 0.07317073
+## 19   (19.1,20.2]  3 0.02439024
+## 20   (20.2,21.3]  2 0.01626016</code></pre>
+<hr />
+<hr />
+</div>
+<div id="continuous-random-variable-2" class="section level2 hasAnchor" number="6.4">
+<h2><span class="header-section-number">6.4</span> Continuous random variable<a href="continous-random-variables.html#continuous-random-variable-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><br></p>
+<p>We define a quantity at a point <span class="math inline">\(x\)</span> that is the amount of probability per unit distance that we would find in an <strong>infinitesimal</strong> bin <span class="math inline">\(dx\)</span> at <span class="math inline">\(x\)</span></p>
+<p><span class="math display">\[f(x)= \frac{P(x\leq X \leq x+dx)}{dx}\]</span></p>
+<p><span class="math inline">\(f(x)\)</span> is called the probability <strong>density</strong> function.</p>
+<p>Therefore, the probability of observing <span class="math inline">\(x\)</span> between <span class="math inline">\(x\)</span> and <span class="math inline">\(x+dx\)</span>
+is given by</p>
+<p><span class="math display">\[P(x\leq X \leq x+dx)= f(x) dx\]</span>
+<br>
+<br></p>
+<hr />
+<hr />
+</div>
+<div id="continuous-random-variable-3" class="section level2 hasAnchor" number="6.5">
+<h2><span class="header-section-number">6.5</span> Continuous random variable<a href="continous-random-variables.html#continuous-random-variable-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><strong>Definition</strong></p>
+<p>For a continuous random variable <span class="math inline">\(X\)</span>, a <strong>probability density</strong> function is such that</p>
+<p>The function is positive:</p>
+<ul>
+<li><span class="math inline">\(f(x) \geq 0\)</span></li>
+</ul>
+<p>The probability of observing a value within an interval is the <strong>area under the curve</strong>:</p>
+<ul>
+<li><span class="math inline">\(P(a\leq X \leq b)=\int_{a}^{b} f(x) dx\)</span></li>
+</ul>
+<p>The probability of observing <strong>any</strong> value is 1:</p>
+<ul>
+<li><span class="math inline">\(\int_{-\infty}^{\infty} f(x) dx = 1\)</span></li>
+</ul>
+<hr />
+<hr />
+</div>
+<div id="continuous-random-variable-4" class="section level2 hasAnchor" number="6.6">
+<h2><span class="header-section-number">6.6</span> Continuous random variable<a href="continous-random-variables.html#continuous-random-variable-4" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li><p>The probability density function is a step forward in the abstraction of probabilities: we add the continuous limit (<span class="math inline">\(dx \rightarrow 0\)</span>).</p></li>
+<li><p>All the properties of probabilities are translated in terms of densities (<span class="math inline">\(\sum \rightarrow \int\)</span>).</p></li>
+<li><p>Assignment of probabilities to a random variable can be done with equiprobability (classical) arguments.</p></li>
+<li><p>Densities are mathematical quantities some will map to experiments some will not. <em>Which density will map best to my experiment?</em></p></li>
+</ul>
+<hr />
+<hr />
+</div>
+<div id="total-area-under-the-curve" class="section level2 hasAnchor" number="6.7">
+<h2><span class="header-section-number">6.7</span> Total area under the curve<a href="continous-random-variables.html#total-area-under-the-curve" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Example: take the <strong>probability density</strong> that may describe the random variable that measures where a raindrop falls in a rain gutter of length <span class="math inline">\(100cm\)</span>.</p>
+<p><span class="math display">\[
+    f(x)= 
+\begin{cases}
+    \frac{1}{100},&amp; \text{if } x\in (0,100)\\
+    0,&amp; otherwise 
+\end{cases}
+\]</span></p>
+<p>Then the probability of <strong>any</strong> observation is the total <strong>area under the curve</strong></p>
+<p><span class="math inline">\(P(-\infty\leq X \leq \infty)= \int_{-\infty}^{\infty} f(x) dx = 100*0.01= 1\)</span></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-41-1.png" width="672" /></p>
+<hr />
+<hr />
+</div>
+<div id="area-under-the-curve" class="section level2 hasAnchor" number="6.8">
+<h2><span class="header-section-number">6.8</span> Area under the curve<a href="continous-random-variables.html#area-under-the-curve" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The probability of observing <span class="math inline">\(x\)</span> in an interval is the <strong>area under the curve</strong> within the interval</p>
+<ul>
+<li><span class="math inline">\(P(20 \leq X \leq 60) = \int_{20}^{60} f(x) dx = (60-20)*0.01=0.4\)</span></li>
+</ul>
+<p><img src="_main_files/figure-html/unnamed-chunk-42-1.png" width="672" /></p>
+<hr />
+<hr />
+</div>
+<div id="area-under-the-curve-1" class="section level2 hasAnchor" number="6.9">
+<h2><span class="header-section-number">6.9</span> Area under the curve<a href="continous-random-variables.html#area-under-the-curve-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In general <span class="math inline">\(f(x)\)</span> should satisfy:</p>
+<ul>
+<li><span class="math inline">\(0 \leq P(a \leq X \leq b) = \int_{a}^{b} f(x) dx \leq 1\)</span></li>
+</ul>
+<p><img src="_main_files/figure-html/unnamed-chunk-43-1.png" width="672" /></p>
+<hr />
+<hr />
+</div>
+<div id="probability-distribution-2" class="section level2 hasAnchor" number="6.10">
+<h2><span class="header-section-number">6.10</span> Probability distribution<a href="continous-random-variables.html#probability-distribution-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The probability accumulated up to <span class="math inline">\(b\)</span> is defined by the probability distribution <span class="math inline">\(F\)</span></p>
+<ul>
+<li><span class="math inline">\(F(b) = P(X \leq b)=\int_{-\infty}^bf(x)dx\)</span></li>
+</ul>
+<p><img src="_main_files/figure-html/unnamed-chunk-44-1.png" width="672" /></p>
+<p>The probability accumulated up to <span class="math inline">\(a\)</span> is</p>
+<ul>
+<li><span class="math inline">\(F(a) = P(X \leq a)\)</span></li>
+</ul>
+<p><img src="_main_files/figure-html/unnamed-chunk-45-1.png" width="672" /></p>
+<hr />
+<hr />
+</div>
+<div id="probability-distribution-3" class="section level2 hasAnchor" number="6.11">
+<h2><span class="header-section-number">6.11</span> Probability distribution<a href="continous-random-variables.html#probability-distribution-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The probability between <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> is defined by the probability distribution <span class="math inline">\(F\)</span></p>
+<ul>
+<li><span class="math inline">\(P(a\leq X \leq b) = \int_a^b f(x)dx=F(b)-F(a)\)</span></li>
+</ul>
+<p><img src="_main_files/figure-html/unnamed-chunk-46-1.png" width="672" /></p>
+<hr />
+<hr />
+</div>
+<div id="probability-distribution-4" class="section level2 hasAnchor" number="6.12">
+<h2><span class="header-section-number">6.12</span> Probability distribution<a href="continous-random-variables.html#probability-distribution-4" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The probability distribution of a continuous random variable is defined as<br />
+</br><span class="math inline">\(F(a)=P(X\leq a) =\int_{-\infty} ^a f(x)dx\)</span></p>
+<p>with the properties that:</p>
+<p>It is between <span class="math inline">\(0\)</span> and <span class="math inline">\(1\)</span>:</p>
+<ul>
+<li><span class="math inline">\(F(-\infty)= 0\)</span> and <span class="math inline">\(F(\infty)=1\)</span></li>
+</ul>
+<p>It always increases:</p>
+<ul>
+<li>if <span class="math inline">\(a\leq b\)</span> then <span class="math inline">\(F(a)\leq F(b)\)</span></li>
+</ul>
+<p>It can be used to compute probabilities:</p>
+<ul>
+<li><span class="math inline">\(P(a \leq X \leq b)=F(b)-F(a)\)</span></li>
+</ul>
+<p>It recovers the probability density:</p>
+<ul>
+<li><span class="math inline">\(f(x)=\frac{dF(x)}{dx}\)</span></li>
+</ul>
+<p>We use <strong>probability distributions</strong> to <strong>compute probabilities</strong> of a random variable with intervals</p>
+<hr />
+<hr />
+</div>
+<div id="probability-distribution-5" class="section level2 hasAnchor" number="6.13">
+<h2><span class="header-section-number">6.13</span> Probability distribution<a href="continous-random-variables.html#probability-distribution-5" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>For the uniform density function:</p>
+<p><span class="math display">\[
+    f(x)= 
+\begin{cases}
+    \frac{1}{100},&amp; \text{if } x\in (0,100)\\
+    0,&amp; otherwise 
+\end{cases}
+\]</span></p>
+<p>The probability distribution is</p>
+<p><span class="math display">\[
+    F(a)= 
+\begin{cases}
+    0,&amp; a \leq 0 \\
+    \frac{a}{100},&amp; \text{if } a\in (0,100)\\
+    1, &amp; 10 \leq a \\
+    \\
+\end{cases}
+\]</span></p>
+<hr />
+<hr />
+</div>
+<div id="probability-graphics" class="section level2 hasAnchor" number="6.14">
+<h2><span class="header-section-number">6.14</span> Probability graphics<a href="continous-random-variables.html#probability-graphics" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The probability <span class="math inline">\(P(20&lt;X&lt;60)\)</span> is the <em>area</em> under the <strong>density</strong> curve</p>
+<p><img src="_main_files/figure-html/unnamed-chunk-47-1.png" width="672" /></p>
+<hr />
+<hr />
+</div>
+<div id="probability-graphics-1" class="section level2 hasAnchor" number="6.15">
+<h2><span class="header-section-number">6.15</span> Probability graphics<a href="continous-random-variables.html#probability-graphics-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The probability <span class="math inline">\(P(20&lt;X&lt;60)\)</span> is the <em>difference</em> in <strong>distribution</strong> values</p>
+<p><img src="_main_files/figure-html/unnamed-chunk-48-1.png" width="672" /></p>
+<hr />
+<hr />
+</div>
+<div id="mean-1" class="section level2 hasAnchor" number="6.16">
+<h2><span class="header-section-number">6.16</span> Mean<a href="continous-random-variables.html#mean-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>As in the discrete case, the <strong>mean</strong> measures the center of the distribution</p>
+<p><strong>Definition</strong></p>
+<p>Suppose <span class="math inline">\(X\)</span> is a continuous random variable with probability <strong>density</strong> function <span class="math inline">\(f(x)\)</span>. The mean or expected value of <span class="math inline">\(X\)</span>, denoted as <span class="math inline">\(\mu\)</span> or <span class="math inline">\(E(X)\)</span>, is</p>
+<p><span class="math display">\[\mu=E(X)=\int_{-\infty}^\infty x f(x) dx\]</span></p>
+<p>It is the continuous version of the center of mass.</p>
+<hr />
+<hr />
+</div>
+<div id="mean-2" class="section level2 hasAnchor" number="6.17">
+<h2><span class="header-section-number">6.17</span> Mean<a href="continous-random-variables.html#mean-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><span class="math display">\[
+    f(x)= 
+\begin{cases}
+    \frac{1}{100},&amp; \text{if } x\in (0,100)\\
+    0,&amp; otherwise 
+\end{cases}
+\]</span></p>
+<p><span class="math inline">\(E(X)=50\)</span></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-49-1.png" width="672" /></p>
+<hr />
+<hr />
+</div>
+<div id="variance-1" class="section level2 hasAnchor" number="6.18">
+<h2><span class="header-section-number">6.18</span> Variance<a href="continous-random-variables.html#variance-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>As in the discrete case, the variance measures the dispersion about the mean</p>
+<p><strong>Definition</strong></p>
+<p>Suppose <span class="math inline">\(X\)</span> is a continuous random variable with probability density function <span class="math inline">\(f(x)\)</span>. The variance of <span class="math inline">\(X\)</span>, denoted as <span class="math inline">\(\sigma^2\)</span> or <span class="math inline">\(V(X)\)</span>, is</p>
+<p><span class="math display">\[\sigma^2=V(X)=\int_{-\infty}^\infty (x-\mu)^2 f(x) dx\]</span></p>
+<hr />
+<hr />
+</div>
+<div id="functions-of-x-1" class="section level2 hasAnchor" number="6.19">
+<h2><span class="header-section-number">6.19</span> Functions of <span class="math inline">\(X\)</span><a href="continous-random-variables.html#functions-of-x-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><strong>Definition</strong></p>
+<p>For any function <span class="math inline">\(h\)</span> of a random variable <span class="math inline">\(X\)</span>, with mass function <span class="math inline">\(f(x)\)</span>, its expected value is given by</p>
+<p><span class="math display">\[E[h(X)]= \int_{-\infty}^{\infty} h(x) f(x)dx\]</span></p>
+<p>And we have the same properties as in the discrete case</p>
+<ul>
+<li><p>The mean of a linear function is the linear function fo the mean: <span class="math display">\[E(a\times X +b)= a\times E(X) +b\]</span> for <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> scalars.</p></li>
+<li><p>The variance of a linear function of <span class="math inline">\(X\)</span> is:<span class="math display">\[V(a\times X +b)= a^2\times V(X)\]</span></p></li>
+<li><p>The variance about the origin is the variance about the mean plus the mean squared: <span class="math display">\[E(X^2)=V(X)+E(X)^2\]</span></p></li>
+</ul>
+<hr />
+<hr />
+</div>
+<div id="example-8" class="section level2 hasAnchor" number="6.20">
+<h2><span class="header-section-number">6.20</span> Example<a href="continous-random-variables.html#example-8" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li>for the probability density</li>
+</ul>
+<p><span class="math display">\[
+    f(x)= 
+\begin{cases}
+    \frac{1}{100},&amp; \text{if } x\in (0,100)\\
+    0,&amp; otherwise 
+\end{cases}
+\]</span></p>
+<ul>
+<li>compute the mean</li>
+<li>compute variance using <span class="math inline">\(E(X^2)=V(X)+E(X)^2\)</span></li>
+<li>compute <span class="math inline">\(P(\mu-\sigma\leq X \leq \mu+\sigma)\)</span></li>
+<li>What are the first and third quartiles?</li>
+</ul>
+<p><img src="_main_files/figure-html/unnamed-chunk-50-1.png" width="672" /></p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="discrete-random-variables.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="exercises.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/05-ContinuousRandomVariables.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

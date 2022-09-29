@@ -6,7 +6,7 @@
 ]{book}
 \title{Estadística}
 \author{Alejandro Caceres}
-\date{2022-09-05}
+\date{2022-09-29}
 
 \usepackage{amsmath,amssymb}
 \usepackage{lmodern}
@@ -975,12 +975,12 @@ Digamos que repetimos el experimento 1000 veces:
 
 \begin{verbatim}
 ##   outcome  ni    fi
-## 1       1 160 0.160
-## 2       2 142 0.142
-## 3       3 163 0.163
-## 4       4 169 0.169
-## 5       5 163 0.163
-## 6       6 203 0.203
+## 1       1 156 0.156
+## 2       2 186 0.186
+## 3       3 151 0.151
+## 4       4 140 0.140
+## 5       5 195 0.195
+## 6       6 172 0.172
 \end{verbatim}
 
 Encontramos que \(f_i\) está convergiendo a un valor constante
@@ -1374,8 +1374,8 @@ Nota: cada resultado tiene \(dos\) valores (uno para la característica del tipo
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{mesa-de-contingencia}{%
-\section{Mesa de contingencia}\label{mesa-de-contingencia}}
+\hypertarget{tabla-de-contingencia}{%
+\section{Tabla de contingencia}\label{tabla-de-contingencia}}
 
 Podemos organizar la probabilidad de \textbf{resultados conjuntos} en una \textbf{tabla de contingencia}
 
@@ -1429,7 +1429,7 @@ suma & \(3/6\) & \(3/6\) & 1 \\
 Tres formas de la \textbf{regla de la suma}:
 
 \(P(A\cup B)\)\[=P(A) + P(B) - P(A\cap B)\]
-\[=P(A \cap B)+P(A\cap B')+P(A\cap B')\]
+\[=P(A \cap B)+P(A\cap B')+P(A'\cap B)\]
 \[=1-P(A'\cap B')\]
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
@@ -1580,7 +1580,7 @@ El resultado de un experimento aleatorio es medir la gravedad de la misofonía \
 \begin{itemize}
 \tightlist
 \item
-  Por el número de observaciones \(n_{i,j}\) de cada resultado \((x_i, y_i)\), misofonía: \(x\in \{0,1,2,3,4\}\) y depresión \(y\ en \{0,1\}\) (no:\(0\), sí:\(1\))
+  Para el número de observaciones \(n_{i,j}\) de cada resultado \((x_i, y_i)\), misofonía: \(x\in \{0,1,2,3,4\}\) y depresión \(y\ en \{0,1\}\) (no:\(0\), sí:\(1\))
 \end{itemize}
 
 \begin{verbatim}
@@ -1596,7 +1596,7 @@ El resultado de un experimento aleatorio es medir la gravedad de la misofonía \
 \begin{itemize}
 \tightlist
 \item
-  For the relative frequencies \(f_{i,j}\)
+  para las frecuencias relativas \(f_{i,j}\)
 \end{itemize}
 
 \begin{verbatim}
@@ -1926,7 +1926,7 @@ Asunto & Infección & Prueba \\
 
 \begin{longtable}[]{@{}cccc@{}}
 \toprule
-& Infección: sí & Infección: sí & suma \\
+& Infección: sí & Infección: no & suma \\
 \midrule
 \endhead
 Test: positivo & 18 & 12 & 30 \\
@@ -1943,7 +1943,7 @@ suma & 48 & 312 & 360 \\
 
 \begin{longtable}[]{@{}cccc@{}}
 \toprule
-& Infección: sí & Infección: sí & suma \\
+& Infección: sí & Infección: no & suma \\
 \midrule
 \endhead
 Test: positivo & 0.05 & 0.0333 & 0.0833 \\
@@ -1961,7 +1961,7 @@ suma & 0.133 & 0.866 & 1 \\
 
 Pensemos primero en términos de aquellos que están \textbf{infectados}
 
-Dentro de los que están infectados (\textbf{sí}), ¿cuál es la probabilidad de que los que dieron positivo?
+Dentro de los que están infectados (\textbf{sí}), ¿cuál es la probabilidad de dar positivo?
 
 \begin{itemize}
 \tightlist
@@ -2005,7 +2005,7 @@ La probabilidad condicional de un evento B dado un evento A, denotado como \(P(A
 
 \begin{longtable}[]{@{}ccc@{}}
 \toprule
-& Infección: Sí & Infección: Sí \\
+& Infección: Sí & Infección: No \\
 \midrule
 \endhead
 Test: positivo & P(positivo {\textbar{}} sí) & P(positivo {\textbar{}} no) \\
@@ -2036,7 +2036,7 @@ Tomando las frecuencias como estimaciones de las probabilidades, entonces
 
 \begin{longtable}[]{@{}ccc@{}}
 \toprule
-& Infección: Sí & Infección: Sí \\
+& Infección: Sí & Infección: No \\
 \midrule
 \endhead
 Test: positivo & 18/48 = 0.375 & 12/312 = 0.038 \\
@@ -2055,11 +2055,11 @@ especificidad (0.962).
 \hypertarget{regla-de-multiplicaciuxf3n}{%
 \section{Regla de multiplicación}\label{regla-de-multiplicaciuxf3n}}
 
-Ahora imaginemos la situación real.
+Ahora imaginemos la situación real, donde queremos obtener la probabilidad \textbf{conjunta} de la probabilidad \textbf{condicional}
 
 \begin{itemize}
 \item
-  Se (realizaron) PCR para coronavirus {[}\url{https://www.nejm.org/doi/full/10.1056/NEJMp2015897}{]} en personas en el hospital que estamos seguros de estar infectadas. Es test tiene una sensibilidad del 70\%. También se ha probado en el laboratorio en condiciones sin infección con una sensibilidad del 96 \%.
+  Se (realizaron) PCR para coronavirus {[}\url{https://www.nejm.org/doi/full/10.1056/NEJMp2015897}{]} en personas en el hospital que estamos seguros de estar infectadas. Este test tiene una sensibilidad del 70\%. También se ha probado en el laboratorio en condiciones sin infección con una especificidad del 96 \%.
 \item
   Un estudio de prevalencia en España mostró que \(P(sí)=0.05\), \(P(no)=0.95\) antes del verano.
 \end{itemize}
@@ -2086,9 +2086,9 @@ Para estudiar el rendimiento de una nueva prueba diagnóstica:
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\begin{longtable}[]{@{}lll@{}}
+\begin{longtable}[]{@{}ccc@{}}
 \toprule
-& Infección: Sí & Infección: Sí \\
+& Infección: Sí & Infección: No \\
 \midrule
 \endhead
 Test: positivo & P(positivo{\textbar{}}sí)=0.7 & P(positivo{\textbar{}}no)=0.06 \\
@@ -2123,7 +2123,7 @@ que se sigue de la definición de probabilidad condicional.
 
 \begin{longtable}[]{@{}cccc@{}}
 \toprule
-& Infección: Sí & Infección: Sí & suma \\
+& Infección: Sí & Infección: No & suma \\
 \midrule
 \endhead
 Test: positivo & P(positivo {\textbar{}} sí)P(sí) & P(positivo {\textbar{}} no)P(no) & P(positivo) \\
@@ -2156,7 +2156,7 @@ Por ejemplo, la probabilidad de dar \(positivo\) y estar infectado \(sí\):
 
 \begin{longtable}[]{@{}cccc@{}}
 \toprule
-& Infección: sí & Infección: sí & suma \\
+& Infección: sí & Infección: no & suma \\
 \midrule
 \endhead
 Test: positivo & 0.035 & 0.057 & 0.092 \\
@@ -2171,7 +2171,7 @@ suma & 0.05 & 0.95 & 1 \\
   \(P(positivo,si)= 0.035\)
 \end{itemize}
 
-Pero también encontramos el marginal de ser positivo:
+Pero también encontramos la probabilidad marginal de ser \textbf{positivo}:
 
 \begin{itemize}
 \tightlist
@@ -2186,9 +2186,9 @@ Pero también encontramos el marginal de ser positivo:
 \hypertarget{regla-de-probabilidad-total}{%
 \section{Regla de probabilidad total}\label{regla-de-probabilidad-total}}
 
-\begin{longtable}[]{@{}llll@{}}
+\begin{longtable}[]{@{}cccc@{}}
 \toprule
-& Infección: Sí & Infección: Sí & suma \\
+& Infección: Sí & Infección: No & suma \\
 \midrule
 \endhead
 Test: positivo & P(positivo {\textbar{}} sí)P(sí) & P(positivo {\textbar{}} no)P(no) & P(positivo) \\
@@ -2217,6 +2217,156 @@ Cuando escribimos las marginales desconocidas en términos de sus probabilidades
 \textbf{Regla de probabilidad total} para la marginal de \(B\): ¿De cuántas maneras puedo obtener el resultado \(B\)?
 
 \(P(B)=P(B|A)P(A)+P(B|A')P(A')\)
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{encontrar-probabilidades-inversas}{%
+\section{Encontrar probabilidades inversas}\label{encontrar-probabilidades-inversas}}
+
+De la tabla de contingencia condicional
+
+\begin{longtable}[]{@{}ccc@{}}
+\toprule
+& Infección: Sí & Infección: No \\
+\midrule
+\endhead
+Test: positivo & P(positivo {\textbar{}} sí) & P(positivo {\textbar{}} no) \\
+Test: negativo & P(negativo {\textbar{}} sí) & P(negativo {\textbar{}} no) \\
+suma & 1 & 1 \\
+\bottomrule
+\end{longtable}
+
+¿Cómo podemos calcular la probabilidad de estar infectado si la prueba da positivo: \(P(sí|positivo)\)?
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{recuperar-probabilidades-conjuntas}{%
+\section{Recuperar probabilidades conjuntas}\label{recuperar-probabilidades-conjuntas}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Recuperamos la tabla de contingencia para probabilidades conjuntas
+\end{enumerate}
+
+\begin{longtable}[]{@{}cccc@{}}
+\toprule
+& Infección: Sí & Infección: No & suma \\
+\midrule
+\endhead
+Test: positivo & P(positivo {\textbar{}} sí)P(sí) & P(positivo {\textbar{}} no)P(no) & P(positivo) \\
+Test: negativo & P(negativo {\textbar{}} sí)P(sí) & P(negativo {\textbar{}} no) P(no) & P(negativo) \\
+suma & P(sí) & P(no) & 1 \\
+\bottomrule
+\end{longtable}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{condicionales-inversas}{%
+\section{Condicionales inversas}\label{condicionales-inversas}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  Calculamos las probabilidades condicionales para la prueba:
+\end{enumerate}
+
+\[P(infección|prueba)=\frac{P(prueba|infección)P(infección)}{P(prueba)}\]
+
+\begin{longtable}[]{@{}cccc@{}}
+\toprule
+& Infección: Sí & Infección: No & suma \\
+\midrule
+\endhead
+Test: positivo & P(sí{\textbar{}}positivo) & P(sin{\textbar{}}positivo) & 1 \\
+Test: negativo & P(sí{\textbar{}}negativo) & P(sin{\textbar{}}negativo) & 1 \\
+\bottomrule
+\end{longtable}
+
+Por ejemplo:
+\[P(sí|positivo)=\frac{P(positivo|sí)P(sí)}{P(positivo)}\]
+como normalmente no tenemos \(P(positivo)\), usamos la regla de \textbf{probabilidad total} en el denominador
+
+\[P(sí|positivo)=\frac{P(positivo|sí)P(sí)}{P(positivo|sí)P(sí)+P(positivo|no)P(no)}\]
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{teorema-de-bayes}{%
+\section{Teorema de Bayes}\label{teorema-de-bayes}}
+
+La expresion:
+
+\[P(sí|positivo)=\frac{P(positivo|sí)P(sí)}{P(positivo|sí)P(sí)+P(positivo|no)P(no)}\]
+
+se llama \textbf{teorema de Bayes}
+
+\textbf{Teorema}
+
+Si \(E1, E2, ..., Ek\) son \(k\) eventos mutuamente excluyentes y exhaustivos y \(B\) es cualquier evento,
+
+\[P(Ei|B)=\frac{P(B|Ei)P(Ei)}{P(B|E1)P(E1) +...+ P(B|Ek)P(Ek)} \]
+
+Permite invertir los condicionales:
+
+\[P(B|A) \rightarrow P(A|B)\]
+
+O \textbf{diseñe} una prueba \(B\) en condición controlada \(A\) y luego utilícela para \textbf{inferir} la probabilidad de la condición cuando la prueba es positiva.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{ejemplo-teorema-de-bayes}{%
+\section{Ejemplo: teorema de Bayes}\label{ejemplo-teorema-de-bayes}}
+
+Teorema de Bayes:
+
+\[P(sí|positivo) = \frac{P(positivo|sí) P(sí)}{P(positivo|sí)P(sí)+P(positivo|no)P(no)}\]
+
+sabemos:
+
+\begin{itemize}
+\item
+  \(P(positivo|sí)=0.70\)
+\item
+  \(P(positivo|no)=1- P(negativo|no)=0.06\)
+\item
+  la probabilidad de infección y no infección en la población: \(P(sí)=0.05\) y \(P(no)=1-P(sí)=0.95\).
+\end{itemize}
+
+Por lo tanto:
+
+\[P(sí|positivo)=0.47\]
+
+Las pruebas no son tan buenas para \textbf{confirmar} infecciones.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{ejemplo-teorema-de-bayes-1}{%
+\section{Ejemplo: teorema de Bayes}\label{ejemplo-teorema-de-bayes-1}}
+
+Apliquémoslo ahora a la probabilidad de no estar infectado si la prueba es negativa.
+
+\[P(no|negativo) = \frac{P(negativo|no) P(no)}{P(negativo|no) P(no)+P(negativo|sí)P(sí)}\]
+
+La sustitución de todos los valores da
+
+\[P(no|negativo)=0.98\]
+
+Las pruebas son buenas para \textbf{descartar} infecciones.
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
@@ -2396,155 +2546,1223 @@ suma & \(1/2\) & \(1/2\) & 1 \\
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{encontrar-probabilidades-inversas}{%
-\section{Encontrar probabilidades inversas}\label{encontrar-probabilidades-inversas}}
+\hypertarget{variables-aleatorias-discretas}{%
+\chapter{Variables aleatorias discretas}\label{variables-aleatorias-discretas}}
 
-De la tabla de contingencia condicional
+\hypertarget{objetivo-4}{%
+\section{Objetivo}\label{objetivo-4}}
 
-\begin{longtable}[]{@{}ccc@{}}
-\toprule
-& Infección: Sí & Infección: Sí \\
-\midrule
-\endhead
-Test: positivo & P(positivo {\textbar{}} sí) & P(positivo {\textbar{}} no) \\
-Test: negativo & P(negativo {\textbar{}} sí) & P(negativo {\textbar{}} no) \\
-suma & 1 & 1 \\
-\bottomrule
-\end{longtable}
-
-¿Cómo podemos calcular la probabilidad de estar infectado si la prueba da positivo: \(P(sí|positivo)\)?
-
-\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
-
-\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
-
-\hypertarget{recuperar-probabilidades-conjuntas}{%
-\section{Recuperar probabilidades conjuntas}\label{recuperar-probabilidades-conjuntas}}
-
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
+\begin{itemize}
 \tightlist
 \item
-  Recuperamos la tabla de contingencia para probabilidades conjuntas
-\end{enumerate}
-
-\begin{longtable}[]{@{}cccc@{}}
-\toprule
-& Infección: Sí & Infección: Sí & suma \\
-\midrule
-\endhead
-Test: positivo & P(positivo {\textbar{}} sí)P(sí) & P(positivo {\textbar{}} no)P(no) & P(positivo) \\
-Test: negativo & P(negativo {\textbar{}} sí)P(sí) & P(negativo {\textbar{}} no) P(no) & P(negativo) \\
-suma & P(sí) & P(no) & 1 \\
-\bottomrule
-\end{longtable}
+  Variables aleatorias
+\item
+  Función de probabilidad
+\item
+  Media y varianza
+\item
+  Distribución de probabilidad
+\end{itemize}
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{condicionales-inversas}{%
-\section{Condicionales inversas}\label{condicionales-inversas}}
+\hypertarget{cuxf3mo-asignamos-valores-de-probabilidad-a-los-resultados}{%
+\section{¿Cómo asignamos valores de probabilidad a los resultados?}\label{cuxf3mo-asignamos-valores-de-probabilidad-a-los-resultados}}
 
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\setcounter{enumi}{1}
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{variable-aleatoria}{%
+\section{Variable aleatoria}\label{variable-aleatoria}}
+
+\textbf{Definición:}
+
+Una \textbf{variable aleatoria} es una función que asigna un \textbf{número} real a cada \textbf{resultado} en el espacio muestral de un experimento aleatorio.
+
+\begin{itemize}
 \tightlist
 \item
-  Calculamos las probabilidades condicionales para la prueba:
-\end{enumerate}
+  Por lo general, una variable aleatoria es el valor de la \textbf{medida} de interés que se realiza en un experimento aleatorio.
+\end{itemize}
 
-\[P(infección|prueba)=\frac{P(prueba|infección)P(infección)}{P(prueba)}\]
+Una variable aleatoria puede ser:
 
-\begin{longtable}[]{@{}cccc@{}}
-\toprule
-& Infección: Sí & Infección: Sí & suma \\
-\midrule
-\endhead
-Test: positivo & P(sí{\textbar{}}positivo) & P(sin{\textbar{}}positivo) & 1 \\
-Test: negativo & P(sí{\textbar{}}negativo) & P(sin{\textbar{}}negativo) & 1 \\
-\bottomrule
-\end{longtable}
-
-Por ejemplo:
-\[P(sí|positivo)=\frac{P(positivo|sí)P(sí)}{P(positivo)}\]
-como normalmente no tenemos \(P(positivo)\), usamos la regla de \textbf{probabilidad total} en el denominador
-
-\[P(sí|positivo)=\frac{P(positivo|sí)P(sí)}{P(positivo|sí)P(sí)+P(positivo|no)P(no)}\]
+\begin{itemize}
+\tightlist
+\item
+  Discreta (nominal, ordinal)
+\item
+  Continuo (intervalo, relación)
+\end{itemize}
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{teorema-de-bayes}{%
-\section{Teorema de Bayes}\label{teorema-de-bayes}}
+\hypertarget{variable-aleatoria-1}{%
+\section{Variable aleatoria}\label{variable-aleatoria-1}}
 
-La expresion:
+Un \textbf{valor} (o \textbf{resultado}) de una variable aleatoria es uno de los números posibles que la variable puede tomar en un experimento aleatorio.
 
-\[P(sí|positivo)=\frac{P(positivo|sí)P(sí)}{P(positivo|sí)P(sí)+P(positivo|no)P(no)}\]
+Escribimos la variable aleatoria en \textbf{mayúsculas}.
 
-se llama \textbf{teorema de Bayes}
+Ejemplo:
 
-\textbf{Teorema}
+Si \(X \in \{0,1\}\), entonces decimos que \(X\) es una variable aleatoria que puede tomar los valores \(0\) o \(1\).
 
-Si \(E1, E2, ..., Ek\) son \(k\) eventos mutuamente excluyentes y exhaustivos y \(B\) es cualquier evento,
+\textbf{Observación} de una variable aleatoria
 
-\[P(Ei|B)=\frac{P(B|Ei)P(Ei)}{P(B|E1)P(E1) +...+ P(B|Ek)P(Ek)} \]
+\begin{itemize}
+\tightlist
+\item
+  Una observación es la \textbf{adquisición} del valor de una variable aleatoria en un experimento aleatorio
+\end{itemize}
 
-Permite invertir los condicionales:
+Ejemplo:
 
-\[P(B|A) \rightarrow P(A|B)\]
+1 0 0 1 0 \textbf{1} 0 1 1
 
-O \textbf{diseñe} una prueba \(B\) en condición controlada \(A\) y luego utilícela para \textbf{inferir} la probabilidad de la condición cuando la prueba es positiva.
+El número en negrita es una observación de \(X\)
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{ejemplo-teorema-de-bayes}{%
-\section{Ejemplo: teorema de Bayes}\label{ejemplo-teorema-de-bayes}}
+\hypertarget{eventos-de-observar-una-variable-aleatoria}{%
+\section{Eventos de observar una variable aleatoria}\label{eventos-de-observar-una-variable-aleatoria}}
 
-Teorema de Bayes:
+\begin{itemize}
+\tightlist
+\item
+  \(X=1\) es el \textbf{evento} de observar la variable aleatoria \(X\) con valor \(1\)
+\item
+  \(X=2\) es el \textbf{evento} de observar la variable aleatoria \(X\) con valor \(2\)
+\end{itemize}
 
-\[P(sí|positivo) = \frac{P(positivo|sí) P(sí)}{P(positivo|sí)P(sí)+P(positivo|no)P(no)}\]
+\ldots{}
 
-sabemos:
+\textbf{En general:}
 
 \begin{itemize}
 \item
-  \(P(positivo|sí)=0.70\)
+  \(X=x\) es el \textbf{evento} de observar la variable aleatoria \(X\) con valor \(x\) (pequeño \(x\))
 \item
-  \(P(positivo|no)=1- P(negativo|no)=0.06\)
-\item
-  la probabilidad de infección y no infección en la población: \(P(sí)=0.05\) y \(P(no)=1-P(sí)=0.95\).
+  Dos valores cualesquiera de una variable aleatoria definen dos eventos \textbf{mutuamente excluyentes}.
 \end{itemize}
 
-Por lo tanto:
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\[P(sí|positivo)=0.47\]
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-Las pruebas no son tan buenas para \textbf{confirmar} infecciones.
+\hypertarget{probabilidad-de-variables-aleatorias}{%
+\section{Probabilidad de variables aleatorias}\label{probabilidad-de-variables-aleatorias}}
+
+Nos interesa asignar probabilidades a los valores de una variable aleatoria.
+
+Ya hemos hecho esto para los dados: \(X \in \{1,2,3,4,5,6\}\) (interpretación clásica de probabilidad)
+
+\begin{longtable}[]{@{}cc@{}}
+\toprule
+\(X\) & Probabilidad \\
+\midrule
+\endhead
+\(1\) & \(P(X=1)=1/6\) \\
+\(2\) & \(P(X=2)=1/6\) \\
+\(3\) & \(P(X=3)=1/6\) \\
+\(4\) & \(P(X=4)=1/6\) \\
+\(5\) & \(P(X=5)=1/6\) \\
+\(6\) & \(P(X=6)=1/6\) \\
+\bottomrule
+\end{longtable}
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{ejemplo-teorema-de-bayes-1}{%
-\section{Ejemplo: teorema de Bayes}\label{ejemplo-teorema-de-bayes-1}}
+\hypertarget{funciones-de-probabilidad}{%
+\section{Funciones de probabilidad}\label{funciones-de-probabilidad}}
 
-Apliquémoslo ahora a la probabilidad de no estar infectado si la prueba es negativa.
+\begin{itemize}
+\tightlist
+\item
+  Podemos escribir la tabla de probabilidad
+\item
+  plotearla
+\end{itemize}
 
-\[P(no|negativo) = \frac{P(negativo|no) P(no)}{P(negativo|no) P(no)+P(negativo|sí)P(sí)}\]
+\includegraphics{_main_files/figure-latex/unnamed-chunk-34-1.pdf}
+- o escribirla como la función
 
-La sustitución de todos los valores da
-
-\[P(no|negativo)=0.98\]
-
-Las pruebas son buenas para \textbf{descartar} infecciones.
+\[f(x)=P(X=x)=1/6\]
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{funciones-de-probabilidad-1}{%
+\section{Funciones de probabilidad}\label{funciones-de-probabilidad-1}}
+
+Podemos \textbf{crear} cualquier tipo de función de probabilidad si respetamos las reglas de probabilidad:
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-35-1.pdf}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{funciones-de-probabilidad-2}{%
+\section{Funciones de probabilidad}\label{funciones-de-probabilidad-2}}
+
+Para una variable aleatoria discreta \(X \in \{x_1 , x_2 , .. , x_M\}\) , una \textbf{función de masa de probabilidad}
+
+siempre es positiva
+
+\begin{itemize}
+\tightlist
+\item
+  \(f(x_i)\geq 0\)
+\end{itemize}
+
+se utiliza para calcular probabilidades
+
+\begin{itemize}
+\tightlist
+\item
+  \(f(x_i)=P(X=x_i)\)
+\end{itemize}
+
+y su suma sobre todos los valores de la variable es \(1\):
+
+\begin{itemize}
+\tightlist
+\item
+  \(\sum_{i=1}^M f(x_i)=1\)
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{funciones-de-probabilidad-3}{%
+\section{Funciones de probabilidad}\label{funciones-de-probabilidad-3}}
+
+\begin{itemize}
+\item
+  Tenga en cuenta que la definición de \(X\) y su función de masa de probabilidad es general \textbf{sin referencia} a ningún experimento. Las funciones viven en el espacio modelo (abstracto).
+\item
+  \(X\) y \(f(x)\) son objetos abstractos que pueden o no asignarse a un experimento
+\item
+  Tenemos la libertad de construirlos como queramos siempre que respetemos su definición.
+\item
+  Tienen algunas \textbf{propiedades} que se derivan exclusivamente de su definición.
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{ejemplo-funciuxf3n-de-masa-de-probabilidad}{%
+\section{Ejemplo: función de masa de probabilidad}\label{ejemplo-funciuxf3n-de-masa-de-probabilidad}}
+
+Considere la siguiente variable aleatoria \(X\) sobre los resultados
+
+\begin{longtable}[]{@{}cc@{}}
+\toprule
+resultado & \(X\) \\
+\midrule
+\endhead
+\(a\) & 0 \\
+\(b\) & 0 \\
+\(c\) & 1.5 \\
+\(d\) & 1.5 \\
+\(e\) & 2 \\
+\(f\) & 3 \\
+\bottomrule
+\end{longtable}
+
+Si cada resultado es igualmente probable, ¿cuál es la función de masa de probabilidad de \(x\)?
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{tabla-de-probabilidad-para-resultados-igualmente-probables}{%
+\section{Tabla de probabilidad para resultados igualmente probables}\label{tabla-de-probabilidad-para-resultados-igualmente-probables}}
+
+\begin{longtable}[]{@{}cc@{}}
+\toprule
+resultado & Probabilidad (resultado) \\
+\midrule
+\endhead
+\(a\) & \(1/6\) \\
+\(b\) & \(1/6\) \\
+\(c\) & \(1/6\) \\
+\(d\) & \(1/6\) \\
+\(e\) & \(1/6\) \\
+\(f\) & \(1/6\) \\
+\bottomrule
+\end{longtable}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{tabla-de-probabilidad-para-x}{%
+\section{\texorpdfstring{Tabla de probabilidad para \(X\)}{Tabla de probabilidad para X}}\label{tabla-de-probabilidad-para-x}}
+
+\begin{longtable}[]{@{}cc@{}}
+\toprule
+\(X\) & \(f(x)=P(X=x)\) \\
+\midrule
+\endhead
+\(0\) & \(P(X=0)=2/6\) \\
+\(1.5\) & \(P(X=1.5)=2/6\) \\
+\(2\) & \(P(X=2)=1/3\) \\
+\(3\) & \(P(X=3)=1/3\) \\
+\bottomrule
+\end{longtable}
+
+Podemos calcular, por ejemplo, las siguientes probabilidades de eventos en los valores de \(X\)
+
+\begin{itemize}
+\tightlist
+\item
+  \(P(X>3)\)
+\item
+  \(P(X=0\, \cup\, X=2 )\)
+\item
+  \(P(X \leq 2)\)
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{ejemplo-6}{%
+\section{Ejemplo}\label{ejemplo-6}}
+
+Considere que muchas times:
+
+\begin{itemize}
+\tightlist
+\item
+  no sabemos cuáles son los \textbf{eventos primarios} con probabilidades iguales.
+\item
+  sin embargo podemos \textbf{estimamas} la función de masa de probabilidad a partir de las frecuencias relativas observadas para una variable aleatoria
+\end{itemize}
+
+\begin{longtable}[]{@{}cc@{}}
+\toprule
+\(X\) & \(f_i\) \\
+\midrule
+\endhead
+\(-2\) & \(0.132\) \\
+\(-1\) & \(0.262\) \\
+\(0\) & \(0.240\) \\
+\(1\) & \(0.248\) \\
+\(2\) & \(0.118\) \\
+\bottomrule
+\end{longtable}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{ejemplo-7}{%
+\section{Ejemplo}\label{ejemplo-7}}
+
+\textbf{Modelo de probabilidad:}
+
+Estas probabilidades son \textbf{consistentes} (no identicas) con el siguiente experimento: En una urna ponga \(8\) bolas:
+
+\begin{itemize}
+\tightlist
+\item
+  marque \(1\) bola con el número \(-2\)
+\item
+  marque \(2\) bolas con el número \(-1\)
+\item
+  marque \(2\) bolas con el número \(0\)
+\item
+  marque \(2\) bolas con el número \(1\)
+\item
+  marque \(1\) bola con el número \(2\)
+\end{itemize}
+
+\textbf{Experimento:} Tome una bola y lea el número.
+
+\begin{longtable}[]{@{}cc@{}}
+\toprule
+\(X\) & \(P(X=x)\) \\
+\midrule
+\endhead
+\(-2\) & \(1/8=0.125\) \\
+\(-1\) & \(2/8=0.25\) \\
+\(0\) & \(2/8=0.25\) \\
+\(1\) & \(2/8=0.25\) \\
+\(2\) & \(1/8=0.125\) \\
+\bottomrule
+\end{longtable}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{probabilidades-y-frecuencias}{%
+\section{Probabilidades y frecuencias}\label{probabilidades-y-frecuencias}}
+
+Para calcular las frecuencias relativas \(f_i\) tenemos que
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{repetir} el experimento \(N\) times (tenemos que volver a poner la bola en la urna cada vez) y al final calculamos
+\end{itemize}
+
+\[f_i=n_i/N\]
+
+Estamos suponiendo que:
+
+\[lim_{N \rightarrow \infty} f_i = f(x_i)=P(X=x_i)\]
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{probabilidades-y-frecuencias-relativas}{%
+\section{Probabilidades y frecuencias relativas}\label{probabilidades-y-frecuencias-relativas}}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-36-1.pdf}
+
+\begin{itemize}
+\tightlist
+\item
+  En este ejemplo, \textbf{sabemos} el \textbf{modelo} de probabilidad \(f(x)=P(X=x)\) por diseño.
+\item
+  Nunca observamos \(f(x)\)
+\item
+  Podemos usar frecuencias relativas para estimar las probabilidades
+  \[f_i = \hat{f}(x_i)=\hat{P}(X=x_i)\] (\(f_i\) depende de \(N\))
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{media-y-varianza}{%
+\section{Media y Varianza}\label{media-y-varianza}}
+
+Las funciones de masa de probabilidad \(f(x)\) tienen dos propiedades principales
+
+\begin{itemize}
+\tightlist
+\item
+  su centro
+\item
+  su dispersión
+\end{itemize}
+
+Nos podemos preguntar,
+
+\begin{itemize}
+\item
+  ¿Alrededor de qué valores de \(X\) se concentró la probabilidad?
+\item
+  ¿Qué tan dispersos están los valores de \(X\) en relación a sus probabilidades?
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{media-y-varianza-1}{%
+\section{Media y Varianza}\label{media-y-varianza-1}}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{media}{%
+\section{Media}\label{media}}
+
+Recuerde que el \textbf{promedio} en términos de las frecuencias relativas de los valores de \(x_i\) (resultados ordenados categóricos) se puede escribir como
+
+\[\bar{x}= \sum_{i=1}^M x_i \frac{n_i}{N}=\sum_{i=1}^M x_i f_i\]
+
+\textbf{Definición}
+
+La \textbf{media} (\(\mu\)) o valor esperado de una variable aleatoria discreta \(X\), \(E(X)\), con función de masa \(f(x)\) viene dada por
+
+\[ \mu = E(X)= \sum_{i=1}^M x_i f(x_i) \]
+
+Es el centro de gravedad de las \textbf{probabilidades}: El punto donde se equilibran las cargas de probabilidad en una carretera
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{ejemplo-media}{%
+\section{Ejemplo: Media}\label{ejemplo-media}}
+
+¿Cuál es la media de \(X\) si su función de masa de probabilidad \(f(x)\) está dada por
+
+\(P(X=0)=1/16\)
+\(P(X=1)=4/16\)
+\(P(X=2)=6/16\)
+\(P(X=3)=4/16\)
+\(P(X=4)=1/16\)?
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-37-1.pdf}
+
+\[ \mu =E(X)=\sum_{i=1}^m x_i f(x_i) \]
+
+\(E(X)=\)\textbf{0} * 1/16 + \textbf{1} * 4/16 + \textbf{2} * 6/16 + \textbf{3} * 4/16 + \textbf{4} * 1/16 =2
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{dsipersiuxf3n}{%
+\section{Dsipersión}\label{dsipersiuxf3n}}
+
+En términos similares definimos la distancia cuadrática media a la media:
+
+\textbf{Definición}
+
+La varianza, escrita como \(\sigma^2\) o \(V(X)\), de una variable aleatoria discreta \(X\) con función de masa \(f(x)\) viene dada por
+
+\[\sigma^2 = V(X)= \sum_{i=1}^M (x_i-\mu)^2 f(x_i)\]
+
+\begin{itemize}
+\item
+  \(\sigma=\sqrt{V(X)}\) se llama la \textbf{desviación estándar} de la variable aleatoria
+\item
+  Piense en ello como el momento de inercia de las probabilidades con respecto a la media.
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{ejemplo-varianza}{%
+\section{Ejemplo: Varianza}\label{ejemplo-varianza}}
+
+¿Cuál es la varianza de \(X\) si su función de masa de probabilidad \(f(x)\) está dada por
+
+\(P(X=0)=1/16\)
+\(P(X=1)=4/16\)
+\(P(X=2)=6/16\)
+\(P(X=3)=4/16\)
+\(P(X=4)=1/16\)?
+
+\[\sigma^2 =V(X)=\sum_{i=1}^m (x_i-\mu)^2 f(x_i)\]
+
+\(V(X)=\)\textbf{(0-2)}\(^2\)* 1/16 + \textbf{(1-2)}\(^2\)* 4/16 + \textbf{(2- 2)}\(^2\)* 6/16 + \textbf{(3-2)}\(^2\)* 4/16 + \textbf{(4-2)}\(^2\)* 1/ 16 = 1
+
+\[V(X)=\sigma^2=1\]
+\[\sigma=1\]
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{funciones-de-x}{%
+\section{\texorpdfstring{Funciones de \(X\)}{Funciones de X}}\label{funciones-de-x}}
+
+\textbf{Definición}
+
+Para cualquier función \(h\) de una variable aleatoria \(X\), con función de masa \(f(x)\), su valor esperado viene dado por
+
+\[ E[h(X)]= \sum_{i=1}^M h(x_i) f(x_i) \]
+
+Esta es una definición importante que nos permite probar tres propiedades importantes de la mediana y la varianza:
+
+\begin{itemize}
+\item
+  La media de una función lineal es la función lineal de la media: \[E(a\times X +b)= a\times E(X) +b\] para \(a\) y \(b\) escalares (números) .
+\item
+  La varianza de una función lineal de \(X\) es:\[V(a\times X +b)= a^2\times V(X)\]
+\item
+  La varianza \textbf{sobre el origen} es la varianza \textbf{sobre la media} más la media al cuadrado: \[E(X^2)=V(X)+E(X)^2\]
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{ejemplo-varianza-sobre-el-origen}{%
+\section{Ejemplo: Varianza sobre el origen}\label{ejemplo-varianza-sobre-el-origen}}
+
+¿Cuál es la varianza \(X\) sobre el origen, \(E(X^2)\), si su función de masa de probabilidad \(f(x)\) está dada por
+
+\(P(X=0)=1/16\)
+\(P(X=1)=4/16\)
+\(P(X=2)=6/16\)
+\(P(X=3)=4/16\)
+\(P(X=4)=1/16\)?
+
+\[E(X^2) =\sum_{i=1}^m x_i^2 f(x_i)\]
+
+\(E(X^2)=\)\textbf{(0)}\(^2\)* 1/16 + \textbf{(1)}\(^2\)* 4/16 + \textbf{(2)} \(^2\)* 6/16 + \textbf{(3)}\(^2\)* 4/16 + \textbf{(4)}\(^2\)* 1/16 =5
+
+También podemos verificar:
+
+\[E(X^2)=V(X)+E(X)^2\]
+
+\(5=1+2^2\)
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{distribuciuxf3n-de-probabilidad}{%
+\section{Distribución de probabilidad}\label{distribuciuxf3n-de-probabilidad}}
+
+\textbf{Definición:}
+
+La función de \textbf{distribución de probabilidad} se define como
+
+\[F(x)=P(X\leq x)=\sum_{x_i\leq x} f(x_i) \]
+
+Esa es la probabilidad acumulada hasta un valor dado \(x\)
+
+\(F(x)\) satisface:
+
+\begin{itemize}
+\tightlist
+\item
+  \(0\leq F(x) \leq 1\)
+\item
+  Si \(x \leq y\), entonces \(F(x) \leq F(y)\)
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{ejemplo-distribuciuxf3n-de-probabilidad}{%
+\section{Ejemplo: distribución de probabilidad}\label{ejemplo-distribuciuxf3n-de-probabilidad}}
+
+Para la función de masa de probabilidad:
+
+\(f(0)=P(X=0)=1/16\)
+\(f(1)=P(X=1)=4/16\)
+\(f(2)=P(X=2)=6/16\)
+\(f(3)=P(X=3)=4/16\)
+\(f(4)=P(X=4)=1/16\)
+
+La distribución de probabilidad es:
+
+\[
+    F(x)=
+\begin{cases}
+    1/16, &  x < 1\\
+    5/16,& 1\leq x < 2\\
+    11/16,& 2\leq x < 3\\
+    15/16,& 3\leq x < 4\\
+    16/16,& x \leq 5\\
+\end{cases}
+\]
+
+Por \(X \in \mathbb{Z}\)
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{distribuciuxf3n-de-probabilidad-1}{%
+\section{Distribución de probabilidad}\label{distribuciuxf3n-de-probabilidad-1}}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-38-1.pdf}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{funciuxf3n-de-probabilidad-y-distribuciuxf3n-de-probabilidad}{%
+\section{Función de probabilidad y Distribución de probabilidad}\label{funciuxf3n-de-probabilidad-y-distribuciuxf3n-de-probabilidad}}
+
+Calcule la función de probabilidad de masa de la siguiente distribución de probabilidad:
+
+\(F(0)=1/16\), \(F(1)=5/16\), \(F(2)=11/16\), \(F(3)=15/16\), \(F(4)= 16/16\),
+
+Trabajemos al revés.
+
+\(f(0)=F(0)=1/16\)
+\(f(1)=F(1)-f(0)=5/32-1/32=4/16\)
+\(f(2)=F(2)-f(1)-f(0)=F(2)-F(1)=6/16\)
+\(f(3)=F(3)-f(2)-f(1)-f(0)=F(3)-F(2)=4/16\)
+\(f(4)=F(4)-F(3)=1/16\)
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{funciuxf3n-de-probabilidad-y-distribuciuxf3n-de-probabilidad-1}{%
+\section{Función de probabilidad y Distribución de probabilidad}\label{funciuxf3n-de-probabilidad-y-distribuciuxf3n-de-probabilidad-1}}
+
+La distribución de probabilidad es otra forma de especificar la probabilidad de una variable aleatoria.
+
+\[f(x_i)=F(x_i)-F(x_{i-1})\]
+
+con
+
+\[f(x_1)=F(x_1)\]
+
+para \(X\) tomando valores en \(x_1 \leq x_2 \leq ... \leq x_n\)
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{cuantiles}{%
+\section{Cuantiles}\label{cuantiles}}
+
+Definimos el \textbf{q-cuantil} como el valor \(x_{p}\) \textbf{bajo} el cual hemos acumulado q*100\% de la probabilidad
+
+\[q=\sum_{i=1}^p f(x_i) = F (x_p)\]
+
+\begin{itemize}
+\tightlist
+\item
+  La \textbf{mediana} es valor \(x_m\) tal que \(q=0.5\)
+\end{itemize}
+
+\[F(x_{m})=0.5\]
+
+\begin{itemize}
+\tightlist
+\item
+  El cuantil \(0.05\) es el valor \(x_{r}\) tal que \(q=0.05\)
+\end{itemize}
+
+\[F(x_{r})=0.05\]
+
+\begin{itemize}
+\tightlist
+\item
+  El cuantil de \(0,95\) es el valor \(x_{s}\) tal que \(q=0,95\)
+\end{itemize}
+
+\[F(x_{s})=0.95\]
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{resumen}{%
+\section{Resumen}\label{resumen}}
+
+\begin{longtable}[]{@{}
+  >{\centering\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.43}}
+  >{\centering\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.30}}
+  >{\centering\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.26}}@{}}
+\toprule
+\begin{minipage}[b]{\linewidth}\centering
+nombres de cantidades
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+modelo (no observado)
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+datos (observados)
+\end{minipage} \\
+\midrule
+\endhead
+función de masa de probabilidad // frecuencia relativa & \(f(x_i)=P(X=x_i)\) & \(f_i=\frac{n_i}{N}\) \\
+distribución de probabilidad // frecuencia relativa acumulada & \(F(x_i)=P(X \leq x_i)\) & \(F_i=\sum_{k\leq i} f_k\) \\
+media // promedio & \(\mu=E(X)=\sum_{i=1}^M x_i f(x_i)\) & \(\bar{x}=\sum_{j=1}^N x_j/N\) \\
+varianza // varianza de la muestra & \(\sigma^2=V(X)=\sum_{i=1}^M (x_i-\mu)^2 f(x_i)\) & \(s^2=\sum_{j=1}^N (x_j-\bar{x})^2/(N-1)\) \\
+desviación estándar // muestra sd & \(\sigma=\sqrt{V(X)}\) & \(s\) \\
+varianza sobre el origen // 2º momento muestral & \(E(X^2)=\sum_{i=1}^M x_i^2 f(x_i)\) & \(m_2= \sum_{j=1}^N x_j^2/n\) \\
+\bottomrule
+\end{longtable}
+
+Tenga en cuenta que:
+
+\begin{itemize}
+\tightlist
+\item
+  \(i=1...M\) es un \textbf{resultado} de la variable aleatoria \(X\).
+\item
+  \(j=1...N\) es una \textbf{observación} de la variable aleatoria \(X\).
+\end{itemize}
+
+Propiedades:
+
+\begin{itemize}
+\tightlist
+\item
+  \(\sum_{i=1...N} f(x_i)=1\)
+\item
+  \(f(x_i)=F(x_i)-F(x_{i-1})\)
+\item
+  \(E(a\times X +b)= a\times E(X) +b\); para los escalares \(a\) y \(b\).
+\item
+  \(V(a\times X +b)= a^2\times V(X)\)
+\item
+  \(E(X^2)=V(X)+E(X)^2\)
+\end{itemize}
+
+\hypertarget{variables-aleatorias-continuas}{%
+\chapter{Variables aleatorias continuas}\label{variables-aleatorias-continuas}}
+
+\hypertarget{objetivo-5}{%
+\section{Objetivo}\label{objetivo-5}}
+
+\begin{itemize}
+\tightlist
+\item
+  Función de densidad de probabilidad
+\item
+  Media y varianza
+\item
+  Distribución de probabilidad
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{variable-aleatoria-continua}{%
+\section{Variable aleatoria continua}\label{variable-aleatoria-continua}}
+
+¿Qué sucede con las variables aleatorias continuas?
+
+Reconsideremos el ángulo de convexidad de los pacientes con misofonía (Sección 2.21).
+
+\begin{itemize}
+\tightlist
+\item
+  Para esta variabler redefinimos los resultados como pequeños intervalos regulares (bins) y calculamos la frecuencia relativa para cada uno de ellos como hicimos en el caso discreto.
+\end{itemize}
+
+\begin{verbatim}
+##        outcome ni         fi
+## 1 [-1.02,3.46]  8 0.06504065
+## 2  (3.46,7.92] 51 0.41463415
+## 3  (7.92,12.4] 26 0.21138211
+## 4  (12.4,16.8] 20 0.16260163
+## 5  (16.8,21.3] 18 0.14634146
+\end{verbatim}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{variable-aleatoria-continua-1}{%
+\section{Variable aleatoria continua}\label{variable-aleatoria-continua-1}}
+
+Consideremos nuevamente que sus frecuencias relativas son las probabilidades cuando \(N \rightarrow \infty\)
+
+\[f_i=\frac{n_i}{N} \rightarrow f(x_i)=P(X=x_i)\]
+
+La probabilidad depende ahora de la longitud de los bins \(\Delta x\). Si hacemos los contenedores cada vez más pequeños, las frecuencias se hacen más pequeñas y, por lo tanto,
+
+\(P(X=x_i) \rightarrow 0\) cuando \(\Delta x \rightarrow 0\), porque \(n_i \rightarrow 0\)
+
+\begin{verbatim}
+##          outcome ni         fi
+## 1  [-1.02,0.115]  2 0.01626016
+## 2   (0.115,1.23]  0 0.00000000
+## 3    (1.23,2.34]  3 0.02439024
+## 4    (2.34,3.46]  3 0.02439024
+## 5    (3.46,4.58]  2 0.01626016
+## 6    (4.58,5.69]  4 0.03252033
+## 7     (5.69,6.8] 11 0.08943089
+## 8     (6.8,7.92] 34 0.27642276
+## 9    (7.92,9.04] 12 0.09756098
+## 10   (9.04,10.2]  4 0.03252033
+## 11   (10.2,11.3]  3 0.02439024
+## 12   (11.3,12.4]  7 0.05691057
+## 13   (12.4,13.5]  2 0.01626016
+## 14   (13.5,14.6]  6 0.04878049
+## 15   (14.6,15.7]  4 0.03252033
+## 16   (15.7,16.8]  8 0.06504065
+## 17     (16.8,18]  4 0.03252033
+## 18     (18,19.1]  9 0.07317073
+## 19   (19.1,20.2]  3 0.02439024
+## 20   (20.2,21.3]  2 0.01626016
+\end{verbatim}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{variable-aleatoria-continua-2}{%
+\section{Variable aleatoria continua}\label{variable-aleatoria-continua-2}}
+
+Definimos una cantidad en un punto \(x\) que es la cantidad de probabilidad por unidad de distancia que encontraríamos en un contenedor \textbf{infinitesimal} \(dx\) en \(x\)
+
+\[f(x)= \frac{P(x\leq X \leq x+dx)}{dx}\]
+
+\(f(x)\) se llama la función de \textbf{densidad} de probabilidad.
+
+Por tanto, la probabilidad de observar \(x\) entre \(x\) y \(x+dx\)
+está dada por
+
+\[P(x\leq X \leq x+dx)= f(x) dx\]
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{variable-aleatoria-continua-3}{%
+\section{Variable aleatoria continua}\label{variable-aleatoria-continua-3}}
+
+\textbf{Definición}
+
+Para una variable aleatoria continua \(X\), una función de \textbf{densidad de probabilidad} es tal que
+
+La función es positiva:
+
+\begin{itemize}
+\tightlist
+\item
+  \(f(x) \geq 0\)
+\end{itemize}
+
+La probabilidad de observar un valor dentro de un intervalo es el \textbf{área bajo la curva}:
+
+\begin{itemize}
+\tightlist
+\item
+  \(P(a\leq X \leq b)=\int_{a}^{b} f(x) dx\)
+\end{itemize}
+
+La probabilidad de observar \textbf{cualquier} valor es 1:
+
+\begin{itemize}
+\tightlist
+\item
+  \(\int_{-\infty}^{\infty} f(x) dx = 1\)
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{variable-aleatoria-continua-4}{%
+\section{Variable aleatoria continua}\label{variable-aleatoria-continua-4}}
+
+\begin{itemize}
+\item
+  La función de densidad de probabilidad es un paso adelante en la abstracción de probabilidades: sumamos el límite continuo (\(dx \rightarrow 0\)).
+\item
+  Todas las propiedades de las probabilidades se traducen en términos de densidades (\(\sum \rightarrow \int\)).
+\item
+  La asignación de probabilidades a una variable aleatoria se puede realizar con argumentos de equiprobabilidad (clásicos).
+\item
+  Las densidades son cantidades matemáticas que algunas asignarán a experimentos y otras no. \emph{¿Qué densidad corresponderá mejor a mi experimento?}
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{uxe1rea-total-bajo-la-curva}{%
+\section{Área total bajo la curva}\label{uxe1rea-total-bajo-la-curva}}
+
+Ejemplo: toma la \textbf{densidad de probabilidad} que podría describir la variable aleatoria que mide dónde cae una gota de lluvia en una canaleta de lluvia de \(100cm\) de longitud.
+
+\[
+    f(x)= 
+\begin{cases}
+    \frac{1}{100},& \text{si } x\in (0,100)\\
+    0,& si \, no 
+\end{cases}
+\]
+
+Entonces la probabilidad de \textbf{cualquier} observación es el \textbf{área total bajo la curva}
+
+\(P(-\infty\leq X \leq \infty)= \int_{-\infty}^{\infty} f(x) dx = 100*0.01= 1\)
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-41-1.pdf}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{uxe1rea-bajo-la-curva}{%
+\section{Área bajo la curva}\label{uxe1rea-bajo-la-curva}}
+
+La probabilidad de observar \(x\) en un intervalo es el \textbf{área bajo la curva} dentro del intervalo
+
+\begin{itemize}
+\tightlist
+\item
+  \(P(20 \leq X \leq 60) = \int_{20}^{60} f(x) dx = (60-20)*0.01=0.4\)
+\end{itemize}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-42-1.pdf}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{uxe1rea-bajo-la-curva-1}{%
+\section{Área bajo la curva}\label{uxe1rea-bajo-la-curva-1}}
+
+En general, \(f(x)\) debe satisfacer:
+
+\begin{itemize}
+\tightlist
+\item
+  \(0 \leq P(a \leq X \leq b) = \int_{a}^{b} f(x) dx \leq 1\)
+\end{itemize}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-43-1.pdf}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{distribuciuxf3n-de-probabilidad-2}{%
+\section{Distribución de probabilidad}\label{distribuciuxf3n-de-probabilidad-2}}
+
+La probabilidad acumulada hasta \(b\) está definida por la distribución de probabilidad \(F\)
+
+\begin{itemize}
+\tightlist
+\item
+  \(F(b) = P(X \leq b)=\int_\infty^bf(x)dx\)
+\end{itemize}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-44-1.pdf}
+
+La probabilidad acumulada hasta \(a\) es
+
+\begin{itemize}
+\tightlist
+\item
+  \(F(a) = P(X \leq a)\)
+\end{itemize}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-45-1.pdf}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{distribuciuxf3n-de-probabilidad-3}{%
+\section{Distribución de probabilidad}\label{distribuciuxf3n-de-probabilidad-3}}
+
+La probabilidad entre \(a\) y \(b\) está definida por la distribución de probabilidad \(F\)
+
+\begin{itemize}
+\tightlist
+\item
+  \(P(a\leq X \leq b) = \int_a^b f(x)dx=F(b)-F(a)\)
+\end{itemize}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-46-1.pdf}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{distribuciuxf3n-de-probabilidad-4}{%
+\section{Distribución de probabilidad}\label{distribuciuxf3n-de-probabilidad-4}}
+
+La distribución de probabilidad de una variable aleatoria continua se define como
+\(F(a)=P(X\leq a) =\int_{-\infty} ^a f(x)dx\)
+
+con las propiedades que:
+
+Está entre \(0\) y \(1\):
+
+\begin{itemize}
+\tightlist
+\item
+  \(F(-\infty)= 0\) y \(F(\infty)=1\)
+\end{itemize}
+
+Siempre aumenta:
+
+\begin{itemize}
+\tightlist
+\item
+  si \(a\leq b\) entonces \(F(a)\leq F(b)\)
+\end{itemize}
+
+Se puede utilizar para calcular probabilidades:
+
+\begin{itemize}
+\tightlist
+\item
+  \(P(a \leq X \leq b)=F(b)-F(a)\)
+\end{itemize}
+
+Recupera la densidad de probabilidad:
+
+\begin{itemize}
+\tightlist
+\item
+  \(f(x)=\frac{dF(x)}{dx}\)
+\end{itemize}
+
+Usamos \textbf{distribuciones de probabilidad} para \textbf{calcular probabilidades} de una variable aleatoria en intervalos
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{distribuciuxf3n-de-probabilidad-5}{%
+\section{Distribución de probabilidad}\label{distribuciuxf3n-de-probabilidad-5}}
+
+Para la funcion de densidad uniforme:
+
+\[
+    f(x)= 
+\begin{cases}
+    \frac{1}{100},& \text{si } x\in (0,100)\\
+    0,& si \,no 
+\end{cases}
+\]
+
+La distribución de probabilidad es
+
+\[
+    F(a)= 
+\begin{cases}
+    0,& a \leq 0 \\
+    \frac{a}{100},& \text{si } a\in (0,100)\\
+    1, & 10 \leq a \\
+    \\
+\end{cases}
+\]
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{gruxe1ficos-de-probabilidad}{%
+\section{Gráficos de probabilidad}\label{gruxe1ficos-de-probabilidad}}
+
+La probabilidad \(P(20<X<60)\) es el \emph{área} bajo la curva de \textbf{densidad}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-47-1.pdf}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{gruxe1ficos-de-probabilidad-1}{%
+\section{Gráficos de probabilidad}\label{gruxe1ficos-de-probabilidad-1}}
+
+La probabilidad \(P(20<X<60)\) es la \emph{diferencia} en valores de \textbf{distribución}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-48-1.pdf}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{media-1}{%
+\section{Media}\label{media-1}}
+
+Como en el caso discreto, la \textbf{media} mide el centro de la distribución
+
+\textbf{Definición}
+
+Supongamos que \(X\) es una variable aleatoria continua con función de probabilidad \textbf{densidad} \(f(x)\). El valor medio o esperado de \(X\), denotado como \(\mu\) o \(E(X)\), es
+
+\[\mu=E(X)=\int_{-\infty}^\infty x f(x) dx\]
+Es la versión continua del centro de masa.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{media-2}{%
+\section{Media}\label{media-2}}
+
+\[
+    f(x)= 
+\begin{cases}
+    \frac{1}{100},& \text{si } x\in (0,100)\\
+    0,& si \, no 
+\end{cases}
+\]
+
+\(E(X)=50\)
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-49-1.pdf}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{varianza}{%
+\section{Varianza}\label{varianza}}
+
+Como en el caso discreto, la varianza mide la dispersión con respecto a la media
+
+\textbf{Definición}
+
+Supongamos que \(X\) es una variable aleatoria continua con función de densidad de probabilidad \(f(x)\). La varianza de \(X\), denotada como \(\sigma^2\) o \(V(X)\), es
+
+\[\sigma^2=V(X)=\int_{-\infty}^\infty (x-\mu)^2 f(x) dx\]
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{funciones-de-x-1}{%
+\section{\texorpdfstring{Funciones de \(X\)}{Funciones de X}}\label{funciones-de-x-1}}
+
+\textbf{Definición}
+
+Para cualquier función \(h\) de una variable aleatoria \(X\), con función de masa \(f(x)\), su valor esperado viene dado por
+
+\[E[h(X)]= \int_{-\infty}^{\infty} h(x) f(x)dx\]
+
+Y tenemos las mismas propiedades que en el caso discreto
+
+\begin{itemize}
+\item
+  La media de una función lineal es la función lineal de la media: \[E(a\times X +b)= a\times E(X) +b\] para \(a\) y \(b\) escalares.
+\item
+  La varianza de una función lineal de \(X\) es:\[V(a\times X +b)= a^2\times V(X)\]
+\item
+  La varianza sobre el origen es la varianza sobre la media más la media al cuadrado: \[E(X^2)=V(X)+E(X)^2\]
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{ejemplo-8}{%
+\section{Ejemplo}\label{ejemplo-8}}
+
+\begin{itemize}
+\tightlist
+\item
+  para la densidad de probabilidad
+\end{itemize}
+
+\[
+    f(x)= 
+\begin{cases}
+    \frac{1}{100},& \text{si } x\in (0,100)\\
+    0,& si \, no 
+\end{cases}
+\]
+
+\begin{itemize}
+\tightlist
+\item
+  calcule la media
+\item
+  calcule la varianza usando \(E(X^2)=V(X)+E(X)^2\)
+\item
+  calcule \(P(\mu-\sigma\leq X \leq \mu+\sigma)\)
+\item
+  ¿Cuáles son el primer y tercer cuartiles?
+\end{itemize}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-50-1.pdf}
 
 \hypertarget{ejercicios}{%
 \chapter{Ejercicios}\label{ejercicios}}
@@ -2628,7 +3846,7 @@ El resultado de un experimento aleatorio es medir la gravedad de la misofonía \
 ## 6             0             0
 \end{verbatim}
 
-Un estudio en muchos pacientes mostró las frecuencias relativas \(f_i\) dadas en la tabla de contingencia:
+Un estudio en 123 pacientes mostró las frecuencias \(n_{x,y}\) dadas en la tabla de contingencia:
 
 \begin{verbatim}
 ##               
@@ -2640,7 +3858,17 @@ Un estudio en muchos pacientes mostró las frecuencias relativas \(f_i\) dadas e
 ##   Misophonia:0           36            5
 \end{verbatim}
 
-Supongamos que \(N>>0\) y que las frecuencias \textbf{estiman} las probabilidades \(f_{i,j}=\hat{P}(x_i, y_j)\)
+Supongamos que \(N>>0\) y que las frecuencias \textbf{estiman} las probabilidades \(f_{x,y}=\hat{P}(X, Y)\)
+
+\begin{verbatim}
+##               
+##                Depression:0 Depression:1
+##   Misophonia:4   0.00000000   0.07317073
+##   Misophonia:3   0.20325203   0.04878049
+##   Misophonia:2   0.27642276   0.02439024
+##   Misophonia:1   0.04065041   0.00000000
+##   Misophonia:0   0.29268293   0.04065041
+\end{verbatim}
 
 \begin{itemize}
 \tightlist
@@ -2719,6 +3947,8 @@ superficie lisa: no & 4 & 2 \\
 \item
   ¿Cuál es la probabilidad estimada de que la varilla sea lisa si es redondeada?
 \item
+  ¿Cuál es la probabilidad estimada de que la varilla no sea ni lisa ni redondeada si no cumple al menos un control de calidad?
+\item
   ¿Son eventos independientes la suavidad y la redondez?
 \end{itemize}
 
@@ -2773,13 +4003,39 @@ superficie lisa: no & 8 & 6 \\
 \item
   ¿Cuál es la probabilidad de que la varilla sea lisa o redondeada o producida por la máquina 1?
 \item
+  ¿Cuál es la probabilidad de que la varilla quede redondeada si es alisada y de la máquina 1?
+\item
+  ¿Cuál es la probabilidad de que la varilla no esté redondeada si no está alisada y es de la máquina 2?
+\item
+  ¿Cuál es la probabilidad de que la varilla haya salido de la máquina 1 si está alisada y redondeada?
+\item
   ¿Cuál es la probabilidad de que la varilla haya venido de la máquina 2 si no pasa al menos uno de los controles de calidad?
 \end{itemize}
 
 \hypertarget{ejercicio-4}{%
 \subsubsection{Ejercicio 4}\label{ejercicio-4}}
 
-Queremos cruzar una avenida con tres semáforos. La probabilidad de encontrar un semáforo en rojo dado que el anterior estaba en rojo es 0,15. Mientras que la probabilidad de encontrar un tráfico justo en rojo dado que el anterior estaba en verde es de 0,25. Si la probabilidad de encontrar el primer semáforo en rojo es 0,6 entonces
+Queremos cruzar una avenida con dos semáforos. La probabilidad de encontrar el primer semáforo en rojo es 0,6. Si paramos en el primer semáforo, la probabilidad de parar en el segundo es 0,15. Mientras que la probabilidad de detenernos en el segundo si no nos detenemos en el primero es 0,25.
+
+Cuando intentamos cruzar ambos semáforos:
+
+\begin{itemize}
+\tightlist
+\item
+  ¿Cuál es la probabilidad de tener que detenerse en cada semáforo?
+\item
+  ¿Cuál es la probabilidad de tener que parar en al menos un semáforo?
+\item
+  ¿Cuál es la probabilidad de tener que detenerse en un solo semáforo?
+\item
+  Si paré en el segundo semáforo, ¿cuál es la probabilidad de que hubiera tenido que parar en el primero?
+\item
+  Si tuviera que parar en cualquier semáforo, ¿cuál es la probabilidad de que tuviera que hacerlo dos veces?
+\item
+  ¿Parar en el primer semáforo es un evento independiente de detenerse en el segundo semáforo?
+\end{itemize}
+
+Ahora, queremos cruzar una avenida con tres semáforos. La probabilidad de encontrar un semáforo en rojo solo depende de la anterior. En concreto, la probabilidad de encontrar un semáforo en rojo dado que el anterior estaba en rojo es de 0,15. Mientras que la probabilidad de encontrar un tráfico justo en rojo dado que el anterior estaba en verde es de 0,25. Además, la probabilidad de encontrar el primer semáforo en rojo es de 0,6.
 
 \begin{itemize}
 \tightlist
@@ -2791,17 +4047,15 @@ Queremos cruzar una avenida con tres semáforos. La probabilidad de encontrar un
   ¿Cuál es la probabilidad de tener que detenerse en un solo semáforo?
 \end{itemize}
 
-Suponga que la probabilidad de un semáforo depende solo de las vistas previas
-
 consejos:
 
 \begin{itemize}
 \item
-  La probabilidad conjunta de encontrar tres semáforos en rojo se puede escribir como:
-  \(P(R_1,R_2,R_3)=P(R_3|R_2,R_1)P(R_2|R_1)P(R_1)\)
+  Si la probabilidad de que un semáforo esté en rojo depende únicamente del anterior, entonces
+  \(P(R_3|R_2,R_1)=P(R_3|R_2,\bar{R}_1)=P(R_3|R_2)\) y \(P(R_3|\bar{R}_2,R_1)=P(R_3 |\bar{R}_2,\bar{R}_1)=P(R_3|\bar{R}_2)\)
 \item
-  Si la probabilidad de un semáforo depende solo del anterior entonces
-  \(P(R_3|R_2,R_1)=P(R_3|R_2)\)
+  La probabilidad conjunta de encontrar tres semáforos en rojo se puede escribir como:
+  \(P(R_1,R_2,R_3)=P(R_3|R_2)P(R_2|R_1)P(R_1)\)
 \end{itemize}
 
 \hypertarget{ejercicio-5}{%
@@ -2922,7 +4176,7 @@ consejos:
   ¿Cuáles son el primer y tercer cuartiles?
 \end{itemize}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-39-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-57-1.pdf}
 
 \hypertarget{ejercicio-4-1}{%
 \subsubsection{Ejercicio 4}\label{ejercicio-4-1}}

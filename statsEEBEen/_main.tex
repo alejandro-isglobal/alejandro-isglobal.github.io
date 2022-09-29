@@ -6,7 +6,7 @@
 ]{book}
 \title{Stats theory (SDA)}
 \author{Alejandro Caceres}
-\date{2022-09-05}
+\date{2022-09-29}
 
 \usepackage{amsmath,amssymb}
 \usepackage{lmodern}
@@ -968,12 +968,12 @@ Say we repeated the experiment 1000 times:
 
 \begin{verbatim}
 ##   outcome  ni    fi
-## 1       1 180 0.180
-## 2       2 159 0.159
-## 3       3 158 0.158
-## 4       4 168 0.168
-## 5       5 150 0.150
-## 6       6 185 0.185
+## 1       1 188 0.188
+## 2       2 156 0.156
+## 3       3 179 0.179
+## 4       4 149 0.149
+## 5       5 137 0.137
+## 6       6 191 0.191
 \end{verbatim}
 
 We find that \(f_i\) is converging to a constant value
@@ -1422,7 +1422,7 @@ sum & \(3/6\) & \(3/6\) & 1 \\
 Three forms of the \textbf{addition rule}:
 
 \(P(A \cup B)\)\[=P(A) + P(B) - P(A\cap B)\]
-\[=P(A \cap B)+P(A\cap B')+P(A\cap B')\]
+\[=P(A \cap B)+P(A\cap B')+P(A'\cap B)\]
 \[=1-P(A'\cap B')\]
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
@@ -2053,11 +2053,11 @@ specificity (0.962).
 \hypertarget{multiplication-rule}{%
 \section{Multiplication rule}\label{multiplication-rule}}
 
-Now let's imagine the real situation.
+Now let's imagine the real situation where we want to compute \textbf{joint} probabilities from conditional \textbf{probabilities}
 
 \begin{itemize}
 \item
-  PCRs for coronavirus were (performed){[}\url{https://www.nejm.org/doi/full/10.1056/NEJMp2015897}{]} in people in the hospital who we are sure to be infected. They have a sensitivity of 70\%. They have also been tested in the lab in conditions of no infection with 96\% sensitivity.
+  PCRs for coronavirus were (performed){[}\url{https://www.nejm.org/doi/full/10.1056/NEJMp2015897}{]} in people in the hospital who we are sure to be infected. They have a sensitivity of 70\%. They have also been tested in the lab in conditions of no infection with 96\% specificity
 \item
   A prevalence study in Spain showed that \(P(yes)=0.05\), \(P(no)=0.95\) before summer.
 \end{itemize}
@@ -2084,7 +2084,7 @@ To study the performance of a new diagnostic test:
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\begin{longtable}[]{@{}lll@{}}
+\begin{longtable}[]{@{}ccc@{}}
 \toprule
 & Infection: Yes & Infection: No \\
 \midrule
@@ -2184,7 +2184,7 @@ But we also found the marginal of being positive:
 \hypertarget{total-probability-rule}{%
 \section{Total probability rule}\label{total-probability-rule}}
 
-\begin{longtable}[]{@{}llll@{}}
+\begin{longtable}[]{@{}cccc@{}}
 \toprule
 & Infection: Yes & Infection: No & sum \\
 \midrule
@@ -2215,6 +2215,156 @@ When we write the unknown marginals in terms of their conditional probabilities 
 \textbf{Total probability rule} for the marginal of \(B\): In how many ways I can obtain the outcome \(B\)?
 
 \(P(B)=P(B|A)P(A)+P(B|A')P(A')\)
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{finding-reverse-probabilities}{%
+\section{Finding reverse probabilities}\label{finding-reverse-probabilities}}
+
+From the conditional contingency table
+
+\begin{longtable}[]{@{}ccc@{}}
+\toprule
+& Infection: Yes & Infection: No \\
+\midrule
+\endhead
+Test: positive & P(positive {\textbar{}} yes) & P(positive {\textbar{}} no) \\
+Test: negative & P(negative {\textbar{}} yes) & P(negative {\textbar{}} no) \\
+sum & 1 & 1 \\
+\bottomrule
+\end{longtable}
+
+How can we calculate the probability of being infected if tested positive: \(P(yes|positive)\)?
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{recover-joint-probabilities}{%
+\section{Recover joint probabilities}\label{recover-joint-probabilities}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  We recover the contingency table for joint probabilities
+\end{enumerate}
+
+\begin{longtable}[]{@{}cccc@{}}
+\toprule
+& Infection: Yes & Infection: No & sum \\
+\midrule
+\endhead
+Test: positive & P(positive {\textbar{}} yes)P(yes) & P(positive {\textbar{}} no)P(no) & P(positive) \\
+Test: negative & P(negative {\textbar{}} yes)P(yes) & P(negative {\textbar{}} no) P(no) & P(negative) \\
+sum & P(yes) & P(no) & 1 \\
+\bottomrule
+\end{longtable}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{reverse-conditionals}{%
+\section{Reverse conditionals}\label{reverse-conditionals}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  We compute the conditional probabilities for the test:
+\end{enumerate}
+
+\[P(infection|test)=\frac{P(test|infection)P(infection)}{P(test)}\]
+
+\begin{longtable}[]{@{}cccc@{}}
+\toprule
+& Infection: Yes & Infection: No & sum \\
+\midrule
+\endhead
+Test: positive & P(yes{\textbar{}}positive) & P(no{\textbar{}}positive) & 1 \\
+Test: negative & P(yes{\textbar{}}negative) & P(no{\textbar{}}negative) & 1 \\
+\bottomrule
+\end{longtable}
+
+For instance:
+\[P(yes|positive)=\frac{P(positive|yes)P(yes)}{P(positive)}\]
+since we usually don't have \(P(positive)\) we use the \textbf{total probability} rule in the denominator
+
+\[P(yes|positive)=\frac{P(positive|yes)P(yes)}{P(positive|yes)P(yes)+P(positive|no)P(no)}\]
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{bayes-theorem}{%
+\section{Baye's theorem}\label{bayes-theorem}}
+
+The expression:
+
+\[P(yes|positive)=\frac{P(positive|yes)P(yes)}{P(positive|yes)P(yes)+P(positive|no)P(no)}\]
+
+is called the \textbf{Bayes theorem}
+
+\textbf{Theorem}
+
+If \(E1, E2, ..., Ek\) are \(k\) mutually exclusive and exhaustive events and \(B\) is any event,
+
+\[P(Ei|B)=\frac{P(B|Ei)P(Ei)}{P(B|E1)P(E1) +...+ P(B|Ek)P(Ek)}\]
+
+It allows to reverse the conditionals:
+
+\[P(B|A) \rightarrow P(A|B)\]
+
+Or \textbf{design} a test \(B\) in controlled condition \(A\) and then use it to \textbf{infer} the probability of the condition when the test is positive.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{example-bayes-theorem}{%
+\section{Example: Bayes' theorem}\label{example-bayes-theorem}}
+
+Baye's theorem:
+
+\[P(yes|positive)  = \frac{P(positive|yes) P(yes)}{P(possitive|yes)P(yes)+P(positive|no)P(no)}\]
+
+we know:
+
+\begin{itemize}
+\item
+  \(P(positive|yes)=0.70\)
+\item
+  \(P(positive|no)=1- P(negative|no)=0.06\)
+\item
+  the probability of infection and not infection in the population: \(P(yes)=0.05\) and \(P(no)=1-P(yes)=0.95\).
+\end{itemize}
+
+Therefore:
+
+\[P(yes|positive)=0.47\]
+
+Tests are not so good to \textbf{confirm} infections.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{example-bayes-theorem-1}{%
+\section{Example: Bayes' theorem}\label{example-bayes-theorem-1}}
+
+Let's now apply it to the probability of not being infected if the test is negative
+
+\[P(no|negative)  = \frac{P(negative|no)  P(no)}{P(negative|no) P(no)+P(negative|yes)P(yes)}\]
+
+Substitution of all the values gives
+
+\[P(no|negative)=0.98\]
+
+Tests are good to \textbf{rule out} infections.
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
@@ -2394,155 +2544,1229 @@ sum & \(1/2\) & \(1/2\) & 1 \\
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{finding-reverse-probabilities}{%
-\section{Finding reverse probabilities}\label{finding-reverse-probabilities}}
+\hypertarget{discrete-random-variables}{%
+\chapter{Discrete Random Variables}\label{discrete-random-variables}}
 
-From the conditional contingency table
+\hypertarget{objective-3}{%
+\section{Objective}\label{objective-3}}
 
-\begin{longtable}[]{@{}ccc@{}}
-\toprule
-& Infection: Yes & Infection: No \\
-\midrule
-\endhead
-Test: positive & P(positive {\textbar{}} yes) & P(positive {\textbar{}} no) \\
-Test: negative & P(negative {\textbar{}} yes) & P(negative {\textbar{}} no) \\
-sum & 1 & 1 \\
-\bottomrule
-\end{longtable}
-
-How can we calculate the probability of being infected if tested positive: \(P(yes|positive)\)?
-
-\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
-
-\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
-
-\hypertarget{recover-joint-probabilities}{%
-\section{Recover joint probabilities}\label{recover-joint-probabilities}}
-
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
+\begin{itemize}
 \tightlist
 \item
-  We recover the contingency table for joint probabilities
-\end{enumerate}
-
-\begin{longtable}[]{@{}cccc@{}}
-\toprule
-& Infection: Yes & Infection: No & sum \\
-\midrule
-\endhead
-Test: positive & P(positive {\textbar{}} yes)P(yes) & P(positive {\textbar{}} no)P(no) & P(positive) \\
-Test: negative & P(negative {\textbar{}} yes)P(yes) & P(negative {\textbar{}} no) P(no) & P(negative) \\
-sum & P(yes) & P(no) & 1 \\
-\bottomrule
-\end{longtable}
+  Random variables
+\item
+  Probability mass function
+\item
+  Mean and variance
+\item
+  Probability distribution
+\end{itemize}
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{reverse-conditionals}{%
-\section{Reverse conditionals}\label{reverse-conditionals}}
+\hypertarget{how-do-we-assign-probability-values-to-outcomes}{%
+\section{How do we assign probability values to outcomes?}\label{how-do-we-assign-probability-values-to-outcomes}}
 
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\setcounter{enumi}{1}
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{random-variable}{%
+\section{Random variable}\label{random-variable}}
+
+\textbf{Definition:}
+
+A \textbf{random variable} is a function that assigns a real \textbf{number} to each \textbf{outcome} in the sample space of a random experiment.
+
+\begin{itemize}
 \tightlist
 \item
-  We compute the conditional probabilities for the test:
-\end{enumerate}
+  Most commonly a random variable is the value of the \textbf{measurement} of interest that is made in a random experiment.
+\end{itemize}
 
-\[P(infection|test)=\frac{P(test|infection)P(infection)}{P(test)}\]
+A random variable can be:
 
-\begin{longtable}[]{@{}cccc@{}}
-\toprule
-& Infection: Yes & Infection: No & sum \\
-\midrule
-\endhead
-Test: positive & P(yes{\textbar{}}positive) & P(no{\textbar{}}positive) & 1 \\
-Test: negative & P(yes{\textbar{}}negative) & P(no{\textbar{}}negative) & 1 \\
-\bottomrule
-\end{longtable}
-
-For instance:
-\[P(yes|positive)=\frac{P(positive|yes)P(yes)}{P(positive)}\]
-since we usually don't have \(P(positive)\) we use the \textbf{total probability} rule in the denominator
-
-\[P(yes|positive)=\frac{P(positive|yes)P(yes)}{P(positive|yes)P(yes)+P(positive|no)P(no)}\]
+\begin{itemize}
+\tightlist
+\item
+  Discrete (nominal, ordinal)
+\item
+  Continuous (interval, ratio)
+\end{itemize}
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{bayes-theorem}{%
-\section{Baye's theorem}\label{bayes-theorem}}
+\hypertarget{random-variable-1}{%
+\section{Random variable}\label{random-variable-1}}
 
-The expression:
+A \textbf{value} (or \textbf{outcome}) of a random variable is one of the possible numbers that the variable can take in a random experiment.
 
-\[P(yes|positive)=\frac{P(positive|yes)P(yes)}{P(positive|yes)P(yes)+P(positive|no)P(no)}\]
+We write the random variable in \textbf{capitals}.
 
-is called the \textbf{Bayes theorem}
+Example:
 
-\textbf{Theorem}
+If \(X \in \{0,1\}\), we then say \(X\) is a random variable that can take the values \(0\) or \(1\).
 
-If \(E1, E2, ..., Ek\) are \(k\) mutually exclusive and exhaustive events and \(B\) is any event,
+\textbf{Observation} of a random variable
 
-\[P(Ei|B)=\frac{P(B|Ei)P(Ei)}{P(B|E1)P(E1) +...+ P(B|Ek)P(Ek)}\]
+\begin{itemize}
+\tightlist
+\item
+  An observation is the \textbf{acquisition} of the value of a random variable in a random experiment
+\end{itemize}
 
-It allows to reverse the conditionals:
+Example:
 
-\[P(B|A) \rightarrow P(A|B)\]
+1 0 0 1 0 \textbf{1} 0 1 1
 
-Or \textbf{design} a test \(B\) in controlled condition \(A\) and then use it to \textbf{infer} the probability of the condition when the test is positive.
+The number in bold is an observation of \(X\)
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{example-bayes-theorem}{%
-\section{Example: Bayes' theorem}\label{example-bayes-theorem}}
+\hypertarget{events-of-observing-a-random-variable}{%
+\section{Events of observing a random variable}\label{events-of-observing-a-random-variable}}
 
-Baye's theorem:
+\begin{itemize}
+\tightlist
+\item
+  \(X=1\) is the \textbf{event} of observing the random variable \(X\) with value \(1\)
+\item
+  \(X=2\) is the \textbf{event} of observing the random variable \(X\) with value \(2\)
+\end{itemize}
 
-\[P(yes|positive)  = \frac{P(positive|yes) P(yes)}{P(possitive|yes)P(yes)+P(positive|no)P(no)}\]
+\ldots{}
 
-we know:
+\textbf{In general:}
 
 \begin{itemize}
 \item
-  \(P(positive|yes)=0.70\)
+  \(X=x\) is the \textbf{event} of observing the random variable \(X\) with value \(x\) (little \(x\))
 \item
-  \(P(positive|no)=1- P(negative|no)=0.06\)
-\item
-  the probability of infection and not infection in the population: \(P(yes)=0.05\) and \(P(no)=1-P(yes)=0.95\).
+  Any two values of a random variable define two \textbf{mutually exclusive} events.
 \end{itemize}
 
-Therefore:
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\[P(yes|positive)=0.47\]
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-Tests are not so good to \textbf{confirm} infections.
+\hypertarget{probability-of-random-variables}{%
+\section{Probability of random variables}\label{probability-of-random-variables}}
+
+We are interested in assigning probabilities to the values of a random variable.
+
+We have already done this for the dice: \(X \in \{1,2,3,4,5,6\}\) (classical interpretation of pribability)
+
+\begin{longtable}[]{@{}cc@{}}
+\toprule
+\(X\) & Probability \\
+\midrule
+\endhead
+\(1\) & \(P(X=1)=1/6\) \\
+\(2\) & \(P(X=2)=1/6\) \\
+\(3\) & \(P(X=3)=1/6\) \\
+\(4\) & \(P(X=4)=1/6\) \\
+\(5\) & \(P(X=5)=1/6\) \\
+\(6\) & \(P(X=6)=1/6\) \\
+\bottomrule
+\end{longtable}
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{example-bayes-theorem-1}{%
-\section{Example: Bayes' theorem}\label{example-bayes-theorem-1}}
+\hypertarget{probability-functions}{%
+\section{Probability functions}\label{probability-functions}}
 
-Let's now apply it to the probability of not being infected if the test is negative
+\begin{itemize}
+\tightlist
+\item
+  We can write the probability table
+\item
+  plot it
+\end{itemize}
 
-\[P(no|negative)  = \frac{P(negative|no)  P(no)}{P(negative|no) P(no)+P(negative|yes)P(yes)}\]
+\includegraphics{_main_files/figure-latex/unnamed-chunk-34-1.pdf}
 
-Substitution of all the values gives
+\begin{itemize}
+\tightlist
+\item
+  or write as the function
+\end{itemize}
 
-\[P(no|negative)=0.98\]
-
-Tests are good to \textbf{rule out} infections.
+\[f(x)=P(X=x)=1/6\]
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{probability-functions-1}{%
+\section{Probability functions}\label{probability-functions-1}}
+
+We can \textbf{create} any type of probability function if we respect the probability rules:
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-35-1.pdf}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{probability-functions-2}{%
+\section{Probability functions}\label{probability-functions-2}}
+
+For a discrete random variable \(X \in \{x_1 , x_2 , .. , x_M\}\) , a \textbf{probability mass function}
+
+is always positive
+
+\begin{itemize}
+\tightlist
+\item
+  \(f(x_i)\geq 0\)
+\end{itemize}
+
+is used to compute probabilities
+
+\begin{itemize}
+\tightlist
+\item
+  \(f(x_i)=P(X=x_i)\)
+\end{itemize}
+
+and its sum over all the values of the variable is \(1\):
+
+\begin{itemize}
+\tightlist
+\item
+  \(\sum_{i=1}^M f(x_i)=1\)
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{probability-functions-3}{%
+\section{Probability functions}\label{probability-functions-3}}
+
+\begin{itemize}
+\item
+  Note that the definition of \(X\) and its probability mass function is general \textbf{without reference} to any experiment. The functions live in the model (abstract) space.
+\item
+  \(X\) and \(f(x)\) are abstract objects that may or may not map to an experiment
+\item
+  We have the freedom to construct them as we want as long as we respect their definition.
+\item
+  They have some \textbf{properties} that are derived exclusively from their definition.
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{example-probability-mass-function}{%
+\section{Example: Probability mass function}\label{example-probability-mass-function}}
+
+Consider the following random variable \(X\) over the outcomes
+
+\begin{longtable}[]{@{}cc@{}}
+\toprule
+outcome & \(X\) \\
+\midrule
+\endhead
+\(a\) & 0 \\
+\(b\) & 0 \\
+\(c\) & 1.5 \\
+\(d\) & 1.5 \\
+\(e\) & 2 \\
+\(f\) & 3 \\
+\bottomrule
+\end{longtable}
+
+If each outcome is equally probable then what is the probability mass function of \(x\)?
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{probability-table-for-equally-likely-outcomes}{%
+\section{Probability table for equally likely outcomes}\label{probability-table-for-equally-likely-outcomes}}
+
+\begin{longtable}[]{@{}cc@{}}
+\toprule
+outcome & Probability(outcome) \\
+\midrule
+\endhead
+\(a\) & \(1/6\) \\
+\(b\) & \(1/6\) \\
+\(c\) & \(1/6\) \\
+\(d\) & \(1/6\) \\
+\(e\) & \(1/6\) \\
+\(f\) & \(1/6\) \\
+\bottomrule
+\end{longtable}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{probability-table-for-x}{%
+\section{\texorpdfstring{Probability table for \(X\)}{Probability table for X}}\label{probability-table-for-x}}
+
+\begin{longtable}[]{@{}cc@{}}
+\toprule
+\(X\) & \(f(x)=P(X=x)\) \\
+\midrule
+\endhead
+\(0\) & \(P(X=0)=2/6\) \\
+\(1.5\) & \(P(X=1.5)=2/6\) \\
+\(2\) & \(P(X=2)=1/3\) \\
+\(3\) & \(P(X=3)=1/3\) \\
+\bottomrule
+\end{longtable}
+
+We can compute, for instance, the following probabilities for events on the values of \(X\)
+
+\begin{itemize}
+\tightlist
+\item
+  \(P(X>3)\)
+\item
+  \(P(X=0\, \cup \, X=2 )\)
+\item
+  \(P(X \leq 2)\)
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{example-6}{%
+\section{Example}\label{example-6}}
+
+Consider:
+
+\begin{itemize}
+\tightlist
+\item
+  we do not know what the primary events with equal probabilities are.
+\item
+  we then \textbf{estimate} the probability mass function from the relative frequencies observed for a random variable
+\end{itemize}
+
+\begin{longtable}[]{@{}cc@{}}
+\toprule
+\(X\) & \(f_i\) \\
+\midrule
+\endhead
+\(-2\) & \(0.132\) \\
+\(-1\) & \(0.262\) \\
+\(0\) & \(0.240\) \\
+\(1\) & \(0.248\) \\
+\(2\) & \(0.118\) \\
+\bottomrule
+\end{longtable}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{example-7}{%
+\section{Example}\label{example-7}}
+
+\textbf{Probability model:}
+
+These probabilities are consistent with the following experiment: In one urn put \(8\) balls and:
+
+\begin{itemize}
+\tightlist
+\item
+  mark \(1\) ball with \(-2\)
+\item
+  mark \(2\) balls with \(-1\)
+\item
+  mark \(2\) balls with \(0\)
+\item
+  mark \(2\) balls with \(1\)
+\item
+  mark \(1\) ball with \(2\)
+\end{itemize}
+
+\textbf{experiment:} Take one ball and read the number.
+
+\begin{longtable}[]{@{}cc@{}}
+\toprule
+\(X\) & \(P(X=x)\) \\
+\midrule
+\endhead
+\(-2\) & \(1/8=0.125\) \\
+\(-1\) & \(2/8=0.25\) \\
+\(0\) & \(2/8=0.25\) \\
+\(1\) & \(2/8=0.25\) \\
+\(2\) & \(1/8=0.125\) \\
+\bottomrule
+\end{longtable}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{probabilities-and-frequencies}{%
+\section{Probabilities and frequencies}\label{probabilities-and-frequencies}}
+
+For computing the relative frequencies \(f_i\) you have to
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{repeat} the experiment \(N\) times (you have to put the ball back in the urn each time) and at the end compute
+\end{itemize}
+
+\[f_i=n_i/N\]
+
+We are assuming that:
+
+\[lim_{N \rightarrow \infty} f_i = f(x_i)=P(X=x_i)\]
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{probabilities-and-relative-frequencies}{%
+\section{Probabilities and relative frequencies}\label{probabilities-and-relative-frequencies}}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-36-1.pdf}
+
+\begin{itemize}
+\tightlist
+\item
+  In this example we \textbf{know} the probability \textbf{model} \(f(x)=P(X=x)\) by design.
+\item
+  We never observe \(f(x)\)
+\item
+  We can use relative frequencies to estimate the probabilities
+  \[f_i = \hat{f}(x_i)=\hat{P}(X=x_i)\] (\(f_i\) depends on \(N\))
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{mean-and-variance}{%
+\section{Mean and Variance}\label{mean-and-variance}}
+
+The probability mass functions \(f(x)\) have two main properties
+
+\begin{itemize}
+\tightlist
+\item
+  its center
+\item
+  its spread
+\end{itemize}
+
+We can ask,
+
+\begin{itemize}
+\item
+  around which values of \(X\) the probability concentrated?
+\item
+  How dispersed are the values of \(X\) in relation to their probabilities?
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{mean-and-variance-1}{%
+\section{Mean and Variance}\label{mean-and-variance-1}}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{mean}{%
+\section{Mean}\label{mean}}
+
+Remember that the \textbf{average} in terms of the relative frequencies of the values of \(x_i\) (categorical ordered outcomes) can be written as
+
+\[\bar{x}= \sum_{i=1}^M x_i \frac{n_i}{N}=\sum_{i=1}^M x_i f_i\]
+
+\textbf{Definition}
+
+The \textbf{mean} (\(\mu\)) or expected value of a discrete random variable \(X\), \(E(X)\), with mass function \(f(x)\) is given by
+
+\[ \mu = E(X)= \sum_{i=1}^M x_i f(x_i) \]
+
+It is the center of gravity of the \textbf{probabilities}: The point where probability loadings on a road are balanced
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{example-mean}{%
+\section{Example: Mean}\label{example-mean}}
+
+What is the mean of \(X\) if its probability mass function \(f(x)\) is given by
+
+\(P(X=0)=1/16\)
+\(P(X=1)=4/16\)
+\(P(X=2)=6/16\)
+\(P(X=3)=4/16\)
+\(P(X=4)=1/16\)
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-37-1.pdf}
+
+\[ \mu =E(X)=\sum_{i=1}^m x_i f(x_i) \]
+
+\(E(X)=\)\textbf{0} * 1/16 + \textbf{1} * 4/16 + \textbf{2} * 6/16 + \textbf{3} * 4/16 + \textbf{4} * 1/16 =2
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{variance}{%
+\section{Variance}\label{variance}}
+
+In similar terms we define the mean squared distance from the mean:
+
+\textbf{Definition}
+
+The variance, written as \(\sigma^2\) or \(V(X)\), of a discrete random variable \(X\) with mass function \(f(x)\) is given by
+
+\[\sigma^2 = V(X)= \sum_{i=1}^M (x_i-\mu)^2 f(x_i)\]
+
+\begin{itemize}
+\item
+  \(\sigma=\sqrt{V(X)}\) is called the \textbf{standard deviation} of the random variable
+\item
+  Think of it as the moment of inertia of probabilities about the mean.
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{example-variance}{%
+\section{Example: Variance}\label{example-variance}}
+
+What is the variance of \(X\) if its probability mass function \(f(x)\) is given by
+
+\(P(X=0)=1/16\)
+\(P(X=1)=4/16\)
+\(P(X=2)=6/16\)
+\(P(X=3)=4/16\)
+\(P(X=4)=1/16\)
+
+\[\sigma^2 =V(X)=\sum_{i=1}^m (x_i-\mu)^2 f(x_i)\]
+
+\(V(X)=\)\textbf{(0-2)}\(^2\)* 1/16 + \textbf{(1-2)}\(^2\)* 4/16 + \textbf{(2-2)}\(^2\)* 6/16 + \textbf{(3-2)}\(^2\)* 4/16 + \textbf{(4-2)}\(^2\)* 1/16 =1
+
+\[V(X)=\sigma^2=1\]
+\[\sigma=1\]
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{functions-of-x}{%
+\section{\texorpdfstring{Functions of \(X\)}{Functions of X}}\label{functions-of-x}}
+
+\textbf{Definition}
+
+For any function \(h\) of a random variable \(X\), with mass function \(f(x)\), its expected value is given by
+
+\[ E[h(X)]= \sum_{i=1}^M h(x_i) f(x_i) \]
+
+This is an important definition that allows us to prove three important properties of the median and variance:
+
+\begin{itemize}
+\item
+  The mean of a linear function is the linear function fo the mean: \[E(a\times X +b)= a\times E(X) +b\] for \(a\) and \(b\) scalars (numbers).
+\item
+  The variance of a linear function of \(X\) is:\[V(a\times X +b)= a^2\times V(X)\]
+\item
+  The variance \textbf{about the origin} is the variance \textbf{about the mean} plus the mean squared: \[E(X^2)=V(X)+E(X)^2\]
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{example-variance-about-the-origin}{%
+\section{Example: Variance about the origin}\label{example-variance-about-the-origin}}
+
+What is the variance \(X\) about the origin, \(E(X^2)\), if its probability mass function \(f(x)\) is given by
+
+\(P(X=0)=1/16\)
+\(P(X=1)=4/16\)
+\(P(X=2)=6/16\)
+\(P(X=3)=4/16\)
+\(P(X=4)=1/16\)
+
+\[E(X^2) =\sum_{i=1}^m x_i^2 f(x_i)\]
+
+\(E(X^2)=\)\textbf{(0)}\(^2\)* 1/16 + \textbf{(1)}\(^2\)* 4/16 + \textbf{(2)}\(^2\)* 6/16 + \textbf{(3)}\(^2\)* 4/16 + \textbf{(4)}\(^2\)* 1/16 =5
+
+We can also verify:
+
+\[E(X^2)=V(X)+E(X)^2\]
+
+\(5=1+2^2\)
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{probability-distribution}{%
+\section{Probability distribution}\label{probability-distribution}}
+
+\textbf{Definition:}
+
+The \textbf{probability distribution} function is defined as
+
+\[F(x)=P(X\leq x)=\sum_{x_i\leq x} f(x_i) \]
+
+That is the accumulated probability up to a given value \(x\)
+
+\(F(x)\) satisfies:
+
+\begin{itemize}
+\tightlist
+\item
+  \(0\leq F(x) \leq 1\)
+\item
+  If \(x \leq y\), then \(F(x) \leq F(y)\)
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{example-probability-distribution}{%
+\section{Example: Probability distribution}\label{example-probability-distribution}}
+
+For the probability mass function:
+
+\(f(0)=P(X=0)=1/16\)
+\(f(1)=P(X=1)=4/16\)
+\(f(2)=P(X=2)=6/16\)
+\(f(3)=P(X=3)=4/16\)
+\(f(4)=P(X=4)=1/16\)
+
+The probability distribution is:
+
+\[
+    F(x)=
+\begin{cases}
+    1/16,& \text{if } x < 1\\
+    5/16,& 1\leq x < 2\\
+    11/16,& 2\leq x < 3\\
+    15/16,& 3\leq x < 4\\
+    16/16,&  x \leq 5\\
+\end{cases}
+\]
+
+For\(X \in \mathbb{Z}\)
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{probability-distribution-1}{%
+\section{Probability distribution}\label{probability-distribution-1}}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-38-1.pdf}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{probability-function-and-probability-distribution}{%
+\section{Probability function and Probability distribution}\label{probability-function-and-probability-distribution}}
+
+Compute the mass probability function of the following probability distribution:
+
+\(F(0)=1/16\), \(F(1)=5/16\), \(F(2)=11/16\), \(F(3)=15/16\), \(F(4)=16/16\),
+
+Let's work backward.
+
+\(f(0)=F(0)=1/16\)
+\(f(1)=F(1)-f(0)=5/32-1/32=4/16\)
+\(f(2)=F(2)-f(1)-f(0)=F(2)-F(1)=6/16\)
+\(f(3)=F(3)-f(2)-f(1)-f(0)=F(3)-F(2)=4/16\)
+\(f(4)=F(4)-F(3)=1/16\)
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{probability-function-and-probability-distribution-1}{%
+\section{Probability function and Probability distribution}\label{probability-function-and-probability-distribution-1}}
+
+The Probability distribution is another way to specify the probability of a random variable
+
+\[f(x_i)=F(x_i)-F(x_{i-1})\]
+
+with
+
+\[f(x_1)=F(x_1)\]
+
+for \(X\) taking values in \(x_1 \leq x_2 \leq ... \leq x_n\)
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{quantiles}{%
+\section{Quantiles}\label{quantiles}}
+
+We define the \textbf{q-quantile} as the value \(x_{p}\) \textbf{under} which we have accumulated q*100\% of the probability
+
+\[q=\sum_{i=1}^p f(x_i) = F (x_p)\]
+
+\begin{itemize}
+\tightlist
+\item
+  The \textbf{median} is value \(x_m\) such that \(q=0.5\)
+\end{itemize}
+
+\[F(x_{m})=0.5\]
+
+\begin{itemize}
+\tightlist
+\item
+  The \(0.05\)-quantile is the value \(x_{r}\) such that \(q=0.05\)
+\end{itemize}
+
+\[F(x_{r})=0.05\]
+
+\begin{itemize}
+\tightlist
+\item
+  The \(0.95\)-quantile is the value \(x_{s}\) such that \(q=0.95\)
+\end{itemize}
+
+\[F(x_{s})=0.95\]
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{summary}{%
+\section{Summary}\label{summary}}
+
+\begin{longtable}[]{@{}
+  >{\centering\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.43}}
+  >{\centering\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.30}}
+  >{\centering\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.26}}@{}}
+\toprule
+\begin{minipage}[b]{\linewidth}\centering
+quantity names
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+model (unobserved)
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+data (observed)
+\end{minipage} \\
+\midrule
+\endhead
+probability mass function // relative frequency & \(f(x_i)=P(X=x_i)\) & \(f_i=\frac{n_i}{N}\) \\
+probability distribution // cumulative relative frequency & \(F(x_i)=P(X \leq x_i)\) & \(F_i=\sum_{k\leq i} f_k\) \\
+mean // average & \(\mu=E(X)=\sum_{i=1}^M x_i f(x_i)\) & \(\bar{x}=\sum_{j=1}^N x_j/N\) \\
+variance // sample variance & \(\sigma^2=V(X)=\sum_{i=1}^M (x_i-\mu)^2 f(x_i)\) & \(s^2=\sum_{j=1}^N (x_j-\bar{x})^2/(N-1)\) \\
+standard deviation // sample sd & \(\sigma=\sqrt{V(X)}\) & \(s\) \\
+variance about the origin // 2nd sample moment & \(E(X^2)=\sum_{i=1}^M x_i^2 f(x_i)\) & \(m_2= \sum_{j=1}^N x_j^2/n\) \\
+\bottomrule
+\end{longtable}
+
+Note that:
+
+\begin{itemize}
+\tightlist
+\item
+  \(i=1...M\) is an \textbf{outcome} of the random variable \(X\).
+\item
+  \(j=1...N\) is an \textbf{observation} of the random variable \(X\).
+\end{itemize}
+
+Properties:
+
+\begin{itemize}
+\tightlist
+\item
+  \(\sum_{i=1...N} f(x_i)=1\)
+\item
+  \(f(x_i)=F(x_i)-F(x_{i-1})\)
+\item
+  \(E(a\times X +b)= a\times E(X) +b\); for \(a\) and \(b\) scalars.
+\item
+  \(V(a\times X +b)= a^2\times V(X)\)
+\item
+  \(E(X^2)=V(X)+E(X)^2\)
+\end{itemize}
+
+\hypertarget{continous-random-variables}{%
+\chapter{Continous Random Variables}\label{continous-random-variables}}
+
+\hypertarget{objective-4}{%
+\section{Objective}\label{objective-4}}
+
+\begin{itemize}
+\tightlist
+\item
+  Probability density function
+\item
+  Mean and variance
+\item
+  Probability distribution
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{continuous-random-variable}{%
+\section{Continuous random variable}\label{continuous-random-variable}}
+
+What happens with continuous random variables?
+
+Let's reconsider the convexity angle of misophonia patients (Section 2.21).
+
+\begin{itemize}
+\tightlist
+\item
+  We redefined the outcomes as little regular intervals (bins) and computed the relative frequency for each of them as we did in the discrete case.
+\end{itemize}
+
+\begin{verbatim}
+##        outcome ni         fi
+## 1 [-1.02,3.46]  8 0.06504065
+## 2  (3.46,7.92] 51 0.41463415
+## 3  (7.92,12.4] 26 0.21138211
+## 4  (12.4,16.8] 20 0.16260163
+## 5  (16.8,21.3] 18 0.14634146
+\end{verbatim}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{continuous-random-variable-1}{%
+\section{Continuous random variable}\label{continuous-random-variable-1}}
+
+Let's consider again that their relative frequencies are the probabilities when \(N \rightarrow \infty\)
+
+\[f_i=\frac{n_i}{N} \rightarrow f(x_i)=P(X=x_i)\]
+
+The probability depends now on the length of the bins \(\Delta x\). If we make the bins smaller and smaller then the frequencies get smaller and therefore
+
+\(P(X=x_i) \rightarrow 0\) when \(\Delta x \rightarrow 0\), because \(n_i \rightarrow 0\)
+
+\begin{verbatim}
+##          outcome ni         fi
+## 1  [-1.02,0.115]  2 0.01626016
+## 2   (0.115,1.23]  0 0.00000000
+## 3    (1.23,2.34]  3 0.02439024
+## 4    (2.34,3.46]  3 0.02439024
+## 5    (3.46,4.58]  2 0.01626016
+## 6    (4.58,5.69]  4 0.03252033
+## 7     (5.69,6.8] 11 0.08943089
+## 8     (6.8,7.92] 34 0.27642276
+## 9    (7.92,9.04] 12 0.09756098
+## 10   (9.04,10.2]  4 0.03252033
+## 11   (10.2,11.3]  3 0.02439024
+## 12   (11.3,12.4]  7 0.05691057
+## 13   (12.4,13.5]  2 0.01626016
+## 14   (13.5,14.6]  6 0.04878049
+## 15   (14.6,15.7]  4 0.03252033
+## 16   (15.7,16.8]  8 0.06504065
+## 17     (16.8,18]  4 0.03252033
+## 18     (18,19.1]  9 0.07317073
+## 19   (19.1,20.2]  3 0.02439024
+## 20   (20.2,21.3]  2 0.01626016
+\end{verbatim}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{continuous-random-variable-2}{%
+\section{Continuous random variable}\label{continuous-random-variable-2}}
+
+We define a quantity at a point \(x\) that is the amount of probability per unit distance that we would find in an \textbf{infinitesimal} bin \(dx\) at \(x\)
+
+\[f(x)= \frac{P(x\leq X \leq x+dx)}{dx}\]
+
+\(f(x)\) is called the probability \textbf{density} function.
+
+Therefore, the probability of observing \(x\) between \(x\) and \(x+dx\)
+is given by
+
+\[P(x\leq X \leq x+dx)= f(x) dx\]
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{continuous-random-variable-3}{%
+\section{Continuous random variable}\label{continuous-random-variable-3}}
+
+\textbf{Definition}
+
+For a continuous random variable \(X\), a \textbf{probability density} function is such that
+
+The function is positive:
+
+\begin{itemize}
+\tightlist
+\item
+  \(f(x) \geq 0\)
+\end{itemize}
+
+The probability of observing a value within an interval is the \textbf{area under the curve}:
+
+\begin{itemize}
+\tightlist
+\item
+  \(P(a\leq X \leq b)=\int_{a}^{b} f(x) dx\)
+\end{itemize}
+
+The probability of observing \textbf{any} value is 1:
+
+\begin{itemize}
+\tightlist
+\item
+  \(\int_{-\infty}^{\infty} f(x) dx = 1\)
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{continuous-random-variable-4}{%
+\section{Continuous random variable}\label{continuous-random-variable-4}}
+
+\begin{itemize}
+\item
+  The probability density function is a step forward in the abstraction of probabilities: we add the continuous limit (\(dx \rightarrow 0\)).
+\item
+  All the properties of probabilities are translated in terms of densities (\(\sum \rightarrow \int\)).
+\item
+  Assignment of probabilities to a random variable can be done with equiprobability (classical) arguments.
+\item
+  Densities are mathematical quantities some will map to experiments some will not. \emph{Which density will map best to my experiment?}
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{total-area-under-the-curve}{%
+\section{Total area under the curve}\label{total-area-under-the-curve}}
+
+Example: take the \textbf{probability density} that may describe the random variable that measures where a raindrop falls in a rain gutter of length \(100cm\).
+
+\[
+    f(x)= 
+\begin{cases}
+    \frac{1}{100},& \text{if } x\in (0,100)\\
+    0,& otherwise 
+\end{cases}
+\]
+
+Then the probability of \textbf{any} observation is the total \textbf{area under the curve}
+
+\(P(-\infty\leq X \leq \infty)= \int_{-\infty}^{\infty} f(x) dx = 100*0.01= 1\)
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-41-1.pdf}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{area-under-the-curve}{%
+\section{Area under the curve}\label{area-under-the-curve}}
+
+The probability of observing \(x\) in an interval is the \textbf{area under the curve} within the interval
+
+\begin{itemize}
+\tightlist
+\item
+  \(P(20 \leq X \leq 60) = \int_{20}^{60} f(x) dx = (60-20)*0.01=0.4\)
+\end{itemize}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-42-1.pdf}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{area-under-the-curve-1}{%
+\section{Area under the curve}\label{area-under-the-curve-1}}
+
+In general \(f(x)\) should satisfy:
+
+\begin{itemize}
+\tightlist
+\item
+  \(0 \leq P(a \leq X \leq b) = \int_{a}^{b} f(x) dx \leq 1\)
+\end{itemize}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-43-1.pdf}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{probability-distribution-2}{%
+\section{Probability distribution}\label{probability-distribution-2}}
+
+The probability accumulated up to \(b\) is defined by the probability distribution \(F\)
+
+\begin{itemize}
+\tightlist
+\item
+  \(F(b) = P(X \leq b)=\int_{-\infty}^bf(x)dx\)
+\end{itemize}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-44-1.pdf}
+
+The probability accumulated up to \(a\) is
+
+\begin{itemize}
+\tightlist
+\item
+  \(F(a) = P(X \leq a)\)
+\end{itemize}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-45-1.pdf}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{probability-distribution-3}{%
+\section{Probability distribution}\label{probability-distribution-3}}
+
+The probability between \(a\) and \(b\) is defined by the probability distribution \(F\)
+
+\begin{itemize}
+\tightlist
+\item
+  \(P(a\leq X \leq b) = \int_a^b f(x)dx=F(b)-F(a)\)
+\end{itemize}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-46-1.pdf}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{probability-distribution-4}{%
+\section{Probability distribution}\label{probability-distribution-4}}
+
+The probability distribution of a continuous random variable is defined as\\
+\(F(a)=P(X\leq a) =\int_{-\infty} ^a f(x)dx\)
+
+with the properties that:
+
+It is between \(0\) and \(1\):
+
+\begin{itemize}
+\tightlist
+\item
+  \(F(-\infty)= 0\) and \(F(\infty)=1\)
+\end{itemize}
+
+It always increases:
+
+\begin{itemize}
+\tightlist
+\item
+  if \(a\leq b\) then \(F(a)\leq F(b)\)
+\end{itemize}
+
+It can be used to compute probabilities:
+
+\begin{itemize}
+\tightlist
+\item
+  \(P(a \leq X \leq b)=F(b)-F(a)\)
+\end{itemize}
+
+It recovers the probability density:
+
+\begin{itemize}
+\tightlist
+\item
+  \(f(x)=\frac{dF(x)}{dx}\)
+\end{itemize}
+
+We use \textbf{probability distributions} to \textbf{compute probabilities} of a random variable with intervals
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{probability-distribution-5}{%
+\section{Probability distribution}\label{probability-distribution-5}}
+
+For the uniform density function:
+
+\[
+    f(x)= 
+\begin{cases}
+    \frac{1}{100},& \text{if } x\in (0,100)\\
+    0,& otherwise 
+\end{cases}
+\]
+
+The probability distribution is
+
+\[
+    F(a)= 
+\begin{cases}
+    0,& a \leq 0 \\
+    \frac{a}{100},& \text{if } a\in (0,100)\\
+    1, & 10 \leq a \\
+    \\
+\end{cases}
+\]
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{probability-graphics}{%
+\section{Probability graphics}\label{probability-graphics}}
+
+The probability \(P(20<X<60)\) is the \emph{area} under the \textbf{density} curve
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-47-1.pdf}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{probability-graphics-1}{%
+\section{Probability graphics}\label{probability-graphics-1}}
+
+The probability \(P(20<X<60)\) is the \emph{difference} in \textbf{distribution} values
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-48-1.pdf}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{mean-1}{%
+\section{Mean}\label{mean-1}}
+
+As in the discrete case, the \textbf{mean} measures the center of the distribution
+
+\textbf{Definition}
+
+Suppose \(X\) is a continuous random variable with probability \textbf{density} function \(f(x)\). The mean or expected value of \(X\), denoted as \(\mu\) or \(E(X)\), is
+
+\[\mu=E(X)=\int_{-\infty}^\infty x f(x) dx\]
+
+It is the continuous version of the center of mass.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{mean-2}{%
+\section{Mean}\label{mean-2}}
+
+\[
+    f(x)= 
+\begin{cases}
+    \frac{1}{100},& \text{if } x\in (0,100)\\
+    0,& otherwise 
+\end{cases}
+\]
+
+\(E(X)=50\)
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-49-1.pdf}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{variance-1}{%
+\section{Variance}\label{variance-1}}
+
+As in the discrete case, the variance measures the dispersion about the mean
+
+\textbf{Definition}
+
+Suppose \(X\) is a continuous random variable with probability density function \(f(x)\). The variance of \(X\), denoted as \(\sigma^2\) or \(V(X)\), is
+
+\[\sigma^2=V(X)=\int_{-\infty}^\infty (x-\mu)^2 f(x) dx\]
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{functions-of-x-1}{%
+\section{\texorpdfstring{Functions of \(X\)}{Functions of X}}\label{functions-of-x-1}}
+
+\textbf{Definition}
+
+For any function \(h\) of a random variable \(X\), with mass function \(f(x)\), its expected value is given by
+
+\[E[h(X)]= \int_{-\infty}^{\infty} h(x) f(x)dx\]
+
+And we have the same properties as in the discrete case
+
+\begin{itemize}
+\item
+  The mean of a linear function is the linear function fo the mean: \[E(a\times X +b)= a\times E(X) +b\] for \(a\) and \(b\) scalars.
+\item
+  The variance of a linear function of \(X\) is:\[V(a\times X +b)= a^2\times V(X)\]
+\item
+  The variance about the origin is the variance about the mean plus the mean squared: \[E(X^2)=V(X)+E(X)^2\]
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{example-8}{%
+\section{Example}\label{example-8}}
+
+\begin{itemize}
+\tightlist
+\item
+  for the probability density
+\end{itemize}
+
+\[
+    f(x)= 
+\begin{cases}
+    \frac{1}{100},& \text{if } x\in (0,100)\\
+    0,& otherwise 
+\end{cases}
+\]
+
+\begin{itemize}
+\tightlist
+\item
+  compute the mean
+\item
+  compute variance using \(E(X^2)=V(X)+E(X)^2\)
+\item
+  compute \(P(\mu-\sigma\leq X \leq \mu+\sigma)\)
+\item
+  What are the first and third quartiles?
+\end{itemize}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-50-1.pdf}
 
 \hypertarget{exercises}{%
 \chapter{Exercises}\label{exercises}}
@@ -2553,7 +3777,7 @@ Tests are good to \textbf{rule out} infections.
 \hypertarget{exercise-1}{%
 \subsubsection{Exercise 1}\label{exercise-1}}
 
-We have performed an experiment 12 times with the following results
+We have performed an experiment 8 times with the following results
 
 \begin{verbatim}
 ## [1]  3  3 10  2  6 11  5  4
@@ -2626,7 +3850,19 @@ The outcome of one random experiment is to measure the misophonia severity \text
 ## 6             0             0
 \end{verbatim}
 
-A large study showed the relative frequencies \(f_i\) given in the contingency table:
+A large study on 123 patients showed the frequencies \(n_{x,y}\) given in the contingency table:
+
+\begin{verbatim}
+##               
+##                Depression:0 Depression:1
+##   Misophonia:4            0            9
+##   Misophonia:3           25            6
+##   Misophonia:2           34            3
+##   Misophonia:1            5            0
+##   Misophonia:0           36            5
+\end{verbatim}
+
+Let's assume that \(N>>0\) and that the frequencies \textbf{estimate} the probabilities \(f_{x,y}=\hat{P}(X, Y)\)
 
 \begin{verbatim}
 ##               
@@ -2637,8 +3873,6 @@ A large study showed the relative frequencies \(f_i\) given in the contingency t
 ##   Misophonia:1   0.04065041   0.00000000
 ##   Misophonia:0   0.29268293   0.04065041
 \end{verbatim}
-
-Let's assume that \(N>>0\) and that the frequencies \textbf{estimate} the probabilities \(f_{i,j}=\hat{P}(x_i, y_j)\)
 
 \begin{itemize}
 \tightlist
@@ -2717,6 +3951,8 @@ smooth surface: no & 4 & 2 \\
 \item
   what is the estimated probability that the rod is smooth if it is rounded?
 \item
+  what is the estimated probability that the rod is neither smooth nor rounded if it does not satisfy at least one quality control?
+\item
   Are smoothness and roundness independent events?
 \end{itemize}
 
@@ -2771,13 +4007,39 @@ smooth surface: no & 8 & 6 \\
 \item
   What is the probability that the rod is smooth or rounded or produced by machine 1?
 \item
+  What is the probability that the rod is rounded if it is smoothed and from machine 1?
+\item
+  What is the probability that the rod is not rounded if it is not smoothed and is from machine 2?
+\item
+  what is the probability that the rod has come from machine 1 if it it is smoothed and rounded?
+\item
   what is the probability that the rod has come from machine 2 if it does not pass at least one of the quality controls?
 \end{itemize}
 
 \hypertarget{exercise-4}{%
 \subsubsection{Exercise 4}\label{exercise-4}}
 
-We want to cross an avenue with three traffic lights. The probability of finding one traffic light in red given that the previous one was in red is 0.15. Whereas, the probability of finding one traffic right in red given that the previous one was in green is 0.25. If the probability of finding the first traffic light in red is 0.6 then
+We want to cross an avenue with two traffic lights. The probability of finding the first traffic light in red is 0.6. If we stopped at the first traffic light, the probability of stopping at the second one is 0.15. Whereas the probability of stopping on the second one if we do not stop on the first one is 0.25.
+
+When we try to cross both traffic lights:
+
+\begin{itemize}
+\tightlist
+\item
+  what is the probability of having to stop at each traffic light?
+\item
+  What is the probability of having to stop at at least one traffic light?
+\item
+  What is the probability of having to stop at only one traffic light?
+\item
+  If I stopped at the second traffic light, what is the probability that I had to stop at the first one?\\
+\item
+  If I had to stop at any traffic light, what is the probability that I had to do it twice?
+\item
+  Is stopping at the first traffic light an independent event from stopping at the second traffic light?
+\end{itemize}
+
+Now, we want to cross an avenue with three traffic lights. The probability of finding a traffic light in red only depends on the previous one. In particular, the probability of finding one traffic light in red given that the previous one was in red is 0.15. Whereas, the probability of finding one traffic right in red given that the previous one was in green is 0.25. Also, the probability of finding the first traffic light in red is 0.6.
 
 \begin{itemize}
 \tightlist
@@ -2789,17 +4051,15 @@ We want to cross an avenue with three traffic lights. The probability of finding
   What is the probability of having to stop at only one traffic light?
 \end{itemize}
 
-Assume that the probability of one traffic light depends only on the previews one
-
 hints:
 
 \begin{itemize}
 \item
-  The joint probability of finding three traffic lights in red can be written as:
-  \(P(R_1,R_2,R_3)=P(R_3|R_2,R_1)P(R_2|R_1)P(R_1)\)
+  If the probability that one traffic light is red depends only on the previous one then
+  \(P(R_3|R_2,R_1)=P(R_3|R_2,\bar{R}_1)=P(R_3|R_2)\) and \(P(R_3|\bar{R}_2,R_1)=P(R_3|\bar{R}_2,\bar{R}_1)=P(R_3|\bar{R}_2)\)
 \item
-  If the probability of one traffic light depends only on the previous one then
-  \(P(R_3|R_2,R_1)=P(R_3|R_2)\)
+  The joint probability of finding three traffic lights in red can be written as:
+  \(P(R_1,R_2,R_3)=P(R_3|R_2)P(R_2|R_1)P(R_1)\)
 \end{itemize}
 
 \hypertarget{exercise-5}{%
@@ -2920,7 +4180,7 @@ hints:
   What are the first and third quartiles?
 \end{itemize}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-39-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-57-1.pdf}
 
 \hypertarget{exercise-4-1}{%
 \subsubsection{Exercise 4}\label{exercise-4-1}}
@@ -2930,7 +4190,7 @@ For the probability density
 \[
     f(x)= 
 \begin{cases}
-    \lambda e^{-\lambda x},& \text{if } 0 \leq x\\
+    \lambda e^{-\lambda x},& \text{if } 0 \leq\\
     0,& otherwise 
 \end{cases}
 \]
@@ -3195,7 +4455,7 @@ Take a random variable with the following probability density function
 \[
     f(x)= 
 \begin{cases}
-    \lambda e^{-\lambda x},& \text{if } 0 \leq x\\
+    \lambda e^{-\lambda x},& \text{if } 0 \leq\\
     0,& otherwise 
 \end{cases}
 \]
@@ -3286,6 +4546,47 @@ compute:
 \end{itemize}
 
 \[x_1 = 27; \qquad x_2 = 8; \qquad  x_3 = 22; \qquad  x_4 = 29; \qquad  x_5 = 19; \qquad  x_5 = 32\]
+
+\hypertarget{confidence-intervals}{%
+\section{Confidence intervals}\label{confidence-intervals}}
+
+\hypertarget{exercise-1-9}{%
+\subsubsection{Exercise 1}\label{exercise-1-9}}
+
+In a scientific paper the authors report a \(95\%\) confidence interval of \((228, 232)\) for the natural frequency (Hz) of metallic beam. They useda sample of size \(25\) and considered that the measurements distributed normally.
+
+\begin{itemize}
+\item
+  What is the mean and the standard deviation of the measurements?
+\item
+  Compute the \(99\%\) confidence interval.
+\end{itemize}
+
+hints:
+
+\begin{itemize}
+\item
+  in R \(t_{0.025, 24}=\) qt(0.975, 24)\(\sim 2\)
+\item
+  in R \(t_{0.005, 24}=\)qt(0.995, 24)\(\sim 2.8\)
+\end{itemize}
+
+\hypertarget{exercise-2-9}{%
+\subsubsection{Exercise 2}\label{exercise-2-9}}
+
+compute \(95\%\) CI for the mean of a normal variable with known variance \(\sigma^2=9\) and \(\mu=22\)
+
+\hypertarget{exercise-3-6}{%
+\subsubsection{Exercise 3}\label{exercise-3-6}}
+
+This year a \(1000\) sample of patients with influenza developed complications.
+
+\begin{itemize}
+\item
+  Compute the \(99\%\) confidence interval for the proportion of complications.
+\item
+  The previous year \(2\%\) showed complications. Can we say with \(99\%\) confidence that this year there is a significnat drop in influenza complications?
+\end{itemize}
 
   \bibliography{book.bib,packages.bib}
 

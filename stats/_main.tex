@@ -6,7 +6,7 @@
 ]{book}
 \title{Stats theory (SDA)}
 \author{Alejandro Caceres}
-\date{2022-09-29}
+\date{2022-09-30}
 
 \usepackage{amsmath,amssymb}
 \usepackage{lmodern}
@@ -1018,12 +1018,12 @@ Say we repeated the experiment 1000 times:
 
 \begin{verbatim}
 ##   outcome  ni    fi
-## 1       1 170 0.170
-## 2       2 157 0.157
-## 3       3 177 0.177
-## 4       4 187 0.187
-## 5       5 167 0.167
-## 6       6 142 0.142
+## 1       1 163 0.163
+## 2       2 163 0.163
+## 3       3 169 0.169
+## 4       4 169 0.169
+## 5       5 173 0.173
+## 6       6 163 0.163
 \end{verbatim}
 
 We find that \(f_i\) is converging to a constant value
@@ -10426,7 +10426,7 @@ The observed value of \(W\) is
 
 And
 
-\[pvalue=P(W \leq w_{obs}) =0.3497\]
+\[pvalue=P(W \geq w_{obs}) =0.3497\]
 
 in R: chisq.test(matrix(c(182, 18, 354, 46), ncol=2), correct = FALSE)
 
@@ -10479,9 +10479,9 @@ Then, if we take a sample of \(n=200\) (similar in number to hospital \(A\))
 
 \begin{itemize}
 \item
-  The null hypothesis (status quo) assumes that hospital \(A\) has the same parameter of both hospitals together \(H_0: p=64/600\)
+  The null hypothesis (status quo) assumes that hospital \(A\) has the same parameter of both hospitals together \(H_0: p_A \geq 64/600\)
 \item
-  The alternative hypothesis is the parameter of hospital \(A\) is lower than the parameter for both hospitals together \(H_1: p < 64/600\)
+  The alternative hypothesis is the parameter of hospital \(A\) is lower than the parameter for both hospitals together \(H_1: p_A < 64/600\)
 \end{itemize}
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
@@ -10651,12 +10651,12 @@ that follows a \(\chi^2\) distribution with \(4=5-1\) degrees of freedom (number
 \tightlist
 \item
   The observed \textbf{standardized squared error} is
-  \[w_obs=10.381\]
+  \[w_{obs}=10.381\]
 \end{itemize}
 
 And
 
-\[pvalue=P(W \leq w_{obs}) = 0.03448\]
+\[pvalue=P(W \geq w_{obs}) = 0.03448\]
 in R:
 chisq.test(matrix(c(182, 18, 354, 46, 375, 25 , 85, 15, 90, 10), nrow=2))
 
@@ -10856,7 +10856,7 @@ Then the \textbf{standardized error} from the null hypothesis (\(\delta=0\)) fol
 \begin{itemize}
 \tightlist
 \item
-  Is the of \(d_{obs}\) lower than \(\alpha=0.05\)?
+  Is the of \(z_{obs}\) of our experiment lower than \(\alpha=0.05\)?
 \end{itemize}
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
@@ -10883,7 +10883,7 @@ Then the \textbf{standardized error} from the null hypothesis (\(\delta=0\)) fol
   The \textbf{observed mean difference}
 \end{itemize}
 
-\[d_{obs}=\frac{\bar{y}_A-\bar{y}_B }{\sqrt{\frac{s^2_A}{n_A}+\frac{s^2_B}{n_B}}}=\frac{48-34.4}{\sqrt{\frac{27.1^2}{190}+\frac{22.4^2}{166}}}=5.181952\]
+\[z_{obs}=\frac{\bar{y}_A-\bar{y}_B }{\sqrt{\frac{s^2_A}{n_A}+\frac{s^2_B}{n_B}}}=\frac{48-34.4}{\sqrt{\frac{27.1^2}{190}+\frac{22.4^2}{166}}}=5.181952\]
 is outside of the acceptance region.
 
 \begin{itemize}
@@ -10931,7 +10931,7 @@ For performing the statistical test we computed
   The \textbf{observed mean difference}
 \end{itemize}
 
-\[d_{obs}=\frac{\bar{y}_A-\bar{y}_B }{\sqrt{\frac{s^2_A}{n_A}+\frac{s^2_B}{n_B}}}\]
+\[z_{obs}=\frac{\bar{y}_A-\bar{y}_B }{\sqrt{\frac{s^2_A}{n_A}+\frac{s^2_B}{n_B}}}\]
 where we replaced the values of \(\sigma_A\) and \(\sigma_B\) for their estimated values \(s_A\) and \(s_B\). The statistic \(D\) is approximately normal because \(n\ge 30\) (CLT).
 
 What happens when \(n\) is small?
@@ -11097,7 +11097,7 @@ The \textbf{pooled variance} \(s_p^2\), is an estimator of \(\sigma^2\)
 \begin{itemize}
 \tightlist
 \item
-  Is the \(pvalue\) lower than \(\alpha=0.05\)?
+  Is the \(pvalue\) of the \(t_{obs}\) from our experiment lower than \(\alpha=0.05\)?
 \end{itemize}
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
@@ -11113,7 +11113,7 @@ The \textbf{pooled variance} \(s_p^2\), is an estimator of \(\sigma^2\)
   The \textbf{observed mean difference}
 \end{itemize}
 
-\[d_{obs}=\frac{\bar{y}_A-\bar{y}_B }{\sqrt{\frac{s^2_p}{n_A}+\frac{s^2_p}{n_B}}}=\frac{26.49813-44.53}{\sqrt{\frac{3.18127^2}{16}+\frac{3.18127^2}{7}}}=-12.508\]
+\[t_{obs}=\frac{\bar{y}_A-\bar{y}_B }{\sqrt{\frac{s^2_p}{n_A}+\frac{s^2_p}{n_B}}}=\frac{26.49813-44.53}{\sqrt{\frac{3.18127^2}{16}+\frac{3.18127^2}{7}}}=-12.508\]
 
 is outside of the acceptance region.
 
@@ -11229,19 +11229,10 @@ Therefore, the data \textbf{still} shows a very significant increase in \(18.03\
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{analisis-of-variance}{%
-\section{Analisis of variance}\label{analisis-of-variance}}
+\hypertarget{revisiting-letpin-knockouts}{%
+\section{Revisiting letpin knockouts}\label{revisiting-letpin-knockouts}}
 
 Let's analyze the leptin experiment from a different perspective: Fisher's analysis of variance.
-
-If the \textbf{null hypothesis is true}, then mice with and without leptin are \textbf{identical} and then split into groups are two random samples of size \(A\) and \(B\) from the same population.
-
-\begin{itemize}
-\item
-  The overall variance is equal to the \textbf{within group} variances \[\sigma^2=\sigma^2_A=\sigma^2_B\]
-\item
-  There is no difference between means \[\delta=(\mu_A-\mu)-(\mu_B-\mu)=0\]
-\end{itemize}
 
 \begin{verbatim}
 ##    weight    group
@@ -11270,14 +11261,32 @@ If the \textbf{null hypothesis is true}, then mice with and without leptin are \
 ## 23  53.83 leptinKO
 \end{verbatim}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-142-1.pdf}
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{null-hypothesis-6}{%
+\section{Null hypothesis}\label{null-hypothesis-6}}
+
+If the \textbf{null hypothesis is true}, then mice with and without leptin are \textbf{identical} and then split into groups are two random samples of size \(A\) and \(B\) from the same population.
+
+\begin{itemize}
+\item
+  The overall variance is equal to the \textbf{within group} variances \[\sigma^2=\sigma^2_A=\sigma^2_B\]
+\item
+  There is no difference between means \[\delta=(\mu_A-\mu)-(\mu_B-\mu)=0\]
+\end{itemize}
+
+This is how it would look like
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-143-1.pdf}
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{analisis-of-variance-1}{%
-\section{Analisis of variance}\label{analisis-of-variance-1}}
+\hypertarget{analisis-of-variance}{%
+\section{Analisis of variance}\label{analisis-of-variance}}
 
 If the \textbf{null hypothesis is not true}, then the mean weight of the mice is \textbf{different} with and without leptin and the split into groups are two random samples of size \(A\) and \(B\) from \textbf{different} populations.
 
@@ -11288,7 +11297,7 @@ If the \textbf{null hypothesis is not true}, then the mean weight of the mice is
   The group means are different \[\delta=(\mu_A-\mu)-(\mu_B-\mu)\neq 0\]
 \end{itemize}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-143-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-144-1.pdf}
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
@@ -11393,6 +11402,19 @@ The squared deviations of the observations to the overall average is
 
 \[\sum_{i=A,B}\sum_{j=1}^n(Y_{ij}-\bar{Y})^2= \sum_{i=A,B}\sum_{j=1}^n(Y_{ij}-\bar{Y}_i)^2+n\sum_{i=A,B}(\bar{Y}_{i}-\bar{Y})^2\]
 
+\includegraphics{_main_files/figure-latex/unnamed-chunk-147-1.pdf}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{variance-components-1}{%
+\section{Variance components}\label{variance-components-1}}
+
+Let's look at each term
+
+\[\sum_{i=A,B}\sum_{j=1}^n(Y_{ij}-\bar{Y})^2= \sum_{i=A,B}\sum_{j=1}^n(Y_{ij}-\bar{Y}_i)^2+n\sum_{i=A,B}(\bar{Y}_{i}-\bar{Y})^2\]
+
 \begin{itemize}
 \tightlist
 \item
@@ -11421,8 +11443,8 @@ The squared deviations of the observations to the overall average is
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{variance-components-1}{%
-\section{Variance components}\label{variance-components-1}}
+\hypertarget{variance-components-2}{%
+\section{Variance components}\label{variance-components-2}}
 
 \begin{itemize}
 \tightlist
@@ -11451,9 +11473,9 @@ is a \textbf{biased estimator} of the variance \[E(MST)=\sigma^2+n(\alpha_A^2+\a
 \hypertarget{linear-model-2}{%
 \section{Linear model}\label{linear-model-2}}
 
-In the linear model for the weight:
+In the linear model for the weight of mice:
 
-\(Y_{ij} = \mu + \alpha_i +E_{ij}\)
+\[Y_{ij} = \mu + \alpha_i +E_{ij}\]
 
 The null hypothesis is \(H_0=\mu_A=\mu_B=\mu\) therefore \(H_0:\alpha_i=0\)
 
@@ -11484,7 +11506,7 @@ follows a \(F\) distribution with \(2n-2\) and \(n-1\) degrees of freedom.
   \(H_1\): observed values of \(\frac{MST}{MSE}\) far from \(1\) suggest that the means between groups \textbf{differ}.
 \end{itemize}
 
-\[\frac{MST}{MSE}_{obs}=\frac{(\bar{y}_{A}-\bar{y}_{B})^2}{\frac{s^2_p}{n}}=d_{obs}^2\]
+\[\frac{MST}{MSE}_{obs}=\frac{(\bar{Y}_{A}-\bar{Y}_{B})^2}{\frac{s^2_p}{n}}=t_{obs}^2\]
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
@@ -11495,10 +11517,10 @@ follows a \(F\) distribution with \(2n-2\) and \(n-1\) degrees of freedom.
 
 We have assumed the same number of observations in each group but when there are two groups the results above holds
 
-\[f_{obs}=d_{obs}^2=(−12.508)^2=156.45\]
+\[f_{obs}=t_{obs}^2=(−12.508)^2=156.45\]
 The upper tailed pvalue for \(f_{obs}\) is
 
-\[Pval=1-F^{-1}_{F,1,21}(156.45)=3.377 \times 10^{-11}\]
+\[pvalue=1-F^{-1}_{F,1,21}(156.45)=3.377 \times 10^{-11}\]
 in R: 1-pf(156.45, 1,21)
 
 Which is the same as the one obtained with the t-test with equal variances.
@@ -11525,7 +11547,7 @@ Which is the same as the one obtained with the t-test with equal variances.
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-147-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-149-1.pdf}
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
@@ -11571,7 +11593,7 @@ and \(k\) groups.
   \(H_0: \alpha_1=\alpha_2, ...=\alpha_k=0\) There are no difference between group means
 \end{itemize}
 
-Then, observed values of \(\frac{MST}{MSE}\) near \(1\) suggest that the means between groups \textbf{do not}.
+Then, observed values of \(\frac{MST}{MSE}\) near \(1\) suggest that the means between groups \textbf{do not} differ.
 
 \begin{itemize}
 \tightlist
@@ -11684,6 +11706,16 @@ The data looks like
 ## 21  41.57 leptinKO
 ## 22  46.17 leptinKO
 ## 23  53.83 leptinKO
+## 24  24.33   KOplus
+## 25  22.37   KOplus
+## 26  26.10   KOplus
+## 27  17.50   KOplus
+## 28  35.17   KOplus
+## 29  25.97   KOplus
+## 30  27.67   KOplus
+## 31  23.37   KOplus
+## 32  31.83   KOplus
+## 33  22.37   KOplus
 \end{verbatim}
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
@@ -11705,46 +11737,9 @@ We take weights \textbf{conditioned to} each leptin condition, and observed:
   \(n_C=7\) leptin KO mice had a weight mean of \(\bar{y}_C=44.53\) and \(s_C=4.774167\)
 \end{itemize}
 
-\begin{verbatim}
-##    weight    group
-## 1   27.67  Control
-## 2   27.40  Control
-## 3   25.77  Control
-## 4   25.60  Control
-## 5   25.03  Control
-## 6   25.90  Control
-## 7   26.67  Control
-## 8   25.60  Control
-## 9   28.93  Control
-## 10  31.83  Control
-## 11  25.90  Control
-## 12  26.30  Control
-## 13  27.90  Control
-## 14  26.77  Control
-## 15  25.83  Control
-## 16  20.87  Control
-## 17  46.57 leptinKO
-## 18  40.43 leptinKO
-## 19  41.97 leptinKO
-## 20  41.17 leptinKO
-## 21  41.57 leptinKO
-## 22  46.17 leptinKO
-## 23  53.83 leptinKO
-## 24  24.33   KOplus
-## 25  22.37   KOplus
-## 26  26.10   KOplus
-## 27  17.50   KOplus
-## 28  35.17   KOplus
-## 29  25.97   KOplus
-## 30  27.67   KOplus
-## 31  23.37   KOplus
-## 32  31.83   KOplus
-## 33  22.37   KOplus
-\end{verbatim}
-
 We can see the differences in distributions with a boxplot
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-150-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-151-1.pdf}
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
@@ -11781,7 +11776,7 @@ Suggesting significant differences in at least one group mean.
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 \end{verbatim}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-152-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-153-1.pdf}
 
 We observed a significant difference between groups (ANOVA test \(F(2,30)=63.373, P= 1.69 \times 10^{-11}\)), due to the higher gain in weight of the knockout mice. Note that knocked-out mice with replacement recovered wild-type weight (t-test difference between means \(-0.83\), \(P=0.63\))
 
@@ -11928,7 +11923,7 @@ We take weights \textbf{conditioned to} each leptin by sex condition, and observ
 
 We draw the boxplot, grouping leptin conditions, and observe a strong overall effect of leptin
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-154-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-155-1.pdf}
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
@@ -11937,9 +11932,9 @@ We draw the boxplot, grouping leptin conditions, and observe a strong overall ef
 \hypertarget{difference-between-means-12}{%
 \section{Difference between means}\label{difference-between-means-12}}
 
-If we draw the boxplot grouping by sex, we observe that sex is not have such a strong effect on weight
+If we draw the boxplot grouping by sex, we observe that sex does not have such a strong effect on weight
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-155-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-156-1.pdf}
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
@@ -11981,8 +11976,8 @@ Each experiment is defined by a given group in factor 1 and a given group in fac
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{variance-components-2}{%
-\section{Variance components}\label{variance-components-2}}
+\hypertarget{variance-components-3}{%
+\section{Variance components}\label{variance-components-3}}
 
 The squared deviations of the observations to the overall average can be decomposed into their variations within each experiment (\(SSE\)) and the variations between factor 1 \((SS_{Fac1})\) and factor 2 \((SS_{Fac2})\).
 
@@ -12056,9 +12051,9 @@ From the \textbf{linear model}
 
 We have that the expected value of any observation
 
-\[E(Y|ij)=\mu + \alpha_i+ \beta_j\]
+\[E(Y|i,j)=\mu + \alpha_i+ \beta_j\]
 
-is the sum of the overall mean and the means of each factor (the factors superimpose).
+is the sum of the overall mean and the means of each factor (the factors add together).
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
@@ -12069,7 +12064,7 @@ is the sum of the overall mean and the means of each factor (the factors superim
 
 This is only true if he had observed for the condition (\(male, leptinKO\)) something like (white box)
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-157-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-158-1.pdf}
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
@@ -12189,7 +12184,7 @@ As we observed from the boxplots, the statistical inference confirms that there 
 \hypertarget{regression}{%
 \section{Regression}\label{regression}}
 
-Leptin is a hormone produced by adipose tissue. We want to study the serum leptin levels in the adult population (PMID: 23628382) under a \textbf{continuous} condition, such as the amount in Kg of body fat.
+Leptin is a hormone produced by adipose tissue. We want to study the serum leptin levels in the adult population (PMID: 23628382, \url{GEO:GSE45987}) under a \textbf{continuous} condition, such as the amount in Kg of body fat.
 
 \begin{itemize}
 \tightlist
@@ -12206,7 +12201,7 @@ Leptin is a hormone produced by adipose tissue. We want to study the serum lepti
 \hypertarget{regression-1}{%
 \section{Regression}\label{regression-1}}
 
-One random experiment has two outcomes: \((leptin, sex)\).
+One random experiment has two outcomes: \((leptin, fatmass)\).
 
 Continuous variable (outcome of interest)
 
@@ -12265,9 +12260,9 @@ A random 2D vector of two random variables \((Y, X)\) follows a bivariate normal
 
 \[f(y,x)=\frac{1}{2\pi \sigma_y\sigma_x \sqrt{1-\rho^2}}e^{\frac{(y-\mu_y)^2}{\sigma_y^2}-\frac{2\rho(y-\mu_y)(x-\mu_x)}{\sigma_y\sigma_x}+\frac{(x-\mu_x)^2}{\sigma_x^2}}\]
 
-With parameters
+With parameters \(\mu_y, \mu_x, \sigma^2_y, \sigma_x^2, \rho\).
 
-on the marginals:
+On the marginals:
 
 \begin{itemize}
 \tightlist
@@ -12277,12 +12272,12 @@ on the marginals:
   \(E(X)=\mu_x\), \(V(X)=\sigma^2_x\)
 \end{itemize}
 
-on the correlation:
+On the \textbf{correlation}:
 
 \begin{itemize}
 \tightlist
 \item
-  \(\rho= \frac{E[(Y-\mu_y)(X-\mu_x)]}{\sigma_y\sigma_x}\)
+  \(\frac{E[(Y-\mu_y)(X-\mu_x)]}{\sigma_y\sigma_x}=\rho\)
 \end{itemize}
 
 \(\rho\) is called the correlation coefficient
@@ -12294,9 +12289,9 @@ on the correlation:
 \hypertarget{normal-bivariate-1}{%
 \section{Normal bivariate}\label{normal-bivariate-1}}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-161-1.pdf}
-
 \includegraphics{_main_files/figure-latex/unnamed-chunk-162-1.pdf}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-163-1.pdf}
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
@@ -12305,7 +12300,7 @@ on the correlation:
 \hypertarget{normal-bivariate-2}{%
 \section{Normal bivariate}\label{normal-bivariate-2}}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-163-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-164-1.pdf}
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
@@ -12442,7 +12437,7 @@ We should take this result with care:
   As we increase fat mass we should obtain more leptin, as it is released from adipose tissue.
 \end{itemize}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-165-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-166-1.pdf}
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
@@ -12467,7 +12462,7 @@ with
   variance: \(V(Y|X)=\sigma^2_{y|x}= \sigma_y^2(1-\rho^2)\)
 \end{itemize}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-166-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-167-1.pdf}
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
@@ -12476,7 +12471,7 @@ with
 \hypertarget{sums-of-squares}{%
 \section{Sums of squares}\label{sums-of-squares}}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-167-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-168-1.pdf}
 
 \begin{itemize}
 \tightlist
@@ -12584,9 +12579,9 @@ Alternative hypothesis:
   \(Y\) and \(X\) are statistically dependent, therefore \(H_1: \beta\neq 0\)
 \end{itemize}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-168-1.pdf}
-
 \includegraphics{_main_files/figure-latex/unnamed-chunk-169-1.pdf}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-170-1.pdf}
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
@@ -12642,8 +12637,8 @@ with respect to \(\alpha\) and \(\beta\), leading to
 \[B \rightarrow N(\beta, \frac{n\sigma^2_y}{{(n-2)s^2_x}})\]
 The estimator \(A\) is for \(\alpha\) is
 
-\[A=\bar{x}-\hat{\beta} \bar{Y}\]
-with mean \(E(A)=\mu_x-\beta\mu_y\).
+\[A=\bar{Y}-\hat{\beta}\bar{x} \]
+with mean \(E(A)=\mu_y-\beta\mu_x\).
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
@@ -12667,8 +12662,8 @@ Is our \(t_{obs}\) a rare observation from this distribution?
 \section{Model fit}\label{model-fit}}
 
 \[\beta_{obs}= \frac{\sum_{i=1}^m(x_i-\bar{x})(y_i-\bar{y})}{\sum_{i=1}^n(x_i-\bar{x})^2}= -0.02262\]
-\[\alpha_{obs}=\bar{x}-\beta_{obs}\bar{y}= 3.72012\]
-\includegraphics{_main_files/figure-latex/unnamed-chunk-170-1.pdf}
+\[\alpha_{obs}=\bar{y}-\beta_{obs}\bar{x}= 3.72012\]
+\includegraphics{_main_files/figure-latex/unnamed-chunk-171-1.pdf}
 
 But leptin should increase with fat mass \ldots{}
 
@@ -12742,7 +12737,7 @@ We can now have one outcome \(Y\) with multiple regressors
 
 Consider the previous regression and color the points according to their sex
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-173-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-174-1.pdf}
 
 We find that the negative association between leptin and fat mass is given by the effect of sex.
 
@@ -12755,7 +12750,7 @@ We find that the negative association between leptin and fat mass is given by th
 
 If we run regression separating by sex we find a positive association between leptin and fat mass, as expected.
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-174-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-175-1.pdf}
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
@@ -12862,7 +12857,7 @@ All linear models have been made on the supposition that
 
 There are a number of plots to check that at least the data is consistent with these suppositions
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-177-1.pdf} \includegraphics{_main_files/figure-latex/unnamed-chunk-177-2.pdf} \includegraphics{_main_files/figure-latex/unnamed-chunk-177-3.pdf} \includegraphics{_main_files/figure-latex/unnamed-chunk-177-4.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-178-1.pdf} \includegraphics{_main_files/figure-latex/unnamed-chunk-178-2.pdf} \includegraphics{_main_files/figure-latex/unnamed-chunk-178-3.pdf} \includegraphics{_main_files/figure-latex/unnamed-chunk-178-4.pdf}
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
@@ -13126,7 +13121,7 @@ We load the data
 ## 0.3658537 0.6341463
 \end{verbatim}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-180-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-181-1.pdf}
 
 \begin{enumerate}
 \def\labelenumi{\alph{enumi}.}
@@ -13144,7 +13139,7 @@ We load the data
 ## [1] 14.18654
 \end{verbatim}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-181-1.pdf} \includegraphics{_main_files/figure-latex/unnamed-chunk-181-2.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-182-1.pdf} \includegraphics{_main_files/figure-latex/unnamed-chunk-182-2.pdf}
 
 \begin{enumerate}
 \def\labelenumi{\alph{enumi}.}
@@ -13170,7 +13165,7 @@ We load the data
 ## [1] 15.58339
 \end{verbatim}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-182-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-183-1.pdf}
 
 \begin{enumerate}
 \def\labelenumi{\alph{enumi}.}
@@ -13186,7 +13181,7 @@ We load the data
 ## 0.52032520 0.21138211 0.23577236 0.03252033
 \end{verbatim}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-183-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-184-1.pdf}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -13224,7 +13219,7 @@ we describe these clinical outcomes
 ##    1.00   60.00   80.00   68.77   89.00   99.00      15
 \end{verbatim}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-185-1.pdf} \includegraphics{_main_files/figure-latex/unnamed-chunk-185-2.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-186-1.pdf} \includegraphics{_main_files/figure-latex/unnamed-chunk-186-2.pdf}
 
 \begin{enumerate}
 \def\labelenumi{\alph{enumi}.}
@@ -13239,7 +13234,7 @@ we describe these clinical outcomes
 ##    1.00   45.00   77.00   67.85   90.00   99.00      15
 \end{verbatim}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-186-1.pdf} \includegraphics{_main_files/figure-latex/unnamed-chunk-186-2.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-187-1.pdf} \includegraphics{_main_files/figure-latex/unnamed-chunk-187-2.pdf}
 
 \begin{enumerate}
 \def\labelenumi{\alph{enumi}.}
@@ -13249,7 +13244,7 @@ we describe these clinical outcomes
   Diagnosed
 \end{enumerate}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-187-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-188-1.pdf}
 
 We can look at relationships between outcomes
 
@@ -13261,7 +13256,7 @@ We can look at relationships between outcomes
   Trait Vs Estate
 \end{enumerate}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-188-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-189-1.pdf}
 
 We can also look at the relationships between the clinical outcomes and the features of the participants
 
@@ -13273,7 +13268,7 @@ We can also look at the relationships between the clinical outcomes and the feat
   Trait by sex
 \end{enumerate}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-189-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-190-1.pdf}
 
 \begin{enumerate}
 \def\labelenumi{\alph{enumi}.}
@@ -13283,7 +13278,7 @@ We can also look at the relationships between the clinical outcomes and the feat
   State by sex
 \end{enumerate}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-190-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-191-1.pdf}
 
 \begin{enumerate}
 \def\labelenumi{\alph{enumi}.}
@@ -13300,7 +13295,7 @@ We can also look at the relationships between the clinical outcomes and the feat
 ##        si  3  7
 \end{verbatim}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-191-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-192-1.pdf}
 
 \begin{verbatim}
 ##          sex
@@ -13317,7 +13312,7 @@ We can also look at the relationships between the clinical outcomes and the feat
   Trait Vs age
 \end{enumerate}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-192-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-193-1.pdf}
 
 \begin{enumerate}
 \def\labelenumi{\roman{enumi}.}
@@ -13326,7 +13321,7 @@ We can also look at the relationships between the clinical outcomes and the feat
   State Vs age
 \end{enumerate}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-193-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-194-1.pdf}
 
 \begin{enumerate}
 \def\labelenumi{\alph{enumi}.}
@@ -13336,7 +13331,7 @@ We can also look at the relationships between the clinical outcomes and the feat
   age by diagnosis
 \end{enumerate}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-194-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-195-1.pdf}
 
 \hypertarget{group-work-session-2-inference}{%
 \section{Group Work session 2: Inference}\label{group-work-session-2-inference}}
@@ -13395,7 +13390,7 @@ We are interested in the variable misofonia.dif, that is the observed \textbf{ex
   Are the state and trait of anxiety correlated?
 \end{enumerate}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-195-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-196-1.pdf}
 
 \begin{verbatim}
 ## 
@@ -13426,7 +13421,7 @@ We are interested in the variable misofonia.dif, that is the observed \textbf{ex
   We describe the Excess variable with summary statistics and figures (histogram)
 \end{enumerate}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-196-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-197-1.pdf}
 
 \begin{verbatim}
 ##     Min.  1st Qu.   Median     Mean  3rd Qu.     Max.     NA's 
@@ -13478,7 +13473,7 @@ We are interested in the variable misofonia.dif, that is the observed \textbf{ex
   We first describe the conditional distributions
 \end{enumerate}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-198-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-199-1.pdf}
 
 \begin{enumerate}
 \def\labelenumi{\alph{enumi}.}
@@ -13598,7 +13593,7 @@ We are interested in the variable misofonia.dif, that is the observed \textbf{ex
   We make a plot between anxiety and age
 \end{enumerate}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-202-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-203-1.pdf}
 
 \begin{enumerate}
 \def\labelenumi{\alph{enumi}.}
@@ -13632,7 +13627,7 @@ and test the hypothesis \(H_0: \beta=0\) against \(H_1: \beta\neq 0\)
 ## F-statistic: 1.615 on 1 and 121 DF,  p-value: 0.2062
 \end{verbatim}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-203-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-204-1.pdf}
 
 \begin{enumerate}
 \def\labelenumi{\alph{enumi}.}
@@ -13677,7 +13672,7 @@ and test the hypothesis \(H_0: \beta=0\) against \(H_1: \beta\neq 0\)
 \def\labelenumi{\alph{enumi}.}
 \item
   We plot the excess anxiety across groups (boxplot)
-  \includegraphics{_main_files/figure-latex/unnamed-chunk-205-1.pdf}
+  \includegraphics{_main_files/figure-latex/unnamed-chunk-206-1.pdf}
 \item
   We test the hypothesizes \(H_0: \mu_{0}=\mu_{1} ... =\mu_{4}\) against \(H_1:\) at least one of them is different. We fit an ANOVA model.
 \end{enumerate}
@@ -13741,7 +13736,7 @@ and test the hypothesis \(H_0: \beta=0\) against \(H_1: \beta\neq 0\)
   We plot excess anxiety for each misophonic group, for men and women separately
 \end{enumerate}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-207-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-208-1.pdf}
 
 \begin{enumerate}
 \def\labelenumi{\alph{enumi}.}
@@ -14184,7 +14179,7 @@ hints:
   What are the first and third quartiles?
 \end{itemize}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-215-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-216-1.pdf}
 
 \hypertarget{exercise-4-1}{%
 \subsubsection{Exercise 4}\label{exercise-4-1}}

@@ -6,7 +6,7 @@
 ]{book}
 \title{Estadística}
 \author{Alejandro Caceres}
-\date{2022-09-29}
+\date{2022-10-01}
 
 \usepackage{amsmath,amssymb}
 \usepackage{lmodern}
@@ -975,12 +975,12 @@ Digamos que repetimos el experimento 1000 veces:
 
 \begin{verbatim}
 ##   outcome  ni    fi
-## 1       1 156 0.156
-## 2       2 186 0.186
-## 3       3 151 0.151
-## 4       4 140 0.140
-## 5       5 195 0.195
-## 6       6 172 0.172
+## 1       1 171 0.171
+## 2       2 161 0.161
+## 3       3 166 0.166
+## 4       4 158 0.158
+## 5       5 169 0.169
+## 6       6 175 0.175
 \end{verbatim}
 
 Encontramos que \(f_i\) está convergiendo a un valor constante
@@ -2396,7 +2396,7 @@ Las \textbf{probabilidades conjuntas} estimadas son
 
 \begin{longtable}[]{@{}cccc@{}}
 \toprule
-& defectos (F) & sin defectos (F') & suma \\
+& fallas (F) & sin fallas (F') & suma \\
 \midrule
 \endhead
 defectuoso (D) & \(0.005\) & \(0.045\) & \(0.05\) \\
@@ -2529,7 +2529,7 @@ Resultados de lanzar dos monedas: \(S={(H,H), (H,T), (T,H), (T,T)}\)
 \midrule
 \endhead
 H & \(1/4\) & \(1/4\) & \(1/2\) \\
-camiseta & \(1/4\) & \(1/4\) & \(1/2\) \\
+T & \(1/4\) & \(1/4\) & \(1/2\) \\
 suma & \(1/2\) & \(1/2\) & 1 \\
 \bottomrule
 \end{longtable}
@@ -2690,11 +2690,16 @@ Ya hemos hecho esto para los dados: \(X \in \{1,2,3,4,5,6\}\) (interpretación c
 \item
   Podemos escribir la tabla de probabilidad
 \item
-  plotearla
+  graficarla
 \end{itemize}
 
 \includegraphics{_main_files/figure-latex/unnamed-chunk-34-1.pdf}
-- o escribirla como la función
+
+\begin{itemize}
+\tightlist
+\item
+  o escribirla como la función
+\end{itemize}
 
 \[f(x)=P(X=x)=1/6\]
 
@@ -2844,14 +2849,53 @@ Podemos calcular, por ejemplo, las siguientes probabilidades de eventos en los v
 \hypertarget{ejemplo-6}{%
 \section{Ejemplo}\label{ejemplo-6}}
 
-Considere que muchas times:
+\textbf{Modelo de probabilidad:}
+
+Considere el siguiente experimento: En una urna ponga \(8\) bolas y:
 
 \begin{itemize}
 \tightlist
 \item
-  no sabemos cuáles son los \textbf{eventos primarios} con probabilidades iguales.
+  marque \(1\) bola con el número \(-2\)
 \item
-  sin embargo podemos \textbf{estimamas} la función de masa de probabilidad a partir de las frecuencias relativas observadas para una variable aleatoria
+  marque \(2\) bolas con el número \(-1\)
+\item
+  marque \(2\) bolas con el número \(0\)
+\item
+  marque \(2\) bolas con el número \(1\)
+\item
+  marque \(1\) bola con el número \(2\)
+\end{itemize}
+
+\textbf{experimento:} Tome una bola y lea el número.
+
+\begin{longtable}[]{@{}cc@{}}
+\toprule
+\(X\) & \(P(X=x)\) \\
+\midrule
+\endhead
+\(-2\) & \(1/8=0.125\) \\
+\(-1\) & \(2/8=0.25\) \\
+\(0\) & \(2/8=0.25\) \\
+\(1\) & \(2/8=0.25\) \\
+\(2\) & \(1/8=0.125\) \\
+\bottomrule
+\end{longtable}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{ejemplo-7}{%
+\section{Ejemplo}\label{ejemplo-7}}
+
+Considere otro experimento en el que no sabemos qué hay en la urna anterior. Sacamos una bola \(30\) veces, escribimos su númeror y la devolvemos a la urna.
+
+\begin{itemize}
+\item
+  no sabemos cuáles son los eventos primarios con iguales probabilidades.
+\item
+  y \textbf{estimamos} la \textbf{función de masa de probabilidad} a partir de las \textbf{frecuencias relativas} observadas para cada variable aleatoria
 \end{itemize}
 
 \begin{longtable}[]{@{}cc@{}}
@@ -2871,55 +2915,15 @@ Considere que muchas times:
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{ejemplo-7}{%
-\section{Ejemplo}\label{ejemplo-7}}
-
-\textbf{Modelo de probabilidad:}
-
-Estas probabilidades son \textbf{consistentes} (no identicas) con el siguiente experimento: En una urna ponga \(8\) bolas:
-
-\begin{itemize}
-\tightlist
-\item
-  marque \(1\) bola con el número \(-2\)
-\item
-  marque \(2\) bolas con el número \(-1\)
-\item
-  marque \(2\) bolas con el número \(0\)
-\item
-  marque \(2\) bolas con el número \(1\)
-\item
-  marque \(1\) bola con el número \(2\)
-\end{itemize}
-
-\textbf{Experimento:} Tome una bola y lea el número.
-
-\begin{longtable}[]{@{}cc@{}}
-\toprule
-\(X\) & \(P(X=x)\) \\
-\midrule
-\endhead
-\(-2\) & \(1/8=0.125\) \\
-\(-1\) & \(2/8=0.25\) \\
-\(0\) & \(2/8=0.25\) \\
-\(1\) & \(2/8=0.25\) \\
-\(2\) & \(1/8=0.125\) \\
-\bottomrule
-\end{longtable}
-
-\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
-
-\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
-
 \hypertarget{probabilidades-y-frecuencias}{%
 \section{Probabilidades y frecuencias}\label{probabilidades-y-frecuencias}}
 
-Para calcular las frecuencias relativas \(f_i\) tenemos que
+Para calcular las frecuencias relativas \(f_i\) trenemos que
 
 \begin{itemize}
 \tightlist
 \item
-  \textbf{repetir} el experimento \(N\) times (tenemos que volver a poner la bola en la urna cada vez) y al final calculamos
+  \textbf{repetir} el experimento \(N\) veces (tenemos que volver a poner la bola en la urna cada vez) y al final calcular
 \end{itemize}
 
 \[f_i=n_i/N\]
@@ -2965,13 +2969,13 @@ Las funciones de masa de probabilidad \(f(x)\) tienen dos propiedades principale
   su dispersión
 \end{itemize}
 
-Nos podemos preguntar,
+Podemos preguntar,
 
 \begin{itemize}
 \item
   ¿Alrededor de qué valores de \(X\) se concentró la probabilidad?
 \item
-  ¿Qué tan dispersos están los valores de \(X\) en relación a sus probabilidades?
+  ¿Qué tan dispersos son los valores de \(X\) en relación a sus probabilidades?
 \end{itemize}
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
@@ -2994,11 +2998,11 @@ Recuerde que el \textbf{promedio} en términos de las frecuencias relativas de l
 
 \textbf{Definición}
 
-La \textbf{media} (\(\mu\)) o valor esperado de una variable aleatoria discreta \(X\), \(E(X)\), con función de masa \(f(x)\) viene dada por
+La \textbf{media} (\(\mu\)) o valor esperado de una variable aleatoria discreta \(X\), \(E(X)\), con función de masa \(f(x)\) está dada por
 
-\[ \mu = E(X)= \sum_{i=1}^M x_i f(x_i) \]
+\[\mu = E(X)= \sum_{i=1}^M x_i f(x_i)\]
 
-Es el centro de gravedad de las \textbf{probabilidades}: El punto donde se equilibran las cargas de probabilidad en una carretera
+Es el centro de gravedad de las \textbf{probabilidades}: El punto donde se equilibran las cargas de probabilidad
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
@@ -3013,11 +3017,11 @@ Es el centro de gravedad de las \textbf{probabilidades}: El punto donde se equil
 \(P(X=1)=4/16\)
 \(P(X=2)=6/16\)
 \(P(X=3)=4/16\)
-\(P(X=4)=1/16\)?
+\(P(X=4)=1/16\)
 
 \includegraphics{_main_files/figure-latex/unnamed-chunk-37-1.pdf}
 
-\[ \mu =E(X)=\sum_{i=1}^m x_i f(x_i) \]
+\[\mu =E(X)=\sum_{i=1}^m x_i f(x_i)\]
 
 \(E(X)=\)\textbf{0} * 1/16 + \textbf{1} * 4/16 + \textbf{2} * 6/16 + \textbf{3} * 4/16 + \textbf{4} * 1/16 =2
 
@@ -3025,14 +3029,14 @@ Es el centro de gravedad de las \textbf{probabilidades}: El punto donde se equil
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{dsipersiuxf3n}{%
-\section{Dsipersión}\label{dsipersiuxf3n}}
+\hypertarget{variaciuxf3n}{%
+\section{Variación}\label{variaciuxf3n}}
 
-En términos similares definimos la distancia cuadrática media a la media:
+En términos similares definimos la distancia media al cuadrado de la media:
 
 \textbf{Definición}
 
-La varianza, escrita como \(\sigma^2\) o \(V(X)\), de una variable aleatoria discreta \(X\) con función de masa \(f(x)\) viene dada por
+La varianza, escrita como \(\sigma^2\) o \(V(X)\), de una variable aleatoria discreta \(X\) con función de masa \(f(x)\) está dada por
 
 \[\sigma^2 = V(X)= \sum_{i=1}^M (x_i-\mu)^2 f(x_i)\]
 
@@ -3040,7 +3044,7 @@ La varianza, escrita como \(\sigma^2\) o \(V(X)\), de una variable aleatoria dis
 \item
   \(\sigma=\sqrt{V(X)}\) se llama la \textbf{desviación estándar} de la variable aleatoria
 \item
-  Piense en ello como el momento de inercia de las probabilidades con respecto a la media.
+  Piense en ello como el momento de inercia de las probabilidades sobre la media.
 \end{itemize}
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
@@ -3056,7 +3060,7 @@ La varianza, escrita como \(\sigma^2\) o \(V(X)\), de una variable aleatoria dis
 \(P(X=1)=4/16\)
 \(P(X=2)=6/16\)
 \(P(X=3)=4/16\)
-\(P(X=4)=1/16\)?
+\(P(X=4)=1/16\)
 
 \[\sigma^2 =V(X)=\sum_{i=1}^m (x_i-\mu)^2 f(x_i)\]
 
@@ -3074,15 +3078,15 @@ La varianza, escrita como \(\sigma^2\) o \(V(X)\), de una variable aleatoria dis
 
 \textbf{Definición}
 
-Para cualquier función \(h\) de una variable aleatoria \(X\), con función de masa \(f(x)\), su valor esperado viene dado por
+Para cualquier función \(h\) de una variable aleatoria \(X\), con función de masa \(f(x)\), su \textbf{valor esperado} viene dado por
 
 \[ E[h(X)]= \sum_{i=1}^M h(x_i) f(x_i) \]
 
-Esta es una definición importante que nos permite probar tres propiedades importantes de la mediana y la varianza:
+Esta es una definición importante que nos permite probar \textbf{tres propiedades} importantes de la mediana y la varianza:
 
 \begin{itemize}
 \item
-  La media de una función lineal es la función lineal de la media: \[E(a\times X +b)= a\times E(X) +b\] para \(a\) y \(b\) escalares (números) .
+  La media de una función lineal es la \textbf{función lineal} de la media: \[E(a\times X +b)= a\times E(X) +b\] para \(a\) y \(b\) escalares (números) .
 \item
   La varianza de una función lineal de \(X\) es:\[V(a\times X +b)= a^2\times V(X)\]
 \item
@@ -3102,7 +3106,7 @@ Esta es una definición importante que nos permite probar tres propiedades impor
 \(P(X=1)=4/16\)
 \(P(X=2)=6/16\)
 \(P(X=3)=4/16\)
-\(P(X=4)=1/16\)?
+\(P(X=4)=1/16\)
 
 \[E(X^2) =\sum_{i=1}^m x_i^2 f(x_i)\]
 
@@ -3159,22 +3163,22 @@ La distribución de probabilidad es:
 \[
     F(x)=
 \begin{cases}
-    1/16, &  x < 1\\
+    1/16,& \text{if } x < 1\\
     5/16,& 1\leq x < 2\\
     11/16,& 2\leq x < 3\\
     15/16,& 3\leq x < 4\\
-    16/16,& x \leq 5\\
+    16/16,&  x \leq 5\\
 \end{cases}
 \]
 
-Por \(X \in \mathbb{Z}\)
+Para \(X \in \mathbb{Z}\)
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{distribuciuxf3n-de-probabilidad-1}{%
-\section{Distribución de probabilidad}\label{distribuciuxf3n-de-probabilidad-1}}
+\hypertarget{probability-distribution}{%
+\section{Probability distribution}\label{probability-distribution}}
 
 \includegraphics{_main_files/figure-latex/unnamed-chunk-38-1.pdf}
 
@@ -3518,8 +3522,8 @@ En general, \(f(x)\) debe satisfacer:
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{distribuciuxf3n-de-probabilidad-2}{%
-\section{Distribución de probabilidad}\label{distribuciuxf3n-de-probabilidad-2}}
+\hypertarget{distribuciuxf3n-de-probabilidad-1}{%
+\section{Distribución de probabilidad}\label{distribuciuxf3n-de-probabilidad-1}}
 
 La probabilidad acumulada hasta \(b\) está definida por la distribución de probabilidad \(F\)
 
@@ -3545,8 +3549,8 @@ La probabilidad acumulada hasta \(a\) es
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{distribuciuxf3n-de-probabilidad-3}{%
-\section{Distribución de probabilidad}\label{distribuciuxf3n-de-probabilidad-3}}
+\hypertarget{distribuciuxf3n-de-probabilidad-2}{%
+\section{Distribución de probabilidad}\label{distribuciuxf3n-de-probabilidad-2}}
 
 La probabilidad entre \(a\) y \(b\) está definida por la distribución de probabilidad \(F\)
 
@@ -3562,8 +3566,8 @@ La probabilidad entre \(a\) y \(b\) está definida por la distribución de proba
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{distribuciuxf3n-de-probabilidad-4}{%
-\section{Distribución de probabilidad}\label{distribuciuxf3n-de-probabilidad-4}}
+\hypertarget{distribuciuxf3n-de-probabilidad-3}{%
+\section{Distribución de probabilidad}\label{distribuciuxf3n-de-probabilidad-3}}
 
 La distribución de probabilidad de una variable aleatoria continua se define como
 \(F(a)=P(X\leq a) =\int_{-\infty} ^a f(x)dx\)
@@ -3608,8 +3612,8 @@ Usamos \textbf{distribuciones de probabilidad} para \textbf{calcular probabilida
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{distribuciuxf3n-de-probabilidad-5}{%
-\section{Distribución de probabilidad}\label{distribuciuxf3n-de-probabilidad-5}}
+\hypertarget{distribuciuxf3n-de-probabilidad-4}{%
+\section{Distribución de probabilidad}\label{distribuciuxf3n-de-probabilidad-4}}
 
 Para la funcion de densidad uniforme:
 

@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 3 Probability | Stats theory (SDA)</title>
+  <title>Chapter 7 Discrete Probability Models | Stats theory (SDA)</title>
   <meta name="description" content="This are slides for the Stats theory of the BIST master" />
   <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 3 Probability | Stats theory (SDA)" />
+  <meta property="og:title" content="Chapter 7 Discrete Probability Models | Stats theory (SDA)" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="alejandro-isglobal/master" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 3 Probability | Stats theory (SDA)" />
+  <meta name="twitter:title" content="Chapter 7 Discrete Probability Models | Stats theory (SDA)" />
   
   <meta name="twitter:description" content="This are slides for the Stats theory of the BIST master" />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="data-description.html"/>
-<link rel="next" href="conditional-probability.html"/>
+<link rel="prev" href="continous-random-variables.html"/>
+<link rel="next" href="exercises.html"/>
 <script src="libs/header-attrs-2.12/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -322,839 +322,530 @@
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="probability" class="section level1 hasAnchor" number="3">
-<h1><span class="header-section-number">Chapter 3</span> Probability<a href="probability.html#probability" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<div id="objective-1" class="section level2 hasAnchor" number="3.1">
-<h2><span class="header-section-number">3.1</span> Objective<a href="probability.html#objective-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="discrete-probability-models" class="section level1 hasAnchor" number="7">
+<h1><span class="header-section-number">Chapter 7</span> Discrete Probability Models<a href="discrete-probability-models.html#discrete-probability-models" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="objective-5" class="section level2 hasAnchor" number="7.1">
+<h2><span class="header-section-number">7.1</span> Objective<a href="discrete-probability-models.html#objective-5" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Discrete probability models:</p>
 <ul>
-<li>Definition of probability</li>
-<li>Probability algebra</li>
-<li>Joint probability</li>
+<li>Uniform and Bernoulli probability functions</li>
+<li>Binomial and negative binomial probability functions</li>
 </ul>
 <hr />
 <hr />
 </div>
-<div id="random-experiments-1" class="section level2 hasAnchor" number="3.2">
-<h2><span class="header-section-number">3.2</span> Random experiments<a href="probability.html#random-experiments-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><strong>Observation</strong></p>
+<div id="probability-mass-function" class="section level2 hasAnchor" number="7.2">
+<h2><span class="header-section-number">7.2</span> Probability mass function<a href="discrete-probability-models.html#probability-mass-function" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>A probability mass function of a <strong>discrete random variable</strong> <span class="math inline">\(X\)</span> with possible values <span class="math inline">\(x_1 , x_2 , .. , x_M\)</span> is <strong>any function</strong> such that</p>
+<p>Positive:</p>
 <ul>
-<li>An <strong>observation</strong> is the acquisition of a number or a characteristic from an experiment</li>
+<li><span class="math inline">\(f(x_i)\geq 0\)</span></li>
 </ul>
-<p><strong>Outcome</strong></p>
+<p><em>Allow us to compute probabilities:</em></p>
 <ul>
-<li>An <strong>outcome</strong> is a possible observation that is the result of an experiment.</li>
+<li><span class="math inline">\(f(x_i)=P(X=x_i)\)</span></li>
 </ul>
-<p><strong>Random experiment</strong></p>
+<p>The probability of any outcome is <span class="math inline">\(1\)</span></p>
 <ul>
-<li>An experiment that gives <strong>different</strong> outcomes when repeated in the same manner.</li>
+<li><span class="math inline">\(\sum_{i=1}^M f(x_i)=1\)</span></li>
 </ul>
-<hr />
-<hr />
-</div>
-<div id="probability-1" class="section level2 hasAnchor" number="3.3">
-<h2><span class="header-section-number">3.3</span> Probability<a href="probability.html#probability-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><br>
-<br></p>
-<p>The <strong>probability</strong> of an outcome is a measure of how sure we are to observe that outcome when performing a random experiment.</p>
+<p><strong>Properties:</strong></p>
+<p>Central tendency:</p>
 <ul>
-<li><p>0: We are sure that the observation will <strong>not</strong> happen.</p></li>
-<li><p>1: We are sure that the observation will happen.</p></li>
+<li><span class="math inline">\(E(X)= \sum_{i=1}^M x_i f(x_i)\)</span></li>
 </ul>
-<p><br>
-<br></p>
-<hr />
-<hr />
-</div>
-<div id="example-3" class="section level2 hasAnchor" number="3.4">
-<h2><span class="header-section-number">3.4</span> Example<a href="probability.html#example-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><br>
-<br></p>
+<p>Dispersion:</p>
 <ul>
-<li>Consider the following observations of a random experiment:</li>
+<li><span class="math inline">\(V(X)= \sum_{i=1}^M (x_i-\mu)^2 f(x_i)\)</span></li>
 </ul>
-<p>1 5 1 2 2 1 2 2</p>
+<p>They are abstract objects with general properties that may or may not <strong>describe</strong> a natural or engineered process.</p>
+<hr />
+<hr />
+</div>
+<div id="probability-model" class="section level2 hasAnchor" number="7.3">
+<h2><span class="header-section-number">7.3</span> Probability model<a href="discrete-probability-models.html#probability-model" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>A <strong>probability model</strong> is a probability mass function that may represent the probabilities of a random experiment.</p>
+<p><strong>Examples:</strong></p>
 <ul>
-<li>How sure we are to obtain <span class="math inline">\(2\)</span> in the following observation?</li>
+<li><p><span class="math inline">\(f(x)=P(X=x)=1/6\)</span> represents the probability of the outcomes of <strong>one</strong> throw of a dice.</p></li>
+<li><p>The probability mass function</p></li>
 </ul>
-<p><br>
-<br></p>
+<table>
+<thead>
+<tr class="header">
+<th align="center"><span class="math inline">\(X\)</span></th>
+<th align="center"><span class="math inline">\(f(x)\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><span class="math inline">\(-2\)</span></td>
+<td align="center"><span class="math inline">\(1/8\)</span></td>
+</tr>
+<tr class="even">
+<td align="center"><span class="math inline">\(-1\)</span></td>
+<td align="center"><span class="math inline">\(2/8\)</span></td>
+</tr>
+<tr class="odd">
+<td align="center"><span class="math inline">\(0\)</span></td>
+<td align="center"><span class="math inline">\(2/8\)</span></td>
+</tr>
+<tr class="even">
+<td align="center"><span class="math inline">\(1\)</span></td>
+<td align="center"><span class="math inline">\(2/8\)</span></td>
+</tr>
+<tr class="odd">
+<td align="center"><span class="math inline">\(2\)</span></td>
+<td align="center"><span class="math inline">\(1/8\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>Represents the probability of drawing <strong>one</strong> ball from an urn where there are two balls per label: <span class="math inline">\(-1, 0, 1\)</span> and one ball per label: <span class="math inline">\(-2, 2\)</span>.</p>
 <hr />
 <hr />
 </div>
-<div id="example-4" class="section level2 hasAnchor" number="3.5">
-<h2><span class="header-section-number">3.5</span> Example<a href="probability.html#example-4" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>The frequency table is</p>
-<pre><code>##   outcome ni    fi
-## 1       1  3 0.375
-## 2       2  4 0.500
-## 3       5  1 0.125</code></pre>
-<p>The <strong>relative frequency</strong> <span class="math inline">\(f_i\)</span></p>
+<div id="parametric-models" class="section level2 hasAnchor" number="7.4">
+<h2><span class="header-section-number">7.4</span> Parametric models<a href="discrete-probability-models.html#parametric-models" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>When we perform a random experiment and <strong>do not</strong> know the probabilities of the outcomes:</p>
 <ul>
-<li>is a number between <span class="math inline">\(0\)</span> and <span class="math inline">\(1\)</span>.</li>
-<li>measures the proportion of total observations that we observed a particular outcome.</li>
-<li>seems a reasonable probability measure.</li>
+<li>We can always formulate the model given by the relative frequencies: <span class="math inline">\(\hat{P}(X=x_i)=f_i\)</span> ( where <span class="math inline">\(i=1...M\)</span>).</li>
 </ul>
-<p>As <span class="math inline">\(f_2=0.5\)</span> then we would be half certain to obtain a <span class="math inline">\(2\)</span> in the next repetition of the experiment.</p>
-<hr />
-<hr />
-</div>
-<div id="relative-frequency" class="section level2 hasAnchor" number="3.6">
-<h2><span class="header-section-number">3.6</span> Relative frequency<a href="probability.html#relative-frequency" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>As a measure of certainty is <span class="math inline">\(f_i\)</span> enough?</p>
-<p>Say we repeated the experiment 12 times more:</p>
-<p>1 5 1 2 2 1 2 2 <strong>3 1 1 3 3 1 6 3 5 6 4 4</strong></p>
-<p>The frequency table is now</p>
-<pre><code>##   outcome ni  fi
-## 1       1  6 0.3
-## 2       2  4 0.2
-## 3       3  4 0.2
-## 4       4  2 0.1
-## 5       5  2 0.1
-## 6       6  2 0.1</code></pre>
-<p>New outcomes appeared and <span class="math inline">\(f_2\)</span> is now <span class="math inline">\(0.2\)</span>, we are now a fifth certain of obtaining <span class="math inline">\(2\)</span> in the next experiment… probability should not depend on <span class="math inline">\(N\)</span></p>
-<hr />
-<hr />
-</div>
-<div id="at-infinity" class="section level2 hasAnchor" number="3.7">
-<h2><span class="header-section-number">3.7</span> At infinity<a href="probability.html#at-infinity" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Say we repeated the experiment 1000 times:</p>
-<pre><code>##   outcome  ni    fi
-## 1       1 168 0.168
-## 2       2 175 0.175
-## 3       3 154 0.154
-## 4       4 166 0.166
-## 5       5 168 0.168
-## 6       6 169 0.169</code></pre>
-<p>We find that <span class="math inline">\(f_i\)</span> is converging to a constant value</p>
-<p><span class="math display">\[lim_{N\rightarrow \infty} f_i = P_i\]</span></p>
-<p><img src="_main_files/figure-html/unnamed-chunk-26-1.png" width="672" /></p>
-<hr />
-<hr />
-</div>
-<div id="frequentist-probability" class="section level2 hasAnchor" number="3.8">
-<h2><span class="header-section-number">3.8</span> Frequentist probability<a href="probability.html#frequentist-probability" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>We call <strong>Probability</strong> <span class="math inline">\(P_i\)</span> to the limit when <span class="math inline">\(N \rightarrow \infty\)</span> of the <strong>relative frequency</strong> of observing the outcome <span class="math inline">\(i\)</span> in a random experiment.</p>
-<p>Championed by <a href="https://plato.stanford.edu/entries/probability-interpret/#ClaPro">Venn (1876)</a></p>
-<p>The frequentist interpretation of probabilities is derived from data/experience (empirical).</p>
+<p>We need to find <span class="math inline">\(M\)</span> numbers each depending on <span class="math inline">\(N\)</span>.</p>
+<p>In many cases:</p>
 <ul>
-<li>We do not observe <span class="math inline">\(P_i\)</span>, we observe <span class="math inline">\(f_i\)</span></li>
-<li>When we <strong>estimate</strong> <span class="math inline">\(P_i\)</span> with <span class="math inline">\(f_i\)</span> (typically when <span class="math inline">\(N\)</span> is large), we write: <span class="math display">\[\hat{P_i}=f_i\]</span></li>
+<li>We can formulate probability functions <span class="math inline">\(f(x)\)</span> that depend on <strong>very few</strong> numbers only.</li>
 </ul>
-<p><br>
-<br></p>
+<p><strong>Example:</strong></p>
+<p>A random experiment with <span class="math inline">\(M\)</span> equally likely outcomes has a probability mass function:
+<span class="math display">\[f(x)=P(X=x)=1/M\]</span></p>
+<p>We only need to know <span class="math inline">\(M\)</span>.</p>
+<p>The numbers we <strong>need to know</strong> to fully determine a probability function are called <strong>parameters</strong>.</p>
 <hr />
 <hr />
 </div>
-<div id="classical-probability" class="section level2 hasAnchor" number="3.9">
-<h2><span class="header-section-number">3.9</span> Classical Probability<a href="probability.html#classical-probability" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Whenever a random experiment has <span class="math inline">\(M\)</span> possible outcomes that are all <strong>equally likely</strong>, the probability of each outcome is <span class="math inline">\(\frac{1}{M}\)</span>.</p>
-<p>Championed by <a href="https://plato.stanford.edu/entries/probability-interpret/#ClaPro">Laplace (1814)</a>.</p>
-<p>Since each outcome is <strong>equally probable</strong> we declare complete ignorance and the best we can do is to fairly distribute the same probability to each outcome.</p>
-<p>What if I told you that our experiment was the throw of the dice? then</p>
-<p><span class="math inline">\(P_2=1/6=0.166666\)</span>.</p>
-<p><br></p>
-<p><span class="math display">\[P_i=lim_{N\rightarrow \infty} \frac{n_i}{N}=\frac{1}{M}\]</span></p>
+<div id="uniform-distribution-one-parameter" class="section level2 hasAnchor" number="7.5">
+<h2><span class="header-section-number">7.5</span> Uniform distribution (one parameter)<a href="discrete-probability-models.html#uniform-distribution-one-parameter" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><strong>Definition</strong>
+A random variable <span class="math inline">\(X\)</span> with outcomes <span class="math inline">\(\{1,...M\}\)</span> has a discrete <strong>uniform distribution</strong> if all its <span class="math inline">\(M\)</span> outcomes have the same probability</p>
+<p><span class="math display">\[f(x)=\frac{1}{M}\]</span></p>
+<p>With mean and variance:</p>
+<p><span class="math inline">\(E(X)= \frac{M+1}{2}\)</span></p>
+<p><span class="math inline">\(V(X)= \frac{M^2-1}{12}\)</span></p>
+<p>Note: <span class="math inline">\(E(X)\)</span> and <span class="math inline">\(V(X)\)</span> are also <strong>parameters</strong>. If we know any of them then we can fully determine the distribution.</p>
+<p><span class="math display">\[f(x)=\frac{1}{2E(X)-1}\]</span></p>
 <hr />
 <hr />
 </div>
-<div id="classical-and-frequentist-probabilities" class="section level2 hasAnchor" number="3.10">
-<h2><span class="header-section-number">3.10</span> Classical and frequentist probabilities<a href="probability.html#classical-and-frequentist-probabilities" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><img src="figures/prob.jpg" style="width:75%"  align="center"></p>
+<div id="uniform-distribution" class="section level2 hasAnchor" number="7.6">
+<h2><span class="header-section-number">7.6</span> Uniform distribution<a href="discrete-probability-models.html#uniform-distribution" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><img src="_main_files/figure-html/unnamed-chunk-51-1.png" width="672" /></p>
 <hr />
 <hr />
 </div>
-<div id="probability-2" class="section level2 hasAnchor" number="3.11">
-<h2><span class="header-section-number">3.11</span> Probability<a href="probability.html#probability-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><br>
-<br></p>
-<p>Probability is a number between <span class="math inline">\(0\)</span> and <span class="math inline">\(1\)</span> that is assigned to each member <span class="math inline">\(E\)</span> of a collection of <strong>events</strong> of a <strong>sample space</strong> (<span class="math inline">\(S\)</span>) from a random experiment.</p>
-<p><span class="math display">\[P(E) \in (0,1)\]</span></p>
-<p>where <span class="math inline">\(E \in S\)</span></p>
-<p><br>
-<br></p>
-<hr />
-<hr />
-</div>
-<div id="sample-space" class="section level2 hasAnchor" number="3.12">
-<h2><span class="header-section-number">3.12</span> Sample space<a href="probability.html#sample-space" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>We start by reasoning what are all the possible values (outcomes) that a random experiment could give.</p>
-<p>Note that we do not have to observe them in a particular experiment: We are using <strong>reason/logic</strong> and not observation.</p>
-<p><strong>Definition:</strong></p>
+<div id="uniform-distribution-two-parameters" class="section level2 hasAnchor" number="7.7">
+<h2><span class="header-section-number">7.7</span> Uniform distribution (two parameters)<a href="discrete-probability-models.html#uniform-distribution-two-parameters" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Let’s introduce a new uniform probability model with <strong>two parameters</strong>: The minimum and maximum outcomes.</p>
+<p>If the random variable takes values in <span class="math inline">\(\{a, a+1, ...b\}\)</span>, where <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> are integers and all the outcomes are equally probable then</p>
+<p><span class="math display">\[f(x)=\frac{1}{b-a+1}\]</span></p>
+<p>as <span class="math inline">\(M=b-a+1\)</span>.</p>
 <ul>
-<li><p>The set of all possible outcomes of a random experiment is called the <strong>sample space</strong>
-of the experiment.</p></li>
-<li><p>The sample space is denoted as <span class="math inline">\(S\)</span>.</p></li>
+<li>We then say that <span class="math inline">\(X\)</span> distributes uniformly between <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> and write</li>
+</ul>
+<p><span class="math display">\[X \rightarrow Unif(a,b)\]</span></p>
+<hr />
+<hr />
+</div>
+<div id="uniform-distribution-two-parameters-1" class="section level2 hasAnchor" number="7.8">
+<h2><span class="header-section-number">7.8</span> Uniform distribution (two parameters)<a href="discrete-probability-models.html#uniform-distribution-two-parameters-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><strong>Example:</strong></p>
+<p>What is the probability of observing a child of a particular age in a primary school (if all classes have the same amount of children)?</p>
+<p>From the experiment we know: <span class="math inline">\(a=6\)</span> and <span class="math inline">\(b=11\)</span> then</p>
+<p><span class="math display">\[X \rightarrow Unif(a=6, b=11)\]</span> that is</p>
+<p><span class="math display">\[f(x)=\frac{1}{6}\]</span> for <span class="math inline">\(x\in \{6,7,8,9,10,11\}\)</span>, and <span class="math inline">\(0\)</span> otherwise</p>
+<p><img src="_main_files/figure-html/unnamed-chunk-52-1.png" width="672" /></p>
+<hr />
+<hr />
+</div>
+<div id="uniform-distribution-1" class="section level2 hasAnchor" number="7.9">
+<h2><span class="header-section-number">7.9</span> Uniform distribution<a href="discrete-probability-models.html#uniform-distribution-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The probability model of a random variable <span class="math inline">\(X\)</span></p>
+<p><span class="math display">\[f(x)=\frac{1}{b-a+1}\]</span></p>
+<p>for <span class="math inline">\(x \in \{a, a+1, ...b\}\)</span></p>
+<p>has mean and variance:</p>
+<ul>
+<li><p><span class="math inline">\(E(X)= \frac{b+a}{2}\)</span></p></li>
+<li><p><span class="math inline">\(V(X)= \frac{(b-a+1)^2-1}{12}\)</span></p></li>
+</ul>
+<p>(Change variables <span class="math inline">\(X=Y+a-1\)</span>, <span class="math inline">\(y \in \{1,...M\}\)</span>)</p>
+<p>We can either specify <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> or <span class="math inline">\(E(X)\)</span> and <span class="math inline">\(V(X)\)</span>.</p>
+<p>In our example:</p>
+<ul>
+<li><span class="math inline">\(E(X)=(11+6)/2=8.5\)</span></li>
+<li><span class="math inline">\(V(X)=(6^2-1)/12=2.916667\)</span></li>
 </ul>
 <hr />
 <hr />
 </div>
-<div id="examples-of-sample-spaces" class="section level2 hasAnchor" number="3.13">
-<h2><span class="header-section-number">3.13</span> Examples of sample spaces<a href="probability.html#examples-of-sample-spaces" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><br>
-<br></p>
-<ul>
-<li>temperature 35 and 42 degrees Celcius</li>
-<li>sugar levels: 70-80mg/dL</li>
-<li>the size of one screw from a production line: 70mm-72mm</li>
-<li>number of emails received in an hour: 0-100</li>
-<li>a dice throw: 1, 2, 3, 4, 5, 6</li>
-</ul>
-<p><br>
-<br></p>
+<div id="uniform-distribution-two-parameter" class="section level2 hasAnchor" number="7.10">
+<h2><span class="header-section-number">7.10</span> Uniform distribution (two-parameter)<a href="discrete-probability-models.html#uniform-distribution-two-parameter" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><img src="_main_files/figure-html/unnamed-chunk-53-1.png" width="672" /></p>
 <hr />
 <hr />
 </div>
-<div id="discrete-and-continuous-sample-spaces" class="section level2 hasAnchor" number="3.14">
-<h2><span class="header-section-number">3.14</span> Discrete and continuous sample spaces<a href="probability.html#discrete-and-continuous-sample-spaces" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><br>
-<br></p>
+<div id="parameters-and-models" class="section level2 hasAnchor" number="7.11">
+<h2><span class="header-section-number">7.11</span> Parameters and Models<a href="discrete-probability-models.html#parameters-and-models" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ul>
-<li><p>A sample space is discrete if it consists of a finite or countable infinite set of outcomes.</p></li>
-<li><p>A sample space is continuous if it contains an interval (either finite or infinite in length) of
-real numbers.</p></li>
+<li><p>A <strong>model</strong> is a particular function <span class="math inline">\(f(x)\)</span> that <strong>describes</strong> our experiment</p></li>
+<li><p>If the model is a <strong>known</strong> function that depends on a few parameters then changing the value of the parameters we produce a <strong>family of models</strong></p></li>
+<li><p>Knowledge of <span class="math inline">\(f(x)\)</span> is reduced to the knowledge of the value of the parameters</p></li>
+<li><p>Ideally, the model and the parameters are <strong>interpretable</strong></p></li>
 </ul>
-<p><br>
-<br></p>
+<p><em>Example:</em></p>
+<p><strong>Model</strong>: The data of our experiment is produced by a random process in which each age has the <strong>same probability</strong> of being observed.</p>
+<p><strong>Parameters</strong>: <span class="math inline">\(a\)</span> is the minimum age, <span class="math inline">\(E(X)\)</span> is the expected age … they are <strong>physical properties</strong> of the experiment.</p>
 <hr />
 <hr />
 </div>
-<div id="event" class="section level2 hasAnchor" number="3.15">
-<h2><span class="header-section-number">3.15</span> Event<a href="probability.html#event" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><strong>Definition:</strong></p>
-<p>An <strong>event</strong> is a <strong>subset</strong> of the sample space of a random experiment. It is a <strong>collection</strong> of outcomes.</p>
-<p>Examples of events:</p>
+<div id="parameters-and-models-1" class="section level2 hasAnchor" number="7.12">
+<h2><span class="header-section-number">7.12</span> Parameters and Models<a href="discrete-probability-models.html#parameters-and-models-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><strong>Example:</strong></p>
+<p>A <strong>family</strong> of models obtained from two-parameter uniform distributions changing the <strong>variances</strong> and keeping a constant mean (<span class="math inline">\(E(X)=8.5\)</span>). It results on <strong>changing</strong> both <strong>minimum</strong> and <strong>maximum</strong> outcomes.</p>
 <ul>
-<li>The event of a healthy temperature: temperature 37-38 degrees Celsius</li>
-<li>The event of producing a screw with a size: of 71.5mm</li>
-<li>The event of receiving more than 4 emails in an hour.</li>
-<li>The event of obtaining a number less than 3 in the throw of a dice</li>
+<li>Note: Only one model makes sense for our experiment (only one model can represent the ages of children in a school).</li>
 </ul>
-<p>One event refers to a possible set of <strong>outcomes</strong>.</p>
-<hr />
-<hr />
-</div>
-<div id="event-operations" class="section level2 hasAnchor" number="3.16">
-<h2><span class="header-section-number">3.16</span> Event operations<a href="probability.html#event-operations" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><br>
-<br></p>
-<p>For two events <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span>, we can construct the following derived events:</p>
+<p><img src="_main_files/figure-html/unnamed-chunk-54-1.png" width="672" /></p>
 <ul>
-<li>Complement <span class="math inline">\(A&#39;\)</span>: the event of <strong>not</strong> <span class="math inline">\(A\)</span></li>
-<li>Union <span class="math inline">\(A \cup B\)</span>: the event of <span class="math inline">\(A\)</span> <strong>or</strong> <span class="math inline">\(B\)</span><br />
-</li>
-<li>Intersection <span class="math inline">\(A \cap B\)</span>: the event of <span class="math inline">\(A\)</span> <strong>and</strong> <span class="math inline">\(B\)</span></li>
-</ul>
-<p><br>
-<br></p>
-<hr />
-<hr />
-</div>
-<div id="event-operations-example" class="section level2 hasAnchor" number="3.17">
-<h2><span class="header-section-number">3.17</span> Event operations example<a href="probability.html#event-operations-example" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Take</p>
-<ul>
-<li>Event <span class="math inline">\(A:\{1,2,3\}\)</span> a number less or equal to three in the throw of a dice<br />
-</li>
-<li>Event <span class="math inline">\(B:\{2,4,6\}\)</span> an even number in the throw of a dice</li>
-</ul>
-<p>New events:</p>
-<ul>
-<li>Not less than three: <span class="math inline">\(A&#39;:\{4,5,6\}\)</span></li>
-<li>Less or equal to three <strong>or</strong> even: <span class="math inline">\(A \cup B: \{1,2,3,4,6\}\)</span></li>
-<li>Less or equal to three <strong>and</strong> even <span class="math inline">\(A \cap B: \{2\}\)</span></li>
+<li>We can think of <strong>families</strong> that change only the <strong>mean</strong>, only the <strong>minimum</strong>, or only the <strong>maximum</strong></li>
 </ul>
 <hr />
 <hr />
 </div>
-<div id="outcomes" class="section level2 hasAnchor" number="3.18">
-<h2><span class="header-section-number">3.18</span> Outcomes<a href="probability.html#outcomes" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Outcomes are events that are <strong>mutually exclusive</strong></p>
-<p><strong>Definition:</strong></p>
-<p>Two events denoted as <span class="math inline">\(E_1\)</span> and <span class="math inline">\(E_2\)</span>, such that</p>
-<p><span class="math display">\[E_1\cap E_2=\emptyset\]</span>
-They cannot occur at the same time.</p>
+<div id="bernoulli-trial" class="section level2 hasAnchor" number="7.13">
+<h2><span class="header-section-number">7.13</span> Bernoulli trial<a href="discrete-probability-models.html#bernoulli-trial" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Let’s try to advance from the equal probability case and suppose a model with two outcomes (<span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span>) that have <strong>unequal</strong> probabilities</p>
+<p><strong>Examples:</strong></p>
+<ul>
+<li><p>Writing down the sex of a patient who goes into an emergency room of a hospital (<span class="math inline">\(A:male\)</span> and <span class="math inline">\(B:female\)</span>).</p></li>
+<li><p>Recording whether a manufactured machine is defective or not (<span class="math inline">\(A:defective\)</span> and <span class="math inline">\(B:fine\)</span>).</p></li>
+<li><p>Hitting a target (<span class="math inline">\(A:success\)</span> and <span class="math inline">\(B:failure\)</span>).</p></li>
+<li><p>Transmitting one pixel correctly (<span class="math inline">\(A:yes\)</span> and <span class="math inline">\(B:no\)</span>).</p></li>
+</ul>
+<p>In these examples, the probability of outcome <span class="math inline">\(A\)</span> is usually <strong>unknown</strong>.</p>
+<hr />
+<hr />
+</div>
+<div id="bernoulli-trial-1" class="section level2 hasAnchor" number="7.14">
+<h2><span class="header-section-number">7.14</span> Bernoulli trial<a href="discrete-probability-models.html#bernoulli-trial-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>We will introduce the probability of an outcome (<span class="math inline">\(A\)</span>) as the <strong>parameter</strong> of the model:</p>
+<ul>
+<li>outcome A (success): has probability <span class="math inline">\(p\)</span> (parameter)</li>
+<li>outcome B (failure): has a probability <span class="math inline">\(1-p\)</span></li>
+</ul>
+<p>Or write, the probability mass function of <span class="math inline">\(K\)</span> taking values <span class="math inline">\(\{0, 1\}\)</span> for <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span></p>
+<p><span class="math display">\[
+    f(k)= 
+\begin{cases}
+    1-p,&amp;  k=0\, (event\, B)\\
+    p,&amp; k=1\, (event\, A) 
+\end{cases}
+\]</span></p>
+<p>or more shortly</p>
+<p><span class="math display">\[f(k; p)=p^k(1-p)^{1-k} \]</span></p>
+<p>for <span class="math inline">\(k=(0,1)\)</span></p>
+<p>We only need to know <span class="math inline">\(p\)</span>.</p>
+<hr />
+<hr />
+</div>
+<div id="bernoulli-trial-2" class="section level2 hasAnchor" number="7.15">
+<h2><span class="header-section-number">7.15</span> Bernoulli trial<a href="discrete-probability-models.html#bernoulli-trial-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>A Bernoulli variable <span class="math inline">\(K\)</span> with outcomes <span class="math inline">\(\{0, 1\}\)</span> has a probability mass function</p>
+<p><span class="math display">\[f(k; p)=p^k(1-p)^{1-k} \]</span>
+With mean and variance:</p>
+<ul>
+<li><p><span class="math inline">\(E(K)=p\)</span></p></li>
+<li><p><span class="math inline">\(V(K)=(1-p)p\)</span></p></li>
+</ul>
+<p>Note:</p>
+<ul>
+<li><p>The probability of the outcome <span class="math inline">\(A\)</span> is the parameter <span class="math inline">\(p\)</span>
+which is the same as <span class="math inline">\(f(0)=P(X=0)\)</span>.</p></li>
+<li><p>As <span class="math inline">\(p\)</span> is usually <strong>unknown</strong> we typically estimated it by the relative frequency (more on this in the inference sections): <span class="math inline">\(\hat{p}=f_A=\frac{n_A}{N}\)</span></p></li>
+</ul>
+<hr />
+<hr />
+</div>
+<div id="bernoulli-trial-3" class="section level2 hasAnchor" number="7.16">
+<h2><span class="header-section-number">7.16</span> Bernoulli trial<a href="discrete-probability-models.html#bernoulli-trial-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><img src="_main_files/figure-html/unnamed-chunk-55-1.png" width="672" /></p>
+<hr />
+<hr />
+</div>
+<div id="binomial-distribution" class="section level2 hasAnchor" number="7.17">
+<h2><span class="header-section-number">7.17</span> Binomial distribution<a href="discrete-probability-models.html#binomial-distribution" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>When we are interested in learning about a particular Bernoulli trial</p>
+<ul>
+<li><p>We repeat the Bernoulli trial <span class="math inline">\(N\)</span> times and count how many times we obtained <span class="math inline">\(A\)</span> (<span class="math inline">\(n_A\)</span>).</p></li>
+<li><p>We define a random variable <span class="math inline">\(X=n_A\)</span> taking values <span class="math inline">\(x \in {0,1,...N}\)</span></p></li>
+</ul>
+<p>We now ask for the probability of observing <span class="math inline">\(x\)</span> events of type <span class="math inline">\(A\)</span> in the repetition of <span class="math inline">\(n\)</span> independent Bernoulli trials, when the probability of observing <span class="math inline">\(A\)</span> is <span class="math inline">\(p\)</span>.</p>
+<p><span class="math display">\[P(X=x)=f(x)=?\]</span></p>
+<hr />
+<hr />
+</div>
+<div id="examples-binomial-distribution" class="section level2 hasAnchor" number="7.18">
+<h2><span class="header-section-number">7.18</span> Examples: Binomial distribution<a href="discrete-probability-models.html#examples-binomial-distribution" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li><p>Writing down the sex of <span class="math inline">\(n=10\)</span> patients who go into an emergency room of a hospital. What is the probability that <span class="math inline">\(x=6\)</span> patients are men when <span class="math inline">\(p=0.9\)</span>?</p></li>
+<li><p>Trying <span class="math inline">\(n=5\)</span> times to hit a target (<span class="math inline">\(A:success\)</span> and <span class="math inline">\(B:failure\)</span>). What is the probability that I hit the target <span class="math inline">\(x=5\)</span> times when I usually hit it <span class="math inline">\(25\%\)</span> of the times (<span class="math inline">\(p=0.25\)</span>)?</p></li>
+<li><p>Transmitting <span class="math inline">\(n=100\)</span> pixels correctly (<span class="math inline">\(A:yes\)</span> and <span class="math inline">\(B:no\)</span>). What is the probability that <span class="math inline">\(x=2\)</span> pixels are errors, when the probability of error is <span class="math inline">\(p=0.1\)</span>?</p></li>
+</ul>
+<hr />
+<hr />
+</div>
+<div id="binomial-distribution-1" class="section level2 hasAnchor" number="7.19">
+<h2><span class="header-section-number">7.19</span> Binomial distribution<a href="discrete-probability-models.html#binomial-distribution-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>What is the probability of observing <span class="math inline">\(X=4\)</span> errors when transmitting <span class="math inline">\(4\)</span> pixels, if the probability of an error is <span class="math inline">\(p\)</span>?</p>
+<p>Consider <span class="math inline">\(4\)</span> random variables: <span class="math inline">\(K_1\)</span>, <span class="math inline">\(K_2\)</span>, <span class="math inline">\(K_3\)</span> and <span class="math inline">\(K_4\)</span> that record whether an error has been made in the <span class="math inline">\(1^{st}\)</span>, <span class="math inline">\(2^{nd}\)</span>, <span class="math inline">\(3^{rd}\)</span> and <span class="math inline">\(4^{th}\)</span> pixel.</p>
+<p>Then</p>
+<ul>
+<li><p><span class="math inline">\(k_i\)</span> takes values <span class="math inline">\(\{correct:0; error:1\}\)</span></p></li>
+<li><p><span class="math inline">\(X=\sum_{i=1}^4 K_i\)</span> takes values <span class="math inline">\(\{0,1,2,3,4\}\)</span></p></li>
+</ul>
+<p>Then the probability of observing <span class="math inline">\(4\)</span> errors is:</p>
+<ul>
+<li><span class="math inline">\(P(X=4)=P(1,1,1,1)=p*p*p*p=p^4\)</span> because <span class="math inline">\(K_i\)</span> are independent.</li>
+</ul>
+<p>The probability of <span class="math inline">\(0\)</span> errors is:</p>
+<ul>
+<li><span class="math inline">\(P(X=0)=P(0,0,0,0)=(1-p)(1-p)(1-p)(1-p)=(1-p)^4\)</span></li>
+</ul>
+<p>The probability of <span class="math inline">\(3\)</span> errors is:</p>
+<p><span class="math inline">\(P(X=3)=P(0,1,1,1)+P(1,0,1,1)+P(1,1,0,1)+P(1,1,1,0)\)</span>
+<span class="math inline">\(=4p^3(1-p)^1\)</span></p>
+<hr />
+<hr />
+</div>
+<div id="binomial-distribution-2" class="section level2 hasAnchor" number="7.20">
+<h2><span class="header-section-number">7.20</span> Binomial distribution<a href="discrete-probability-models.html#binomial-distribution-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Therefore the probability of <span class="math inline">\(x\)</span> errors is</p>
+<p><span class="math display">\[
+    f(x)= 
+\begin{cases}
+    1*p^0(1-p)^4,&amp;  x=0 \\
+    4*p^1(1-p)^3,&amp;  x=1 \\
+    6*p^2(1-p)^2,&amp;  x=2 \\
+    4*p^3(1-p)^1,&amp;  x=3 \\
+    1*p^4(1-p)^0,&amp;  x=4 \\
+\end{cases}
+\]</span></p>
+<p>or more shortly</p>
+<p><span class="math display">\[f(x)=\binom 4 x p^x(1-p)^{4-x}\]</span>
+for <span class="math inline">\(x=0,1,2,3,4\)</span></p>
+<p>where <span class="math inline">\(\binom 4 x\)</span> is the number of possible outcomes (transmissions of <span class="math inline">\(4\)</span> pixels) with <span class="math inline">\(x\)</span> errors.</p>
+<hr />
+<hr />
+</div>
+<div id="binomial-distribution-definition" class="section level2 hasAnchor" number="7.21">
+<h2><span class="header-section-number">7.21</span> Binomial distribution: Definition<a href="discrete-probability-models.html#binomial-distribution-definition" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The binomial probability function is the probability mass function of observing <span class="math inline">\(x\)</span> outcomes of type <span class="math inline">\(A\)</span> in <span class="math inline">\(n\)</span> independent Bernoulli trials, where <span class="math inline">\(A\)</span> has the same probability <span class="math inline">\(p\)</span> in each trial.</p>
+<p>The function is given by</p>
+<p><span class="math inline">\(f(x)=\binom n x p^x(1-p)^{n-x}\)</span>, <span class="math inline">\(x=0,1,...n\)</span></p>
+<p><span class="math inline">\(\binom n x= \frac{n!}{x!(n-x)!}\)</span> is called <strong>the binomial coefficient</strong> and gives the number of ways one can obtain <span class="math inline">\(x\)</span> events of type <span class="math inline">\(A\)</span> in a set of <span class="math inline">\(n\)</span>.</p>
+<p>When a variable <span class="math inline">\(X\)</span> has a binomial probability function we say it distributes binomially and write</p>
+<p><span class="math display">\[X\rightarrow Bin(n,p)\]</span></p>
+<p>where <span class="math inline">\(n\)</span> and <span class="math inline">\(p\)</span> are parameters.</p>
+<hr />
+<hr />
+</div>
+<div id="binomial-distribution-mean-and-variance" class="section level2 hasAnchor" number="7.22">
+<h2><span class="header-section-number">7.22</span> Binomial distribution: Mean and Variance<a href="discrete-probability-models.html#binomial-distribution-mean-and-variance" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The mean and variance of <span class="math inline">\(X\hookrightarrow Bin(n,p)\)</span> are</p>
+<ul>
+<li><p><span class="math inline">\(E(X)=np\)</span></p></li>
+<li><p><span class="math inline">\(V(X)=np(1-p)\)</span></p></li>
+<li><p>Since <span class="math inline">\(X\)</span> is the sum of <span class="math inline">\(n\)</span> independent Bernoulli variables</p></li>
+</ul>
+<p><span class="math inline">\(E(X)=E(\sum_{i=1}^n K_i)=np\)</span></p>
+<p>and</p>
+<p><span class="math inline">\(V(X)=V(\sum_{i=1}^n K_i)=n(1-p)p\)</span></p>
 <p>Example:</p>
 <ul>
-<li><p>The outcome of obtaining <span class="math inline">\(1\)</span> <strong>and</strong> the outcome of obtaining <span class="math inline">\(5\)</span> in the throw of one dice are mutually exclusive:</p></li>
-<li><p>The event of obtaining <span class="math inline">\(1\)</span> and <span class="math inline">\(5\)</span> is empty:<span class="math display">\[\{1\}\cap \{5\}=\emptyset\]</span></p></li>
+<li><p>The expected value for the number of errors in the transmission of 4 pixels is <span class="math inline">\(np=4*0.1=0.4\)</span> when the probability of an error is <span class="math inline">\(0.1\)</span>.</p></li>
+<li><p>The variance is <span class="math inline">\(n(1-p)p=0.36\)</span></p></li>
 </ul>
+<p><strong>Remember</strong>: We can specify either the parameters <span class="math inline">\(n\)</span> and <span class="math inline">\(p\)</span>, or the parameters <span class="math inline">\(E(X)\)</span> and <span class="math inline">\(V(X)\)</span></p>
 <hr />
 <hr />
 </div>
-<div id="probability-definition" class="section level2 hasAnchor" number="3.19">
-<h2><span class="header-section-number">3.19</span> Probability definition<a href="probability.html#probability-definition" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><br></p>
-<p>A probability is a number that is assigned to each possible event (<span class="math inline">\(E\)</span>) of a sample space (<span class="math inline">\(S\)</span>) of a random experiment that satisfies the following properties:</p>
+<div id="example-1-1" class="section level2 hasAnchor" number="7.23">
+<h2><span class="header-section-number">7.23</span> Example 1<a href="discrete-probability-models.html#example-1-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Now let’s answer:</p>
 <ul>
-<li><span class="math inline">\(P(S)=1\)</span></li>
-<li><span class="math inline">\(0 \leq P(E) \leq 1\)</span></li>
-<li>when <span class="math inline">\(E_1\cap E_2=\emptyset\)</span> <span class="math display">\[P(E_1\cup E_2) = P(E_1) + P(E_2)\]</span></li>
+<li>What is the probability of observing <span class="math inline">\(4\)</span> errors when transmitting <span class="math inline">\(4\)</span> pixels, if the probability of an error is <span class="math inline">\(0.1\)</span>?</li>
 </ul>
-<p>Proposed by Kolmogorov’s (1933)</p>
-<p><br></p>
+<p>Since we are repeating a Bernoulli trial <span class="math inline">\(n=4\)</span> times and counting the number of events of type <span class="math inline">\(A\)</span> (errors), when <span class="math inline">\(P(A)=p=0.1\)</span> then</p>
+<p><span class="math display">\[X \rightarrow Bin(n=4, p=0.1)\]</span>
+That is <span class="math display">\[f(x)=\binom 4 x 0.1^x(1-0.1)^{4-x}\]</span></p>
 <hr />
 <hr />
 </div>
-<div id="probability-properties" class="section level2 hasAnchor" number="3.20">
-<h2><span class="header-section-number">3.20</span> Probability properties<a href="probability.html#probability-properties" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Kolmogorov says that we can build a probability table (likewise the relative frequency table)</p>
-<table>
-<thead>
-<tr class="header">
-<th align="center">outcome</th>
-<th align="center">Probability</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="center"><span class="math inline">\(1\)</span></td>
-<td align="center">1/6</td>
-</tr>
-<tr class="even">
-<td align="center"><span class="math inline">\(2\)</span></td>
-<td align="center">1/6</td>
-</tr>
-<tr class="odd">
-<td align="center"><span class="math inline">\(3\)</span></td>
-<td align="center">1/6</td>
-</tr>
-<tr class="even">
-<td align="center"><span class="math inline">\(4\)</span></td>
-<td align="center">1/6</td>
-</tr>
-<tr class="odd">
-<td align="center"><span class="math inline">\(5\)</span></td>
-<td align="center">1/6</td>
-</tr>
-<tr class="even">
-<td align="center"><span class="math inline">\(6\)</span></td>
-<td align="center">1/6</td>
-</tr>
-<tr class="odd">
-<td align="center"><span class="math inline">\(P(1 \cup 2\cup ... \cup 6)\)</span></td>
-<td align="center">1</td>
-</tr>
-</tbody>
-</table>
-<p>As <span class="math inline">\(\{1,2,3,4,5,6\}\)</span> are mutually exclusive then</p>
-<p><span class="math display">\[P(S)=P(1\cup 2\cup ... \cup 6) = P(1)+P(2)+ ...+P(n)=1\]</span></p>
-<hr />
-<hr />
-</div>
-<div id="addition-rule" class="section level2 hasAnchor" number="3.21">
-<h2><span class="header-section-number">3.21</span> Addition Rule<a href="probability.html#addition-rule" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><br>
-<br></p>
-<p>When <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are not mutually exclusive then:</p>
-<p><span class="math display">\[P(A \cup B)=P(A) + P(B) - P(A\cap B)\]</span></p>
-<p>Where <span class="math inline">\(P(A)\)</span> and <span class="math inline">\(P(B)\)</span> are called the <strong>marginal probabilities</strong></p>
-<p><br>
-<br></p>
-<hr />
-<hr />
-</div>
-<div id="example-addition-rule" class="section level2 hasAnchor" number="3.22">
-<h2><span class="header-section-number">3.22</span> Example Addition Rule<a href="probability.html#example-addition-rule" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Take</p>
+<div id="example-1-2" class="section level2 hasAnchor" number="7.24">
+<h2><span class="header-section-number">7.24</span> Example 1<a href="discrete-probability-models.html#example-1-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ul>
-<li>Event <span class="math inline">\(A:\{1,2,3\}\)</span> a number less or equal to three in the throw of a dice<br />
-</li>
-<li>Event <span class="math inline">\(B:\{2,4,6\}\)</span> an even number in the throw of a dice</li>
+<li>We want to compute:</li>
 </ul>
-<p>then:</p>
+<p><span class="math inline">\(P(X=4)=f(4)=\binom 4 4 0.1^4 0.9^{0}=10^{-4}\)</span></p>
+<p>In R <code>dbinom(4,4,0.1)</code></p>
 <ul>
-<li><span class="math inline">\(P(A): P(1) + P(2) + P(3)=3/6\)</span></li>
-<li><span class="math inline">\(P(B): P(2) + P(4) + P(6)=3/6\)</span></li>
-<li><span class="math inline">\(P(A \cap B): P(2) = 1/6\)</span></li>
+<li>We can also compute:</li>
 </ul>
-<p><span class="math inline">\(P(A \cup B)=P(A) + P(B) - P(A\cap B)=3/6+3/6-1/6=5/6\)</span></p>
-<p>Note: <span class="math inline">\(P(2)\)</span> appears in <span class="math inline">\(P(A)\)</span> and <span class="math inline">\(P(B)\)</span> that’s why we subtract it with the intersection</p>
+<p><span class="math inline">\(P(X=2)=\binom 4 2 0.1^2 0.9^2=0.0486\)</span></p>
+<p>In R <code>dbinom(2,4,0.1)</code></p>
 <hr />
 <hr />
 </div>
-<div id="venn-diagram" class="section level2 hasAnchor" number="3.23">
-<h2><span class="header-section-number">3.23</span> Venn diagram<a href="probability.html#venn-diagram" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Note that can always break down the sample space in <strong>mutually exclusive</strong> sets involving the intersections:</p>
-<p><span class="math inline">\(S=\{A\cap B, A \cap B&#39;, A&#39;\cap B, A&#39;\cap B&#39;\}\)</span></p>
-<p><img src="figures/Venn.jpg" style="width:75%"  align="center"></p>
-<p>Marginals:</p>
+<div id="example-2-1" class="section level2 hasAnchor" number="7.25">
+<h2><span class="header-section-number">7.25</span> Example 2<a href="discrete-probability-models.html#example-2-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ul>
-<li><span class="math inline">\(P(A)=P(A\cap B&#39;) + P(A \cap B)=2/6+1/6=3/6\)</span></li>
-<li><span class="math inline">\(P(B)=P(A&#39;\cap B) +P(A \cap B)=2/6+1/6=3/6\)</span></li>
+<li>What is the probability of observing at least <span class="math inline">\(8\)</span> voters of the ruling party in an election poll of size <span class="math inline">\(10\)</span>, if the probability of a positive vote is <span class="math inline">\(0.9\)</span></li>
 </ul>
+<p>For this case</p>
+<p><span class="math display">\[X \rightarrow Bin(n=8, p=0.9)\]</span></p>
+<p>That is <span class="math display">\[f(x)=\binom {10} x 0.9^x(0.1)^{4-x}\]</span></p>
+<p>We want to compute:
+<span class="math inline">\(P(X\le 8)=F(8)= \sum_{i=1..8} f(x_i)=0.2639011\)</span></p>
+<p>in R <code>pbinom(8,10, 0.9)</code></p>
 <hr />
 <hr />
 </div>
-<div id="probability-table" class="section level2 hasAnchor" number="3.24">
-<h2><span class="header-section-number">3.24</span> Probability table<a href="probability.html#probability-table" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Let’s look at the probability table</p>
-<table>
-<thead>
-<tr class="header">
-<th align="center">outcome</th>
-<th align="center">Probability</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="center"><span class="math inline">\(A\cap B\)</span></td>
-<td align="center"><span class="math inline">\(P(A\cap B)\)</span></td>
-</tr>
-<tr class="even">
-<td align="center"><span class="math inline">\(A\cap B&#39;\)</span></td>
-<td align="center"><span class="math inline">\(P(A\cap B&#39;)\)</span></td>
-</tr>
-<tr class="odd">
-<td align="center"><span class="math inline">\(A&#39;\cap B\)</span></td>
-<td align="center"><span class="math inline">\(P(A&#39;\cap B)\)</span></td>
-</tr>
-<tr class="even">
-<td align="center"><span class="math inline">\(A&#39;\cap B&#39;\)</span></td>
-<td align="center"><span class="math inline">\(P(A&#39;\cap B&#39;)\)</span></td>
-</tr>
-<tr class="odd">
-<td align="center">sum</td>
-<td align="center"><span class="math inline">\(1\)</span></td>
-</tr>
-</tbody>
-</table>
+<div id="binomial-distribution-3" class="section level2 hasAnchor" number="7.26">
+<h2><span class="header-section-number">7.26</span> Binomial distribution<a href="discrete-probability-models.html#binomial-distribution-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><img src="_main_files/figure-html/unnamed-chunk-56-1.png" width="672" /></p>
 <hr />
 <hr />
 </div>
-<div id="example-probability-table" class="section level2 hasAnchor" number="3.25">
-<h2><span class="header-section-number">3.25</span> Example probability table<a href="probability.html#example-probability-table" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>We also write <span class="math inline">\(A \cap B\)</span> as <span class="math inline">\((A,B)\)</span> and call it the <strong>joint probability</strong> of <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span></p>
-<p>In our example:</p>
-<table>
-<thead>
-<tr class="header">
-<th align="center">outcome</th>
-<th align="center">Probability</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="center"><span class="math inline">\((A, B)\)</span></td>
-<td align="center"><span class="math inline">\(P(A, B)=1/6\)</span></td>
-</tr>
-<tr class="even">
-<td align="center"><span class="math inline">\((A, B&#39;)\)</span></td>
-<td align="center"><span class="math inline">\(P(A, B&#39;)=2/6\)</span></td>
-</tr>
-<tr class="odd">
-<td align="center"><span class="math inline">\((A&#39;, B)\)</span></td>
-<td align="center"><span class="math inline">\(P(A&#39;, B)=2/6\)</span></td>
-</tr>
-<tr class="even">
-<td align="center"><span class="math inline">\((A&#39;, B&#39;)\)</span></td>
-<td align="center"><span class="math inline">\(P(A&#39;, B&#39;)=1/6\)</span></td>
-</tr>
-<tr class="odd">
-<td align="center">sum</td>
-<td align="center"><span class="math inline">\(1\)</span></td>
-</tr>
-</tbody>
-</table>
-<p>Note: each outcome has <span class="math inline">\(two\)</span> values (one for the characteristic of type <span class="math inline">\(A\)</span> and another for type <span class="math inline">\(B\)</span>)</p>
-<hr />
-<hr />
-</div>
-<div id="contingency-table" class="section level2 hasAnchor" number="3.26">
-<h2><span class="header-section-number">3.26</span> Contingency table<a href="probability.html#contingency-table" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>We can organize the probability of <strong>joint outcomes</strong> in a <strong>contingency table</strong></p>
-<table>
-<thead>
-<tr class="header">
-<th align="center"></th>
-<th align="center"><span class="math inline">\(B\)</span></th>
-<th align="center"><span class="math inline">\(B&#39;\)</span></th>
-<th align="center"><b>sum</b></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="center"><span class="math inline">\(A\)</span></td>
-<td align="center"><span class="math inline">\(P(A, B )\)</span></td>
-<td align="center"><span class="math inline">\(P(A, B&#39; )\)</span></td>
-<td align="center"><span class="math inline">\(P(A)\)</span></td>
-</tr>
-<tr class="even">
-<td align="center"><span class="math inline">\(A&#39;\)</span></td>
-<td align="center"><span class="math inline">\(P(A&#39;, B )\)</span></td>
-<td align="center"><span class="math inline">\(P(A&#39;, B&#39; )\)</span></td>
-<td align="center"><span class="math inline">\(P(A&#39;)\)</span></td>
-</tr>
-<tr class="odd">
-<td align="center"><b>sum</b></td>
-<td align="center"><span class="math inline">\(P(B)\)</span></td>
-<td align="center"><span class="math inline">\(P(B&#39;)\)</span></td>
-<td align="center">1</td>
-</tr>
-</tbody>
-</table>
-<p>Marginals:</p>
+<div id="negative-binomial-distribution" class="section level2 hasAnchor" number="7.27">
+<h2><span class="header-section-number">7.27</span> Negative binomial distribution<a href="discrete-probability-models.html#negative-binomial-distribution" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Now let us imagine that we are interested in counting the well-transmitted pixels before a <strong>given number</strong> of errors occur. Say we can <strong>tolerate</strong> <span class="math inline">\(r\)</span> errors in transmission.</p>
 <ul>
-<li><span class="math inline">\(P(A)=P(A, B&#39;) + P(A, B)\)</span></li>
-<li><span class="math inline">\(P(B)=P(A&#39;, B) +P(A, B)\)</span></li>
+<li><p>Experiment: Suppose performing Bernoulli trials until we observe the outcome <span class="math inline">\(A\)</span> appears <span class="math inline">\(r\)</span> times.</p></li>
+<li><p>Random variable: We count the number of events <span class="math inline">\(B\)</span></p></li>
+<li><p>Example: What is the probability of observing <span class="math inline">\(y\)</span> well-transmitted (<span class="math inline">\(B\)</span>) pixels before <span class="math inline">\(r\)</span> errors (<span class="math inline">\(A\)</span>)?</p></li>
 </ul>
 <hr />
 <hr />
 </div>
-<div id="example-contingency-table" class="section level2 hasAnchor" number="3.27">
-<h2><span class="header-section-number">3.27</span> Example contingency table<a href="probability.html#example-contingency-table" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="negative-binomial-distribution-1" class="section level2 hasAnchor" number="7.28">
+<h2><span class="header-section-number">7.28</span> Negative binomial distribution<a href="discrete-probability-models.html#negative-binomial-distribution-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Let’s first find the probability of one particular transmission with <span class="math inline">\(y\)</span> number of correct pixels (<span class="math inline">\(B\)</span>) and <span class="math inline">\(r\)</span> number of errors (<span class="math inline">\(A\)</span>).</p>
+<p><span class="math inline">\((0,0,1,., 0,1,...0,1)\)</span> (there are <span class="math inline">\(y\)</span> zeros, and <span class="math inline">\(r\)</span> ones)</p>
+<p>We observe <span class="math inline">\(y\)</span> correct pixels in a total of <span class="math inline">\(y + r\)</span> trials.</p>
+<p>Then</p>
 <ul>
-<li>Event <span class="math inline">\(A:\{1,2,3\}\)</span> a number less or equal to three in the throw of a dice<br />
-</li>
-<li>Event <span class="math inline">\(B:\{2,4,6\}\)</span> an even number in the throw of a dice</li>
+<li><span class="math inline">\(P(0,0,1,., 0,1,...0,1)=p^r(1-p)^y\)</span> (Remember: <span class="math inline">\(p\)</span> is the probability of error)</li>
 </ul>
-<table>
-<thead>
-<tr class="header">
-<th align="center"></th>
-<th align="center"><span class="math inline">\(B\)</span></th>
-<th align="center"><span class="math inline">\(B&#39;\)</span></th>
-<th align="center"><b>sum</b></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="center"><span class="math inline">\(A\)</span></td>
-<td align="center"><span class="math inline">\(1/6\)</span></td>
-<td align="center"><span class="math inline">\(2/6\)</span></td>
-<td align="center"><span class="math inline">\(3/6\)</span></td>
-</tr>
-<tr class="even">
-<td align="center"><span class="math inline">\(A&#39;\)</span></td>
-<td align="center"><span class="math inline">\(2/6\)</span></td>
-<td align="center"><span class="math inline">\(1/6\)</span></td>
-<td align="center"><span class="math inline">\(3/6\)</span></td>
-</tr>
-<tr class="odd">
-<td align="center"><b>sum</b></td>
-<td align="center"><span class="math inline">\(3/6\)</span></td>
-<td align="center"><span class="math inline">\(3/6\)</span></td>
-<td align="center">1</td>
-</tr>
-</tbody>
-</table>
-<p>Three forms of the <strong>addition rule</strong>:</p>
-<p><span class="math inline">\(P(A \cup B)\)</span><span class="math display">\[=P(A) + P(B) - P(A\cap B)\]</span>
-<span class="math display">\[=P(A \cap B)+P(A\cap B&#39;)+P(A&#39;\cap B)\]</span>
-<span class="math display">\[=1-P(A&#39;\cap B&#39;)\]</span></p>
-<hr />
-<hr />
-</div>
-<div id="misophonia-study" class="section level2 hasAnchor" number="3.28">
-<h2><span class="header-section-number">3.28</span> Misophonia study<a href="probability.html#misophonia-study" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>In the misophonia study, the patients were assessed for their misophonia severity <strong>and</strong> if they were depressed.</p>
-<p>The outcome of one random experiment is to measure the misophonia severity <strong>and</strong> depression status of one patient. The repetition of the random experiment was to perform the same two measurements on another patient.</p>
-<pre><code>##     Misofonia.dic depresion.dic
-## 1               4             1
-## 2               2             0
-## 3               0             0
-## 4               3             0
-## 5               0             0
-## 6               0             0
-## 7               2             0
-## 8               3             0
-## 9               0             1
-## 10              3             0
-## 11              0             0
-## 12              2             0
-## 13              2             1
-## 14              0             0
-## 15              2             0
-## 16              0             0
-## 17              0             0
-## 18              3             0
-## 19              3             0
-## 20              0             0
-## 21              3             0
-## 22              3             0
-## 23              2             0
-## 24              0             0
-## 25              0             0
-## 26              0             0
-## 27              4             1
-## 28              2             0
-## 29              2             0
-## 30              0             0
-## 31              2             0
-## 32              0             0
-## 33              0             0
-## 34              0             0
-## 35              3             0
-## 36              0             0
-## 37              2             0
-## 38              3             1
-## 39              2             0
-## 40              2             0
-## 41              0             0
-## 42              2             0
-## 43              3             0
-## 44              0             0
-## 45              0             0
-## 46              2             0
-## 47              2             0
-## 48              3             0
-## 49              3             0
-## 50              0             0
-## 51              0             0
-## 52              4             1
-## 53              3             0
-## 54              3             1
-## 55              2             1
-## 56              0             1
-## 57              2             0
-## 58              0             0
-## 59              0             0
-## 60              0             0
-## 61              2             0
-## 62              2             0
-## 63              0             0
-## 64              0             0
-## 65              2             0
-## 66              3             1
-## 67              0             0
-## 68              1             0
-## 69              3             0
-## 70              2             0
-## 71              4             1
-## 72              3             0
-## 73              2             1
-## 74              3             0
-## 75              0             1
-## 76              2             0
-## 77              3             0
-## 78              2             0
-## 79              4             1
-## 80              1             0
-## 81              2             0
-## 82              0             0
-## 83              2             0
-## 84              0             0
-## 85              2             0
-## 86              0             1
-## 87              2             0
-## 88              2             0
-## 89              4             1
-## 90              3             0
-## 91              0             1
-## 92              3             0
-## 93              0             0
-## 94              0             0
-## 95              0             0
-## 96              2             0
-## 97              2             0
-## 98              1             0
-## 99              3             0
-## 100             0             0
-## 101             0             0
-## 102             3             1
-## 103             2             0
-## 104             1             0
-## 105             3             0
-## 106             0             0
-## 107             4             1
-## 108             4             1
-## 109             2             0
-## 110             3             0
-## 111             3             0
-## 112             3             1
-## 113             0             0
-## 114             3             0
-## 115             2             0
-## 116             1             0
-## 117             2             0
-## 118             3             1
-## 119             3             0
-## 120             4             1
-## 121             2             0
-## 122             3             0
-## 123             2             0</code></pre>
-<hr />
-<hr />
-</div>
-<div id="contingency-table-for-frequencies" class="section level2 hasAnchor" number="3.29">
-<h2><span class="header-section-number">3.29</span> Contingency table for frequencies<a href="probability.html#contingency-table-for-frequencies" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>How many transmissions can have <span class="math inline">\(y\)</span> correct pixels before <span class="math inline">\(r\)</span> errors?</p>
+<p>Note:</p>
 <ul>
-<li>For the number of observations <span class="math inline">\(n_{i,j}\)</span> of each outcome <span class="math inline">\((x_i, y_i)\)</span>, misophonia: <span class="math inline">\(x\in \{0,1,2,3,4\}\)</span> and depression <span class="math inline">\(y\in \{0,1\}\)</span> (no:<span class="math inline">\(0\)</span>, yes:<span class="math inline">\(1\)</span>)</li>
+<li><p>The last bit is fixed (marks the end of transmission)</p></li>
+<li><p>The total number of transmissions with <span class="math inline">\(y\)</span> number of correct pixels (<span class="math inline">\(B\)</span>) that we can obtain in <span class="math inline">\(y + r-1\)</span> trials is: <span class="math inline">\(\binom {y + r-1} y\)</span></p></li>
 </ul>
-<pre><code>##               
-##                Depression:0 Depression:1
-##   Misophonia:4            0            9
-##   Misophonia:3           25            6
-##   Misophonia:2           34            3
-##   Misophonia:1            5            0
-##   Misophonia:0           36            5</code></pre>
+<hr />
+<hr />
+</div>
+<div id="negative-binomial-distribution-2" class="section level2 hasAnchor" number="7.29">
+<h2><span class="header-section-number">7.29</span> Negative binomial distribution<a href="discrete-probability-models.html#negative-binomial-distribution-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Therefore, the probability of observing <span class="math inline">\(y\)</span> events of type <span class="math inline">\(B\)</span> before <span class="math inline">\(r\)</span> events of type <span class="math inline">\(A\)</span> (with probability <span class="math inline">\(p\)</span>) is</p>
+<p><span class="math display">\[P(Y=y)=f(y)=\binom {y+r-1} y p^r(1-p)^y\]</span></p>
+<p>for <span class="math inline">\(y=0,1,...\)</span></p>
+<p>We then say that <span class="math inline">\(Y\)</span> follows a negative binomial distribution and we write</p>
+<p><span class="math display">\[Y\rightarrow NB(r,p)\]</span></p>
+<p>where <span class="math inline">\(r\)</span> and <span class="math inline">\(p\)</span> are parameters representing the tolerance and the probability of a single error.</p>
+<hr />
+<hr />
+</div>
+<div id="mean-and-variance-2" class="section level2 hasAnchor" number="7.30">
+<h2><span class="header-section-number">7.30</span> Mean and Variance<a href="discrete-probability-models.html#mean-and-variance-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>A random variable with <span class="math inline">\(Y\rightarrow NB(r,p)\)</span> has</p>
 <ul>
-<li>For the relative frequencies <span class="math inline">\(f_{i,j}\)</span></li>
+<li><p>mean: <span class="math inline">\(E(Y)= r\frac{1-p}{p}\)</span></p></li>
+<li><p>variance: <span class="math inline">\(V(Y)= r\frac{1-p}{p^2}\)</span></p></li>
 </ul>
-<pre><code>##               
-##                Depression:0 Depression:1
-##   Misophonia:4   0.00000000   0.07317073
-##   Misophonia:3   0.20325203   0.04878049
-##   Misophonia:2   0.27642276   0.02439024
-##   Misophonia:1   0.04065041   0.00000000
-##   Misophonia:0   0.29268293   0.04065041</code></pre>
 <hr />
 <hr />
 </div>
-<div id="heat-map" class="section level2 hasAnchor" number="3.30">
-<h2><span class="header-section-number">3.30</span> Heat map<a href="probability.html#heat-map" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>The contingency table can be plotted as a <strong>heat map</strong></p>
-<p><img src="_main_files/figure-html/unnamed-chunk-30-1.png" width="672" /></p>
-<hr />
-<hr />
-</div>
-<div id="continous-variables" class="section level2 hasAnchor" number="3.31">
-<h2><span class="header-section-number">3.31</span> Continous variables<a href="probability.html#continous-variables" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>In the misophonia study, the jaw protrusion was also measured as a possible cephalometric factor for de disease.</p>
-<pre><code>##     Angulo_convexidad protusion.mandibular
-## 1                7.97                13.00
-## 2               18.23                -5.00
-## 3               12.27                11.50
-## 4                7.81                16.80
-## 5                9.81                33.00
-## 6               13.50                 2.00
-## 7               19.30                -3.90
-## 8                7.70                16.80
-## 9               12.30                 8.00
-## 10               7.90                28.80
-## 11              12.60                 3.00
-## 12              19.00                -7.90
-## 13               7.27                28.30
-## 14              14.00                 4.00
-## 15               5.40                22.20
-## 16               8.00                 0.00
-## 17              11.20                15.00
-## 18               7.75                17.00
-## 19               7.94                49.00
-## 20              16.69                 5.00
-## 21               7.62                42.00
-## 22               7.02                28.00
-## 23               7.00                 9.40
-## 24              19.20               -13.20
-## 25               7.96                23.00
-## 26              14.70                 2.30
-## 27               7.24                25.00
-## 28               7.80                 4.90
-## 29               7.90                92.00
-## 30               4.70                 6.00
-## 31               4.40                17.00
-## 32              14.00                 3.30
-## 33              14.40                10.30
-## 34              16.00                 6.30
-## 35               1.40                19.50
-## 36               9.76                22.00
-## 37               7.90                 5.00
-## 38               7.90                78.00
-## 39               7.40                 9.30
-## 40               6.30                50.60
-## 41               7.76                18.00
-## 42               7.30                18.00
-## 43               7.00                10.00
-## 44              11.23                 4.00
-## 45              16.00                13.30
-## 46               7.90                48.00
-## 47               7.29                23.50
-## 48               6.91                37.60
-## 49               7.10                15.00
-## 50              13.40                 5.10
-## 51              11.60                -2.20
-## 52              -1.00                32.00
-## 53               6.00                25.00
-## 54               7.82                24.00
-## 55               4.80                33.60
-## 56              11.00                 3.30
-## 57               9.00                31.50
-## 58              11.50                12.80
-## 59              16.00                 3.00
-## 60              15.00                 6.00
-## 61               1.40                21.40
-## 62              16.80               -10.00
-## 63               7.70                19.00
-## 64              16.14                32.00
-## 65               7.12                15.00
-## 66              -1.00                10.00
-## 67              17.00               -16.90
-## 68               9.26                 2.00
-## 69              18.70               -10.10
-## 70               3.40                12.20
-## 71              21.30               -11.00
-## 72               7.50                 5.20
-## 73               6.03                16.00
-## 74               7.50                 5.80
-## 75              19.00                 5.20
-## 76              19.01                13.00
-## 77               8.10                13.60
-## 78               7.80                16.10
-## 79               6.10                33.20
-## 80              15.26                 4.00
-## 81               7.95                12.00
-## 82              18.00                -1.50
-## 83               4.60                18.30
-## 84              15.00                 3.00
-## 85               7.50                15.80
-## 86               8.00                27.10
-## 87              16.80               -10.00
-## 88               8.54                25.00
-## 89               7.00                27.10
-## 90              18.30                -8.00
-## 91               7.80                12.00
-## 92              16.00                -8.00
-## 93              14.00                23.00
-## 94              12.30                 5.00
-## 95              11.40                 1.00
-## 96               8.50                18.90
-## 97               7.00                15.00
-## 98               7.96                22.00
-## 99              17.60                -3.50
-## 100             10.00                20.00
-## 101              3.50                12.20
-## 102              6.70                14.70
-## 103             17.00                -5.00
-## 104             20.26                -4.15
-## 105              6.64                11.00
-## 106              1.80                -4.00
-## 107              7.02                25.00
-## 108              2.46                35.00
-## 109             19.00                -5.00
-## 110             17.86               -30.00
-## 111              6.10                12.20
-## 112              6.64                19.00
-## 113             12.00                 1.60
-## 114              6.60                20.00
-## 115              8.70                17.10
-## 116             14.05                24.00
-## 117              7.20                 7.10
-## 118             19.70               -11.00
-## 119              7.70                21.30
-## 120              6.02                 5.00
-## 121              2.50                12.90
-## 122             19.00                 5.90
-## 123              6.80                 5.80</code></pre>
-<hr />
-<hr />
-</div>
-<div id="heat-map-for-continuous-variables" class="section level2 hasAnchor" number="3.32">
-<h2><span class="header-section-number">3.32</span> Heat map for continuous variables<a href="probability.html#heat-map-for-continuous-variables" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="geometric-distribution" class="section level2 hasAnchor" number="7.31">
+<h2><span class="header-section-number">7.31</span> Geometric distribution<a href="discrete-probability-models.html#geometric-distribution" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>We call <strong>geometric distribution</strong> to the negative binomial distribution with <span class="math inline">\(r=1\)</span></p>
+<p>The probability of observing <span class="math inline">\(B\)</span> events before observing the <strong>first</strong> event of type <span class="math inline">\(A\)</span> is</p>
+<p><span class="math display">\[P(Y=y)=f(y)= p(1-p)^y\]</span></p>
+<p><span class="math display">\[Y\rightarrow Geom(p)\]</span>
+with mean</p>
 <ul>
-<li><p>Two dimensional <strong>histogram</strong>.</p></li>
-<li><p>It illustrates the “continuous contingency” table for continuous variables</p></li>
+<li><p>mean: <span class="math inline">\(E(Y)= \frac{1-p}{p}\)</span></p></li>
+<li><p>variance: <span class="math inline">\(V(Y)= \frac{1-p}{p^2}\)</span></p></li>
 </ul>
-<p><img src="_main_files/figure-html/unnamed-chunk-32-1.png" width="672" /></p>
 <hr />
 <hr />
 </div>
-<div id="scatter-plot" class="section level2 hasAnchor" number="3.33">
-<h2><span class="header-section-number">3.33</span> Scatter plot<a href="probability.html#scatter-plot" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="example-9" class="section level2 hasAnchor" number="7.32">
+<h2><span class="header-section-number">7.32</span> Example<a href="discrete-probability-models.html#example-9" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ul>
-<li><p>The <strong>histogram</strong> depends on the size of the bin (pixel).</p></li>
-<li><p>If the pixel is small enough to contain a single observation then the heat map results in a <strong>scatter plot</strong></p></li>
+<li><p>A website has three servers.</p></li>
+<li><p>One server operates at a time and only when a request fails another server is used.</p></li>
+<li><p>If the probability of failure for a request is known to be <span class="math inline">\(p=0.0005\)</span> then</p></li>
+<li><p>what is the expected number of successful requests before the three computers fail?</p></li>
 </ul>
-<p>The scatter plot is the illustration of a “contingency table” for continuous variables when the bin (pixel) is small enough to contain one single observation (consisting of a pair of values).</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-33-1.png" width="672" /></p>
+<hr />
+<hr />
+</div>
+<div id="example-10" class="section level2 hasAnchor" number="7.33">
+<h2><span class="header-section-number">7.33</span> Example<a href="discrete-probability-models.html#example-10" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Since we are repeating a Bernoulli trial until <span class="math inline">\(r=3\)</span> events of type <span class="math inline">\(A\)</span> (failure) are observed (each with <span class="math inline">\(P(A)=p=0.0005\)</span>) and are counting the number of events of type <span class="math inline">\(B\)</span> (successful requests) then</p>
+<p><span class="math display">\[Y \rightarrow NB(r=3, p=0.0005)\]</span></p>
+<p>Therefore, the expected number of requests before the system fails is:</p>
+<p><span class="math inline">\(E(Y)=r\frac{1-p}{p}=3\frac{1-0.0005}{0.0005}=5997\)</span></p>
+<ul>
+<li>Note that there are actually <span class="math inline">\(6000\)</span> trials</li>
+</ul>
+<hr />
+<hr />
+</div>
+<div id="example-11" class="section level2 hasAnchor" number="7.34">
+<h2><span class="header-section-number">7.34</span> Example<a href="discrete-probability-models.html#example-11" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>What is the probability of dealing with at most <span class="math inline">\(5\)</span> successful requests before the system fails?</p>
+<p>Recall the cumulative function distribution <span class="math inline">\(F(y)=P(Y\leq 5)\)</span></p>
+<p><span class="math inline">\(F(5)=P(Y\leq 5)=\Sigma_{y=0}^5 f(y)\)</span></p>
+<p><span class="math inline">\(=\sum_{y=0}^5\binom {y+2} y 0.0005^r0.9995^y\)</span></p>
+<p><span class="math inline">\(=\binom {2} 0 0.0005^3 0.9995^0 +\binom {3} 1 0.0005^3 0.9995^1\)</span></p>
+<p><span class="math inline">\(+\binom {4} 2 0.0005^3 0.9995^2 +\binom {5} 3 0.0005^3 0.9995^3\)</span></p>
+<p><span class="math inline">\(+\binom {6} 4 0.0005^3 0.9995^4 +\binom {7} 5 0.0005^3 0.9995^5\)</span></p>
+<p><span class="math inline">\(= 6.9\times 10^{-9}\)</span></p>
+<p>In R <code>pnbinom(5,3,0.0005)</code></p>
+<hr />
+<hr />
+</div>
+<div id="examples" class="section level2 hasAnchor" number="7.35">
+<h2><span class="header-section-number">7.35</span> Examples<a href="discrete-probability-models.html#examples" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>With the negative binomial probability function:</p>
+<p><span class="math display">\[f(y)=\binom {y+r-1} y p^r (1-p)^y\]</span></p>
+<p>We can now answer questions like:</p>
+<ul>
+<li>What is the probability of observing <span class="math inline">\(10\)</span> correct pixels before <span class="math inline">\(2\)</span> errors, if the probability of an error is <span class="math inline">\(0.1\)</span>?</li>
+</ul>
+<p><span class="math inline">\(f(10; r=2, p=0.1)=0.03835463\)</span></p>
+<p>in R <code>dnbinom(10, 2, 0.1)</code></p>
+<ul>
+<li>What is the probability that <span class="math inline">\(2\)</span> girls enter the class before <span class="math inline">\(4\)</span> boys if the probability that a girl enters is <span class="math inline">\(0.5\)</span>?</li>
+</ul>
+<p><span class="math inline">\(f(2; r=4, p=0.5)=0.15625\)</span></p>
+<p>in R <code>dnbinom(2, 4, 0.5)</code></p>
+<hr />
+<hr />
+</div>
+<div id="negative-binomial-distribution-3" class="section level2 hasAnchor" number="7.36">
+<h2><span class="header-section-number">7.36</span> Negative binomial distribution<a href="discrete-probability-models.html#negative-binomial-distribution-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><img src="_main_files/figure-html/unnamed-chunk-57-1.png" width="672" /></p>
 
 </div>
 </div>
@@ -1163,8 +854,8 @@ They cannot occur at the same time.</p>
           </div>
         </div>
       </div>
-<a href="data-description.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="conditional-probability.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="continous-random-variables.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="exercises.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -1195,7 +886,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/USERNAME/REPO/edit/BRANCH/02-Probability.Rmd",
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/06-DiscreteModels.Rmd",
 "text": "Edit"
 },
 "history": {

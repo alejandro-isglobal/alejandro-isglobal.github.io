@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 8 Ejercicios | Estadística</title>
+  <title>Chapter 7 Modelos de probabilidad para variables aleatorias discretas | Estadística</title>
   <meta name="description" content="This are slides for the Stats theory of the BIST master" />
   <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 8 Ejercicios | Estadística" />
+  <meta property="og:title" content="Chapter 7 Modelos de probabilidad para variables aleatorias discretas | Estadística" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="alejandro-isglobal/master" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 8 Ejercicios | Estadística" />
+  <meta name="twitter:title" content="Chapter 7 Modelos de probabilidad para variables aleatorias discretas | Estadística" />
   
   <meta name="twitter:description" content="This are slides for the Stats theory of the BIST master" />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="modelos-de-probabilidad-para-variables-aleatorias-discretas.html"/>
-
+<link rel="prev" href="variables-aleatorias-continuas.html"/>
+<link rel="next" href="ejercicios.html"/>
 <script src="libs/header-attrs-2.12/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -322,648 +322,593 @@
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="ejercicios" class="section level1 hasAnchor" number="8">
-<h1><span class="header-section-number">Chapter 8</span> Ejercicios<a href="ejercicios.html#ejercicios" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<div id="descripción-de-datos-1" class="section level2 hasAnchor" number="8.1">
-<h2><span class="header-section-number">8.1</span> Descripción de datos<a href="ejercicios.html#descripción-de-datos-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div id="ejercicio-1" class="section level4 hasAnchor" number="8.1.0.1">
-<h4><span class="header-section-number">8.1.0.1</span> Ejercicio 1<a href="ejercicios.html#ejercicio-1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>Hemos realizado un experimento 12 veces con los siguientes resultados</p>
-<pre><code>## [1]  3  3 10  2  6 11  5  4</code></pre>
-<p>Responde las siguientes preguntas:</p>
+<div id="modelos-de-probabilidad-para-variables-aleatorias-discretas" class="section level1 hasAnchor" number="7">
+<h1><span class="header-section-number">Chapter 7</span> Modelos de probabilidad para variables aleatorias discretas<a href="modelos-de-probabilidad-para-variables-aleatorias-discretas.html#modelos-de-probabilidad-para-variables-aleatorias-discretas" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="objetivo-6" class="section level2 hasAnchor" number="7.1">
+<h2><span class="header-section-number">7.1</span> Objetivo<a href="modelos-de-probabilidad-para-variables-aleatorias-discretas.html#objetivo-6" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Modelos probabilidad:</p>
 <ul>
-<li>Calcula las frecuencias relativas de cada resultado.</li>
-<li>Calcula las frecuencias acumuladas de cada resultado.</li>
-<li>¿Cuál es el promedio de las observaciones?</li>
-<li>¿Qué es la mediana?</li>
-<li>¿Qué es el tercer cuartil?</li>
-<li>¿Cuál es el primer cuartil?</li>
+<li>Funciones de probabilidad uniforme y de Bernoulli</li>
+<li>Funciones de probabilidad binomial y binomial negativa</li>
 </ul>
+<hr />
+<hr />
 </div>
-<div id="ejercicio-2" class="section level4 hasAnchor" number="8.1.0.2">
-<h4><span class="header-section-number">8.1.0.2</span> Ejercicio 2<a href="ejercicios.html#ejercicio-2" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>Hemos realizado un experimento 10 veces con los siguientes resultados</p>
-<pre><code>##  [1] 2.875775 7.883051 4.089769 8.830174 9.404673 0.455565 5.281055 8.924190
-##  [9] 5.514350 4.566147</code></pre>
-<p>Considere 10 contenedores de tamaño 1: [0,1], (1,2]…(9,10).</p>
-<p>Responde las siguientes preguntas:</p>
+<div id="función-de-probabilidad" class="section level2 hasAnchor" number="7.2">
+<h2><span class="header-section-number">7.2</span> Función de probabilidad<a href="modelos-de-probabilidad-para-variables-aleatorias-discretas.html#función-de-probabilidad" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Una función de masa de probabilidad de una <strong>variable aleatoria discreta</strong> <span class="math inline">\(X\)</span> con valores posibles <span class="math inline">\(x_1 , x_2 , .. , x_M\)</span> es <strong>cualquier función</strong> tal que</p>
+<p>es positiva:</p>
 <ul>
-<li><p>Calcula las frecuencias relativas de cada resultado y dibuje el histograma</p></li>
-<li><p>Calcula las frecuencias acumulativas de cada resultado y dibuje la gráfica acumulativa.</p></li>
-<li><p>Dibuja un diagrama de caja.</p></li>
+<li><span class="math inline">\(f(x_i)\geq 0\)</span></li>
 </ul>
-</div>
-</div>
-<div id="probabilidad-3" class="section level2 hasAnchor" number="8.2">
-<h2><span class="header-section-number">8.2</span> Probabilidad<a href="ejercicios.html#probabilidad-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div id="ejercicio-1-1" class="section level4 hasAnchor" number="8.2.0.1">
-<h4><span class="header-section-number">8.2.0.1</span> Ejercicio 1<a href="ejercicios.html#ejercicio-1-1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>El resultado de un experimento aleatorio es medir la gravedad de la misofonía <strong>y</strong> el estado de depresión de un paciente.</p>
+<p><em>Nos permite calcular probabilidades:</em></p>
 <ul>
-<li>Gravedad de la misofonía: <span class="math inline">\(x\in \{0,1,2,3,4\}\)</span></li>
-<li>Depresión: <span class="math inline">\(y\in \{0,1\}\)</span> (no:<span class="math inline">\(0\)</span>, si:<span class="math inline">\(1\)</span>)</li>
+<li><span class="math inline">\(f(x_i)=P(X=x_i)\)</span></li>
 </ul>
-<pre><code>##   Misofonia.dic depresion.dic
-## 1             4             1
-## 2             2             0
-## 3             0             0
-## 4             3             0
-## 5             0             0
-## 6             0             0</code></pre>
-<p>Un estudio en 123 pacientes mostró las frecuencias <span class="math inline">\(n_{x,y}\)</span> dadas en la tabla de contingencia:</p>
-<pre><code>##               
-##                Depression:0 Depression:1
-##   Misophonia:4            0            9
-##   Misophonia:3           25            6
-##   Misophonia:2           34            3
-##   Misophonia:1            5            0
-##   Misophonia:0           36            5</code></pre>
-<p>Supongamos que <span class="math inline">\(N&gt;&gt;0\)</span> y que las frecuencias <strong>estiman</strong> las probabilidades <span class="math inline">\(f_{x,y}=\hat{P}(X, Y)\)</span></p>
-<pre><code>##               
-##                Depression:0 Depression:1
-##   Misophonia:4   0.00000000   0.07317073
-##   Misophonia:3   0.20325203   0.04878049
-##   Misophonia:2   0.27642276   0.02439024
-##   Misophonia:1   0.04065041   0.00000000
-##   Misophonia:0   0.29268293   0.04065041</code></pre>
+<p>La probabilidad de observar algún resultado es <span class="math inline">\(1\)</span></p>
 <ul>
-<li>¿Cuál es la probabilidad marginal de misofonía de gravedad 3?</li>
-<li>¿Cuál es la probabilidad de no ser misofónico <strong>y</strong> no estar deprimido?</li>
-<li>¿Cuál es la probabilidad de ser misofónico <strong>o</strong> deprimido?</li>
-<li>¿Cuál es la probabilidad de ser misofónico <strong>y</strong> deprimido?</li>
-<li>Describir en palabras los resultados con probabilidad 0.</li>
+<li><span class="math inline">\(\sum_{i=1}^M f(x_i)=1\)</span></li>
 </ul>
-</div>
-<div id="ejercicio-2-1" class="section level4 hasAnchor" number="8.2.0.2">
-<h4><span class="header-section-number">8.2.0.2</span> Ejercicio 2<a href="ejercicios.html#ejercicio-2-1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>Hemos realizado un experimento 10 veces con los siguientes resultados</p>
-<pre><code>##         A     B
-## 1    male  dead
-## 2    male  dead
-## 3    male  dead
-## 4  female alive
-## 5    male  dead
-## 6  female alive
-## 7  female  dead
-## 8  female alive
-## 9    male alive
-## 10   male alive</code></pre>
+<p><strong>Propiedades:</strong></p>
+<p>Tendencia central:</p>
 <ul>
-<li>Crear la tabla de contingencia para el número (<span class="math inline">\(n_{i,j}\)</span>) de observaciones de cada resultado (<span class="math inline">\(A,B\)</span>)</li>
-<li>Crear la tabla de contingencia para la frecuencia relativa (<span class="math inline">\(f_{i,j}\)</span>) de los resultados</li>
-<li>¿Cuál es la frecuencia marginal de ser hombre?</li>
-<li>¿Cuál es la frecuencia marginal de estar vivo?</li>
-<li>¿Cuál es la frecuencia de estar vivo <strong>o</strong> mujer?</li>
+<li><span class="math inline">\(E(X)= \sum_{i=1}^M x_i f(x_i)\)</span></li>
 </ul>
+<p>Dispersión:</p>
+<ul>
+<li><span class="math inline">\(V(X)= \sum_{i=1}^M (x_i-\mu)^2 f(x_i)\)</span></li>
+</ul>
+<p>Son objetos abstractos con propiedades generales que pueden o no <strong>describir</strong> un proceso natural o de ingeniería.</p>
+<hr />
+<hr />
 </div>
-</div>
-<div id="la-probabilidad-condicional-2" class="section level2 hasAnchor" number="8.3">
-<h2><span class="header-section-number">8.3</span> La probabilidad condicional<a href="ejercicios.html#la-probabilidad-condicional-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div id="ejercicio-1-2" class="section level4 hasAnchor" number="8.3.0.1">
-<h4><span class="header-section-number">8.3.0.1</span> Ejercicio 1<a href="ejercicios.html#ejercicio-1-2" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>Se prueba el rendimiento de una máquina para producir varillas de torneado de alta calidad. Estos son los resultados de las pruebas</p>
+<div id="modelo-de-probabilidad" class="section level2 hasAnchor" number="7.3">
+<h2><span class="header-section-number">7.3</span> Modelo de probabilidad<a href="modelos-de-probabilidad-para-variables-aleatorias-discretas.html#modelo-de-probabilidad" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Un <strong>modelo de probabilidad</strong> es una función de masa de probabilidad que puede representar las probabilidades de un experimento aleatorio.</p>
+<p><strong>Ejemplos:</strong></p>
+<ul>
+<li><p><span class="math inline">\(f(x)=P(X=x)=1/6\)</span> representa la probabilidad de los resultados de <strong>una</strong> tirada de dados.</p></li>
+<li><p>La función de masa de probabilidad</p></li>
+</ul>
 <table>
 <thead>
 <tr class="header">
-<th align="center"></th>
-<th align="center">Redondeado: Sí</th>
-<th align="center">Redondeado: No</th>
+<th align="center"><span class="math inline">\(X\)</span></th>
+<th align="center"><span class="math inline">\(f(x)\)</span></th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="center"><b>superficie lisa: sí</b></td>
-<td align="center">200</td>
-<td align="center">1</td>
+<td align="center"><span class="math inline">\(-2\)</span></td>
+<td align="center"><span class="math inline">\(1/8\)</span></td>
 </tr>
 <tr class="even">
-<td align="center"><b>superficie lisa: no</b></td>
-<td align="center">4</td>
-<td align="center">2</td>
+<td align="center"><span class="math inline">\(-1\)</span></td>
+<td align="center"><span class="math inline">\(2/8\)</span></td>
+</tr>
+<tr class="odd">
+<td align="center"><span class="math inline">\(0\)</span></td>
+<td align="center"><span class="math inline">\(2/8\)</span></td>
+</tr>
+<tr class="even">
+<td align="center"><span class="math inline">\(1\)</span></td>
+<td align="center"><span class="math inline">\(2/8\)</span></td>
+</tr>
+<tr class="odd">
+<td align="center"><span class="math inline">\(2\)</span></td>
+<td align="center"><span class="math inline">\(1/8\)</span></td>
 </tr>
 </tbody>
 </table>
-<ul>
-<li><p>¿Cuál es la probabilidad estimada de que la máquina produzca una varilla que no satisfaga ningún control de calidad?</p></li>
-<li><p>¿Cuál es la probabilidad estimada de que la máquina produzca una varilla que no satisfaga al menos un control de calidad?</p></li>
-<li><p>¿Cuál es la probabilidad estimada de que la máquina produzca varillas de superficie redondeada y alisada?</p></li>
-<li><p>¿Cuál es la probabilidad estimada de que la barra sea redondeada si la barra es lisa?</p></li>
-<li><p>¿Cuál es la probabilidad estimada de que la varilla sea lisa si es redondeada?</p></li>
-<li><p>¿Cuál es la probabilidad estimada de que la varilla no sea ni lisa ni redondeada si no cumple al menos un control de calidad?</p></li>
-<li><p>¿Son eventos independientes la suavidad y la redondez?</p></li>
-</ul>
+<p>Representa la probabilidad de sacar <strong>una</strong> bola de una urna donde hay dos bolas por etiqueta: <span class="math inline">\(-1, 0, 1\)</span> y una bola por etiqueta: <span class="math inline">\(-2, 2\)</span>.</p>
+<hr />
+<hr />
 </div>
-<div id="ejercicio-2-2" class="section level4 hasAnchor" number="8.3.0.2">
-<h4><span class="header-section-number">8.3.0.2</span> Ejercicio 2<a href="ejercicios.html#ejercicio-2-2" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>Desarrollamos un test para detectar la presencia de bacterias en un lago. Encontramos que si el lago contiene la bacteria, la prueba es positiva el 70% de las veces. Si no hay bacterias, la prueba es negativa el 60% de las veces. Implementamos la prueba en una región donde sabemos que el 20% de los lagos tienen bacterias.</p>
+<div id="modelos-paramétricos" class="section level2 hasAnchor" number="7.4">
+<h2><span class="header-section-number">7.4</span> Modelos paramétricos<a href="modelos-de-probabilidad-para-variables-aleatorias-discretas.html#modelos-paramétricos" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Cuando realizamos un experimento aleatorio y <strong>no</strong> sabemos las probabilidades de los resultados:</p>
 <ul>
-<li>¿Cuál es la probabilidad de que un lago que dé positivo esté contaminado con bacterias?</li>
+<li>Siempre podemos formular el modelo dado por las frecuencias relativas: <span class="math inline">\(\hat{P}(X=x_i)=f_i\)</span> (donde <span class="math inline">\(i=1...M\)</span>).</li>
 </ul>
+<p>Necesitamos encontrar <span class="math inline">\(M\)</span> números cada uno dependiendo de <span class="math inline">\(N\)</span>.</p>
+<p>En muchos casos:</p>
+<ul>
+<li>Podemos formular funciones de probabilidad <span class="math inline">\(f(x)\)</span> que dependen solamente de <strong>muy pocos</strong> números.</li>
+</ul>
+<p><strong>Ejemplo:</strong></p>
+<p>Un experimento aleatorio con <span class="math inline">\(M\)</span> resultados igualmente probables tiene una función de masa de probabilidad:
+<span class="math display">\[f(x)=P(X=x)=1/M\]</span></p>
+<p>Solo necesitamos saber <span class="math inline">\(M\)</span>.</p>
+<p>Los números que <strong>necesitamos saber</strong> para determinar completamente una función de probabilidad se llaman <strong>parámetros</strong>.</p>
+<hr />
+<hr />
 </div>
-<div id="ejercicio-3" class="section level4 hasAnchor" number="8.3.0.3">
-<h4><span class="header-section-number">8.3.0.3</span> Ejercicio 3<a href="ejercicios.html#ejercicio-3" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>Se prueba el rendimiento de dos máquinas para producir varillas de torneado de alta calidad. Estos son los resultados de las pruebas</p>
-<p><strong>Máquina 1</strong></p>
-<table>
-<thead>
-<tr class="header">
-<th align="center"></th>
-<th align="center">Redondeado: Sí</th>
-<th align="center">Redondeado: No</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="center"><b>superficie lisa: sí</b></td>
-<td align="center">200</td>
-<td align="center">1</td>
-</tr>
-<tr class="even">
-<td align="center"><b>superficie lisa: no</b></td>
-<td align="center">4</td>
-<td align="center">2</td>
-</tr>
-</tbody>
-</table>
-<p><strong>Máquina 2</strong></p>
-<table>
-<thead>
-<tr class="header">
-<th align="center"></th>
-<th align="center">Redondeado: Sí</th>
-<th align="center">Redondeado: No</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="center"><b>superficie lisa: sí</b></td>
-<td align="center">145</td>
-<td align="center">4</td>
-</tr>
-<tr class="even">
-<td align="center"><b>superficie lisa: no</b></td>
-<td align="center">8</td>
-<td align="center">6</td>
-</tr>
-</tbody>
-</table>
-<ul>
-<li>¿Cuál es la probabilidad de que la barra sea redondeada?</li>
-<li>¿Cuál es la probabilidad de que la varilla haya sido producida por la máquina 1?</li>
-<li>¿Cuál es la probabilidad de que la varilla no sea lisa?</li>
-<li>¿Cuál es la probabilidad de que la varilla sea lisa o redondeada o producida por la máquina 1?</li>
-<li>¿Cuál es la probabilidad de que la varilla quede redondeada si es alisada y de la máquina 1?</li>
-<li>¿Cuál es la probabilidad de que la varilla no esté redondeada si no está alisada y es de la máquina 2?</li>
-<li>¿Cuál es la probabilidad de que la varilla haya salido de la máquina 1 si está alisada y redondeada?</li>
-<li>¿Cuál es la probabilidad de que la varilla haya venido de la máquina 2 si no pasa al menos uno de los controles de calidad?</li>
-</ul>
+<div id="distribución-uniforme-un-parámetro" class="section level2 hasAnchor" number="7.5">
+<h2><span class="header-section-number">7.5</span> Distribución uniforme (un parámetro)<a href="modelos-de-probabilidad-para-variables-aleatorias-discretas.html#distribución-uniforme-un-parámetro" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><strong>Definición</strong>
+Una variable aleatoria <span class="math inline">\(X\)</span> con resultados <span class="math inline">\(\{1,...M\}\)</span> tiene una <strong>distribución uniforme</strong> discreta si todos sus resultados <span class="math inline">\(M\)</span> tienen la misma probabilidad</p>
+<p><span class="math display">\[f(x)=\frac{1}{M}\]</span></p>
+<p>Con media y varianza:</p>
+<p><span class="math inline">\(E(X)= \frac{M+1}{2}\)</span></p>
+<p><span class="math inline">\(V(X)= \frac{M^2-1}{12}\)</span></p>
+<p>Nota: <span class="math inline">\(E(X)\)</span> y <span class="math inline">\(V(X)\)</span> también son <strong>parámetros</strong>. Si conocemos alguno de ellos, entonces podemos determinar completamente la distribución.</p>
+<p><span class="math display">\[f(x)=\frac{1}{2E(X)-1}\]</span></p>
+<hr />
+<hr />
 </div>
-<div id="ejercicio-4" class="section level4 hasAnchor" number="8.3.0.4">
-<h4><span class="header-section-number">8.3.0.4</span> Ejercicio 4<a href="ejercicios.html#ejercicio-4" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>Queremos cruzar una avenida con dos semáforos. La probabilidad de encontrar el primer semáforo en rojo es 0,6. Si paramos en el primer semáforo, la probabilidad de parar en el segundo es 0,15. Mientras que la probabilidad de detenernos en el segundo si no nos detenemos en el primero es 0,25.</p>
-<p>Cuando intentamos cruzar ambos semáforos:</p>
-<ul>
-<li>¿Cuál es la probabilidad de tener que detenerse en cada semáforo?</li>
-<li>¿Cuál es la probabilidad de tener que parar en al menos un semáforo?</li>
-<li>¿Cuál es la probabilidad de tener que detenerse en un solo semáforo?</li>
-<li>Si paré en el segundo semáforo, ¿cuál es la probabilidad de que hubiera tenido que parar en el primero?</li>
-<li>Si tuviera que parar en cualquier semáforo, ¿cuál es la probabilidad de que tuviera que hacerlo dos veces?</li>
-<li>¿Parar en el primer semáforo es un evento independiente de detenerse en el segundo semáforo?</li>
-</ul>
-<p>Ahora, queremos cruzar una avenida con tres semáforos. La probabilidad de encontrar un semáforo en rojo solo depende de la anterior. En concreto, la probabilidad de encontrar un semáforo en rojo dado que el anterior estaba en rojo es de 0,15. Mientras que la probabilidad de encontrar un tráfico justo en rojo dado que el anterior estaba en verde es de 0,25. Además, la probabilidad de encontrar el primer semáforo en rojo es de 0,6.</p>
-<ul>
-<li>¿Cuál es la probabilidad de tener que parar en cada semáforo?</li>
-<li>¿Cuál es la probabilidad de tener que parar en al menos un semáforo?</li>
-<li>¿Cuál es la probabilidad de tener que detenerse en un solo semáforo?</li>
-</ul>
-<p>consejos:</p>
-<ul>
-<li><p>Si la probabilidad de que un semáforo esté en rojo depende únicamente del anterior, entonces
-<span class="math inline">\(P(R_3|R_2,R_1)=P(R_3|R_2,\bar{R}_1)=P(R_3|R_2)\)</span> y <span class="math inline">\(P(R_3|\bar{R}_2,R_1)=P(R_3 |\bar{R}_2,\bar{R}_1)=P(R_3|\bar{R}_2)\)</span></p></li>
-<li><p>La probabilidad conjunta de encontrar tres semáforos en rojo se puede escribir como:
-<span class="math inline">\(P(R_1,R_2,R_3)=P(R_3|R_2)P(R_2|R_1)P(R_1)\)</span></p></li>
-</ul>
+<div id="distribución-uniforme" class="section level2 hasAnchor" number="7.6">
+<h2><span class="header-section-number">7.6</span> Distribución uniforme<a href="modelos-de-probabilidad-para-variables-aleatorias-discretas.html#distribución-uniforme" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><img src="_main_files/figure-html/unnamed-chunk-51-1.png" width="672" /></p>
+<hr />
+<hr />
 </div>
-<div id="ejercicio-5" class="section level4 hasAnchor" number="8.3.0.5">
-<h4><span class="header-section-number">8.3.0.5</span> Ejercicio 5<a href="ejercicios.html#ejercicio-5" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>Una prueba de calidad en un ladrillo aleatorio se define por los eventos:</p>
+<div id="distribución-uniforme-dos-parámetros" class="section level2 hasAnchor" number="7.7">
+<h2><span class="header-section-number">7.7</span> Distribución uniforme (dos parámetros)<a href="modelos-de-probabilidad-para-variables-aleatorias-discretas.html#distribución-uniforme-dos-parámetros" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Presentemos un nuevo modelo de probabilidad uniforme con <strong>dos parámetros</strong>: los resultados mínimo y máximo.</p>
+<p>Si la variable aleatoria toma valores en <span class="math inline">\(\{a, a+1, ...b\}\)</span>, donde <span class="math inline">\(a\)</span> y <span class="math inline">\(b\)</span> son números enteros y todos los resultados son igualmente probables, entonces</p>
+<p><span class="math display">\[f(x)=\frac{1}{b-a+1}\]</span></p>
+<p>como <span class="math inline">\(M=b-a+1\)</span>.</p>
 <ul>
-<li>Pasar la prueba de calidad: <span class="math inline">\(E\)</span>, no pasar la prueba de calidad: <span class="math inline">\(\bar{E}\)</span></li>
-<li>Defectuoso: <span class="math inline">\(D\)</span>, no defectuoso: <span class="math inline">\(\bar{D}\)</span></li>
+<li>Entonces decimos que <span class="math inline">\(X\)</span> se distribuye uniformemente entre <span class="math inline">\(a\)</span> y <span class="math inline">\(b\)</span> y escribimos</li>
 </ul>
-<p>Si la prueba diagnóstica tiene sensibilidad <span class="math inline">\(P(E|\bar{D})=0.99\)</span> y especificidad <span class="math inline">\(P(\bar{E}|D)=0.98\)</span>, y la probabilidad de pasar la prueba es <span class="math inline">\(P(E) =0.893\)</span> entonces</p>
+<p><span class="math display">\[X \rightarrow Unif(a,b)\]</span></p>
+<hr />
+<hr />
+</div>
+<div id="distribución-uniforme-dos-parámetros-1" class="section level2 hasAnchor" number="7.8">
+<h2><span class="header-section-number">7.8</span> Distribución uniforme (dos parámetros)<a href="modelos-de-probabilidad-para-variables-aleatorias-discretas.html#distribución-uniforme-dos-parámetros-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><strong>Ejemplo:</strong></p>
+<p>¿Cuál es la probabilidad de observar a un niño de una edad particular en una escuela primaria (si todas las clases tienen la misma cantidad de niños)?</p>
+<p>Del experimento sabemos: <span class="math inline">\(a=6\)</span> y <span class="math inline">\(b=11\)</span> entonces</p>
+<p><span class="math display">\[X \rightarrow Unif(a=7, b=11)\]</span> eso es</p>
+<p><span class="math display">\[f(x)=\frac{1}{6}\]</span> para <span class="math inline">\(x\in \{6,7,8,9,10,11\}\)</span>, y <span class="math inline">\(0\)</span> en caso contrario</p>
+<p><img src="_main_files/figure-html/unnamed-chunk-52-1.png" width="672" /></p>
+<hr />
+<hr />
+</div>
+<div id="distribución-uniforme-1" class="section level2 hasAnchor" number="7.9">
+<h2><span class="header-section-number">7.9</span> Distribución uniforme<a href="modelos-de-probabilidad-para-variables-aleatorias-discretas.html#distribución-uniforme-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>El modelo de probabilidad de una variable aleatoria <span class="math inline">\(X\)</span></p>
+<p><span class="math display">\[f(x)=\frac{1}{b-a+1}\]</span></p>
+<p>para <span class="math inline">\(x \in \{a, a+1, ...b\}\)</span></p>
+<p>tiene media y varianza:</p>
 <ul>
-<li><p>¿Cuál es la probabilidad de que un ladrillo elegido al azar sea defectuoso <span class="math inline">\(P(D)\)</span>?</p></li>
-<li><p>¿Cuál es la probabilidad de que un ladrillo que ha pasado la prueba sea realmente defectuoso?</p></li>
-<li><p>La probabilidad de que un ladrillo no sea defectuoso <strong>y</strong> que no pase la prueba</p></li>
-<li><p>¿Son <span class="math inline">\(D\)</span> y <span class="math inline">\(\bar{E}\)</span> estadísticamente independientes?</p></li>
+<li><p><span class="math inline">\(E(X)= \frac{b+a}{2}\)</span></p></li>
+<li><p><span class="math inline">\(V(X)= \frac{(b-a+1)^2-1}{12}\)</span></p></li>
 </ul>
-</div>
-</div>
-<div id="variables-aleatorias" class="section level2 hasAnchor" number="8.4">
-<h2><span class="header-section-number">8.4</span> Variables aleatorias<a href="ejercicios.html#variables-aleatorias" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div id="ejercicio-1-3" class="section level4 hasAnchor" number="8.4.0.1">
-<h4><span class="header-section-number">8.4.0.1</span> Ejercicio 1<a href="ejercicios.html#ejercicio-1-3" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>Dada la función de masa de probabilidad</p>
-<table>
-<thead>
-<tr class="header">
-<th align="center"><span class="math inline">\(x\)</span></th>
-<th align="center"><span class="math inline">\(f(x)=P(X=x)\)</span></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="center">10</td>
-<td align="center">0.1</td>
-</tr>
-<tr class="even">
-<td align="center">12</td>
-<td align="center">0.3</td>
-</tr>
-<tr class="odd">
-<td align="center">14</td>
-<td align="center">0.25</td>
-</tr>
-<tr class="even">
-<td align="center">15</td>
-<td align="center">0.15</td>
-</tr>
-<tr class="odd">
-<td align="center">17</td>
-<td align="center">?</td>
-</tr>
-<tr class="even">
-<td align="center">20</td>
-<td align="center">0.15</td>
-</tr>
-</tbody>
-</table>
+<p>(Cambiar variables <span class="math inline">\(X=Y+a-1\)</span>, <span class="math inline">\(y \in \{1,...M\}\)</span>)</p>
+<p>Podemos especificar <span class="math inline">\(a\)</span> y <span class="math inline">\(b\)</span> o <span class="math inline">\(E(X)\)</span> y <span class="math inline">\(V(X)\)</span>.</p>
+<p>En nuestro ejemplo:</p>
 <ul>
-<li>¿Cuál es su valor esperado y su desviación estándar?</li>
+<li><span class="math inline">\(E(X)=(11+6)/2=8.5\)</span></li>
+<li><span class="math inline">\(V(X)=(6^2-1)/12=2.916667\)</span></li>
 </ul>
+<hr />
+<hr />
 </div>
-<div id="ejercicio-2-3" class="section level4 hasAnchor" number="8.4.0.2">
-<h4><span class="header-section-number">8.4.0.2</span> Ejercicio 2<a href="ejercicios.html#ejercicio-2-3" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>Dada la distribución de probabilidad para una variable discreta <span class="math inline">\(X\)</span></p>
+<div id="distribución-uniforme-dos-parámetros-2" class="section level2 hasAnchor" number="7.10">
+<h2><span class="header-section-number">7.10</span> Distribución uniforme (dos parámetros)<a href="modelos-de-probabilidad-para-variables-aleatorias-discretas.html#distribución-uniforme-dos-parámetros-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><img src="_main_files/figure-html/unnamed-chunk-53-1.png" width="672" /></p>
+<hr />
+<hr />
+</div>
+<div id="parámetros-y-modelos" class="section level2 hasAnchor" number="7.11">
+<h2><span class="header-section-number">7.11</span> Parámetros y Modelos<a href="modelos-de-probabilidad-para-variables-aleatorias-discretas.html#parámetros-y-modelos" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li><p>Un <strong>modelo</strong> es una función particular <span class="math inline">\(f(x)\)</span> que <strong>describe</strong> nuestro experimento</p></li>
+<li><p>Si el modelo es una función <strong>conocida</strong> que depende de algunos parámetros, al cambiar el valor de los parámetros producimos una <strong>familia de modelos</strong></p></li>
+<li><p>El conocimiento de <span class="math inline">\(f(x)\)</span> se reduce al conocimiento del valor de los parámetros</p></li>
+<li><p>Idealmente, el modelo y los parámetros son <strong>interpretables</strong></p></li>
+</ul>
+<p><em>Ejemplo:</em></p>
+<p><strong>Modelo</strong>: Los datos de nuestro experimento se producen mediante un proceso aleatorio en el que cada edad tiene la <strong>misma probabilidad</strong> de ser observada.</p>
+<p><strong>Parámetros</strong>: <span class="math inline">\(a\)</span> es la edad mínima, <span class="math inline">\(E(X)\)</span> es la edad esperada… son <strong>propiedades físicas</strong> del experimento.</p>
+<hr />
+<hr />
+</div>
+<div id="parámetros-y-modelos-1" class="section level2 hasAnchor" number="7.12">
+<h2><span class="header-section-number">7.12</span> Parámetros y Modelos<a href="modelos-de-probabilidad-para-variables-aleatorias-discretas.html#parámetros-y-modelos-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><strong>Ejemplo:</strong></p>
+<p>Una <strong>familia</strong> de modelos obtenidos a partir de distribuciones uniformes de dos parámetros cambiando las <strong>varianzas</strong> y manteniendo una media constante (<span class="math inline">\(E(X)=8.5\)</span>). Da como resultado <strong>cambiar</strong> los resultados <strong>mínimo</strong> y <strong>máximo</strong>.</p>
+<ul>
+<li>Nota: solo un modelo tiene sentido para nuestro experimento (solo un modelo puede representar las edades de los niños en una escuela).</li>
+</ul>
+<p><img src="_main_files/figure-html/unnamed-chunk-54-1.png" width="672" /></p>
+<ul>
+<li>Podemos pensar en <strong>familias</strong> que cambian solo en la <strong>media</strong>, solo el <strong>mínimo</strong> o solo el <strong>máximo</strong></li>
+</ul>
+<hr />
+<hr />
+</div>
+<div id="ensayo-de-bernoulli" class="section level2 hasAnchor" number="7.13">
+<h2><span class="header-section-number">7.13</span> Ensayo de Bernoulli<a href="modelos-de-probabilidad-para-variables-aleatorias-discretas.html#ensayo-de-bernoulli" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Intentemos avanzar desde el caso de probabilidad igual y supongamos un modelo con dos resultados (<span class="math inline">\(A\)</span> y <span class="math inline">\(B\)</span>) que tienen probabilidades <strong>desiguales</strong></p>
+<p><strong>Ejemplos:</strong></p>
+<ul>
+<li><p>Anotar el sexo de un paciente que acude a urgencias de un hospital (<span class="math inline">\(A:masculino\)</span> y <span class="math inline">\(B:femenino\)</span>).</p></li>
+<li><p>Registrar si una máquina fabricada está defectuosa o no (<span class="math inline">\(A:defectuosa\)</span> y <span class="math inline">\(B:buena\)</span>).</p></li>
+<li><p>Dar en el blanco (<span class="math inline">\(A:éxito\)</span> y <span class="math inline">\(B:fracaso\)</span>).</p></li>
+<li><p>Transmitiendo un píxel correctamente (<span class="math inline">\(A:sí\)</span> y <span class="math inline">\(B:no\)</span>).</p></li>
+</ul>
+<p>En estos ejemplos, la probabilidad del resultado <span class="math inline">\(A\)</span> suele ser <strong>desconocida</strong>.</p>
+<hr />
+<hr />
+</div>
+<div id="ensayo-de-bernoulli-1" class="section level2 hasAnchor" number="7.14">
+<h2><span class="header-section-number">7.14</span> Ensayo de Bernoulli<a href="modelos-de-probabilidad-para-variables-aleatorias-discretas.html#ensayo-de-bernoulli-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Introduciremos la probabilidad de un resultado (<span class="math inline">\(A\)</span>) como el <strong>parámetro</strong> del modelo:</p>
+<ul>
+<li>resultado A (éxito): tiene probabilidad <span class="math inline">\(p\)</span> (parámetro)</li>
+<li>resultado B (fracaso): tiene una probabilidad <span class="math inline">\(1-p\)</span></li>
+</ul>
+<p>O podemos escribir la función de masa de probabilidad de <span class="math inline">\(K\)</span> tomando valores <span class="math inline">\(\{0, 1\}\)</span> para <span class="math inline">\(A\)</span> y <span class="math inline">\(B\)</span></p>
 <p><span class="math display">\[
-    F(x)=
+    f(k)= 
 \begin{cases}
-0, &amp; x &lt; -1 \\
-0.2,&amp; x \in [-1,0)\\
-0.35,&amp; x \in [0,1)\\
-0.45,&amp; x \in [1,2)\\
-1,&amp; x \geq 2\\
+    1-p,&amp;  k=0\, (evento\, B)\\
+    p,&amp; k=1\, (evento\, A) 
 \end{cases}
 \]</span></p>
-<ul>
-<li>encuentra <span class="math inline">\(f(X)\)</span></li>
-<li>encuentra <span class="math inline">\(E(X)\)</span> y <span class="math inline">\(V(X)\)</span></li>
-<li>cuál es el valor esperado y la varianza de <span class="math inline">\(Y=2X+3\)</span></li>
-<li>¿Cuál es la mediana y el primer y tercer cuartil de <span class="math inline">\(X\)</span>?</li>
-</ul>
+<p>o más en breve</p>
+<p><span class="math display">\[f(k; p)=(1-p)^{1-k} p^k\]</span>
+para <span class="math inline">\(k=(0,1)\)</span></p>
+<p>Solo necesitamos saber <span class="math inline">\(p\)</span>.</p>
+<hr />
+<hr />
 </div>
-<div id="ejercicio-3-1" class="section level4 hasAnchor" number="8.4.0.3">
-<h4><span class="header-section-number">8.4.0.3</span> Ejercicio 3<a href="ejercicios.html#ejercicio-3-1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>Estamos probando un sistema para transmitir imágenes digitales. Primero consideramos el experimento de enviar <span class="math inline">\(3\)</span> píxeles y tener por ejemplo eventos como <span class="math inline">\((0,1,1)\)</span>. Este es el evento de recibir el primer píxel sin error, el segundo con error y el tercero con error.</p>
+<div id="ensayo-de-bernoulli-2" class="section level2 hasAnchor" number="7.15">
+<h2><span class="header-section-number">7.15</span> Ensayo de Bernoulli<a href="modelos-de-probabilidad-para-variables-aleatorias-discretas.html#ensayo-de-bernoulli-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Una variable de Bernoulli <span class="math inline">\(K\)</span> con resultados <span class="math inline">\(\{0, 1\}\)</span> tiene una función de masa de probabilidad</p>
+<p><span class="math display">\[f(k; p)=(1-p)^{1-k} p^k\]</span>
+Con media y varianza:</p>
 <ul>
-<li><p>Enumere en una columna el espacio muestral del experimento aleatorio.</p></li>
-<li><p>En la segunda columna asigne la variable aleatoria que cuenta el número de errores transmitidos para cada resultado</p></li>
+<li><p><span class="math inline">\(E(K)=p\)</span></p></li>
+<li><p><span class="math inline">\(V(K)=(1-p)p\)</span></p></li>
 </ul>
-<p>Considere que tenemos un canal totalmente ruidoso, es decir, cualquier resultado de tres píxeles es igualmente probable.</p>
+<p>Nota:</p>
 <ul>
-<li><p>¿Cuál es la probabilidad de recibir errores de <span class="math inline">\(0\)</span>, <span class="math inline">\(1\)</span>, <span class="math inline">\(2\)</span> o <span class="math inline">\(3\)</span> en la transmisión de <span class="math inline">\(3\)</span> píxeles?</p></li>
-<li><p>Dibuje la función de masa de probabilidad para el número de errores</p></li>
-<li><p>¿Cuál es el valor esperado para el número de errores?</p></li>
-<li><p>¿Cuál es su varianza?</p></li>
-<li><p>Dibujar la distribución de probabilidad</p></li>
-<li><p>¿Cuál es la probabilidad de transmitir al menos <span class="math inline">\(1\)</span> error?</p></li>
+<li><p>La probabilidad del resultado <span class="math inline">\(A\)</span> es el parámetro <span class="math inline">\(p\)</span>
+que es lo mismo que <span class="math inline">\(f(0)=P(X=0)\)</span>.</p></li>
+<li><p>Como <span class="math inline">\(p\)</span> suele ser <strong>desconocido</strong>, normalmente lo estimamos por la frecuencia relativa (más sobre esto en las secciones de inferencia): <span class="math inline">\(\hat{p}=f_A=\frac{n_A}{N}\)</span></p></li>
 </ul>
+<hr />
+<hr />
 </div>
-<div id="ejercicio-4-1" class="section level4 hasAnchor" number="8.4.0.4">
-<h4><span class="header-section-number">8.4.0.4</span> Ejercicio 4<a href="ejercicios.html#ejercicio-4-1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>Para la densidad de probabilidad</p>
+<div id="ensayo-de-bernoulli-3" class="section level2 hasAnchor" number="7.16">
+<h2><span class="header-section-number">7.16</span> Ensayo de Bernoulli<a href="modelos-de-probabilidad-para-variables-aleatorias-discretas.html#ensayo-de-bernoulli-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><img src="_main_files/figure-html/unnamed-chunk-55-1.png" width="672" /></p>
+<hr />
+<hr />
+</div>
+<div id="distribución-binomial" class="section level2 hasAnchor" number="7.17">
+<h2><span class="header-section-number">7.17</span> Distribución binomial<a href="modelos-de-probabilidad-para-variables-aleatorias-discretas.html#distribución-binomial" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Cuando estamos interesados ​​en aprender sobre un ensayo de Bernoulli en particular</p>
+<ul>
+<li><p>Repetimos el ensayo de Bernoulli <span class="math inline">\(N\)</span> veces y contamos cuantas veces obtuvimos <span class="math inline">\(A\)</span> (<span class="math inline">\(n_A\)</span>).</p></li>
+<li><p>Definimos una variable aleatoria <span class="math inline">\(X=n_A\)</span> tomando valores <span class="math inline">\(x \in {0,1,...N}\)</span></p></li>
+</ul>
+<p>Ahora preguntamos por la probabilidad de observar <span class="math inline">\(x\)</span> eventos de tipo <span class="math inline">\(A\)</span> en la repetición de <span class="math inline">\(n\)</span> ensayos independientes de Bernoulli, cuando la probabilidad de observar <span class="math inline">\(A\)</span> es <span class="math inline">\(p\)</span>.</p>
+<p><span class="math display">\[P(X=x)=f(x)=?\]</span></p>
+<hr />
+<hr />
+</div>
+<div id="ejemplos-distribución-binomial" class="section level2 hasAnchor" number="7.18">
+<h2><span class="header-section-number">7.18</span> Ejemplos: distribución binomial<a href="modelos-de-probabilidad-para-variables-aleatorias-discretas.html#ejemplos-distribución-binomial" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li><p>Anotar el sexo de <span class="math inline">\(n=10\)</span> pacientes que acuden a urgencias de un hospital. ¿Cuál es la probabilidad de que <span class="math inline">\(x=6\)</span> los pacientes sean hombres cuando <span class="math inline">\(p=0,9\)</span>?</p></li>
+<li><p>Intentar <span class="math inline">\(n=5\)</span> veces para dar en el blanco (<span class="math inline">\(A:éxito\)</span> y <span class="math inline">\(B:fracaso\)</span>). ¿Cuál es la probabilidad de que alcance el objetivo <span class="math inline">\(x=5\)</span> veces cuando normalmente lo hago el <span class="math inline">\(20\%\)</span> de las veces (<span class="math inline">\(p=0,25\)</span>)?</p></li>
+<li><p>Transmitiendo <span class="math inline">\(n=100\)</span> píxeles correctamente (<span class="math inline">\(A:sí\)</span> y <span class="math inline">\(B:no\)</span>). ¿Cuál es la probabilidad de que <span class="math inline">\(x=2\)</span> píxeles sean errores, cuando la probabilidad de error es <span class="math inline">\(p=0,1\)</span>?</p></li>
+</ul>
+<hr />
+<hr />
+</div>
+<div id="distribución-binomial-1" class="section level2 hasAnchor" number="7.19">
+<h2><span class="header-section-number">7.19</span> Distribución binomial<a href="modelos-de-probabilidad-para-variables-aleatorias-discretas.html#distribución-binomial-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>¿Cuál es la probabilidad de observar <span class="math inline">\(X=4\)</span> errores al transmitir <span class="math inline">\(4\)</span> píxeles, si la probabilidad de error es <span class="math inline">\(p\)</span>?</p>
+<p>Considere las variables aleatorias <span class="math inline">\(4\)</span>: <span class="math inline">\(K_1\)</span>, <span class="math inline">\(K_2\)</span>, <span class="math inline">\(K_3\)</span> y <span class="math inline">\(K_4\)</span> que registran si se ha cometido un error en el <span class="math inline">\(1^{o}\)</span>, <span class="math inline">\(2^{o}\)</span>, <span class="math inline">\(3^{r}\)</span> y <span class="math inline">\(4^{o}\)</span> píxel.</p>
+<p>Por lo tanto</p>
+<ul>
+<li><p><span class="math inline">\(k_i\)</span> toma valores <span class="math inline">\(\{correcto:0; error:1\}\)</span></p></li>
+<li><p><span class="math inline">\(X=\sum_{i=1}^4 K_i\)</span> toma valores <span class="math inline">\(\{0,1,2,3,4\}\)</span></p></li>
+</ul>
+<p>Entonces la probabilidad de observar <span class="math inline">\(4\)</span> errores es:</p>
+<ul>
+<li><span class="math inline">\(P(X=4)=P(1,1,1,1)=p*p*p*p=p^4\)</span> porque <span class="math inline">\(K_i\)</span> son independientes.</li>
+</ul>
+<p>La probabilidad de observar <span class="math inline">\(0\)</span> errores es:</p>
+<ul>
+<li><span class="math inline">\(P(X=0)=P(0,0,0,0)=(1-p)(1-p)(1-p)(1-p)=(1-p)^4\)</span></li>
+</ul>
+<p>La probabilidad de errores de <span class="math inline">\(3\)</span> es:</p>
+<p><span class="math inline">\(P(X=3)=P(0,1,1,1)+P(1,0,1,1)+P(1,1,0,1)+P(1,1,1,0)=4p^3(1-p)^1\)</span></p>
+<hr />
+<hr />
+</div>
+<div id="distribución-binomial-2" class="section level2 hasAnchor" number="7.20">
+<h2><span class="header-section-number">7.20</span> Distribución binomial<a href="modelos-de-probabilidad-para-variables-aleatorias-discretas.html#distribución-binomial-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Por lo tanto, la probabilidad de <span class="math inline">\(x\)</span> errores es</p>
 <p><span class="math display">\[
     f(x)=
 \begin{cases}
-    \frac{1}{100},&amp; \text{si } x\in (0,100)\\
-    0, de\, lo\, contrario
+    1*p^4(1-p)^4 &amp; x=0 \\
+    4*p^3(1-p)^3,&amp; x=1 \\
+    6*p^2(1-p)^2,&amp; x=2 \\
+    4*p^1(1-p)^1,&amp; x=3 \\
+    1*p^0(1-p)^0 &amp; x=4 \\
 \end{cases}
 \]</span></p>
+<p>o más en breve</p>
+<p><span class="math display">\[f(x)=\binom 4 x p^x(1-p)^{4-x}\]</span>
+para <span class="math inline">\(x=0,1,2,3,4\)</span></p>
+<p>donde <span class="math inline">\(\binom 4 x\)</span> es el número de posibles resultados (transmisiones de <span class="math inline">\(4\)</span> píxeles) con <span class="math inline">\(x\)</span> errores.</p>
+<hr />
+<hr />
+</div>
+<div id="distribución-binomial-definición" class="section level2 hasAnchor" number="7.21">
+<h2><span class="header-section-number">7.21</span> Distribución binomial: Definición<a href="modelos-de-probabilidad-para-variables-aleatorias-discretas.html#distribución-binomial-definición" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>La función de probabilidad binomial es la función de masa de probabilidad de observar <span class="math inline">\(x\)</span> resultados de tipo <span class="math inline">\(A\)</span> en <span class="math inline">\(n\)</span> ensayos independientes de Bernoulli, donde <span class="math inline">\(A\)</span> tiene la misma probabilidad <span class="math inline">\(p\)</span> en cada ensayo.</p>
+<p>La función está dada por</p>
+<p><span class="math inline">\(f(x)=\binom n x p^x(1-p)^{n-x}\)</span>, <span class="math inline">\(x=0,1,...n\)</span></p>
+<p><span class="math inline">\(\binom n x= \frac{n!}{x!(n-x)!}\)</span> se denomina <strong>coeficiente binomial</strong> y da el número de formas en que se pueden obtener <span class="math inline">\(x\)</span> eventos de tipo <span class="math inline">\(A\)</span> en un conjunto de <span class="math inline">\(n\)</span>.</p>
+<p>Cuando una variable <span class="math inline">\(X\)</span> tiene una función de probabilidad binomial decimos que se distribuye binomialmente y escribimos</p>
+<p><span class="math display">\[X\rightarrow Bin(n,p)\]</span></p>
+<p>donde <span class="math inline">\(n\)</span> y <span class="math inline">\(p\)</span> son parámetros.</p>
+<hr />
+<hr />
+</div>
+<div id="distribución-binomial-media-y-varianza" class="section level2 hasAnchor" number="7.22">
+<h2><span class="header-section-number">7.22</span> Distribución binomial: Media y Varianza<a href="modelos-de-probabilidad-para-variables-aleatorias-discretas.html#distribución-binomial-media-y-varianza" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>La media y la varianza de <span class="math inline">\(X\rightarrow Bin(n,p)\)</span> son</p>
 <ul>
-<li>calcular la media</li>
-<li>calcular la varianza usando <span class="math inline">\(E(X^2)=V(X)+E(X)^2\)</span></li>
-<li>calcular <span class="math inline">\(P(\mu-\sigma\leq X \leq \mu+\sigma)\)</span></li>
-<li>¿Cuáles son el primer y tercer cuartiles?</li>
+<li><p><span class="math inline">\(E(X)=np\)</span></p></li>
+<li><p><span class="math inline">\(V(X)=np(1-p)\)</span></p></li>
+<li><p>Dado que <span class="math inline">\(X\)</span> es la suma de <span class="math inline">\(n\)</span> variables independientes de Bernoulli</p></li>
 </ul>
-<p><img src="_main_files/figure-html/unnamed-chunk-64-1.png" width="672" /></p>
-</div>
-<div id="ejercicio-5-1" class="section level4 hasAnchor" number="8.4.0.5">
-<h4><span class="header-section-number">8.4.0.5</span> Ejercicio 5<a href="ejercicios.html#ejercicio-5-1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>Dado
-<span class="math display">\[
-    f(x)= 
-\begin{cases}
-0, &amp; x &lt; 0 \\
-ax, &amp; x \in [0,3] \\
-b, &amp; x \in (3,5) \\
-\frac{b}{3}(8-x),&amp; x \in [5,8]\\
-0, &amp; x &gt; 8 \\
-\end{cases}
-\]</span></p>
+<p><span class="math inline">\(E(X)=E(\sum_{i=1}^n K_i)=np\)</span></p>
+<p>y</p>
+<p><span class="math inline">\(V(X)=V(\sum_{i=1}^n K_i)=n(1-p)p\)</span></p>
+<p>Ejemplo:</p>
 <ul>
-<li><p>¿Cuáles son los valores de <span class="math inline">\(a\)</span> y <span class="math inline">\(b\)</span> tales que <span class="math inline">\(f(x)\)</span> es una función de densidad de probabilidad continua?</p></li>
-<li><p>¿Cuál es la media de <span class="math inline">\(X\)</span>?</p></li>
+<li><p>El valor esperado para el número de errores en la transmisión de 4 píxeles es <span class="math inline">\(np=4*0.1=0.4\)</span> cuando la probabilidad de error es <span class="math inline">\(0.1\)</span>.</p></li>
+<li><p>La varianza es <span class="math inline">\(n(1-p)p=0.36\)</span></p></li>
 </ul>
+<p><strong>Recuerde</strong>: Podemos especificar los parámetros <span class="math inline">\(n\)</span> y <span class="math inline">\(p\)</span>, o los parámetros <span class="math inline">\(E(X)\)</span> y <span class="math inline">\(V(X)\)</span></p>
+<hr />
+<hr />
 </div>
-<div id="ejercicio-6" class="section level4 hasAnchor" number="8.4.0.6">
-<h4><span class="header-section-number">8.4.0.6</span> Ejercicio 6<a href="ejercicios.html#ejercicio-6" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>Para la densidad de probabilidad</p>
-<p><span class="math display">\[
-    f(x)= 
-\begin{cases}
-    \lambda e^{-\lambda x},&amp; \text{if } x \geq 0\\
-    0,&amp; si\,no 
-\end{cases}
-\]</span></p>
+<div id="ejemplo-1-1" class="section level2 hasAnchor" number="7.23">
+<h2><span class="header-section-number">7.23</span> Ejemplo 1<a href="modelos-de-probabilidad-para-variables-aleatorias-discretas.html#ejemplo-1-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Ahora respondamos:</p>
 <ul>
-<li>Confirmar que se trata de una densidad de probabilidad</li>
-<li>Calcular la media</li>
-<li>Calcule el valor esperado de <span class="math inline">\(X^2\)</span></li>
-<li>Calcular la varianza</li>
-<li>Hallar la distribución de probabilidad <span class="math inline">\(F(a)\)</span></li>
-<li>Encuentra la mediana</li>
+<li>¿Cuál es la probabilidad de observar <span class="math inline">\(4\)</span> de al transmitir <span class="math inline">\(4\)</span> píxeles, si la probabilidad de error es de <span class="math inline">\(0.1\)</span>?</li>
 </ul>
+<p>Dado que estamos repitiendo una prueba de Bernoulli <span class="math inline">\(n=4\)</span> veces y contando el número de eventos de tipo <span class="math inline">\(A\)</span> (errores), cuando <span class="math inline">\(P(A)=p=0.1\)</span> entonces</p>
+<p><span class="math display">\[X \rightarrow Bin(n=4, p=0.1)\]</span>
+Eso es <span class="math display">\[f(x)=\binom 4 x 0.1^x(1-0.1)^{4-x}\]</span></p>
+<hr />
+<hr />
 </div>
-<div id="ejercicio-7" class="section level4 hasAnchor" number="8.4.0.7">
-<h4><span class="header-section-number">8.4.0.7</span> Ejercicio 7<a href="ejercicios.html#ejercicio-7" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>Dada la distribución de probabilidad de una variable aleatoria <span class="math inline">\(X\)</span></p>
-<p><span class="math display">\[
-    F(x)= 
-\begin{cases}
-0, &amp; x  &lt; -1 \\
-\frac{1}{80}(17+16x-x^2),&amp; x \in [-1,7)\\
-1,&amp; x \geq 7\\
-\end{cases}
-\]</span></p>
-<p>calcular:</p>
+<div id="ejemplo-1-2" class="section level2 hasAnchor" number="7.24">
+<h2><span class="header-section-number">7.24</span> Ejemplo 1<a href="modelos-de-probabilidad-para-variables-aleatorias-discretas.html#ejemplo-1-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ul>
-<li><span class="math inline">\(P(X&gt;0)\)</span></li>
-<li><span class="math inline">\(E(X)\)</span></li>
-<li><span class="math inline">\(P(X&gt;0|X&lt;2)\)</span></li>
+<li>Queremos calcular:</li>
 </ul>
-</div>
-</div>
-<div id="modelos-de-probabilidad" class="section level2 hasAnchor" number="8.5">
-<h2><span class="header-section-number">8.5</span> Modelos de probabilidad<a href="ejercicios.html#modelos-de-probabilidad" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div id="ejercicio-1-4" class="section level4 hasAnchor" number="8.5.0.1">
-<h4><span class="header-section-number">8.5.0.1</span> Ejercicio 1<a href="ejercicios.html#ejercicio-1-4" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>Un motor de búsqueda falla al recuperar información con una probabilidad de <span class="math inline">\(0.1\)</span></p>
+<p><span class="math inline">\(P(X=4)=f(4)=\binom 4 4 0.1^4 0.9^{0}=0.1^4=10^{-4}\)</span></p>
+<p>En R <código>dbinom(4,4,0.1)</código></p>
 <ul>
-<li><p>Si nuestro sistema recibe solicitudes de búsqueda de <span class="math inline">\(50\)</span>, ¿cuál es la probabilidad de que el sistema no responda a tres de ellas?</p></li>
-<li><p>¿Cuál es la probabilidad de que el motor complete con éxito búsquedas de <span class="math inline">\(15\)</span> antes de la primera falla?</p></li>
-<li><p>Consideramos que un buscador funciona suficientemente bien cuando es capaz de encontrar información para mas de <span class="math inline">\(10\)</span> solicitudes por cada <span class="math inline">\(2\)</span> fallos. ¿Cuál es la probabilidad de que en un ensayo de fiabilidad nuestro motor de búsqueda sea satisfactorio?</p></li>
+<li>También podemos calcular:</li>
 </ul>
+<p><span class="math inline">\(P(X=2)=\binom 4 2 0.1^2 0.9^2=0.0486\)</span></p>
+<p>En R <código>dbinom(2,4,0.1)</código></p>
+<hr />
+<hr />
 </div>
-<div id="ejercicio-2-4" class="section level4 hasAnchor" number="8.5.0.2">
-<h4><span class="header-section-number">8.5.0.2</span> Ejercicio 2<a href="ejercicios.html#ejercicio-2-4" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>En una población, la probabilidad de que nazca un niño es <span class="math inline">\(p=0,51\)</span>. Considere una familia de 4 hijos.</p>
+<div id="ejemplo-2-1" class="section level2 hasAnchor" number="7.25">
+<h2><span class="header-section-number">7.25</span> Ejemplo 2<a href="modelos-de-probabilidad-para-variables-aleatorias-discretas.html#ejemplo-2-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ul>
-<li>¿Cuál es la probabilidad de que una familia tenga un solo niño?</li>
-<li>¿Cuál es la probabilidad de que una familia tenga una sola niña?</li>
-<li>¿Cuál es la probabilidad de que una familia tenga solo un niño o solo una niña?</li>
-<li>¿Cuál es la probabilidad de que la familia tenga al menos dos niños?</li>
-<li>¿Cuál es el número de hijos que debe tener una familia para que la probabilidad de tener al menos una niña sea superior a 0,75?</li>
+<li>¿Cuál es la probabilidad de observar al menos <span class="math inline">\(8\)</span> votantes del partido de gobierno en una encuesta electoral de tamaño <span class="math inline">\(10\)</span>, si la probabilidad de un voto positivo es de <span class="math inline">\(0.9\)</span>?</li>
 </ul>
+<p>Para este caso</p>
+<p><span class="math display">\[X \rightarrow Bin(n=8, p=0.9)\]</span></p>
+<p>Eso es <span class="math display">\[f(x)=\binom {10} x 0.9^x(0.1)^{4-x}\]</span></p>
+<p>Queremos calcular:
+<span class="math inline">\(P(X\le 8)=F(8)= \sum_{i=1..8} f(x_i)=0.2639011\)</span></p>
+<p>en R <código>pbinom(8,10, 0.9)</código></p>
+<hr />
+<hr />
 </div>
-<div id="ejercicio-3-2" class="section level4 hasAnchor" number="8.5.0.3">
-<h4><span class="header-section-number">8.5.0.3</span> Ejercicio 3<a href="ejercicios.html#ejercicio-3-2" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>La cantidad promedio de partículas radiactivas que golpean un contador Geiger es de <span class="math inline">\(2.3\)</span> por segundo.</p>
+<div id="distribución-binomial-3" class="section level2 hasAnchor" number="7.26">
+<h2><span class="header-section-number">7.26</span> Distribución binomial<a href="modelos-de-probabilidad-para-variables-aleatorias-discretas.html#distribución-binomial-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><img src="_main_files/figure-html/unnamed-chunk-56-1.png" width="672" /></p>
+<hr />
+<hr />
+</div>
+<div id="distribución-binomial-negativa" class="section level2 hasAnchor" number="7.27">
+<h2><span class="header-section-number">7.27</span> Distribución binomial negativa<a href="modelos-de-probabilidad-para-variables-aleatorias-discretas.html#distribución-binomial-negativa" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Ahora imaginemos que estamos interesados ​​en contar los píxeles bien transmitidos antes de que ocurra un <strong>número dado</strong> de errores. Digamos que podemos <strong>tolerar</strong> <span class="math inline">\(r\)</span> errores en la transmisión.</p>
 <ul>
-<li><p>¿Cuál es la probabilidad de contar exactamente 2 partículas en un segundo?</p></li>
-<li><p>¿Cuál es la probabilidad de detectar exactamente <span class="math inline">\(10\)</span> partículas en <span class="math inline">\(5\)</span> segundos?</p></li>
-<li><p>¿Cuál es la probabilidad de al menos un conteo en dos segundos?</p></li>
-<li><p>¿Cuál es la probabilidad de tener que esperar <span class="math inline">\(2,5\)</span> segundos después de que encendemos el detector?</p></li>
+<li><p>Experimento: Supongamos que realizamos ensayos de Bernoulli hasta que observamos que el resultado <span class="math inline">\(A\)</span> aparece <span class="math inline">\(r\)</span> veces.</p></li>
+<li><p>Variable aleatoria: Contamos el número de eventos <span class="math inline">\(B\)</span></p></li>
+<li><p>Ejemplo: ¿Cuál es la probabilidad de observar <span class="math inline">\(y\)</span> píxeles bien transmitidos (<span class="math inline">\(B\)</span>) antes de <span class="math inline">\(r\)</span> errores (<span class="math inline">\(A\)</span>)?</p></li>
 </ul>
+<hr />
+<hr />
 </div>
-<div id="ejercicio-4-2" class="section level4 hasAnchor" number="8.5.0.4">
-<h4><span class="header-section-number">8.5.0.4</span> Ejercicio 4<a href="ejercicios.html#ejercicio-4-2" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div id="distribución-binomial-negativa-1" class="section level2 hasAnchor" number="7.28">
+<h2><span class="header-section-number">7.28</span> Distribución binomial negativa<a href="modelos-de-probabilidad-para-variables-aleatorias-discretas.html#distribución-binomial-negativa-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Primero encontremos la probabilidad de una transmisión en particular con <span class="math inline">\(y\)</span> número de píxeles correctos (<span class="math inline">\(B\)</span>) y <span class="math inline">\(r\)</span> número de errores (<span class="math inline">\(A\)</span>).</p>
+<p><span class="math inline">\((0,0,1,., 0,1,...0,1)\)</span> (hay <span class="math inline">\(y\)</span> ceros y <span class="math inline">\(r\)</span> unos)</p>
+<p>Observamos <span class="math inline">\(y\)</span> píxeles correctos en un total de <span class="math inline">\(y + r\)</span> intentos.</p>
+<p>Por lo tanto</p>
 <ul>
-<li><p>¿Cuál es la probabilidad de que la altura de un hombre sea al menos
-<span class="math inline">\(165\)</span>cm si la media poblacional es <span class="math inline">\(175\)</span>cm y la desviación estándar es <span class="math inline">\(10\)</span>cm?</p></li>
-<li><p>¿Cuál es la probabilidad de que la altura de un hombre esté entre
-<span class="math inline">\(165\)</span>cm y <span class="math inline">\(180\)</span>cm.</p></li>
-<li><p>¿Cuál es la altura que define el <span class="math inline">\(5\%\)</span> de los hombres más pequeños?</p></li>
+<li><span class="math inline">\(P(0,0,1,., 0,1,...0,1)=(1-p)^yp^r\)</span> (Recuerda: <span class="math inline">\(p\)</span> es la probabilidad de error)</li>
 </ul>
-</div>
-</div>
-<div id="estimadores-puntuales" class="section level2 hasAnchor" number="8.6">
-<h2><span class="header-section-number">8.6</span> Estimadores puntuales<a href="ejercicios.html#estimadores-puntuales" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div id="ejercicio-1-5" class="section level4 hasAnchor" number="8.6.0.1">
-<h4><span class="header-section-number">8.6.0.1</span> Ejercicio 1<a href="ejercicios.html#ejercicio-1-5" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>Considere el modelo de probabilidad</p>
-<p><span class="math display">\[
-    f(x)= 
-\begin{cases}
-    1/2-a,&amp; \text{si } x=-1 \\ 
-    1/2,&amp; \text{si } x=0\\
-    a,&amp; 1 \text{si } x=1\\ 
-\end{cases}
-\]</span></p>
-<p>donde <span class="math inline">\(a\)</span> es un parámetro.</p>
-<p>Calcule la media y la varianza de la estadística: <span class="math display">\[T=\frac{\bar{X}}{2}+\frac{1}{4}\]</span></p>
-<p>donde <span class="math inline">\(\bar{X}=\frac{1}{N}\sum_{i=1}^N X_i\)</span></p>
+<p>¿Cuántas transmisiones pueden tener <span class="math inline">\(y\)</span> píxeles correctos antes de <span class="math inline">\(r\)</span> errores?</p>
+<p>Nota:</p>
 <ul>
-<li><p>¿<span class="math inline">\(T\)</span> es un estimador sesgado de <span class="math inline">\(a\)</span>?</p></li>
-<li><p>¿Es <span class="math inline">\(T\)</span> consistente? es decir, <span class="math inline">\(V(T) \rightarrow 0\)</span> cuando <span class="math inline">\(N\rightarrow \infty\)</span></p></li>
+<li><p>El último bit es fijo (marca el final de la transmisión)</p></li>
+<li><p>El número total de transmisiones con <span class="math inline">\(y\)</span> número de píxeles correctos (<span class="math inline">\(B\)</span>) que podemos obtener en <span class="math inline">\(y + r-1\)</span> intentos es: <span class="math inline">\(\binom {y + r-1} y\)</span></p></li>
 </ul>
+<hr />
+<hr />
 </div>
-<div id="ejercicio-2-5" class="section level4 hasAnchor" number="8.6.0.2">
-<h4><span class="header-section-number">8.6.0.2</span> Ejercicio 2<a href="ejercicios.html#ejercicio-2-5" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div id="distribución-binomial-negativa-2" class="section level2 hasAnchor" number="7.29">
+<h2><span class="header-section-number">7.29</span> Distribución binomial negativa<a href="modelos-de-probabilidad-para-variables-aleatorias-discretas.html#distribución-binomial-negativa-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Por lo tanto, la probabilidad de observar <span class="math inline">\(y\)</span> eventos de tipo <span class="math inline">\(B\)</span> antes de <span class="math inline">\(r\)</span> eventos de tipo <span class="math inline">\(A\)</span> (con probabilidad <span class="math inline">\(p\)</span>) es</p>
+<p><span class="math display">\[P(Y=y)=f(y)=\binom {y+r-1} y (1-p)^yp^r\]</span></p>
+<p>para <span class="math inline">\(y=0,1,...\)</span></p>
+<p>Entonces decimos que <span class="math inline">\(Y\)</span> sigue una distribución binomial negativa y escribimos</p>
+<p><span class="math display">\[Y\rightarrow NB(r,p)\]</span></p>
+<p>donde <span class="math inline">\(r\)</span> y <span class="math inline">\(p\)</span> son parámetros que representan la tolerancia y la probabilidad de un solo error.</p>
+<hr />
+<hr />
+</div>
+<div id="media-y-varianza-2" class="section level2 hasAnchor" number="7.30">
+<h2><span class="header-section-number">7.30</span> Media y Varianza<a href="modelos-de-probabilidad-para-variables-aleatorias-discretas.html#media-y-varianza-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Una variable aleatoria con <span class="math inline">\(Y\rightarrow NB(r,p)\)</span> tiene</p>
 <ul>
-<li>¿Es <span class="math inline">\(\bar{X}^2=(\frac{1}{N}\sum_{i=1}^N X_i)^2\)</span> un estimador imparcial de <span class="math inline">\(E(X)^2\)</span>?</li>
+<li><p>media: <span class="math inline">\(E(Y)= r\frac{1-p}{p}\)</span></p></li>
+<li><p>varianza: <span class="math inline">\(V(Y)= r\frac{1-p}{p^2}\)</span></p></li>
 </ul>
+<hr />
+<hr />
 </div>
-</div>
-<div id="muestreo-y-teorema-del-límite-central" class="section level2 hasAnchor" number="8.7">
-<h2><span class="header-section-number">8.7</span> Muestreo y teorema del límite central<a href="ejercicios.html#muestreo-y-teorema-del-límite-central" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div id="ejercicio-1-6" class="section level4 hasAnchor" number="8.7.0.1">
-<h4><span class="header-section-number">8.7.0.1</span> Ejercicio 1<a href="ejercicios.html#ejercicio-1-6" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>Un modelo de batería carga hasta <span class="math inline">\(75\%\)</span> de su capacidad en una hora con una desviación estándar de <span class="math inline">\(15\%\)</span>.</p>
+<div id="distribución-geométrica" class="section level2 hasAnchor" number="7.31">
+<h2><span class="header-section-number">7.31</span> Distribución geométrica<a href="modelos-de-probabilidad-para-variables-aleatorias-discretas.html#distribución-geométrica" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Llamamos <strong>distribución geométrica</strong> a la distribución binomial negativa con <span class="math inline">\(r=1\)</span></p>
+<p>La probabilidad de observar <span class="math inline">\(B\)</span> eventos antes de observar el <strong>primer</strong> evento de tipo <span class="math inline">\(A\)</span> es</p>
+<p><span class="math display">\[P(Y=y)=f(y)= (1-p)^yp\]</span></p>
+<p><span class="math display">\[Y\rightarrow Geom(p)\]</span>
+con media</p>
 <ul>
-<li><p>Si cobramos <span class="math inline">\(25\)</span>, ¿cuál es la probabilidad de que el promedio de la muestra esté a una distancia de <span class="math inline">\(5\%\)</span> del cargo de la media?</p></li>
-<li><p>Si cobramos <span class="math inline">\(100\)</span>, ¿cuál es esa probabilidad?</p></li>
-<li><p>Si, en cambio, solo cargamos baterías de <span class="math inline">\(9\)</span>, ¿cuál es la carga que es superada por el promedio de la muestra con solo <span class="math inline">\(0.015\)</span> de probabilidad?</p></li>
+<li><p>media: <span class="math inline">\(E(Y)= \frac{1-p}{p}\)</span></p></li>
+<li><p>varianza: <span class="math inline">\(V(Y)= \frac{1-p}{p^2}\)</span></p></li>
 </ul>
+<hr />
+<hr />
 </div>
-<div id="ejercicio-2-6" class="section level4 hasAnchor" number="8.7.0.2">
-<h4><span class="header-section-number">8.7.0.2</span> Ejercicio 2<a href="ejercicios.html#ejercicio-2-6" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>Se necesita un componente electrónico para el correcto funcionamiento de un telescopio. Necesita ser reemplazado inmediatamente cuando se desgasta.</p>
-<p>La vida media del componente (<span class="math inline">\(\mu\)</span>) es de <span class="math inline">\(100\)</span> horas y su desviación estándar <span class="math inline">\(\sigma\)</span> es de <span class="math inline">\(30\)</span> horas.</p>
+<div id="ejemplo-9" class="section level2 hasAnchor" number="7.32">
+<h2><span class="header-section-number">7.32</span> Ejemplo<a href="modelos-de-probabilidad-para-variables-aleatorias-discretas.html#ejemplo-9" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ul>
-<li><p>¿Cuál es la probabilidad de que el promedio de la vida media de <span class="math inline">\(50\)</span> componentes esté dentro de <span class="math inline">\(1\)</span> hora de la vida media de un solo componente?</p></li>
-<li><p>¿Cuántos componentes necesitamos para que el telescopio esté operativo <span class="math inline">\(2750\)</span> horas consecutivas con una probabilidad de <span class="math inline">\(0,95\)</span>?</p></li>
+<li><p>Un sitio web tiene tres servidores.</p></li>
+<li><p>Un servidor opera a la vez y solo cuando falla una solicitud se utiliza otro servidor.</p></li>
+<li><p>Si se sabe que la probabilidad de que falle una solicitud es <span class="math inline">\(p=0.0005\)</span>, entonces</p></li>
+<li><p>¿Cuál es el número esperado de solicitudes exitosas antes de que los tres servidores fallen?</p></li>
 </ul>
+<hr />
+<hr />
 </div>
-<div id="ejercicio-3-3" class="section level4 hasAnchor" number="8.7.0.3">
-<h4><span class="header-section-number">8.7.0.3</span> Ejercicio 3<a href="ejercicios.html#ejercicio-3-3" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>Una máquina automática llena tubos de ensayo con muestras biológicas con una media de <span class="math inline">\(\mu=130\)</span>mg y una desviación estándar de <span class="math inline">\(\sigma=5\)</span>mg.</p>
+<div id="ejemplo-10" class="section level2 hasAnchor" number="7.33">
+<h2><span class="header-section-number">7.33</span> Ejemplo<a href="modelos-de-probabilidad-para-variables-aleatorias-discretas.html#ejemplo-10" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Ya que estamos repitiendo un ensayo de Bernoulli hasta que se observan <span class="math inline">\(r=3\)</span> eventos de tipo <span class="math inline">\(A\)</span> (cada uno con <span class="math inline">\(P(A)=p=0.0005\)</span>) y estamos contando el número de eventos de tipo <span class="math inline">\(B\)</span> (errores) después</p>
+<p><span class="math display">\[Y \rightarrow NB(r=3, p=0.0005)\]</span></p>
+<p>Por lo tanto, el número esperado de solicitudes antes de que el sistema falle es:</p>
+<p><span class="math inline">\(E(Y)=r\frac{1-p}{p}=3\frac{1-0.0005}{0.0005}=5997\)</span></p>
 <ul>
-<li><p>para una muestra aleatoria de tamaño <span class="math inline">\(50\)</span>. ¿Cuál es la probabilidad de que
-la media muestral (promedio) está entre <span class="math inline">\(128\)</span> y <span class="math inline">\(132\)</span>gr?</p></li>
-<li><p>¿Cuál debe ser el tamaño de la muestra (<span class="math inline">\(n\)</span>) para que la media muestral <span class="math inline">\(\bar{X}\)</span> sea mayor a <span class="math inline">\(131\)</span>gr con una probabilidad menor o igual a <span class="math inline">\(0.025\)</span>?</p></li>
+<li>Tenga en cuenta que para enviar este número de solicitures hemos enviado un total de <span class="math inline">\(6000=5997+3\)</span></li>
 </ul>
+<hr />
+<hr />
 </div>
-<div id="ejercicio-4-3" class="section level4 hasAnchor" number="8.7.0.4">
-<h4><span class="header-section-number">8.7.0.4</span> Ejercicio 4<a href="ejercicios.html#ejercicio-4-3" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>En el Caribe, parece haber un promedio de huracanes de <span class="math inline">\(6\)</span> por año. Teniendo en cuenta que la formación de huracanes es un proceso de Poisson, los meteorólogos planean estimar el tiempo medio entre la formación de dos huracanes. Planean recolectar una muestra de tamaño <span class="math inline">\(36\)</span> para los tiempos entre dos huracanes.</p>
+<div id="ejemplo-11" class="section level2 hasAnchor" number="7.34">
+<h2><span class="header-section-number">7.34</span> Ejemplo<a href="modelos-de-probabilidad-para-variables-aleatorias-discretas.html#ejemplo-11" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>¿Cuál es la probabilidad de tratar con éxito como máximo <span class="math inline">\(5\)</span> solicitudes antes de que el sistema falle?</p>
+<p>Recuerde la función de distribución: <span class="math inline">\(F(y)=P(Y\leq 5)\)</span></p>
+<p><span class="math inline">\(F(5)=P(Y\leq 5)=\Sigma_{y=0}^5 f(y)\)</span></p>
+<p><span class="math inline">\(=\sum_{y=0}^5\binom {y+2} y 0.9995^y 0.0005^r\)</span></p>
+<p><span class="math inline">\(=\binom{2} 0 0.9995^0 0.0005^3 +\binom{3} 1 0.9995^1 0.0005^3\)</span></p>
+<p><span class="math inline">\(+\binom{4} 2 0.9995^2 0.0005^3 +\binom{5} 3 0.9995^3 0.0005^3\)</span></p>
+<p><span class="math inline">\(+\binom {6} 4 0.9995^4 0.0005^3 +\binom {7} 5 0.9995^5 0.0005^3\)</span></p>
+<p><span class="math inline">\(= 6.9\times 10^{-9}\)</span></p>
+<p>En R <código>pnbinom(5,3,0.0005)</código></p>
+<hr />
+<hr />
+</div>
+<div id="ejemplos" class="section level2 hasAnchor" number="7.35">
+<h2><span class="header-section-number">7.35</span> Ejemplos<a href="modelos-de-probabilidad-para-variables-aleatorias-discretas.html#ejemplos" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Con la función de probabilidad binomial negativa:</p>
+<p><span class="math display">\[f(y)=\binom {y+r-1} y (1-p)^yp^r\]</span></p>
+<p>Ahora podemos responder preguntas como:</p>
 <ul>
-<li><p>¿Cuál es la probabilidad de que su promedio muestral esté entre <span class="math inline">\(45\)</span> y <span class="math inline">\(60\)</span> días?</p></li>
-<li><p>¿Cuál debe ser el tamaño de la muestra para que tengan una probabilidad de <span class="math inline">\(0.025\)</span> de que la media muestral sea mayor a <span class="math inline">\(70\)</span> días?</p></li>
+<li>¿Cuál es la probabilidad de observar <span class="math inline">\(10\)</span> píxeles correctos antes de <span class="math inline">\(2\)</span> errores, si la probabilidad de error es <span class="math inline">\(0.1\)</span>?</li>
 </ul>
-</div>
-<div id="ejercicio-5-2" class="section level4 hasAnchor" number="8.7.0.5">
-<h4><span class="header-section-number">8.7.0.5</span> Ejercicio 5<a href="ejercicios.html#ejercicio-5-2" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>La probabilidad de que se encuentre una mutación particular en la población es de <span class="math inline">\(0.4\)</span>. Si probamos <span class="math inline">\(2000\)</span> personas para la mutación:</p>
+<p><span class="math inline">\(f(10; r=2, p=0.1)=0.03835463\)</span></p>
+<p>en R <código>dnbinom(10, 2, 0.1)</código></p>
 <ul>
-<li>¿Cuál es la probabilidad de que el número total de personas con la mutación esté entre <span class="math inline">\(791\)</span> y <span class="math inline">\(809\)</span>?</li>
+<li>¿Cuál es la probabilidad de que entren <span class="math inline">\(2\)</span> chicas antes que <span class="math inline">\(4\)</span> chicos si la probabilidad de que entre una chica es de <span class="math inline">\(0.5\)</span>?</li>
 </ul>
-<p>sugerencia: use el CLT con una muestra de ensayos de Bernoulli de <span class="math inline">\(2000\)</span>. Esto se conoce como la aproximación normal de la distribución binomial.</p>
+<p><span class="math inline">\(f(2; r=4, p=0.5)=0.15625\)</span></p>
+<p>en R <código>dnbinom(2, 4, 0.5)</código></p>
+<hr />
+<hr />
 </div>
+<div id="distribución-binomial-negativa-3" class="section level2 hasAnchor" number="7.36">
+<h2><span class="header-section-number">7.36</span> Distribución binomial negativa<a href="modelos-de-probabilidad-para-variables-aleatorias-discretas.html#distribución-binomial-negativa-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><img src="_main_files/figure-html/unnamed-chunk-57-1.png" width="672" /></p>
 </div>
-<div id="máxima-verosimilitud" class="section level2 hasAnchor" number="8.8">
-<h2><span class="header-section-number">8.8</span> Máxima verosimilitud<a href="ejercicios.html#máxima-verosimilitud" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div id="ejercicio-1-7" class="section level4 hasAnchor" number="8.8.0.1">
-<h4><span class="header-section-number">8.8.0.1</span> Ejercicio 1<a href="ejercicios.html#ejercicio-1-7" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>Para una variable aleatoria con una función de probabilidad binomial</p>
-<p><span class="math display">\[f(x; p)=\binom n x p^x(1-p)^{n-x}\]</span></p>
-<ul>
-<li><p>¿Cuál es el estimador de máxima verosimilitud de <span class="math inline">\(p\)</span> para una muestra de tamaño <span class="math inline">\(1\)</span> de esta variable aleatoria?</p></li>
-<li><p>En <strong>un</strong> examen de <span class="math inline">\(100\)</span> estudiantes observamos <span class="math inline">\(x_1=68\)</span> estudiantes que aprobaron el examen. ¿Cuál es la estimación de <span class="math inline">\(p\)</span>?</p></li>
-</ul>
-</div>
-<div id="ejercicio-2-7" class="section level4 hasAnchor" number="8.8.0.2">
-<h4><span class="header-section-number">8.8.0.2</span> Ejercicio 2<a href="ejercicios.html#ejercicio-2-7" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>Tome una variable aleatoria con la siguiente función de densidad de probabilidad</p>
-<p><span class="math display">\[
-f(x)=
-\begin{cases}
-    (1+\theta)x^\theta,&amp; \text{si } x\in (0,1)\\
-    0,&amp;  x\notin (0,1)
-\end{cases}
-\]</span></p>
-<ul>
-<li><p>¿Cuál es la estimación de máxima verosimilitud para <span class="math inline">\(\theta\)</span>?</p></li>
-<li><p>Si tomamos una muestra de <span class="math inline">\(5\)</span> con observaciones
-<span class="math inline">\(x_1 = 0,92; \qquad x_2 = 0,79; \qquad x_3 = 0,90; \qquad x_4 = 0,65; \qquad x_5 = 0,86\)</span></p></li>
-</ul>
-<p>¿Cuál es el valor estimado del parámetro <span class="math inline">\(\theta\)</span>?</p>
-</div>
-<div id="ejercicio-3-4" class="section level4 hasAnchor" number="8.8.0.3">
-<h4><span class="header-section-number">8.8.0.3</span> Ejercicio 3<a href="ejercicios.html#ejercicio-3-4" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>Tome una variable aleatoria con la siguiente función de densidad de probabilidad</p>
-<p><span class="math display">\[
-    f(x)= 
-\begin{cases}
-    \lambda e^{-\lambda x},&amp; \text{si } 0 \leq x\\
-    0,&amp; si \, no 
-\end{cases}
-\]</span></p>
-<ul>
-<li><p>¿Cuál es la estimación de máxima verosimilitud para <span class="math inline">\(\lambda\)</span>?</p></li>
-<li><p>Si tomamos una muestra de <span class="math inline">\(5\)</span> con observaciones
-<span class="math inline">\(x_1 = 0.223 \qquad x_2 = 0.681; \qquad x_3 = 0,117; \qquad x_4 = 0,150; \qquad x_5 = 0.520\)</span></p></li>
-</ul>
-<p>¿Cuál es el valor estimado del parámetro <span class="math inline">\(\lambda\)</span>?</p>
-</div>
-</div>
-<div id="método-de-los-momentos" class="section level2 hasAnchor" number="8.9">
-<h2><span class="header-section-number">8.9</span> Método de los momentos<a href="ejercicios.html#método-de-los-momentos" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div id="ejercicio-1-8" class="section level4 hasAnchor" number="8.9.0.1">
-<h4><span class="header-section-number">8.9.0.1</span> Ejercicio 1<a href="ejercicios.html#ejercicio-1-8" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>¿Cuáles son los estimadores de los siguientes modelos paramétricos dados por el método de los momentos?</p>
+<div id="resumen-de-modelos-de-probabilidad" class="section level2 hasAnchor" number="7.37">
+<h2><span class="header-section-number">7.37</span> Resumen de modelos de probabilidad<a href="modelos-de-probabilidad-para-variables-aleatorias-discretas.html#resumen-de-modelos-de-probabilidad" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <table>
+<colgroup>
+<col width="20%" />
+<col width="32%" />
+<col width="10%" />
+<col width="9%" />
+<col width="9%" />
+<col width="9%" />
+<col width="9%" />
+</colgroup>
 <thead>
 <tr class="header">
-<th>modelo</th>
-<th>f(x)</th>
-<th>E(X)</th>
+<th align="center">modelo</th>
+<th align="center">X</th>
+<th align="right">rango de x</th>
+<th align="right">f(x)</th>
+<th align="center">E(X)</th>
+<th align="center">V(X)</th>
+<th align="center">R</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>Bernoulli</td>
-<td><span class="math inline">\(p^x(1-p)^{1-x}\)</span></td>
-<td><span class="math inline">\(p\)</span></td>
+<td align="center">Uniforme</td>
+<td align="center">número entero o real</td>
+<td align="right"><span class="math inline">\([a,b]\)</span></td>
+<td align="right"><span class="math inline">\(\frac{1}{n}\)</span></td>
+<td align="center"><span class="math inline">\(\frac{b+a}{2}\)</span></td>
+<td align="center"><span class="math inline">\(\frac{(b-a+1)^2-1}{12}\)</span></td>
+<td align="center"><code>rep(1/n, n)</code>, <code>dunif(x, a, b)</code></td>
 </tr>
 <tr class="even">
-<td>binomial</td>
-<td><span class="math inline">\(\binom n x p^x(1-p)^{n-x}\)</span></td>
-<td><span class="math inline">\(np\)</span></td>
+<td align="center">Bernoulli</td>
+<td align="center">evento A</td>
+<td align="right">0,1</td>
+<td align="right"><span class="math inline">\((1-p)^{1-x}p^x\)</span></td>
+<td align="center"><span class="math inline">\(p\)</span></td>
+<td align="center"><span class="math inline">\(p(1-p)\)</span></td>
+<td align="center"><código>c(1-p,p)</código></td>
 </tr>
 <tr class="odd">
-<td>Geométrico desplazado</td>
-<td><span class="math inline">\(p(1-p)^{x-1}\)</span></td>
-<td><span class="math inline">\(\frac{1}{p}\)</span></td>
+<td align="center">binomial</td>
+<td align="center"># de eventos A en <span class="math inline">\(n\)</span> repeticiones de ensayos de Bernoulli</td>
+<td align="right">0,1,…</td>
+<td align="right"><span class="math inline">\(\binom n x (1-p)^{n-x}p^x\)</span></td>
+<td align="center"><span class="math inline">\(np\)</span></td>
+<td align="center"><span class="math inline">\(np(1-p)\)</span></td>
+<td align="center"><código> dbimon(x,n,p)</código></td>
 </tr>
 <tr class="even">
-<td>Binomial negativo</td>
-<td><span class="math inline">\(\binom {x+r-1} x p^r(1-p)^x\)</span></td>
-<td><span class="math inline">\(r\frac{1-p}{p}\)</span></td>
-</tr>
-<tr class="odd">
-<td>Veneno</td>
-<td><span class="math inline">\(\frac{e^{-\lambda}\lambda^x}{x!}\)</span></td>
-<td><span class="math inline">\(\lambda\)</span></td>
-</tr>
-<tr class="even">
-<td>Exponencial</td>
-<td><span class="math inline">\(\lambda e^{-\lambda x}\)</span></td>
-<td><span class="math inline">\(\frac{1}{\lambda}\)</span></td>
-</tr>
-<tr class="odd">
-<td>normales</td>
-<td><span class="math inline">\(\frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{(x-\mu)^2}{2\sigma^2}}\)</span></td>
-<td><span class="math inline">\(\mu\)</span></td>
+<td align="center">Binomial negativo para eventos</td>
+<td align="center"># de eventos B en repeticiones de Bernoulli antes de <span class="math inline">\(r\)</span> Como se observan</td>
+<td align="right">0,1,..</td>
+<td align="right"><span class="math inline">\(\binom {x+r-1} x (1-p)^xp^r\)</span></td>
+<td align="center"><span class="math inline">\(\frac{r(1-p)}{p}\)</span></td>
+<td align="center"><span class="math inline">\(\frac{r(1-p)}{p^2}\)</span></td>
+<td align="center"><código>dnbinom(x,r,p)</código></td>
 </tr>
 </tbody>
 </table>
-</div>
-<div id="ejercicio-2-8" class="section level4 hasAnchor" number="8.9.0.2">
-<h4><span class="header-section-number">8.9.0.2</span> Ejercicio 2<a href="ejercicios.html#ejercicio-2-8" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>Tome una variable aleatoria con la siguiente función de densidad de probabilidad</p>
-<p><span class="math display">\[
-f(x)=
-\begin{cases}
-    (1+\theta)x^\theta,&amp; \text{si } x\in (0,1)\\
-    0,&amp; x\notin (0,1)
-\end{cases}
-\]</span></p>
-<ul>
-<li>Calcule <span class="math inline">\(E(X)\)</span> como una función de <span class="math inline">\(\theta\)</span></li>
-<li>¿Cuál es la estimación de <span class="math inline">\(\theta\)</span> utilizando el método de los momentos?</li>
-<li>Si tomamos una muestra de <span class="math inline">\(5\)</span> con observaciones
-<span class="math inline">\(x_1 = 0,92; \qquad x_2 = 0,79; \qquad x_3 = 0,90; \qquad x_4 = 0,65; \qquad x_5 = 0,86\)</span></li>
-</ul>
-<p>¿Cuál es el valor estimado del parámetro <span class="math inline">\(\theta\)</span>?</p>
-</div>
-<div id="ejercicio-3-5" class="section level4 hasAnchor" number="8.9.0.3">
-<h4><span class="header-section-number">8.9.0.3</span> Ejercicio 3<a href="ejercicios.html#ejercicio-3-5" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>Considere una variable aleatoria discreta <span class="math inline">\(X\)</span> que sigue una distribución binomial negativa con función de masa de probabilidad:</p>
-<p><span class="math display">\[f(x) = \binom{x+r-1}{x}p^r(1-p)^x\]</span></p>
-<p>Dado que</p>
-<ul>
-<li><span class="math inline">\(E(X)=\dfrac{r(1-p)}{p}\)</span></li>
-<li><span class="math inline">\(V(X) =\dfrac{r(1-p)}{p^2}\)</span></li>
-</ul>
-<p>calcular:</p>
-<ul>
-<li><p>Una estimación del parámetro <span class="math inline">\(r\)</span> y una estimación del parámetro <span class="math inline">\(p\)</span> obtenidas a partir de una muestra aleatoria de tamaño <span class="math inline">\(n\)</span> por el método de los momentos.</p></li>
-<li><p>Los valores de las estimaciones de <span class="math inline">\(r\)</span> y <span class="math inline">\(p\)</span> para la siguiente muestra aleatoria:</p></li>
-</ul>
-<p><span class="math display">\[x_1 = 27; \qquad x_2 = 8; \qquad x_3 = 22; \qquad x_4 = 29; \qquad x_5 = 19; \qquad x_5 = 32\]</span></p>
 
-</div>
 </div>
 </div>
             </section>
@@ -971,8 +916,8 @@ f(x)=
           </div>
         </div>
       </div>
-<a href="modelos-de-probabilidad-para-variables-aleatorias-discretas.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="variables-aleatorias-continuas.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="ejercicios.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -1003,7 +948,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/USERNAME/REPO/edit/BRANCH/20-Exercises.Rmd",
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/06-DiscreteModels.Rmd",
 "text": "Edit"
 },
 "history": {

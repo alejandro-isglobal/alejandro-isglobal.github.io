@@ -6,7 +6,7 @@
 ]{book}
 \title{Stats theory (SDA)}
 \author{Alejandro Caceres}
-\date{2022-10-01}
+\date{2022-10-16}
 
 \usepackage{amsmath,amssymb}
 \usepackage{lmodern}
@@ -968,12 +968,12 @@ Say we repeated the experiment 1000 times:
 
 \begin{verbatim}
 ##   outcome  ni    fi
-## 1       1 156 0.156
-## 2       2 173 0.173
-## 3       3 147 0.147
-## 4       4 178 0.178
-## 5       5 189 0.189
-## 6       6 157 0.157
+## 1       1 169 0.169
+## 2       2 172 0.172
+## 3       3 165 0.165
+## 4       4 163 0.163
+## 5       5 166 0.166
+## 6       6 165 0.165
 \end{verbatim}
 
 We find that \(f_i\) is converging to a constant value
@@ -2823,8 +2823,8 @@ outcome & Probability(outcome) \\
 \endhead
 \(0\) & \(P(X=0)=2/6\) \\
 \(1.5\) & \(P(X=1.5)=2/6\) \\
-\(2\) & \(P(X=2)=1/3\) \\
-\(3\) & \(P(X=3)=1/3\) \\
+\(2\) & \(P(X=2)=1/6\) \\
+\(3\) & \(P(X=3)=1/6\) \\
 \bottomrule
 \end{longtable}
 
@@ -3022,6 +3022,55 @@ What is the mean of \(X\) if its probability mass function \(f(x)\) is given by
 \[ \mu =E(X)=\sum_{i=1}^m x_i f(x_i) \]
 
 \(E(X)=\)\textbf{0} * 1/16 + \textbf{1} * 4/16 + \textbf{2} * 6/16 + \textbf{3} * 4/16 + \textbf{4} * 1/16 =2
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{mean-and-average}{%
+\section{Mean and Average}\label{mean-and-average}}
+
+\begin{itemize}
+\tightlist
+\item
+  The mean \(\mu\) is the centre of grevity of the probability mass function \textbf{it does not change}
+\end{itemize}
+
+For instance for
+
+\begin{longtable}[]{@{}cc@{}}
+\toprule
+\(X\) & \(P(X=x)\) \\
+\midrule
+\endhead
+\(-2\) & \(1/8=0.125\) \\
+\(-1\) & \(2/8=0.25\) \\
+\(0\) & \(2/8=0.25\) \\
+\(1\) & \(2/8=0.25\) \\
+\(2\) & \(1/8=0.125\) \\
+\bottomrule
+\end{longtable}
+
+\begin{itemize}
+\tightlist
+\item
+  The average \(\bar{x}\) is the centre of gravity of the observations (relative frequencies) it \textbf{changes} with different data
+\end{itemize}
+
+For instance for
+
+\begin{longtable}[]{@{}cc@{}}
+\toprule
+\(X\) & \(f_i\) \\
+\midrule
+\endhead
+\(-2\) & \(0.132\) \\
+\(-1\) & \(0.262\) \\
+\(0\) & \(0.240\) \\
+\(1\) & \(0.248\) \\
+\(2\) & \(0.118\) \\
+\bottomrule
+\end{longtable}
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
@@ -3246,10 +3295,10 @@ We define the \textbf{q-quantile} as the value \(x_{p}\) \textbf{under} which we
 \begin{itemize}
 \tightlist
 \item
-  The \(0.95\)-quantile is the value \(x_{s}\) such that \(q=0.95\)
+  The \(0.25\)-quantile is \textbf{first quartile} the value \(x_{s}\) such that \(q=0.25\)
 \end{itemize}
 
-\[F(x_{s})=0.95\]
+\[F(x_{s})=0.25\]
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
@@ -3767,6 +3816,860 @@ And we have the same properties as in the discrete case
 
 \includegraphics{_main_files/figure-latex/unnamed-chunk-50-1.pdf}
 
+\hypertarget{discrete-probability-models}{%
+\chapter{Discrete Probability Models}\label{discrete-probability-models}}
+
+\hypertarget{objective-5}{%
+\section{Objective}\label{objective-5}}
+
+Discrete probability models:
+
+\begin{itemize}
+\tightlist
+\item
+  Uniform and Bernoulli probability functions
+\item
+  Binomial and negative binomial probability functions
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{probability-mass-function}{%
+\section{Probability mass function}\label{probability-mass-function}}
+
+A probability mass function of a \textbf{discrete random variable} \(X\) with possible values \(x_1 , x_2 , .. , x_M\) is \textbf{any function} such that
+
+Positive:
+
+\begin{itemize}
+\tightlist
+\item
+  \(f(x_i)\geq 0\)
+\end{itemize}
+
+\emph{Allow us to compute probabilities:}
+
+\begin{itemize}
+\tightlist
+\item
+  \(f(x_i)=P(X=x_i)\)
+\end{itemize}
+
+The probability of any outcome is \(1\)
+
+\begin{itemize}
+\tightlist
+\item
+  \(\sum_{i=1}^M f(x_i)=1\)
+\end{itemize}
+
+\textbf{Properties:}
+
+Central tendency:
+
+\begin{itemize}
+\tightlist
+\item
+  \(E(X)= \sum_{i=1}^M x_i f(x_i)\)
+\end{itemize}
+
+Dispersion:
+
+\begin{itemize}
+\tightlist
+\item
+  \(V(X)= \sum_{i=1}^M (x_i-\mu)^2 f(x_i)\)
+\end{itemize}
+
+They are abstract objects with general properties that may or may not \textbf{describe} a natural or engineered process.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{probability-model}{%
+\section{Probability model}\label{probability-model}}
+
+A \textbf{probability model} is a probability mass function that may represent the probabilities of a random experiment.
+
+\textbf{Examples:}
+
+\begin{itemize}
+\item
+  \(f(x)=P(X=x)=1/6\) represents the probability of the outcomes of \textbf{one} throw of a dice.
+\item
+  The probability mass function
+\end{itemize}
+
+\begin{longtable}[]{@{}cc@{}}
+\toprule
+\(X\) & \(f(x)\) \\
+\midrule
+\endhead
+\(-2\) & \(1/8\) \\
+\(-1\) & \(2/8\) \\
+\(0\) & \(2/8\) \\
+\(1\) & \(2/8\) \\
+\(2\) & \(1/8\) \\
+\bottomrule
+\end{longtable}
+
+Represents the probability of drawing \textbf{one} ball from an urn where there are two balls per label: \(-1, 0, 1\) and one ball per label: \(-2, 2\).
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{parametric-models}{%
+\section{Parametric models}\label{parametric-models}}
+
+When we perform a random experiment and \textbf{do not} know the probabilities of the outcomes:
+
+\begin{itemize}
+\tightlist
+\item
+  We can always formulate the model given by the relative frequencies: \(\hat{P}(X=x_i)=f_i\) ( where \(i=1...M\)).
+\end{itemize}
+
+We need to find \(M\) numbers each depending on \(N\).
+
+In many cases:
+
+\begin{itemize}
+\tightlist
+\item
+  We can formulate probability functions \(f(x)\) that depend on \textbf{very few} numbers only.
+\end{itemize}
+
+\textbf{Example:}
+
+A random experiment with \(M\) equally likely outcomes has a probability mass function:
+\[f(x)=P(X=x)=1/M\]
+
+We only need to know \(M\).
+
+The numbers we \textbf{need to know} to fully determine a probability function are called \textbf{parameters}.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{uniform-distribution-one-parameter}{%
+\section{Uniform distribution (one parameter)}\label{uniform-distribution-one-parameter}}
+
+\textbf{Definition}
+A random variable \(X\) with outcomes \(\{1,...M\}\) has a discrete \textbf{uniform distribution} if all its \(M\) outcomes have the same probability
+
+\[f(x)=\frac{1}{M}\]
+
+With mean and variance:
+
+\(E(X)= \frac{M+1}{2}\)
+
+\(V(X)= \frac{M^2-1}{12}\)
+
+Note: \(E(X)\) and \(V(X)\) are also \textbf{parameters}. If we know any of them then we can fully determine the distribution.
+
+\[f(x)=\frac{1}{2E(X)-1}\]
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{uniform-distribution}{%
+\section{Uniform distribution}\label{uniform-distribution}}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-51-1.pdf}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{uniform-distribution-two-parameters}{%
+\section{Uniform distribution (two parameters)}\label{uniform-distribution-two-parameters}}
+
+Let's introduce a new uniform probability model with \textbf{two parameters}: The minimum and maximum outcomes.
+
+If the random variable takes values in \(\{a, a+1, ...b\}\), where \(a\) and \(b\) are integers and all the outcomes are equally probable then
+
+\[f(x)=\frac{1}{b-a+1}\]
+
+as \(M=b-a+1\).
+
+\begin{itemize}
+\tightlist
+\item
+  We then say that \(X\) distributes uniformly between \(a\) and \(b\) and write
+\end{itemize}
+
+\[X \rightarrow Unif(a,b)\]
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{uniform-distribution-two-parameters-1}{%
+\section{Uniform distribution (two parameters)}\label{uniform-distribution-two-parameters-1}}
+
+\textbf{Example:}
+
+What is the probability of observing a child of a particular age in a primary school (if all classes have the same amount of children)?
+
+From the experiment we know: \(a=6\) and \(b=11\) then
+
+\[X \rightarrow Unif(a=6, b=11)\] that is
+
+\[f(x)=\frac{1}{6}\] for \(x\in \{6,7,8,9,10,11\}\), and \(0\) otherwise
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-52-1.pdf}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{uniform-distribution-1}{%
+\section{Uniform distribution}\label{uniform-distribution-1}}
+
+The probability model of a random variable \(X\)
+
+\[f(x)=\frac{1}{b-a+1}\]
+
+for \(x \in \{a, a+1, ...b\}\)
+
+has mean and variance:
+
+\begin{itemize}
+\item
+  \(E(X)= \frac{b+a}{2}\)
+\item
+  \(V(X)= \frac{(b-a+1)^2-1}{12}\)
+\end{itemize}
+
+(Change variables \(X=Y+a-1\), \(y \in \{1,...M\}\))
+
+We can either specify \(a\) and \(b\) or \(E(X)\) and \(V(X)\).
+
+In our example:
+
+\begin{itemize}
+\tightlist
+\item
+  \(E(X)=(11+6)/2=8.5\)
+\item
+  \(V(X)=(6^2-1)/12=2.916667\)
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{uniform-distribution-two-parameter}{%
+\section{Uniform distribution (two-parameter)}\label{uniform-distribution-two-parameter}}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-53-1.pdf}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{parameters-and-models}{%
+\section{Parameters and Models}\label{parameters-and-models}}
+
+\begin{itemize}
+\item
+  A \textbf{model} is a particular function \(f(x)\) that \textbf{describes} our experiment
+\item
+  If the model is a \textbf{known} function that depends on a few parameters then changing the value of the parameters we produce a \textbf{family of models}
+\item
+  Knowledge of \(f(x)\) is reduced to the knowledge of the value of the parameters
+\item
+  Ideally, the model and the parameters are \textbf{interpretable}
+\end{itemize}
+
+\emph{Example:}
+
+\textbf{Model}: The data of our experiment is produced by a random process in which each age has the \textbf{same probability} of being observed.
+
+\textbf{Parameters}: \(a\) is the minimum age, \(E(X)\) is the expected age \ldots{} they are \textbf{physical properties} of the experiment.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{parameters-and-models-1}{%
+\section{Parameters and Models}\label{parameters-and-models-1}}
+
+\textbf{Example:}
+
+A \textbf{family} of models obtained from two-parameter uniform distributions changing the \textbf{variances} and keeping a constant mean (\(E(X)=8.5\)). It results on \textbf{changing} both \textbf{minimum} and \textbf{maximum} outcomes.
+
+\begin{itemize}
+\tightlist
+\item
+  Note: Only one model makes sense for our experiment (only one model can represent the ages of children in a school).
+\end{itemize}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-54-1.pdf}
+
+\begin{itemize}
+\tightlist
+\item
+  We can think of \textbf{families} that change only the \textbf{mean}, only the \textbf{minimum}, or only the \textbf{maximum}
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{bernoulli-trial}{%
+\section{Bernoulli trial}\label{bernoulli-trial}}
+
+Let's try to advance from the equal probability case and suppose a model with two outcomes (\(A\) and \(B\)) that have \textbf{unequal} probabilities
+
+\textbf{Examples:}
+
+\begin{itemize}
+\item
+  Writing down the sex of a patient who goes into an emergency room of a hospital (\(A:male\) and \(B:female\)).
+\item
+  Recording whether a manufactured machine is defective or not (\(A:defective\) and \(B:fine\)).
+\item
+  Hitting a target (\(A:success\) and \(B:failure\)).
+\item
+  Transmitting one pixel correctly (\(A:yes\) and \(B:no\)).
+\end{itemize}
+
+In these examples, the probability of outcome \(A\) is usually \textbf{unknown}.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{bernoulli-trial-1}{%
+\section{Bernoulli trial}\label{bernoulli-trial-1}}
+
+We will introduce the probability of an outcome (\(A\)) as the \textbf{parameter} of the model:
+
+\begin{itemize}
+\tightlist
+\item
+  outcome A (success): has probability \(p\) (parameter)
+\item
+  outcome B (failure): has a probability \(1-p\)
+\end{itemize}
+
+Or write, the probability mass function of \(K\) taking values \(\{0, 1\}\) for \(A\) and \(B\)
+
+\[
+    f(k)= 
+\begin{cases}
+    1-p,&  k=0\, (event\, B)\\
+    p,& k=1\, (event\, A) 
+\end{cases}
+\]
+
+or more shortly
+
+\[f(k; p)=p^k(1-p)^{1-k} \]
+
+for \(k=(0,1)\)
+
+We only need to know \(p\).
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{bernoulli-trial-2}{%
+\section{Bernoulli trial}\label{bernoulli-trial-2}}
+
+A Bernoulli variable \(K\) with outcomes \(\{0, 1\}\) has a probability mass function
+
+\[f(k; p)=p^k(1-p)^{1-k} \]
+With mean and variance:
+
+\begin{itemize}
+\item
+  \(E(K)=p\)
+\item
+  \(V(K)=(1-p)p\)
+\end{itemize}
+
+Note:
+
+\begin{itemize}
+\item
+  The probability of the outcome \(A\) is the parameter \(p\)
+  which is the same as \(f(0)=P(X=0)\).
+\item
+  As \(p\) is usually \textbf{unknown} we typically estimated it by the relative frequency (more on this in the inference sections): \(\hat{p}=f_A=\frac{n_A}{N}\)
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{bernoulli-trial-3}{%
+\section{Bernoulli trial}\label{bernoulli-trial-3}}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-55-1.pdf}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{binomial-distribution}{%
+\section{Binomial distribution}\label{binomial-distribution}}
+
+When we are interested in learning about a particular Bernoulli trial
+
+\begin{itemize}
+\item
+  We repeat the Bernoulli trial \(N\) times and count how many times we obtained \(A\) (\(n_A\)).
+\item
+  We define a random variable \(X=n_A\) taking values \(x \in {0,1,...N}\)
+\end{itemize}
+
+We now ask for the probability of observing \(x\) events of type \(A\) in the repetition of \(n\) independent Bernoulli trials, when the probability of observing \(A\) is \(p\).
+
+\[P(X=x)=f(x)=?\]
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{examples-binomial-distribution}{%
+\section{Examples: Binomial distribution}\label{examples-binomial-distribution}}
+
+\begin{itemize}
+\item
+  Writing down the sex of \(n=10\) patients who go into an emergency room of a hospital. What is the probability that \(x=6\) patients are men when \(p=0.9\)?
+\item
+  Trying \(n=5\) times to hit a target (\(A:success\) and \(B:failure\)). What is the probability that I hit the target \(x=5\) times when I usually hit it \(25\%\) of the times (\(p=0.25\))?
+\item
+  Transmitting \(n=100\) pixels correctly (\(A:yes\) and \(B:no\)). What is the probability that \(x=2\) pixels are errors, when the probability of error is \(p=0.1\)?
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{binomial-distribution-1}{%
+\section{Binomial distribution}\label{binomial-distribution-1}}
+
+What is the probability of observing \(X=4\) errors when transmitting \(4\) pixels, if the probability of an error is \(p\)?
+
+Consider \(4\) random variables: \(K_1\), \(K_2\), \(K_3\) and \(K_4\) that record whether an error has been made in the \(1^{st}\), \(2^{nd}\), \(3^{rd}\) and \(4^{th}\) pixel.
+
+Then
+
+\begin{itemize}
+\item
+  \(k_i\) takes values \(\{correct:0; error:1\}\)
+\item
+  \(X=\sum_{i=1}^4 K_i\) takes values \(\{0,1,2,3,4\}\)
+\end{itemize}
+
+Then the probability of observing \(4\) errors is:
+
+\begin{itemize}
+\tightlist
+\item
+  \(P(X=4)=P(1,1,1,1)=p*p*p*p=p^4\) because \(K_i\) are independent.
+\end{itemize}
+
+The probability of \(0\) errors is:
+
+\begin{itemize}
+\tightlist
+\item
+  \(P(X=0)=P(0,0,0,0)=(1-p)(1-p)(1-p)(1-p)=(1-p)^4\)
+\end{itemize}
+
+The probability of \(3\) errors is:
+
+\(P(X=3)=P(0,1,1,1)+P(1,0,1,1)+P(1,1,0,1)+P(1,1,1,0)\)
+\(=4p^3(1-p)^1\)
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{binomial-distribution-2}{%
+\section{Binomial distribution}\label{binomial-distribution-2}}
+
+Therefore the probability of \(x\) errors is
+
+\[
+    f(x)= 
+\begin{cases}
+    1*p^0(1-p)^4,&  x=0 \\
+    4*p^1(1-p)^3,&  x=1 \\
+    6*p^2(1-p)^2,&  x=2 \\
+    4*p^3(1-p)^1,&  x=3 \\
+    1*p^4(1-p)^0,&  x=4 \\
+\end{cases}
+\]
+
+or more shortly
+
+\[f(x)=\binom 4 x p^x(1-p)^{4-x}\]
+for \(x=0,1,2,3,4\)
+
+where \(\binom 4 x\) is the number of possible outcomes (transmissions of \(4\) pixels) with \(x\) errors.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{binomial-distribution-definition}{%
+\section{Binomial distribution: Definition}\label{binomial-distribution-definition}}
+
+The binomial probability function is the probability mass function of observing \(x\) outcomes of type \(A\) in \(n\) independent Bernoulli trials, where \(A\) has the same probability \(p\) in each trial.
+
+The function is given by
+
+\(f(x)=\binom n x p^x(1-p)^{n-x}\), \(x=0,1,...n\)
+
+\(\binom n x= \frac{n!}{x!(n-x)!}\) is called \textbf{the binomial coefficient} and gives the number of ways one can obtain \(x\) events of type \(A\) in a set of \(n\).
+
+When a variable \(X\) has a binomial probability function we say it distributes binomially and write
+
+\[X\rightarrow Bin(n,p)\]
+
+where \(n\) and \(p\) are parameters.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{binomial-distribution-mean-and-variance}{%
+\section{Binomial distribution: Mean and Variance}\label{binomial-distribution-mean-and-variance}}
+
+The mean and variance of \(X\hookrightarrow Bin(n,p)\) are
+
+\begin{itemize}
+\item
+  \(E(X)=np\)
+\item
+  \(V(X)=np(1-p)\)
+\item
+  Since \(X\) is the sum of \(n\) independent Bernoulli variables
+\end{itemize}
+
+\(E(X)=E(\sum_{i=1}^n K_i)=np\)
+
+and
+
+\(V(X)=V(\sum_{i=1}^n K_i)=n(1-p)p\)
+
+Example:
+
+\begin{itemize}
+\item
+  The expected value for the number of errors in the transmission of 4 pixels is \(np=4*0.1=0.4\) when the probability of an error is \(0.1\).
+\item
+  The variance is \(n(1-p)p=0.36\)
+\end{itemize}
+
+\textbf{Remember}: We can specify either the parameters \(n\) and \(p\), or the parameters \(E(X)\) and \(V(X)\)
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{example-1-1}{%
+\section{Example 1}\label{example-1-1}}
+
+Now let's answer:
+
+\begin{itemize}
+\tightlist
+\item
+  What is the probability of observing \(4\) errors when transmitting \(4\) pixels, if the probability of an error is \(0.1\)?
+\end{itemize}
+
+Since we are repeating a Bernoulli trial \(n=4\) times and counting the number of events of type \(A\) (errors), when \(P(A)=p=0.1\) then
+
+\[X \rightarrow Bin(n=4, p=0.1)\]
+That is \[f(x)=\binom 4 x 0.1^x(1-0.1)^{4-x}\]
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{example-1-2}{%
+\section{Example 1}\label{example-1-2}}
+
+\begin{itemize}
+\tightlist
+\item
+  We want to compute:
+\end{itemize}
+
+\(P(X=4)=f(4)=\binom 4 4 0.1^4 0.9^{0}=10^{-4}\)
+
+In R dbinom(4,4,0.1)
+
+\begin{itemize}
+\tightlist
+\item
+  We can also compute:
+\end{itemize}
+
+\(P(X=2)=\binom 4 2 0.1^2 0.9^2=0.0486\)
+
+In R dbinom(2,4,0.1)
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{example-2-1}{%
+\section{Example 2}\label{example-2-1}}
+
+\begin{itemize}
+\tightlist
+\item
+  What is the probability of observing at least \(8\) voters of the ruling party in an election poll of size \(10\), if the probability of a positive vote is \(0.9\)
+\end{itemize}
+
+For this case
+
+\[X \rightarrow Bin(n=8, p=0.9)\]
+
+That is \[f(x)=\binom {10} x 0.9^x(0.1)^{4-x}\]
+
+We want to compute:
+\(P(X\le 8)=F(8)= \sum_{i=1..8} f(x_i)=0.2639011\)
+
+in R pbinom(8,10, 0.9)
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{binomial-distribution-3}{%
+\section{Binomial distribution}\label{binomial-distribution-3}}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-56-1.pdf}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{negative-binomial-distribution}{%
+\section{Negative binomial distribution}\label{negative-binomial-distribution}}
+
+Now let us imagine that we are interested in counting the well-transmitted pixels before a \textbf{given number} of errors occur. Say we can \textbf{tolerate} \(r\) errors in transmission.
+
+\begin{itemize}
+\item
+  Experiment: Suppose performing Bernoulli trials until we observe the outcome \(A\) appears \(r\) times.
+\item
+  Random variable: We count the number of events \(B\)
+\item
+  Example: What is the probability of observing \(y\) well-transmitted (\(B\)) pixels before \(r\) errors (\(A\))?
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{negative-binomial-distribution-1}{%
+\section{Negative binomial distribution}\label{negative-binomial-distribution-1}}
+
+Let's first find the probability of one particular transmission with \(y\) number of correct pixels (\(B\)) and \(r\) number of errors (\(A\)).
+
+\((0,0,1,., 0,1,...0,1)\) (there are \(y\) zeros, and \(r\) ones)
+
+We observe \(y\) correct pixels in a total of \(y + r\) trials.
+
+Then
+
+\begin{itemize}
+\tightlist
+\item
+  \(P(0,0,1,., 0,1,...0,1)=p^r(1-p)^y\) (Remember: \(p\) is the probability of error)
+\end{itemize}
+
+How many transmissions can have \(y\) correct pixels before \(r\) errors?
+
+Note:
+
+\begin{itemize}
+\item
+  The last bit is fixed (marks the end of transmission)
+\item
+  The total number of transmissions with \(y\) number of correct pixels (\(B\)) that we can obtain in \(y + r-1\) trials is: \(\binom {y + r-1} y\)
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{negative-binomial-distribution-2}{%
+\section{Negative binomial distribution}\label{negative-binomial-distribution-2}}
+
+Therefore, the probability of observing \(y\) events of type \(B\) before \(r\) events of type \(A\) (with probability \(p\)) is
+
+\[P(Y=y)=f(y)=\binom {y+r-1} y p^r(1-p)^y\]
+
+for \(y=0,1,...\)
+
+We then say that \(Y\) follows a negative binomial distribution and we write
+
+\[Y\rightarrow NB(r,p)\]
+
+where \(r\) and \(p\) are parameters representing the tolerance and the probability of a single error.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{mean-and-variance-2}{%
+\section{Mean and Variance}\label{mean-and-variance-2}}
+
+A random variable with \(Y\rightarrow NB(r,p)\) has
+
+\begin{itemize}
+\item
+  mean: \(E(Y)= r\frac{1-p}{p}\)
+\item
+  variance: \(V(Y)= r\frac{1-p}{p^2}\)
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{geometric-distribution}{%
+\section{Geometric distribution}\label{geometric-distribution}}
+
+We call \textbf{geometric distribution} to the negative binomial distribution with \(r=1\)
+
+The probability of observing \(B\) events before observing the \textbf{first} event of type \(A\) is
+
+\[P(Y=y)=f(y)= p(1-p)^y\]
+
+\[Y\rightarrow Geom(p)\]
+with mean
+
+\begin{itemize}
+\item
+  mean: \(E(Y)= \frac{1-p}{p}\)
+\item
+  variance: \(V(Y)= \frac{1-p}{p^2}\)
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{example-9}{%
+\section{Example}\label{example-9}}
+
+\begin{itemize}
+\item
+  A website has three servers.
+\item
+  One server operates at a time and only when a request fails another server is used.
+\item
+  If the probability of failure for a request is known to be \(p=0.0005\) then
+\item
+  what is the expected number of successful requests before the three computers fail?
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{example-10}{%
+\section{Example}\label{example-10}}
+
+Since we are repeating a Bernoulli trial until \(r=3\) events of type \(A\) (failure) are observed (each with \(P(A)=p=0.0005\)) and are counting the number of events of type \(B\) (successful requests) then
+
+\[Y \rightarrow NB(r=3, p=0.0005)\]
+
+Therefore, the expected number of requests before the system fails is:
+
+\(E(Y)=r\frac{1-p}{p}=3\frac{1-0.0005}{0.0005}=5997\)
+
+\begin{itemize}
+\tightlist
+\item
+  Note that there are actually \(6000\) trials
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{example-11}{%
+\section{Example}\label{example-11}}
+
+What is the probability of dealing with at most \(5\) successful requests before the system fails?
+
+Recall the cumulative function distribution \(F(y)=P(Y\leq 5)\)
+
+\(F(5)=P(Y\leq 5)=\Sigma_{y=0}^5 f(y)\)
+
+\(=\sum_{y=0}^5\binom {y+2} y 0.0005^r0.9995^y\)
+
+\(=\binom {2} 0 0.0005^3 0.9995^0 +\binom {3} 1 0.0005^3 0.9995^1\)
+
+\(+\binom {4} 2 0.0005^3 0.9995^2 +\binom {5} 3 0.0005^3 0.9995^3\)
+
+\(+\binom {6} 4 0.0005^3 0.9995^4 +\binom {7} 5 0.0005^3 0.9995^5\)
+
+\(= 6.9\times 10^{-9}\)
+
+In R pnbinom(5,3,0.0005)
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{examples}{%
+\section{Examples}\label{examples}}
+
+With the negative binomial probability function:
+
+\[f(y)=\binom {y+r-1} y p^r (1-p)^y\]
+
+We can now answer questions like:
+
+\begin{itemize}
+\tightlist
+\item
+  What is the probability of observing \(10\) correct pixels before \(2\) errors, if the probability of an error is \(0.1\)?
+\end{itemize}
+
+\(f(10; r=2, p=0.1)=0.03835463\)
+
+in R dnbinom(10, 2, 0.1)
+
+\begin{itemize}
+\tightlist
+\item
+  What is the probability that \(2\) girls enter the class before \(4\) boys if the probability that a girl enters is \(0.5\)?
+\end{itemize}
+
+\(f(2; r=4, p=0.5)=0.15625\)
+
+in R dnbinom(2, 4, 0.5)
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{negative-binomial-distribution-3}{%
+\section{Negative binomial distribution}\label{negative-binomial-distribution-3}}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-57-1.pdf}
+
 \hypertarget{exercises}{%
 \chapter{Exercises}\label{exercises}}
 
@@ -4093,12 +4996,37 @@ If the diagnostic test has sensitivity \(P(E|\bar{D})=0.99\) and specificity \(P
 \hypertarget{exercise-1-3}{%
 \subsubsection{Exercise 1}\label{exercise-1-3}}
 
+Given the probability mass function
+
+\begin{longtable}[]{@{}cc@{}}
+\toprule
+\(x\) & \(f(x)=P(X=x)\) \\
+\midrule
+\endhead
+10 & 0.1 \\
+12 & 0.3 \\
+14 & 0.25 \\
+15 & 0.15 \\
+17 & ? \\
+20 & 0.15 \\
+\bottomrule
+\end{longtable}
+
+\begin{itemize}
+\tightlist
+\item
+  what is its expected value and standard deviation?
+\end{itemize}
+
+\hypertarget{exercise-2-3}{%
+\subsubsection{Exercise 2}\label{exercise-2-3}}
+
 Given the probability distribution for a discrete variable \(X\)
 
 \[
     F(x)= 
 \begin{cases}
-0, & x \leq -1 \\
+0, & x < -1 \\
 0.2,& x \in [-1,0)\\
 0.35,& x \in [0,1)\\
 0.45,& x \in [1,2)\\
@@ -4106,31 +5034,39 @@ Given the probability distribution for a discrete variable \(X\)
 \end{cases}
 \]
 
-\begin{enumerate}
-\def\labelenumi{\alph{enumi})}
+\begin{itemize}
 \tightlist
 \item
-  find \(f(X)\)
+  find \(f(x)\)
 \item
   find \(E(X)\) and \(V(X)\)
 \item
   what is the expected value and variance of \(Y=2X+3\)
 \item
-  what is the median of \(X\)?
-\end{enumerate}
+  what is the median and the first and third quartiles of \(X\)?
+\end{itemize}
 
-\hypertarget{exercise-2-3}{%
-\subsubsection{Exercise 2}\label{exercise-2-3}}
+\hypertarget{exercise-3-1}{%
+\subsubsection{Exercise 3}\label{exercise-3-1}}
 
-We have a system of transmission of pixels that is totally noisy. We are testing the system and have designed an experiment to transmit 3 pixels.
+We are testing a system to transmit digital pictures. We first consider the experiment of sending \(3\) pixels and having as \textbf{possible} outcomes events such like \((0,1,1)\). This is the event of receiving the first pixel with no error, the second with error and third with error.
 
 \begin{itemize}
 \item
-  What is the probability of receiving 0, 1, 2, or 3 errors in the transmission of 3 pixels?
+  List in one column the sample space of the random experiment.
 \item
-  Sketch the probability mass function
+  In the a second column assign the random variable that counts the number of errors transmitted for each outcome
+\end{itemize}
+
+Consider that we have a totally noisy channel, that is any outcome of three pixels is equally likely.
+
+\begin{itemize}
 \item
-  What is the expected value of the error?
+  What is the probability of receiving \(0\), \(1\), \(2\), or \(3\) errors in the transmission of \(3\) pixels?
+\item
+  Sketch the probability mass function for the number of errors
+\item
+  What is the expected value for the number of errors?
 \item
   What is its variance?
 \item
@@ -4139,19 +5075,8 @@ We have a system of transmission of pixels that is totally noisy. We are testing
   What is the probability of transmitting at least 1 error?
 \end{itemize}
 
-hints:
-
-\begin{itemize}
-\item
-  Sample space: \(\{(0,0,0), (1,0,0), (0,1,0), (0,0,1), (0,1,1), (1,0,1), (1,1,0), (1,1,1)\}\)
-\item
-  where, for example, the event \((0,1,1)\) is the event of receiving the first pixel with no error and the second and third pixels with errors.
-\item
-  All events are equally probable.
-\end{itemize}
-
-\hypertarget{exercise-3-1}{%
-\subsubsection{Exercise 3}\label{exercise-3-1}}
+\hypertarget{exercise-4-1}{%
+\subsubsection{Exercise 4}\label{exercise-4-1}}
 
 \begin{itemize}
 \tightlist
@@ -4179,17 +5104,39 @@ hints:
   What are the first and third quartiles?
 \end{itemize}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-57-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-64-1.pdf}
 
-\hypertarget{exercise-4-1}{%
-\subsubsection{Exercise 4}\label{exercise-4-1}}
+\hypertarget{exercise-5-1}{%
+\subsubsection{Exercise 5}\label{exercise-5-1}}
+
+Given
+\[
+    f(x)= 
+\begin{cases}
+0, & x < 0 \\
+ax, & x \in [0,3] \\
+b, & x \in (3,5) \\
+\frac{b}{3}(8-x),& x \in [5,8]\\
+0, & x > 8 \\
+\end{cases}
+\]
+
+\begin{itemize}
+\item
+  What are the values of \(a\) and \(b\) such that \(f(x)\) is a continous probability density function?
+\item
+  what is the mean of \(X\)?
+\end{itemize}
+
+\hypertarget{exercise-6}{%
+\subsubsection{Exercise 6}\label{exercise-6}}
 
 For the probability density
 
 \[
     f(x)= 
 \begin{cases}
-    \lambda e^{-\lambda x},& \text{if } 0 \leq\\
+    \lambda e^{-\lambda x},& \text{if } x \geq 0\\
     0,& otherwise 
 \end{cases}
 \]
@@ -4199,15 +5146,19 @@ For the probability density
 \item
   Confirm that this is a probability density
 \item
-  Find the probability distribution \(F(a)\)
-\item
   Compute the mean
 \item
-  Compute variance using \(E(X^2)=V(X)+E(X)^2\)
+  Compute the expected value of \(X^2\)
+\item
+  Compute variance
+\item
+  Find the probability distribution \(F(a)\)
+\item
+  Find the median
 \end{itemize}
 
-\hypertarget{exercise-5-1}{%
-\subsubsection{Exercise 5}\label{exercise-5-1}}
+\hypertarget{exercise-7}{%
+\subsubsection{Exercise 7}\label{exercise-7}}
 
 Given the cumulative distribution for a random variable X
 
@@ -4246,7 +5197,7 @@ A search engine fails to retrieve information with a probability \(0.1\)
 \item
   What is the probability that the engine successfully completes \(15\) searches before the first failure?
 \item
-  We consider that a search engine works sufficiently well when it is able to find information for \(10\) requests for every \(2\) failures. What is the probability that in a reliability trial our search engine is satisfactory?
+  We consider that a search engine works sufficiently well when it is able to find information for moe than \(10\) requests for every \(2\) failures. What is the probability that in a reliability trial our search engine is satisfactory?
 \end{itemize}
 
 \hypertarget{exercise-2-4}{%
@@ -4271,7 +5222,7 @@ In a population, the probability that a baby boy is born is \(p=0.51\). Consider
 \hypertarget{exercise-3-2}{%
 \subsubsection{Exercise 3}\label{exercise-3-2}}
 
-The average number of radioactive particles hitting a Geiger counter is \(2.3\) seconds.
+The average number of radioactive particles hitting a Geiger counter is \(2.3\) per second.
 
 \begin{itemize}
 \item
@@ -4573,19 +5524,60 @@ hints:
 \hypertarget{exercise-2-9}{%
 \subsubsection{Exercise 2}\label{exercise-2-9}}
 
-compute \(95\%\) CI for the mean of a normal variable with known variance \(\sigma^2=9\) and \(\mu=22\)
+compute \(95\%\) CI the mean of a normal variable with known variance \(\sigma^2=9\) and \(\bar{x}=22\), using a sample of size \(36\).
 
 \hypertarget{exercise-3-6}{%
 \subsubsection{Exercise 3}\label{exercise-3-6}}
 
-This year a \(1000\) sample of patients with influenza developed complications.
+This year, \(17\) from \(1000\) of patients with influenza developed complications.
 
 \begin{itemize}
 \item
   Compute the \(99\%\) confidence interval for the proportion of complications.
 \item
-  The previous year \(2\%\) showed complications. Can we say with \(99\%\) confidence that this year there is a significnat drop in influenza complications?
+  The previous year \(2\%\) showed complications. Can we say with \(99\%\) confidence that this year there is a significant drop in influenza complications?
 \end{itemize}
+
+\hypertarget{hypothesis-testing}{%
+\section{Hypothesis testing}\label{hypothesis-testing}}
+
+\hypertarget{exercise-1-10}{%
+\subsubsection{Exercise 1}\label{exercise-1-10}}
+
+Imagine we take a random sample of size \(n = 41\) of a normal random variable \(X\), and find that the sample average is \(10\) and the sample variance is \(1.5\).
+
+\begin{itemize}
+\tightlist
+\item
+  What is then the confidence interval for the mean of \(X\) at \(95\%\) confidence level?
+\end{itemize}
+
+Consider that \(t_{0.025,40}=\) qt(0.975, 40) \(\sim 2\).
+
+\begin{itemize}
+\item
+  Test the hypothesis that the mean of \(X\) is \textbf{different} than \(10.5\), using a \(5\%\) significance threshold.
+\item
+  Write the code to calculate the P-value to test the hypothesis that the mean of \(\mu\) is \textbf{lower} than \(10.5\), using a \(5\%\) significance threshold.
+\end{itemize}
+
+Consider that the code for the T probability distribution with \(n-1\) degrees of freedom is pt(tobs, n-1).
+
+\hypertarget{exercise-2-10}{%
+\subsubsection{Exercise 2}\label{exercise-2-10}}
+
+\(10\) gas condensates showed the following concentrations of mercury (in \(ng/ml\)):
+
+\(23.3\), \(22.5\), \(21.9\), \(21.5\), \(19.9\), \(21.3\), \(21.7\), \(23.8\), \(22.6\), \(24.7\)
+
+Assuming that the mercury concentration is distributed normally a across gas condensates, test the hypothesis that a condensate does not surpass the toxicity limit established at \(24 ng/ml\).
+
+\hypertarget{exercise-3-7}{%
+\subsubsection{Exercise 3}\label{exercise-3-7}}
+
+The manufacturer of gene expression microarrays guarantees that at least \(97\%\) of the microarrys they produce have high quality signals. A customer receives a batch of \(200\) pieces and finds that \(8\) unperformed.
+
+Should the costumer return the lot due to poor quality?
 
   \bibliography{book.bib,packages.bib}
 

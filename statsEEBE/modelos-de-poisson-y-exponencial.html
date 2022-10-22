@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 4 Probabilidad condicional | Estadística</title>
+  <title>Chapter 8 Modelos de Poisson y Exponencial | Estadística</title>
   <meta name="description" content="This are slides for the Stats theory of the BIST master" />
   <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 4 Probabilidad condicional | Estadística" />
+  <meta property="og:title" content="Chapter 8 Modelos de Poisson y Exponencial | Estadística" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="alejandro-isglobal/master" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 4 Probabilidad condicional | Estadística" />
+  <meta name="twitter:title" content="Chapter 8 Modelos de Poisson y Exponencial | Estadística" />
   
   <meta name="twitter:description" content="This are slides for the Stats theory of the BIST master" />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="probabilidad.html"/>
-<link rel="next" href="variables-aleatorias-discretas.html"/>
+<link rel="prev" href="modelos-de-probabilidad-para-variables-aleatorias-discretas.html"/>
+<link rel="next" href="ejercicios.html"/>
 <script src="libs/header-attrs-2.12/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -345,833 +345,261 @@
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="probabilidad-condicional" class="section level1 hasAnchor" number="4">
-<h1><span class="header-section-number">Chapter 4</span> Probabilidad condicional<a href="probabilidad-condicional.html#probabilidad-condicional" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<div id="objetivo-3" class="section level2 hasAnchor" number="4.1">
-<h2><span class="header-section-number">4.1</span> Objetivo<a href="probabilidad-condicional.html#objetivo-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="modelos-de-poisson-y-exponencial" class="section level1 hasAnchor" number="8">
+<h1><span class="header-section-number">Chapter 8</span> Modelos de Poisson y Exponencial<a href="modelos-de-poisson-y-exponencial.html#modelos-de-poisson-y-exponencial" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="objetivo-7" class="section level2 hasAnchor" number="8.1">
+<h2><span class="header-section-number">8.1</span> Objetivo<a href="modelos-de-poisson-y-exponencial.html#objetivo-7" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Modelo de probabilidad discreta:</p>
 <ul>
-<li>Probabilidad condicional</li>
-<li>Independencia</li>
-<li>Teorema de Bayes</li>
+<li>Poisson</li>
+</ul>
+<p>Modelo de probabilidad continua:</p>
+<ul>
+<li>Exponencial</li>
 </ul>
 <hr />
 <hr />
 </div>
-<div id="probabilidad-conjunta" class="section level2 hasAnchor" number="4.2">
-<h2><span class="header-section-number">4.2</span> Probabilidad conjunta<a href="probabilidad-condicional.html#probabilidad-conjunta" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>La probabilidad conjunta de dos eventos <span class="math inline">\(A\)</span> y <span class="math inline">\(B\)</span> es
-<span class="math display">\[P(A,B)=P(A \cap B)\]</span></p>
-<p>Imaginemos un experimento aleatorio que mide dos tipos diferentes de resultados.</p>
-<ul>
-<li><p>altura y peso de un individuo: <span class="math inline">\((h, w)\)</span></p></li>
-<li><p>hora y lugar de una carga eléctrica: <span class="math inline">\((p, t)\)</span></p></li>
-<li><p>una tirada de dos dados: (<span class="math inline">\(n_1\)</span>,<span class="math inline">\(n_2\)</span>)</p></li>
-<li><p>cruzar dos semáforos en verde: (<span class="math inline">\(\bar{R_1}\)</span>, <span class="math inline">\(\bar{R_2}\)</span>)</p></li>
-</ul>
-<p>En muchos casos, nos interesa saber si los valores de un resultado <strong>condicionan</strong> los valores del otro.</p>
+<div id="modelos-de-probabilidad-discreta" class="section level2 hasAnchor" number="8.2">
+<h2><span class="header-section-number">8.2</span> Modelos de probabilidad discreta<a href="modelos-de-poisson-y-exponencial.html#modelos-de-probabilidad-discreta" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Estamos construyendo modelos más complejos a partir de modelos simples:</p>
+<p><strong>Uniforme</strong>: interpretación clásica de la probabilidad
+</br><span class="math inline">\(\downarrow\)</span>
+</br><strong>Bernoulli</strong>: Introducción de un <strong>parámetro</strong> <span class="math inline">\(p\)</span> (familia de modelos)
+</br><span class="math inline">\(\downarrow\)</span>
+</br><strong>Binomial</strong>: <strong>Repetición</strong> de un experimento aleatorio (<span class="math inline">\(n\)</span>-veces ensayos de Bernoulli)
+</br><span class="math inline">\(\downarrow\)</span>
+</br><strong>Poisson</strong>: Repetición de un experimento aleatorio dentro de un intervalo continuo, <strong>sin control</strong> sobre cuándo/dónde ocurre la ensayo de Bernouilli.</p>
 <hr />
 <hr />
 </div>
-<div id="diagnósticos" class="section level2 hasAnchor" number="4.3">
-<h2><span class="header-section-number">4.3</span> Diagnósticos<a href="probabilidad-condicional.html#diagnósticos" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Consideremos una <strong>herramienta de diagnóstico</strong></p>
-<p>Queremos encontrar el estado de un sistema (s):</p>
+<div id="contando-eventos" class="section level2 hasAnchor" number="8.3">
+<h2><span class="header-section-number">8.3</span> Contando eventos<a href="modelos-de-poisson-y-exponencial.html#contando-eventos" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Imagine que estamos observando eventos que <strong>dependen</strong> de <strong>intervalos</strong> de tiempo o distancia.</p>
 <ul>
-<li>inadecuado (sí)</li>
-<li>adecuado (no)</li>
+<li>coches que llegan a un semáforo</li>
+<li>mensajes en el teléfono móvil</li>
+<li>impurezas que ocurren al azar en un alambre de cobre</li>
 </ul>
-<p>con una prueba (t):</p>
-<ul>
-<li>positivo</li>
-<li>negativo</li>
-</ul>
-<p>Probamos una batería para saber cuánto tiempo puede vivir. Tensamos un cable para saber si resiste llevar cierta carga. Realizamos una PCR para ver si alguien está infectado.</p>
+<p>Supongamos que los eventos son resultados de ensayos de Bernoulli <strong>independientes</strong>, cada uno de los cuales aparece aleatoriamente en un intervalo continuo, y queremos <strong>contarlos</strong>.</p>
 <hr />
 <hr />
 </div>
-<div id="prueba-de-diagnóstico" class="section level2 hasAnchor" number="4.4">
-<h2><span class="header-section-number">4.4</span> Prueba de diagnóstico<a href="probabilidad-condicional.html#prueba-de-diagnóstico" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Consideremos diagnosticar una infección con una nueva prueba.</p>
-<p>Estado de infección:</p>
+<div id="contando-eventos-1" class="section level2 hasAnchor" number="8.4">
+<h2><span class="header-section-number">8.4</span> Contando eventos<a href="modelos-de-poisson-y-exponencial.html#contando-eventos-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>¿Cuál es la probabilidad de observar <span class="math inline">\(X\)</span> eventos en una unidad de intervalo (tiempo o distancia)?</p>
+<p>Imagine que algunas impurezas en un alambre de cobre se depositan al azar a lo largo de un alambre</p>
 <ul>
-<li>si (infectado)</li>
-<li>no (no infectado)</li>
-</ul>
-<p>Prueba:</p>
-<ul>
-<li>positivo</li>
-<li>negativo</li>
+<li>en cada centímetro, contamos un promedio de <span class="math inline">\(\lambda=10/cm\)</span>.</li>
+<li>dividimos el centímetro en micrómetros (<span class="math inline">\(0.0001cm\)</span>)</li>
 </ul>
 <hr />
 <hr />
 </div>
-<div id="observaciones" class="section level2 hasAnchor" number="4.5">
-<h2><span class="header-section-number">4.5</span> Observaciones<a href="probabilidad-condicional.html#observaciones" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Cada individuo es un experimento aleatorio con dos medidas: (Infección, Prueba)</p>
-<table>
-<thead>
-<tr class="header">
-<th align="center">Asunto</th>
-<th align="center">Infección</th>
-<th align="center">Prueba</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="center"><span class="math inline">\(s_1\)</span></td>
-<td align="center">si</td>
-<td align="center">positivo</td>
-</tr>
-<tr class="even">
-<td align="center"><span class="math inline">\(s_2\)</span></td>
-<td align="center">no</td>
-<td align="center">negativo</td>
-</tr>
-<tr class="odd">
-<td align="center"><span class="math inline">\(s_3\)</span></td>
-<td align="center">si</td>
-<td align="center">positivo</td>
-</tr>
-<tr class="even">
-<td align="center">…</td>
-<td align="center">…</td>
-<td align="center">…</td>
-</tr>
-<tr class="odd">
-<td align="center"><span class="math inline">\(s_i\)</span></td>
-<td align="center">no</td>
-<td align="center">positivo*</td>
-</tr>
-<tr class="even">
-<td align="center">…</td>
-<td align="center">…</td>
-<td align="center">…</td>
-</tr>
-<tr class="odd">
-<td align="center">…</td>
-<td align="center">…</td>
-<td align="center">…</td>
-</tr>
-<tr class="even">
-<td align="center"><span class="math inline">\(s_n\)</span></td>
-<td align="center">si</td>
-<td align="center">negativo*</td>
-</tr>
-</tbody>
-</table>
+<div id="distribución-de-poisson" class="section level2 hasAnchor" number="8.5">
+<h2><span class="header-section-number">8.5</span> Distribución de Poisson<a href="modelos-de-poisson-y-exponencial.html#distribución-de-poisson" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Los micrómetros son lo suficientemente pequeños tal que</p>
+<ul>
+<li>hay o no hay una impureza en cada micrómetro</li>
+<li>cada micrómetro puede considerarse un <strong>ensayo de Bernoulli</strong></li>
+</ul>
+<p><img src="figures/poiss.jpg" style="width:75%" style="height:100%"  align="center"></p>
 <hr />
 <hr />
 </div>
-<div id="tablas-de-contingencia" class="section level2 hasAnchor" number="4.6">
-<h2><span class="header-section-number">4.6</span> Tablas de contingencia<a href="probabilidad-condicional.html#tablas-de-contingencia" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="distribución-de-poisson-1" class="section level2 hasAnchor" number="8.6">
+<h2><span class="header-section-number">8.6</span> Distribución de Poisson<a href="modelos-de-poisson-y-exponencial.html#distribución-de-poisson-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>La probabilidad de observar <span class="math inline">\(X\)</span> impurezas en <span class="math inline">\(n=10,000\mu\)</span> (1cm) sigue aproximadamente una distribución binomial</p>
+<p><span class="math inline">\(P(X=x)=\binom n x p^x(1-p)^{n-x}\)</span></p>
+<p>donde <span class="math inline">\(p\)</span> es la probabilidad de encontrar una impureza en un micrómetro.</p>
+<p>Recuerdemos que
+<span class="math inline">\(E(X)=np\)</span>
+entonces para <span class="math inline">\(\lambda=np\)</span> (número promedio de impurezas por 1 cm), podemos escribir</p>
+<p><span class="math display">\[P(X=x)=\binom n x \big(\frac{\lambda}{n}\big)^x(1-\frac{\lambda}{n})^{n-x}\]</span></p>
 <ul>
-<li>Por el número de observaciones de cada resultado</li>
+<li><strong>Podría</strong> todavía haber dos impurezas en un micrómetro, por lo que debemos aumentar la partición del cable y <span class="math inline">\(n \rightarrow \infty\)</span>.</li>
 </ul>
-<table>
-<thead>
-<tr class="header">
-<th align="center"></th>
-<th align="center">Infección: sí</th>
-<th align="center">Infección: no</th>
-<th align="center">suma</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="center"><b>Test: positivo</b></td>
-<td align="center">18</td>
-<td align="center">12</td>
-<td align="center">30</td>
-</tr>
-<tr class="even">
-<td align="center"><b>Test: negativo</b></td>
-<td align="center">30</td>
-<td align="center">300</td>
-<td align="center">330</td>
-</tr>
-<tr class="odd">
-<td align="center"><b>suma</b></td>
-<td align="center">48</td>
-<td align="center">312</td>
-<td align="center">360</td>
-</tr>
-</tbody>
-</table>
-<ul>
-<li>Para las frecuencias relativas, si <span class="math inline">\(N&gt;&gt;0\)</span> tomaremos <span class="math inline">\(f_{i,j}=\hat{P}(x_i, y_j)\)</span></li>
-</ul>
-<table>
-<thead>
-<tr class="header">
-<th align="center"></th>
-<th align="center">Infección: sí</th>
-<th align="center">Infección: no</th>
-<th align="center">suma</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="center"><b>Test: positivo</b></td>
-<td align="center">0.05</td>
-<td align="center">0.0333</td>
-<td align="center">0.0833</td>
-</tr>
-<tr class="even">
-<td align="center"><b>Test: negativo</b></td>
-<td align="center">0.0833</td>
-<td align="center">0.833</td>
-<td align="center">0.9166</td>
-</tr>
-<tr class="odd">
-<td align="center"><b>suma</b></td>
-<td align="center">0.133</td>
-<td align="center">0.866</td>
-<td align="center">1</td>
-</tr>
-</tbody>
-</table>
+<p>Entonces en el límite:</p>
+<p><span class="math display">\[P(X=x)= \frac{e^{-\lambda}\lambda^x}{x!}\]</span></p>
+<p>Donde <span class="math inline">\(\lambda\)</span> es constante porque es la densidad de impurezas por centímetro, una <strong>propiedad física</strong> del sistema.</p>
 <hr />
 <hr />
 </div>
-<div id="la-probabilidad-condicional" class="section level2 hasAnchor" number="4.7">
-<h2><span class="header-section-number">4.7</span> La probabilidad condicional<a href="probabilidad-condicional.html#la-probabilidad-condicional" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Pensemos primero en términos de aquellos que están <strong>infectados</strong></p>
-<p><br />
-Dentro de los que están infectados (<strong>sí</strong>), ¿cuál es la probabilidad de dar positivo?</p>
+<div id="distribución-de-poisson-detalles-de-la-derivación" class="section level2 hasAnchor" number="8.7">
+<h2><span class="header-section-number">8.7</span> Distribución de Poisson: detalles de la derivación<a href="modelos-de-poisson-y-exponencial.html#distribución-de-poisson-detalles-de-la-derivación" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Para <span class="math inline">\(P(X=x)=\binom n x \big(\frac{\lambda}{n}\big)^x(1-\frac{\lambda}{n})^{n-x}\)</span></p>
+<p>en el límite (<span class="math inline">\(n \rightarrow \infty\)</span>)</p>
 <ul>
-<li><b>Sensibilidad</b> (tasa de verdaderos positivos)</li>
+<li><span class="math inline">\(\frac{1}{n^x}\binom n x =\frac{1}{n^x}\frac{n!}{x! (n-x)!}=\frac{(n-x)!(n-x+1)...(n-1)n}{n^x x! (n-x)!}=\frac{n(n-1)..(n-x+1)}{n^x x!} \rightarrow \frac{1}{x!}\)</span></li>
+<li><span class="math inline">\((1-\frac{\lambda}{n})^{n} \rightarrow e^{-\lambda}\)</span> (definición de exponencial)</li>
+<li><span class="math inline">\((1-\frac{\lambda}{n})^{-x} \rightarrow 1\)</span></li>
 </ul>
-<p><span class="math display">\[\hat{P}(positivo|sí)=\frac{n_{positivo,sí}}{n_{sí}}\]</span></p>
-<p><span class="math display">\[=\frac{\frac{n_{positivo,sí}}{N}}{\frac{n_{sí}}{N}}=\frac{f_{positivo,sí}}{f_{sí}} \]</span></p>
-<p>Por lo tanto, en el límite, esperamos tener una probabilidad del tipo</p>
-<p><span class="math display">\[P(positivo|sí)=\frac{P(positivo, sí)}{P(sí)}=\frac{P(positivo \cap sí)}{P(sí)}\]</span></p>
+<p>Por lo tanto
+<span class="math inline">\(P(X=x)= \frac{e^{-\lambda}\lambda^x}{x!}\)</span></p>
 <hr />
 <hr />
 </div>
-<div id="la-probabilidad-condicional-1" class="section level2 hasAnchor" number="4.8">
-<h2><span class="header-section-number">4.8</span> La probabilidad condicional<a href="probabilidad-condicional.html#la-probabilidad-condicional-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><strong>Definición:</strong>
-La probabilidad condicional de un evento B dado un evento A, denotado como <span class="math inline">\(P(A|B)\)</span>, es
-<span class="math display">\[P(A|B) = \frac{P(A\cap B)}{P(B)}\]</span></p>
+<div id="distribución-de-poisson-2" class="section level2 hasAnchor" number="8.8">
+<h2><span class="header-section-number">8.8</span> Distribución de Poisson<a href="modelos-de-poisson-y-exponencial.html#distribución-de-poisson-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><strong>Definición</strong></p>
+<p>Dado</p>
 <ul>
-<li>se puede probar que la probabilidad condicional satisface los axiomas de probabilidad.</li>
-<li>la probabilidad condicional es la probabilidad bajo el espacio muestral dado por <span class="math inline">\(B\)</span>: <span class="math inline">\(S_B\)</span>.</li>
+<li>un intervalo en los números reales</li>
+<li>los eventos ocurren al azar en el intervalo</li>
+<li>se conoce el número medio de conteos en el intervalo (<span class="math inline">\(\lambda\)</span>)</li>
+<li>se puede encontrar una pequeña partición regular del intervalo tal que cada uno de ellos pueda considerarse un ensayo de Bernoulli</li>
+</ul>
+<p>Entonces …</p>
+<hr />
+<hr />
+</div>
+<div id="distribución-de-poisson-3" class="section level2 hasAnchor" number="8.9">
+<h2><span class="header-section-number">8.9</span> Distribución de Poisson<a href="modelos-de-poisson-y-exponencial.html#distribución-de-poisson-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><strong>Definición</strong></p>
+<p>La variable aleatoria <span class="math inline">\(X\)</span> que cuenta eventos a lo largo del intervalo es una variable <strong>Poisson</strong> con función de masa de probabilidad
+<span class="math display">\[f(x)= \frac{e^{-\lambda}\lambda^x}{x!}, \lambda&gt;0\]</span></p>
+<p><strong>Propiedades:</strong></p>
+<ul>
+<li>media <span class="math inline">\(E(X)= \lambda\)</span></li>
+<li>varianza <span class="math inline">\(V(X)= \lambda\)</span></li>
 </ul>
 <hr />
 <hr />
 </div>
-<div id="tabla-de-contingencia-condicional" class="section level2 hasAnchor" number="4.9">
-<h2><span class="header-section-number">4.9</span> Tabla de contingencia condicional<a href="probabilidad-condicional.html#tabla-de-contingencia-condicional" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<table>
-<thead>
-<tr class="header">
-<th align="center"></th>
-<th align="center">Infección: Sí</th>
-<th align="center">Infección: No</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="center"><b>Test: positivo</b></td>
-<td align="center">P(positivo <span>|</span> sí)</td>
-<td align="center">P(positivo <span>|</span> no)</td>
-</tr>
-<tr class="even">
-<td align="center"><b>Test: negativo</b></td>
-<td align="center">P(negativo <span>|</span> sí)</td>
-<td align="center">P(negativo <span>|</span> no)</td>
-</tr>
-<tr class="odd">
-<td align="center"><b>suma</b></td>
-<td align="center">1</td>
-<td align="center">1</td>
-</tr>
-</tbody>
-</table>
+<div id="distribución-de-poisson-4" class="section level2 hasAnchor" number="8.10">
+<h2><span class="header-section-number">8.10</span> Distribución de Poisson<a href="modelos-de-poisson-y-exponencial.html#distribución-de-poisson-4" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Con la función de probabilidad de Poisson:</p>
+<p><span class="math display">\[f(x)= \frac{e^{-\lambda}\lambda^x}{x!}\]</span> para <span class="math inline">\(x \in \{0, 1, ...\}\)</span></p>
+<p>Podemos responder preguntas como:</p>
 <ul>
-<li><p>Tasa de verdaderos positivos (Sensibilidad): La probabilidad de dar positivo <strong>si</strong> se tiene la enfermedad <span class="math inline">\(P(positivo|sí)\)</span></p></li>
-<li><p>Tasa de verdaderos negativos (Especificidad): La probabilidad de dar negativo <strong>si</strong> no se tiene la enfermedad <span class="math inline">\(P(negativo|no)\)</span></p></li>
-<li><p>Tasa de falsos positivos: La probabilidad de dar positivo <strong>si</strong> no se tiene la enfermedad <span class="math inline">\(P(positivo|no)\)</span></p></li>
-<li><p>Tasa de falsos negativos: la probabilidad de dar negativo <strong>si</strong> se tiene la enfermedad <span class="math inline">\(P(negativo|sí)\)</span></p></li>
+<li>¿Cuál es la probabilidad de recibir 4 correos electrónicos en una hora, cuando el promedio de correos electrónicos en una horas es de <span class="math inline">\(1\)</span>?</li>
+</ul>
+<p><span class="math inline">\(f(4; \lambda=1)= 0.18\)</span></p>
+<p>in R <code>dpois(2,1)</code></p>
+<ul>
+<li>¿Cuál es la probabilidad de contar al menos <span class="math inline">\(10\)</span> coches que llegan a un peaje en un minuto, cuando el promedio de autos que llegan a un peaje en un minuto es de <span class="math inline">\(5\)</span>;
+<span class="math inline">\(P(X \leq 10)=F(10; \lambda=5)=0.98\)</span>?</li>
+</ul>
+<p>in R <code>ppois(10,5)</code></p>
+<hr />
+<hr />
+</div>
+<div id="distribución-de-poisson-5" class="section level2 hasAnchor" number="8.11">
+<h2><span class="header-section-number">8.11</span> Distribución de Poisson<a href="modelos-de-poisson-y-exponencial.html#distribución-de-poisson-5" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><img src="_main_files/figure-html/unnamed-chunk-58-1.png" width="672" /></p>
+<hr />
+<hr />
+</div>
+<div id="modelos-de-probabilidad-continua" class="section level2 hasAnchor" number="8.12">
+<h2><span class="header-section-number">8.12</span> Modelos de probabilidad continua<a href="modelos-de-poisson-y-exponencial.html#modelos-de-probabilidad-continua" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Los modelos de probabilidad continua son funciones de densidad de probabilidad <span class="math inline">\(f(x)\)</span> de variables aleatorias continuas que <strong>creemos</strong> describen experimentos aleatorios reales.</p>
+<p>Definición:</p>
+<p>Positiva:</p>
+<ul>
+<li><span class="math inline">\(f(x) \geq 0\)</span></li>
+</ul>
+<p><em>Permite calcular probabilidades usando el área bajo la curva:</em></p>
+<ul>
+<li><span class="math inline">\(P(a\leq X \leq b)=\int_{a}^{b} f(x) dx\)</span></li>
+</ul>
+<p>La probabilidad de observar algún valor es <span class="math inline">\(1\)</span>:</p>
+<ul>
+<li><span class="math inline">\(\int_{-\infty}^{\infty} f(x) dx = 1\)</span></li>
 </ul>
 <hr />
 <hr />
 </div>
-<div id="ejemplo-de-tabla-de-contingencia-condicional" class="section level2 hasAnchor" number="4.10">
-<h2><span class="header-section-number">4.10</span> Ejemplo de tabla de contingencia condicional<a href="probabilidad-condicional.html#ejemplo-de-tabla-de-contingencia-condicional" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Tomando las frecuencias como estimaciones de las probabilidades, entonces</p>
-<table>
-<thead>
-<tr class="header">
-<th align="center"></th>
-<th align="center">Infección: Sí</th>
-<th align="center">Infección: No</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="center"><b>Test: positivo</b></td>
-<td align="center">18/48 = 0.375</td>
-<td align="center">12/312 = 0.038</td>
-</tr>
-<tr class="even">
-<td align="center"><b>Test: negativo</b></td>
-<td align="center">30/48 = 0.625</td>
-<td align="center">300/312 =0.962</td>
-</tr>
-<tr class="odd">
-<td align="center"><b>suma</b></td>
-<td align="center">1</td>
-<td align="center">1</td>
-</tr>
-</tbody>
-</table>
-<p>Nuestra herramienta de diagnóstico tiene baja sensibilidad (0.375) pero alta
-especificidad (0.962).</p>
-<hr />
-<hr />
-</div>
-<div id="regla-de-multiplicación" class="section level2 hasAnchor" number="4.11">
-<h2><span class="header-section-number">4.11</span> Regla de multiplicación<a href="probabilidad-condicional.html#regla-de-multiplicación" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Ahora imaginemos la situación real, donde queremos obtener la probabilidad <strong>conjunta</strong> de la probabilidad <strong>condicional</strong></p>
+<div id="densidad-exponencial" class="section level2 hasAnchor" number="8.13">
+<h2><span class="header-section-number">8.13</span> Densidad exponencial<a href="modelos-de-poisson-y-exponencial.html#densidad-exponencial" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Volvamos a la probabilidad de Poisson para el número de eventos (<span class="math inline">\(k\)</span>) en un intervalo</p>
+<p><span class="math display">\[f(k)=\frac{e^{-\lambda}\lambda^k}{k!}, \lambda&gt;0\]</span></p>
 <ul>
-<li><p>Se (realizaron) PCR para coronavirus [<a href="https://www.nejm.org/doi/full/10.1056/NEJMp2015897" class="uri">https://www.nejm.org/doi/full/10.1056/NEJMp2015897</a>] en personas en el hospital que estamos seguros de estar infectadas. Este test tiene una sensibilidad del 70%. También se ha probado en el laboratorio en condiciones sin infección con una especificidad del 96 %.</p></li>
-<li><p>Un estudio de prevalencia en España mostró que <span class="math inline">\(P(sí)=0.05\)</span>, <span class="math inline">\(P(no)=0.95\)</span> antes del verano.</p></li>
+<li><p>Consideremos ahora solo el primer evento (duración/tiempo)</p></li>
+<li><p>la distancia/tiempo que debemos esperar hasta el primer evento es una variable aleatoria <strong>continua</strong>.</p></li>
 </ul>
-<p>Con estos datos, ¿cuál era la probabilidad de que una persona seleccionada al azar de la población diera positivo <strong>y</strong> estuviera infectada: <span class="math inline">\(P(sí \cap positivo)=P(sí, positivo)\)</span>?</p>
+<p>Podemos preguntar por la probabilidad de que el primer evento esté a la distancia <span class="math inline">\(X\)</span>.</p>
 <hr />
 <hr />
 </div>
-<div id="rendimiento-de-diagnóstico" class="section level2 hasAnchor" number="4.12">
-<h2><span class="header-section-number">4.12</span> Rendimiento de diagnóstico<a href="probabilidad-condicional.html#rendimiento-de-diagnóstico" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Para estudiar el rendimiento de una nueva prueba diagnóstica:</p>
+<div id="densidad-exponencial-1" class="section level2 hasAnchor" number="8.14">
+<h2><span class="header-section-number">8.14</span> Densidad exponencial<a href="modelos-de-poisson-y-exponencial.html#densidad-exponencial-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>La probabilidad de no observar ningún evento <strong>si</strong> un intervalo tiene unidad <span class="math inline">\(x\)</span> es</p>
+<p><span class="math display">\[f(0|x)=\frac{e^{-x\lambda}x\lambda^0}{0!}\]</span></p>
+<p>o</p>
+<p><span class="math display">\[f(0|x)=e^{-x\lambda}\]</span></p>
+<p>Podemos tratar esto como la probabilidad condicional de <span class="math inline">\(0\)</span> eventos en una distancia <span class="math inline">\(x\)</span>: <span class="math inline">\(f(K=0|X=x)\)</span> y aplicar el teorema de Bayes para invertirlo:</p>
+<p><span class="math display">\[f(x|0)=C f(0|x)=C e^{-x\lambda}\]</span></p>
+<p>Entonces podemos calcular la <strong>probabilidad de observar una distancia</strong> <span class="math inline">\(x\)</span> con <span class="math inline">\(0\)</span> eventos (esta es la distancia hasta el primer evento, o la distancia entre dos eventos).</p>
+<hr />
+<hr />
+</div>
+<div id="densidad-exponencial-2" class="section level2 hasAnchor" number="8.15">
+<h2><span class="header-section-number">8.15</span> Densidad exponencial<a href="modelos-de-poisson-y-exponencial.html#densidad-exponencial-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>En un proceso de Poisson con parámetro <span class="math inline">\(\lambda\)</span> la probabilidad de esperar una distancia/tiempo <span class="math inline">\(X\)</span> hasta el primer evento tiene una <strong>densidad de probabilidad</strong></p>
+<p><span class="math display">\[f(x)= C e^{-x\lambda}\]</span></p>
 <ul>
-<li><p>selecciona muestras que son inadecuadas (enfermedad: <strong>sí</strong>) y aplica la prueba, tratando de encontrar su sensibilidad: <span class="math inline">\(P(positivo|sí)\)</span> (<span class="math inline">\(0.70\)</span> para PCR)</p></li>
-<li><p>selecciona muestras que son adecuadas (enfermedad: <strong>no</strong>) y aplica la prueba, tratando de encontrar su especificidad: <span class="math inline">\(P(negativo|no)\)</span> (<span class="math inline">\(0.96\)</span> para PCR)</p></li>
+<li><p><span class="math inline">\(C\)</span> es una constante que asegura: <span class="math inline">\(\int_{-\infty}^{\infty} f(x) dx =1\)</span></p></li>
+<li><p>por integración <span class="math inline">\(C=\lambda\)</span></p></li>
 </ul>
-<hr />
-<hr />
-<table>
-<thead>
-<tr class="header">
-<th align="center"></th>
-<th align="center">Infección: Sí</th>
-<th align="center">Infección: No</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="center"><b>Test: positivo</b></td>
-<td align="center">P(positivo<span>|</span>sí)=0.7</td>
-<td align="center">P(positivo<span>|</span>no)=0.06</td>
-</tr>
-<tr class="even">
-<td align="center"><b>Test: negativo</b></td>
-<td align="center">P(negativo<span>|</span>sí)=0.3</td>
-<td align="center">P(negativo<span>|</span>no)=0.94</td>
-</tr>
-<tr class="odd">
-<td align="center"><b>suma</b></td>
-<td align="center">1</td>
-<td align="center">1</td>
-</tr>
-</tbody>
-</table>
-<p>De esta matriz, ¿podemos obtener <span class="math inline">\(P(sí, positivo)\)</span>?</p>
+<p>Por lo tanto</p>
+<p><span class="math display">\[f(x)=\lambda e^{-\lambda x}\]</span></p>
 <hr />
 <hr />
 </div>
-<div id="regla-de-multiplicación-1" class="section level2 hasAnchor" number="4.13">
-<h2><span class="header-section-number">4.13</span> Regla de multiplicación<a href="probabilidad-condicional.html#regla-de-multiplicación-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><br>
-<br></p>
-<p>¿Cómo se recupera la probabilidad conjunta de la probabilidad condicional?</p>
-<p>Para dos eventos <span class="math inline">\(A\)</span> y <span class="math inline">\(B\)</span> tenemos la regla de la multiplicación</p>
-<p><span class="math display">\[P(A, B) = P(A|B) P(B)\]</span></p>
-<p>que se sigue de la definición de probabilidad condicional.</p>
-<p><br>
-<br></p>
-<hr />
-<hr />
-</div>
-<div id="tabla-de-contingencia-en-términos-de-probabilidades-condicionales" class="section level2 hasAnchor" number="4.14">
-<h2><span class="header-section-number">4.14</span> Tabla de contingencia en términos de probabilidades condicionales<a href="probabilidad-condicional.html#tabla-de-contingencia-en-términos-de-probabilidades-condicionales" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<table>
-<thead>
-<tr class="header">
-<th align="center"></th>
-<th align="center">Infección: Sí</th>
-<th align="center">Infección: No</th>
-<th align="center"><b>suma</b></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="center"><b>Test: positivo</b></td>
-<td align="center">P(positivo <span>|</span> sí)P(sí)</td>
-<td align="center">P(positivo <span>|</span> no)P(no)</td>
-<td align="center">P(positivo)</td>
-</tr>
-<tr class="even">
-<td align="center"><b>Test: negativo</b></td>
-<td align="center">P(negativo <span>|</span> sí)P(sí)</td>
-<td align="center">P(negativo <span>|</span> no) P(no)</td>
-<td align="center">P(negativo)</td>
-</tr>
-<tr class="odd">
-<td align="center"><b>suma</b></td>
-<td align="center">P(sí)</td>
-<td align="center">P(no)</td>
-<td align="center">1</td>
-</tr>
-</tbody>
-</table>
-<p>Por ejemplo, la probabilidad de dar <span class="math inline">\(positivo\)</span> y estar infectado <span class="math inline">\(sí\)</span>:</p>
+<div id="densidad-exponencial-3" class="section level2 hasAnchor" number="8.16">
+<h2><span class="header-section-number">8.16</span> Densidad exponencial<a href="modelos-de-poisson-y-exponencial.html#densidad-exponencial-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Una variable aleatoria exponencial <span class="math inline">\(X\)</span> tiene una densidad de probabilidad</p>
+<p><span class="math display">\[f(x)=\lambda e^{-\lambda x}, x\geq 0\]</span></p>
+<p><strong>Propiedades:</strong></p>
 <ul>
-<li><span class="math inline">\(P(positivo, sí)=P(positivo \cap sí) = P(positivo|sí) P(sí)\)</span></li>
+<li>Media: <span class="math inline">\(E(X)=\frac{1}{\lambda}\)</span></li>
+<li>Varianza: <span class="math inline">\(V(Y)=\frac{1}{\lambda^2}\)</span></li>
 </ul>
+<p>Donde <span class="math inline">\(\lambda\)</span> es su único parámetro, conocido como <strong>tasa de decaimiento</strong>.</p>
+<p><strong>Nota:</strong> El modelo exponencial es un modelo general. Puede describir el tiempo/duración hasta la primera cuenta en un proceso de Poisson del tamaño de un huevo hecho por un taladro.</p>
 <hr />
 <hr />
 </div>
-<div id="árbol-condicional" class="section level2 hasAnchor" number="4.15">
-<h2><span class="header-section-number">4.15</span> Árbol condicional<a href="probabilidad-condicional.html#árbol-condicional" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><img src="figures/Tree.png" style="width:75%"  align="center"></p>
+<div id="densidad-exponencial-4" class="section level2 hasAnchor" number="8.17">
+<h2><span class="header-section-number">8.17</span> Densidad exponencial<a href="modelos-de-poisson-y-exponencial.html#densidad-exponencial-4" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><img src="_main_files/figure-html/unnamed-chunk-59-1.png" width="672" /></p>
 <hr />
 <hr />
 </div>
-<div id="tabla-de-contingencia-en-términos-de-probabilidades-condicionales-1" class="section level2 hasAnchor" number="4.16">
-<h2><span class="header-section-number">4.16</span> Tabla de contingencia en términos de probabilidades condicionales<a href="probabilidad-condicional.html#tabla-de-contingencia-en-términos-de-probabilidades-condicionales-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<table>
-<thead>
-<tr class="header">
-<th align="center"></th>
-<th align="center">Infección: sí</th>
-<th align="center">Infección: no</th>
-<th align="center">suma</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="center"><b>Test: positivo</b></td>
-<td align="center">0.035</td>
-<td align="center">0.057</td>
-<td align="center">0.092</td>
-</tr>
-<tr class="even">
-<td align="center"><b>Test: negativo</b></td>
-<td align="center">0.015</td>
-<td align="center">0.893</td>
-<td align="center">0.908</td>
-</tr>
-<tr class="odd">
-<td align="center"><b>suma</b></td>
-<td align="center">0.05</td>
-<td align="center">0.95</td>
-<td align="center">1</td>
-</tr>
-</tbody>
-</table>
+<div id="distribución-exponencial" class="section level2 hasAnchor" number="8.18">
+<h2><span class="header-section-number">8.18</span> Distribución exponencial<a href="modelos-de-poisson-y-exponencial.html#distribución-exponencial" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>En un proceso de Poisson: ¿Cuál es la probabilidad de observar una distancia <strong>menor</strong> que <span class="math inline">\(a\)</span> hasta el primer event?</p>
+<p>Recuerde que esta probabilidad <span class="math inline">\(F(a)=P(X \leq a)\)</span> es la densidad de probabilidad</p>
+<p><span class="math display">\[F(a)=\lambda\int_\infty^a e^{-x\lambda}dx=1-e^{-a\lambda}\]</span></p>
 <ul>
-<li><span class="math inline">\(P(positivo,si)= 0.035\)</span></li>
+<li>¿Cuál es la probabilidad de observar una distancia <strong>mayor</strong> que <span class="math inline">\(a\)</span> hasta el primer evento?</li>
 </ul>
-<p>Pero también encontramos la probabilidad marginal de ser <strong>positivo</strong>:</p>
+<p><span class="math display">\[P(X &gt; a)=1- P(X \leq a)= 1- F(a) = e^{-a\lambda}\]</span></p>
+<hr />
+<hr />
+</div>
+<div id="distribución-exponencial-1" class="section level2 hasAnchor" number="8.19">
+<h2><span class="header-section-number">8.19</span> Distribución exponencial<a href="modelos-de-poisson-y-exponencial.html#distribución-exponencial-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Con la función de densidad exponencial:</p>
+<p><span class="math display">\[f(x)=\lambda e^{-\lambda x}\]</span></p>
+<p>Podemos responder preguntas como:</p>
 <ul>
-<li><span class="math inline">\(P(positivo)=0.092\)</span></li>
+<li>¿Cuál es la probabilidad de que tengamos que esperar un bus por más de <span class="math inline">\(1\)</span> hora cuando en promedio hay dos buses por hora?</li>
 </ul>
-<hr />
-<hr />
-</div>
-<div id="regla-de-probabilidad-total" class="section level2 hasAnchor" number="4.17">
-<h2><span class="header-section-number">4.17</span> Regla de probabilidad total<a href="probabilidad-condicional.html#regla-de-probabilidad-total" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<table>
-<thead>
-<tr class="header">
-<th align="center"></th>
-<th align="center">Infección: Sí</th>
-<th align="center">Infección: No</th>
-<th align="center"><b>suma</b></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="center"><b>Test: positivo</b></td>
-<td align="center">P(positivo <span>|</span> sí)P(sí)</td>
-<td align="center">P(positivo <span>|</span> no)P(no)</td>
-<td align="center">P(positivo)</td>
-</tr>
-<tr class="even">
-<td align="center"><b>Test: negativo</b></td>
-<td align="center">P(negativo <span>|</span> sí)P(sí)</td>
-<td align="center">P(negativo <span>|</span> no) P(no)</td>
-<td align="center">P(negativo)</td>
-</tr>
-<tr class="odd">
-<td align="center"><b>suma</b></td>
-<td align="center">P(sí)</td>
-<td align="center">P(no)</td>
-<td align="center">1</td>
-</tr>
-</tbody>
-</table>
-<p>Cuando escribimos las marginales desconocidas en términos de sus probabilidades condicionales, lo llamamos <strong>regla de probabilidad total</strong></p>
+<p><span class="math display">\[P(X &gt; 1)=1-P(X \le 1) = 1-F(1,\lambda=2)=0.1353\]</span></p>
+<p>en R <code>1-pexp(1,2)</code></p>
 <ul>
-<li><span class="math inline">\(P(positivo)=P(positivo|sí)P(sí)+P(positivo|no)P(no)\)</span></li>
-<li><span class="math inline">\(P(negativo)=P(negativo|sí)P(sí)+P(negativo|no)P(no)\)</span></li>
+<li>¿Cuál es la probabilidad de tener que esperar menos de <span class="math inline">\(2\)</span> segundos para detectar una partícula cuando la tasa de desintegración radiactiva es de <span class="math inline">\(2\)</span> partículas cada segundo? <span class="math inline">\(F(2,\lambda=2)\)</span></li>
 </ul>
+<p><span class="math display">\[P(X\le 2)=F(2,\lambda=2)=0.981\]</span></p>
+<p>en R <code>pexp(2,2)</code></p>
 <hr />
 <hr />
 </div>
-<div id="árbol-condicional-1" class="section level2 hasAnchor" number="4.18">
-<h2><span class="header-section-number">4.18</span> Árbol condicional<a href="probabilidad-condicional.html#árbol-condicional-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><img src="figures/Treetot.png" style="width:75%"  align="center"></p>
-<p><strong>Regla de probabilidad total</strong> para la marginal de <span class="math inline">\(B\)</span>: ¿De cuántas maneras puedo obtener el resultado <span class="math inline">\(B\)</span>?</p>
-<p><span class="math inline">\(P(B)=P(B|A)P(A)+P(B|A&#39;)P(A&#39;)\)</span></p>
-<hr />
-<hr />
-</div>
-<div id="encontrar-probabilidades-inversas" class="section level2 hasAnchor" number="4.19">
-<h2><span class="header-section-number">4.19</span> Encontrar probabilidades inversas<a href="probabilidad-condicional.html#encontrar-probabilidades-inversas" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>De la tabla de contingencia condicional</p>
-<table>
-<thead>
-<tr class="header">
-<th align="center"></th>
-<th align="center">Infección: Sí</th>
-<th align="center">Infección: No</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="center"><b>Test: positivo</b></td>
-<td align="center">P(positivo <span>|</span> sí)</td>
-<td align="center">P(positivo <span>|</span> no)</td>
-</tr>
-<tr class="even">
-<td align="center"><b>Test: negativo</b></td>
-<td align="center">P(negativo <span>|</span> sí)</td>
-<td align="center">P(negativo <span>|</span> no)</td>
-</tr>
-<tr class="odd">
-<td align="center"><b>suma</b></td>
-<td align="center">1</td>
-<td align="center">1</td>
-</tr>
-</tbody>
-</table>
-<p>¿Cómo podemos calcular la probabilidad de estar infectado si la prueba da positivo: <span class="math inline">\(P(sí|positivo)\)</span>?</p>
-<hr />
-<hr />
-</div>
-<div id="recuperar-probabilidades-conjuntas" class="section level2 hasAnchor" number="4.20">
-<h2><span class="header-section-number">4.20</span> Recuperar probabilidades conjuntas<a href="probabilidad-condicional.html#recuperar-probabilidades-conjuntas" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<ol style="list-style-type: decimal">
-<li>Recuperamos la tabla de contingencia para probabilidades conjuntas</li>
-</ol>
-<table>
-<thead>
-<tr class="header">
-<th align="center"></th>
-<th align="center">Infección: Sí</th>
-<th align="center">Infección: No</th>
-<th align="center"><b>suma</b></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="center"><b>Test: positivo</b></td>
-<td align="center">P(positivo <span>|</span> sí)P(sí)</td>
-<td align="center">P(positivo <span>|</span> no)P(no)</td>
-<td align="center">P(positivo)</td>
-</tr>
-<tr class="even">
-<td align="center"><b>Test: negativo</b></td>
-<td align="center">P(negativo <span>|</span> sí)P(sí)</td>
-<td align="center">P(negativo <span>|</span> no) P(no)</td>
-<td align="center">P(negativo)</td>
-</tr>
-<tr class="odd">
-<td align="center"><b>suma</b></td>
-<td align="center">P(sí)</td>
-<td align="center">P(no)</td>
-<td align="center">1</td>
-</tr>
-</tbody>
-</table>
-<p><br>
-<br></p>
-<hr />
-<hr />
-</div>
-<div id="condicionales-inversas" class="section level2 hasAnchor" number="4.21">
-<h2><span class="header-section-number">4.21</span> Condicionales inversas<a href="probabilidad-condicional.html#condicionales-inversas" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<ol start="2" style="list-style-type: decimal">
-<li>Calculamos las probabilidades condicionales para la prueba:</li>
-</ol>
-<p><span class="math display">\[P(infección|prueba)=\frac{P(prueba|infección)P(infección)}{P(prueba)}\]</span></p>
-<table>
-<thead>
-<tr class="header">
-<th align="center"></th>
-<th align="center">Infección: Sí</th>
-<th align="center">Infección: No</th>
-<th align="center">suma</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="center"><b>Test: positivo</b></td>
-<td align="center">P(sí<span>|</span>positivo)</td>
-<td align="center">P(sin<span>|</span>positivo)</td>
-<td align="center">1</td>
-</tr>
-<tr class="even">
-<td align="center"><b>Test: negativo</b></td>
-<td align="center">P(sí<span>|</span>negativo)</td>
-<td align="center">P(sin<span>|</span>negativo)</td>
-<td align="center">1</td>
-</tr>
-</tbody>
-</table>
-<p>Por ejemplo:
-<span class="math display">\[P(sí|positivo)=\frac{P(positivo|sí)P(sí)}{P(positivo)}\]</span>
-como normalmente no tenemos <span class="math inline">\(P(positivo)\)</span>, usamos la regla de <strong>probabilidad total</strong> en el denominador</p>
-<p><span class="math display">\[P(sí|positivo)=\frac{P(positivo|sí)P(sí)}{P(positivo|sí)P(sí)+P(positivo|no)P(no)}\]</span></p>
-<hr />
-<hr />
-</div>
-<div id="teorema-de-bayes" class="section level2 hasAnchor" number="4.22">
-<h2><span class="header-section-number">4.22</span> Teorema de Bayes<a href="probabilidad-condicional.html#teorema-de-bayes" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>La expresion:</p>
-<p><span class="math display">\[P(sí|positivo)=\frac{P(positivo|sí)P(sí)}{P(positivo|sí)P(sí)+P(positivo|no)P(no)}\]</span></p>
-<p>se llama <strong>teorema de Bayes</strong></p>
-<p><strong>Teorema</strong></p>
-<p>Si <span class="math inline">\(E1, E2, ..., Ek\)</span> son <span class="math inline">\(k\)</span> eventos mutuamente excluyentes y exhaustivos y <span class="math inline">\(B\)</span> es cualquier evento,</p>
-<p><span class="math display">\[P(Ei|B)=\frac{P(B|Ei)P(Ei)}{P(B|E1)P(E1) +...+ P(B|Ek)P(Ek)} \]</span></p>
-<p>Permite invertir los condicionales:</p>
-<p><span class="math display">\[P(B|A) \rightarrow P(A|B)\]</span></p>
-<p>O <strong>diseñe</strong> una prueba <span class="math inline">\(B\)</span> en condición controlada <span class="math inline">\(A\)</span> y luego utilícela para <strong>inferir</strong> la probabilidad de la condición cuando la prueba es positiva.</p>
-<hr />
-<hr />
-</div>
-<div id="ejemplo-teorema-de-bayes" class="section level2 hasAnchor" number="4.23">
-<h2><span class="header-section-number">4.23</span> Ejemplo: teorema de Bayes<a href="probabilidad-condicional.html#ejemplo-teorema-de-bayes" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Teorema de Bayes:</p>
-<p><span class="math display">\[P(sí|positivo) = \frac{P(positivo|sí) P(sí)}{P(positivo|sí)P(sí)+P(positivo|no)P(no)}\]</span></p>
-<p>sabemos:</p>
-<ul>
-<li><p><span class="math inline">\(P(positivo|sí)=0.70\)</span></p></li>
-<li><p><span class="math inline">\(P(positivo|no)=1- P(negativo|no)=0.06\)</span></p></li>
-<li><p>la probabilidad de infección y no infección en la población: <span class="math inline">\(P(sí)=0.05\)</span> y <span class="math inline">\(P(no)=1-P(sí)=0.95\)</span>.</p></li>
-</ul>
-<p>Por lo tanto:</p>
-<p><span class="math display">\[P(sí|positivo)=0.47\]</span></p>
-<p>Las pruebas no son tan buenas para <strong>confirmar</strong> infecciones.</p>
-<hr />
-<hr />
-</div>
-<div id="ejemplo-teorema-de-bayes-1" class="section level2 hasAnchor" number="4.24">
-<h2><span class="header-section-number">4.24</span> Ejemplo: teorema de Bayes<a href="probabilidad-condicional.html#ejemplo-teorema-de-bayes-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Apliquémoslo ahora a la probabilidad de no estar infectado si la prueba es negativa.</p>
-<p><span class="math display">\[P(no|negativo) = \frac{P(negativo|no) P(no)}{P(negativo|no) P(no)+P(negativo|sí)P(sí)}\]</span></p>
-<p>La sustitución de todos los valores da</p>
-<p><span class="math display">\[P(no|negativo)=0.98\]</span></p>
-<p>Las pruebas son buenas para <strong>descartar</strong> infecciones.</p>
-<hr />
-<hr />
-</div>
-<div id="independencia-estadística" class="section level2 hasAnchor" number="4.25">
-<h2><span class="header-section-number">4.25</span> Independencia estadística<a href="probabilidad-condicional.html#independencia-estadística" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><br>
-<br></p>
-<p>En muchas aplicaciones, queremos saber si el conocimiento de un evento condiciona el resultado de otro evento.</p>
-<ul>
-<li>hay casos en los que queremos saber si los eventos no están condicionados</li>
-</ul>
-<p><br>
-<br></p>
-<hr />
-<hr />
-</div>
-<div id="independencia-estadística-1" class="section level2 hasAnchor" number="4.26">
-<h2><span class="header-section-number">4.26</span> Independencia estadística<a href="probabilidad-condicional.html#independencia-estadística-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Considere los conductores para los cuales medimos sus fallas superficiales y si su capacidad de conducción es defectuosa.</p>
-<p>Las <strong>probabilidades conjuntas</strong> estimadas son</p>
-<table>
-<thead>
-<tr class="header">
-<th align="center"></th>
-<th align="center">fallas (F)</th>
-<th align="center">sin fallas (F’)</th>
-<th align="center">suma</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="center"><b>defectuoso (D) </b></td>
-<td align="center"><span class="math inline">\(0.005\)</span></td>
-<td align="center"><span class="math inline">\(0.045\)</span></td>
-<td align="center"><span class="math inline">\(0.05\)</span></td>
-</tr>
-<tr class="even">
-<td align="center"><b>sin defectos (D’) </b></td>
-<td align="center"><span class="math inline">\(0.095\)</span></td>
-<td align="center"><span class="math inline">\(0.855\)</span></td>
-<td align="center"><span class="math inline">\(0.95\)</span></td>
-</tr>
-<tr class="odd">
-<td align="center"><b>suma</b></td>
-<td align="center"><span class="math inline">\(0.1\)</span></td>
-<td align="center"><span class="math inline">\(0.9\)</span></td>
-<td align="center">1</td>
-</tr>
-</tbody>
-</table>
-<p>donde, por ejemplo, la probabilidad conjunta de <span class="math inline">\(F\)</span> y <span class="math inline">\(D\)</span> es</p>
-<ul>
-<li><span class="math inline">\(P(D,F)=0.005\)</span></li>
-</ul>
-<p>Las probabilidades marginales son</p>
-<ul>
-<li><span class="math inline">\(P(D)=P(D, F) + P(D, F&#39;)=0.05\)</span></li>
-<li><span class="math inline">\(P(F)=P(D, F) + P(D&#39;, F)= 0.1\)</span>.</li>
-</ul>
-<hr />
-<hr />
-</div>
-<div id="independencia-estadística-2" class="section level2 hasAnchor" number="4.27">
-<h2><span class="header-section-number">4.27</span> Independencia estadística<a href="probabilidad-condicional.html#independencia-estadística-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>¿Cuál es la <strong>probabilidad condicional</strong> de observar un conductor defectuoso si tiene un defecto?</p>
-<table>
-<thead>
-<tr class="header">
-<th align="center"></th>
-<th align="center">F</th>
-<th align="center">F’</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="center"><b> D </b></td>
-<td align="center">P(D<span>|</span>F) = 0.05</td>
-<td align="center">P(D<span>|</span>F’)=0.05</td>
-</tr>
-<tr class="even">
-<td align="center"><b> D’ </b></td>
-<td align="center">P(D’<span>|</span>F)=0.95</td>
-<td align="center">P(D’<span>|</span>F’)=0.95</td>
-</tr>
-<tr class="odd">
-<td align="center"><b>suma</b></td>
-<td align="center">1</td>
-<td align="center">1</td>
-</tr>
-</tbody>
-</table>
-<p>¡Las probabilidades marginales y condicionales son las mismas!</p>
-<ul>
-<li><span class="math inline">\(P(D|F)=P(D|F&#39;)=P(D)\)</span></li>
-<li><span class="math inline">\(P(D&#39;|F)=P(D&#39;|F&#39;)=P(D&#39;)\)</span></li>
-</ul>
-<p>La probabilidad de observar un conductor defectuoso <strong>no</strong> depende de haber observado o no un defecto.</p>
-<p><span class="math display">\[P(D) = P(D|F)\]</span></p>
-<hr />
-<hr />
-</div>
-<div id="independencia-estadística-3" class="section level2 hasAnchor" number="4.28">
-<h2><span class="header-section-number">4.28</span> Independencia estadística<a href="probabilidad-condicional.html#independencia-estadística-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Dos eventos <span class="math inline">\(A\)</span> y <span class="math inline">\(B\)</span> son estadísticamente independientes si</p>
-<ul>
-<li><span class="math inline">\(P(A|B)=P(A)\)</span>; <span class="math inline">\(A\)</span> es independiente de <span class="math inline">\(B\)</span></li>
-<li><span class="math inline">\(P(B|A)=P(B)\)</span>; <span class="math inline">\(B\)</span> es independiente de <span class="math inline">\(A\)</span></li>
-</ul>
-<p>y por la regla de la multiplicación, su probabilidad conjunta es</p>
-<ul>
-<li><span class="math inline">\(P(A\cap B)=P(A|B)P(B)=P(A)P(B)\)</span></li>
-</ul>
-<p>la multiplicación de sus probabilidades marginales.</p>
-<hr />
-<hr />
-</div>
-<div id="productos-de-productos-marginales" class="section level2 hasAnchor" number="4.29">
-<h2><span class="header-section-number">4.29</span> Productos de productos marginales<a href="probabilidad-condicional.html#productos-de-productos-marginales" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<table>
-<thead>
-<tr class="header">
-<th align="center"></th>
-<th align="center">F</th>
-<th align="center">F’</th>
-<th align="center">suma</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="center"><b> D </b></td>
-<td align="center"><span class="math inline">\(0.005\)</span></td>
-<td align="center"><span class="math inline">\(0.045\)</span></td>
-<td align="center"><span class="math inline">\(0.05\)</span></td>
-</tr>
-<tr class="even">
-<td align="center"><b> D’ </b></td>
-<td align="center"><span class="math inline">\(0.095\)</span></td>
-<td align="center"><span class="math inline">\(0.855\)</span></td>
-<td align="center"><span class="math inline">\(0.95\)</span></td>
-</tr>
-<tr class="odd">
-<td align="center"><b>suma</b></td>
-<td align="center"><span class="math inline">\(0.1\)</span></td>
-<td align="center"><span class="math inline">\(0.9\)</span></td>
-<td align="center">1</td>
-</tr>
-</tbody>
-</table>
-<p>Confirme que todas las entradas de la matriz son el producto de los marginales.</p>
-<p>Por ejemplo:</p>
-<ul>
-<li><span class="math inline">\(P(F)P(D)= P(D \cap F)\)</span></li>
-<li><span class="math inline">\(P(D&#39;)P(F&#39;)=P(D&#39; \cap F&#39;)\)</span></li>
-</ul>
-<hr />
-<hr />
-</div>
-<div id="ejemplo-5" class="section level2 hasAnchor" number="4.30">
-<h2><span class="header-section-number">4.30</span> Ejemplo<a href="probabilidad-condicional.html#ejemplo-5" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Resultados de lanzar dos monedas: <span class="math inline">\(S={(H,H), (H,T), (T,H), (T,T)}\)</span></p>
-<table>
-<thead>
-<tr class="header">
-<th align="center"></th>
-<th align="center">H</th>
-<th align="center">T</th>
-<th align="center">suma</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="center"><b> H </b></td>
-<td align="center"><span class="math inline">\(1/4\)</span></td>
-<td align="center"><span class="math inline">\(1/4\)</span></td>
-<td align="center"><span class="math inline">\(1/2\)</span></td>
-</tr>
-<tr class="even">
-<td align="center"><b> T </b></td>
-<td align="center"><span class="math inline">\(1/4\)</span></td>
-<td align="center"><span class="math inline">\(1/4\)</span></td>
-<td align="center"><span class="math inline">\(1/2\)</span></td>
-</tr>
-<tr class="odd">
-<td align="center"><b>suma</b></td>
-<td align="center"><span class="math inline">\(1/2\)</span></td>
-<td align="center"><span class="math inline">\(1/2\)</span></td>
-<td align="center">1</td>
-</tr>
-</tbody>
-</table>
-<ul>
-<li>Obtener cara en la primera moneda no condiciona obtener cruz en el resultado de la segunda moneda <span class="math inline">\(P(T|H)=P(T)=1/2\)</span></li>
-<li>la probabilidad de obtener cara y después cruz es el producto de cada resultado independiente <span class="math inline">\(P(H, T)=P(H)*P(T)=1/4\)</span></li>
-</ul>
-<hr />
-<hr />
+<div id="distribución-exponencial-2" class="section level2 hasAnchor" number="8.20">
+<h2><span class="header-section-number">8.20</span> Distribución exponencial<a href="modelos-de-poisson-y-exponencial.html#distribución-exponencial-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><img src="_main_files/figure-html/unnamed-chunk-60-1.png" width="672" /></p>
+<p>La mediana <span class="math inline">\(x_m\)</span> es tal que <span class="math inline">\(F(x_m)=0.5\)</span>. Eso es <span class="math inline">\(x_m=\frac{\log(2)}{\lambda}\)</span></p>
 
 </div>
 </div>
@@ -1180,8 +608,8 @@ como normalmente no tenemos <span class="math inline">\(P(positivo)\)</span>, us
           </div>
         </div>
       </div>
-<a href="probabilidad.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="variables-aleatorias-discretas.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="modelos-de-probabilidad-para-variables-aleatorias-discretas.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="ejercicios.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -1212,7 +640,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/USERNAME/REPO/edit/BRANCH/03-ConditionalProbability.Rmd",
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/07-PoissonExponential.Rmd",
 "text": "Edit"
 },
 "history": {

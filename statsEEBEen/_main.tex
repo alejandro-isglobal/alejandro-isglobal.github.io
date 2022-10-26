@@ -6,7 +6,7 @@
 ]{book}
 \title{Stats theory (SDA)}
 \author{Alejandro Caceres}
-\date{2022-10-16}
+\date{2022-10-26}
 
 \usepackage{amsmath,amssymb}
 \usepackage{lmodern}
@@ -968,12 +968,12 @@ Say we repeated the experiment 1000 times:
 
 \begin{verbatim}
 ##   outcome  ni    fi
-## 1       1 169 0.169
-## 2       2 172 0.172
+## 1       1 168 0.168
+## 2       2 173 0.173
 ## 3       3 165 0.165
-## 4       4 163 0.163
-## 5       5 166 0.166
-## 6       6 165 0.165
+## 4       4 162 0.162
+## 5       5 173 0.173
+## 6       6 159 0.159
 \end{verbatim}
 
 We find that \(f_i\) is converging to a constant value
@@ -4433,12 +4433,12 @@ In R dbinom(2,4,0.1)
 \begin{itemize}
 \tightlist
 \item
-  What is the probability of observing at least \(8\) voters of the ruling party in an election poll of size \(10\), if the probability of a positive vote is \(0.9\)
+  What is the probability of observing at most \(8\) voters of the ruling party in an election poll of size \(10\), if the probability of a positive vote is \(0.9\)
 \end{itemize}
 
 For this case
 
-\[X \rightarrow Bin(n=8, p=0.9)\]
+\[X \rightarrow Bin(n=10, p=0.9)\]
 
 That is \[f(x)=\binom {10} x 0.9^x(0.1)^{4-x}\]
 
@@ -4670,6 +4670,919 @@ in R dnbinom(2, 4, 0.5)
 
 \includegraphics{_main_files/figure-latex/unnamed-chunk-57-1.pdf}
 
+\hypertarget{poisson-and-exponential-models}{%
+\chapter{Poisson and Exponential Models}\label{poisson-and-exponential-models}}
+
+\hypertarget{objective-6}{%
+\section{Objective}\label{objective-6}}
+
+Discrete probability model:
+
+\begin{itemize}
+\tightlist
+\item
+  Poisson
+\end{itemize}
+
+Continuous probability model:
+
+\begin{itemize}
+\tightlist
+\item
+  Exponential
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{discrete-probability-models-1}{%
+\section{Discrete probability models}\label{discrete-probability-models-1}}
+
+We are building up more complex models from simple ones:
+
+\textbf{Uniform}: Classical interpretation of probability
+\(\downarrow\)
+\textbf{Bernoulli}: Introduction of a \textbf{parameter} \(p\) (family of models)
+\(\downarrow\)
+\textbf{Binomial}: \textbf{Repetition} of a random experiment (\(n\)-times Bernoulli trials)
+\(\downarrow\)
+\textbf{Poisson}: Repetition of random experiment within a continuous interval, having \textbf{no control} on when/where the Bernouilli trial occurs.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{counting-events}{%
+\section{Counting events}\label{counting-events}}
+
+Imagine that we are observing events that \textbf{depend} on time or distance \textbf{intervals}.
+
+\begin{itemize}
+\tightlist
+\item
+  cars arriving at a traffic light
+\item
+  getting messages on your mobile phone
+\item
+  impurities occurring at random in a copper wire
+\end{itemize}
+
+Suppose that the events are outcomes of \textbf{independent} Bernoulli trials each appearing randomly on a continuous interval, and we want to \textbf{count} them.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{counting-events-1}{%
+\section{Counting events}\label{counting-events-1}}
+
+What is the probability of observing \(X\) events in an interval's unit (time or distance)?
+
+Imagine that some impurities in a copper wire deposit randomly along a wire
+
+\begin{itemize}
+\tightlist
+\item
+  at each centimeter, you would count an average of \(\lambda=10/cm\).
+\item
+  divide the centimeter into micrometers (\(0.0001cm\))
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{poisson-distribution}{%
+\section{Poisson distribution}\label{poisson-distribution}}
+
+micrometers are small enough so
+
+\begin{itemize}
+\tightlist
+\item
+  either there is or there is not an impurity in each micrometer
+\item
+  each micrometer can be considered a \textbf{Bernoulli trial}
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{poisson-distribution-1}{%
+\section{Poisson distribution}\label{poisson-distribution-1}}
+
+The probability of observing \(X\) impurities in \(n=10,000\mu\) (1cm) approximately follows a binomial distribution
+
+\(P(X=x)=\binom n x p^x(1-p)^{n-x}\)
+
+where \(p\) is the probability of finding an impurity in a micrometer.
+
+Remember that
+\(E(X)=np\)
+so for \(\lambda=np\) (average number of impurities per 1cm), we can write
+
+\[P(X=x)=\binom n x \big(\frac{\lambda}{n}\big)^x(1-\frac{\lambda}{n})^{n-x}\]
+
+\begin{itemize}
+\tightlist
+\item
+  There \textbf{could} still be two impurities in a micrometer so we need to increase the partition of the wire and \(n \rightarrow \infty\).
+\end{itemize}
+
+Then in the limit:
+
+\[P(X=x)= \frac{e^{-\lambda}\lambda^x}{x!}\]
+
+Where \(\lambda\) is constant because it is the density of impurities per centimeter, a \textbf{physical property} of the system.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{poisson-distribution-derivation-details}{%
+\section{Poisson distribution: Derivation details}\label{poisson-distribution-derivation-details}}
+
+For \(P(X=x)=\binom n x \big(\frac{\lambda}{n}\big)^x(1-\frac{\lambda}{n})^{n-x}\)
+
+in the limit (\(n \rightarrow \infty\))
+
+\begin{itemize}
+\tightlist
+\item
+  \(\frac{1}{n^x}\binom n x =\frac{1}{n^x}\frac{n!}{x! (n-x)!}=\frac{(n-x)!(n-x+1)...(n-1)n}{n^x x! (n-x)!}=\frac{n(n-1)..(n-x+1)}{n^x x!} \rightarrow \frac{1}{x!}\)
+\item
+  \((1-\frac{\lambda}{n})^{n} \rightarrow e^{-\lambda}\) (definition of exponential)
+\item
+  \((1-\frac{\lambda}{n})^{-x} \rightarrow 1\)
+\end{itemize}
+
+Therefore
+\(P(X=x)= \frac{e^{-\lambda}\lambda^x}{x!}\)
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{poisson-distribution-2}{%
+\section{Poisson distribution}\label{poisson-distribution-2}}
+
+\textbf{Definition}
+
+Given
+
+\begin{itemize}
+\tightlist
+\item
+  an interval in the real numbers
+\item
+  counts occur at random in the interval
+\item
+  the average number of counts on the interval is known (\(\lambda\))
+\item
+  if one can find a small regular partition of the interval such that each of them can be considered Bernoulli trials
+\end{itemize}
+
+Then\ldots{}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{poisson-distribution-3}{%
+\section{Poisson distribution}\label{poisson-distribution-3}}
+
+\textbf{Definition}
+
+The random variable \(X\) that counts events across the interval is a \textbf{Poisson} variable with probability mass function\\
+\[f(x)= \frac{e^{-\lambda}\lambda^x}{x!}, \lambda>0\]
+
+\textbf{Properties:}
+
+\begin{itemize}
+\tightlist
+\item
+  mean \(E(X)= \lambda\)
+\item
+  variance \(V(X)= \lambda\)
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{poisson-distribution-4}{%
+\section{Poisson distribution}\label{poisson-distribution-4}}
+
+With the Poisson probability function:
+
+\[f(x)= \frac{e^{-\lambda}\lambda^x}{x!}\] for \(x \in \{0, 1, ...\}\)
+
+We can now answer questions like:
+
+\begin{itemize}
+\tightlist
+\item
+  What is the probability of receiving 4 emails in an hour, when the average number of emails in \textbf{one} hour is \(1\)?
+\end{itemize}
+
+\(f(4; \lambda=1)=0.18\)
+
+in R dpois(2,1)
+
+\begin{itemize}
+\tightlist
+\item
+  What is the probability of counting at least \(10\) cars arriving at a road toll in a minute, when the average number of cars that arrive at the toll in a minute is \(5\);
+  \(P(X \leq 10)=F(10; \lambda=5)=0.98\)?
+\end{itemize}
+
+in R ppois(10,5)
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{poisson-distribution-5}{%
+\section{Poisson distribution}\label{poisson-distribution-5}}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-58-1.pdf}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{continuous-probability-models}{%
+\section{Continuous probability models}\label{continuous-probability-models}}
+
+Continuous probability models are probability density functions \(f(x)\) of a continuous random variables that we \textbf{believe} describe real random experiments.
+
+Definition:
+
+Positive:
+
+\begin{itemize}
+\tightlist
+\item
+  \(f(x) \geq 0\)
+\end{itemize}
+
+\emph{Allows us to compute probabilities using the area under the curve:}
+
+\begin{itemize}
+\tightlist
+\item
+  \(P(a\leq X \leq b)=\int_{a}^{b} f(x) dx\)
+\end{itemize}
+
+The probability of any value is \(1\):
+
+\begin{itemize}
+\tightlist
+\item
+  \(\int_{-\infty}^{\infty} f(x) dx = 1\)
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{exponential-density}{%
+\section{Exponential density}\label{exponential-density}}
+
+Let's go back to the Poisson probability for the number of events (\(k\)) in an interval
+
+\[f(k)=\frac{e^{-\lambda}\lambda^k}{k!}, \lambda>0\]
+
+\begin{itemize}
+\item
+  Let's now consider only the first event
+\item
+  the distance/time we have to wait until the fisrt event is a \textbf{continuous} random variable.
+\end{itemize}
+
+We can ask for the probability that the first event is at distance \(X\).
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{exponential-density-1}{%
+\section{Exponential density}\label{exponential-density-1}}
+
+The probability of observing \(0\) events \textbf{if} an interval has unit \(x\) is
+
+\[f(0|x)=\frac{e^{-x\lambda}x\lambda^0}{0!}\]
+
+or
+
+\[f(0|x)=e^{-x\lambda}\]
+
+We can treat this as the conditional probability of \(0\) events in a distance \(x\): \(f(K=0|X=x)\) and apply the Bayes theorem to reverse it:
+
+\[f(x|0)=C f(0|x)=C e^{-x\lambda}\]
+
+So we can calculate the \textbf{probability of observing a distance} \(x\) with \(0\) events (this is the distance until the first event or the distance between any two events).
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{exponential-density-2}{%
+\section{Exponential density}\label{exponential-density-2}}
+
+In a Poisson process with parameter \(\lambda\) the probability of waiting a distance/time \(X\) until the first event has a \textbf{probability density}
+
+\[f(x)= C e^{-x\lambda}\]
+
+\begin{itemize}
+\item
+  \(C\) is a constant that ensures: \(\int_{-\infty}^{\infty} f(x) dx =1\)
+\item
+  by integration \(C=\lambda\)
+\end{itemize}
+
+Therefore
+
+\[f(x)=\lambda e^{-\lambda x}\]
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{exponential-density-3}{%
+\section{Exponential density}\label{exponential-density-3}}
+
+An exponential random variable \(X\) has a probability density
+
+\[f(x)=\lambda e^{-\lambda x}, x\geq 0\]
+
+\textbf{Properties:}
+
+\begin{itemize}
+\tightlist
+\item
+  Mean: \(E(X)=\frac{1}{\lambda}\)
+\item
+  Variance: \(V(Y)=\frac{1}{\lambda^2}\)
+\end{itemize}
+
+Where \(\lambda\) is its single parameter, known as a \textbf{decay rate}.
+
+\textbf{Note:} The exponential model is a general model. It can describe the time/length until the first count in a Poisson process of the size of a whole made by a drill.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{exponential-density-4}{%
+\section{Exponential density}\label{exponential-density-4}}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-59-1.pdf}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{exponential-distribution}{%
+\section{Exponential Distribution}\label{exponential-distribution}}
+
+In a Poisson process: ¿What is the probability of observing distance \textbf{smaller} than \(a\) until the first event?
+
+Remember that this probability \(F(a)=P(X \leq a)\) is the probability density
+
+\[F(a)=\lambda \int_\infty^a e^{-x\lambda}dx=1-e^{-a\lambda}\]
+
+\begin{itemize}
+\tightlist
+\item
+  ¿What is the probability of observing a distance \textbf{larger} than \(a\) until the first event?
+\end{itemize}
+
+\[P(X > a)=1- P(X \leq a)= 1- F(a) = e^{-a\lambda}\]
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{exponential-distribution-1}{%
+\section{Exponential Distribution}\label{exponential-distribution-1}}
+
+With the exponential density function:
+
+\[f(x)=\lambda e^{-\lambda x}\]
+
+We can answer questions like:
+
+\begin{itemize}
+\tightlist
+\item
+  What is the probability that we have to wait for a bus for more than \(1\) hour when on average there are two buses per hour?
+\end{itemize}
+
+\[P(X > 1)=1-P(X \le 1) = 1-F(1,\lambda=2)=0.1353\]
+in R 1-pexp(1,2)
+
+\begin{itemize}
+\tightlist
+\item
+  What is the probability of having to wait less than \(2\) seconds to detect one particle when the radioactive decay rate is \(2\) particles each second; \(F(2,\lambda=2)\)
+\end{itemize}
+
+\[P(X \le 2)=F(2,\lambda=2)=0.981\]
+
+in R pexp(2,2)
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{exponential-distribution-2}{%
+\section{Exponential Distribution}\label{exponential-distribution-2}}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-60-1.pdf}
+
+The median \(x_m\) is such that \(F(x_m)=0.5\). That is \(x_m=\frac{\log(2)}{\lambda}\)
+
+\hypertarget{normal-distribution}{%
+\chapter{Normal Distribution}\label{normal-distribution}}
+
+\hypertarget{objective-7}{%
+\section{Objective}\label{objective-7}}
+
+Continuous probability model:
+
+\begin{itemize}
+\tightlist
+\item
+  Normal distribution
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{continuous-probability-models-1}{%
+\section{Continuous probability models}\label{continuous-probability-models-1}}
+
+Continuous probability models are probability density functions \(f(x)\) of a continuous random variables that we \textbf{believe} describe real random experiments.
+
+Definition:
+
+Positive:
+
+\begin{itemize}
+\tightlist
+\item
+  \(f(x) \geq 0\)
+\end{itemize}
+
+\emph{Allows us to compute probabilities using the area under the curve:}
+
+\begin{itemize}
+\tightlist
+\item
+  \(P(a\leq X \leq b)=\int_{a}^{b} f(x) dx\)
+\end{itemize}
+
+The probability of any value is \(1\):
+
+\begin{itemize}
+\tightlist
+\item
+  \(\int_{-\infty}^{\infty} f(x) dx = 1\)
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{normal-density}{%
+\section{Normal density}\label{normal-density}}
+
+In 1801 Gauss analyzed the orbit of Ceres (large asteroid between Mars and Jupiter).
+
+\begin{itemize}
+\tightlist
+\item
+  People suspected it was a new planet.
+\item
+  The measurements had errors.
+\item
+  He was interested in finding how the observations were distributed so he could find the most probable orbit.
+\item
+  He wanted to predict where astronomers should point their telescopes to find it a few months after it had passed behind the Sun.
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{normal-density-1}{%
+\section{Normal density}\label{normal-density-1}}
+
+Errors due to measurement.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{normal-density-2}{%
+\section{Normal density}\label{normal-density-2}}
+
+He assumed that
+
+\begin{itemize}
+\tightlist
+\item
+  small errors were more likely than large errors
+\item
+  error at a distance \(-\epsilon\) or \(\epsilon\) from the most likely measurement were equally likely
+\item
+  the most \textbf{likely} altitude of Ceres at a given time in the sky was the \textbf{average} of multiple altitude measurements at that latitude.
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{normal-density-3}{%
+\section{Normal density}\label{normal-density-3}}
+
+That was enough to show that the random deviations \(y\) \textbf{from the orbit} distributed like
+
+\[f(y)=\frac{h}{\sqrt{\pi}}e^{-h^2y^2}\]
+
+*The evolution of the Normal distribution, Saul Stahl, Mathematics Magazine, 2006.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{normal-density-4}{%
+\section{Normal density}\label{normal-density-4}}
+
+Let's write the distribution of errors
+
+\[f(y)=\frac{h}{\sqrt{\pi}}e^{-h^2y^2}\]
+
+for the errors of measurements from the horizon \(X\) then \(y=x-x_0\)
+
+\[f(x)=\frac{h}{\sqrt{\pi}}e^{-h^2(x-x_0)^2}\]
+
+\begin{itemize}
+\tightlist
+\item
+  The \textbf{mean} of this probability density is:
+\end{itemize}
+
+\(E(X)=\mu=x_0\), that represents the \textbf{true} position of Ceres from the horizon (property of the physical system).
+
+\begin{itemize}
+\tightlist
+\item
+  The \textbf{variance} is:
+\end{itemize}
+
+\(V(X)=\sigma^2=\frac{1}{2h^2}\), that represents the dispersion of the error in the observations (property of the measurement system).
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{definition}{%
+\section{Definition}\label{definition}}
+
+A random variable \(X\) defined in the real numbers has a \textbf{Normal} density if it takes the form
+
+\[f(x; \mu, \sigma^2)=\frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{(x-\mu)^2}{2\sigma^2}}, x \in {\Bbb R}\]
+
+with mean and variance:
+
+\begin{itemize}
+\tightlist
+\item
+  \(E (X) = \mu\)
+\item
+  \(V (X) = \sigma^2\)
+\end{itemize}
+
+\(\mu\) and \(\sigma\) are the \textbf{two parameters} that fully describe the normal density function and their \textbf{interpretation} depends on the random experiment.
+
+When \(X\) follows a Normal density, i.e.~distributes normally, we write
+
+\[X\rightarrow N(\mu,\sigma^2)\]
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{normal-probability-density-gaussian}{%
+\section{Normal probability density (Gaussian)}\label{normal-probability-density-gaussian}}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-61-1.pdf}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{normal-distribution-1}{%
+\section{Normal distribution}\label{normal-distribution-1}}
+
+The probability distribution of the Normal density:
+
+\[F_{normal}(a)=P(Z \leq a)\]
+
+is the \textbf{error} function defined by the area under the curve from \(-\infty\) to \(a\)
+
+\[F_{normal}(a)=\int_{-\infty}^{a}\frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{(x-\mu)^2}{2\sigma^2}} dx\]
+The function is found in most computer programs.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{normal-distribution-2}{%
+\section{Normal distribution}\label{normal-distribution-2}}
+
+When \[X \rightarrow N(\mu, \sigma^2)\]
+
+We can ask questions like:
+
+\begin{itemize}
+\tightlist
+\item
+  What is the probability that a woman in the population is at most \(150cm\) tall if women have a mean height of \(165cm\) with standard deviation of \(8cm\)?
+\end{itemize}
+
+\(P(X\le 150)=F(150, \mu=165, \sigma=8)=0.03039636\)
+
+in R pnorm(150, 165, 8)
+
+\begin{itemize}
+\tightlist
+\item
+  What is the probability that a woman's height in the population is between \(165cm\) and \(170cm\)?
+\end{itemize}
+
+\(P(165 \le X \le 170)=F(170, \mu=165, \sigma=8)-F(165, \mu=165, \sigma=8)=0.2340145\)
+
+in R pnorm(170, 165, 8)-pnorm(165, 165, 8)
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{normal-distribution-3}{%
+\section{Normal distribution}\label{normal-distribution-3}}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-62-1.pdf}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{normal-distribution-4}{%
+\section{Normal distribution}\label{normal-distribution-4}}
+
+\begin{itemize}
+\tightlist
+\item
+  the mean \(\mu\) is also the median as it splits the measurements in two
+\item
+  \(x\) values that fall farther than 2\(\sigma\) are considered \textbf{rare} \(5\%\)
+\item
+  \(x\) values that fall farther than 3\(\sigma\) are considered \textbf{extremely rare} \(0.2\%\)
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{normal-distribution-5}{%
+\section{Normal distribution}\label{normal-distribution-5}}
+
+We can define the limits of \textbf{common observations} for the distribution of women's height in the population.
+
+\begin{itemize}
+\tightlist
+\item
+  \(P(165-8 \leq X \leq 165-8)=P(157 \leq X \leq 173)=0.68\)
+\item
+  \(P(165-2 \times 8 \leq X \leq 165-2\times 8)=P(149 \leq X \leq 181)=0.95\)
+\item
+  \(P(165-3 \times 8 \leq X \leq 165-3\times 8)=P(141 \leq X \leq 189)=0.997\)
+\end{itemize}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-63-1.pdf}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{standard-normal-density}{%
+\section{Standard normal density}\label{standard-normal-density}}
+
+Let's change variables to a \textbf{standardized variable}
+
+\[Z=\frac{X-\mu}{\sigma}\]
+
+in the density
+
+\[f(x; \mu, \sigma^2)=\frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{(x-\mu)^2}{2\sigma^2}}, x \in {\Bbb R}\]
+
+replacing \(x=\sigma z+\mu\) and \(dx=\sigma dz\) in the probability expression we have
+
+\(P(x\leq X \leq x +dx)=P(z\leq Z \leq z +dz)\)
+\[=\frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{(x-\mu)^2}{2\sigma^2}}dx\] \[=\frac{1}{ \sqrt{2\pi}}e^{-\frac{z^2}{2}} dz\]
+
+we obtain the \textbf{standardized} form of the normal density.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{standard-normal-density-1}{%
+\section{Standard normal density}\label{standard-normal-density-1}}
+
+\textbf{Definition}
+
+A random variable \(Z\) defined in the real numbers has a \textbf{standard} density if it takes the form
+
+\[f(z)=\frac{1}{\sqrt{2\pi}}e^{-\frac{z^2}{2}} dz,z \in {\Bbb R}\]
+
+with mean and variance
+
+\begin{itemize}
+\item
+  \(E (X) = 0\)
+\item
+  \(V (X) =1\).
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{standard-normal-density-2}{%
+\section{Standard normal density}\label{standard-normal-density-2}}
+
+The standard density:
+
+\[f(z)=\frac{1}{\sqrt{2\pi}}e^{-\frac{z^2}{2}} dz,z \in {\Bbb R}\]
+
+\begin{itemize}
+\item
+  is the normal density \(N(\mu=0,\sigma^2=1)\)
+\item
+  any normally distributed variable \(X\) can be transformed to a variable \(Z\)
+\end{itemize}
+
+\[Z=\frac{x-\mu}{\sigma}\]
+
+that follows a standard distribution:
+
+\[Z \rightarrow N(0,1)\]
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{normal-distribution-6}{%
+\section{Normal distribution}\label{normal-distribution-6}}
+
+All normal densities can be obtained from the standard density with the values of \(\mu\) and \(\sigma\)
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{standard-distribution}{%
+\section{Standard distribution}\label{standard-distribution}}
+
+The probability distribution of the standard density:
+
+\[\phi(a)=F_{standard}(a)=P(Z \leq a)\]
+
+is the \textbf{error} function defined by
+
+\[\phi(a)=\int_{-\infty}^{a} \frac{1}{\sqrt{2\pi}}e^{-\frac{z^2}{2}} dz\]
+
+You can find it in most computer programs
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{standard-normal-density-3}{%
+\section{Standard normal density}\label{standard-normal-density-3}}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{standard-normal-density-4}{%
+\section{Standard normal density}\label{standard-normal-density-4}}
+
+We define the limits of the \textbf{most common observations} for the standard variable
+
+\begin{itemize}
+\tightlist
+\item
+  \(P(-0.67 \leq X \leq 0.67)=0.50\)
+\item
+  \(P(-1.96 \leq X \leq 1.96)=0.95\)
+\item
+  \(P(-2.58 \leq X \leq 2.58)=0.99\)
+\end{itemize}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-64-1.pdf}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{normal-and-standard-distributions}{%
+\section{Normal and standard distributions}\label{normal-and-standard-distributions}}
+
+For any normally distributed variable \(X\), such that
+
+\[X\rightarrow N(\mu, \sigma^2)\]
+
+its distribution \(F(a)=P(X \leq a)\) can be computed from
+
+\[F(a)= \phi \big(\frac{a-\mu}{\sigma}\big)\]
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{normal-distribution-7}{%
+\section{Normal distribution}\label{normal-distribution-7}}
+
+For computing \(P(a\leq X \leq b)\), we use the property of the probability distributions
+
+\[F(b)-F(a)=P(X\leq b)-P(X\leq a)\]
+
+Let's standardize
+
+\(=P(\frac{X-\mu}{\sigma}\leq \frac{a-\mu}{\sigma})-P(\frac{X-\mu}{\sigma}\leq \frac{b-\mu}{\sigma})\)
+
+\(=P(Z \leq \frac{b-\mu}{\sigma})-P(Z \leq \frac{a-\mu}{\sigma}\big)\)
+
+\(=\phi \big(\frac{b-\mu}{\sigma}\big)-\phi \big(\frac{a-\mu}{\sigma}\big)\)
+
+Then
+
+\[F(b)-F(a)=\phi \big(\frac{b-\mu}{\sigma}\big)-\phi \big(\frac{a-\mu}{\sigma}\big)\]
+
+The probabilities of \textbf{any normal variable} can be obtained from the \textbf{standard distribution}, after standardization (subtract the mean and divide by the standard deviation).
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{summary-of-probability-models}{%
+\section{Summary of probability models}\label{summary-of-probability-models}}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 12\tabcolsep) * \real{0.23}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 12\tabcolsep) * \real{0.28}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 12\tabcolsep) * \real{0.13}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 12\tabcolsep) * \real{0.11}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 12\tabcolsep) * \real{0.09}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 12\tabcolsep) * \real{0.09}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 12\tabcolsep) * \real{0.09}}@{}}
+\toprule
+\begin{minipage}[b]{\linewidth}\raggedright
+Model
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+X
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+range of x
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+f(x)
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+E(X)
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+V(X)
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+R
+\end{minipage} \\
+\midrule
+\endhead
+Uniform & integer or real number & \([a, b]\) & \(\frac{1}{n}\) & \(\frac{b+a}{2}\) & \(\frac{(b-a+1)^2-1}{12}\) & rep(1/n, n), dunif(x, a, b) \\
+Bernoulli & event A & 0,1 & \((1-p)^{1-x}p^x\) & \(p\) & \(p(1-p)\) & c(1-p,p) \\
+Binomial & \# of A events in \(n\) repetitions of Bernoulli trials & 0,1,\ldots{} & \(\binom n x (1-p)^{n-x}p^x\) & \(np\) & \(np(1-p)\) & dbimon(x,n,p) \\
+Negative Binomial for events & \# of B events in Bernoulli repetitions before \(r\) As are observed & 0,1,.. & \(\binom {x+r-1} x (1-p)^xp^r\) & \(\frac{r(1-p)}{p}\) & \(\frac{r(1-p)}{p^2}\) & dnbinom(x,r,p) \\
+Hypergeometric & \# A events in a sample \(n\) from population \(N\) with \(K\) As & \(\max(0, n+K-N)\), \ldots{} \(\min(K, n)\) & \(\frac{1}{\binom N n}\binom K x \binom {N-K} {n-x}\) & \(n*\frac{N}{K}\) & \(n \frac{N}{K} (1-\frac{N}{K})\frac{N-n}{N-1}\) & dhyper(x, K, N-K, n) \\
+Poisson & \# of events A in an interval & 0,1, .. & \(\frac{e^{-\lambda}\lambda^x}{x!}\) & \(\lambda\) & \(\lambda\) & dpoiss(x, lambda) \\
+Exponential & Interval between two events A & \([0,\infty)\) & \(\lambda e^{-\lambda x}\) & \(\frac{1}{\lambda}\) & \(\frac{1}{\lambda^2}\) & dexp(x, lambda) \\
+Normal & measurement with symmetric errors whose most likely value is the average & \((-\infty, \infty)\) & \(\frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{(x-\mu)^2}{2\sigma^2}}\) & \(\mu\) & \(\sigma^2\) & dnomr(x, mu, sigma) \\
+\bottomrule
+\end{longtable}
+
 \hypertarget{exercises}{%
 \chapter{Exercises}\label{exercises}}
 
@@ -4779,13 +5692,13 @@ Let's assume that \(N>>0\) and that the frequencies \textbf{estimate} the probab
 \begin{itemize}
 \tightlist
 \item
-  What is the marginal probability of misophonia severity 3?
+  What is the marginal probability of misophonia severity 3? (R/0.3)
 \item
-  What is the probability of not being misophonic \textbf{and} not depressed?
+  What is the probability of not being misophonic \textbf{and} not depressed? (R/0.293)
 \item
-  What is the probability of being misophonic \textbf{or} depressed?
+  What is the probability of being misophonic \textbf{or} depressed? (R/0.293)
 \item
-  What is the probability of being misophonic \textbf{and} depressed?
+  What is the probability of being misophonic \textbf{and} depressed? (R/0.707)
 \item
   Describe in English the outcomes with probability 0.
 \end{itemize}
@@ -4816,11 +5729,11 @@ We have performed an experiment 10 times with the following results
 \item
   Create the contingency table for the relative frequency (\(f_{i,j}\)) of the outcomes
 \item
-  What is the marginal frequency of being male?
+  What is the marginal frequency of being male? (R/0.6)
 \item
-  What is the marginal frequency of being alive?
+  What is the marginal frequency of being alive? (R/0.5)
 \item
-  What is the frequency of being alive \textbf{or} female?
+  What is the frequency of being alive \textbf{or} female? (R/0.6)
 \end{itemize}
 
 \hypertarget{conditional-probability-3}{%
@@ -4843,19 +5756,19 @@ smooth surface: no & 4 & 2 \\
 
 \begin{itemize}
 \item
-  What is the estimated probability that the machine produces a rod that does not satisfy any quality control?
+  What is the estimated probability that the machine produces a rod that does not satisfy any quality control? (R: 2/207)
 \item
-  What is the estimated probability that the machine produces a rod that does not satisfy at least one quality control?
+  What is the estimated probability that the machine produces a rod that does not satisfy at least one quality control?(R: 7/207)
 \item
-  What is the estimated probability that the machine produces rounded and smoothed surfaced rods?
+  What is the estimated probability that the machine produces rounded and smoothed surfaced rods? (R: 200/207)
 \item
-  what is the estimated probability that the rod is rounded if the rod is smooth?
+  what is the estimated probability that the rod is rounded if the rod is smooth? (R: 201/201)
 \item
-  what is the estimated probability that the rod is smooth if it is rounded?
+  what is the estimated probability that the rod is smooth if it is rounded? (R: 201/204)
 \item
-  what is the estimated probability that the rod is neither smooth nor rounded if it does not satisfy at least one quality control?
+  what is the estimated probability that the rod is neither smooth nor rounded if it does not satisfy at least one quality control? (R: 2/7)
 \item
-  Are smoothness and roundness independent events?
+  Are smoothness and roundness independent events? (no)
 \end{itemize}
 
 \hypertarget{exercise-2-2}{%
@@ -4866,7 +5779,7 @@ We develop a test to detect the presence of bacteria in a lake. We find that if 
 \begin{itemize}
 \tightlist
 \item
-  What is the probability that one lake that tests positive is contaminated with bacteria?
+  What is the probability that one lake that tests positive is contaminated with bacteria? (R: 0.30)
 \end{itemize}
 
 \hypertarget{exercise-3}{%
@@ -4901,21 +5814,21 @@ smooth surface: no & 8 & 6 \\
 \begin{itemize}
 \tightlist
 \item
-  what is the probability that the rod is rounded?
+  what is the probability that the rod is rounded? (R: 357/370)
 \item
-  What is the probability that the rod has been produced by machine 1?
+  What is the probability that the rod has been produced by machine 1? (R: 207/370)
 \item
-  what is the probability that the rod is not smooth?
+  what is the probability that the rod is not smooth? (R: 20/370)
 \item
-  What is the probability that the rod is smooth or rounded or produced by machine 1?
+  What is the probability that the rod is smooth or rounded or produced by machine 1? (R: 364/370)
 \item
-  What is the probability that the rod is rounded if it is smoothed and from machine 1?
+  What is the probability that the rod is rounded if it is smoothed and from machine 1? (R: 200/201)
 \item
-  What is the probability that the rod is not rounded if it is not smoothed and is from machine 2?
+  What is the probability that the rod is not rounded if it is not smoothed and is from machine 2? (R: 6/8)
 \item
-  what is the probability that the rod has come from machine 1 if it it is smoothed and rounded?
+  what is the probability that the rod has come from machine 1 if it it is smoothed and rounded? (R: 200/345)
 \item
-  what is the probability that the rod has come from machine 2 if it does not pass at least one of the quality controls?
+  what is the probability that the rod has come from machine 2 if it does not pass at least one of the quality controls? (R:0.72)
 \end{itemize}
 
 \hypertarget{exercise-4}{%
@@ -4928,17 +5841,17 @@ When we try to cross both traffic lights:
 \begin{itemize}
 \tightlist
 \item
-  what is the probability of having to stop at each traffic light?
+  what is the probability of having to stop at each traffic light? (R:0.09)
 \item
-  What is the probability of having to stop at at least one traffic light?
+  What is the probability of having to stop at at least one traffic light?(R:0.7)
 \item
-  What is the probability of having to stop at only one traffic light?
+  What is the probability of having to stop at only one traffic light? (R:0.61)
 \item
-  If I stopped at the second traffic light, what is the probability that I had to stop at the first one?\\
+  If I stopped at the second traffic light, what is the probability that I had to stop at the first one? (R: 0.62)
 \item
-  If I had to stop at any traffic light, what is the probability that I had to do it twice?
+  If I had to stop at any traffic light, what is the probability that I had to do it twice? (R: 0.12)
 \item
-  Is stopping at the first traffic light an independent event from stopping at the second traffic light?
+  Is stopping at the first traffic light an independent event from stopping at the second traffic light? (no)
 \end{itemize}
 
 Now, we want to cross an avenue with three traffic lights. The probability of finding a traffic light in red only depends on the previous one. In particular, the probability of finding one traffic light in red given that the previous one was in red is 0.15. Whereas, the probability of finding one traffic right in red given that the previous one was in green is 0.25. Also, the probability of finding the first traffic light in red is 0.6.
@@ -4946,11 +5859,11 @@ Now, we want to cross an avenue with three traffic lights. The probability of fi
 \begin{itemize}
 \tightlist
 \item
-  What is the probability of having to stop at each traffic light?
+  What is the probability of having to stop at each traffic light? (R:0.013)
 \item
-  What is the probability of having to stop at at least one traffic light?
+  What is the probability of having to stop at at least one traffic light? (R:0.775)
 \item
-  What is the probability of having to stop at only one traffic light?
+  What is the probability of having to stop at only one traffic light? (R:0.5425)
 \end{itemize}
 
 hints:
@@ -4981,13 +5894,13 @@ If the diagnostic test has sensitivity \(P(E|\bar{D})=0.99\) and specificity \(P
 
 \begin{itemize}
 \item
-  what is the probability that a brick chosen at random is defective \(P(D)\)?
+  what is the probability that a brick chosen at random is defective \(P(D)\)? (R:0.1)
 \item
-  What is the probability that a brick that has passed the test is really defective?
+  What is the probability that a brick that has passed the test is really defective? (R:0.022)
 \item
-  The probability that a brick is not defective \textbf{and} that it does not pass the test
+  The probability that a brick is not defective \textbf{and} that it does not pass the test (R:0.009)
 \item
-  Are \(D\) and \(\bar{E}\) statistical independent?
+  Are \(D\) and \(\bar{E}\) statistical independent? (no)
 \end{itemize}
 
 \hypertarget{random-variables}{%
@@ -5015,7 +5928,7 @@ Given the probability mass function
 \begin{itemize}
 \tightlist
 \item
-  what is its expected value and standard deviation?
+  what is its expected value and standard deviation? (R: 14.2; 2.95)
 \end{itemize}
 
 \hypertarget{exercise-2-3}{%
@@ -5039,11 +5952,11 @@ Given the probability distribution for a discrete variable \(X\)
 \item
   find \(f(x)\)
 \item
-  find \(E(X)\) and \(V(X)\)
+  find \(E(X)\) and \(V(X)\) (R:1; 1.5)
 \item
-  what is the expected value and variance of \(Y=2X+3\)
+  what is the expected value and variance of \(Y=2X+3\) (R: 6)
 \item
-  what is the median and the first and third quartiles of \(X\)?
+  what is the median and the first and third quartiles of \(X\)? (R:2,0,2)
 \end{itemize}
 
 \hypertarget{exercise-3-1}{%
@@ -5062,17 +5975,17 @@ Consider that we have a totally noisy channel, that is any outcome of three pixe
 
 \begin{itemize}
 \item
-  What is the probability of receiving \(0\), \(1\), \(2\), or \(3\) errors in the transmission of \(3\) pixels?
+  What is the probability of receiving \(0\), \(1\), \(2\), or \(3\) errors in the transmission of \(3\) pixels? (R: 1/8; 3/8; 3/8; 1/8)
 \item
   Sketch the probability mass function for the number of errors
 \item
-  What is the expected value for the number of errors?
+  What is the expected value for the number of errors? (R:1.5)
 \item
-  What is its variance?
+  What is its variance? (R: 0.75)
 \item
   Sketch the probability distribution
 \item
-  What is the probability of transmitting at least 1 error?
+  What is the probability of transmitting at least 1 error? (R:7/8)
 \end{itemize}
 
 \hypertarget{exercise-4-1}{%
@@ -5095,16 +6008,16 @@ Consider that we have a totally noisy channel, that is any outcome of three pixe
 \begin{itemize}
 \tightlist
 \item
-  compute the mean
+  compute the mean (R:50)
 \item
-  compute variance using \(E(X^2)=V(X)+E(X)^2\)
+  compute variance using \(E(X^2)=V(X)+E(X)^2\) (R:100\^{}2/12)
 \item
-  compute \(P(\mu-\sigma\leq X \leq \mu+\sigma)\)
+  compute \(P(\mu-\sigma\leq X \leq \mu+\sigma)\) (R: 0.57)
 \item
-  What are the first and third quartiles?
+  What are the first and third quartiles? (R: 25; 75)
 \end{itemize}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-64-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-71-1.pdf}
 
 \hypertarget{exercise-5-1}{%
 \subsubsection{Exercise 5}\label{exercise-5-1}}
@@ -5123,9 +6036,9 @@ b, & x \in (3,5) \\
 
 \begin{itemize}
 \item
-  What are the values of \(a\) and \(b\) such that \(f(x)\) is a continous probability density function?
+  What are the values of \(a\) and \(b\) such that \(f(x)\) is a continous probability density function? (R: 1/15; 1/5)
 \item
-  what is the mean of \(X\)?
+  what is the mean of \(X\)? (R:4)
 \end{itemize}
 
 \hypertarget{exercise-6}{%
@@ -5146,15 +6059,15 @@ For the probability density
 \item
   Confirm that this is a probability density
 \item
-  Compute the mean
+  Compute the mean (R: 1/\(\lambda\))
 \item
-  Compute the expected value of \(X^2\)
+  Compute the expected value of \(X^2\) (R: 2/\(\lambda^2\))
 \item
-  Compute variance
+  Compute variance (R: 1/\(\lambda^2\))
 \item
-  Find the probability distribution \(F(a)\)
+  Find the probability distribution \(F(a)\) (R: \(1-exp(-\lambda a)\))
 \item
-  Find the median
+  Find the median (R: \(\log{2}\)/\(\lambda\))
 \end{itemize}
 
 \hypertarget{exercise-7}{%
@@ -5176,11 +6089,11 @@ compute:
 \begin{itemize}
 \tightlist
 \item
-  \(P(X>0)\)
+  \(P(X>0)\) (R:63/80)
 \item
-  \(E(X)\)
+  \(E(X)\) (R:1.93)
 \item
-  \(P(X>0|X<2)\)
+  \(P(X>0|X<2)\) (R:28/45)
 \end{itemize}
 
 \hypertarget{probability-models}{%
@@ -5189,50 +6102,52 @@ compute:
 \hypertarget{exercise-1-4}{%
 \subsubsection{Exercise 1}\label{exercise-1-4}}
 
-A search engine fails to retrieve information with a probability \(0.1\)
-
-\begin{itemize}
-\item
-  If we system receives \(50\) search requests, what is the probability that the system fails to answer three of them?
-\item
-  What is the probability that the engine successfully completes \(15\) searches before the first failure?
-\item
-  We consider that a search engine works sufficiently well when it is able to find information for moe than \(10\) requests for every \(2\) failures. What is the probability that in a reliability trial our search engine is satisfactory?
-\end{itemize}
-
-\hypertarget{exercise-2-4}{%
-\subsubsection{Exercise 2}\label{exercise-2-4}}
-
 In a population, the probability that a baby boy is born is \(p=0.51\). Consider a family of 4 children
 
 \begin{itemize}
 \tightlist
 \item
-  What is the probability that a family has only one boy?
+  What is the probability that a family has only one boy?(R: 0.240)
 \item
-  What is the probability that a family has only one girl?
+  What is the probability that a family has only one girl?(R: 0.259)
 \item
-  What is the probability that a family has only one boy or only one girl?
+  What is the probability that a family has only one boy or only one girl?(R: 0.4999)
 \item
-  What is the probability that the family has at least two boys?
+  What is the probability that the family has at least two boys?(R: 0.7023)
 \item
-  What is the number of children that a family should have such that the probability of having at least a girl is more than 0.75?
+  What is the number of children that a family should have such that the probability of having at least one girl is more than \(0.75\)?(R:\(n=3>\log(0.25)/\log(0.51)\))
+\end{itemize}
+
+\hypertarget{exercise-2-4}{%
+\subsubsection{Exercise 2}\label{exercise-2-4}}
+
+A search engine fails to retrieve information with a probability \(0.1\)
+
+\begin{itemize}
+\item
+  If we system receives \(50\) search requests, what is the probability that the system fails to answer three of them?(R:0.1385651)
+\item
+  What is the probability that the engine successfully completes \(15\) searches before the first failure?(R:0.020)
+\item
+  We consider that a search engine works sufficiently well when it is able to find information for moe than \(10\) requests for every \(2\) failures. What is the probability that in a reliability trial our search engine is satisfactory?(R: 0.697)
 \end{itemize}
 
 \hypertarget{exercise-3-2}{%
 \subsubsection{Exercise 3}\label{exercise-3-2}}
 
-The average number of radioactive particles hitting a Geiger counter is \(2.3\) per second.
+The average number of radioactive particles hitting a Geiger counter in a nuclear energy plant under control is \(2.3\) per minute.
 
 \begin{itemize}
 \item
-  What is the probability of counting exactly 2 particles in a second?
+  What is the probability of counting exactly \(2\) particles in a minute? (R:0.265)
 \item
-  What is the probability of detecting exactly \(10\) particles in \(5\) seconds?
+  What is the probability of detecting exactly \(10\) particles in \(5\) minute? (R:0.112)
 \item
-  What is the probability of at least one count in two seconds?
+  What is the probability of at least one count in two minutes? (R:0.9899)
 \item
-  What is the probability of having to wait \(2.5\) seconds after we switch on the detector?
+  What is the probability of having to wait less than \(1\) second to detect a radioactive particle, after we switch on the detector? (R:0.037)
+\item
+  We suspect that a nuclear plant has a radioactive leak if we wait less than \(1\) second to detect a radioactive particle, after we switch on the detector. What is the probability that when we visit in \(5\) plants that are under control, we suspect that at least one has a leak? (R:0.1744).
 \end{itemize}
 
 \hypertarget{exercise-4-2}{%

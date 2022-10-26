@@ -337,6 +337,7 @@
 <li class="chapter" data-level="9.22" data-path="normal-distribution.html"><a href="normal-distribution.html#normal-and-standard-distributions"><i class="fa fa-check"></i><b>9.22</b> Normal and standard distributions<span></span></a></li>
 <li class="chapter" data-level="9.23" data-path="normal-distribution.html"><a href="normal-distribution.html#normal-distribution-7"><i class="fa fa-check"></i><b>9.23</b> Normal distribution<span></span></a></li>
 <li class="chapter" data-level="9.24" data-path="normal-distribution.html"><a href="normal-distribution.html#summary-of-probability-models"><i class="fa fa-check"></i><b>9.24</b> Summary of probability models<span></span></a></li>
+<li class="chapter" data-level="9.25" data-path="normal-distribution.html"><a href="normal-distribution.html#r-functions-of-probability-models"><i class="fa fa-check"></i><b>9.25</b> R functions of probability models<span></span></a></li>
 </ul></li>
 <li class="chapter" data-level="10" data-path="exercises.html"><a href="exercises.html"><i class="fa fa-check"></i><b>10</b> Exercises<span></span></a>
 <ul>
@@ -635,99 +636,132 @@ The function is found in most computer programs.</p>
 </div>
 <div id="summary-of-probability-models" class="section level2 hasAnchor" number="9.24">
 <h2><span class="header-section-number">9.24</span> Summary of probability models<a href="normal-distribution.html#summary-of-probability-models" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<table>
+<table style="width:100%;">
 <colgroup>
-<col width="23%" />
-<col width="27%" />
-<col width="12%" />
-<col width="10%" />
-<col width="8%" />
-<col width="8%" />
-<col width="8%" />
+<col width="16%" />
+<col width="19%" />
+<col width="19%" />
+<col width="16%" />
+<col width="14%" />
+<col width="14%" />
 </colgroup>
 <thead>
 <tr class="header">
-<th>Model</th>
-<th>X</th>
-<th>range of x</th>
-<th>f(x)</th>
-<th>E(X)</th>
-<th>V(X)</th>
-<th>R</th>
+<th align="center">Model</th>
+<th align="center">X</th>
+<th align="center">range of x</th>
+<th align="center">f(x)</th>
+<th align="center">E(X)</th>
+<th align="center">V(X)</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>Uniform</td>
-<td>integer or real number</td>
-<td><span class="math inline">\([a, b]\)</span></td>
-<td><span class="math inline">\(\frac{1}{n}\)</span></td>
-<td><span class="math inline">\(\frac{b+a}{2}\)</span></td>
-<td><span class="math inline">\(\frac{(b-a+1)^2-1}{12}\)</span></td>
-<td><code>rep(1/n, n)</code>, <code>dunif(x, a, b)</code></td>
+<td align="center">Uniform</td>
+<td align="center">integer or real number</td>
+<td align="center"><span class="math inline">\([a, b]\)</span></td>
+<td align="center"><span class="math inline">\(\frac{1}{n}\)</span></td>
+<td align="center"><span class="math inline">\(\frac{b+a}{2}\)</span></td>
+<td align="center"><span class="math inline">\(\frac{(b-a+1)^2-1}{12}\)</span></td>
 </tr>
 <tr class="even">
-<td>Bernoulli</td>
-<td>event A</td>
-<td>0,1</td>
-<td><span class="math inline">\((1-p)^{1-x}p^x\)</span></td>
-<td><span class="math inline">\(p\)</span></td>
-<td><span class="math inline">\(p(1-p)\)</span></td>
-<td><code>c(1-p,p)</code></td>
+<td align="center">Bernoulli</td>
+<td align="center">event A</td>
+<td align="center">0,1</td>
+<td align="center"><span class="math inline">\((1-p)^{1-x}p^x\)</span></td>
+<td align="center"><span class="math inline">\(p\)</span></td>
+<td align="center"><span class="math inline">\(p(1-p)\)</span></td>
 </tr>
 <tr class="odd">
-<td>Binomial</td>
-<td># of A events in <span class="math inline">\(n\)</span> repetitions of Bernoulli trials</td>
-<td>0,1,…</td>
-<td><span class="math inline">\(\binom n x (1-p)^{n-x}p^x\)</span></td>
-<td><span class="math inline">\(np\)</span></td>
-<td><span class="math inline">\(np(1-p)\)</span></td>
-<td><code> dbimon(x,n,p)</code></td>
+<td align="center">Binomial</td>
+<td align="center"># of A events in <span class="math inline">\(n\)</span> repetitions of Bernoulli trials</td>
+<td align="center">0,1,…</td>
+<td align="center"><span class="math inline">\(\binom n x (1-p)^{n-x}p^x\)</span></td>
+<td align="center"><span class="math inline">\(np\)</span></td>
+<td align="center"><span class="math inline">\(np(1-p)\)</span></td>
 </tr>
 <tr class="even">
-<td>Negative Binomial for events</td>
-<td># of B events in Bernoulli repetitions before <span class="math inline">\(r\)</span> As are observed</td>
-<td>0,1,..</td>
-<td><span class="math inline">\(\binom {x+r-1} x (1-p)^xp^r\)</span></td>
-<td><span class="math inline">\(\frac{r(1-p)}{p}\)</span></td>
-<td><span class="math inline">\(\frac{r(1-p)}{p^2}\)</span></td>
-<td><code>dnbinom(x,r,p)</code></td>
+<td align="center">Negative Binomial for events</td>
+<td align="center"># of B events in Bernoulli repetitions before <span class="math inline">\(r\)</span> As are observed</td>
+<td align="center">0,1,..</td>
+<td align="center"><span class="math inline">\(\binom {x+r-1} x (1-p)^xp^r\)</span></td>
+<td align="center"><span class="math inline">\(\frac{r(1-p)}{p}\)</span></td>
+<td align="center"><span class="math inline">\(\frac{r(1-p)}{p^2}\)</span></td>
 </tr>
 <tr class="odd">
-<td>Hypergeometric</td>
-<td># A events in a sample <span class="math inline">\(n\)</span> from population <span class="math inline">\(N\)</span> with <span class="math inline">\(K\)</span> As</td>
-<td><span class="math inline">\(\max(0, n+K-N)\)</span>, … <span class="math inline">\(\min(K, n)\)</span></td>
-<td><span class="math inline">\(\frac{1}{\binom N n}\binom K x \binom {N-K} {n-x}\)</span></td>
-<td><span class="math inline">\(n*\frac{N}{K}\)</span></td>
-<td><span class="math inline">\(n \frac{N}{K} (1-\frac{N}{K})\frac{N-n}{N-1}\)</span></td>
-<td><code>dhyper(x, K, N-K, n)</code></td>
+<td align="center">Hypergeometric</td>
+<td align="center"># A events in a sample <span class="math inline">\(n\)</span> from population <span class="math inline">\(N\)</span> with <span class="math inline">\(K\)</span> As</td>
+<td align="center"><span class="math inline">\(\max(0, n+K-N)\)</span>, … <span class="math inline">\(\min(K, n)\)</span></td>
+<td align="center"><span class="math inline">\(\frac{1}{\binom N n}\binom K x \binom {N-K} {n-x}\)</span></td>
+<td align="center"><span class="math inline">\(n*\frac{N}{K}\)</span></td>
+<td align="center"><span class="math inline">\(n \frac{N}{K} (1-\frac{N}{K})\frac{N-n}{N-1}\)</span></td>
 </tr>
 <tr class="even">
-<td>Poisson</td>
-<td># of events A in an interval</td>
-<td>0,1, ..</td>
-<td><span class="math inline">\(\frac{e^{-\lambda}\lambda^x}{x!}\)</span></td>
-<td><span class="math inline">\(\lambda\)</span></td>
-<td><span class="math inline">\(\lambda\)</span></td>
-<td><code>dpoiss(x, lambda)</code></td>
+<td align="center">Poisson</td>
+<td align="center"># of events A in an interval</td>
+<td align="center">0,1, ..</td>
+<td align="center"><span class="math inline">\(\frac{e^{-\lambda}\lambda^x}{x!}\)</span></td>
+<td align="center"><span class="math inline">\(\lambda\)</span></td>
+<td align="center"><span class="math inline">\(\lambda\)</span></td>
 </tr>
 <tr class="odd">
-<td>Exponential</td>
-<td>Interval between two events A</td>
-<td><span class="math inline">\([0,\infty)\)</span></td>
-<td><span class="math inline">\(\lambda e^{-\lambda x}\)</span></td>
-<td><span class="math inline">\(\frac{1}{\lambda}\)</span></td>
-<td><span class="math inline">\(\frac{1}{\lambda^2}\)</span></td>
-<td><code>dexp(x, lambda)</code></td>
+<td align="center">Exponential</td>
+<td align="center">Interval between two events A</td>
+<td align="center"><span class="math inline">\([0,\infty)\)</span></td>
+<td align="center"><span class="math inline">\(\lambda e^{-\lambda x}\)</span></td>
+<td align="center"><span class="math inline">\(\frac{1}{\lambda}\)</span></td>
+<td align="center"><span class="math inline">\(\frac{1}{\lambda^2}\)</span></td>
 </tr>
 <tr class="even">
-<td>Normal</td>
-<td>measurement with symmetric errors whose most likely value is the average</td>
-<td><span class="math inline">\((-\infty, \infty)\)</span></td>
-<td><span class="math inline">\(\frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{(x-\mu)^2}{2\sigma^2}}\)</span></td>
-<td><span class="math inline">\(\mu\)</span></td>
-<td><span class="math inline">\(\sigma^2\)</span></td>
-<td><code>dnomr(x, mu, sigma)</code></td>
+<td align="center">Normal</td>
+<td align="center">measurement with symmetric errors whose most likely value is the average</td>
+<td align="center"><span class="math inline">\((-\infty, \infty)\)</span></td>
+<td align="center"><span class="math inline">\(\frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{(x-\mu)^2}{2\sigma^2}}\)</span></td>
+<td align="center"><span class="math inline">\(\mu\)</span></td>
+<td align="center"><span class="math inline">\(\sigma^2\)</span></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<hr />
+</div>
+<div id="r-functions-of-probability-models" class="section level2 hasAnchor" number="9.25">
+<h2><span class="header-section-number">9.25</span> R functions of probability models<a href="normal-distribution.html#r-functions-of-probability-models" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Model</th>
+<th align="center">R</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Uniform (continuous)</td>
+<td align="center"><code>dunif(x, a, b)</code></td>
+</tr>
+<tr class="even">
+<td align="left">Binomial</td>
+<td align="center"><code>dbimon(x,n,p)</code></td>
+</tr>
+<tr class="odd">
+<td align="left">Negative Binomial for events</td>
+<td align="center"><code>dnbinom(x,r,p)</code></td>
+</tr>
+<tr class="even">
+<td align="left">Hypergeometric</td>
+<td align="center"><code>dhyper(x, K, N-K, n)</code></td>
+</tr>
+<tr class="odd">
+<td align="left">Poisson</td>
+<td align="center"><code>dpois(x, lambda)</code></td>
+</tr>
+<tr class="even">
+<td align="left">Exponential</td>
+<td align="center"><code>dexp(x, lambda)</code></td>
+</tr>
+<tr class="odd">
+<td align="left">Normal</td>
+<td align="center"><code>dnomr(x, mu, sigma)</code></td>
 </tr>
 </tbody>
 </table>

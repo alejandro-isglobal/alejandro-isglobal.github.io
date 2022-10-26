@@ -341,6 +341,7 @@
 <li class="chapter" data-level="9.22" data-path="distribución-normal.html"><a href="distribución-normal.html#distribuciones-normal-y-estándar"><i class="fa fa-check"></i><b>9.22</b> Distribuciones normal y estándar<span></span></a></li>
 <li class="chapter" data-level="9.23" data-path="distribución-normal.html"><a href="distribución-normal.html#distribución-normal-7"><i class="fa fa-check"></i><b>9.23</b> Distribución normal<span></span></a></li>
 <li class="chapter" data-level="9.24" data-path="distribución-normal.html"><a href="distribución-normal.html#resumen-de-modelos-de-probabilidad"><i class="fa fa-check"></i><b>9.24</b> Resumen de modelos de probabilidad<span></span></a></li>
+<li class="chapter" data-level="9.25" data-path="distribución-normal.html"><a href="distribución-normal.html#funciones-r-para-modelos-de-probabilidad"><i class="fa fa-check"></i><b>9.25</b> Funciones R para modelos de probabilidad<span></span></a></li>
 </ul></li>
 <li class="chapter" data-level="10" data-path="ejercicios.html"><a href="ejercicios.html"><i class="fa fa-check"></i><b>10</b> Ejercicios<span></span></a>
 <ul>
@@ -635,99 +636,132 @@ Las probabilidades de <strong>cualquier variable normal</strong> se pueden obten
 </div>
 <div id="resumen-de-modelos-de-probabilidad" class="section level2 hasAnchor" number="9.24">
 <h2><span class="header-section-number">9.24</span> Resumen de modelos de probabilidad<a href="distribución-normal.html#resumen-de-modelos-de-probabilidad" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<table>
+<table style="width:100%;">
 <colgroup>
-<col width="23%" />
-<col width="27%" />
-<col width="12%" />
-<col width="10%" />
-<col width="8%" />
-<col width="8%" />
-<col width="8%" />
+<col width="16%" />
+<col width="19%" />
+<col width="19%" />
+<col width="16%" />
+<col width="14%" />
+<col width="14%" />
 </colgroup>
 <thead>
 <tr class="header">
-<th>Modelo</th>
-<th>X</th>
-<th>rango de x</th>
-<th>f(x)</th>
-<th>E(X)</th>
-<th>V(X)</th>
-<th>R</th>
+<th align="center">Modelo</th>
+<th align="center">X</th>
+<th align="center">rango de x</th>
+<th align="center">f(x)</th>
+<th align="center">E(X)</th>
+<th align="center">V(X)</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>Uniforme</td>
-<td>número entero o real</td>
-<td><span class="math inline">\([a,b]\)</span></td>
-<td><span class="math inline">\(\frac{1}{n}\)</span></td>
-<td><span class="math inline">\(\frac{b+a}{2}\)</span></td>
-<td><span class="math inline">\(\frac{(b-a+1)^2-1}{12}\)</span></td>
-<td><code>rep(1/n, n)</code>, <code>dunif(x, a, b)</code></td>
+<td align="center">Uniforme</td>
+<td align="center">número entero o real</td>
+<td align="center"><span class="math inline">\([a,b]\)</span></td>
+<td align="center"><span class="math inline">\(\frac{1}{n}\)</span></td>
+<td align="center"><span class="math inline">\(\frac{b+a}{2}\)</span></td>
+<td align="center"><span class="math inline">\(\frac{(b-a+1)^2-1}{12}\)</span></td>
 </tr>
 <tr class="even">
-<td>Bernoulli</td>
-<td>evento A</td>
-<td>0,1</td>
-<td><span class="math inline">\((1-p)^{1-x}p^x\)</span></td>
-<td><span class="math inline">\(p\)</span></td>
-<td><span class="math inline">\(p(1-p)\)</span></td>
-<td><code>c(1-p,p)</code></td>
+<td align="center">Bernoulli</td>
+<td align="center">evento A</td>
+<td align="center">0,1</td>
+<td align="center"><span class="math inline">\((1-p)^{1-x}p^x\)</span></td>
+<td align="center"><span class="math inline">\(p\)</span></td>
+<td align="center"><span class="math inline">\(p(1-p)\)</span></td>
 </tr>
 <tr class="odd">
-<td>binomial</td>
-<td># de eventos A en <span class="math inline">\(n\)</span> repeticiones de ensayos de Bernoulli</td>
-<td>0,1,…</td>
-<td><span class="math inline">\(\binom n x (1-p)^{n-x}p^x\)</span></td>
-<td><span class="math inline">\(np\)</span></td>
-<td><span class="math inline">\(np(1-p)\)</span></td>
-<td><code> dbimon(x,n,p)</code></td>
+<td align="center">binomial</td>
+<td align="center"># de eventos A en <span class="math inline">\(n\)</span> repeticiones de ensayos de Bernoulli</td>
+<td align="center">0,1,…</td>
+<td align="center"><span class="math inline">\(\binom n x (1-p)^{n-x}p^x\)</span></td>
+<td align="center"><span class="math inline">\(np\)</span></td>
+<td align="center"><span class="math inline">\(np(1-p)\)</span></td>
 </tr>
 <tr class="even">
-<td>Binomial negativo para eventos</td>
-<td># de eventos B en repeticiones de Bernoulli antes de <span class="math inline">\(r\)</span> Como se observan</td>
-<td>0,1,..</td>
-<td><span class="math inline">\(\binom {x+r-1} x (1-p)^xp^r\)</span></td>
-<td><span class="math inline">\(\frac{r(1-p)}{p}\)</span></td>
-<td><span class="math inline">\(\frac{r(1-p)}{p^2}\)</span></td>
-<td><code>dnbinom(x,r,p)</code></td>
+<td align="center">Binomial negativo para eventos</td>
+<td align="center"># de eventos B en repeticiones de Bernoulli antes de <span class="math inline">\(r\)</span> As</td>
+<td align="center">0,1,..</td>
+<td align="center"><span class="math inline">\(\binom {x+r-1} x (1-p)^xp^r\)</span></td>
+<td align="center"><span class="math inline">\(\frac{r(1-p)}{p}\)</span></td>
+<td align="center"><span class="math inline">\(\frac{r(1-p)}{p^2}\)</span></td>
 </tr>
 <tr class="odd">
-<td>Hipergeométrico</td>
-<td># A eventos en una muestra <span class="math inline">\(n\)</span> de la población <span class="math inline">\(N\)</span> con <span class="math inline">\(K\)</span> As</td>
-<td><span class="math inline">\(\max(0, n+K-N)\)</span>, … <span class="math inline">\(\min(K, n)\)</span></td>
-<td><span class="math inline">\(\frac{1}{\binom N n}\binom K x \binom {N-K} {n-x}\)</span></td>
-<td><span class="math inline">\(n*\frac{N}{K}\)</span></td>
-<td><span class="math inline">\(n \frac{N}{K} (1-\frac{N}{K})\frac{N-n}{N-1}\)</span></td>
-<td><code>dhyper(x, K, N-K, n)</code></td>
+<td align="center">Hipergeométrico</td>
+<td align="center"># eventos A en una muestra <span class="math inline">\(n\)</span> de la población <span class="math inline">\(N\)</span> con <span class="math inline">\(K\)</span> As</td>
+<td align="center"><span class="math inline">\(\max(0, n+K-N)\)</span>, … <span class="math inline">\(\min(K, n)\)</span></td>
+<td align="center"><span class="math inline">\(\frac{1}{\binom N n}\binom K x \binom {N-K} {n-x}\)</span></td>
+<td align="center"><span class="math inline">\(n*\frac{N}{K}\)</span></td>
+<td align="center"><span class="math inline">\(n \frac{N}{K} (1-\frac{N}{K})\frac{N-n}{N-1}\)</span></td>
 </tr>
 <tr class="even">
-<td>Poisson</td>
-<td># de eventos A en un intervalo</td>
-<td>0,1, ..</td>
-<td><span class="math inline">\(\frac{e^{-\lambda}\lambda^x}{x!}\)</span></td>
-<td><span class="math inline">\(\lambda\)</span></td>
-<td><span class="math inline">\(\lambda\)</span></td>
-<td><code>dpoiss(x, lambda)</code></td>
+<td align="center">Poisson</td>
+<td align="center"># de eventos A en un intervalo</td>
+<td align="center">0,1, ..</td>
+<td align="center"><span class="math inline">\(\frac{e^{-\lambda}\lambda^x}{x!}\)</span></td>
+<td align="center"><span class="math inline">\(\lambda\)</span></td>
+<td align="center"><span class="math inline">\(\lambda\)</span></td>
 </tr>
 <tr class="odd">
-<td>Exponencial</td>
-<td>Intervalo entre dos eventos A</td>
-<td><span class="math inline">\([0,\infty)\)</span></td>
-<td><span class="math inline">\(\lambda e^{-\lambda x}\)</span></td>
-<td><span class="math inline">\(\frac{1}{\lambda}\)</span></td>
-<td><span class="math inline">\(\frac{1}{\lambda^2}\)</span></td>
-<td><code>dexp(x, lambda)</code></td>
+<td align="center">Exponencial</td>
+<td align="center">Intervalo entre dos eventos A</td>
+<td align="center"><span class="math inline">\([0,\infty)\)</span></td>
+<td align="center"><span class="math inline">\(\lambda e^{-\lambda x}\)</span></td>
+<td align="center"><span class="math inline">\(\frac{1}{\lambda}\)</span></td>
+<td align="center"><span class="math inline">\(\frac{1}{\lambda^2}\)</span></td>
 </tr>
 <tr class="even">
-<td>normales</td>
-<td>medida con errores simétricos cuyo valor más probable es la media</td>
-<td><span class="math inline">\((-\infty, \infty)\)</span></td>
-<td><span class="math inline">\(\frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{(x-\mu)^2}{2\sigma^2 }}\)</span></td>
-<td><span class="math inline">\(\mu\)</span></td>
-<td><span class="math inline">\(\sigma^2\)</span></td>
-<td><code>dnomr(x, mu, sigma)</code></td>
+<td align="center">Normal</td>
+<td align="center">medida con errores simétricos cuyo valor más probable es la media</td>
+<td align="center"><span class="math inline">\((-\infty, \infty)\)</span></td>
+<td align="center"><span class="math inline">\(\frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{(x-\mu)^2}{2\sigma^2 }}\)</span></td>
+<td align="center"><span class="math inline">\(\mu\)</span></td>
+<td align="center"><span class="math inline">\(\sigma^2\)</span></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<hr />
+</div>
+<div id="funciones-r-para-modelos-de-probabilidad" class="section level2 hasAnchor" number="9.25">
+<h2><span class="header-section-number">9.25</span> Funciones R para modelos de probabilidad<a href="distribución-normal.html#funciones-r-para-modelos-de-probabilidad" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Modelo</th>
+<th align="center">R</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Uniforme (continuo)</td>
+<td align="center"><code>dunif(x, a, b)</code></td>
+</tr>
+<tr class="even">
+<td align="left">binomial</td>
+<td align="center"><code>dbimon(x,n,p)</code></td>
+</tr>
+<tr class="odd">
+<td align="left">Binomial negativo para eventos</td>
+<td align="center"><code>dnbinom(x,r,p)</code></td>
+</tr>
+<tr class="even">
+<td align="left">Hipergeométrico</td>
+<td align="center"><code>dhyper(x, K, N-K, n)</code></td>
+</tr>
+<tr class="odd">
+<td align="left">Poisson</td>
+<td align="center"><code>dpois(x, lambda)</code></td>
+</tr>
+<tr class="even">
+<td align="left">Exponencial</td>
+<td align="center"><code>dexp(x, lambda)</code></td>
+</tr>
+<tr class="odd">
+<td align="left">Normal</td>
+<td align="center"><code>dnomr(x, mu, sigma)</code></td>
 </tr>
 </tbody>
 </table>

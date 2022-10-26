@@ -968,12 +968,12 @@ Say we repeated the experiment 1000 times:
 
 \begin{verbatim}
 ##   outcome  ni    fi
-## 1       1 168 0.168
-## 2       2 173 0.173
-## 3       3 165 0.165
-## 4       4 162 0.162
-## 5       5 173 0.173
-## 6       6 159 0.159
+## 1       1 152 0.152
+## 2       2 158 0.158
+## 3       3 183 0.183
+## 4       4 172 0.172
+## 5       5 178 0.178
+## 6       6 157 0.157
 \end{verbatim}
 
 We find that \(f_i\) is converging to a constant value
@@ -5547,39 +5547,58 @@ The probabilities of \textbf{any normal variable} can be obtained from the \text
 \section{Summary of probability models}\label{summary-of-probability-models}}
 
 \begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 12\tabcolsep) * \real{0.23}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 12\tabcolsep) * \real{0.28}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 12\tabcolsep) * \real{0.13}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 12\tabcolsep) * \real{0.11}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 12\tabcolsep) * \real{0.09}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 12\tabcolsep) * \real{0.09}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 12\tabcolsep) * \real{0.09}}@{}}
+  >{\centering\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.17}}
+  >{\centering\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.19}}
+  >{\centering\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.19}}
+  >{\centering\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.17}}
+  >{\centering\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.14}}
+  >{\centering\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.14}}@{}}
 \toprule
-\begin{minipage}[b]{\linewidth}\raggedright
+\begin{minipage}[b]{\linewidth}\centering
 Model
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
 X
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
 range of x
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
 f(x)
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
 E(X)
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
 V(X)
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-R
 \end{minipage} \\
 \midrule
 \endhead
-Uniform & integer or real number & \([a, b]\) & \(\frac{1}{n}\) & \(\frac{b+a}{2}\) & \(\frac{(b-a+1)^2-1}{12}\) & rep(1/n, n), dunif(x, a, b) \\
-Bernoulli & event A & 0,1 & \((1-p)^{1-x}p^x\) & \(p\) & \(p(1-p)\) & c(1-p,p) \\
-Binomial & \# of A events in \(n\) repetitions of Bernoulli trials & 0,1,\ldots{} & \(\binom n x (1-p)^{n-x}p^x\) & \(np\) & \(np(1-p)\) & dbimon(x,n,p) \\
-Negative Binomial for events & \# of B events in Bernoulli repetitions before \(r\) As are observed & 0,1,.. & \(\binom {x+r-1} x (1-p)^xp^r\) & \(\frac{r(1-p)}{p}\) & \(\frac{r(1-p)}{p^2}\) & dnbinom(x,r,p) \\
-Hypergeometric & \# A events in a sample \(n\) from population \(N\) with \(K\) As & \(\max(0, n+K-N)\), \ldots{} \(\min(K, n)\) & \(\frac{1}{\binom N n}\binom K x \binom {N-K} {n-x}\) & \(n*\frac{N}{K}\) & \(n \frac{N}{K} (1-\frac{N}{K})\frac{N-n}{N-1}\) & dhyper(x, K, N-K, n) \\
-Poisson & \# of events A in an interval & 0,1, .. & \(\frac{e^{-\lambda}\lambda^x}{x!}\) & \(\lambda\) & \(\lambda\) & dpoiss(x, lambda) \\
-Exponential & Interval between two events A & \([0,\infty)\) & \(\lambda e^{-\lambda x}\) & \(\frac{1}{\lambda}\) & \(\frac{1}{\lambda^2}\) & dexp(x, lambda) \\
-Normal & measurement with symmetric errors whose most likely value is the average & \((-\infty, \infty)\) & \(\frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{(x-\mu)^2}{2\sigma^2}}\) & \(\mu\) & \(\sigma^2\) & dnomr(x, mu, sigma) \\
+Uniform & integer or real number & \([a, b]\) & \(\frac{1}{n}\) & \(\frac{b+a}{2}\) & \(\frac{(b-a+1)^2-1}{12}\) \\
+Bernoulli & event A & 0,1 & \((1-p)^{1-x}p^x\) & \(p\) & \(p(1-p)\) \\
+Binomial & \# of A events in \(n\) repetitions of Bernoulli trials & 0,1,\ldots{} & \(\binom n x (1-p)^{n-x}p^x\) & \(np\) & \(np(1-p)\) \\
+Negative Binomial for events & \# of B events in Bernoulli repetitions before \(r\) As are observed & 0,1,.. & \(\binom {x+r-1} x (1-p)^xp^r\) & \(\frac{r(1-p)}{p}\) & \(\frac{r(1-p)}{p^2}\) \\
+Hypergeometric & \# A events in a sample \(n\) from population \(N\) with \(K\) As & \(\max(0, n+K-N)\), \ldots{} \(\min(K, n)\) & \(\frac{1}{\binom N n}\binom K x \binom {N-K} {n-x}\) & \(n*\frac{N}{K}\) & \(n \frac{N}{K} (1-\frac{N}{K})\frac{N-n}{N-1}\) \\
+Poisson & \# of events A in an interval & 0,1, .. & \(\frac{e^{-\lambda}\lambda^x}{x!}\) & \(\lambda\) & \(\lambda\) \\
+Exponential & Interval between two events A & \([0,\infty)\) & \(\lambda e^{-\lambda x}\) & \(\frac{1}{\lambda}\) & \(\frac{1}{\lambda^2}\) \\
+Normal & measurement with symmetric errors whose most likely value is the average & \((-\infty, \infty)\) & \(\frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{(x-\mu)^2}{2\sigma^2}}\) & \(\mu\) & \(\sigma^2\) \\
+\bottomrule
+\end{longtable}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{r-functions-of-probability-models}{%
+\section{R functions of probability models}\label{r-functions-of-probability-models}}
+
+\begin{longtable}[]{@{}lc@{}}
+\toprule
+Model & R \\
+\midrule
+\endhead
+Uniform (continuous) & dunif(x, a, b) \\
+Binomial & dbimon(x,n,p) \\
+Negative Binomial for events & dnbinom(x,r,p) \\
+Hypergeometric & dhyper(x, K, N-K, n) \\
+Poisson & dpois(x, lambda) \\
+Exponential & dexp(x, lambda) \\
+Normal & dnomr(x, mu, sigma) \\
 \bottomrule
 \end{longtable}
 

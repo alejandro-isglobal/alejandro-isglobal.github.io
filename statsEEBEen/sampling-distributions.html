@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 8 Poisson and Exponential Models | Stats theory (SDA)</title>
+  <title>Chapter 10 Sampling Distributions | Stats theory (SDA)</title>
   <meta name="description" content="This are slides for the Stats theory of the BIST master" />
   <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 8 Poisson and Exponential Models | Stats theory (SDA)" />
+  <meta property="og:title" content="Chapter 10 Sampling Distributions | Stats theory (SDA)" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="alejandro-isglobal/master" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 8 Poisson and Exponential Models | Stats theory (SDA)" />
+  <meta name="twitter:title" content="Chapter 10 Sampling Distributions | Stats theory (SDA)" />
   
   <meta name="twitter:description" content="This are slides for the Stats theory of the BIST master" />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="discrete-probability-models.html"/>
-<link rel="next" href="normal-distribution.html"/>
+<link rel="prev" href="normal-distribution.html"/>
+<link rel="next" href="exercises.html"/>
 <script src="libs/header-attrs-2.12/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -404,261 +404,355 @@
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="poisson-and-exponential-models" class="section level1 hasAnchor" number="8">
-<h1><span class="header-section-number">Chapter 8</span> Poisson and Exponential Models<a href="poisson-and-exponential-models.html#poisson-and-exponential-models" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<div id="objective-6" class="section level2 hasAnchor" number="8.1">
-<h2><span class="header-section-number">8.1</span> Objective<a href="poisson-and-exponential-models.html#objective-6" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Discrete probability model:</p>
+<div id="sampling-distributions" class="section level1 hasAnchor" number="10">
+<h1><span class="header-section-number">Chapter 10</span> Sampling Distributions<a href="sampling-distributions.html#sampling-distributions" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="objective-8" class="section level2 hasAnchor" number="10.1">
+<h2><span class="header-section-number">10.1</span> Objective<a href="sampling-distributions.html#objective-8" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Distributions for</p>
 <ul>
-<li>Poisson</li>
-</ul>
-<p>Continuous probability model:</p>
-<ul>
-<li>Exponential</li>
+<li>Sample mean (average)</li>
+<li>sample sum</li>
+<li>Sample variance</li>
 </ul>
 <hr />
 <hr />
 </div>
-<div id="discrete-probability-models-1" class="section level2 hasAnchor" number="8.2">
-<h2><span class="header-section-number">8.2</span> Discrete probability models<a href="poisson-and-exponential-models.html#discrete-probability-models-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>We are building up more complex models from simple ones:</p>
-<p><strong>Uniform</strong>: Classical interpretation of probability
-</br><span class="math inline">\(\downarrow\)</span>
-</br><strong>Bernoulli</strong>: Introduction of a <strong>parameter</strong> <span class="math inline">\(p\)</span> (family of models)
-</br><span class="math inline">\(\downarrow\)</span>
-</br><strong>Binomial</strong>: <strong>Repetition</strong> of a random experiment (<span class="math inline">\(n\)</span>-times Bernoulli trials)
-</br><span class="math inline">\(\downarrow\)</span>
-</br><strong>Poisson</strong>: Repetition of random experiment within a continuous interval, having <strong>no control</strong> on when/where the Bernouilli trial occurs.</p>
-<hr />
-<hr />
-</div>
-<div id="counting-events" class="section level2 hasAnchor" number="8.3">
-<h2><span class="header-section-number">8.3</span> Counting events<a href="poisson-and-exponential-models.html#counting-events" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Imagine that we are observing events that <strong>depend</strong> on time or distance <strong>intervals</strong>.</p>
+<div id="normal-distribution-8" class="section level2 hasAnchor" number="10.2">
+<h2><span class="header-section-number">10.2</span> Normal distribution<a href="sampling-distributions.html#normal-distribution-8" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>When we have a normal random variable</p>
+<p><span class="math display">\[X \rightarrow N(x; \mu, \sigma^2)\]</span></p>
+<p>How do we estimate <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\sigma^2\)</span>?</p>
 <ul>
-<li>cars arriving at a traffic light</li>
-<li>getting messages on your mobile phone</li>
-<li>impurities occurring at random in a copper wire</li>
-</ul>
-<p>Suppose that the events are outcomes of <strong>independent</strong> Bernoulli trials each appearing randomly on a continuous interval, and we want to <strong>count</strong> them.</p>
-<hr />
-<hr />
-</div>
-<div id="counting-events-1" class="section level2 hasAnchor" number="8.4">
-<h2><span class="header-section-number">8.4</span> Counting events<a href="poisson-and-exponential-models.html#counting-events-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>What is the probability of observing <span class="math inline">\(X\)</span> events in an interval’s unit (time or distance)?</p>
-<p>Imagine that some impurities in a copper wire deposit randomly along a wire</p>
-<ul>
-<li>at each centimeter, you would count an average of <span class="math inline">\(\lambda=10/cm\)</span>.</li>
-<li>divide the centimeter into micrometers (<span class="math inline">\(0.0001cm\)</span>)</li>
+<li><p>we need to take a <strong>random sample</strong></p></li>
+<li><p>we need to <strong>estimate</strong> each parameter</p></li>
 </ul>
 <hr />
 <hr />
 </div>
-<div id="poisson-distribution" class="section level2 hasAnchor" number="8.5">
-<h2><span class="header-section-number">8.5</span> Poisson distribution<a href="poisson-and-exponential-models.html#poisson-distribution" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>micrometers are small enough so</p>
+<div id="example-when-we-do-not-know-the-parameters" class="section level2 hasAnchor" number="10.3">
+<h2><span class="header-section-number">10.3</span> Example: When we do not know the parameters<a href="sampling-distributions.html#example-when-we-do-not-know-the-parameters" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Imagine a client asking your metallurgical company to sell them <span class="math inline">\(8\)</span> cables that can carry up to <span class="math inline">\(96\)</span> Tons; that is <span class="math inline">\(12\)</span> Tons each.</p>
 <ul>
-<li>either there is or there is not an impurity in each micrometer</li>
-<li>each micrometer can be considered a <strong>Bernoulli trial</strong></li>
+<li>You have in <strong>stock</strong> a set of cables that could do the job.</li>
 </ul>
-<p><img src="figures/poiss.jpg" style="width:75%" style="height:100%"  align="center"></p>
+<p>Can you use the cables in stock or do you need to produce new ones?</p>
 <hr />
 <hr />
 </div>
-<div id="poisson-distribution-1" class="section level2 hasAnchor" number="8.6">
-<h2><span class="header-section-number">8.6</span> Poisson distribution<a href="poisson-and-exponential-models.html#poisson-distribution-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>The probability of observing <span class="math inline">\(X\)</span> impurities in <span class="math inline">\(n=10,000\mu\)</span> (1cm) approximately follows a binomial distribution</p>
-<p><span class="math inline">\(P(X=x)=\binom n x p^x(1-p)^{n-x}\)</span></p>
-<p>where <span class="math inline">\(p\)</span> is the probability of finding an impurity in a micrometer.</p>
-<p>Remember that
-<span class="math inline">\(E(X)=np\)</span>
-so for <span class="math inline">\(\lambda=np\)</span> (average number of impurities per 1cm), we can write</p>
-<p><span class="math display">\[P(X=x)=\binom n x \big(\frac{\lambda}{n}\big)^x(1-\frac{\lambda}{n})^{n-x}\]</span></p>
+<div id="example-12" class="section level2 hasAnchor" number="10.4">
+<h2><span class="header-section-number">10.4</span> Example<a href="sampling-distributions.html#example-12" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>you take a sample of <span class="math inline">\(8\)</span> random experiments, each of which consists of loading a cable until it breaks and recording the breaking load.</p>
+<p>These are the results: The observation of a <strong>sample</strong> of size <span class="math inline">\(8\)</span></p>
+<pre><code>## [1] 13.34642 13.32620 13.01459 13.10811 12.96999 13.55309 13.75557 12.62747</code></pre>
 <ul>
-<li>There <strong>could</strong> still be two impurities in a micrometer so we need to increase the partition of the wire and <span class="math inline">\(n \rightarrow \infty\)</span>.</li>
+<li><p>None of them broke at <span class="math inline">\(12\)</span> Tons.</p></li>
+<li><p>There was one that broke at <span class="math inline">\(12.62747\)</span> Tons.</p></li>
 </ul>
-<p>Then in the limit:</p>
-<p><span class="math display">\[P(X=x)= \frac{e^{-\lambda}\lambda^x}{x!}\]</span></p>
-<p>Where <span class="math inline">\(\lambda\)</span> is constant because it is the density of impurities per centimeter, a <strong>physical property</strong> of the system.</p>
+<p>Do you take the risk and sell a random sample of <span class="math inline">\(8\)</span> cables from your stock?</p>
+<hr />
+<hr />
+<p><img src="_main_files/figure-html/unnamed-chunk-66-1.png" width="672" /></p>
 <hr />
 <hr />
 </div>
-<div id="poisson-distribution-derivation-details" class="section level2 hasAnchor" number="8.7">
-<h2><span class="header-section-number">8.7</span> Poisson distribution: Derivation details<a href="poisson-and-exponential-models.html#poisson-distribution-derivation-details" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>For <span class="math inline">\(P(X=x)=\binom n x \big(\frac{\lambda}{n}\big)^x(1-\frac{\lambda}{n})^{n-x}\)</span></p>
-<p>in the limit (<span class="math inline">\(n \rightarrow \infty\)</span>)</p>
+<div id="random-sample" class="section level2 hasAnchor" number="10.5">
+<h2><span class="header-section-number">10.5</span> Random sample<a href="sampling-distributions.html#random-sample" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>A <strong>random sample</strong> of size <span class="math inline">\(n\)</span> is the <strong>repetition</strong> of a random experiment <span class="math inline">\(n\)</span> <strong>independent</strong> times.</p>
 <ul>
-<li><span class="math inline">\(\frac{1}{n^x}\binom n x =\frac{1}{n^x}\frac{n!}{x! (n-x)!}=\frac{(n-x)!(n-x+1)...(n-1)n}{n^x x! (n-x)!}=\frac{n(n-1)..(n-x+1)}{n^x x!} \rightarrow \frac{1}{x!}\)</span></li>
-<li><span class="math inline">\((1-\frac{\lambda}{n})^{n} \rightarrow e^{-\lambda}\)</span> (definition of exponential)</li>
-<li><span class="math inline">\((1-\frac{\lambda}{n})^{-x} \rightarrow 1\)</span></li>
+<li>A random sample is a <span class="math inline">\(n\)</span>-dimensional <strong>random variable</strong></li>
 </ul>
-<p>Therefore
-<span class="math inline">\(P(X=x)= \frac{e^{-\lambda}\lambda^x}{x!}\)</span></p>
+<p><span class="math display">\[(X_1, X_2, ... X_n)\]</span></p>
+<p>where <span class="math inline">\(X_i\)</span> is the <em>i-th</em> repetition of the random experiment with comon distribution <span class="math inline">\(f(x; \theta)\)</span> for any <span class="math inline">\(i\)</span></p>
+<ul>
+<li><strong>One observation</strong> of a random sample is the set of <span class="math inline">\(n\)</span> values obtained from the experiments</li>
+</ul>
+<p><span class="math display">\[(x_1, x_2, ... x_n)\]</span>
+Our <strong>observation</strong> of the sample of <span class="math inline">\(8\)</span> cables was</p>
+<pre><code>## [1] 13.34642 13.32620 13.01459 13.10811 12.96999 13.55309 13.75557 12.62747</code></pre>
 <hr />
 <hr />
 </div>
-<div id="poisson-distribution-2" class="section level2 hasAnchor" number="8.8">
-<h2><span class="header-section-number">8.8</span> Poisson distribution<a href="poisson-and-exponential-models.html#poisson-distribution-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="example-13" class="section level2 hasAnchor" number="10.6">
+<h2><span class="header-section-number">10.6</span> Example<a href="sampling-distributions.html#example-13" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>We would like to compute <span class="math inline">\(P(X \leq 12)\)</span>.</p>
+<p>We are going to <strong>assume</strong> that the braking point is <strong>normally distributed</strong>.</p>
+<p><span class="math display">\[X \rightarrow N(x; \mu, \sigma^2)\]</span></p>
+<ul>
+<li><p>For computing <span class="math inline">\(P(X \leq 12)\)</span> we need the parameters <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\sigma^2\)</span>.</p></li>
+<li><p>How do we estimate the parameters from the observed sample?</p></li>
+</ul>
+<hr />
+<hr />
+</div>
+<div id="average-or-sample-mean" class="section level2 hasAnchor" number="10.7">
+<h2><span class="header-section-number">10.7</span> Average or sample mean<a href="sampling-distributions.html#average-or-sample-mean" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><strong>Definition</strong></p>
-<p>Given</p>
-<ul>
-<li>an interval in the real numbers</li>
-<li>counts occur at random in the interval</li>
-<li>the average number of counts on the interval is known (<span class="math inline">\(\lambda\)</span>)</li>
-<li>if one can find a small regular partition of the interval such that each of them can be considered Bernoulli trials</li>
-</ul>
-<p>Then…</p>
+<p>The sample mean (or average) of a <strong>random sample</strong> of size <span class="math inline">\(n\)</span> is defined as</p>
+<p><span class="math display">\[\bar{X}=\frac{1}{n}\sum_{i=1}^n X_i\]</span></p>
+<p>The average is a <strong>random variable</strong> that in our <span class="math inline">\(8\)</span>-size sample took the value</p>
+<p><span class="math display">\[\bar{x}_{stock}=13.21\]</span></p>
 <hr />
 <hr />
 </div>
-<div id="poisson-distribution-3" class="section level2 hasAnchor" number="8.9">
-<h2><span class="header-section-number">8.9</span> Poisson distribution<a href="poisson-and-exponential-models.html#poisson-distribution-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="the-average-as-an-estimator" class="section level2 hasAnchor" number="10.8">
+<h2><span class="header-section-number">10.8</span> The average as an estimator<a href="sampling-distributions.html#the-average-as-an-estimator" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>This number can be used to <strong>estimate</strong> the unknown parameter <span class="math inline">\(\mu\)</span> because:</p>
+<ul>
+<li><span class="math inline">\(E(\bar{X})=E(X)=\mu\)</span></li>
+<li><span class="math inline">\(V(\bar{X})=\frac{V(X)}{n}=\frac{\sigma^2}{n}\)</span></li>
+</ul>
+<p>(since each random experiment in the sample is independent)</p>
+<p>as</p>
+<ul>
+<li><span class="math inline">\(n \rightarrow \infty\)</span>, <span class="math inline">\(V(\bar{X}) \rightarrow 0\)</span></li>
+</ul>
+<p>then</p>
+<ul>
+<li><span class="math inline">\(\bar{x}\)</span> <strong>concentrates closer and closer</strong> to <span class="math inline">\(\mu\)</span> as <span class="math inline">\(n\)</span> increases.</li>
+</ul>
+<p>We can take one value of <span class="math inline">\(\bar{x}\)</span> as estimation for <span class="math inline">\(\mu\)</span> or</p>
+<p><span class="math display">\[\bar{x}=\hat{\mu}\]</span></p>
+<hr />
+<hr />
+</div>
+<div id="sample-variance-2" class="section level2 hasAnchor" number="10.9">
+<h2><span class="header-section-number">10.9</span> Sample variance<a href="sampling-distributions.html#sample-variance-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><strong>Definition</strong></p>
-<p>The random variable <span class="math inline">\(X\)</span> that counts events across the interval is a <strong>Poisson</strong> variable with probability mass function<br />
-<span class="math display">\[f(x)= \frac{e^{-\lambda}\lambda^x}{x!}, \lambda&gt;0\]</span></p>
-<p><strong>Properties:</strong></p>
+<p>The <strong>sample variance</strong> <span class="math inline">\(S^2\)</span> of a random sample of size <span class="math inline">\(n\)</span></p>
+<p><span class="math display">\[S^2= \frac{1}{n-1}\sum_{i=1}^n (X_i-\bar{X})^2\]</span></p>
+<p>is the dispersion of the measurements about <span class="math inline">\(\bar{X}\)</span>. In our <span class="math inline">\(8\)</span>-size sample <span class="math inline">\(S^2\)</span> took the value</p>
+<p><span class="math display">\[s_{stock}^2=\frac{1}{n-1}\sum_{i=1}^n (x_i-\bar{x})^2=0.1275608\]</span></p>
+<p>The expected value of <span class="math inline">\(S^2\)</span> is</p>
 <ul>
-<li>mean <span class="math inline">\(E(X)= \lambda\)</span></li>
-<li>variance <span class="math inline">\(V(X)= \lambda\)</span></li>
+<li><span class="math inline">\(E(S^2)=V(X)=\sigma^2\)</span> (unbiased)</li>
+</ul>
+<p>and therefore <span class="math inline">\(S^2\)</span> is</p>
+<ul>
+<li>an estimator of <span class="math inline">\(V(X)\)</span></li>
+<li>it also concentrates around <span class="math inline">\(\sigma^2\)</span> because as <span class="math inline">\(n \rightarrow \infty\)</span>, <span class="math inline">\(V(\bar{S^2}) \rightarrow 0\)</span> (consistent)</li>
+</ul>
+<p>We can take one value of <span class="math inline">\(s^2\)</span> as estimation for <span class="math inline">\(\sigma^2\)</span> or</p>
+<p><span class="math display">\[s^2=\hat{\sigma}^2\]</span></p>
+<hr />
+<hr />
+</div>
+<div id="sample-variance-3" class="section level2 hasAnchor" number="10.10">
+<h2><span class="header-section-number">10.10</span> Sample variance<a href="sampling-distributions.html#sample-variance-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><span class="math inline">\(S^2\)</span> aims to estimate the dispersion of the outcomes about <span class="math inline">\(\mu\)</span> (the variance)</p>
+<p>If we use <span class="math inline">\(\bar{X}\)</span> as an estimator of <span class="math inline">\(\mu\)</span> we need to correct for its dispersion (i.e. mean squared error of <span class="math inline">\(\bar{X}\)</span>).</p>
+<p>The correction is achieved by dividing by <span class="math inline">\(n-1\)</span> and not <span class="math inline">\(n\)</span> in the definition of <span class="math inline">\(S^2\)</span></p>
+<p>For:</p>
+<p><span class="math inline">\(S_n^2=\frac{1}{n}\sum_{i=1}^n (X_i-\bar{X})^2\)</span></p>
+<p><span class="math inline">\(E(S_n^2) = \sigma^2-\frac{\sigma^2}{n} \neq \sigma^2\)</span> (we say that <span class="math inline">\(S_n^2\)</span> is <strong>biased</strong> estimator of <span class="math inline">\(\sigma\)</span>)</p>
+<p><img src="_main_files/figure-html/unnamed-chunk-68-1.png" width="672" /></p>
+<hr />
+<hr />
+</div>
+<div id="fitting-a-model" class="section level2 hasAnchor" number="10.11">
+<h2><span class="header-section-number">10.11</span> Fitting a model<a href="sampling-distributions.html#fitting-a-model" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>We <strong>fit a model</strong> when we</p>
+<ul>
+<li><strong>estimate</strong> the parameters of the model</li>
+</ul>
+<p>We also say we <strong>train</strong> a model (machine learning)</p>
+<p><strong>Assuming</strong> that</p>
+<p><span class="math display">\[X \rightarrow N(x; \mu, \sigma^2)\]</span></p>
+<p>Since we do not know the parameters, we <strong>plugin</strong> the estimates <span class="math inline">\(\bar{x}\)</span> and <span class="math inline">\(s^2\)</span> as the values of <span class="math inline">\(\mu\)</span>
+and <span class="math inline">\(\sigma^2\)</span></p>
+<p><span class="math display">\[X \rightarrow N(x; \mu=13.21, \sigma^2=0.3571565^2)\]</span></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-69-1.png" width="672" /></p>
+<hr />
+<hr />
+</div>
+<div id="prediction" class="section level2 hasAnchor" number="10.12">
+<h2><span class="header-section-number">10.12</span> Prediction<a href="sampling-distributions.html#prediction" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>We <strong>predict</strong> the value of an <strong>outcome</strong> when we compute its <strong>probability</strong></p>
+<p>What is the probability that the cable breaks at <span class="math inline">\(12\)</span> Tons?</p>
+<p>If we assumed the random variable</p>
+<p><span class="math display">\[X \rightarrow N(x; \mu, \sigma^2)\]</span>
+We plug in the estimates <span class="math inline">\(\bar{x}\)</span> and <span class="math inline">\(s^2\)</span> into the probability distribution</p>
+<p><span class="math display">\[P(X \leq 12)= F_{normal}(12; \mu=13.21, \sigma^2=0.1275608)\]</span></p>
+<p>In R <code>pnorm(12,13.21, 0.3571565)</code><span class="math inline">\(=0.000352188\)</span></p>
+<p>Given the <strong>observed</strong> sample, there is an estimated probability of <span class="math inline">\(0.03\%\)</span> that a single cable will break at <span class="math inline">\(12\)</span> Tons.</p>
+<hr />
+<hr />
+</div>
+<div id="inference" class="section level2 hasAnchor" number="10.13">
+<h2><span class="header-section-number">10.13</span> Inference<a href="sampling-distributions.html#inference" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>When we have a normal random variable</p>
+<pre><code>$$X \rightarrow N(x; \mu, \sigma^2)$$</code></pre>
+<p>and we know <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\sigma^2\)</span>.</p>
+<p>We can make inferences about <span class="math inline">\(\bar{X}\)</span>, that is, calculate probabilities of the random variable <span class="math inline">\(\bar{X}\)</span>.</p>
+<p>When we make <strong>inferences</strong>, we usually ask the question:</p>
+<p>How <strong>sure</strong> are we that the value of the estimator <strong>is close</strong> to the <strong>true parameter</strong>?</p>
+<hr />
+<hr />
+</div>
+<div id="example-when-we-do-know-the-parameters" class="section level2 hasAnchor" number="10.14">
+<h2><span class="header-section-number">10.14</span> Example: When we do know the parameters<a href="sampling-distributions.html#example-when-we-do-know-the-parameters" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Let us imagine that our cables are certified to break with an average load of <span class="math inline">\(\mu = 13\)</span> Tons with variance <span class="math inline">\(\sigma^2=0.35^2\)</span>.</p>
+<p>We take a random sample of <span class="math inline">\(8\)</span> cables</p>
+<pre><code>## [1] 13.34642 13.32620 13.01459 13.10811 12.96999 13.55309 13.75557 12.62747</code></pre>
+<p>Can we say that we actually produced stronger cables because we got <span class="math inline">\(\bar{x}=13.21\)</span> from this sample of <span class="math inline">\(8\)</span> cables?</p>
+<p>We need to calculate probabilities of <span class="math inline">\(\bar{X}\)</span>.</p>
+<ul>
+<li>What is the probability that the distance between <span class="math inline">\(\bar{X}\)</span> and <span class="math inline">\(\mu\)</span> is less than <span class="math inline">\(\bar{x}_{stock}-\mu=0.21\)</span>?</li>
+</ul>
+<p><span class="math display">\[P(- 0.21\leq \bar{X}-\mu \leq 0.21)\]</span></p>
+<hr />
+<hr />
+</div>
+<div id="density-for-x-and-barx" class="section level2 hasAnchor" number="10.15">
+<h2><span class="header-section-number">10.15</span> Density for <span class="math inline">\(X\)</span> and <span class="math inline">\(\bar{X}\)</span><a href="sampling-distributions.html#density-for-x-and-barx" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>If we <strong>know</strong> that the <strong>true</strong> parameters are <span class="math inline">\(\mu=13\)</span> and <span class="math inline">\(\sigma=0.35\)</span> this is what we would see</p>
+<p><img src="_main_files/figure-html/unnamed-chunk-71-1.png" width="672" /><img src="_main_files/figure-html/unnamed-chunk-71-2.png" width="672" /></p>
+<hr />
+<hr />
+</div>
+<div id="sample-mean-distribution" class="section level2 hasAnchor" number="10.16">
+<h2><span class="header-section-number">10.16</span> Sample mean distribution<a href="sampling-distributions.html#sample-mean-distribution" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><strong>Theorem:</strong> When <span class="math inline">\(X\)</span> follows a normal distribution <span class="math inline">\(X \rightarrow N(\mu, \sigma^2)\)</span></p>
+<p><span class="math inline">\(\bar{X}\)</span> is normal:</p>
+<p><span class="math display">\[\bar{X} \rightarrow N(\mu, \frac{\sigma^2}{n})\]</span>
+Then, if we <strong>know</strong> <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\sigma\)</span> we can compute the true <strong>probabilities of <span class="math inline">\(\bar{X}\)</span></strong> using the normal distribution.</p>
+<p>The mean and variance of <span class="math inline">\(\bar{X}\)</span> are</p>
+<ul>
+<li><span class="math inline">\(E(\bar{X})=\mu\)</span></li>
+<li><span class="math inline">\(V(\bar{X})=\frac{\sigma^2}{n}\)</span></li>
 </ul>
 <hr />
 <hr />
 </div>
-<div id="poisson-distribution-4" class="section level2 hasAnchor" number="8.10">
-<h2><span class="header-section-number">8.10</span> Poisson distribution<a href="poisson-and-exponential-models.html#poisson-distribution-4" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>With the Poisson probability function:</p>
-<p><span class="math display">\[f(x)= \frac{e^{-\lambda}\lambda^x}{x!}\]</span> for <span class="math inline">\(x \in \{0, 1, ...\}\)</span></p>
-<p>We can now answer questions like:</p>
+<div id="inference-on-the-average" class="section level2 hasAnchor" number="10.17">
+<h2><span class="header-section-number">10.17</span> Inference on the average<a href="sampling-distributions.html#inference-on-the-average" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><strong>Example:</strong></p>
+<p>If we <strong>know</strong> that the breaking load of our cables truly distribute as <span class="math display">\[X \rightarrow N(\mu=13, \sigma^2=0.35^2)\]</span> then</p>
+<p><span class="math display">\[\bar{X} \rightarrow N(13, \frac{0.35^2}{8})\]</span></p>
 <ul>
-<li>What is the probability of receiving 4 emails in an hour, when the average number of emails in <strong>one</strong> hour is <span class="math inline">\(1\)</span>?</li>
+<li><span class="math inline">\(E(\bar{X})=13\)</span></li>
+<li><span class="math inline">\(V(\bar{X})=\frac{0.35^2}{8}=0.01530169\)</span></li>
 </ul>
-<p><span class="math inline">\(f(4; \lambda=1)=0.18\)</span></p>
-<p>in R <code>dpois(2,1)</code></p>
-<ul>
-<li>What is the probability of counting at least <span class="math inline">\(10\)</span> cars arriving at a road toll in a minute, when the average number of cars that arrive at the toll in a minute is <span class="math inline">\(5\)</span>;
-<span class="math inline">\(P(X \leq 10)=F(10; \lambda=5)=0.98\)</span>?</li>
-</ul>
-<p>in R <code>ppois(10,5)</code></p>
+<p>Our <strong>observed error</strong> in the estimation of the mean is the difference</p>
+<p><span class="math display">\[\bar{x}_{stock}-\mu=13.21-13=0.21\]</span></p>
+<p>We ask: Is this a <strong>typical</strong> error?</p>
 <hr />
 <hr />
 </div>
-<div id="poisson-distribution-5" class="section level2 hasAnchor" number="8.11">
-<h2><span class="header-section-number">8.11</span> Poisson distribution<a href="poisson-and-exponential-models.html#poisson-distribution-5" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><img src="_main_files/figure-html/unnamed-chunk-58-1.png" width="672" /></p>
+<div id="density-for-barx" class="section level2 hasAnchor" number="10.18">
+<h2><span class="header-section-number">10.18</span> Density for <span class="math inline">\(\bar{X}\)</span><a href="sampling-distributions.html#density-for-barx" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>If we <strong>knew</strong> that the <strong>true</strong> parameters were <span class="math inline">\(\mu=13\)</span> and <span class="math inline">\(\sigma=0.35\)</span> this is the error we would see</p>
+<p><img src="_main_files/figure-html/unnamed-chunk-72-1.png" width="672" /></p>
+<hr />
+<hr />
+<div id="probabilities-of-barx" class="section level3 hasAnchor" number="10.18.1">
+<h3><span class="header-section-number">10.18.1</span> Probabilities of <span class="math inline">\(\bar{X}\)</span><a href="sampling-distributions.html#probabilities-of-barx" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><strong>If</strong> we <strong>know</strong> that the braking load of our cables <strong>truly</strong> distribute as <span class="math display">\[\bar{X} \rightarrow N(\mu=13, \frac{\sigma^2}{n}=0.1237^2)\]</span></p>
+<p>What is the probability of observing an <strong>error in estimation</strong> of <span class="math inline">\(\mu\)</span> (distance between <span class="math inline">\(\bar{X}\)</span> and <span class="math inline">\(\mu\)</span>) smaller than <span class="math inline">\(0.21\)</span>?</p>
+<p>We want to compute <span class="math display">\[P(-0.21 \leq \bar{X} - 13\leq 0.21)=P(12.79 \leq \bar{X} \leq 13.21)\]</span></p>
+<p><br>
+<span class="math inline">\(=F_{normal}(13.21; \mu, se^2)-F_{normal}(12.79; \mu, se^2)\)</span></p>
+<p>In R we can compute it as:</p>
+<p><code>pnorm(13.21, 13, 0.1237)-pnorm(12.79, 13, 0.1237)=0.9104</code>.</p>
+<p><span class="math inline">\(91.0\%\)</span> of the errors are less than <span class="math inline">\(0.21\)</span>, therefore the <strong>observed</strong> error does not seem to be too typical (only <span class="math inline">\(9\%\)</span> of the errors are higher).</p>
+<p>Maybe we have stronger cables than we thought.</p>
 <hr />
 <hr />
 </div>
-<div id="continuous-probability-models" class="section level2 hasAnchor" number="8.12">
-<h2><span class="header-section-number">8.12</span> Continuous probability models<a href="poisson-and-exponential-models.html#continuous-probability-models" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Continuous probability models are probability density functions <span class="math inline">\(f(x)\)</span> of a continuous random variables that we <strong>believe</strong> describe real random experiments.</p>
-<p>Definition:</p>
-<p>Positive:</p>
+<div id="sample-sum" class="section level3 hasAnchor" number="10.18.2">
+<h3><span class="header-section-number">10.18.2</span> Sample sum<a href="sampling-distributions.html#sample-sum" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>If we are interested in using all the <span class="math inline">\(8\)</span> cables at the same time to carry a total of <span class="math inline">\(96\)</span> Tons, then we should consider adding their individual contributions.</p>
+<p>The <strong>sample sum</strong> is the <strong>statistic</strong>:</p>
+<p><span class="math display">\[Y=n \bar{X}=\sum_{i=1}^n X_i\]</span></p>
+<p><strong>Theorem:</strong> if <span class="math inline">\(X \rightarrow N(\mu, \sigma^2)\)</span> then <span class="math display">\[Y \rightarrow N(n\mu, n\sigma^2)\]</span></p>
+<p>With mean and variance:</p>
 <ul>
-<li><span class="math inline">\(f(x) \geq 0\)</span></li>
-</ul>
-<p><em>Allows us to compute probabilities using the area under the curve:</em></p>
-<ul>
-<li><span class="math inline">\(P(a\leq X \leq b)=\int_{a}^{b} f(x) dx\)</span></li>
-</ul>
-<p>The probability of any value is <span class="math inline">\(1\)</span>:</p>
-<ul>
-<li><span class="math inline">\(\int_{-\infty}^{\infty} f(x) dx = 1\)</span></li>
+<li><span class="math inline">\(E(Y)=n\mu\)</span></li>
+<li><span class="math inline">\(V(Y)=n\sigma^2\)</span></li>
 </ul>
 <hr />
 <hr />
 </div>
-<div id="exponential-density" class="section level2 hasAnchor" number="8.13">
-<h2><span class="header-section-number">8.13</span> Exponential density<a href="poisson-and-exponential-models.html#exponential-density" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Let’s go back to the Poisson probability for the number of events (<span class="math inline">\(k\)</span>) in an interval</p>
-<p><span class="math display">\[f(k)=\frac{e^{-\lambda}\lambda^k}{k!}, \lambda&gt;0\]</span></p>
+<div id="inference-on-the-sample-sum" class="section level3 hasAnchor" number="10.18.3">
+<h3><span class="header-section-number">10.18.3</span> Inference on the sample sum<a href="sampling-distributions.html#inference-on-the-sample-sum" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>If we <strong>know</strong> that for our cables <span class="math display">\[X \rightarrow N(\mu=13, \sigma^2=0.35^2)\]</span> then</p>
+<p><span class="math display">\[Y \rightarrow N(n\mu=104, n\sigma^2=8\times 0.35^2)\]</span></p>
 <ul>
-<li><p>Let’s now consider only the first event</p></li>
-<li><p>the distance/time we have to wait until the fisrt event is a <strong>continuous</strong> random variable.</p></li>
+<li><span class="math inline">\(E(Y)=104\)</span></li>
+<li><span class="math inline">\(V(Y)=8\times 0.35^2=0.98\)</span></li>
 </ul>
-<p>We can ask for the probability that the first event is at distance <span class="math inline">\(X\)</span>.</p>
-<hr />
-<hr />
-</div>
-<div id="exponential-density-1" class="section level2 hasAnchor" number="8.14">
-<h2><span class="header-section-number">8.14</span> Exponential density<a href="poisson-and-exponential-models.html#exponential-density-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>The probability of observing <span class="math inline">\(0\)</span> events <strong>if</strong> an interval has unit <span class="math inline">\(x\)</span> is</p>
-<p><span class="math display">\[f(0|x)=\frac{e^{-x\lambda}x\lambda^0}{0!}\]</span></p>
-<p>or</p>
-<p><span class="math display">\[f(0|x)=e^{-x\lambda}\]</span></p>
-<p>We can treat this as the conditional probability of <span class="math inline">\(0\)</span> events in a distance <span class="math inline">\(x\)</span>: <span class="math inline">\(f(K=0|X=x)\)</span> and apply the Bayes theorem to reverse it:</p>
-<p><span class="math display">\[f(x|0)=C f(0|x)=C e^{-x\lambda}\]</span></p>
-<p>So we can calculate the <strong>probability of observing a distance</strong> <span class="math inline">\(x\)</span> with <span class="math inline">\(0\)</span> events (this is the distance until the first event or the distance between any two events).</p>
-<hr />
-<hr />
-</div>
-<div id="exponential-density-2" class="section level2 hasAnchor" number="8.15">
-<h2><span class="header-section-number">8.15</span> Exponential density<a href="poisson-and-exponential-models.html#exponential-density-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>In a Poisson process with parameter <span class="math inline">\(\lambda\)</span> the probability of waiting a distance/time <span class="math inline">\(X\)</span> until the first event has a <strong>probability density</strong></p>
-<p><span class="math display">\[f(x)= C e^{-x\lambda}\]</span></p>
+<p>For our <span class="math inline">\(8\)</span>-sample, we observed</p>
 <ul>
-<li><p><span class="math inline">\(C\)</span> is a constant that ensures: <span class="math inline">\(\int_{-\infty}^{\infty} f(x) dx =1\)</span></p></li>
-<li><p>by integration <span class="math inline">\(C=\lambda\)</span></p></li>
+<li><span class="math inline">\(y_{stock}=105.7014\)</span></li>
 </ul>
-<p>Therefore</p>
-<p><span class="math display">\[f(x)=\lambda e^{-\lambda x}\]</span></p>
-<hr />
-<hr />
-</div>
-<div id="exponential-density-3" class="section level2 hasAnchor" number="8.16">
-<h2><span class="header-section-number">8.16</span> Exponential density<a href="poisson-and-exponential-models.html#exponential-density-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>An exponential random variable <span class="math inline">\(X\)</span> has a probability density</p>
-<p><span class="math display">\[f(x)=\lambda e^{-\lambda x}, x\geq 0\]</span></p>
-<p><strong>Properties:</strong></p>
+<p>and, therefore, the <strong>observed error</strong> in the estimation of the mean of the <strong>true</strong> total braking load (<span class="math inline">\(n\mu\)</span>) of <span class="math inline">\(8\)</span> cables was</p>
 <ul>
-<li>Mean: <span class="math inline">\(E(X)=\frac{1}{\lambda}\)</span></li>
-<li>Variance: <span class="math inline">\(V(Y)=\frac{1}{\lambda^2}\)</span></li>
+<li><span class="math inline">\(y_{stock}-n\mu= 1.7014\)</span></li>
 </ul>
-<p>Where <span class="math inline">\(\lambda\)</span> is its single parameter, known as a <strong>decay rate</strong>.</p>
-<p><strong>Note:</strong> The exponential model is a general model. It can describe the time/length until the first count in a Poisson process of the size of a whole made by a drill.</p>
+<p>Is this a <strong>typical</strong> error?</p>
 <hr />
 <hr />
 </div>
-<div id="exponential-density-4" class="section level2 hasAnchor" number="8.17">
-<h2><span class="header-section-number">8.17</span> Exponential density<a href="poisson-and-exponential-models.html#exponential-density-4" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><img src="_main_files/figure-html/unnamed-chunk-59-1.png" width="672" /></p>
+<div id="probabilities-of-the-sample-sum-propagation-of-error" class="section level3 hasAnchor" number="10.18.4">
+<h3><span class="header-section-number">10.18.4</span> Probabilities of the sample sum: Propagation of error<a href="sampling-distributions.html#probabilities-of-the-sample-sum-propagation-of-error" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>What is the probability of observing a difference <span class="math inline">\(Y-E(Y)\)</span> smaller than <span class="math inline">\(1.7014\)</span>?</p>
+<p>We want to compute the probability</p>
+<p><span class="math display">\[P(-1.7014 \leq \bar{Y} - 104 \leq 1.7014)=P(102.2986 \leq Y \leq 105.7014)\]</span></p>
+<p><br>
+<span class="math inline">\(=F_{normal}(105.7014; n\mu, n\sigma^2)-F_{normal}(102.2986; n\mu, n\sigma^2)\)</span></p>
+<p>In R we can compute it as:</p>
+<p><code>pnorm(105.7014, 104, sqrt(0.98)) - pnorm(102.2986, 104, sqrt(0.98))=0.914</code>.</p>
+<p><span class="math inline">\(91.4\%\)</span> of the times we obtain sample sums that are smaller than <span class="math inline">\(1.7014\)</span></p>
+<p>This proportion is higher than the proportion for individual cables.</p>
 <hr />
 <hr />
 </div>
-<div id="exponential-distribution" class="section level2 hasAnchor" number="8.18">
-<h2><span class="header-section-number">8.18</span> Exponential Distribution<a href="poisson-and-exponential-models.html#exponential-distribution" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>In a Poisson process: ¿What is the probability of observing distance <strong>smaller</strong> than <span class="math inline">\(a\)</span> until the first event?</p>
-<p>Remember that this probability <span class="math inline">\(F(a)=P(X \leq a)\)</span> is the probability density</p>
-<p><span class="math display">\[F(a)=\lambda \int_\infty^a e^{-x\lambda}dx=1-e^{-a\lambda}\]</span></p>
+</div>
+<div id="inference-in-the-sample-variance" class="section level2 hasAnchor" number="10.19">
+<h2><span class="header-section-number">10.19</span> Inference in the sample variance<a href="sampling-distributions.html#inference-in-the-sample-variance" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Consider a quality control process that requires that the cables are produced close to the specified value <span class="math inline">\(\mu\)</span>.</p>
+<p>If a sample of <span class="math inline">\(8\)</span> cables is too dispersed (<span class="math inline">\(S^2&gt;0.3\)</span>), we stop production: the process is out of control.</p>
+<p>What is the probability that the sample variance of a sample of <span class="math inline">\(8\)</span> cables is greater than the required <span class="math inline">\(0.3\)</span>?</p>
+<hr />
+<hr />
+</div>
+<div id="probabilities-of-the-sample-variance" class="section level2 hasAnchor" number="10.20">
+<h2><span class="header-section-number">10.20</span> Probabilities of the sample variance<a href="sampling-distributions.html#probabilities-of-the-sample-variance" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><strong>Theorem:</strong> When <span class="math inline">\(X\)</span> follows a normal distribution
+<span class="math display">\[X \rightarrow N(\mu, \sigma^2)\]</span></p>
+<p>The <strong>statistic</strong>:</p>
+<p><span class="math display">\[W=\frac{(n-1)S^2}{\sigma^2} \rightarrow \chi^2(n-1)\]</span></p>
+<p>has a <span class="math inline">\(\chi^2\)</span> (chi-squared) distribution with <span class="math inline">\(df=n-1\)</span> degrees of freedom given by</p>
+<p><span class="math display">\[f(w)=C_n  w^{\frac{n-3}{2}} e^{-\frac{w}{2}}\]</span></p>
+<p>where:</p>
 <ul>
-<li>¿What is the probability of observing a distance <strong>larger</strong> than <span class="math inline">\(a\)</span> until the first event?</li>
+<li><p><span class="math inline">\(C_n=\frac{1}{2^{(n-1)/2\sqrt{\pi(n-1)}}}\)</span> ensures <span class="math inline">\(\int_{-\infty}^{\infty} f(t)dt=1\)</span></p></li>
+<li><p><span class="math inline">\(\Gamma(x)\)</span> is Euler’s factorial for real numbers</p></li>
+<li><p>If we <strong>know</strong> the true values of <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\sigma\)</span> we can compute probabilities of <span class="math inline">\(S^2\)</span> using the <span class="math inline">\(\chi^2\)</span> distribution for <span class="math inline">\(W\)</span>.</p></li>
 </ul>
-<p><span class="math display">\[P(X &gt; a)=1- P(X \leq a)= 1- F(a) = e^{-a\lambda}\]</span></p>
 <hr />
 <hr />
 </div>
-<div id="exponential-distribution-1" class="section level2 hasAnchor" number="8.19">
-<h2><span class="header-section-number">8.19</span> Exponential Distribution<a href="poisson-and-exponential-models.html#exponential-distribution-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>With the exponential density function:</p>
-<p><span class="math display">\[f(x)=\lambda e^{-\lambda x}\]</span></p>
-<p>We can answer questions like:</p>
-<ul>
-<li>What is the probability that we have to wait for a bus for more than <span class="math inline">\(1\)</span> hour when on average there are two buses per hour?</li>
-</ul>
-<p><span class="math display">\[P(X &gt; 1)=1-P(X \le 1) = 1-F(1,\lambda=2)=0.1353\]</span>
-in R <code>1-pexp(1,2)</code></p>
-<ul>
-<li>What is the probability of having to wait less than <span class="math inline">\(2\)</span> seconds to detect one particle when the radioactive decay rate is <span class="math inline">\(2\)</span> particles each second; <span class="math inline">\(F(2,\lambda=2)\)</span></li>
-</ul>
-<p><span class="math display">\[P(X \le 2)=F(2,\lambda=2)=0.981\]</span></p>
-<p>in R <code>pexp(2,2)</code></p>
+<div id="chi2-statistic" class="section level2 hasAnchor" number="10.21">
+<h2><span class="header-section-number">10.21</span> <span class="math inline">\(\chi^2\)</span>-statistic<a href="sampling-distributions.html#chi2-statistic" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><img src="_main_files/figure-html/unnamed-chunk-73-1.png" width="672" /></p>
 <hr />
 <hr />
 </div>
-<div id="exponential-distribution-2" class="section level2 hasAnchor" number="8.20">
-<h2><span class="header-section-number">8.20</span> Exponential Distribution<a href="poisson-and-exponential-models.html#exponential-distribution-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><img src="_main_files/figure-html/unnamed-chunk-60-1.png" width="672" /></p>
-<p>The median <span class="math inline">\(x_m\)</span> is such that <span class="math inline">\(F(x_m)=0.5\)</span>. That is <span class="math inline">\(x_m=\frac{\log(2)}{\lambda}\)</span></p>
+<div id="chi2-statistic-1" class="section level2 hasAnchor" number="10.22">
+<h2><span class="header-section-number">10.22</span> <span class="math inline">\(\chi^2\)</span>-statistic<a href="sampling-distributions.html#chi2-statistic-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>If we <strong>know</strong> that our cables trully distribute as <span class="math display">\[X \rightarrow N(\mu=13, \sigma^2=0.35^2)\]</span></p>
+<p>then we can compute <span class="math display">\[P(S^2 &gt; 0.2)=P(\frac{(n-1)S^2}{\sigma^2} &gt; \frac{(n-1)0.3}{\sigma^2})\]</span>
+<span class="math inline">\(=P(W &gt; \frac{(n-1)0.3}{\sigma^2})\)</span></p>
+<p><span class="math inline">\(=1-P(W \leq \frac{(n-1)0.3}{\sigma^2})=1-P(W\leq \frac{(8-1)0.3}{0.1225})\)</span></p>
+<p><span class="math inline">\(= 1- F_{\chi^2,df=7}(17.14286)=0.016\)</span></p>
+<p>In R
+<code>1-pchisq(17.14286, df=7)=0.016 </code></p>
+<p>There is only a probability of <span class="math inline">\(1\%\)</span> of obtaining a value greater than <span class="math inline">\(s^2=0.3\)</span>.</p>
+<ul>
+<li><p><span class="math inline">\(s^2&gt;0.3\)</span> seems to be a good criterion to stop production and revise the process.</p></li>
+<li><p>our observed value was <span class="math inline">\(s^2_{stock}=0.1275608\)</span></p></li>
+<li><p>the sample is not too dispersed and we believe that the production is under control.</p></li>
+</ul>
 
 </div>
 </div>
@@ -667,8 +761,8 @@ in R <code>1-pexp(1,2)</code></p>
           </div>
         </div>
       </div>
-<a href="discrete-probability-models.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="normal-distribution.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="normal-distribution.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="exercises.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -699,7 +793,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/USERNAME/REPO/edit/BRANCH/07-PoissonExponential.Rmd",
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/09-SamplingDistriutions.Rmd",
 "text": "Edit"
 },
 "history": {

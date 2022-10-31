@@ -6,7 +6,7 @@
 ]{book}
 \title{Estadística}
 \author{Alejandro Caceres}
-\date{2022-10-26}
+\date{2022-10-31}
 
 \usepackage{amsmath,amssymb}
 \usepackage{lmodern}
@@ -975,12 +975,12 @@ Digamos que repetimos el experimento 1000 veces:
 
 \begin{verbatim}
 ##   outcome  ni    fi
-## 1       1 166 0.166
-## 2       2 156 0.156
-## 3       3 186 0.186
-## 4       4 160 0.160
-## 5       5 176 0.176
-## 6       6 156 0.156
+## 1       1 190 0.190
+## 2       2 155 0.155
+## 3       3 167 0.167
+## 4       4 159 0.159
+## 5       5 178 0.178
+## 6       6 151 0.151
 \end{verbatim}
 
 Encontramos que \(f_i\) está convergiendo a un valor constante
@@ -5411,11 +5411,11 @@ Podemos definir los límites de \textbf{observaciones comunes} para la distribuc
 \begin{itemize}
 \tightlist
 \item
-  \(P(165-8 \leq X \leq 165-8)=P(157 \leq X \leq 173)=0.68\)
+  \(P(165-8 \leq X \leq 165+8)=P(157 \leq X \leq 173)=0.68\)
 \item
-  \(P(165-2 \times 8 \leq X \leq 165-2\times 8)=P(149 \leq X \leq 181)=0.95\)
+  \(P(165-2 \times 8 \leq X \leq 165+2\times 8)=P(149 \leq X \leq 181)=0.95\)
 \item
-  \(P(165-3 \times 8 \leq X \leq 165-3\times 8)=P(141 \leq X \leq 189)=0.997\)
+  \(P(165-3 \times 8 \leq X \leq 165+3\times 8)=P(141 \leq X \leq 189)=0.997\)
 \end{itemize}
 
 \includegraphics{_main_files/figure-latex/unnamed-chunk-66-1.pdf}
@@ -5433,7 +5433,7 @@ Cambiemos las variables a una \textbf{variable estandarizada}
 
 en la densidad
 
-\[f(x; \mu, \sigma^2)=\frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{(x-\mu)^2}{2\ sigma^2}}, x \in {\Bbb R}\]
+\[f(x; \mu, \sigma^2)=\frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{(x-\mu)^2}{2\sigma^2}}, x \in {\Bbb R}\]
 
 reemplazando \(x=\sigma z+\mu\) y \(dx=\sigma dz\) en la expresión de probabilidad que tenemos
 
@@ -5643,6 +5643,616 @@ Exponencial & dexp(x, lambda) \\
 Normal & dnomr(x, mu, sigma) \\
 \bottomrule
 \end{longtable}
+
+\hypertarget{distribuciones-de-muestreo}{%
+\chapter{Distribuciones de muestreo}\label{distribuciones-de-muestreo}}
+
+\hypertarget{objetivo-9}{%
+\section{Objetivo}\label{objetivo-9}}
+
+Distribuciones para
+
+\begin{itemize}
+\tightlist
+\item
+  Media (promedio) muestral
+\item
+  suma muestral
+\item
+  Varianza muestral
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{distribuciuxf3n-normal-8}{%
+\section{Distribución normal}\label{distribuciuxf3n-normal-8}}
+
+Cuando tenemos una variable aleatoria normal
+
+\[X \rightarrow N(x; \mu, \sigma^2)\]
+
+¿Cómo estimamos \(\mu\) y \(\sigma^2\)?
+
+\begin{itemize}
+\item
+  necesitamos tomar una \textbf{muestra aleatoria}
+\item
+  necesitamos \textbf{estimar} cada parámetro
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{ejemplo-cuando-no-conocemos-los-parametros}{%
+\section{Ejemplo: Cuando no conocemos los parametros}\label{ejemplo-cuando-no-conocemos-los-parametros}}
+
+Imaginemos que un cliente que nos pide a nuestra empresa metalúrgica que le vendamos \(8\) cables que pueden cargar hasta \(96\) Toneladas; eso es \(12\) Toneladas cada uno.
+
+\begin{itemize}
+\tightlist
+\item
+  Tenemos en \textbf{stock} un conjunto de cables que podrían hacer el trabajo.
+\end{itemize}
+
+¿Podemos utilizar los cables en stock o necesitaríamos producir unos nuevos?
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{ejemplo-12}{%
+\section{Ejemplo}\label{ejemplo-12}}
+
+Tomamos una muestra de \(8\) experimentos aleatorios, cada uno de los cuales consiste en cargar un cable hasta que se rompa y anotamos la carga de rotura.
+
+Estos son los resultados: La observación de una \textbf{muestra} de tamaño \(8\)
+
+\begin{verbatim}
+## [1] 13.34642 13.32620 13.01459 13.10811 12.96999 13.55309 13.75557 12.62747
+\end{verbatim}
+
+\begin{itemize}
+\item
+  Ninguno se rompió a \(12\) Toneladas.
+\item
+  Hubo uno que se rompió a \(12.62747\) Toneladas.
+\end{itemize}
+
+¿Nos arriesgamos y vendemos una muestra aleatoria \(8\) cables de nuestro inventario?
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-69-1.pdf}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{muestra-aleatoria}{%
+\section{Muestra aleatoria}\label{muestra-aleatoria}}
+
+Una \textbf{muestra aleatoria} de tamaño \(n\) es la \textbf{repetición} de un experimento aleatorio \(n\) veces de forma \textbf{independiente}.
+
+\begin{itemize}
+\item
+  Una muestra aleatoria es una \textbf{variable aleatoria} de \(n\)-dimensional
+
+  \[(X_1, X_2, ... X_n)\]
+\end{itemize}
+
+donde \(X_i\) es la \emph{i-ésima} repetición del experimento aleatorio con distribución común \(f(x; \theta)\) para cualquier \(i\)
+
+\begin{itemize}
+\item
+  \textbf{Una observación} de una muestra aleatoria es el conjunto de \(n\) valores obtenidos de los experimentos
+
+  \[(x_1, x_2, ... x_n)\]
+  Nuestra \textbf{observación} de la muestra de \(8\) cables fue
+\end{itemize}
+
+\begin{verbatim}
+## [1] 13.34642 13.32620 13.01459 13.10811 12.96999 13.55309 13.75557 12.62747
+\end{verbatim}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{ejemplo-13}{%
+\section{Ejemplo}\label{ejemplo-13}}
+
+Nos gustaría calcular \(P(X \leq 12)\).
+
+Vamos a \textbf{suponer} que el punto de rotura se distribuye \textbf{normalmente}.
+
+\[X \rightarrow N(x; \mu, \sigma^2)\]
+
+\begin{itemize}
+\item
+  Para calcular \(P(X \leq 12)\) necesitamos los parámetros \(\mu\) y \(\sigma^2\).
+\item
+  ¿Cómo \textbf{estimamos} los parámetros usando la muestra observada?
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{promedio-o-media-muestral}{%
+\section{Promedio o media muestral}\label{promedio-o-media-muestral}}
+
+\textbf{Definición}
+
+La media muestral (o promedio) de una \textbf{muestra aleatoria} de tamaño \(n\) se define como
+
+\[\bar{X}=\frac{1}{n}\sum_{i=1}^n X_i\]
+
+El promedio es una \textbf{variable aleatoria} que en nuestra muestra de \(8\) cables tomó el valor
+
+\[\bar{x}_{stock}=13.21\]
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{promedio-como-estimador}{%
+\section{Promedio como estimador}\label{promedio-como-estimador}}
+
+Este número puede usarse para \textbf{estimar} el parámetro desconocido \(\mu\) porque:
+
+\begin{itemize}
+\tightlist
+\item
+  \(E(\bar{X})=E(X)=\mu\)
+\item
+  \(V(\bar{X})=\frac{V(X)}{n}=\frac{\sigma^2}{n}\)
+\end{itemize}
+
+(dado que cada experimento aleatorio en la muestra es independiente)
+
+como
+
+\begin{itemize}
+\tightlist
+\item
+  \(n \rightarrow \infty\), \(V(\bar{X}) \rightarrow 0\)
+\end{itemize}
+
+entonces
+
+\begin{itemize}
+\tightlist
+\item
+  \(\bar{x}\) \textbf{se concentra cada vez más cerca} de \(\mu\) a medida que aumenta \(n\).
+\end{itemize}
+
+Podemos tomar un valor de \(\bar{x}\) como \textbf{estimación} para \(\mu\) o
+
+\[\bar{x}=\hat{\mu}\]
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{varianza-muestral}{%
+\section{Varianza muestral}\label{varianza-muestral}}
+
+\textbf{Definición}
+
+La \textbf{varianza de la muestra} \(S^2\) de una muestra aleatoria de tamaño \(n\)
+
+\[S^2= \frac{1}{n-1}\sum_{i=1}^n (X_i-\bar{X})^2\]
+
+es la dispersión de las medidas al rededor de \(\bar{X}\). En nuestra muestra de \(8\) cables, \(S^2\) tomó el valor
+
+\[s_{stock}^2=\frac{1}{n-1}\sum_{i=1}^n (x_i-\bar{x})^2=0.1275608\]
+
+El valor esperado de \(S^2\) es
+
+\begin{itemize}
+\tightlist
+\item
+  \(E(S^2)=V(X)=\sigma^2\) (insesgado)
+\end{itemize}
+
+y por lo tanto \(S^2\) es
+
+\begin{itemize}
+\tightlist
+\item
+  un estimador de \(V(X)\)
+\item
+  también se concentra alrededor de \(\sigma^2\) porque como \(n \rightarrow \infty\), \(V(\bar{S^2}) \rightarrow 0\) (consistente)
+\end{itemize}
+
+Podemos tomar un valor de \(s^2\) como estimación para \(\sigma^2\) o
+
+\[s^2=\hat{\sigma}^2\]
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{varianza-muestral-1}{%
+\section{Varianza muestral}\label{varianza-muestral-1}}
+
+\(S^2\) tiene como objetivo estimar la dispersión de los resultados al rededor de \(\mu\) (la varianza)
+
+Si usamos \(\bar{X}\) como estimador de \(\mu\), debemos corregir su dispersión (es decir, el error cuadrático medio de \(\bar{X}\)).
+
+La corrección se logra dividiendo por \(n-1\) y no por \(n\) en la definición de \(S^2\)
+
+Para:
+
+\(S_n^2=\frac{1}{n}\sum_{i=1}^n (X_i-\bar{X})^2\)
+
+\(E(S_n^2) = \sigma^2-\frac{\sigma^2}{n} \neq \sigma^2\) (decimos que \(S_n^2\) es en estimador \textbf{sesgado} de \sigma)
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-71-1.pdf}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{ajuste-de-un-modelo}{%
+\section{Ajuste de un modelo}\label{ajuste-de-un-modelo}}
+
+\textbf{Ajustamos en un modelo} cuando
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{estimamos} los parámetros del modelo
+\end{itemize}
+
+También decimos que \textbf{entrenamos} un modelo (aprendizaje automático)
+
+\textbf{Asumiendo} que
+
+\[X \rightarrow N(x; \mu, \sigma^2)\]
+
+Como no conocemos los parámetros, \textbf{sustituimos} las estimaciones \(\bar{x}\) y \(s^2\) como los valores de \(\mu\)
+y \(\sigma^2\)
+
+\[X \rightarrow N(x; \mu=13.21, \sigma^2=0.3571565^2)\]
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-72-1.pdf}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{predicciuxf3n}{%
+\section{Predicción}\label{predicciuxf3n}}
+
+\textbf{Predecimos} el valor de un \textbf{resultado} cuando calculamos su \textbf{probabilidad}
+
+¿Cuál es la probabilidad de que el cable se rompa a \(12\) Toneladas?
+
+Si asumimos la variable aleatoria
+
+\[X \rightarrow N(x; \mu, \sigma^2)\]
+Sustituimos las estimaciones \(\bar{x}\) y \(s^2\) en la distribución de probabilidad
+
+\[P(X \leq 12)= F_{normal}(12; \mu=13.21, \sigma^2=0.1275608)\]
+
+En R pnorm(12,13.21, 0.3571565)\(=0.000352188\)
+
+Dada la muestra \textbf{observada}, existe una probabilidad estimada de \(0.03\%\) de que un solo cable se rompa a \(12\) Toneladas.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{inferencia}{%
+\section{Inferencia}\label{inferencia}}
+
+Cuando tenemos una variable aleatoria normal
+
+\[X \rightarrow N(x; \mu, \sigma^2)\]
+
+Y conocemos \(\mu\) y \(\sigma^2\).
+
+Podemos hacer inferencias sobre \(\bar{X}\), es decir calcular probabilidades de la variable aleatoria \(\bar{X}\).
+
+Cuando hacemos \textbf{inferencias}, generalmente hacemos la pregunta:
+
+¿Qué tan \textbf{seguros} estamos de que el valor del estimador \textbf{está cerca} del \textbf{parámetro verdadero}?
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{ejemplo-cuando-suxed-conocemos-los-parametros}{%
+\section{Ejemplo: Cuando sí conocemos los parametros}\label{ejemplo-cuando-suxed-conocemos-los-parametros}}
+
+Imaginemos que nuestros cables están certificados para romper con una carga media de \(\mu = 13\) Toneladas con varianza \(\sigma^2=0.35^2\).
+
+Tomamos una muestra aleatoria de \(8\) cables
+
+\begin{verbatim}
+## [1] 13.34642 13.32620 13.01459 13.10811 12.96999 13.55309 13.75557 12.62747
+\end{verbatim}
+
+¿Podemos afirmar que en realidad producimos cables más resistentes porque obtuvimos \(\bar{x}=13,21\) en esta muestra de \(8\) cables?
+
+Necesitamos calcular probabilidades de \(\bar{X}\).
+
+\begin{itemize}
+\tightlist
+\item
+  Cuál es la probabilidad de que la distancia entre \(\bar{X}\) y \(\mu\) sea menos de \(\bar{x}_{stock}-\mu=0.21\)?
+\end{itemize}
+
+\[P(- 0.21\leq \bar{X}-\mu \leq 0.21)\]
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{desnidad-para-x-y-para-barx}{%
+\section{\texorpdfstring{Desnidad para \(X\) y para \(\bar{X}\)}{Desnidad para X y para \textbackslash bar\{X\}}}\label{desnidad-para-x-y-para-barx}}
+
+Cuando \textbf{sabemos} que los parámetros \textbf{verdaderos} son \(\mu=13\) y \(\sigma=0.35\) esto es lo que veríamos
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-74-1.pdf} \includegraphics{_main_files/figure-latex/unnamed-chunk-74-2.pdf}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{distribuciuxf3n-media-muestral}{%
+\section{Distribución media muestral}\label{distribuciuxf3n-media-muestral}}
+
+\textbf{Teorema}: Cuando \(X\) sigue una distribución normal \(X \rightarrow N(\mu, \sigma^2)\)
+
+\(\bar{X}\) es normal:
+
+\[\bar{X} \rightarrow N(\mu, \frac{\sigma^2}{n})\]
+
+Entonces, si \textbf{sabemos} \(\mu\) y \(\sigma\) podemos calcular las \textbf{probabilidades de} \(\bar{X}\) usando la distribución normal.
+
+La media y la varianza de \(\bar{X}\) son
+
+\begin{itemize}
+\tightlist
+\item
+  \(E(\bar{X})=\mu\)
+\item
+  \(V(\bar{X})=\frac{\sigma^2}{n}\)
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{inferencia-del-promedio}{%
+\section{Inferencia del promedio}\label{inferencia-del-promedio}}
+
+\textbf{Ejemplo:}
+
+Si \textbf{sabemos} que la rotura de nuestros cables realmente se distribuye como \[X \rightarrow N(\mu=13, \sigma^2=0.35^2)\] entonces
+
+\[\bar{X} \rightarrow N(13, \frac{0.35^2}{8})\]
+
+\begin{itemize}
+\tightlist
+\item
+  \(E(\bar{X})=13\)
+\item
+  \(V(\bar{X})=\frac{0.35^2}{8}=0.01530169\)
+\end{itemize}
+
+Nuestro \textbf{error observado} en la estimación de la media es la diferencia
+
+\[\bar{x}_{stock}-\mu=13.21-13=0.21\]
+
+Nos preguntamos: ¿Es este un error \textbf{típico}?
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{densidad-para-barx}{%
+\section{\texorpdfstring{Densidad para \(\bar{X}\)}{Densidad para \textbackslash bar\{X\}}}\label{densidad-para-barx}}
+
+Si \textbf{supiéramos} que los parámetros \textbf{verdaderos} son \(\mu=13\) y \(\sigma=0.35\) este es el error que veríamos
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-75-1.pdf}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{probabilidades-de-barx}{%
+\subsection{\texorpdfstring{Probabilidades de \(\bar{X}\)}{Probabilidades de \textbackslash bar\{X\}}}\label{probabilidades-de-barx}}
+
+Si \textbf{sabemos} que la carga de rotura de nuestros cables \textbf{realmente} se distribuye como \[\bar{X} \rightarrow N(\mu=13, \frac{\sigma^2}{ n}=0.1237^2)\]
+
+¿Cuál es la probabilidad de observar un \textbf{error de estimación} de \(\mu\) (distancia entre \(\bar{X}\) y \(\mu\)) menor a \(0.21\)?
+
+Queremos calcular \[P(-0.21 \leq \bar{X} - 13\leq 0.21)=P(12.79 \leq \bar{X} \leq 13.21)\]
+
+\(=F_{normal}(13,21; \mu, se^2)-F_{normal}(12,79; \mu, se^2)\)
+
+En R podemos calcularlo como:
+
+pnorm(13.21, 13, 0.1237)-pnorm(12.79, 13, 0.1237)=0.9104.
+
+\(91,0\%\) de los errores son inferiores a \(0,21\), por lo que el error \textbf{observado} no parece demasiado típico (solo \(9\%\) de los errores son superiores).
+
+Tal vez tengamos cables más fuertes de lo que pensábamos.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{suma-muestral}{%
+\subsection{Suma muestral}\label{suma-muestral}}
+
+Si estamos interesados en usar todos los \(8\) cables al mismo tiempo para transportar un total de \(96\) Toneladas, entonces deberíamos considerar sumar sus contribuciones individuales.
+
+La \textbf{suma de la muestra} es la \textbf{estadística}:
+
+\[Y=n \bar{X}=\sum_{i=1}^n X_i\]
+
+\textbf{Teorema:} Si \(X \rightarrow N(\mu, \sigma^2)\) entonces \[Y \rightarrow N(n\mu, n\sigma^2)\]
+
+Con media y varianza:
+
+\begin{itemize}
+\tightlist
+\item
+  \(E(Y)=n\mu\)
+\item
+  \(V(Y)=n\sigma^2\)
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{inferencia-sobre-la-suma-muestral}{%
+\subsection{Inferencia sobre la suma muestral}\label{inferencia-sobre-la-suma-muestral}}
+
+Si \textbf{sabemos} que nuestros cables \[X \rightarrow N(\mu=13, \sigma^2=0.35^2)\] entonces
+
+\[Y \rightarrow N(n\mu=104, n\sigma^2=8\times 0.35^2)\]
+
+\begin{itemize}
+\tightlist
+\item
+  \(E(Y)=104\)
+\item
+  \(V(Y)=8\times 0.35^2=0.98\)
+\end{itemize}
+
+Para nuestra muestra de \(8\) cables, observamos
+
+\begin{itemize}
+\tightlist
+\item
+  \(y_{stock}=105.7014\)
+\end{itemize}
+
+y, por tanto, el \textbf{error observado} en la estimación de la media de la \textbf{verdadera} carga de rotura total (\(n\mu\)) de \(8\) cables fue
+
+\begin{itemize}
+\tightlist
+\item
+  \(y_{stock}-n\mu= 1.7014\)
+\end{itemize}
+
+¿Es este un error \textbf{típico}?
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{probabilidades-de-la-suma-muestral-propagaciuxf3n-del-error}{%
+\subsection{Probabilidades de la suma muestral: Propagación del error}\label{probabilidades-de-la-suma-muestral-propagaciuxf3n-del-error}}
+
+¿Cuál es la probabilidad de observar una diferencia \(Y-E(Y)\) menor que \(1.7014\)?
+
+Queremos calcular la probabilidad
+
+\[P(-1.7014 \leq \bar{Y} - 104 \leq 1.7014)=P(102.2986 \leq Y \leq 105.7014)\]
+
+\(=F_{normal}(105.7014; n\mu, n\sigma^2)-F_{normal}(102.2986; n\mu, n\sigma^2)\)
+
+En R podemos calcularlo como:
+
+pnorm(105.7014, 104, sqrt(0.98)) - pnorm(102.2986, 104, sqrt(0.98))=0.914.
+
+\(91,4\%\) de las veces tenemos sumas de cargas que son menores que \(1,7014\).
+
+Esta proporción es mayor que la de cables individuales.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{inferencia-en-la-varianza-muestral}{%
+\section{Inferencia en la varianza muestral}\label{inferencia-en-la-varianza-muestral}}
+
+Consideremos un proceso de control de calidad que requiera que los cables se produzcan cerca del valor especificado \(\mu\).
+
+Si una muestra de cables de \(8\) es muy dispersa (\(S^2>0.3\)), detenemos la producción: el proceso está fuera de control.
+
+¿Cuál es la probabilidad de que la varianza muestral de una muestra de \(8\) cables sea mayor que los \(0,3\) requeridos?
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{probabilidades-de-la-varianza-muestral}{%
+\section{Probabilidades de la varianza muestral}\label{probabilidades-de-la-varianza-muestral}}
+
+\textbf{Teorema:} Cuando \(X\) sigue una distribución normal
+\[X \rightarrow N(\mu, \sigma^2)\]
+
+La \textbf{estadística}:
+
+\[W=\frac{(n-1)S^2}{\sigma^2} \rightarrow \chi^2(n-1)\]
+
+tiene una distribución \(\chi^2\) (chi-cuadrado) con \(df=n-1\) grados de libertad dada por
+
+\[f(w)=C_n w^{\frac{n-3}{2}} e^{-\frac{w}{2}}\]
+
+dónde:
+
+\begin{itemize}
+\item
+  \(C_n=\frac{1}{2^{(n-1)/2\sqrt{\pi(n-1)}}}\) asegura \(\int_{-\infty}^{\infty} f( t)dt=1\)
+\item
+  \(\Gamma(x)\) es el factorial de Euler para números reales
+\item
+  Si \textbf{sabemos} los valores verdaderos de \(\mu\) y \(\sigma\) podemos calcular las probabilidades de \(S^2\) usando la distribución \(\chi^2\) para \(W\).
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{chi2-estaduxedstica}{%
+\section{\texorpdfstring{\(\chi^2\)-estadística}{\textbackslash chi\^{}2-estadística}}\label{chi2-estaduxedstica}}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-76-1.pdf}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{chi2-estaduxedstica-1}{%
+\section{\texorpdfstring{\(\chi^2\)-estadística}{\textbackslash chi\^{}2-estadística}}\label{chi2-estaduxedstica-1}}
+
+Si \textbf{sabemos} que nuestros cables realmente se distribuyen como \[X \rightarrow N(\mu=13, \sigma^2=0.35^2)\]
+
+entonces podemos calcular \[P(S^2 > 0.2)=P(\frac{(n-1)S^2}{\sigma^2} > \frac{(n-1)0.3}{\sigma^ 2})\]
+\(=P(W > \frac{(n-1)0.3}{\sigma^2})\)
+
+\(=1-P(W \leq \frac{(n-1)0.3}{\sigma^2})=1-P(W\leq \frac{(8-1)0.3}{0.1225})\)
+
+\(= 1- F_{\chi^2,df=7}(17.14286)=0.016\)
+
+En R
+1-pchisq(17.14286, df=7)=0.016
+
+Solo hay una probabilidad de \(1\%\) de obtener un valor superior a \(s^2=0,3\).
+
+\begin{itemize}
+\item
+  \(s^2>0.3\) parece ser un buen criterio para detener la producción y revisar el proceso.
+\item
+  nuestro valor observado fue \(s^2_{stock}=0.1275608\)
+\item
+  la muestra no está demasiado dispersa y creemos que la producción está bajo control.
+\end{itemize}
 
 \hypertarget{ejercicios}{%
 \chapter{Ejercicios}\label{ejercicios}}
@@ -6075,7 +6685,7 @@ Para la densidad de probabilidad
   ¿Cuáles son el primer y tercer cuartiles? (R: 25; 75)
 \end{itemize}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-74-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-83-1.pdf}
 
 \hypertarget{ejercicio-5-1}{%
 \subsubsection{Ejercicio 5}\label{ejercicio-5-1}}
@@ -6215,72 +6825,33 @@ La cantidad promedio de partículas radiactivas que golpean un contador Geiger e
 \begin{itemize}
 \item
   ¿Cuál es la probabilidad de que la altura de un hombre sea al menos
-  \(165\)cm si la media poblacional es \(175\)cm y la desviación estándar es \(10\)cm?
+  \(165\)cm si la media poblacional es \(175\)cm y la desviación estándar es \(10\)cm? (R:0.841)
 \item
   ¿Cuál es la probabilidad de que la altura de un hombre esté entre
-  \(165\)cm y \(180\)cm.
+  \(165\)cm y \(185\)cm? (R:0.682)
 \item
-  ¿Cuál es la altura que define el \(5\%\) de los hombres más pequeños?
-\end{itemize}
-
-\hypertarget{estimadores-puntuales}{%
-\section{Estimadores puntuales}\label{estimadores-puntuales}}
-
-\hypertarget{ejercicio-1-5}{%
-\subsubsection{Ejercicio 1}\label{ejercicio-1-5}}
-
-Considere el modelo de probabilidad
-
-\[
-    f(x)= 
-\begin{cases}
-    1/2-a,& \text{si } x=-1 \\ 
-    1/2,& \text{si } x=0\\
-    a,& 1 \text{si } x=1\\ 
-\end{cases}
-\]
-
-donde \(a\) es un parámetro.
-
-Calcule la media y la varianza de la estadística: \[T=\frac{\bar{X}}{2}+\frac{1}{4}\]
-
-donde \(\bar{X}=\frac{1}{N}\sum_{i=1}^N X_i\)
-
-\begin{itemize}
-\item
-  ¿\(T\) es un estimador sesgado de \(a\)?
-\item
-  ¿Es \(T\) consistente? es decir, \(V(T) \rightarrow 0\) cuando \(N\rightarrow \infty\)
-\end{itemize}
-
-\hypertarget{ejercicio-2-5}{%
-\subsubsection{Ejercicio 2}\label{ejercicio-2-5}}
-
-\begin{itemize}
-\tightlist
-\item
-  ¿Es \(\bar{X}^2=(\frac{1}{N}\sum_{i=1}^N X_i)^2\) un estimador imparcial de \(E(X)^2\)?
+  ¿Cuál es la altura que define el \(5\%\) de los hombres más pequeños? (R:158.55)
 \end{itemize}
 
 \hypertarget{muestreo-y-teorema-del-luxedmite-central}{%
 \section{Muestreo y teorema del límite central}\label{muestreo-y-teorema-del-luxedmite-central}}
 
-\hypertarget{ejercicio-1-6}{%
-\subsubsection{Ejercicio 1}\label{ejercicio-1-6}}
+\hypertarget{ejercicio-1-5}{%
+\subsubsection{Ejercicio 1}\label{ejercicio-1-5}}
 
-Un modelo de batería carga hasta \(75\%\) de su capacidad en una hora con una desviación estándar de \(15\%\).
+Un tipo de batería carga hasta el \(75\%\) de su capacidad en una hora, con una desviación estándar de \(15\%\).
 
 \begin{itemize}
 \item
-  Si cobramos \(25\), ¿cuál es la probabilidad de que el promedio de la muestra esté a una distancia de \(5\%\) del cargo de la media?
+  Si cargamos \(25\) baterias, ¿cuál es la probabilidad de que la diferencia de carga entre el promedio de la muestra y la media sea como máximo de un \(5\%\)? (R:0.9044)
 \item
-  Si cobramos \(100\), ¿cuál es esa probabilidad?
+  Si cargamos \(100\) baterías, ¿cuál es esa probabilidad? (R:0.9991)
 \item
-  Si, en cambio, solo cargamos baterías de \(9\), ¿cuál es la carga que es superada por el promedio de la muestra con solo \(0.015\) de probabilidad?
+  Si, en cambio, solo cargamos \(9\) baterías, ¿cuál valor \(c\) que es superado por la media muestral con una probabilidad del \(0.015\)? (R:85.850)
 \end{itemize}
 
-\hypertarget{ejercicio-2-6}{%
-\subsubsection{Ejercicio 2}\label{ejercicio-2-6}}
+\hypertarget{ejercicio-2-5}{%
+\subsubsection{Ejercicio 2}\label{ejercicio-2-5}}
 
 Se necesita un componente electrónico para el correcto funcionamiento de un telescopio. Necesita ser reemplazado inmediatamente cuando se desgasta.
 
@@ -6330,6 +6901,45 @@ La probabilidad de que se encuentre una mutación particular en la población es
 \end{itemize}
 
 sugerencia: use el CLT con una muestra de ensayos de Bernoulli de \(2000\). Esto se conoce como la aproximación normal de la distribución binomial.
+
+\hypertarget{estimadores-puntuales}{%
+\section{Estimadores puntuales}\label{estimadores-puntuales}}
+
+\hypertarget{ejercicio-1-6}{%
+\subsubsection{Ejercicio 1}\label{ejercicio-1-6}}
+
+Considere el modelo de probabilidad
+
+\[
+    f(x)= 
+\begin{cases}
+    1/2-a,& \text{si } x=-1 \\ 
+    1/2,& \text{si } x=0\\
+    a,& 1 \text{si } x=1\\ 
+\end{cases}
+\]
+
+donde \(a\) es un parámetro.
+
+Calcule la media y la varianza de la estadística: \[T=\frac{\bar{X}}{2}+\frac{1}{4}\]
+
+donde \(\bar{X}=\frac{1}{N}\sum_{i=1}^N X_i\)
+
+\begin{itemize}
+\item
+  ¿\(T\) es un estimador sesgado de \(a\)?
+\item
+  ¿Es \(T\) consistente? es decir, \(V(T) \rightarrow 0\) cuando \(N\rightarrow \infty\)
+\end{itemize}
+
+\hypertarget{ejercicio-2-6}{%
+\subsubsection{Ejercicio 2}\label{ejercicio-2-6}}
+
+\begin{itemize}
+\tightlist
+\item
+  ¿Es \(\bar{X}^2=(\frac{1}{N}\sum_{i=1}^N X_i)^2\) un estimador imparcial de \(E(X)^2\)?
+\end{itemize}
 
 \hypertarget{muxe1xima-verosimilitud}{%
 \section{Máxima verosimilitud}\label{muxe1xima-verosimilitud}}

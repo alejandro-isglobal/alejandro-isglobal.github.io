@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 6 Variables aleatorias continuas | Estadística</title>
+  <title>Chapter 10 Distribuciones de muestreo | Estadística</title>
   <meta name="description" content="This are slides for the Stats theory of the BIST master" />
   <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 6 Variables aleatorias continuas | Estadística" />
+  <meta property="og:title" content="Chapter 10 Distribuciones de muestreo | Estadística" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="alejandro-isglobal/master" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 6 Variables aleatorias continuas | Estadística" />
+  <meta name="twitter:title" content="Chapter 10 Distribuciones de muestreo | Estadística" />
   
   <meta name="twitter:description" content="This are slides for the Stats theory of the BIST master" />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="variables-aleatorias-discretas.html"/>
-<link rel="next" href="modelos-de-probabilidad-para-variables-aleatorias-discretas.html"/>
+<link rel="prev" href="distribución-normal.html"/>
+<link rel="next" href="ejercicios.html"/>
 <script src="libs/header-attrs-2.12/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -406,297 +406,355 @@
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="variables-aleatorias-continuas" class="section level1 hasAnchor" number="6">
-<h1><span class="header-section-number">Chapter 6</span> Variables aleatorias continuas<a href="variables-aleatorias-continuas.html#variables-aleatorias-continuas" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<div id="objetivo-5" class="section level2 hasAnchor" number="6.1">
-<h2><span class="header-section-number">6.1</span> Objetivo<a href="variables-aleatorias-continuas.html#objetivo-5" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="distribuciones-de-muestreo" class="section level1 hasAnchor" number="10">
+<h1><span class="header-section-number">Chapter 10</span> Distribuciones de muestreo<a href="distribuciones-de-muestreo.html#distribuciones-de-muestreo" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="objetivo-9" class="section level2 hasAnchor" number="10.1">
+<h2><span class="header-section-number">10.1</span> Objetivo<a href="distribuciones-de-muestreo.html#objetivo-9" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Distribuciones para</p>
 <ul>
-<li>Función de densidad de probabilidad</li>
-<li>Media y varianza</li>
-<li>Distribución de probabilidad</li>
+<li>Media (promedio) muestral</li>
+<li>suma muestral</li>
+<li>Varianza muestral</li>
 </ul>
 <hr />
 <hr />
 </div>
-<div id="variable-aleatoria-continua" class="section level2 hasAnchor" number="6.2">
-<h2><span class="header-section-number">6.2</span> Variable aleatoria continua<a href="variables-aleatorias-continuas.html#variable-aleatoria-continua" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>¿Qué sucede con las variables aleatorias continuas?</p>
-<p>Reconsideremos el ángulo de convexidad de los pacientes con misofonía (Sección 2.21).</p>
+<div id="distribución-normal-8" class="section level2 hasAnchor" number="10.2">
+<h2><span class="header-section-number">10.2</span> Distribución normal<a href="distribuciones-de-muestreo.html#distribución-normal-8" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Cuando tenemos una variable aleatoria normal</p>
+<p><span class="math display">\[X \rightarrow N(x; \mu, \sigma^2)\]</span></p>
+<p>¿Cómo estimamos <span class="math inline">\(\mu\)</span> y <span class="math inline">\(\sigma^2\)</span>?</p>
 <ul>
-<li>Para esta variabler redefinimos los resultados como pequeños intervalos regulares (bins) y calculamos la frecuencia relativa para cada uno de ellos como hicimos en el caso discreto.</li>
+<li><p>necesitamos tomar una <strong>muestra aleatoria</strong></p></li>
+<li><p>necesitamos <strong>estimar</strong> cada parámetro</p></li>
 </ul>
-<pre><code>##        outcome ni         fi
-## 1 [-1.02,3.46]  8 0.06504065
-## 2  (3.46,7.92] 51 0.41463415
-## 3  (7.92,12.4] 26 0.21138211
-## 4  (12.4,16.8] 20 0.16260163
-## 5  (16.8,21.3] 18 0.14634146</code></pre>
 <hr />
 <hr />
 </div>
-<div id="variable-aleatoria-continua-1" class="section level2 hasAnchor" number="6.3">
-<h2><span class="header-section-number">6.3</span> Variable aleatoria continua<a href="variables-aleatorias-continuas.html#variable-aleatoria-continua-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Consideremos nuevamente que sus frecuencias relativas son las probabilidades cuando <span class="math inline">\(N \rightarrow \infty\)</span></p>
-<p><span class="math display">\[f_i=\frac{n_i}{N} \rightarrow f(x_i)=P(X=x_i)\]</span></p>
-<p>La probabilidad depende ahora de la longitud de los bins <span class="math inline">\(\Delta x\)</span>. Si hacemos los contenedores cada vez más pequeños, las frecuencias se hacen más pequeñas y, por lo tanto,</p>
-<p><span class="math inline">\(P(X=x_i) \rightarrow 0\)</span> cuando <span class="math inline">\(\Delta x \rightarrow 0\)</span>, porque <span class="math inline">\(n_i \rightarrow 0\)</span></p>
-<pre><code>##          outcome ni         fi
-## 1  [-1.02,0.115]  2 0.01626016
-## 2   (0.115,1.23]  0 0.00000000
-## 3    (1.23,2.34]  3 0.02439024
-## 4    (2.34,3.46]  3 0.02439024
-## 5    (3.46,4.58]  2 0.01626016
-## 6    (4.58,5.69]  4 0.03252033
-## 7     (5.69,6.8] 11 0.08943089
-## 8     (6.8,7.92] 34 0.27642276
-## 9    (7.92,9.04] 12 0.09756098
-## 10   (9.04,10.2]  4 0.03252033
-## 11   (10.2,11.3]  3 0.02439024
-## 12   (11.3,12.4]  7 0.05691057
-## 13   (12.4,13.5]  2 0.01626016
-## 14   (13.5,14.6]  6 0.04878049
-## 15   (14.6,15.7]  4 0.03252033
-## 16   (15.7,16.8]  8 0.06504065
-## 17     (16.8,18]  4 0.03252033
-## 18     (18,19.1]  9 0.07317073
-## 19   (19.1,20.2]  3 0.02439024
-## 20   (20.2,21.3]  2 0.01626016</code></pre>
+<div id="ejemplo-cuando-no-conocemos-los-parametros" class="section level2 hasAnchor" number="10.3">
+<h2><span class="header-section-number">10.3</span> Ejemplo: Cuando no conocemos los parametros<a href="distribuciones-de-muestreo.html#ejemplo-cuando-no-conocemos-los-parametros" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Imaginemos que un cliente que nos pide a nuestra empresa metalúrgica que le vendamos <span class="math inline">\(8\)</span> cables que pueden cargar hasta <span class="math inline">\(96\)</span> Toneladas; eso es <span class="math inline">\(12\)</span> Toneladas cada uno.</p>
+<ul>
+<li>Tenemos en <strong>stock</strong> un conjunto de cables que podrían hacer el trabajo.</li>
+</ul>
+<p>¿Podemos utilizar los cables en stock o necesitaríamos producir unos nuevos?</p>
 <hr />
 <hr />
 </div>
-<div id="variable-aleatoria-continua-2" class="section level2 hasAnchor" number="6.4">
-<h2><span class="header-section-number">6.4</span> Variable aleatoria continua<a href="variables-aleatorias-continuas.html#variable-aleatoria-continua-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><br></p>
-<p>Definimos una cantidad en un punto <span class="math inline">\(x\)</span> que es la cantidad de probabilidad por unidad de distancia que encontraríamos en un contenedor <strong>infinitesimal</strong> <span class="math inline">\(dx\)</span> en <span class="math inline">\(x\)</span></p>
-<p><span class="math display">\[f(x)= \frac{P(x\leq X \leq x+dx)}{dx}\]</span></p>
-<p><span class="math inline">\(f(x)\)</span> se llama la función de <strong>densidad</strong> de probabilidad.</p>
-<p>Por tanto, la probabilidad de observar <span class="math inline">\(x\)</span> entre <span class="math inline">\(x\)</span> y <span class="math inline">\(x+dx\)</span>
-está dada por</p>
-<p><span class="math display">\[P(x\leq X \leq x+dx)= f(x) dx\]</span>
-<br>
-<br></p>
+<div id="ejemplo-12" class="section level2 hasAnchor" number="10.4">
+<h2><span class="header-section-number">10.4</span> Ejemplo<a href="distribuciones-de-muestreo.html#ejemplo-12" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Tomamos una muestra de <span class="math inline">\(8\)</span> experimentos aleatorios, cada uno de los cuales consiste en cargar un cable hasta que se rompa y anotamos la carga de rotura.</p>
+<p>Estos son los resultados: La observación de una <strong>muestra</strong> de tamaño <span class="math inline">\(8\)</span></p>
+<pre><code>## [1] 13.34642 13.32620 13.01459 13.10811 12.96999 13.55309 13.75557 12.62747</code></pre>
+<ul>
+<li><p>Ninguno se rompió a <span class="math inline">\(12\)</span> Toneladas.</p></li>
+<li><p>Hubo uno que se rompió a <span class="math inline">\(12.62747\)</span> Toneladas.</p></li>
+</ul>
+<p>¿Nos arriesgamos y vendemos una muestra aleatoria <span class="math inline">\(8\)</span> cables de nuestro inventario?</p>
+<hr />
+<hr />
+<p><img src="_main_files/figure-html/unnamed-chunk-69-1.png" width="672" /></p>
 <hr />
 <hr />
 </div>
-<div id="variable-aleatoria-continua-3" class="section level2 hasAnchor" number="6.5">
-<h2><span class="header-section-number">6.5</span> Variable aleatoria continua<a href="variables-aleatorias-continuas.html#variable-aleatoria-continua-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="muestra-aleatoria" class="section level2 hasAnchor" number="10.5">
+<h2><span class="header-section-number">10.5</span> Muestra aleatoria<a href="distribuciones-de-muestreo.html#muestra-aleatoria" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Una <strong>muestra aleatoria</strong> de tamaño <span class="math inline">\(n\)</span> es la <strong>repetición</strong> de un experimento aleatorio <span class="math inline">\(n\)</span> veces de forma <strong>independiente</strong>.</p>
+<ul>
+<li><p>Una muestra aleatoria es una <strong>variable aleatoria</strong> de <span class="math inline">\(n\)</span>-dimensional</p>
+<p><span class="math display">\[(X_1, X_2, ... X_n)\]</span></p></li>
+</ul>
+<p>donde <span class="math inline">\(X_i\)</span> es la <em>i-ésima</em> repetición del experimento aleatorio con distribución común <span class="math inline">\(f(x; \theta)\)</span> para cualquier <span class="math inline">\(i\)</span></p>
+<ul>
+<li><p><strong>Una observación</strong> de una muestra aleatoria es el conjunto de <span class="math inline">\(n\)</span> valores obtenidos de los experimentos</p>
+<p><span class="math display">\[(x_1, x_2, ... x_n)\]</span>
+Nuestra <strong>observación</strong> de la muestra de <span class="math inline">\(8\)</span> cables fue</p></li>
+</ul>
+<pre><code>## [1] 13.34642 13.32620 13.01459 13.10811 12.96999 13.55309 13.75557 12.62747</code></pre>
+<hr />
+<hr />
+</div>
+<div id="ejemplo-13" class="section level2 hasAnchor" number="10.6">
+<h2><span class="header-section-number">10.6</span> Ejemplo<a href="distribuciones-de-muestreo.html#ejemplo-13" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Nos gustaría calcular <span class="math inline">\(P(X \leq 12)\)</span>.</p>
+<p>Vamos a <strong>suponer</strong> que el punto de rotura se distribuye <strong>normalmente</strong>.</p>
+<p><span class="math display">\[X \rightarrow N(x; \mu, \sigma^2)\]</span></p>
+<ul>
+<li><p>Para calcular <span class="math inline">\(P(X \leq 12)\)</span> necesitamos los parámetros <span class="math inline">\(\mu\)</span> y <span class="math inline">\(\sigma^2\)</span>.</p></li>
+<li><p>¿Cómo <strong>estimamos</strong> los parámetros usando la muestra observada?</p></li>
+</ul>
+<hr />
+<hr />
+</div>
+<div id="promedio-o-media-muestral" class="section level2 hasAnchor" number="10.7">
+<h2><span class="header-section-number">10.7</span> Promedio o media muestral<a href="distribuciones-de-muestreo.html#promedio-o-media-muestral" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><strong>Definición</strong></p>
-<p>Para una variable aleatoria continua <span class="math inline">\(X\)</span>, una función de <strong>densidad de probabilidad</strong> es tal que</p>
-<p>La función es positiva:</p>
-<ul>
-<li><span class="math inline">\(f(x) \geq 0\)</span></li>
-</ul>
-<p>La probabilidad de observar un valor dentro de un intervalo es el <strong>área bajo la curva</strong>:</p>
-<ul>
-<li><span class="math inline">\(P(a\leq X \leq b)=\int_{a}^{b} f(x) dx\)</span></li>
-</ul>
-<p>La probabilidad de observar <strong>cualquier</strong> valor es 1:</p>
-<ul>
-<li><span class="math inline">\(\int_{-\infty}^{\infty} f(x) dx = 1\)</span></li>
-</ul>
+<p>La media muestral (o promedio) de una <strong>muestra aleatoria</strong> de tamaño <span class="math inline">\(n\)</span> se define como</p>
+<p><span class="math display">\[\bar{X}=\frac{1}{n}\sum_{i=1}^n X_i\]</span></p>
+<p>El promedio es una <strong>variable aleatoria</strong> que en nuestra muestra de <span class="math inline">\(8\)</span> cables tomó el valor</p>
+<p><span class="math display">\[\bar{x}_{stock}=13.21\]</span></p>
 <hr />
 <hr />
 </div>
-<div id="variable-aleatoria-continua-4" class="section level2 hasAnchor" number="6.6">
-<h2><span class="header-section-number">6.6</span> Variable aleatoria continua<a href="variables-aleatorias-continuas.html#variable-aleatoria-continua-4" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="promedio-como-estimador" class="section level2 hasAnchor" number="10.8">
+<h2><span class="header-section-number">10.8</span> Promedio como estimador<a href="distribuciones-de-muestreo.html#promedio-como-estimador" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Este número puede usarse para <strong>estimar</strong> el parámetro desconocido <span class="math inline">\(\mu\)</span> porque:</p>
 <ul>
-<li><p>La función de densidad de probabilidad es un paso adelante en la abstracción de probabilidades: sumamos el límite continuo (<span class="math inline">\(dx \rightarrow 0\)</span>).</p></li>
-<li><p>Todas las propiedades de las probabilidades se traducen en términos de densidades (<span class="math inline">\(\sum \rightarrow \int\)</span>).</p></li>
-<li><p>La asignación de probabilidades a una variable aleatoria se puede realizar con argumentos de equiprobabilidad (clásicos).</p></li>
-<li><p>Las densidades son cantidades matemáticas que algunas asignarán a experimentos y otras no. <em>¿Qué densidad corresponderá mejor a mi experimento?</em></p></li>
+<li><span class="math inline">\(E(\bar{X})=E(X)=\mu\)</span></li>
+<li><span class="math inline">\(V(\bar{X})=\frac{V(X)}{n}=\frac{\sigma^2}{n}\)</span></li>
 </ul>
+<p>(dado que cada experimento aleatorio en la muestra es independiente)</p>
+<p>como</p>
+<ul>
+<li><span class="math inline">\(n \rightarrow \infty\)</span>, <span class="math inline">\(V(\bar{X}) \rightarrow 0\)</span></li>
+</ul>
+<p>entonces</p>
+<ul>
+<li><span class="math inline">\(\bar{x}\)</span> <strong>se concentra cada vez más cerca</strong> de <span class="math inline">\(\mu\)</span> a medida que aumenta <span class="math inline">\(n\)</span>.</li>
+</ul>
+<p>Podemos tomar un valor de <span class="math inline">\(\bar{x}\)</span> como <strong>estimación</strong> para <span class="math inline">\(\mu\)</span> o</p>
+<p><span class="math display">\[\bar{x}=\hat{\mu}\]</span></p>
 <hr />
 <hr />
 </div>
-<div id="área-total-bajo-la-curva" class="section level2 hasAnchor" number="6.7">
-<h2><span class="header-section-number">6.7</span> Área total bajo la curva<a href="variables-aleatorias-continuas.html#área-total-bajo-la-curva" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Ejemplo: toma la <strong>densidad de probabilidad</strong> que podría describir la variable aleatoria que mide dónde cae una gota de lluvia en una canaleta de lluvia de <span class="math inline">\(100cm\)</span> de longitud.</p>
-<p><span class="math display">\[
-    f(x)= 
-\begin{cases}
-    \frac{1}{100},&amp; \text{si } x\in (0,100)\\
-    0,&amp; si \, no 
-\end{cases}
-\]</span></p>
-<p>Entonces la probabilidad de <strong>cualquier</strong> observación es el <strong>área total bajo la curva</strong></p>
-<p><span class="math inline">\(P(-\infty\leq X \leq \infty)= \int_{-\infty}^{\infty} f(x) dx = 100*0.01= 1\)</span></p>
-<p><img src="_main_files/figure-html/unnamed-chunk-41-1.png" width="672" /></p>
-<hr />
-<hr />
-</div>
-<div id="área-bajo-la-curva" class="section level2 hasAnchor" number="6.8">
-<h2><span class="header-section-number">6.8</span> Área bajo la curva<a href="variables-aleatorias-continuas.html#área-bajo-la-curva" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>La probabilidad de observar <span class="math inline">\(x\)</span> en un intervalo es el <strong>área bajo la curva</strong> dentro del intervalo</p>
-<ul>
-<li><span class="math inline">\(P(20 \leq X \leq 60) = \int_{20}^{60} f(x) dx = (60-20)*0.01=0.4\)</span></li>
-</ul>
-<p><img src="_main_files/figure-html/unnamed-chunk-42-1.png" width="672" /></p>
-<hr />
-<hr />
-</div>
-<div id="área-bajo-la-curva-1" class="section level2 hasAnchor" number="6.9">
-<h2><span class="header-section-number">6.9</span> Área bajo la curva<a href="variables-aleatorias-continuas.html#área-bajo-la-curva-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>En general, <span class="math inline">\(f(x)\)</span> debe satisfacer:</p>
-<ul>
-<li><span class="math inline">\(0 \leq P(a \leq X \leq b) = \int_{a}^{b} f(x) dx \leq 1\)</span></li>
-</ul>
-<p><img src="_main_files/figure-html/unnamed-chunk-43-1.png" width="672" /></p>
-<hr />
-<hr />
-</div>
-<div id="distribución-de-probabilidad-1" class="section level2 hasAnchor" number="6.10">
-<h2><span class="header-section-number">6.10</span> Distribución de probabilidad<a href="variables-aleatorias-continuas.html#distribución-de-probabilidad-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>La probabilidad acumulada hasta <span class="math inline">\(b\)</span> está definida por la distribución de probabilidad <span class="math inline">\(F\)</span></p>
-<ul>
-<li><span class="math inline">\(F(b) = P(X \leq b)=\int_{-\infty}^bf(x)dx\)</span></li>
-</ul>
-<p><img src="_main_files/figure-html/unnamed-chunk-44-1.png" width="672" /></p>
-<p>La probabilidad acumulada hasta <span class="math inline">\(a\)</span> es</p>
-<ul>
-<li><span class="math inline">\(F(a) = P(X \leq a)\)</span></li>
-</ul>
-<p><img src="_main_files/figure-html/unnamed-chunk-45-1.png" width="672" /></p>
-<hr />
-<hr />
-</div>
-<div id="distribución-de-probabilidad-2" class="section level2 hasAnchor" number="6.11">
-<h2><span class="header-section-number">6.11</span> Distribución de probabilidad<a href="variables-aleatorias-continuas.html#distribución-de-probabilidad-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>La probabilidad entre <span class="math inline">\(a\)</span> y <span class="math inline">\(b\)</span> está definida por la distribución de probabilidad <span class="math inline">\(F\)</span></p>
-<ul>
-<li><span class="math inline">\(P(a\leq X \leq b) = \int_a^b f(x)dx=F(b)-F(a)\)</span></li>
-</ul>
-<p><img src="_main_files/figure-html/unnamed-chunk-46-1.png" width="672" /></p>
-<hr />
-<hr />
-</div>
-<div id="distribución-de-probabilidad-3" class="section level2 hasAnchor" number="6.12">
-<h2><span class="header-section-number">6.12</span> Distribución de probabilidad<a href="variables-aleatorias-continuas.html#distribución-de-probabilidad-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>La distribución de probabilidad de una variable aleatoria continua se define como
-</br><span class="math inline">\(F(a)=P(X\leq a) =\int_{-\infty} ^a f(x)dx\)</span></p>
-<p>con las propiedades que:</p>
-<p>Está entre <span class="math inline">\(0\)</span> y <span class="math inline">\(1\)</span>:</p>
-<ul>
-<li><span class="math inline">\(F(-\infty)= 0\)</span> y <span class="math inline">\(F(\infty)=1\)</span></li>
-</ul>
-<p>Siempre aumenta:</p>
-<ul>
-<li>si <span class="math inline">\(a\leq b\)</span> entonces <span class="math inline">\(F(a)\leq F(b)\)</span></li>
-</ul>
-<p>Se puede utilizar para calcular probabilidades:</p>
-<ul>
-<li><span class="math inline">\(P(a \leq X \leq b)=F(b)-F(a)\)</span></li>
-</ul>
-<p>Recupera la densidad de probabilidad:</p>
-<ul>
-<li><span class="math inline">\(f(x)=\frac{dF(x)}{dx}\)</span></li>
-</ul>
-<p>Usamos <strong>distribuciones de probabilidad</strong> para <strong>calcular probabilidades</strong> de una variable aleatoria en intervalos</p>
-<hr />
-<hr />
-</div>
-<div id="distribución-de-probabilidad-4" class="section level2 hasAnchor" number="6.13">
-<h2><span class="header-section-number">6.13</span> Distribución de probabilidad<a href="variables-aleatorias-continuas.html#distribución-de-probabilidad-4" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Para la funcion de densidad uniforme:</p>
-<p><span class="math display">\[
-    f(x)= 
-\begin{cases}
-    \frac{1}{100},&amp; \text{si } x\in (0,100)\\
-    0,&amp; si \,no 
-\end{cases}
-\]</span></p>
-<p>La distribución de probabilidad es</p>
-<p><span class="math display">\[
-    F(a)= 
-\begin{cases}
-    0,&amp; a \leq 0 \\
-    \frac{a}{100},&amp; \text{si } a\in [0,100)\\
-    1, &amp; 100 &lt; a \\
-    \\
-\end{cases}
-\]</span></p>
-<hr />
-<hr />
-</div>
-<div id="gráficos-de-probabilidad" class="section level2 hasAnchor" number="6.14">
-<h2><span class="header-section-number">6.14</span> Gráficos de probabilidad<a href="variables-aleatorias-continuas.html#gráficos-de-probabilidad" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>La probabilidad <span class="math inline">\(P(20&lt;X&lt;60)\)</span> es el <em>área</em> bajo la curva de <strong>densidad</strong></p>
-<p><img src="_main_files/figure-html/unnamed-chunk-47-1.png" width="672" /></p>
-<hr />
-<hr />
-</div>
-<div id="gráficos-de-probabilidad-1" class="section level2 hasAnchor" number="6.15">
-<h2><span class="header-section-number">6.15</span> Gráficos de probabilidad<a href="variables-aleatorias-continuas.html#gráficos-de-probabilidad-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>La probabilidad <span class="math inline">\(P(20&lt;X&lt;60)\)</span> es la <em>diferencia</em> en valores de <strong>distribución</strong></p>
-<p><img src="_main_files/figure-html/unnamed-chunk-48-1.png" width="672" /></p>
-<hr />
-<hr />
-</div>
-<div id="media-1" class="section level2 hasAnchor" number="6.16">
-<h2><span class="header-section-number">6.16</span> Media<a href="variables-aleatorias-continuas.html#media-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Como en el caso discreto, la <strong>media</strong> mide el centro de la distribución</p>
+<div id="varianza-muestral" class="section level2 hasAnchor" number="10.9">
+<h2><span class="header-section-number">10.9</span> Varianza muestral<a href="distribuciones-de-muestreo.html#varianza-muestral" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><strong>Definición</strong></p>
-<p>Supongamos que <span class="math inline">\(X\)</span> es una variable aleatoria continua con función de probabilidad <strong>densidad</strong> <span class="math inline">\(f(x)\)</span>. El valor medio o esperado de <span class="math inline">\(X\)</span>, denotado como <span class="math inline">\(\mu\)</span> o <span class="math inline">\(E(X)\)</span>, es</p>
-<p><span class="math display">\[\mu=E(X)=\int_{-\infty}^\infty x f(x) dx\]</span>
-Es la versión continua del centro de masa.</p>
-<hr />
-<hr />
-</div>
-<div id="media-2" class="section level2 hasAnchor" number="6.17">
-<h2><span class="header-section-number">6.17</span> Media<a href="variables-aleatorias-continuas.html#media-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><span class="math display">\[
-    f(x)= 
-\begin{cases}
-    \frac{1}{100},&amp; \text{si } x\in (0,100)\\
-    0,&amp; si \, no 
-\end{cases}
-\]</span></p>
-<p><span class="math inline">\(E(X)=50\)</span></p>
-<p><img src="_main_files/figure-html/unnamed-chunk-49-1.png" width="672" /></p>
-<hr />
-<hr />
-</div>
-<div id="varianza" class="section level2 hasAnchor" number="6.18">
-<h2><span class="header-section-number">6.18</span> Varianza<a href="variables-aleatorias-continuas.html#varianza" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Como en el caso discreto, la varianza mide la dispersión con respecto a la media</p>
-<p><strong>Definición</strong></p>
-<p>Supongamos que <span class="math inline">\(X\)</span> es una variable aleatoria continua con función de densidad de probabilidad <span class="math inline">\(f(x)\)</span>. La varianza de <span class="math inline">\(X\)</span>, denotada como <span class="math inline">\(\sigma^2\)</span> o <span class="math inline">\(V(X)\)</span>, es</p>
-<p><span class="math display">\[\sigma^2=V(X)=\int_{-\infty}^\infty (x-\mu)^2 f(x) dx\]</span></p>
-<hr />
-<hr />
-</div>
-<div id="funciones-de-x-1" class="section level2 hasAnchor" number="6.19">
-<h2><span class="header-section-number">6.19</span> Funciones de <span class="math inline">\(X\)</span><a href="variables-aleatorias-continuas.html#funciones-de-x-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><strong>Definición</strong></p>
-<p>Para cualquier función <span class="math inline">\(h\)</span> de una variable aleatoria <span class="math inline">\(X\)</span>, con función de masa <span class="math inline">\(f(x)\)</span>, su valor esperado viene dado por</p>
-<p><span class="math display">\[E[h(X)]= \int_{-\infty}^{\infty} h(x) f(x)dx\]</span></p>
-<p>Y tenemos las mismas propiedades que en el caso discreto</p>
+<p>La <strong>varianza de la muestra</strong> <span class="math inline">\(S^2\)</span> de una muestra aleatoria de tamaño <span class="math inline">\(n\)</span></p>
+<p><span class="math display">\[S^2= \frac{1}{n-1}\sum_{i=1}^n (X_i-\bar{X})^2\]</span></p>
+<p>es la dispersión de las medidas al rededor de <span class="math inline">\(\bar{X}\)</span>. En nuestra muestra de <span class="math inline">\(8\)</span> cables, <span class="math inline">\(S^2\)</span> tomó el valor</p>
+<p><span class="math display">\[s_{stock}^2=\frac{1}{n-1}\sum_{i=1}^n (x_i-\bar{x})^2=0.1275608\]</span></p>
+<p>El valor esperado de <span class="math inline">\(S^2\)</span> es</p>
 <ul>
-<li><p>La media de una función lineal es la función lineal de la media: <span class="math display">\[E(a\times X +b)= a\times E(X) +b\]</span> para <span class="math inline">\(a\)</span> y <span class="math inline">\(b\)</span> escalares.</p></li>
-<li><p>La varianza de una función lineal de <span class="math inline">\(X\)</span> es:<span class="math display">\[V(a\times X +b)= a^2\times V(X)\]</span></p></li>
-<li><p>La varianza sobre el origen es la varianza sobre la media más la media al cuadrado: <span class="math display">\[E(X^2)=V(X)+E(X)^2\]</span></p></li>
+<li><span class="math inline">\(E(S^2)=V(X)=\sigma^2\)</span> (insesgado)</li>
+</ul>
+<p>y por lo tanto <span class="math inline">\(S^2\)</span> es</p>
+<ul>
+<li>un estimador de <span class="math inline">\(V(X)\)</span></li>
+<li>también se concentra alrededor de <span class="math inline">\(\sigma^2\)</span> porque como <span class="math inline">\(n \rightarrow \infty\)</span>, <span class="math inline">\(V(\bar{S^2}) \rightarrow 0\)</span> (consistente)</li>
+</ul>
+<p>Podemos tomar un valor de <span class="math inline">\(s^2\)</span> como estimación para <span class="math inline">\(\sigma^2\)</span> o</p>
+<p><span class="math display">\[s^2=\hat{\sigma}^2\]</span></p>
+<hr />
+<hr />
+</div>
+<div id="varianza-muestral-1" class="section level2 hasAnchor" number="10.10">
+<h2><span class="header-section-number">10.10</span> Varianza muestral<a href="distribuciones-de-muestreo.html#varianza-muestral-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><span class="math inline">\(S^2\)</span> tiene como objetivo estimar la dispersión de los resultados al rededor de <span class="math inline">\(\mu\)</span> (la varianza)</p>
+<p>Si usamos <span class="math inline">\(\bar{X}\)</span> como estimador de <span class="math inline">\(\mu\)</span>, debemos corregir su dispersión (es decir, el error cuadrático medio de <span class="math inline">\(\bar{X}\)</span>).</p>
+<p>La corrección se logra dividiendo por <span class="math inline">\(n-1\)</span> y no por <span class="math inline">\(n\)</span> en la definición de <span class="math inline">\(S^2\)</span></p>
+<p>Para:</p>
+<p><span class="math inline">\(S_n^2=\frac{1}{n}\sum_{i=1}^n (X_i-\bar{X})^2\)</span></p>
+<p><span class="math inline">\(E(S_n^2) = \sigma^2-\frac{\sigma^2}{n} \neq \sigma^2\)</span> (decimos que <span class="math inline">\(S_n^2\)</span> es en estimador <strong>sesgado</strong> de )</p>
+<p><img src="_main_files/figure-html/unnamed-chunk-71-1.png" width="672" /></p>
+<hr />
+<hr />
+</div>
+<div id="ajuste-de-un-modelo" class="section level2 hasAnchor" number="10.11">
+<h2><span class="header-section-number">10.11</span> Ajuste de un modelo<a href="distribuciones-de-muestreo.html#ajuste-de-un-modelo" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><strong>Ajustamos en un modelo</strong> cuando</p>
+<ul>
+<li><strong>estimamos</strong> los parámetros del modelo</li>
+</ul>
+<p>También decimos que <strong>entrenamos</strong> un modelo (aprendizaje automático)</p>
+<p><strong>Asumiendo</strong> que</p>
+<p><span class="math display">\[X \rightarrow N(x; \mu, \sigma^2)\]</span></p>
+<p>Como no conocemos los parámetros, <strong>sustituimos</strong> las estimaciones <span class="math inline">\(\bar{x}\)</span> y <span class="math inline">\(s^2\)</span> como los valores de <span class="math inline">\(\mu\)</span>
+y <span class="math inline">\(\sigma^2\)</span></p>
+<p><span class="math display">\[X \rightarrow N(x; \mu=13.21, \sigma^2=0.3571565^2)\]</span></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-72-1.png" width="672" /></p>
+<hr />
+<hr />
+</div>
+<div id="predicción" class="section level2 hasAnchor" number="10.12">
+<h2><span class="header-section-number">10.12</span> Predicción<a href="distribuciones-de-muestreo.html#predicción" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><strong>Predecimos</strong> el valor de un <strong>resultado</strong> cuando calculamos su <strong>probabilidad</strong></p>
+<p>¿Cuál es la probabilidad de que el cable se rompa a <span class="math inline">\(12\)</span> Toneladas?</p>
+<p>Si asumimos la variable aleatoria</p>
+<p><span class="math display">\[X \rightarrow N(x; \mu, \sigma^2)\]</span>
+Sustituimos las estimaciones <span class="math inline">\(\bar{x}\)</span> y <span class="math inline">\(s^2\)</span> en la distribución de probabilidad</p>
+<p><span class="math display">\[P(X \leq 12)= F_{normal}(12; \mu=13.21, \sigma^2=0.1275608)\]</span></p>
+<p>En R <code>pnorm(12,13.21, 0.3571565)</code><span class="math inline">\(=0.000352188\)</span></p>
+<p>Dada la muestra <strong>observada</strong>, existe una probabilidad estimada de <span class="math inline">\(0.03\%\)</span> de que un solo cable se rompa a <span class="math inline">\(12\)</span> Toneladas.</p>
+<hr />
+<hr />
+</div>
+<div id="inferencia" class="section level2 hasAnchor" number="10.13">
+<h2><span class="header-section-number">10.13</span> Inferencia<a href="distribuciones-de-muestreo.html#inferencia" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Cuando tenemos una variable aleatoria normal</p>
+<p><span class="math display">\[X \rightarrow N(x; \mu, \sigma^2)\]</span></p>
+<p>Y conocemos <span class="math inline">\(\mu\)</span> y <span class="math inline">\(\sigma^2\)</span>.</p>
+<p>Podemos hacer inferencias sobre <span class="math inline">\(\bar{X}\)</span>, es decir calcular probabilidades de la variable aleatoria <span class="math inline">\(\bar{X}\)</span>.</p>
+<p>Cuando hacemos <strong>inferencias</strong>, generalmente hacemos la pregunta:</p>
+<p>¿Qué tan <strong>seguros</strong> estamos de que el valor del estimador <strong>está cerca</strong> del <strong>parámetro verdadero</strong>?</p>
+<hr />
+<hr />
+</div>
+<div id="ejemplo-cuando-sí-conocemos-los-parametros" class="section level2 hasAnchor" number="10.14">
+<h2><span class="header-section-number">10.14</span> Ejemplo: Cuando sí conocemos los parametros<a href="distribuciones-de-muestreo.html#ejemplo-cuando-sí-conocemos-los-parametros" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Imaginemos que nuestros cables están certificados para romper con una carga media de <span class="math inline">\(\mu = 13\)</span> Toneladas con varianza <span class="math inline">\(\sigma^2=0.35^2\)</span>.</p>
+<p>Tomamos una muestra aleatoria de <span class="math inline">\(8\)</span> cables</p>
+<pre><code>## [1] 13.34642 13.32620 13.01459 13.10811 12.96999 13.55309 13.75557 12.62747</code></pre>
+<p>¿Podemos afirmar que en realidad producimos cables más resistentes porque obtuvimos <span class="math inline">\(\bar{x}=13,21\)</span> en esta muestra de <span class="math inline">\(8\)</span> cables?</p>
+<p>Necesitamos calcular probabilidades de <span class="math inline">\(\bar{X}\)</span>.</p>
+<ul>
+<li>Cuál es la probabilidad de que la distancia entre <span class="math inline">\(\bar{X}\)</span> y <span class="math inline">\(\mu\)</span> sea menos de <span class="math inline">\(\bar{x}_{stock}-\mu=0.21\)</span>?</li>
+</ul>
+<p><span class="math display">\[P(- 0.21\leq \bar{X}-\mu \leq 0.21)\]</span></p>
+<hr />
+<hr />
+</div>
+<div id="desnidad-para-x-y-para-barx" class="section level2 hasAnchor" number="10.15">
+<h2><span class="header-section-number">10.15</span> Desnidad para <span class="math inline">\(X\)</span> y para <span class="math inline">\(\bar{X}\)</span><a href="distribuciones-de-muestreo.html#desnidad-para-x-y-para-barx" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Cuando <strong>sabemos</strong> que los parámetros <strong>verdaderos</strong> son <span class="math inline">\(\mu=13\)</span> y <span class="math inline">\(\sigma=0.35\)</span> esto es lo que veríamos</p>
+<p><img src="_main_files/figure-html/unnamed-chunk-74-1.png" width="672" /><img src="_main_files/figure-html/unnamed-chunk-74-2.png" width="672" /></p>
+<hr />
+<hr />
+</div>
+<div id="distribución-media-muestral" class="section level2 hasAnchor" number="10.16">
+<h2><span class="header-section-number">10.16</span> Distribución media muestral<a href="distribuciones-de-muestreo.html#distribución-media-muestral" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><strong>Teorema</strong>: Cuando <span class="math inline">\(X\)</span> sigue una distribución normal <span class="math inline">\(X \rightarrow N(\mu, \sigma^2)\)</span></p>
+<p><span class="math inline">\(\bar{X}\)</span> es normal:</p>
+<p><span class="math display">\[\bar{X} \rightarrow N(\mu, \frac{\sigma^2}{n})\]</span></p>
+<p>Entonces, si <strong>sabemos</strong> <span class="math inline">\(\mu\)</span> y <span class="math inline">\(\sigma\)</span> podemos calcular las <strong>probabilidades de</strong> <span class="math inline">\(\bar{X}\)</span> usando la distribución normal.</p>
+<p>La media y la varianza de <span class="math inline">\(\bar{X}\)</span> son</p>
+<ul>
+<li><span class="math inline">\(E(\bar{X})=\mu\)</span></li>
+<li><span class="math inline">\(V(\bar{X})=\frac{\sigma^2}{n}\)</span></li>
 </ul>
 <hr />
 <hr />
 </div>
-<div id="ejemplo-8" class="section level2 hasAnchor" number="6.20">
-<h2><span class="header-section-number">6.20</span> Ejemplo<a href="variables-aleatorias-continuas.html#ejemplo-8" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="inferencia-del-promedio" class="section level2 hasAnchor" number="10.17">
+<h2><span class="header-section-number">10.17</span> Inferencia del promedio<a href="distribuciones-de-muestreo.html#inferencia-del-promedio" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><strong>Ejemplo:</strong></p>
+<p>Si <strong>sabemos</strong> que la rotura de nuestros cables realmente se distribuye como <span class="math display">\[X \rightarrow N(\mu=13, \sigma^2=0.35^2)\]</span> entonces</p>
+<p><span class="math display">\[\bar{X} \rightarrow N(13, \frac{0.35^2}{8})\]</span></p>
 <ul>
-<li>para la densidad de probabilidad</li>
+<li><span class="math inline">\(E(\bar{X})=13\)</span></li>
+<li><span class="math inline">\(V(\bar{X})=\frac{0.35^2}{8}=0.01530169\)</span></li>
 </ul>
-<p><span class="math display">\[
-    f(x)= 
-\begin{cases}
-    \frac{1}{100},&amp; \text{si } x\in (0,100)\\
-    0,&amp; si \, no 
-\end{cases}
-\]</span></p>
+<p>Nuestro <strong>error observado</strong> en la estimación de la media es la diferencia</p>
+<p><span class="math display">\[\bar{x}_{stock}-\mu=13.21-13=0.21\]</span></p>
+<p>Nos preguntamos: ¿Es este un error <strong>típico</strong>?</p>
+<hr />
+<hr />
+</div>
+<div id="densidad-para-barx" class="section level2 hasAnchor" number="10.18">
+<h2><span class="header-section-number">10.18</span> Densidad para <span class="math inline">\(\bar{X}\)</span><a href="distribuciones-de-muestreo.html#densidad-para-barx" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Si <strong>supiéramos</strong> que los parámetros <strong>verdaderos</strong> son <span class="math inline">\(\mu=13\)</span> y <span class="math inline">\(\sigma=0.35\)</span> este es el error que veríamos</p>
+<p><img src="_main_files/figure-html/unnamed-chunk-75-1.png" width="672" /></p>
+<hr />
+<hr />
+<div id="probabilidades-de-barx" class="section level3 hasAnchor" number="10.18.1">
+<h3><span class="header-section-number">10.18.1</span> Probabilidades de <span class="math inline">\(\bar{X}\)</span><a href="distribuciones-de-muestreo.html#probabilidades-de-barx" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Si <strong>sabemos</strong> que la carga de rotura de nuestros cables <strong>realmente</strong> se distribuye como <span class="math display">\[\bar{X} \rightarrow N(\mu=13, \frac{\sigma^2}{ n}=0.1237^2)\]</span></p>
+<p>¿Cuál es la probabilidad de observar un <strong>error de estimación</strong> de <span class="math inline">\(\mu\)</span> (distancia entre <span class="math inline">\(\bar{X}\)</span> y <span class="math inline">\(\mu\)</span>) menor a <span class="math inline">\(0.21\)</span>?</p>
+<p>Queremos calcular <span class="math display">\[P(-0.21 \leq \bar{X} - 13\leq 0.21)=P(12.79 \leq \bar{X} \leq 13.21)\]</span></p>
+<p><br>
+<span class="math inline">\(=F_{normal}(13,21; \mu, se^2)-F_{normal}(12,79; \mu, se^2)\)</span></p>
+<p>En R podemos calcularlo como:</p>
+<p><code>pnorm(13.21, 13, 0.1237)-pnorm(12.79, 13, 0.1237)=0.9104</code>.</p>
+<p><span class="math inline">\(91,0\%\)</span> de los errores son inferiores a <span class="math inline">\(0,21\)</span>, por lo que el error <strong>observado</strong> no parece demasiado típico (solo <span class="math inline">\(9\%\)</span> de los errores son superiores).</p>
+<p>Tal vez tengamos cables más fuertes de lo que pensábamos.</p>
+<hr />
+<hr />
+</div>
+<div id="suma-muestral" class="section level3 hasAnchor" number="10.18.2">
+<h3><span class="header-section-number">10.18.2</span> Suma muestral<a href="distribuciones-de-muestreo.html#suma-muestral" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Si estamos interesados en usar todos los <span class="math inline">\(8\)</span> cables al mismo tiempo para transportar un total de <span class="math inline">\(96\)</span> Toneladas, entonces deberíamos considerar sumar sus contribuciones individuales.</p>
+<p>La <strong>suma de la muestra</strong> es la <strong>estadística</strong>:</p>
+<p><span class="math display">\[Y=n \bar{X}=\sum_{i=1}^n X_i\]</span></p>
+<p><strong>Teorema:</strong> Si <span class="math inline">\(X \rightarrow N(\mu, \sigma^2)\)</span> entonces <span class="math display">\[Y \rightarrow N(n\mu, n\sigma^2)\]</span></p>
+<p>Con media y varianza:</p>
 <ul>
-<li>calcule la media</li>
-<li>calcule la varianza usando <span class="math inline">\(E(X^2)=V(X)+E(X)^2\)</span></li>
-<li>calcule <span class="math inline">\(P(\mu-\sigma\leq X \leq \mu+\sigma)\)</span></li>
-<li>¿Cuáles son el primer y tercer cuartiles?</li>
+<li><span class="math inline">\(E(Y)=n\mu\)</span></li>
+<li><span class="math inline">\(V(Y)=n\sigma^2\)</span></li>
 </ul>
-<p><img src="_main_files/figure-html/unnamed-chunk-50-1.png" width="672" /></p>
+<hr />
+<hr />
+</div>
+<div id="inferencia-sobre-la-suma-muestral" class="section level3 hasAnchor" number="10.18.3">
+<h3><span class="header-section-number">10.18.3</span> Inferencia sobre la suma muestral<a href="distribuciones-de-muestreo.html#inferencia-sobre-la-suma-muestral" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Si <strong>sabemos</strong> que nuestros cables <span class="math display">\[X \rightarrow N(\mu=13, \sigma^2=0.35^2)\]</span> entonces</p>
+<p><span class="math display">\[Y \rightarrow N(n\mu=104, n\sigma^2=8\times 0.35^2)\]</span></p>
+<ul>
+<li><span class="math inline">\(E(Y)=104\)</span></li>
+<li><span class="math inline">\(V(Y)=8\times 0.35^2=0.98\)</span></li>
+</ul>
+<p>Para nuestra muestra de <span class="math inline">\(8\)</span> cables, observamos</p>
+<ul>
+<li><span class="math inline">\(y_{stock}=105.7014\)</span></li>
+</ul>
+<p>y, por tanto, el <strong>error observado</strong> en la estimación de la media de la <strong>verdadera</strong> carga de rotura total (<span class="math inline">\(n\mu\)</span>) de <span class="math inline">\(8\)</span> cables fue</p>
+<ul>
+<li><span class="math inline">\(y_{stock}-n\mu= 1.7014\)</span></li>
+</ul>
+<p>¿Es este un error <strong>típico</strong>?</p>
+<hr />
+<hr />
+</div>
+<div id="probabilidades-de-la-suma-muestral-propagación-del-error" class="section level3 hasAnchor" number="10.18.4">
+<h3><span class="header-section-number">10.18.4</span> Probabilidades de la suma muestral: Propagación del error<a href="distribuciones-de-muestreo.html#probabilidades-de-la-suma-muestral-propagación-del-error" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>¿Cuál es la probabilidad de observar una diferencia <span class="math inline">\(Y-E(Y)\)</span> menor que <span class="math inline">\(1.7014\)</span>?</p>
+<p>Queremos calcular la probabilidad</p>
+<p><span class="math display">\[P(-1.7014 \leq \bar{Y} - 104 \leq 1.7014)=P(102.2986 \leq Y \leq 105.7014)\]</span></p>
+<p><br>
+<span class="math inline">\(=F_{normal}(105.7014; n\mu, n\sigma^2)-F_{normal}(102.2986; n\mu, n\sigma^2)\)</span></p>
+<p>En R podemos calcularlo como:</p>
+<p><code>pnorm(105.7014, 104, sqrt(0.98)) - pnorm(102.2986, 104, sqrt(0.98))=0.914</code>.</p>
+<p><span class="math inline">\(91,4\%\)</span> de las veces tenemos sumas de cargas que son menores que <span class="math inline">\(1,7014\)</span>.</p>
+<p>Esta proporción es mayor que la de cables individuales.</p>
+<hr />
+<hr />
+</div>
+</div>
+<div id="inferencia-en-la-varianza-muestral" class="section level2 hasAnchor" number="10.19">
+<h2><span class="header-section-number">10.19</span> Inferencia en la varianza muestral<a href="distribuciones-de-muestreo.html#inferencia-en-la-varianza-muestral" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Consideremos un proceso de control de calidad que requiera que los cables se produzcan cerca del valor especificado <span class="math inline">\(\mu\)</span>.</p>
+<p>Si una muestra de cables de <span class="math inline">\(8\)</span> es muy dispersa (<span class="math inline">\(S^2&gt;0.3\)</span>), detenemos la producción: el proceso está fuera de control.</p>
+<p>¿Cuál es la probabilidad de que la varianza muestral de una muestra de <span class="math inline">\(8\)</span> cables sea mayor que los <span class="math inline">\(0,3\)</span> requeridos?</p>
+<hr />
+<hr />
+</div>
+<div id="probabilidades-de-la-varianza-muestral" class="section level2 hasAnchor" number="10.20">
+<h2><span class="header-section-number">10.20</span> Probabilidades de la varianza muestral<a href="distribuciones-de-muestreo.html#probabilidades-de-la-varianza-muestral" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><strong>Teorema:</strong> Cuando <span class="math inline">\(X\)</span> sigue una distribución normal
+<span class="math display">\[X \rightarrow N(\mu, \sigma^2)\]</span></p>
+<p>La <strong>estadística</strong>:</p>
+<p><span class="math display">\[W=\frac{(n-1)S^2}{\sigma^2} \rightarrow \chi^2(n-1)\]</span></p>
+<p>tiene una distribución <span class="math inline">\(\chi^2\)</span> (chi-cuadrado) con <span class="math inline">\(df=n-1\)</span> grados de libertad dada por</p>
+<p><span class="math display">\[f(w)=C_n w^{\frac{n-3}{2}} e^{-\frac{w}{2}}\]</span></p>
+<p>dónde:</p>
+<ul>
+<li><p><span class="math inline">\(C_n=\frac{1}{2^{(n-1)/2\sqrt{\pi(n-1)}}}\)</span> asegura <span class="math inline">\(\int_{-\infty}^{\infty} f( t)dt=1\)</span></p></li>
+<li><p><span class="math inline">\(\Gamma(x)\)</span> es el factorial de Euler para números reales</p></li>
+<li><p>Si <strong>sabemos</strong> los valores verdaderos de <span class="math inline">\(\mu\)</span> y <span class="math inline">\(\sigma\)</span> podemos calcular las probabilidades de <span class="math inline">\(S^2\)</span> usando la distribución <span class="math inline">\(\chi^2\)</span> para <span class="math inline">\(W\)</span>.</p></li>
+</ul>
+<hr />
+<hr />
+</div>
+<div id="chi2-estadística" class="section level2 hasAnchor" number="10.21">
+<h2><span class="header-section-number">10.21</span> <span class="math inline">\(\chi^2\)</span>-estadística<a href="distribuciones-de-muestreo.html#chi2-estadística" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><img src="_main_files/figure-html/unnamed-chunk-76-1.png" width="672" /></p>
+<hr />
+<hr />
+</div>
+<div id="chi2-estadística-1" class="section level2 hasAnchor" number="10.22">
+<h2><span class="header-section-number">10.22</span> <span class="math inline">\(\chi^2\)</span>-estadística<a href="distribuciones-de-muestreo.html#chi2-estadística-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Si <strong>sabemos</strong> que nuestros cables realmente se distribuyen como <span class="math display">\[X \rightarrow N(\mu=13, \sigma^2=0.35^2)\]</span></p>
+<p>entonces podemos calcular <span class="math display">\[P(S^2 &gt; 0.2)=P(\frac{(n-1)S^2}{\sigma^2} &gt; \frac{(n-1)0.3}{\sigma^ 2})\]</span>
+<span class="math inline">\(=P(W &gt; \frac{(n-1)0.3}{\sigma^2})\)</span></p>
+<p><span class="math inline">\(=1-P(W \leq \frac{(n-1)0.3}{\sigma^2})=1-P(W\leq \frac{(8-1)0.3}{0.1225})\)</span></p>
+<p><span class="math inline">\(= 1- F_{\chi^2,df=7}(17.14286)=0.016\)</span></p>
+<p>En R
+<code>1-pchisq(17.14286, df=7)=0.016 </code></p>
+<p>Solo hay una probabilidad de <span class="math inline">\(1\%\)</span> de obtener un valor superior a <span class="math inline">\(s^2=0,3\)</span>.</p>
+<ul>
+<li><p><span class="math inline">\(s^2&gt;0.3\)</span> parece ser un buen criterio para detener la producción y revisar el proceso.</p></li>
+<li><p>nuestro valor observado fue <span class="math inline">\(s^2_{stock}=0.1275608\)</span></p></li>
+<li><p>la muestra no está demasiado dispersa y creemos que la producción está bajo control.</p></li>
+</ul>
 
 </div>
 </div>
@@ -705,8 +763,8 @@ Es la versión continua del centro de masa.</p>
           </div>
         </div>
       </div>
-<a href="variables-aleatorias-discretas.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="modelos-de-probabilidad-para-variables-aleatorias-discretas.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="distribución-normal.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="ejercicios.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -737,7 +795,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/USERNAME/REPO/edit/BRANCH/05-ContinuousRandomVariables.Rmd",
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/09-SamplingDistriutions.Rmd",
 "text": "Edit"
 },
 "history": {

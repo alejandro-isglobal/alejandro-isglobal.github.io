@@ -6,7 +6,7 @@
 ]{book}
 \title{Stats theory (SDA)}
 \author{Alejandro Caceres}
-\date{2022-10-26}
+\date{2022-10-31}
 
 \usepackage{amsmath,amssymb}
 \usepackage{lmodern}
@@ -969,11 +969,11 @@ Say we repeated the experiment 1000 times:
 \begin{verbatim}
 ##   outcome  ni    fi
 ## 1       1 152 0.152
-## 2       2 158 0.158
-## 3       3 183 0.183
-## 4       4 172 0.172
-## 5       5 178 0.178
-## 6       6 157 0.157
+## 2       2 151 0.151
+## 3       3 192 0.192
+## 4       4 186 0.186
+## 5       5 148 0.148
+## 6       6 171 0.171
 \end{verbatim}
 
 We find that \(f_i\) is converging to a constant value
@@ -5368,11 +5368,11 @@ We can define the limits of \textbf{common observations} for the distribution of
 \begin{itemize}
 \tightlist
 \item
-  \(P(165-8 \leq X \leq 165-8)=P(157 \leq X \leq 173)=0.68\)
+  \(P(165-8 \leq X \leq 165+8)=P(157 \leq X \leq 173)=0.68\)
 \item
-  \(P(165-2 \times 8 \leq X \leq 165-2\times 8)=P(149 \leq X \leq 181)=0.95\)
+  \(P(165-2 \times 8 \leq X \leq 165+2\times 8)=P(149 \leq X \leq 181)=0.95\)
 \item
-  \(P(165-3 \times 8 \leq X \leq 165-3\times 8)=P(141 \leq X \leq 189)=0.997\)
+  \(P(165-3 \times 8 \leq X \leq 165+3\times 8)=P(141 \leq X \leq 189)=0.997\)
 \end{itemize}
 
 \includegraphics{_main_files/figure-latex/unnamed-chunk-63-1.pdf}
@@ -5601,6 +5601,619 @@ Exponential & dexp(x, lambda) \\
 Normal & dnomr(x, mu, sigma) \\
 \bottomrule
 \end{longtable}
+
+\hypertarget{sampling-distributions}{%
+\chapter{Sampling Distributions}\label{sampling-distributions}}
+
+\hypertarget{objective-8}{%
+\section{Objective}\label{objective-8}}
+
+Distributions for
+
+\begin{itemize}
+\tightlist
+\item
+  Sample mean (average)
+\item
+  sample sum
+\item
+  Sample variance
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{normal-distribution-8}{%
+\section{Normal distribution}\label{normal-distribution-8}}
+
+When we have a normal random variable
+
+\[X \rightarrow N(x; \mu, \sigma^2)\]
+
+How do we estimate \(\mu\) and \(\sigma^2\)?
+
+\begin{itemize}
+\item
+  we need to take a \textbf{random sample}
+\item
+  we need to \textbf{estimate} each parameter
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{example-when-we-do-not-know-the-parameters}{%
+\section{Example: When we do not know the parameters}\label{example-when-we-do-not-know-the-parameters}}
+
+Imagine a client asking your metallurgical company to sell them \(8\) cables that can carry up to \(96\) Tons; that is \(12\) Tons each.
+
+\begin{itemize}
+\tightlist
+\item
+  You have in \textbf{stock} a set of cables that could do the job.
+\end{itemize}
+
+Can you use the cables in stock or do you need to produce new ones?
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{example-12}{%
+\section{Example}\label{example-12}}
+
+you take a sample of \(8\) random experiments, each of which consists of loading a cable until it breaks and recording the breaking load.
+
+These are the results: The observation of a \textbf{sample} of size \(8\)
+
+\begin{verbatim}
+## [1] 13.34642 13.32620 13.01459 13.10811 12.96999 13.55309 13.75557 12.62747
+\end{verbatim}
+
+\begin{itemize}
+\item
+  None of them broke at \(12\) Tons.
+\item
+  There was one that broke at \(12.62747\) Tons.
+\end{itemize}
+
+Do you take the risk and sell a random sample of \(8\) cables from your stock?
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-66-1.pdf}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{random-sample}{%
+\section{Random sample}\label{random-sample}}
+
+A \textbf{random sample} of size \(n\) is the \textbf{repetition} of a random experiment \(n\) \textbf{independent} times.
+
+\begin{itemize}
+\tightlist
+\item
+  A random sample is a \(n\)-dimensional \textbf{random variable}
+\end{itemize}
+
+\[(X_1, X_2, ... X_n)\]
+
+where \(X_i\) is the \emph{i-th} repetition of the random experiment with comon distribution \(f(x; \theta)\) for any \(i\)
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{One observation} of a random sample is the set of \(n\) values obtained from the experiments
+\end{itemize}
+
+\[(x_1, x_2, ... x_n)\]
+Our \textbf{observation} of the sample of \(8\) cables was
+
+\begin{verbatim}
+## [1] 13.34642 13.32620 13.01459 13.10811 12.96999 13.55309 13.75557 12.62747
+\end{verbatim}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{example-13}{%
+\section{Example}\label{example-13}}
+
+We would like to compute \(P(X \leq 12)\).
+
+We are going to \textbf{assume} that the braking point is \textbf{normally distributed}.
+
+\[X \rightarrow N(x; \mu, \sigma^2)\]
+
+\begin{itemize}
+\item
+  For computing \(P(X \leq 12)\) we need the parameters \(\mu\) and \(\sigma^2\).
+\item
+  How do we estimate the parameters from the observed sample?
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{average-or-sample-mean}{%
+\section{Average or sample mean}\label{average-or-sample-mean}}
+
+\textbf{Definition}
+
+The sample mean (or average) of a \textbf{random sample} of size \(n\) is defined as
+
+\[\bar{X}=\frac{1}{n}\sum_{i=1}^n X_i\]
+
+The average is a \textbf{random variable} that in our \(8\)-size sample took the value
+
+\[\bar{x}_{stock}=13.21\]
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{the-average-as-an-estimator}{%
+\section{The average as an estimator}\label{the-average-as-an-estimator}}
+
+This number can be used to \textbf{estimate} the unknown parameter \(\mu\) because:
+
+\begin{itemize}
+\tightlist
+\item
+  \(E(\bar{X})=E(X)=\mu\)
+\item
+  \(V(\bar{X})=\frac{V(X)}{n}=\frac{\sigma^2}{n}\)
+\end{itemize}
+
+(since each random experiment in the sample is independent)
+
+as
+
+\begin{itemize}
+\tightlist
+\item
+  \(n \rightarrow \infty\), \(V(\bar{X}) \rightarrow 0\)
+\end{itemize}
+
+then
+
+\begin{itemize}
+\tightlist
+\item
+  \(\bar{x}\) \textbf{concentrates closer and closer} to \(\mu\) as \(n\) increases.
+\end{itemize}
+
+We can take one value of \(\bar{x}\) as estimation for \(\mu\) or
+
+\[\bar{x}=\hat{\mu}\]
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{sample-variance-2}{%
+\section{Sample variance}\label{sample-variance-2}}
+
+\textbf{Definition}
+
+The \textbf{sample variance} \(S^2\) of a random sample of size \(n\)
+
+\[S^2= \frac{1}{n-1}\sum_{i=1}^n (X_i-\bar{X})^2\]
+
+is the dispersion of the measurements about \(\bar{X}\). In our \(8\)-size sample \(S^2\) took the value
+
+\[s_{stock}^2=\frac{1}{n-1}\sum_{i=1}^n (x_i-\bar{x})^2=0.1275608\]
+
+The expected value of \(S^2\) is
+
+\begin{itemize}
+\tightlist
+\item
+  \(E(S^2)=V(X)=\sigma^2\) (unbiased)
+\end{itemize}
+
+and therefore \(S^2\) is
+
+\begin{itemize}
+\tightlist
+\item
+  an estimator of \(V(X)\)
+\item
+  it also concentrates around \(\sigma^2\) because as \(n \rightarrow \infty\), \(V(\bar{S^2}) \rightarrow 0\) (consistent)
+\end{itemize}
+
+We can take one value of \(s^2\) as estimation for \(\sigma^2\) or
+
+\[s^2=\hat{\sigma}^2\]
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{sample-variance-3}{%
+\section{Sample variance}\label{sample-variance-3}}
+
+\(S^2\) aims to estimate the dispersion of the outcomes about \(\mu\) (the variance)
+
+If we use \(\bar{X}\) as an estimator of \(\mu\) we need to correct for its dispersion (i.e.~mean squared error of \(\bar{X}\)).
+
+The correction is achieved by dividing by \(n-1\) and not \(n\) in the definition of \(S^2\)
+
+For:
+
+\(S_n^2=\frac{1}{n}\sum_{i=1}^n (X_i-\bar{X})^2\)
+
+\(E(S_n^2) = \sigma^2-\frac{\sigma^2}{n} \neq \sigma^2\) (we say that \(S_n^2\) is \textbf{biased} estimator of \(\sigma\))
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-68-1.pdf}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{fitting-a-model}{%
+\section{Fitting a model}\label{fitting-a-model}}
+
+We \textbf{fit a model} when we
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{estimate} the parameters of the model
+\end{itemize}
+
+We also say we \textbf{train} a model (machine learning)
+
+\textbf{Assuming} that
+
+\[X \rightarrow N(x; \mu, \sigma^2)\]
+
+Since we do not know the parameters, we \textbf{plugin} the estimates \(\bar{x}\) and \(s^2\) as the values of \(\mu\)
+and \(\sigma^2\)
+
+\[X \rightarrow N(x; \mu=13.21, \sigma^2=0.3571565^2)\]
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-69-1.pdf}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{prediction}{%
+\section{Prediction}\label{prediction}}
+
+We \textbf{predict} the value of an \textbf{outcome} when we compute its \textbf{probability}
+
+What is the probability that the cable breaks at \(12\) Tons?
+
+If we assumed the random variable
+
+\[X \rightarrow N(x; \mu, \sigma^2)\]
+We plug in the estimates \(\bar{x}\) and \(s^2\) into the probability distribution
+
+\[P(X \leq 12)= F_{normal}(12; \mu=13.21, \sigma^2=0.1275608)\]
+
+In R pnorm(12,13.21, 0.3571565)\(=0.000352188\)
+
+Given the \textbf{observed} sample, there is an estimated probability of \(0.03\%\) that a single cable will break at \(12\) Tons.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{inference}{%
+\section{Inference}\label{inference}}
+
+When we have a normal random variable
+
+\begin{verbatim}
+$$X \rightarrow N(x; \mu, \sigma^2)$$
+\end{verbatim}
+
+and we know \(\mu\) and \(\sigma^2\).
+
+We can make inferences about \(\bar{X}\), that is, calculate probabilities of the random variable \(\bar{X}\).
+
+When we make \textbf{inferences}, we usually ask the question:
+
+How \textbf{sure} are we that the value of the estimator \textbf{is close} to the \textbf{true parameter}?
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{example-when-we-do-know-the-parameters}{%
+\section{Example: When we do know the parameters}\label{example-when-we-do-know-the-parameters}}
+
+Let us imagine that our cables are certified to break with an average load of \(\mu = 13\) Tons with variance \(\sigma^2=0.35^2\).
+
+We take a random sample of \(8\) cables
+
+\begin{verbatim}
+## [1] 13.34642 13.32620 13.01459 13.10811 12.96999 13.55309 13.75557 12.62747
+\end{verbatim}
+
+Can we say that we actually produced stronger cables because we got \(\bar{x}=13.21\) from this sample of \(8\) cables?
+
+We need to calculate probabilities of \(\bar{X}\).
+
+\begin{itemize}
+\tightlist
+\item
+  What is the probability that the distance between \(\bar{X}\) and \(\mu\) is less than \(\bar{x}_{stock}-\mu=0.21\)?
+\end{itemize}
+
+\[P(- 0.21\leq \bar{X}-\mu \leq 0.21)\]
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{density-for-x-and-barx}{%
+\section{\texorpdfstring{Density for \(X\) and \(\bar{X}\)}{Density for X and \textbackslash bar\{X\}}}\label{density-for-x-and-barx}}
+
+If we \textbf{know} that the \textbf{true} parameters are \(\mu=13\) and \(\sigma=0.35\) this is what we would see
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-71-1.pdf} \includegraphics{_main_files/figure-latex/unnamed-chunk-71-2.pdf}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{sample-mean-distribution}{%
+\section{Sample mean distribution}\label{sample-mean-distribution}}
+
+\textbf{Theorem:} When \(X\) follows a normal distribution \(X \rightarrow N(\mu, \sigma^2)\)
+
+\(\bar{X}\) is normal:
+
+\[\bar{X} \rightarrow N(\mu, \frac{\sigma^2}{n})\]
+Then, if we \textbf{know} \(\mu\) and \(\sigma\) we can compute the true \textbf{probabilities of \(\bar{X}\)} using the normal distribution.
+
+The mean and variance of \(\bar{X}\) are
+
+\begin{itemize}
+\tightlist
+\item
+  \(E(\bar{X})=\mu\)
+\item
+  \(V(\bar{X})=\frac{\sigma^2}{n}\)
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{inference-on-the-average}{%
+\section{Inference on the average}\label{inference-on-the-average}}
+
+\textbf{Example:}
+
+If we \textbf{know} that the breaking load of our cables truly distribute as \[X \rightarrow N(\mu=13, \sigma^2=0.35^2)\] then
+
+\[\bar{X} \rightarrow N(13, \frac{0.35^2}{8})\]
+
+\begin{itemize}
+\tightlist
+\item
+  \(E(\bar{X})=13\)
+\item
+  \(V(\bar{X})=\frac{0.35^2}{8}=0.01530169\)
+\end{itemize}
+
+Our \textbf{observed error} in the estimation of the mean is the difference
+
+\[\bar{x}_{stock}-\mu=13.21-13=0.21\]
+
+We ask: Is this a \textbf{typical} error?
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{density-for-barx}{%
+\section{\texorpdfstring{Density for \(\bar{X}\)}{Density for \textbackslash bar\{X\}}}\label{density-for-barx}}
+
+If we \textbf{knew} that the \textbf{true} parameters were \(\mu=13\) and \(\sigma=0.35\) this is the error we would see
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-72-1.pdf}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{probabilities-of-barx}{%
+\subsection{\texorpdfstring{Probabilities of \(\bar{X}\)}{Probabilities of \textbackslash bar\{X\}}}\label{probabilities-of-barx}}
+
+\textbf{If} we \textbf{know} that the braking load of our cables \textbf{truly} distribute as \[\bar{X} \rightarrow N(\mu=13, \frac{\sigma^2}{n}=0.1237^2)\]
+
+What is the probability of observing an \textbf{error in estimation} of \(\mu\) (distance between \(\bar{X}\) and \(\mu\)) smaller than \(0.21\)?
+
+We want to compute \[P(-0.21 \leq \bar{X} - 13\leq 0.21)=P(12.79 \leq \bar{X} \leq 13.21)\]
+
+\(=F_{normal}(13.21; \mu, se^2)-F_{normal}(12.79; \mu, se^2)\)
+
+In R we can compute it as:
+
+pnorm(13.21, 13, 0.1237)-pnorm(12.79, 13, 0.1237)=0.9104.
+
+\(91.0\%\) of the errors are less than \(0.21\), therefore the \textbf{observed} error does not seem to be too typical (only \(9\%\) of the errors are higher).
+
+Maybe we have stronger cables than we thought.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{sample-sum}{%
+\subsection{Sample sum}\label{sample-sum}}
+
+If we are interested in using all the \(8\) cables at the same time to carry a total of \(96\) Tons, then we should consider adding their individual contributions.
+
+The \textbf{sample sum} is the \textbf{statistic}:
+
+\[Y=n \bar{X}=\sum_{i=1}^n X_i\]
+
+\textbf{Theorem:} if \(X \rightarrow N(\mu, \sigma^2)\) then \[Y \rightarrow N(n\mu, n\sigma^2)\]
+
+With mean and variance:
+
+\begin{itemize}
+\tightlist
+\item
+  \(E(Y)=n\mu\)
+\item
+  \(V(Y)=n\sigma^2\)
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{inference-on-the-sample-sum}{%
+\subsection{Inference on the sample sum}\label{inference-on-the-sample-sum}}
+
+If we \textbf{know} that for our cables \[X \rightarrow N(\mu=13, \sigma^2=0.35^2)\] then
+
+\[Y \rightarrow N(n\mu=104, n\sigma^2=8\times 0.35^2)\]
+
+\begin{itemize}
+\tightlist
+\item
+  \(E(Y)=104\)
+\item
+  \(V(Y)=8\times 0.35^2=0.98\)
+\end{itemize}
+
+For our \(8\)-sample, we observed
+
+\begin{itemize}
+\tightlist
+\item
+  \(y_{stock}=105.7014\)
+\end{itemize}
+
+and, therefore, the \textbf{observed error} in the estimation of the mean of the \textbf{true} total braking load (\(n\mu\)) of \(8\) cables was
+
+\begin{itemize}
+\tightlist
+\item
+  \(y_{stock}-n\mu= 1.7014\)
+\end{itemize}
+
+Is this a \textbf{typical} error?
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{probabilities-of-the-sample-sum-propagation-of-error}{%
+\subsection{Probabilities of the sample sum: Propagation of error}\label{probabilities-of-the-sample-sum-propagation-of-error}}
+
+What is the probability of observing a difference \(Y-E(Y)\) smaller than \(1.7014\)?
+
+We want to compute the probability
+
+\[P(-1.7014 \leq \bar{Y} - 104 \leq 1.7014)=P(102.2986 \leq Y \leq 105.7014)\]
+
+\(=F_{normal}(105.7014; n\mu, n\sigma^2)-F_{normal}(102.2986; n\mu, n\sigma^2)\)
+
+In R we can compute it as:
+
+pnorm(105.7014, 104, sqrt(0.98)) - pnorm(102.2986, 104, sqrt(0.98))=0.914.
+
+\(91.4\%\) of the times we obtain sample sums that are smaller than \(1.7014\)
+
+This proportion is higher than the proportion for individual cables.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{inference-in-the-sample-variance}{%
+\section{Inference in the sample variance}\label{inference-in-the-sample-variance}}
+
+Consider a quality control process that requires that the cables are produced close to the specified value \(\mu\).
+
+If a sample of \(8\) cables is too dispersed (\(S^2>0.3\)), we stop production: the process is out of control.
+
+What is the probability that the sample variance of a sample of \(8\) cables is greater than the required \(0.3\)?
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{probabilities-of-the-sample-variance}{%
+\section{Probabilities of the sample variance}\label{probabilities-of-the-sample-variance}}
+
+\textbf{Theorem:} When \(X\) follows a normal distribution
+\[X \rightarrow N(\mu, \sigma^2)\]
+
+The \textbf{statistic}:
+
+\[W=\frac{(n-1)S^2}{\sigma^2} \rightarrow \chi^2(n-1)\]
+
+has a \(\chi^2\) (chi-squared) distribution with \(df=n-1\) degrees of freedom given by
+
+\[f(w)=C_n  w^{\frac{n-3}{2}} e^{-\frac{w}{2}}\]
+
+where:
+
+\begin{itemize}
+\item
+  \(C_n=\frac{1}{2^{(n-1)/2\sqrt{\pi(n-1)}}}\) ensures \(\int_{-\infty}^{\infty} f(t)dt=1\)
+\item
+  \(\Gamma(x)\) is Euler's factorial for real numbers
+\item
+  If we \textbf{know} the true values of \(\mu\) and \(\sigma\) we can compute probabilities of \(S^2\) using the \(\chi^2\) distribution for \(W\).
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{chi2-statistic}{%
+\section{\texorpdfstring{\(\chi^2\)-statistic}{\textbackslash chi\^{}2-statistic}}\label{chi2-statistic}}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-73-1.pdf}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{chi2-statistic-1}{%
+\section{\texorpdfstring{\(\chi^2\)-statistic}{\textbackslash chi\^{}2-statistic}}\label{chi2-statistic-1}}
+
+If we \textbf{know} that our cables trully distribute as \[X \rightarrow N(\mu=13, \sigma^2=0.35^2)\]
+
+then we can compute \[P(S^2 > 0.2)=P(\frac{(n-1)S^2}{\sigma^2} > \frac{(n-1)0.3}{\sigma^2})\]
+\(=P(W > \frac{(n-1)0.3}{\sigma^2})\)
+
+\(=1-P(W \leq \frac{(n-1)0.3}{\sigma^2})=1-P(W\leq \frac{(8-1)0.3}{0.1225})\)
+
+\(= 1- F_{\chi^2,df=7}(17.14286)=0.016\)
+
+In R
+1-pchisq(17.14286, df=7)=0.016
+
+There is only a probability of \(1\%\) of obtaining a value greater than \(s^2=0.3\).
+
+\begin{itemize}
+\item
+  \(s^2>0.3\) seems to be a good criterion to stop production and revise the process.
+\item
+  our observed value was \(s^2_{stock}=0.1275608\)
+\item
+  the sample is not too dispersed and we believe that the production is under control.
+\end{itemize}
 
 \hypertarget{exercises}{%
 \chapter{Exercises}\label{exercises}}
@@ -6036,7 +6649,7 @@ Consider that we have a totally noisy channel, that is any outcome of three pixe
   What are the first and third quartiles? (R: 25; 75)
 \end{itemize}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-71-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-80-1.pdf}
 
 \hypertarget{exercise-5-1}{%
 \subsubsection{Exercise 5}\label{exercise-5-1}}
@@ -6183,64 +6796,25 @@ The average number of radioactive particles hitting a Geiger counter in a nuclea
   What is the height that defines the \(5\%\) of the smallest men?
 \end{itemize}
 
-\hypertarget{point-estimators}{%
-\section{Point Estimators}\label{point-estimators}}
-
-\hypertarget{exercise-1-5}{%
-\subsubsection{Exercise 1}\label{exercise-1-5}}
-
-Consider the probability model
-
-\[
-    f(x)= 
-\begin{cases}
-    1/2-a,& \text{if } x=-1 \\ 
-    1/2,& \text{if } x=0\\
-    a,& 1 \text{if } x=1\\ 
-\end{cases}
-\]
-
-where \(a\) is a parameter.
-
-Compute the mean and variance of the statistic: \[T=\frac{\bar{X}}{2}+\frac{1}{4}\]
-
-where \(\bar{X}=\frac{1}{N}\sum_{i=1}^N X_i\)
-
-\begin{itemize}
-\item
-  is \(T\) a biased estimator of \(a\)?
-\item
-  is \(T\) consistent? i.e.~\(V(T) \rightarrow 0\) when \(N\rightarrow \infty\)
-\end{itemize}
-
-\hypertarget{exercise-2-5}{%
-\subsubsection{Exercise 2}\label{exercise-2-5}}
-
-\begin{itemize}
-\tightlist
-\item
-  Is \(\bar{X}^2=(\frac{1}{N}\sum_{i=1}^N X_i)^2\) an unbiased estimator of \(E(X)^2\)?
-\end{itemize}
-
 \hypertarget{sampling-and-central-limit-theorem}{%
 \section{Sampling and Central Limit Theorem}\label{sampling-and-central-limit-theorem}}
 
-\hypertarget{exercise-1-6}{%
-\subsubsection{Exercise 1}\label{exercise-1-6}}
+\hypertarget{exercise-1-5}{%
+\subsubsection{Exercise 1}\label{exercise-1-5}}
 
 A battery model charges up to \(75\%\) of its capacity within an hour with a standard deviation of \(15\%\).
 
 \begin{itemize}
 \item
-  If we charge \(25\), what is the probability that the sample average is within a distance of \(5\%\) charge from the mean?
+  If we charge \(25\) batteries, what is the probability that the sample average is within a distance of \(5\%\) from the mean charge?
 \item
   If we charge \(100\), what is that probability?
 \item
-  If, instead we only charge \(9\) batteries, what is the charge that is surpassed by the sample average with only \(0.015\) probability?
+  If, instead we only charge \(9\) batteries, which charge is surpassed by the sample mean with probability of \(0.015\)?
 \end{itemize}
 
-\hypertarget{exercise-2-6}{%
-\subsubsection{Exercise 2}\label{exercise-2-6}}
+\hypertarget{exercise-2-5}{%
+\subsubsection{Exercise 2}\label{exercise-2-5}}
 
 An electronic component is needed for the correct functioning of a telescope. It needs to be replaced immediately when it wears out.
 
@@ -6290,6 +6864,45 @@ The probability that a particular mutation is found in the population is \(0.4\)
 \end{itemize}
 
 hint: Use the CLT with a sample of \(2000\) Bernoulli trials. This is known as the normal approximation of the binomial distribution.
+
+\hypertarget{point-estimators}{%
+\section{Point Estimators}\label{point-estimators}}
+
+\hypertarget{exercise-1-6}{%
+\subsubsection{Exercise 1}\label{exercise-1-6}}
+
+Consider the probability model
+
+\[
+    f(x)= 
+\begin{cases}
+    1/2-a,& \text{if } x=-1 \\ 
+    1/2,& \text{if } x=0\\
+    a,& 1 \text{if } x=1\\ 
+\end{cases}
+\]
+
+where \(a\) is a parameter.
+
+Compute the mean and variance of the statistic: \[T=\frac{\bar{X}}{2}+\frac{1}{4}\]
+
+where \(\bar{X}=\frac{1}{N}\sum_{i=1}^N X_i\)
+
+\begin{itemize}
+\item
+  is \(T\) a biased estimator of \(a\)?
+\item
+  is \(T\) consistent? i.e.~\(V(T) \rightarrow 0\) when \(N\rightarrow \infty\)
+\end{itemize}
+
+\hypertarget{exercise-2-6}{%
+\subsubsection{Exercise 2}\label{exercise-2-6}}
+
+\begin{itemize}
+\tightlist
+\item
+  Is \(\bar{X}^2=(\frac{1}{N}\sum_{i=1}^N X_i)^2\) an unbiased estimator of \(E(X)^2\)?
+\end{itemize}
 
 \hypertarget{maximum-likelihood}{%
 \section{Maximum likelihood}\label{maximum-likelihood}}

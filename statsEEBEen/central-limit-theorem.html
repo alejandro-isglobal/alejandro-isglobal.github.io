@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 7 Discrete Probability Models | Stats theory (SDA)</title>
+  <title>Chapter 11 Central limit theorem | Stats theory (SDA)</title>
   <meta name="description" content="This are slides for the Stats theory of the BIST master" />
   <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 7 Discrete Probability Models | Stats theory (SDA)" />
+  <meta property="og:title" content="Chapter 11 Central limit theorem | Stats theory (SDA)" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="alejandro-isglobal/master" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 7 Discrete Probability Models | Stats theory (SDA)" />
+  <meta name="twitter:title" content="Chapter 11 Central limit theorem | Stats theory (SDA)" />
   
   <meta name="twitter:description" content="This are slides for the Stats theory of the BIST master" />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="continous-random-variables.html"/>
-<link rel="next" href="poisson-and-exponential-models.html"/>
+<link rel="prev" href="sampling-distributions.html"/>
+<link rel="next" href="exercises.html"/>
 <script src="libs/header-attrs-2.12/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -424,530 +424,248 @@
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="discrete-probability-models" class="section level1 hasAnchor" number="7">
-<h1><span class="header-section-number">Chapter 7</span> Discrete Probability Models<a href="discrete-probability-models.html#discrete-probability-models" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<div id="objective-5" class="section level2 hasAnchor" number="7.1">
-<h2><span class="header-section-number">7.1</span> Objective<a href="discrete-probability-models.html#objective-5" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Discrete probability models:</p>
+<div id="central-limit-theorem" class="section level1 hasAnchor" number="11">
+<h1><span class="header-section-number">Chapter 11</span> Central limit theorem<a href="central-limit-theorem.html#central-limit-theorem" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="objective-9" class="section level2 hasAnchor" number="11.1">
+<h2><span class="header-section-number">11.1</span> Objective<a href="central-limit-theorem.html#objective-9" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ul>
-<li>Uniform and Bernoulli probability functions</li>
-<li>Binomial and negative binomial probability functions</li>
+<li>Margin of errors</li>
+<li>Central limit theorem</li>
+<li>t-statistic</li>
 </ul>
 <hr />
 <hr />
 </div>
-<div id="probability-mass-function" class="section level2 hasAnchor" number="7.2">
-<h2><span class="header-section-number">7.2</span> Probability mass function<a href="discrete-probability-models.html#probability-mass-function" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>A probability mass function of a <strong>discrete random variable</strong> <span class="math inline">\(X\)</span> with possible values <span class="math inline">\(x_1 , x_2 , .. , x_M\)</span> is <strong>any function</strong> such that</p>
-<p>Positive:</p>
+<div id="margin-of-error" class="section level2 hasAnchor" number="11.2">
+<h2><span class="header-section-number">11.2</span> Margin of error<a href="central-limit-theorem.html#margin-of-error" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>When deciding whether an <strong>observed error</strong> is large or not we usually compare it with a <strong>predefined</strong> tolerance.</p>
 <ul>
-<li><span class="math inline">\(f(x_i)\geq 0\)</span></li>
+<li>The <strong>margin of error</strong> at <span class="math inline">\(5\%\)</span> level is the distance <span class="math inline">\(m\)</span> such that distribution of <span class="math inline">\(\bar{X}\)</span> captures <span class="math inline">\(95\%\)</span> of the estimations:</li>
 </ul>
-<p><em>Allow us to compute probabilities:</em></p>
+<p><span class="math display">\[P(-m \leq \bar{X}-\mu \leq m)=P(\mu-m \leq \bar{X} \leq\mu + m)=0.95\]</span></p>
 <ul>
-<li><span class="math inline">\(f(x_i)=P(X=x_i)\)</span></li>
+<li>or that <span class="math inline">\(95\%\)</span> of the values of <span class="math inline">\(\bar{X}\)</span> are a distance <span class="math inline">\(m\)</span> from <span class="math inline">\(\mu\)</span></li>
 </ul>
-<p>The probability of any outcome is <span class="math inline">\(1\)</span></p>
-<ul>
-<li><span class="math inline">\(\sum_{i=1}^M f(x_i)=1\)</span></li>
-</ul>
-<p><strong>Properties:</strong></p>
-<p>Central tendency:</p>
-<ul>
-<li><span class="math inline">\(E(X)= \sum_{i=1}^M x_i f(x_i)\)</span></li>
-</ul>
-<p>Dispersion:</p>
-<ul>
-<li><span class="math inline">\(V(X)= \sum_{i=1}^M (x_i-\mu)^2 f(x_i)\)</span></li>
-</ul>
-<p>They are abstract objects with general properties that may or may not <strong>describe</strong> a natural or engineered process.</p>
 <hr />
 <hr />
 </div>
-<div id="probability-model" class="section level2 hasAnchor" number="7.3">
-<h2><span class="header-section-number">7.3</span> Probability model<a href="discrete-probability-models.html#probability-model" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>A <strong>probability model</strong> is a probability mass function that may represent the probabilities of a random experiment.</p>
-<p><strong>Examples:</strong></p>
-<ul>
-<li><p><span class="math inline">\(f(x)=P(X=x)=1/6\)</span> represents the probability of the outcomes of <strong>one</strong> throw of a dice.</p></li>
-<li><p>The probability mass function</p></li>
-</ul>
-<table>
-<thead>
-<tr class="header">
-<th align="center"><span class="math inline">\(X\)</span></th>
-<th align="center"><span class="math inline">\(f(x)\)</span></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="center"><span class="math inline">\(-2\)</span></td>
-<td align="center"><span class="math inline">\(1/8\)</span></td>
-</tr>
-<tr class="even">
-<td align="center"><span class="math inline">\(-1\)</span></td>
-<td align="center"><span class="math inline">\(2/8\)</span></td>
-</tr>
-<tr class="odd">
-<td align="center"><span class="math inline">\(0\)</span></td>
-<td align="center"><span class="math inline">\(2/8\)</span></td>
-</tr>
-<tr class="even">
-<td align="center"><span class="math inline">\(1\)</span></td>
-<td align="center"><span class="math inline">\(2/8\)</span></td>
-</tr>
-<tr class="odd">
-<td align="center"><span class="math inline">\(2\)</span></td>
-<td align="center"><span class="math inline">\(1/8\)</span></td>
-</tr>
-</tbody>
-</table>
-<p>Represents the probability of drawing <strong>one</strong> ball from an urn where there are two balls per label: <span class="math inline">\(-1, 0, 1\)</span> and one ball per label: <span class="math inline">\(-2, 2\)</span>.</p>
+<div id="margin-of-error-1" class="section level2 hasAnchor" number="11.3">
+<h2><span class="header-section-number">11.3</span> Margin of error<a href="central-limit-theorem.html#margin-of-error-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Let’s continue with the breaking load example.</p>
+<p>for the <span class="math inline">\(8\)</span>-sample</p>
+<pre><code>## [1] 13.34642 13.32620 13.01459 13.10811 12.96999 13.55309 13.75557 12.62747</code></pre>
+<p>the <strong>observed error</strong> is the difference</p>
+<p><span class="math display">\[\bar{x}_{stock}-\mu=13.21-13=0.21\]</span>
+Is this value below the margin of error at <span class="math inline">\(5\%\)</span>?</p>
 <hr />
 <hr />
 </div>
-<div id="parametric-models" class="section level2 hasAnchor" number="7.4">
-<h2><span class="header-section-number">7.4</span> Parametric models<a href="discrete-probability-models.html#parametric-models" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>When we perform a random experiment and <strong>do not</strong> know the probabilities of the outcomes:</p>
+<div id="z-statistic" class="section level2 hasAnchor" number="11.4">
+<h2><span class="header-section-number">11.4</span> Z-statistic<a href="central-limit-theorem.html#z-statistic" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>If we <strong>know</strong> that for our cables truly distribute as
+<span class="math display">\[X \rightarrow N(\mu=13, \sigma^2=0.35^2)\]</span> then,</p>
+<p><span class="math display">\[\bar{X} \rightarrow N(\mu, \frac{\sigma^2}{n})\]</span></p>
+<p>and the <span class="math inline">\(5\%\)</span> margin of error for the average in our <span class="math inline">\(8\)</span>-sample can be computed from the <strong>standardized statistic</strong>:</p>
+<p><span class="math display">\[Z=\frac{\bar{X}-E(\bar{X})}{\sqrt{V(\bar{X})}} =\frac{\bar{X}-\mu}{\frac{\sigma}{\sqrt{n}}}  \rightarrow N(0,1)\]</span>
+<img src="figures/phi.jpg" style="width:100%" style="height:100%"  align="center"></p>
+<hr />
+<hr />
+</div>
+<div id="z-statistic-1" class="section level2 hasAnchor" number="11.5">
+<h2><span class="header-section-number">11.5</span> Z-statistic<a href="central-limit-theorem.html#z-statistic-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>to compute the margin of error <span class="math inline">\(m\)</span> at <span class="math inline">\(5\%\)</span> level we standardize (subtract <span class="math inline">\(\mu\)</span> and divide by <span class="math inline">\(\sigma/\sqrt{n}\)</span>)</p>
+<p><span class="math inline">\(P(\mu-m \leq \bar{X} \leq\mu + m)=P(-\frac{m}{\sigma/\sqrt{n}} \leq \frac{\bar{X}-\mu}{\frac{\sigma}{\sqrt{n}}}\leq\frac{m}{\sigma/\sqrt{n}})\)</span>
+<span class="math display">\[=P(-\frac{m}{\sigma/\sqrt{n}} \leq Z \leq\frac{m}{\sigma/\sqrt{n}})=0.95\]</span></p>
+<p>(compare it with the plot) we have</p>
+<p><span class="math display">\[m=z_{0.025} \frac{\sigma}{\sqrt{n}}=1.96\times se=1.96\frac{0.35}{\sqrt{8}}=0.24\]</span>
+where <span class="math inline">\(z_{0.025}=1.96\)</span> is the value <span class="math inline">\(Z\)</span> that leaves <span class="math inline">\(2.5\%\)</span> at each side of standard normal density (<span class="math inline">\(0.025\)</span>-quantile)</p>
+<p>Our observed error <span class="math inline">\(0.21\)</span></p>
 <ul>
-<li>We can always formulate the model given by the relative frequencies: <span class="math inline">\(\hat{P}(X=x_i)=f_i\)</span> ( where <span class="math inline">\(i=1...M\)</span>).</li>
+<li><p>is less than the margin of error <span class="math inline">\(0.24\)</span> at level <span class="math inline">\(5\%\)</span>.</p></li>
+<li><p>and, therefore, it is expected within the <span class="math inline">\(95\%\)</span> of errors.</p></li>
 </ul>
-<p>We need to find <span class="math inline">\(M\)</span> numbers each depending on <span class="math inline">\(N\)</span>.</p>
-<p>In many cases:</p>
+<p>If an observation of <span class="math inline">\(\bar{x}\)</span> distance more than <span class="math inline">\(\sim 2\)</span> times the <span class="math inline">\(se\)</span> we say that the error is <strong>unusually</strong> large.</p>
+<hr />
+<hr />
+</div>
+<div id="z-statistic-2" class="section level2 hasAnchor" number="11.6">
+<h2><span class="header-section-number">11.6</span> Z-statistic<a href="central-limit-theorem.html#z-statistic-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><strong>Definition</strong></p>
+<p>For a normal random variable <span class="math inline">\(X\)</span></p>
+<p><span class="math display">\[X \rightarrow N(\mu, \sigma^2)\]</span> with <strong>known</strong> <span class="math inline">\(\sigma\)</span></p>
+<p>The <span class="math inline">\(Z\)</span> statistic:</p>
+<p><span class="math display">\[Z=\frac{\bar{X}-E(\bar{X})}{\sqrt{V(\bar{X})}}\]</span>
+is a standard random variable whose <span class="math inline">\(1-\alpha/2\)</span>-quantiles (<span class="math inline">\(z_{1-\alpha/2}\)</span>) give a measure of the margin of error of <span class="math inline">\(\bar{X}\)</span> at <span class="math inline">\(1-\alpha\)</span> level</p>
+<p><span class="math display">\[m=z_{1-\alpha/2}\frac{\sigma}{\sqrt{n}}\]</span></p>
+<p><strong>A common situation:</strong></p>
 <ul>
-<li>We can formulate probability functions <span class="math inline">\(f(x)\)</span> that depend on <strong>very few</strong> numbers only.</li>
+<li>What happens when <span class="math inline">\(X\)</span> is not normally distributed?</li>
 </ul>
+<hr />
+<hr />
+</div>
+<div id="central-limit-theorem-1" class="section level2 hasAnchor" number="11.7">
+<h2><span class="header-section-number">11.7</span> Central Limit Theorem<a href="central-limit-theorem.html#central-limit-theorem-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>For any random variable <span class="math inline">\(X\)</span> with <strong>unknown</strong> (any type of) distribution</p>
+<p><span class="math display">\[X \rightarrow f(x; \theta)\]</span>
+the standardized statistic</p>
+<p><span class="math display">\[Z=\frac{\bar{X}-E(\bar{X})}{\sqrt{V(\bar{X})}}\]</span></p>
+<p>approximates to a standard distribution</p>
+<p><span class="math display">\[Z \rightarrow_d N(0,1)\]</span> when <span class="math inline">\(n\rightarrow \infty\)</span></p>
+<p>Therefore:</p>
+<ul>
+<li>We can compute probabilities for <span class="math inline">\(\bar{X}\)</span> if <span class="math inline">\(n\)</span> is large, using the normal distribution:</li>
+</ul>
+<p><span class="math display">\[\bar{X} \sim_{aprox}  N(E(X), \frac{V(X)}{n})\]</span></p>
+<hr />
+<hr />
+</div>
+<div id="central-limit-theorem-2" class="section level2 hasAnchor" number="11.8">
+<h2><span class="header-section-number">11.8</span> Central Limit Theorem<a href="central-limit-theorem.html#central-limit-theorem-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><strong>Example:</strong></p>
-<p>A random experiment with <span class="math inline">\(M\)</span> equally likely outcomes has a probability mass function:
-<span class="math display">\[f(x)=P(X=x)=1/M\]</span></p>
-<p>We only need to know <span class="math inline">\(M\)</span>.</p>
-<p>The numbers we <strong>need to know</strong> to fully determine a probability function are called <strong>parameters</strong>.</p>
-<hr />
-<hr />
-</div>
-<div id="uniform-distribution-one-parameter" class="section level2 hasAnchor" number="7.5">
-<h2><span class="header-section-number">7.5</span> Uniform distribution (one parameter)<a href="discrete-probability-models.html#uniform-distribution-one-parameter" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><strong>Definition</strong>
-A random variable <span class="math inline">\(X\)</span> with outcomes <span class="math inline">\(\{1,...M\}\)</span> has a discrete <strong>uniform distribution</strong> if all its <span class="math inline">\(M\)</span> outcomes have the same probability</p>
-<p><span class="math display">\[f(x)=\frac{1}{M}\]</span></p>
-<p>With mean and variance:</p>
-<p><span class="math inline">\(E(X)= \frac{M+1}{2}\)</span></p>
-<p><span class="math inline">\(V(X)= \frac{M^2-1}{12}\)</span></p>
-<p>Note: <span class="math inline">\(E(X)\)</span> and <span class="math inline">\(V(X)\)</span> are also <strong>parameters</strong>. If we know any of them then we can fully determine the distribution.</p>
-<p><span class="math display">\[f(x)=\frac{1}{2E(X)-1}\]</span></p>
-<hr />
-<hr />
-</div>
-<div id="uniform-distribution" class="section level2 hasAnchor" number="7.6">
-<h2><span class="header-section-number">7.6</span> Uniform distribution<a href="discrete-probability-models.html#uniform-distribution" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><img src="_main_files/figure-html/unnamed-chunk-51-1.png" width="672" /></p>
-<hr />
-<hr />
-</div>
-<div id="uniform-distribution-two-parameters" class="section level2 hasAnchor" number="7.7">
-<h2><span class="header-section-number">7.7</span> Uniform distribution (two parameters)<a href="discrete-probability-models.html#uniform-distribution-two-parameters" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Let’s introduce a new uniform probability model with <strong>two parameters</strong>: The minimum and maximum outcomes.</p>
-<p>If the random variable takes values in <span class="math inline">\(\{a, a+1, ...b\}\)</span>, where <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> are integers and all the outcomes are equally probable then</p>
-<p><span class="math display">\[f(x)=\frac{1}{b-a+1}\]</span></p>
-<p>as <span class="math inline">\(M=b-a+1\)</span>.</p>
+<p>Consider an experiment where we measure the concentration in blood of a drug after 10-hour administration in <span class="math inline">\(30\)</span> patients. We obtain the following results:</p>
+<pre><code>##  [1] 0.42172863 0.28830514 0.66452743 0.01578868 0.02810549 0.15825061
+##  [7] 0.15711365 0.07263340 1.36311823 0.01457672 0.50241503 0.24010736
+## [13] 0.14050681 0.18855892 0.09414202 0.42489306 0.78160177 0.23938021
+## [19] 0.29546742 2.02050586 0.42157487 0.48293561 0.74263790 0.67402224
+## [25] 0.58426449 0.80292617 0.74837143 0.78532627 0.01588387 0.29892485</code></pre>
 <ul>
-<li>We then say that <span class="math inline">\(X\)</span> distributes uniformly between <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> and write</li>
+<li><p>the average is <span class="math inline">\(\bar{x}=0.56\)</span></p></li>
+<li><p>the histogram of the results is:</p></li>
 </ul>
-<p><span class="math display">\[X \rightarrow Unif(a,b)\]</span></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-76-1.png" width="672" /></p>
 <hr />
 <hr />
 </div>
-<div id="uniform-distribution-two-parameters-1" class="section level2 hasAnchor" number="7.8">
-<h2><span class="header-section-number">7.8</span> Uniform distribution (two parameters)<a href="discrete-probability-models.html#uniform-distribution-two-parameters-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><strong>Example:</strong></p>
-<p>What is the probability of observing a child of a particular age in a primary school (if all classes have the same amount of children)?</p>
-<p>From the experiment we know: <span class="math inline">\(a=6\)</span> and <span class="math inline">\(b=11\)</span> then</p>
-<p><span class="math display">\[X \rightarrow Unif(a=6, b=11)\]</span> that is</p>
-<p><span class="math display">\[f(x)=\frac{1}{6}\]</span> for <span class="math inline">\(x\in \{6,7,8,9,10,11\}\)</span>, and <span class="math inline">\(0\)</span> otherwise</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-52-1.png" width="672" /></p>
+<div id="central-limit-theorem-3" class="section level2 hasAnchor" number="11.9">
+<h2><span class="header-section-number">11.9</span> Central Limit Theorem<a href="central-limit-theorem.html#central-limit-theorem-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>If we <strong>know</strong> that levels follow an exponential distribution <span class="math display">\[X \rightarrow exp(\lambda=2)\]</span></p>
+<p>The mean and variance are:</p>
+<ul>
+<li><span class="math inline">\(E(X)=\frac{1}{\lambda}=0.5\)</span></li>
+<li><span class="math inline">\(V(X)=\frac{1}{\lambda^2}=0.25\)</span></li>
+</ul>
+<p>Therefore the mean and variance of <span class="math inline">\(\bar{X}\)</span> are:</p>
+<ul>
+<li><span class="math inline">\(E(\bar{X})=\frac{1}{\lambda}=0.5\)</span></li>
+<li><span class="math inline">\(V(\bar{X})=\frac{V(X)}{n}=\frac{1}{n\lambda^2}=0.25/30\)</span></li>
+</ul>
+<p>As <span class="math inline">\(n \geq 30\)</span></p>
+<p><span class="math display">\[Z=\frac{\bar{X}-\lambda}{\sqrt{\frac{1}{n\lambda^2}}}\]</span></p>
+<p>is a standard normal variable and: <span class="math inline">\(\bar{X} \sim_{aprox} N(\lambda, \frac{1}{n\lambda^2})\)</span></p>
+<hr />
+<hr />
+<p><img src="_main_files/figure-html/unnamed-chunk-77-1.png" width="672" /><img src="_main_files/figure-html/unnamed-chunk-77-2.png" width="672" /></p>
 <hr />
 <hr />
 </div>
-<div id="uniform-distribution-1" class="section level2 hasAnchor" number="7.9">
-<h2><span class="header-section-number">7.9</span> Uniform distribution<a href="discrete-probability-models.html#uniform-distribution-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>The probability model of a random variable <span class="math inline">\(X\)</span></p>
-<p><span class="math display">\[f(x)=\frac{1}{b-a+1}\]</span></p>
-<p>for <span class="math inline">\(x \in \{a, a+1, ...b\}\)</span></p>
-<p>has mean and variance:</p>
-<ul>
-<li><p><span class="math inline">\(E(X)= \frac{b+a}{2}\)</span></p></li>
-<li><p><span class="math inline">\(V(X)= \frac{(b-a+1)^2-1}{12}\)</span></p></li>
-</ul>
-<p>(Change variables <span class="math inline">\(X=Y+a-1\)</span>, <span class="math inline">\(y \in \{1,...M\}\)</span>)</p>
-<p>We can either specify <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> or <span class="math inline">\(E(X)\)</span> and <span class="math inline">\(V(X)\)</span>.</p>
-<p>In our example:</p>
-<ul>
-<li><span class="math inline">\(E(X)=(11+6)/2=8.5\)</span></li>
-<li><span class="math inline">\(V(X)=(6^2-1)/12=2.916667\)</span></li>
-</ul>
+<div id="margin-of-error-with-clt" class="section level2 hasAnchor" number="11.10">
+<h2><span class="header-section-number">11.10</span> Margin of error with CLT<a href="central-limit-theorem.html#margin-of-error-with-clt" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Since</p>
+<p><span class="math display">\[\bar{X} \sim_{aprox}  N(E(X), \frac{V(X)}{n})\]</span></p>
+<p>The margin of error at <span class="math inline">\(5\%\)</span> level</p>
+<p><span class="math display">\[P(E(X)-m \leq \bar{X} \leq E(X) + m)=0.95\]</span></p>
+<p>can be computed again with the standard distribution</p>
+<p><span class="math display">\[m=z_{0.025} \sqrt{\frac{V(X)}{n}}=1.96\sqrt{\frac{0.25}{30}}=0.1789227\]</span></p>
+<p>We <strong>observed</strong> <span class="math inline">\(\bar{x}=0.5638725\)</span> therefore the <strong>observed error</strong> in estimation is</p>
+<p><span class="math display">\[\bar{x} - E(X)=0.5638725-0.5=0.063\]</span></p>
+<p>which is within the margin of error.</p>
+<p>The error that we observed is common and within the <span class="math inline">\(95\%\)</span> of errors.</p>
 <hr />
 <hr />
 </div>
-<div id="uniform-distribution-two-parameter" class="section level2 hasAnchor" number="7.10">
-<h2><span class="header-section-number">7.10</span> Uniform distribution (two-parameter)<a href="discrete-probability-models.html#uniform-distribution-two-parameter" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><img src="_main_files/figure-html/unnamed-chunk-53-1.png" width="672" /></p>
+<div id="sample-sum-and-clt" class="section level2 hasAnchor" number="11.11">
+<h2><span class="header-section-number">11.11</span> Sample sum and CLT<a href="central-limit-theorem.html#sample-sum-and-clt" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>For any random variable <span class="math inline">\(X\)</span> with <strong>unknown</strong> (any type of) distribution</p>
+<p><span class="math display">\[X \rightarrow f(x; \theta)\]</span></p>
+<p>the standardized statistic</p>
+<p><span class="math display">\[Z=\frac{\bar{X}-E(\bar{X})}{\sqrt{V(\bar{X})}}=\frac{n\bar{X}-nE(\bar{X})}{\sqrt{nV(\bar{X})}}\]</span></p>
+<p>approximates to a standard distribution</p>
+<p><span class="math display">\[Z \rightarrow_d N(0,1)\]</span> when <span class="math inline">\(n\rightarrow \infty\)</span></p>
+<p>Therefore:</p>
+<ul>
+<li>We can compute probabilities for the sample sum <span class="math inline">\(Y=n\bar{X}\)</span> if <span class="math inline">\(n\)</span> is large, using the normal distribution:</li>
+</ul>
+<p><span class="math display">\[\bar{Y} \sim_{aprox}  N(nE(X), nV(X))\]</span></p>
 <hr />
 <hr />
 </div>
-<div id="parameters-and-models" class="section level2 hasAnchor" number="7.11">
-<h2><span class="header-section-number">7.11</span> Parameters and Models<a href="discrete-probability-models.html#parameters-and-models" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<ul>
-<li><p>A <strong>model</strong> is a particular function <span class="math inline">\(f(x)\)</span> that <strong>describes</strong> our experiment</p></li>
-<li><p>If the model is a <strong>known</strong> function that depends on a few parameters then changing the value of the parameters we produce a <strong>family of models</strong></p></li>
-<li><p>Knowledge of <span class="math inline">\(f(x)\)</span> is reduced to the knowledge of the value of the parameters</p></li>
-<li><p>Ideally, the model and the parameters are <strong>interpretable</strong></p></li>
-</ul>
-<p><em>Example:</em></p>
-<p><strong>Model</strong>: The data of our experiment is produced by a random process in which each age has the <strong>same probability</strong> of being observed.</p>
-<p><strong>Parameters</strong>: <span class="math inline">\(a\)</span> is the minimum age, <span class="math inline">\(E(X)\)</span> is the expected age … they are <strong>physical properties</strong> of the experiment.</p>
+<div id="unknown-sigma-but-large-n" class="section level2 hasAnchor" number="11.12">
+<h2><span class="header-section-number">11.12</span> Unknown <span class="math inline">\(\sigma\)</span> but large <span class="math inline">\(n\)</span><a href="central-limit-theorem.html#unknown-sigma-but-large-n" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>For any random variable <span class="math inline">\(X\)</span> with <strong>unknown</strong> (any type of) distribution</p>
+<p><span class="math display">\[X \rightarrow f(x; \theta)\]</span></p>
+<p>with <strong>unknown</strong> variance <span class="math inline">\(V(X)\)</span>, we can estimate the standard error (<span class="math inline">\(se=\sqrt{V(X)/n}\)</span>) by the sample standard deviation</p>
+<p><span class="math display">\[\hat{se}=\frac{s}{\sqrt{n}}\]</span> and write the standardized statistic</p>
+<p><span class="math display">\[Z=\frac{\bar{X}-E(\bar{X})}{\frac{s}{\sqrt{n}}} \]</span></p>
+<p><span class="math display">\[Z \rightarrow_d N(0,1)\]</span> to recover the CLT when <span class="math inline">\(n\rightarrow \infty\)</span> (a good aproximation is when <span class="math inline">\(n&gt;30\)</span>)</p>
 <hr />
 <hr />
 </div>
-<div id="parameters-and-models-1" class="section level2 hasAnchor" number="7.12">
-<h2><span class="header-section-number">7.12</span> Parameters and Models<a href="discrete-probability-models.html#parameters-and-models-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><strong>Example:</strong></p>
-<p>A <strong>family</strong> of models obtained from two-parameter uniform distributions changing the <strong>variances</strong> and keeping a constant mean (<span class="math inline">\(E(X)=8.5\)</span>). It results on <strong>changing</strong> both <strong>minimum</strong> and <strong>maximum</strong> outcomes.</p>
+<div id="t-statistic" class="section level2 hasAnchor" number="11.13">
+<h2><span class="header-section-number">11.13</span> T-statistic<a href="central-limit-theorem.html#t-statistic" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>When</p>
 <ul>
-<li>Note: Only one model makes sense for our experiment (only one model can represent the ages of children in a school).</li>
+<li><span class="math inline">\(\sigma\)</span> is <strong>unknown</strong></li>
 </ul>
-<p><img src="_main_files/figure-html/unnamed-chunk-54-1.png" width="672" /></p>
-<ul>
-<li>We can think of <strong>families</strong> that change only the <strong>mean</strong>, only the <strong>minimum</strong>, or only the <strong>maximum</strong></li>
-</ul>
-<hr />
-<hr />
-</div>
-<div id="bernoulli-trial" class="section level2 hasAnchor" number="7.13">
-<h2><span class="header-section-number">7.13</span> Bernoulli trial<a href="discrete-probability-models.html#bernoulli-trial" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Let’s try to advance from the equal probability case and suppose a model with two outcomes (<span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span>) that have <strong>unequal</strong> probabilities</p>
-<p><strong>Examples:</strong></p>
-<ul>
-<li><p>Writing down the sex of a patient who goes into an emergency room of a hospital (<span class="math inline">\(A:male\)</span> and <span class="math inline">\(B:female\)</span>).</p></li>
-<li><p>Recording whether a manufactured machine is defective or not (<span class="math inline">\(A:defective\)</span> and <span class="math inline">\(B:fine\)</span>).</p></li>
-<li><p>Hitting a target (<span class="math inline">\(A:success\)</span> and <span class="math inline">\(B:failure\)</span>).</p></li>
-<li><p>Transmitting one pixel correctly (<span class="math inline">\(A:yes\)</span> and <span class="math inline">\(B:no\)</span>).</p></li>
-</ul>
-<p>In these examples, the probability of outcome <span class="math inline">\(A\)</span> is usually <strong>unknown</strong>.</p>
-<hr />
-<hr />
-</div>
-<div id="bernoulli-trial-1" class="section level2 hasAnchor" number="7.14">
-<h2><span class="header-section-number">7.14</span> Bernoulli trial<a href="discrete-probability-models.html#bernoulli-trial-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>We will introduce the probability of an outcome (<span class="math inline">\(A\)</span>) as the <strong>parameter</strong> of the model:</p>
-<ul>
-<li>outcome A (success): has probability <span class="math inline">\(p\)</span> (parameter)</li>
-<li>outcome B (failure): has a probability <span class="math inline">\(1-p\)</span></li>
-</ul>
-<p>Or write, the probability mass function of <span class="math inline">\(K\)</span> taking values <span class="math inline">\(\{0, 1\}\)</span> for <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span></p>
-<p><span class="math display">\[
-    f(k)= 
-\begin{cases}
-    1-p,&amp;  k=0\, (event\, B)\\
-    p,&amp; k=1\, (event\, A) 
-\end{cases}
-\]</span></p>
-<p>or more shortly</p>
-<p><span class="math display">\[f(k; p)=p^k(1-p)^{1-k} \]</span></p>
-<p>for <span class="math inline">\(k=(0,1)\)</span></p>
-<p>We only need to know <span class="math inline">\(p\)</span>.</p>
-<hr />
-<hr />
-</div>
-<div id="bernoulli-trial-2" class="section level2 hasAnchor" number="7.15">
-<h2><span class="header-section-number">7.15</span> Bernoulli trial<a href="discrete-probability-models.html#bernoulli-trial-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>A Bernoulli variable <span class="math inline">\(K\)</span> with outcomes <span class="math inline">\(\{0, 1\}\)</span> has a probability mass function</p>
-<p><span class="math display">\[f(k; p)=p^k(1-p)^{1-k} \]</span>
-With mean and variance:</p>
-<ul>
-<li><p><span class="math inline">\(E(K)=p\)</span></p></li>
-<li><p><span class="math inline">\(V(K)=(1-p)p\)</span></p></li>
-</ul>
-<p>Note:</p>
-<ul>
-<li><p>The probability of the outcome <span class="math inline">\(A\)</span> is the parameter <span class="math inline">\(p\)</span>
-which is the same as <span class="math inline">\(f(0)=P(X=0)\)</span>.</p></li>
-<li><p>As <span class="math inline">\(p\)</span> is usually <strong>unknown</strong> we typically estimated it by the relative frequency (more on this in the inference sections): <span class="math inline">\(\hat{p}=f_A=\frac{n_A}{N}\)</span></p></li>
-</ul>
-<hr />
-<hr />
-</div>
-<div id="bernoulli-trial-3" class="section level2 hasAnchor" number="7.16">
-<h2><span class="header-section-number">7.16</span> Bernoulli trial<a href="discrete-probability-models.html#bernoulli-trial-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><img src="_main_files/figure-html/unnamed-chunk-55-1.png" width="672" /></p>
-<hr />
-<hr />
-</div>
-<div id="binomial-distribution" class="section level2 hasAnchor" number="7.17">
-<h2><span class="header-section-number">7.17</span> Binomial distribution<a href="discrete-probability-models.html#binomial-distribution" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>When we are interested in learning about a particular Bernoulli trial</p>
-<ul>
-<li><p>We repeat the Bernoulli trial <span class="math inline">\(N\)</span> times and count how many times we obtained <span class="math inline">\(A\)</span> (<span class="math inline">\(n_A\)</span>).</p></li>
-<li><p>We define a random variable <span class="math inline">\(X=n_A\)</span> taking values <span class="math inline">\(x \in {0,1,...N}\)</span></p></li>
-</ul>
-<p>We now ask for the probability of observing <span class="math inline">\(x\)</span> events of type <span class="math inline">\(A\)</span> in the repetition of <span class="math inline">\(n\)</span> independent Bernoulli trials, when the probability of observing <span class="math inline">\(A\)</span> is <span class="math inline">\(p\)</span>.</p>
-<p><span class="math display">\[P(X=x)=f(x)=?\]</span></p>
-<hr />
-<hr />
-</div>
-<div id="examples-binomial-distribution" class="section level2 hasAnchor" number="7.18">
-<h2><span class="header-section-number">7.18</span> Examples: Binomial distribution<a href="discrete-probability-models.html#examples-binomial-distribution" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<ul>
-<li><p>Writing down the sex of <span class="math inline">\(n=10\)</span> patients who go into an emergency room of a hospital. What is the probability that <span class="math inline">\(x=6\)</span> patients are men when <span class="math inline">\(p=0.9\)</span>?</p></li>
-<li><p>Trying <span class="math inline">\(n=5\)</span> times to hit a target (<span class="math inline">\(A:success\)</span> and <span class="math inline">\(B:failure\)</span>). What is the probability that I hit the target <span class="math inline">\(x=5\)</span> times when I usually hit it <span class="math inline">\(25\%\)</span> of the times (<span class="math inline">\(p=0.25\)</span>)?</p></li>
-<li><p>Transmitting <span class="math inline">\(n=100\)</span> pixels correctly (<span class="math inline">\(A:yes\)</span> and <span class="math inline">\(B:no\)</span>). What is the probability that <span class="math inline">\(x=2\)</span> pixels are errors, when the probability of error is <span class="math inline">\(p=0.1\)</span>?</p></li>
-</ul>
-<hr />
-<hr />
-</div>
-<div id="binomial-distribution-1" class="section level2 hasAnchor" number="7.19">
-<h2><span class="header-section-number">7.19</span> Binomial distribution<a href="discrete-probability-models.html#binomial-distribution-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>What is the probability of observing <span class="math inline">\(X=4\)</span> errors when transmitting <span class="math inline">\(4\)</span> pixels, if the probability of an error is <span class="math inline">\(p\)</span>?</p>
-<p>Consider <span class="math inline">\(4\)</span> random variables: <span class="math inline">\(K_1\)</span>, <span class="math inline">\(K_2\)</span>, <span class="math inline">\(K_3\)</span> and <span class="math inline">\(K_4\)</span> that record whether an error has been made in the <span class="math inline">\(1^{st}\)</span>, <span class="math inline">\(2^{nd}\)</span>, <span class="math inline">\(3^{rd}\)</span> and <span class="math inline">\(4^{th}\)</span> pixel.</p>
-<p>Then</p>
-<ul>
-<li><p><span class="math inline">\(k_i\)</span> takes values <span class="math inline">\(\{correct:0; error:1\}\)</span></p></li>
-<li><p><span class="math inline">\(X=\sum_{i=1}^4 K_i\)</span> takes values <span class="math inline">\(\{0,1,2,3,4\}\)</span></p></li>
-</ul>
-<p>Then the probability of observing <span class="math inline">\(4\)</span> errors is:</p>
-<ul>
-<li><span class="math inline">\(P(X=4)=P(1,1,1,1)=p*p*p*p=p^4\)</span> because <span class="math inline">\(K_i\)</span> are independent.</li>
-</ul>
-<p>The probability of <span class="math inline">\(0\)</span> errors is:</p>
-<ul>
-<li><span class="math inline">\(P(X=0)=P(0,0,0,0)=(1-p)(1-p)(1-p)(1-p)=(1-p)^4\)</span></li>
-</ul>
-<p>The probability of <span class="math inline">\(3\)</span> errors is:</p>
-<p><span class="math inline">\(P(X=3)=P(0,1,1,1)+P(1,0,1,1)+P(1,1,0,1)+P(1,1,1,0)\)</span>
-<span class="math inline">\(=4p^3(1-p)^1\)</span></p>
-<hr />
-<hr />
-</div>
-<div id="binomial-distribution-2" class="section level2 hasAnchor" number="7.20">
-<h2><span class="header-section-number">7.20</span> Binomial distribution<a href="discrete-probability-models.html#binomial-distribution-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Therefore the probability of <span class="math inline">\(x\)</span> errors is</p>
-<p><span class="math display">\[
-    f(x)= 
-\begin{cases}
-    1*p^0(1-p)^4,&amp;  x=0 \\
-    4*p^1(1-p)^3,&amp;  x=1 \\
-    6*p^2(1-p)^2,&amp;  x=2 \\
-    4*p^3(1-p)^1,&amp;  x=3 \\
-    1*p^4(1-p)^0,&amp;  x=4 \\
-\end{cases}
-\]</span></p>
-<p>or more shortly</p>
-<p><span class="math display">\[f(x)=\binom 4 x p^x(1-p)^{4-x}\]</span>
-for <span class="math inline">\(x=0,1,2,3,4\)</span></p>
-<p>where <span class="math inline">\(\binom 4 x\)</span> is the number of possible outcomes (transmissions of <span class="math inline">\(4\)</span> pixels) with <span class="math inline">\(x\)</span> errors.</p>
-<hr />
-<hr />
-</div>
-<div id="binomial-distribution-definition" class="section level2 hasAnchor" number="7.21">
-<h2><span class="header-section-number">7.21</span> Binomial distribution: Definition<a href="discrete-probability-models.html#binomial-distribution-definition" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>The binomial probability function is the probability mass function of observing <span class="math inline">\(x\)</span> outcomes of type <span class="math inline">\(A\)</span> in <span class="math inline">\(n\)</span> independent Bernoulli trials, where <span class="math inline">\(A\)</span> has the same probability <span class="math inline">\(p\)</span> in each trial.</p>
-<p>The function is given by</p>
-<p><span class="math inline">\(f(x)=\binom n x p^x(1-p)^{n-x}\)</span>, <span class="math inline">\(x=0,1,...n\)</span></p>
-<p><span class="math inline">\(\binom n x= \frac{n!}{x!(n-x)!}\)</span> is called <strong>the binomial coefficient</strong> and gives the number of ways one can obtain <span class="math inline">\(x\)</span> events of type <span class="math inline">\(A\)</span> in a set of <span class="math inline">\(n\)</span>.</p>
-<p>When a variable <span class="math inline">\(X\)</span> has a binomial probability function we say it distributes binomially and write</p>
-<p><span class="math display">\[X\rightarrow Bin(n,p)\]</span></p>
-<p>where <span class="math inline">\(n\)</span> and <span class="math inline">\(p\)</span> are parameters.</p>
-<hr />
-<hr />
-</div>
-<div id="binomial-distribution-mean-and-variance" class="section level2 hasAnchor" number="7.22">
-<h2><span class="header-section-number">7.22</span> Binomial distribution: Mean and Variance<a href="discrete-probability-models.html#binomial-distribution-mean-and-variance" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>The mean and variance of <span class="math inline">\(X\hookrightarrow Bin(n,p)\)</span> are</p>
-<ul>
-<li><p><span class="math inline">\(E(X)=np\)</span></p></li>
-<li><p><span class="math inline">\(V(X)=np(1-p)\)</span></p></li>
-<li><p>Since <span class="math inline">\(X\)</span> is the sum of <span class="math inline">\(n\)</span> independent Bernoulli variables</p></li>
-</ul>
-<p><span class="math inline">\(E(X)=E(\sum_{i=1}^n K_i)=np\)</span></p>
 <p>and</p>
-<p><span class="math inline">\(V(X)=V(\sum_{i=1}^n K_i)=n(1-p)p\)</span></p>
-<p>Example:</p>
 <ul>
-<li><p>The expected value for the number of errors in the transmission of 4 pixels is <span class="math inline">\(np=4*0.1=0.4\)</span> when the probability of an error is <span class="math inline">\(0.1\)</span>.</p></li>
-<li><p>The variance is <span class="math inline">\(n(1-p)p=0.36\)</span></p></li>
+<li><span class="math inline">\(n\)</span> is small (cannot apply CLT)</li>
 </ul>
-<p><strong>Remember</strong>: We can specify either the parameters <span class="math inline">\(n\)</span> and <span class="math inline">\(p\)</span>, or the parameters <span class="math inline">\(E(X)\)</span> and <span class="math inline">\(V(X)\)</span></p>
+<p>However, if <span class="math inline">\(X\)</span> is normal</p>
+<p><span class="math display">\[X \rightarrow N(\mu, \sigma^2)\]</span> then the standardized statistic</p>
+<p><span class="math display">\[T=\frac{\bar{X}-\mu}{\frac{S}{\sqrt{n}}} \]</span></p>
+<p>Follows a <span class="math inline">\(t\)</span>-distribution with <span class="math inline">\(n-1\)</span> degrees of freedom, and we can compute probabilities on <span class="math inline">\(\bar{X}\)</span>.</p>
 <hr />
 <hr />
 </div>
-<div id="example-1-1" class="section level2 hasAnchor" number="7.23">
-<h2><span class="header-section-number">7.23</span> Example 1<a href="discrete-probability-models.html#example-1-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Now let’s answer:</p>
-<ul>
-<li>What is the probability of observing <span class="math inline">\(4\)</span> errors when transmitting <span class="math inline">\(4\)</span> pixels, if the probability of an error is <span class="math inline">\(0.1\)</span>?</li>
-</ul>
-<p>Since we are repeating a Bernoulli trial <span class="math inline">\(n=4\)</span> times and counting the number of events of type <span class="math inline">\(A\)</span> (errors), when <span class="math inline">\(P(A)=p=0.1\)</span> then</p>
-<p><span class="math display">\[X \rightarrow Bin(n=4, p=0.1)\]</span>
-That is <span class="math display">\[f(x)=\binom 4 x 0.1^x(1-0.1)^{4-x}\]</span></p>
+<div id="t-statistic-1" class="section level2 hasAnchor" number="11.14">
+<h2><span class="header-section-number">11.14</span> T-statistic<a href="central-limit-theorem.html#t-statistic-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><img src="_main_files/figure-html/unnamed-chunk-78-1.png" width="672" /></p>
 <hr />
 <hr />
 </div>
-<div id="example-1-2" class="section level2 hasAnchor" number="7.24">
-<h2><span class="header-section-number">7.24</span> Example 1<a href="discrete-probability-models.html#example-1-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<ul>
-<li>We want to compute:</li>
-</ul>
-<p><span class="math inline">\(P(X=4)=f(4)=\binom 4 4 0.1^4 0.9^{0}=10^{-4}\)</span></p>
-<p>In R <code>dbinom(4,4,0.1)</code></p>
-<ul>
-<li>We can also compute:</li>
-</ul>
-<p><span class="math inline">\(P(X=2)=\binom 4 2 0.1^2 0.9^2=0.0486\)</span></p>
-<p>In R <code>dbinom(2,4,0.1)</code></p>
+<div id="t-statistic-2" class="section level2 hasAnchor" number="11.15">
+<h2><span class="header-section-number">11.15</span> T-statistic<a href="central-limit-theorem.html#t-statistic-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>To compute the margin of error <span class="math inline">\(m\)</span> at <span class="math inline">\(5\%\)</span> level when <span class="math inline">\(n\)</span> is small, <span class="math inline">\(\sigma\)</span> unknown but <span class="math inline">\(X\)</span> normal</p>
+<p><span class="math inline">\(P(\mu-m \leq \bar{X} \leq\mu + m)=P(-\frac{m}{s/\sqrt{n}} \leq \frac{\bar{X}-\mu}{\frac{s}{\sqrt{n}}} \leq\frac{m}{s/\sqrt{n}})\)</span>
+<span class="math display">\[=P(-\frac{m}{s/\sqrt{n}} \leq T \leq\frac{m}{s/\sqrt{n}})=0.95\]</span></p>
+<p>We use the <span class="math inline">\(t\)</span>-distribution</p>
+<p><span class="math display">\[m=t_{0.025, n-1} \frac{s}{\sqrt{n}}\]</span>
+where <span class="math inline">\(t_{0.025, n-1}\)</span> is the value <span class="math inline">\(T\)</span> that leaves <span class="math inline">\(2.5\%\)</span> at each side of <span class="math inline">\(t\)</span>-distribution with <span class="math inline">\(n-1\)</span> degrees of freedom (<span class="math inline">\(0.025\)</span>-quantile)</p>
 <hr />
 <hr />
 </div>
-<div id="example-2-1" class="section level2 hasAnchor" number="7.25">
-<h2><span class="header-section-number">7.25</span> Example 2<a href="discrete-probability-models.html#example-2-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="example-1-3" class="section level2 hasAnchor" number="11.16">
+<h2><span class="header-section-number">11.16</span> Example 1<a href="central-limit-theorem.html#example-1-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Going back to the breaking load example, we computed the margin of error with <strong>known</strong> <span class="math inline">\(\sigma^2=0.35^2\)</span>.</p>
+<p><span class="math display">\[m=z_{0.025} \frac{\sigma}{\sqrt{n}}=1.96\times se=1.96\frac{0.35}{\sqrt{8}}=0.24\]</span></p>
 <ul>
-<li>What is the probability of observing at most <span class="math inline">\(8\)</span> voters of the ruling party in an election poll of size <span class="math inline">\(10\)</span>, if the probability of a positive vote is <span class="math inline">\(0.9\)</span></li>
+<li>In most applications we <strong>do not know</strong> the parameters</li>
 </ul>
-<p>For this case</p>
-<p><span class="math display">\[X \rightarrow Bin(n=10, p=0.9)\]</span></p>
-<p>That is <span class="math display">\[f(x)=\binom {10} x 0.9^x(0.1)^{4-x}\]</span></p>
-<p>We want to compute:
-<span class="math inline">\(P(X\le 8)=F(8)= \sum_{i=1..8} f(x_i)=0.2639011\)</span></p>
-<p>in R <code>pbinom(8,10, 0.9)</code></p>
-<hr />
-<hr />
-</div>
-<div id="binomial-distribution-3" class="section level2 hasAnchor" number="7.26">
-<h2><span class="header-section-number">7.26</span> Binomial distribution<a href="discrete-probability-models.html#binomial-distribution-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><img src="_main_files/figure-html/unnamed-chunk-56-1.png" width="672" /></p>
-<hr />
-<hr />
-</div>
-<div id="negative-binomial-distribution" class="section level2 hasAnchor" number="7.27">
-<h2><span class="header-section-number">7.27</span> Negative binomial distribution<a href="discrete-probability-models.html#negative-binomial-distribution" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Now let us imagine that we are interested in counting the well-transmitted pixels before a <strong>given number</strong> of errors occur. Say we can <strong>tolerate</strong> <span class="math inline">\(r\)</span> errors in transmission.</p>
+<p>If we only assumed that the breaking load is a normal random variable</p>
+<p><span class="math display">\[X \rightarrow N(\mu, \sigma^2)\]</span>
+with <strong>unknown</strong> <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\sigma^2\)</span> then from the data</p>
 <ul>
-<li><p>Experiment: Suppose performing Bernoulli trials until we observe the outcome <span class="math inline">\(A\)</span> appears <span class="math inline">\(r\)</span> times.</p></li>
-<li><p>Random variable: We count the number of events <span class="math inline">\(B\)</span></p></li>
-<li><p>Example: What is the probability of observing <span class="math inline">\(y\)</span> well-transmitted (<span class="math inline">\(B\)</span>) pixels before <span class="math inline">\(r\)</span> errors (<span class="math inline">\(A\)</span>)?</p></li>
+<li><span class="math inline">\(s_{stock}=\sqrt{0.1275608}\)</span></li>
 </ul>
+<p>and the margin of error is <span class="math display">\[m=t_{0.025, n-1} \frac{s}{\sqrt{n}}=2.36\times \hat{se}=2.36\frac{0.3571565}{\sqrt{8}}=0.29\]</span>
+where <span class="math inline">\(t_{0.025, n-1}=2.36\)</span></p>
+<p>in R is <code>qt(1-0.025, 7)</code></p>
+<p>It increased from the value we obtained with <strong>known</strong> <span class="math inline">\(\sigma\)</span></p>
 <hr />
 <hr />
 </div>
-<div id="negative-binomial-distribution-1" class="section level2 hasAnchor" number="7.28">
-<h2><span class="header-section-number">7.28</span> Negative binomial distribution<a href="discrete-probability-models.html#negative-binomial-distribution-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Let’s first find the probability of one particular transmission with <span class="math inline">\(y\)</span> number of correct pixels (<span class="math inline">\(B\)</span>) and <span class="math inline">\(r\)</span> number of errors (<span class="math inline">\(A\)</span>).</p>
-<p><span class="math inline">\((0,0,1,., 0,1,...0,1)\)</span> (there are <span class="math inline">\(y\)</span> zeros, and <span class="math inline">\(r\)</span> ones)</p>
-<p>We observe <span class="math inline">\(y\)</span> correct pixels in a total of <span class="math inline">\(y + r\)</span> trials.</p>
-<p>Then</p>
-<ul>
-<li><span class="math inline">\(P(0,0,1,., 0,1,...0,1)=p^r(1-p)^y\)</span> (Remember: <span class="math inline">\(p\)</span> is the probability of error)</li>
-</ul>
-<p>How many transmissions can have <span class="math inline">\(y\)</span> correct pixels before <span class="math inline">\(r\)</span> errors?</p>
-<p>Note:</p>
-<ul>
-<li><p>The last bit is fixed (marks the end of transmission)</p></li>
-<li><p>The total number of transmissions with <span class="math inline">\(y\)</span> number of correct pixels (<span class="math inline">\(B\)</span>) that we can obtain in <span class="math inline">\(y + r-1\)</span> trials is: <span class="math inline">\(\binom {y + r-1} y\)</span></p></li>
-</ul>
-<hr />
-<hr />
-</div>
-<div id="negative-binomial-distribution-2" class="section level2 hasAnchor" number="7.29">
-<h2><span class="header-section-number">7.29</span> Negative binomial distribution<a href="discrete-probability-models.html#negative-binomial-distribution-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Therefore, the probability of observing <span class="math inline">\(y\)</span> events of type <span class="math inline">\(B\)</span> before <span class="math inline">\(r\)</span> events of type <span class="math inline">\(A\)</span> (with probability <span class="math inline">\(p\)</span>) is</p>
-<p><span class="math display">\[P(Y=y)=f(y)=\binom {y+r-1} y p^r(1-p)^y\]</span></p>
-<p>for <span class="math inline">\(y=0,1,...\)</span></p>
-<p>We then say that <span class="math inline">\(Y\)</span> follows a negative binomial distribution and we write</p>
-<p><span class="math display">\[Y\rightarrow NB(r,p)\]</span></p>
-<p>where <span class="math inline">\(r\)</span> and <span class="math inline">\(p\)</span> are parameters representing the tolerance and the probability of a single error.</p>
-<hr />
-<hr />
-</div>
-<div id="mean-and-variance-2" class="section level2 hasAnchor" number="7.30">
-<h2><span class="header-section-number">7.30</span> Mean and Variance<a href="discrete-probability-models.html#mean-and-variance-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>A random variable with <span class="math inline">\(Y\rightarrow NB(r,p)\)</span> has</p>
-<ul>
-<li><p>mean: <span class="math inline">\(E(Y)= r\frac{1-p}{p}\)</span></p></li>
-<li><p>variance: <span class="math inline">\(V(Y)= r\frac{1-p}{p^2}\)</span></p></li>
-</ul>
-<hr />
-<hr />
-</div>
-<div id="geometric-distribution" class="section level2 hasAnchor" number="7.31">
-<h2><span class="header-section-number">7.31</span> Geometric distribution<a href="discrete-probability-models.html#geometric-distribution" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>We call <strong>geometric distribution</strong> to the negative binomial distribution with <span class="math inline">\(r=1\)</span></p>
-<p>The probability of observing <span class="math inline">\(B\)</span> events before observing the <strong>first</strong> event of type <span class="math inline">\(A\)</span> is</p>
-<p><span class="math display">\[P(Y=y)=f(y)= p(1-p)^y\]</span></p>
-<p><span class="math display">\[Y\rightarrow Geom(p)\]</span>
-with mean</p>
-<ul>
-<li><p>mean: <span class="math inline">\(E(Y)= \frac{1-p}{p}\)</span></p></li>
-<li><p>variance: <span class="math inline">\(V(Y)= \frac{1-p}{p^2}\)</span></p></li>
-</ul>
-<hr />
-<hr />
-</div>
-<div id="example-9" class="section level2 hasAnchor" number="7.32">
-<h2><span class="header-section-number">7.32</span> Example<a href="discrete-probability-models.html#example-9" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<ul>
-<li><p>A website has three servers.</p></li>
-<li><p>One server operates at a time and only when a request fails another server is used.</p></li>
-<li><p>If the probability of failure for a request is known to be <span class="math inline">\(p=0.0005\)</span> then</p></li>
-<li><p>what is the expected number of successful requests before the three computers fail?</p></li>
-</ul>
-<hr />
-<hr />
-</div>
-<div id="example-10" class="section level2 hasAnchor" number="7.33">
-<h2><span class="header-section-number">7.33</span> Example<a href="discrete-probability-models.html#example-10" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Since we are repeating a Bernoulli trial until <span class="math inline">\(r=3\)</span> events of type <span class="math inline">\(A\)</span> (failure) are observed (each with <span class="math inline">\(P(A)=p=0.0005\)</span>) and are counting the number of events of type <span class="math inline">\(B\)</span> (successful requests) then</p>
-<p><span class="math display">\[Y \rightarrow NB(r=3, p=0.0005)\]</span></p>
-<p>Therefore, the expected number of requests before the system fails is:</p>
-<p><span class="math inline">\(E(Y)=r\frac{1-p}{p}=3\frac{1-0.0005}{0.0005}=5997\)</span></p>
-<ul>
-<li>Note that there are actually <span class="math inline">\(6000\)</span> trials</li>
-</ul>
-<hr />
-<hr />
-</div>
-<div id="example-11" class="section level2 hasAnchor" number="7.34">
-<h2><span class="header-section-number">7.34</span> Example<a href="discrete-probability-models.html#example-11" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>What is the probability of dealing with at most <span class="math inline">\(5\)</span> successful requests before the system fails?</p>
-<p>Recall the cumulative function distribution <span class="math inline">\(F(y)=P(Y\leq 5)\)</span></p>
-<p><span class="math inline">\(F(5)=P(Y\leq 5)=\Sigma_{y=0}^5 f(y)\)</span></p>
-<p><span class="math inline">\(=\sum_{y=0}^5\binom {y+2} y 0.0005^r0.9995^y\)</span></p>
-<p><span class="math inline">\(=\binom {2} 0 0.0005^3 0.9995^0 +\binom {3} 1 0.0005^3 0.9995^1\)</span></p>
-<p><span class="math inline">\(+\binom {4} 2 0.0005^3 0.9995^2 +\binom {5} 3 0.0005^3 0.9995^3\)</span></p>
-<p><span class="math inline">\(+\binom {6} 4 0.0005^3 0.9995^4 +\binom {7} 5 0.0005^3 0.9995^5\)</span></p>
-<p><span class="math inline">\(= 6.9\times 10^{-9}\)</span></p>
-<p>In R <code>pnbinom(5,3,0.0005)</code></p>
-<hr />
-<hr />
-</div>
-<div id="examples" class="section level2 hasAnchor" number="7.35">
-<h2><span class="header-section-number">7.35</span> Examples<a href="discrete-probability-models.html#examples" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>With the negative binomial probability function:</p>
-<p><span class="math display">\[f(y)=\binom {y+r-1} y p^r (1-p)^y\]</span></p>
-<p>We can now answer questions like:</p>
-<ul>
-<li>What is the probability of observing <span class="math inline">\(10\)</span> correct pixels before <span class="math inline">\(2\)</span> errors, if the probability of an error is <span class="math inline">\(0.1\)</span>?</li>
-</ul>
-<p><span class="math inline">\(f(10; r=2, p=0.1)=0.03835463\)</span></p>
-<p>in R <code>dnbinom(10, 2, 0.1)</code></p>
-<ul>
-<li>What is the probability that <span class="math inline">\(2\)</span> girls enter the class before <span class="math inline">\(4\)</span> boys if the probability that a girl enters is <span class="math inline">\(0.5\)</span>?</li>
-</ul>
-<p><span class="math inline">\(f(2; r=4, p=0.5)=0.15625\)</span></p>
-<p>in R <code>dnbinom(2, 4, 0.5)</code></p>
-<hr />
-<hr />
-</div>
-<div id="negative-binomial-distribution-3" class="section level2 hasAnchor" number="7.36">
-<h2><span class="header-section-number">7.36</span> Negative binomial distribution<a href="discrete-probability-models.html#negative-binomial-distribution-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><img src="_main_files/figure-html/unnamed-chunk-57-1.png" width="672" /></p>
+<div id="example-2-2" class="section level2 hasAnchor" number="11.17">
+<h2><span class="header-section-number">11.17</span> Example 2<a href="central-limit-theorem.html#example-2-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>We can also ask for the probability of observing an error in the estimation of <span class="math inline">\(\mu\)</span> (distance between <span class="math inline">\(\bar{X}\)</span> and <span class="math inline">\(\mu\)</span>) smaller than the observed value <span class="math inline">\(0.21\)</span>?</p>
+<p>We thus want to compute <span class="math display">\[P(-0.21 \leq \bar{X} - \mu\leq 0.21)=P(\frac{-0.21}{s/\sqrt{n}} \leq T \leq \frac{0.21}{s/\sqrt{n}})\]</span></p>
+<p><br>
+<span class="math inline">\(=P(\frac{-0.21}{0.3571565/\sqrt{8}} \leq T \leq \frac{0.21}{0.3571565/\sqrt{8}})\)</span></p>
+<p><span class="math inline">\(=F_{t, n-1}(0.21)-F_{t, n-1}(-0.21)\)</span></p>
+<p>In R we can compute it as:</p>
+<p><code>pt(1.663052, 7)-pt(-1.663052, 7)=0.859</code>.</p>
+<p><span class="math inline">\(85.9\%\)</span> of the errors are less than <span class="math inline">\(0.21\)</span>, therefore the <strong>observed</strong> error seems more typical than the <span class="math inline">\(91\%\)</span> that we obtain with <span class="math inline">\(\sigma^2=0.35^2\)</span>.</p>
+<p>Note that in the calculations we have substituted <span class="math inline">\(\sigma=0.35\)</span> by a higher estimate <span class="math inline">\(s=0.3571565\)</span> <strong>obtained from data</strong>.</p>
 
 </div>
 </div>
@@ -956,8 +674,8 @@ with mean</p>
           </div>
         </div>
       </div>
-<a href="continous-random-variables.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="poisson-and-exponential-models.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="sampling-distributions.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="exercises.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -988,7 +706,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/USERNAME/REPO/edit/BRANCH/06-DiscreteModels.Rmd",
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/10-CLT.Rmd",
 "text": "Edit"
 },
 "history": {

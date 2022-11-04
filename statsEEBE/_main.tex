@@ -6,7 +6,7 @@
 ]{book}
 \title{Estadística}
 \author{Alejandro Caceres}
-\date{2022-10-31}
+\date{2022-11-04}
 
 \usepackage{amsmath,amssymb}
 \usepackage{lmodern}
@@ -975,12 +975,12 @@ Digamos que repetimos el experimento 1000 veces:
 
 \begin{verbatim}
 ##   outcome  ni    fi
-## 1       1 190 0.190
-## 2       2 155 0.155
-## 3       3 167 0.167
-## 4       4 159 0.159
-## 5       5 178 0.178
-## 6       6 151 0.151
+## 1       1 163 0.163
+## 2       2 149 0.149
+## 3       3 155 0.155
+## 4       4 198 0.198
+## 5       5 174 0.174
+## 6       6 161 0.161
 \end{verbatim}
 
 Encontramos que \(f_i\) está convergiendo a un valor constante
@@ -6254,6 +6254,423 @@ Solo hay una probabilidad de \(1\%\) de obtener un valor superior a \(s^2=0,3\).
   la muestra no está demasiado dispersa y creemos que la producción está bajo control.
 \end{itemize}
 
+\hypertarget{teorema-del-luxedmite-central}{%
+\chapter{teorema del límite central}\label{teorema-del-luxedmite-central}}
+
+\hypertarget{objetivo-10}{%
+\section{objetivo}\label{objetivo-10}}
+
+\begin{itemize}
+\tightlist
+\item
+  Margen de errores
+\item
+  Teorema del límite central
+  -t-estadística
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{margen-de-error}{%
+\section{Margen de error}\label{margen-de-error}}
+
+Al decidir si un \textbf{error observado} es grande o no, generalmente lo comparamos con una tolerancia \textbf{predefinida}.
+
+\begin{itemize}
+\tightlist
+\item
+  El \textbf{margen de error} al nivel de \(5\%\) es la distancia \(m\) tal que la distribución de \(\bar{X}\) captura \(95\%\) de las estimaciones:
+\end{itemize}
+
+\[P(-m \leq \bar{X}-\mu \leq m)=P(\mu-m \leq \bar{X} \leq\mu + m)=0.95\]
+
+\begin{itemize}
+\tightlist
+\item
+  o que \(95\%\) de los valores de \(\bar{X}\) están a una distancia \(m\) de \(\mu\)
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{margen-de-error-1}{%
+\section{Margen de error}\label{margen-de-error-1}}
+
+Sigamos con el ejemplo de la carga de rotura.
+
+para la muestra de \(8\) cables
+
+\begin{verbatim}
+## [1] 13.34642 13.32620 13.01459 13.10811 12.96999 13.55309 13.75557 12.62747
+\end{verbatim}
+
+el \textbf{error observado} es la diferencia
+
+\[\bar{x}_{stock}-\mu=13.21-13=0.21\]
+¿Está este valor por debajo del margen de error de \(5\%\)?
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{estaduxedstica-z}{%
+\section{Estadística Z}\label{estaduxedstica-z}}
+
+Si \textbf{sabemos} que nuestros cables realmente distribuyen como
+\[X \rightarrow N(\mu=13, \sigma^2=0.35^2)\] entonces,
+
+\[\bar{X} \rightarrow N(\mu, \frac{\sigma^2}{n})\]
+
+y el margen de error de \(5\%\) para el promedio en nuestra muestra de \(8\) cables se puede calcular a partir de la \textbf{estadística estandarizada}:
+
+\[Z=\frac{\bar{X}-E(\bar{X})}{\sqrt{V(\bar{X})}} =\frac{\bar{X}-\mu}{ \frac{\sigma}{\sqrt{n}}} \rightarrow N(0,1)\]
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{estaduxedstica-z-1}{%
+\section{Estadística Z}\label{estaduxedstica-z-1}}
+
+para calcular el margen de error \(m\) al nivel de \(5\%\) estandarizamos (restamos \(\mu\) y dividimos por \(\sigma/\sqrt{n}\))
+
+\(P(\mu-m \leq \bar{X} \leq\mu + m)=P(-\frac{m}{\sigma/\sqrt{n}} \leq \frac{\bar{X} -\mu}{\frac{\sigma}{\sqrt{n}}}\leq\frac{m}{\sigma/\sqrt{n}})\)
+\[=P(-\frac{m}{\sigma/\sqrt{n}} \leq Z \leq\frac{m}{\sigma/\sqrt{n}})=0,95\]
+
+(compararlo con el gráfico) tenemos
+
+\[m=z_{0,025} \frac{\sigma}{\sqrt{n}}=1,96\times se=1,96\frac{0,35}{\sqrt{8}}=0.24\]
+donde \(z_{0.025}=1.96\) es el valor \(Z\) que deja \(2.5\%\) a cada lado de la densidad normal estándar (\(0.025\)-cuantil)
+
+Nuestro error observado \(0.21\)
+
+\begin{itemize}
+\item
+  es menor que el margen de error \(0.24\) en el nivel \(5\%\).
+\item
+  y, por tanto, se espera dentro de los \(95\%\) de errores.
+\end{itemize}
+
+Si una observación de \(\bar{x}\) distancia más de \(\sim 2\) veces el \(se\), decimos que el error es \textbf{inusualmente} grande.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{estaduxedstica-z-2}{%
+\section{Estadística Z}\label{estaduxedstica-z-2}}
+
+\textbf{Definición}
+
+Para una variable aleatoria normal \(X\)
+
+\[X \rightarrow N(\mu, \sigma^2)\] con \textbf{conocido} \(\sigma\)
+
+La estadística \(Z\):
+
+\[Z=\frac{\bar{X}-E(\bar{X})}{\sqrt{V(\bar{X})}}\]
+es una variable aleatoria estándar cuyos cuantiles \(1-\alpha/2\) (\(z_{1-\alpha/2}\)) dan una medida del margen de error de \(\bar{X}\) en \(1-\alpha\) nivel
+
+\[m=z_{1-\alpha/2}\frac{\sigma}{\sqrt{n}}\]
+
+\textbf{Una situación común:}
+
+\begin{itemize}
+\tightlist
+\item
+  ¿Qué sucede cuando \(X\) no se distribuye normalmente?
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{teorema-del-luxedmite-central-1}{%
+\section{Teorema del límite central}\label{teorema-del-luxedmite-central-1}}
+
+Para cualquier variable aleatoria \(X\) con distribución \textbf{desconocida} (de cualquier tipo)
+
+\[X \rightarrow f(x; \theta)\]
+la estadística estandarizada
+
+\[Z=\frac{\bar{X}-E(\bar{X})}{\sqrt{V(\bar{X})}}\]
+
+se aproxima a una distribución estándar
+
+\[Z \rightarrow_d N(0,1)\] cuando \(n\rightarrow \infty\)
+
+Por lo tanto:
+
+\begin{itemize}
+\tightlist
+\item
+  Podemos calcular probabilidades para \(\bar{X}\) si \(n\) es grande, usando la distribución normal:
+\end{itemize}
+
+\[\bar{X} \sim_{aprox} N(E(X), \frac{V(X)}{n})\]
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{teorema-del-luxedmite-central-2}{%
+\section{Teorema del límite central}\label{teorema-del-luxedmite-central-2}}
+
+\textbf{Ejemplo:}
+
+Consideremos un experimento en el que medimos la concentration en sangre de un fármaco después de 10 horas de administración en pacientes de \(30\). Obtenemos los siguientes resultados:
+
+\begin{verbatim}
+##  [1] 0.42172863 0.28830514 0.66452743 0.01578868 0.02810549 0.15825061
+##  [7] 0.15711365 0.07263340 1.36311823 0.01457672 0.50241503 0.24010736
+## [13] 0.14050681 0.18855892 0.09414202 0.42489306 0.78160177 0.23938021
+## [19] 0.29546742 2.02050586 0.42157487 0.48293561 0.74263790 0.67402224
+## [25] 0.58426449 0.80292617 0.74837143 0.78532627 0.01588387 0.29892485
+\end{verbatim}
+
+\begin{itemize}
+\item
+  el promedio es \(\bar{x}=0.56\)
+\item
+  el histograma de los resultados es:
+\end{itemize}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-79-1.pdf}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{teorema-del-luxedmite-central-3}{%
+\section{Teorema del límite central}\label{teorema-del-luxedmite-central-3}}
+
+Si \textbf{sabemos} que los niveles siguen una distribución exponencial \[X \rightarrow exp(\lambda=2)\]
+
+La media y la varianza son:
+
+\begin{itemize}
+\tightlist
+\item
+  \(E(X)=\frac{1}{\lambda}=0.5\)
+\item
+  \(V(X)=\frac{1}{\lambda^2}=0.25\)
+\end{itemize}
+
+Por lo tanto la media y la varianza de \(\bar{X}\) son:
+
+\begin{itemize}
+\tightlist
+\item
+  \(E(\bar{X})=\frac{1}{\lambda}=0.5\)
+\item
+  \(V(\bar{X})=\frac{V(X)}{n}=\frac{1}{n\lambda^2}=0.25/30\)
+\end{itemize}
+
+Como \(n \geq 30\)
+
+\[Z=\frac{\bar{X}-\lambda}{\sqrt{\frac{1}{n\lambda^2}}}\]
+
+es una variable normal estándar y: \(\bar{X} \sim_{aprox} N(\lambda, \frac{1}{n\lambda^2})\)
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-80-1.pdf} \includegraphics{_main_files/figure-latex/unnamed-chunk-80-2.pdf}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{margen-de-error-con-tcl}{%
+\section{Margen de error con TCL}\label{margen-de-error-con-tcl}}
+
+Ya que
+
+\[\bar{X} \sim_{aprox} N(E(X), \frac{V(X)}{n})\]
+
+El margen de error en el nivel de \(5\%\)
+
+\[P(E(X)-m \leq \bar{X} \leq E(X) + m)=0.95\]
+
+se puede calcular de nuevo con la distribución estándar
+
+\[m=z_{0.025} \sqrt{\frac{V(X)}{n}}=1.96\sqrt{\frac{0.25}{30}}=0.1789227\]
+
+\textbf{Observamos} \(\bar{x}=0.5638725\) por lo tanto el \textbf{error observado} en la estimación es
+
+\[\bar{x} - E(X)=0.5638725-0.5=0.063\]
+
+que está dentro del margen de error.
+
+El error que observamos es común y dentro del \(95\%\) de errores.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{suma-de-muestra-y-tcl}{%
+\section{Suma de muestra y TCL}\label{suma-de-muestra-y-tcl}}
+
+Para cualquier variable aleatoria \(X\) con distribución \textbf{desconocida} (cualquier tipo de)
+
+\[X \rightarrow f(x; \theta)\]
+
+la estadística estandarizada
+
+\[Z=\frac{\bar{X}-E(\bar{X})}{\sqrt{V(\bar{X})}}=\frac{n\bar{X}-nE(\bar{X})}{\sqrt{nV(\bar{X})}}\]
+
+se aproxima a una distribución estándar
+
+\[Z \rightarrow_d N(0,1)\] cuando \(n\rightarrow \infty\)
+
+Por lo tanto:
+
+\begin{itemize}
+\tightlist
+\item
+  Podemos calcular probabilidades para la suma muestral \(Y=n\bar{X}\) si \(n\) es grande, usando la distribución normal:
+\end{itemize}
+
+\[\bar{Y} \sim_{aprox} N(nE(X), nV(X))\]
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{desconocido-sigma-pero-grande-n}{%
+\section{\texorpdfstring{Desconocido \(\sigma\) pero grande \(n\)}{Desconocido \textbackslash sigma pero grande n}}\label{desconocido-sigma-pero-grande-n}}
+
+Para cualquier variable aleatoria \(X\) con distribución \textbf{desconocida} (cualquier tipo de)
+
+\[X \rightarrow f(x; \theta)\]
+
+con varianza \textbf{desconocida} \(V(X)\), podemos estimar el error estándar (\(se=\sqrt{V(X)/n}\)) por la desviación estándar de la muestra
+
+\[\hat{se}=\frac{s}{\sqrt{n}}\] y escribe la estadística estandarizada
+
+\[Z=\frac{\bar{X}-E(\bar{X})}{\frac{s}{\sqrt{n}}} \]
+
+\[Z \rightarrow_d N(0,1)\] para recuperar el TCL cuando \(n\rightarrow \infty\) (una buena aproximación es cuando \(n>30\))
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{estaduxedstica-t}{%
+\section{Estadística T}\label{estaduxedstica-t}}
+
+Cuando
+
+\begin{itemize}
+\tightlist
+\item
+  \(\sigma\) es \textbf{desconocido}
+\end{itemize}
+
+y
+
+\begin{itemize}
+\tightlist
+\item
+  \(n\) es pequeño (no se puede aplicar TCL)
+\end{itemize}
+
+Sin embargo, si \(X\) es normal
+
+\[X \rightarrow N(\mu, \sigma^2)\] entonces la estadística estandarizada
+
+\[T=\frac{\bar{X}-\mu}{\frac{S}{\sqrt{n}}} \]
+
+Sigue una distribución \(t\) con \(n-1\) grados de libertad, y podemos calcular probabilidades en \(\bar{X}\).
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{estaduxedstica-t-1}{%
+\section{Estadística T}\label{estaduxedstica-t-1}}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-81-1.pdf}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{estaduxedstica-t-2}{%
+\section{Estadística T}\label{estaduxedstica-t-2}}
+
+Para calcular el margen de error \(m\) a un nivel de \(5\%\) cuando \(n\) es pequeño, \(\sigma\) desconocido pero \(X\) normal
+
+\(P(\mu-m \leq \bar{X} \leq\mu + m)=P(-\frac{m}{s/\sqrt{n}} \leq \frac{\bar{X}- \mu}{\frac{s}{\sqrt{n}}} \leq\frac{m}{s/\sqrt{n}})\)
+\[=P(-\frac{m}{s/\sqrt{n}} \leq T \leq\frac{m}{s/\sqrt{n}})=0,95\]
+
+Usamos la distribución \(t\)
+
+\[m=t_{0.025, n-1} \frac{s}{\sqrt{n}}\]
+donde \(t_{0.025, n-1}\) es el valor \(T\) que deja \(2.5\%\) a cada lado de la distribución \(t\) con \(n-1\) grados de libertad (\(0.025\)-cuantil)
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{ejemplo-1-3}{%
+\section{Ejemplo 1}\label{ejemplo-1-3}}
+
+Volviendo al ejemplo de la carga de rotura, calculamos el margen de error con \textbf{conocido} \(\sigma^2=0.35^2\).
+
+\[m=z_{0,025} \frac{\sigma}{\sqrt{n}}=1,96\times se=1,96\frac{0,35}{\sqrt{8}}=0,24\]
+
+\begin{itemize}
+\tightlist
+\item
+  En la mayoría de las aplicaciones \textbf{no conocemos} los parámetros
+\end{itemize}
+
+Si solo asumiéramos que la carga de rotura es una variable aleatoria normal
+
+\[X \rightarrow N(\mu, \sigma^2)\]
+con \textbf{desconocido} \(\mu\) y \(\sigma^2\) luego de los datos
+
+\begin{itemize}
+\tightlist
+\item
+  \(s_{stock}=\sqrt{0.1275608}\)
+\end{itemize}
+
+y el margen de error es \[m=t_{0.025, n-1} \frac{s}{\sqrt{n}}=2.36\times \hat{se}=2.36\frac{0.3571565}{\sqrt{ 8}}=0.29\]
+donde \(t_{0.025, n-1}=2.36\)
+
+en R es qt(1-0.025, 7)
+
+Aumentó a partir del valor que obtuvimos con \textbf{conocido} \(\sigma\)
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{ejemplo-2-2}{%
+\section{Ejemplo 2}\label{ejemplo-2-2}}
+
+También podemos preguntar por la probabilidad de observar un error en la estimación de \(\mu\) (distancia entre \(\bar{X}\) y \(\mu\)) menor que el valor observado \(0.21\)?
+
+Entonces queremos calcular \[P(-0.21 \leq \bar{X} - \mu\leq 0.21)=P(\frac{-0.21}{s/\sqrt{n}} \leq T \leq \frac {0.21}{s/\sqrt{n}})\]
+
+\(=P(\frac{-0.21}{0.3571565/\sqrt{8}} \leq T \leq \frac{0.21}{0.3571565/\sqrt{8}})\)
+
+\(=F_{t, n-1}(0,21)-F_{t, n-1}(-0,21)\)
+
+En R podemos calcularlo como:
+
+pt(1.663052, 7)-pt(-1.663052, 7)=0.859.
+
+\(85,9\%\) de los errores son inferiores a \(0,21\), por lo que el error \textbf{observado} parece más típico que el \(91\%\) que obtenemos con \(\sigma^2=0,35^2\).
+
+Tenga en cuenta que en los cálculos hemos sustituido \(\sigma=0.35\) por una estimación más alta \(s=0.3571565\) \textbf{obtenida de los datos}.
+
 \hypertarget{ejercicios}{%
 \chapter{Ejercicios}\label{ejercicios}}
 
@@ -6685,7 +7102,7 @@ Para la densidad de probabilidad
   ¿Cuáles son el primer y tercer cuartiles? (R: 25; 75)
 \end{itemize}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-83-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-88-1.pdf}
 
 \hypertarget{ejercicio-5-1}{%
 \subsubsection{Ejercicio 5}\label{ejercicio-5-1}}
@@ -6859,9 +7276,9 @@ La vida media del componente (\(\mu\)) es de \(100\) horas y su desviación est�
 
 \begin{itemize}
 \item
-  ¿Cuál es la probabilidad de que el promedio de la vida media de \(50\) componentes esté dentro de \(1\) hora de la vida media de un solo componente?
+  ¿Cuál es la probabilidad de que el promedio de la vida media de \(50\) componentes esté dentro de \(1\) hora de la vida media de un solo componente? (R:0.1863)
 \item
-  ¿Cuántos componentes necesitamos para que el telescopio esté operativo \(2750\) horas consecutivas con una probabilidad de \(0,95\)?
+  ¿Cuántos componentes necesitamos para que el telescopio esté operativo \(2750\) horas consecutivas con una probabilidad de por lo menos \(0,95\)? (R:31)
 \end{itemize}
 
 \hypertarget{ejercicio-3-3}{%

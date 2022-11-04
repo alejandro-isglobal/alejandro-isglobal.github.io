@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Estadística</title>
+  <title>Chapter 11 teorema del límite central | Estadística</title>
   <meta name="description" content="This are slides for the Stats theory of the BIST master" />
   <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Estadística" />
+  <meta property="og:title" content="Chapter 11 teorema del límite central | Estadística" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="alejandro-isglobal/master" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Estadística" />
+  <meta name="twitter:title" content="Chapter 11 teorema del límite central | Estadística" />
   
   <meta name="twitter:description" content="This are slides for the Stats theory of the BIST master" />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-
-<link rel="next" href="descripción-de-datos.html"/>
+<link rel="prev" href="distribuciones-de-muestreo.html"/>
+<link rel="next" href="ejercicios.html"/>
 <script src="libs/header-attrs-2.12/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -426,22 +426,248 @@
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">Estadística</h1>
-<p class="author"><em>Alejandro Caceres</em></p>
-<p class="date"><em>2022-11-04</em></p>
+<div id="teorema-del-límite-central" class="section level1 hasAnchor" number="11">
+<h1><span class="header-section-number">Chapter 11</span> teorema del límite central<a href="teorema-del-límite-central.html#teorema-del-límite-central" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="objetivo-10" class="section level2 hasAnchor" number="11.1">
+<h2><span class="header-section-number">11.1</span> objetivo<a href="teorema-del-límite-central.html#objetivo-10" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li>Margen de errores</li>
+<li>Teorema del límite central
+-t-estadística</li>
+</ul>
+<hr />
+<hr />
 </div>
-<div id="objetivo" class="section level1 hasAnchor" number="1">
-<h1><span class="header-section-number">Chapter 1</span> Objetivo<a href="index.html#objetivo" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="margen-de-error" class="section level2 hasAnchor" number="11.2">
+<h2><span class="header-section-number">11.2</span> Margen de error<a href="teorema-del-límite-central.html#margen-de-error" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Al decidir si un <strong>error observado</strong> es grande o no, generalmente lo comparamos con una tolerancia <strong>predefinida</strong>.</p>
 <ul>
-<li><p>Este es el curso de introducción a la estadística de la EEBE (UPC).</p></li>
-<li><p>Las fechas de exámenes y material de estudio adicional se pueden encontrar en ATENEA</p></li>
+<li>El <strong>margen de error</strong> al nivel de <span class="math inline">\(5\%\)</span> es la distancia <span class="math inline">\(m\)</span> tal que la distribución de <span class="math inline">\(\bar{X}\)</span> captura <span class="math inline">\(95\%\)</span> de las estimaciones:</li>
 </ul>
-<div id="lectura-recomendada" class="section level2 hasAnchor" number="1.1">
-<h2><span class="header-section-number">1.1</span> Lectura recomendada<a href="index.html#lectura-recomendada" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><span class="math display">\[P(-m \leq \bar{X}-\mu \leq m)=P(\mu-m \leq \bar{X} \leq\mu + m)=0.95\]</span></p>
 <ul>
-<li>Douglas C. Montgomery and George C. Runger. “Applied Statistics and Probability for Engineers” 4th Edition. Wiley 2007.</li>
+<li>o que <span class="math inline">\(95\%\)</span> de los valores de <span class="math inline">\(\bar{X}\)</span> están a una distancia <span class="math inline">\(m\)</span> de <span class="math inline">\(\mu\)</span></li>
 </ul>
+<hr />
+<hr />
+</div>
+<div id="margen-de-error-1" class="section level2 hasAnchor" number="11.3">
+<h2><span class="header-section-number">11.3</span> Margen de error<a href="teorema-del-límite-central.html#margen-de-error-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Sigamos con el ejemplo de la carga de rotura.</p>
+<p>para la muestra de <span class="math inline">\(8\)</span> cables</p>
+<pre><code>## [1] 13.34642 13.32620 13.01459 13.10811 12.96999 13.55309 13.75557 12.62747</code></pre>
+<p>el <strong>error observado</strong> es la diferencia</p>
+<p><span class="math display">\[\bar{x}_{stock}-\mu=13.21-13=0.21\]</span>
+¿Está este valor por debajo del margen de error de <span class="math inline">\(5\%\)</span>?</p>
+<hr />
+<hr />
+</div>
+<div id="estadística-z" class="section level2 hasAnchor" number="11.4">
+<h2><span class="header-section-number">11.4</span> Estadística Z<a href="teorema-del-límite-central.html#estadística-z" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Si <strong>sabemos</strong> que nuestros cables realmente distribuyen como
+<span class="math display">\[X \rightarrow N(\mu=13, \sigma^2=0.35^2)\]</span> entonces,</p>
+<p><span class="math display">\[\bar{X} \rightarrow N(\mu, \frac{\sigma^2}{n})\]</span></p>
+<p>y el margen de error de <span class="math inline">\(5\%\)</span> para el promedio en nuestra muestra de <span class="math inline">\(8\)</span> cables se puede calcular a partir de la <strong>estadística estandarizada</strong>:</p>
+<p><span class="math display">\[Z=\frac{\bar{X}-E(\bar{X})}{\sqrt{V(\bar{X})}} =\frac{\bar{X}-\mu}{ \frac{\sigma}{\sqrt{n}}} \rightarrow N(0,1)\]</span></p>
+<p><img src="figures/phi.jpg" style="width:100%" style="height:100%"  align="center"></p>
+<hr />
+<hr />
+</div>
+<div id="estadística-z-1" class="section level2 hasAnchor" number="11.5">
+<h2><span class="header-section-number">11.5</span> Estadística Z<a href="teorema-del-límite-central.html#estadística-z-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>para calcular el margen de error <span class="math inline">\(m\)</span> al nivel de <span class="math inline">\(5\%\)</span> estandarizamos (restamos <span class="math inline">\(\mu\)</span> y dividimos por <span class="math inline">\(\sigma/\sqrt{n}\)</span>)</p>
+<p><span class="math inline">\(P(\mu-m \leq \bar{X} \leq\mu + m)=P(-\frac{m}{\sigma/\sqrt{n}} \leq \frac{\bar{X} -\mu}{\frac{\sigma}{\sqrt{n}}}\leq\frac{m}{\sigma/\sqrt{n}})\)</span>
+<span class="math display">\[=P(-\frac{m}{\sigma/\sqrt{n}} \leq Z \leq\frac{m}{\sigma/\sqrt{n}})=0,95\]</span></p>
+<p>(compararlo con el gráfico) tenemos</p>
+<p><span class="math display">\[m=z_{0,025} \frac{\sigma}{\sqrt{n}}=1,96\times se=1,96\frac{0,35}{\sqrt{8}}=0.24\]</span>
+donde <span class="math inline">\(z_{0.025}=1.96\)</span> es el valor <span class="math inline">\(Z\)</span> que deja <span class="math inline">\(2.5\%\)</span> a cada lado de la densidad normal estándar (<span class="math inline">\(0.025\)</span>-cuantil)</p>
+<p>Nuestro error observado <span class="math inline">\(0.21\)</span></p>
+<ul>
+<li><p>es menor que el margen de error <span class="math inline">\(0.24\)</span> en el nivel <span class="math inline">\(5\%\)</span>.</p></li>
+<li><p>y, por tanto, se espera dentro de los <span class="math inline">\(95\%\)</span> de errores.</p></li>
+</ul>
+<p>Si una observación de <span class="math inline">\(\bar{x}\)</span> distancia más de <span class="math inline">\(\sim 2\)</span> veces el <span class="math inline">\(se\)</span>, decimos que el error es <strong>inusualmente</strong> grande.</p>
+<hr />
+<hr />
+</div>
+<div id="estadística-z-2" class="section level2 hasAnchor" number="11.6">
+<h2><span class="header-section-number">11.6</span> Estadística Z<a href="teorema-del-límite-central.html#estadística-z-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><strong>Definición</strong></p>
+<p>Para una variable aleatoria normal <span class="math inline">\(X\)</span></p>
+<p><span class="math display">\[X \rightarrow N(\mu, \sigma^2)\]</span> con <strong>conocido</strong> <span class="math inline">\(\sigma\)</span></p>
+<p>La estadística <span class="math inline">\(Z\)</span>:</p>
+<p><span class="math display">\[Z=\frac{\bar{X}-E(\bar{X})}{\sqrt{V(\bar{X})}}\]</span>
+es una variable aleatoria estándar cuyos cuantiles <span class="math inline">\(1-\alpha/2\)</span> (<span class="math inline">\(z_{1-\alpha/2}\)</span>) dan una medida del margen de error de <span class="math inline">\(\bar{X}\)</span> en <span class="math inline">\(1-\alpha\)</span> nivel</p>
+<p><span class="math display">\[m=z_{1-\alpha/2}\frac{\sigma}{\sqrt{n}}\]</span></p>
+<p><strong>Una situación común:</strong></p>
+<ul>
+<li>¿Qué sucede cuando <span class="math inline">\(X\)</span> no se distribuye normalmente?</li>
+</ul>
+<hr />
+<hr />
+</div>
+<div id="teorema-del-límite-central-1" class="section level2 hasAnchor" number="11.7">
+<h2><span class="header-section-number">11.7</span> Teorema del límite central<a href="teorema-del-límite-central.html#teorema-del-límite-central-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Para cualquier variable aleatoria <span class="math inline">\(X\)</span> con distribución <strong>desconocida</strong> (de cualquier tipo)</p>
+<p><span class="math display">\[X \rightarrow f(x; \theta)\]</span>
+la estadística estandarizada</p>
+<p><span class="math display">\[Z=\frac{\bar{X}-E(\bar{X})}{\sqrt{V(\bar{X})}}\]</span></p>
+<p>se aproxima a una distribución estándar</p>
+<p><span class="math display">\[Z \rightarrow_d N(0,1)\]</span> cuando <span class="math inline">\(n\rightarrow \infty\)</span></p>
+<p>Por lo tanto:</p>
+<ul>
+<li>Podemos calcular probabilidades para <span class="math inline">\(\bar{X}\)</span> si <span class="math inline">\(n\)</span> es grande, usando la distribución normal:</li>
+</ul>
+<p><span class="math display">\[\bar{X} \sim_{aprox} N(E(X), \frac{V(X)}{n})\]</span></p>
+<hr />
+<hr />
+</div>
+<div id="teorema-del-límite-central-2" class="section level2 hasAnchor" number="11.8">
+<h2><span class="header-section-number">11.8</span> Teorema del límite central<a href="teorema-del-límite-central.html#teorema-del-límite-central-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><strong>Ejemplo:</strong></p>
+<p>Consideremos un experimento en el que medimos la concentration en sangre de un fármaco después de 10 horas de administración en pacientes de <span class="math inline">\(30\)</span>. Obtenemos los siguientes resultados:</p>
+<pre><code>##  [1] 0.42172863 0.28830514 0.66452743 0.01578868 0.02810549 0.15825061
+##  [7] 0.15711365 0.07263340 1.36311823 0.01457672 0.50241503 0.24010736
+## [13] 0.14050681 0.18855892 0.09414202 0.42489306 0.78160177 0.23938021
+## [19] 0.29546742 2.02050586 0.42157487 0.48293561 0.74263790 0.67402224
+## [25] 0.58426449 0.80292617 0.74837143 0.78532627 0.01588387 0.29892485</code></pre>
+<ul>
+<li><p>el promedio es <span class="math inline">\(\bar{x}=0.56\)</span></p></li>
+<li><p>el histograma de los resultados es:</p></li>
+</ul>
+<p><img src="_main_files/figure-html/unnamed-chunk-79-1.png" width="672" /></p>
+<hr />
+<hr />
+</div>
+<div id="teorema-del-límite-central-3" class="section level2 hasAnchor" number="11.9">
+<h2><span class="header-section-number">11.9</span> Teorema del límite central<a href="teorema-del-límite-central.html#teorema-del-límite-central-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Si <strong>sabemos</strong> que los niveles siguen una distribución exponencial <span class="math display">\[X \rightarrow exp(\lambda=2)\]</span></p>
+<p>La media y la varianza son:</p>
+<ul>
+<li><span class="math inline">\(E(X)=\frac{1}{\lambda}=0.5\)</span></li>
+<li><span class="math inline">\(V(X)=\frac{1}{\lambda^2}=0.25\)</span></li>
+</ul>
+<p>Por lo tanto la media y la varianza de <span class="math inline">\(\bar{X}\)</span> son:</p>
+<ul>
+<li><span class="math inline">\(E(\bar{X})=\frac{1}{\lambda}=0.5\)</span></li>
+<li><span class="math inline">\(V(\bar{X})=\frac{V(X)}{n}=\frac{1}{n\lambda^2}=0.25/30\)</span></li>
+</ul>
+<p>Como <span class="math inline">\(n \geq 30\)</span></p>
+<p><span class="math display">\[Z=\frac{\bar{X}-\lambda}{\sqrt{\frac{1}{n\lambda^2}}}\]</span></p>
+<p>es una variable normal estándar y: <span class="math inline">\(\bar{X} \sim_{aprox} N(\lambda, \frac{1}{n\lambda^2})\)</span></p>
+<hr />
+<hr />
+<p><img src="_main_files/figure-html/unnamed-chunk-80-1.png" width="672" /><img src="_main_files/figure-html/unnamed-chunk-80-2.png" width="672" /></p>
+<hr />
+<hr />
+</div>
+<div id="margen-de-error-con-tcl" class="section level2 hasAnchor" number="11.10">
+<h2><span class="header-section-number">11.10</span> Margen de error con TCL<a href="teorema-del-límite-central.html#margen-de-error-con-tcl" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Ya que</p>
+<p><span class="math display">\[\bar{X} \sim_{aprox} N(E(X), \frac{V(X)}{n})\]</span></p>
+<p>El margen de error en el nivel de <span class="math inline">\(5\%\)</span></p>
+<p><span class="math display">\[P(E(X)-m \leq \bar{X} \leq E(X) + m)=0.95\]</span></p>
+<p>se puede calcular de nuevo con la distribución estándar</p>
+<p><span class="math display">\[m=z_{0.025} \sqrt{\frac{V(X)}{n}}=1.96\sqrt{\frac{0.25}{30}}=0.1789227\]</span></p>
+<p><strong>Observamos</strong> <span class="math inline">\(\bar{x}=0.5638725\)</span> por lo tanto el <strong>error observado</strong> en la estimación es</p>
+<p><span class="math display">\[\bar{x} - E(X)=0.5638725-0.5=0.063\]</span></p>
+<p>que está dentro del margen de error.</p>
+<p>El error que observamos es común y dentro del <span class="math inline">\(95\%\)</span> de errores.</p>
+<hr />
+<hr />
+</div>
+<div id="suma-de-muestra-y-tcl" class="section level2 hasAnchor" number="11.11">
+<h2><span class="header-section-number">11.11</span> Suma de muestra y TCL<a href="teorema-del-límite-central.html#suma-de-muestra-y-tcl" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Para cualquier variable aleatoria <span class="math inline">\(X\)</span> con distribución <strong>desconocida</strong> (cualquier tipo de)</p>
+<p><span class="math display">\[X \rightarrow f(x; \theta)\]</span></p>
+<p>la estadística estandarizada</p>
+<p><span class="math display">\[Z=\frac{\bar{X}-E(\bar{X})}{\sqrt{V(\bar{X})}}=\frac{n\bar{X}-nE(\bar{X})}{\sqrt{nV(\bar{X})}}\]</span></p>
+<p>se aproxima a una distribución estándar</p>
+<p><span class="math display">\[Z \rightarrow_d N(0,1)\]</span> cuando <span class="math inline">\(n\rightarrow \infty\)</span></p>
+<p>Por lo tanto:</p>
+<ul>
+<li>Podemos calcular probabilidades para la suma muestral <span class="math inline">\(Y=n\bar{X}\)</span> si <span class="math inline">\(n\)</span> es grande, usando la distribución normal:</li>
+</ul>
+<p><span class="math display">\[\bar{Y} \sim_{aprox} N(nE(X), nV(X))\]</span></p>
+<hr />
+<hr />
+</div>
+<div id="desconocido-sigma-pero-grande-n" class="section level2 hasAnchor" number="11.12">
+<h2><span class="header-section-number">11.12</span> Desconocido <span class="math inline">\(\sigma\)</span> pero grande <span class="math inline">\(n\)</span><a href="teorema-del-límite-central.html#desconocido-sigma-pero-grande-n" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Para cualquier variable aleatoria <span class="math inline">\(X\)</span> con distribución <strong>desconocida</strong> (cualquier tipo de)</p>
+<p><span class="math display">\[X \rightarrow f(x; \theta)\]</span></p>
+<p>con varianza <strong>desconocida</strong> <span class="math inline">\(V(X)\)</span>, podemos estimar el error estándar (<span class="math inline">\(se=\sqrt{V(X)/n}\)</span>) por la desviación estándar de la muestra</p>
+<p><span class="math display">\[\hat{se}=\frac{s}{\sqrt{n}}\]</span> y escribe la estadística estandarizada</p>
+<p><span class="math display">\[Z=\frac{\bar{X}-E(\bar{X})}{\frac{s}{\sqrt{n}}} \]</span></p>
+<p><span class="math display">\[Z \rightarrow_d N(0,1)\]</span> para recuperar el TCL cuando <span class="math inline">\(n\rightarrow \infty\)</span> (una buena aproximación es cuando <span class="math inline">\(n&gt;30\)</span>)</p>
+<hr />
+<hr />
+</div>
+<div id="estadística-t" class="section level2 hasAnchor" number="11.13">
+<h2><span class="header-section-number">11.13</span> Estadística T<a href="teorema-del-límite-central.html#estadística-t" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Cuando</p>
+<ul>
+<li><span class="math inline">\(\sigma\)</span> es <strong>desconocido</strong></li>
+</ul>
+<p>y</p>
+<ul>
+<li><span class="math inline">\(n\)</span> es pequeño (no se puede aplicar TCL)</li>
+</ul>
+<p>Sin embargo, si <span class="math inline">\(X\)</span> es normal</p>
+<p><span class="math display">\[X \rightarrow N(\mu, \sigma^2)\]</span> entonces la estadística estandarizada</p>
+<p><span class="math display">\[T=\frac{\bar{X}-\mu}{\frac{S}{\sqrt{n}}} \]</span></p>
+<p>Sigue una distribución <span class="math inline">\(t\)</span> con <span class="math inline">\(n-1\)</span> grados de libertad, y podemos calcular probabilidades en <span class="math inline">\(\bar{X}\)</span>.</p>
+<hr />
+<hr />
+</div>
+<div id="estadística-t-1" class="section level2 hasAnchor" number="11.14">
+<h2><span class="header-section-number">11.14</span> Estadística T<a href="teorema-del-límite-central.html#estadística-t-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><img src="_main_files/figure-html/unnamed-chunk-81-1.png" width="672" /></p>
+<hr />
+<hr />
+</div>
+<div id="estadística-t-2" class="section level2 hasAnchor" number="11.15">
+<h2><span class="header-section-number">11.15</span> Estadística T<a href="teorema-del-límite-central.html#estadística-t-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Para calcular el margen de error <span class="math inline">\(m\)</span> a un nivel de <span class="math inline">\(5\%\)</span> cuando <span class="math inline">\(n\)</span> es pequeño, <span class="math inline">\(\sigma\)</span> desconocido pero <span class="math inline">\(X\)</span> normal</p>
+<p><span class="math inline">\(P(\mu-m \leq \bar{X} \leq\mu + m)=P(-\frac{m}{s/\sqrt{n}} \leq \frac{\bar{X}- \mu}{\frac{s}{\sqrt{n}}} \leq\frac{m}{s/\sqrt{n}})\)</span>
+<span class="math display">\[=P(-\frac{m}{s/\sqrt{n}} \leq T \leq\frac{m}{s/\sqrt{n}})=0,95\]</span></p>
+<p>Usamos la distribución <span class="math inline">\(t\)</span></p>
+<p><span class="math display">\[m=t_{0.025, n-1} \frac{s}{\sqrt{n}}\]</span>
+donde <span class="math inline">\(t_{0.025, n-1}\)</span> es el valor <span class="math inline">\(T\)</span> que deja <span class="math inline">\(2.5\%\)</span> a cada lado de la distribución <span class="math inline">\(t\)</span> con <span class="math inline">\(n-1\)</span> grados de libertad (<span class="math inline">\(0.025\)</span>-cuantil)</p>
+<hr />
+<hr />
+</div>
+<div id="ejemplo-1-3" class="section level2 hasAnchor" number="11.16">
+<h2><span class="header-section-number">11.16</span> Ejemplo 1<a href="teorema-del-límite-central.html#ejemplo-1-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Volviendo al ejemplo de la carga de rotura, calculamos el margen de error con <strong>conocido</strong> <span class="math inline">\(\sigma^2=0.35^2\)</span>.</p>
+<p><span class="math display">\[m=z_{0,025} \frac{\sigma}{\sqrt{n}}=1,96\times se=1,96\frac{0,35}{\sqrt{8}}=0,24\]</span></p>
+<ul>
+<li>En la mayoría de las aplicaciones <strong>no conocemos</strong> los parámetros</li>
+</ul>
+<p>Si solo asumiéramos que la carga de rotura es una variable aleatoria normal</p>
+<p><span class="math display">\[X \rightarrow N(\mu, \sigma^2)\]</span>
+con <strong>desconocido</strong> <span class="math inline">\(\mu\)</span> y <span class="math inline">\(\sigma^2\)</span> luego de los datos</p>
+<ul>
+<li><span class="math inline">\(s_{stock}=\sqrt{0.1275608}\)</span></li>
+</ul>
+<p>y el margen de error es <span class="math display">\[m=t_{0.025, n-1} \frac{s}{\sqrt{n}}=2.36\times \hat{se}=2.36\frac{0.3571565}{\sqrt{ 8}}=0.29\]</span>
+donde <span class="math inline">\(t_{0.025, n-1}=2.36\)</span></p>
+<p>en R es <code>qt(1-0.025, 7)</code></p>
+<p>Aumentó a partir del valor que obtuvimos con <strong>conocido</strong> <span class="math inline">\(\sigma\)</span></p>
+<hr />
+<hr />
+</div>
+<div id="ejemplo-2-2" class="section level2 hasAnchor" number="11.17">
+<h2><span class="header-section-number">11.17</span> Ejemplo 2<a href="teorema-del-límite-central.html#ejemplo-2-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>También podemos preguntar por la probabilidad de observar un error en la estimación de <span class="math inline">\(\mu\)</span> (distancia entre <span class="math inline">\(\bar{X}\)</span> y <span class="math inline">\(\mu\)</span>) menor que el valor observado <span class="math inline">\(0.21\)</span>?</p>
+<p>Entonces queremos calcular <span class="math display">\[P(-0.21 \leq \bar{X} - \mu\leq 0.21)=P(\frac{-0.21}{s/\sqrt{n}} \leq T \leq \frac {0.21}{s/\sqrt{n}})\]</span></p>
+<p><br>
+<span class="math inline">\(=P(\frac{-0.21}{0.3571565/\sqrt{8}} \leq T \leq \frac{0.21}{0.3571565/\sqrt{8}})\)</span></p>
+<p><span class="math inline">\(=F_{t, n-1}(0,21)-F_{t, n-1}(-0,21)\)</span></p>
+<p>En R podemos calcularlo como:</p>
+<p><code>pt(1.663052, 7)-pt(-1.663052, 7)=0.859</code>.</p>
+<p><span class="math inline">\(85,9\%\)</span> de los errores son inferiores a <span class="math inline">\(0,21\)</span>, por lo que el error <strong>observado</strong> parece más típico que el <span class="math inline">\(91\%\)</span> que obtenemos con <span class="math inline">\(\sigma^2=0,35^2\)</span>.</p>
+<p>Tenga en cuenta que en los cálculos hemos sustituido <span class="math inline">\(\sigma=0.35\)</span> por una estimación más alta <span class="math inline">\(s=0.3571565\)</span> <strong>obtenida de los datos</strong>.</p>
 
 </div>
 </div>
@@ -450,8 +676,8 @@
           </div>
         </div>
       </div>
-
-<a href="descripción-de-datos.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="distribuciones-de-muestreo.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="ejercicios.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -482,7 +708,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/USERNAME/REPO/edit/BRANCH/index.Rmd",
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/10-CLT.Rmd",
 "text": "Edit"
 },
 "history": {

@@ -6,7 +6,7 @@
 ]{book}
 \title{Stats theory (SDA)}
 \author{Alejandro Caceres}
-\date{2022-10-31}
+\date{2022-11-04}
 
 \usepackage{amsmath,amssymb}
 \usepackage{lmodern}
@@ -968,12 +968,12 @@ Say we repeated the experiment 1000 times:
 
 \begin{verbatim}
 ##   outcome  ni    fi
-## 1       1 185 0.185
-## 2       2 145 0.145
-## 3       3 166 0.166
-## 4       4 166 0.166
+## 1       1 171 0.171
+## 2       2 175 0.175
+## 3       3 171 0.171
+## 4       4 162 0.162
 ## 5       5 159 0.159
-## 6       6 179 0.179
+## 6       6 162 0.162
 \end{verbatim}
 
 We find that \(f_i\) is converging to a constant value
@@ -5914,9 +5914,7 @@ Given the \textbf{observed} sample, there is an estimated probability of \(0.03\
 
 When we have a normal random variable
 
-\begin{verbatim}
-$$X \rightarrow N(x; \mu, \sigma^2)$$
-\end{verbatim}
+\[X \rightarrow N(x; \mu, \sigma^2)\]
 
 and we know \(\mu\) and \(\sigma^2\).
 
@@ -6214,6 +6212,424 @@ There is only a probability of \(1\%\) of obtaining a value greater than \(s^2=0
 \item
   the sample is not too dispersed and we believe that the production is under control.
 \end{itemize}
+
+\hypertarget{central-limit-theorem}{%
+\chapter{Central limit theorem}\label{central-limit-theorem}}
+
+\hypertarget{objective-9}{%
+\section{Objective}\label{objective-9}}
+
+\begin{itemize}
+\tightlist
+\item
+  Margin of errors
+\item
+  Central limit theorem
+\item
+  t-statistic
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{margin-of-error}{%
+\section{Margin of error}\label{margin-of-error}}
+
+When deciding whether an \textbf{observed error} is large or not we usually compare it with a \textbf{predefined} tolerance.
+
+\begin{itemize}
+\tightlist
+\item
+  The \textbf{margin of error} at \(5\%\) level is the distance \(m\) such that distribution of \(\bar{X}\) captures \(95\%\) of the estimations:
+\end{itemize}
+
+\[P(-m \leq \bar{X}-\mu \leq m)=P(\mu-m \leq \bar{X} \leq\mu + m)=0.95\]
+
+\begin{itemize}
+\tightlist
+\item
+  or that \(95\%\) of the values of \(\bar{X}\) are a distance \(m\) from \(\mu\)
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{margin-of-error-1}{%
+\section{Margin of error}\label{margin-of-error-1}}
+
+Let's continue with the breaking load example.
+
+for the \(8\)-sample
+
+\begin{verbatim}
+## [1] 13.34642 13.32620 13.01459 13.10811 12.96999 13.55309 13.75557 12.62747
+\end{verbatim}
+
+the \textbf{observed error} is the difference
+
+\[\bar{x}_{stock}-\mu=13.21-13=0.21\]
+Is this value below the margin of error at \(5\%\)?
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{z-statistic}{%
+\section{Z-statistic}\label{z-statistic}}
+
+If we \textbf{know} that for our cables truly distribute as
+\[X \rightarrow N(\mu=13, \sigma^2=0.35^2)\] then,
+
+\[\bar{X} \rightarrow N(\mu, \frac{\sigma^2}{n})\]
+
+and the \(5\%\) margin of error for the average in our \(8\)-sample can be computed from the \textbf{standardized statistic}:
+
+\[Z=\frac{\bar{X}-E(\bar{X})}{\sqrt{V(\bar{X})}} =\frac{\bar{X}-\mu}{\frac{\sigma}{\sqrt{n}}}  \rightarrow N(0,1)\]
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{z-statistic-1}{%
+\section{Z-statistic}\label{z-statistic-1}}
+
+to compute the margin of error \(m\) at \(5\%\) level we standardize (subtract \(\mu\) and divide by \(\sigma/\sqrt{n}\))
+
+\(P(\mu-m \leq \bar{X} \leq\mu + m)=P(-\frac{m}{\sigma/\sqrt{n}} \leq \frac{\bar{X}-\mu}{\frac{\sigma}{\sqrt{n}}}\leq\frac{m}{\sigma/\sqrt{n}})\)
+\[=P(-\frac{m}{\sigma/\sqrt{n}} \leq Z \leq\frac{m}{\sigma/\sqrt{n}})=0.95\]
+
+(compare it with the plot) we have
+
+\[m=z_{0.025} \frac{\sigma}{\sqrt{n}}=1.96\times se=1.96\frac{0.35}{\sqrt{8}}=0.24\]
+where \(z_{0.025}=1.96\) is the value \(Z\) that leaves \(2.5\%\) at each side of standard normal density (\(0.025\)-quantile)
+
+Our observed error \(0.21\)
+
+\begin{itemize}
+\item
+  is less than the margin of error \(0.24\) at level \(5\%\).
+\item
+  and, therefore, it is expected within the \(95\%\) of errors.
+\end{itemize}
+
+If an observation of \(\bar{x}\) distance more than \(\sim 2\) times the \(se\) we say that the error is \textbf{unusually} large.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{z-statistic-2}{%
+\section{Z-statistic}\label{z-statistic-2}}
+
+\textbf{Definition}
+
+For a normal random variable \(X\)
+
+\[X \rightarrow N(\mu, \sigma^2)\] with \textbf{known} \(\sigma\)
+
+The \(Z\) statistic:
+
+\[Z=\frac{\bar{X}-E(\bar{X})}{\sqrt{V(\bar{X})}}\]
+is a standard random variable whose \(1-\alpha/2\)-quantiles (\(z_{1-\alpha/2}\)) give a measure of the margin of error of \(\bar{X}\) at \(1-\alpha\) level
+
+\[m=z_{1-\alpha/2}\frac{\sigma}{\sqrt{n}}\]
+
+\textbf{A common situation:}
+
+\begin{itemize}
+\tightlist
+\item
+  What happens when \(X\) is not normally distributed?
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{central-limit-theorem-1}{%
+\section{Central Limit Theorem}\label{central-limit-theorem-1}}
+
+For any random variable \(X\) with \textbf{unknown} (any type of) distribution
+
+\[X \rightarrow f(x; \theta)\]
+the standardized statistic
+
+\[Z=\frac{\bar{X}-E(\bar{X})}{\sqrt{V(\bar{X})}}\]
+
+approximates to a standard distribution
+
+\[Z \rightarrow_d N(0,1)\] when \(n\rightarrow \infty\)
+
+Therefore:
+
+\begin{itemize}
+\tightlist
+\item
+  We can compute probabilities for \(\bar{X}\) if \(n\) is large, using the normal distribution:
+\end{itemize}
+
+\[\bar{X} \sim_{aprox}  N(E(X), \frac{V(X)}{n})\]
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{central-limit-theorem-2}{%
+\section{Central Limit Theorem}\label{central-limit-theorem-2}}
+
+\textbf{Example:}
+
+Consider an experiment where we measure the concentration in blood of a drug after 10-hour administration in \(30\) patients. We obtain the following results:
+
+\begin{verbatim}
+##  [1] 0.42172863 0.28830514 0.66452743 0.01578868 0.02810549 0.15825061
+##  [7] 0.15711365 0.07263340 1.36311823 0.01457672 0.50241503 0.24010736
+## [13] 0.14050681 0.18855892 0.09414202 0.42489306 0.78160177 0.23938021
+## [19] 0.29546742 2.02050586 0.42157487 0.48293561 0.74263790 0.67402224
+## [25] 0.58426449 0.80292617 0.74837143 0.78532627 0.01588387 0.29892485
+\end{verbatim}
+
+\begin{itemize}
+\item
+  the average is \(\bar{x}=0.56\)
+\item
+  the histogram of the results is:
+\end{itemize}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-76-1.pdf}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{central-limit-theorem-3}{%
+\section{Central Limit Theorem}\label{central-limit-theorem-3}}
+
+If we \textbf{know} that levels follow an exponential distribution \[X \rightarrow exp(\lambda=2)\]
+
+The mean and variance are:
+
+\begin{itemize}
+\tightlist
+\item
+  \(E(X)=\frac{1}{\lambda}=0.5\)
+\item
+  \(V(X)=\frac{1}{\lambda^2}=0.25\)
+\end{itemize}
+
+Therefore the mean and variance of \(\bar{X}\) are:
+
+\begin{itemize}
+\tightlist
+\item
+  \(E(\bar{X})=\frac{1}{\lambda}=0.5\)
+\item
+  \(V(\bar{X})=\frac{V(X)}{n}=\frac{1}{n\lambda^2}=0.25/30\)
+\end{itemize}
+
+As \(n \geq 30\)
+
+\[Z=\frac{\bar{X}-\lambda}{\sqrt{\frac{1}{n\lambda^2}}}\]
+
+is a standard normal variable and: \(\bar{X} \sim_{aprox} N(\lambda, \frac{1}{n\lambda^2})\)
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-77-1.pdf} \includegraphics{_main_files/figure-latex/unnamed-chunk-77-2.pdf}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{margin-of-error-with-clt}{%
+\section{Margin of error with CLT}\label{margin-of-error-with-clt}}
+
+Since
+
+\[\bar{X} \sim_{aprox}  N(E(X), \frac{V(X)}{n})\]
+
+The margin of error at \(5\%\) level
+
+\[P(E(X)-m \leq \bar{X} \leq E(X) + m)=0.95\]
+
+can be computed again with the standard distribution
+
+\[m=z_{0.025} \sqrt{\frac{V(X)}{n}}=1.96\sqrt{\frac{0.25}{30}}=0.1789227\]
+
+We \textbf{observed} \(\bar{x}=0.5638725\) therefore the \textbf{observed error} in estimation is
+
+\[\bar{x} - E(X)=0.5638725-0.5=0.063\]
+
+which is within the margin of error.
+
+The error that we observed is common and within the \(95\%\) of errors.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{sample-sum-and-clt}{%
+\section{Sample sum and CLT}\label{sample-sum-and-clt}}
+
+For any random variable \(X\) with \textbf{unknown} (any type of) distribution
+
+\[X \rightarrow f(x; \theta)\]
+
+the standardized statistic
+
+\[Z=\frac{\bar{X}-E(\bar{X})}{\sqrt{V(\bar{X})}}=\frac{n\bar{X}-nE(\bar{X})}{\sqrt{nV(\bar{X})}}\]
+
+approximates to a standard distribution
+
+\[Z \rightarrow_d N(0,1)\] when \(n\rightarrow \infty\)
+
+Therefore:
+
+\begin{itemize}
+\tightlist
+\item
+  We can compute probabilities for the sample sum \(Y=n\bar{X}\) if \(n\) is large, using the normal distribution:
+\end{itemize}
+
+\[\bar{Y} \sim_{aprox}  N(nE(X), nV(X))\]
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{unknown-sigma-but-large-n}{%
+\section{\texorpdfstring{Unknown \(\sigma\) but large \(n\)}{Unknown \textbackslash sigma but large n}}\label{unknown-sigma-but-large-n}}
+
+For any random variable \(X\) with \textbf{unknown} (any type of) distribution
+
+\[X \rightarrow f(x; \theta)\]
+
+with \textbf{unknown} variance \(V(X)\), we can estimate the standard error (\(se=\sqrt{V(X)/n}\)) by the sample standard deviation
+
+\[\hat{se}=\frac{s}{\sqrt{n}}\] and write the standardized statistic
+
+\[Z=\frac{\bar{X}-E(\bar{X})}{\frac{s}{\sqrt{n}}} \]
+
+\[Z \rightarrow_d N(0,1)\] to recover the CLT when \(n\rightarrow \infty\) (a good aproximation is when \(n>30\))
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{t-statistic}{%
+\section{T-statistic}\label{t-statistic}}
+
+When
+
+\begin{itemize}
+\tightlist
+\item
+  \(\sigma\) is \textbf{unknown}
+\end{itemize}
+
+and
+
+\begin{itemize}
+\tightlist
+\item
+  \(n\) is small (cannot apply CLT)
+\end{itemize}
+
+However, if \(X\) is normal
+
+\[X \rightarrow N(\mu, \sigma^2)\] then the standardized statistic
+
+\[T=\frac{\bar{X}-\mu}{\frac{S}{\sqrt{n}}} \]
+
+Follows a \(t\)-distribution with \(n-1\) degrees of freedom, and we can compute probabilities on \(\bar{X}\).
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{t-statistic-1}{%
+\section{T-statistic}\label{t-statistic-1}}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-78-1.pdf}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{t-statistic-2}{%
+\section{T-statistic}\label{t-statistic-2}}
+
+To compute the margin of error \(m\) at \(5\%\) level when \(n\) is small, \(\sigma\) unknown but \(X\) normal
+
+\(P(\mu-m \leq \bar{X} \leq\mu + m)=P(-\frac{m}{s/\sqrt{n}} \leq \frac{\bar{X}-\mu}{\frac{s}{\sqrt{n}}} \leq\frac{m}{s/\sqrt{n}})\)
+\[=P(-\frac{m}{s/\sqrt{n}} \leq T \leq\frac{m}{s/\sqrt{n}})=0.95\]
+
+We use the \(t\)-distribution
+
+\[m=t_{0.025, n-1} \frac{s}{\sqrt{n}}\]
+where \(t_{0.025, n-1}\) is the value \(T\) that leaves \(2.5\%\) at each side of \(t\)-distribution with \(n-1\) degrees of freedom (\(0.025\)-quantile)
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{example-1-3}{%
+\section{Example 1}\label{example-1-3}}
+
+Going back to the breaking load example, we computed the margin of error with \textbf{known} \(\sigma^2=0.35^2\).
+
+\[m=z_{0.025} \frac{\sigma}{\sqrt{n}}=1.96\times se=1.96\frac{0.35}{\sqrt{8}}=0.24\]
+
+\begin{itemize}
+\tightlist
+\item
+  In most applications we \textbf{do not know} the parameters
+\end{itemize}
+
+If we only assumed that the breaking load is a normal random variable
+
+\[X \rightarrow N(\mu, \sigma^2)\]
+with \textbf{unknown} \(\mu\) and \(\sigma^2\) then from the data
+
+\begin{itemize}
+\tightlist
+\item
+  \(s_{stock}=\sqrt{0.1275608}\)
+\end{itemize}
+
+and the margin of error is \[m=t_{0.025, n-1} \frac{s}{\sqrt{n}}=2.36\times \hat{se}=2.36\frac{0.3571565}{\sqrt{8}}=0.29\]
+where \(t_{0.025, n-1}=2.36\)
+
+in R is qt(1-0.025, 7)
+
+It increased from the value we obtained with \textbf{known} \(\sigma\)
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{example-2-2}{%
+\section{Example 2}\label{example-2-2}}
+
+We can also ask for the probability of observing an error in the estimation of \(\mu\) (distance between \(\bar{X}\) and \(\mu\)) smaller than the observed value \(0.21\)?
+
+We thus want to compute \[P(-0.21 \leq \bar{X} - \mu\leq 0.21)=P(\frac{-0.21}{s/\sqrt{n}} \leq T \leq \frac{0.21}{s/\sqrt{n}})\]
+
+\(=P(\frac{-0.21}{0.3571565/\sqrt{8}} \leq T \leq \frac{0.21}{0.3571565/\sqrt{8}})\)
+
+\(=F_{t, n-1}(0.21)-F_{t, n-1}(-0.21)\)
+
+In R we can compute it as:
+
+pt(1.663052, 7)-pt(-1.663052, 7)=0.859.
+
+\(85.9\%\) of the errors are less than \(0.21\), therefore the \textbf{observed} error seems more typical than the \(91\%\) that we obtain with \(\sigma^2=0.35^2\).
+
+Note that in the calculations we have substituted \(\sigma=0.35\) by a higher estimate \(s=0.3571565\) \textbf{obtained from data}.
 
 \hypertarget{exercises}{%
 \chapter{Exercises}\label{exercises}}
@@ -6649,7 +7065,7 @@ Consider that we have a totally noisy channel, that is any outcome of three pixe
   What are the first and third quartiles? (R: 25; 75)
 \end{itemize}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-80-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-85-1.pdf}
 
 \hypertarget{exercise-5-1}{%
 \subsubsection{Exercise 5}\label{exercise-5-1}}
@@ -6822,9 +7238,9 @@ The mean life of the component (\(\mu\)) is \(100\) hours and its standard devia
 
 \begin{itemize}
 \item
-  what is the probability that the average of the mean life of \(50\) components is within \(1\) hour from the mean life of a single component?
+  what is the probability that the average of the mean life of \(50\) components is within \(1\) hour from the mean life of a single component? (R:0.1863)
 \item
-  How many components do we need such that the telescope is operational \(2750\) consecutive hours with \(0.95\) probability?
+  How many components do we need such that the telescope is operational \(2750\) consecutive hours with at least \(0.95\) probability? (R:31)
 \end{itemize}
 
 \hypertarget{exercise-3-3}{%

@@ -6,7 +6,7 @@
 ]{book}
 \title{Stats theory (SDA)}
 \author{Alejandro Caceres}
-\date{2022-11-04}
+\date{2022-11-09}
 
 \usepackage{amsmath,amssymb}
 \usepackage{lmodern}
@@ -1018,12 +1018,12 @@ Say we repeated the experiment 1000 times:
 
 \begin{verbatim}
 ##   outcome  ni    fi
-## 1       1 179 0.179
-## 2       2 151 0.151
-## 3       3 147 0.147
-## 4       4 188 0.188
-## 5       5 158 0.158
-## 6       6 177 0.177
+## 1       1 183 0.183
+## 2       2 157 0.157
+## 3       3 186 0.186
+## 4       4 148 0.148
+## 5       5 165 0.165
+## 6       6 161 0.161
 \end{verbatim}
 
 We find that \(f_i\) is converging to a constant value
@@ -6359,7 +6359,7 @@ When deciding whether an \textbf{observed error} is large or not we usually comp
 \hypertarget{margin-of-error-1}{%
 \section{Margin of error}\label{margin-of-error-1}}
 
-Let's continue with the braking load example.
+Let's continue with the breaking load example.
 
 for the \(8\)-sample
 
@@ -6680,7 +6680,7 @@ where \(t_{0.025, n-1}\) is the value \(T\) that leaves \(2.5\%\) at each side o
 \hypertarget{example-1-3}{%
 \section{Example 1}\label{example-1-3}}
 
-Going back to the braking load example, we computed the margin of error with \textbf{known} \(\sigma^2=0.35^2\).
+Going back to the breaking load example, we computed the margin of error with \textbf{known} \(\sigma^2=0.35^2\).
 
 \[m=z_{0.025} \frac{\sigma}{\sqrt{n}}=1.96\times se=1.96\frac{0.35}{\sqrt{8}}=0.24\]
 
@@ -6690,7 +6690,7 @@ Going back to the braking load example, we computed the margin of error with \te
   In most applications we \textbf{do not know} the parameters
 \end{itemize}
 
-If we only assumed that the braking load is a normal random variable
+If we only assumed that the breaking load is a normal random variable
 
 \[X \rightarrow N(\mu, \sigma^2)\]
 with \textbf{unknown} \(\mu\) and \(\sigma^2\) then from the data
@@ -9565,7 +9565,7 @@ within the acceptance region.
 \setcounter{enumi}{1}
 \tightlist
 \item
-  The \[pvalue=2(1-F^{-1}_{t,7}(1.6843))=0.136\]
+  The \[pvalue=2(1-F_{t,7}(1.6843))=0.136\]
 \end{enumerate}
 
 R: 2*(1-pt(1.6843,7))
@@ -9650,7 +9650,7 @@ within the acceptance region.
 \setcounter{enumi}{1}
 \tightlist
 \item
-  For the upper tail \[pvalue=1-F^{-1}_{t,7}(1.6843)=0.06799782\]
+  For the upper tail \[pvalue=1-F_{t,7}(1.6843)=0.06799782\]
 \end{enumerate}
 
 R: 1-pt(1.6843,7)
@@ -11256,7 +11256,7 @@ is outside of the acceptance region.
   The two-tailed \(pvalue\):
 \end{itemize}
 
-\[pvalue=2*(1-F^{-1}_{t,21}(12.508))=3.376854 \times 10^{-11}\]
+\[pvalue=2*(1-F_{t,21}(12.508))=3.376854 \times 10^{-11}\]
 
 is lower than \(\alpha\).
 
@@ -11621,9 +11621,9 @@ The null hypothesis is \(H_0=\mu_A=\mu_B=\mu\) therefore \(H_0:\alpha_i=0\)
 
 and the ratio of squares
 
-\[\frac{MST}{MSE} \rightarrow F(2n-2, n-1)\]
+\[\frac{MST}{MSE} \rightarrow F(2n-2, k-1)\]
 
-follows a \(F\) distribution with \(2n-2\) and \(n-1\) degrees of freedom.
+follows a \(F\) distribution with \(2n-2\) and \(k-1\) degrees of freedom, where \(k\) is the number of groups, and \(n\) the average number of observations per group.
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
@@ -11653,7 +11653,8 @@ We have assumed the same number of observations in each group but when there are
 \[f_{obs}=t_{obs}^2=(−12.508)^2=156.45\]
 The upper tailed pvalue for \(f_{obs}\) is
 
-\[pvalue=1-F^{-1}_{F,1,21}(156.45)=3.377 \times 10^{-11}\]
+\[pvalue=1-F_{F,21,1}(156.45)=3.377 \times 10^{-11}\] with \(n=11.5\) and \(k=2\)
+
 in R: 1-pf(156.45, 1,21)
 
 Which is the same as the one obtained with the t-test with equal variances.
@@ -11885,9 +11886,9 @@ The observed value of the statistics is
 
 \[\frac{MST}{MSE}=63.373\]
 
-which is still a \textbf{rare} observation of an \(F\) distribution with \(2\) and \(30=(16+7+10)/3-1\) degrees of freedom
+which is still a \textbf{rare} observation of an \(F\) distribution with \(2=3-1\) and \(30=3*(11-1)\) degrees of freedom (where \(k=3\) is the number of conditions and \(n=(16 + 7 + 10)/3\) is the mean number of observations per condition).
 
-\[pvalue=1-F^{-1}_{F,2,30}(63.373)=1.694 \times 10^{-11}\]
+\[pvalue=1-F_{F,2,30}(63.373)=1.694 \times 10^{-11}\]
 
 Suggesting significant differences in at least one group mean.
 
@@ -14507,9 +14508,9 @@ The mean life of the component (\(\mu\)) is \(100\) hours and its standard devia
 
 \begin{itemize}
 \item
-  what is the probability that the average of the mean life of \(50\) components is within \(1\) hour from the mean life of a single component?
+  what is the probability that the average of the mean life of \(50\) components is within \(1\) hour from the mean life of a single component? (R:0.1863)
 \item
-  How many components do we need such that the telescope is operational \(2750\) consecutive hours with \(0.95\) probability?
+  How many components do we need such that the telescope is operational \(2750\) consecutive hours with at least \(0.95\) probability? (R:31)
 \end{itemize}
 
 \hypertarget{exercise-3-3}{%
@@ -14629,6 +14630,12 @@ f(x)=
 
 What is the estimated value of the parameter \(\theta\)?
 
+\begin{itemize}
+\tightlist
+\item
+  Compute \(E(X)=\mu\) as a function of \(\theta\). What is the maximum likelihood estimate for \(\mu\)?
+\end{itemize}
+
 \hypertarget{exercise-3-4}{%
 \subsubsection{Exercise 3}\label{exercise-3-4}}
 
@@ -14651,6 +14658,13 @@ Take a random variable with the following probability density function
 \end{itemize}
 
 What is the estimated value of the parameter \(\lambda\)?
+
+\begin{itemize}
+\item
+  What is the maximum likelihood estimate of the parameter \(\alpha=\frac{2}{\lambda}\)
+\item
+  Is the estimator for \(\alpha\) unbiased and consistent?
+\end{itemize}
 
 \hypertarget{method-of-moments-11}{%
 \section{Method of moments}\label{method-of-moments-11}}

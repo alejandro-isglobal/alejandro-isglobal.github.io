@@ -24,7 +24,7 @@
 <meta name="author" content="Alejandro Caceres" />
 
 
-<meta name="date" content="2022-11-04" />
+<meta name="date" content="2022-11-09" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -986,8 +986,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p>If <span class="math inline">\(Y_i \rightarrow N(\mu_i, \sigma^2_i)\)</span> then <span class="math inline">\(MSE \rightarrow \chi^2(2n-2)\)</span> and <span class="math inline">\(MST \rightarrow \chi^2(n-1)\)</span></p></li>
 </ul>
 <p>and the ratio of squares</p>
-<p><span class="math display">\[\frac{MST}{MSE} \rightarrow F(2n-2, n-1)\]</span></p>
-<p>follows a <span class="math inline">\(F\)</span> distribution with <span class="math inline">\(2n-2\)</span> and <span class="math inline">\(n-1\)</span> degrees of freedom.</p>
+<p><span class="math display">\[\frac{MST}{MSE} \rightarrow F(2n-2, k-1)\]</span></p>
+<p>follows a <span class="math inline">\(F\)</span> distribution with <span class="math inline">\(2n-2\)</span> and <span class="math inline">\(k-1\)</span> degrees of freedom, where <span class="math inline">\(k\)</span> is the number of groups, and <span class="math inline">\(n\)</span> the average number of observations per group.</p>
 <hr />
 <hr />
 </div>
@@ -1006,8 +1006,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>We have assumed the same number of observations in each group but when there are two groups the results above holds</p>
 <p><span class="math display">\[f_{obs}=t_{obs}^2=(−12.508)^2=156.45\]</span>
 The upper tailed pvalue for <span class="math inline">\(f_{obs}\)</span> is</p>
-<p><span class="math display">\[pvalue=1-F^{-1}_{F,1,21}(156.45)=3.377 \times 10^{-11}\]</span>
-in R: <code>1-pf(156.45, 1,21)</code></p>
+<p><span class="math display">\[pvalue=1-F_{F,21,1}(156.45)=3.377 \times 10^{-11}\]</span> with <span class="math inline">\(n=11.5\)</span> and <span class="math inline">\(k=2\)</span></p>
+<p>in R: <code>1-pf(156.45, 1,21)</code></p>
 <p>Which is the same as the one obtained with the t-test with equal variances.</p>
 <hr />
 <hr />
@@ -1152,8 +1152,8 @@ We can draw boxplots per group</p></li>
 <h2><span class="header-section-number">18.19</span> ANOVA several groups<a href="mean-differences-between-several-samples.html#anova-several-groups-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>The observed value of the statistics is</p>
 <p><span class="math display">\[\frac{MST}{MSE}=63.373\]</span></p>
-<p>which is still a <strong>rare</strong> observation of an <span class="math inline">\(F\)</span> distribution with <span class="math inline">\(2\)</span> and <span class="math inline">\(30=(16+7+10)/3-1\)</span> degrees of freedom</p>
-<p><span class="math display">\[pvalue=1-F^{-1}_{F,2,30}(63.373)=1.694 \times 10^{-11}\]</span></p>
+<p>which is still a <strong>rare</strong> observation of an <span class="math inline">\(F\)</span> distribution with <span class="math inline">\(2=3-1\)</span> and <span class="math inline">\(30=3*(11-1)\)</span> degrees of freedom (where <span class="math inline">\(k=3\)</span> is the number of conditions and <span class="math inline">\(n=(16 + 7 + 10)/3\)</span> is the mean number of observations per condition).</p>
+<p><span class="math display">\[pvalue=1-F_{F,2,30}(63.373)=1.694 \times 10^{-11}\]</span></p>
 <p>Suggesting significant differences in at least one group mean.</p>
 <hr />
 <hr />

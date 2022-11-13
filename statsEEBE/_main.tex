@@ -6,7 +6,7 @@
 ]{book}
 \title{Estadística}
 \author{Alejandro Caceres}
-\date{2022-11-04}
+\date{2022-11-13}
 
 \usepackage{amsmath,amssymb}
 \usepackage{lmodern}
@@ -975,12 +975,12 @@ Digamos que repetimos el experimento 1000 veces:
 
 \begin{verbatim}
 ##   outcome  ni    fi
-## 1       1 163 0.163
-## 2       2 149 0.149
-## 3       3 155 0.155
-## 4       4 198 0.198
-## 5       5 174 0.174
-## 6       6 161 0.161
+## 1       1 154 0.154
+## 2       2 168 0.168
+## 3       3 165 0.165
+## 4       4 165 0.165
+## 5       5 168 0.168
+## 6       6 180 0.180
 \end{verbatim}
 
 Encontramos que \(f_i\) está convergiendo a un valor constante
@@ -6671,6 +6671,852 @@ pt(1.663052, 7)-pt(-1.663052, 7)=0.859.
 
 Tenga en cuenta que en los cálculos hemos sustituido \(\sigma=0.35\) por una estimación más alta \(s=0.3571565\) \textbf{obtenida de los datos}.
 
+\hypertarget{muxe1xima-verosimilitud}{%
+\chapter{Máxima verosimilitud}\label{muxe1xima-verosimilitud}}
+
+\hypertarget{objetivo-11}{%
+\section{Objetivo}\label{objetivo-11}}
+
+\begin{itemize}
+\tightlist
+\item
+  Máxima verosimilitud
+\item
+  Método de los Momentos
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{estaduxedstica}{%
+\section{Estadística}\label{estaduxedstica}}
+
+\textbf{Definición}
+
+Dada una muestra aleatoria \(X_1,...X_n\), una \textbf{estadística} es cualquier función de valor real de las variables aleatorias que definen la muestra aleatoria: \(f(X_1,...X_n)\)
+
+\begin{itemize}
+\tightlist
+\item
+  \(\bar{X}=\frac{1}{N} \sum_{j=1..N} X_j\)
+\item
+  \(S^2=\frac{1}{n-1}\sum_{i=1}^n (X_i-\bar{X})^2\)
+\item
+  \(\max{X_1, X_n}\)
+\end{itemize}
+
+son estadísticas
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{estimador}{%
+\section{Estimador}\label{estimador}}
+
+\textbf{Definición}
+
+Un \textbf{estimador} es un estadístico \(\Theta\) cuyos valores \(\hat{\theta}\) son medidas de un parámetro \(\theta\) de la distribución poblacional sobre la que se define la muestra: \(E(\Theta)\sim \theta\)
+
+\(X \hookrightarrow f(x; \theta)\)
+
+Entonces
+
+\begin{itemize}
+\tightlist
+\item
+  \(\theta\) es un \textbf{parámetro} de la distribución de la población \(f(x; \theta)\)
+\item
+  \(\Theta\) es un \textbf{estimador} de \(\theta\): Una variable aleatoria
+\item
+  \(\hat{\theta}\) es la \textbf{estimación} de \(\theta\): Un valor realizado de \(\Theta\)
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{estimador-1}{%
+\section{Estimador}\label{estimador-1}}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{ejemplos-1-promedio-media-de-la-muestra}{%
+\section{Ejemplos 1: promedio (media de la muestra)}\label{ejemplos-1-promedio-media-de-la-muestra}}
+
+Cuando \(X \hookrightarrow N(\mu, \sigma^2)\)
+
+Para la media:
+
+\begin{itemize}
+\tightlist
+\item
+  \(\mu\) es un \textbf{parámetro} de la distribución poblacional \(N(\mu, \sigma^2)\)
+\item
+  \(\bar{X}\) es un \textbf{estimador} de \(\mu\)
+\item
+  \(\bar{x}=\hat{\mu}=13.21 \, Tons\) es el \textbf{estimado} de \(\mu\)
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{ejemplos-2-variaciuxf3n-de-la-muestra}{%
+\section{Ejemplos 2: Variación de la muestra}\label{ejemplos-2-variaciuxf3n-de-la-muestra}}
+
+Cuando \(X \hookrightarrow N(\mu, \sigma^2)\)
+
+Para la varianza:
+
+\begin{itemize}
+\tightlist
+\item
+  \(\sigma^2\) es un \textbf{parámetro} de la distribución de la población \(N(\mu, \sigma^2)\)
+\item
+  \(S^2\) es un \textbf{estimador} de \(\sigma^2\)
+\item
+  \(s^2=\hat{\sigma^2}=0.127 \, Tons^2\) es la \textbf{estimación} de \(\sigma^2\)
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{sesgo}{%
+\section{Sesgo}\label{sesgo}}
+
+Un estimador es insesgado (no tiene sesgo) si \(E(\Theta)=\theta\)
+
+\begin{itemize}
+\item
+  \(\bar{X}\) es un estimador \textbf{insesgado} de \(\mu\) porque \(E(\bar{X})=\mu\)
+\item
+  \(S^2\) es un estimador \textbf{insesgado} de \(\sigma^2\) porque \(E(S^2)=\sigma^2\)
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{consistencia}{%
+\section{Consistencia}\label{consistencia}}
+
+Un estimador es consistente si \(V(\Theta) \rightarrow 0\) cuando \(n \rightarrow \infty\)
+
+\begin{itemize}
+\item
+  \(\bar{X}\) es \textbf{consistente} porque \(V(\bar{X})=\frac{\sigma}{n}\rightarrow 0\) cuando \(n \rightarrow \infty\).
+\item
+  \(S^2\) también es \textbf{coherente} (no lo mostraremos).
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{muxe1xima-verosimilitud-1}{%
+\section{Máxima verosimilitud}\label{muxe1xima-verosimilitud-1}}
+
+¿Cómo podemos \textbf{estimar} el parámetro de \textbf{cualquier} modelo paramétrico?
+
+\begin{itemize}
+\item
+  Imaginemos que diseñamos un láser con un diámetro de 1 mm que queremos usar para aplicaciones clínicas.
+\item
+  Queremos caracterizar el diámetro de un agujero en un tejido realizado con el láser
+\item
+  y tomar una muestra aleatoria de 30 cortes realizados con el láser
+\end{itemize}
+
+\begin{verbatim}
+##  [1] 1.11 1.64 1.20 1.79 1.89 1.01 1.31 1.81 1.34 1.25 1.92 1.24 1.49 1.36 1.03
+## [16] 1.82 1.09 1.01 1.14 1.91 1.80 1.51 1.44 1.98 1.46 1.53 1.33 1.39 1.12 1.04
+\end{verbatim}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{ejemplo-14}{%
+\section{Ejemplo}\label{ejemplo-14}}
+
+con histograma
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-83-1.pdf}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{densidad-de-probabilidad}{%
+\section{Densidad de probabilidad}\label{densidad-de-probabilidad}}
+
+Consideramos que
+
+\begin{itemize}
+\tightlist
+\item
+  se debe dar la máxima probabilidad a los diámetros de \(x=1mm\)
+\item
+  los diámetros deben disminuir exponencialmente en probabilidad a medida que aumentan de tamaño con un límite de \(2mm\) más allá del cual la probabilidad es de \(0\).
+\end{itemize}
+
+Una distribución de densidad de probabilidad adecuada es
+
+\[
+    f(x)= 
+\begin{cases}
+\frac{1}{\alpha}(x-1)^{\frac{1-\alpha}{\alpha}},& \text{if } x \in (1,2)\\
+    0,& x \notin (1,2)\\
+\end{cases}
+\]
+
+Donde \(\alpha\) es un parámetro.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{densidad-de-probabilidad-1}{%
+\section{Densidad de probabilidad}\label{densidad-de-probabilidad-1}}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-84-1.pdf}
+
+Si realizáramos una muestra de \(n\): \(X_1,...X_n\)
+
+\begin{itemize}
+\tightlist
+\item
+  La \textbf{máxima verosimilitud} es un método que \textbf{nos da el estimador} para \(\alpha\)
+\end{itemize}
+
+\[\hat{\alpha}_{ml}\]
+
+¿Cómo debemos combinar los datos para obtener el mejor valor de \(\hat{\alpha}_{ml}\)?
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{ejemplo-muxe1xima-probabilidad}{%
+\section{Ejemplo: Máxima probabilidad}\label{ejemplo-muxe1xima-probabilidad}}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-85-1.pdf}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{muxe1xima-verosimilitud-2}{%
+\section{Máxima verosimilitud}\label{muxe1xima-verosimilitud-2}}
+
+El objetivo es encontrar el valor del parámetro que \textbf{creemos} que puede representar \textbf{mejor} los datos.
+
+Buscamos el parámetro que hace más \textbf{probable} la \textbf{observación} de la muestra.
+
+Recordemos que:
+
+\begin{itemize}
+\tightlist
+\item
+  Las probabilidades se asignan a las observaciones.
+\item
+  Las probabilidades no se asignan a parámetros (asignamos creencias, probabilidades).
+\end{itemize}
+
+Se supone que los parámetros no deben cambiar, son propiedades del sistema.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{muxe9todo-paso-1}{%
+\section{Método paso 1}\label{muxe9todo-paso-1}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Calculamos la probabilidad de haber observado la muestra \(n\): \(x_1,...x_n\)
+\end{enumerate}
+
+\(P(x_1,...x_n)=P(x_1)P(X_2)...P(x_n)\)
+\[=f(x_1;\alpha)f(x_2;\alpha) ...f(x_n;\alpha)\]
+
+\begin{itemize}
+\tightlist
+\item
+  Una vez observados los datos se \textbf{fijan}.
+\item
+  La incógnita es \(\alpha\)
+\item
+  Esta probabilidad como función de \(\alpha\) la llamamos \textbf{función de verosimilitud}
+\end{itemize}
+
+\[L(\alpha)= \Pi_{i=1..n} f(x_i; \alpha)\]
+
+entonces en nuestro caso
+
+\(L(\alpha;x_1,..x_n)= \frac{1}{\alpha^n} \Pi_{i=1..n} (x_i-1)^{\frac{1-\alpha}{ \alpha}}= \frac{1}{\alpha^n} \{(x_1-1)(x_2-1)...(x_n-1)\}^{\frac{1-\alpha}{\ alpha}}\)
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{muxe9todo-paso-2}{%
+\section{Método paso 2}\label{muxe9todo-paso-2}}
+
+Queremos maximizar \(L(\alpha)\) con respecto a \(\alpha\).
+
+Como tenemos la multiplicación de muchos factores es más fácil maximizar el logaritmo de \(L(\alpha)\)
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  Tomemos el logaritmo para obetener el \textbf{Logaritmo de la verosimilitud}
+\end{enumerate}
+
+\[\ln L(\alpha;x_1,..x_n)= -n \ln(\alpha) + {\frac{1-\alpha}{\alpha}} \Sigma_{i=1...n} \ln (x_i-1)\]
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{muxe9todo-paso-3}{%
+\section{Método paso 3}\label{muxe9todo-paso-3}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  Maximizamos el log de la verosimilitud con respecto al parámetro
+\end{enumerate}
+
+Por lo tanto,
+
+\begin{itemize}
+\tightlist
+\item
+  diferenciamos con respecto a \(\alpha\)
+\end{itemize}
+
+\(\frac{d \ln L(\alpha)}{d \alpha}= -\frac{n}{\alpha} - \frac{1}{\alpha^2} \Sigma_{i=1... n} \ln (x_i)\)
+
+\begin{itemize}
+\tightlist
+\item
+  El máximo es donde la derivada es \(0\). Este máximo es el valor de nuestro estimador \(\hat{\alpha}_{ml}\).
+\end{itemize}
+
+\(\hat{\alpha}_{ml}=-\frac{1}{n}\Sigma_{i=1...n} \ln (x_i-1)\)
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{muxe9todo-paso-3-1}{%
+\section{Método paso 3}\label{muxe9todo-paso-3-1}}
+
+\(\hat{\alpha}_{ml}=-\frac{1}{n}\Sigma_{i=1...n} \ln (x_i-1)\)
+
+es la \textbf{estadística} que estima el parámetro.
+
+En nuestro ejemplo calculamos:
+
+\(\hat{\alpha}_{ml}=-\frac{1}{n}\{ \ln (1.11-1)+ \ln (1.64-1)+...\ln (1.04-1)\}=1.320\)
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{estimacion}{%
+\section{Estimacion}\label{estimacion}}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-86-1.pdf}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{estimacion-1}{%
+\section{Estimacion}\label{estimacion-1}}
+
+\begin{itemize}
+\item
+  Esta es la log de la verosimilitud de nuestros 30 cortes con láser.
+\item
+  Si tomamos otra muestra esta función cambia y también su máximo.
+\end{itemize}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-87-1.pdf}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{distribuciuxf3n-normal-9}{%
+\section{Distribución normal}\label{distribuciuxf3n-normal-9}}
+
+Imaginemos que tomamos una muestra de \(8\) cables para estmar la carga de rotura de cables y
+
+\begin{itemize}
+\item
+  \textbf{supongamos} que \[X \rightarrow N(\mu, \sigma^2)\].
+\item
+  ¿Cuáles son los estimadores de \(\mu\) y \(\sigma^2\) de la muestra?
+\end{itemize}
+
+¿Qué valores de los parámetros describen mejor los datos?
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{distribuciuxf3n-normal-10}{%
+\section{Distribución normal}\label{distribuciuxf3n-normal-10}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  La función de verosimilitud, la probabilidad de haber observado \((x_1, ....x_n)\) es
+\end{enumerate}
+
+\(L(\mu, \sigma^2)=\Pi_{i=1..n} N(x_i;\mu,\sigma)\)
+
+\(=\big( \frac{1}{\sigma \sqrt{2 \pi}}\big)^n e^{-\frac{1}{2\sigma^2} \sum_i(x_i-\mu)^ 2}\)
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  Podemos tomar el logaritmo de \(L\) y calcular la \textbf{el log de la verosimilitud}
+\end{enumerate}
+
+\(\ln L(\mu, \sigma^2)=-n \ln(\sigma \sqrt{2 \pi})-\frac{1}{2\sigma^2} \Sigma_i(x_i-\mu) ^2\)
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{distribuciuxf3n-normal-11}{%
+\section{Distribución normal}\label{distribuciuxf3n-normal-11}}
+
+Las estimaciones de \(\mu\), \(\sigma^2\) son donde la probabilidad es máxima y dan la probabilidad más alta para los datos.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  diferenciamos con respecto a \(\mu\) y \(\sigma^2\)
+\end{enumerate}
+
+\begin{itemize}
+\item
+  \(\frac{d \ln L(\mu, \sigma^2)}{d\mu}=\frac{1}{\sigma^2} \sum_i(x_i-\mu)\)
+\item
+  \(\frac{d \ln L(\mu, \sigma^2)}{d\sigma^2}=-\frac{n}{2 \sigma^2}+\frac{1}{2\sigma ^4} \sum_i(x_i-\mu)^2\)
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{distribuciuxf3n-normal-12}{%
+\section{Distribución normal}\label{distribuciuxf3n-normal-12}}
+
+Los derivados son \(0\) como máximo
+
+\begin{itemize}
+\tightlist
+\item
+  \(\frac{1}{\hat{\sigma}^2} \sum_i(x_i-\hat{\mu})=0\)
+\item
+  \(-\frac{n}{2 \hat{\sigma}^2}+\frac{1}{2\hat{\sigma}^4} \sum_i(x_i-\hat{\mu})^2 =0\)
+\end{itemize}
+
+resolviendo los parámetros encontramos
+
+\begin{itemize}
+\tightlist
+\item
+  \(\hat{\mu}_{ml}=\frac{1}{n}\sum_i x_i=\bar{x}\) (el promedio)
+\item
+  \(\hat{\sigma^2}_{ml}=\frac{1}{n}\sum_i(x_i-\bar{x})^2\) (la varianza de la muestra \textbf{sin corregir})
+\end{itemize}
+
+El estimador de máxima verosimilitud de \(\sigma^2\) es un estimador \textbf{sesgado} como: \(E(\hat{\sigma}^2_{ml})\neq \sigma^2\)
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{muxe1xima-probabilidad-historia}{%
+\section{Máxima probabilidad: Historia}\label{muxe1xima-probabilidad-historia}}
+
+¿Cuál es la estadística que mejor representa la verdadera posición de Ceres?
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{muxe1xima-probabilidad-historia-1}{%
+\section{Máxima probabilidad: Historia}\label{muxe1xima-probabilidad-historia-1}}
+
+Gauss propuso que en un momento \textbf{dado}
+
+\begin{itemize}
+\tightlist
+\item
+  la posición \textbf{verdadera} de Ceres era la media \(\mu\)
+\item
+  las probabilidades alrededor de la media eran simétricas.
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{muxe1xima-probabilidad-historia-2}{%
+\section{Máxima probabilidad: Historia}\label{muxe1xima-probabilidad-historia-2}}
+
+Gauss descubrió que si el promedio (\(\bar{x}\)) es el valor \textbf{más verosimil} para la posición real de Ceres (\(\mu\)), entonces la densidad de probabilidad de los errores es
+
+\[\frac{h}{\sqrt{\pi}}e^{-h^2(y-\mu_Y)^2}\]
+
+a la que llamamos la Gaussiana y que Pearson (1920) la bautizó como la curva normal.
+
+Nota: Suponemos que la posición \textbf{verdadera} de Ceres existe \(\mu\).
+
+\begin{itemize}
+\tightlist
+\item
+  ¿Podemos decir lo mismo para altura de los hombres \(\mu\)? (Galton)
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{muxe9todo-de-los-momentos}{%
+\section{Método de los Momentos}\label{muxe9todo-de-los-momentos}}
+
+El método de máxima verosimilitud tiene como objetivo producir los estimadores de distribuciones de probabilidad a partir de datos.
+
+\begin{itemize}
+\tightlist
+\item
+  ¿Hay otra forma de producir esos estimadores? serian iguales?
+\end{itemize}
+
+Veamos nuevamente los estimadores de máxima verosimilitud para \(\mu\) y \(\sigma^2\) para una variable aleatoria que se distribuye normalmente: \(X \hookrightarrow N(\mu, \sigma^2)\)
+
+\begin{itemize}
+\tightlist
+\item
+  \(\hat{\mu}=\frac{1}{n}\sum_i x_i\)
+\item
+  \(\hat{\sigma^2}=\frac{1}{n}\sum_i(x_i-\bar{x})^2\)
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{muxe9todo-de-los-momentos-1}{%
+\section{Método de los Momentos}\label{muxe9todo-de-los-momentos-1}}
+
+Reescribamos los estimadores en términos de los valores de \(X\) (resultados), no de las observaciones
+
+Por ejemplo:
+
+\[\hat{\mu}=\frac{1}{n}\sum_i x_i= \sum_x x \frac{n_x}{n}\]
+
+y recuerda que en el límite \(n \rightarrow \infty\) la interpretación frecuentista requiere \(\frac{n_x}{n} \rightarrow P(X=x)\) y por lo tanto en el límite
+
+\[\hat{\mu}=\frac{1}{n}\sum_i x_i \rightarrow E(X)\]
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{muxe9todo-de-los-momentos-2}{%
+\section{Método de los Momentos}\label{muxe9todo-de-los-momentos-2}}
+
+El método de los momentos dice que podemos tomar el valor \textbf{observado} del promedio \(\bar{X}= \frac{1}{n}\sum_i X_i\) como estimador de \$E(X)=\mu ps
+
+\[E(X)\sim\bar{x}\]
+
+\(\bar{X}\) se llama el primer \textbf{momento de muestra}
+
+El estimador del parámetro \(\theta\) se obtiene entonces de la ecuación:
+
+\[E(X)=\bar{x}\]
+
+para el valor de \(\hat{\theta}\) observado
+
+Ejemplo: Si
+\(X \hookrightarrow N(\mu, \sigma^2)\) entonces
+
+\(E(X)=\mu\)
+
+El método de los momentos da el estimador
+
+\begin{itemize}
+\tightlist
+\item
+  \(\hat{\mu}=\bar{x}=\frac{1}{n}\sum_i x_i\)
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{muxe9todo-de-los-momentos-3}{%
+\section{Método de los Momentos}\label{muxe9todo-de-los-momentos-3}}
+
+Supongamos que tenemos varias baterías (nuevas y viejas) que cargamos durante el período de 1 hora. Medimos el estado de carga de la batería siendo 1 a 100\% de carga.
+
+El estado de carga de una batería es una variable aleatoria que puede tener una distribución uniforme, donde no sabemos el valor mínimo que puede tomar \(x\), pero sabemos que el máximo es 1
+
+\[
+f(x)=
+\begin{cases}
+    \frac{1}{1-a},& \text{if } x\in (a,1)\\
+    0,& x\notin (a,1)
+\end{cases}
+\]
+
+¿Cuál es el estimador de \(a\)?
+
+\begin{itemize}
+\tightlist
+\item
+  Realizamos un experimento y obtenemos \(x_1,...x_n\) ¿cómo podemos estimar \(a\) a partir de los datos?
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{muxe9todo-de-los-momentos-4}{%
+\section{Método de los Momentos}\label{muxe9todo-de-los-momentos-4}}
+
+La distribución tiene un parámetro. El método de los momentos nos da una ecuación.
+
+\[E(X)=\bar{x}\]
+Eso es
+
+\[\frac{\hat{a}+1}{2}=\bar{x}\]
+
+Que resolvemos para \(\hat{a}\)
+
+\[\hat{a}=2\bar{x}-1\]
+
+Este es el estimador de la carga mínima que podemos observar.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{muxe9todo-de-los-momentos-5}{%
+\section{Método de los Momentos}\label{muxe9todo-de-los-momentos-5}}
+
+Tenga en cuenta que tomar el mínimo de las medidas es claramente subóptimo.
+
+El método nos dio una respuesta inteligente:
+
+\begin{itemize}
+\tightlist
+\item
+  podemos calcular \(\bar{x}\) con precisión creciente dada por \(n\)
+\item
+  Sabemos que ninguna medida supera \(b=1\)
+\item
+  Luego calcula la distancia entre \(\bar{x}\) y \(b\): \(1-\bar{x}\)
+\item
+  Restarlo de \(\bar{x}\): \(\bar{x}-(1-\bar{x})=2\bar{x}-1\)
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{muxe9todo-de-los-momentos-6}{%
+\section{Método de los Momentos}\label{muxe9todo-de-los-momentos-6}}
+
+El método dice que se puede encontrar una estimación para el parámetro \(\theta\) de \(f(x;\theta)\) a partir de la ecuación:
+
+\[E(X)=\frac{1}{n}\sum_i x_i\]
+para \(\hat{\theta}\).
+
+Si hay más parámetros, usamos los \textbf{momentos de muestra} más altos
+
+\begin{itemize}
+\tightlist
+\item
+  El segundo momento muestral es
+\end{itemize}
+
+\[E(X^2)=\frac{1}{n}\sum_i X^2_i\]
+
+como tal, una observación de este momento es
+
+\(\frac{1}{n}\sum_i x^2_i\).
+
+El método dice que se puede encontrar una estimación para los parámetros \(\theta_1\) y \(\theta_2\) de \(f(x;\theta_1,\theta_2)\) a partir de las ecuaciones:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \(E(X)= \frac{1}{n}\sum_i x_i\)
+\item
+  \(E(X^2)=\frac{1}{n}\sum_i x^2_i\)
+\end{enumerate}
+
+Para \(\hat{\theta}_1\) y \(\hat{\theta}_2\)
+
+Podemos entonces incrementar el número de ecuaciones tanto como parametros queramos estimar
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{distribuciuxf3n-normal-13}{%
+\section{Distribución normal}\label{distribuciuxf3n-normal-13}}
+
+Si \(X\) se distribuye normalmente
+\(X \hookrightarrow N(\mu, \sigma^2)\)
+
+entonces tiene media y varianza:
+
+\(E(X)=\mu\) y
+\(V(X)=\sigma^2\)
+
+El método de los momentos da las ecuaciones:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \(E(X)=\frac{1}{n}\sum_i x_i\)
+\item
+  \(E(X^2)=\frac{1}{n}\sum_i x^2_i\)
+\end{enumerate}
+
+Una sustitución de \(E(X)\) en la \textbf{primera} ecuación da el estimador de la media \(\mu\).
+
+\begin{itemize}
+\tightlist
+\item
+  \(\hat{\mu}=\frac{1}{n}\sum_i x_i\)
+\end{itemize}
+
+\(E(X^2)\) se sigue de la propiedad: \(E(X^2) = \hat{\mu}^2 + V(X)= \hat{\mu}^2+\hat{\sigma} ^2\)
+
+Entonces la \textbf{segunda} equación es
+
+\begin{itemize}
+\tightlist
+\item
+  \(\hat{\mu}^2+\hat{\sigma}^2= \frac{1}{n} \sum_i x^2_i\)
+\end{itemize}
+
+que también se puede escribir como:
+
+\[\hat{\sigma}^2=\frac{1}{n} \sum_i(x_i-\hat{\mu})^2\]
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{muxe9todo-de-los-momentos-7}{%
+\section{Método de los Momentos}\label{muxe9todo-de-los-momentos-7}}
+
+¿Cuál es el estimador del parámetro \(\alpha\) para el corte láser dado por el método de los momentos?
+
+\[
+    f(x; \alpha)= 
+\begin{cases}
+\frac{1}{\alpha}(x-1)^{\frac{1-\alpha}{\alpha}},& \text{if } x \in (1,2)\\
+    0,& x \notin (1,2)\\
+\end{cases}
+\]
+Donde \(\alpha\) es un parámetro.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{muxe9todo-de-los-momentos-8}{%
+\section{Método de los Momentos}\label{muxe9todo-de-los-momentos-8}}
+
+El método dice que se puede encontrar una estimación para el parámetro \(\alpha\) de \(f(x;\alpha)\) a partir de la ecuación:
+
+\[E(X; \hat{\alpha})=\frac{1}{n}\sum_i x_i\]
+
+Necesitamos calcular el valor esperado \(E(X)\)
+
+\[E(X)=\int_{-\infty}^{\infty} x f(x;\alpha)dx\]
+
+e igualarlo a la media \(\bar{x}\)
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{muxe9todo-de-los-momentos-9}{%
+\section{Método de los Momentos}\label{muxe9todo-de-los-momentos-9}}
+
+Considere un cambio de variables \(Z=X-1\) entonces \(E(X)=E(Z)+1\) y
+
+\(E(Z)= \frac{1}{\alpha} \int_0^1 z z^{\frac{1-\alpha}{\alpha}}dz= \frac{1}{\alpha} \int_0^1 z^{1+\frac{1-\alpha}{\alpha}}dz\)
+
+\(= \frac{1}{\alpha} \frac{z^{2+\frac{1-\alpha}{\alpha}}}{{2+\frac{1-\alpha}{\alpha}} } |_0^1=\frac{1}{1+\alpha}\)
+
+Por tanto, el método de los momentos nos da la ecuación
+
+\[\frac{1}{1+\hat{\alpha}}+1=\bar{x}\]
+
+que resolver para \(\hat{\alpha}\) nos da la estimación
+
+\(\hat{\alpha}_m=\frac{1}{\bar{x}-1}-1\)
+
+Para nuestros 30 láseres esto es
+
+\(\hat{\alpha}_m=1.314\)
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{muxe9todo-de-los-momentos-10}{%
+\section{Método de los Momentos}\label{muxe9todo-de-los-momentos-10}}
+
+Tenga en cuenta que este es un ejemplo para el cual las estimaciones por máxima verosimilitud y el método de momentos son diferentes
+
+\begin{itemize}
+\item
+  \(\hat{\alpha}_{ml}=-\frac{1}{n}\sum_{i=1}^n \ln (x_i-1)=1.320\)
+\item
+  \(\hat{\alpha}_m=\frac{1-\bar{x}}{\bar{x}}=1,314\)
+\end{itemize}
+
+Necesitamos estudios de simulación, donde sepamos el verdadero valor del parámetro \(\alpha\), para encontrar cuál de estas estadísticas tiene menos error cuadrático medio.
+
+Nota: los datos de 30 perforaciones con láser se simularon con \(\alpha=2\), por lo que debemos preferir la estimación de máxima verosimilitud.
+
+Para obtener mejores estimaciones de \(\alpha\) necesitamos aumentar el tamaño de la muestra.
+
 \hypertarget{ejercicios}{%
 \chapter{Ejercicios}\label{ejercicios}}
 
@@ -7102,7 +7948,7 @@ Para la densidad de probabilidad
   ¿Cuáles son el primer y tercer cuartiles? (R: 25; 75)
 \end{itemize}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-88-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-94-1.pdf}
 
 \hypertarget{ejercicio-5-1}{%
 \subsubsection{Ejercicio 5}\label{ejercicio-5-1}}
@@ -7358,33 +8204,19 @@ donde \(\bar{X}=\frac{1}{N}\sum_{i=1}^N X_i\)
   ¿Es \(\bar{X}^2=(\frac{1}{N}\sum_{i=1}^N X_i)^2\) un estimador imparcial de \(E(X)^2\)?
 \end{itemize}
 
-\hypertarget{muxe1xima-verosimilitud}{%
-\section{Máxima verosimilitud}\label{muxe1xima-verosimilitud}}
+\hypertarget{muxe1xima-verosimilitud-3}{%
+\section{Máxima verosimilitud}\label{muxe1xima-verosimilitud-3}}
 
 \hypertarget{ejercicio-1-7}{%
 \subsubsection{Ejercicio 1}\label{ejercicio-1-7}}
-
-Para una variable aleatoria con una función de probabilidad binomial
-
-\[f(x; p)=\binom n x p^x(1-p)^{n-x}\]
-
-\begin{itemize}
-\item
-  ¿Cuál es el estimador de máxima verosimilitud de \(p\) para una muestra de tamaño \(1\) de esta variable aleatoria?
-\item
-  En \textbf{un} examen de \(100\) estudiantes observamos \(x_1=68\) estudiantes que aprobaron el examen. ¿Cuál es la estimación de \(p\)?
-\end{itemize}
-
-\hypertarget{ejercicio-2-7}{%
-\subsubsection{Ejercicio 2}\label{ejercicio-2-7}}
 
 Tome una variable aleatoria con la siguiente función de densidad de probabilidad
 
 \[
 f(x)=
 \begin{cases}
-    (1+\theta)x^\theta,& \text{si } x\in (0,1)\\
-    0,&  x\notin (0,1)
+    (1+\theta)x^\theta,& \text{if } x\in (0,1)\\
+    0,&x\notin (0,1)
 \end{cases}
 \]
 
@@ -7398,16 +8230,36 @@ f(x)=
 
 ¿Cuál es el valor estimado del parámetro \(\theta\)?
 
+\begin{itemize}
+\tightlist
+\item
+  Calcular \(E(X)=\mu\) en función de \(\theta\). ¿Cuál es la estimación de máxima verosimilitud para \(\mu\)?
+\end{itemize}
+
+\hypertarget{ejercicio-2-7}{%
+\subsubsection{Ejercicio 2}\label{ejercicio-2-7}}
+
+Para una variable aleatoria con una función de probabilidad binomial
+
+\[f(x; p)=\binom n x p^x(1-p)^{n-x}\]
+
+\begin{itemize}
+\item
+  ¿Cuál es el estimador de máxima verosimilitud de \(p\) para una muestra de tamaño \(1\) de esta variable aleatoria?
+\item
+  En \textbf{un} examen de \(100\) estudiantes observamos \(x_1=68\) estudiantes que aprobaron el examen. ¿Cuál es la estimación de \(p\)?
+\end{itemize}
+
 \hypertarget{ejercicio-3-4}{%
 \subsubsection{Ejercicio 3}\label{ejercicio-3-4}}
 
 Tome una variable aleatoria con la siguiente función de densidad de probabilidad
 
 \[
-    f(x)= 
+    f(x)=
 \begin{cases}
     \lambda e^{-\lambda x},& \text{si } 0 \leq x\\
-    0,& si \, no 
+    0, \, de\, lo\, contrario
 \end{cases}
 \]
 
@@ -7421,8 +8273,15 @@ Tome una variable aleatoria con la siguiente función de densidad de probabilida
 
 ¿Cuál es el valor estimado del parámetro \(\lambda\)?
 
-\hypertarget{muxe9todo-de-los-momentos}{%
-\section{Método de los momentos}\label{muxe9todo-de-los-momentos}}
+\begin{itemize}
+\item
+  ¿Cuál es la estimación de máxima verosimilitud del parámetro \(\alpha=\frac{2}{\lambda}\)
+\item
+  ¿El estimador de \(\alpha\) es insesgado y consistente?
+\end{itemize}
+
+\hypertarget{muxe9todo-de-los-momentos-11}{%
+\section{Método de los momentos}\label{muxe9todo-de-los-momentos-11}}
 
 \hypertarget{ejercicio-1-8}{%
 \subsubsection{Ejercicio 1}\label{ejercicio-1-8}}
@@ -7452,8 +8311,8 @@ Tome una variable aleatoria con la siguiente función de densidad de probabilida
 \[
 f(x)=
 \begin{cases}
-    (1+\theta)x^\theta,& \text{si } x\in (0,1)\\
-    0,& x\notin (0,1)
+    (1+\theta)x^\theta,& \text{if } x\in (0,1)\\
+    0,&x\notin (0,1)
 \end{cases}
 \]
 
@@ -7496,7 +8355,7 @@ calcular:
   Los valores de las estimaciones de \(r\) y \(p\) para la siguiente muestra aleatoria:
 \end{itemize}
 
-\[x_1 = 27; \qquad x_2 = 8; \qquad x_3 = 22; \qquad x_4 = 29; \qquad x_5 = 19; \qquad x_5 = 32\]
+\[x_1 = 27; \qquad   x_2 = 8; \qquad   x_3 = 22; \qquad   x_4 = 29; \qquad   x_5 = 19; \qquad   x_5 = 32\]
 
   \bibliography{book.bib,packages.bib}
 

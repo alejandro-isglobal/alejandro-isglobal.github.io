@@ -6,7 +6,7 @@
 ]{book}
 \title{Stats theory (SDA)}
 \author{Alejandro Caceres}
-\date{2022-11-04}
+\date{2022-11-13}
 
 \usepackage{amsmath,amssymb}
 \usepackage{lmodern}
@@ -968,12 +968,12 @@ Say we repeated the experiment 1000 times:
 
 \begin{verbatim}
 ##   outcome  ni    fi
-## 1       1 171 0.171
-## 2       2 175 0.175
-## 3       3 171 0.171
-## 4       4 162 0.162
-## 5       5 159 0.159
-## 6       6 162 0.162
+## 1       1 174 0.174
+## 2       2 164 0.164
+## 3       3 184 0.184
+## 4       4 159 0.159
+## 5       5 166 0.166
+## 6       6 153 0.153
 \end{verbatim}
 
 We find that \(f_i\) is converging to a constant value
@@ -6631,6 +6631,849 @@ pt(1.663052, 7)-pt(-1.663052, 7)=0.859.
 
 Note that in the calculations we have substituted \(\sigma=0.35\) by a higher estimate \(s=0.3571565\) \textbf{obtained from data}.
 
+\hypertarget{maximum-likelihood}{%
+\chapter{Maximum likelihood}\label{maximum-likelihood}}
+
+\hypertarget{objective-10}{%
+\section{Objective}\label{objective-10}}
+
+\begin{itemize}
+\tightlist
+\item
+  Maximum likelihood
+\item
+  Method of Moments
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{statistic}{%
+\section{Statistic}\label{statistic}}
+
+\textbf{Definition}
+
+Given a random sample \(X_1,...X_n\) a \textbf{statistic} is any real value function of the random variables that define the random sample: \(f(X_1,...X_n)\)
+
+\begin{itemize}
+\tightlist
+\item
+  \(\bar{X}=\frac{1}{N} \sum_{j=1..N} X_j\)
+\item
+  \(S^2=\frac{1}{n-1}\sum_{i=1}^n (X_i-\bar{X})^2\)
+\item
+  \(\max{X_1, X_n}\)
+\end{itemize}
+
+are statistics
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{estimator}{%
+\section{Estimator}\label{estimator}}
+
+\textbf{Definition}
+
+An \textbf{estimator} is a statistic \(\Theta\) whose values \(\hat{\theta}\) are measures of a parameter \(\theta\) of the population distribution on which the sample is defined: \(E(\Theta)\sim \theta\)
+
+\(X \hookrightarrow f(x; \theta)\)
+
+Then
+
+\begin{itemize}
+\tightlist
+\item
+  \(\theta\) is a \textbf{parameter} of the population distribution \(f(x; \theta)\)
+\item
+  \(\Theta\) is an \textbf{estimator} of \(\theta\): A random variable
+\item
+  \(\hat{\theta}\) is the \textbf{estimate} of \(\theta\): A realized value of \(\Theta\)
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{estimator-1}{%
+\section{Estimator}\label{estimator-1}}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{examples-1-average-sample-mean}{%
+\section{Examples 1: Average (Sample mean)}\label{examples-1-average-sample-mean}}
+
+When \(X \hookrightarrow N(\mu, \sigma^2)\)
+
+For the mean:
+
+\begin{itemize}
+\tightlist
+\item
+  \(\mu\) is a \textbf{parameter} of the population distribution \(N(\mu, \sigma^2)\)
+\item
+  \(\bar{X}\) is an \textbf{estimator} of \(\mu\)
+\item
+  \(\bar{x}=\hat{\mu}=13.21 \, Tons\) is the \textbf{estimate} of \(\mu\)
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{examples-2-sample-variance}{%
+\section{Examples 2: Sample Variance}\label{examples-2-sample-variance}}
+
+When \(X \hookrightarrow N(\mu, \sigma^2)\)
+
+For the variance:
+
+\begin{itemize}
+\tightlist
+\item
+  \(\sigma^2\) is a \textbf{parameter} of the population distribution \(N(\mu, \sigma^2)\)
+\item
+  \(S^2\) is an \textbf{estimator} of \(\sigma^2\)
+\item
+  \(s^2=\hat{\sigma^2}=0.127 \, Tons^2\) is the \textbf{estimate} of \(\sigma^2\)
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{bias}{%
+\section{Bias}\label{bias}}
+
+An estimator is unbiased (is not biased) if \(E(\Theta)=\theta\)
+
+\begin{itemize}
+\item
+  \(\bar{X}\) is an \textbf{unbiased} estimator of \(\mu\) because \(E(\bar{X})=\mu\)
+\item
+  \(S^2\) is an \textbf{unbiased} estimator of \(\sigma^2\) because \(E(S^2)=\sigma^2\)
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{consistency}{%
+\section{Consistency}\label{consistency}}
+
+An estimator is consistent if \(V(\Theta) \rightarrow 0\) when \(n \rightarrow \infty\)
+
+\begin{itemize}
+\item
+  \(\bar{X}\) is \textbf{consistent} because \(V(\bar{X})=\frac{\sigma}{n}\rightarrow 0\) when \(n \rightarrow \infty\).
+\item
+  \(S^2\) is also \textbf{consistent} (we will not show).
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{maximum-likelihood-1}{%
+\section{Maximum likelihood}\label{maximum-likelihood-1}}
+
+How can we \textbf{estimate} the parameter of \textbf{any} parametric model?
+
+\begin{itemize}
+\item
+  Imagine we design a laser with diameter of 1mm that we want to use for clinical applications.
+\item
+  We want to characterize the diameter of a piercing in a tissue made with the laser
+\item
+  and take a random sample of 30 cuts made with the laser
+\end{itemize}
+
+\begin{verbatim}
+##  [1] 1.11 1.64 1.20 1.79 1.89 1.01 1.31 1.81 1.34 1.25 1.92 1.24 1.49 1.36 1.03
+## [16] 1.82 1.09 1.01 1.14 1.91 1.80 1.51 1.44 1.98 1.46 1.53 1.33 1.39 1.12 1.04
+\end{verbatim}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{example-14}{%
+\section{Example}\label{example-14}}
+
+with histogram
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-80-1.pdf}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{probability-density}{%
+\section{Probability density}\label{probability-density}}
+
+We consider that
+
+\begin{itemize}
+\item
+  maximum probability should be given to diameters od \(x=1mm\)
+\item
+  the diamaters should decrease exponentially in probability as they get larger with a limit of \(2mm\) beyond wich the probability is \(0\).
+\end{itemize}
+
+A suitable probability density distribution is
+
+\[
+    f(x)= 
+\begin{cases}
+\frac{1}{\alpha}(x-1)^{\frac{1-\alpha}{\alpha}},& \text{if } x \in (1,2)\\
+    0,& x \notin (1,2)\\
+\end{cases}
+\]
+
+Where \(\alpha\) is a parameter.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{probability-density-1}{%
+\section{Probability density}\label{probability-density-1}}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-81-1.pdf}
+
+If we were to perform a \(n\)-sample: \(X_1,...X_n\)
+
+\begin{itemize}
+\tightlist
+\item
+  The \textbf{maximum likelihood} is a method that \textbf{gives us the estimator} for \(\alpha\)
+\end{itemize}
+
+\[\hat{\alpha}_{ml}\]
+How should we combine the data for obtaining the best value of \(\hat{\alpha}_{ml}\)?
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{example-maximum-likelihood}{%
+\section{Example: Maximum likelihood}\label{example-maximum-likelihood}}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-82-1.pdf}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{maximum-likelihood-2}{%
+\section{Maximum likelihood}\label{maximum-likelihood-2}}
+
+The objective is to find the value of the parameter that we \textbf{believe} can represent \textbf{best} the data.
+
+We search for the parameter that makes the \textbf{observation} of the sample the most \textbf{probable}.
+
+Note:
+
+\begin{itemize}
+\tightlist
+\item
+  Probabilities are assign to observations.
+\item
+  Probabilities are not assign to parameters (we assign beliefs, likelihoods).
+\end{itemize}
+
+Parameters are not suppose to change, they are properties of the system.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{method-step-1}{%
+\section{Method step 1}\label{method-step-1}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  We calculate the probability of having observed the \(n\)-sample: \(x_1,...x_n\)
+\end{enumerate}
+
+\(P(x_1,...x_n)=P(x_1)P(X_2)...P(x_n)\)
+\[=f(x_1;\alpha)f(x_2;\alpha) ...f(x_n;\alpha)\]
+
+\begin{itemize}
+\tightlist
+\item
+  Once the data is observed they are \textbf{fixed}.
+\item
+  The unknown is \(\alpha\)
+\item
+  This probability as function of \(\alpha\), we call it the \textbf{likelihood function}
+\end{itemize}
+
+\[L(\alpha)= \Pi_{i=1..n} f(x_i; \alpha)\]
+
+then in our case
+
+\(L(\alpha;x_1,..x_n)= \frac{1}{\alpha^n} \Pi_{i=1..n} (x_i-1)^{\frac{1-\alpha}{\alpha}}= \frac{1}{\alpha^n} \{(x_1-1)(x_2-1)...(x_n-1)\}^{\frac{1-\alpha}{\alpha}}\)
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{method-step-2}{%
+\section{Method step 2}\label{method-step-2}}
+
+We want to maximize \(L(\alpha)\) with respect to \(\alpha\).
+
+Since we have the multiplication of many factors is easier to maximize the logarithm of \(L(\alpha)\)
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  Take the logarithm, obtain the \textbf{Log-likelihood}
+\end{enumerate}
+
+\[\ln L(\alpha;x_1,..x_n)= -n \ln(\alpha) + {\frac{1-\alpha}{\alpha}} \Sigma_{i=1...n} \ln (x_i-1)\]
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{method-step-3}{%
+\section{Method step 3}\label{method-step-3}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  Maximize the log-likelihood with respect to the parameter
+\end{enumerate}
+
+Therefore,
+
+\begin{itemize}
+\tightlist
+\item
+  we differentiate with respect to \(\alpha\)
+\end{itemize}
+
+\(\frac{d \ln L(\alpha)}{d \alpha}= -\frac{n}{\alpha} - \frac{1}{\alpha^2} \Sigma_{i=1...n} \ln (x_i)\)
+
+\begin{itemize}
+\tightlist
+\item
+  The maximum is where the derivative is \(0\). This maximum is the value of our estimator \(\hat{\alpha}_{ml}\).
+\end{itemize}
+
+\(\hat{\alpha}_{ml}=-\frac{1}{n}\Sigma_{i=1...n} \ln (x_i-1)\)
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{method-step-3-1}{%
+\section{Method step 3}\label{method-step-3-1}}
+
+\(\hat{\alpha}_{ml}=-\frac{1}{n}\Sigma_{i=1...n} \ln (x_i-1)\)
+
+is the \textbf{statistic} that estimate the parameter.
+
+In our example we compute:
+
+\(\hat{\alpha}_{ml}=-\frac{1}{n}\{ \ln (1.11-1)+ \ln (1.64-1)+...\ln (1.04-1)\}=1.320\)
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{estimation}{%
+\section{Estimation}\label{estimation}}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-83-1.pdf}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{estimation-1}{%
+\section{Estimation}\label{estimation-1}}
+
+\begin{itemize}
+\item
+  This is the log-likelihood for our 30 laser cuts.
+\item
+  If we take another sample this function changes and so does its maximum.
+\end{itemize}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-84-1.pdf}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{normal-distribution-9}{%
+\section{Normal distribution}\label{normal-distribution-9}}
+
+Imagine that we take a \(8\)-sample for the breaking load of cables and we want to estimate the mean valur for the breaking of the cables
+
+\begin{itemize}
+\item
+  \textbf{assume} that \[X \rightarrow N(\mu, \sigma^2)\].
+\item
+  What are the estimators of \(\mu\) and \(\sigma^2\) from the sample?
+\end{itemize}
+
+Which values of the parameters best describe the data?
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{normal-distribution-10}{%
+\section{Normal distribution}\label{normal-distribution-10}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  The likelihood function, the probability of having observed \((x_1, ....x_n)\) is
+\end{enumerate}
+
+\(L(\mu, \sigma^2)=\Pi_{i=1..n} N(x_i;\mu,\sigma)\)
+
+\(=\big( \frac{1}{\sigma \sqrt{2 \pi}}\big)^n e^{-\frac{1}{2\sigma^2} \sum_i(x_i-\mu)^2}\)
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  We can take the log of \(L\), and compute the \textbf{log-likelihood}
+\end{enumerate}
+
+\(\ln L(\mu, \sigma^2)=-n \ln(\sigma \sqrt{2 \pi})-\frac{1}{2\sigma^2} \Sigma_i(x_i-\mu)^2\)
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{normal-distribution-11}{%
+\section{Normal distribution}\label{normal-distribution-11}}
+
+The estimates of \(\mu\), \(\sigma^2\) are where the likelihood is maximum, and give the highest probability for the data.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  we differentiate with respect to \(\mu\) and \(\sigma^2\)
+\end{enumerate}
+
+\begin{itemize}
+\item
+  \(\frac{d \ln L(\mu, \sigma^2)}{d\mu}=\frac{1}{\sigma^2} \sum_i(x_i-\mu)\)
+\item
+  \(\frac{d \ln L(\mu, \sigma^2)}{d\sigma^2}=-\frac{n}{2 \sigma^2}+\frac{1}{2\sigma^4} \sum_i(x_i-\mu)^2\)
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{normal-distribution-12}{%
+\section{Normal distribution}\label{normal-distribution-12}}
+
+The derivatives are \(0\) at the maxima
+
+\begin{itemize}
+\tightlist
+\item
+  \(\frac{1}{\hat{\sigma}^2} \sum_i(x_i-\hat{\mu})=0\)
+\item
+  \(-\frac{n}{2 \hat{\sigma}^2}+\frac{1}{2\hat{\sigma}^4} \sum_i(x_i-\hat{\mu})^2=0\)
+\end{itemize}
+
+solving for the parameters we find
+
+\begin{itemize}
+\tightlist
+\item
+  \(\hat{\mu}_{ml}=\frac{1}{n}\sum_i x_i=\bar{x}\) (the average)
+\item
+  \(\hat{\sigma^2}_{ml}=\frac{1}{n}\sum_i(x_i-\bar{x})^2\) (the \textbf{uncorrected} sample variance)
+\end{itemize}
+
+The maximum likelihood estimator of \(\sigma^2\) is a \textbf{biased} estimator as: \(E(\hat{\sigma}^2_{ml})\neq \sigma^2\)
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{maximum-likelihood-history}{%
+\section{Maximum likelihood: History}\label{maximum-likelihood-history}}
+
+What is the statistic that best represents the true position of Ceres?
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{maximum-likelihood-history-1}{%
+\section{Maximum likelihood: History}\label{maximum-likelihood-history-1}}
+
+Gauss proposed that at a \textbf{given} time
+
+\begin{itemize}
+\tightlist
+\item
+  the \textbf{true} position of Ceres was the mean \(\mu\)
+\item
+  the probabilities around the mean were symmetrical.
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{maximum-likelihood-history-2}{%
+\section{Maximum likelihood: History}\label{maximum-likelihood-history-2}}
+
+Gauss discovered that if the average (\(\bar{x}\)) is the \textbf{most likely} value for the real position of Ceres (\(\mu\)), then the probability density for the errors is
+
+\[\frac{h}{\sqrt{\pi}}e^{-h^2(y-\mu_Y)^2}\]
+
+which we call the Gaussian and that Pearson (1920) baptized it as the normal curve.
+
+Note: We assume that the \textbf{true} position of Ceres exist \(\mu\).
+
+\begin{itemize}
+\tightlist
+\item
+  ¿Can we say the same about the high of men \(\mu\)? (Galton)
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{method-of-moments}{%
+\section{Method of Moments}\label{method-of-moments}}
+
+The method of maximum likelihood is aimed to produce the estimators of probability distributions from data.
+
+\begin{itemize}
+\tightlist
+\item
+  Is there another way to produce those estimators? would they be equal?
+\end{itemize}
+
+Let's look again at the maximum likelihood estimators for \(\mu\) and \(\sigma^2\) for a random variable that distributes normally: \(X \hookrightarrow N(\mu, \sigma^2)\)
+
+\begin{itemize}
+\tightlist
+\item
+  \(\hat{\mu}=\frac{1}{n}\sum_i x_i\)
+\item
+  \(\hat{\sigma^2}=\frac{1}{n}\sum_i(x_i-\bar{x})^2\)
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{method-of-moments-1}{%
+\section{Method of Moments}\label{method-of-moments-1}}
+
+Let's re-write the estimators in terms of the values of \(X\) (outcomes), not of the observations
+
+For instance:
+
+\[\hat{\mu}=\frac{1}{n}\sum_i x_i= \sum_x x \frac{n_x}{n}\]
+
+and remember that in the limit \(n \rightarrow \infty\) the frequentist interpretation requires \(\frac{n_x}{n} \rightarrow P(X=x)\) and therefore in the limit
+
+\[\hat{\mu}=\frac{1}{n}\sum_i x_i \rightarrow E(X)\]
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{method-of-moments-2}{%
+\section{Method of Moments}\label{method-of-moments-2}}
+
+The method os moments says that we can take the \textbf{observed} value of the average \(\bar{X}= \frac{1}{n}\sum_i X_i\) as an estimator of \(E(X)=\mu\)
+
+\[ E(X)\sim \bar{x}\]
+
+\(\bar{X}\) is called the first \textbf{sample moment}
+
+the estimator of the parameter \(\theta\) is then obtained from the equation:
+
+\[E(X)=\bar{x}\]
+for the observed value of \(\hat{\theta}\)
+
+Example: If
+\(X \hookrightarrow N(\mu, \sigma^2)\) then
+
+\(E(X; \mu, \sigma^2)=\mu\)
+
+Method of moments gives the estimator:
+
+\begin{itemize}
+\tightlist
+\item
+  \(\hat{\mu}=\bar{x}=\frac{1}{n}\sum_i x_i\)
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{method-of-moments-3}{%
+\section{Method of Moments}\label{method-of-moments-3}}
+
+Suppose that we have several batteries (new and old) that we charge over the period of 1 hour. We measure the state of charge of the battery being 1 a 100\% charge.
+
+The state of charge of a battery is a random variable that may have a uniform distribution, where we do not know the minimum value that \(x\) can take, but we know that the maximum is 1
+\[
+f(x)=
+\begin{cases}
+    \frac{1}{1-a},& \text{if } x\in (a,1)\\
+    0,& x\notin (a,1)
+\end{cases}
+\]
+
+What is the estimator of \(a\)?
+
+\begin{itemize}
+\tightlist
+\item
+  We run an experiment and obtain \(x_1,...x_n\) how can we estimate \(a\) form the data?
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{method-of-moments-4}{%
+\section{Method of Moments}\label{method-of-moments-4}}
+
+The distribution has one parameter. The method of moments gives us one equation
+
+\[E(X)=\bar{x}\]
+That is
+
+\[\frac{\hat{a}+1}{2}=\bar{x}\]
+
+That we solve for \(\hat{a}\)
+
+\[\hat{a}=2\bar{x}-1\]
+
+This is the estimator of the minimum charge we may observe.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{method-of-moments-5}{%
+\section{Method of Moments}\label{method-of-moments-5}}
+
+Note that taking the minimum of the measurements is clearly suboptimal.
+
+The method gave us a clever answer:
+
+\begin{itemize}
+\tightlist
+\item
+  we can compute \(\bar{x}\) with increasing presicion given by \(n\)
+\item
+  We know that no measurement surpass \(b=1\)
+\item
+  Then compute the distance between \(\bar{x}\) and \(b\): \(1-\bar{x}\)
+\item
+  Substract it from \(\bar{x}\): \(\bar{x}-(1-\bar{x})=2\bar{x}-1\)
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{method-of-moments-6}{%
+\section{Method of Moments}\label{method-of-moments-6}}
+
+The method says that an estimation for the parameter \(\theta\) of \(f(x;\theta)\) can be found from the equation:
+
+\[E(X)=\frac{1}{n}\sum_i x_i\]
+
+If there are more parameters, we use the higher \textbf{sample moments}
+
+\begin{itemize}
+\tightlist
+\item
+  The second sample moment is
+\end{itemize}
+
+\[E(X^2)=\frac{1}{n}\sum_i X^2_i\]
+
+as such, an observation of this moment is
+
+\(\frac{1}{n}\sum_i x^2_i\).
+
+The method says that an estimation for the parameters \(\theta_1\) and \(\theta_2\) of \(f(x;\theta_1,\theta_2)\) can be found from the equations:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \(E(X)= \frac{1}{n}\sum_i x_i\)
+\item
+  \(E(X^2)=\frac{1}{n}\sum_i x^2_i\)
+\end{enumerate}
+
+For \(\hat{\theta}_1\) and \(\hat{\theta}_2\)
+
+We can then increase the number of equations as many as parameters we need to estimate.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{normal-distribution-13}{%
+\section{Normal distribution}\label{normal-distribution-13}}
+
+If \(X\) distributes normally\\
+\(X \hookrightarrow N(\mu, \sigma^2)\)
+
+then it has mean and variance:
+
+\(E(X)=\mu\) and
+\(V(X)=\sigma^2\)
+
+The method of moments gives the equations:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \(E(X)=\frac{1}{n}\sum_i x_i\)
+\item
+  \(E(X^2)=\frac{1}{n}\sum_i x^2_i\)
+\end{enumerate}
+
+A substitution of \(E(X)\) into the \textbf{first} equation gives the estimator for the mean \(\mu\).
+
+\begin{itemize}
+\tightlist
+\item
+  \(\hat{\mu}=\frac{1}{n}\sum_i x_i\)
+\end{itemize}
+
+\(E(X^2)\) follows from the property: \(E(X^2) = \hat{\mu}^2 + V(X)= \hat{\mu}^2+\hat{\sigma}^2\)
+
+then the \textbf{second} equation gives
+
+\begin{itemize}
+\tightlist
+\item
+  \(\hat{\mu}^2+\hat{\sigma}^2= \frac{1}{n} \sum_i x^2_i\)
+\end{itemize}
+
+which can also be written as:
+
+\[\hat{\sigma}^2=\frac{1}{n} \sum_i(x_i-\hat{\mu})^2\]
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{method-of-moments-7}{%
+\section{Method of Moments}\label{method-of-moments-7}}
+
+What is the estimator of parameter \(\alpha\) for the laser cut given by the method of moments?
+
+\[
+    f(x; \alpha)= 
+\begin{cases}
+\frac{1}{\alpha}(x-1)^{\frac{1-\alpha}{\alpha}},& \text{if } x \in (1,2)\\
+    0,& x \notin (1,2)\\
+\end{cases}
+\]
+
+Where \(\alpha\) is a parameter.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{method-of-moments-8}{%
+\section{Method of Moments}\label{method-of-moments-8}}
+
+The method says that an estimation for the the parameter \(\alpha\) of \(f(x;\alpha)\) can be found from the equation:
+
+\[E(X; \hat{\alpha})=\frac{1}{n}\sum_i x_i\]
+
+We need to compute the expected value \(E(X)\)
+
+\[E(X)=\int_{-\infty}^{\infty} x f(x;\alpha)dx\]
+
+and equate it to the average \(\bar{x}\)
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{method-of-moments-9}{%
+\section{Method of Moments}\label{method-of-moments-9}}
+
+Consider a change of variables \(Z=X-1\) then \(E(X)=E(Z)+1\) and
+
+\(E(Z)= \frac{1}{\alpha} \int_0^1 z z^{\frac{1-\alpha}{\alpha}}dz= \frac{1}{\alpha} \int_0^1 z^{1+\frac{1-\alpha}{\alpha}}dz\)
+
+\(= \frac{1}{\alpha} \frac{z^{2+\frac{1-\alpha}{\alpha}}}{{2+\frac{1-\alpha}{\alpha}}} |_0^1=\frac{1}{1+\alpha}\)
+
+Therefore, the method of moments gives us the equation
+
+\[\frac{1}{1+\hat{\alpha}}+1=\bar{x}\]
+
+which solving for \(\hat{\alpha}\) gives us the estimate
+
+\(\hat{\alpha}_m=\frac{1}{\bar{x}-1}-1\)
+
+For our 30 lasers this is
+
+\(\hat{\alpha}_m=1.314\)
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{method-of-moments-10}{%
+\section{Method of Moments}\label{method-of-moments-10}}
+
+Note that this is an example for which the estimates by maximum likelihood and the method of moments are different
+
+\begin{itemize}
+\item
+  \(\hat{\alpha}_{ml}=-\frac{1}{n}\sum_{i=1}^n \ln (x_i-1)=1.320\)
+\item
+  \(\hat{\alpha}_m=\frac{1-\bar{x}}{\bar{x}}=1.314\)
+\end{itemize}
+
+We need simulation studies, where we know the true value of the parameter \(\alpha\), to find which of these statistics have less mean squared error.
+
+Note: the data for 30 laser piercings were simulated with \(\alpha=2\), therefore we should prefer the maximum likelihood estimate.
+
+To obtain better estimates of \(\alpha\) we need to increase the size of the sample.
+
 \hypertarget{exercises}{%
 \chapter{Exercises}\label{exercises}}
 
@@ -7065,7 +7908,7 @@ Consider that we have a totally noisy channel, that is any outcome of three pixe
   What are the first and third quartiles? (R: 25; 75)
 \end{itemize}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-85-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-91-1.pdf}
 
 \hypertarget{exercise-5-1}{%
 \subsubsection{Exercise 5}\label{exercise-5-1}}
@@ -7320,25 +8163,11 @@ where \(\bar{X}=\frac{1}{N}\sum_{i=1}^N X_i\)
   Is \(\bar{X}^2=(\frac{1}{N}\sum_{i=1}^N X_i)^2\) an unbiased estimator of \(E(X)^2\)?
 \end{itemize}
 
-\hypertarget{maximum-likelihood}{%
-\section{Maximum likelihood}\label{maximum-likelihood}}
+\hypertarget{maximum-likelihood-3}{%
+\section{Maximum likelihood}\label{maximum-likelihood-3}}
 
 \hypertarget{exercise-1-7}{%
 \subsubsection{Exercise 1}\label{exercise-1-7}}
-
-For a random variable with a binomial probability function
-
-\[f(x; p)=\binom n x p^x(1-p)^{n-x}\]
-
-\begin{itemize}
-\item
-  What is the maximum-likelihood estimator of \(p\) for a sample of size \(1\) of this random variable?
-\item
-  In \textbf{one} exam of \(100\) students we observed \(x_1=68\) students that passed the exam. What is the estimate of the \(p\)?
-\end{itemize}
-
-\hypertarget{exercise-2-7}{%
-\subsubsection{Exercise 2}\label{exercise-2-7}}
 
 Take a random variable with the following probability density function
 
@@ -7360,6 +8189,26 @@ f(x)=
 
 What is the estimated value of the parameter \(\theta\)?
 
+\begin{itemize}
+\tightlist
+\item
+  Compute \(E(X)=\mu\) as a function of \(\theta\). What is the maximum likelihood estimate for \(\mu\)?
+\end{itemize}
+
+\hypertarget{exercise-2-7}{%
+\subsubsection{Exercise 2}\label{exercise-2-7}}
+
+For a random variable with a binomial probability function
+
+\[f(x; p)=\binom n x p^x(1-p)^{n-x}\]
+
+\begin{itemize}
+\item
+  What is the maximum-likelihood estimator of \(p\) for a sample of size \(1\) of this random variable?
+\item
+  In \textbf{one} exam of \(100\) students we observed \(x_1=68\) students that passed the exam. What is the estimate of the \(p\)?
+\end{itemize}
+
 \hypertarget{exercise-3-4}{%
 \subsubsection{Exercise 3}\label{exercise-3-4}}
 
@@ -7368,7 +8217,7 @@ Take a random variable with the following probability density function
 \[
     f(x)= 
 \begin{cases}
-    \lambda e^{-\lambda x},& \text{if } 0 \leq\\
+    \lambda e^{-\lambda x},& \text{if } 0 \leq x\\
     0,& otherwise 
 \end{cases}
 \]
@@ -7383,8 +8232,15 @@ Take a random variable with the following probability density function
 
 What is the estimated value of the parameter \(\lambda\)?
 
-\hypertarget{method-of-moments}{%
-\section{Method of moments}\label{method-of-moments}}
+\begin{itemize}
+\item
+  What is the maximum likelihood estimate of the parameter \(\alpha=\frac{2}{\lambda}\)
+\item
+  Is the estimator for \(\alpha\) unbiased and consistent?
+\end{itemize}
+
+\hypertarget{method-of-moments-11}{%
+\section{Method of moments}\label{method-of-moments-11}}
 
 \hypertarget{exercise-1-8}{%
 \subsubsection{Exercise 1}\label{exercise-1-8}}

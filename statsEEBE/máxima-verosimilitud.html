@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 4 Probabilidad condicional | Estadística</title>
+  <title>Chapter 12 Máxima verosimilitud | Estadística</title>
   <meta name="description" content="This are slides for the Stats theory of the BIST master" />
   <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 4 Probabilidad condicional | Estadística" />
+  <meta property="og:title" content="Chapter 12 Máxima verosimilitud | Estadística" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="alejandro-isglobal/master" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 4 Probabilidad condicional | Estadística" />
+  <meta name="twitter:title" content="Chapter 12 Máxima verosimilitud | Estadística" />
   
   <meta name="twitter:description" content="This are slides for the Stats theory of the BIST master" />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="probabilidad.html"/>
-<link rel="next" href="variables-aleatorias-discretas.html"/>
+<link rel="prev" href="teorema-del-límite-central.html"/>
+<link rel="next" href="ejercicios.html"/>
 <script src="libs/header-attrs-2.12/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -468,833 +468,501 @@
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="probabilidad-condicional" class="section level1 hasAnchor" number="4">
-<h1><span class="header-section-number">Chapter 4</span> Probabilidad condicional<a href="probabilidad-condicional.html#probabilidad-condicional" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<div id="objetivo-3" class="section level2 hasAnchor" number="4.1">
-<h2><span class="header-section-number">4.1</span> Objetivo<a href="probabilidad-condicional.html#objetivo-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="máxima-verosimilitud" class="section level1 hasAnchor" number="12">
+<h1><span class="header-section-number">Chapter 12</span> Máxima verosimilitud<a href="máxima-verosimilitud.html#máxima-verosimilitud" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="objetivo-11" class="section level2 hasAnchor" number="12.1">
+<h2><span class="header-section-number">12.1</span> Objetivo<a href="máxima-verosimilitud.html#objetivo-11" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ul>
-<li>Probabilidad condicional</li>
-<li>Independencia</li>
-<li>Teorema de Bayes</li>
+<li>Máxima verosimilitud</li>
+<li>Método de los Momentos</li>
 </ul>
 <hr />
 <hr />
 </div>
-<div id="probabilidad-conjunta" class="section level2 hasAnchor" number="4.2">
-<h2><span class="header-section-number">4.2</span> Probabilidad conjunta<a href="probabilidad-condicional.html#probabilidad-conjunta" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>La probabilidad conjunta de dos eventos <span class="math inline">\(A\)</span> y <span class="math inline">\(B\)</span> es
-<span class="math display">\[P(A,B)=P(A \cap B)\]</span></p>
-<p>Imaginemos un experimento aleatorio que mide dos tipos diferentes de resultados.</p>
+<div id="estadística" class="section level2 hasAnchor" number="12.2">
+<h2><span class="header-section-number">12.2</span> Estadística<a href="máxima-verosimilitud.html#estadística" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><strong>Definición</strong></p>
+<p>Dada una muestra aleatoria <span class="math inline">\(X_1,...X_n\)</span>, una <strong>estadística</strong> es cualquier función de valor real de las variables aleatorias que definen la muestra aleatoria: <span class="math inline">\(f(X_1,...X_n)\)</span></p>
 <ul>
-<li><p>altura y peso de un individuo: <span class="math inline">\((h, w)\)</span></p></li>
-<li><p>hora y lugar de una carga eléctrica: <span class="math inline">\((p, t)\)</span></p></li>
-<li><p>una tirada de dos dados: (<span class="math inline">\(n_1\)</span>,<span class="math inline">\(n_2\)</span>)</p></li>
-<li><p>cruzar dos semáforos en verde: (<span class="math inline">\(\bar{R_1}\)</span>, <span class="math inline">\(\bar{R_2}\)</span>)</p></li>
+<li><span class="math inline">\(\bar{X}=\frac{1}{N} \sum_{j=1..N} X_j\)</span></li>
+<li><span class="math inline">\(S^2=\frac{1}{n-1}\sum_{i=1}^n (X_i-\bar{X})^2\)</span></li>
+<li><span class="math inline">\(\max{X_1, X_n}\)</span></li>
 </ul>
-<p>En muchos casos, nos interesa saber si los valores de un resultado <strong>condicionan</strong> los valores del otro.</p>
+<p>son estadísticas</p>
 <hr />
 <hr />
 </div>
-<div id="diagnósticos" class="section level2 hasAnchor" number="4.3">
-<h2><span class="header-section-number">4.3</span> Diagnósticos<a href="probabilidad-condicional.html#diagnósticos" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Consideremos una <strong>herramienta de diagnóstico</strong></p>
-<p>Queremos encontrar el estado de un sistema (s):</p>
+<div id="estimador" class="section level2 hasAnchor" number="12.3">
+<h2><span class="header-section-number">12.3</span> Estimador<a href="máxima-verosimilitud.html#estimador" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><strong>Definición</strong></p>
+<p>Un <strong>estimador</strong> es un estadístico <span class="math inline">\(\Theta\)</span> cuyos valores <span class="math inline">\(\hat{\theta}\)</span> son medidas de un parámetro <span class="math inline">\(\theta\)</span> de la distribución poblacional sobre la que se define la muestra: <span class="math inline">\(E(\Theta)\sim \theta\)</span></p>
+<p><span class="math inline">\(X \hookrightarrow f(x; \theta)\)</span></p>
+<p>Entonces</p>
 <ul>
-<li>inadecuado (sí)</li>
-<li>adecuado (no)</li>
-</ul>
-<p>con una prueba (t):</p>
-<ul>
-<li>positivo</li>
-<li>negativo</li>
-</ul>
-<p>Probamos una batería para saber cuánto tiempo puede vivir. Tensamos un cable para saber si resiste llevar cierta carga. Realizamos una PCR para ver si alguien está infectado.</p>
-<hr />
-<hr />
-</div>
-<div id="prueba-de-diagnóstico" class="section level2 hasAnchor" number="4.4">
-<h2><span class="header-section-number">4.4</span> Prueba de diagnóstico<a href="probabilidad-condicional.html#prueba-de-diagnóstico" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Consideremos diagnosticar una infección con una nueva prueba.</p>
-<p>Estado de infección:</p>
-<ul>
-<li>si (infectado)</li>
-<li>no (no infectado)</li>
-</ul>
-<p>Prueba:</p>
-<ul>
-<li>positivo</li>
-<li>negativo</li>
+<li><span class="math inline">\(\theta\)</span> es un <strong>parámetro</strong> de la distribución de la población <span class="math inline">\(f(x; \theta)\)</span></li>
+<li><span class="math inline">\(\Theta\)</span> es un <strong>estimador</strong> de <span class="math inline">\(\theta\)</span>: Una variable aleatoria</li>
+<li><span class="math inline">\(\hat{\theta}\)</span> es la <strong>estimación</strong> de <span class="math inline">\(\theta\)</span>: Un valor realizado de <span class="math inline">\(\Theta\)</span></li>
 </ul>
 <hr />
 <hr />
 </div>
-<div id="observaciones" class="section level2 hasAnchor" number="4.5">
-<h2><span class="header-section-number">4.5</span> Observaciones<a href="probabilidad-condicional.html#observaciones" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Cada individuo es un experimento aleatorio con dos medidas: (Infección, Prueba)</p>
-<table>
-<thead>
-<tr class="header">
-<th align="center">Asunto</th>
-<th align="center">Infección</th>
-<th align="center">Prueba</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="center"><span class="math inline">\(s_1\)</span></td>
-<td align="center">si</td>
-<td align="center">positivo</td>
-</tr>
-<tr class="even">
-<td align="center"><span class="math inline">\(s_2\)</span></td>
-<td align="center">no</td>
-<td align="center">negativo</td>
-</tr>
-<tr class="odd">
-<td align="center"><span class="math inline">\(s_3\)</span></td>
-<td align="center">si</td>
-<td align="center">positivo</td>
-</tr>
-<tr class="even">
-<td align="center">…</td>
-<td align="center">…</td>
-<td align="center">…</td>
-</tr>
-<tr class="odd">
-<td align="center"><span class="math inline">\(s_i\)</span></td>
-<td align="center">no</td>
-<td align="center">positivo*</td>
-</tr>
-<tr class="even">
-<td align="center">…</td>
-<td align="center">…</td>
-<td align="center">…</td>
-</tr>
-<tr class="odd">
-<td align="center">…</td>
-<td align="center">…</td>
-<td align="center">…</td>
-</tr>
-<tr class="even">
-<td align="center"><span class="math inline">\(s_n\)</span></td>
-<td align="center">si</td>
-<td align="center">negativo*</td>
-</tr>
-</tbody>
-</table>
+<div id="estimador-1" class="section level2 hasAnchor" number="12.4">
+<h2><span class="header-section-number">12.4</span> Estimador<a href="máxima-verosimilitud.html#estimador-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><img src="figures/estimator.jpg" style="width:50%"  align="center"></p>
 <hr />
 <hr />
 </div>
-<div id="tablas-de-contingencia" class="section level2 hasAnchor" number="4.6">
-<h2><span class="header-section-number">4.6</span> Tablas de contingencia<a href="probabilidad-condicional.html#tablas-de-contingencia" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="ejemplos-1-promedio-media-de-la-muestra" class="section level2 hasAnchor" number="12.5">
+<h2><span class="header-section-number">12.5</span> Ejemplos 1: promedio (media de la muestra)<a href="máxima-verosimilitud.html#ejemplos-1-promedio-media-de-la-muestra" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Cuando <span class="math inline">\(X \hookrightarrow N(\mu, \sigma^2)\)</span></p>
+<p>Para la media:</p>
 <ul>
-<li>Por el número de observaciones de cada resultado</li>
-</ul>
-<table>
-<thead>
-<tr class="header">
-<th align="center"></th>
-<th align="center">Infección: sí</th>
-<th align="center">Infección: no</th>
-<th align="center">suma</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="center"><b>Test: positivo</b></td>
-<td align="center">18</td>
-<td align="center">12</td>
-<td align="center">30</td>
-</tr>
-<tr class="even">
-<td align="center"><b>Test: negativo</b></td>
-<td align="center">30</td>
-<td align="center">300</td>
-<td align="center">330</td>
-</tr>
-<tr class="odd">
-<td align="center"><b>suma</b></td>
-<td align="center">48</td>
-<td align="center">312</td>
-<td align="center">360</td>
-</tr>
-</tbody>
-</table>
-<ul>
-<li>Para las frecuencias relativas, si <span class="math inline">\(N&gt;&gt;0\)</span> tomaremos <span class="math inline">\(f_{i,j}=\hat{P}(x_i, y_j)\)</span></li>
-</ul>
-<table>
-<thead>
-<tr class="header">
-<th align="center"></th>
-<th align="center">Infección: sí</th>
-<th align="center">Infección: no</th>
-<th align="center">suma</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="center"><b>Test: positivo</b></td>
-<td align="center">0.05</td>
-<td align="center">0.0333</td>
-<td align="center">0.0833</td>
-</tr>
-<tr class="even">
-<td align="center"><b>Test: negativo</b></td>
-<td align="center">0.0833</td>
-<td align="center">0.833</td>
-<td align="center">0.9166</td>
-</tr>
-<tr class="odd">
-<td align="center"><b>suma</b></td>
-<td align="center">0.133</td>
-<td align="center">0.866</td>
-<td align="center">1</td>
-</tr>
-</tbody>
-</table>
-<hr />
-<hr />
-</div>
-<div id="la-probabilidad-condicional" class="section level2 hasAnchor" number="4.7">
-<h2><span class="header-section-number">4.7</span> La probabilidad condicional<a href="probabilidad-condicional.html#la-probabilidad-condicional" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Pensemos primero en términos de aquellos que están <strong>infectados</strong></p>
-<p><br />
-Dentro de los que están infectados (<strong>sí</strong>), ¿cuál es la probabilidad de dar positivo?</p>
-<ul>
-<li><b>Sensibilidad</b> (tasa de verdaderos positivos)</li>
-</ul>
-<p><span class="math display">\[\hat{P}(positivo|sí)=\frac{n_{positivo,sí}}{n_{sí}}\]</span></p>
-<p><span class="math display">\[=\frac{\frac{n_{positivo,sí}}{N}}{\frac{n_{sí}}{N}}=\frac{f_{positivo,sí}}{f_{sí}} \]</span></p>
-<p>Por lo tanto, en el límite, esperamos tener una probabilidad del tipo</p>
-<p><span class="math display">\[P(positivo|sí)=\frac{P(positivo, sí)}{P(sí)}=\frac{P(positivo \cap sí)}{P(sí)}\]</span></p>
-<hr />
-<hr />
-</div>
-<div id="la-probabilidad-condicional-1" class="section level2 hasAnchor" number="4.8">
-<h2><span class="header-section-number">4.8</span> La probabilidad condicional<a href="probabilidad-condicional.html#la-probabilidad-condicional-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><strong>Definición:</strong>
-La probabilidad condicional de un evento B dado un evento A, denotado como <span class="math inline">\(P(A|B)\)</span>, es
-<span class="math display">\[P(A|B) = \frac{P(A\cap B)}{P(B)}\]</span></p>
-<ul>
-<li>se puede probar que la probabilidad condicional satisface los axiomas de probabilidad.</li>
-<li>la probabilidad condicional es la probabilidad bajo el espacio muestral dado por <span class="math inline">\(B\)</span>: <span class="math inline">\(S_B\)</span>.</li>
+<li><span class="math inline">\(\mu\)</span> es un <strong>parámetro</strong> de la distribución poblacional <span class="math inline">\(N(\mu, \sigma^2)\)</span></li>
+<li><span class="math inline">\(\bar{X}\)</span> es un <strong>estimador</strong> de <span class="math inline">\(\mu\)</span></li>
+<li><span class="math inline">\(\bar{x}=\hat{\mu}=13.21 \, Tons\)</span> es el <strong>estimado</strong> de <span class="math inline">\(\mu\)</span></li>
 </ul>
 <hr />
 <hr />
 </div>
-<div id="tabla-de-contingencia-condicional" class="section level2 hasAnchor" number="4.9">
-<h2><span class="header-section-number">4.9</span> Tabla de contingencia condicional<a href="probabilidad-condicional.html#tabla-de-contingencia-condicional" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<table>
-<thead>
-<tr class="header">
-<th align="center"></th>
-<th align="center">Infección: Sí</th>
-<th align="center">Infección: No</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="center"><b>Test: positivo</b></td>
-<td align="center">P(positivo <span>|</span> sí)</td>
-<td align="center">P(positivo <span>|</span> no)</td>
-</tr>
-<tr class="even">
-<td align="center"><b>Test: negativo</b></td>
-<td align="center">P(negativo <span>|</span> sí)</td>
-<td align="center">P(negativo <span>|</span> no)</td>
-</tr>
-<tr class="odd">
-<td align="center"><b>suma</b></td>
-<td align="center">1</td>
-<td align="center">1</td>
-</tr>
-</tbody>
-</table>
+<div id="ejemplos-2-variación-de-la-muestra" class="section level2 hasAnchor" number="12.6">
+<h2><span class="header-section-number">12.6</span> Ejemplos 2: Variación de la muestra<a href="máxima-verosimilitud.html#ejemplos-2-variación-de-la-muestra" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Cuando <span class="math inline">\(X \hookrightarrow N(\mu, \sigma^2)\)</span></p>
+<p>Para la varianza:</p>
 <ul>
-<li><p>Tasa de verdaderos positivos (Sensibilidad): La probabilidad de dar positivo <strong>si</strong> se tiene la enfermedad <span class="math inline">\(P(positivo|sí)\)</span></p></li>
-<li><p>Tasa de verdaderos negativos (Especificidad): La probabilidad de dar negativo <strong>si</strong> no se tiene la enfermedad <span class="math inline">\(P(negativo|no)\)</span></p></li>
-<li><p>Tasa de falsos positivos: La probabilidad de dar positivo <strong>si</strong> no se tiene la enfermedad <span class="math inline">\(P(positivo|no)\)</span></p></li>
-<li><p>Tasa de falsos negativos: la probabilidad de dar negativo <strong>si</strong> se tiene la enfermedad <span class="math inline">\(P(negativo|sí)\)</span></p></li>
+<li><span class="math inline">\(\sigma^2\)</span> es un <strong>parámetro</strong> de la distribución de la población <span class="math inline">\(N(\mu, \sigma^2)\)</span></li>
+<li><span class="math inline">\(S^2\)</span> es un <strong>estimador</strong> de <span class="math inline">\(\sigma^2\)</span></li>
+<li><span class="math inline">\(s^2=\hat{\sigma^2}=0.127 \, Tons^2\)</span> es la <strong>estimación</strong> de <span class="math inline">\(\sigma^2\)</span></li>
 </ul>
 <hr />
 <hr />
 </div>
-<div id="ejemplo-de-tabla-de-contingencia-condicional" class="section level2 hasAnchor" number="4.10">
-<h2><span class="header-section-number">4.10</span> Ejemplo de tabla de contingencia condicional<a href="probabilidad-condicional.html#ejemplo-de-tabla-de-contingencia-condicional" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Tomando las frecuencias como estimaciones de las probabilidades, entonces</p>
-<table>
-<thead>
-<tr class="header">
-<th align="center"></th>
-<th align="center">Infección: Sí</th>
-<th align="center">Infección: No</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="center"><b>Test: positivo</b></td>
-<td align="center">18/48 = 0.375</td>
-<td align="center">12/312 = 0.038</td>
-</tr>
-<tr class="even">
-<td align="center"><b>Test: negativo</b></td>
-<td align="center">30/48 = 0.625</td>
-<td align="center">300/312 =0.962</td>
-</tr>
-<tr class="odd">
-<td align="center"><b>suma</b></td>
-<td align="center">1</td>
-<td align="center">1</td>
-</tr>
-</tbody>
-</table>
-<p>Nuestra herramienta de diagnóstico tiene baja sensibilidad (0.375) pero alta
-especificidad (0.962).</p>
-<hr />
-<hr />
-</div>
-<div id="regla-de-multiplicación" class="section level2 hasAnchor" number="4.11">
-<h2><span class="header-section-number">4.11</span> Regla de multiplicación<a href="probabilidad-condicional.html#regla-de-multiplicación" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Ahora imaginemos la situación real, donde queremos obtener la probabilidad <strong>conjunta</strong> de la probabilidad <strong>condicional</strong></p>
+<div id="sesgo" class="section level2 hasAnchor" number="12.7">
+<h2><span class="header-section-number">12.7</span> Sesgo<a href="máxima-verosimilitud.html#sesgo" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Un estimador es insesgado (no tiene sesgo) si <span class="math inline">\(E(\Theta)=\theta\)</span></p>
 <ul>
-<li><p>Se (realizaron) PCR para coronavirus [<a href="https://www.nejm.org/doi/full/10.1056/NEJMp2015897" class="uri">https://www.nejm.org/doi/full/10.1056/NEJMp2015897</a>] en personas en el hospital que estamos seguros de estar infectadas. Este test tiene una sensibilidad del 70%. También se ha probado en el laboratorio en condiciones sin infección con una especificidad del 96 %.</p></li>
-<li><p>Un estudio de prevalencia en España mostró que <span class="math inline">\(P(sí)=0.05\)</span>, <span class="math inline">\(P(no)=0.95\)</span> antes del verano.</p></li>
-</ul>
-<p>Con estos datos, ¿cuál era la probabilidad de que una persona seleccionada al azar de la población diera positivo <strong>y</strong> estuviera infectada: <span class="math inline">\(P(sí \cap positivo)=P(sí, positivo)\)</span>?</p>
-<hr />
-<hr />
-</div>
-<div id="rendimiento-de-diagnóstico" class="section level2 hasAnchor" number="4.12">
-<h2><span class="header-section-number">4.12</span> Rendimiento de diagnóstico<a href="probabilidad-condicional.html#rendimiento-de-diagnóstico" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Para estudiar el rendimiento de una nueva prueba diagnóstica:</p>
-<ul>
-<li><p>selecciona muestras que son inadecuadas (enfermedad: <strong>sí</strong>) y aplica la prueba, tratando de encontrar su sensibilidad: <span class="math inline">\(P(positivo|sí)\)</span> (<span class="math inline">\(0.70\)</span> para PCR)</p></li>
-<li><p>selecciona muestras que son adecuadas (enfermedad: <strong>no</strong>) y aplica la prueba, tratando de encontrar su especificidad: <span class="math inline">\(P(negativo|no)\)</span> (<span class="math inline">\(0.96\)</span> para PCR)</p></li>
-</ul>
-<hr />
-<hr />
-<table>
-<thead>
-<tr class="header">
-<th align="center"></th>
-<th align="center">Infección: Sí</th>
-<th align="center">Infección: No</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="center"><b>Test: positivo</b></td>
-<td align="center">P(positivo<span>|</span>sí)=0.7</td>
-<td align="center">P(positivo<span>|</span>no)=0.06</td>
-</tr>
-<tr class="even">
-<td align="center"><b>Test: negativo</b></td>
-<td align="center">P(negativo<span>|</span>sí)=0.3</td>
-<td align="center">P(negativo<span>|</span>no)=0.94</td>
-</tr>
-<tr class="odd">
-<td align="center"><b>suma</b></td>
-<td align="center">1</td>
-<td align="center">1</td>
-</tr>
-</tbody>
-</table>
-<p>De esta matriz, ¿podemos obtener <span class="math inline">\(P(sí, positivo)\)</span>?</p>
-<hr />
-<hr />
-</div>
-<div id="regla-de-multiplicación-1" class="section level2 hasAnchor" number="4.13">
-<h2><span class="header-section-number">4.13</span> Regla de multiplicación<a href="probabilidad-condicional.html#regla-de-multiplicación-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><br>
-<br></p>
-<p>¿Cómo se recupera la probabilidad conjunta de la probabilidad condicional?</p>
-<p>Para dos eventos <span class="math inline">\(A\)</span> y <span class="math inline">\(B\)</span> tenemos la regla de la multiplicación</p>
-<p><span class="math display">\[P(A, B) = P(A|B) P(B)\]</span></p>
-<p>que se sigue de la definición de probabilidad condicional.</p>
-<p><br>
-<br></p>
-<hr />
-<hr />
-</div>
-<div id="tabla-de-contingencia-en-términos-de-probabilidades-condicionales" class="section level2 hasAnchor" number="4.14">
-<h2><span class="header-section-number">4.14</span> Tabla de contingencia en términos de probabilidades condicionales<a href="probabilidad-condicional.html#tabla-de-contingencia-en-términos-de-probabilidades-condicionales" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<table>
-<thead>
-<tr class="header">
-<th align="center"></th>
-<th align="center">Infección: Sí</th>
-<th align="center">Infección: No</th>
-<th align="center"><b>suma</b></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="center"><b>Test: positivo</b></td>
-<td align="center">P(positivo <span>|</span> sí)P(sí)</td>
-<td align="center">P(positivo <span>|</span> no)P(no)</td>
-<td align="center">P(positivo)</td>
-</tr>
-<tr class="even">
-<td align="center"><b>Test: negativo</b></td>
-<td align="center">P(negativo <span>|</span> sí)P(sí)</td>
-<td align="center">P(negativo <span>|</span> no) P(no)</td>
-<td align="center">P(negativo)</td>
-</tr>
-<tr class="odd">
-<td align="center"><b>suma</b></td>
-<td align="center">P(sí)</td>
-<td align="center">P(no)</td>
-<td align="center">1</td>
-</tr>
-</tbody>
-</table>
-<p>Por ejemplo, la probabilidad de dar <span class="math inline">\(positivo\)</span> y estar infectado <span class="math inline">\(sí\)</span>:</p>
-<ul>
-<li><span class="math inline">\(P(positivo, sí)=P(positivo \cap sí) = P(positivo|sí) P(sí)\)</span></li>
+<li><p><span class="math inline">\(\bar{X}\)</span> es un estimador <strong>insesgado</strong> de <span class="math inline">\(\mu\)</span> porque <span class="math inline">\(E(\bar{X})=\mu\)</span></p></li>
+<li><p><span class="math inline">\(S^2\)</span> es un estimador <strong>insesgado</strong> de <span class="math inline">\(\sigma^2\)</span> porque <span class="math inline">\(E(S^2)=\sigma^2\)</span></p></li>
 </ul>
 <hr />
 <hr />
 </div>
-<div id="árbol-condicional" class="section level2 hasAnchor" number="4.15">
-<h2><span class="header-section-number">4.15</span> Árbol condicional<a href="probabilidad-condicional.html#árbol-condicional" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><img src="figures/Tree.png" style="width:75%"  align="center"></p>
-<hr />
-<hr />
-</div>
-<div id="tabla-de-contingencia-en-términos-de-probabilidades-condicionales-1" class="section level2 hasAnchor" number="4.16">
-<h2><span class="header-section-number">4.16</span> Tabla de contingencia en términos de probabilidades condicionales<a href="probabilidad-condicional.html#tabla-de-contingencia-en-términos-de-probabilidades-condicionales-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<table>
-<thead>
-<tr class="header">
-<th align="center"></th>
-<th align="center">Infección: sí</th>
-<th align="center">Infección: no</th>
-<th align="center">suma</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="center"><b>Test: positivo</b></td>
-<td align="center">0.035</td>
-<td align="center">0.057</td>
-<td align="center">0.092</td>
-</tr>
-<tr class="even">
-<td align="center"><b>Test: negativo</b></td>
-<td align="center">0.015</td>
-<td align="center">0.893</td>
-<td align="center">0.908</td>
-</tr>
-<tr class="odd">
-<td align="center"><b>suma</b></td>
-<td align="center">0.05</td>
-<td align="center">0.95</td>
-<td align="center">1</td>
-</tr>
-</tbody>
-</table>
+<div id="consistencia" class="section level2 hasAnchor" number="12.8">
+<h2><span class="header-section-number">12.8</span> Consistencia<a href="máxima-verosimilitud.html#consistencia" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Un estimador es consistente si <span class="math inline">\(V(\Theta) \rightarrow 0\)</span> cuando <span class="math inline">\(n \rightarrow \infty\)</span></p>
 <ul>
-<li><span class="math inline">\(P(positivo,si)= 0.035\)</span></li>
-</ul>
-<p>Pero también encontramos la probabilidad marginal de ser <strong>positivo</strong>:</p>
-<ul>
-<li><span class="math inline">\(P(positivo)=0.092\)</span></li>
+<li><p><span class="math inline">\(\bar{X}\)</span> es <strong>consistente</strong> porque <span class="math inline">\(V(\bar{X})=\frac{\sigma}{n}\rightarrow 0\)</span> cuando <span class="math inline">\(n \rightarrow \infty\)</span>.</p></li>
+<li><p><span class="math inline">\(S^2\)</span> también es <strong>coherente</strong> (no lo mostraremos).</p></li>
 </ul>
 <hr />
 <hr />
 </div>
-<div id="regla-de-probabilidad-total" class="section level2 hasAnchor" number="4.17">
-<h2><span class="header-section-number">4.17</span> Regla de probabilidad total<a href="probabilidad-condicional.html#regla-de-probabilidad-total" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<table>
-<thead>
-<tr class="header">
-<th align="center"></th>
-<th align="center">Infección: Sí</th>
-<th align="center">Infección: No</th>
-<th align="center"><b>suma</b></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="center"><b>Test: positivo</b></td>
-<td align="center">P(positivo <span>|</span> sí)P(sí)</td>
-<td align="center">P(positivo <span>|</span> no)P(no)</td>
-<td align="center">P(positivo)</td>
-</tr>
-<tr class="even">
-<td align="center"><b>Test: negativo</b></td>
-<td align="center">P(negativo <span>|</span> sí)P(sí)</td>
-<td align="center">P(negativo <span>|</span> no) P(no)</td>
-<td align="center">P(negativo)</td>
-</tr>
-<tr class="odd">
-<td align="center"><b>suma</b></td>
-<td align="center">P(sí)</td>
-<td align="center">P(no)</td>
-<td align="center">1</td>
-</tr>
-</tbody>
-</table>
-<p>Cuando escribimos las marginales desconocidas en términos de sus probabilidades condicionales, lo llamamos <strong>regla de probabilidad total</strong></p>
+<div id="máxima-verosimilitud-1" class="section level2 hasAnchor" number="12.9">
+<h2><span class="header-section-number">12.9</span> Máxima verosimilitud<a href="máxima-verosimilitud.html#máxima-verosimilitud-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>¿Cómo podemos <strong>estimar</strong> el parámetro de <strong>cualquier</strong> modelo paramétrico?</p>
 <ul>
-<li><span class="math inline">\(P(positivo)=P(positivo|sí)P(sí)+P(positivo|no)P(no)\)</span></li>
-<li><span class="math inline">\(P(negativo)=P(negativo|sí)P(sí)+P(negativo|no)P(no)\)</span></li>
+<li><p>Imaginemos que diseñamos un láser con un diámetro de 1 mm que queremos usar para aplicaciones clínicas.</p></li>
+<li><p>Queremos caracterizar el diámetro de un agujero en un tejido realizado con el láser</p></li>
+<li><p>y tomar una muestra aleatoria de 30 cortes realizados con el láser</p></li>
 </ul>
+<pre><code>##  [1] 1.11 1.64 1.20 1.79 1.89 1.01 1.31 1.81 1.34 1.25 1.92 1.24 1.49 1.36 1.03
+## [16] 1.82 1.09 1.01 1.14 1.91 1.80 1.51 1.44 1.98 1.46 1.53 1.33 1.39 1.12 1.04</code></pre>
 <hr />
 <hr />
 </div>
-<div id="árbol-condicional-1" class="section level2 hasAnchor" number="4.18">
-<h2><span class="header-section-number">4.18</span> Árbol condicional<a href="probabilidad-condicional.html#árbol-condicional-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><img src="figures/Treetot.png" style="width:75%"  align="center"></p>
-<p><strong>Regla de probabilidad total</strong> para la marginal de <span class="math inline">\(B\)</span>: ¿De cuántas maneras puedo obtener el resultado <span class="math inline">\(B\)</span>?</p>
-<p><span class="math inline">\(P(B)=P(B|A)P(A)+P(B|A&#39;)P(A&#39;)\)</span></p>
+<div id="ejemplo-14" class="section level2 hasAnchor" number="12.10">
+<h2><span class="header-section-number">12.10</span> Ejemplo<a href="máxima-verosimilitud.html#ejemplo-14" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>con histograma</p>
+<p><img src="_main_files/figure-html/unnamed-chunk-83-1.png" width="672" /></p>
 <hr />
 <hr />
 </div>
-<div id="encontrar-probabilidades-inversas" class="section level2 hasAnchor" number="4.19">
-<h2><span class="header-section-number">4.19</span> Encontrar probabilidades inversas<a href="probabilidad-condicional.html#encontrar-probabilidades-inversas" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>De la tabla de contingencia condicional</p>
-<table>
-<thead>
-<tr class="header">
-<th align="center"></th>
-<th align="center">Infección: Sí</th>
-<th align="center">Infección: No</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="center"><b>Test: positivo</b></td>
-<td align="center">P(positivo <span>|</span> sí)</td>
-<td align="center">P(positivo <span>|</span> no)</td>
-</tr>
-<tr class="even">
-<td align="center"><b>Test: negativo</b></td>
-<td align="center">P(negativo <span>|</span> sí)</td>
-<td align="center">P(negativo <span>|</span> no)</td>
-</tr>
-<tr class="odd">
-<td align="center"><b>suma</b></td>
-<td align="center">1</td>
-<td align="center">1</td>
-</tr>
-</tbody>
-</table>
-<p>¿Cómo podemos calcular la probabilidad de estar infectado si la prueba da positivo: <span class="math inline">\(P(sí|positivo)\)</span>?</p>
+<div id="densidad-de-probabilidad" class="section level2 hasAnchor" number="12.11">
+<h2><span class="header-section-number">12.11</span> Densidad de probabilidad<a href="máxima-verosimilitud.html#densidad-de-probabilidad" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Consideramos que</p>
+<ul>
+<li>se debe dar la máxima probabilidad a los diámetros de <span class="math inline">\(x=1mm\)</span></li>
+<li>los diámetros deben disminuir exponencialmente en probabilidad a medida que aumentan de tamaño con un límite de <span class="math inline">\(2mm\)</span> más allá del cual la probabilidad es de <span class="math inline">\(0\)</span>.</li>
+</ul>
+<p>Una distribución de densidad de probabilidad adecuada es</p>
+<p><span class="math display">\[
+    f(x)= 
+\begin{cases}
+\frac{1}{\alpha}(x-1)^{\frac{1-\alpha}{\alpha}},&amp; \text{if } x \in (1,2)\\
+    0,&amp; x \notin (1,2)\\
+\end{cases}
+\]</span></p>
+<p>Donde <span class="math inline">\(\alpha\)</span> es un parámetro.</p>
 <hr />
 <hr />
 </div>
-<div id="recuperar-probabilidades-conjuntas" class="section level2 hasAnchor" number="4.20">
-<h2><span class="header-section-number">4.20</span> Recuperar probabilidades conjuntas<a href="probabilidad-condicional.html#recuperar-probabilidades-conjuntas" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="densidad-de-probabilidad-1" class="section level2 hasAnchor" number="12.12">
+<h2><span class="header-section-number">12.12</span> Densidad de probabilidad<a href="máxima-verosimilitud.html#densidad-de-probabilidad-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><img src="_main_files/figure-html/unnamed-chunk-84-1.png" width="672" /></p>
+<p>Si realizáramos una muestra de <span class="math inline">\(n\)</span>: <span class="math inline">\(X_1,...X_n\)</span></p>
+<ul>
+<li>La <strong>máxima verosimilitud</strong> es un método que <strong>nos da el estimador</strong> para <span class="math inline">\(\alpha\)</span></li>
+</ul>
+<p><span class="math display">\[\hat{\alpha}_{ml}\]</span></p>
+<p>¿Cómo debemos combinar los datos para obtener el mejor valor de <span class="math inline">\(\hat{\alpha}_{ml}\)</span>?</p>
+<hr />
+<hr />
+</div>
+<div id="ejemplo-máxima-probabilidad" class="section level2 hasAnchor" number="12.13">
+<h2><span class="header-section-number">12.13</span> Ejemplo: Máxima probabilidad<a href="máxima-verosimilitud.html#ejemplo-máxima-probabilidad" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><img src="_main_files/figure-html/unnamed-chunk-85-1.png" width="672" /></p>
+<hr />
+<hr />
+</div>
+<div id="máxima-verosimilitud-2" class="section level2 hasAnchor" number="12.14">
+<h2><span class="header-section-number">12.14</span> Máxima verosimilitud<a href="máxima-verosimilitud.html#máxima-verosimilitud-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>El objetivo es encontrar el valor del parámetro que <strong>creemos</strong> que puede representar <strong>mejor</strong> los datos.</p>
+<p>Buscamos el parámetro que hace más <strong>probable</strong> la <strong>observación</strong> de la muestra.</p>
+<p>Recordemos que:</p>
+<ul>
+<li>Las probabilidades se asignan a las observaciones.</li>
+<li>Las probabilidades no se asignan a parámetros (asignamos creencias, probabilidades).</li>
+</ul>
+<p>Se supone que los parámetros no deben cambiar, son propiedades del sistema.</p>
+<hr />
+<hr />
+</div>
+<div id="método-paso-1" class="section level2 hasAnchor" number="12.15">
+<h2><span class="header-section-number">12.15</span> Método paso 1<a href="máxima-verosimilitud.html#método-paso-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ol style="list-style-type: decimal">
-<li>Recuperamos la tabla de contingencia para probabilidades conjuntas</li>
+<li>Calculamos la probabilidad de haber observado la muestra <span class="math inline">\(n\)</span>: <span class="math inline">\(x_1,...x_n\)</span></li>
 </ol>
-<table>
-<thead>
-<tr class="header">
-<th align="center"></th>
-<th align="center">Infección: Sí</th>
-<th align="center">Infección: No</th>
-<th align="center"><b>suma</b></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="center"><b>Test: positivo</b></td>
-<td align="center">P(positivo <span>|</span> sí)P(sí)</td>
-<td align="center">P(positivo <span>|</span> no)P(no)</td>
-<td align="center">P(positivo)</td>
-</tr>
-<tr class="even">
-<td align="center"><b>Test: negativo</b></td>
-<td align="center">P(negativo <span>|</span> sí)P(sí)</td>
-<td align="center">P(negativo <span>|</span> no) P(no)</td>
-<td align="center">P(negativo)</td>
-</tr>
-<tr class="odd">
-<td align="center"><b>suma</b></td>
-<td align="center">P(sí)</td>
-<td align="center">P(no)</td>
-<td align="center">1</td>
-</tr>
-</tbody>
-</table>
-<p><br>
-<br></p>
+<p><span class="math inline">\(P(x_1,...x_n)=P(x_1)P(X_2)...P(x_n)\)</span>
+<span class="math display">\[=f(x_1;\alpha)f(x_2;\alpha) ...f(x_n;\alpha)\]</span></p>
+<ul>
+<li>Una vez observados los datos se <strong>fijan</strong>.</li>
+<li>La incógnita es <span class="math inline">\(\alpha\)</span></li>
+<li>Esta probabilidad como función de <span class="math inline">\(\alpha\)</span> la llamamos <strong>función de verosimilitud</strong></li>
+</ul>
+<p><span class="math display">\[L(\alpha)= \Pi_{i=1..n} f(x_i; \alpha)\]</span></p>
+<p>entonces en nuestro caso</p>
+<p><span class="math inline">\(L(\alpha;x_1,..x_n)= \frac{1}{\alpha^n} \Pi_{i=1..n} (x_i-1)^{\frac{1-\alpha}{ \alpha}}= \frac{1}{\alpha^n} \{(x_1-1)(x_2-1)...(x_n-1)\}^{\frac{1-\alpha}{\ alpha}}\)</span></p>
 <hr />
 <hr />
 </div>
-<div id="condicionales-inversas" class="section level2 hasAnchor" number="4.21">
-<h2><span class="header-section-number">4.21</span> Condicionales inversas<a href="probabilidad-condicional.html#condicionales-inversas" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="método-paso-2" class="section level2 hasAnchor" number="12.16">
+<h2><span class="header-section-number">12.16</span> Método paso 2<a href="máxima-verosimilitud.html#método-paso-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Queremos maximizar <span class="math inline">\(L(\alpha)\)</span> con respecto a <span class="math inline">\(\alpha\)</span>.</p>
+<p>Como tenemos la multiplicación de muchos factores es más fácil maximizar el logaritmo de <span class="math inline">\(L(\alpha)\)</span></p>
 <ol start="2" style="list-style-type: decimal">
-<li>Calculamos las probabilidades condicionales para la prueba:</li>
+<li>Tomemos el logaritmo para obetener el <strong>Logaritmo de la verosimilitud</strong></li>
 </ol>
-<p><span class="math display">\[P(infección|prueba)=\frac{P(prueba|infección)P(infección)}{P(prueba)}\]</span></p>
-<table>
-<thead>
-<tr class="header">
-<th align="center"></th>
-<th align="center">Infección: Sí</th>
-<th align="center">Infección: No</th>
-<th align="center">suma</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="center"><b>Test: positivo</b></td>
-<td align="center">P(sí<span>|</span>positivo)</td>
-<td align="center">P(sin<span>|</span>positivo)</td>
-<td align="center">1</td>
-</tr>
-<tr class="even">
-<td align="center"><b>Test: negativo</b></td>
-<td align="center">P(sí<span>|</span>negativo)</td>
-<td align="center">P(sin<span>|</span>negativo)</td>
-<td align="center">1</td>
-</tr>
-</tbody>
-</table>
-<p>Por ejemplo:
-<span class="math display">\[P(sí|positivo)=\frac{P(positivo|sí)P(sí)}{P(positivo)}\]</span>
-como normalmente no tenemos <span class="math inline">\(P(positivo)\)</span>, usamos la regla de <strong>probabilidad total</strong> en el denominador</p>
-<p><span class="math display">\[P(sí|positivo)=\frac{P(positivo|sí)P(sí)}{P(positivo|sí)P(sí)+P(positivo|no)P(no)}\]</span></p>
+<p><span class="math display">\[\ln L(\alpha;x_1,..x_n)= -n \ln(\alpha) + {\frac{1-\alpha}{\alpha}} \Sigma_{i=1...n} \ln (x_i-1)\]</span></p>
 <hr />
 <hr />
 </div>
-<div id="teorema-de-bayes" class="section level2 hasAnchor" number="4.22">
-<h2><span class="header-section-number">4.22</span> Teorema de Bayes<a href="probabilidad-condicional.html#teorema-de-bayes" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>La expresion:</p>
-<p><span class="math display">\[P(sí|positivo)=\frac{P(positivo|sí)P(sí)}{P(positivo|sí)P(sí)+P(positivo|no)P(no)}\]</span></p>
-<p>se llama <strong>teorema de Bayes</strong></p>
-<p><strong>Teorema</strong></p>
-<p>Si <span class="math inline">\(E1, E2, ..., Ek\)</span> son <span class="math inline">\(k\)</span> eventos mutuamente excluyentes y exhaustivos y <span class="math inline">\(B\)</span> es cualquier evento,</p>
-<p><span class="math display">\[P(Ei|B)=\frac{P(B|Ei)P(Ei)}{P(B|E1)P(E1) +...+ P(B|Ek)P(Ek)} \]</span></p>
-<p>Permite invertir los condicionales:</p>
-<p><span class="math display">\[P(B|A) \rightarrow P(A|B)\]</span></p>
-<p>O <strong>diseñe</strong> una prueba <span class="math inline">\(B\)</span> en condición controlada <span class="math inline">\(A\)</span> y luego utilícela para <strong>inferir</strong> la probabilidad de la condición cuando la prueba es positiva.</p>
-<hr />
-<hr />
-</div>
-<div id="ejemplo-teorema-de-bayes" class="section level2 hasAnchor" number="4.23">
-<h2><span class="header-section-number">4.23</span> Ejemplo: teorema de Bayes<a href="probabilidad-condicional.html#ejemplo-teorema-de-bayes" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Teorema de Bayes:</p>
-<p><span class="math display">\[P(sí|positivo) = \frac{P(positivo|sí) P(sí)}{P(positivo|sí)P(sí)+P(positivo|no)P(no)}\]</span></p>
-<p>sabemos:</p>
+<div id="método-paso-3" class="section level2 hasAnchor" number="12.17">
+<h2><span class="header-section-number">12.17</span> Método paso 3<a href="máxima-verosimilitud.html#método-paso-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ol start="3" style="list-style-type: decimal">
+<li>Maximizamos el log de la verosimilitud con respecto al parámetro</li>
+</ol>
+<p>Por lo tanto,</p>
 <ul>
-<li><p><span class="math inline">\(P(positivo|sí)=0.70\)</span></p></li>
-<li><p><span class="math inline">\(P(positivo|no)=1- P(negativo|no)=0.06\)</span></p></li>
-<li><p>la probabilidad de infección y no infección en la población: <span class="math inline">\(P(sí)=0.05\)</span> y <span class="math inline">\(P(no)=1-P(sí)=0.95\)</span>.</p></li>
+<li>diferenciamos con respecto a <span class="math inline">\(\alpha\)</span></li>
 </ul>
-<p>Por lo tanto:</p>
-<p><span class="math display">\[P(sí|positivo)=0.47\]</span></p>
-<p>Las pruebas no son tan buenas para <strong>confirmar</strong> infecciones.</p>
-<hr />
-<hr />
-</div>
-<div id="ejemplo-teorema-de-bayes-1" class="section level2 hasAnchor" number="4.24">
-<h2><span class="header-section-number">4.24</span> Ejemplo: teorema de Bayes<a href="probabilidad-condicional.html#ejemplo-teorema-de-bayes-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Apliquémoslo ahora a la probabilidad de no estar infectado si la prueba es negativa.</p>
-<p><span class="math display">\[P(no|negativo) = \frac{P(negativo|no) P(no)}{P(negativo|no) P(no)+P(negativo|sí)P(sí)}\]</span></p>
-<p>La sustitución de todos los valores da</p>
-<p><span class="math display">\[P(no|negativo)=0.98\]</span></p>
-<p>Las pruebas son buenas para <strong>descartar</strong> infecciones.</p>
-<hr />
-<hr />
-</div>
-<div id="independencia-estadística" class="section level2 hasAnchor" number="4.25">
-<h2><span class="header-section-number">4.25</span> Independencia estadística<a href="probabilidad-condicional.html#independencia-estadística" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><br>
-<br></p>
-<p>En muchas aplicaciones, queremos saber si el conocimiento de un evento condiciona el resultado de otro evento.</p>
+<p><span class="math inline">\(\frac{d \ln L(\alpha)}{d \alpha}= -\frac{n}{\alpha} - \frac{1}{\alpha^2} \Sigma_{i=1... n} \ln (x_i)\)</span></p>
 <ul>
-<li>hay casos en los que queremos saber si los eventos no están condicionados</li>
+<li>El máximo es donde la derivada es <span class="math inline">\(0\)</span>. Este máximo es el valor de nuestro estimador <span class="math inline">\(\hat{\alpha}_{ml}\)</span>.</li>
 </ul>
-<p><br>
-<br></p>
+<p><span class="math inline">\(\hat{\alpha}_{ml}=-\frac{1}{n}\Sigma_{i=1...n} \ln (x_i-1)\)</span></p>
 <hr />
 <hr />
 </div>
-<div id="independencia-estadística-1" class="section level2 hasAnchor" number="4.26">
-<h2><span class="header-section-number">4.26</span> Independencia estadística<a href="probabilidad-condicional.html#independencia-estadística-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Considere los conductores para los cuales medimos sus fallas superficiales y si su capacidad de conducción es defectuosa.</p>
-<p>Las <strong>probabilidades conjuntas</strong> estimadas son</p>
-<table>
-<thead>
-<tr class="header">
-<th align="center"></th>
-<th align="center">fallas (F)</th>
-<th align="center">sin fallas (F’)</th>
-<th align="center">suma</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="center"><b>defectuoso (D) </b></td>
-<td align="center"><span class="math inline">\(0.005\)</span></td>
-<td align="center"><span class="math inline">\(0.045\)</span></td>
-<td align="center"><span class="math inline">\(0.05\)</span></td>
-</tr>
-<tr class="even">
-<td align="center"><b>sin defectos (D’) </b></td>
-<td align="center"><span class="math inline">\(0.095\)</span></td>
-<td align="center"><span class="math inline">\(0.855\)</span></td>
-<td align="center"><span class="math inline">\(0.95\)</span></td>
-</tr>
-<tr class="odd">
-<td align="center"><b>suma</b></td>
-<td align="center"><span class="math inline">\(0.1\)</span></td>
-<td align="center"><span class="math inline">\(0.9\)</span></td>
-<td align="center">1</td>
-</tr>
-</tbody>
-</table>
-<p>donde, por ejemplo, la probabilidad conjunta de <span class="math inline">\(F\)</span> y <span class="math inline">\(D\)</span> es</p>
+<div id="método-paso-3-1" class="section level2 hasAnchor" number="12.18">
+<h2><span class="header-section-number">12.18</span> Método paso 3<a href="máxima-verosimilitud.html#método-paso-3-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><span class="math inline">\(\hat{\alpha}_{ml}=-\frac{1}{n}\Sigma_{i=1...n} \ln (x_i-1)\)</span></p>
+<p>es la <strong>estadística</strong> que estima el parámetro.</p>
+<p>En nuestro ejemplo calculamos:</p>
+<p><span class="math inline">\(\hat{\alpha}_{ml}=-\frac{1}{n}\{ \ln (1.11-1)+ \ln (1.64-1)+...\ln (1.04-1)\}=1.320\)</span></p>
+<hr />
+<hr />
+</div>
+<div id="estimacion" class="section level2 hasAnchor" number="12.19">
+<h2><span class="header-section-number">12.19</span> Estimacion<a href="máxima-verosimilitud.html#estimacion" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><img src="_main_files/figure-html/unnamed-chunk-86-1.png" width="672" /></p>
+<hr />
+<hr />
+</div>
+<div id="estimacion-1" class="section level2 hasAnchor" number="12.20">
+<h2><span class="header-section-number">12.20</span> Estimacion<a href="máxima-verosimilitud.html#estimacion-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ul>
-<li><span class="math inline">\(P(D,F)=0.005\)</span></li>
+<li><p>Esta es la log de la verosimilitud de nuestros 30 cortes con láser.</p></li>
+<li><p>Si tomamos otra muestra esta función cambia y también su máximo.</p></li>
 </ul>
-<p>Las probabilidades marginales son</p>
+<p><img src="_main_files/figure-html/unnamed-chunk-87-1.png" width="672" /></p>
+<hr />
+<hr />
+</div>
+<div id="distribución-normal-9" class="section level2 hasAnchor" number="12.21">
+<h2><span class="header-section-number">12.21</span> Distribución normal<a href="máxima-verosimilitud.html#distribución-normal-9" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Imaginemos que tomamos una muestra de <span class="math inline">\(8\)</span> cables para estmar la carga de rotura de cables y</p>
 <ul>
-<li><span class="math inline">\(P(D)=P(D, F) + P(D, F&#39;)=0.05\)</span></li>
-<li><span class="math inline">\(P(F)=P(D, F) + P(D&#39;, F)= 0.1\)</span>.</li>
+<li><p><strong>supongamos</strong> que <span class="math display">\[X \rightarrow N(\mu, \sigma^2)\]</span>.</p></li>
+<li><p>¿Cuáles son los estimadores de <span class="math inline">\(\mu\)</span> y <span class="math inline">\(\sigma^2\)</span> de la muestra?</p></li>
+</ul>
+<p><img src="figures/normpar.JPG" style="width:35%"  align="center"></p>
+<p>¿Qué valores de los parámetros describen mejor los datos?</p>
+<hr />
+<hr />
+</div>
+<div id="distribución-normal-10" class="section level2 hasAnchor" number="12.22">
+<h2><span class="header-section-number">12.22</span> Distribución normal<a href="máxima-verosimilitud.html#distribución-normal-10" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ol style="list-style-type: decimal">
+<li>La función de verosimilitud, la probabilidad de haber observado <span class="math inline">\((x_1, ....x_n)\)</span> es</li>
+</ol>
+<p><span class="math inline">\(L(\mu, \sigma^2)=\Pi_{i=1..n} N(x_i;\mu,\sigma)\)</span></p>
+<p><span class="math inline">\(=\big( \frac{1}{\sigma \sqrt{2 \pi}}\big)^n e^{-\frac{1}{2\sigma^2} \sum_i(x_i-\mu)^ 2}\)</span></p>
+<ol start="2" style="list-style-type: decimal">
+<li>Podemos tomar el logaritmo de <span class="math inline">\(L\)</span> y calcular la <strong>el log de la verosimilitud</strong></li>
+</ol>
+<p><span class="math inline">\(\ln L(\mu, \sigma^2)=-n \ln(\sigma \sqrt{2 \pi})-\frac{1}{2\sigma^2} \Sigma_i(x_i-\mu) ^2\)</span></p>
+<hr />
+<hr />
+</div>
+<div id="distribución-normal-11" class="section level2 hasAnchor" number="12.23">
+<h2><span class="header-section-number">12.23</span> Distribución normal<a href="máxima-verosimilitud.html#distribución-normal-11" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Las estimaciones de <span class="math inline">\(\mu\)</span>, <span class="math inline">\(\sigma^2\)</span> son donde la probabilidad es máxima y dan la probabilidad más alta para los datos.</p>
+<ol start="3" style="list-style-type: decimal">
+<li>diferenciamos con respecto a <span class="math inline">\(\mu\)</span> y <span class="math inline">\(\sigma^2\)</span></li>
+</ol>
+<ul>
+<li><p><span class="math inline">\(\frac{d \ln L(\mu, \sigma^2)}{d\mu}=\frac{1}{\sigma^2} \sum_i(x_i-\mu)\)</span></p></li>
+<li><p><span class="math inline">\(\frac{d \ln L(\mu, \sigma^2)}{d\sigma^2}=-\frac{n}{2 \sigma^2}+\frac{1}{2\sigma ^4} \sum_i(x_i-\mu)^2\)</span></p></li>
 </ul>
 <hr />
 <hr />
 </div>
-<div id="independencia-estadística-2" class="section level2 hasAnchor" number="4.27">
-<h2><span class="header-section-number">4.27</span> Independencia estadística<a href="probabilidad-condicional.html#independencia-estadística-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>¿Cuál es la <strong>probabilidad condicional</strong> de observar un conductor defectuoso si tiene un defecto?</p>
-<table>
-<thead>
-<tr class="header">
-<th align="center"></th>
-<th align="center">F</th>
-<th align="center">F’</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="center"><b> D </b></td>
-<td align="center">P(D<span>|</span>F) = 0.05</td>
-<td align="center">P(D<span>|</span>F’)=0.05</td>
-</tr>
-<tr class="even">
-<td align="center"><b> D’ </b></td>
-<td align="center">P(D’<span>|</span>F)=0.95</td>
-<td align="center">P(D’<span>|</span>F’)=0.95</td>
-</tr>
-<tr class="odd">
-<td align="center"><b>suma</b></td>
-<td align="center">1</td>
-<td align="center">1</td>
-</tr>
-</tbody>
-</table>
-<p>¡Las probabilidades marginales y condicionales son las mismas!</p>
+<div id="distribución-normal-12" class="section level2 hasAnchor" number="12.24">
+<h2><span class="header-section-number">12.24</span> Distribución normal<a href="máxima-verosimilitud.html#distribución-normal-12" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Los derivados son <span class="math inline">\(0\)</span> como máximo</p>
 <ul>
-<li><span class="math inline">\(P(D|F)=P(D|F&#39;)=P(D)\)</span></li>
-<li><span class="math inline">\(P(D&#39;|F)=P(D&#39;|F&#39;)=P(D&#39;)\)</span></li>
+<li><span class="math inline">\(\frac{1}{\hat{\sigma}^2} \sum_i(x_i-\hat{\mu})=0\)</span></li>
+<li><span class="math inline">\(-\frac{n}{2 \hat{\sigma}^2}+\frac{1}{2\hat{\sigma}^4} \sum_i(x_i-\hat{\mu})^2 =0\)</span></li>
 </ul>
-<p>La probabilidad de observar un conductor defectuoso <strong>no</strong> depende de haber observado o no un defecto.</p>
-<p><span class="math display">\[P(D) = P(D|F)\]</span></p>
+<p>resolviendo los parámetros encontramos</p>
+<ul>
+<li><span class="math inline">\(\hat{\mu}_{ml}=\frac{1}{n}\sum_i x_i=\bar{x}\)</span> (el promedio)</li>
+<li><span class="math inline">\(\hat{\sigma^2}_{ml}=\frac{1}{n}\sum_i(x_i-\bar{x})^2\)</span> (la varianza de la muestra <strong>sin corregir</strong>)</li>
+</ul>
+<p>El estimador de máxima verosimilitud de <span class="math inline">\(\sigma^2\)</span> es un estimador <strong>sesgado</strong> como: <span class="math inline">\(E(\hat{\sigma}^2_{ml})\neq \sigma^2\)</span></p>
 <hr />
 <hr />
 </div>
-<div id="independencia-estadística-3" class="section level2 hasAnchor" number="4.28">
-<h2><span class="header-section-number">4.28</span> Independencia estadística<a href="probabilidad-condicional.html#independencia-estadística-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Dos eventos <span class="math inline">\(A\)</span> y <span class="math inline">\(B\)</span> son estadísticamente independientes si</p>
-<ul>
-<li><span class="math inline">\(P(A|B)=P(A)\)</span>; <span class="math inline">\(A\)</span> es independiente de <span class="math inline">\(B\)</span></li>
-<li><span class="math inline">\(P(B|A)=P(B)\)</span>; <span class="math inline">\(B\)</span> es independiente de <span class="math inline">\(A\)</span></li>
-</ul>
-<p>y por la regla de la multiplicación, su probabilidad conjunta es</p>
-<ul>
-<li><span class="math inline">\(P(A\cap B)=P(A|B)P(B)=P(A)P(B)\)</span></li>
-</ul>
-<p>la multiplicación de sus probabilidades marginales.</p>
+<div id="máxima-probabilidad-historia" class="section level2 hasAnchor" number="12.25">
+<h2><span class="header-section-number">12.25</span> Máxima probabilidad: Historia<a href="máxima-verosimilitud.html#máxima-probabilidad-historia" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>¿Cuál es la estadística que mejor representa la verdadera posición de Ceres?</p>
+<p><img src="figures/cerestime.jpg" style="width:50%"  align="center"></p>
 <hr />
 <hr />
 </div>
-<div id="productos-de-productos-marginales" class="section level2 hasAnchor" number="4.29">
-<h2><span class="header-section-number">4.29</span> Productos de productos marginales<a href="probabilidad-condicional.html#productos-de-productos-marginales" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<table>
-<thead>
-<tr class="header">
-<th align="center"></th>
-<th align="center">F</th>
-<th align="center">F’</th>
-<th align="center">suma</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="center"><b> D </b></td>
-<td align="center"><span class="math inline">\(0.005\)</span></td>
-<td align="center"><span class="math inline">\(0.045\)</span></td>
-<td align="center"><span class="math inline">\(0.05\)</span></td>
-</tr>
-<tr class="even">
-<td align="center"><b> D’ </b></td>
-<td align="center"><span class="math inline">\(0.095\)</span></td>
-<td align="center"><span class="math inline">\(0.855\)</span></td>
-<td align="center"><span class="math inline">\(0.95\)</span></td>
-</tr>
-<tr class="odd">
-<td align="center"><b>suma</b></td>
-<td align="center"><span class="math inline">\(0.1\)</span></td>
-<td align="center"><span class="math inline">\(0.9\)</span></td>
-<td align="center">1</td>
-</tr>
-</tbody>
-</table>
-<p>Confirme que todas las entradas de la matriz son el producto de los marginales.</p>
+<div id="máxima-probabilidad-historia-1" class="section level2 hasAnchor" number="12.26">
+<h2><span class="header-section-number">12.26</span> Máxima probabilidad: Historia<a href="máxima-verosimilitud.html#máxima-probabilidad-historia-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Gauss propuso que en un momento <strong>dado</strong></p>
+<ul>
+<li>la posición <strong>verdadera</strong> de Ceres era la media <span class="math inline">\(\mu\)</span></li>
+<li>las probabilidades alrededor de la media eran simétricas.</li>
+</ul>
+<p><img src="figures/meanceres.jpg" style="width:50%"  align="center"></p>
+<hr />
+<hr />
+</div>
+<div id="máxima-probabilidad-historia-2" class="section level2 hasAnchor" number="12.27">
+<h2><span class="header-section-number">12.27</span> Máxima probabilidad: Historia<a href="máxima-verosimilitud.html#máxima-probabilidad-historia-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Gauss descubrió que si el promedio (<span class="math inline">\(\bar{x}\)</span>) es el valor <strong>más verosimil</strong> para la posición real de Ceres (<span class="math inline">\(\mu\)</span>), entonces la densidad de probabilidad de los errores es</p>
+<p><span class="math display">\[\frac{h}{\sqrt{\pi}}e^{-h^2(y-\mu_Y)^2}\]</span></p>
+<p>a la que llamamos la Gaussiana y que Pearson (1920) la bautizó como la curva normal.</p>
+<p>Nota: Suponemos que la posición <strong>verdadera</strong> de Ceres existe <span class="math inline">\(\mu\)</span>.</p>
+<ul>
+<li>¿Podemos decir lo mismo para altura de los hombres <span class="math inline">\(\mu\)</span>? (Galton)</li>
+</ul>
+<hr />
+<hr />
+</div>
+<div id="método-de-los-momentos" class="section level2 hasAnchor" number="12.28">
+<h2><span class="header-section-number">12.28</span> Método de los Momentos<a href="máxima-verosimilitud.html#método-de-los-momentos" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>El método de máxima verosimilitud tiene como objetivo producir los estimadores de distribuciones de probabilidad a partir de datos.</p>
+<ul>
+<li>¿Hay otra forma de producir esos estimadores? serian iguales?</li>
+</ul>
+<p>Veamos nuevamente los estimadores de máxima verosimilitud para <span class="math inline">\(\mu\)</span> y <span class="math inline">\(\sigma^2\)</span> para una variable aleatoria que se distribuye normalmente: <span class="math inline">\(X \hookrightarrow N(\mu, \sigma^2)\)</span></p>
+<ul>
+<li><span class="math inline">\(\hat{\mu}=\frac{1}{n}\sum_i x_i\)</span></li>
+<li><span class="math inline">\(\hat{\sigma^2}=\frac{1}{n}\sum_i(x_i-\bar{x})^2\)</span></li>
+</ul>
+<hr />
+<hr />
+</div>
+<div id="método-de-los-momentos-1" class="section level2 hasAnchor" number="12.29">
+<h2><span class="header-section-number">12.29</span> Método de los Momentos<a href="máxima-verosimilitud.html#método-de-los-momentos-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Reescribamos los estimadores en términos de los valores de <span class="math inline">\(X\)</span> (resultados), no de las observaciones</p>
 <p>Por ejemplo:</p>
+<p><span class="math display">\[\hat{\mu}=\frac{1}{n}\sum_i x_i= \sum_x x \frac{n_x}{n}\]</span></p>
+<p>y recuerda que en el límite <span class="math inline">\(n \rightarrow \infty\)</span> la interpretación frecuentista requiere <span class="math inline">\(\frac{n_x}{n} \rightarrow P(X=x)\)</span> y por lo tanto en el límite</p>
+<p><span class="math display">\[\hat{\mu}=\frac{1}{n}\sum_i x_i \rightarrow E(X)\]</span></p>
+<hr />
+<hr />
+</div>
+<div id="método-de-los-momentos-2" class="section level2 hasAnchor" number="12.30">
+<h2><span class="header-section-number">12.30</span> Método de los Momentos<a href="máxima-verosimilitud.html#método-de-los-momentos-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>El método de los momentos dice que podemos tomar el valor <strong>observado</strong> del promedio <span class="math inline">\(\bar{X}= \frac{1}{n}\sum_i X_i\)</span> como estimador de $E(X)=ps</p>
+<p><span class="math display">\[E(X)\sim\bar{x}\]</span></p>
+<p><span class="math inline">\(\bar{X}\)</span> se llama el primer <strong>momento de muestra</strong></p>
+<p>El estimador del parámetro <span class="math inline">\(\theta\)</span> se obtiene entonces de la ecuación:</p>
+<p><span class="math display">\[E(X)=\bar{x}\]</span></p>
+<p>para el valor de <span class="math inline">\(\hat{\theta}\)</span> observado</p>
+<p>Ejemplo: Si
+<span class="math inline">\(X \hookrightarrow N(\mu, \sigma^2)\)</span> entonces</p>
+<p><span class="math inline">\(E(X)=\mu\)</span></p>
+<p>El método de los momentos da el estimador</p>
 <ul>
-<li><span class="math inline">\(P(F)P(D)= P(D \cap F)\)</span></li>
-<li><span class="math inline">\(P(D&#39;)P(F&#39;)=P(D&#39; \cap F&#39;)\)</span></li>
+<li><span class="math inline">\(\hat{\mu}=\bar{x}=\frac{1}{n}\sum_i x_i\)</span></li>
 </ul>
 <hr />
 <hr />
 </div>
-<div id="ejemplo-5" class="section level2 hasAnchor" number="4.30">
-<h2><span class="header-section-number">4.30</span> Ejemplo<a href="probabilidad-condicional.html#ejemplo-5" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Resultados de lanzar dos monedas: <span class="math inline">\(S={(H,H), (H,T), (T,H), (T,T)}\)</span></p>
-<table>
-<thead>
-<tr class="header">
-<th align="center"></th>
-<th align="center">H</th>
-<th align="center">T</th>
-<th align="center">suma</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="center"><b> H </b></td>
-<td align="center"><span class="math inline">\(1/4\)</span></td>
-<td align="center"><span class="math inline">\(1/4\)</span></td>
-<td align="center"><span class="math inline">\(1/2\)</span></td>
-</tr>
-<tr class="even">
-<td align="center"><b> T </b></td>
-<td align="center"><span class="math inline">\(1/4\)</span></td>
-<td align="center"><span class="math inline">\(1/4\)</span></td>
-<td align="center"><span class="math inline">\(1/2\)</span></td>
-</tr>
-<tr class="odd">
-<td align="center"><b>suma</b></td>
-<td align="center"><span class="math inline">\(1/2\)</span></td>
-<td align="center"><span class="math inline">\(1/2\)</span></td>
-<td align="center">1</td>
-</tr>
-</tbody>
-</table>
+<div id="método-de-los-momentos-3" class="section level2 hasAnchor" number="12.31">
+<h2><span class="header-section-number">12.31</span> Método de los Momentos<a href="máxima-verosimilitud.html#método-de-los-momentos-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Supongamos que tenemos varias baterías (nuevas y viejas) que cargamos durante el período de 1 hora. Medimos el estado de carga de la batería siendo 1 a 100% de carga.</p>
+<p>El estado de carga de una batería es una variable aleatoria que puede tener una distribución uniforme, donde no sabemos el valor mínimo que puede tomar <span class="math inline">\(x\)</span>, pero sabemos que el máximo es 1</p>
+<p><span class="math display">\[
+f(x)=
+\begin{cases}
+    \frac{1}{1-a},&amp; \text{if } x\in (a,1)\\
+    0,&amp; x\notin (a,1)
+\end{cases}
+\]</span></p>
+<p>¿Cuál es el estimador de <span class="math inline">\(a\)</span>?</p>
 <ul>
-<li>Obtener cara en la primera moneda no condiciona obtener cruz en el resultado de la segunda moneda <span class="math inline">\(P(T|H)=P(T)=1/2\)</span></li>
-<li>la probabilidad de obtener cara y después cruz es el producto de cada resultado independiente <span class="math inline">\(P(H, T)=P(H)*P(T)=1/4\)</span></li>
+<li>Realizamos un experimento y obtenemos <span class="math inline">\(x_1,...x_n\)</span> ¿cómo podemos estimar <span class="math inline">\(a\)</span> a partir de los datos?</li>
 </ul>
 <hr />
 <hr />
+</div>
+<div id="método-de-los-momentos-4" class="section level2 hasAnchor" number="12.32">
+<h2><span class="header-section-number">12.32</span> Método de los Momentos<a href="máxima-verosimilitud.html#método-de-los-momentos-4" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>La distribución tiene un parámetro. El método de los momentos nos da una ecuación.</p>
+<p><span class="math display">\[E(X)=\bar{x}\]</span>
+Eso es</p>
+<p><span class="math display">\[\frac{\hat{a}+1}{2}=\bar{x}\]</span></p>
+<p>Que resolvemos para <span class="math inline">\(\hat{a}\)</span></p>
+<p><span class="math display">\[\hat{a}=2\bar{x}-1\]</span></p>
+<p>Este es el estimador de la carga mínima que podemos observar.</p>
+<hr />
+<hr />
+</div>
+<div id="método-de-los-momentos-5" class="section level2 hasAnchor" number="12.33">
+<h2><span class="header-section-number">12.33</span> Método de los Momentos<a href="máxima-verosimilitud.html#método-de-los-momentos-5" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Tenga en cuenta que tomar el mínimo de las medidas es claramente subóptimo.</p>
+<p>El método nos dio una respuesta inteligente:</p>
+<ul>
+<li>podemos calcular <span class="math inline">\(\bar{x}\)</span> con precisión creciente dada por <span class="math inline">\(n\)</span></li>
+<li>Sabemos que ninguna medida supera <span class="math inline">\(b=1\)</span></li>
+<li>Luego calcula la distancia entre <span class="math inline">\(\bar{x}\)</span> y <span class="math inline">\(b\)</span>: <span class="math inline">\(1-\bar{x}\)</span></li>
+<li>Restarlo de <span class="math inline">\(\bar{x}\)</span>: <span class="math inline">\(\bar{x}-(1-\bar{x})=2\bar{x}-1\)</span></li>
+</ul>
+<hr />
+<hr />
+</div>
+<div id="método-de-los-momentos-6" class="section level2 hasAnchor" number="12.34">
+<h2><span class="header-section-number">12.34</span> Método de los Momentos<a href="máxima-verosimilitud.html#método-de-los-momentos-6" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>El método dice que se puede encontrar una estimación para el parámetro <span class="math inline">\(\theta\)</span> de <span class="math inline">\(f(x;\theta)\)</span> a partir de la ecuación:</p>
+<p><span class="math display">\[E(X)=\frac{1}{n}\sum_i x_i\]</span>
+para <span class="math inline">\(\hat{\theta}\)</span>.</p>
+<p>Si hay más parámetros, usamos los <strong>momentos de muestra</strong> más altos</p>
+<ul>
+<li>El segundo momento muestral es</li>
+</ul>
+<p><span class="math display">\[E(X^2)=\frac{1}{n}\sum_i X^2_i\]</span></p>
+<p>como tal, una observación de este momento es</p>
+<p><span class="math inline">\(\frac{1}{n}\sum_i x^2_i\)</span>.</p>
+<p>El método dice que se puede encontrar una estimación para los parámetros <span class="math inline">\(\theta_1\)</span> y <span class="math inline">\(\theta_2\)</span> de <span class="math inline">\(f(x;\theta_1,\theta_2)\)</span> a partir de las ecuaciones:</p>
+<ol style="list-style-type: decimal">
+<li><p><span class="math inline">\(E(X)= \frac{1}{n}\sum_i x_i\)</span></p></li>
+<li><p><span class="math inline">\(E(X^2)=\frac{1}{n}\sum_i x^2_i\)</span></p></li>
+</ol>
+<p>Para <span class="math inline">\(\hat{\theta}_1\)</span> y <span class="math inline">\(\hat{\theta}_2\)</span></p>
+<p>Podemos entonces incrementar el número de ecuaciones tanto como parametros queramos estimar</p>
+<hr />
+<hr />
+</div>
+<div id="distribución-normal-13" class="section level2 hasAnchor" number="12.35">
+<h2><span class="header-section-number">12.35</span> Distribución normal<a href="máxima-verosimilitud.html#distribución-normal-13" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Si <span class="math inline">\(X\)</span> se distribuye normalmente
+<span class="math inline">\(X \hookrightarrow N(\mu, \sigma^2)\)</span></p>
+<p>entonces tiene media y varianza:</p>
+<p><span class="math inline">\(E(X)=\mu\)</span> y
+<span class="math inline">\(V(X)=\sigma^2\)</span></p>
+<p>El método de los momentos da las ecuaciones:</p>
+<ol style="list-style-type: decimal">
+<li><span class="math inline">\(E(X)=\frac{1}{n}\sum_i x_i\)</span></li>
+<li><span class="math inline">\(E(X^2)=\frac{1}{n}\sum_i x^2_i\)</span></li>
+</ol>
+<p>Una sustitución de <span class="math inline">\(E(X)\)</span> en la <strong>primera</strong> ecuación da el estimador de la media <span class="math inline">\(\mu\)</span>.</p>
+<ul>
+<li><span class="math inline">\(\hat{\mu}=\frac{1}{n}\sum_i x_i\)</span></li>
+</ul>
+<p><span class="math inline">\(E(X^2)\)</span> se sigue de la propiedad: <span class="math inline">\(E(X^2) = \hat{\mu}^2 + V(X)= \hat{\mu}^2+\hat{\sigma} ^2\)</span></p>
+<p>Entonces la <strong>segunda</strong> equación es</p>
+<ul>
+<li><span class="math inline">\(\hat{\mu}^2+\hat{\sigma}^2= \frac{1}{n} \sum_i x^2_i\)</span></li>
+</ul>
+<p>que también se puede escribir como:</p>
+<p><span class="math display">\[\hat{\sigma}^2=\frac{1}{n} \sum_i(x_i-\hat{\mu})^2\]</span></p>
+<hr />
+<hr />
+</div>
+<div id="método-de-los-momentos-7" class="section level2 hasAnchor" number="12.36">
+<h2><span class="header-section-number">12.36</span> Método de los Momentos<a href="máxima-verosimilitud.html#método-de-los-momentos-7" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>¿Cuál es el estimador del parámetro <span class="math inline">\(\alpha\)</span> para el corte láser dado por el método de los momentos?</p>
+<p><span class="math display">\[
+    f(x; \alpha)= 
+\begin{cases}
+\frac{1}{\alpha}(x-1)^{\frac{1-\alpha}{\alpha}},&amp; \text{if } x \in (1,2)\\
+    0,&amp; x \notin (1,2)\\
+\end{cases}
+\]</span>
+Donde <span class="math inline">\(\alpha\)</span> es un parámetro.</p>
+<hr />
+<hr />
+</div>
+<div id="método-de-los-momentos-8" class="section level2 hasAnchor" number="12.37">
+<h2><span class="header-section-number">12.37</span> Método de los Momentos<a href="máxima-verosimilitud.html#método-de-los-momentos-8" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>El método dice que se puede encontrar una estimación para el parámetro <span class="math inline">\(\alpha\)</span> de <span class="math inline">\(f(x;\alpha)\)</span> a partir de la ecuación:</p>
+<p><span class="math display">\[E(X; \hat{\alpha})=\frac{1}{n}\sum_i x_i\]</span></p>
+<p>Necesitamos calcular el valor esperado <span class="math inline">\(E(X)\)</span></p>
+<p><span class="math display">\[E(X)=\int_{-\infty}^{\infty} x f(x;\alpha)dx\]</span></p>
+<p>e igualarlo a la media <span class="math inline">\(\bar{x}\)</span></p>
+<hr />
+<hr />
+</div>
+<div id="método-de-los-momentos-9" class="section level2 hasAnchor" number="12.38">
+<h2><span class="header-section-number">12.38</span> Método de los Momentos<a href="máxima-verosimilitud.html#método-de-los-momentos-9" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Considere un cambio de variables <span class="math inline">\(Z=X-1\)</span> entonces <span class="math inline">\(E(X)=E(Z)+1\)</span> y</p>
+<p><span class="math inline">\(E(Z)= \frac{1}{\alpha} \int_0^1 z z^{\frac{1-\alpha}{\alpha}}dz= \frac{1}{\alpha} \int_0^1 z^{1+\frac{1-\alpha}{\alpha}}dz\)</span></p>
+<p><span class="math inline">\(= \frac{1}{\alpha} \frac{z^{2+\frac{1-\alpha}{\alpha}}}{{2+\frac{1-\alpha}{\alpha}} } |_0^1=\frac{1}{1+\alpha}\)</span></p>
+<p>Por tanto, el método de los momentos nos da la ecuación</p>
+<p><span class="math display">\[\frac{1}{1+\hat{\alpha}}+1=\bar{x}\]</span></p>
+<p>que resolver para <span class="math inline">\(\hat{\alpha}\)</span> nos da la estimación</p>
+<p><span class="math inline">\(\hat{\alpha}_m=\frac{1}{\bar{x}-1}-1\)</span></p>
+<p>Para nuestros 30 láseres esto es</p>
+<p><span class="math inline">\(\hat{\alpha}_m=1.314\)</span></p>
+<hr />
+<hr />
+</div>
+<div id="método-de-los-momentos-10" class="section level2 hasAnchor" number="12.39">
+<h2><span class="header-section-number">12.39</span> Método de los Momentos<a href="máxima-verosimilitud.html#método-de-los-momentos-10" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Tenga en cuenta que este es un ejemplo para el cual las estimaciones por máxima verosimilitud y el método de momentos son diferentes</p>
+<ul>
+<li><p><span class="math inline">\(\hat{\alpha}_{ml}=-\frac{1}{n}\sum_{i=1}^n \ln (x_i-1)=1.320\)</span></p></li>
+<li><p><span class="math inline">\(\hat{\alpha}_m=\frac{1-\bar{x}}{\bar{x}}=1,314\)</span></p></li>
+</ul>
+<p>Necesitamos estudios de simulación, donde sepamos el verdadero valor del parámetro <span class="math inline">\(\alpha\)</span>, para encontrar cuál de estas estadísticas tiene menos error cuadrático medio.</p>
+<p>Nota: los datos de 30 perforaciones con láser se simularon con <span class="math inline">\(\alpha=2\)</span>, por lo que debemos preferir la estimación de máxima verosimilitud.</p>
+<p>Para obtener mejores estimaciones de <span class="math inline">\(\alpha\)</span> necesitamos aumentar el tamaño de la muestra.</p>
 
 </div>
 </div>
@@ -1303,8 +971,8 @@ como normalmente no tenemos <span class="math inline">\(P(positivo)\)</span>, us
           </div>
         </div>
       </div>
-<a href="probabilidad.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="variables-aleatorias-discretas.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="teorema-del-límite-central.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="ejercicios.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -1335,7 +1003,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/USERNAME/REPO/edit/BRANCH/03-ConditionalProbability.Rmd",
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/12-MaximumLikelihood.Rmd",
 "text": "Edit"
 },
 "history": {

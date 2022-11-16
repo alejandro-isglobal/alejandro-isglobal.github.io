@@ -24,7 +24,7 @@
 <meta name="author" content="Alejandro Caceres" />
 
 
-<meta name="date" content="2022-11-15" />
+<meta name="date" content="2022-11-16" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -691,7 +691,7 @@
 <div id="estimacion-1" class="section level2 hasAnchor" number="12.20">
 <h2><span class="header-section-number">12.20</span> Estimacion<a href="máxima-verosimilitud.html#estimacion-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ul>
-<li><p>Esta es la log de la verosimilitud de nuestros 30 cortes con láser.</p></li>
+<li><p>Este es el log de la verosimilitud de nuestros 30 cortes con láser.</p></li>
 <li><p>Si tomamos otra muestra esta función cambia y también su máximo.</p></li>
 </ul>
 <p><img src="_main_files/figure-html/unnamed-chunk-87-1.png" width="672" /></p>
@@ -700,7 +700,7 @@
 </div>
 <div id="distribución-normal-9" class="section level2 hasAnchor" number="12.21">
 <h2><span class="header-section-number">12.21</span> Distribución normal<a href="máxima-verosimilitud.html#distribución-normal-9" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Imaginemos que tomamos una muestra de <span class="math inline">\(8\)</span> cables para estmar la carga de rotura de cables y</p>
+<p>Imaginemos que tomamos una muestra de <span class="math inline">\(8\)</span> cables para estimar la carga de rotura de cables y</p>
 <ul>
 <li><p><strong>supongamos</strong> que <span class="math display">\[X \rightarrow N(\mu, \sigma^2)\]</span>.</p></li>
 <li><p>¿Cuáles son los estimadores de <span class="math inline">\(\mu\)</span> y <span class="math inline">\(\sigma^2\)</span> de la muestra?</p></li>
@@ -726,9 +726,9 @@
 </div>
 <div id="distribución-normal-11" class="section level2 hasAnchor" number="12.23">
 <h2><span class="header-section-number">12.23</span> Distribución normal<a href="máxima-verosimilitud.html#distribución-normal-11" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Las estimaciones de <span class="math inline">\(\mu\)</span>, <span class="math inline">\(\sigma^2\)</span> son donde la probabilidad es máxima y dan la probabilidad más alta para los datos.</p>
+<p>Las estimaciones de <span class="math inline">\(\mu\)</span>, <span class="math inline">\(\sigma^2\)</span> son donde la probabilidad es máxima y dan la máxima probabilidad a para los datos.</p>
 <ol start="3" style="list-style-type: decimal">
-<li>diferenciamos con respecto a <span class="math inline">\(\mu\)</span> y <span class="math inline">\(\sigma^2\)</span></li>
+<li>diferenciamos con respecto a <span class="math inline">\(\mu\)</span> y <span class="math inline">\(\sigma^2\)</span> (tratándola como una variable por ejemplo <span class="math inline">\(t=\sigma^2\)</span>)</li>
 </ol>
 <ul>
 <li><p><span class="math inline">\(\frac{d \ln L(\mu, \sigma^2)}{d\mu}=\frac{1}{\sigma^2} \sum_i(x_i-\mu)\)</span></p></li>
@@ -739,7 +739,7 @@
 </div>
 <div id="distribución-normal-12" class="section level2 hasAnchor" number="12.24">
 <h2><span class="header-section-number">12.24</span> Distribución normal<a href="máxima-verosimilitud.html#distribución-normal-12" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Los derivados son <span class="math inline">\(0\)</span> como máximo</p>
+<p>Derivando e igualando a <span class="math inline">\(0\)</span> encontramos los máximos</p>
 <ul>
 <li><span class="math inline">\(\frac{1}{\hat{\sigma}^2} \sum_i(x_i-\hat{\mu})=0\)</span></li>
 <li><span class="math inline">\(-\frac{n}{2 \hat{\sigma}^2}+\frac{1}{2\hat{\sigma}^4} \sum_i(x_i-\hat{\mu})^2 =0\)</span></li>
@@ -776,7 +776,7 @@
 <p>Gauss descubrió que si el promedio (<span class="math inline">\(\bar{x}\)</span>) es el valor <strong>más verosimil</strong> para la posición real de Ceres (<span class="math inline">\(\mu\)</span>), entonces la densidad de probabilidad de los errores es</p>
 <p><span class="math display">\[\frac{h}{\sqrt{\pi}}e^{-h^2(y-\mu_Y)^2}\]</span></p>
 <p>a la que llamamos la Gaussiana y que Pearson (1920) la bautizó como la curva normal.</p>
-<p>Nota: Suponemos que la posición <strong>verdadera</strong> de Ceres existe <span class="math inline">\(\mu\)</span>.</p>
+<p>Nota: Suponemos que la posición <strong>verdadera</strong> de Ceres existe y es <span class="math inline">\(\mu\)</span>.</p>
 <ul>
 <li>¿Podemos decir lo mismo para altura de los hombres <span class="math inline">\(\mu\)</span>? (Galton)</li>
 </ul>
@@ -787,48 +787,43 @@
 <h2><span class="header-section-number">12.28</span> Método de los Momentos<a href="máxima-verosimilitud.html#método-de-los-momentos" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>El método de máxima verosimilitud tiene como objetivo producir los estimadores de distribuciones de probabilidad a partir de datos.</p>
 <ul>
-<li>¿Hay otra forma de producir esos estimadores? ¿serian iguales?</li>
-</ul>
-<p>Veamos nuevamente los estimadores de máxima verosimilitud para <span class="math inline">\(\mu\)</span> y <span class="math inline">\(\sigma^2\)</span> para una variable aleatoria que se distribuye normalmente: <span class="math inline">\(X \hookrightarrow N(\mu, \sigma^2)\)</span></p>
-<ul>
-<li><span class="math inline">\(\hat{\mu}=\frac{1}{n}\sum_i x_i\)</span></li>
-<li><span class="math inline">\(\hat{\sigma^2}=\frac{1}{n}\sum_i(x_i-\bar{x})^2\)</span></li>
+<li>¿Hay otra forma de producir esos estimadores? ¿serán iguales?</li>
 </ul>
 <hr />
 <hr />
 </div>
 <div id="método-de-los-momentos-1" class="section level2 hasAnchor" number="12.29">
 <h2><span class="header-section-number">12.29</span> Método de los Momentos<a href="máxima-verosimilitud.html#método-de-los-momentos-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Reescribamos los estimadores en términos de los valores de <span class="math inline">\(X\)</span> (resultados), no de las observaciones</p>
+<p>Reescribamos la estimación <span class="math inline">\(\hat{\mu}=\bar{x}\)</span> para una variable normal en términos de los resultados de <span class="math inline">\(X\)</span></p>
 <p>Por ejemplo:</p>
 <p><span class="math display">\[\hat{\mu}=\frac{1}{n}\sum_i x_i= \sum_x x \frac{n_x}{n}\]</span></p>
 <p>y recordemos que en el límite <span class="math inline">\(n \rightarrow \infty\)</span> la interpretación frecuentista requiere <span class="math inline">\(\frac{n_x}{n} \rightarrow P(X=x)\)</span> y por lo tanto en el límite</p>
-<p><span class="math display">\[\hat{\mu}=\frac{1}{n}\sum_i x_i \rightarrow E(X)\]</span></p>
+<p><span class="math display">\[\hat{\mu}=\frac{1}{n}\sum_i x_i \rightarrow E(X)=\mu\]</span></p>
 <hr />
 <hr />
 </div>
 <div id="método-de-los-momentos-2" class="section level2 hasAnchor" number="12.30">
 <h2><span class="header-section-number">12.30</span> Método de los Momentos<a href="máxima-verosimilitud.html#método-de-los-momentos-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>El método de los momentos dice que podemos tomar el valor <strong>observado</strong> del promedio <span class="math inline">\(\bar{X}= \frac{1}{n}\sum_i X_i\)</span> como estimador de <span class="math inline">\(E(X)=\mu\)</span>$</p>
-<p><span class="math display">\[E(X)\sim\bar{x}\]</span></p>
-<p><span class="math inline">\(\bar{X}\)</span> se llama el primer <strong>momento de muestra</strong></p>
-<p>El estimador del parámetro <span class="math inline">\(\theta\)</span> se obtiene entonces de la ecuación:</p>
+<p>El método de los momentos dice que podemos tomar el valor <strong>observado</strong> del promedio <span class="math inline">\(\bar{X}\)</span> como estimador de <span class="math inline">\(E(X)=\mu\)</span></p>
+<p><span class="math display">\[E(X) \sim\bar{x}\]</span></p>
+<p><span class="math inline">\(\bar{X}=\frac{1}{N}\sum_i X_i\)</span> se llama el primer <strong>momento muestral</strong></p>
+<p>Si <span class="math inline">\(X \rightarrow f(x, \theta)\)</span>, el estimador del parámetro <span class="math inline">\(\theta\)</span> se obtiene entonces de la ecuación:</p>
 <p><span class="math display">\[E(X)=\bar{x}\]</span></p>
 <p>para el valor de <span class="math inline">\(\hat{\theta}\)</span> observado</p>
-<p>Ejemplo: Si
-<span class="math inline">\(X \hookrightarrow N(\mu, \sigma^2)\)</span> entonces</p>
-<p><span class="math inline">\(E(X)=\mu\)</span></p>
-<p>El método de los momentos da el estimador</p>
-<ul>
-<li><span class="math inline">\(\hat{\mu}=\bar{x}=\frac{1}{n}\sum_i x_i\)</span></li>
-</ul>
+<p>Ejemplo: Si</p>
+<p><span class="math inline">\(X \hookrightarrow exp(\lambda)\)</span> entonces</p>
+<ol style="list-style-type: decimal">
+<li><p>Calculamos el valor esperado <span class="math inline">\(E(X)=\frac{1}{\lambda}\)</span></p></li>
+<li><p>Formulamos la ecuación donde igualamos el valor esperado al primer momento muestral <span class="math inline">\(\frac{1}{\hat{\lambda}}=\bar{x}=\frac{1}{n}\sum_i x_i\)</span></p></li>
+<li><p>Resolvemos para el parámetro <span class="math display">\[\hat{\lambda}=\frac{1}{\bar{x}}\]</span></p></li>
+</ol>
 <hr />
 <hr />
 </div>
 <div id="método-de-los-momentos-3" class="section level2 hasAnchor" number="12.31">
 <h2><span class="header-section-number">12.31</span> Método de los Momentos<a href="máxima-verosimilitud.html#método-de-los-momentos-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Supongamos que tenemos varias baterías (nuevas y viejas) que cargamos durante el período de 1 hora. Medimos el estado de carga de la batería siendo 1 a 100% de carga.</p>
-<p>El estado de carga de una batería es una variable aleatoria que puede tener una distribución uniforme, donde no sabemos el valor mínimo que puede tomar <span class="math inline">\(x\)</span>, pero sabemos que el máximo es 1</p>
+<p>El estado de carga de una batería es una variable aleatoria que puede tener una distribución uniforme, donde no sabemos el valor mínimo que puede tomar <span class="math inline">\(x\)</span>, pero sabemos que el máximo es 1 (<span class="math inline">\(100\%\)</span> de carga)</p>
 <p><span class="math display">\[
 f(x)=
 \begin{cases}
@@ -845,12 +840,17 @@ f(x)=
 </div>
 <div id="método-de-los-momentos-4" class="section level2 hasAnchor" number="12.32">
 <h2><span class="header-section-number">12.32</span> Método de los Momentos<a href="máxima-verosimilitud.html#método-de-los-momentos-4" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>La distribución tiene un parámetro. El método de los momentos nos da una ecuación.</p>
-<p><span class="math display">\[E(X)=\bar{x}\]</span>
-para <span class="math inline">\(\hat{a}\)</span></p>
-<p>Eso es</p>
+<ol style="list-style-type: decimal">
+<li>Calculamos el valor esperado de la variable aleatoria</li>
+</ol>
+<p><span class="math display">\[E(X)=\frac{a+1}{2}\]</span></p>
+<ol start="2" style="list-style-type: decimal">
+<li>Formulamos la ecuación para el parámetro <span class="math inline">\(\hat{a}\)</span> igualando el valor esperado al primer momento muestral</li>
+</ol>
 <p><span class="math display">\[\frac{\hat{a}+1}{2}=\bar{x}\]</span></p>
-<p>Que resolvemos para <span class="math inline">\(\hat{a}\)</span></p>
+<ol start="3" style="list-style-type: decimal">
+<li>resolvemos para <span class="math inline">\(\hat{a}\)</span></li>
+</ol>
 <p><span class="math display">\[\hat{a}=2\bar{x}-1\]</span></p>
 <p>Este es el estimador de la carga mínima que podemos observar.</p>
 <hr />
@@ -882,45 +882,51 @@ para <span class="math inline">\(\hat{\theta}\)</span>.</p>
 <p>Una observación de este momento es</p>
 <p><span class="math inline">\(\frac{1}{n}\sum_i x^2_i\)</span>.</p>
 <p>El método dice que se puede encontrar una estimación para los parámetros <span class="math inline">\(\theta_1\)</span> y <span class="math inline">\(\theta_2\)</span> de <span class="math inline">\(f(x;\theta_1,\theta_2)\)</span> a partir de las ecuaciones:</p>
-<ol style="list-style-type: decimal">
+<ol style="list-style-type: lower-alpha">
 <li><p><span class="math inline">\(E(X)= \frac{1}{n}\sum_i x_i\)</span></p></li>
 <li><p><span class="math inline">\(E(X^2)=\frac{1}{n}\sum_i x^2_i\)</span></p></li>
 </ol>
 <p>Para <span class="math inline">\(\hat{\theta}_1\)</span> y <span class="math inline">\(\hat{\theta}_2\)</span></p>
-<p>Podemos entonces incrementar el número de ecuaciones tanto como parametros queramos estimar</p>
+<p>Podemos entonces incrementar el número de ecuaciones tanto como parametros queramos estimar.</p>
 <hr />
 <hr />
 </div>
 <div id="distribución-normal-13" class="section level2 hasAnchor" number="12.35">
 <h2><span class="header-section-number">12.35</span> Distribución normal<a href="máxima-verosimilitud.html#distribución-normal-13" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Si <span class="math inline">\(X\)</span> se distribuye normalmente
-<span class="math inline">\(X \hookrightarrow N(\mu, \sigma^2)\)</span></p>
-<p>entonces tiene media y varianza:</p>
-<p><span class="math inline">\(E(X)=\mu\)</span> y
-<span class="math inline">\(V(X)=\sigma^2\)</span></p>
-<p>El método de los momentos da las ecuaciones:</p>
+<p>Si <span class="math inline">\(X\)</span> se distribuye normalmente tenemos dos parámetros a estimar
+<span class="math display">\[X \rightarrow N(\mu, \sigma^2)\]</span></p>
 <ol style="list-style-type: decimal">
-<li><span class="math inline">\(E(X)=\frac{1}{n}\sum_i x_i\)</span></li>
-<li><span class="math inline">\(E(X^2)=\frac{1}{n}\sum_i x^2_i\)</span></li>
+<li>Calculamos la media y el valor esperado del segundo momento <span class="math inline">\(E(X^2)\)</span>:</li>
+</ol>
+<p><span class="math inline">\(E(X)=\mu\)</span> y
+<span class="math inline">\(E(X^2)=\sigma^2-\mu^2\)</span></p>
+<ol start="2" style="list-style-type: decimal">
+<li>Obtenemos las ecuaciones para los parámetros donde hacemos que el valor esperado sea igual al primer momento de la muestra, y el segundo momento sea igual al valor esperado del segundo momento</li>
+</ol>
+<ol style="list-style-type: lower-alpha">
+<li><span class="math inline">\(\hat{\mu}=\frac{1}{n}\sum_i x_i\)</span></li>
+<li><span class="math inline">\(\hat{\sigma}^2-\hat{\mu}^2=\frac{1}{n}\sum_i x^2_i\)</span></li>
 </ol>
 <hr />
 <hr />
 </div>
 <div id="distribución-normal-14" class="section level2 hasAnchor" number="12.36">
 <h2><span class="header-section-number">12.36</span> Distribución normal<a href="máxima-verosimilitud.html#distribución-normal-14" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Una sustitución de <span class="math inline">\(E(X)\)</span> en la <strong>primera</strong> ecuación da el estimador de la media <span class="math inline">\(\mu\)</span>.</p>
-<ol style="list-style-type: decimal">
+<ol start="3" style="list-style-type: decimal">
+<li>Resolvemos los parámetros</li>
+</ol>
+<p>La primera ecuación nos da el estimador de la media <span class="math inline">\(\mu\)</span>.</p>
+<ol style="list-style-type: lower-alpha">
 <li><span class="math inline">\(\hat{\mu}=\frac{1}{n}\sum_i x_i\)</span></li>
 </ol>
-<p><span class="math inline">\(E(X^2)\)</span> se sigue de la propiedad: <span class="math inline">\(E(X^2) = \hat{\mu}^2 + V(X)= \hat{\mu}^2+\hat{\sigma} ^2\)</span></p>
-<p>Entonces la <strong>segunda</strong> ecuación es</p>
-<ol start="2" style="list-style-type: decimal">
-<li><span class="math inline">\(\hat{\mu}^2+\hat{\sigma}^2= \frac{1}{n} \sum_i x^2_i\)</span></li>
+<p>De la segunda ecuación obtenemos</p>
+<ol start="2" style="list-style-type: lower-alpha">
+<li><span class="math inline">\(\hat{\sigma}^2= \frac{1}{n} \sum_i x^2_i-\hat{\mu}^2\)</span></li>
 </ol>
-<p>que también se puede escribir como:</p>
-<p><span class="math display">\[\hat{\sigma}^2=\frac{1}{n} \sum_i(x_i-\hat{\mu})^2\]</span></p>
-<hr />
-<hr />
+<p>que también se puede escribir como:
+<span class="math display">\[\hat{\sigma}^2=\frac{1}{n} \sum_i(x_i-\hat{\mu})^2\]</span>
+___________
+___________</p>
 </div>
 <div id="método-de-los-momentos-7" class="section level2 hasAnchor" number="12.37">
 <h2><span class="header-section-number">12.37</span> Método de los Momentos<a href="máxima-verosimilitud.html#método-de-los-momentos-7" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -941,24 +947,29 @@ para <span class="math inline">\(\hat{\theta}\)</span>.</p>
 <p>El método dice que se puede encontrar una estimación para el parámetro <span class="math inline">\(\alpha\)</span> de <span class="math inline">\(f(x;\alpha)\)</span> a partir de la ecuación:</p>
 <p><span class="math display">\[E(X)=\frac{1}{n}\sum_i x_i\]</span>
 para <span class="math inline">\(\hat{\alpha}\)</span></p>
-<p>Necesitamos calcular el valor esperado <span class="math inline">\(E(X)\)</span></p>
+<ol style="list-style-type: decimal">
+<li>Calculamos el valor esperado <span class="math inline">\(E(X)\)</span></li>
+</ol>
 <p><span class="math display">\[E(X)=\int_{-\infty}^{\infty} x f(x;\alpha)dx\]</span></p>
-<p>e igualarlo a la media <span class="math inline">\(\bar{x}\)</span></p>
 <hr />
 <hr />
 </div>
 <div id="método-de-los-momentos-9" class="section level2 hasAnchor" number="12.39">
 <h2><span class="header-section-number">12.39</span> Método de los Momentos<a href="máxima-verosimilitud.html#método-de-los-momentos-9" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Considere un cambio de variables <span class="math inline">\(Z=X-1\)</span> entonces <span class="math inline">\(E(X)=E(Z)+1\)</span> y</p>
+<p>Consideremos un cambio de variables <span class="math inline">\(Z=X-1\)</span> entonces <span class="math inline">\(E(X)=E(Z)+1\)</span> y</p>
 <p><span class="math inline">\(E(Z)= \frac{1}{\alpha} \int_0^1 z z^{\frac{1-\alpha}{\alpha}}dz= \frac{1}{\alpha} \int_0^1 z^{1+\frac{1-\alpha}{\alpha}}dz\)</span></p>
 <p><span class="math inline">\(= \frac{1}{\alpha} \frac{z^{2+\frac{1-\alpha}{\alpha}}}{{2+\frac{1-\alpha}{\alpha}} } |_0^1=\frac{1}{1+\alpha}\)</span></p>
 <p>Por lo tanto,</p>
-<p><span class="math display">\[E(X)=E(Z+1)=\frac{1}{1+\alpha}+1\]</span></p>
-<p>remplazandpo por <span class="math inline">\(hat{\alpha}\)</span> el método de los momentos nos da la ecuación</p>
+<p><span class="math display">\[E(X)=E(Z+1)=\frac{1}{1+\alpha}+1\]</span>
+2. Formulamos la ecuación para el parámetro <span class="math inline">\(\hat{\alpha}\)</span> igualando el valor esperado al primer momento muestral</p>
 <p><span class="math display">\[\frac{1}{1+\hat{\alpha}}+1=\bar{x}\]</span></p>
-<p>que resolver para <span class="math inline">\(\hat{\alpha}\)</span> nos da la estimación</p>
+<ol start="3" style="list-style-type: decimal">
+<li>resolvemos para <span class="math inline">\(\hat{\alpha}\)</span></li>
+</ol>
 <p><span class="math display">\[\hat{\alpha}_m=\frac{1}{\bar{x}-1}-1\]</span></p>
-<p>Para nuestros 30 láseres esto es</p>
+<ol start="4" style="list-style-type: decimal">
+<li>Calculamos el valor para nuestros datos</li>
+</ol>
 <p><span class="math inline">\(\hat{\alpha}_m=1.314\)</span></p>
 <hr />
 <hr />

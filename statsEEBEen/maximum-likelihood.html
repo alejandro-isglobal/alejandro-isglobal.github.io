@@ -24,7 +24,7 @@
 <meta name="author" content="Alejandro Caceres" />
 
 
-<meta name="date" content="2022-11-15" />
+<meta name="date" content="2022-11-16" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -769,7 +769,7 @@
 <h2><span class="header-section-number">12.28</span> Normal distribution<a href="maximum-likelihood.html#normal-distribution-11" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>The estimates of <span class="math inline">\(\mu\)</span>, <span class="math inline">\(\sigma^2\)</span> are where the likelihood is maximum, and give the highest probability for the data.</p>
 <ol start="3" style="list-style-type: decimal">
-<li>we differentiate with respect to <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\sigma^2\)</span></li>
+<li>we differentiate with respect to <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\sigma^2\)</span> (i.e. making a substitution like <span class="math inline">\(t=\sigma^2\)</span>)</li>
 </ol>
 <ul>
 <li><p><span class="math inline">\(\frac{d \ln L(\mu, \sigma^2)}{d\mu}=\frac{1}{\sigma^2} \sum_i(x_i-\mu)\)</span></p></li>
@@ -800,46 +800,42 @@
 <ul>
 <li>Is there another way to produce those estimators? would they be equal?</li>
 </ul>
-<p>Let’s look again at the maximum likelihood estimators for <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\sigma^2\)</span> for a random variable that distributes normally: <span class="math display">\[X \rightarrow N(\mu, \sigma^2)\]</span></p>
-<ul>
-<li><span class="math inline">\(\hat{\mu}=\frac{1}{n}\sum_i x_i\)</span></li>
-<li><span class="math inline">\(\hat{\sigma^2}=\frac{1}{n}\sum_i(x_i-\bar{x})^2\)</span></li>
-</ul>
 <hr />
 <hr />
 </div>
 <div id="method-of-moments-1" class="section level2 hasAnchor" number="12.31">
 <h2><span class="header-section-number">12.31</span> Method of Moments<a href="maximum-likelihood.html#method-of-moments-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Let’s re-write the estimators in terms of the values of <span class="math inline">\(X\)</span> (outcomes), not of the observations</p>
+<p>Let’s re-write the estimator <span class="math inline">\(\hat{\mu}=\bar{x}\)</span> for a normal randon variable in terms of the outcomes of <span class="math inline">\(X\)</span></p>
 <p>For instance:</p>
 <p><span class="math display">\[\hat{\mu}=\frac{1}{n}\sum_i x_i= \sum_x x \frac{n_x}{n}\]</span></p>
 <p>and remember that in the limit <span class="math inline">\(n \rightarrow \infty\)</span> the frequentist interpretation requires <span class="math inline">\(\frac{n_x}{n} \rightarrow P(X=x)\)</span> and therefore in the limit</p>
-<p><span class="math display">\[\hat{\mu}=\frac{1}{n}\sum_i x_i \rightarrow E(X)\]</span></p>
+<p><span class="math display">\[\hat{\mu}=\frac{1}{n}\sum_i x_i \rightarrow E(X)=\mu\]</span></p>
 <hr />
 <hr />
 </div>
 <div id="method-of-moments-2" class="section level2 hasAnchor" number="12.32">
 <h2><span class="header-section-number">12.32</span> Method of Moments<a href="maximum-likelihood.html#method-of-moments-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>The method os moments says that we can take the <strong>observed</strong> value of the average <span class="math inline">\(\bar{X}= \frac{1}{n}\sum_i X_i\)</span> as an estimator of <span class="math inline">\(E(X)=\mu\)</span></p>
+<p>The method os moments says that we can take the <strong>observed</strong> value of the average <span class="math inline">\(\bar{X}\)</span> as an estimator of <span class="math inline">\(E(X)=\mu\)</span></p>
 <p><span class="math display">\[E(X)\sim \bar{x}\]</span></p>
-<p><span class="math inline">\(\bar{X}\)</span> is called the first <strong>sample moment</strong></p>
-<p>the estimator of the parameter <span class="math inline">\(\theta\)</span> is then obtained from the equation:</p>
-<p><span class="math display">\[E(X; \hat{\theta})=\bar{x}\]</span>
-Example: If
-<span class="math display">\[X \rightarrow N(\mu, \sigma^2)\]</span> then</p>
-<p><span class="math inline">\(E(X; \mu, \sigma^2)=\mu\)</span></p>
-<p>Method of moments:</p>
-<ul>
-<li><span class="math inline">\(\hat{\mu}=\bar{x}=\frac{1}{n}\sum_i x_i\)</span></li>
-</ul>
-<hr />
-<hr />
+<p><span class="math inline">\(\bar{X}= \frac{1}{n}\sum_i X_i\)</span> is called the first <strong>sample moment</strong></p>
+<p>if <span class="math inline">\(X \rightarrow f(x, \theta)\)</span> the estimator of the parameter <span class="math inline">\(\theta\)</span> is then obtained from the equation:</p>
+<p><span class="math display">\[E(X; \hat{\theta})=\bar{x}\]</span></p>
+<p>Example: If</p>
+<p><span class="math inline">\(X \hookrightarrow exp(\lambda)\)</span> then</p>
+<ol style="list-style-type: decimal">
+<li><p><span class="math inline">\(E(X; \mu, \sigma^2)=\mu\)</span></p></li>
+<li><p>We write down the equation where we make the expected value equal to the first sample moment <span class="math inline">\(\frac{1}{\hat{\lambda}}=\bar{x}=\frac{1}{n}\sum_i x_i\)</span></p></li>
+<li><p>We solve for the parameter</p></li>
+</ol>
+<p><span class="math display">\[\hat{\lambda}=\frac{1}{\bar{x}}\]</span>
+___________
+___________</p>
 </div>
 <div id="method-of-moments-3" class="section level2 hasAnchor" number="12.33">
 <h2><span class="header-section-number">12.33</span> Method of Moments<a href="maximum-likelihood.html#method-of-moments-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Suppose that we have several batteries (new and old) that we charge over the period of 1 hour. We measure the state of charge of the battery, being 1 a 100% charge.</p>
-<p>The state of charge of a battery is a random variable that may have a uniform distribution, where we do not know the minimum value that <span class="math inline">\(x\)</span> can take, but we know that the maximum is 1
-<span class="math display">\[
+<p>The state of charge of a battery is a random variable that may have a uniform distribution, where we do not know the minimum value that <span class="math inline">\(x\)</span> can take, but we know that the maximum is 1 (<span class="math inline">\(100\%\)</span> of charge)</p>
+<p><span class="math display">\[
 f(x)=
 \begin{cases}
     \frac{1}{1-a},&amp; \text{if } x\in (a,1)\\
@@ -855,13 +851,17 @@ f(x)=
 </div>
 <div id="method-of-moments-4" class="section level2 hasAnchor" number="12.34">
 <h2><span class="header-section-number">12.34</span> Method of Moments<a href="maximum-likelihood.html#method-of-moments-4" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>The distribution has one parameter. The method of moments gives us one equation</p>
-<p><span class="math display">\[E(X)=\bar{x}\]</span>
-for <span class="math inline">\(\hat{a}\)</span></p>
-<p>That is</p>
-<p><span class="math display">\[E(X)=\frac{\hat{a}+1}{2}=\bar{x}\]</span></p>
-<p>That we solve for <span class="math inline">\(\hat{a}\)</span></p>
-<p><span class="math display">\[\hat{a}=2\bar{x}-1\]</span></p>
+<ol style="list-style-type: decimal">
+<li>We compute the expected value of the random variable</li>
+</ol>
+<p><span class="math display">\[E(X)=\frac{a+1}{2}\]</span></p>
+<ol start="2" style="list-style-type: decimal">
+<li>We obtain the equation for <span class="math inline">\(\hat{a}\)</span> where we make the expected value equal to the first sample moment</li>
+</ol>
+<p><span class="math display">\[\frac{\hat{a}+1}{2}=\bar{x}\]</span></p>
+<ol start="3" style="list-style-type: decimal">
+<li>We solve for the estimator <span class="math inline">\(\hat{a}\)</span></li>
+</ol>
 <p>This is the estimator of the minimum charge we may observe.</p>
 <hr />
 <hr />
@@ -891,38 +891,46 @@ for <span class="math inline">\(\hat{a}\)</span></p>
 <p>as such, an observation of this moment is</p>
 <p><span class="math inline">\(E(X ^ 2)~\frac{1}{n}\sum_i x^2_i\)</span>.</p>
 <p>The method says that an estimation for the the parameters <span class="math inline">\(\theta_1\)</span> and <span class="math inline">\(\theta_2\)</span> of <span class="math inline">\(f(x;\theta_1,\theta_2)\)</span> can be found from the equations:</p>
-<ul>
+<ol style="list-style-type: lower-alpha">
 <li><p><span class="math inline">\(E(X)= \frac{1}{n}\sum_i x_i\)</span></p></li>
 <li><p><span class="math inline">\(E(X^2)=\frac{1}{n}\sum_i x^2_i\)</span></p></li>
-</ul>
+</ol>
+<p>We can have as many equations as parameters we need to compute, incrementing the degree of the moments.</p>
 <hr />
 <hr />
 </div>
 <div id="normal-distribution-13" class="section level2 hasAnchor" number="12.37">
 <h2><span class="header-section-number">12.37</span> Normal distribution<a href="maximum-likelihood.html#normal-distribution-13" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>If <span class="math inline">\(X\)</span> distributes normally<br />
+<p>If <span class="math inline">\(X\)</span> distributes normally, we have two parameters to estimate
 <span class="math display">\[X \rightarrow N(\mu, \sigma^2)\]</span></p>
-<p>then it has mean and variance:</p>
-<p><span class="math inline">\(E(X; \mu, \sigma^2)=\mu\)</span> and
-<span class="math inline">\(V(X; \mu, \sigma^2)=\sigma^2\)</span></p>
-<p>THe method of moments gives the equations:</p>
 <ol style="list-style-type: decimal">
-<li><span class="math inline">\(E(X)=\frac{1}{n}\sum_i x_i\)</span></li>
-<li><span class="math inline">\(E(X^2)=\frac{1}{n}\sum_i x^2_i\)</span></li>
+<li>We compute the mean and expected value of the second moment <span class="math inline">\(E(X^2)\)</span>:</li>
+</ol>
+<p><span class="math inline">\(E(X)=\mu\)</span> and
+<span class="math inline">\(E(X^2)=\sigma^2-\mu^2\)</span></p>
+<ol start="2" style="list-style-type: decimal">
+<li>We obtain the equations for the parametes where we make the expected value equal to the first sample moment, and the second moment equal to the expected value of the second moment</li>
+</ol>
+<ol style="list-style-type: lower-alpha">
+<li><span class="math inline">\(\hat{\mu}=\frac{1}{n}\sum_i x_i\)</span></li>
+<li><span class="math inline">\(\hat{\sigma}^2-\hat{\mu}^2=\frac{1}{n}\sum_i x^2_i\)</span></li>
 </ol>
 <hr />
 <hr />
 </div>
 <div id="normal-distribution-14" class="section level2 hasAnchor" number="12.38">
 <h2><span class="header-section-number">12.38</span> Normal distribution<a href="maximum-likelihood.html#normal-distribution-14" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>A substitution of <span class="math inline">\(E(X)\)</span> into the first equation gives the estimator for the mean <span class="math inline">\(\mu\)</span>.</p>
-<ol style="list-style-type: decimal">
+<ol start="3" style="list-style-type: decimal">
+<li>We solve for the parameters</li>
+</ol>
+<p>The first equation gives the estimator for the mean <span class="math inline">\(\mu\)</span>.</p>
+<ol style="list-style-type: lower-alpha">
 <li><span class="math inline">\(\hat{\mu}=\frac{1}{n}\sum_i x_i\)</span></li>
 </ol>
 <p><span class="math inline">\(E(X^2)\)</span> follows from the property: <span class="math inline">\(E(X^2) = \hat{\mu}^2 + V(X)= \hat{\mu}^2+\hat{\sigma}^2\)</span></p>
-<p>then the secon equation gives us</p>
-<ol start="2" style="list-style-type: decimal">
-<li><span class="math inline">\(\hat{\mu}^2+\hat{\sigma}^2= \frac{1}{n} \sum_i x^2_i\)</span></li>
+<p>From the second equation we obtain</p>
+<ol start="2" style="list-style-type: lower-alpha">
+<li><span class="math inline">\(\hat{\sigma}^2= \frac{1}{n} \sum_i x^2_i-\hat{\mu}^2\)</span></li>
 </ol>
 <p>which can also be written as:
 <span class="math display">\[\hat{\sigma}^2=\frac{1}{n} \sum_i(x_i-\hat{\mu})^2\]</span></p>
@@ -948,9 +956,10 @@ for <span class="math inline">\(\hat{a}\)</span></p>
 <p>The method says that an estimator for the parameter <span class="math inline">\(\alpha\)</span> of <span class="math inline">\(f(x;\alpha)\)</span> can be found from the equation:</p>
 <p><span class="math display">\[E(X)=\frac{1}{n}\sum_i x_i\]</span>
 for <span class="math inline">\(\hat{\alpha}\)</span></p>
-<p>We need to compute the expected value <span class="math inline">\(E(X)\)</span></p>
+<ol style="list-style-type: decimal">
+<li>We compute the expected value <span class="math inline">\(E(X)\)</span></li>
+</ol>
 <p><span class="math display">\[E(X)=\int_{-\infty}^{\infty} x f(x;\alpha)dx\]</span></p>
-<p>and equate it to the average <span class="math inline">\(\bar{x}\)</span></p>
 <hr />
 <hr />
 </div>
@@ -961,11 +970,13 @@ for <span class="math inline">\(\hat{\alpha}\)</span></p>
 <p><span class="math inline">\(= \frac{1}{\alpha} \frac{z^{2+\frac{1-\alpha}{\alpha}}}{{2+\frac{1-\alpha}{\alpha}}} |_0^1=\frac{1}{1+\alpha}\)</span></p>
 <p>Therefore,</p>
 <p><span class="math display">\[E(X)=E(Z+1)=\frac{1}{1+\alpha}+1\]</span></p>
-<p>Substituting for <span class="math display">\[hat{\alpha}\]</span>, the method of moments gives us the equation</p>
+<p>Substituting for <span class="math inline">\(\hat{\alpha}\)</span>, the method of moments gives us the equation</p>
 <p><span class="math display">\[\frac{1}{1+\hat{\alpha}}+1=\bar{x}\]</span></p>
-<p>which solving for <span class="math inline">\(\hat{\alpha}\)</span> gives us the estimate</p>
-<p><span class="math display">\[\hat{\alpha}_m=\frac{1}{\bar{x}-1}-1\]</span></p>
-<p>For our 30 lasers, this is</p>
+<ol start="2" style="list-style-type: decimal">
+<li><p>We obtain the equation for <span class="math inline">\(\hat{\alpha}\)</span> where we make the expected value equal to the first sample moment</p></li>
+<li><p>We solve for <span class="math inline">\(\hat{\alpha}\)</span> <span class="math display">\[\hat{\alpha}_m=\frac{1}{\bar{x}-1}-1\]</span></p></li>
+<li><p>We compute the value for our data</p></li>
+</ol>
 <p><span class="math inline">\(\hat{\alpha}_m=1.314\)</span></p>
 <hr />
 <hr />

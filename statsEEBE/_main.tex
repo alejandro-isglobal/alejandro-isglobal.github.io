@@ -6,7 +6,7 @@
 ]{book}
 \title{Estadística}
 \author{Alejandro Caceres}
-\date{2022-11-13}
+\date{2022-11-27}
 
 \usepackage{amsmath,amssymb}
 \usepackage{lmodern}
@@ -45,6 +45,46 @@
   hidelinks,
   pdfcreator={LaTeX via pandoc}}
 \urlstyle{same} % disable monospaced font for URLs
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
 \usepackage{longtable,booktabs,array}
 \usepackage{calc} % for calculating minipage widths
 % Correct order of tables after \paragraph or \subparagraph
@@ -975,12 +1015,12 @@ Digamos que repetimos el experimento 1000 veces:
 
 \begin{verbatim}
 ##   outcome  ni    fi
-## 1       1 154 0.154
-## 2       2 168 0.168
-## 3       3 165 0.165
-## 4       4 165 0.165
-## 5       5 168 0.168
-## 6       6 180 0.180
+## 1       1 171 0.171
+## 2       2 149 0.149
+## 3       3 153 0.153
+## 4       4 152 0.152
+## 5       5 178 0.178
+## 6       6 197 0.197
 \end{verbatim}
 
 Encontramos que \(f_i\) está convergiendo a un valor constante
@@ -6944,7 +6984,7 @@ Se supone que los parámetros no deben cambiar, son propiedades del sistema.
   Calculamos la probabilidad de haber observado la muestra \(n\): \(x_1,...x_n\)
 \end{enumerate}
 
-\(P(x_1,...x_n)=P(x_1)P(X_2)...P(x_n)\)
+\(P(x_1,...x_n)=P(X=x_1)P(X=x_2)...P(X=x_n)\)
 \[=f(x_1;\alpha)f(x_2;\alpha) ...f(x_n;\alpha)\]
 
 \begin{itemize}
@@ -7050,7 +7090,7 @@ En nuestro ejemplo calculamos:
 
 \begin{itemize}
 \item
-  Esta es la log de la verosimilitud de nuestros 30 cortes con láser.
+  Este es el log de la verosimilitud de nuestros 30 cortes con láser.
 \item
   Si tomamos otra muestra esta función cambia y también su máximo.
 \end{itemize}
@@ -7064,7 +7104,7 @@ En nuestro ejemplo calculamos:
 \hypertarget{distribuciuxf3n-normal-9}{%
 \section{Distribución normal}\label{distribuciuxf3n-normal-9}}
 
-Imaginemos que tomamos una muestra de \(8\) cables para estmar la carga de rotura de cables y
+Imaginemos que tomamos una muestra de \(8\) cables para estimar la carga de rotura de cables y
 
 \begin{itemize}
 \item
@@ -7110,14 +7150,14 @@ Imaginemos que tomamos una muestra de \(8\) cables para estmar la carga de rotur
 \hypertarget{distribuciuxf3n-normal-11}{%
 \section{Distribución normal}\label{distribuciuxf3n-normal-11}}
 
-Las estimaciones de \(\mu\), \(\sigma^2\) son donde la probabilidad es máxima y dan la probabilidad más alta para los datos.
+Las estimaciones de \(\mu\), \(\sigma^2\) son donde la probabilidad es máxima y dan la máxima probabilidad a para los datos.
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
 \setcounter{enumi}{2}
 \tightlist
 \item
-  diferenciamos con respecto a \(\mu\) y \(\sigma^2\)
+  diferenciamos con respecto a \(\mu\) y \(\sigma^2\) (tratándola como una variable por ejemplo \(t=\sigma^2\))
 \end{enumerate}
 
 \begin{itemize}
@@ -7134,7 +7174,7 @@ Las estimaciones de \(\mu\), \(\sigma^2\) son donde la probabilidad es máxima y
 \hypertarget{distribuciuxf3n-normal-12}{%
 \section{Distribución normal}\label{distribuciuxf3n-normal-12}}
 
-Los derivados son \(0\) como máximo
+Derivando e igualando a \(0\) encontramos los máximos
 
 \begin{itemize}
 \tightlist
@@ -7160,8 +7200,8 @@ El estimador de máxima verosimilitud de \(\sigma^2\) es un estimador \textbf{se
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{muxe1xima-probabilidad-historia}{%
-\section{Máxima probabilidad: Historia}\label{muxe1xima-probabilidad-historia}}
+\hypertarget{muxe1xima-verosimilitud-historia}{%
+\section{Máxima verosimilitud: Historia}\label{muxe1xima-verosimilitud-historia}}
 
 ¿Cuál es la estadística que mejor representa la verdadera posición de Ceres?
 
@@ -7169,8 +7209,8 @@ El estimador de máxima verosimilitud de \(\sigma^2\) es un estimador \textbf{se
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{muxe1xima-probabilidad-historia-1}{%
-\section{Máxima probabilidad: Historia}\label{muxe1xima-probabilidad-historia-1}}
+\hypertarget{muxe1xima-verosimilitud-historia-1}{%
+\section{Máxima verosimilitud: Historia}\label{muxe1xima-verosimilitud-historia-1}}
 
 Gauss propuso que en un momento \textbf{dado}
 
@@ -7186,8 +7226,8 @@ Gauss propuso que en un momento \textbf{dado}
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{muxe1xima-probabilidad-historia-2}{%
-\section{Máxima probabilidad: Historia}\label{muxe1xima-probabilidad-historia-2}}
+\hypertarget{muxe1xima-verosimilitud-historia-2}{%
+\section{Máxima verosimilitud: Historia}\label{muxe1xima-verosimilitud-historia-2}}
 
 Gauss descubrió que si el promedio (\(\bar{x}\)) es el valor \textbf{más verosimil} para la posición real de Ceres (\(\mu\)), entonces la densidad de probabilidad de los errores es
 
@@ -7195,7 +7235,7 @@ Gauss descubrió que si el promedio (\(\bar{x}\)) es el valor \textbf{más veros
 
 a la que llamamos la Gaussiana y que Pearson (1920) la bautizó como la curva normal.
 
-Nota: Suponemos que la posición \textbf{verdadera} de Ceres existe \(\mu\).
+Nota: Suponemos que la posición \textbf{verdadera} de Ceres existe y es \(\mu\).
 
 \begin{itemize}
 \tightlist
@@ -7215,17 +7255,7 @@ El método de máxima verosimilitud tiene como objetivo producir los estimadores
 \begin{itemize}
 \tightlist
 \item
-  ¿Hay otra forma de producir esos estimadores? serian iguales?
-\end{itemize}
-
-Veamos nuevamente los estimadores de máxima verosimilitud para \(\mu\) y \(\sigma^2\) para una variable aleatoria que se distribuye normalmente: \(X \hookrightarrow N(\mu, \sigma^2)\)
-
-\begin{itemize}
-\tightlist
-\item
-  \(\hat{\mu}=\frac{1}{n}\sum_i x_i\)
-\item
-  \(\hat{\sigma^2}=\frac{1}{n}\sum_i(x_i-\bar{x})^2\)
+  ¿Hay otra forma de producir esos estimadores? ¿serán iguales?
 \end{itemize}
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
@@ -7235,15 +7265,15 @@ Veamos nuevamente los estimadores de máxima verosimilitud para \(\mu\) y \(\sig
 \hypertarget{muxe9todo-de-los-momentos-1}{%
 \section{Método de los Momentos}\label{muxe9todo-de-los-momentos-1}}
 
-Reescribamos los estimadores en términos de los valores de \(X\) (resultados), no de las observaciones
+Reescribamos la estimación \(\hat{\mu}=\bar{x}\) para una variable normal en términos de los resultados de \(X\)
 
 Por ejemplo:
 
 \[\hat{\mu}=\frac{1}{n}\sum_i x_i= \sum_x x \frac{n_x}{n}\]
 
-y recuerda que en el límite \(n \rightarrow \infty\) la interpretación frecuentista requiere \(\frac{n_x}{n} \rightarrow P(X=x)\) y por lo tanto en el límite
+y recordemos que en el límite \(n \rightarrow \infty\) la interpretación frecuentista requiere \(\frac{n_x}{n} \rightarrow P(X=x)\) y por lo tanto en el límite
 
-\[\hat{\mu}=\frac{1}{n}\sum_i x_i \rightarrow E(X)\]
+\[\hat{\mu}=\frac{1}{n}\sum_i x_i \rightarrow E(X)=\mu\]
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
@@ -7252,30 +7282,31 @@ y recuerda que en el límite \(n \rightarrow \infty\) la interpretación frecuen
 \hypertarget{muxe9todo-de-los-momentos-2}{%
 \section{Método de los Momentos}\label{muxe9todo-de-los-momentos-2}}
 
-El método de los momentos dice que podemos tomar el valor \textbf{observado} del promedio \(\bar{X}= \frac{1}{n}\sum_i X_i\) como estimador de \$E(X)=\mu ps
+El método de los momentos dice que podemos tomar el valor \textbf{observado} del promedio \(\bar{X}\) como estimador de \(E(X)=\mu\)
 
-\[E(X)\sim\bar{x}\]
+\[E(X) \sim\bar{x}\]
 
-\(\bar{X}\) se llama el primer \textbf{momento de muestra}
+\(\bar{X}=\frac{1}{N}\sum_i X_i\) se llama el primer \textbf{momento muestral}
 
-El estimador del parámetro \(\theta\) se obtiene entonces de la ecuación:
+Si \(X \rightarrow f(x, \theta)\), el estimador del parámetro \(\theta\) se obtiene entonces de la ecuación:
 
 \[E(X)=\bar{x}\]
 
 para el valor de \(\hat{\theta}\) observado
 
 Ejemplo: Si
-\(X \hookrightarrow N(\mu, \sigma^2)\) entonces
 
-\(E(X)=\mu\)
+\(X \hookrightarrow exp(\lambda)\) entonces
 
-El método de los momentos da el estimador
-
-\begin{itemize}
-\tightlist
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
 \item
-  \(\hat{\mu}=\bar{x}=\frac{1}{n}\sum_i x_i\)
-\end{itemize}
+  Calculamos el valor esperado \(E(X)=\frac{1}{\lambda}\)
+\item
+  Formulamos la ecuación donde igualamos el valor esperado al primer momento muestral \(\frac{1}{\hat{\lambda}}=\bar{x}=\frac{1}{n}\sum_i x_i\)
+\item
+  Resolvemos para el parámetro \[\hat{\lambda}=\frac{1}{\bar{x}}\]
+\end{enumerate}
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
@@ -7286,7 +7317,7 @@ El método de los momentos da el estimador
 
 Supongamos que tenemos varias baterías (nuevas y viejas) que cargamos durante el período de 1 hora. Medimos el estado de carga de la batería siendo 1 a 100\% de carga.
 
-El estado de carga de una batería es una variable aleatoria que puede tener una distribución uniforme, donde no sabemos el valor mínimo que puede tomar \(x\), pero sabemos que el máximo es 1
+El estado de carga de una batería es una variable aleatoria que puede tener una distribución uniforme, donde no sabemos el valor mínimo que puede tomar \(x\), pero sabemos que el máximo es 1 (\(100\%\) de carga)
 
 \[
 f(x)=
@@ -7296,7 +7327,7 @@ f(x)=
 \end{cases}
 \]
 
-¿Cuál es el estimador de \(a\)?
+¿Cuál es el estimador de \(a\) (la carga mínima al cabo de una hora)?
 
 \begin{itemize}
 \tightlist
@@ -7311,14 +7342,32 @@ f(x)=
 \hypertarget{muxe9todo-de-los-momentos-4}{%
 \section{Método de los Momentos}\label{muxe9todo-de-los-momentos-4}}
 
-La distribución tiene un parámetro. El método de los momentos nos da una ecuación.
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Calculamos el valor esperado de la variable aleatoria
+\end{enumerate}
 
-\[E(X)=\bar{x}\]
-Eso es
+\[E(X)=\frac{a+1}{2}\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  Formulamos la ecuación para el parámetro \(\hat{a}\) igualando el valor esperado al primer momento muestral
+\end{enumerate}
 
 \[\frac{\hat{a}+1}{2}=\bar{x}\]
 
-Que resolvemos para \(\hat{a}\)
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  resolvemos para \(\hat{a}\)
+\end{enumerate}
 
 \[\hat{a}=2\bar{x}-1\]
 
@@ -7331,7 +7380,7 @@ Este es el estimador de la carga mínima que podemos observar.
 \hypertarget{muxe9todo-de-los-momentos-5}{%
 \section{Método de los Momentos}\label{muxe9todo-de-los-momentos-5}}
 
-Tenga en cuenta que tomar el mínimo de las medidas es claramente subóptimo.
+Ten en cuenta que tomar el mínimo de las medidas es claramente subóptimo.
 
 El método nos dio una respuesta inteligente:
 
@@ -7359,7 +7408,7 @@ El método dice que se puede encontrar una estimación para el parámetro \(\the
 \[E(X)=\frac{1}{n}\sum_i x_i\]
 para \(\hat{\theta}\).
 
-Si hay más parámetros, usamos los \textbf{momentos de muestra} más altos
+Si hay más parámetros, usamos los \textbf{momentos muestrales} más altos
 
 \begin{itemize}
 \tightlist
@@ -7369,14 +7418,14 @@ Si hay más parámetros, usamos los \textbf{momentos de muestra} más altos
 
 \[E(X^2)=\frac{1}{n}\sum_i X^2_i\]
 
-como tal, una observación de este momento es
+Una observación de este momento es
 
 \(\frac{1}{n}\sum_i x^2_i\).
 
 El método dice que se puede encontrar una estimación para los parámetros \(\theta_1\) y \(\theta_2\) de \(f(x;\theta_1,\theta_2)\) a partir de las ecuaciones:
 
 \begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
+\def\labelenumi{\alph{enumi}.}
 \item
   \(E(X)= \frac{1}{n}\sum_i x_i\)
 \item
@@ -7385,7 +7434,7 @@ El método dice que se puede encontrar una estimación para los parámetros \(\t
 
 Para \(\hat{\theta}_1\) y \(\hat{\theta}_2\)
 
-Podemos entonces incrementar el número de ecuaciones tanto como parametros queramos estimar
+Podemos entonces incrementar el número de ecuaciones tanto como parametros queramos estimar.
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
@@ -7394,50 +7443,74 @@ Podemos entonces incrementar el número de ecuaciones tanto como parametros quer
 \hypertarget{distribuciuxf3n-normal-13}{%
 \section{Distribución normal}\label{distribuciuxf3n-normal-13}}
 
-Si \(X\) se distribuye normalmente
-\(X \hookrightarrow N(\mu, \sigma^2)\)
-
-entonces tiene media y varianza:
-
-\(E(X)=\mu\) y
-\(V(X)=\sigma^2\)
-
-El método de los momentos da las ecuaciones:
+Si \(X\) se distribuye normalmente tenemos dos parámetros a estimar
+\[X \rightarrow N(\mu, \sigma^2)\]
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
 \tightlist
 \item
-  \(E(X)=\frac{1}{n}\sum_i x_i\)
-\item
-  \(E(X^2)=\frac{1}{n}\sum_i x^2_i\)
+  Calculamos la media y el valor esperado del segundo momento \(E(X^2)\):
 \end{enumerate}
 
-Una sustitución de \(E(X)\) en la \textbf{primera} ecuación da el estimador de la media \(\mu\).
+\(E(X)=\mu\) y
+\(E(X^2)=\sigma^2-\mu^2\)
 
-\begin{itemize}
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  Obtenemos las ecuaciones para los parámetros donde hacemos que el valor esperado sea igual al primer momento de la muestra, y el segundo momento sea igual al valor esperado del segundo momento
+\end{enumerate}
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi}.}
 \tightlist
 \item
   \(\hat{\mu}=\frac{1}{n}\sum_i x_i\)
-\end{itemize}
+\item
+  \(\hat{\sigma}^2-\hat{\mu}^2=\frac{1}{n}\sum_i x^2_i\)
+\end{enumerate}
 
-\(E(X^2)\) se sigue de la propiedad: \(E(X^2) = \hat{\mu}^2 + V(X)= \hat{\mu}^2+\hat{\sigma} ^2\)
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-Entonces la \textbf{segunda} equación es
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\begin{itemize}
+\hypertarget{distribuciuxf3n-normal-14}{%
+\section{Distribución normal}\label{distribuciuxf3n-normal-14}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{2}
 \tightlist
 \item
-  \(\hat{\mu}^2+\hat{\sigma}^2= \frac{1}{n} \sum_i x^2_i\)
-\end{itemize}
+  Resolvemos los parámetros
+\end{enumerate}
+
+La primera ecuación nos da el estimador de la media \(\mu\).
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi}.}
+\tightlist
+\item
+  \(\hat{\mu}=\frac{1}{n}\sum_i x_i\)
+\end{enumerate}
+
+De la segunda ecuación obtenemos
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi}.}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  \(\hat{\sigma}^2= \frac{1}{n} \sum_i x^2_i-\hat{\mu}^2\)
+\end{enumerate}
 
 que también se puede escribir como:
-
 \[\hat{\sigma}^2=\frac{1}{n} \sum_i(x_i-\hat{\mu})^2\]
-
-\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
-
-\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+\_\_\_\_\_\_\_\_\_\_\_
+\_\_\_\_\_\_\_\_\_\_\_
 
 \hypertarget{muxe9todo-de-los-momentos-7}{%
 \section{Método de los Momentos}\label{muxe9todo-de-los-momentos-7}}
@@ -7451,6 +7524,7 @@ que también se puede escribir como:
     0,& x \notin (1,2)\\
 \end{cases}
 \]
+
 Donde \(\alpha\) es un parámetro.
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
@@ -7462,13 +7536,17 @@ Donde \(\alpha\) es un parámetro.
 
 El método dice que se puede encontrar una estimación para el parámetro \(\alpha\) de \(f(x;\alpha)\) a partir de la ecuación:
 
-\[E(X; \hat{\alpha})=\frac{1}{n}\sum_i x_i\]
+\[E(X)=\frac{1}{n}\sum_i x_i\]
+para \(\hat{\alpha}\)
 
-Necesitamos calcular el valor esperado \(E(X)\)
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Calculamos el valor esperado \(E(X)\)
+\end{enumerate}
 
 \[E(X)=\int_{-\infty}^{\infty} x f(x;\alpha)dx\]
-
-e igualarlo a la media \(\bar{x}\)
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
@@ -7477,21 +7555,36 @@ e igualarlo a la media \(\bar{x}\)
 \hypertarget{muxe9todo-de-los-momentos-9}{%
 \section{Método de los Momentos}\label{muxe9todo-de-los-momentos-9}}
 
-Considere un cambio de variables \(Z=X-1\) entonces \(E(X)=E(Z)+1\) y
+Consideremos un cambio de variables \(Z=X-1\) entonces \(E(X)=E(Z)+1\) y
 
 \(E(Z)= \frac{1}{\alpha} \int_0^1 z z^{\frac{1-\alpha}{\alpha}}dz= \frac{1}{\alpha} \int_0^1 z^{1+\frac{1-\alpha}{\alpha}}dz\)
 
 \(= \frac{1}{\alpha} \frac{z^{2+\frac{1-\alpha}{\alpha}}}{{2+\frac{1-\alpha}{\alpha}} } |_0^1=\frac{1}{1+\alpha}\)
 
-Por tanto, el método de los momentos nos da la ecuación
+Por lo tanto,
+
+\[E(X)=E(Z+1)=\frac{1}{1+\alpha}+1\]
+2. Formulamos la ecuación para el parámetro \(\hat{\alpha}\) igualando el valor esperado al primer momento muestral
 
 \[\frac{1}{1+\hat{\alpha}}+1=\bar{x}\]
 
-que resolver para \(\hat{\alpha}\) nos da la estimación
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  resolvemos para \(\hat{\alpha}\)
+\end{enumerate}
 
-\(\hat{\alpha}_m=\frac{1}{\bar{x}-1}-1\)
+\[\hat{\alpha}_m=\frac{1}{\bar{x}-1}-1\]
 
-Para nuestros 30 láseres esto es
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{3}
+\tightlist
+\item
+  Calculamos el valor para nuestros datos
+\end{enumerate}
 
 \(\hat{\alpha}_m=1.314\)
 
@@ -7502,13 +7595,13 @@ Para nuestros 30 láseres esto es
 \hypertarget{muxe9todo-de-los-momentos-10}{%
 \section{Método de los Momentos}\label{muxe9todo-de-los-momentos-10}}
 
-Tenga en cuenta que este es un ejemplo para el cual las estimaciones por máxima verosimilitud y el método de momentos son diferentes
+Ten en cuenta que este es un ejemplo para el cual las estimaciones por máxima verosimilitud y el método de momentos son diferentes
 
 \begin{itemize}
 \item
   \(\hat{\alpha}_{ml}=-\frac{1}{n}\sum_{i=1}^n \ln (x_i-1)=1.320\)
 \item
-  \(\hat{\alpha}_m=\frac{1-\bar{x}}{\bar{x}}=1,314\)
+  \(\hat{\alpha}_m=\hat{\alpha}_m=\frac{1}{\bar{x}-1}-1=1.314\)
 \end{itemize}
 
 Necesitamos estudios de simulación, donde sepamos el verdadero valor del parámetro \(\alpha\), para encontrar cuál de estas estadísticas tiene menos error cuadrático medio.
@@ -7516,6 +7609,803 @@ Necesitamos estudios de simulación, donde sepamos el verdadero valor del parám
 Nota: los datos de 30 perforaciones con láser se simularon con \(\alpha=2\), por lo que debemos preferir la estimación de máxima verosimilitud.
 
 Para obtener mejores estimaciones de \(\alpha\) necesitamos aumentar el tamaño de la muestra.
+
+\hypertarget{estimaciuxf3n-intervalar}{%
+\chapter{Estimación intervalar}\label{estimaciuxf3n-intervalar}}
+
+\hypertarget{objetivo-12}{%
+\section{Objetivo}\label{objetivo-12}}
+
+\begin{itemize}
+\tightlist
+\item
+  Estimación intervalar para la media y la proporción
+\item
+  Estimación intervalar para la varianza
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{promedio-o-media-muestral-1}{%
+\section{Promedio o media muestral}\label{promedio-o-media-muestral-1}}
+
+\textbf{Definición}
+
+La media muestral (o promedio) de una \textbf{muestra aleatoria} de tamaño \(n\) es
+
+\[\bar{X}=\frac{1}{n}\sum_{i=1}^n X_i\]
+
+Dado que cada experimento aleatorio es independiente, la media y la varianza de \(\bar{X}\) son
+
+\begin{itemize}
+\tightlist
+\item
+  \(E(\bar{X})=E(X)\)
+\item
+  \(V(\bar{X})=\frac{V(X)}{n}\)
+\item
+  \(se=\sqrt{V(\bar{X})}\) se conoce como el error estandard
+\end{itemize}
+
+\(\bar{X}\) es por lo tanto
+
+\begin{itemize}
+\item
+  un \textbf{estimador} de \(E(X)\), es decir \(\mu\).
+\item
+  una variable aleatoria
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{inferencia-en-el-promedio}{%
+\section{Inferencia en el promedio}\label{inferencia-en-el-promedio}}
+
+\textbf{Ejemplo:}
+
+Realizamos \(8\) experimentos aleatorios: cargamos un cable hasta que se rompe y registramos la carga de rotura. Estos son los resultados.
+
+\begin{verbatim}
+## [1] 13.34642 13.32620 13.01459 13.10811 12.96999 13.55309 13.75557 12.62747
+\end{verbatim}
+
+Si \textbf{sabemos} que nuestros cables realmente se distribuyen como \[X \rightarrow N(\mu=13, \sigma^2=0.35^2)\] entonces
+
+\[\bar{X} \rightarrow N(13, \frac{0.35^2}{8})\]
+
+\begin{itemize}
+\tightlist
+\item
+  \(E(\bar{X})=13\)
+\item
+  \(V(\bar{X})=\frac{0.35^2}{8}=0.01530169\)
+\item
+  \(se=\frac{0.35}{\sqrt{8}}=0.1237\)
+\end{itemize}
+
+entonces el \textbf{error observado} en la estimación es la diferencia
+
+\[\bar{x}_{stock}-\mu=13.21-13=0.21\]
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{margen-de-error-2}{%
+\section{Margen de error}\label{margen-de-error-2}}
+
+Al decidir si el \textbf{error} en la estimación: \(\bar{X}-\mu\) es grande o no, generalmente lo comparamos con una tolerancia predefinida.
+
+\begin{itemize}
+\tightlist
+\item
+  El \textbf{margen de error} a nivel de \(5\%\) es la distancia \(m\) tal que la distribución de \(\bar{X}\) captura \(95\%\) de las estimaciones:
+\end{itemize}
+
+\[P(-m \leq \bar{X}-\mu \leq m)=P(\mu-m \leq \bar{X} \leq\mu + m)=0.95\]
+
+\begin{itemize}
+\tightlist
+\item
+  o que \(95\%\) de los valores de \(\bar{X}\) están a una distancia \(m\) de \(\mu\).
+\end{itemize}
+
+En nuestro ejemplo, asumimos que \(\bar{X}\) se distribuye normalmente, entonces
+
+\[m=z_{0,025} \frac{\sigma}{\sqrt{n}}=1,96\times se=1,96\frac{0,35}{\sqrt{8}}=0,24\]
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{densidad-de-probabilidad-de-x-vs-densidad-de-probabilidad-de-barx}{%
+\section{\texorpdfstring{Densidad de probabilidad de \(X\) Vs densidad de probabilidad de \(\bar{X}\)}{Densidad de probabilidad de X Vs densidad de probabilidad de \textbackslash bar\{X\}}}\label{densidad-de-probabilidad-de-x-vs-densidad-de-probabilidad-de-barx}}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-89-1.pdf}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-90-1.pdf}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{vida-real}{%
+\section{Vida real}\label{vida-real}}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-91-1.pdf}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-92-1.pdf}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{estimaciuxf3n-intervalar-1}{%
+\section{Estimación intervalar}\label{estimaciuxf3n-intervalar-1}}
+
+De la ecuación del margen de error:
+
+\[P(-m \leq \bar{X} - \mu \leq m)=0.95\]
+
+resolvamos para \(\mu\) (la incógnita real)
+
+\[P(\bar{X} - m \leq \mu \leq \bar{X} + m)=0.95\]
+
+Los límites izquierdo y derecho de la desigualdad son variables aleatorias que motivan la definición del \textbf{intervalo de confianza aleatorio en \(95\%\)}
+
+\[(L,U)=(\bar{X} - m,\bar{X} + m)\]
+
+Este intervalo es una \textbf{variable aleatoria} y tiene por definición una probabilidad de \(0.95\) de contener \(\mu\).
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{estimaciuxf3n-intervalar-2}{%
+\section{Estimación intervalar}\label{estimaciuxf3n-intervalar-2}}
+
+Cuando realizamos \(n\)-experimentos aleatorios (muestra de tamaño \(n\)) podemos calcular \(m\) \textbf{si}
+
+\begin{itemize}
+\tightlist
+\item
+  \(X\) es normal
+\item
+  conocemos \(\sigma^2\).
+\end{itemize}
+
+El intervalo que obtenemos del experimento es (en minúsculas)
+
+\[(l,u)=(\bar{x} - m,\bar{x} + m)\]
+
+\begin{itemize}
+\item
+  este intervalo contiene o no el parámetro \(\mu\): \textbf{nunca lo sabremos}!
+\item
+  Decimos que tenemos una confianza de \(95\%\) que el intervalo \((l,u)\) capturará el verdadero parámetro desconocido \(\mu\). Piensa en comprar un billete de lotería del que no sabes el resultado.
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{estimaciuxf3n-intervalar-3}{%
+\section{Estimación intervalar}\label{estimaciuxf3n-intervalar-3}}
+
+En nuestro ejemplo, asumimos que \(\bar{X}\) se distribuye normalmente, entonces
+
+\[m=z_{0.025} \frac{\sigma}{\sqrt{n}}\]
+
+y el intervalo de confianza de \(95\%\) es
+
+\[(l,u)=(\bar{x}-z_{0.025} \frac{\sigma}{\sqrt{n}}, \bar{x}+z_{0.025} \frac{\sigma}{ \sqrt{n}})= (12.97,13.45)\]
+
+o
+
+\[\hat{\mu}=13.21 \pm 0.24\]
+También significa que, en la estimación, confiamos en las unidades pero no tanto en los lugares decimales.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{estimaciuxf3n-intervalar-4}{%
+\section{Estimación intervalar}\label{estimaciuxf3n-intervalar-4}}
+
+Para una muestra de 8 observaciones, tenemos una estimación de la media y un intervalo de confianza
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-93-1.pdf}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{estimaciuxf3n-intervalar-5}{%
+\section{Estimación intervalar}\label{estimaciuxf3n-intervalar-5}}
+
+Cada vez que obtenemos una nueva muestra, las estimaciones cambian. Si realizamos \(100\) muestras de tanaño \(n\) entonces \(95%
+\) de los intervalos de confianza contendrán \(\mu\) (¡no sabemos cuáles!)
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-94-1.pdf}
+
+\hypertarget{estimaciuxf3n-de-intervalos}{%
+\section{Estimación de intervalos}\label{estimaciuxf3n-de-intervalos}}
+
+Podemos cambiar nuestra confianza de \(95\%\) a \(99\%\)
+
+\begin{itemize}
+\item
+  Habíamos dejado fuera \(\alpha=0.05\) de probabilidad, \(0.025\) en cada lado.
+\item
+  Ahora, podemos dejar fuera \(\alpha=0.01\) probabilidad, \(0.005\) en cada lado.
+\end{itemize}
+
+Por lo tanto, el intervalo de confianza de \(99\%\) es
+
+\((l,u) = (\bar{x} - z_{0,005}\frac{\sigma}{\sqrt{n}},\bar{x} + z_{0,005}\frac{\sigma}{\sqrt{n}})\)
+
+\[= (\bar{x} - 2,58\frac{\sigma}{\sqrt{n}},\bar{x} + 2,58\frac{\sigma}{\sqrt{n}})\]
+
+0
+
+\[\hat{\mu}=\bar{x} \pm 2.58\frac{\sigma}{\sqrt{n}}\]
+Si queremos tener más confianza, ¡necesitamos intervalos de confianza más grandes!
+
+Para nuestros cables:
+
+\[\hat{\mu}= 13.21 \pm 0.31\]
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{interval-estimation}{%
+\section{Interval estimation}\label{interval-estimation}}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{estimaciuxf3n-intervalar-6}{%
+\section{Estimación intervalar}\label{estimaciuxf3n-intervalar-6}}
+
+Un material metálico se impacta para medir la energía requerida para cortarlo a una temperatura dada.
+
+\begin{itemize}
+\item
+  Se cortaron diez probetas de acero A238 a 60ºC a las siguientes energías de impacto (J)
+\item
+  \(64.1, 64.7, 64.5, 64.6, 64.5, 64.3, 64.6, 64.8, 64.2, 64.3\)
+\item
+  Si sabemos que la energía del impacto se distribuye normalmente con \(\sigma=1J\) ¿cuál es el IC de \(95\%\) para la media de estos datos?
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{ejemplo-15}{%
+\section{Ejemplo}\label{ejemplo-15}}
+
+Sabemos
+
+\begin{itemize}
+\tightlist
+\item
+  \(x_i=\{64.1, 64.7, 64.5, 64.6, 64.5, 64.3, 64.6, 64.8, 64.2, 64.3\}\)
+\item
+  \(X \rightarrow N(\mu, \sigma^2)\)
+\item
+  \(\sigma=1J\)
+\item
+  \(\alpha=0.05\)
+\end{itemize}
+
+El intervalo de confianza es entonces
+
+\[CI=(\bar{x}-1.96 \frac{\sigma}{\sqrt{n}}, \bar{x}+1.96  \frac{\sigma}{\sqrt{n}})\]
+\[=(64.46-1.96 \frac{1}{\sqrt{10}}, 64.46+1.96  \frac{1}{\sqrt{10}})=(63.84,65.08)\]
+
+or
+
+\[\hat{\mu}=64.46 \pm 0.61\]
+esto nos dice que podemos estar seguros del primer dígito (6), algo seguros del segundo (4) e inseguros de los decimales (46).
+
+¿Qué pasa si \textbf{no conocemos} \(\sigma^2\)?
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{estaduxedstica-t-3}{%
+\section{Estadística T}\label{estaduxedstica-t-3}}
+
+Cuando
+
+\begin{itemize}
+\tightlist
+\item
+  \(X\) es normal, y
+\item
+  \(\sigma\) es \textbf{desconocido}
+\end{itemize}
+
+entonces la estadística estandarizada
+
+\[T=\frac{\bar{X}-\mu}{\frac{S}{\sqrt{n}}}\]
+
+Sigue una distribución \(t\) con \(n-1\) grados de libertad, y podemos calcular probabilidades para \(\bar{X}\).
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{estaduxedstica-t-4}{%
+\section{Estadística T}\label{estaduxedstica-t-4}}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-95-1.pdf}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{estaduxedstica-t-5}{%
+\section{Estadística T}\label{estaduxedstica-t-5}}
+
+Para calcular el margen de error \(m\) al \(95\%\) cuando
+
+\begin{itemize}
+\tightlist
+\item
+  \(X\) normal y
+\item
+  \(\sigma^2\) es desconocido
+\end{itemize}
+
+Usamos la distribución \(t\)
+
+\(P(\mu-m \leq \bar{X} \leq\mu + m)\)
+\[=P(-\frac{m}{s/\sqrt{n}} \leq T \leq\frac{m}{s/\sqrt{n}})=0.95\]
+
+\[m=t_{0.025, n-1} \frac{s}{\sqrt{n}}\]
+donde \(t_{0.025, n-1}\) es el valor \(T\) que deja \(2.5\%\) de probabilidad al lado derecho de la distribución \(t\) con \(n-1\) grados de libertad (\(0.025\)-cuantil)
+
+el intervalo de confianza al \(95\%\) es entonces
+
+\[(l,u)=(\bar{x}-t_{0.025, n-1} \frac{s}{\sqrt{n}}, \bar{x}+t_{0.025, n-1} \frac{s}{\sqrt{n}})\]
+en R: \(t_{0.025, n-1}\)=qt(1-0.025, n-1)
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{ejemplo-16}{%
+\section{Ejemplo}\label{ejemplo-16}}
+
+Un material metálico se impacta para medir la energía requerida para cortarlo a una temperatura dada.
+
+\begin{itemize}
+\item
+  Se cortaron diez probetas de acero A238 a 60ºC a las siguientes energías de impacto (J)
+\item
+  \(64.1, 64.7, 64.5, 64.6, 64.5, 64.3, 64.6, 64.8, 64.2, 64.3\)
+\item
+  Si sabemos que la energía del impacto se distribuye normalmente pero \textbf{no sabemos} la varianza, ¿cuál es el IC de \(95\%\) para la media de estos datos?
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{ejemplo-17}{%
+\section{Ejemplo}\label{ejemplo-17}}
+
+\begin{itemize}
+\tightlist
+\item
+  \(\bar{x}=64.46\)
+\item
+  \(s=0.227\)
+\item
+  \(\alpha=0.05\)
+\item
+  \(t_{0.025,9}=2.26\) obtained from \(P(T \leq t_{0.025,9})=0.975\); qt(1-0.025, 9)
+\end{itemize}
+
+El intervalo de confianza es entonces
+
+\(CI=(\bar{x}- t_{0.025,9}\frac{s}{\sqrt{n}},\bar{x}+t_{0.025,9} \frac{s}{\sqrt{n}})\)
+
+\[=(64.46-2.26 \frac{0.227}{\sqrt{10}},64.46+2.26 \frac{0.227}{\sqrt{10}})\] \[=(64.29,64.62)\]
+
+habíamos visto un intervalo mas grande \(CI=(63.84,65.08)\) cuando \(\sigma=1\). Los datos entonces sugieren que \(\sigma<1\).
+
+R: t.test(c(64.1,64.7,64.5,64.6,64.5,64.3,64.6,64.8,64.2,64.3))
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{ci-con-clt}{%
+\section{CI con CLT}\label{ci-con-clt}}
+
+Si
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{no sabemos} cómo se distribuye \(X\), pero
+\item
+  tomamos una muestra grande de \(n\ge 30\)
+\end{itemize}
+
+Entonces podemos usar el CLT para encontrar los intervalos de confianza.
+
+El intervalo de confianza a \(95\%\) es entonces
+
+\[(l,u)=(\bar{x}-z_{0.025} \frac{s}{\sqrt{n}}, \bar{x}+z_{0.025} \frac{s}{\sqrt{n}})\]
+dado que \(t_{0.025, n-1} \rightarrow z_{0.025}\) para \(n \rightarrow \infty\), entonces también está bien usar la distribución T en este caso.
+
+Nota: Esta es la razón por la que R solo implementa t.test y no z.test en las funciones base para calcular CI.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\textbf{Ejemplo:}
+
+Consideremos un experimento en el que medimos la concentración en sangre de un fármaco después de 10 horas de administración en \(30\) pacientes. Obtenemos los siguientes resultados:
+
+\begin{verbatim}
+##  [1] 0.42172863 0.28830514 0.66452743 0.01578868 0.02810549 0.15825061
+##  [7] 0.15711365 0.07263340 1.36311823 0.01457672 0.50241503 0.24010736
+## [13] 0.14050681 0.18855892 0.09414202 0.42489306 0.78160177 0.23938021
+## [19] 0.29546742 2.02050586 0.42157487 0.48293561 0.74263790 0.67402224
+## [25] 0.58426449 0.80292617 0.74837143 0.78532627 0.01588387 0.29892485
+\end{verbatim}
+
+\begin{itemize}
+\item
+  el promedio es \(\bar{x}=0.4556198\)
+\item
+  la desviación estándar es \(s=0.4335571\)
+\item
+  el histograma de los resultados es:
+\end{itemize}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-97-1.pdf}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{teorema-del-luxedmite-central-4}{%
+\section{Teorema del límite central}\label{teorema-del-luxedmite-central-4}}
+
+\textbf{Asumimos} que \(X \rightarrow exp(\lambda=2)\)
+
+Con media y varianza:
+
+\begin{itemize}
+\tightlist
+\item
+  \(E(X)=\frac{1}{\lambda}\)
+\item
+  \(V(X)=\frac{1}{\lambda^2}\)
+\end{itemize}
+
+¿Cuál es el CI para la media \(E(X)=\mu\)?
+
+\begin{itemize}
+\tightlist
+\item
+  Usamos un IC del 95\% para estimarlo
+\end{itemize}
+
+Como \(n \geq 30\) podemos usar el CLT
+
+\[\bar{X} \sim_{aprox} N(\lambda, \frac{1}{n\lambda^2})\]
+
+y el intervalo de confianza de \(95\%\) es entonces
+
+\[(l,u)=(\bar{x}-z_{0.025} \frac{s}{\sqrt{n}}, \bar{x}+z_{0.025} \frac{s}{\sqrt {n}})\]
+
+\((l,u)=(0.4556198-1.96\frac{0.4335571}{\sqrt{30}}, 0.4556198+1.96\frac{0.4335571}{\sqrt{30}})\)
+
+\[=(0.300,0.610)\]
+o
+
+\[\hat{\mu}=0.45 \pm 0.15\]
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-98-1.pdf}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{estimaciuxf3n-de-paruxe1metros}{%
+\section{Estimación de parámetros}\label{estimaciuxf3n-de-paruxe1metros}}
+
+Como \(E(X)=\mu=\frac{1}{\lambda}\) entonces
+
+\[\hat{\lambda}=\frac{1}{\hat{\mu}}=2.194812\]
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-99-1.pdf}
+o su IC de \(95\%\):
+
+\[\hat{\lambda}= (1.66, 3.33) \]
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{estimaciuxf3n-intervalar-para-proporciones}{%
+\section{Estimación intervalar para proporciones}\label{estimaciuxf3n-intervalar-para-proporciones}}
+
+Se seleccionó una muestra aleatoria de \(400\) pacientes para probar una nueva vacuna contra el virus de la influenza, después de \(6\) meses de vacunación, \(136\) estaban enfermos.
+
+\begin{itemize}
+\tightlist
+\item
+  ¿Cuál es la eficacia esperada de la vacuna?
+\end{itemize}
+
+Tenemos \(136\) fallas en \(400\) ensayos, cada ensayo es un
+juicio de Bernoulli
+
+\[X \rightarrow Bernoulli(p)\]
+con:
+
+\begin{itemize}
+\tightlist
+\item
+  la probabilidad \(p\) de fallo para una persona (\(x=1\))
+\item
+  media \(E (X) = p\)
+\item
+  varianza \(V (X) = p (1-p)\)
+\end{itemize}
+
+Queremos tener un IC de \(95\%\) para \(p\).
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{estimaciuxf3n-intervalar-para-proporciones-1}{%
+\section{Estimación intervalar para proporciones}\label{estimaciuxf3n-intervalar-para-proporciones-1}}
+
+Si la distribución de un experimento aleatorio es
+
+\[X \rightarrow Bernoulli (p)\]
+Entonces \(\bar{X}\) tiene
+
+\begin{itemize}
+\tightlist
+\item
+  media \(E(\bar{X})=E(X)=p\) (estimador insesgado de \(p\))
+\item
+  varianza \(V(\bar{X})=\frac{V(X)}{n}=\frac{p(p-1)}{n}\) (estimador consistente de \(p\))
+\end{itemize}
+
+\[\hat{p}=\bar{x}\]
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{estimaciuxf3n-intervalar-para-proporciones-2}{%
+\section{Estimación intervalar para proporciones}\label{estimaciuxf3n-intervalar-para-proporciones-2}}
+
+Cuando \(\hat{p}n>5\) y \((\hat{p}-1)n>5\)
+
+\begin{itemize}
+\tightlist
+\item
+  La \textbf{estadística estandarizada} de \(\bar{X}\) se puede aproximar mediante una distribución estándar
+\end{itemize}
+
+\[Z=\frac{\bar{X}-E(\bar{X})}{\sqrt{V(\bar{X})}}= \frac{\bar{X}-p}{\big[\frac{p(1-p)}{n} \big]^{1/2}}\rightarrow N(0,1)\]
+
+\begin{itemize}
+\tightlist
+\item
+  El intervalo de CI de \(95\%\) de \(p\) es:
+\end{itemize}
+
+\[CI=(l,u)=(\bar{x}-z_{0.025}\big[\frac{\bar{x}(1-\bar{x})}{n} \big]^{ 1/2}, \bar{x}+z_{0.025}\big[\frac{\bar{x}(1-\bar{x})}{n} \big]^{1/2})\]
+Donde estimamos la varianza de Bernoulli \(p(1-p)\) por \(\bar{x}(1-\bar{x})\).
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{estimaciuxf3n-intervalar-para-proporciones-3}{%
+\section{Estimación intervalar para proporciones}\label{estimaciuxf3n-intervalar-para-proporciones-3}}
+
+En nuestro caso, estamos contando fallos en vacunas \(136\) en \(400\) ensayos
+
+sabemos
+
+\begin{itemize}
+\tightlist
+\item
+  \(\bar{x}=134/400=0.34\)
+\item
+  \(z_{0.025}=1.96\)
+\end{itemize}
+
+\(CI=(l,u)=(\bar{x}-1,96 \big[\frac{\bar{x}(1-\bar{x})}{n} \big]^{1/2} , \bar{x}+1,96 \big[\frac{\bar{x}(1-\bar{x})}{n} \big]^{1/2})\)
+
+\[=(0.29,0.39)\]
+
+La probabilidad de fracaso de la vacuna es
+
+\[\hat{p}=0.34 \pm 0.05\]
+
+Nota: Las encuestas de intención de voto (ensayo de Bernoulli) en una muestra de \(n\) individuos reportan este tipo de estimación con su margen de error. No significa que el \textbf{valor verdadero} de \(p\) esté dentro de este intervalo con una probabilidad de \(95\%\).
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{estimaciuxf3n-intervalar-para-la-varianza}{%
+\section{Estimación intervalar para la varianza}\label{estimaciuxf3n-intervalar-para-la-varianza}}
+
+Un material metálico se impacta para medir la energía requerida para cortarlo a una temperatura dada.
+
+\begin{itemize}
+\item
+  Se cortaron diez probetas de acero A238 a 60ºC a las siguientes energías de impacto (J)
+\item
+  \(64.1, 64.7, 64.5, 64.6, 64.5, 64.3, 64.6, 64.8, 64.2, 64.3\)
+\end{itemize}
+
+Sabemos que la estimación de \(s^2=0.227^2=0.051\), pero ¿cuál es su intervalo de confianza?
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{estimaciuxf3n-intervalar-para-la-varianza-1}{%
+\section{Estimación intervalar para la varianza}\label{estimaciuxf3n-intervalar-para-la-varianza-1}}
+
+Si
+
+\begin{itemize}
+\tightlist
+\item
+  \(X\) es \textbf{normal}
+\end{itemize}
+
+entonces
+
+\[W=\frac{S^2(n-1)}{\sigma^2}\]
+Captura la proporción en el error de \(\sigma^2\) y
+sigue una distribución \(\chi^2\) con \(n-1\) grados de libertad
+
+\[\frac{S^2}{\sigma^2}(n-1)\rightarrow \chi^2_{n-1}\]
+
+\begin{itemize}
+\tightlist
+\item
+  Buscamos el intervalo de confianza de \(\sigma^2\) con confianza \(95\%\) \((L,U)\) tal que \[P(L \leq \sigma^2 \leq U)=0.95\]
+\end{itemize}
+
+Podemos usar el \(\chi^2\) para determinar el \(95\%\) de la distribución alrededor de \(W\)
+
+\[P(\chi^2_{0.975,n-1} \leq W \leq \chi^2_{0.025,n-1})=0.95\]
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{chi2-statistic}{%
+\section{\texorpdfstring{\(\chi^2\)-statistic}{\textbackslash chi\^{}2-statistic}}\label{chi2-statistic}}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-100-1.pdf}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{estimaciuxf3n-intervalar-para-la-varianza-2}{%
+\section{Estimación intervalar para la varianza}\label{estimaciuxf3n-intervalar-para-la-varianza-2}}
+
+Reemplazando el valor de \(W\)
+
+\[P(\chi^2_{0.975,n-1} \leq \frac{S^2}{\sigma^2}(n-1) \leq \chi^2_{0.025,n-1})= 0.95\]
+
+y resolviendo para \(\sigma^2\)
+
+\[P(\frac{S^2 (n-1)}{\chi^2_{0.025,n-1}}\leq \sigma^2 \leq \frac{S^2(n-1)}{ \chi^2_{0.975,n-1}})=0.95\]
+
+El intervalo \textbf{aleatorio} con una confianza al \(95\%\) es
+
+\[(L,U) = (\frac{S^2 (n-1)}{\chi^2_{0.025,n-1}},\frac{S^2(n-1)}{\chi ^2_{0.975,n-1}})\]
+
+y el intervalo de confianza \textbf{observado} al \(95\%\) (minúscula)
+
+\[(l,u) = (\frac{s^2 (n-1)}{\chi^2_{0.025,n-1}},\frac{s^2(n-1)}{\chi ^2_{0.975,n-1}})\]
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{estimaciuxf3n-intervalar-para-la-varianza-3}{%
+\section{Estimación intervalar para la varianza}\label{estimaciuxf3n-intervalar-para-la-varianza-3}}
+
+\(\chi^2_{0.975,n-1}=F^{-1}(0.025)\)
+para \(n=10\) o \(df=n-1=9\)
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{chi0}\FloatTok{.975} \OtherTok{\textless{}{-}} \FunctionTok{qchisq}\NormalTok{(}\FloatTok{0.025}\NormalTok{, }\AttributeTok{df=}\DecValTok{9}\NormalTok{)}
+\NormalTok{chi0}\FloatTok{.975}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] 2.700389
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{chi0}\FloatTok{.025} \OtherTok{\textless{}{-}} \FunctionTok{qchisq}\NormalTok{(}\FloatTok{0.975}\NormalTok{, }\AttributeTok{df=}\DecValTok{9}\NormalTok{)}
+\NormalTok{chi0}\FloatTok{.025}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] 19.02277
+\end{verbatim}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{estimaciuxf3n-intervalar-7}{%
+\section{Estimación intervalar}\label{estimaciuxf3n-intervalar-7}}
+
+En nuestro ejemplo
+
+\begin{itemize}
+\tightlist
+\item
+  \(s=0.227\)
+\item
+  \(n=10\)
+\end{itemize}
+
+\(\hat{\sigma}^2=(l,u) = (\frac{s^2 (n-1)}{\chi^2_{0.025,n-1}},\frac{s^2( n-1)}{\chi^2_{0.975,n-1}})\)
+
+\[= (\frac{0.227^2 (10-1)}{19.02277},\frac{0.227^2(10-1)}{2.700389})=(0.02,0.17)\]
+
+Según los datos, \(\sigma^2 \neq 1\) con una confianza de \(95\%\).
+
+\begin{itemize}
+\tightlist
+\item
+  ¿Habíamos cometido un error al considerar \(\sigma=1\) cuando calculamos el primer IC para estos datos?
+\end{itemize}
+
+en R: library(Ecfun);
+confint.var(0.05, 9)
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{estimaciuxf3n-intervalar-8}{%
+\section{Estimación intervalar}\label{estimaciuxf3n-intervalar-8}}
+
+El intervalo para la varianza \textbf{no es simétrico} y no podemos formularlo como un margen de error estimado de \(\pm\).
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-101-1.pdf}
 
 \hypertarget{ejercicios}{%
 \chapter{Ejercicios}\label{ejercicios}}
@@ -7948,7 +8838,7 @@ Para la densidad de probabilidad
   ¿Cuáles son el primer y tercer cuartiles? (R: 25; 75)
 \end{itemize}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-94-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-108-1.pdf}
 
 \hypertarget{ejercicio-5-1}{%
 \subsubsection{Ejercicio 5}\label{ejercicio-5-1}}
@@ -8201,7 +9091,7 @@ donde \(\bar{X}=\frac{1}{N}\sum_{i=1}^N X_i\)
 \begin{itemize}
 \tightlist
 \item
-  ¿Es \(\bar{X}^2=(\frac{1}{N}\sum_{i=1}^N X_i)^2\) un estimador imparcial de \(E(X)^2\)?
+  ¿Es \(\bar{X}^2=(\frac{1}{N}\sum_{i=1}^N X_i)^2\) un estimador insesgado de \(E(X)^2\)?
 \end{itemize}
 
 \hypertarget{muxe1xima-verosimilitud-3}{%
@@ -8275,9 +9165,9 @@ Tome una variable aleatoria con la siguiente función de densidad de probabilida
 
 \begin{itemize}
 \item
-  ¿Cuál es la estimación de máxima verosimilitud del parámetro \(\alpha=\frac{2}{\lambda}\)
+  ¿Cuál es la estimación de máxima verosimilitud del parámetro \(\alpha=\frac{n}{\lambda}\)
 \item
-  ¿El estimador de \(\alpha\) es insesgado y consistente?
+  ¿El \(\alpha\) un estimador insesgado y consistente de la media de la suma muestral \(E(Y)\), donde \(Y=\sum_1^n X_i\)?
 \end{itemize}
 
 \hypertarget{muxe9todo-de-los-momentos-11}{%
@@ -8297,7 +9187,7 @@ Bernoulli & \(p^x(1-p)^{1-x}\) & \(p\) \\
 binomial & \(\binom n x p^x(1-p)^{n-x}\) & \(np\) \\
 Geométrico desplazado & \(p(1-p)^{x-1}\) & \(\frac{1}{p}\) \\
 Binomial negativo & \(\binom {x+r-1} x p^r(1-p)^x\) & \(r\frac{1-p}{p}\) \\
-Veneno & \(\frac{e^{-\lambda}\lambda^x}{x!}\) & \(\lambda\) \\
+Poisson & \(\frac{e^{-\lambda}\lambda^x}{x!}\) & \(\lambda\) \\
 Exponencial & \(\lambda e^{-\lambda x}\) & \(\frac{1}{\lambda}\) \\
 normales & \(\frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{(x-\mu)^2}{2\sigma^2}}\) & \(\mu\) \\
 \bottomrule

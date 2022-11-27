@@ -6,7 +6,7 @@
 ]{book}
 \title{Stats theory (SDA)}
 \author{Alejandro Caceres}
-\date{2022-11-13}
+\date{2022-11-27}
 
 \usepackage{amsmath,amssymb}
 \usepackage{lmodern}
@@ -45,6 +45,46 @@
   hidelinks,
   pdfcreator={LaTeX via pandoc}}
 \urlstyle{same} % disable monospaced font for URLs
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
 \usepackage{longtable,booktabs,array}
 \usepackage{calc} % for calculating minipage widths
 % Correct order of tables after \paragraph or \subparagraph
@@ -968,12 +1008,12 @@ Say we repeated the experiment 1000 times:
 
 \begin{verbatim}
 ##   outcome  ni    fi
-## 1       1 174 0.174
-## 2       2 164 0.164
-## 3       3 184 0.184
-## 4       4 159 0.159
-## 5       5 166 0.166
-## 6       6 153 0.153
+## 1       1 172 0.172
+## 2       2 187 0.187
+## 3       3 166 0.166
+## 4       4 167 0.167
+## 5       5 159 0.159
+## 6       6 149 0.149
 \end{verbatim}
 
 We find that \(f_i\) is converging to a constant value
@@ -6679,7 +6719,7 @@ are statistics
 
 An \textbf{estimator} is a statistic \(\Theta\) whose values \(\hat{\theta}\) are measures of a parameter \(\theta\) of the population distribution on which the sample is defined: \(E(\Theta)\sim \theta\)
 
-\(X \hookrightarrow f(x; \theta)\)
+\[X \rightarrow f(x; \theta)\]
 
 Then
 
@@ -6707,14 +6747,14 @@ Then
 \hypertarget{examples-1-average-sample-mean}{%
 \section{Examples 1: Average (Sample mean)}\label{examples-1-average-sample-mean}}
 
-When \(X \hookrightarrow N(\mu, \sigma^2)\)
+When \[X \rightarrow N(\mu, \sigma^2)\]
 
 For the mean:
 
 \begin{itemize}
 \tightlist
 \item
-  \(\mu\) is a \textbf{parameter} of the population distribution \(N(\mu, \sigma^2)\)
+  \(\mu\) is a \textbf{parameter} of the \textbf{population} distribution: distribution of \(X\), \(N(\mu, \sigma^2)\)
 \item
   \(\bar{X}\) is an \textbf{estimator} of \(\mu\)
 \item
@@ -6728,7 +6768,7 @@ For the mean:
 \hypertarget{examples-2-sample-variance}{%
 \section{Examples 2: Sample Variance}\label{examples-2-sample-variance}}
 
-When \(X \hookrightarrow N(\mu, \sigma^2)\)
+When \[X \rightarrow N(\mu, \sigma^2)\]
 
 For the variance:
 
@@ -6749,7 +6789,7 @@ For the variance:
 \hypertarget{bias}{%
 \section{Bias}\label{bias}}
 
-An estimator is unbiased (is not biased) if \(E(\Theta)=\theta\)
+An estimator is unbiased if \(E(\Theta)=\theta\)
 
 \begin{itemize}
 \item
@@ -6769,7 +6809,7 @@ An estimator is consistent if \(V(\Theta) \rightarrow 0\) when \(n \rightarrow \
 
 \begin{itemize}
 \item
-  \(\bar{X}\) is \textbf{consistent} because \(V(\bar{X})=\frac{\sigma}{n}\rightarrow 0\) when \(n \rightarrow \infty\).
+  \(\bar{X}\) is \textbf{consistent} because \(V(\bar{X})=\frac{\sigma^2}{n}\rightarrow 0\) when \(n \rightarrow \infty\).
 \item
   \(S^2\) is also \textbf{consistent} (we will not show).
 \end{itemize}
@@ -6785,11 +6825,11 @@ How can we \textbf{estimate} the parameter of \textbf{any} parametric model?
 
 \begin{itemize}
 \item
-  Imagine we design a laser with diameter of 1mm that we want to use for clinical applications.
+  Imagine we design a laser with a diameter of \(1mm\) that we want to use for clinical applications.
 \item
   We want to characterize the diameter of a piercing in a tissue made with the laser
 \item
-  and take a random sample of 30 cuts made with the laser
+  and take a random sample of \(30\) cuts made with the laser
 \end{itemize}
 
 \begin{verbatim}
@@ -6815,26 +6855,19 @@ with histogram
 \hypertarget{probability-density}{%
 \section{Probability density}\label{probability-density}}
 
-We consider that
-
-\begin{itemize}
-\item
-  maximum probability should be given to diameters od \(x=1mm\)
-\item
-  the diamaters should decrease exponentially in probability as they get larger with a limit of \(2mm\) beyond wich the probability is \(0\).
-\end{itemize}
+We consider that maximum probability should be given to diameters of \(x=1mm\), and that the diameters should decrease as the inverse power of some \textbf{unknown} parameter \(\alpha\), with a limit of \(2mm\) beyond which the probability is \(0\).
 
 A suitable probability density distribution is
 
 \[
     f(x)= 
 \begin{cases}
-\frac{1}{\alpha}(x-1)^{\frac{1-\alpha}{\alpha}},& \text{if } x \in (1,2)\\
+\frac{1}{\alpha}(x-1)^{\frac{1}{\alpha}-1},& \text{if } x \in (1,2)\\
     0,& x \notin (1,2)\\
 \end{cases}
 \]
 
-Where \(\alpha\) is a parameter.
+Where \(\alpha\) is a parameter. This is a probability density.
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
@@ -6843,18 +6876,19 @@ Where \(\alpha\) is a parameter.
 \hypertarget{probability-density-1}{%
 \section{Probability density}\label{probability-density-1}}
 
+In particular, for \(\alpha=2\) we can plot it
+
 \includegraphics{_main_files/figure-latex/unnamed-chunk-81-1.pdf}
 
-If we were to perform a \(n\)-sample: \(X_1,...X_n\)
+If we were to perform a \(n\)-sample: \(X_1,...X_n\), how should we combine the data for obtaining the best value of \(\alpha\)?
 
 \begin{itemize}
 \tightlist
 \item
-  The \textbf{maximum likelihood} is a method that \textbf{gives us the estimator} for \(\alpha\)
+  The \textbf{maximum likelihood} method \textbf{gives us the estimator} for \(\alpha\)
 \end{itemize}
 
 \[\hat{\alpha}_{ml}\]
-How should we combine the data for obtaining the best value of \(\hat{\alpha}_{ml}\)?
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
@@ -6872,7 +6906,7 @@ How should we combine the data for obtaining the best value of \(\hat{\alpha}_{m
 \hypertarget{maximum-likelihood-2}{%
 \section{Maximum likelihood}\label{maximum-likelihood-2}}
 
-The objective is to find the value of the parameter that we \textbf{believe} can represent \textbf{best} the data.
+The objective is to find the value of the parameter that we \textbf{believe} can \textbf{best} represent the data.
 
 We search for the parameter that makes the \textbf{observation} of the sample the most \textbf{probable}.
 
@@ -6881,12 +6915,12 @@ Note:
 \begin{itemize}
 \tightlist
 \item
-  Probabilities are assign to observations.
+  \textbf{Probabilities} are assigned \textbf{to observations}.
 \item
-  Probabilities are not assign to parameters (we assign beliefs, likelihoods).
+  Probabilities are \textbf{not} assigned to \textbf{parameters} (we assign beliefs, and likelihoods).
 \end{itemize}
 
-Parameters are not suppose to change, they are properties of the system.
+Parameters are not supposed to change, they are properties of the system.
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
@@ -6899,10 +6933,10 @@ Parameters are not suppose to change, they are properties of the system.
 \def\labelenumi{\arabic{enumi}.}
 \tightlist
 \item
-  We calculate the probability of having observed the \(n\)-sample: \(x_1,...x_n\)
+  We calculate the probability of having observed the \(n\)-sample: \(x_1,...x_n\). It is the product of probabilities because observations are independent of one another:
 \end{enumerate}
 
-\(P(x_1,...x_n)=P(x_1)P(X_2)...P(x_n)\)
+\(P(M=x_1,...x_n)=P(X=x_1)P(X=x_2)...P(X=x_n)\)
 \[=f(x_1;\alpha)f(x_2;\alpha) ...f(x_n;\alpha)\]
 
 \begin{itemize}
@@ -6912,7 +6946,7 @@ Parameters are not suppose to change, they are properties of the system.
 \item
   The unknown is \(\alpha\)
 \item
-  This probability as function of \(\alpha\), we call it the \textbf{likelihood function}
+  This probability as a function of the \(\alpha\) we call it the \textbf{likelihood function}
 \end{itemize}
 
 \[L(\alpha)= \Pi_{i=1..n} f(x_i; \alpha)\]
@@ -6928,7 +6962,7 @@ then in our case
 \hypertarget{method-step-2}{%
 \section{Method step 2}\label{method-step-2}}
 
-We want to maximize \(L(\alpha)\) with respect to \(\alpha\).
+We ask: what is the value of \(\alpha\) that makes the observations the most probable? We thus want to maximize \(L(\alpha)\) with respect to \(\alpha\).
 
 Since we have the multiplication of many factors is easier to maximize the logarithm of \(L(\alpha)\)
 
@@ -6965,7 +6999,7 @@ Therefore,
   we differentiate with respect to \(\alpha\)
 \end{itemize}
 
-\(\frac{d \ln L(\alpha)}{d \alpha}= -\frac{n}{\alpha} - \frac{1}{\alpha^2} \Sigma_{i=1...n} \ln (x_i)\)
+\[\frac{d \ln L(\alpha)}{d \alpha}= -\frac{n}{\alpha} - \frac{1}{\alpha^2}  \Sigma_{i=1...n} \ln (x_i)\]
 
 \begin{itemize}
 \tightlist
@@ -6973,7 +7007,7 @@ Therefore,
   The maximum is where the derivative is \(0\). This maximum is the value of our estimator \(\hat{\alpha}_{ml}\).
 \end{itemize}
 
-\(\hat{\alpha}_{ml}=-\frac{1}{n}\Sigma_{i=1...n} \ln (x_i-1)\)
+\[\hat{\alpha}_{ml}=-\frac{1}{n}\Sigma_{i=1...n} \ln (x_i-1)\]
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
@@ -6984,9 +7018,9 @@ Therefore,
 
 \(\hat{\alpha}_{ml}=-\frac{1}{n}\Sigma_{i=1...n} \ln (x_i-1)\)
 
-is the \textbf{statistic} that estimate the parameter.
+is the \textbf{statistic} that estimates the parameter.
 
-In our example we compute:
+In our example we thus compute:
 
 \(\hat{\alpha}_{ml}=-\frac{1}{n}\{ \ln (1.11-1)+ \ln (1.64-1)+...\ln (1.04-1)\}=1.320\)
 
@@ -7006,14 +7040,81 @@ In our example we compute:
 \hypertarget{estimation-1}{%
 \section{Estimation}\label{estimation-1}}
 
-\begin{itemize}
-\item
-  This is the log-likelihood for our 30 laser cuts.
-\item
-  If we take another sample this function changes and so does its maximum.
-\end{itemize}
+Let's look at the log-likelihood for our \(30\) laser cuts. Remember, data is fixed by our experiment and \(\alpha\) varies
 
 \includegraphics{_main_files/figure-latex/unnamed-chunk-84-1.pdf}
+
+Note: If we take another sample this function changes and so does its maximum.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{maximum-likelihood-history}{%
+\section{Maximum likelihood: History}\label{maximum-likelihood-history}}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{maximum-likelihood-history-1}{%
+\section{Maximum likelihood: History}\label{maximum-likelihood-history-1}}
+
+\begin{itemize}
+\item
+  Ceres was thought to be a planet
+\item
+  It disappeared behind the Sun
+\item
+  Predictions were needed to know where in the sky to look for it after it passed behind the sun
+\item
+  The trajectory (parallel to the planets) would determine if it was likely a planet
+\item
+  With several observations with errors, what would be the best representative of the true position of Ceres at a given time?
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{maximum-likelihood-history-2}{%
+\section{Maximum likelihood: History}\label{maximum-likelihood-history-2}}
+
+What is the statistic that best represents the true position of Ceres?
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{maximum-likelihood-history-3}{%
+\section{Maximum likelihood: History}\label{maximum-likelihood-history-3}}
+
+Gauss proposed that at a \textbf{given} time
+
+\begin{itemize}
+\tightlist
+\item
+  the \textbf{true} position of Ceres was the mean \(\mu\)
+\item
+  the probabilities around the mean were symmetrical.
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{maximum-likelihood-history-4}{%
+\section{Maximum likelihood: History}\label{maximum-likelihood-history-4}}
+
+Gauss discovered that if the average (\(\bar{x}\)) is the \textbf{most likely} value for the real position of Ceres (\(\mu\)), then the probability density for the errors is
+
+\[\frac{h}{\sqrt{\pi}}e^{-h^2(x-\mu)^2}\]
+
+which we call the Gaussian and Pearson (1920) baptized it as the normal curve.
+
+Note: We assume that the \textbf{true} position of Ceres exists \(\mu\).
+
+Can we say the same about the height of men? is there a \textbf{true} mean height? (Galton)
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
@@ -7022,16 +7123,20 @@ In our example we compute:
 \hypertarget{normal-distribution-9}{%
 \section{Normal distribution}\label{normal-distribution-9}}
 
-Imagine that we take a \(8\)-sample for the breaking load of cables and we want to estimate the mean valur for the breaking of the cables
+Imagine that we take a \(8\)-sample for the breaking load of cables
+
+\begin{verbatim}
+## [1] 13.34642 13.32620 13.01459 13.10811 12.96999 13.55309 13.75557 12.62747
+\end{verbatim}
+
+and
 
 \begin{itemize}
 \item
   \textbf{assume} that \[X \rightarrow N(\mu, \sigma^2)\].
 \item
-  What are the estimators of \(\mu\) and \(\sigma^2\) from the sample?
+  What are the estimators of \(\mu\) and \(\sigma^2\) that maximize the probability of the observed data?
 \end{itemize}
-
-Which values of the parameters best describe the data?
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
@@ -7049,7 +7154,7 @@ Which values of the parameters best describe the data?
 
 \(L(\mu, \sigma^2)=\Pi_{i=1..n} N(x_i;\mu,\sigma)\)
 
-\(=\big( \frac{1}{\sigma \sqrt{2 \pi}}\big)^n e^{-\frac{1}{2\sigma^2} \sum_i(x_i-\mu)^2}\)
+\[=\big( \frac{1}{\sigma \sqrt{2 \pi}}\big)^n e^{-\frac{1}{2\sigma^2} \sum_i(x_i-\mu)^2}\]
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -7059,7 +7164,7 @@ Which values of the parameters best describe the data?
   We can take the log of \(L\), and compute the \textbf{log-likelihood}
 \end{enumerate}
 
-\(\ln L(\mu, \sigma^2)=-n \ln(\sigma \sqrt{2 \pi})-\frac{1}{2\sigma^2} \Sigma_i(x_i-\mu)^2\)
+\[\ln L(\mu, \sigma^2)=-n \ln(\sigma \sqrt{2 \pi})-\frac{1}{2\sigma^2} \Sigma_i(x_i-\mu)^2\]
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
@@ -7075,7 +7180,7 @@ The estimates of \(\mu\), \(\sigma^2\) are where the likelihood is maximum, and 
 \setcounter{enumi}{2}
 \tightlist
 \item
-  we differentiate with respect to \(\mu\) and \(\sigma^2\)
+  we differentiate with respect to \(\mu\) and \(\sigma^2\) (i.e.~making a substitution like \(t=\sigma^2\))
 \end{enumerate}
 
 \begin{itemize}
@@ -7107,59 +7212,12 @@ solving for the parameters we find
 \begin{itemize}
 \tightlist
 \item
-  \(\hat{\mu}_{ml}=\frac{1}{n}\sum_i x_i=\bar{x}\) (the average)
+  \(\hat{\mu}_{ml}=\frac{1}{n}\sum_i x_i=\bar{x}\) (the \textbf{average})
 \item
   \(\hat{\sigma^2}_{ml}=\frac{1}{n}\sum_i(x_i-\bar{x})^2\) (the \textbf{uncorrected} sample variance)
 \end{itemize}
 
-The maximum likelihood estimator of \(\sigma^2\) is a \textbf{biased} estimator as: \(E(\hat{\sigma}^2_{ml})\neq \sigma^2\)
-
-\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
-
-\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
-
-\hypertarget{maximum-likelihood-history}{%
-\section{Maximum likelihood: History}\label{maximum-likelihood-history}}
-
-What is the statistic that best represents the true position of Ceres?
-
-\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
-
-\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
-
-\hypertarget{maximum-likelihood-history-1}{%
-\section{Maximum likelihood: History}\label{maximum-likelihood-history-1}}
-
-Gauss proposed that at a \textbf{given} time
-
-\begin{itemize}
-\tightlist
-\item
-  the \textbf{true} position of Ceres was the mean \(\mu\)
-\item
-  the probabilities around the mean were symmetrical.
-\end{itemize}
-
-\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
-
-\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
-
-\hypertarget{maximum-likelihood-history-2}{%
-\section{Maximum likelihood: History}\label{maximum-likelihood-history-2}}
-
-Gauss discovered that if the average (\(\bar{x}\)) is the \textbf{most likely} value for the real position of Ceres (\(\mu\)), then the probability density for the errors is
-
-\[\frac{h}{\sqrt{\pi}}e^{-h^2(y-\mu_Y)^2}\]
-
-which we call the Gaussian and that Pearson (1920) baptized it as the normal curve.
-
-Note: We assume that the \textbf{true} position of Ceres exist \(\mu\).
-
-\begin{itemize}
-\tightlist
-\item
-  ¿Can we say the same about the high of men \(\mu\)? (Galton)
-\end{itemize}
+The maximum likelihood estimator of \(\sigma^2\) is a \textbf{biased} estimator as: \[E(\hat{\sigma}^2_{ml})=\sigma^2-\frac{\sigma^2}{n}\neq \sigma^2\]
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
@@ -7168,22 +7226,12 @@ Note: We assume that the \textbf{true} position of Ceres exist \(\mu\).
 \hypertarget{method-of-moments}{%
 \section{Method of Moments}\label{method-of-moments}}
 
-The method of maximum likelihood is aimed to produce the estimators of probability distributions from data.
+The method of maximum likelihood aims to produce the estimators of probability distributions from data.
 
 \begin{itemize}
 \tightlist
 \item
   Is there another way to produce those estimators? would they be equal?
-\end{itemize}
-
-Let's look again at the maximum likelihood estimators for \(\mu\) and \(\sigma^2\) for a random variable that distributes normally: \(X \hookrightarrow N(\mu, \sigma^2)\)
-
-\begin{itemize}
-\tightlist
-\item
-  \(\hat{\mu}=\frac{1}{n}\sum_i x_i\)
-\item
-  \(\hat{\sigma^2}=\frac{1}{n}\sum_i(x_i-\bar{x})^2\)
 \end{itemize}
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
@@ -7193,7 +7241,7 @@ Let's look again at the maximum likelihood estimators for \(\mu\) and \(\sigma^2
 \hypertarget{method-of-moments-1}{%
 \section{Method of Moments}\label{method-of-moments-1}}
 
-Let's re-write the estimators in terms of the values of \(X\) (outcomes), not of the observations
+Let's re-write the estimator \(\hat{\mu}=\bar{x}\) for a normal randon variable in terms of the outcomes of \(X\)
 
 For instance:
 
@@ -7201,7 +7249,7 @@ For instance:
 
 and remember that in the limit \(n \rightarrow \infty\) the frequentist interpretation requires \(\frac{n_x}{n} \rightarrow P(X=x)\) and therefore in the limit
 
-\[\hat{\mu}=\frac{1}{n}\sum_i x_i \rightarrow E(X)\]
+\[\hat{\mu}=\frac{1}{n}\sum_i x_i \rightarrow E(X)=\mu\]
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
@@ -7210,40 +7258,41 @@ and remember that in the limit \(n \rightarrow \infty\) the frequentist interpre
 \hypertarget{method-of-moments-2}{%
 \section{Method of Moments}\label{method-of-moments-2}}
 
-The method os moments says that we can take the \textbf{observed} value of the average \(\bar{X}= \frac{1}{n}\sum_i X_i\) as an estimator of \(E(X)=\mu\)
+The method os moments says that we can take the \textbf{observed} value of the average \(\bar{X}\) as an estimator of \(E(X)=\mu\)
 
-\[ E(X)\sim \bar{x}\]
+\[E(X)\sim \bar{x}\]
 
-\(\bar{X}\) is called the first \textbf{sample moment}
+\(\bar{X}= \frac{1}{n}\sum_i X_i\) is called the first \textbf{sample moment}
 
-the estimator of the parameter \(\theta\) is then obtained from the equation:
+if \(X \rightarrow f(x, \theta)\) the estimator of the parameter \(\theta\) is then obtained from the equation:
 
-\[E(X)=\bar{x}\]
-for the observed value of \(\hat{\theta}\)
+\[E(X; \hat{\theta})=\bar{x}\]
 
 Example: If
-\(X \hookrightarrow N(\mu, \sigma^2)\) then
 
-\(E(X; \mu, \sigma^2)=\mu\)
+\(X \hookrightarrow exp(\lambda)\) then
 
-Method of moments gives the estimator:
-
-\begin{itemize}
-\tightlist
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
 \item
-  \(\hat{\mu}=\bar{x}=\frac{1}{n}\sum_i x_i\)
-\end{itemize}
+  \(E(X; \mu, \sigma^2)=\mu\)
+\item
+  We write down the equation where we make the expected value equal to the first sample moment \(\frac{1}{\hat{\lambda}}=\bar{x}=\frac{1}{n}\sum_i x_i\)
+\item
+  We solve for the parameter
+\end{enumerate}
 
-\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
-
-\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+\[\hat{\lambda}=\frac{1}{\bar{x}}\]
+\_\_\_\_\_\_\_\_\_\_\_
+\_\_\_\_\_\_\_\_\_\_\_
 
 \hypertarget{method-of-moments-3}{%
 \section{Method of Moments}\label{method-of-moments-3}}
 
-Suppose that we have several batteries (new and old) that we charge over the period of 1 hour. We measure the state of charge of the battery being 1 a 100\% charge.
+Suppose that we have several batteries (new and old) that we charge over the period of 1 hour. We measure the state of charge of the battery, being 1 a 100\% charge.
 
-The state of charge of a battery is a random variable that may have a uniform distribution, where we do not know the minimum value that \(x\) can take, but we know that the maximum is 1
+The state of charge of a battery is a random variable that may have a uniform distribution, where we do not know the minimum value that \(x\) can take, but we know that the maximum is 1 (\(100\%\) of charge)
+
 \[
 f(x)=
 \begin{cases}
@@ -7252,7 +7301,7 @@ f(x)=
 \end{cases}
 \]
 
-What is the estimator of \(a\)?
+What is the estimator of \(a\) (the minimum charge after one hour)?
 
 \begin{itemize}
 \tightlist
@@ -7267,16 +7316,32 @@ What is the estimator of \(a\)?
 \hypertarget{method-of-moments-4}{%
 \section{Method of Moments}\label{method-of-moments-4}}
 
-The distribution has one parameter. The method of moments gives us one equation
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  We compute the expected value of the random variable
+\end{enumerate}
 
-\[E(X)=\bar{x}\]
-That is
+\[E(X)=\frac{a+1}{2}\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  We obtain the equation for \(\hat{a}\) where we make the expected value equal to the first sample moment
+\end{enumerate}
 
 \[\frac{\hat{a}+1}{2}=\bar{x}\]
 
-That we solve for \(\hat{a}\)
-
-\[\hat{a}=2\bar{x}-1\]
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  We solve for the estimator \(\hat{a}\)
+\end{enumerate}
 
 This is the estimator of the minimum charge we may observe.
 
@@ -7294,13 +7359,13 @@ The method gave us a clever answer:
 \begin{itemize}
 \tightlist
 \item
-  we can compute \(\bar{x}\) with increasing presicion given by \(n\)
+  we can compute \(\bar{x}\) with increasing precision given by \(n\)
 \item
-  We know that no measurement surpass \(b=1\)
+  We know that no measurement surpasses \(b=1\)
 \item
   Then compute the distance between \(\bar{x}\) and \(b\): \(1-\bar{x}\)
 \item
-  Substract it from \(\bar{x}\): \(\bar{x}-(1-\bar{x})=2\bar{x}-1\)
+  Subtract it from \(\bar{x}\): \(\bar{x}-(1-\bar{x})=2\bar{x}-1\)
 \end{itemize}
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
@@ -7310,7 +7375,7 @@ The method gave us a clever answer:
 \hypertarget{method-of-moments-6}{%
 \section{Method of Moments}\label{method-of-moments-6}}
 
-The method says that an estimation for the parameter \(\theta\) of \(f(x;\theta)\) can be found from the equation:
+The method says that an estimator for the parameter \(\theta\) of \(f(x;\theta)\) can be found from the equation:
 
 \[E(X)=\frac{1}{n}\sum_i x_i\]
 
@@ -7322,26 +7387,23 @@ If there are more parameters, we use the higher \textbf{sample moments}
   The second sample moment is
 \end{itemize}
 
-\[E(X^2)=\frac{1}{n}\sum_i X^2_i\]
+\[\frac{1}{n}\sum_i X^2_i\]
 
 as such, an observation of this moment is
 
-\(\frac{1}{n}\sum_i x^2_i\).
+\(E(X ^ 2)~\frac{1}{n}\sum_i x^2_i\).
 
-The method says that an estimation for the parameters \(\theta_1\) and \(\theta_2\) of \(f(x;\theta_1,\theta_2)\) can be found from the equations:
+The method says that an estimation for the the parameters \(\theta_1\) and \(\theta_2\) of \(f(x;\theta_1,\theta_2)\) can be found from the equations:
 
 \begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\tightlist
+\def\labelenumi{\alph{enumi}.}
 \item
   \(E(X)= \frac{1}{n}\sum_i x_i\)
 \item
   \(E(X^2)=\frac{1}{n}\sum_i x^2_i\)
 \end{enumerate}
 
-For \(\hat{\theta}_1\) and \(\hat{\theta}_2\)
-
-We can then increase the number of equations as many as parameters we need to estimate.
+We can have as many equations as parameters we need to compute, incrementing the degree of the moments.
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
@@ -7350,45 +7412,73 @@ We can then increase the number of equations as many as parameters we need to es
 \hypertarget{normal-distribution-13}{%
 \section{Normal distribution}\label{normal-distribution-13}}
 
-If \(X\) distributes normally\\
-\(X \hookrightarrow N(\mu, \sigma^2)\)
-
-then it has mean and variance:
-
-\(E(X)=\mu\) and
-\(V(X)=\sigma^2\)
-
-The method of moments gives the equations:
+If \(X\) distributes normally, we have two parameters to estimate
+\[X \rightarrow N(\mu, \sigma^2)\]
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
 \tightlist
 \item
-  \(E(X)=\frac{1}{n}\sum_i x_i\)
-\item
-  \(E(X^2)=\frac{1}{n}\sum_i x^2_i\)
+  We compute the mean and expected value of the second moment \(E(X^2)\):
 \end{enumerate}
 
-A substitution of \(E(X)\) into the \textbf{first} equation gives the estimator for the mean \(\mu\).
+\(E(X)=\mu\) and
+\(E(X^2)=\sigma^2-\mu^2\)
 
-\begin{itemize}
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  We obtain the equations for the parametes where we make the expected value equal to the first sample moment, and the second moment equal to the expected value of the second moment
+\end{enumerate}
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi}.}
 \tightlist
 \item
   \(\hat{\mu}=\frac{1}{n}\sum_i x_i\)
-\end{itemize}
+\item
+  \(\hat{\sigma}^2-\hat{\mu}^2=\frac{1}{n}\sum_i x^2_i\)
+\end{enumerate}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{normal-distribution-14}{%
+\section{Normal distribution}\label{normal-distribution-14}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  We solve for the parameters
+\end{enumerate}
+
+The first equation gives the estimator for the mean \(\mu\).
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi}.}
+\tightlist
+\item
+  \(\hat{\mu}=\frac{1}{n}\sum_i x_i\)
+\end{enumerate}
 
 \(E(X^2)\) follows from the property: \(E(X^2) = \hat{\mu}^2 + V(X)= \hat{\mu}^2+\hat{\sigma}^2\)
 
-then the \textbf{second} equation gives
+From the second equation we obtain
 
-\begin{itemize}
+\begin{enumerate}
+\def\labelenumi{\alph{enumi}.}
+\setcounter{enumi}{1}
 \tightlist
 \item
-  \(\hat{\mu}^2+\hat{\sigma}^2= \frac{1}{n} \sum_i x^2_i\)
-\end{itemize}
+  \(\hat{\sigma}^2= \frac{1}{n} \sum_i x^2_i-\hat{\mu}^2\)
+\end{enumerate}
 
 which can also be written as:
-
 \[\hat{\sigma}^2=\frac{1}{n} \sum_i(x_i-\hat{\mu})^2\]
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
@@ -7403,7 +7493,7 @@ What is the estimator of parameter \(\alpha\) for the laser cut given by the met
 \[
     f(x; \alpha)= 
 \begin{cases}
-\frac{1}{\alpha}(x-1)^{\frac{1-\alpha}{\alpha}},& \text{if } x \in (1,2)\\
+\frac{1}{\alpha}(x-1)^{\frac{1}{\alpha}-1},& \text{if } x \in (1,2)\\
     0,& x \notin (1,2)\\
 \end{cases}
 \]
@@ -7417,15 +7507,19 @@ Where \(\alpha\) is a parameter.
 \hypertarget{method-of-moments-8}{%
 \section{Method of Moments}\label{method-of-moments-8}}
 
-The method says that an estimation for the the parameter \(\alpha\) of \(f(x;\alpha)\) can be found from the equation:
+The method says that an estimator for the parameter \(\alpha\) of \(f(x;\alpha)\) can be found from the equation:
 
-\[E(X; \hat{\alpha})=\frac{1}{n}\sum_i x_i\]
+\[E(X)=\frac{1}{n}\sum_i x_i\]
+for \(\hat{\alpha}\)
 
-We need to compute the expected value \(E(X)\)
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  We compute the expected value \(E(X)\)
+\end{enumerate}
 
 \[E(X)=\int_{-\infty}^{\infty} x f(x;\alpha)dx\]
-
-and equate it to the average \(\bar{x}\)
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
@@ -7440,15 +7534,24 @@ Consider a change of variables \(Z=X-1\) then \(E(X)=E(Z)+1\) and
 
 \(= \frac{1}{\alpha} \frac{z^{2+\frac{1-\alpha}{\alpha}}}{{2+\frac{1-\alpha}{\alpha}}} |_0^1=\frac{1}{1+\alpha}\)
 
-Therefore, the method of moments gives us the equation
+Therefore,
+
+\[E(X)=E(Z+1)=\frac{1}{1+\alpha}+1\]
+
+Substituting for \(\hat{\alpha}\), the method of moments gives us the equation
 
 \[\frac{1}{1+\hat{\alpha}}+1=\bar{x}\]
 
-which solving for \(\hat{\alpha}\) gives us the estimate
-
-\(\hat{\alpha}_m=\frac{1}{\bar{x}-1}-1\)
-
-For our 30 lasers this is
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\item
+  We obtain the equation for \(\hat{\alpha}\) where we make the expected value equal to the first sample moment
+\item
+  We solve for \(\hat{\alpha}\) \[\hat{\alpha}_m=\frac{1}{\bar{x}-1}-1\]
+\item
+  We compute the value for our data
+\end{enumerate}
 
 \(\hat{\alpha}_m=1.314\)
 
@@ -7459,20 +7562,824 @@ For our 30 lasers this is
 \hypertarget{method-of-moments-10}{%
 \section{Method of Moments}\label{method-of-moments-10}}
 
-Note that this is an example for which the estimates by maximum likelihood and the method of moments are different
+Note that this is an example for which the estimates by maximum likelihood and the method of moments are \textbf{different}
 
 \begin{itemize}
 \item
   \(\hat{\alpha}_{ml}=-\frac{1}{n}\sum_{i=1}^n \ln (x_i-1)=1.320\)
 \item
-  \(\hat{\alpha}_m=\frac{1-\bar{x}}{\bar{x}}=1.314\)
+  \(\hat{\alpha}_m=\hat{\alpha}_m=\frac{1}{\bar{x}-1}-1=1.314\)
 \end{itemize}
 
-We need simulation studies, where we know the true value of the parameter \(\alpha\), to find which of these statistics have less mean squared error.
+We need \textbf{simulation} studies, where \textbf{we know} the true value of the parameter \(\alpha\), to find which of these statistics have less mean squared error.
 
-Note: the data for 30 laser piercings were simulated with \(\alpha=2\), therefore we should prefer the maximum likelihood estimate.
+Note: the data for \(30\) laser piercings were simulated with \(\alpha=2\), therefore we should prefer the maximum likelihood estimate.
 
 To obtain better estimates of \(\alpha\) we need to increase the size of the sample.
+
+\hypertarget{interval-estimation}{%
+\chapter{Interval estimation}\label{interval-estimation}}
+
+\hypertarget{objective-11}{%
+\section{Objective}\label{objective-11}}
+
+\begin{itemize}
+\tightlist
+\item
+  Interval estimation for the mean and the proportion
+\item
+  Interval estimation for the variance
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{average-or-sample-mean-1}{%
+\section{Average or sample mean}\label{average-or-sample-mean-1}}
+
+\textbf{Definition}
+
+The sample mean (or average) of a \textbf{random sample} of size \(n\) is
+
+\[\bar{X}=\frac{1}{n}\sum_{i=1}^n X_i\]
+
+Because each random experiment is independent, the mean and variance of \(\bar{X}\) are
+
+\begin{itemize}
+\tightlist
+\item
+  \(E(\bar{X})=E(X)\)
+\item
+  \(V(\bar{X})=\frac{V(X)}{n}\)
+\item
+  We call \(se=\sqrt{V(\bar{X})}\) the standard error
+\end{itemize}
+
+\(\bar{X}\) is therefore
+
+\begin{itemize}
+\item
+  an \textbf{estimator} of \(E(X)\), that is \(\mu\).
+\item
+  a random variable
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{inference-on-the-average-1}{%
+\section{Inference on the average}\label{inference-on-the-average-1}}
+
+\textbf{Example:}
+
+You perform \(8\) random experiments: Load a cable until it breaks and record the breaking load. These are the results.
+
+\begin{verbatim}
+## [1] 13.34642 13.32620 13.01459 13.10811 12.96999 13.55309 13.75557 12.62747
+\end{verbatim}
+
+If we \textbf{know} that our cables truly distribute as \[X \rightarrow N(\mu=13, \sigma^2=0.35^2)\] then
+
+\[\bar{X} \rightarrow N(13, \frac{0.35^2}{8})\]
+
+\begin{itemize}
+\tightlist
+\item
+  \(E(\bar{X})=13\)
+\item
+  \(V(\bar{X})=\frac{0.35^2}{8}=0.01530169\)
+\item
+  \(se=\frac{0.35}{\sqrt{8}}=0.1237\)
+\end{itemize}
+
+then the \textbf{observed error} in the estimation is the difference
+
+\[\bar{x}_{stock}-\mu=13.21-13=0.21\]
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{margin-of-error-2}{%
+\section{Margin of error}\label{margin-of-error-2}}
+
+When deciding whether the \textbf{error} in estimation: \(\bar{X}-\mu\) is large or not we usually compare it with a predefined tolerance.
+
+\begin{itemize}
+\tightlist
+\item
+  The \textbf{margin of error} at \(5\%\) level is the distance \(m\) such that distribution of \(\bar{X}\) captures \(95\%\) of the estimations:
+\end{itemize}
+
+\[P(-m \leq \bar{X}-\mu \leq m)=P(\mu-m \leq \bar{X} \leq\mu + m)=0.95\]
+
+\begin{itemize}
+\tightlist
+\item
+  or that \(95\%\) of the values of \(\bar{X}\) are a distance \(m\) from \(\mu\).
+\end{itemize}
+
+In our example, we assume that \(\bar{X}\) is normally distributed then
+
+\[m=z_{0.025} \frac{\sigma}{\sqrt{n}}=1.96\times se=1.96\frac{0.35}{\sqrt{8}}=0.24\]
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{outcome-probability-density-vs-sample-mean-probability-density}{%
+\section{Outcome probability density Vs sample mean probability density}\label{outcome-probability-density-vs-sample-mean-probability-density}}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-87-1.pdf}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-88-1.pdf}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{real-life}{%
+\section{Real life}\label{real-life}}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-89-1.pdf}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-90-1.pdf}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{interval-estimation-1}{%
+\section{Interval estimation}\label{interval-estimation-1}}
+
+From the margin of error equation:
+
+\[P(-m \leq \bar{X} - \mu \leq  m)=0.95\]
+
+let's solve for \(\mu\) (the real unknown)
+
+\[P(\bar{X} - m \leq \mu \leq \bar{X} + m)=0.95\]
+
+The left and right limits of the inequality are random variables which motivate the definition for the \textbf{random confidence interval at \(95\%\)}
+
+\[(L,U)=(\bar{X} - m,\bar{X} + m)\]
+
+This interval is a \textbf{random variable} and it has by definition a probability of \(0.95\) to contain \(\mu\).
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{interval-estimation-2}{%
+\section{Interval estimation}\label{interval-estimation-2}}
+
+When we perform \(n\)-random experiments (\(n\)-sample) we can calculate \(m\) \textbf{if}
+
+\begin{itemize}
+\tightlist
+\item
+  \(X\) is normal
+\item
+  we know \(\sigma^2\).
+\end{itemize}
+
+The interval that we obtain from the experiment is (script size)
+
+\[(l,u)=(\bar{x} - m,\bar{x} + m)\]
+
+\begin{itemize}
+\item
+  this interval either contains or does not the parameter \(\mu\): we will \textbf{never know}!
+\item
+  We say that we have a confidence of \(95\%\) that the interval \((l,u)\) will capture the true unknown parameter \(\mu\). Think of buying a lottery ticket for which you do not know the result.
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{interval-estimation-3}{%
+\section{Interval estimation}\label{interval-estimation-3}}
+
+In our example, we assume that \(\bar{X}\) is normally distributed then
+
+\[m=z_{0.025} \frac{\sigma}{\sqrt{n}}\]
+
+and the \(95\%\) confidence interval is
+
+\[(l,u)=(\bar{x}-z_{0.025} \frac{\sigma}{\sqrt{n}}, \bar{x}+z_{0.025} \frac{\sigma}{\sqrt{n}})= (12.97,13.45)\]
+
+or
+
+\[\hat{\mu}=13.21 \pm 0.24\]
+It also means that, in the estimation, we are confident about the units but not so much about the decimal places.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{interval-estimation-4}{%
+\section{Interval estimation}\label{interval-estimation-4}}
+
+For a sample of 8 observations, we have one estimate of the mean and one confidence interval
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-91-1.pdf}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{interval-estimation-5}{%
+\section{Interval estimation}\label{interval-estimation-5}}
+
+Every time that we obtain a new sample then the estimates change. If we perform \(100\) samples of size \(n\) then \(95%
+\) of the confidence intervals will contain \(\mu\) (we do not know which!)
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-92-1.pdf}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{interval-estimation-6}{%
+\section{Interval estimation}\label{interval-estimation-6}}
+
+We can change our confidence from \(95\%\) to \(99\%\)
+
+\begin{itemize}
+\item
+  We had left out \(\alpha=0.05\) probability, \(0.025\) on each side.
+\item
+  Now, we can leave out \(\alpha=0.01\) probability, \(0.005\) on each side.
+\end{itemize}
+
+Therefore the \(99\%\) confidence interval is
+
+\((l,u) = (\bar{x} - z_{0.005}\frac{\sigma}{\sqrt{n}},\bar{x} + z_{0.005}\frac{\sigma}{\sqrt{n}})\)
+
+\[= (\bar{x} - 2.58\frac{\sigma}{\sqrt{n}},\bar{x} + 2.58\frac{\sigma}{\sqrt{n}})\]
+
+or
+
+\[\hat{\mu}=\bar{x} \pm 2.58\frac{\sigma}{\sqrt{n}}\]
+
+If we want to be more confident then we need larger confidence intervals!
+
+For our cables:
+
+\[\hat{\mu}= 13.21 \pm 0.31\]
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{interval-estimation-7}{%
+\section{Interval estimation}\label{interval-estimation-7}}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{example-15}{%
+\section{Example}\label{example-15}}
+
+A metallic material is tested for impact to measure the energy required to cut it at a given temperature.
+
+\begin{itemize}
+\item
+  Ten specimens of A238 steel were cut at 60ºC at the following impact energies (J)
+\item
+  \(64.1, 64.7, 64.5, 64.6, 64.5, 64.3, 64.6, 64.8, 64.2, 64.3\)
+\item
+  If we know that the impact energy is normally distributed with \(\sigma=1J\) what is the \(95\%\) CI for the mean of these data?
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{example-16}{%
+\section{Example}\label{example-16}}
+
+We know
+
+\begin{itemize}
+\tightlist
+\item
+  \(x_i=\{64.1, 64.7, 64.5, 64.6, 64.5, 64.3, 64.6, 64.8, 64.2, 64.3\}\)
+\item
+  \(X \rightarrow N(\mu, \sigma^2)\)
+\item
+  \(\sigma=1J\)
+\item
+  \(\alpha=0.05\)
+\end{itemize}
+
+The confidence interval is then
+
+\[CI=(\bar{x}-1.96 \frac{\sigma}{\sqrt{n}}, \bar{x}+1.96  \frac{\sigma}{\sqrt{n}})\]
+\[=(64.46-1.96 \frac{1}{\sqrt{10}}, 64.46+1.96  \frac{1}{\sqrt{10}})=(63.84,65.08)\]
+
+or
+
+\[\hat{\mu}=64.46 \pm 0.61\]
+
+this tells us that we can be sure on the first digit (6), somewhat confident on the second (4), and unsure on the decimals (46).
+
+What if \(\sigma^2\) is \textbf{unknown}?
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{t-statistic-3}{%
+\section{T-statistic}\label{t-statistic-3}}
+
+When
+
+\begin{itemize}
+\tightlist
+\item
+  \(X\) is normal, and
+\item
+  \(\sigma\) is \textbf{unknown}
+\end{itemize}
+
+then the standardized statistic
+
+\[T=\frac{\bar{X}-\mu}{\frac{S}{\sqrt{n}}}\]
+
+Follows a \(t\)-distribution with \(n-1\) degrees of freedom, and we can compute probabilities for \(\bar{X}\).
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{t-statistic-4}{%
+\section{T-statistic}\label{t-statistic-4}}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-93-1.pdf}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{t-statistic-5}{%
+\section{T-statistic}\label{t-statistic-5}}
+
+To compute the margin of error \(m\) at \(5\%\) level when
+
+\begin{itemize}
+\tightlist
+\item
+  \(X\) is normal and
+\item
+  \(\sigma^2\) is unknown
+\end{itemize}
+
+We use the \(t\)-distribution
+
+\(P(\mu-m \leq \bar{X} \leq\mu + m)\)
+\[=P(-\frac{m}{s/\sqrt{n}} \leq T \leq\frac{m}{s/\sqrt{n}})=0.95\]
+
+\[m=t_{0.025, n-1} \frac{s}{\sqrt{n}}\]
+where \(t_{0.025, n-1}\) is the value \(T\) that leaves \(2.5\%\) of probability at the right hand side of the \(t\)-distribution with \(n-1\) degrees of freedom (\(0.025\)-quantile)
+
+the \(95\%\) confidence interval is then
+
+\[(l,u)=(\bar{x}-t_{0.025, n-1} \frac{s}{\sqrt{n}}, \bar{x}+t_{0.025, n-1} \frac{s}{\sqrt{n}})\]
+in R: \(t_{0.025, n-1}\)=qt(1-0.025, n-1)
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{example-17}{%
+\section{Example}\label{example-17}}
+
+A metallic material is tested for impact to measure the energy required to cut it at a given temperature.
+
+\begin{itemize}
+\item
+  Ten specimens of A238 steel were cut at 60ºC at the following impact energies (J)
+\item
+  \(64.1, 64.7, 64.5, 64.6, 64.5, 64.3, 64.6, 64.8, 64.2, 64.3\)
+\item
+  If we know that the impact energy is normally distributed but we \textbf{do not know} the variance what is the \(95\%\) CI for the mean of these data?
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{example-18}{%
+\section{Example}\label{example-18}}
+
+\begin{itemize}
+\tightlist
+\item
+  \(\bar{x}=64.46\)
+\item
+  \(s=0.227\)
+\item
+  \(\alpha=0.05\)
+\item
+  \(t_{0.025,9}=2.26\) obtained from \(P(T \leq t_{0.025,9})=0.975\); qt(1-0.025, 9)
+\end{itemize}
+
+The confidence interval is then
+
+\(CI=(\bar{x}- t_{0.025,9}\frac{s}{\sqrt{n}},\bar{x}+t_{0.025,9} \frac{s}{\sqrt{n}})\)
+
+\[=(64.46-2.26 \frac{0.227}{\sqrt{10}},64.46+2.26 \frac{0.227}{\sqrt{10}})\] \[=(64.29,64.62)\]
+
+We have seen a larger \(CI=(63.84,65.08)\) when \(\sigma=1\). Data then suggests \(\sigma<1\).
+
+R: t.test(c(64.1,64.7,64.5,64.6,64.5,64.3,64.6,64.8,64.2,64.3))
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{ic-with-clt}{%
+\section{IC with CLT}\label{ic-with-clt}}
+
+If
+
+\begin{itemize}
+\tightlist
+\item
+  we do not know how \(X\) distributes but
+\item
+  we take a large sample \(n\ge 30\)
+\end{itemize}
+
+Then we can use the CLT to find the confidence intervals.
+
+the \(95\%\) confidence interval is then
+
+\[(l,u)=(\bar{x}-z_{0.025} \frac{s}{\sqrt{n}}, \bar{x}+z_{0.025} \frac{s}{\sqrt{n}})\]
+since \(t_{0.025, n-1} \rightarrow z_{0.025}\) for \(n \rightarrow \infty\) then it is also ok to use the T distribution in this case.
+
+Note: This is why R only implements t.test and not z.test in the base functions to compute CI.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\textbf{Example:}
+
+Consider an experiment where we measure the concentration in blood of a drug after 10-hour administration in \(30\) patients. We obtain the following results:
+
+\begin{verbatim}
+##  [1] 0.42172863 0.28830514 0.66452743 0.01578868 0.02810549 0.15825061
+##  [7] 0.15711365 0.07263340 1.36311823 0.01457672 0.50241503 0.24010736
+## [13] 0.14050681 0.18855892 0.09414202 0.42489306 0.78160177 0.23938021
+## [19] 0.29546742 2.02050586 0.42157487 0.48293561 0.74263790 0.67402224
+## [25] 0.58426449 0.80292617 0.74837143 0.78532627 0.01588387 0.29892485
+\end{verbatim}
+
+\begin{itemize}
+\item
+  the average is \(\bar{x}=0.4556198\)
+\item
+  the standard deviation is \(s=0.4335571\)
+\item
+  the histogram of the results is:
+\end{itemize}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-95-1.pdf}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{central-limit-theorem-4}{%
+\section{Central Limit Theorem}\label{central-limit-theorem-4}}
+
+We \textbf{assumed} that \(X \rightarrow exp(\lambda=2)\)
+
+With mean and variance:
+
+\begin{itemize}
+\tightlist
+\item
+  \(E(X)=\frac{1}{\lambda}\)
+\item
+  \(V(X)=\frac{1}{\lambda^2}\)
+\end{itemize}
+
+What is the confidence interval for the mean \(E(X)=\mu\)?
+
+\begin{itemize}
+\tightlist
+\item
+  We use a 95\% CI to estimate it
+\end{itemize}
+
+Since \(n \geq 30\) we can use the CLT
+
+\[\bar{X} \sim_{aprox}  N(\lambda, \frac{1}{n\lambda^2})\]
+
+and the \(95\%\) confidence interval is then
+
+\[(l,u)=(\bar{x}-z_{0.025} \frac{s}{\sqrt{n}}, \bar{x}+z_{0.025} \frac{s}{\sqrt{n}})\]
+
+\((l,u)=(0.4556198-1.96\frac{0.4335571}{\sqrt{30}}, 0.4556198+1.96\frac{0.4335571}{\sqrt{30}})\)
+
+\[=(0.300,0.610)\]
+or
+
+\[\hat{\mu}=0.45 \pm 0.15\]
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-96-1.pdf}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{parameter-estimation}{%
+\section{Parameter estimation}\label{parameter-estimation}}
+
+Since \(E(X)=\mu=\frac{1}{\lambda}\) then
+
+\[\hat{\lambda}=\frac{1}{\hat{\mu}}=2.194812\]
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-97-1.pdf}
+
+or its \(95\%\) CI:
+
+\[\hat{\lambda}= (1.66, 3.33) \]
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{interval-estimation-for-proportions}{%
+\section{Interval estimation for proportions}\label{interval-estimation-for-proportions}}
+
+A random sample of \(400\) patients was selected for testing a new vaccine for the influenza virus, after \(6\) months of vaccination \(136\) were ill.~
+
+\begin{itemize}
+\tightlist
+\item
+  What is the expected efficacy of the vaccine?
+\end{itemize}
+
+We have \(136\) failures in \(400\) trials, each trial is a
+Bernoulli trial
+
+\[X \rightarrow Bernoulli(p)\]
+
+with:
+
+\begin{itemize}
+\tightlist
+\item
+  the probability \(p\) of failure for one person (\(x=1\))
+\item
+  mean \(E (X) = p\)
+\item
+  variance \(V (X) = p (1-p)\)
+\end{itemize}
+
+We want to have a \(95\%\) CI for \(p\).
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{interval-estimation-for-proportions-1}{%
+\section{Interval estimation for proportions}\label{interval-estimation-for-proportions-1}}
+
+If the distribution of a random experiment is
+
+\[X \rightarrow Bernoulli (p)\]
+Then \(\bar{X}\) has
+
+\begin{itemize}
+\tightlist
+\item
+  mean \(E(\bar{X})=E(X)=p\) (unbiased estimator of \(p\))\\
+\item
+  variance \(V(\bar{X})=\frac{V(X)}{n}=\frac{p(p-1)}{n}\) (consistent estimator of \(p\))
+\end{itemize}
+
+\[\hat{p}=\bar{x}\]
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{interval-estimation-for-proportions-2}{%
+\section{Interval estimation for proportions}\label{interval-estimation-for-proportions-2}}
+
+When \(\hat{p}n>5\) and \((\hat{p}-1)n>5\)
+
+\begin{itemize}
+\tightlist
+\item
+  The \textbf{standardized statistic} of \(\bar{X}\) can be approximated by a standard distribution
+\end{itemize}
+
+\[Z=\frac{\bar{X}-E(\bar{X})}{\sqrt{V(\bar{X})}}= \frac{\bar{X}-p}{\big[\frac{p(1-p)}{n} \big]^{1/2}}\rightarrow N(0,1)\]
+
+\begin{itemize}
+\tightlist
+\item
+  The \(95\%\) CI interval of \(p\) is:
+\end{itemize}
+
+\[CI=(l,u)=(\bar{x}-z_{0.025}\big[\frac{\bar{x}(1-\bar{x})}{n} \big]^{1/2},  \bar{x}+z_{0.025}\big[\frac{\bar{x}(1-\bar{x})}{n} \big]^{1/2})\]
+Where we estimate the Bernoulli variance \(p(1-p)\) by \(\bar{x}(1-\bar{x})\).
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{interval-estimation-for-proportions-3}{%
+\section{Interval estimation for proportions}\label{interval-estimation-for-proportions-3}}
+
+In our case, we are counting failures on vaccinations \(136\) in \(400\) trials
+
+we know
+
+\begin{itemize}
+\tightlist
+\item
+  \(\bar{x}=134/400=0.34\)
+\item
+  \(z_{0.025}=1.96\)
+\end{itemize}
+
+\(CI=(l,u)=(\bar{x}-1.96 \big[\frac{\bar{x}(1-\bar{x})}{n} \big]^{1/2}, \bar{x}+1.96 \big[\frac{\bar{x}(1-\bar{x})}{n} \big]^{1/2})\)
+
+\[=(0.29,0.39)\]
+
+The probability of failure of the vaccine is
+
+\[\hat{p}=0.34 \pm 0.05\]
+Note: Polls for the intention to vote (Bernoulli trial) in a sample of \(n\) individuals report this type of estimate with its margin of error. It does not mean that the \textbf{true value} of \(p\) is within this interval with probability \(95\%\).
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{interval-estimation-for-the-variance}{%
+\section{Interval estimation for the variance}\label{interval-estimation-for-the-variance}}
+
+A metallic material is tested for impact to measure the energy required to cut it at a given temperature.
+
+\begin{itemize}
+\item
+  Ten specimens of A238 steel were cut at 60ºC at the following impact energies (J)
+\item
+  \(64.1, 64.7, 64.5, 64.6, 64.5, 64.3, 64.6, 64.8, 64.2, 64.3\)
+\end{itemize}
+
+We know that the estimate for \(s^2=0.227^2=0.051\), but what is its confidence interval?
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{interval-estimation-for-the-variance-1}{%
+\section{Interval estimation for the variance}\label{interval-estimation-for-the-variance-1}}
+
+If
+
+\begin{itemize}
+\tightlist
+\item
+  \(X\) is a \textbf{normal} variable
+\end{itemize}
+
+then
+
+\[W=\frac{S^2(n-1)}{\sigma^2}\]
+Captures the proportion in the error of \(\sigma^2\) and
+follows a \(\chi^2\) distribution with \(n-1\) degrees of freedom
+
+\[\frac{S^2}{\sigma^2}(n-1)\rightarrow \chi^2_{n-1}\]
+
+\begin{itemize}
+\tightlist
+\item
+  We look for confidence interval of \(\sigma^2\) at confidence \(95\%\) \((L,U)\) such that \[P(L \leq \sigma^2 \leq U)=0.95\]
+\end{itemize}
+
+We can use the \(\chi^2\) to determine the \(95\%\) of the distribution about \(W\)
+
+\[P(\chi^2_{0.975,n-1} \leq W \leq \chi^2_{0.025,n-1})=0.95\]
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{chi2-statistic-2}{%
+\section{\texorpdfstring{\(\chi^2\)-statistic}{\textbackslash chi\^{}2-statistic}}\label{chi2-statistic-2}}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-98-1.pdf}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{interval-estimation-for-the-variance-2}{%
+\section{Interval estimation for the variance}\label{interval-estimation-for-the-variance-2}}
+
+replacing the value of \(W\)
+
+\[P(\chi^2_{0.975,n-1} \leq \frac{S^2}{\sigma^2}(n-1) \leq \chi^2_{0.025,n-1})=0.95\]
+
+and solving for \(\sigma^2\)
+
+\[P(\frac{S^2 (n-1)}{\chi^2_{0.025,n-1}}\leq \sigma^2 \leq \frac{S^2(n-1)}{\chi^2_{0.975,n-1}})=0.95\]
+
+The \textbf{random} interval at \(95\%\) confidence is
+
+\[(L,U) = (\frac{S^2 (n-1)}{\chi^2_{0.025,n-1}},\frac{S^2(n-1)}{\chi^2_{0.975,n-1}})\]
+
+and the \textbf{observed} \(95\%\) confidence interval (script size)
+
+\[(l,u) = (\frac{s^2 (n-1)}{\chi^2_{0.025,n-1}},\frac{s^2(n-1)}{\chi^2_{0.975,n-1}})\]
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{interval-estimation-for-the-variance-3}{%
+\section{Interval estimation for the variance}\label{interval-estimation-for-the-variance-3}}
+
+\(\chi^2_{0.975,n-1}=F^{-1}(0.025)\)
+for \(n=10\) or \(df=n-1=9\)
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{chi0}\FloatTok{.975} \OtherTok{\textless{}{-}} \FunctionTok{qchisq}\NormalTok{(}\FloatTok{0.025}\NormalTok{, }\AttributeTok{df=}\DecValTok{9}\NormalTok{)}
+\NormalTok{chi0}\FloatTok{.975}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] 2.700389
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{chi0}\FloatTok{.025} \OtherTok{\textless{}{-}} \FunctionTok{qchisq}\NormalTok{(}\FloatTok{0.975}\NormalTok{, }\AttributeTok{df=}\DecValTok{9}\NormalTok{)}
+\NormalTok{chi0}\FloatTok{.025}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] 19.02277
+\end{verbatim}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{interval-estimation-8}{%
+\section{Interval estimation}\label{interval-estimation-8}}
+
+In our example
+
+\begin{itemize}
+\tightlist
+\item
+  \(s=0.227\)
+\item
+  \(n=10\)
+\end{itemize}
+
+\(\hat{\sigma}^2=(l,u) = (\frac{s^2 (n-1)}{\chi^2_{0.025,n-1}},\frac{s^2(n-1)}{\chi^2_{0.975,n-1}})\)
+
+\[= (\frac{0.227^2 (10-1)}{19.02277},\frac{0.227^2(10-1)}{2.700389})=(0.02,0.17)\]
+
+According to the data \(\sigma^2 \neq 1\) at \(95\%\) confidence.
+
+\begin{itemize}
+\tightlist
+\item
+  Had we made an error considering \(\sigma=1\) when we calculated the first CI for this data?
+\end{itemize}
+
+in R: library(Ecfun);
+confint.var(0.05, 9)
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{interval-estimation-9}{%
+\section{Interval estimation}\label{interval-estimation-9}}
+
+The interval for the variance is \textbf{not symmetric} and we cannot formulate it as an estimate \(\pm\) margin of error.
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-99-1.pdf}
 
 \hypertarget{exercises}{%
 \chapter{Exercises}\label{exercises}}
@@ -7908,7 +8815,7 @@ Consider that we have a totally noisy channel, that is any outcome of three pixe
   What are the first and third quartiles? (R: 25; 75)
 \end{itemize}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-91-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-106-1.pdf}
 
 \hypertarget{exercise-5-1}{%
 \subsubsection{Exercise 5}\label{exercise-5-1}}
@@ -8217,7 +9124,7 @@ Take a random variable with the following probability density function
 \[
     f(x)= 
 \begin{cases}
-    \lambda e^{-\lambda x},& \text{if } 0 \leq x\\
+    \lambda e^{-\lambda x},& \text{if } 0 \leq\\
     0,& otherwise 
 \end{cases}
 \]
@@ -8234,9 +9141,9 @@ What is the estimated value of the parameter \(\lambda\)?
 
 \begin{itemize}
 \item
-  What is the maximum likelihood estimate of the parameter \(\alpha=\frac{2}{\lambda}\)
+  What is the maximum likelihood estimate of the parameter \(\alpha=\frac{n}{\lambda}\)
 \item
-  Is the estimator for \(\alpha\) unbiased and consistent?
+  Is \(\alpha\) an unbiased and consistent estimator of the mean of the sample sum \(E(Y)\), where \(Y=\sum_1^n X_i\)?
 \end{itemize}
 
 \hypertarget{method-of-moments-11}{%

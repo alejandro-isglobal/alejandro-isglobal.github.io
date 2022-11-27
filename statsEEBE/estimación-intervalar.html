@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 5 Variables aleatorias discretas | Estadística</title>
+  <title>Chapter 13 Estimación intervalar | Estadística</title>
   <meta name="description" content="This are slides for the Stats theory of the BIST master" />
   <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 5 Variables aleatorias discretas | Estadística" />
+  <meta property="og:title" content="Chapter 13 Estimación intervalar | Estadística" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="alejandro-isglobal/master" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 5 Variables aleatorias discretas | Estadística" />
+  <meta name="twitter:title" content="Chapter 13 Estimación intervalar | Estadística" />
   
   <meta name="twitter:description" content="This are slides for the Stats theory of the BIST master" />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="probabilidad-condicional.html"/>
-<link rel="next" href="variables-aleatorias-continuas.html"/>
+<link rel="prev" href="máxima-verosimilitud.html"/>
+<link rel="next" href="ejercicios.html"/>
 <script src="libs/header-attrs-2.12/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -570,712 +570,463 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="variables-aleatorias-discretas" class="section level1 hasAnchor" number="5">
-<h1><span class="header-section-number">Chapter 5</span> Variables aleatorias discretas<a href="variables-aleatorias-discretas.html#variables-aleatorias-discretas" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<div id="objetivo-4" class="section level2 hasAnchor" number="5.1">
-<h2><span class="header-section-number">5.1</span> Objetivo<a href="variables-aleatorias-discretas.html#objetivo-4" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="estimación-intervalar" class="section level1 hasAnchor" number="13">
+<h1><span class="header-section-number">Chapter 13</span> Estimación intervalar<a href="estimación-intervalar.html#estimación-intervalar" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="objetivo-12" class="section level2 hasAnchor" number="13.1">
+<h2><span class="header-section-number">13.1</span> Objetivo<a href="estimación-intervalar.html#objetivo-12" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ul>
-<li>Variables aleatorias</li>
-<li>Función de probabilidad</li>
-<li>Media y varianza</li>
-<li>Distribución de probabilidad</li>
+<li>Estimación intervalar para la media y la proporción</li>
+<li>Estimación intervalar para la varianza</li>
 </ul>
 <hr />
 <hr />
 </div>
-<div id="cómo-asignamos-valores-de-probabilidad-a-los-resultados" class="section level2 hasAnchor" number="5.2">
-<h2><span class="header-section-number">5.2</span> ¿Cómo asignamos valores de probabilidad a los resultados?<a href="variables-aleatorias-discretas.html#cómo-asignamos-valores-de-probabilidad-a-los-resultados" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><img src="figures/eqprob.jpg" style="width:75%"  align="center"></p>
-<hr />
-<hr />
-</div>
-<div id="variable-aleatoria" class="section level2 hasAnchor" number="5.3">
-<h2><span class="header-section-number">5.3</span> Variable aleatoria<a href="variables-aleatorias-discretas.html#variable-aleatoria" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><strong>Definición:</strong></p>
-<p>Una <strong>variable aleatoria</strong> es una función que asigna un <strong>número</strong> real a cada <strong>resultado</strong> en el espacio muestral de un experimento aleatorio.</p>
-<ul>
-<li>Por lo general, una variable aleatoria es el valor de la <strong>medida</strong> de interés que se realiza en un experimento aleatorio.</li>
-</ul>
-<p>Una variable aleatoria puede ser:</p>
-<ul>
-<li>Discreta (nominal, ordinal)</li>
-<li>Continua (intervalo, relación)</li>
-</ul>
-<hr />
-<hr />
-</div>
-<div id="variable-aleatoria-1" class="section level2 hasAnchor" number="5.4">
-<h2><span class="header-section-number">5.4</span> Variable aleatoria<a href="variables-aleatorias-discretas.html#variable-aleatoria-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Un <strong>valor</strong> (o <strong>resultado</strong>) de una variable aleatoria es uno de los números posibles que la variable puede tomar en un experimento aleatorio.</p>
-<p>Escribimos la variable aleatoria en <strong>mayúsculas</strong>.</p>
-<p>Ejemplo:</p>
-<p>Si <span class="math inline">\(X \in \{0,1\}\)</span>, entonces decimos que <span class="math inline">\(X\)</span> es una variable aleatoria que puede tomar los valores <span class="math inline">\(0\)</span> o <span class="math inline">\(1\)</span>.</p>
-<p><strong>Observación</strong> de una variable aleatoria</p>
-<ul>
-<li>Una observación es la <strong>adquisición</strong> del valor de una variable aleatoria en un experimento aleatorio</li>
-</ul>
-<p>Ejemplo:</p>
-<p>1 0 0 1 0 <strong>1</strong> 0 1 1</p>
-<p>El número en negrita es una observación de <span class="math inline">\(X\)</span></p>
-<hr />
-<hr />
-</div>
-<div id="eventos-de-observar-una-variable-aleatoria" class="section level2 hasAnchor" number="5.5">
-<h2><span class="header-section-number">5.5</span> Eventos de observar una variable aleatoria<a href="variables-aleatorias-discretas.html#eventos-de-observar-una-variable-aleatoria" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<ul>
-<li><span class="math inline">\(X=1\)</span> es el <strong>evento</strong> de observar la variable aleatoria <span class="math inline">\(X\)</span> con valor <span class="math inline">\(1\)</span></li>
-<li><span class="math inline">\(X=2\)</span> es el <strong>evento</strong> de observar la variable aleatoria <span class="math inline">\(X\)</span> con valor <span class="math inline">\(2\)</span></li>
-</ul>
-<p>…</p>
-<p><strong>En general:</strong></p>
-<ul>
-<li><p><span class="math inline">\(X=x\)</span> es el <strong>evento</strong> de observar la variable aleatoria <span class="math inline">\(X\)</span> con valor <span class="math inline">\(x\)</span> (pequeño <span class="math inline">\(x\)</span>)</p></li>
-<li><p>Dos valores cualesquiera de una variable aleatoria definen dos eventos <strong>mutuamente excluyentes</strong>.</p></li>
-</ul>
-<hr />
-<hr />
-</div>
-<div id="probabilidad-de-variables-aleatorias" class="section level2 hasAnchor" number="5.6">
-<h2><span class="header-section-number">5.6</span> Probabilidad de variables aleatorias<a href="variables-aleatorias-discretas.html#probabilidad-de-variables-aleatorias" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Nos interesa asignar probabilidades a los valores de una variable aleatoria.</p>
-<p>Ya hemos hecho esto para los dados: <span class="math inline">\(X \in \{1,2,3,4,5,6\}\)</span> (interpretación clásica de probabilidad)</p>
-<table>
-<thead>
-<tr class="header">
-<th align="center"><span class="math inline">\(X\)</span></th>
-<th align="center">Probabilidad</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="center"><span class="math inline">\(1\)</span></td>
-<td align="center"><span class="math inline">\(P(X=1)=1/6\)</span></td>
-</tr>
-<tr class="even">
-<td align="center"><span class="math inline">\(2\)</span></td>
-<td align="center"><span class="math inline">\(P(X=2)=1/6\)</span></td>
-</tr>
-<tr class="odd">
-<td align="center"><span class="math inline">\(3\)</span></td>
-<td align="center"><span class="math inline">\(P(X=3)=1/6\)</span></td>
-</tr>
-<tr class="even">
-<td align="center"><span class="math inline">\(4\)</span></td>
-<td align="center"><span class="math inline">\(P(X=4)=1/6\)</span></td>
-</tr>
-<tr class="odd">
-<td align="center"><span class="math inline">\(5\)</span></td>
-<td align="center"><span class="math inline">\(P(X=5)=1/6\)</span></td>
-</tr>
-<tr class="even">
-<td align="center"><span class="math inline">\(6\)</span></td>
-<td align="center"><span class="math inline">\(P(X=6)=1/6\)</span></td>
-</tr>
-</tbody>
-</table>
-<hr />
-<hr />
-</div>
-<div id="funciones-de-probabilidad" class="section level2 hasAnchor" number="5.7">
-<h2><span class="header-section-number">5.7</span> Funciones de probabilidad<a href="variables-aleatorias-discretas.html#funciones-de-probabilidad" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<ul>
-<li>Podemos escribir la tabla de probabilidad</li>
-<li>graficarla</li>
-</ul>
-<p><img src="_main_files/figure-html/unnamed-chunk-34-1.png" width="672" /></p>
-<ul>
-<li>o escribirla como la función</li>
-</ul>
-<p><span class="math display">\[f(x)=P(X=x)=1/6\]</span></p>
-<hr />
-<hr />
-</div>
-<div id="funciones-de-probabilidad-1" class="section level2 hasAnchor" number="5.8">
-<h2><span class="header-section-number">5.8</span> Funciones de probabilidad<a href="variables-aleatorias-discretas.html#funciones-de-probabilidad-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Podemos <strong>crear</strong> cualquier tipo de función de probabilidad si respetamos las reglas de probabilidad:</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-35-1.png" width="672" /></p>
-<hr />
-<hr />
-</div>
-<div id="funciones-de-probabilidad-2" class="section level2 hasAnchor" number="5.9">
-<h2><span class="header-section-number">5.9</span> Funciones de probabilidad<a href="variables-aleatorias-discretas.html#funciones-de-probabilidad-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Para una variable aleatoria discreta <span class="math inline">\(X \in \{x_1 , x_2 , .. , x_M\}\)</span> , una <strong>función de masa de probabilidad</strong></p>
-<p>siempre es positiva</p>
-<ul>
-<li><span class="math inline">\(f(x_i)\geq 0\)</span></li>
-</ul>
-<p>se utiliza para calcular probabilidades</p>
-<ul>
-<li><span class="math inline">\(f(x_i)=P(X=x_i)\)</span></li>
-</ul>
-<p>y su suma sobre todos los valores de la variable es <span class="math inline">\(1\)</span>:</p>
-<ul>
-<li><span class="math inline">\(\sum_{i=1}^M f(x_i)=1\)</span></li>
-</ul>
-<hr />
-<hr />
-</div>
-<div id="funciones-de-probabilidad-3" class="section level2 hasAnchor" number="5.10">
-<h2><span class="header-section-number">5.10</span> Funciones de probabilidad<a href="variables-aleatorias-discretas.html#funciones-de-probabilidad-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<ul>
-<li><p>Tenga en cuenta que la definición de <span class="math inline">\(X\)</span> y su función de masa de probabilidad es general <strong>sin referencia</strong> a ningún experimento. Las funciones viven en el espacio modelo (abstracto).</p></li>
-<li><p><span class="math inline">\(X\)</span> y <span class="math inline">\(f(x)\)</span> son objetos abstractos que pueden o no asignarse a un experimento</p></li>
-<li><p>Tenemos la libertad de construirlos como queramos siempre que respetemos su definición.</p></li>
-<li><p>Tienen algunas <strong>propiedades</strong> que se derivan exclusivamente de su definición.</p></li>
-</ul>
-<hr />
-<hr />
-</div>
-<div id="ejemplo-función-de-masa-de-probabilidad" class="section level2 hasAnchor" number="5.11">
-<h2><span class="header-section-number">5.11</span> Ejemplo: función de masa de probabilidad<a href="variables-aleatorias-discretas.html#ejemplo-función-de-masa-de-probabilidad" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Considere la siguiente variable aleatoria <span class="math inline">\(X\)</span> sobre los resultados</p>
-<table>
-<thead>
-<tr class="header">
-<th align="center">resultado</th>
-<th align="center"><span class="math inline">\(X\)</span></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="center"><span class="math inline">\(a\)</span></td>
-<td align="center">0</td>
-</tr>
-<tr class="even">
-<td align="center"><span class="math inline">\(b\)</span></td>
-<td align="center">0</td>
-</tr>
-<tr class="odd">
-<td align="center"><span class="math inline">\(c\)</span></td>
-<td align="center">1.5</td>
-</tr>
-<tr class="even">
-<td align="center"><span class="math inline">\(d\)</span></td>
-<td align="center">1.5</td>
-</tr>
-<tr class="odd">
-<td align="center"><span class="math inline">\(e\)</span></td>
-<td align="center">2</td>
-</tr>
-<tr class="even">
-<td align="center"><span class="math inline">\(f\)</span></td>
-<td align="center">3</td>
-</tr>
-</tbody>
-</table>
-<p>Si cada resultado es igualmente probable, ¿cuál es la función de masa de probabilidad de <span class="math inline">\(x\)</span>?</p>
-<hr />
-<hr />
-</div>
-<div id="tabla-de-probabilidad-para-resultados-igualmente-probables" class="section level2 hasAnchor" number="5.12">
-<h2><span class="header-section-number">5.12</span> Tabla de probabilidad para resultados igualmente probables<a href="variables-aleatorias-discretas.html#tabla-de-probabilidad-para-resultados-igualmente-probables" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<table>
-<thead>
-<tr class="header">
-<th align="center">resultado</th>
-<th align="center">Probabilidad (resultado)</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="center"><span class="math inline">\(a\)</span></td>
-<td align="center"><span class="math inline">\(1/6\)</span></td>
-</tr>
-<tr class="even">
-<td align="center"><span class="math inline">\(b\)</span></td>
-<td align="center"><span class="math inline">\(1/6\)</span></td>
-</tr>
-<tr class="odd">
-<td align="center"><span class="math inline">\(c\)</span></td>
-<td align="center"><span class="math inline">\(1/6\)</span></td>
-</tr>
-<tr class="even">
-<td align="center"><span class="math inline">\(d\)</span></td>
-<td align="center"><span class="math inline">\(1/6\)</span></td>
-</tr>
-<tr class="odd">
-<td align="center"><span class="math inline">\(e\)</span></td>
-<td align="center"><span class="math inline">\(1/6\)</span></td>
-</tr>
-<tr class="even">
-<td align="center"><span class="math inline">\(f\)</span></td>
-<td align="center"><span class="math inline">\(1/6\)</span></td>
-</tr>
-</tbody>
-</table>
-<hr />
-<hr />
-</div>
-<div id="tabla-de-probabilidad-para-x" class="section level2 hasAnchor" number="5.13">
-<h2><span class="header-section-number">5.13</span> Tabla de probabilidad para <span class="math inline">\(X\)</span><a href="variables-aleatorias-discretas.html#tabla-de-probabilidad-para-x" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<table>
-<thead>
-<tr class="header">
-<th align="center"><span class="math inline">\(X\)</span></th>
-<th align="center"><span class="math inline">\(f(x)=P(X=x)\)</span></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="center"><span class="math inline">\(0\)</span></td>
-<td align="center"><span class="math inline">\(P(X=0)=2/6\)</span></td>
-</tr>
-<tr class="even">
-<td align="center"><span class="math inline">\(1.5\)</span></td>
-<td align="center"><span class="math inline">\(P(X=1.5)=2/6\)</span></td>
-</tr>
-<tr class="odd">
-<td align="center"><span class="math inline">\(2\)</span></td>
-<td align="center"><span class="math inline">\(P(X=2)=1/6\)</span></td>
-</tr>
-<tr class="even">
-<td align="center"><span class="math inline">\(3\)</span></td>
-<td align="center"><span class="math inline">\(P(X=3)=1/6\)</span></td>
-</tr>
-</tbody>
-</table>
-<p>Podemos calcular, por ejemplo, las siguientes probabilidades de eventos en los valores de <span class="math inline">\(X\)</span></p>
-<ul>
-<li><span class="math inline">\(P(X&gt;3)\)</span></li>
-<li><span class="math inline">\(P(X=0\, \cup\, X=2 )\)</span></li>
-<li><span class="math inline">\(P(X \leq 2)\)</span></li>
-</ul>
-<hr />
-<hr />
-</div>
-<div id="ejemplo-6" class="section level2 hasAnchor" number="5.14">
-<h2><span class="header-section-number">5.14</span> Ejemplo<a href="variables-aleatorias-discretas.html#ejemplo-6" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><strong>Modelo de probabilidad:</strong></p>
-<p>Considere el siguiente experimento: En una urna ponga <span class="math inline">\(8\)</span> bolas y:</p>
-<ul>
-<li>marque <span class="math inline">\(1\)</span> bola con el número <span class="math inline">\(-2\)</span></li>
-<li>marque <span class="math inline">\(2\)</span> bolas con el número <span class="math inline">\(-1\)</span></li>
-<li>marque <span class="math inline">\(2\)</span> bolas con el número <span class="math inline">\(0\)</span></li>
-<li>marque <span class="math inline">\(2\)</span> bolas con el número <span class="math inline">\(1\)</span></li>
-<li>marque <span class="math inline">\(1\)</span> bola con el número <span class="math inline">\(2\)</span></li>
-</ul>
-<p><strong>experimento:</strong> Tome una bola y lea el número.</p>
-<table>
-<thead>
-<tr class="header">
-<th align="center"><span class="math inline">\(X\)</span></th>
-<th align="center"><span class="math inline">\(P(X=x)\)</span></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="center"><span class="math inline">\(-2\)</span></td>
-<td align="center"><span class="math inline">\(1/8=0.125\)</span></td>
-</tr>
-<tr class="even">
-<td align="center"><span class="math inline">\(-1\)</span></td>
-<td align="center"><span class="math inline">\(2/8=0.25\)</span></td>
-</tr>
-<tr class="odd">
-<td align="center"><span class="math inline">\(0\)</span></td>
-<td align="center"><span class="math inline">\(2/8=0.25\)</span></td>
-</tr>
-<tr class="even">
-<td align="center"><span class="math inline">\(1\)</span></td>
-<td align="center"><span class="math inline">\(2/8=0.25\)</span></td>
-</tr>
-<tr class="odd">
-<td align="center"><span class="math inline">\(2\)</span></td>
-<td align="center"><span class="math inline">\(1/8=0.125\)</span></td>
-</tr>
-</tbody>
-</table>
-<hr />
-<hr />
-</div>
-<div id="ejemplo-7" class="section level2 hasAnchor" number="5.15">
-<h2><span class="header-section-number">5.15</span> Ejemplo<a href="variables-aleatorias-discretas.html#ejemplo-7" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Considere otro experimento en el que no sabemos qué hay en la urna anterior. Sacamos una bola <span class="math inline">\(30\)</span> veces, escribimos su númeror y la devolvemos a la urna.</p>
-<ul>
-<li><p>no sabemos cuáles son los eventos primarios con iguales probabilidades.</p></li>
-<li><p>y <strong>estimamos</strong> la <strong>función de masa de probabilidad</strong> a partir de las <strong>frecuencias relativas</strong> observadas para cada variable aleatoria</p></li>
-</ul>
-<table>
-<thead>
-<tr class="header">
-<th align="center"><span class="math inline">\(X\)</span></th>
-<th align="center"><span class="math inline">\(f_i\)</span></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="center"><span class="math inline">\(-2\)</span></td>
-<td align="center"><span class="math inline">\(0.132\)</span></td>
-</tr>
-<tr class="even">
-<td align="center"><span class="math inline">\(-1\)</span></td>
-<td align="center"><span class="math inline">\(0.262\)</span></td>
-</tr>
-<tr class="odd">
-<td align="center"><span class="math inline">\(0\)</span></td>
-<td align="center"><span class="math inline">\(0.240\)</span></td>
-</tr>
-<tr class="even">
-<td align="center"><span class="math inline">\(1\)</span></td>
-<td align="center"><span class="math inline">\(0.248\)</span></td>
-</tr>
-<tr class="odd">
-<td align="center"><span class="math inline">\(2\)</span></td>
-<td align="center"><span class="math inline">\(0.118\)</span></td>
-</tr>
-</tbody>
-</table>
-<hr />
-<hr />
-</div>
-<div id="probabilidades-y-frecuencias" class="section level2 hasAnchor" number="5.16">
-<h2><span class="header-section-number">5.16</span> Probabilidades y frecuencias<a href="variables-aleatorias-discretas.html#probabilidades-y-frecuencias" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Para calcular las frecuencias relativas <span class="math inline">\(f_i\)</span> trenemos que</p>
-<ul>
-<li><strong>repetir</strong> el experimento <span class="math inline">\(N\)</span> veces (tenemos que volver a poner la bola en la urna cada vez) y al final calcular</li>
-</ul>
-<p><span class="math display">\[f_i=n_i/N\]</span></p>
-<p>Estamos suponiendo que:</p>
-<p><span class="math display">\[lim_{N \rightarrow \infty} f_i = f(x_i)=P(X=x_i)\]</span></p>
-<hr />
-<hr />
-</div>
-<div id="probabilidades-y-frecuencias-relativas" class="section level2 hasAnchor" number="5.17">
-<h2><span class="header-section-number">5.17</span> Probabilidades y frecuencias relativas<a href="variables-aleatorias-discretas.html#probabilidades-y-frecuencias-relativas" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><img src="_main_files/figure-html/unnamed-chunk-36-1.png" width="672" /></p>
-<ul>
-<li>En este ejemplo, <strong>sabemos</strong> el <strong>modelo</strong> de probabilidad <span class="math inline">\(f(x)=P(X=x)\)</span> por diseño.</li>
-<li>Nunca observamos <span class="math inline">\(f(x)\)</span></li>
-<li>Podemos usar frecuencias relativas para estimar las probabilidades
-<span class="math display">\[f_i = \hat{f}(x_i)=\hat{P}(X=x_i)\]</span> (<span class="math inline">\(f_i\)</span> depende de <span class="math inline">\(N\)</span>)</li>
-</ul>
-<hr />
-<hr />
-</div>
-<div id="media-y-varianza" class="section level2 hasAnchor" number="5.18">
-<h2><span class="header-section-number">5.18</span> Media y Varianza<a href="variables-aleatorias-discretas.html#media-y-varianza" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Las funciones de masa de probabilidad <span class="math inline">\(f(x)\)</span> tienen dos propiedades principales</p>
-<ul>
-<li>su centro</li>
-<li>su dispersión</li>
-</ul>
-<p>Podemos preguntar,</p>
-<ul>
-<li><p>¿Alrededor de qué valores de <span class="math inline">\(X\)</span> se concentró la probabilidad?</p></li>
-<li><p>¿Qué tan dispersos son los valores de <span class="math inline">\(X\)</span> en relación a sus probabilidades?</p></li>
-</ul>
-<hr />
-<hr />
-</div>
-<div id="media-y-varianza-1" class="section level2 hasAnchor" number="5.19">
-<h2><span class="header-section-number">5.19</span> Media y Varianza<a href="variables-aleatorias-discretas.html#media-y-varianza-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><img src="figures/mean.jpg" style="width:75%"  align="center"></p>
-<hr />
-<hr />
-</div>
-<div id="media" class="section level2 hasAnchor" number="5.20">
-<h2><span class="header-section-number">5.20</span> Media<a href="variables-aleatorias-discretas.html#media" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Recuerde que el <strong>promedio</strong> en términos de las frecuencias relativas de los valores de <span class="math inline">\(x_i\)</span> (resultados ordenados categóricos) se puede escribir como</p>
-<p><span class="math display">\[\bar{x}= \sum_{i=1}^M x_i \frac{n_i}{N}=\sum_{i=1}^M x_i f_i\]</span></p>
+<div id="promedio-o-media-muestral-1" class="section level2 hasAnchor" number="13.2">
+<h2><span class="header-section-number">13.2</span> Promedio o media muestral<a href="estimación-intervalar.html#promedio-o-media-muestral-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><strong>Definición</strong></p>
-<p>La <strong>media</strong> (<span class="math inline">\(\mu\)</span>) o valor esperado de una variable aleatoria discreta <span class="math inline">\(X\)</span>, <span class="math inline">\(E(X)\)</span>, con función de masa <span class="math inline">\(f(x)\)</span> está dada por</p>
-<p><span class="math display">\[\mu = E(X)= \sum_{i=1}^M x_i f(x_i)\]</span></p>
-<p><img src="figures/mu.png" style="width:75%"  align="center"></p>
-<p>Es el centro de gravedad de las <strong>probabilidades</strong>: El punto donde se equilibran las cargas de probabilidad</p>
-<hr />
-<hr />
-</div>
-<div id="ejemplo-media" class="section level2 hasAnchor" number="5.21">
-<h2><span class="header-section-number">5.21</span> Ejemplo: Media<a href="variables-aleatorias-discretas.html#ejemplo-media" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>¿Cuál es la media de <span class="math inline">\(X\)</span> si su función de masa de probabilidad <span class="math inline">\(f(x)\)</span> está dada por</p>
-<p><span class="math inline">\(P(X=0)=1/16\)</span>
-</br><span class="math inline">\(P(X=1)=4/16\)</span>
-</br><span class="math inline">\(P(X=2)=6/16\)</span>
-</br><span class="math inline">\(P(X=3)=4/16\)</span>
-</br><span class="math inline">\(P(X=4)=1/16\)</span></p>
-<p><img src="_main_files/figure-html/unnamed-chunk-37-1.png" width="672" /></p>
-<p><span class="math display">\[\mu =E(X)=\sum_{i=1}^m x_i f(x_i)\]</span></p>
-<p><span class="math inline">\(E(X)=\)</span><strong>0</strong> * 1/16 + <strong>1</strong> * 4/16 + <strong>2</strong> * 6/16 + <strong>3</strong> * 4/16 + <strong>4</strong> * 1/16 =2</p>
-<hr />
-<hr />
-</div>
-<div id="media-y-promedio" class="section level2 hasAnchor" number="5.22">
-<h2><span class="header-section-number">5.22</span> Media y Promedio<a href="variables-aleatorias-discretas.html#media-y-promedio" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>La media muestral (o promedio) de una <strong>muestra aleatoria</strong> de tamaño <span class="math inline">\(n\)</span> es</p>
+<p><span class="math display">\[\bar{X}=\frac{1}{n}\sum_{i=1}^n X_i\]</span></p>
+<p>Dado que cada experimento aleatorio es independiente, la media y la varianza de <span class="math inline">\(\bar{X}\)</span> son</p>
 <ul>
-<li>La media <span class="math inline">\(\mu\)</span> es el centro de gravedad de función de masa de probabilidad y <strong>no cambia</strong></li>
+<li><span class="math inline">\(E(\bar{X})=E(X)\)</span></li>
+<li><span class="math inline">\(V(\bar{X})=\frac{V(X)}{n}\)</span></li>
+<li><span class="math inline">\(se=\sqrt{V(\bar{X})}\)</span> se conoce como el error estandard</li>
 </ul>
-<p>Por ejemplo de</p>
-<table>
-<thead>
-<tr class="header">
-<th align="center"><span class="math inline">\(X\)</span></th>
-<th align="center"><span class="math inline">\(P(X=x)\)</span></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="center"><span class="math inline">\(-2\)</span></td>
-<td align="center"><span class="math inline">\(1/8=0.125\)</span></td>
-</tr>
-<tr class="even">
-<td align="center"><span class="math inline">\(-1\)</span></td>
-<td align="center"><span class="math inline">\(2/8=0.25\)</span></td>
-</tr>
-<tr class="odd">
-<td align="center"><span class="math inline">\(0\)</span></td>
-<td align="center"><span class="math inline">\(2/8=0.25\)</span></td>
-</tr>
-<tr class="even">
-<td align="center"><span class="math inline">\(1\)</span></td>
-<td align="center"><span class="math inline">\(2/8=0.25\)</span></td>
-</tr>
-<tr class="odd">
-<td align="center"><span class="math inline">\(2\)</span></td>
-<td align="center"><span class="math inline">\(1/8=0.125\)</span></td>
-</tr>
-</tbody>
-</table>
+<p><span class="math inline">\(\bar{X}\)</span> es por lo tanto</p>
 <ul>
-<li>El promedio <span class="math inline">\(\bar{x}\)</span> es el centro de gravedad de las observaciones (frequencias relativas) <strong>y cambia</strong> de acuerdo a los datos.</li>
-</ul>
-<p>Por ejemplo de</p>
-<table>
-<thead>
-<tr class="header">
-<th align="center"><span class="math inline">\(X\)</span></th>
-<th align="center"><span class="math inline">\(f_i\)</span></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="center"><span class="math inline">\(-2\)</span></td>
-<td align="center"><span class="math inline">\(0.132\)</span></td>
-</tr>
-<tr class="even">
-<td align="center"><span class="math inline">\(-1\)</span></td>
-<td align="center"><span class="math inline">\(0.262\)</span></td>
-</tr>
-<tr class="odd">
-<td align="center"><span class="math inline">\(0\)</span></td>
-<td align="center"><span class="math inline">\(0.240\)</span></td>
-</tr>
-<tr class="even">
-<td align="center"><span class="math inline">\(1\)</span></td>
-<td align="center"><span class="math inline">\(0.248\)</span></td>
-</tr>
-<tr class="odd">
-<td align="center"><span class="math inline">\(2\)</span></td>
-<td align="center"><span class="math inline">\(0.118\)</span></td>
-</tr>
-</tbody>
-</table>
-<hr />
-<hr />
-</div>
-<div id="variación" class="section level2 hasAnchor" number="5.23">
-<h2><span class="header-section-number">5.23</span> Variación<a href="variables-aleatorias-discretas.html#variación" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>En términos similares definimos la distancia media al cuadrado de la media:</p>
-<p><strong>Definición</strong></p>
-<p>La varianza, escrita como <span class="math inline">\(\sigma^2\)</span> o <span class="math inline">\(V(X)\)</span>, de una variable aleatoria discreta <span class="math inline">\(X\)</span> con función de masa <span class="math inline">\(f(x)\)</span> está dada por</p>
-<p><span class="math display">\[\sigma^2 = V(X)= \sum_{i=1}^M (x_i-\mu)^2 f(x_i)\]</span></p>
-<ul>
-<li><p><span class="math inline">\(\sigma=\sqrt{V(X)}\)</span> se llama la <strong>desviación estándar</strong> de la variable aleatoria</p></li>
-<li><p>Piense en ello como el momento de inercia de las probabilidades sobre la media.</p></li>
+<li><p>un <strong>estimador</strong> de <span class="math inline">\(E(X)\)</span>, es decir <span class="math inline">\(\mu\)</span>.</p></li>
+<li><p>una variable aleatoria</p></li>
 </ul>
 <hr />
 <hr />
 </div>
-<div id="ejemplo-varianza" class="section level2 hasAnchor" number="5.24">
-<h2><span class="header-section-number">5.24</span> Ejemplo: Varianza<a href="variables-aleatorias-discretas.html#ejemplo-varianza" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>¿Cuál es la varianza de <span class="math inline">\(X\)</span> si su función de masa de probabilidad <span class="math inline">\(f(x)\)</span> está dada por</p>
-<p><span class="math inline">\(P(X=0)=1/16\)</span>
-</br><span class="math inline">\(P(X=1)=4/16\)</span>
-</br><span class="math inline">\(P(X=2)=6/16\)</span>
-</br><span class="math inline">\(P(X=3)=4/16\)</span>
-</br><span class="math inline">\(P(X=4)=1/16\)</span></p>
-<p><span class="math display">\[\sigma^2 =V(X)=\sum_{i=1}^m (x_i-\mu)^2 f(x_i)\]</span></p>
-<p><span class="math inline">\(V(X)=\)</span><strong>(0-2)</strong><span class="math inline">\(^2\)</span>* 1/16 + <strong>(1-2)</strong><span class="math inline">\(^2\)</span>* 4/16 + <strong>(2- 2)</strong><span class="math inline">\(^2\)</span>* 6/16 + <strong>(3-2)</strong><span class="math inline">\(^2\)</span>* 4/16 + <strong>(4-2)</strong><span class="math inline">\(^2\)</span>* 1/ 16 = 1</p>
-<p><span class="math display">\[V(X)=\sigma^2=1\]</span>
-<span class="math display">\[\sigma=1\]</span></p>
+<div id="inferencia-en-el-promedio" class="section level2 hasAnchor" number="13.3">
+<h2><span class="header-section-number">13.3</span> Inferencia en el promedio<a href="estimación-intervalar.html#inferencia-en-el-promedio" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><strong>Ejemplo:</strong></p>
+<p>Realizamos <span class="math inline">\(8\)</span> experimentos aleatorios: cargamos un cable hasta que se rompe y registramos la carga de rotura. Estos son los resultados.</p>
+<pre><code>## [1] 13.34642 13.32620 13.01459 13.10811 12.96999 13.55309 13.75557 12.62747</code></pre>
+<p>Si <strong>sabemos</strong> que nuestros cables realmente se distribuyen como <span class="math display">\[X \rightarrow N(\mu=13, \sigma^2=0.35^2)\]</span> entonces</p>
+<p><span class="math display">\[\bar{X} \rightarrow N(13, \frac{0.35^2}{8})\]</span></p>
+<ul>
+<li><span class="math inline">\(E(\bar{X})=13\)</span></li>
+<li><span class="math inline">\(V(\bar{X})=\frac{0.35^2}{8}=0.01530169\)</span></li>
+<li><span class="math inline">\(se=\frac{0.35}{\sqrt{8}}=0.1237\)</span></li>
+</ul>
+<p>entonces el <strong>error observado</strong> en la estimación es la diferencia</p>
+<p><span class="math display">\[\bar{x}_{stock}-\mu=13.21-13=0.21\]</span></p>
 <hr />
 <hr />
 </div>
-<div id="funciones-de-x" class="section level2 hasAnchor" number="5.25">
-<h2><span class="header-section-number">5.25</span> Funciones de <span class="math inline">\(X\)</span><a href="variables-aleatorias-discretas.html#funciones-de-x" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><strong>Definición</strong></p>
-<p>Para cualquier función <span class="math inline">\(h\)</span> de una variable aleatoria <span class="math inline">\(X\)</span>, con función de masa <span class="math inline">\(f(x)\)</span>, su <strong>valor esperado</strong> viene dado por</p>
-<p><span class="math display">\[ E[h(X)]= \sum_{i=1}^M h(x_i) f(x_i) \]</span></p>
-<p>Esta es una definición importante que nos permite probar <strong>tres propiedades</strong> importantes de la mediana y la varianza:</p>
+<div id="margen-de-error-2" class="section level2 hasAnchor" number="13.4">
+<h2><span class="header-section-number">13.4</span> Margen de error<a href="estimación-intervalar.html#margen-de-error-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Al decidir si el <strong>error</strong> en la estimación: <span class="math inline">\(\bar{X}-\mu\)</span> es grande o no, generalmente lo comparamos con una tolerancia predefinida.</p>
 <ul>
-<li><p>La media de una función lineal es la <strong>función lineal</strong> de la media: <span class="math display">\[E(a\times X +b)= a\times E(X) +b\]</span> para <span class="math inline">\(a\)</span> y <span class="math inline">\(b\)</span> escalares (números) .</p></li>
-<li><p>La varianza de una función lineal de <span class="math inline">\(X\)</span> es:<span class="math display">\[V(a\times X +b)= a^2\times V(X)\]</span></p></li>
-<li><p>La varianza <strong>sobre el origen</strong> es la varianza <strong>sobre la media</strong> más la media al cuadrado: <span class="math display">\[E(X^2)=V(X)+E(X)^2\]</span></p></li>
+<li>El <strong>margen de error</strong> a nivel de <span class="math inline">\(5\%\)</span> es la distancia <span class="math inline">\(m\)</span> tal que la distribución de <span class="math inline">\(\bar{X}\)</span> captura <span class="math inline">\(95\%\)</span> de las estimaciones:</li>
+</ul>
+<p><span class="math display">\[P(-m \leq \bar{X}-\mu \leq m)=P(\mu-m \leq \bar{X} \leq\mu + m)=0.95\]</span></p>
+<ul>
+<li>o que <span class="math inline">\(95\%\)</span> de los valores de <span class="math inline">\(\bar{X}\)</span> están a una distancia <span class="math inline">\(m\)</span> de <span class="math inline">\(\mu\)</span>.</li>
+</ul>
+<p>En nuestro ejemplo, asumimos que <span class="math inline">\(\bar{X}\)</span> se distribuye normalmente, entonces</p>
+<p><span class="math display">\[m=z_{0,025} \frac{\sigma}{\sqrt{n}}=1,96\times se=1,96\frac{0,35}{\sqrt{8}}=0,24\]</span></p>
+<hr />
+<hr />
+</div>
+<div id="densidad-de-probabilidad-de-x-vs-densidad-de-probabilidad-de-barx" class="section level2 hasAnchor" number="13.5">
+<h2><span class="header-section-number">13.5</span> Densidad de probabilidad de <span class="math inline">\(X\)</span> Vs densidad de probabilidad de <span class="math inline">\(\bar{X}\)</span><a href="estimación-intervalar.html#densidad-de-probabilidad-de-x-vs-densidad-de-probabilidad-de-barx" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><img src="_main_files/figure-html/unnamed-chunk-89-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-90-1.png" width="672" /></p>
+<hr />
+<hr />
+</div>
+<div id="vida-real" class="section level2 hasAnchor" number="13.6">
+<h2><span class="header-section-number">13.6</span> Vida real<a href="estimación-intervalar.html#vida-real" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><img src="_main_files/figure-html/unnamed-chunk-91-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-92-1.png" width="672" /></p>
+<hr />
+<hr />
+</div>
+<div id="estimación-intervalar-1" class="section level2 hasAnchor" number="13.7">
+<h2><span class="header-section-number">13.7</span> Estimación intervalar<a href="estimación-intervalar.html#estimación-intervalar-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>De la ecuación del margen de error:</p>
+<p><span class="math display">\[P(-m \leq \bar{X} - \mu \leq m)=0.95\]</span></p>
+<p>resolvamos para <span class="math inline">\(\mu\)</span> (la incógnita real)</p>
+<p><span class="math display">\[P(\bar{X} - m \leq \mu \leq \bar{X} + m)=0.95\]</span></p>
+<p>Los límites izquierdo y derecho de la desigualdad son variables aleatorias que motivan la definición del <strong>intervalo de confianza aleatorio en <span class="math inline">\(95\%\)</span></strong></p>
+<p><span class="math display">\[(L,U)=(\bar{X} - m,\bar{X} + m)\]</span></p>
+<p>Este intervalo es una <strong>variable aleatoria</strong> y tiene por definición una probabilidad de <span class="math inline">\(0.95\)</span> de contener <span class="math inline">\(\mu\)</span>.</p>
+<hr />
+<hr />
+</div>
+<div id="estimación-intervalar-2" class="section level2 hasAnchor" number="13.8">
+<h2><span class="header-section-number">13.8</span> Estimación intervalar<a href="estimación-intervalar.html#estimación-intervalar-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Cuando realizamos <span class="math inline">\(n\)</span>-experimentos aleatorios (muestra de tamaño <span class="math inline">\(n\)</span>) podemos calcular <span class="math inline">\(m\)</span> <strong>si</strong></p>
+<ul>
+<li><span class="math inline">\(X\)</span> es normal</li>
+<li>conocemos <span class="math inline">\(\sigma^2\)</span>.</li>
+</ul>
+<p>El intervalo que obtenemos del experimento es (en minúsculas)</p>
+<p><span class="math display">\[(l,u)=(\bar{x} - m,\bar{x} + m)\]</span></p>
+<ul>
+<li><p>este intervalo contiene o no el parámetro <span class="math inline">\(\mu\)</span>: <strong>nunca lo sabremos</strong>!</p></li>
+<li><p>Decimos que tenemos una confianza de <span class="math inline">\(95\%\)</span> que el intervalo <span class="math inline">\((l,u)\)</span> capturará el verdadero parámetro desconocido <span class="math inline">\(\mu\)</span>. Piensa en comprar un billete de lotería del que no sabes el resultado.</p></li>
 </ul>
 <hr />
 <hr />
 </div>
-<div id="ejemplo-varianza-sobre-el-origen" class="section level2 hasAnchor" number="5.26">
-<h2><span class="header-section-number">5.26</span> Ejemplo: Varianza sobre el origen<a href="variables-aleatorias-discretas.html#ejemplo-varianza-sobre-el-origen" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>¿Cuál es la varianza <span class="math inline">\(X\)</span> sobre el origen, <span class="math inline">\(E(X^2)\)</span>, si su función de masa de probabilidad <span class="math inline">\(f(x)\)</span> está dada por</p>
-<p><span class="math inline">\(P(X=0)=1/16\)</span>
-</br><span class="math inline">\(P(X=1)=4/16\)</span>
-</br><span class="math inline">\(P(X=2)=6/16\)</span>
-</br><span class="math inline">\(P(X=3)=4/16\)</span>
-</br><span class="math inline">\(P(X=4)=1/16\)</span></p>
-<p><span class="math display">\[E(X^2) =\sum_{i=1}^m x_i^2 f(x_i)\]</span></p>
-<p><span class="math inline">\(E(X^2)=\)</span><strong>(0)</strong><span class="math inline">\(^2\)</span>* 1/16 + <strong>(1)</strong><span class="math inline">\(^2\)</span>* 4/16 + <strong>(2)</strong> <span class="math inline">\(^2\)</span>* 6/16 + <strong>(3)</strong><span class="math inline">\(^2\)</span>* 4/16 + <strong>(4)</strong><span class="math inline">\(^2\)</span>* 1/16 =5</p>
-<p>También podemos verificar:</p>
-<p><span class="math display">\[E(X^2)=V(X)+E(X)^2\]</span></p>
-<p><span class="math inline">\(5=1+2^2\)</span></p>
+<div id="estimación-intervalar-3" class="section level2 hasAnchor" number="13.9">
+<h2><span class="header-section-number">13.9</span> Estimación intervalar<a href="estimación-intervalar.html#estimación-intervalar-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>En nuestro ejemplo, asumimos que <span class="math inline">\(\bar{X}\)</span> se distribuye normalmente, entonces</p>
+<p><span class="math display">\[m=z_{0.025} \frac{\sigma}{\sqrt{n}}\]</span></p>
+<p>y el intervalo de confianza de <span class="math inline">\(95\%\)</span> es</p>
+<p><span class="math display">\[(l,u)=(\bar{x}-z_{0.025} \frac{\sigma}{\sqrt{n}}, \bar{x}+z_{0.025} \frac{\sigma}{ \sqrt{n}})= (12.97,13.45)\]</span></p>
+<p>o</p>
+<p><span class="math display">\[\hat{\mu}=13.21 \pm 0.24\]</span>
+También significa que, en la estimación, confiamos en las unidades pero no tanto en los lugares decimales.</p>
 <hr />
 <hr />
 </div>
-<div id="distribución-de-probabilidad" class="section level2 hasAnchor" number="5.27">
-<h2><span class="header-section-number">5.27</span> Distribución de probabilidad<a href="variables-aleatorias-discretas.html#distribución-de-probabilidad" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><strong>Definición:</strong></p>
-<p>La función de <strong>distribución de probabilidad</strong> se define como</p>
-<p><span class="math display">\[F(x)=P(X\leq x)=\sum_{x_i\leq x} f(x_i) \]</span></p>
-<p>Esa es la probabilidad acumulada hasta un valor dado <span class="math inline">\(x\)</span></p>
-<p><span class="math inline">\(F(x)\)</span> satisface:</p>
+<div id="estimación-intervalar-4" class="section level2 hasAnchor" number="13.10">
+<h2><span class="header-section-number">13.10</span> Estimación intervalar<a href="estimación-intervalar.html#estimación-intervalar-4" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Para una muestra de 8 observaciones, tenemos una estimación de la media y un intervalo de confianza</p>
+<p><img src="_main_files/figure-html/unnamed-chunk-93-1.png" width="672" /></p>
+<hr />
+<hr />
+</div>
+<div id="estimación-intervalar-5" class="section level2 hasAnchor" number="13.11">
+<h2><span class="header-section-number">13.11</span> Estimación intervalar<a href="estimación-intervalar.html#estimación-intervalar-5" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Cada vez que obtenemos una nueva muestra, las estimaciones cambian. Si realizamos <span class="math inline">\(100\)</span> muestras de tanaño <span class="math inline">\(n\)</span> entonces <span class="math inline">\(95%\)</span> de los intervalos de confianza contendrán <span class="math inline">\(\mu\)</span> (¡no sabemos cuáles!)</p>
+<p><img src="_main_files/figure-html/unnamed-chunk-94-1.png" width="672" /></p>
+</div>
+<div id="estimación-de-intervalos" class="section level2 hasAnchor" number="13.12">
+<h2><span class="header-section-number">13.12</span> Estimación de intervalos<a href="estimación-intervalar.html#estimación-de-intervalos" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Podemos cambiar nuestra confianza de <span class="math inline">\(95\%\)</span> a <span class="math inline">\(99\%\)</span></p>
 <ul>
-<li><span class="math inline">\(0\leq F(x) \leq 1\)</span></li>
-<li>Si <span class="math inline">\(x \leq y\)</span>, entonces <span class="math inline">\(F(x) \leq F(y)\)</span></li>
+<li><p>Habíamos dejado fuera <span class="math inline">\(\alpha=0.05\)</span> de probabilidad, <span class="math inline">\(0.025\)</span> en cada lado.</p></li>
+<li><p>Ahora, podemos dejar fuera <span class="math inline">\(\alpha=0.01\)</span> probabilidad, <span class="math inline">\(0.005\)</span> en cada lado.</p></li>
+</ul>
+<p>Por lo tanto, el intervalo de confianza de <span class="math inline">\(99\%\)</span> es</p>
+<p><span class="math inline">\((l,u) = (\bar{x} - z_{0,005}\frac{\sigma}{\sqrt{n}},\bar{x} + z_{0,005}\frac{\sigma}{\sqrt{n}})\)</span></p>
+<p><span class="math display">\[= (\bar{x} - 2,58\frac{\sigma}{\sqrt{n}},\bar{x} + 2,58\frac{\sigma}{\sqrt{n}})\]</span></p>
+<p>0</p>
+<p><span class="math display">\[\hat{\mu}=\bar{x} \pm 2.58\frac{\sigma}{\sqrt{n}}\]</span>
+Si queremos tener más confianza, ¡necesitamos intervalos de confianza más grandes!</p>
+<p>Para nuestros cables:</p>
+<p><span class="math display">\[\hat{\mu}= 13.21 \pm 0.31\]</span></p>
+<hr />
+<hr />
+</div>
+<div id="interval-estimation" class="section level2 hasAnchor" number="13.13">
+<h2><span class="header-section-number">13.13</span> Interval estimation<a href="estimación-intervalar.html#interval-estimation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><img src="figures/phi.jpg" style="width:100%" style="height:100%"  align="center"></p>
+<hr />
+<hr />
+</div>
+<div id="estimación-intervalar-6" class="section level2 hasAnchor" number="13.14">
+<h2><span class="header-section-number">13.14</span> Estimación intervalar<a href="estimación-intervalar.html#estimación-intervalar-6" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Un material metálico se impacta para medir la energía requerida para cortarlo a una temperatura dada.</p>
+<ul>
+<li><p>Se cortaron diez probetas de acero A238 a 60ºC a las siguientes energías de impacto (J)</p></li>
+<li><p><span class="math inline">\(64.1, 64.7, 64.5, 64.6, 64.5, 64.3, 64.6, 64.8, 64.2, 64.3\)</span></p></li>
+<li><p>Si sabemos que la energía del impacto se distribuye normalmente con <span class="math inline">\(\sigma=1J\)</span> ¿cuál es el IC de <span class="math inline">\(95\%\)</span> para la media de estos datos?</p></li>
 </ul>
 <hr />
 <hr />
 </div>
-<div id="ejemplo-distribución-de-probabilidad" class="section level2 hasAnchor" number="5.28">
-<h2><span class="header-section-number">5.28</span> Ejemplo: distribución de probabilidad<a href="variables-aleatorias-discretas.html#ejemplo-distribución-de-probabilidad" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Para la función de masa de probabilidad:</p>
-<p><span class="math inline">\(f(0)=P(X=0)=1/16\)</span>
-</br><span class="math inline">\(f(1)=P(X=1)=4/16\)</span>
-</br><span class="math inline">\(f(2)=P(X=2)=6/16\)</span>
-</br><span class="math inline">\(f(3)=P(X=3)=4/16\)</span>
-</br><span class="math inline">\(f(4)=P(X=4)=1/16\)</span></p>
-<p>La distribución de probabilidad es:</p>
-<p><span class="math display">\[
-    F(x)=
-\begin{cases}
-    1/16,&amp; \text{if } 0 \leq x &lt; 1\\
-    5/16,&amp; 1\leq x &lt; 2\\
-    11/16,&amp; 2\leq x &lt; 3\\
-    15/16,&amp; 4\leq x &lt; 5\\
-    16/16,&amp;  x \leq 5\\
-\end{cases}
-\]</span></p>
-<p>Para <span class="math inline">\(X \in \mathbb{Z}\)</span></p>
+<div id="ejemplo-15" class="section level2 hasAnchor" number="13.15">
+<h2><span class="header-section-number">13.15</span> Ejemplo<a href="estimación-intervalar.html#ejemplo-15" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Sabemos</p>
+<ul>
+<li><span class="math inline">\(x_i=\{64.1, 64.7, 64.5, 64.6, 64.5, 64.3, 64.6, 64.8, 64.2, 64.3\}\)</span></li>
+<li><span class="math inline">\(X \rightarrow N(\mu, \sigma^2)\)</span></li>
+<li><span class="math inline">\(\sigma=1J\)</span></li>
+<li><span class="math inline">\(\alpha=0.05\)</span></li>
+</ul>
+<p>El intervalo de confianza es entonces</p>
+<p><span class="math display">\[CI=(\bar{x}-1.96 \frac{\sigma}{\sqrt{n}}, \bar{x}+1.96  \frac{\sigma}{\sqrt{n}})\]</span>
+</br><span class="math display">\[=(64.46-1.96 \frac{1}{\sqrt{10}}, 64.46+1.96  \frac{1}{\sqrt{10}})=(63.84,65.08)\]</span></p>
+<p>or</p>
+<p><span class="math display">\[\hat{\mu}=64.46 \pm 0.61\]</span>
+esto nos dice que podemos estar seguros del primer dígito (6), algo seguros del segundo (4) e inseguros de los decimales (46).</p>
+<p>¿Qué pasa si <strong>no conocemos</strong> <span class="math inline">\(\sigma^2\)</span>?</p>
 <hr />
 <hr />
 </div>
-<div id="probability-distribution" class="section level2 hasAnchor" number="5.29">
-<h2><span class="header-section-number">5.29</span> Probability distribution<a href="variables-aleatorias-discretas.html#probability-distribution" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><img src="_main_files/figure-html/unnamed-chunk-38-1.png" width="672" /></p>
+<div id="estadística-t-3" class="section level2 hasAnchor" number="13.16">
+<h2><span class="header-section-number">13.16</span> Estadística T<a href="estimación-intervalar.html#estadística-t-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Cuando</p>
+<ul>
+<li><span class="math inline">\(X\)</span> es normal, y</li>
+<li><span class="math inline">\(\sigma\)</span> es <strong>desconocido</strong></li>
+</ul>
+<p>entonces la estadística estandarizada</p>
+<p><span class="math display">\[T=\frac{\bar{X}-\mu}{\frac{S}{\sqrt{n}}}\]</span></p>
+<p>Sigue una distribución <span class="math inline">\(t\)</span> con <span class="math inline">\(n-1\)</span> grados de libertad, y podemos calcular probabilidades para <span class="math inline">\(\bar{X}\)</span>.</p>
 <hr />
 <hr />
 </div>
-<div id="función-de-probabilidad-y-distribución-de-probabilidad" class="section level2 hasAnchor" number="5.30">
-<h2><span class="header-section-number">5.30</span> Función de probabilidad y Distribución de probabilidad<a href="variables-aleatorias-discretas.html#función-de-probabilidad-y-distribución-de-probabilidad" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Calcule la función de probabilidad de masa de la siguiente distribución de probabilidad:</p>
-<p><span class="math inline">\(F(0)=1/16\)</span>, <span class="math inline">\(F(1)=5/16\)</span>, <span class="math inline">\(F(2)=11/16\)</span>, <span class="math inline">\(F(3)=15/16\)</span>, <span class="math inline">\(F(4)= 16/16\)</span>,</p>
-<p>Trabajemos al revés.</p>
-<p><span class="math inline">\(f(0)=F(0)=1/16\)</span>
-</br><span class="math inline">\(f(1)=F(1)-f(0)=5/32-1/32=4/16\)</span>
-</br><span class="math inline">\(f(2)=F(2)-f(1)-f(0)=F(2)-F(1)=6/16\)</span>
-</br><span class="math inline">\(f(3)=F(3)-f(2)-f(1)-f(0)=F(3)-F(2)=4/16\)</span>
-</br><span class="math inline">\(f(4)=F(4)-F(3)=1/16\)</span></p>
+<div id="estadística-t-4" class="section level2 hasAnchor" number="13.17">
+<h2><span class="header-section-number">13.17</span> Estadística T<a href="estimación-intervalar.html#estadística-t-4" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><img src="_main_files/figure-html/unnamed-chunk-95-1.png" width="672" /></p>
 <hr />
 <hr />
 </div>
-<div id="función-de-probabilidad-y-distribución-de-probabilidad-1" class="section level2 hasAnchor" number="5.31">
-<h2><span class="header-section-number">5.31</span> Función de probabilidad y Distribución de probabilidad<a href="variables-aleatorias-discretas.html#función-de-probabilidad-y-distribución-de-probabilidad-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>La distribución de probabilidad es otra forma de especificar la probabilidad de una variable aleatoria.</p>
-<p><span class="math display">\[f(x_i)=F(x_i)-F(x_{i-1})\]</span></p>
-<p>con</p>
-<p><span class="math display">\[f(x_1)=F(x_1)\]</span></p>
-<p>para <span class="math inline">\(X\)</span> tomando valores en <span class="math inline">\(x_1 \leq x_2 \leq ... \leq x_n\)</span></p>
+<div id="estadística-t-5" class="section level2 hasAnchor" number="13.18">
+<h2><span class="header-section-number">13.18</span> Estadística T<a href="estimación-intervalar.html#estadística-t-5" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Para calcular el margen de error <span class="math inline">\(m\)</span> al <span class="math inline">\(95\%\)</span> cuando</p>
+<ul>
+<li><span class="math inline">\(X\)</span> normal y</li>
+<li><span class="math inline">\(\sigma^2\)</span> es desconocido</li>
+</ul>
+<p>Usamos la distribución <span class="math inline">\(t\)</span></p>
+<p><span class="math inline">\(P(\mu-m \leq \bar{X} \leq\mu + m)\)</span>
+<span class="math display">\[=P(-\frac{m}{s/\sqrt{n}} \leq T \leq\frac{m}{s/\sqrt{n}})=0.95\]</span></p>
+<p><span class="math display">\[m=t_{0.025, n-1} \frac{s}{\sqrt{n}}\]</span>
+donde <span class="math inline">\(t_{0.025, n-1}\)</span> es el valor <span class="math inline">\(T\)</span> que deja <span class="math inline">\(2.5\%\)</span> de probabilidad al lado derecho de la distribución <span class="math inline">\(t\)</span> con <span class="math inline">\(n-1\)</span> grados de libertad (<span class="math inline">\(0.025\)</span>-cuantil)</p>
+<p>el intervalo de confianza al <span class="math inline">\(95\%\)</span> es entonces</p>
+<p><span class="math display">\[(l,u)=(\bar{x}-t_{0.025, n-1} \frac{s}{\sqrt{n}}, \bar{x}+t_{0.025, n-1} \frac{s}{\sqrt{n}})\]</span>
+en R: <span class="math inline">\(t_{0.025, n-1}\)</span><code>=qt(1-0.025, n-1)</code></p>
 <hr />
 <hr />
 </div>
-<div id="cuantiles" class="section level2 hasAnchor" number="5.32">
-<h2><span class="header-section-number">5.32</span> Cuantiles<a href="variables-aleatorias-discretas.html#cuantiles" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Definimos el <strong>q-cuantil</strong> como el valor <span class="math inline">\(x_{p}\)</span> <strong>bajo</strong> el cual hemos acumulado q*100% de la probabilidad</p>
-<p><span class="math display">\[q=\sum_{i=1}^p f(x_i) = F (x_p)\]</span></p>
+<div id="ejemplo-16" class="section level2 hasAnchor" number="13.19">
+<h2><span class="header-section-number">13.19</span> Ejemplo<a href="estimación-intervalar.html#ejemplo-16" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Un material metálico se impacta para medir la energía requerida para cortarlo a una temperatura dada.</p>
 <ul>
-<li>La <strong>mediana</strong> es valor <span class="math inline">\(x_m\)</span> tal que <span class="math inline">\(q=0.5\)</span></li>
+<li><p>Se cortaron diez probetas de acero A238 a 60ºC a las siguientes energías de impacto (J)</p></li>
+<li><p><span class="math inline">\(64.1, 64.7, 64.5, 64.6, 64.5, 64.3, 64.6, 64.8, 64.2, 64.3\)</span></p></li>
+<li><p>Si sabemos que la energía del impacto se distribuye normalmente pero <strong>no sabemos</strong> la varianza, ¿cuál es el IC de <span class="math inline">\(95\%\)</span> para la media de estos datos?</p></li>
 </ul>
-<p><span class="math display">\[F(x_{m})=0.5\]</span></p>
-<ul>
-<li>El cuantil <span class="math inline">\(0.05\)</span> es el valor <span class="math inline">\(x_{r}\)</span> tal que <span class="math inline">\(q=0.05\)</span></li>
-</ul>
-<p><span class="math display">\[F(x_{r})=0.05\]</span></p>
-<ul>
-<li>El cuantil <span class="math inline">\(0,25\)</span> es el primer <strong>cuartil</strong> o sea el valor <span class="math inline">\(x_{s}\)</span> tal que <span class="math inline">\(q=0,25\)</span></li>
-</ul>
-<p><span class="math display">\[F(x_{s})=0,25\]</span></p>
 <hr />
 <hr />
 </div>
-<div id="resumen" class="section level2 hasAnchor" number="5.33">
-<h2><span class="header-section-number">5.33</span> Resumen<a href="variables-aleatorias-discretas.html#resumen" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<table>
-<colgroup>
-<col width="43%" />
-<col width="30%" />
-<col width="26%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th align="center">nombres de cantidades</th>
-<th align="center">modelo (no observado)</th>
-<th align="center">datos (observados)</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="center">función de masa de probabilidad // frecuencia relativa</td>
-<td align="center"><span class="math inline">\(f(x_i)=P(X=x_i)\)</span></td>
-<td align="center"><span class="math inline">\(f_i=\frac{n_i}{N}\)</span></td>
-</tr>
-<tr class="even">
-<td align="center">distribución de probabilidad // frecuencia relativa acumulada</td>
-<td align="center"><span class="math inline">\(F(x_i)=P(X \leq x_i)\)</span></td>
-<td align="center"><span class="math inline">\(F_i=\sum_{k\leq i} f_k\)</span></td>
-</tr>
-<tr class="odd">
-<td align="center">media // promedio</td>
-<td align="center"><span class="math inline">\(\mu=E(X)=\sum_{i=1}^M x_i f(x_i)\)</span></td>
-<td align="center"><span class="math inline">\(\bar{x}=\sum_{j=1}^N x_j/N\)</span></td>
-</tr>
-<tr class="even">
-<td align="center">varianza // varianza de la muestra</td>
-<td align="center"><span class="math inline">\(\sigma^2=V(X)=\sum_{i=1}^M (x_i-\mu)^2 f(x_i)\)</span></td>
-<td align="center"><span class="math inline">\(s^2=\sum_{j=1}^N (x_j-\bar{x})^2/(N-1)\)</span></td>
-</tr>
-<tr class="odd">
-<td align="center">desviación estándar // muestra sd</td>
-<td align="center"><span class="math inline">\(\sigma=\sqrt{V(X)}\)</span></td>
-<td align="center"><span class="math inline">\(s\)</span></td>
-</tr>
-<tr class="even">
-<td align="center">varianza sobre el origen // 2º momento muestral</td>
-<td align="center"><span class="math inline">\(E(X^2)=\sum_{i=1}^M x_i^2 f(x_i)\)</span></td>
-<td align="center"><span class="math inline">\(m_2= \sum_{j=1}^N x_j^2/n\)</span></td>
-</tr>
-</tbody>
-</table>
-<p>Tenga en cuenta que:</p>
+<div id="ejemplo-17" class="section level2 hasAnchor" number="13.20">
+<h2><span class="header-section-number">13.20</span> Ejemplo<a href="estimación-intervalar.html#ejemplo-17" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ul>
-<li><span class="math inline">\(i=1...M\)</span> es un <strong>resultado</strong> de la variable aleatoria <span class="math inline">\(X\)</span>.</li>
-<li><span class="math inline">\(j=1...N\)</span> es una <strong>observación</strong> de la variable aleatoria <span class="math inline">\(X\)</span>.</li>
+<li><span class="math inline">\(\bar{x}=64.46\)</span></li>
+<li><span class="math inline">\(s=0.227\)</span></li>
+<li><span class="math inline">\(\alpha=0.05\)</span></li>
+<li><span class="math inline">\(t_{0.025,9}=2.26\)</span> obtained from <span class="math inline">\(P(T \leq t_{0.025,9})=0.975\)</span>; <code>qt(1-0.025, 9)</code></li>
 </ul>
-<p>Propiedades:</p>
+<p>El intervalo de confianza es entonces</p>
+<p><span class="math inline">\(CI=(\bar{x}- t_{0.025,9}\frac{s}{\sqrt{n}},\bar{x}+t_{0.025,9} \frac{s}{\sqrt{n}})\)</span></p>
+<p><span class="math display">\[=(64.46-2.26 \frac{0.227}{\sqrt{10}},64.46+2.26 \frac{0.227}{\sqrt{10}})\]</span> <span class="math display">\[=(64.29,64.62)\]</span></p>
+<p>habíamos visto un intervalo mas grande <span class="math inline">\(CI=(63.84,65.08)\)</span> cuando <span class="math inline">\(\sigma=1\)</span>. Los datos entonces sugieren que <span class="math inline">\(\sigma&lt;1\)</span>.</p>
+<p>R: <code>t.test(c(64.1,64.7,64.5,64.6,64.5,64.3,64.6,64.8,64.2,64.3))</code></p>
+<hr />
+<hr />
+</div>
+<div id="ci-con-clt" class="section level2 hasAnchor" number="13.21">
+<h2><span class="header-section-number">13.21</span> CI con CLT<a href="estimación-intervalar.html#ci-con-clt" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Si</p>
 <ul>
-<li><span class="math inline">\(\sum_{i=1...N} f(x_i)=1\)</span></li>
-<li><span class="math inline">\(f(x_i)=F(x_i)-F(x_{i-1})\)</span></li>
-<li><span class="math inline">\(E(a\times X +b)= a\times E(X) +b\)</span>; para los escalares <span class="math inline">\(a\)</span> y <span class="math inline">\(b\)</span>.</li>
-<li><span class="math inline">\(V(a\times X +b)= a^2\times V(X)\)</span></li>
-<li><span class="math inline">\(E(X^2)=V(X)+E(X)^2\)</span></li>
+<li><strong>no sabemos</strong> cómo se distribuye <span class="math inline">\(X\)</span>, pero</li>
+<li>tomamos una muestra grande de <span class="math inline">\(n\ge 30\)</span></li>
 </ul>
+<p>Entonces podemos usar el CLT para encontrar los intervalos de confianza.</p>
+<p>El intervalo de confianza a <span class="math inline">\(95\%\)</span> es entonces</p>
+<p><span class="math display">\[(l,u)=(\bar{x}-z_{0.025} \frac{s}{\sqrt{n}}, \bar{x}+z_{0.025} \frac{s}{\sqrt{n}})\]</span>
+dado que <span class="math inline">\(t_{0.025, n-1} \rightarrow z_{0.025}\)</span> para <span class="math inline">\(n \rightarrow \infty\)</span>, entonces también está bien usar la distribución T en este caso.</p>
+<p>Nota: Esta es la razón por la que R solo implementa <code>t.test</code> y no <code>z.test</code> en las funciones base para calcular CI.</p>
+<hr />
+<hr />
+<p><strong>Ejemplo:</strong></p>
+<p>Consideremos un experimento en el que medimos la concentración en sangre de un fármaco después de 10 horas de administración en <span class="math inline">\(30\)</span> pacientes. Obtenemos los siguientes resultados:</p>
+<pre><code>##  [1] 0.42172863 0.28830514 0.66452743 0.01578868 0.02810549 0.15825061
+##  [7] 0.15711365 0.07263340 1.36311823 0.01457672 0.50241503 0.24010736
+## [13] 0.14050681 0.18855892 0.09414202 0.42489306 0.78160177 0.23938021
+## [19] 0.29546742 2.02050586 0.42157487 0.48293561 0.74263790 0.67402224
+## [25] 0.58426449 0.80292617 0.74837143 0.78532627 0.01588387 0.29892485</code></pre>
+<ul>
+<li><p>el promedio es <span class="math inline">\(\bar{x}=0.4556198\)</span></p></li>
+<li><p>la desviación estándar es <span class="math inline">\(s=0.4335571\)</span></p></li>
+<li><p>el histograma de los resultados es:</p></li>
+</ul>
+<p><img src="_main_files/figure-html/unnamed-chunk-97-1.png" width="672" /></p>
+<hr />
+<hr />
+</div>
+<div id="teorema-del-límite-central-4" class="section level2 hasAnchor" number="13.22">
+<h2><span class="header-section-number">13.22</span> Teorema del límite central<a href="estimación-intervalar.html#teorema-del-límite-central-4" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><strong>Asumimos</strong> que <span class="math inline">\(X \rightarrow exp(\lambda=2)\)</span></p>
+<p>Con media y varianza:</p>
+<ul>
+<li><span class="math inline">\(E(X)=\frac{1}{\lambda}\)</span></li>
+<li><span class="math inline">\(V(X)=\frac{1}{\lambda^2}\)</span></li>
+</ul>
+<p>¿Cuál es el CI para la media <span class="math inline">\(E(X)=\mu\)</span>?</p>
+<ul>
+<li>Usamos un IC del 95% para estimarlo</li>
+</ul>
+<p>Como <span class="math inline">\(n \geq 30\)</span> podemos usar el CLT</p>
+<p><span class="math display">\[\bar{X} \sim_{aprox} N(\lambda, \frac{1}{n\lambda^2})\]</span></p>
+<p>y el intervalo de confianza de <span class="math inline">\(95\%\)</span> es entonces</p>
+<p><span class="math display">\[(l,u)=(\bar{x}-z_{0.025} \frac{s}{\sqrt{n}}, \bar{x}+z_{0.025} \frac{s}{\sqrt {n}})\]</span></p>
+<p><span class="math inline">\((l,u)=(0.4556198-1.96\frac{0.4335571}{\sqrt{30}}, 0.4556198+1.96\frac{0.4335571}{\sqrt{30}})\)</span></p>
+<p><span class="math display">\[=(0.300,0.610)\]</span>
+o</p>
+<p><span class="math display">\[\hat{\mu}=0.45 \pm 0.15\]</span></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-98-1.png" width="672" /></p>
+<hr />
+<hr />
+</div>
+<div id="estimación-de-parámetros" class="section level2 hasAnchor" number="13.23">
+<h2><span class="header-section-number">13.23</span> Estimación de parámetros<a href="estimación-intervalar.html#estimación-de-parámetros" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Como <span class="math inline">\(E(X)=\mu=\frac{1}{\lambda}\)</span> entonces</p>
+<p><span class="math display">\[\hat{\lambda}=\frac{1}{\hat{\mu}}=2.194812\]</span></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-99-1.png" width="672" />
+o su IC de <span class="math inline">\(95\%\)</span>:</p>
+<p><span class="math display">\[\hat{\lambda}= (1.66, 3.33) \]</span></p>
+<hr />
+<hr />
+</div>
+<div id="estimación-intervalar-para-proporciones" class="section level2 hasAnchor" number="13.24">
+<h2><span class="header-section-number">13.24</span> Estimación intervalar para proporciones<a href="estimación-intervalar.html#estimación-intervalar-para-proporciones" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Se seleccionó una muestra aleatoria de <span class="math inline">\(400\)</span> pacientes para probar una nueva vacuna contra el virus de la influenza, después de <span class="math inline">\(6\)</span> meses de vacunación, <span class="math inline">\(136\)</span> estaban enfermos.</p>
+<ul>
+<li>¿Cuál es la eficacia esperada de la vacuna?</li>
+</ul>
+<p>Tenemos <span class="math inline">\(136\)</span> fallas en <span class="math inline">\(400\)</span> ensayos, cada ensayo es un
+juicio de Bernoulli</p>
+<p><span class="math display">\[X \rightarrow Bernoulli(p)\]</span>
+con:</p>
+<ul>
+<li>la probabilidad <span class="math inline">\(p\)</span> de fallo para una persona (<span class="math inline">\(x=1\)</span>)</li>
+<li>media <span class="math inline">\(E (X) = p\)</span></li>
+<li>varianza <span class="math inline">\(V (X) = p (1-p)\)</span></li>
+</ul>
+<p>Queremos tener un IC de <span class="math inline">\(95\%\)</span> para <span class="math inline">\(p\)</span>.</p>
+<hr />
+<hr />
+</div>
+<div id="estimación-intervalar-para-proporciones-1" class="section level2 hasAnchor" number="13.25">
+<h2><span class="header-section-number">13.25</span> Estimación intervalar para proporciones<a href="estimación-intervalar.html#estimación-intervalar-para-proporciones-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Si la distribución de un experimento aleatorio es</p>
+<p><span class="math display">\[X \rightarrow Bernoulli (p)\]</span>
+Entonces <span class="math inline">\(\bar{X}\)</span> tiene</p>
+<ul>
+<li>media <span class="math inline">\(E(\bar{X})=E(X)=p\)</span> (estimador insesgado de <span class="math inline">\(p\)</span>)</li>
+<li>varianza <span class="math inline">\(V(\bar{X})=\frac{V(X)}{n}=\frac{p(p-1)}{n}\)</span> (estimador consistente de <span class="math inline">\(p\)</span>)</li>
+</ul>
+<p><span class="math display">\[\hat{p}=\bar{x}\]</span></p>
+<hr />
+<hr />
+</div>
+<div id="estimación-intervalar-para-proporciones-2" class="section level2 hasAnchor" number="13.26">
+<h2><span class="header-section-number">13.26</span> Estimación intervalar para proporciones<a href="estimación-intervalar.html#estimación-intervalar-para-proporciones-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Cuando <span class="math inline">\(\hat{p}n&gt;5\)</span> y <span class="math inline">\((\hat{p}-1)n&gt;5\)</span></p>
+<ul>
+<li>La <strong>estadística estandarizada</strong> de <span class="math inline">\(\bar{X}\)</span> se puede aproximar mediante una distribución estándar</li>
+</ul>
+<p><span class="math display">\[Z=\frac{\bar{X}-E(\bar{X})}{\sqrt{V(\bar{X})}}= \frac{\bar{X}-p}{\big[\frac{p(1-p)}{n} \big]^{1/2}}\rightarrow N(0,1)\]</span></p>
+<ul>
+<li>El intervalo de CI de <span class="math inline">\(95\%\)</span> de <span class="math inline">\(p\)</span> es:</li>
+</ul>
+<p><span class="math display">\[CI=(l,u)=(\bar{x}-z_{0.025}\big[\frac{\bar{x}(1-\bar{x})}{n} \big]^{ 1/2}, \bar{x}+z_{0.025}\big[\frac{\bar{x}(1-\bar{x})}{n} \big]^{1/2})\]</span>
+Donde estimamos la varianza de Bernoulli <span class="math inline">\(p(1-p)\)</span> por <span class="math inline">\(\bar{x}(1-\bar{x})\)</span>.</p>
+<hr />
+<hr />
+</div>
+<div id="estimación-intervalar-para-proporciones-3" class="section level2 hasAnchor" number="13.27">
+<h2><span class="header-section-number">13.27</span> Estimación intervalar para proporciones<a href="estimación-intervalar.html#estimación-intervalar-para-proporciones-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>En nuestro caso, estamos contando fallos en vacunas <span class="math inline">\(136\)</span> en <span class="math inline">\(400\)</span> ensayos</p>
+<p>sabemos</p>
+<ul>
+<li><span class="math inline">\(\bar{x}=134/400=0.34\)</span></li>
+<li><span class="math inline">\(z_{0.025}=1.96\)</span></li>
+</ul>
+<p><span class="math inline">\(CI=(l,u)=(\bar{x}-1,96 \big[\frac{\bar{x}(1-\bar{x})}{n} \big]^{1/2} , \bar{x}+1,96 \big[\frac{\bar{x}(1-\bar{x})}{n} \big]^{1/2})\)</span></p>
+<p><span class="math display">\[=(0.29,0.39)\]</span></p>
+<p>La probabilidad de fracaso de la vacuna es</p>
+<p><span class="math display">\[\hat{p}=0.34 \pm 0.05\]</span></p>
+<p>Nota: Las encuestas de intención de voto (ensayo de Bernoulli) en una muestra de <span class="math inline">\(n\)</span> individuos reportan este tipo de estimación con su margen de error. No significa que el <strong>valor verdadero</strong> de <span class="math inline">\(p\)</span> esté dentro de este intervalo con una probabilidad de <span class="math inline">\(95\%\)</span>.</p>
+<hr />
+<hr />
+</div>
+<div id="estimación-intervalar-para-la-varianza" class="section level2 hasAnchor" number="13.28">
+<h2><span class="header-section-number">13.28</span> Estimación intervalar para la varianza<a href="estimación-intervalar.html#estimación-intervalar-para-la-varianza" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Un material metálico se impacta para medir la energía requerida para cortarlo a una temperatura dada.</p>
+<ul>
+<li><p>Se cortaron diez probetas de acero A238 a 60ºC a las siguientes energías de impacto (J)</p></li>
+<li><p><span class="math inline">\(64.1, 64.7, 64.5, 64.6, 64.5, 64.3, 64.6, 64.8, 64.2, 64.3\)</span></p></li>
+</ul>
+<p>Sabemos que la estimación de <span class="math inline">\(s^2=0.227^2=0.051\)</span>, pero ¿cuál es su intervalo de confianza?</p>
+<hr />
+<hr />
+</div>
+<div id="estimación-intervalar-para-la-varianza-1" class="section level2 hasAnchor" number="13.29">
+<h2><span class="header-section-number">13.29</span> Estimación intervalar para la varianza<a href="estimación-intervalar.html#estimación-intervalar-para-la-varianza-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Si</p>
+<ul>
+<li><span class="math inline">\(X\)</span> es <strong>normal</strong></li>
+</ul>
+<p>entonces</p>
+<p><span class="math display">\[W=\frac{S^2(n-1)}{\sigma^2}\]</span>
+Captura la proporción en el error de <span class="math inline">\(\sigma^2\)</span> y
+sigue una distribución <span class="math inline">\(\chi^2\)</span> con <span class="math inline">\(n-1\)</span> grados de libertad</p>
+<p><span class="math display">\[\frac{S^2}{\sigma^2}(n-1)\rightarrow \chi^2_{n-1}\]</span></p>
+<ul>
+<li>Buscamos el intervalo de confianza de <span class="math inline">\(\sigma^2\)</span> con confianza <span class="math inline">\(95\%\)</span> <span class="math inline">\((L,U)\)</span> tal que <span class="math display">\[P(L \leq \sigma^2 \leq U)=0.95\]</span></li>
+</ul>
+<p>Podemos usar el <span class="math inline">\(\chi^2\)</span> para determinar el <span class="math inline">\(95\%\)</span> de la distribución alrededor de <span class="math inline">\(W\)</span></p>
+<p><span class="math display">\[P(\chi^2_{0.975,n-1} \leq W \leq \chi^2_{0.025,n-1})=0.95\]</span></p>
+<hr />
+<hr />
+</div>
+<div id="chi2-statistic" class="section level2 hasAnchor" number="13.30">
+<h2><span class="header-section-number">13.30</span> <span class="math inline">\(\chi^2\)</span>-statistic<a href="estimación-intervalar.html#chi2-statistic" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><img src="_main_files/figure-html/unnamed-chunk-100-1.png" width="672" /></p>
+<hr />
+<hr />
+</div>
+<div id="estimación-intervalar-para-la-varianza-2" class="section level2 hasAnchor" number="13.31">
+<h2><span class="header-section-number">13.31</span> Estimación intervalar para la varianza<a href="estimación-intervalar.html#estimación-intervalar-para-la-varianza-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Reemplazando el valor de <span class="math inline">\(W\)</span></p>
+<p><span class="math display">\[P(\chi^2_{0.975,n-1} \leq \frac{S^2}{\sigma^2}(n-1) \leq \chi^2_{0.025,n-1})= 0.95\]</span></p>
+<p>y resolviendo para <span class="math inline">\(\sigma^2\)</span></p>
+<p><span class="math display">\[P(\frac{S^2 (n-1)}{\chi^2_{0.025,n-1}}\leq \sigma^2 \leq \frac{S^2(n-1)}{ \chi^2_{0.975,n-1}})=0.95\]</span></p>
+<p>El intervalo <strong>aleatorio</strong> con una confianza al <span class="math inline">\(95\%\)</span> es</p>
+<p><span class="math display">\[(L,U) = (\frac{S^2 (n-1)}{\chi^2_{0.025,n-1}},\frac{S^2(n-1)}{\chi ^2_{0.975,n-1}})\]</span></p>
+<p>y el intervalo de confianza <strong>observado</strong> al <span class="math inline">\(95\%\)</span> (minúscula)</p>
+<p><span class="math display">\[(l,u) = (\frac{s^2 (n-1)}{\chi^2_{0.025,n-1}},\frac{s^2(n-1)}{\chi ^2_{0.975,n-1}})\]</span></p>
+<hr />
+<hr />
+</div>
+<div id="estimación-intervalar-para-la-varianza-3" class="section level2 hasAnchor" number="13.32">
+<h2><span class="header-section-number">13.32</span> Estimación intervalar para la varianza<a href="estimación-intervalar.html#estimación-intervalar-para-la-varianza-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><span class="math inline">\(\chi^2_{0.975,n-1}=F^{-1}(0.025)\)</span>
+</br>para <span class="math inline">\(n=10\)</span> o <span class="math inline">\(df=n-1=9\)</span></p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="estimación-intervalar.html#cb29-1" aria-hidden="true" tabindex="-1"></a>chi0<span class="fl">.975</span> <span class="ot">&lt;-</span> <span class="fu">qchisq</span>(<span class="fl">0.025</span>, <span class="at">df=</span><span class="dv">9</span>)</span>
+<span id="cb29-2"><a href="estimación-intervalar.html#cb29-2" aria-hidden="true" tabindex="-1"></a>chi0<span class="fl">.975</span></span></code></pre></div>
+<pre><code>[1] 2.700389</code></pre>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="estimación-intervalar.html#cb31-1" aria-hidden="true" tabindex="-1"></a>chi0<span class="fl">.025</span> <span class="ot">&lt;-</span> <span class="fu">qchisq</span>(<span class="fl">0.975</span>, <span class="at">df=</span><span class="dv">9</span>)</span>
+<span id="cb31-2"><a href="estimación-intervalar.html#cb31-2" aria-hidden="true" tabindex="-1"></a>chi0<span class="fl">.025</span></span></code></pre></div>
+<pre><code>[1] 19.02277</code></pre>
+<hr />
+<hr />
+</div>
+<div id="estimación-intervalar-7" class="section level2 hasAnchor" number="13.33">
+<h2><span class="header-section-number">13.33</span> Estimación intervalar<a href="estimación-intervalar.html#estimación-intervalar-7" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>En nuestro ejemplo</p>
+<ul>
+<li><span class="math inline">\(s=0.227\)</span></li>
+<li><span class="math inline">\(n=10\)</span></li>
+</ul>
+<p><span class="math inline">\(\hat{\sigma}^2=(l,u) = (\frac{s^2 (n-1)}{\chi^2_{0.025,n-1}},\frac{s^2( n-1)}{\chi^2_{0.975,n-1}})\)</span></p>
+<p><span class="math display">\[= (\frac{0.227^2 (10-1)}{19.02277},\frac{0.227^2(10-1)}{2.700389})=(0.02,0.17)\]</span></p>
+<p>Según los datos, <span class="math inline">\(\sigma^2 \neq 1\)</span> con una confianza de <span class="math inline">\(95\%\)</span>.</p>
+<ul>
+<li>¿Habíamos cometido un error al considerar <span class="math inline">\(\sigma=1\)</span> cuando calculamos el primer IC para estos datos?</li>
+</ul>
+<p>en R: <code>library(Ecfun);
+confint.var(0.05, 9)</code></p>
+<hr />
+<hr />
+</div>
+<div id="estimación-intervalar-8" class="section level2 hasAnchor" number="13.34">
+<h2><span class="header-section-number">13.34</span> Estimación intervalar<a href="estimación-intervalar.html#estimación-intervalar-8" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>El intervalo para la varianza <strong>no es simétrico</strong> y no podemos formularlo como un margen de error estimado de <span class="math inline">\(\pm\)</span>.</p>
+<p><img src="_main_files/figure-html/unnamed-chunk-101-1.png" width="672" /></p>
 
 </div>
 </div>
@@ -1284,8 +1035,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="probabilidad-condicional.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="variables-aleatorias-continuas.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="máxima-verosimilitud.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="ejercicios.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -1316,7 +1067,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/USERNAME/REPO/edit/BRANCH/04-DiscreteRandomVariables.Rmd",
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/13-InervalEstimation.Rmd",
 "text": "Edit"
 },
 "history": {

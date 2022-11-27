@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 2 Data description | Stats theory (SDA)</title>
+  <title>Chapter 13 Interval estimation | Stats theory (SDA)</title>
   <meta name="description" content="This are slides for the Stats theory of the BIST master" />
   <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 2 Data description | Stats theory (SDA)" />
+  <meta property="og:title" content="Chapter 13 Interval estimation | Stats theory (SDA)" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="alejandro-isglobal/master" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 2 Data description | Stats theory (SDA)" />
+  <meta name="twitter:title" content="Chapter 13 Interval estimation | Stats theory (SDA)" />
   
   <meta name="twitter:description" content="This are slides for the Stats theory of the BIST master" />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="index.html"/>
-<link rel="next" href="probability.html"/>
+<link rel="prev" href="maximum-likelihood.html"/>
+<link rel="next" href="exercises.html"/>
 <script src="libs/header-attrs-2.12/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -570,462 +570,466 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="data-description" class="section level1 hasAnchor" number="2">
-<h1><span class="header-section-number">Chapter 2</span> Data description<a href="data-description.html#data-description" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<div id="objective" class="section level2 hasAnchor" number="2.1">
-<h2><span class="header-section-number">2.1</span> Objective<a href="data-description.html#objective" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="interval-estimation" class="section level1 hasAnchor" number="13">
+<h1><span class="header-section-number">Chapter 13</span> Interval estimation<a href="interval-estimation.html#interval-estimation" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="objective-11" class="section level2 hasAnchor" number="13.1">
+<h2><span class="header-section-number">13.1</span> Objective<a href="interval-estimation.html#objective-11" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ul>
-<li>Data: discrete, continuous</li>
-<li>Summarizing data in tables and figures</li>
-</ul>
-</div>
-<div id="statistics" class="section level2 hasAnchor" number="2.2">
-<h2><span class="header-section-number">2.2</span> Statistics<a href="data-description.html#statistics" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<ul>
-<li><p>Solve problems in a systematic way (science, engineering and technology)</p></li>
-<li><p>Modern humans use a general <strong>method</strong> historically developed for thousands of years! … and still under development.</p></li>
-<li><p>It has three main components: observation, logic, and generation of new knowledge</p></li>
+<li>Interval estimation for the mean and the proportion</li>
+<li>Interval estimation for the variance</li>
 </ul>
 <hr />
 <hr />
 </div>
-<div id="scientific-method" class="section level2 hasAnchor" number="2.3">
-<h2><span class="header-section-number">2.3</span> Scientific method<a href="data-description.html#scientific-method" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><img src="figures/stats.jpg" style="width:75%"  align="center"></p>
+<div id="average-or-sample-mean-1" class="section level2 hasAnchor" number="13.2">
+<h2><span class="header-section-number">13.2</span> Average or sample mean<a href="interval-estimation.html#average-or-sample-mean-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><strong>Definition</strong></p>
+<p>The sample mean (or average) of a <strong>random sample</strong> of size <span class="math inline">\(n\)</span> is</p>
+<p><span class="math display">\[\bar{X}=\frac{1}{n}\sum_{i=1}^n X_i\]</span></p>
+<p>Because each random experiment is independent, the mean and variance of <span class="math inline">\(\bar{X}\)</span> are</p>
+<ul>
+<li><span class="math inline">\(E(\bar{X})=E(X)\)</span></li>
+<li><span class="math inline">\(V(\bar{X})=\frac{V(X)}{n}\)</span></li>
+<li>We call <span class="math inline">\(se=\sqrt{V(\bar{X})}\)</span> the standard error</li>
+</ul>
+<p><span class="math inline">\(\bar{X}\)</span> is therefore</p>
+<ul>
+<li><p>an <strong>estimator</strong> of <span class="math inline">\(E(X)\)</span>, that is <span class="math inline">\(\mu\)</span>.</p></li>
+<li><p>a random variable</p></li>
+</ul>
 <hr />
 <hr />
 </div>
-<div id="outcome" class="section level2 hasAnchor" number="2.4">
-<h2><span class="header-section-number">2.4</span> Outcome<a href="data-description.html#outcome" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><strong>Observation</strong> or <em>Realization</em></p>
+<div id="inference-on-the-average-1" class="section level2 hasAnchor" number="13.3">
+<h2><span class="header-section-number">13.3</span> Inference on the average<a href="interval-estimation.html#inference-on-the-average-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><strong>Example:</strong></p>
+<p>You perform <span class="math inline">\(8\)</span> random experiments: Load a cable until it breaks and record the breaking load. These are the results.</p>
+<pre><code>## [1] 13.34642 13.32620 13.01459 13.10811 12.96999 13.55309 13.75557 12.62747</code></pre>
+<p>If we <strong>know</strong> that our cables truly distribute as <span class="math display">\[X \rightarrow N(\mu=13, \sigma^2=0.35^2)\]</span> then</p>
+<p><span class="math display">\[\bar{X} \rightarrow N(13, \frac{0.35^2}{8})\]</span></p>
 <ul>
-<li>an <strong>observation</strong> is the acquisition of a number or a characteristic from an experiment</li>
+<li><span class="math inline">\(E(\bar{X})=13\)</span></li>
+<li><span class="math inline">\(V(\bar{X})=\frac{0.35^2}{8}=0.01530169\)</span></li>
+<li><span class="math inline">\(se=\frac{0.35}{\sqrt{8}}=0.1237\)</span></li>
 </ul>
-<p>… 1 0 0 1 0 <strong>1</strong> 0 1 1 … (the number in bold is an observation in a repetition of the experiment)</p>
-<p><strong>Outcome</strong></p>
-<ul>
-<li>An <strong>outcome</strong> is a possible observation that is the result of an experiment.</li>
-</ul>
-<p><strong>1</strong> is an outcome, <strong>0</strong> is the other outcome</p>
+<p>then the <strong>observed error</strong> in the estimation is the difference</p>
+<p><span class="math display">\[\bar{x}_{stock}-\mu=13.21-13=0.21\]</span></p>
 <hr />
 <hr />
 </div>
-<div id="types-of-outcome" class="section level2 hasAnchor" number="2.5">
-<h2><span class="header-section-number">2.5</span> Types of outcome<a href="data-description.html#types-of-outcome" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><br/><br/></p>
+<div id="margin-of-error-2" class="section level2 hasAnchor" number="13.4">
+<h2><span class="header-section-number">13.4</span> Margin of error<a href="interval-estimation.html#margin-of-error-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>When deciding whether the <strong>error</strong> in estimation: <span class="math inline">\(\bar{X}-\mu\)</span> is large or not we usually compare it with a predefined tolerance.</p>
 <ul>
-<li><strong>Categorical</strong>: If the result of an experiment can only take discrete values (number of car pieces produced per hour, number of leukocytes in blood)</li>
+<li>The <strong>margin of error</strong> at <span class="math inline">\(5\%\)</span> level is the distance <span class="math inline">\(m\)</span> such that distribution of <span class="math inline">\(\bar{X}\)</span> captures <span class="math inline">\(95\%\)</span> of the estimations:</li>
 </ul>
-<p><br/><br/></p>
+<p><span class="math display">\[P(-m \leq \bar{X}-\mu \leq m)=P(\mu-m \leq \bar{X} \leq\mu + m)=0.95\]</span></p>
 <ul>
-<li><strong>Continuous</strong>: If the result of an experiment can only take continuous values (battery state of charge, engine temperature).</li>
+<li>or that <span class="math inline">\(95\%\)</span> of the values of <span class="math inline">\(\bar{X}\)</span> are a distance <span class="math inline">\(m\)</span> from <span class="math inline">\(\mu\)</span>.</li>
 </ul>
-<p><br/><br/></p>
+<p>In our example, we assume that <span class="math inline">\(\bar{X}\)</span> is normally distributed then</p>
+<p><span class="math display">\[m=z_{0.025} \frac{\sigma}{\sqrt{n}}=1.96\times se=1.96\frac{0.35}{\sqrt{8}}=0.24\]</span></p>
 <hr />
 <hr />
 </div>
-<div id="random-experiments" class="section level2 hasAnchor" number="2.6">
-<h2><span class="header-section-number">2.6</span> Random experiments<a href="data-description.html#random-experiments" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><strong>Definition:</strong></p>
-<p>A <strong>random experiment</strong> is an experiment that gives different outcomes when repeated in the same manner.</p>
-<p><br/><br/></p>
-<p><strong>Examples:</strong></p>
+<div id="outcome-probability-density-vs-sample-mean-probability-density" class="section level2 hasAnchor" number="13.5">
+<h2><span class="header-section-number">13.5</span> Outcome probability density Vs sample mean probability density<a href="interval-estimation.html#outcome-probability-density-vs-sample-mean-probability-density" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><img src="_main_files/figure-html/unnamed-chunk-87-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-88-1.png" width="672" /></p>
+<hr />
+<hr />
+</div>
+<div id="real-life" class="section level2 hasAnchor" number="13.6">
+<h2><span class="header-section-number">13.6</span> Real life<a href="interval-estimation.html#real-life" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><img src="_main_files/figure-html/unnamed-chunk-89-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-90-1.png" width="672" /></p>
+<hr />
+<hr />
+</div>
+<div id="interval-estimation-1" class="section level2 hasAnchor" number="13.7">
+<h2><span class="header-section-number">13.7</span> Interval estimation<a href="interval-estimation.html#interval-estimation-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>From the margin of error equation:</p>
+<p><span class="math display">\[P(-m \leq \bar{X} - \mu \leq  m)=0.95\]</span></p>
+<p>let’s solve for <span class="math inline">\(\mu\)</span> (the real unknown)</p>
+<p><span class="math display">\[P(\bar{X} - m \leq \mu \leq \bar{X} + m)=0.95\]</span></p>
+<p>The left and right limits of the inequality are random variables which motivate the definition for the <strong>random confidence interval at <span class="math inline">\(95\%\)</span></strong></p>
+<p><span class="math display">\[(L,U)=(\bar{X} - m,\bar{X} + m)\]</span></p>
+<p>This interval is a <strong>random variable</strong> and it has by definition a probability of <span class="math inline">\(0.95\)</span> to contain <span class="math inline">\(\mu\)</span>.</p>
+<hr />
+<hr />
+</div>
+<div id="interval-estimation-2" class="section level2 hasAnchor" number="13.8">
+<h2><span class="header-section-number">13.8</span> Interval estimation<a href="interval-estimation.html#interval-estimation-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>When we perform <span class="math inline">\(n\)</span>-random experiments (<span class="math inline">\(n\)</span>-sample) we can calculate <span class="math inline">\(m\)</span> <strong>if</strong></p>
 <ul>
-<li>on the same object (person): temperature, sugar levels.<br />
+<li><span class="math inline">\(X\)</span> is normal</li>
+<li>we know <span class="math inline">\(\sigma^2\)</span>.</li>
+</ul>
+<p>The interval that we obtain from the experiment is (script size)</p>
+<p><span class="math display">\[(l,u)=(\bar{x} - m,\bar{x} + m)\]</span></p>
+<ul>
+<li><p>this interval either contains or does not the parameter <span class="math inline">\(\mu\)</span>: we will <strong>never know</strong>!</p></li>
+<li><p>We say that we have a confidence of <span class="math inline">\(95\%\)</span> that the interval <span class="math inline">\((l,u)\)</span> will capture the true unknown parameter <span class="math inline">\(\mu\)</span>. Think of buying a lottery ticket for which you do not know the result.</p></li>
+</ul>
+<hr />
+<hr />
+</div>
+<div id="interval-estimation-3" class="section level2 hasAnchor" number="13.9">
+<h2><span class="header-section-number">13.9</span> Interval estimation<a href="interval-estimation.html#interval-estimation-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In our example, we assume that <span class="math inline">\(\bar{X}\)</span> is normally distributed then</p>
+<p><span class="math display">\[m=z_{0.025} \frac{\sigma}{\sqrt{n}}\]</span></p>
+<p>and the <span class="math inline">\(95\%\)</span> confidence interval is</p>
+<p><span class="math display">\[(l,u)=(\bar{x}-z_{0.025} \frac{\sigma}{\sqrt{n}}, \bar{x}+z_{0.025} \frac{\sigma}{\sqrt{n}})= (12.97,13.45)\]</span></p>
+<p>or</p>
+<p><span class="math display">\[\hat{\mu}=13.21 \pm 0.24\]</span>
+It also means that, in the estimation, we are confident about the units but not so much about the decimal places.</p>
+<hr />
+<hr />
+</div>
+<div id="interval-estimation-4" class="section level2 hasAnchor" number="13.10">
+<h2><span class="header-section-number">13.10</span> Interval estimation<a href="interval-estimation.html#interval-estimation-4" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>For a sample of 8 observations, we have one estimate of the mean and one confidence interval</p>
+<p><img src="_main_files/figure-html/unnamed-chunk-91-1.png" width="672" /></p>
+<hr />
+<hr />
+</div>
+<div id="interval-estimation-5" class="section level2 hasAnchor" number="13.11">
+<h2><span class="header-section-number">13.11</span> Interval estimation<a href="interval-estimation.html#interval-estimation-5" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Every time that we obtain a new sample then the estimates change. If we perform <span class="math inline">\(100\)</span> samples of size <span class="math inline">\(n\)</span> then <span class="math inline">\(95%\)</span> of the confidence intervals will contain <span class="math inline">\(\mu\)</span> (we do not know which!)</p>
+<p><img src="_main_files/figure-html/unnamed-chunk-92-1.png" width="672" /></p>
+<hr />
+<hr />
+</div>
+<div id="interval-estimation-6" class="section level2 hasAnchor" number="13.12">
+<h2><span class="header-section-number">13.12</span> Interval estimation<a href="interval-estimation.html#interval-estimation-6" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>We can change our confidence from <span class="math inline">\(95\%\)</span> to <span class="math inline">\(99\%\)</span></p>
+<ul>
+<li><p>We had left out <span class="math inline">\(\alpha=0.05\)</span> probability, <span class="math inline">\(0.025\)</span> on each side.</p></li>
+<li><p>Now, we can leave out <span class="math inline">\(\alpha=0.01\)</span> probability, <span class="math inline">\(0.005\)</span> on each side.</p></li>
+</ul>
+<p>Therefore the <span class="math inline">\(99\%\)</span> confidence interval is</p>
+<p><span class="math inline">\((l,u) = (\bar{x} - z_{0.005}\frac{\sigma}{\sqrt{n}},\bar{x} + z_{0.005}\frac{\sigma}{\sqrt{n}})\)</span></p>
+<p><span class="math display">\[= (\bar{x} - 2.58\frac{\sigma}{\sqrt{n}},\bar{x} + 2.58\frac{\sigma}{\sqrt{n}})\]</span></p>
+<p>or</p>
+<p><span class="math display">\[\hat{\mu}=\bar{x} \pm 2.58\frac{\sigma}{\sqrt{n}}\]</span></p>
+<p>If we want to be more confident then we need larger confidence intervals!</p>
+<p>For our cables:</p>
+<p><span class="math display">\[\hat{\mu}= 13.21 \pm 0.31\]</span></p>
+<hr />
+<hr />
+</div>
+<div id="interval-estimation-7" class="section level2 hasAnchor" number="13.13">
+<h2><span class="header-section-number">13.13</span> Interval estimation<a href="interval-estimation.html#interval-estimation-7" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><img src="figures/phi.jpg" style="width:100%" style="height:100%"  align="center"></p>
+<hr />
+<hr />
+</div>
+<div id="example-15" class="section level2 hasAnchor" number="13.14">
+<h2><span class="header-section-number">13.14</span> Example<a href="interval-estimation.html#example-15" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>A metallic material is tested for impact to measure the energy required to cut it at a given temperature.</p>
+<ul>
+<li><p>Ten specimens of A238 steel were cut at 60ºC at the following impact energies (J)</p></li>
+<li><p><span class="math inline">\(64.1, 64.7, 64.5, 64.6, 64.5, 64.3, 64.6, 64.8, 64.2, 64.3\)</span></p></li>
+<li><p>If we know that the impact energy is normally distributed with <span class="math inline">\(\sigma=1J\)</span> what is the <span class="math inline">\(95\%\)</span> CI for the mean of these data?</p></li>
+</ul>
+<hr />
+<hr />
+</div>
+<div id="example-16" class="section level2 hasAnchor" number="13.15">
+<h2><span class="header-section-number">13.15</span> Example<a href="interval-estimation.html#example-16" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>We know</p>
+<ul>
+<li><span class="math inline">\(x_i=\{64.1, 64.7, 64.5, 64.6, 64.5, 64.3, 64.6, 64.8, 64.2, 64.3\}\)</span></li>
+<li><span class="math inline">\(X \rightarrow N(\mu, \sigma^2)\)</span></li>
+<li><span class="math inline">\(\sigma=1J\)</span></li>
+<li><span class="math inline">\(\alpha=0.05\)</span></li>
+</ul>
+<p>The confidence interval is then</p>
+<p><span class="math display">\[CI=(\bar{x}-1.96 \frac{\sigma}{\sqrt{n}}, \bar{x}+1.96  \frac{\sigma}{\sqrt{n}})\]</span>
+</br><span class="math display">\[=(64.46-1.96 \frac{1}{\sqrt{10}}, 64.46+1.96  \frac{1}{\sqrt{10}})=(63.84,65.08)\]</span></p>
+<p>or</p>
+<p><span class="math display">\[\hat{\mu}=64.46 \pm 0.61\]</span></p>
+<p>this tells us that we can be sure on the first digit (6), somewhat confident on the second (4), and unsure on the decimals (46).</p>
+<p>What if <span class="math inline">\(\sigma^2\)</span> is <strong>unknown</strong>?</p>
+<hr />
+<hr />
+</div>
+<div id="t-statistic-3" class="section level2 hasAnchor" number="13.16">
+<h2><span class="header-section-number">13.16</span> T-statistic<a href="interval-estimation.html#t-statistic-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>When</p>
+<ul>
+<li><span class="math inline">\(X\)</span> is normal, and</li>
+<li><span class="math inline">\(\sigma\)</span> is <strong>unknown</strong></li>
+</ul>
+<p>then the standardized statistic</p>
+<p><span class="math display">\[T=\frac{\bar{X}-\mu}{\frac{S}{\sqrt{n}}}\]</span></p>
+<p>Follows a <span class="math inline">\(t\)</span>-distribution with <span class="math inline">\(n-1\)</span> degrees of freedom, and we can compute probabilities for <span class="math inline">\(\bar{X}\)</span>.</p>
+<hr />
+<hr />
+</div>
+<div id="t-statistic-4" class="section level2 hasAnchor" number="13.17">
+<h2><span class="header-section-number">13.17</span> T-statistic<a href="interval-estimation.html#t-statistic-4" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><img src="_main_files/figure-html/unnamed-chunk-93-1.png" width="672" /></p>
+<hr />
+<hr />
+</div>
+<div id="t-statistic-5" class="section level2 hasAnchor" number="13.18">
+<h2><span class="header-section-number">13.18</span> T-statistic<a href="interval-estimation.html#t-statistic-5" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>To compute the margin of error <span class="math inline">\(m\)</span> at <span class="math inline">\(5\%\)</span> level when</p>
+<ul>
+<li><span class="math inline">\(X\)</span> is normal and</li>
+<li><span class="math inline">\(\sigma^2\)</span> is unknown</li>
+</ul>
+<p>We use the <span class="math inline">\(t\)</span>-distribution</p>
+<p><span class="math inline">\(P(\mu-m \leq \bar{X} \leq\mu + m)\)</span>
+<span class="math display">\[=P(-\frac{m}{s/\sqrt{n}} \leq T \leq\frac{m}{s/\sqrt{n}})=0.95\]</span></p>
+<p><span class="math display">\[m=t_{0.025, n-1} \frac{s}{\sqrt{n}}\]</span>
+where <span class="math inline">\(t_{0.025, n-1}\)</span> is the value <span class="math inline">\(T\)</span> that leaves <span class="math inline">\(2.5\%\)</span> of probability at the right hand side of the <span class="math inline">\(t\)</span>-distribution with <span class="math inline">\(n-1\)</span> degrees of freedom (<span class="math inline">\(0.025\)</span>-quantile)</p>
+<p>the <span class="math inline">\(95\%\)</span> confidence interval is then</p>
+<p><span class="math display">\[(l,u)=(\bar{x}-t_{0.025, n-1} \frac{s}{\sqrt{n}}, \bar{x}+t_{0.025, n-1} \frac{s}{\sqrt{n}})\]</span>
+in R: <span class="math inline">\(t_{0.025, n-1}\)</span><code>=qt(1-0.025, n-1)</code></p>
+<hr />
+<hr />
+</div>
+<div id="example-17" class="section level2 hasAnchor" number="13.19">
+<h2><span class="header-section-number">13.19</span> Example<a href="interval-estimation.html#example-17" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>A metallic material is tested for impact to measure the energy required to cut it at a given temperature.</p>
+<ul>
+<li><p>Ten specimens of A238 steel were cut at 60ºC at the following impact energies (J)</p></li>
+<li><p><span class="math inline">\(64.1, 64.7, 64.5, 64.6, 64.5, 64.3, 64.6, 64.8, 64.2, 64.3\)</span></p></li>
+<li><p>If we know that the impact energy is normally distributed but we <strong>do not know</strong> the variance what is the <span class="math inline">\(95\%\)</span> CI for the mean of these data?</p></li>
+</ul>
+<hr />
+<hr />
+</div>
+<div id="example-18" class="section level2 hasAnchor" number="13.20">
+<h2><span class="header-section-number">13.20</span> Example<a href="interval-estimation.html#example-18" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li><span class="math inline">\(\bar{x}=64.46\)</span></li>
+<li><span class="math inline">\(s=0.227\)</span></li>
+<li><span class="math inline">\(\alpha=0.05\)</span></li>
+<li><span class="math inline">\(t_{0.025,9}=2.26\)</span> obtained from <span class="math inline">\(P(T \leq t_{0.025,9})=0.975\)</span>; <code>qt(1-0.025, 9)</code></li>
+</ul>
+<p>The confidence interval is then</p>
+<p><span class="math inline">\(CI=(\bar{x}- t_{0.025,9}\frac{s}{\sqrt{n}},\bar{x}+t_{0.025,9} \frac{s}{\sqrt{n}})\)</span></p>
+<p><span class="math display">\[=(64.46-2.26 \frac{0.227}{\sqrt{10}},64.46+2.26 \frac{0.227}{\sqrt{10}})\]</span> <span class="math display">\[=(64.29,64.62)\]</span></p>
+<p>We have seen a larger <span class="math inline">\(CI=(63.84,65.08)\)</span> when <span class="math inline">\(\sigma=1\)</span>. Data then suggests <span class="math inline">\(\sigma&lt;1\)</span>.</p>
+<p>R: <code>t.test(c(64.1,64.7,64.5,64.6,64.5,64.3,64.6,64.8,64.2,64.3))</code></p>
+<hr />
+<hr />
+</div>
+<div id="ic-with-clt" class="section level2 hasAnchor" number="13.21">
+<h2><span class="header-section-number">13.21</span> IC with CLT<a href="interval-estimation.html#ic-with-clt" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>If</p>
+<ul>
+<li>we do not know how <span class="math inline">\(X\)</span> distributes but</li>
+<li>we take a large sample <span class="math inline">\(n\ge 30\)</span></li>
+</ul>
+<p>Then we can use the CLT to find the confidence intervals.</p>
+<p>the <span class="math inline">\(95\%\)</span> confidence interval is then</p>
+<p><span class="math display">\[(l,u)=(\bar{x}-z_{0.025} \frac{s}{\sqrt{n}}, \bar{x}+z_{0.025} \frac{s}{\sqrt{n}})\]</span>
+since <span class="math inline">\(t_{0.025, n-1} \rightarrow z_{0.025}\)</span> for <span class="math inline">\(n \rightarrow \infty\)</span> then it is also ok to use the T distribution in this case.</p>
+<p>Note: This is why R only implements <code>t.test</code> and not <code>z.test</code> in the base functions to compute CI.</p>
+<hr />
+<hr />
+<p><strong>Example:</strong></p>
+<p>Consider an experiment where we measure the concentration in blood of a drug after 10-hour administration in <span class="math inline">\(30\)</span> patients. We obtain the following results:</p>
+<pre><code>##  [1] 0.42172863 0.28830514 0.66452743 0.01578868 0.02810549 0.15825061
+##  [7] 0.15711365 0.07263340 1.36311823 0.01457672 0.50241503 0.24010736
+## [13] 0.14050681 0.18855892 0.09414202 0.42489306 0.78160177 0.23938021
+## [19] 0.29546742 2.02050586 0.42157487 0.48293561 0.74263790 0.67402224
+## [25] 0.58426449 0.80292617 0.74837143 0.78532627 0.01588387 0.29892485</code></pre>
+<ul>
+<li><p>the average is <span class="math inline">\(\bar{x}=0.4556198\)</span></p></li>
+<li><p>the standard deviation is <span class="math inline">\(s=0.4335571\)</span></p></li>
+<li><p>the histogram of the results is:</p></li>
+</ul>
+<p><img src="_main_files/figure-html/unnamed-chunk-95-1.png" width="672" /></p>
+<hr />
+<hr />
+</div>
+<div id="central-limit-theorem-4" class="section level2 hasAnchor" number="13.22">
+<h2><span class="header-section-number">13.22</span> Central Limit Theorem<a href="interval-estimation.html#central-limit-theorem-4" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>We <strong>assumed</strong> that <span class="math inline">\(X \rightarrow exp(\lambda=2)\)</span></p>
+<p>With mean and variance:</p>
+<ul>
+<li><span class="math inline">\(E(X)=\frac{1}{\lambda}\)</span></li>
+<li><span class="math inline">\(V(X)=\frac{1}{\lambda^2}\)</span></li>
+</ul>
+<p>What is the confidence interval for the mean <span class="math inline">\(E(X)=\mu\)</span>?</p>
+<ul>
+<li>We use a 95% CI to estimate it</li>
+</ul>
+<p>Since <span class="math inline">\(n \geq 30\)</span> we can use the CLT</p>
+<p><span class="math display">\[\bar{X} \sim_{aprox}  N(\lambda, \frac{1}{n\lambda^2})\]</span></p>
+<p>and the <span class="math inline">\(95\%\)</span> confidence interval is then</p>
+<p><span class="math display">\[(l,u)=(\bar{x}-z_{0.025} \frac{s}{\sqrt{n}}, \bar{x}+z_{0.025} \frac{s}{\sqrt{n}})\]</span></p>
+<p><span class="math inline">\((l,u)=(0.4556198-1.96\frac{0.4335571}{\sqrt{30}}, 0.4556198+1.96\frac{0.4335571}{\sqrt{30}})\)</span></p>
+<p><span class="math display">\[=(0.300,0.610)\]</span>
+or</p>
+<p><span class="math display">\[\hat{\mu}=0.45 \pm 0.15\]</span></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-96-1.png" width="672" /></p>
+<hr />
+<hr />
+</div>
+<div id="parameter-estimation" class="section level2 hasAnchor" number="13.23">
+<h2><span class="header-section-number">13.23</span> Parameter estimation<a href="interval-estimation.html#parameter-estimation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Since <span class="math inline">\(E(X)=\mu=\frac{1}{\lambda}\)</span> then</p>
+<p><span class="math display">\[\hat{\lambda}=\frac{1}{\hat{\mu}}=2.194812\]</span></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-97-1.png" width="672" /></p>
+<p>or its <span class="math inline">\(95\%\)</span> CI:</p>
+<p><span class="math display">\[\hat{\lambda}= (1.66, 3.33) \]</span></p>
+<hr />
+<hr />
+</div>
+<div id="interval-estimation-for-proportions" class="section level2 hasAnchor" number="13.24">
+<h2><span class="header-section-number">13.24</span> Interval estimation for proportions<a href="interval-estimation.html#interval-estimation-for-proportions" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>A random sample of <span class="math inline">\(400\)</span> patients was selected for testing a new vaccine for the influenza virus, after <span class="math inline">\(6\)</span> months of vaccination <span class="math inline">\(136\)</span> were ill. </p>
+<ul>
+<li>What is the expected efficacy of the vaccine?</li>
+</ul>
+<p>We have <span class="math inline">\(136\)</span> failures in <span class="math inline">\(400\)</span> trials, each trial is a
+Bernoulli trial</p>
+<p><span class="math display">\[X \rightarrow Bernoulli(p)\]</span></p>
+<p>with:</p>
+<ul>
+<li>the probability <span class="math inline">\(p\)</span> of failure for one person (<span class="math inline">\(x=1\)</span>)</li>
+<li>mean <span class="math inline">\(E (X) = p\)</span></li>
+<li>variance <span class="math inline">\(V (X) = p (1-p)\)</span></li>
+</ul>
+<p>We want to have a <span class="math inline">\(95\%\)</span> CI for <span class="math inline">\(p\)</span>.</p>
+<hr />
+<hr />
+</div>
+<div id="interval-estimation-for-proportions-1" class="section level2 hasAnchor" number="13.25">
+<h2><span class="header-section-number">13.25</span> Interval estimation for proportions<a href="interval-estimation.html#interval-estimation-for-proportions-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>If the distribution of a random experiment is</p>
+<p><span class="math display">\[X \rightarrow Bernoulli (p)\]</span>
+Then <span class="math inline">\(\bar{X}\)</span> has</p>
+<ul>
+<li>mean <span class="math inline">\(E(\bar{X})=E(X)=p\)</span> (unbiased estimator of <span class="math inline">\(p\)</span>)<br />
 </li>
-<li>on different objects but the same measurement: the weight of an animal.</li>
-<li>on events: a number of emails received in an hour.</li>
+<li>variance <span class="math inline">\(V(\bar{X})=\frac{V(X)}{n}=\frac{p(p-1)}{n}\)</span> (consistent estimator of <span class="math inline">\(p\)</span>)</li>
 </ul>
-<p><br/><br/></p>
+<p><span class="math display">\[\hat{p}=\bar{x}\]</span></p>
 <hr />
 <hr />
 </div>
-<div id="absolute-frequencies" class="section level2 hasAnchor" number="2.7">
-<h2><span class="header-section-number">2.7</span> Absolute frequencies<a href="data-description.html#absolute-frequencies" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>When we repeat a random experiment, we record a list of outcomes.</p>
-<p>We summarize the <strong>categorical</strong> observations by counting how many times we saw a particular outcome.</p>
-<p><strong>Absolute frequency</strong>:</p>
-<p><span class="math display">\[n_i\]</span></p>
-<p>is the number of times we observed the outcome <span class="math inline">\(i\)</span></p>
-<p><br><br></p>
-<hr />
-<hr />
-</div>
-<div id="example" class="section level2 hasAnchor" number="2.8">
-<h2><span class="header-section-number">2.8</span> Example<a href="data-description.html#example" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><strong>Random experiment</strong>: Extract a leukocyte from <strong>one</strong> donor and write down its type. Repeat experiment <span class="math inline">\(N=119\)</span> times.</p>
-<pre><code>(T cell, Tcell, Neutrophil, ..., B cell)</code></pre>
-<pre><code>##      outcome ni
-## 1     T Cell 34
-## 2     B cell 50
-## 3   basophil 20
-## 4   Monocyte  5
-## 5 Neutrophil 10</code></pre>
+<div id="interval-estimation-for-proportions-2" class="section level2 hasAnchor" number="13.26">
+<h2><span class="header-section-number">13.26</span> Interval estimation for proportions<a href="interval-estimation.html#interval-estimation-for-proportions-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>When <span class="math inline">\(\hat{p}n&gt;5\)</span> and <span class="math inline">\((\hat{p}-1)n&gt;5\)</span></p>
 <ul>
-<li>For instance: <span class="math inline">\(n_1=34\)</span> is total number of T cells</li>
-<li><span class="math inline">\(N=\sum_i n_i=119\)</span></li>
+<li>The <strong>standardized statistic</strong> of <span class="math inline">\(\bar{X}\)</span> can be approximated by a standard distribution</li>
 </ul>
-<hr />
-<hr />
-</div>
-<div id="relative-frequencies" class="section level2 hasAnchor" number="2.9">
-<h2><span class="header-section-number">2.9</span> Relative frequencies<a href="data-description.html#relative-frequencies" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>We can also summarize the observations by computing the <strong>proportion</strong> of how many times we saw a particular outcome.</p>
-<p><span class="math display">\[f_i=n_i/N\]</span> where <span class="math inline">\(N\)</span> is the total number of observations</p>
-<p>In our example there are recorded <span class="math inline">\(n_1=34\)</span> T cells, so we ask for the proportion of T cells from the total of <span class="math inline">\(119\)</span>.</p>
-<p><br><br></p>
-<hr />
-<hr />
-</div>
-<div id="example-1" class="section level2 hasAnchor" number="2.10">
-<h2><span class="header-section-number">2.10</span> Example<a href="data-description.html#example-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<pre><code>##      outcome ni         fi
-## 1     T Cell 34 0.28571429
-## 2     B cell 50 0.42016807
-## 3   basophil 20 0.16806723
-## 4   Monocyte  5 0.04201681
-## 5 Neutrophil 10 0.08403361</code></pre>
-<p>We have</p>
-<p><span class="math inline">\(\sum_{i=1..M} n_i = N\)</span></p>
-<p><span class="math inline">\(\sum_{i=1..M} f_i = 1\)</span></p>
-<p>where <span class="math inline">\(M\)</span> is the number of outcomes.</p>
-<hr />
-<hr />
-</div>
-<div id="bar-plot" class="section level2 hasAnchor" number="2.11">
-<h2><span class="header-section-number">2.11</span> Bar plot<a href="data-description.html#bar-plot" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>We can plot <span class="math inline">\(n_i\)</span> Vs the outcomes, giving us a bar plot</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
-<hr />
-<hr />
-</div>
-<div id="pie-chart" class="section level2 hasAnchor" number="2.12">
-<h2><span class="header-section-number">2.12</span> Pie chart<a href="data-description.html#pie-chart" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>We can visualize the relative frequencies with a pie chart</p>
+<p><span class="math display">\[Z=\frac{\bar{X}-E(\bar{X})}{\sqrt{V(\bar{X})}}= \frac{\bar{X}-p}{\big[\frac{p(1-p)}{n} \big]^{1/2}}\rightarrow N(0,1)\]</span></p>
 <ul>
-<li>Where the area of the circle represents 100% of observations (proportion = 1) and the sections the relative frequencies of all the outcomes.</li>
+<li>The <span class="math inline">\(95\%\)</span> CI interval of <span class="math inline">\(p\)</span> is:</li>
 </ul>
-<p><img src="_main_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<p><span class="math display">\[CI=(l,u)=(\bar{x}-z_{0.025}\big[\frac{\bar{x}(1-\bar{x})}{n} \big]^{1/2},  \bar{x}+z_{0.025}\big[\frac{\bar{x}(1-\bar{x})}{n} \big]^{1/2})\]</span>
+Where we estimate the Bernoulli variance <span class="math inline">\(p(1-p)\)</span> by <span class="math inline">\(\bar{x}(1-\bar{x})\)</span>.</p>
 <hr />
 <hr />
 </div>
-<div id="categorical-and-ordered-variables" class="section level2 hasAnchor" number="2.13">
-<h2><span class="header-section-number">2.13</span> Categorical and ordered variables<a href="data-description.html#categorical-and-ordered-variables" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Cell types are not meaningfully ordered concerning the outcomes. However, sometimes <strong>categorical</strong> variables can be <strong>ordered</strong>.</p>
-<p>Misophonia study:</p>
+<div id="interval-estimation-for-proportions-3" class="section level2 hasAnchor" number="13.27">
+<h2><span class="header-section-number">13.27</span> Interval estimation for proportions<a href="interval-estimation.html#interval-estimation-for-proportions-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In our case, we are counting failures on vaccinations <span class="math inline">\(136\)</span> in <span class="math inline">\(400\)</span> trials</p>
+<p>we know</p>
 <ul>
-<li><p>123 patients were examined for misophonia: anxiety/anger produced by certain sounds</p></li>
-<li><p>They were categorized into 4 different groups according to severity.</p></li>
+<li><span class="math inline">\(\bar{x}=134/400=0.34\)</span></li>
+<li><span class="math inline">\(z_{0.025}=1.96\)</span></li>
 </ul>
+<p><span class="math inline">\(CI=(l,u)=(\bar{x}-1.96 \big[\frac{\bar{x}(1-\bar{x})}{n} \big]^{1/2}, \bar{x}+1.96 \big[\frac{\bar{x}(1-\bar{x})}{n} \big]^{1/2})\)</span></p>
+<p><span class="math display">\[=(0.29,0.39)\]</span></p>
+<p>The probability of failure of the vaccine is</p>
+<p><span class="math display">\[\hat{p}=0.34 \pm 0.05\]</span>
+Note: Polls for the intention to vote (Bernoulli trial) in a sample of <span class="math inline">\(n\)</span> individuals report this type of estimate with its margin of error. It does not mean that the <strong>true value</strong> of <span class="math inline">\(p\)</span> is within this interval with probability <span class="math inline">\(95\%\)</span>.</p>
 <hr />
 <hr />
 </div>
-<div id="example-2" class="section level2 hasAnchor" number="2.14">
-<h2><span class="header-section-number">2.14</span> Example<a href="data-description.html#example-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>The results of the study are:</p>
-<pre><code>##   [1] 4 2 0 3 0 0 2 3 0 3 0 2 2 0 2 0 0 3 3 0 3 3 2 0 0 0 4 2 2 0 2 0 0 0 3 0 2
-##  [38] 3 2 2 0 2 3 0 0 2 2 3 3 0 0 4 3 3 2 0 2 0 0 0 2 2 0 0 2 3 0 1 3 2 4 3 2 3
-##  [75] 0 2 3 2 4 1 2 0 2 0 2 0 2 2 4 3 0 3 0 0 0 2 2 1 3 0 0 3 2 1 3 0 4 4 2 3 3
-## [112] 3 0 3 2 1 2 3 3 4 2 3 2</code></pre>
-<p>And its frequency table</p>
-<pre><code>##   outcome ni         fi
-## 1       0 41 0.33333333
-## 2       1  5 0.04065041
-## 3       2 37 0.30081301
-## 4       3 31 0.25203252
-## 5       4  9 0.07317073</code></pre>
-<hr />
-<hr />
-</div>
-<div id="absolute-and-relative-cumulative-frequencies" class="section level2 hasAnchor" number="2.15">
-<h2><span class="header-section-number">2.15</span> Absolute and relative cumulative frequencies<a href="data-description.html#absolute-and-relative-cumulative-frequencies" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Misophonia severity is <strong>categorical</strong> and <strong>ordered</strong>.</p>
-<p>When outcomes can be ordered then it is useful to ask how many observations were obtained up to a given outcome we call this number the absolute cumulative frequency up to the outcome <span class="math inline">\(i\)</span>:
-<span class="math display">\[N_i=\sum_{k=1..i} n_k\]</span>
-It is also useful to compute the <strong>proportion</strong> of the observations that was obtained up to a given outcome</p>
-<p><span class="math display">\[F_i=\sum_{k=1..i} f_k\]</span></p>
-<hr />
-<hr />
-</div>
-<div id="frequency-table" class="section level2 hasAnchor" number="2.16">
-<h2><span class="header-section-number">2.16</span> Frequency table<a href="data-description.html#frequency-table" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<pre><code>##   outcome ni         fi  Ni        Fi
-## 0       0 41 0.33333333  41 0.3333333
-## 1       1  5 0.04065041  46 0.3739837
-## 2       2 37 0.30081301  83 0.6747967
-## 3       3 31 0.25203252 114 0.9268293
-## 4       4  9 0.07317073 123 1.0000000</code></pre>
+<div id="interval-estimation-for-the-variance" class="section level2 hasAnchor" number="13.28">
+<h2><span class="header-section-number">13.28</span> Interval estimation for the variance<a href="interval-estimation.html#interval-estimation-for-the-variance" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>A metallic material is tested for impact to measure the energy required to cut it at a given temperature.</p>
 <ul>
-<li><p><strong>67%</strong> of patients had misophonia up to severity <strong>2</strong></p></li>
-<li><p><strong>37%</strong> of patients have severity less or equal than <strong>1</strong></p></li>
+<li><p>Ten specimens of A238 steel were cut at 60ºC at the following impact energies (J)</p></li>
+<li><p><span class="math inline">\(64.1, 64.7, 64.5, 64.6, 64.5, 64.3, 64.6, 64.8, 64.2, 64.3\)</span></p></li>
 </ul>
+<p>We know that the estimate for <span class="math inline">\(s^2=0.227^2=0.051\)</span>, but what is its confidence interval?</p>
 <hr />
 <hr />
 </div>
-<div id="cumulative-frequency-plot" class="section level2 hasAnchor" number="2.17">
-<h2><span class="header-section-number">2.17</span> Cumulative frequency plot<a href="data-description.html#cumulative-frequency-plot" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>We can also plot the cumulative frequency Vs the outcomes</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
-<hr />
-<hr />
-</div>
-<div id="continuous-variables" class="section level2 hasAnchor" number="2.18">
-<h2><span class="header-section-number">2.18</span> Continuous variables<a href="data-description.html#continuous-variables" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>The result of a random experiment can also give continuous outcomes.</p>
-<p>In the misophonia study, the researchers asked whether the convexity of the jaw would affect the misophonia severity (the scientific hypothesis is that the convexity angle of the jaw can influence the ear and its sensitivity). These are the results for the convexity of the jaw (degrees)</p>
-<pre><code>##   [1]  7.97 18.23 12.27  7.81  9.81 13.50 19.30  7.70 12.30  7.90 12.60 19.00
-##  [13]  7.27 14.00  5.40  8.00 11.20  7.75  7.94 16.69  7.62  7.02  7.00 19.20
-##  [25]  7.96 14.70  7.24  7.80  7.90  4.70  4.40 14.00 14.40 16.00  1.40  9.76
-##  [37]  7.90  7.90  7.40  6.30  7.76  7.30  7.00 11.23 16.00  7.90  7.29  6.91
-##  [49]  7.10 13.40 11.60 -1.00  6.00  7.82  4.80 11.00  9.00 11.50 16.00 15.00
-##  [61]  1.40 16.80  7.70 16.14  7.12 -1.00 17.00  9.26 18.70  3.40 21.30  7.50
-##  [73]  6.03  7.50 19.00 19.01  8.10  7.80  6.10 15.26  7.95 18.00  4.60 15.00
-##  [85]  7.50  8.00 16.80  8.54  7.00 18.30  7.80 16.00 14.00 12.30 11.40  8.50
-##  [97]  7.00  7.96 17.60 10.00  3.50  6.70 17.00 20.26  6.64  1.80  7.02  2.46
-## [109] 19.00 17.86  6.10  6.64 12.00  6.60  8.70 14.05  7.20 19.70  7.70  6.02
-## [121]  2.50 19.00  6.80</code></pre>
-<hr />
-<hr />
-</div>
-<div id="bins" class="section level2 hasAnchor" number="2.19">
-<h2><span class="header-section-number">2.19</span> Bins<a href="data-description.html#bins" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Continuous outcomes cannot be counted!</p>
-<p>We transform them into ordered categorical variables</p>
+<div id="interval-estimation-for-the-variance-1" class="section level2 hasAnchor" number="13.29">
+<h2><span class="header-section-number">13.29</span> Interval estimation for the variance<a href="interval-estimation.html#interval-estimation-for-the-variance-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>If</p>
 <ul>
-<li>We cover the range of the observations into regular intervals of the same size (bins)</li>
+<li><span class="math inline">\(X\)</span> is a <strong>normal</strong> variable</li>
 </ul>
-<pre><code>## [1] &quot;[-1.02,3.46]&quot; &quot;(3.46,7.92]&quot;  &quot;(7.92,12.4]&quot;  &quot;(12.4,16.8]&quot;  &quot;(16.8,21.3]&quot;</code></pre>
-<hr />
-<hr />
-</div>
-<div id="create-a-categorical-variable-from-a-continuous-one" class="section level2 hasAnchor" number="2.20">
-<h2><span class="header-section-number">2.20</span> Create a categorical variable from a continuous one<a href="data-description.html#create-a-categorical-variable-from-a-continuous-one" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>then</p>
+<p><span class="math display">\[W=\frac{S^2(n-1)}{\sigma^2}\]</span>
+Captures the proportion in the error of <span class="math inline">\(\sigma^2\)</span> and
+follows a <span class="math inline">\(\chi^2\)</span> distribution with <span class="math inline">\(n-1\)</span> degrees of freedom</p>
+<p><span class="math display">\[\frac{S^2}{\sigma^2}(n-1)\rightarrow \chi^2_{n-1}\]</span></p>
 <ul>
-<li>We map each observation to its interval: creating an <strong>ordered categorical</strong> variable; in this case with 5 possible outcomes</li>
+<li>We look for confidence interval of <span class="math inline">\(\sigma^2\)</span> at confidence <span class="math inline">\(95\%\)</span> <span class="math inline">\((L,U)\)</span> such that <span class="math display">\[P(L \leq \sigma^2 \leq U)=0.95\]</span></li>
 </ul>
-<pre><code>##   [1] &quot;(7.92,12.4]&quot;  &quot;(16.8,21.3]&quot;  &quot;(7.92,12.4]&quot;  &quot;(3.46,7.92]&quot;  &quot;(7.92,12.4]&quot; 
-##   [6] &quot;(12.4,16.8]&quot;  &quot;(16.8,21.3]&quot;  &quot;(3.46,7.92]&quot;  &quot;(7.92,12.4]&quot;  &quot;(3.46,7.92]&quot; 
-##  [11] &quot;(12.4,16.8]&quot;  &quot;(16.8,21.3]&quot;  &quot;(3.46,7.92]&quot;  &quot;(12.4,16.8]&quot;  &quot;(3.46,7.92]&quot; 
-##  [16] &quot;(7.92,12.4]&quot;  &quot;(7.92,12.4]&quot;  &quot;(3.46,7.92]&quot;  &quot;(7.92,12.4]&quot;  &quot;(12.4,16.8]&quot; 
-##  [21] &quot;(3.46,7.92]&quot;  &quot;(3.46,7.92]&quot;  &quot;(3.46,7.92]&quot;  &quot;(16.8,21.3]&quot;  &quot;(7.92,12.4]&quot; 
-##  [26] &quot;(12.4,16.8]&quot;  &quot;(3.46,7.92]&quot;  &quot;(3.46,7.92]&quot;  &quot;(3.46,7.92]&quot;  &quot;(3.46,7.92]&quot; 
-##  [31] &quot;(3.46,7.92]&quot;  &quot;(12.4,16.8]&quot;  &quot;(12.4,16.8]&quot;  &quot;(12.4,16.8]&quot;  &quot;[-1.02,3.46]&quot;
-##  [36] &quot;(7.92,12.4]&quot;  &quot;(3.46,7.92]&quot;  &quot;(3.46,7.92]&quot;  &quot;(3.46,7.92]&quot;  &quot;(3.46,7.92]&quot; 
-##  [41] &quot;(3.46,7.92]&quot;  &quot;(3.46,7.92]&quot;  &quot;(3.46,7.92]&quot;  &quot;(7.92,12.4]&quot;  &quot;(12.4,16.8]&quot; 
-##  [46] &quot;(3.46,7.92]&quot;  &quot;(3.46,7.92]&quot;  &quot;(3.46,7.92]&quot;  &quot;(3.46,7.92]&quot;  &quot;(12.4,16.8]&quot; 
-##  [51] &quot;(7.92,12.4]&quot;  &quot;[-1.02,3.46]&quot; &quot;(3.46,7.92]&quot;  &quot;(3.46,7.92]&quot;  &quot;(3.46,7.92]&quot; 
-##  [56] &quot;(7.92,12.4]&quot;  &quot;(7.92,12.4]&quot;  &quot;(7.92,12.4]&quot;  &quot;(12.4,16.8]&quot;  &quot;(12.4,16.8]&quot; 
-##  [61] &quot;[-1.02,3.46]&quot; &quot;(12.4,16.8]&quot;  &quot;(3.46,7.92]&quot;  &quot;(12.4,16.8]&quot;  &quot;(3.46,7.92]&quot; 
-##  [66] &quot;[-1.02,3.46]&quot; &quot;(16.8,21.3]&quot;  &quot;(7.92,12.4]&quot;  &quot;(16.8,21.3]&quot;  &quot;[-1.02,3.46]&quot;
-##  [71] &quot;(16.8,21.3]&quot;  &quot;(3.46,7.92]&quot;  &quot;(3.46,7.92]&quot;  &quot;(3.46,7.92]&quot;  &quot;(16.8,21.3]&quot; 
-##  [76] &quot;(16.8,21.3]&quot;  &quot;(7.92,12.4]&quot;  &quot;(3.46,7.92]&quot;  &quot;(3.46,7.92]&quot;  &quot;(12.4,16.8]&quot; 
-##  [81] &quot;(7.92,12.4]&quot;  &quot;(16.8,21.3]&quot;  &quot;(3.46,7.92]&quot;  &quot;(12.4,16.8]&quot;  &quot;(3.46,7.92]&quot; 
-##  [86] &quot;(7.92,12.4]&quot;  &quot;(12.4,16.8]&quot;  &quot;(7.92,12.4]&quot;  &quot;(3.46,7.92]&quot;  &quot;(16.8,21.3]&quot; 
-##  [91] &quot;(3.46,7.92]&quot;  &quot;(12.4,16.8]&quot;  &quot;(12.4,16.8]&quot;  &quot;(7.92,12.4]&quot;  &quot;(7.92,12.4]&quot; 
-##  [96] &quot;(7.92,12.4]&quot;  &quot;(3.46,7.92]&quot;  &quot;(7.92,12.4]&quot;  &quot;(16.8,21.3]&quot;  &quot;(7.92,12.4]&quot; 
-## [101] &quot;(3.46,7.92]&quot;  &quot;(3.46,7.92]&quot;  &quot;(16.8,21.3]&quot;  &quot;(16.8,21.3]&quot;  &quot;(3.46,7.92]&quot; 
-## [106] &quot;[-1.02,3.46]&quot; &quot;(3.46,7.92]&quot;  &quot;[-1.02,3.46]&quot; &quot;(16.8,21.3]&quot;  &quot;(16.8,21.3]&quot; 
-## [111] &quot;(3.46,7.92]&quot;  &quot;(3.46,7.92]&quot;  &quot;(7.92,12.4]&quot;  &quot;(3.46,7.92]&quot;  &quot;(7.92,12.4]&quot; 
-## [116] &quot;(12.4,16.8]&quot;  &quot;(3.46,7.92]&quot;  &quot;(16.8,21.3]&quot;  &quot;(3.46,7.92]&quot;  &quot;(3.46,7.92]&quot; 
-## [121] &quot;[-1.02,3.46]&quot; &quot;(16.8,21.3]&quot;  &quot;(3.46,7.92]&quot;</code></pre>
+<p>We can use the <span class="math inline">\(\chi^2\)</span> to determine the <span class="math inline">\(95\%\)</span> of the distribution about <span class="math inline">\(W\)</span></p>
+<p><span class="math display">\[P(\chi^2_{0.975,n-1} \leq W \leq \chi^2_{0.025,n-1})=0.95\]</span></p>
 <hr />
 <hr />
 </div>
-<div id="frequency-table-for-a-continuous-variable" class="section level2 hasAnchor" number="2.21">
-<h2><span class="header-section-number">2.21</span> Frequency table for a continuous variable<a href="data-description.html#frequency-table-for-a-continuous-variable" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<pre><code>##        outcome ni         fi  Ni         Fi
-## 1 [-1.02,3.46]  8 0.06504065   8 0.06504065
-## 2  (3.46,7.92] 51 0.41463415  59 0.47967480
-## 3  (7.92,12.4] 26 0.21138211  85 0.69105691
-## 4  (12.4,16.8] 20 0.16260163 105 0.85365854
-## 5  (16.8,21.3] 18 0.14634146 123 1.00000000</code></pre>
+<div id="chi2-statistic-2" class="section level2 hasAnchor" number="13.30">
+<h2><span class="header-section-number">13.30</span> <span class="math inline">\(\chi^2\)</span>-statistic<a href="interval-estimation.html#chi2-statistic-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><img src="_main_files/figure-html/unnamed-chunk-98-1.png" width="672" /></p>
 <hr />
 <hr />
 </div>
-<div id="histogram" class="section level2 hasAnchor" number="2.22">
-<h2><span class="header-section-number">2.22</span> Histogram<a href="data-description.html#histogram" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>The histogram is the plot of <span class="math inline">\(n_i\)</span> or <span class="math inline">\(f_i\)</span> Vs the outcomes (bins). The histogram depends on the size of the bins</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
+<div id="interval-estimation-for-the-variance-2" class="section level2 hasAnchor" number="13.31">
+<h2><span class="header-section-number">13.31</span> Interval estimation for the variance<a href="interval-estimation.html#interval-estimation-for-the-variance-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>replacing the value of <span class="math inline">\(W\)</span></p>
+<p><span class="math display">\[P(\chi^2_{0.975,n-1} \leq \frac{S^2}{\sigma^2}(n-1) \leq \chi^2_{0.025,n-1})=0.95\]</span></p>
+<p>and solving for <span class="math inline">\(\sigma^2\)</span></p>
+<p><span class="math display">\[P(\frac{S^2 (n-1)}{\chi^2_{0.025,n-1}}\leq \sigma^2 \leq \frac{S^2(n-1)}{\chi^2_{0.975,n-1}})=0.95\]</span></p>
+<p>The <strong>random</strong> interval at <span class="math inline">\(95\%\)</span> confidence is</p>
+<p><span class="math display">\[(L,U) = (\frac{S^2 (n-1)}{\chi^2_{0.025,n-1}},\frac{S^2(n-1)}{\chi^2_{0.975,n-1}})\]</span></p>
+<p>and the <strong>observed</strong> <span class="math inline">\(95\%\)</span> confidence interval (script size)</p>
+<p><span class="math display">\[(l,u) = (\frac{s^2 (n-1)}{\chi^2_{0.025,n-1}},\frac{s^2(n-1)}{\chi^2_{0.975,n-1}})\]</span></p>
 <hr />
 <hr />
 </div>
-<div id="histogram-1" class="section level2 hasAnchor" number="2.23">
-<h2><span class="header-section-number">2.23</span> Histogram<a href="data-description.html#histogram-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>The histogram is the plot of <span class="math inline">\(n_i\)</span> or <span class="math inline">\(f_i\)</span> Vs the outcomes (bins). The histogram depends on the size of the bins</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
+<div id="interval-estimation-for-the-variance-3" class="section level2 hasAnchor" number="13.32">
+<h2><span class="header-section-number">13.32</span> Interval estimation for the variance<a href="interval-estimation.html#interval-estimation-for-the-variance-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><span class="math inline">\(\chi^2_{0.975,n-1}=F^{-1}(0.025)\)</span>
+</br>for <span class="math inline">\(n=10\)</span> or <span class="math inline">\(df=n-1=9\)</span></p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="interval-estimation.html#cb30-1" aria-hidden="true" tabindex="-1"></a>chi0<span class="fl">.975</span> <span class="ot">&lt;-</span> <span class="fu">qchisq</span>(<span class="fl">0.025</span>, <span class="at">df=</span><span class="dv">9</span>)</span>
+<span id="cb30-2"><a href="interval-estimation.html#cb30-2" aria-hidden="true" tabindex="-1"></a>chi0<span class="fl">.975</span></span></code></pre></div>
+<pre><code>[1] 2.700389</code></pre>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="interval-estimation.html#cb32-1" aria-hidden="true" tabindex="-1"></a>chi0<span class="fl">.025</span> <span class="ot">&lt;-</span> <span class="fu">qchisq</span>(<span class="fl">0.975</span>, <span class="at">df=</span><span class="dv">9</span>)</span>
+<span id="cb32-2"><a href="interval-estimation.html#cb32-2" aria-hidden="true" tabindex="-1"></a>chi0<span class="fl">.025</span></span></code></pre></div>
+<pre><code>[1] 19.02277</code></pre>
 <hr />
 <hr />
 </div>
-<div id="cumulative-frequency-plot-continous-variables" class="section level2 hasAnchor" number="2.24">
-<h2><span class="header-section-number">2.24</span> Cumulative frequency plot: Continous variables<a href="data-description.html#cumulative-frequency-plot-continous-variables" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>We can also plot the cumulative frequency Vs the outcomes</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
-<hr />
-<hr />
-</div>
-<div id="summary-statistics" class="section level2 hasAnchor" number="2.25">
-<h2><span class="header-section-number">2.25</span> Summary statistics<a href="data-description.html#summary-statistics" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>The summary statistics are numbers computed from the data that tell us important features of numerical variables (categorical or continuous).</p>
-<p>Limiting values:</p>
+<div id="interval-estimation-8" class="section level2 hasAnchor" number="13.33">
+<h2><span class="header-section-number">13.33</span> Interval estimation<a href="interval-estimation.html#interval-estimation-8" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In our example</p>
 <ul>
-<li>minimum: the minimum outcome observed</li>
-<li>maximum: the maximum outcome observed</li>
+<li><span class="math inline">\(s=0.227\)</span></li>
+<li><span class="math inline">\(n=10\)</span></li>
 </ul>
-<p>Central value for the outcomes</p>
+<p><span class="math inline">\(\hat{\sigma}^2=(l,u) = (\frac{s^2 (n-1)}{\chi^2_{0.025,n-1}},\frac{s^2(n-1)}{\chi^2_{0.975,n-1}})\)</span></p>
+<p><span class="math display">\[= (\frac{0.227^2 (10-1)}{19.02277},\frac{0.227^2(10-1)}{2.700389})=(0.02,0.17)\]</span></p>
+<p>According to the data <span class="math inline">\(\sigma^2 \neq 1\)</span> at <span class="math inline">\(95\%\)</span> confidence.</p>
 <ul>
-<li>The average is defined as</li>
+<li>Had we made an error considering <span class="math inline">\(\sigma=1\)</span> when we calculated the first CI for this data?</li>
 </ul>
-<p><span class="math display">\[\bar{x}=\frac{1}{N} \sum_{j=1..N} x_j\]</span></p>
-<p>where <span class="math inline">\(x_j\)</span> is the <strong>observation</strong> <span class="math inline">\(j\)</span> (convexity) from a total of <span class="math inline">\(N\)</span>.</p>
+<p>in R: <code>library(Ecfun);
+confint.var(0.05, 9)</code></p>
 <hr />
 <hr />
 </div>
-<div id="average" class="section level2 hasAnchor" number="2.26">
-<h2><span class="header-section-number">2.26</span> Average<a href="data-description.html#average" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>The average convexity can be computed directly from the <strong>observations</strong></p>
-<p></br>
-<span class="math inline">\(\bar{x}= \frac{1}{N}\sum_j x_j\)</span></p>
-<p></br>
-<span class="math inline">\(= \frac{1}{N}(7.97 + 18.23 + 12.27... + 6.80) = 10.19894\)</span></p>
-<hr />
-<hr />
-</div>
-<div id="average-categorical-ordered" class="section level2 hasAnchor" number="2.27">
-<h2><span class="header-section-number">2.27</span> Average (categorical ordered)<a href="data-description.html#average-categorical-ordered" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>For <strong>categorical ordered</strong> variables we can use the frequency table to compute the average</p>
-<pre><code>##   outcome ni         fi
-## 1       0 41 0.33333333
-## 2       1  5 0.04065041
-## 3       2 37 0.30081301
-## 4       3 31 0.25203252
-## 5       4  9 0.07317073</code></pre>
-<p>The average <strong>severity</strong> of misophonia in the study
-can <strong>also</strong> be computed from the relative frequencies of the <strong>outcomes</strong></p>
-<p><br>
-<span class="math inline">\(\bar{x}=\frac{1}{N}\sum_{i=1...N} x_j=\frac{1}{N}\sum_{i=1...M} x_i*n_{i}=\sum_{i=1...M} x_i*f_{i}\)</span></p>
-<p><br>
-<span class="math inline">\(=0*f_{0}+1*f_{1}+2*f_{2}+3*f_{3}+4*f_{4}=1.691057\)</span></p>
-<p>(note the change from <span class="math inline">\(N\)</span> to <span class="math inline">\(M\)</span> in the second summation)</p>
-<hr />
-<hr />
-</div>
-<div id="average-categorical-ordered-1" class="section level2 hasAnchor" number="2.28">
-<h2><span class="header-section-number">2.28</span> Average (categorical ordered)<a href="data-description.html#average-categorical-ordered-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>In terms of the <strong>outcomes</strong> of categorical ordered variables, the <strong>average</strong> can be written as</p>
-<p><span class="math display">\[\bar{x}= \sum_{i = 1...M} x_i f_i\]</span></p>
-<p>from a total of <span class="math inline">\(M\)</span> possible outcomes (number of severity levels).</p>
-<p><span class="math inline">\(\bar{x}\)</span> is the <strong>central value</strong> or center of gravity of the outcomes. As if each outcome had a mass density given by <span class="math inline">\(f_i\)</span>.</p>
-<hr />
-<hr />
-</div>
-<div id="average-1" class="section level2 hasAnchor" number="2.29">
-<h2><span class="header-section-number">2.29</span> Average<a href="data-description.html#average-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<ul>
-<li><p>The average is not the result of one observation (random experiment).</p></li>
-<li><p>It is the result of a series of observations (sample).</p></li>
-<li><p>It describes the number where the observed values balance.</p></li>
-</ul>
-<p>That is why we hear, for instance, that a patient with an infection can infect an average of 2.5 people.</p>
-<hr />
-<hr />
-</div>
-<div id="average-2" class="section level2 hasAnchor" number="2.30">
-<h2><span class="header-section-number">2.30</span> Average<a href="data-description.html#average-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><img src="_main_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
-<hr />
-<hr />
-</div>
-<div id="median" class="section level2 hasAnchor" number="2.31">
-<h2><span class="header-section-number">2.31</span> Median<a href="data-description.html#median" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Another measure of centrality is the median. The median <span class="math inline">\(q_{0.5}\)</span> is the value <span class="math inline">\(x_p\)</span></p>
-<p><span class="math display">\[median(x)=q_{0.5}=x_p\]</span></p>
-<p>below which we find half of the observations</p>
-<p><span class="math display">\[\sum_{x\leq x_p} 1 = \frac{N}{2}\]</span></p>
-<p>or in terms of the frequencies, is the value <span class="math inline">\(x_p\)</span> that makes the cumulative frequency <span class="math inline">\(F_p\)</span> equal to <span class="math inline">\(0.5\)</span></p>
-<p><span class="math display">\[q_{0.5}=\sum_{x\leq x_p} f_x =F_p=0.5\]</span></p>
-<hr />
-<hr />
-</div>
-<div id="median-vs-average" class="section level2 hasAnchor" number="2.32">
-<h2><span class="header-section-number">2.32</span> Median Vs Average<a href="data-description.html#median-vs-average" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<ul>
-<li>Average: Center of mass (compensates distant values)</li>
-<li>Median: Half of the mass</li>
-</ul>
-<p><img src="_main_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
-<hr />
-<hr />
-</div>
-<div id="dispersion" class="section level2 hasAnchor" number="2.33">
-<h2><span class="header-section-number">2.33</span> Dispersion<a href="data-description.html#dispersion" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>An important measure of the outcomes is their <strong>dispersion</strong>. Many experiments can share their mean but differ on how dispersed the values are.</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-19-1.png" width="672" /></p>
-<hr />
-<hr />
-</div>
-<div id="dispersion-1" class="section level2 hasAnchor" number="2.34">
-<h2><span class="header-section-number">2.34</span> Dispersion<a href="data-description.html#dispersion-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><img src="_main_files/figure-html/unnamed-chunk-20-1.png" width="672" /></p>
-<hr />
-<hr />
-</div>
-<div id="sample-variance" class="section level2 hasAnchor" number="2.35">
-<h2><span class="header-section-number">2.35</span> Sample variance<a href="data-description.html#sample-variance" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Dispersion about the mean is measured with the</p>
-<ul>
-<li>The sample variance:</li>
-</ul>
-<p><span class="math display">\[s^2=\frac{1}{N-1} \sum_{j=1..N} (x_j-\bar{x})^2\]</span></p>
-<p>It measures the average square distance of the <strong>observations</strong> to the average. The reason for <span class="math inline">\(N-1\)</span> will be explained when we talk about inference.</p>
-<hr />
-<hr />
-</div>
-<div id="sample-variance-1" class="section level2 hasAnchor" number="2.36">
-<h2><span class="header-section-number">2.36</span> Sample variance<a href="data-description.html#sample-variance-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<ul>
-<li>In terms of the frequencies of <strong>categorical and ordered</strong> variables</li>
-</ul>
-<p><span class="math display">\[s^2=\frac{N}{N-1} \sum_{x} (x-\bar{x})^2 f_x\]</span></p>
-<p><span class="math inline">\(s^2\)</span> can be thought of as the moment of inertia of the observations.</p>
-<hr />
-<hr />
-</div>
-<div id="standard-deviation" class="section level2 hasAnchor" number="2.37">
-<h2><span class="header-section-number">2.37</span> Standard deviation<a href="data-description.html#standard-deviation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>The squared root of the sample variance is called the <strong>standard deviation</strong> <span class="math inline">\(s\)</span>.</p>
-<p>The standard deviation of the convexity angle is</p>
-<p></br>
-<span class="math inline">\(s= [\frac{1}{123-1}((7.97-10.19894)^2+ (18.23-10.19894)^2\)</span><br />
-</br><span class="math inline">\(+ (12.27-10.19894)^2 + ...)]^{1/2} = 5.086707\)</span></p>
-<p>The jaw convexity deviates from its mean by <span class="math inline">\(5.086707\)</span>.</p>
-<hr />
-<hr />
-</div>
-<div id="iqr" class="section level2 hasAnchor" number="2.38">
-<h2><span class="header-section-number">2.38</span> IQR<a href="data-description.html#iqr" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<ul>
-<li><p>Dispersion of data can also be measured with respect to the median by the <strong>interquartile range</strong></p></li>
-<li><p>We define the <strong>first</strong> quartile as the value <span class="math inline">\(x_p\)</span> that makes the cumulative frequency <span class="math inline">\(F_p\)</span> equal to <span class="math inline">\(0.25\)</span></p></li>
-</ul>
-<p><span class="math display">\[q_{0.25}=\sum_{x\leq x_p} f_x =F_p=0.25\]</span></p>
-<ul>
-<li>We also define the <strong>third</strong> quartile as the value <span class="math inline">\(x_p\)</span> that makes the cumulative frequency <span class="math inline">\(F_p\)</span> equal to <span class="math inline">\(0.75\)</span></li>
-</ul>
-<p><span class="math display">\[q_{0.75}=\sum_{x\leq x_p} f_x =F_p=0.75\]</span></p>
-<hr />
-<hr />
-</div>
-<div id="iqr-1" class="section level2 hasAnchor" number="2.39">
-<h2><span class="header-section-number">2.39</span> IQR<a href="data-description.html#iqr-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>The distance between the third quartile and the first quartile is called the <strong>interquartile range</strong> (IQR) and captures the central 50% of the observations</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-21-1.png" width="672" /></p>
-<hr />
-<hr />
-</div>
-<div id="box-plot" class="section level2 hasAnchor" number="2.40">
-<h2><span class="header-section-number">2.40</span> Box plot<a href="data-description.html#box-plot" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>The interquartile range, the median, and the 5% and 95% of the data can be visualized in a <strong>boxplot</strong>, here the values of the outcomes are on the y-axis. The IQR is the box, the median is the line in the middle and the whiskers mark the 5% and 95% of the data.</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-22-1.png" width="672" /></p>
+<div id="interval-estimation-9" class="section level2 hasAnchor" number="13.34">
+<h2><span class="header-section-number">13.34</span> Interval estimation<a href="interval-estimation.html#interval-estimation-9" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The interval for the variance is <strong>not symmetric</strong> and we cannot formulate it as an estimate <span class="math inline">\(\pm\)</span> margin of error.</p>
+<p><img src="_main_files/figure-html/unnamed-chunk-99-1.png" width="672" /></p>
 
 </div>
 </div>
@@ -1034,8 +1038,8 @@ can <strong>also</strong> be computed from the relative frequencies of the <stro
           </div>
         </div>
       </div>
-<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="probability.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="maximum-likelihood.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="exercises.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -1066,7 +1070,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/USERNAME/REPO/edit/BRANCH/01-DataDescription.Rmd",
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/13-InervalEstimation.Rmd",
 "text": "Edit"
 },
 "history": {

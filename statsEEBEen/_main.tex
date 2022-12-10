@@ -6,7 +6,7 @@
 ]{book}
 \title{Stats theory (SDA)}
 \author{Alejandro Caceres}
-\date{2022-11-27}
+\date{2022-12-10}
 
 \usepackage{amsmath,amssymb}
 \usepackage{lmodern}
@@ -1008,12 +1008,12 @@ Say we repeated the experiment 1000 times:
 
 \begin{verbatim}
 ##   outcome  ni    fi
-## 1       1 172 0.172
-## 2       2 187 0.187
-## 3       3 166 0.166
-## 4       4 167 0.167
-## 5       5 159 0.159
-## 6       6 149 0.149
+## 1       1 180 0.180
+## 2       2 162 0.162
+## 3       3 173 0.173
+## 4       4 173 0.173
+## 5       5 149 0.149
+## 6       6 163 0.163
 \end{verbatim}
 
 We find that \(f_i\) is converging to a constant value
@@ -8381,6 +8381,1189 @@ The interval for the variance is \textbf{not symmetric} and we cannot formulate 
 
 \includegraphics{_main_files/figure-latex/unnamed-chunk-99-1.pdf}
 
+\hypertarget{hypothesis-testing}{%
+\chapter{Hypothesis testing}\label{hypothesis-testing}}
+
+\hypertarget{objective-12}{%
+\section{Objective}\label{objective-12}}
+
+\begin{itemize}
+\tightlist
+\item
+  Hypothesis testing of means and proportions
+\item
+  Hypothesis testing of variances
+\item
+  Errors in hypothesis testing
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{hypothesis}{%
+\section{Hypothesis}\label{hypothesis}}
+
+When we make inferences about our process, we often want to test if the process satisfies a desired condition/property
+
+\begin{itemize}
+\item
+  Measurements and their inferences provide \textbf{evidence} for that condition.
+\item
+  We can formulate the condition in terms of the values that some \textbf{parameters} of probability distributions can take.
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{hypothesis-1}{%
+\section{Hypothesis}\label{hypothesis-1}}
+
+Examples:
+
+\begin{itemize}
+\tightlist
+\item
+  Tyre manufacturers want to know whether the half-life of the tires they produce is at least 20,000 km
+\item
+  Fertilizer developers want to test whether their new product has a real effect on the growth of plants
+\item
+  Pharmaceutical companies need to know if chemotherapy can cure 90\% of cancer patients
+\end{itemize}
+
+These questions can be translated into statements of probability distributions
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{hypothesis-2}{%
+\section{Hypothesis}\label{hypothesis-2}}
+
+\begin{itemize}
+\tightlist
+\item
+  Tyre manufacturers want to know whether the half-life of the tires they produce is at least 20,000 km
+\end{itemize}
+
+Assuming that the life of tires follows a population probability distribution, we are interested in finding if the mean of the distribution is at least 20,000Km.
+
+This can be done in two dichotomic statements
+
+\begin{itemize}
+\tightlist
+\item
+  The mean life of tires is \textbf{less} than 20,000km
+\item
+  The mean life of tires is \textbf{greater} than 20,000km
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{hypothesis-3}{%
+\section{Hypothesis}\label{hypothesis-3}}
+
+or being \(\mu\) the mean of the population distribution
+
+\begin{itemize}
+\tightlist
+\item
+  \(H_0: \mu \leq 20,000km\)
+\item
+  \(H_1: \mu > 20,000km\)
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{hypothesis-4}{%
+\section{Hypothesis}\label{hypothesis-4}}
+
+\textbf{Definition}
+
+In statistics, a statement (conjecture) about the distribution of a random variable is called a \textbf{hypothesis}.
+
+The hypothesis is usually written in two dichotomous statements
+
+\begin{itemize}
+\tightlist
+\item
+  The \textbf{null} hypothesis: \(H_0\) when the conjecture is False (usually refers to status quo)
+\item
+  The \textbf{alternative} hypothesis: \(H_1\) when the conjecture is True (usually refers to research hypothesis)
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{null-hypothesis}{%
+\section{Null hypothesis}\label{null-hypothesis}}
+
+So what are the null and the alternative hypothesis for these situations?
+
+\begin{itemize}
+\item
+  Tyre manufacturers want to know whether the half-life of the tires they produce is at least 20,000 km
+\item
+  Fertilizer developers want to test whether their new product has a real effect on the growth of plants
+\item
+  Pharmaceutical companies need to know if chemotherapy can cure 90\% of cancer patients
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{null-hypothesis-1}{%
+\section{Null hypothesis}\label{null-hypothesis-1}}
+
+\begin{itemize}
+\tightlist
+\item
+  Fertilizer developers want to test whether their new product has a real effect on the growth of plants
+\end{itemize}
+
+Being \(\mu_0\) the mean growth of the plants \textbf{without} fertilizer (known) and \(\mu\) the mean growth of the plants with the fertilizer (unknown)
+
+\begin{itemize}
+\tightlist
+\item
+  \(H_0:\mu \leq \mu_0\) (The fertilizer does nothing: status quo)
+\item
+  \(H_1:\mu > \mu_0\) (The fertilizer has the desired effect: research interest)
+\end{itemize}
+
+What could be a suitable distribution of \(\mu\)?
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\textbf{Example:}
+
+You perform \(8\) random experiments: Load a cable until it breaks and record the breaking load. These are the results.
+
+\begin{verbatim}
+## [1] 13.34642 13.32620 13.01459 13.10811 12.96999 13.55309 13.75557 12.62747
+\end{verbatim}
+
+\begin{itemize}
+\tightlist
+\item
+  The average of the data is \(\bar{x}=13.21\)
+\item
+  The standard deviation is \(s=0.3571565\)
+\item
+  We may want to use this data to show that our cables break \textbf{on average} at more than \(13\) Tons.
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\textbf{Example:}
+
+If we \textbf{hypothesize} that our cables truly distribute as \[X \rightarrow N(\mu=13, \sigma^2=0.35^2)\] then
+
+\[\bar{X} \rightarrow N(13, \frac{0.35^2}{8})\]
+We ask:
+
+\begin{itemize}
+\tightlist
+\item
+  Are the measurements consistent with the null hypothesis \(H_0: \mu=13\)?
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{hypothesis-test-with-acceptancerejection-zones}{%
+\section{Hypothesis test with acceptance/rejection zones}\label{hypothesis-test-with-acceptancerejection-zones}}
+
+\begin{itemize}
+\tightlist
+\item
+  \(H_0:\mu = 13\) (cables break as usual: status quo)
+\item
+  \(H_1:\mu \neq 13\) (cables do not brake as usual: research interest)
+\end{itemize}
+
+To test the hypothesis compared the \textbf{observed error} with the \textbf{error tolerance} if the null hypothesis is true.
+
+Since
+
+\[\bar{X} \rightarrow N(13, \frac{0.35^2}{8})\]
+
+Then the (standardized) \textbf{observed} error from the null hypothesis follows a standard distribution
+
+\[Z=\frac{\bar{X}-13}{\frac{0.35}{\sqrt{8}}}  \rightarrow N(0,1)\]
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{error-tolerance}{%
+\section{Error tolerance}\label{error-tolerance}}
+
+\begin{itemize}
+\tightlist
+\item
+  The \textbf{error tolerance} is determined by the the quantiles of \(Z\)
+\end{itemize}
+
+\[P(-z_{0.025} \leq Z \leq z_{0.025})=0.95\]
+The interval: \[(-z_{0.025}, z_{0.025})\] is called acceptance interval of \(H_0\) at \(95\%\) confidence level.
+
+\begin{itemize}
+\tightlist
+\item
+  \(\alpha=0.05=2\times 0.025=1-0.95\) is called the \textbf{significance} limit.
+\end{itemize}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-101-1.pdf}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{standardized-observed-error}{%
+\section{Standardized observed error}\label{standardized-observed-error}}
+
+\begin{itemize}
+\tightlist
+\item
+  The standardized \textbf{observed error} is
+\end{itemize}
+
+\[z_{obs}=\frac{\bar{x}-13}{\frac{0.35}{\sqrt{8}}}=1.697056 \in (-z_{0.025}, z_{0.025})\]
+We conclude:
+
+\begin{itemize}
+\item
+  Our observed error is consistent with \(95\%\) of the observations for the statistic \(Z\) when the null hypothesis is true. We tolerate the error.
+\item
+  We accept that the \(H_0\) is true and give up on the idea that we have stronger cables than expected.
+\end{itemize}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-102-1.pdf}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{hypothesis-test-with-p-value}{%
+\section{Hypothesis test with P-value}\label{hypothesis-test-with-p-value}}
+
+We can also contrast the hypothesis by calculating the probability that the average of another sample will be rarer than the average we just observed.
+
+\[pvalue = P(Z \leq -z_{obs}) + P(z_{obs} \leq Z) = 2 (1-\phi(|z_{obs}|))\]
+
+\begin{itemize}
+\tightlist
+\item
+  We reject \(H_0\) if \(Pvalue \leq \alpha =0.05\)
+\end{itemize}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-103-1.pdf}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{observed-error}{%
+\section{Observed error}\label{observed-error}}
+
+\begin{itemize}
+\tightlist
+\item
+  The \textbf{P-value} is
+\end{itemize}
+
+\[pvalue=2 (1-\phi(1.697056))=0.089\]
+R: 2*(1-pnorm(1.697056))
+
+We conclude:
+
+\begin{itemize}
+\item
+  If we performed a new sample is likely that we can get a more extreme result for the average at limit \(\alpha=0.05\) if the null hypothesis is true. We tolerate the observed error.
+\item
+  We accept that \(H_0\) could have produced our data and give up on the idea that we have stronger cables than expected.
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{hypothesis-test-confidence-interval}{%
+\section{Hypothesis test Confidence Interval}\label{hypothesis-test-confidence-interval}}
+
+From the point of view of the estimation, we can also contrast the hypothesis.
+
+\begin{itemize}
+\tightlist
+\item
+  We trust that our estimation of \(\mu\) is correct with \(95\%\) confidence
+\end{itemize}
+
+The CI is:
+
+\[(l,u)=(\bar{x}-z_{0.025} \frac{\sigma}{\sqrt{n}}, \bar{x}+z_{0.025} \frac{\sigma}{\sqrt{n}})= (12.97,13.45)\]
+
+\begin{itemize}
+\item
+  The CI tells us that we can be \(95\%\) confident that we have captured the true value of \(\mu\).
+\item
+  We don't know the true value of \(\mu\) but \(H_0: \mu=13\) Tons could be it.
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{hypothesis-test-confidence-interval-1}{%
+\section{Hypothesis test Confidence Interval}\label{hypothesis-test-confidence-interval-1}}
+
+\begin{itemize}
+\tightlist
+\item
+  Since
+\end{itemize}
+
+\[H_0: \mu=13 \in (12.97,13.45)\]
+We conclude:
+
+\begin{itemize}
+\item
+  Our data is consistent with the fact that our estimate of \(\mu\) is the null hypothesis.
+\item
+  We accept that \(H_0\) could have produced our interval and give up on the idea that we have stronger cables than expected.
+\end{itemize}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-104-1.pdf}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{hypothesis-test-with-unknown-variance}{%
+\section{Hypothesis test with unknown variance}\label{hypothesis-test-with-unknown-variance}}
+
+It is common to \textbf{hypothesize} the values of the parameters we can contrast. Other nuisance parameters we may leave unknown.
+
+We can \textbf{hypothesize} that our cables truly distribute as \[X \rightarrow N(\mu=13, \sigma^2)\] then
+
+\[\bar{X} \rightarrow N(13, \frac{\sigma^2}{8})\]
+We ask again:
+
+\begin{itemize}
+\tightlist
+\item
+  Are the measurements consistent with the null hypothesis \(H_0: \mu=13\)?
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{standardized-error-with-unknown-variance}{%
+\section{Standardized error with unknown variance}\label{standardized-error-with-unknown-variance}}
+
+If \(X\) is normal
+
+\[X \rightarrow N(\mu, \sigma^2)\] then the \textbf{standardized errors} with respect to the \textbf{sample standard deviation} \(S\)
+
+\[T=\frac{\bar{X}-\mu}{\frac{S}{\sqrt{n}}}\]
+
+Follows a \(t\)-distribution with \(n-1\) degrees of freedom.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{hypothesis-testing-with-unknown-variance}{%
+\section{Hypothesis testing with unknown variance}\label{hypothesis-testing-with-unknown-variance}}
+
+we accept \(H_0\) because of any of following the equivalent contrasts:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  The acceptance region for \(H_0\) is:
+\end{enumerate}
+
+\[(-t_{0.025,7}, t_{0.025,7})=( -2.36,  2.36)\]
+
+and the observed standardized error from \(H_0\) is
+\[t_{obs} =  \frac{13.21268-13}{\frac{0.3571565}{\sqrt{8}}}=1.6843\]
+
+within the acceptance region.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{hypothesis-testing-with-unknown-variance-1}{%
+\section{Hypothesis testing with unknown variance}\label{hypothesis-testing-with-unknown-variance-1}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  The \[pvalue=2(1-F_{t,7}(1.6843))=0.136\]
+\end{enumerate}
+
+R: 2*(1-pt(1.6843,7))
+
+is higher than \(\alpha=0.05\)
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  The confidence interval
+\end{enumerate}
+
+\[(\bar{x}-t_{0.025, n-1} \frac{s}{\sqrt{n}}, \bar{x}+t_{0.025, n-1} \frac{s}{\sqrt{n}})=(12.91409, 13.51127)\]
+
+contains \(H_0:\mu=13\).
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+in R:
+t.test(c(13.34642, 13.32620, 13.01459, 13.10811,
+12.96999, 13.55309, 13.75557, 12.62747), mu=13)
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-105-1.pdf}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{one-tailed-test}{%
+\section{One-tailed test}\label{one-tailed-test}}
+
+We may be interested in only testing for the fact that our estimate is higher than the null hypothesis (we do not care if it is lower)
+
+Upper-tailed test:
+
+\begin{itemize}
+\tightlist
+\item
+  \(H_0:\mu \leq 13\) (at most cables break as usual)
+\item
+  \(H_1:\mu > 13\) (cables break at a higher load)
+\end{itemize}
+
+We will test the higher tail of the distribution.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{hypothesis-testing-of-the-upper-tail}{%
+\section{Hypothesis testing of the upper tail}\label{hypothesis-testing-of-the-upper-tail}}
+
+In this example, we accept \(H_0\) because of any of the following equivalent contrasts:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  The acceptance region for \(H_0\) is:
+\end{enumerate}
+
+\[(-\infty, t_{0.05,7})=( -\infty,  1.894579)\]
+
+and the observed standardized error from \(H_0\) is
+\[t_{obs} =  \frac{13.21268-13}{\frac{0.3571565}{\sqrt{8}}}=1.6843\]
+
+within the acceptance region.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{hypothesis-testing-with-unknown-variance-2}{%
+\section{Hypothesis testing with unknown variance}\label{hypothesis-testing-with-unknown-variance-2}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  For the upper tail \[pvalue=1-F_{t,7}(1.6843)=0.06799782\]
+\end{enumerate}
+
+R: 1-pt(1.6843,7)
+
+is higher than \(\alpha=0.05\)
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  The \textbf{upper tailed} confidence interval
+\end{enumerate}
+
+\[(\bar{x}-t_{0.05, n-1} \frac{s}{\sqrt{n}}, \infty)=(12.97344, \infty)\]
+
+contains \(H_0:\mu=13\).
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+in R:
+t.test(c(13.34642, 13.32620, 13.01459, 13.10811,
+12.96999, 13.55309, 13.75557, 12.62747), mu=13, alternative=``greater'')
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-106-1.pdf}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{example-1-4}{%
+\section{Example 1:}\label{example-1-4}}
+
+\(11.6g\) of NaCl is dissolved in \(100 g\) of water and has a molar concentration of \(1.92 mol/L\)
+
+We design a process to remove salt from this concentration and obtain the following results
+
+\begin{verbatim}
+## [1] 1.716 1.889 1.783 1.849 1.891
+\end{verbatim}
+
+\begin{itemize}
+\tightlist
+\item
+  We want to test at \(0.05\) significant threshold if the process does remove salt from the concentration.
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{example-1-5}{%
+\section{Example 1:}\label{example-1-5}}
+
+Two-tailed test:
+
+\begin{itemize}
+\tightlist
+\item
+  \(H_0:\mu=1.92\); \(H_1:\mu \neq 1.92\)
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{t.test}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\FloatTok{1.716}\NormalTok{, }\FloatTok{1.889}\NormalTok{, }\FloatTok{1.783}\NormalTok{, }\FloatTok{1.849}\NormalTok{, }\FloatTok{1.891}\NormalTok{), }
+       \AttributeTok{mu=}\FloatTok{1.92}\NormalTok{, }\AttributeTok{alternative =} \StringTok{"two.sided"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  One Sample t-test
+## 
+## data:  c(1.716, 1.889, 1.783, 1.849, 1.891)
+## t = -2.8038, df = 4, p-value = 0.04862
+## alternative hypothesis: true mean is not equal to 1.92
+## 95 percent confidence interval:
+##  1.732122 1.919078
+## sample estimates:
+## mean of x 
+##    1.8256
+\end{verbatim}
+
+Lower-tailed test:
+
+\begin{itemize}
+\tightlist
+\item
+  \(H_0:\mu \geq 1.92\); \(H_1:\mu < 1.92\)
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{t.test}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\FloatTok{1.716}\NormalTok{, }\FloatTok{1.901}\NormalTok{, }\FloatTok{1.783}\NormalTok{, }\FloatTok{1.849}\NormalTok{, }\FloatTok{1.891}\NormalTok{), }
+       \AttributeTok{mu=}\FloatTok{1.92}\NormalTok{, }\AttributeTok{alternative =} \StringTok{"less"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  One Sample t-test
+## 
+## data:  c(1.716, 1.901, 1.783, 1.849, 1.891)
+## t = -2.6389, df = 4, p-value = 0.02882
+## alternative hypothesis: true mean is less than 1.92
+## 95 percent confidence interval:
+##      -Inf 1.902322
+## sample estimates:
+## mean of x 
+##     1.828
+\end{verbatim}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{example-2-3}{%
+\section{Example 2:}\label{example-2-3}}
+
+In some cases, we are not sure about the numerical value of the hypothesis to test, but we know that we want to improve the value of a parameter in two different conditions.
+
+In the original paper of Gosset, he analyzed the effect of two soporific medicines.
+
+\begin{itemize}
+\tightlist
+\item
+  10 individuals were given \textbf{soporific 1} and wrote down the additional hours slept under treatment, with a mean \(0.75\)
+\end{itemize}
+
+\begin{verbatim}
+##  [1]  0.7 -1.6 -0.2 -1.2 -0.1  3.4  3.7  0.8  0.0  2.0
+\end{verbatim}
+
+\begin{itemize}
+\tightlist
+\item
+  The same 10 individuals were given \textbf{soporific 2} and wrote down the additional hours slept under treatment, with a mean \(2.33\)
+\end{itemize}
+
+\begin{verbatim}
+##  [1]  1.9  0.8  1.1  0.1 -0.1  4.4  5.5  1.6  4.6  3.4
+\end{verbatim}
+
+Scientific hypothesis: Soporific 2 is better than soporific 1
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{example-2-4}{%
+\section{Example 2:}\label{example-2-4}}
+
+For each individual, Gosset made the difference between the treatments. Taking \(X\) as the difference between treatments, this was the sample observed for \(X\)
+
+\begin{verbatim}
+##  [1] 1.2 2.4 1.3 1.3 0.0 1.0 1.8 0.8 4.6 1.4
+\end{verbatim}
+
+finding an average of treatment gain from soporific 2 with respect to soporific 1 of \(1.58\), and \(s=1.229995\)
+
+\textbf{Upper-tailed paired t-test}:
+
+\begin{itemize}
+\tightlist
+\item
+  \(H_0:\mu \leq 0\) (no treatment difference); \(H_1:\mu > 0\) (gain in treatment 2)
+\end{itemize}
+
+Where \(\mu\) is the mean of the differences between treatments.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{example-2-5}{%
+\section{Example 2:}\label{example-2-5}}
+
+The \textbf{standardized error} is:
+
+\[T=\frac{\bar{X}}{\frac{S}{\sqrt{n}}}\]
+
+and its observation
+
+\[t_{obs}=\frac{\bar{x}}{\frac{s}{\sqrt{n}}}\]
+which is also known as the \textbf{signal} to \textbf{noise} ratio.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{t.test}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\FloatTok{1.9}\NormalTok{,}\FloatTok{0.8}\NormalTok{,}\FloatTok{1.1}\NormalTok{,}\FloatTok{0.1}\NormalTok{,}\SpecialCharTok{{-}}\FloatTok{0.1}\NormalTok{,}\FloatTok{4.4}\NormalTok{,}\FloatTok{5.5}\NormalTok{,}\FloatTok{1.6}\NormalTok{,}\FloatTok{4.6}\NormalTok{,}\FloatTok{3.4}\NormalTok{),}
+       \FunctionTok{c}\NormalTok{(}\FloatTok{0.7}\NormalTok{,}\SpecialCharTok{{-}}\FloatTok{1.6}\NormalTok{,}\SpecialCharTok{{-}}\FloatTok{0.2}\NormalTok{,}\SpecialCharTok{{-}}\FloatTok{1.2}\NormalTok{,}\SpecialCharTok{{-}}\FloatTok{0.1}\NormalTok{,}\FloatTok{3.4}\NormalTok{,}\FloatTok{3.7}\NormalTok{,}\FloatTok{0.8}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{2}\NormalTok{),}
+       \AttributeTok{paired =} \ConstantTok{TRUE}\NormalTok{,}
+       \AttributeTok{alternative=}\StringTok{"greater"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  Paired t-test
+## 
+## data:  c(1.9, 0.8, 1.1, 0.1, -0.1, 4.4, 5.5, 1.6, 4.6, 3.4) and c(0.7, -1.6, -0.2, -1.2, -0.1, 3.4, 3.7, 0.8, 0, 2)
+## t = 4.0621, df = 9, p-value = 0.001416
+## alternative hypothesis: true difference in means is greater than 0
+## 95 percent confidence interval:
+##  0.8669947       Inf
+## sample estimates:
+## mean of the differences 
+##                    1.58
+\end{verbatim}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-114-1.pdf}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{hypothesis-testing-with-large-n-and-any-distribution}{%
+\section{Hypothesis testing with large n and any distribution}\label{hypothesis-testing-with-large-n-and-any-distribution}}
+
+On many occasions, \(X\) is not normally distributed but we can take large samples \(n \ge 30\) then we can use the CLT:
+
+Then the \textbf{standardized error} from the null hypothesis follows a standard distribution
+
+\[Z=\frac{\bar{X}-\mu}{\frac{\sigma}{\sqrt{n}}}  \rightarrow N(0,1)\]
+
+and proceed as before, and if \(\sigma\) is unknown we replace it with its estimate \(s\).
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{hypothesis-testing-for-proportions}{%
+\section{Hypothesis testing for proportions}\label{hypothesis-testing-for-proportions}}
+
+\textbf{Example:}
+
+We may be satisfied with a new process if \(90\%\) of the times we improve the previous process.
+
+\begin{itemize}
+\tightlist
+\item
+  If we run a sample of \(200\) new processes and find that \(188\) times we improved the previous process, can we be satisfied with the new process at \(95\%\) confidence?
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{interval-estimation-for-proportions-4}{%
+\section{Interval estimation for proportions}\label{interval-estimation-for-proportions-4}}
+
+We hypothesize that the distribution of a random experiment is
+
+\[X \rightarrow Bernoulli (p)\]
+with an upper-tailed hypothesis contrast for \(p\):
+
+\begin{itemize}
+\tightlist
+\item
+  \(H_0: p \leq 0.9\) (Not satisfactory)
+\item
+  \(H_1: p> 0.9\) (Satisfactory)
+\end{itemize}
+
+Then if the null hypothesis is true \(\bar{X}\) has
+
+\begin{itemize}
+\item
+  mean \(E(\bar{X})=E(X)=p=0.9\) (unbiased estimator of \(p\))\\
+\item
+  variance \(V(\bar{X})=\frac{V(X)}{n}=\frac{p(1-p)}{n}=0.00045\) (consistent estimator of \(p\))
+\item
+  The observed \(\bar{X}\) was \(\bar{x}=188/200=0.94\)
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{interval-estimation-for-proportions-5}{%
+\section{Interval estimation for proportions}\label{interval-estimation-for-proportions-5}}
+
+\begin{itemize}
+\tightlist
+\item
+  By the CLT, the \textbf{standardized error} from the null hypothesis
+\end{itemize}
+
+\[Z=\frac{\bar{X}-E(\bar{X})}{\sqrt{V(\bar{X})}}= \frac{\bar{X}-p}{\big[\frac{p(1-p)}{n} \big]^{1/2}}\rightarrow N(0,1)\]
+is a standard normal variable, when \(pn>5\) and \((p-1)n>5\).
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{interval-estimation-for-proportions-6}{%
+\section{Interval estimation for proportions}\label{interval-estimation-for-proportions-6}}
+
+In this example, we \textbf{reject} \(H_0\) because of any of the following equivalent contrasts:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  The acceptance region for \(H_0\) is:
+\end{enumerate}
+
+\[(-\infty, z_{0.05})=( -\infty,  1.644854)\]
+
+and the observed standardized error from \(H_0\) is
+\[z_{obs} =  \frac{0.94-0.90}{\sqrt{0.00045}}=1.885618\]
+
+outside the acceptance region (inside the rejection zone).
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{interval-estimation-for-proportions-7}{%
+\section{Interval estimation for proportions}\label{interval-estimation-for-proportions-7}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  For the upper tail \[pvalue=1-\phi^{-1}(1.885618)=0.02967323\]
+\end{enumerate}
+
+R: 1-pnorm(1.885618)
+
+is lower than \(\alpha=0.05\)
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{interval-estimation-for-proportions-8}{%
+\section{Interval estimation for proportions}\label{interval-estimation-for-proportions-8}}
+
+In R: prop.test(188, 200, p=0.9, alternative = ``greater'' , correct=FALSE)
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-115-1.pdf}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{test-for-variances}{%
+\section{Test for variances}\label{test-for-variances}}
+
+In many cases, experiments are run to test specific values of the dispersion of data.
+
+Such as
+
+\begin{itemize}
+\tightlist
+\item
+  for complying with strict design standards where measurements must be between certain values
+\item
+  when relative measurements are taken such as the reaction of a treatment on an individual (insulin administration on an individual's sugar levels)
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{test-for-variances-1}{%
+\section{Test for variances}\label{test-for-variances-1}}
+
+For a random sample \(X_1,...X_n\) with a normal population distribution (\(X_i \rightarrow N(\mu, \sigma^2)\)) the statistics defined by
+
+\[X=\frac{(n-1)S^2}{\sigma^2}\]
+
+Has a \(\chi^2\) (chi-squared) distribution with n-1 degrees of freedom given by
+
+\[f(x)=C_n  x^{\frac{n-3}{2}} e^{-\frac{x}{2}}\]
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{test-for-variances-2}{%
+\section{Test for variances}\label{test-for-variances-2}}
+
+Suppose we want to test whether the variance of the population distribution is equal to a given value \(\sigma_0\)
+
+\begin{itemize}
+\tightlist
+\item
+  \(H_0:\sigma=\sigma_0\)
+\end{itemize}
+
+Alternative hypothesis
+
+\begin{itemize}
+\item
+  two tailed: \(H_1:\sigma \neq \sigma_0\)
+\item
+  upper tailed: \(H_1:\sigma > \sigma_0\)
+\item
+  lower tailed: \(H_1:\sigma < \sigma_0\)
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{test-for-variances-3}{%
+\section{Test for variances}\label{test-for-variances-3}}
+
+\(S^2\) is an unbiased estimate of \(\sigma^2\): \(E(S^2)=\sigma^2\)
+
+The \textbf{standardized error ratio}
+
+\[W=\frac{(n-1)S^2}{\sigma_0^2} \rightarrow \chi^2(n-1)\]
+
+Follows a \(\chi^2\) distribution with \(n-1\) degrees of freedom.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{example-19}{%
+\section{Example}\label{example-19}}
+
+\begin{itemize}
+\item
+  The production of a semiconductor chip is regulated by a process that requires that the thickness of a particular layer does not vary in more than \(\sigma_0=0.6mm\), from its mean of \(25mm\).
+\item
+  To keep control of the process every so often a sample of \(20\) specimens is taken.
+\item
+  If on one occasion the estimated standard deviation was \(s=0.8462188\) is the process out of control at \(0.01\) confidence and should be stopped?
+\end{itemize}
+
+This is the data:
+
+\begin{verbatim}
+##  [1] 24.51239 24.79975 26.35608 25.06134 25.11248 26.49211 25.40100 23.89940
+##  [9] 24.40244 24.61227 26.06495 25.31304 25.34867 25.09629 24.51642 26.55461
+## [17] 25.43313 23.28904 25.61018 24.58867
+\end{verbatim}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{test-for-variances-4}{%
+\section{Test for variances}\label{test-for-variances-4}}
+
+We want to contrast the hypotheses
+
+\begin{itemize}
+\item
+  \(H_0:\sigma \leq 0.6\) (Process under control)
+\item
+  \(H_1:\sigma > 0.6\) (Process out of control)
+\item
+  Statistic: \(W=\frac{(n-1)S^2}{\sigma_0^2} \rightarrow \chi^2(n-1)\)
+\item
+  Threshold limit \(\alpha=0.01\)
+\item
+  The acceptance region for \(H_0\): \(P(W\leq \chi^2_{0.01,19})=0.99\)
+\end{itemize}
+
+\[(0, \chi^2_{0.01,19})=(0,36.19)\]
+
+In R: \(\chi^2_{0.01,19}=\)qchisq(0.99,19)\(= 36.19\)
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{test-for-variances-5}{%
+\section{Test for variances}\label{test-for-variances-5}}
+
+In this example, we \textbf{reject} \(H_0\) because of any of the following equivalent contrasts:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  The observed \textbf{standardized error ratio} is:
+\end{enumerate}
+
+\[w_{obs}=\frac{19 (0.8462188)^2}{0.60^2}=37.79344\]
+
+That falls outside the acceptance region (inside the rejection zone)
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  For the upper tail \[pvalue=1-F_{\chi,19}^{-1}(37.79344)= 0.006\]
+\end{enumerate}
+
+R: 1-pchisq(37.79344, 19)
+
+is lower than \(\alpha=0.05\)
+
+Therefore we need to conclude that yes! the process is out of control.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{chi2-statistic-3}{%
+\section{\texorpdfstring{\(\chi^2\)-statistic}{\textbackslash chi\^{}2-statistic}}\label{chi2-statistic-3}}
+
+in R: library(EnvStats);
+varTest(thickness, sigma.squared = 0.6\^{}2, alternative = ``greater'')
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-117-1.pdf}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{errors-in-hypothesis-testing}{%
+\section{Errors in hypothesis testing}\label{errors-in-hypothesis-testing}}
+
+When we infer a parameter with a statistic and then apply a criterion to decide on a hypothesis we have four possibilities
+
+\begin{itemize}
+\tightlist
+\item
+  \(H_0\) unknown reality: \textbf{true} or \textbf{false}
+\item
+  Result of \(H_0\) testing: \textbf{negative}, \textbf{positive}
+\end{itemize}
+
+We usually aim to reject \(H_0\) (prosecutor):
+
+\textbf{positive}: expected research interest, rejection of \(H_0\), or the status quo (rejecting innocence).
+
+\begin{longtable}[]{@{}ccc@{}}
+\toprule
+\(H_0\) & reality: true & reality: false \\
+\midrule
+\endhead
+\textbf{test: positive} (negative result) & true negative & false negative \\
+\textbf{test: negative} (positive result) & false positive & true positive \\
+\bottomrule
+\end{longtable}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{errors-in-hypothesis-testing-1}{%
+\section{Errors in hypothesis testing}\label{errors-in-hypothesis-testing-1}}
+
+You take \textbf{one} PCR to test infection; \(H_0\) you are \textbf{not infected}
+
+\begin{itemize}
+\tightlist
+\item
+  \(H_0\) unknown reality is: \textbf{true}, \textbf{false}
+\item
+  \(H_0\) test is: \textbf{negative} (accept), \textbf{positive} (reject)
+\end{itemize}
+
+\textbf{positive} for infection.
+
+\begin{longtable}[]{@{}
+  >{\centering\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.33}}
+  >{\centering\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.33}}
+  >{\centering\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.33}}@{}}
+\toprule
+\begin{minipage}[b]{\linewidth}\centering
+\(H_0\)
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+not infected: true
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+not infected: false (infected: true)
+\end{minipage} \\
+\midrule
+\endhead
+\textbf{negative} (accept) & true negative: \(P(accept|H_0:true)\) & false negative:\(P(accept|H_0:false)\) \\
+\textbf{positive} (reject) & false positive: \(P(reject|H_0:true)\) & true positive: \(P(reject|H_0:false)\) \\
+\textbf{sum} & 1 & 1 \\
+\bottomrule
+\end{longtable}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{errors-in-hypothesis-testing-2}{%
+\section{Errors in hypothesis testing}\label{errors-in-hypothesis-testing-2}}
+
+\hypertarget{errors-are-also-known-as}{%
+\subsection{Errors are also known as}\label{errors-are-also-known-as}}
+
+\begin{itemize}
+\item
+  Type I error: false positive (sending an innocent man to jail)
+  \(P(reject|H_0:true)\)
+\item
+  Type II error: false negative (letting go of a criminal)
+  \(P(accept|H_0:false)\)
+\end{itemize}
+
+\hypertarget{correct-contrasts-are-also-known-as}{%
+\subsection{Correct contrasts are also known as}\label{correct-contrasts-are-also-known-as}}
+
+\begin{itemize}
+\item
+  Sensitivity: true positive (sending a criminal to jail)
+  \(P(reject|H_0:false)\)
+\item
+  Specificity: true negative (letting go of an innocent man)
+  \(P(accept|H_0:true)\)
+\end{itemize}
+
+\begin{longtable}[]{@{}
+  >{\centering\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.33}}
+  >{\centering\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.33}}
+  >{\centering\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.33}}@{}}
+\toprule
+\begin{minipage}[b]{\linewidth}\centering
+\(H_0\)
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+not infected: true
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+not infected: false (infected: true)
+\end{minipage} \\
+\midrule
+\endhead
+\textbf{negative} (accept) & Specificity: \(P(accept|H_0:true)\) & Type II error: \(P(accept|H_0:false)\) \\
+\textbf{positive} (reject) & Type I error: \(P(reject|H_0:true)\) & Specificity: \(P(reject|H_0:false)\) \\
+\textbf{sum} & 1 & 1 \\
+\bottomrule
+\end{longtable}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{bayesian-statistics}{%
+\section{Bayesian statistics}\label{bayesian-statistics}}
+
+What happens if we apply the Bayes theorem to the previous table?
+
+\[P(H_0|data)=\frac{P(data|H_0)P(H_0)}{P(data)}\]
+
+We subvert the meaning of an event and apply it to a hypothesis.
+
+Can we assign a probability to a hypothesis?
+
+Bayesian interpretation of probability
+
+\begin{itemize}
+\tightlist
+\item
+  The probability is our \textbf{state of belief} on the veracity of a hypothesis given the data.
+\end{itemize}
+
 \hypertarget{exercises}{%
 \chapter{Exercises}\label{exercises}}
 
@@ -8815,7 +9998,7 @@ Consider that we have a totally noisy channel, that is any outcome of three pixe
   What are the first and third quartiles? (R: 25; 75)
 \end{itemize}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-106-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-124-1.pdf}
 
 \hypertarget{exercise-5-1}{%
 \subsubsection{Exercise 5}\label{exercise-5-1}}
@@ -9001,9 +10184,9 @@ An automated machine fills test tubes with biological samples with mean \(\mu=13
 \begin{itemize}
 \item
   for a random sample of size \(50\). What is the probability that
-  the sample mean (average) is between \(128\) and \(132\)gr?
+  the sample mean (average) is between \(128\) and \(132\)gr? (R:0.995)
 \item
-  what should be the size of the sample (\(n\)) such that the sample mean \(\bar{X}\) is higher than \(131\)gr with a probability less or equal than \(0.025\)?
+  what should be the size of the sample (\(n\)) such that the sample mean \(\bar{X}\) is higher than \(131\)gr with a probability less or equal than \(0.025\)?(R:97)
 \end{itemize}
 
 \hypertarget{exercise-4-3}{%
@@ -9013,9 +10196,9 @@ In the Caribbean, there appears to be an average of \(6\) hurricanes per year. C
 
 \begin{itemize}
 \item
-  What is the probability that their sample average is between \(45\) and \(60\) days?
+  What is the probability that their sample average is between \(45\) and \(60\) days? (R:0.39)
 \item
-  Which should be the sample size such that they have a probability of \(0.025\) that the sample mean is greater than \(70\) days?
+  Which should be the sample size such that they have a probability of \(0.025\) that the sample mean is greater than \(70\) days? (R:169)
 \end{itemize}
 
 \hypertarget{exercise-5-2}{%
@@ -9026,7 +10209,7 @@ The probability that a particular mutation is found in the population is \(0.4\)
 \begin{itemize}
 \tightlist
 \item
-  What is the probability that the total number of people with the mutation is between \(791\) and \(809\)?
+  What is the probability that the total number of people with the mutation is between \(791\) and \(809\)? (R:0.31)
 \end{itemize}
 
 hint: Use the CLT with a sample of \(2000\) Bernoulli trials. This is known as the normal approximation of the binomial distribution.
@@ -9264,8 +10447,8 @@ This year, \(17\) from \(1000\) of patients with influenza developed complicatio
   The previous year \(2\%\) showed complications. Can we say with \(99\%\) confidence that this year there is a significant drop in influenza complications?
 \end{itemize}
 
-\hypertarget{hypothesis-testing}{%
-\section{Hypothesis testing}\label{hypothesis-testing}}
+\hypertarget{hypothesis-testing-1}{%
+\section{Hypothesis testing}\label{hypothesis-testing-1}}
 
 \hypertarget{exercise-1-10}{%
 \subsubsection{Exercise 1}\label{exercise-1-10}}

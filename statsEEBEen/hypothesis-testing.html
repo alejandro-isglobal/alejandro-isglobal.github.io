@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 13 Interval estimation | Stats theory (SDA)</title>
+  <title>Chapter 14 Hypothesis testing | Stats theory (SDA)</title>
   <meta name="description" content="This are slides for the Stats theory of the BIST master" />
   <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 13 Interval estimation | Stats theory (SDA)" />
+  <meta property="og:title" content="Chapter 14 Hypothesis testing | Stats theory (SDA)" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="alejandro-isglobal/master" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 13 Interval estimation | Stats theory (SDA)" />
+  <meta name="twitter:title" content="Chapter 14 Hypothesis testing | Stats theory (SDA)" />
   
   <meta name="twitter:description" content="This are slides for the Stats theory of the BIST master" />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="maximum-likelihood.html"/>
-<link rel="next" href="hypothesis-testing.html"/>
+<link rel="prev" href="interval-estimation.html"/>
+<link rel="next" href="exercises.html"/>
 <script src="libs/header-attrs-2.12/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -623,466 +623,740 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="interval-estimation" class="section level1 hasAnchor" number="13">
-<h1><span class="header-section-number">Chapter 13</span> Interval estimation<a href="interval-estimation.html#interval-estimation" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<div id="objective-11" class="section level2 hasAnchor" number="13.1">
-<h2><span class="header-section-number">13.1</span> Objective<a href="interval-estimation.html#objective-11" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="hypothesis-testing" class="section level1 hasAnchor" number="14">
+<h1><span class="header-section-number">Chapter 14</span> Hypothesis testing<a href="hypothesis-testing.html#hypothesis-testing" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="objective-12" class="section level2 hasAnchor" number="14.1">
+<h2><span class="header-section-number">14.1</span> Objective<a href="hypothesis-testing.html#objective-12" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ul>
-<li>Interval estimation for the mean and the proportion</li>
-<li>Interval estimation for the variance</li>
+<li>Hypothesis testing of means and proportions</li>
+<li>Hypothesis testing of variances</li>
+<li>Errors in hypothesis testing</li>
 </ul>
 <hr />
 <hr />
 </div>
-<div id="average-or-sample-mean-1" class="section level2 hasAnchor" number="13.2">
-<h2><span class="header-section-number">13.2</span> Average or sample mean<a href="interval-estimation.html#average-or-sample-mean-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="hypothesis" class="section level2 hasAnchor" number="14.2">
+<h2><span class="header-section-number">14.2</span> Hypothesis<a href="hypothesis-testing.html#hypothesis" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>When we make inferences about our process, we often want to test if the process satisfies a desired condition/property</p>
+<ul>
+<li><p>Measurements and their inferences provide <strong>evidence</strong> for that condition.</p></li>
+<li><p>We can formulate the condition in terms of the values that some <strong>parameters</strong> of probability distributions can take.</p></li>
+</ul>
+<hr />
+<hr />
+</div>
+<div id="hypothesis-1" class="section level2 hasAnchor" number="14.3">
+<h2><span class="header-section-number">14.3</span> Hypothesis<a href="hypothesis-testing.html#hypothesis-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Examples:</p>
+<ul>
+<li>Tyre manufacturers want to know whether the half-life of the tires they produce is at least 20,000 km</li>
+<li>Fertilizer developers want to test whether their new product has a real effect on the growth of plants</li>
+<li>Pharmaceutical companies need to know if chemotherapy can cure 90% of cancer patients</li>
+</ul>
+<p>These questions can be translated into statements of probability distributions</p>
+<hr />
+<hr />
+</div>
+<div id="hypothesis-2" class="section level2 hasAnchor" number="14.4">
+<h2><span class="header-section-number">14.4</span> Hypothesis<a href="hypothesis-testing.html#hypothesis-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li>Tyre manufacturers want to know whether the half-life of the tires they produce is at least 20,000 km</li>
+</ul>
+<p>Assuming that the life of tires follows a population probability distribution, we are interested in finding if the mean of the distribution is at least 20,000Km.</p>
+<p>This can be done in two dichotomic statements</p>
+<ul>
+<li>The mean life of tires is <strong>less</strong> than 20,000km</li>
+<li>The mean life of tires is <strong>greater</strong> than 20,000km</li>
+</ul>
+<hr />
+<hr />
+</div>
+<div id="hypothesis-3" class="section level2 hasAnchor" number="14.5">
+<h2><span class="header-section-number">14.5</span> Hypothesis<a href="hypothesis-testing.html#hypothesis-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>or being <span class="math inline">\(\mu\)</span> the mean of the population distribution</p>
+<ul>
+<li><span class="math inline">\(H_0: \mu \leq 20,000km\)</span></li>
+<li><span class="math inline">\(H_1: \mu &gt; 20,000km\)</span></li>
+</ul>
+<hr />
+<hr />
+</div>
+<div id="hypothesis-4" class="section level2 hasAnchor" number="14.6">
+<h2><span class="header-section-number">14.6</span> Hypothesis<a href="hypothesis-testing.html#hypothesis-4" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><strong>Definition</strong></p>
-<p>The sample mean (or average) of a <strong>random sample</strong> of size <span class="math inline">\(n\)</span> is</p>
-<p><span class="math display">\[\bar{X}=\frac{1}{n}\sum_{i=1}^n X_i\]</span></p>
-<p>Because each random experiment is independent, the mean and variance of <span class="math inline">\(\bar{X}\)</span> are</p>
+<p>In statistics, a statement (conjecture) about the distribution of a random variable is called a <strong>hypothesis</strong>.</p>
+<p>The hypothesis is usually written in two dichotomous statements</p>
 <ul>
-<li><span class="math inline">\(E(\bar{X})=E(X)\)</span></li>
-<li><span class="math inline">\(V(\bar{X})=\frac{V(X)}{n}\)</span></li>
-<li>We call <span class="math inline">\(se=\sqrt{V(\bar{X})}\)</span> the standard error</li>
-</ul>
-<p><span class="math inline">\(\bar{X}\)</span> is therefore</p>
-<ul>
-<li><p>an <strong>estimator</strong> of <span class="math inline">\(E(X)\)</span>, that is <span class="math inline">\(\mu\)</span>.</p></li>
-<li><p>a random variable</p></li>
+<li>The <strong>null</strong> hypothesis: <span class="math inline">\(H_0\)</span> when the conjecture is False (usually refers to status quo)</li>
+<li>The <strong>alternative</strong> hypothesis: <span class="math inline">\(H_1\)</span> when the conjecture is True (usually refers to research hypothesis)</li>
 </ul>
 <hr />
 <hr />
 </div>
-<div id="inference-on-the-average-1" class="section level2 hasAnchor" number="13.3">
-<h2><span class="header-section-number">13.3</span> Inference on the average<a href="interval-estimation.html#inference-on-the-average-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="null-hypothesis" class="section level2 hasAnchor" number="14.7">
+<h2><span class="header-section-number">14.7</span> Null hypothesis<a href="hypothesis-testing.html#null-hypothesis" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>So what are the null and the alternative hypothesis for these situations?</p>
+<ul>
+<li><p>Tyre manufacturers want to know whether the half-life of the tires they produce is at least 20,000 km</p></li>
+<li><p>Fertilizer developers want to test whether their new product has a real effect on the growth of plants</p></li>
+<li><p>Pharmaceutical companies need to know if chemotherapy can cure 90% of cancer patients</p></li>
+</ul>
+<hr />
+<hr />
+</div>
+<div id="null-hypothesis-1" class="section level2 hasAnchor" number="14.8">
+<h2><span class="header-section-number">14.8</span> Null hypothesis<a href="hypothesis-testing.html#null-hypothesis-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li>Fertilizer developers want to test whether their new product has a real effect on the growth of plants</li>
+</ul>
+<p>Being <span class="math inline">\(\mu_0\)</span> the mean growth of the plants <strong>without</strong> fertilizer (known) and <span class="math inline">\(\mu\)</span> the mean growth of the plants with the fertilizer (unknown)</p>
+<ul>
+<li><span class="math inline">\(H_0:\mu \leq \mu_0\)</span> (The fertilizer does nothing: status quo)</li>
+<li><span class="math inline">\(H_1:\mu &gt; \mu_0\)</span> (The fertilizer has the desired effect: research interest)</li>
+</ul>
+<p>What could be a suitable distribution of <span class="math inline">\(\mu\)</span>?</p>
+<hr />
+<hr />
 <p><strong>Example:</strong></p>
 <p>You perform <span class="math inline">\(8\)</span> random experiments: Load a cable until it breaks and record the breaking load. These are the results.</p>
 <pre><code>## [1] 13.34642 13.32620 13.01459 13.10811 12.96999 13.55309 13.75557 12.62747</code></pre>
-<p>If we <strong>know</strong> that our cables truly distribute as <span class="math display">\[X \rightarrow N(\mu=13, \sigma^2=0.35^2)\]</span> then</p>
-<p><span class="math display">\[\bar{X} \rightarrow N(13, \frac{0.35^2}{8})\]</span></p>
 <ul>
-<li><span class="math inline">\(E(\bar{X})=13\)</span></li>
-<li><span class="math inline">\(V(\bar{X})=\frac{0.35^2}{8}=0.01530169\)</span></li>
-<li><span class="math inline">\(se=\frac{0.35}{\sqrt{8}}=0.1237\)</span></li>
+<li>The average of the data is <span class="math inline">\(\bar{x}=13.21\)</span></li>
+<li>The standard deviation is <span class="math inline">\(s=0.3571565\)</span></li>
+<li>We may want to use this data to show that our cables break <strong>on average</strong> at more than <span class="math inline">\(13\)</span> Tons.</li>
 </ul>
-<p>then the <strong>observed error</strong> in the estimation is the difference</p>
-<p><span class="math display">\[\bar{x}_{stock}-\mu=13.21-13=0.21\]</span></p>
-<hr />
-<hr />
-</div>
-<div id="margin-of-error-2" class="section level2 hasAnchor" number="13.4">
-<h2><span class="header-section-number">13.4</span> Margin of error<a href="interval-estimation.html#margin-of-error-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>When deciding whether the <strong>error</strong> in estimation: <span class="math inline">\(\bar{X}-\mu\)</span> is large or not we usually compare it with a predefined tolerance.</p>
-<ul>
-<li>The <strong>margin of error</strong> at <span class="math inline">\(5\%\)</span> level is the distance <span class="math inline">\(m\)</span> such that distribution of <span class="math inline">\(\bar{X}\)</span> captures <span class="math inline">\(95\%\)</span> of the estimations:</li>
-</ul>
-<p><span class="math display">\[P(-m \leq \bar{X}-\mu \leq m)=P(\mu-m \leq \bar{X} \leq\mu + m)=0.95\]</span></p>
-<ul>
-<li>or that <span class="math inline">\(95\%\)</span> of the values of <span class="math inline">\(\bar{X}\)</span> are a distance <span class="math inline">\(m\)</span> from <span class="math inline">\(\mu\)</span>.</li>
-</ul>
-<p>In our example, we assume that <span class="math inline">\(\bar{X}\)</span> is normally distributed then</p>
-<p><span class="math display">\[m=z_{0.025} \frac{\sigma}{\sqrt{n}}=1.96\times se=1.96\frac{0.35}{\sqrt{8}}=0.24\]</span></p>
-<hr />
-<hr />
-</div>
-<div id="outcome-probability-density-vs-sample-mean-probability-density" class="section level2 hasAnchor" number="13.5">
-<h2><span class="header-section-number">13.5</span> Outcome probability density Vs sample mean probability density<a href="interval-estimation.html#outcome-probability-density-vs-sample-mean-probability-density" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><img src="_main_files/figure-html/unnamed-chunk-87-1.png" width="672" /></p>
-<p><img src="_main_files/figure-html/unnamed-chunk-88-1.png" width="672" /></p>
-<hr />
-<hr />
-</div>
-<div id="real-life" class="section level2 hasAnchor" number="13.6">
-<h2><span class="header-section-number">13.6</span> Real life<a href="interval-estimation.html#real-life" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><img src="_main_files/figure-html/unnamed-chunk-89-1.png" width="672" /></p>
-<p><img src="_main_files/figure-html/unnamed-chunk-90-1.png" width="672" /></p>
-<hr />
-<hr />
-</div>
-<div id="interval-estimation-1" class="section level2 hasAnchor" number="13.7">
-<h2><span class="header-section-number">13.7</span> Interval estimation<a href="interval-estimation.html#interval-estimation-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>From the margin of error equation:</p>
-<p><span class="math display">\[P(-m \leq \bar{X} - \mu \leq  m)=0.95\]</span></p>
-<p>let’s solve for <span class="math inline">\(\mu\)</span> (the real unknown)</p>
-<p><span class="math display">\[P(\bar{X} - m \leq \mu \leq \bar{X} + m)=0.95\]</span></p>
-<p>The left and right limits of the inequality are random variables which motivate the definition for the <strong>random confidence interval at <span class="math inline">\(95\%\)</span></strong></p>
-<p><span class="math display">\[(L,U)=(\bar{X} - m,\bar{X} + m)\]</span></p>
-<p>This interval is a <strong>random variable</strong> and it has by definition a probability of <span class="math inline">\(0.95\)</span> to contain <span class="math inline">\(\mu\)</span>.</p>
-<hr />
-<hr />
-</div>
-<div id="interval-estimation-2" class="section level2 hasAnchor" number="13.8">
-<h2><span class="header-section-number">13.8</span> Interval estimation<a href="interval-estimation.html#interval-estimation-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>When we perform <span class="math inline">\(n\)</span>-random experiments (<span class="math inline">\(n\)</span>-sample) we can calculate <span class="math inline">\(m\)</span> <strong>if</strong></p>
-<ul>
-<li><span class="math inline">\(X\)</span> is normal</li>
-<li>we know <span class="math inline">\(\sigma^2\)</span>.</li>
-</ul>
-<p>The interval that we obtain from the experiment is (script size)</p>
-<p><span class="math display">\[(l,u)=(\bar{x} - m,\bar{x} + m)\]</span></p>
-<ul>
-<li><p>this interval either contains or does not the parameter <span class="math inline">\(\mu\)</span>: we will <strong>never know</strong>!</p></li>
-<li><p>We say that we have a confidence of <span class="math inline">\(95\%\)</span> that the interval <span class="math inline">\((l,u)\)</span> will capture the true unknown parameter <span class="math inline">\(\mu\)</span>. Think of buying a lottery ticket for which you do not know the result.</p></li>
-</ul>
-<hr />
-<hr />
-</div>
-<div id="interval-estimation-3" class="section level2 hasAnchor" number="13.9">
-<h2><span class="header-section-number">13.9</span> Interval estimation<a href="interval-estimation.html#interval-estimation-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>In our example, we assume that <span class="math inline">\(\bar{X}\)</span> is normally distributed then</p>
-<p><span class="math display">\[m=z_{0.025} \frac{\sigma}{\sqrt{n}}\]</span></p>
-<p>and the <span class="math inline">\(95\%\)</span> confidence interval is</p>
-<p><span class="math display">\[(l,u)=(\bar{x}-z_{0.025} \frac{\sigma}{\sqrt{n}}, \bar{x}+z_{0.025} \frac{\sigma}{\sqrt{n}})= (12.97,13.45)\]</span></p>
-<p>or</p>
-<p><span class="math display">\[\hat{\mu}=13.21 \pm 0.24\]</span>
-It also means that, in the estimation, we are confident about the units but not so much about the decimal places.</p>
-<hr />
-<hr />
-</div>
-<div id="interval-estimation-4" class="section level2 hasAnchor" number="13.10">
-<h2><span class="header-section-number">13.10</span> Interval estimation<a href="interval-estimation.html#interval-estimation-4" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>For a sample of 8 observations, we have one estimate of the mean and one confidence interval</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-91-1.png" width="672" /></p>
-<hr />
-<hr />
-</div>
-<div id="interval-estimation-5" class="section level2 hasAnchor" number="13.11">
-<h2><span class="header-section-number">13.11</span> Interval estimation<a href="interval-estimation.html#interval-estimation-5" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Every time that we obtain a new sample then the estimates change. If we perform <span class="math inline">\(100\)</span> samples of size <span class="math inline">\(n\)</span> then <span class="math inline">\(95%\)</span> of the confidence intervals will contain <span class="math inline">\(\mu\)</span> (we do not know which!)</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-92-1.png" width="672" /></p>
-<hr />
-<hr />
-</div>
-<div id="interval-estimation-6" class="section level2 hasAnchor" number="13.12">
-<h2><span class="header-section-number">13.12</span> Interval estimation<a href="interval-estimation.html#interval-estimation-6" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>We can change our confidence from <span class="math inline">\(95\%\)</span> to <span class="math inline">\(99\%\)</span></p>
-<ul>
-<li><p>We had left out <span class="math inline">\(\alpha=0.05\)</span> probability, <span class="math inline">\(0.025\)</span> on each side.</p></li>
-<li><p>Now, we can leave out <span class="math inline">\(\alpha=0.01\)</span> probability, <span class="math inline">\(0.005\)</span> on each side.</p></li>
-</ul>
-<p>Therefore the <span class="math inline">\(99\%\)</span> confidence interval is</p>
-<p><span class="math inline">\((l,u) = (\bar{x} - z_{0.005}\frac{\sigma}{\sqrt{n}},\bar{x} + z_{0.005}\frac{\sigma}{\sqrt{n}})\)</span></p>
-<p><span class="math display">\[= (\bar{x} - 2.58\frac{\sigma}{\sqrt{n}},\bar{x} + 2.58\frac{\sigma}{\sqrt{n}})\]</span></p>
-<p>or</p>
-<p><span class="math display">\[\hat{\mu}=\bar{x} \pm 2.58\frac{\sigma}{\sqrt{n}}\]</span></p>
-<p>If we want to be more confident then we need larger confidence intervals!</p>
-<p>For our cables:</p>
-<p><span class="math display">\[\hat{\mu}= 13.21 \pm 0.31\]</span></p>
-<hr />
-<hr />
-</div>
-<div id="interval-estimation-7" class="section level2 hasAnchor" number="13.13">
-<h2><span class="header-section-number">13.13</span> Interval estimation<a href="interval-estimation.html#interval-estimation-7" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><img src="figures/phi.jpg" style="width:100%" style="height:100%"  align="center"></p>
-<hr />
-<hr />
-</div>
-<div id="example-15" class="section level2 hasAnchor" number="13.14">
-<h2><span class="header-section-number">13.14</span> Example<a href="interval-estimation.html#example-15" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>A metallic material is tested for impact to measure the energy required to cut it at a given temperature.</p>
-<ul>
-<li><p>Ten specimens of A238 steel were cut at 60ºC at the following impact energies (J)</p></li>
-<li><p><span class="math inline">\(64.1, 64.7, 64.5, 64.6, 64.5, 64.3, 64.6, 64.8, 64.2, 64.3\)</span></p></li>
-<li><p>If we know that the impact energy is normally distributed with <span class="math inline">\(\sigma=1J\)</span> what is the <span class="math inline">\(95\%\)</span> CI for the mean of these data?</p></li>
-</ul>
-<hr />
-<hr />
-</div>
-<div id="example-16" class="section level2 hasAnchor" number="13.15">
-<h2><span class="header-section-number">13.15</span> Example<a href="interval-estimation.html#example-16" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>We know</p>
-<ul>
-<li><span class="math inline">\(x_i=\{64.1, 64.7, 64.5, 64.6, 64.5, 64.3, 64.6, 64.8, 64.2, 64.3\}\)</span></li>
-<li><span class="math inline">\(X \rightarrow N(\mu, \sigma^2)\)</span></li>
-<li><span class="math inline">\(\sigma=1J\)</span></li>
-<li><span class="math inline">\(\alpha=0.05\)</span></li>
-</ul>
-<p>The confidence interval is then</p>
-<p><span class="math display">\[CI=(\bar{x}-1.96 \frac{\sigma}{\sqrt{n}}, \bar{x}+1.96  \frac{\sigma}{\sqrt{n}})\]</span>
-</br><span class="math display">\[=(64.46-1.96 \frac{1}{\sqrt{10}}, 64.46+1.96  \frac{1}{\sqrt{10}})=(63.84,65.08)\]</span></p>
-<p>or</p>
-<p><span class="math display">\[\hat{\mu}=64.46 \pm 0.61\]</span></p>
-<p>this tells us that we can be sure on the first digit (6), somewhat confident on the second (4), and unsure on the decimals (46).</p>
-<p>What if <span class="math inline">\(\sigma^2\)</span> is <strong>unknown</strong>?</p>
-<hr />
-<hr />
-</div>
-<div id="t-statistic-3" class="section level2 hasAnchor" number="13.16">
-<h2><span class="header-section-number">13.16</span> T-statistic<a href="interval-estimation.html#t-statistic-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>When</p>
-<ul>
-<li><span class="math inline">\(X\)</span> is normal, and</li>
-<li><span class="math inline">\(\sigma\)</span> is <strong>unknown</strong></li>
-</ul>
-<p>then the standardized statistic</p>
-<p><span class="math display">\[T=\frac{\bar{X}-\mu}{\frac{S}{\sqrt{n}}}\]</span></p>
-<p>Follows a <span class="math inline">\(t\)</span>-distribution with <span class="math inline">\(n-1\)</span> degrees of freedom, and we can compute probabilities for <span class="math inline">\(\bar{X}\)</span>.</p>
-<hr />
-<hr />
-</div>
-<div id="t-statistic-4" class="section level2 hasAnchor" number="13.17">
-<h2><span class="header-section-number">13.17</span> T-statistic<a href="interval-estimation.html#t-statistic-4" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><img src="_main_files/figure-html/unnamed-chunk-93-1.png" width="672" /></p>
-<hr />
-<hr />
-</div>
-<div id="t-statistic-5" class="section level2 hasAnchor" number="13.18">
-<h2><span class="header-section-number">13.18</span> T-statistic<a href="interval-estimation.html#t-statistic-5" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>To compute the margin of error <span class="math inline">\(m\)</span> at <span class="math inline">\(5\%\)</span> level when</p>
-<ul>
-<li><span class="math inline">\(X\)</span> is normal and</li>
-<li><span class="math inline">\(\sigma^2\)</span> is unknown</li>
-</ul>
-<p>We use the <span class="math inline">\(t\)</span>-distribution</p>
-<p><span class="math inline">\(P(\mu-m \leq \bar{X} \leq\mu + m)\)</span>
-<span class="math display">\[=P(-\frac{m}{s/\sqrt{n}} \leq T \leq\frac{m}{s/\sqrt{n}})=0.95\]</span></p>
-<p><span class="math display">\[m=t_{0.025, n-1} \frac{s}{\sqrt{n}}\]</span>
-where <span class="math inline">\(t_{0.025, n-1}\)</span> is the value <span class="math inline">\(T\)</span> that leaves <span class="math inline">\(2.5\%\)</span> of probability at the right hand side of the <span class="math inline">\(t\)</span>-distribution with <span class="math inline">\(n-1\)</span> degrees of freedom (<span class="math inline">\(0.025\)</span>-quantile)</p>
-<p>the <span class="math inline">\(95\%\)</span> confidence interval is then</p>
-<p><span class="math display">\[(l,u)=(\bar{x}-t_{0.025, n-1} \frac{s}{\sqrt{n}}, \bar{x}+t_{0.025, n-1} \frac{s}{\sqrt{n}})\]</span>
-in R: <span class="math inline">\(t_{0.025, n-1}\)</span><code>=qt(1-0.025, n-1)</code></p>
-<hr />
-<hr />
-</div>
-<div id="example-17" class="section level2 hasAnchor" number="13.19">
-<h2><span class="header-section-number">13.19</span> Example<a href="interval-estimation.html#example-17" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>A metallic material is tested for impact to measure the energy required to cut it at a given temperature.</p>
-<ul>
-<li><p>Ten specimens of A238 steel were cut at 60ºC at the following impact energies (J)</p></li>
-<li><p><span class="math inline">\(64.1, 64.7, 64.5, 64.6, 64.5, 64.3, 64.6, 64.8, 64.2, 64.3\)</span></p></li>
-<li><p>If we know that the impact energy is normally distributed but we <strong>do not know</strong> the variance what is the <span class="math inline">\(95\%\)</span> CI for the mean of these data?</p></li>
-</ul>
-<hr />
-<hr />
-</div>
-<div id="example-18" class="section level2 hasAnchor" number="13.20">
-<h2><span class="header-section-number">13.20</span> Example<a href="interval-estimation.html#example-18" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<ul>
-<li><span class="math inline">\(\bar{x}=64.46\)</span></li>
-<li><span class="math inline">\(s=0.227\)</span></li>
-<li><span class="math inline">\(\alpha=0.05\)</span></li>
-<li><span class="math inline">\(t_{0.025,9}=2.26\)</span> obtained from <span class="math inline">\(P(T \leq t_{0.025,9})=0.975\)</span>; <code>qt(1-0.025, 9)</code></li>
-</ul>
-<p>The confidence interval is then</p>
-<p><span class="math inline">\(CI=(\bar{x}- t_{0.025,9}\frac{s}{\sqrt{n}},\bar{x}+t_{0.025,9} \frac{s}{\sqrt{n}})\)</span></p>
-<p><span class="math display">\[=(64.46-2.26 \frac{0.227}{\sqrt{10}},64.46+2.26 \frac{0.227}{\sqrt{10}})\]</span> <span class="math display">\[=(64.29,64.62)\]</span></p>
-<p>We have seen a larger <span class="math inline">\(CI=(63.84,65.08)\)</span> when <span class="math inline">\(\sigma=1\)</span>. Data then suggests <span class="math inline">\(\sigma&lt;1\)</span>.</p>
-<p>R: <code>t.test(c(64.1,64.7,64.5,64.6,64.5,64.3,64.6,64.8,64.2,64.3))</code></p>
-<hr />
-<hr />
-</div>
-<div id="ic-with-clt" class="section level2 hasAnchor" number="13.21">
-<h2><span class="header-section-number">13.21</span> IC with CLT<a href="interval-estimation.html#ic-with-clt" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>If</p>
-<ul>
-<li>we do not know how <span class="math inline">\(X\)</span> distributes but</li>
-<li>we take a large sample <span class="math inline">\(n\ge 30\)</span></li>
-</ul>
-<p>Then we can use the CLT to find the confidence intervals.</p>
-<p>the <span class="math inline">\(95\%\)</span> confidence interval is then</p>
-<p><span class="math display">\[(l,u)=(\bar{x}-z_{0.025} \frac{s}{\sqrt{n}}, \bar{x}+z_{0.025} \frac{s}{\sqrt{n}})\]</span>
-since <span class="math inline">\(t_{0.025, n-1} \rightarrow z_{0.025}\)</span> for <span class="math inline">\(n \rightarrow \infty\)</span> then it is also ok to use the T distribution in this case.</p>
-<p>Note: This is why R only implements <code>t.test</code> and not <code>z.test</code> in the base functions to compute CI.</p>
 <hr />
 <hr />
 <p><strong>Example:</strong></p>
-<p>Consider an experiment where we measure the concentration in blood of a drug after 10-hour administration in <span class="math inline">\(30\)</span> patients. We obtain the following results:</p>
-<pre><code>##  [1] 0.42172863 0.28830514 0.66452743 0.01578868 0.02810549 0.15825061
-##  [7] 0.15711365 0.07263340 1.36311823 0.01457672 0.50241503 0.24010736
-## [13] 0.14050681 0.18855892 0.09414202 0.42489306 0.78160177 0.23938021
-## [19] 0.29546742 2.02050586 0.42157487 0.48293561 0.74263790 0.67402224
-## [25] 0.58426449 0.80292617 0.74837143 0.78532627 0.01588387 0.29892485</code></pre>
+<p>If we <strong>hypothesize</strong> that our cables truly distribute as <span class="math display">\[X \rightarrow N(\mu=13, \sigma^2=0.35^2)\]</span> then</p>
+<p><span class="math display">\[\bar{X} \rightarrow N(13, \frac{0.35^2}{8})\]</span>
+We ask:</p>
 <ul>
-<li><p>the average is <span class="math inline">\(\bar{x}=0.4556198\)</span></p></li>
-<li><p>the standard deviation is <span class="math inline">\(s=0.4335571\)</span></p></li>
-<li><p>the histogram of the results is:</p></li>
+<li>Are the measurements consistent with the null hypothesis <span class="math inline">\(H_0: \mu=13\)</span>?</li>
 </ul>
-<p><img src="_main_files/figure-html/unnamed-chunk-95-1.png" width="672" /></p>
 <hr />
 <hr />
 </div>
-<div id="central-limit-theorem-4" class="section level2 hasAnchor" number="13.22">
-<h2><span class="header-section-number">13.22</span> Central Limit Theorem<a href="interval-estimation.html#central-limit-theorem-4" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>We <strong>assumed</strong> that <span class="math inline">\(X \rightarrow exp(\lambda=2)\)</span></p>
-<p>With mean and variance:</p>
+<div id="hypothesis-test-with-acceptancerejection-zones" class="section level2 hasAnchor" number="14.9">
+<h2><span class="header-section-number">14.9</span> Hypothesis test with acceptance/rejection zones<a href="hypothesis-testing.html#hypothesis-test-with-acceptancerejection-zones" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ul>
-<li><span class="math inline">\(E(X)=\frac{1}{\lambda}\)</span></li>
-<li><span class="math inline">\(V(X)=\frac{1}{\lambda^2}\)</span></li>
+<li><span class="math inline">\(H_0:\mu = 13\)</span> (cables break as usual: status quo)</li>
+<li><span class="math inline">\(H_1:\mu \neq 13\)</span> (cables do not brake as usual: research interest)</li>
 </ul>
-<p>What is the confidence interval for the mean <span class="math inline">\(E(X)=\mu\)</span>?</p>
-<ul>
-<li>We use a 95% CI to estimate it</li>
-</ul>
-<p>Since <span class="math inline">\(n \geq 30\)</span> we can use the CLT</p>
-<p><span class="math display">\[\bar{X} \sim_{aprox}  N(\lambda, \frac{1}{n\lambda^2})\]</span></p>
-<p>and the <span class="math inline">\(95\%\)</span> confidence interval is then</p>
-<p><span class="math display">\[(l,u)=(\bar{x}-z_{0.025} \frac{s}{\sqrt{n}}, \bar{x}+z_{0.025} \frac{s}{\sqrt{n}})\]</span></p>
-<p><span class="math inline">\((l,u)=(0.4556198-1.96\frac{0.4335571}{\sqrt{30}}, 0.4556198+1.96\frac{0.4335571}{\sqrt{30}})\)</span></p>
-<p><span class="math display">\[=(0.300,0.610)\]</span>
-or</p>
-<p><span class="math display">\[\hat{\mu}=0.45 \pm 0.15\]</span></p>
-<p><img src="_main_files/figure-html/unnamed-chunk-96-1.png" width="672" /></p>
+<p>To test the hypothesis compared the <strong>observed error</strong> with the <strong>error tolerance</strong> if the null hypothesis is true.</p>
+<p>Since</p>
+<p><span class="math display">\[\bar{X} \rightarrow N(13, \frac{0.35^2}{8})\]</span></p>
+<p>Then the (standardized) <strong>observed</strong> error from the null hypothesis follows a standard distribution</p>
+<p><span class="math display">\[Z=\frac{\bar{X}-13}{\frac{0.35}{\sqrt{8}}}  \rightarrow N(0,1)\]</span></p>
 <hr />
 <hr />
 </div>
-<div id="parameter-estimation" class="section level2 hasAnchor" number="13.23">
-<h2><span class="header-section-number">13.23</span> Parameter estimation<a href="interval-estimation.html#parameter-estimation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Since <span class="math inline">\(E(X)=\mu=\frac{1}{\lambda}\)</span> then</p>
-<p><span class="math display">\[\hat{\lambda}=\frac{1}{\hat{\mu}}=2.194812\]</span></p>
-<p><img src="_main_files/figure-html/unnamed-chunk-97-1.png" width="672" /></p>
-<p>or its <span class="math inline">\(95\%\)</span> CI:</p>
-<p><span class="math display">\[\hat{\lambda}= (1.66, 3.33) \]</span></p>
+<div id="error-tolerance" class="section level2 hasAnchor" number="14.10">
+<h2><span class="header-section-number">14.10</span> Error tolerance<a href="hypothesis-testing.html#error-tolerance" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li>The <strong>error tolerance</strong> is determined by the the quantiles of <span class="math inline">\(Z\)</span></li>
+</ul>
+<p><span class="math display">\[P(-z_{0.025} \leq Z \leq z_{0.025})=0.95\]</span>
+The interval: <span class="math display">\[(-z_{0.025}, z_{0.025})\]</span> is called acceptance interval of <span class="math inline">\(H_0\)</span> at <span class="math inline">\(95\%\)</span> confidence level.</p>
+<ul>
+<li><span class="math inline">\(\alpha=0.05=2\times 0.025=1-0.95\)</span> is called the <strong>significance</strong> limit.</li>
+</ul>
+<p><img src="_main_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
 <hr />
 <hr />
 </div>
-<div id="interval-estimation-for-proportions" class="section level2 hasAnchor" number="13.24">
-<h2><span class="header-section-number">13.24</span> Interval estimation for proportions<a href="interval-estimation.html#interval-estimation-for-proportions" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>A random sample of <span class="math inline">\(400\)</span> patients was selected for testing a new vaccine for the influenza virus, after <span class="math inline">\(6\)</span> months of vaccination <span class="math inline">\(136\)</span> were ill. </p>
+<div id="standardized-observed-error" class="section level2 hasAnchor" number="14.11">
+<h2><span class="header-section-number">14.11</span> Standardized observed error<a href="hypothesis-testing.html#standardized-observed-error" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ul>
-<li>What is the expected efficacy of the vaccine?</li>
+<li>The standardized <strong>observed error</strong> is</li>
 </ul>
-<p>We have <span class="math inline">\(136\)</span> failures in <span class="math inline">\(400\)</span> trials, each trial is a
-Bernoulli trial</p>
-<p><span class="math display">\[X \rightarrow Bernoulli(p)\]</span></p>
-<p>with:</p>
+<p><span class="math display">\[z_{obs}=\frac{\bar{x}-13}{\frac{0.35}{\sqrt{8}}}=1.697056 \in (-z_{0.025}, z_{0.025})\]</span>
+We conclude:</p>
 <ul>
-<li>the probability <span class="math inline">\(p\)</span> of failure for one person (<span class="math inline">\(x=1\)</span>)</li>
-<li>mean <span class="math inline">\(E (X) = p\)</span></li>
-<li>variance <span class="math inline">\(V (X) = p (1-p)\)</span></li>
+<li><p>Our observed error is consistent with <span class="math inline">\(95\%\)</span> of the observations for the statistic <span class="math inline">\(Z\)</span> when the null hypothesis is true. We tolerate the error.</p></li>
+<li><p>We accept that the <span class="math inline">\(H_0\)</span> is true and give up on the idea that we have stronger cables than expected.</p></li>
 </ul>
-<p>We want to have a <span class="math inline">\(95\%\)</span> CI for <span class="math inline">\(p\)</span>.</p>
+<p><img src="_main_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
 <hr />
 <hr />
 </div>
-<div id="interval-estimation-for-proportions-1" class="section level2 hasAnchor" number="13.25">
-<h2><span class="header-section-number">13.25</span> Interval estimation for proportions<a href="interval-estimation.html#interval-estimation-for-proportions-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>If the distribution of a random experiment is</p>
+<div id="hypothesis-test-with-p-value" class="section level2 hasAnchor" number="14.12">
+<h2><span class="header-section-number">14.12</span> Hypothesis test with P-value<a href="hypothesis-testing.html#hypothesis-test-with-p-value" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>We can also contrast the hypothesis by calculating the probability that the average of another sample will be rarer than the average we just observed.</p>
+<p><span class="math display">\[pvalue = P(Z \leq -z_{obs}) + P(z_{obs} \leq Z) = 2 (1-\phi(|z_{obs}|))\]</span></p>
+<ul>
+<li>We reject <span class="math inline">\(H_0\)</span> if <span class="math inline">\(Pvalue \leq \alpha =0.05\)</span></li>
+</ul>
+<p><img src="_main_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<hr />
+<hr />
+</div>
+<div id="observed-error" class="section level2 hasAnchor" number="14.13">
+<h2><span class="header-section-number">14.13</span> Observed error<a href="hypothesis-testing.html#observed-error" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li>The <strong>P-value</strong> is</li>
+</ul>
+<p><span class="math display">\[pvalue=2 (1-\phi(1.697056))=0.089\]</span>
+R: <code>2*(1-pnorm(1.697056))</code></p>
+<p>We conclude:</p>
+<ul>
+<li><p>If we performed a new sample is likely that we can get a more extreme result for the average at limit <span class="math inline">\(\alpha=0.05\)</span> if the null hypothesis is true. We tolerate the observed error.</p></li>
+<li><p>We accept that <span class="math inline">\(H_0\)</span> could have produced our data and give up on the idea that we have stronger cables than expected.</p></li>
+</ul>
+<hr />
+<hr />
+</div>
+<div id="hypothesis-test-confidence-interval" class="section level2 hasAnchor" number="14.14">
+<h2><span class="header-section-number">14.14</span> Hypothesis test Confidence Interval<a href="hypothesis-testing.html#hypothesis-test-confidence-interval" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>From the point of view of the estimation, we can also contrast the hypothesis.</p>
+<ul>
+<li>We trust that our estimation of <span class="math inline">\(\mu\)</span> is correct with <span class="math inline">\(95\%\)</span> confidence</li>
+</ul>
+<p>The CI is:</p>
+<p><span class="math display">\[(l,u)=(\bar{x}-z_{0.025} \frac{\sigma}{\sqrt{n}}, \bar{x}+z_{0.025} \frac{\sigma}{\sqrt{n}})= (12.97,13.45)\]</span></p>
+<ul>
+<li><p>The CI tells us that we can be <span class="math inline">\(95\%\)</span> confident that we have captured the true value of <span class="math inline">\(\mu\)</span>.</p></li>
+<li><p>We don’t know the true value of <span class="math inline">\(\mu\)</span> but <span class="math inline">\(H_0: \mu=13\)</span> Tons could be it.</p></li>
+</ul>
+<hr />
+<hr />
+</div>
+<div id="hypothesis-test-confidence-interval-1" class="section level2 hasAnchor" number="14.15">
+<h2><span class="header-section-number">14.15</span> Hypothesis test Confidence Interval<a href="hypothesis-testing.html#hypothesis-test-confidence-interval-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li>Since</li>
+</ul>
+<p><span class="math display">\[H_0: \mu=13 \in (12.97,13.45)\]</span>
+We conclude:</p>
+<ul>
+<li><p>Our data is consistent with the fact that our estimate of <span class="math inline">\(\mu\)</span> is the null hypothesis.</p></li>
+<li><p>We accept that <span class="math inline">\(H_0\)</span> could have produced our interval and give up on the idea that we have stronger cables than expected.</p></li>
+</ul>
+<p><img src="_main_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<hr />
+<hr />
+</div>
+<div id="hypothesis-test-with-unknown-variance" class="section level2 hasAnchor" number="14.16">
+<h2><span class="header-section-number">14.16</span> Hypothesis test with unknown variance<a href="hypothesis-testing.html#hypothesis-test-with-unknown-variance" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>It is common to <strong>hypothesize</strong> the values of the parameters we can contrast. Other nuisance parameters we may leave unknown.</p>
+<p>We can <strong>hypothesize</strong> that our cables truly distribute as <span class="math display">\[X \rightarrow N(\mu=13, \sigma^2)\]</span> then</p>
+<p><span class="math display">\[\bar{X} \rightarrow N(13, \frac{\sigma^2}{8})\]</span>
+We ask again:</p>
+<ul>
+<li>Are the measurements consistent with the null hypothesis <span class="math inline">\(H_0: \mu=13\)</span>?</li>
+</ul>
+<hr />
+<hr />
+</div>
+<div id="standardized-error-with-unknown-variance" class="section level2 hasAnchor" number="14.17">
+<h2><span class="header-section-number">14.17</span> Standardized error with unknown variance<a href="hypothesis-testing.html#standardized-error-with-unknown-variance" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>If <span class="math inline">\(X\)</span> is normal</p>
+<p><span class="math display">\[X \rightarrow N(\mu, \sigma^2)\]</span> then the <strong>standardized errors</strong> with respect to the <strong>sample standard deviation</strong> <span class="math inline">\(S\)</span></p>
+<p><span class="math display">\[T=\frac{\bar{X}-\mu}{\frac{S}{\sqrt{n}}}\]</span></p>
+<p>Follows a <span class="math inline">\(t\)</span>-distribution with <span class="math inline">\(n-1\)</span> degrees of freedom.</p>
+<hr />
+<hr />
+</div>
+<div id="hypothesis-testing-with-unknown-variance" class="section level2 hasAnchor" number="14.18">
+<h2><span class="header-section-number">14.18</span> Hypothesis testing with unknown variance<a href="hypothesis-testing.html#hypothesis-testing-with-unknown-variance" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>we accept <span class="math inline">\(H_0\)</span> because of any of following the equivalent contrasts:</p>
+<ol style="list-style-type: decimal">
+<li>The acceptance region for <span class="math inline">\(H_0\)</span> is:</li>
+</ol>
+<p><span class="math display">\[(-t_{0.025,7}, t_{0.025,7})=( -2.36,  2.36)\]</span></p>
+<p>and the observed standardized error from <span class="math inline">\(H_0\)</span> is
+<span class="math display">\[t_{obs} =  \frac{13.21268-13}{\frac{0.3571565}{\sqrt{8}}}=1.6843\]</span></p>
+<p>within the acceptance region.</p>
+<hr />
+<hr />
+</div>
+<div id="hypothesis-testing-with-unknown-variance-1" class="section level2 hasAnchor" number="14.19">
+<h2><span class="header-section-number">14.19</span> Hypothesis testing with unknown variance<a href="hypothesis-testing.html#hypothesis-testing-with-unknown-variance-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ol start="2" style="list-style-type: decimal">
+<li>The <span class="math display">\[pvalue=2(1-F_{t,7}(1.6843))=0.136\]</span></li>
+</ol>
+<p>R: <code>2*(1-pt(1.6843,7))</code></p>
+<p>is higher than <span class="math inline">\(\alpha=0.05\)</span></p>
+<ol start="3" style="list-style-type: decimal">
+<li>The confidence interval</li>
+</ol>
+<p><span class="math display">\[(\bar{x}-t_{0.025, n-1} \frac{s}{\sqrt{n}}, \bar{x}+t_{0.025, n-1} \frac{s}{\sqrt{n}})=(12.91409, 13.51127)\]</span></p>
+<p>contains <span class="math inline">\(H_0:\mu=13\)</span>.</p>
+<hr />
+<hr />
+<p>in R:
+<code>t.test(c(13.34642, 13.32620, 13.01459, 13.10811,
+12.96999, 13.55309, 13.75557, 12.62747), mu=13)</code></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<hr />
+<hr />
+</div>
+<div id="one-tailed-test" class="section level2 hasAnchor" number="14.20">
+<h2><span class="header-section-number">14.20</span> One-tailed test<a href="hypothesis-testing.html#one-tailed-test" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>We may be interested in only testing for the fact that our estimate is higher than the null hypothesis (we do not care if it is lower)</p>
+<p>Upper-tailed test:</p>
+<ul>
+<li><span class="math inline">\(H_0:\mu \leq 13\)</span> (at most cables break as usual)</li>
+<li><span class="math inline">\(H_1:\mu &gt; 13\)</span> (cables break at a higher load)</li>
+</ul>
+<p>We will test the higher tail of the distribution.</p>
+<hr />
+<hr />
+</div>
+<div id="hypothesis-testing-of-the-upper-tail" class="section level2 hasAnchor" number="14.21">
+<h2><span class="header-section-number">14.21</span> Hypothesis testing of the upper tail<a href="hypothesis-testing.html#hypothesis-testing-of-the-upper-tail" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In this example, we accept <span class="math inline">\(H_0\)</span> because of any of the following equivalent contrasts:</p>
+<ol style="list-style-type: decimal">
+<li>The acceptance region for <span class="math inline">\(H_0\)</span> is:</li>
+</ol>
+<p><span class="math display">\[(-\infty, t_{0.05,7})=( -\infty,  1.894579)\]</span></p>
+<p>and the observed standardized error from <span class="math inline">\(H_0\)</span> is
+<span class="math display">\[t_{obs} =  \frac{13.21268-13}{\frac{0.3571565}{\sqrt{8}}}=1.6843\]</span></p>
+<p>within the acceptance region.</p>
+<hr />
+<hr />
+</div>
+<div id="hypothesis-testing-with-unknown-variance-2" class="section level2 hasAnchor" number="14.22">
+<h2><span class="header-section-number">14.22</span> Hypothesis testing with unknown variance<a href="hypothesis-testing.html#hypothesis-testing-with-unknown-variance-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ol start="2" style="list-style-type: decimal">
+<li>For the upper tail <span class="math display">\[pvalue=1-F_{t,7}(1.6843)=0.06799782\]</span></li>
+</ol>
+<p>R: <code>1-pt(1.6843,7)</code></p>
+<p>is higher than <span class="math inline">\(\alpha=0.05\)</span></p>
+<ol start="3" style="list-style-type: decimal">
+<li>The <strong>upper tailed</strong> confidence interval</li>
+</ol>
+<p><span class="math display">\[(\bar{x}-t_{0.05, n-1} \frac{s}{\sqrt{n}}, \infty)=(12.97344, \infty)\]</span></p>
+<p>contains <span class="math inline">\(H_0:\mu=13\)</span>.</p>
+<hr />
+<hr />
+<p>in R:
+<code>t.test(c(13.34642, 13.32620, 13.01459, 13.10811,
+12.96999, 13.55309, 13.75557, 12.62747), mu=13, alternative=“greater”)</code></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<hr />
+<hr />
+</div>
+<div id="example-1-4" class="section level2 hasAnchor" number="14.23">
+<h2><span class="header-section-number">14.23</span> Example 1:<a href="hypothesis-testing.html#example-1-4" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><span class="math inline">\(11.6g\)</span> of NaCl is dissolved in <span class="math inline">\(100 g\)</span> of water and has a molar concentration of <span class="math inline">\(1.92 mol/L\)</span></p>
+<p>We design a process to remove salt from this concentration and obtain the following results</p>
+<pre><code>## [1] 1.716 1.889 1.783 1.849 1.891</code></pre>
+<ul>
+<li>We want to test at <span class="math inline">\(0.05\)</span> significant threshold if the process does remove salt from the concentration.</li>
+</ul>
+<hr />
+<hr />
+</div>
+<div id="example-1-5" class="section level2 hasAnchor" number="14.24">
+<h2><span class="header-section-number">14.24</span> Example 1:<a href="hypothesis-testing.html#example-1-5" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Two-tailed test:</p>
+<ul>
+<li><span class="math inline">\(H_0:\mu=1.92\)</span>; <span class="math inline">\(H_1:\mu \neq 1.92\)</span></li>
+</ul>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="hypothesis-testing.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(<span class="fu">c</span>(<span class="fl">1.716</span>, <span class="fl">1.889</span>, <span class="fl">1.783</span>, <span class="fl">1.849</span>, <span class="fl">1.891</span>), </span>
+<span id="cb3-2"><a href="hypothesis-testing.html#cb3-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">mu=</span><span class="fl">1.92</span>, <span class="at">alternative =</span> <span class="st">&quot;two.sided&quot;</span>)</span></code></pre></div>
+<pre><code>## 
+##  One Sample t-test
+## 
+## data:  c(1.716, 1.889, 1.783, 1.849, 1.891)
+## t = -2.8038, df = 4, p-value = 0.04862
+## alternative hypothesis: true mean is not equal to 1.92
+## 95 percent confidence interval:
+##  1.732122 1.919078
+## sample estimates:
+## mean of x 
+##    1.8256</code></pre>
+<p>Lower-tailed test:</p>
+<ul>
+<li><span class="math inline">\(H_0:\mu \geq 1.92\)</span>; <span class="math inline">\(H_1:\mu &lt; 1.92\)</span></li>
+</ul>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="hypothesis-testing.html#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(<span class="fu">c</span>(<span class="fl">1.716</span>, <span class="fl">1.889</span>, <span class="fl">1.783</span>, <span class="fl">1.849</span>, <span class="fl">1.891</span>), </span>
+<span id="cb5-2"><a href="hypothesis-testing.html#cb5-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">mu=</span><span class="fl">1.92</span>, <span class="at">alternative =</span> <span class="st">&quot;less&quot;</span>)</span></code></pre></div>
+<pre><code>## 
+##  One Sample t-test
+## 
+## data:  c(1.716, 1.889, 1.783, 1.849, 1.891)
+## t = -2.8038, df = 4, p-value = 0.02431
+## alternative hypothesis: true mean is less than 1.92
+## 95 percent confidence interval:
+##      -Inf 1.897376
+## sample estimates:
+## mean of x 
+##    1.8256</code></pre>
+<hr />
+<hr />
+</div>
+<div id="example-2-3" class="section level2 hasAnchor" number="14.25">
+<h2><span class="header-section-number">14.25</span> Example 2:<a href="hypothesis-testing.html#example-2-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In some cases, we are not sure about the numerical value of the hypothesis to test, but we know that we want to improve the value of a parameter in two different conditions.</p>
+<p>In the original paper of Gosset, he analyzed the effect of two soporific medicines.</p>
+<ul>
+<li>10 individuals were given <strong>soporific 1</strong> and wrote down the additional hours slept under treatment, with a mean <span class="math inline">\(0.75\)</span></li>
+</ul>
+<pre><code>##  [1]  0.7 -1.6 -0.2 -1.2 -0.1  3.4  3.7  0.8  0.0  2.0</code></pre>
+<ul>
+<li>The same 10 individuals were given <strong>soporific 2</strong> and wrote down the additional hours slept under treatment, with a mean <span class="math inline">\(2.33\)</span></li>
+</ul>
+<pre><code>##  [1]  1.9  0.8  1.1  0.1 -0.1  4.4  5.5  1.6  4.6  3.4</code></pre>
+<p>Scientific hypothesis: Soporific 2 is better than soporific 1</p>
+<hr />
+<hr />
+</div>
+<div id="example-2-4" class="section level2 hasAnchor" number="14.26">
+<h2><span class="header-section-number">14.26</span> Example 2:<a href="hypothesis-testing.html#example-2-4" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>For each individual, Gosset made the difference between the treatments. Taking <span class="math inline">\(X\)</span> as the difference between treatments, this was the sample observed for <span class="math inline">\(X\)</span></p>
+<pre><code>##  [1] 1.2 2.4 1.3 1.3 0.0 1.0 1.8 0.8 4.6 1.4</code></pre>
+<p>finding an average of treatment gain from soporific 2 with respect to soporific 1 of <span class="math inline">\(1.58\)</span>, and <span class="math inline">\(s=1.229995\)</span></p>
+<p><strong>Upper-tailed paired t-test</strong>:</p>
+<ul>
+<li><span class="math inline">\(H_0:\mu \leq 0\)</span> (no treatment difference); <span class="math inline">\(H_1:\mu &gt; 0\)</span> (gain in treatment 2)</li>
+</ul>
+<p>Where <span class="math inline">\(\mu\)</span> is the mean of the differences between treatments.</p>
+<hr />
+<hr />
+</div>
+<div id="example-2-5" class="section level2 hasAnchor" number="14.27">
+<h2><span class="header-section-number">14.27</span> Example 2:<a href="hypothesis-testing.html#example-2-5" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The <strong>standardized error</strong> is:</p>
+<p><span class="math display">\[T=\frac{\bar{X}}{\frac{S}{\sqrt{n}}}\]</span></p>
+<p>and its observation</p>
+<p><span class="math display">\[t_{obs}=\frac{\bar{x}}{\frac{s}{\sqrt{n}}}\]</span>
+which is also known as the <strong>signal</strong> to <strong>noise</strong> ratio.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="hypothesis-testing.html#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(<span class="fu">c</span>(<span class="fl">1.9</span>,<span class="fl">0.8</span>,<span class="fl">1.1</span>,<span class="fl">0.1</span>,<span class="sc">-</span><span class="fl">0.1</span>,<span class="fl">4.4</span>,<span class="fl">5.5</span>,<span class="fl">1.6</span>,<span class="fl">4.6</span>,<span class="fl">3.4</span>),</span>
+<span id="cb10-2"><a href="hypothesis-testing.html#cb10-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">c</span>(<span class="fl">0.7</span>,<span class="sc">-</span><span class="fl">1.6</span>,<span class="sc">-</span><span class="fl">0.2</span>,<span class="sc">-</span><span class="fl">1.2</span>,<span class="sc">-</span><span class="fl">0.1</span>,<span class="fl">3.4</span>,<span class="fl">3.7</span>,<span class="fl">0.8</span>,<span class="dv">0</span>,<span class="dv">2</span>),</span>
+<span id="cb10-3"><a href="hypothesis-testing.html#cb10-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">paired =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb10-4"><a href="hypothesis-testing.html#cb10-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">alternative=</span><span class="st">&quot;greater&quot;</span>)</span></code></pre></div>
+<pre><code>## 
+##  Paired t-test
+## 
+## data:  c(1.9, 0.8, 1.1, 0.1, -0.1, 4.4, 5.5, 1.6, 4.6, 3.4) and c(0.7, -1.6, -0.2, -1.2, -0.1, 3.4, 3.7, 0.8, 0, 2)
+## t = 4.0621, df = 9, p-value = 0.001416
+## alternative hypothesis: true difference in means is greater than 0
+## 95 percent confidence interval:
+##  0.8669947       Inf
+## sample estimates:
+## mean of the differences 
+##                    1.58</code></pre>
+<p><img src="_main_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
+<hr />
+<hr />
+</div>
+<div id="hypothesis-testing-with-large-n-and-any-distribution" class="section level2 hasAnchor" number="14.28">
+<h2><span class="header-section-number">14.28</span> Hypothesis testing with large n and any distribution<a href="hypothesis-testing.html#hypothesis-testing-with-large-n-and-any-distribution" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>On many occasions, <span class="math inline">\(X\)</span> is not normally distributed but we can take large samples <span class="math inline">\(n \ge 30\)</span> then we can use the CLT:</p>
+<p>Then the <strong>standardized error</strong> from the null hypothesis follows a standard distribution</p>
+<p><span class="math display">\[Z=\frac{\bar{X}-\mu}{\frac{\sigma}{\sqrt{n}}}  \rightarrow N(0,1)\]</span></p>
+<p>and proceed as before, and if <span class="math inline">\(\sigma\)</span> is unknown we replace it with its estimate <span class="math inline">\(s\)</span>.</p>
+<hr />
+<hr />
+</div>
+<div id="hypothesis-testing-for-proportions" class="section level2 hasAnchor" number="14.29">
+<h2><span class="header-section-number">14.29</span> Hypothesis testing for proportions<a href="hypothesis-testing.html#hypothesis-testing-for-proportions" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><strong>Example:</strong></p>
+<p>We may be satisfied with a new process if <span class="math inline">\(90\%\)</span> of the times we improve the previous process.</p>
+<ul>
+<li>If we run a sample of <span class="math inline">\(200\)</span> new processes and find that <span class="math inline">\(188\)</span> times we improved the previous process, can we be satisfied with the new process at <span class="math inline">\(95\%\)</span> confidence?</li>
+</ul>
+<hr />
+<hr />
+</div>
+<div id="interval-estimation-for-proportions-4" class="section level2 hasAnchor" number="14.30">
+<h2><span class="header-section-number">14.30</span> Interval estimation for proportions<a href="hypothesis-testing.html#interval-estimation-for-proportions-4" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>We hypothesize that the distribution of a random experiment is</p>
 <p><span class="math display">\[X \rightarrow Bernoulli (p)\]</span>
-Then <span class="math inline">\(\bar{X}\)</span> has</p>
+with an upper-tailed hypothesis contrast for <span class="math inline">\(p\)</span>:</p>
 <ul>
-<li>mean <span class="math inline">\(E(\bar{X})=E(X)=p\)</span> (unbiased estimator of <span class="math inline">\(p\)</span>)<br />
-</li>
-<li>variance <span class="math inline">\(V(\bar{X})=\frac{V(X)}{n}=\frac{p(p-1)}{n}\)</span> (consistent estimator of <span class="math inline">\(p\)</span>)</li>
+<li><span class="math inline">\(H_0: p \leq 0.9\)</span> (Not satisfactory)</li>
+<li><span class="math inline">\(H_1: p&gt; 0.9\)</span> (Satisfactory)</li>
 </ul>
-<p><span class="math display">\[\hat{p}=\bar{x}\]</span></p>
+<p>Then if the null hypothesis is true <span class="math inline">\(\bar{X}\)</span> has</p>
+<ul>
+<li><p>mean <span class="math inline">\(E(\bar{X})=E(X)=p=0.9\)</span> (unbiased estimator of <span class="math inline">\(p\)</span>)<br />
+</p></li>
+<li><p>variance <span class="math inline">\(V(\bar{X})=\frac{V(X)}{n}=\frac{p(1-p)}{n}=0.00045\)</span> (consistent estimator of <span class="math inline">\(p\)</span>)</p></li>
+<li><p>The observed <span class="math inline">\(\bar{X}\)</span> was <span class="math inline">\(\bar{x}=188/200=0.94\)</span></p></li>
+</ul>
 <hr />
 <hr />
 </div>
-<div id="interval-estimation-for-proportions-2" class="section level2 hasAnchor" number="13.26">
-<h2><span class="header-section-number">13.26</span> Interval estimation for proportions<a href="interval-estimation.html#interval-estimation-for-proportions-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>When <span class="math inline">\(\hat{p}n&gt;5\)</span> and <span class="math inline">\((\hat{p}-1)n&gt;5\)</span></p>
+<div id="interval-estimation-for-proportions-5" class="section level2 hasAnchor" number="14.31">
+<h2><span class="header-section-number">14.31</span> Interval estimation for proportions<a href="hypothesis-testing.html#interval-estimation-for-proportions-5" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ul>
-<li>The <strong>standardized statistic</strong> of <span class="math inline">\(\bar{X}\)</span> can be approximated by a standard distribution</li>
+<li>By the CLT, the <strong>standardized error</strong> from the null hypothesis</li>
 </ul>
-<p><span class="math display">\[Z=\frac{\bar{X}-E(\bar{X})}{\sqrt{V(\bar{X})}}= \frac{\bar{X}-p}{\big[\frac{p(1-p)}{n} \big]^{1/2}}\rightarrow N(0,1)\]</span></p>
-<ul>
-<li>The <span class="math inline">\(95\%\)</span> CI interval of <span class="math inline">\(p\)</span> is:</li>
-</ul>
-<p><span class="math display">\[CI=(l,u)=(\bar{x}-z_{0.025}\big[\frac{\bar{x}(1-\bar{x})}{n} \big]^{1/2},  \bar{x}+z_{0.025}\big[\frac{\bar{x}(1-\bar{x})}{n} \big]^{1/2})\]</span>
-Where we estimate the Bernoulli variance <span class="math inline">\(p(1-p)\)</span> by <span class="math inline">\(\bar{x}(1-\bar{x})\)</span>.</p>
+<p><span class="math display">\[Z=\frac{\bar{X}-E(\bar{X})}{\sqrt{V(\bar{X})}}= \frac{\bar{X}-p}{\big[\frac{p(1-p)}{n} \big]^{1/2}}\rightarrow N(0,1)\]</span>
+is a standard normal variable, when <span class="math inline">\(pn&gt;5\)</span> and <span class="math inline">\((p-1)n&gt;5\)</span>.</p>
 <hr />
 <hr />
 </div>
-<div id="interval-estimation-for-proportions-3" class="section level2 hasAnchor" number="13.27">
-<h2><span class="header-section-number">13.27</span> Interval estimation for proportions<a href="interval-estimation.html#interval-estimation-for-proportions-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>In our case, we are counting failures on vaccinations <span class="math inline">\(136\)</span> in <span class="math inline">\(400\)</span> trials</p>
-<p>we know</p>
+<div id="interval-estimation-for-proportions-6" class="section level2 hasAnchor" number="14.32">
+<h2><span class="header-section-number">14.32</span> Interval estimation for proportions<a href="hypothesis-testing.html#interval-estimation-for-proportions-6" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In this example, we <strong>reject</strong> <span class="math inline">\(H_0\)</span> because of any of the following equivalent contrasts:</p>
+<ol style="list-style-type: decimal">
+<li>The acceptance region for <span class="math inline">\(H_0\)</span> is:</li>
+</ol>
+<p><span class="math display">\[(-\infty, z_{0.05})=( -\infty,  1.644854)\]</span></p>
+<p>and the observed standardized error from <span class="math inline">\(H_0\)</span> is
+<span class="math display">\[z_{obs} =  \frac{0.94-0.90}{\sqrt{0.00045}}=1.885618\]</span></p>
+<p>outside the acceptance region (inside the rejection zone).</p>
+<hr />
+<hr />
+</div>
+<div id="interval-estimation-for-proportions-7" class="section level2 hasAnchor" number="14.33">
+<h2><span class="header-section-number">14.33</span> Interval estimation for proportions<a href="hypothesis-testing.html#interval-estimation-for-proportions-7" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ol start="2" style="list-style-type: decimal">
+<li>For the upper tail <span class="math display">\[pvalue=1-\phi^{-1}(1.885618)=0.02967323\]</span></li>
+</ol>
+<p>R: <code>1-pnorm(1.885618)</code></p>
+<p>is lower than <span class="math inline">\(\alpha=0.05\)</span></p>
+<hr />
+<hr />
+</div>
+<div id="interval-estimation-for-proportions-8" class="section level2 hasAnchor" number="14.34">
+<h2><span class="header-section-number">14.34</span> Interval estimation for proportions<a href="hypothesis-testing.html#interval-estimation-for-proportions-8" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In R: <code>prop.test(188, 200, p=0.9, alternative = “greater” , correct=FALSE)</code></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
+<hr />
+<hr />
+</div>
+<div id="test-for-variances" class="section level2 hasAnchor" number="14.35">
+<h2><span class="header-section-number">14.35</span> Test for variances<a href="hypothesis-testing.html#test-for-variances" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In many cases, experiments are run to test specific values of the dispersion of data.</p>
+<p>Such as</p>
 <ul>
-<li><span class="math inline">\(\bar{x}=134/400=0.34\)</span></li>
-<li><span class="math inline">\(z_{0.025}=1.96\)</span></li>
+<li>for complying with strict design standards where measurements must be between certain values</li>
+<li>when relative measurements are taken such as the reaction of a treatment on an individual (insulin administration on an individual’s sugar levels)</li>
 </ul>
-<p><span class="math inline">\(CI=(l,u)=(\bar{x}-1.96 \big[\frac{\bar{x}(1-\bar{x})}{n} \big]^{1/2}, \bar{x}+1.96 \big[\frac{\bar{x}(1-\bar{x})}{n} \big]^{1/2})\)</span></p>
-<p><span class="math display">\[=(0.29,0.39)\]</span></p>
-<p>The probability of failure of the vaccine is</p>
-<p><span class="math display">\[\hat{p}=0.34 \pm 0.05\]</span>
-Note: Polls for the intention to vote (Bernoulli trial) in a sample of <span class="math inline">\(n\)</span> individuals report this type of estimate with its margin of error. It does not mean that the <strong>true value</strong> of <span class="math inline">\(p\)</span> is within this interval with probability <span class="math inline">\(95\%\)</span>.</p>
 <hr />
 <hr />
 </div>
-<div id="interval-estimation-for-the-variance" class="section level2 hasAnchor" number="13.28">
-<h2><span class="header-section-number">13.28</span> Interval estimation for the variance<a href="interval-estimation.html#interval-estimation-for-the-variance" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>A metallic material is tested for impact to measure the energy required to cut it at a given temperature.</p>
+<div id="test-for-variances-1" class="section level2 hasAnchor" number="14.36">
+<h2><span class="header-section-number">14.36</span> Test for variances<a href="hypothesis-testing.html#test-for-variances-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>For a random sample <span class="math inline">\(X_1,...X_n\)</span> with a normal population distribution (<span class="math inline">\(X_i \rightarrow N(\mu, \sigma^2)\)</span>) the statistics defined by</p>
+<p><span class="math display">\[X=\frac{(n-1)S^2}{\sigma^2}\]</span></p>
+<p>Has a <span class="math inline">\(\chi^2\)</span> (chi-squared) distribution with n-1 degrees of freedom given by</p>
+<p><span class="math display">\[f(x)=C_n  x^{\frac{n-3}{2}} e^{-\frac{x}{2}}\]</span></p>
+<hr />
+<hr />
+</div>
+<div id="test-for-variances-2" class="section level2 hasAnchor" number="14.37">
+<h2><span class="header-section-number">14.37</span> Test for variances<a href="hypothesis-testing.html#test-for-variances-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Suppose we want to test whether the variance of the population distribution is equal to a given value <span class="math inline">\(\sigma_0\)</span></p>
 <ul>
-<li><p>Ten specimens of A238 steel were cut at 60ºC at the following impact energies (J)</p></li>
-<li><p><span class="math inline">\(64.1, 64.7, 64.5, 64.6, 64.5, 64.3, 64.6, 64.8, 64.2, 64.3\)</span></p></li>
+<li><span class="math inline">\(H_0:\sigma=\sigma_0\)</span></li>
 </ul>
-<p>We know that the estimate for <span class="math inline">\(s^2=0.227^2=0.051\)</span>, but what is its confidence interval?</p>
-<hr />
-<hr />
-</div>
-<div id="interval-estimation-for-the-variance-1" class="section level2 hasAnchor" number="13.29">
-<h2><span class="header-section-number">13.29</span> Interval estimation for the variance<a href="interval-estimation.html#interval-estimation-for-the-variance-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>If</p>
+<p>Alternative hypothesis</p>
 <ul>
-<li><span class="math inline">\(X\)</span> is a <strong>normal</strong> variable</li>
+<li><p>two tailed: <span class="math inline">\(H_1:\sigma \neq \sigma_0\)</span></p></li>
+<li><p>upper tailed: <span class="math inline">\(H_1:\sigma &gt; \sigma_0\)</span></p></li>
+<li><p>lower tailed: <span class="math inline">\(H_1:\sigma &lt; \sigma_0\)</span></p></li>
 </ul>
-<p>then</p>
-<p><span class="math display">\[W=\frac{S^2(n-1)}{\sigma^2}\]</span>
-Captures the proportion in the error of <span class="math inline">\(\sigma^2\)</span> and
-follows a <span class="math inline">\(\chi^2\)</span> distribution with <span class="math inline">\(n-1\)</span> degrees of freedom</p>
-<p><span class="math display">\[\frac{S^2}{\sigma^2}(n-1)\rightarrow \chi^2_{n-1}\]</span></p>
+<hr />
+<hr />
+</div>
+<div id="test-for-variances-3" class="section level2 hasAnchor" number="14.38">
+<h2><span class="header-section-number">14.38</span> Test for variances<a href="hypothesis-testing.html#test-for-variances-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><span class="math inline">\(S^2\)</span> is an unbiased estimate of <span class="math inline">\(\sigma^2\)</span>: <span class="math inline">\(E(S^2)=\sigma^2\)</span></p>
+<p>The <strong>standardized error ratio</strong></p>
+<p><span class="math display">\[W=\frac{(n-1)S^2}{\sigma_0^2} \rightarrow \chi^2(n-1)\]</span></p>
+<p>Follows a <span class="math inline">\(\chi^2\)</span> distribution with <span class="math inline">\(n-1\)</span> degrees of freedom.</p>
+<hr />
+<hr />
+</div>
+<div id="example-19" class="section level2 hasAnchor" number="14.39">
+<h2><span class="header-section-number">14.39</span> Example<a href="hypothesis-testing.html#example-19" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ul>
-<li>We look for confidence interval of <span class="math inline">\(\sigma^2\)</span> at confidence <span class="math inline">\(95\%\)</span> <span class="math inline">\((L,U)\)</span> such that <span class="math display">\[P(L \leq \sigma^2 \leq U)=0.95\]</span></li>
+<li><p>The production of a semiconductor chip is regulated by a process that requires that the thickness of a particular layer does not vary in more than <span class="math inline">\(\sigma_0=0.6mm\)</span>, from its mean of <span class="math inline">\(25mm\)</span>.</p></li>
+<li><p>To keep control of the process every so often a sample of <span class="math inline">\(20\)</span> specimens is taken.</p></li>
+<li><p>If on one occasion the estimated standard deviation was <span class="math inline">\(s=0.8462188\)</span> is the process out of control at <span class="math inline">\(0.01\)</span> confidence and should be stopped?</p></li>
 </ul>
-<p>We can use the <span class="math inline">\(\chi^2\)</span> to determine the <span class="math inline">\(95\%\)</span> of the distribution about <span class="math inline">\(W\)</span></p>
-<p><span class="math display">\[P(\chi^2_{0.975,n-1} \leq W \leq \chi^2_{0.025,n-1})=0.95\]</span></p>
+<p>This is the data:</p>
+<pre><code>##  [1] 24.51239 24.79975 26.35608 25.06134 25.11248 26.49211 25.40100 23.89940
+##  [9] 24.40244 24.61227 26.06495 25.31304 25.34867 25.09629 24.51642 26.55461
+## [17] 25.43313 23.28904 25.61018 24.58867</code></pre>
 <hr />
 <hr />
 </div>
-<div id="chi2-statistic-2" class="section level2 hasAnchor" number="13.30">
-<h2><span class="header-section-number">13.30</span> <span class="math inline">\(\chi^2\)</span>-statistic<a href="interval-estimation.html#chi2-statistic-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><img src="_main_files/figure-html/unnamed-chunk-98-1.png" width="672" /></p>
-<hr />
-<hr />
-</div>
-<div id="interval-estimation-for-the-variance-2" class="section level2 hasAnchor" number="13.31">
-<h2><span class="header-section-number">13.31</span> Interval estimation for the variance<a href="interval-estimation.html#interval-estimation-for-the-variance-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>replacing the value of <span class="math inline">\(W\)</span></p>
-<p><span class="math display">\[P(\chi^2_{0.975,n-1} \leq \frac{S^2}{\sigma^2}(n-1) \leq \chi^2_{0.025,n-1})=0.95\]</span></p>
-<p>and solving for <span class="math inline">\(\sigma^2\)</span></p>
-<p><span class="math display">\[P(\frac{S^2 (n-1)}{\chi^2_{0.025,n-1}}\leq \sigma^2 \leq \frac{S^2(n-1)}{\chi^2_{0.975,n-1}})=0.95\]</span></p>
-<p>The <strong>random</strong> interval at <span class="math inline">\(95\%\)</span> confidence is</p>
-<p><span class="math display">\[(L,U) = (\frac{S^2 (n-1)}{\chi^2_{0.025,n-1}},\frac{S^2(n-1)}{\chi^2_{0.975,n-1}})\]</span></p>
-<p>and the <strong>observed</strong> <span class="math inline">\(95\%\)</span> confidence interval (script size)</p>
-<p><span class="math display">\[(l,u) = (\frac{s^2 (n-1)}{\chi^2_{0.025,n-1}},\frac{s^2(n-1)}{\chi^2_{0.975,n-1}})\]</span></p>
-<hr />
-<hr />
-</div>
-<div id="interval-estimation-for-the-variance-3" class="section level2 hasAnchor" number="13.32">
-<h2><span class="header-section-number">13.32</span> Interval estimation for the variance<a href="interval-estimation.html#interval-estimation-for-the-variance-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><span class="math inline">\(\chi^2_{0.975,n-1}=F^{-1}(0.025)\)</span>
-</br>for <span class="math inline">\(n=10\)</span> or <span class="math inline">\(df=n-1=9\)</span></p>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="interval-estimation.html#cb30-1" aria-hidden="true" tabindex="-1"></a>chi0<span class="fl">.975</span> <span class="ot">&lt;-</span> <span class="fu">qchisq</span>(<span class="fl">0.025</span>, <span class="at">df=</span><span class="dv">9</span>)</span>
-<span id="cb30-2"><a href="interval-estimation.html#cb30-2" aria-hidden="true" tabindex="-1"></a>chi0<span class="fl">.975</span></span></code></pre></div>
-<pre><code>[1] 2.700389</code></pre>
-<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="interval-estimation.html#cb32-1" aria-hidden="true" tabindex="-1"></a>chi0<span class="fl">.025</span> <span class="ot">&lt;-</span> <span class="fu">qchisq</span>(<span class="fl">0.975</span>, <span class="at">df=</span><span class="dv">9</span>)</span>
-<span id="cb32-2"><a href="interval-estimation.html#cb32-2" aria-hidden="true" tabindex="-1"></a>chi0<span class="fl">.025</span></span></code></pre></div>
-<pre><code>[1] 19.02277</code></pre>
-<hr />
-<hr />
-</div>
-<div id="interval-estimation-8" class="section level2 hasAnchor" number="13.33">
-<h2><span class="header-section-number">13.33</span> Interval estimation<a href="interval-estimation.html#interval-estimation-8" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>In our example</p>
+<div id="test-for-variances-4" class="section level2 hasAnchor" number="14.40">
+<h2><span class="header-section-number">14.40</span> Test for variances<a href="hypothesis-testing.html#test-for-variances-4" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>We want to contrast the hypotheses</p>
 <ul>
-<li><span class="math inline">\(s=0.227\)</span></li>
-<li><span class="math inline">\(n=10\)</span></li>
+<li><p><span class="math inline">\(H_0:\sigma \leq 0.6\)</span> (Process under control)</p></li>
+<li><p><span class="math inline">\(H_1:\sigma &gt; 0.6\)</span> (Process out of control)</p></li>
+<li><p>Statistic: <span class="math inline">\(W=\frac{(n-1)S^2}{\sigma_0^2} \rightarrow \chi^2(n-1)\)</span></p></li>
+<li><p>Threshold limit <span class="math inline">\(\alpha=0.01\)</span></p></li>
+<li><p>The acceptance region for <span class="math inline">\(H_0\)</span>: <span class="math inline">\(P(W\leq \chi^2_{0.01,19})=0.99\)</span></p></li>
 </ul>
-<p><span class="math inline">\(\hat{\sigma}^2=(l,u) = (\frac{s^2 (n-1)}{\chi^2_{0.025,n-1}},\frac{s^2(n-1)}{\chi^2_{0.975,n-1}})\)</span></p>
-<p><span class="math display">\[= (\frac{0.227^2 (10-1)}{19.02277},\frac{0.227^2(10-1)}{2.700389})=(0.02,0.17)\]</span></p>
-<p>According to the data <span class="math inline">\(\sigma^2 \neq 1\)</span> at <span class="math inline">\(95\%\)</span> confidence.</p>
-<ul>
-<li>Had we made an error considering <span class="math inline">\(\sigma=1\)</span> when we calculated the first CI for this data?</li>
-</ul>
-<p>in R: <code>library(Ecfun);
-confint.var(0.05, 9)</code></p>
+<p><span class="math display">\[(0, \chi^2_{0.01,19})=(0,36.19)\]</span></p>
+<p>In R: <span class="math inline">\(\chi^2_{0.01,19}=\)</span><code>qchisq(0.99,19)</code><span class="math inline">\(= 36.19\)</span></p>
 <hr />
 <hr />
 </div>
-<div id="interval-estimation-9" class="section level2 hasAnchor" number="13.34">
-<h2><span class="header-section-number">13.34</span> Interval estimation<a href="interval-estimation.html#interval-estimation-9" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>The interval for the variance is <strong>not symmetric</strong> and we cannot formulate it as an estimate <span class="math inline">\(\pm\)</span> margin of error.</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-99-1.png" width="672" /></p>
+<div id="test-for-variances-5" class="section level2 hasAnchor" number="14.41">
+<h2><span class="header-section-number">14.41</span> Test for variances<a href="hypothesis-testing.html#test-for-variances-5" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In this example, we <strong>reject</strong> <span class="math inline">\(H_0\)</span> because of any of the following equivalent contrasts:</p>
+<ol style="list-style-type: decimal">
+<li>The observed <strong>standardized error ratio</strong> is:</li>
+</ol>
+<p><span class="math display">\[w_{obs}=\frac{19 (0.8462188)^2}{0.60^2}=37.79344\]</span></p>
+<p>That falls outside the acceptance region (inside the rejection zone)</p>
+<ol start="2" style="list-style-type: decimal">
+<li>For the upper tail <span class="math display">\[pvalue=1-F_{\chi,19}^{-1}(37.79344)= 0.006\]</span></li>
+</ol>
+<p>R: <code>1-pchisq(37.79344, 19)</code></p>
+<p>is lower than <span class="math inline">\(\alpha=0.05\)</span></p>
+<p>Therefore we need to conclude that yes! the process is out of control.</p>
+<hr />
+<hr />
+</div>
+<div id="chi2-statistic-3" class="section level2 hasAnchor" number="14.42">
+<h2><span class="header-section-number">14.42</span> <span class="math inline">\(\chi^2\)</span>-statistic<a href="hypothesis-testing.html#chi2-statistic-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>in R: <code>library(EnvStats);
+varTest(thickness, sigma.squared = 0.6^2, alternative = “greater”) </code></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
+<hr />
+<hr />
+</div>
+<div id="errors-in-hypothesis-testing" class="section level2 hasAnchor" number="14.43">
+<h2><span class="header-section-number">14.43</span> Errors in hypothesis testing<a href="hypothesis-testing.html#errors-in-hypothesis-testing" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>When we infer a parameter with a statistic and then apply a criterion to decide on a hypothesis we have four possibilities</p>
+<ul>
+<li><span class="math inline">\(H_0\)</span> unknown reality: <strong>true</strong> or <strong>false</strong></li>
+<li>Result of <span class="math inline">\(H_0\)</span> testing: <strong>negative</strong>, <strong>positive</strong></li>
+</ul>
+<p>We usually aim to reject <span class="math inline">\(H_0\)</span> (prosecutor):</p>
+<p><strong>positive</strong>: expected research interest, rejection of <span class="math inline">\(H_0\)</span>, or the status quo (rejecting innocence).</p>
+<table>
+<thead>
+<tr class="header">
+<th align="center"><span class="math inline">\(H_0\)</span></th>
+<th align="center">reality: true</th>
+<th align="center">reality: false</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><strong>test: positive</strong> (negative result)</td>
+<td align="center">true negative</td>
+<td align="center">false negative</td>
+</tr>
+<tr class="even">
+<td align="center"><strong>test: negative</strong> (positive result)</td>
+<td align="center">false positive</td>
+<td align="center">true positive</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<hr />
+</div>
+<div id="errors-in-hypothesis-testing-1" class="section level2 hasAnchor" number="14.44">
+<h2><span class="header-section-number">14.44</span> Errors in hypothesis testing<a href="hypothesis-testing.html#errors-in-hypothesis-testing-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>You take <strong>one</strong> PCR to test infection; <span class="math inline">\(H_0\)</span> you are <strong>not infected</strong></p>
+<ul>
+<li><span class="math inline">\(H_0\)</span> unknown reality is: <strong>true</strong>, <strong>false</strong></li>
+<li><span class="math inline">\(H_0\)</span> test is: <strong>negative</strong> (accept), <strong>positive</strong> (reject)</li>
+</ul>
+<p><strong>positive</strong> for infection.</p>
+<table>
+<colgroup>
+<col width="33%" />
+<col width="33%" />
+<col width="33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center"><span class="math inline">\(H_0\)</span></th>
+<th align="center">not infected: true</th>
+<th align="center">not infected: false (infected: true)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><strong>negative</strong> (accept)</td>
+<td align="center">true negative: <span class="math inline">\(P(accept|H_0:true)\)</span></td>
+<td align="center">false negative:<span class="math inline">\(P(accept|H_0:false)\)</span></td>
+</tr>
+<tr class="even">
+<td align="center"><strong>positive</strong> (reject)</td>
+<td align="center">false positive: <span class="math inline">\(P(reject|H_0:true)\)</span></td>
+<td align="center">true positive: <span class="math inline">\(P(reject|H_0:false)\)</span></td>
+</tr>
+<tr class="odd">
+<td align="center"><strong>sum</strong></td>
+<td align="center">1</td>
+<td align="center">1</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<hr />
+</div>
+<div id="errors-in-hypothesis-testing-2" class="section level2 hasAnchor" number="14.45">
+<h2><span class="header-section-number">14.45</span> Errors in hypothesis testing<a href="hypothesis-testing.html#errors-in-hypothesis-testing-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="errors-are-also-known-as" class="section level3 hasAnchor" number="14.45.1">
+<h3><span class="header-section-number">14.45.1</span> Errors are also known as<a href="hypothesis-testing.html#errors-are-also-known-as" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li><p>Type I error: false positive (sending an innocent man to jail)
+<span class="math inline">\(P(reject|H_0:true)\)</span></p></li>
+<li><p>Type II error: false negative (letting go of a criminal)
+<span class="math inline">\(P(accept|H_0:false)\)</span></p></li>
+</ul>
+</div>
+<div id="correct-contrasts-are-also-known-as" class="section level3 hasAnchor" number="14.45.2">
+<h3><span class="header-section-number">14.45.2</span> Correct contrasts are also known as<a href="hypothesis-testing.html#correct-contrasts-are-also-known-as" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li><p>Sensitivity: true positive (sending a criminal to jail)
+<span class="math inline">\(P(reject|H_0:false)\)</span></p></li>
+<li><p>Specificity: true negative (letting go of an innocent man)
+<span class="math inline">\(P(accept|H_0:true)\)</span></p></li>
+</ul>
+<table>
+<colgroup>
+<col width="33%" />
+<col width="33%" />
+<col width="33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center"><span class="math inline">\(H_0\)</span></th>
+<th align="center">not infected: true</th>
+<th align="center">not infected: false (infected: true)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><strong>negative</strong> (accept)</td>
+<td align="center">Specificity: <span class="math inline">\(P(accept|H_0:true)\)</span></td>
+<td align="center">Type II error: <span class="math inline">\(P(accept|H_0:false)\)</span></td>
+</tr>
+<tr class="even">
+<td align="center"><strong>positive</strong> (reject)</td>
+<td align="center">Type I error: <span class="math inline">\(P(reject|H_0:true)\)</span></td>
+<td align="center">Specificity: <span class="math inline">\(P(reject|H_0:false)\)</span></td>
+</tr>
+<tr class="odd">
+<td align="center"><strong>sum</strong></td>
+<td align="center">1</td>
+<td align="center">1</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<hr />
+</div>
+</div>
+<div id="bayesian-statistics" class="section level2 hasAnchor" number="14.46">
+<h2><span class="header-section-number">14.46</span> Bayesian statistics<a href="hypothesis-testing.html#bayesian-statistics" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>What happens if we apply the Bayes theorem to the previous table?</p>
+<p><span class="math display">\[P(H_0|data)=\frac{P(data|H_0)P(H_0)}{P(data)}\]</span></p>
+<p>We subvert the meaning of an event and apply it to a hypothesis.</p>
+<p>Can we assign a probability to a hypothesis?</p>
+<p>Bayesian interpretation of probability</p>
+<ul>
+<li>The probability is our <strong>state of belief</strong> on the veracity of a hypothesis given the data.</li>
+</ul>
 
 </div>
 </div>
@@ -1091,8 +1365,8 @@ confint.var(0.05, 9)</code></p>
           </div>
         </div>
       </div>
-<a href="maximum-likelihood.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="hypothesis-testing.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="interval-estimation.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="exercises.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -1123,7 +1397,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/USERNAME/REPO/edit/BRANCH/13-InervalEstimation.Rmd",
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/14-HypothesisTesting.Rmd",
 "text": "Edit"
 },
 "history": {

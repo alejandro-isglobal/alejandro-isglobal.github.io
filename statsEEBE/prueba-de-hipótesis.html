@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 5 Variables aleatorias discretas | Estadística</title>
+  <title>Chapter 14 Prueba de hipótesis | Estadística</title>
   <meta name="description" content="This are slides for the Stats theory of the BIST master" />
   <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 5 Variables aleatorias discretas | Estadística" />
+  <meta property="og:title" content="Chapter 14 Prueba de hipótesis | Estadística" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="alejandro-isglobal/master" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 5 Variables aleatorias discretas | Estadística" />
+  <meta name="twitter:title" content="Chapter 14 Prueba de hipótesis | Estadística" />
   
   <meta name="twitter:description" content="This are slides for the Stats theory of the BIST master" />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="probabilidad-condicional.html"/>
-<link rel="next" href="variables-aleatorias-continuas.html"/>
+<link rel="prev" href="estimación-intervalar.html"/>
+<link rel="next" href="ejercicios.html"/>
 <script src="libs/header-attrs-2.12/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -623,711 +623,738 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="variables-aleatorias-discretas" class="section level1 hasAnchor" number="5">
-<h1><span class="header-section-number">Chapter 5</span> Variables aleatorias discretas<a href="variables-aleatorias-discretas.html#variables-aleatorias-discretas" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<div id="objetivo-4" class="section level2 hasAnchor" number="5.1">
-<h2><span class="header-section-number">5.1</span> Objetivo<a href="variables-aleatorias-discretas.html#objetivo-4" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="prueba-de-hipótesis" class="section level1 hasAnchor" number="14">
+<h1><span class="header-section-number">Chapter 14</span> Prueba de hipótesis<a href="prueba-de-hipótesis.html#prueba-de-hipótesis" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="objetivo-13" class="section level2 hasAnchor" number="14.1">
+<h2><span class="header-section-number">14.1</span> Objetivo<a href="prueba-de-hipótesis.html#objetivo-13" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ul>
-<li>Variables aleatorias</li>
-<li>Función de probabilidad</li>
-<li>Media y varianza</li>
-<li>Distribución de probabilidad</li>
+<li>Contraste de hipótesis de medias y proporciones</li>
+<li>Contraste de hipótesis de varianzas</li>
+<li>Errores en la prueba de hipótesis</li>
 </ul>
 <hr />
 <hr />
 </div>
-<div id="cómo-asignamos-valores-de-probabilidad-a-los-resultados" class="section level2 hasAnchor" number="5.2">
-<h2><span class="header-section-number">5.2</span> ¿Cómo asignamos valores de probabilidad a los resultados?<a href="variables-aleatorias-discretas.html#cómo-asignamos-valores-de-probabilidad-a-los-resultados" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><img src="figures/eqprob.jpg" style="width:75%"  align="center"></p>
-<hr />
-<hr />
-</div>
-<div id="variable-aleatoria" class="section level2 hasAnchor" number="5.3">
-<h2><span class="header-section-number">5.3</span> Variable aleatoria<a href="variables-aleatorias-discretas.html#variable-aleatoria" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><strong>Definición:</strong></p>
-<p>Una <strong>variable aleatoria</strong> es una función que asigna un <strong>número</strong> real a cada <strong>resultado</strong> en el espacio muestral de un experimento aleatorio.</p>
+<div id="hipótesis" class="section level2 hasAnchor" number="14.2">
+<h2><span class="header-section-number">14.2</span> Hipótesis<a href="prueba-de-hipótesis.html#hipótesis" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Cuando hacemos inferencias sobre nuestro experimento aleatorio, a menudo queremos probar si el proceso satisface una condición/propiedad deseada.</p>
 <ul>
-<li>Por lo general, una variable aleatoria es el valor de la <strong>medida</strong> de interés que se realiza en un experimento aleatorio.</li>
-</ul>
-<p>Una variable aleatoria puede ser:</p>
-<ul>
-<li>Discreta (nominal, ordinal)</li>
-<li>Continua (intervalo, relación)</li>
+<li><p>Las mediciones y sus inferencias proporcionan <strong>evidencia</strong> para esa condición.</p></li>
+<li><p>Podemos formular la condición en términos de los valores que pueden tomar algunos <strong>parámetros</strong> de las distribuciones de probabilidad.</p></li>
 </ul>
 <hr />
 <hr />
 </div>
-<div id="variable-aleatoria-1" class="section level2 hasAnchor" number="5.4">
-<h2><span class="header-section-number">5.4</span> Variable aleatoria<a href="variables-aleatorias-discretas.html#variable-aleatoria-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Un <strong>valor</strong> (o <strong>resultado</strong>) de una variable aleatoria es uno de los números posibles que la variable puede tomar en un experimento aleatorio.</p>
-<p>Escribimos la variable aleatoria en <strong>mayúsculas</strong>.</p>
-<p>Ejemplo:</p>
-<p>Si <span class="math inline">\(X \in \{0,1\}\)</span>, entonces decimos que <span class="math inline">\(X\)</span> es una variable aleatoria que puede tomar los valores <span class="math inline">\(0\)</span> o <span class="math inline">\(1\)</span>.</p>
-<p><strong>Observación</strong> de una variable aleatoria</p>
+<div id="hipótesis-1" class="section level2 hasAnchor" number="14.3">
+<h2><span class="header-section-number">14.3</span> Hipótesis<a href="prueba-de-hipótesis.html#hipótesis-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Ejemplos:</p>
 <ul>
-<li>Una observación es la <strong>adquisición</strong> del valor de una variable aleatoria en un experimento aleatorio</li>
+<li>Los fabricantes de neumáticos quieren saber si la vida media de los neumáticos que producen es de al menos 20.000 km.</li>
+<li>Los desarrolladores de fertilizantes quieren probar si su nuevo producto tiene un efecto real en el crecimiento de las plantas</li>
+<li>Las empresas farmacéuticas necesitan saber si la quimioterapia puede curar al 90% de los pacientes con cáncer</li>
 </ul>
-<p>Ejemplo:</p>
-<p>1 0 0 1 0 <strong>1</strong> 0 1 1</p>
-<p>El número en negrita es una observación de <span class="math inline">\(X\)</span></p>
+<p>Estas preguntas se pueden traducir en enunciados de distribuciones de probabilidad.</p>
 <hr />
 <hr />
 </div>
-<div id="eventos-de-observar-una-variable-aleatoria" class="section level2 hasAnchor" number="5.5">
-<h2><span class="header-section-number">5.5</span> Eventos de observar una variable aleatoria<a href="variables-aleatorias-discretas.html#eventos-de-observar-una-variable-aleatoria" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="hipótesis-2" class="section level2 hasAnchor" number="14.4">
+<h2><span class="header-section-number">14.4</span> Hipótesis<a href="prueba-de-hipótesis.html#hipótesis-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ul>
-<li><span class="math inline">\(X=1\)</span> es el <strong>evento</strong> de observar la variable aleatoria <span class="math inline">\(X\)</span> con valor <span class="math inline">\(1\)</span></li>
-<li><span class="math inline">\(X=2\)</span> es el <strong>evento</strong> de observar la variable aleatoria <span class="math inline">\(X\)</span> con valor <span class="math inline">\(2\)</span></li>
+<li>Los fabricantes de neumáticos quieren saber si la vida media de los neumáticos que producen es de al menos 20.000 km.</li>
 </ul>
-<p>…</p>
-<p><strong>En general:</strong></p>
+<p>Suponiendo que la vida útil de los neumáticos sigue una distribución de probabilidad poblacional, nos interesa saber si la media de la distribución es de al menos 20 000 km.</p>
+<p>Esto se puede hacer en dos declaraciones dicotómicas.</p>
 <ul>
-<li><p><span class="math inline">\(X=x\)</span> es el <strong>evento</strong> de observar la variable aleatoria <span class="math inline">\(X\)</span> con valor <span class="math inline">\(x\)</span> (pequeño <span class="math inline">\(x\)</span>)</p></li>
-<li><p>Dos valores cualesquiera de una variable aleatoria definen dos eventos <strong>mutuamente excluyentes</strong>.</p></li>
+<li>La vida media de los neumáticos es <strong>menos</strong> de 20.000 km</li>
+<li>La vida media de los neumáticos es <strong>superior</strong> a 20.000 km</li>
 </ul>
 <hr />
 <hr />
 </div>
-<div id="probabilidad-de-variables-aleatorias" class="section level2 hasAnchor" number="5.6">
-<h2><span class="header-section-number">5.6</span> Probabilidad de variables aleatorias<a href="variables-aleatorias-discretas.html#probabilidad-de-variables-aleatorias" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Nos interesa asignar probabilidades a los valores de una variable aleatoria.</p>
-<p>Ya hemos hecho esto para los dados: <span class="math inline">\(X \in \{1,2,3,4,5,6\}\)</span> (interpretación clásica de probabilidad)</p>
-<table>
-<thead>
-<tr class="header">
-<th align="center"><span class="math inline">\(X\)</span></th>
-<th align="center">Probabilidad</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="center"><span class="math inline">\(1\)</span></td>
-<td align="center"><span class="math inline">\(P(X=1)=1/6\)</span></td>
-</tr>
-<tr class="even">
-<td align="center"><span class="math inline">\(2\)</span></td>
-<td align="center"><span class="math inline">\(P(X=2)=1/6\)</span></td>
-</tr>
-<tr class="odd">
-<td align="center"><span class="math inline">\(3\)</span></td>
-<td align="center"><span class="math inline">\(P(X=3)=1/6\)</span></td>
-</tr>
-<tr class="even">
-<td align="center"><span class="math inline">\(4\)</span></td>
-<td align="center"><span class="math inline">\(P(X=4)=1/6\)</span></td>
-</tr>
-<tr class="odd">
-<td align="center"><span class="math inline">\(5\)</span></td>
-<td align="center"><span class="math inline">\(P(X=5)=1/6\)</span></td>
-</tr>
-<tr class="even">
-<td align="center"><span class="math inline">\(6\)</span></td>
-<td align="center"><span class="math inline">\(P(X=6)=1/6\)</span></td>
-</tr>
-</tbody>
-</table>
-<hr />
-<hr />
-</div>
-<div id="funciones-de-probabilidad" class="section level2 hasAnchor" number="5.7">
-<h2><span class="header-section-number">5.7</span> Funciones de probabilidad<a href="variables-aleatorias-discretas.html#funciones-de-probabilidad" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="hipótesis-3" class="section level2 hasAnchor" number="14.5">
+<h2><span class="header-section-number">14.5</span> Hipótesis<a href="prueba-de-hipótesis.html#hipótesis-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>o siendo <span class="math inline">\(\mu\)</span> la media de la distribución de la población</p>
 <ul>
-<li>Podemos escribir la tabla de probabilidad</li>
-<li>graficarla</li>
-</ul>
-<p><img src="_main_files/figure-html/unnamed-chunk-34-1.png" width="672" /></p>
-<ul>
-<li>o escribirla como la función</li>
-</ul>
-<p><span class="math display">\[f(x)=P(X=x)=1/6\]</span></p>
-<hr />
-<hr />
-</div>
-<div id="funciones-de-probabilidad-1" class="section level2 hasAnchor" number="5.8">
-<h2><span class="header-section-number">5.8</span> Funciones de probabilidad<a href="variables-aleatorias-discretas.html#funciones-de-probabilidad-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Podemos <strong>crear</strong> cualquier tipo de función de probabilidad si respetamos las reglas de probabilidad:</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-35-1.png" width="672" /></p>
-<hr />
-<hr />
-</div>
-<div id="funciones-de-probabilidad-2" class="section level2 hasAnchor" number="5.9">
-<h2><span class="header-section-number">5.9</span> Funciones de probabilidad<a href="variables-aleatorias-discretas.html#funciones-de-probabilidad-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Para una variable aleatoria discreta <span class="math inline">\(X \in \{x_1 , x_2 , .. , x_M\}\)</span> , una <strong>función de masa de probabilidad</strong></p>
-<p>siempre es positiva</p>
-<ul>
-<li><span class="math inline">\(f(x_i)\geq 0\)</span></li>
-</ul>
-<p>se utiliza para calcular probabilidades</p>
-<ul>
-<li><span class="math inline">\(f(x_i)=P(X=x_i)\)</span></li>
-</ul>
-<p>y su suma sobre todos los valores de la variable es <span class="math inline">\(1\)</span>:</p>
-<ul>
-<li><span class="math inline">\(\sum_{i=1}^M f(x_i)=1\)</span></li>
+<li><span class="math inline">\(H_0: \mu \leq 20.000km\)</span></li>
+<li><span class="math inline">\(H_1: \mu &gt; 20.000km\)</span></li>
 </ul>
 <hr />
 <hr />
 </div>
-<div id="funciones-de-probabilidad-3" class="section level2 hasAnchor" number="5.10">
-<h2><span class="header-section-number">5.10</span> Funciones de probabilidad<a href="variables-aleatorias-discretas.html#funciones-de-probabilidad-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<ul>
-<li><p>Tenga en cuenta que la definición de <span class="math inline">\(X\)</span> y su función de masa de probabilidad es general <strong>sin referencia</strong> a ningún experimento. Las funciones viven en el espacio modelo (abstracto).</p></li>
-<li><p><span class="math inline">\(X\)</span> y <span class="math inline">\(f(x)\)</span> son objetos abstractos que pueden o no asignarse a un experimento</p></li>
-<li><p>Tenemos la libertad de construirlos como queramos siempre que respetemos su definición.</p></li>
-<li><p>Tienen algunas <strong>propiedades</strong> que se derivan exclusivamente de su definición.</p></li>
-</ul>
-<hr />
-<hr />
-</div>
-<div id="ejemplo-función-de-masa-de-probabilidad" class="section level2 hasAnchor" number="5.11">
-<h2><span class="header-section-number">5.11</span> Ejemplo: función de masa de probabilidad<a href="variables-aleatorias-discretas.html#ejemplo-función-de-masa-de-probabilidad" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Considere la siguiente variable aleatoria <span class="math inline">\(X\)</span> sobre los resultados</p>
-<table>
-<thead>
-<tr class="header">
-<th align="center">resultado</th>
-<th align="center"><span class="math inline">\(X\)</span></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="center"><span class="math inline">\(a\)</span></td>
-<td align="center">0</td>
-</tr>
-<tr class="even">
-<td align="center"><span class="math inline">\(b\)</span></td>
-<td align="center">0</td>
-</tr>
-<tr class="odd">
-<td align="center"><span class="math inline">\(c\)</span></td>
-<td align="center">1.5</td>
-</tr>
-<tr class="even">
-<td align="center"><span class="math inline">\(d\)</span></td>
-<td align="center">1.5</td>
-</tr>
-<tr class="odd">
-<td align="center"><span class="math inline">\(e\)</span></td>
-<td align="center">2</td>
-</tr>
-<tr class="even">
-<td align="center"><span class="math inline">\(f\)</span></td>
-<td align="center">3</td>
-</tr>
-</tbody>
-</table>
-<p>Si cada resultado es igualmente probable, ¿cuál es la función de masa de probabilidad de <span class="math inline">\(x\)</span>?</p>
-<hr />
-<hr />
-</div>
-<div id="tabla-de-probabilidad-para-resultados-igualmente-probables" class="section level2 hasAnchor" number="5.12">
-<h2><span class="header-section-number">5.12</span> Tabla de probabilidad para resultados igualmente probables<a href="variables-aleatorias-discretas.html#tabla-de-probabilidad-para-resultados-igualmente-probables" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<table>
-<thead>
-<tr class="header">
-<th align="center">resultado</th>
-<th align="center">Probabilidad (resultado)</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="center"><span class="math inline">\(a\)</span></td>
-<td align="center"><span class="math inline">\(1/6\)</span></td>
-</tr>
-<tr class="even">
-<td align="center"><span class="math inline">\(b\)</span></td>
-<td align="center"><span class="math inline">\(1/6\)</span></td>
-</tr>
-<tr class="odd">
-<td align="center"><span class="math inline">\(c\)</span></td>
-<td align="center"><span class="math inline">\(1/6\)</span></td>
-</tr>
-<tr class="even">
-<td align="center"><span class="math inline">\(d\)</span></td>
-<td align="center"><span class="math inline">\(1/6\)</span></td>
-</tr>
-<tr class="odd">
-<td align="center"><span class="math inline">\(e\)</span></td>
-<td align="center"><span class="math inline">\(1/6\)</span></td>
-</tr>
-<tr class="even">
-<td align="center"><span class="math inline">\(f\)</span></td>
-<td align="center"><span class="math inline">\(1/6\)</span></td>
-</tr>
-</tbody>
-</table>
-<hr />
-<hr />
-</div>
-<div id="tabla-de-probabilidad-para-x" class="section level2 hasAnchor" number="5.13">
-<h2><span class="header-section-number">5.13</span> Tabla de probabilidad para <span class="math inline">\(X\)</span><a href="variables-aleatorias-discretas.html#tabla-de-probabilidad-para-x" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<table>
-<thead>
-<tr class="header">
-<th align="center"><span class="math inline">\(X\)</span></th>
-<th align="center"><span class="math inline">\(f(x)=P(X=x)\)</span></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="center"><span class="math inline">\(0\)</span></td>
-<td align="center"><span class="math inline">\(P(X=0)=2/6\)</span></td>
-</tr>
-<tr class="even">
-<td align="center"><span class="math inline">\(1.5\)</span></td>
-<td align="center"><span class="math inline">\(P(X=1.5)=2/6\)</span></td>
-</tr>
-<tr class="odd">
-<td align="center"><span class="math inline">\(2\)</span></td>
-<td align="center"><span class="math inline">\(P(X=2)=1/6\)</span></td>
-</tr>
-<tr class="even">
-<td align="center"><span class="math inline">\(3\)</span></td>
-<td align="center"><span class="math inline">\(P(X=3)=1/6\)</span></td>
-</tr>
-</tbody>
-</table>
-<p>Podemos calcular, por ejemplo, las siguientes probabilidades de eventos en los valores de <span class="math inline">\(X\)</span></p>
-<ul>
-<li><span class="math inline">\(P(X&gt;3)\)</span></li>
-<li><span class="math inline">\(P(X=0\, \cup\, X=2 )\)</span></li>
-<li><span class="math inline">\(P(X \leq 2)\)</span></li>
-</ul>
-<hr />
-<hr />
-</div>
-<div id="ejemplo-6" class="section level2 hasAnchor" number="5.14">
-<h2><span class="header-section-number">5.14</span> Ejemplo<a href="variables-aleatorias-discretas.html#ejemplo-6" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><strong>Modelo de probabilidad:</strong></p>
-<p>Considere el siguiente experimento: En una urna ponga <span class="math inline">\(8\)</span> bolas y:</p>
-<ul>
-<li>marque <span class="math inline">\(1\)</span> bola con el número <span class="math inline">\(-2\)</span></li>
-<li>marque <span class="math inline">\(2\)</span> bolas con el número <span class="math inline">\(-1\)</span></li>
-<li>marque <span class="math inline">\(2\)</span> bolas con el número <span class="math inline">\(0\)</span></li>
-<li>marque <span class="math inline">\(2\)</span> bolas con el número <span class="math inline">\(1\)</span></li>
-<li>marque <span class="math inline">\(1\)</span> bola con el número <span class="math inline">\(2\)</span></li>
-</ul>
-<p><strong>experimento:</strong> Tome una bola y lea el número.</p>
-<table>
-<thead>
-<tr class="header">
-<th align="center"><span class="math inline">\(X\)</span></th>
-<th align="center"><span class="math inline">\(P(X=x)\)</span></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="center"><span class="math inline">\(-2\)</span></td>
-<td align="center"><span class="math inline">\(1/8=0.125\)</span></td>
-</tr>
-<tr class="even">
-<td align="center"><span class="math inline">\(-1\)</span></td>
-<td align="center"><span class="math inline">\(2/8=0.25\)</span></td>
-</tr>
-<tr class="odd">
-<td align="center"><span class="math inline">\(0\)</span></td>
-<td align="center"><span class="math inline">\(2/8=0.25\)</span></td>
-</tr>
-<tr class="even">
-<td align="center"><span class="math inline">\(1\)</span></td>
-<td align="center"><span class="math inline">\(2/8=0.25\)</span></td>
-</tr>
-<tr class="odd">
-<td align="center"><span class="math inline">\(2\)</span></td>
-<td align="center"><span class="math inline">\(1/8=0.125\)</span></td>
-</tr>
-</tbody>
-</table>
-<hr />
-<hr />
-</div>
-<div id="ejemplo-7" class="section level2 hasAnchor" number="5.15">
-<h2><span class="header-section-number">5.15</span> Ejemplo<a href="variables-aleatorias-discretas.html#ejemplo-7" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Considere otro experimento en el que no sabemos qué hay en la urna anterior. Sacamos una bola <span class="math inline">\(30\)</span> veces, escribimos su númeror y la devolvemos a la urna.</p>
-<ul>
-<li><p>no sabemos cuáles son los eventos primarios con iguales probabilidades.</p></li>
-<li><p>y <strong>estimamos</strong> la <strong>función de masa de probabilidad</strong> a partir de las <strong>frecuencias relativas</strong> observadas para cada variable aleatoria</p></li>
-</ul>
-<table>
-<thead>
-<tr class="header">
-<th align="center"><span class="math inline">\(X\)</span></th>
-<th align="center"><span class="math inline">\(f_i\)</span></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="center"><span class="math inline">\(-2\)</span></td>
-<td align="center"><span class="math inline">\(0.132\)</span></td>
-</tr>
-<tr class="even">
-<td align="center"><span class="math inline">\(-1\)</span></td>
-<td align="center"><span class="math inline">\(0.262\)</span></td>
-</tr>
-<tr class="odd">
-<td align="center"><span class="math inline">\(0\)</span></td>
-<td align="center"><span class="math inline">\(0.240\)</span></td>
-</tr>
-<tr class="even">
-<td align="center"><span class="math inline">\(1\)</span></td>
-<td align="center"><span class="math inline">\(0.248\)</span></td>
-</tr>
-<tr class="odd">
-<td align="center"><span class="math inline">\(2\)</span></td>
-<td align="center"><span class="math inline">\(0.118\)</span></td>
-</tr>
-</tbody>
-</table>
-<hr />
-<hr />
-</div>
-<div id="probabilidades-y-frecuencias" class="section level2 hasAnchor" number="5.16">
-<h2><span class="header-section-number">5.16</span> Probabilidades y frecuencias<a href="variables-aleatorias-discretas.html#probabilidades-y-frecuencias" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Para calcular las frecuencias relativas <span class="math inline">\(f_i\)</span> trenemos que</p>
-<ul>
-<li><strong>repetir</strong> el experimento <span class="math inline">\(N\)</span> veces (tenemos que volver a poner la bola en la urna cada vez) y al final calcular</li>
-</ul>
-<p><span class="math display">\[f_i=n_i/N\]</span></p>
-<p>Estamos suponiendo que:</p>
-<p><span class="math display">\[lim_{N \rightarrow \infty} f_i = f(x_i)=P(X=x_i)\]</span></p>
-<hr />
-<hr />
-</div>
-<div id="probabilidades-y-frecuencias-relativas" class="section level2 hasAnchor" number="5.17">
-<h2><span class="header-section-number">5.17</span> Probabilidades y frecuencias relativas<a href="variables-aleatorias-discretas.html#probabilidades-y-frecuencias-relativas" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><img src="_main_files/figure-html/unnamed-chunk-36-1.png" width="672" /></p>
-<ul>
-<li>En este ejemplo, <strong>sabemos</strong> el <strong>modelo</strong> de probabilidad <span class="math inline">\(f(x)=P(X=x)\)</span> por diseño.</li>
-<li>Nunca observamos <span class="math inline">\(f(x)\)</span></li>
-<li>Podemos usar frecuencias relativas para estimar las probabilidades
-<span class="math display">\[f_i = \hat{f}(x_i)=\hat{P}(X=x_i)\]</span> (<span class="math inline">\(f_i\)</span> depende de <span class="math inline">\(N\)</span>)</li>
-</ul>
-<hr />
-<hr />
-</div>
-<div id="media-y-varianza" class="section level2 hasAnchor" number="5.18">
-<h2><span class="header-section-number">5.18</span> Media y Varianza<a href="variables-aleatorias-discretas.html#media-y-varianza" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Las funciones de masa de probabilidad <span class="math inline">\(f(x)\)</span> tienen dos propiedades principales</p>
-<ul>
-<li>su centro</li>
-<li>su dispersión</li>
-</ul>
-<p>Podemos preguntar,</p>
-<ul>
-<li><p>¿Alrededor de qué valores de <span class="math inline">\(X\)</span> se concentró la probabilidad?</p></li>
-<li><p>¿Qué tan dispersos son los valores de <span class="math inline">\(X\)</span> en relación a sus probabilidades?</p></li>
-</ul>
-<hr />
-<hr />
-</div>
-<div id="media-y-varianza-1" class="section level2 hasAnchor" number="5.19">
-<h2><span class="header-section-number">5.19</span> Media y Varianza<a href="variables-aleatorias-discretas.html#media-y-varianza-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><img src="figures/mean.jpg" style="width:75%"  align="center"></p>
-<hr />
-<hr />
-</div>
-<div id="media" class="section level2 hasAnchor" number="5.20">
-<h2><span class="header-section-number">5.20</span> Media<a href="variables-aleatorias-discretas.html#media" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Recuerde que el <strong>promedio</strong> en términos de las frecuencias relativas de los valores de <span class="math inline">\(x_i\)</span> (resultados ordenados categóricos) se puede escribir como</p>
-<p><span class="math display">\[\bar{x}= \sum_{i=1}^M x_i \frac{n_i}{N}=\sum_{i=1}^M x_i f_i\]</span></p>
+<div id="hipótesis-4" class="section level2 hasAnchor" number="14.6">
+<h2><span class="header-section-number">14.6</span> Hipótesis<a href="prueba-de-hipótesis.html#hipótesis-4" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><strong>Definición</strong></p>
-<p>La <strong>media</strong> (<span class="math inline">\(\mu\)</span>) o valor esperado de una variable aleatoria discreta <span class="math inline">\(X\)</span>, <span class="math inline">\(E(X)\)</span>, con función de masa <span class="math inline">\(f(x)\)</span> está dada por</p>
-<p><span class="math display">\[\mu = E(X)= \sum_{i=1}^M x_i f(x_i)\]</span></p>
-<p><img src="figures/mu.png" style="width:75%"  align="center"></p>
-<p>Es el centro de gravedad de las <strong>probabilidades</strong>: El punto donde se equilibran las cargas de probabilidad</p>
-<hr />
-<hr />
-</div>
-<div id="ejemplo-media" class="section level2 hasAnchor" number="5.21">
-<h2><span class="header-section-number">5.21</span> Ejemplo: Media<a href="variables-aleatorias-discretas.html#ejemplo-media" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>¿Cuál es la media de <span class="math inline">\(X\)</span> si su función de masa de probabilidad <span class="math inline">\(f(x)\)</span> está dada por</p>
-<p><span class="math inline">\(P(X=0)=1/16\)</span>
-</br><span class="math inline">\(P(X=1)=4/16\)</span>
-</br><span class="math inline">\(P(X=2)=6/16\)</span>
-</br><span class="math inline">\(P(X=3)=4/16\)</span>
-</br><span class="math inline">\(P(X=4)=1/16\)</span></p>
-<p><img src="_main_files/figure-html/unnamed-chunk-37-1.png" width="672" /></p>
-<p><span class="math display">\[\mu =E(X)=\sum_{i=1}^m x_i f(x_i)\]</span></p>
-<p><span class="math inline">\(E(X)=\)</span><strong>0</strong> * 1/16 + <strong>1</strong> * 4/16 + <strong>2</strong> * 6/16 + <strong>3</strong> * 4/16 + <strong>4</strong> * 1/16 =2</p>
-<hr />
-<hr />
-</div>
-<div id="media-y-promedio" class="section level2 hasAnchor" number="5.22">
-<h2><span class="header-section-number">5.22</span> Media y Promedio<a href="variables-aleatorias-discretas.html#media-y-promedio" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>En estadística, una afirmación (conjetura) sobre la distribución de una variable aleatoria se denomina <strong>hipótesis</strong>.</p>
+<p>La hipótesis generalmente se escribe en dos declaraciones dicotómicas.</p>
 <ul>
-<li>La media <span class="math inline">\(\mu\)</span> es el centro de gravedad de función de masa de probabilidad y <strong>no cambia</strong></li>
+<li>La hipótesis <strong>nula</strong>: <span class="math inline">\(H_0\)</span> cuando la conjetura es falsa (generalmente se refiere al statu quo)</li>
+<li>La hipótesis <strong>alternativa</strong>: <span class="math inline">\(H_1\)</span> cuando la conjetura es verdadera (generalmente se refiere a hipótesis de investigación)</li>
 </ul>
-<p>Por ejemplo de</p>
+<hr />
+<hr />
+</div>
+<div id="hipótesis-nula" class="section level2 hasAnchor" number="14.7">
+<h2><span class="header-section-number">14.7</span> Hipótesis nula<a href="prueba-de-hipótesis.html#hipótesis-nula" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Entonces, ¿cuáles son la hipótesis nula y la alternativa para estas situaciones?</p>
+<ul>
+<li><p>Los fabricantes de neumáticos quieren saber si la vida media de los neumáticos que producen es de al menos 20.000 km.</p></li>
+<li><p>Los desarrolladores de fertilizantes quieren probar si su nuevo producto tiene un efecto real en el crecimiento de las plantas</p></li>
+<li><p>Las farmacéuticas necesitan saber si la quimioterapia puede curar al 90% de los pacientes con cáncer</p></li>
+</ul>
+<hr />
+<hr />
+</div>
+<div id="hipótesis-nula-1" class="section level2 hasAnchor" number="14.8">
+<h2><span class="header-section-number">14.8</span> Hipótesis nula<a href="prueba-de-hipótesis.html#hipótesis-nula-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li>Los desarrolladores de fertilizantes quieren probar si su nuevo producto tiene un efecto real en el crecimiento de las plantas</li>
+</ul>
+<p>Siendo <span class="math inline">\(\mu_0\)</span> el crecimiento medio de las plantas <strong>sin</strong> fertilizante (conocido) y <span class="math inline">\(\mu\)</span> el crecimiento medio de las plantas con el fertilizante (desconocido)</p>
+<ul>
+<li><span class="math inline">\(H_0:\mu \leq \mu_0\)</span> (El fertilizante no hace nada: status quo)</li>
+<li><span class="math inline">\(H_1:\mu &gt; \mu_0\)</span> (El fertilizante tiene el efecto deseado: interés de investigación)</li>
+</ul>
+<p>¿Cuál podría ser una distribución adecuada de <span class="math inline">\(\mu\)</span>?</p>
+<hr />
+<hr />
+<p><strong>Ejemplo:</strong></p>
+<p>Realizamos <span class="math inline">\(8\)</span> experimentos aleatorios: cargamos un cable hasta que se rompe y registramos la carga de rotura. Estos son los resultados.</p>
+<pre><code>## [1] 13.34642 13.32620 13.01459 13.10811 12.96999 13.55309 13.75557 12.62747</code></pre>
+<ul>
+<li>El promedio de los datos es <span class="math inline">\(\bar{x}=13.21\)</span></li>
+<li>La desviación estándar es <span class="math inline">\(s=0.3571565\)</span></li>
+<li>Es posible que deseemos usar estos datos para mostrar que nuestros cables se rompen <strong>en promedio</strong> a más de <span class="math inline">\(13\)</span> toneladas.</li>
+</ul>
+<hr />
+<hr />
+<p><strong>Ejemplo:</strong></p>
+<p>Si <strong>asumimos</strong> que nuestros cables realmente se distribuyen como <span class="math display">\[X \rightarrow N(\mu=13, \sigma^2=0.35^2)\]</span> entonces</p>
+<p><span class="math display">\[\bar{X} \rightarrow N(13, \frac{0.35^2}{8})\]</span></p>
+<p>Nos preguntamos:</p>
+<ul>
+<li>¿Son consistentes las medidas con la hipótesis nula <span class="math inline">\(H_0: \mu=13\)</span>?</li>
+</ul>
+<hr />
+<hr />
+</div>
+<div id="prueba-de-hipótesis-con-zonas-de-aceptaciónrechazo" class="section level2 hasAnchor" number="14.9">
+<h2><span class="header-section-number">14.9</span> Prueba de hipótesis con zonas de aceptación/rechazo<a href="prueba-de-hipótesis.html#prueba-de-hipótesis-con-zonas-de-aceptaciónrechazo" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li><span class="math inline">\(H_0:\mu = 13\)</span> (los cables se rompen como de costumbre: status quo)</li>
+<li><span class="math inline">\(H_1:\mu \neq 13\)</span> (los cables no frenan como de costumbre: interés de investigación)</li>
+</ul>
+<p>Para probar la hipótesis, contraste el <strong>error observado</strong> con la <strong>tolerancia de error</strong> si la hipótesis nula es verdad.</p>
+<p>Ya que</p>
+<p><span class="math display">\[\bar{X} \rightarrow N(13, \frac{0.35^2}{8})\]</span></p>
+<p>Entonces el <strong>error observado</strong> según la hipótesis nula sigue una distribución estándar</p>
+<p><span class="math display">\[Z=\frac{\bar{X}-13}{\frac{0.35}{\sqrt{8}}} \rightarrow N(0,1)\]</span></p>
+<hr />
+<hr />
+</div>
+<div id="tolerancia-de-error" class="section level2 hasAnchor" number="14.10">
+<h2><span class="header-section-number">14.10</span> Tolerancia de error<a href="prueba-de-hipótesis.html#tolerancia-de-error" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li>La <strong>tolerancia en el error</strong> (estandarizado) está dada por los cuantiles de <span class="math inline">\(Z\)</span></li>
+</ul>
+<p><span class="math display">\[P(-z_{0.025} \leq Z \leq z_{0.025})=0.95\]</span></p>
+<p>El intervalo: <span class="math display">\[(-z_{0.025}, z_{0.025})\]</span> se denomina intervalo de aceptación de <span class="math inline">\(H_0\)</span> con un nivel de confianza de <span class="math inline">\(95\%\)</span>.</p>
+<ul>
+<li><span class="math inline">\(\alpha=0.05=2\times 0.025=1-0.95\)</span> se denomina nivel de <strong>significación</strong>.</li>
+</ul>
+<p><img src="_main_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<hr />
+<hr />
+</div>
+<div id="error-observado-estandarizado" class="section level2 hasAnchor" number="14.11">
+<h2><span class="header-section-number">14.11</span> Error observado estandarizado<a href="prueba-de-hipótesis.html#error-observado-estandarizado" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li>El <strong>error observado</strong> (estandarizado) que obtenemos si la hipétesis nula es verdad es</li>
+</ul>
+<p><span class="math display">\[z_{obs}=\frac{\bar{x}-13}{\frac{0.35}{\sqrt{8}}}=1.697056 \in (-z_{0.025}, z_{0.025})\]</span>
+Concluimos:</p>
+<ul>
+<li><p>Nuestro error observado es consistente con <span class="math inline">\(95\%\)</span> de las observaciones para el estadístico <span class="math inline">\(Z\)</span> cuando la hipótesis nula es verdadera. Toleramos el error.</p></li>
+<li><p>Aceptamos que la <span class="math inline">\(H_0\)</span> es cierta y renunciamos a la idea de que tenemos cables más fuertes de lo esperado.</p></li>
+</ul>
+<p><img src="_main_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<hr />
+<hr />
+</div>
+<div id="prueba-de-hipótesis-con-p-valor" class="section level2 hasAnchor" number="14.12">
+<h2><span class="header-section-number">14.12</span> Prueba de hipótesis con P valor<a href="prueba-de-hipótesis.html#prueba-de-hipótesis-con-p-valor" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>También podemos contrastar la hipótesis calculando la probabilidad de que el promedio de otra muestra sea más raro que el promedio que acabamos de observar.</p>
+<p><span class="math display">\[pvalue = P(Z \leq -z_{obs}) + P(z_{obs} \leq Z) = 2 (1-\phi(|z_{obs}|))\]</span></p>
+<ul>
+<li>Rechazamos <span class="math inline">\(H_0\)</span> si <span class="math inline">\(Pvalue \leq \alpha =0.05\)</span></li>
+</ul>
+<p><img src="_main_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<hr />
+<hr />
+</div>
+<div id="error-observado" class="section level2 hasAnchor" number="14.13">
+<h2><span class="header-section-number">14.13</span> Error observado<a href="prueba-de-hipótesis.html#error-observado" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li>El <strong>P-valor</strong> es</li>
+</ul>
+<p><span class="math display">\[pvalue=2 (1-\phi(1.697056))=0.089\]</span>
+R: <code>2*(1-pnorm(1.697056))</code></p>
+<p>Concluimos:</p>
+<ul>
+<li><p>Si realizamos una nueva muestra es probable que podamos obtener un resultado más extremo para el promedio en el límite <span class="math inline">\(\alpha=0.05\)</span> si la hipótesis nula es cierta. Toleramos el error observado.</p></li>
+<li><p>Aceptamos que <span class="math inline">\(H_0\)</span> podría haber producido nuestros datos y renunciamos a la idea de que tenemos cables más fuertes de lo esperado.</p></li>
+</ul>
+<hr />
+<hr />
+</div>
+<div id="prueba-de-hipótesis-intervalo-de-confianza" class="section level2 hasAnchor" number="14.14">
+<h2><span class="header-section-number">14.14</span> Prueba de hipótesis Intervalo de confianza<a href="prueba-de-hipótesis.html#prueba-de-hipótesis-intervalo-de-confianza" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Desde el punto de vista de la estimación, también podemos contrastar la hipótesis.</p>
+<ul>
+<li>Confiamos en que nuestra estimación de <span class="math inline">\(\mu\)</span> es correcta con una confianza de <span class="math inline">\(95\%\)</span></li>
+</ul>
+<p>El IC es:</p>
+<p><span class="math display">\[(l,u)=(\bar{x}-z_{0.025} \frac{\sigma}{\sqrt{n}}, \bar{x}+z_{0.025} \frac{\sigma}{\sqrt{n}})= (12.97,13.45)\]</span></p>
+<ul>
+<li><p>El CI nos dice que podemos estar <span class="math inline">\(95\%\)</span> seguros de que hemos capturado el verdadero valor de <span class="math inline">\(\mu\)</span>.</p></li>
+<li><p>No sabemos el valor real de <span class="math inline">\(\mu\)</span> pero podría ser <span class="math inline">\(H_0: \mu=13\)</span> Toneladas.</p></li>
+</ul>
+<hr />
+<hr />
+</div>
+<div id="prueba-de-hipótesis-intervalo-de-confianza-1" class="section level2 hasAnchor" number="14.15">
+<h2><span class="header-section-number">14.15</span> Prueba de hipótesis Intervalo de confianza<a href="prueba-de-hipótesis.html#prueba-de-hipótesis-intervalo-de-confianza-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li>Ya que</li>
+</ul>
+<p><span class="math display">\[H_0: \mu=13 \in (12.97,13.45)\]</span>
+Concluimos:</p>
+<ul>
+<li><p>Nuestros datos son consistentes con el hecho de que nuestra estimación de <span class="math inline">\(\mu\)</span> es la hipótesis nula.</p></li>
+<li><p>Aceptamos que <span class="math inline">\(H_0\)</span> podría haber producido nuestro intervalo y renunciamos a la idea de que tenemos cables más fuertes de lo esperado.</p></li>
+</ul>
+<p><img src="_main_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<hr />
+<hr />
+</div>
+<div id="prueba-de-hipótesis-con-varianza-desconocida" class="section level2 hasAnchor" number="14.16">
+<h2><span class="header-section-number">14.16</span> Prueba de hipótesis con varianza desconocida<a href="prueba-de-hipótesis.html#prueba-de-hipótesis-con-varianza-desconocida" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Es común <strong>hipotetizar</strong> los valores de los parámetros que podemos contrastar. Otros parámetros molestos los podemos dejar desconocidos.</p>
+<p>Podemos <strong>presumir</strong> que nuestros cables realmente se distribuyen como <span class="math display">\[X \rightarrow N(\mu=13, \sigma^2)\]</span> entonces</p>
+<p><span class="math display">\[\bar{X} \rightarrow N(13, \frac{\sigma^2}{8})\]</span>
+Preguntamos de nuevo:</p>
+<ul>
+<li>¿Son consistentes las medidas con la hipótesis nula <span class="math inline">\(H_0: \mu=13\)</span>?</li>
+</ul>
+<hr />
+<hr />
+</div>
+<div id="error-estandarizado-con-varianza-desconocida" class="section level2 hasAnchor" number="14.17">
+<h2><span class="header-section-number">14.17</span> Error estandarizado con varianza desconocida<a href="prueba-de-hipótesis.html#error-estandarizado-con-varianza-desconocida" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Si <span class="math inline">\(X\)</span> es normal</p>
+<p><span class="math display">\[X \rightarrow N(\mu, \sigma^2)\]</span> luego los <strong>errores estandarizados</strong> con respecto a la <strong>desviación estándar de la muestra</strong> <span class="math inline">\(S\)</span></p>
+<p><span class="math display">\[T=\frac{\bar{X}-\mu}{\frac{S}{\sqrt{n}}}\]</span></p>
+<p>Sigue una distribución <span class="math inline">\(t\)</span> con <span class="math inline">\(n-1\)</span> grados de libertad.</p>
+<hr />
+<hr />
+</div>
+<div id="contraste-de-hipótesis-con-varianza-desconocida" class="section level2 hasAnchor" number="14.18">
+<h2><span class="header-section-number">14.18</span> Contraste de hipótesis con varianza desconocida<a href="prueba-de-hipótesis.html#contraste-de-hipótesis-con-varianza-desconocida" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>aceptamos <span class="math inline">\(H_0\)</span> debido a cualquiera de los siguientes contrastes equivalentes:</p>
+<ol style="list-style-type: decimal">
+<li>La región de aceptación para <span class="math inline">\(H_0\)</span> es:</li>
+</ol>
+<p><span class="math display">\[(-t_{0.025,7}, t_{0.025,7})=( -2.36, 2.36)\]</span></p>
+<p>y el error estandarizado observado de <span class="math inline">\(H_0\)</span> es
+<span class="math display">\[t_{obs} = \frac{13,21268-13}{\frac{0,3571565}{\sqrt{8}}}=1,6843\]</span></p>
+<p>dentro de la región de aceptación.</p>
+<hr />
+<hr />
+</div>
+<div id="contraste-de-hipótesis-con-varianza-desconocida-1" class="section level2 hasAnchor" number="14.19">
+<h2><span class="header-section-number">14.19</span> Contraste de hipótesis con varianza desconocida<a href="prueba-de-hipótesis.html#contraste-de-hipótesis-con-varianza-desconocida-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ol start="2" style="list-style-type: decimal">
+<li>El <span class="math display">\[pvalor=2(1-F_{t,7}(1.6843))=0.136\]</span></li>
+</ol>
+<p>R: <code>2*(1-pt(1.6843,7))</code></p>
+<p>es mayor que <span class="math inline">\(\alpha=0.05\)</span></p>
+<ol start="3" style="list-style-type: decimal">
+<li>El intervalo de confianza</li>
+</ol>
+<p><span class="math display">\[(\bar{x}-t_{0.025, n-1} \frac{s}{\sqrt{n}}, \bar{x}+t_{0.025, n-1} \frac{s}{ \sqrt{n}})=(12.91409, 13.51127)\]</span></p>
+<p>contiene <span class="math inline">\(H_0:\mu=13\)</span>.</p>
+<hr />
+<hr />
+<p>en R:
+<code>t.test(c(13.34642, 13.32620, 13.01459, 13.10811,
+12.96999, 13.55309, 13.75557, 12.62747), mu=13)</code></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<hr />
+<hr />
+</div>
+<div id="prueba-de-una-cola" class="section level2 hasAnchor" number="14.20">
+<h2><span class="header-section-number">14.20</span> Prueba de una cola<a href="prueba-de-hipótesis.html#prueba-de-una-cola" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Es posible que nos interese probar solo el hecho de que nuestra estimación es más alta que la hipótesis nula (no nos importa si es más baja)</p>
+<p>Prueba de cola superior:</p>
+<ul>
+<li><span class="math inline">\(H_0:\mu \leq 13\)</span> (como mucho los cables se rompen como siempre)</li>
+<li><span class="math inline">\(H_1:\mu &gt; 13\)</span> (los cables se rompen a mayor carga)</li>
+</ul>
+<p>Probaremos la cola superior de la distribución.</p>
+<hr />
+<hr />
+</div>
+<div id="prueba-de-hipótesis-de-la-cola-superior" class="section level2 hasAnchor" number="14.21">
+<h2><span class="header-section-number">14.21</span> Prueba de hipótesis de la cola superior<a href="prueba-de-hipótesis.html#prueba-de-hipótesis-de-la-cola-superior" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>En este ejemplo, aceptamos <span class="math inline">\(H_0\)</span> debido a cualquiera de los siguientes contrastes equivalentes:</p>
+<ol style="list-style-type: decimal">
+<li>La región de aceptación para <span class="math inline">\(H_0\)</span> es:</li>
+</ol>
+<p><span class="math display">\[(-\infty, t_{0.05,7})=( -\infty, 1.894579)\]</span></p>
+<p>y el error estandarizado observado de <span class="math inline">\(H_0\)</span> es
+<span class="math display">\[t_{obs} = \frac{13.21268-13}{\frac{0.3571565}{\sqrt{8}}}=1.6843\]</span></p>
+<p>dentro de la región de aceptación.</p>
+<hr />
+<hr />
+</div>
+<div id="contraste-de-hipótesis-con-varianza-desconocida-2" class="section level2 hasAnchor" number="14.22">
+<h2><span class="header-section-number">14.22</span> Contraste de hipótesis con varianza desconocida<a href="prueba-de-hipótesis.html#contraste-de-hipótesis-con-varianza-desconocida-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ol start="2" style="list-style-type: decimal">
+<li>Para la cola superior <span class="math display">\[pvalue=1-F_{t,7}(1.6843)=0.06799782\]</span></li>
+</ol>
+<p>R: <code>1-pt(1.6843,7)</code></p>
+<p>es mayor que <span class="math inline">\(\alpha=0.05\)</span></p>
+<ol start="3" style="list-style-type: decimal">
+<li>El intervalo de confianza <strong>de cola superior</strong></li>
+</ol>
+<p><span class="math display">\[(\bar{x}-t_{0.05, n-1} \frac{s}{\sqrt{n}}, \infty)=(12.97344, \infty)\]</span></p>
+<p>contiene <span class="math inline">\(H_0:\mu=13\)</span>.</p>
+<hr />
+<hr />
+<p>en R:</p>
+<p><code>t.test(c(13.34642, 13.32620, 13.01459, 13.10811,
+12.96999, 13.55309, 13.75557, 12.62747), mu=13, alternative=“greater”)</code></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<hr />
+<hr />
+</div>
+<div id="ejemplo-1-4" class="section level2 hasAnchor" number="14.23">
+<h2><span class="header-section-number">14.23</span> Ejemplo 1:<a href="prueba-de-hipótesis.html#ejemplo-1-4" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><span class="math inline">\(11.6 g\)</span> de NaCl se disuelven en <span class="math inline">\(100 g\)</span> de agua y tiene una concentración molar de <span class="math inline">\(1.92 mol/L\)</span></p>
+<p>Diseñamos un proceso para eliminar la sal de esta concentración y obtener los siguientes resultados</p>
+<pre><code>## [1] 1.716 1.889 1.783 1.849 1.891</code></pre>
+<ul>
+<li>Queremos probar en un umbral significativo de <span class="math inline">\(0.05\)</span> si el proceso elimina la sal de la concentración.</li>
+</ul>
+<hr />
+<hr />
+</div>
+<div id="ejemplo-1-5" class="section level2 hasAnchor" number="14.24">
+<h2><span class="header-section-number">14.24</span> Ejemplo 1:<a href="prueba-de-hipótesis.html#ejemplo-1-5" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Prueba de dos colas:</p>
+<ul>
+<li><span class="math inline">\(H_0:\mu=1.92\)</span>; <span class="math inline">\(H_1:\mu\neq 1.92\)</span></li>
+</ul>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="prueba-de-hipótesis.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(<span class="fu">c</span>(<span class="fl">1.716</span>, <span class="fl">1.889</span>, <span class="fl">1.783</span>, <span class="fl">1.849</span>, <span class="fl">1.891</span>), </span>
+<span id="cb3-2"><a href="prueba-de-hipótesis.html#cb3-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">mu=</span><span class="fl">1.92</span>, <span class="at">alternative =</span> <span class="st">&quot;two.sided&quot;</span>)</span></code></pre></div>
+<pre><code>## 
+##  One Sample t-test
+## 
+## data:  c(1.716, 1.889, 1.783, 1.849, 1.891)
+## t = -2.8038, df = 4, p-value = 0.04862
+## alternative hypothesis: true mean is not equal to 1.92
+## 95 percent confidence interval:
+##  1.732122 1.919078
+## sample estimates:
+## mean of x 
+##    1.8256</code></pre>
+<p>Prueba de cola inferior:</p>
+<ul>
+<li><span class="math inline">\(H_0:\mu \geq 1.92\)</span>; <span class="math inline">\(H_1:\mu &lt; 1.92\)</span></li>
+</ul>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="prueba-de-hipótesis.html#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(<span class="fu">c</span>(<span class="fl">1.716</span>, <span class="fl">1.889</span>, <span class="fl">1.783</span>, <span class="fl">1.849</span>, <span class="fl">1.891</span>), </span>
+<span id="cb5-2"><a href="prueba-de-hipótesis.html#cb5-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">mu=</span><span class="fl">1.92</span>, <span class="at">alternative =</span> <span class="st">&quot;less&quot;</span>)</span></code></pre></div>
+<pre><code>## 
+##  One Sample t-test
+## 
+## data:  c(1.716, 1.889, 1.783, 1.849, 1.891)
+## t = -2.8038, df = 4, p-value = 0.02431
+## alternative hypothesis: true mean is less than 1.92
+## 95 percent confidence interval:
+##      -Inf 1.897376
+## sample estimates:
+## mean of x 
+##    1.8256</code></pre>
+<hr />
+<hr />
+</div>
+<div id="ejemplo-2-3" class="section level2 hasAnchor" number="14.25">
+<h2><span class="header-section-number">14.25</span> Ejemplo 2:<a href="prueba-de-hipótesis.html#ejemplo-2-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>En algunos casos, no estamos seguros del valor numérico de la hipótesis a contrastar, pero sabemos que queremos mejorar el valor de un parámetro en dos condiciones diferentes.</p>
+<p>En el artículo original de Gosset, analizó el efecto de dos medicamentos soporíferos.</p>
+<ul>
+<li>A 10 individuos se les dio <strong>soporífero 1</strong> y se anotaron las horas adicionales dormidas bajo tratamiento, con una media de <span class="math inline">\(0.75\)</span></li>
+</ul>
+<pre><code>##  [1]  0.7 -1.6 -0.2 -1.2 -0.1  3.4  3.7  0.8  0.0  2.0</code></pre>
+<ul>
+<li>Los mismos 10 individuos recibieron <strong>soporífero 2</strong> y anotaron las horas adicionales dormidas bajo tratamiento, con una media de <span class="math inline">\(2.33\)</span></li>
+</ul>
+<pre><code>##  [1]  1.9  0.8  1.1  0.1 -0.1  4.4  5.5  1.6  4.6  3.4</code></pre>
+<p>Hipótesis científica: Soporífero 2 es mejor que soporífero 1</p>
+<hr />
+<hr />
+</div>
+<div id="ejemplo-2-4" class="section level2 hasAnchor" number="14.26">
+<h2><span class="header-section-number">14.26</span> Ejemplo 2:<a href="prueba-de-hipótesis.html#ejemplo-2-4" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Para cada individuo, Gosset marcó la diferencia entre los tratamientos. Tomando <span class="math inline">\(X\)</span> como la diferencia entre tratamientos, esta fue la muestra observada por <span class="math inline">\(X\)</span></p>
+<pre><code>##  [1] 1.2 2.4 1.3 1.3 0.0 1.0 1.8 0.8 4.6 1.4</code></pre>
+<p>encontrando un promedio de ganancia de tratamiento del soporífero 2 con respecto al soporífero 1 de <span class="math inline">\(1.58\)</span>, y <span class="math inline">\(s=1.229995\)</span></p>
+<p><strong>Prueba t pareada de cola superior</strong>:</p>
+<ul>
+<li><span class="math inline">\(H_0:\mu \leq 0\)</span> (sin diferencia de tratamiento); <span class="math inline">\(H_1:\mu &gt; 0\)</span> (ganancia en tratamiento 2)</li>
+</ul>
+<p>Donde <span class="math inline">\(\mu\)</span> es la media de las diferencias entre tratamientos.</p>
+<hr />
+<hr />
+</div>
+<div id="ejemplo-2-5" class="section level2 hasAnchor" number="14.27">
+<h2><span class="header-section-number">14.27</span> Ejemplo 2:<a href="prueba-de-hipótesis.html#ejemplo-2-5" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>El <strong>error estandarizado</strong> es:</p>
+<p><span class="math display">\[T=\frac{\bar{X}}{\frac{S}{\sqrt{n}}}\]</span></p>
+<p>y su observación</p>
+<p><span class="math display">\[t_{obs}=\frac{\bar{x}}{\frac{s}{\sqrt{n}}}\]</span>
+que también se conoce como la relación <strong>señal</strong> a <strong>ruido</strong>.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="prueba-de-hipótesis.html#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(<span class="fu">c</span>(<span class="fl">1.9</span>,<span class="fl">0.8</span>,<span class="fl">1.1</span>,<span class="fl">0.1</span>,<span class="sc">-</span><span class="fl">0.1</span>,<span class="fl">4.4</span>,<span class="fl">5.5</span>,<span class="fl">1.6</span>,<span class="fl">4.6</span>,<span class="fl">3.4</span>),</span>
+<span id="cb10-2"><a href="prueba-de-hipótesis.html#cb10-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">c</span>(<span class="fl">0.7</span>,<span class="sc">-</span><span class="fl">1.6</span>,<span class="sc">-</span><span class="fl">0.2</span>,<span class="sc">-</span><span class="fl">1.2</span>,<span class="sc">-</span><span class="fl">0.1</span>,<span class="fl">3.4</span>,<span class="fl">3.7</span>,<span class="fl">0.8</span>,<span class="dv">0</span>,<span class="dv">2</span>),</span>
+<span id="cb10-3"><a href="prueba-de-hipótesis.html#cb10-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">paired =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb10-4"><a href="prueba-de-hipótesis.html#cb10-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">alternative=</span><span class="st">&quot;greater&quot;</span>)</span></code></pre></div>
+<pre><code>## 
+##  Paired t-test
+## 
+## data:  c(1.9, 0.8, 1.1, 0.1, -0.1, 4.4, 5.5, 1.6, 4.6, 3.4) and c(0.7, -1.6, -0.2, -1.2, -0.1, 3.4, 3.7, 0.8, 0, 2)
+## t = 4.0621, df = 9, p-value = 0.001416
+## alternative hypothesis: true difference in means is greater than 0
+## 95 percent confidence interval:
+##  0.8669947       Inf
+## sample estimates:
+## mean of the differences 
+##                    1.58</code></pre>
+<p><img src="_main_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
+<hr />
+<hr />
+</div>
+<div id="prueba-de-hipótesis-con-n-grande-y-cualquier-distribución" class="section level2 hasAnchor" number="14.28">
+<h2><span class="header-section-number">14.28</span> Prueba de hipótesis con n grande y cualquier distribución<a href="prueba-de-hipótesis.html#prueba-de-hipótesis-con-n-grande-y-cualquier-distribución" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>En muchas ocasiones, <span class="math inline">\(X\)</span> no se distribuye normalmente pero podemos tomar muestras grandes <span class="math inline">\(n \ge 30\)</span> y luego podemos usar el CLT:</p>
+<p>Entonces el <strong>error estandarizado</strong> de la hipótesis nula sigue una distribución estándar</p>
+<p><span class="math display">\[Z=\frac{\bar{X}-\mu}{\frac{\sigma}{\sqrt{n}}} \rightarrow N(0,1)\]</span></p>
+<p>y procedemos como antes, y si <span class="math inline">\(\sigma\)</span> es desconocido lo reemplazamos con su estimado <span class="math inline">\(s\)</span>.</p>
+<hr />
+<hr />
+</div>
+<div id="prueba-de-hipótesis-para-proporciones" class="section level2 hasAnchor" number="14.29">
+<h2><span class="header-section-number">14.29</span> Prueba de hipótesis para proporciones<a href="prueba-de-hipótesis.html#prueba-de-hipótesis-para-proporciones" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><strong>Ejemplo:</strong></p>
+<p>Podemos estar satisfechos con un nuevo proceso si el <span class="math inline">\(90\%\)</span> de las veces mejoramos el proceso anterior.</p>
+<ul>
+<li>Si ejecutamos una muestra de <span class="math inline">\(200\)</span> nuevos procesos y encontramos que <span class="math inline">\(188\)</span> veces mejoramos el proceso anterior, ¿podemos estar satisfechos con el nuevo proceso con una confianza de <span class="math inline">\(95\%\)</span>?</li>
+</ul>
+<hr />
+<hr />
+</div>
+<div id="estimación-de-intervalos-para-proporciones" class="section level2 hasAnchor" number="14.30">
+<h2><span class="header-section-number">14.30</span> Estimación de intervalos para proporciones<a href="prueba-de-hipótesis.html#estimación-de-intervalos-para-proporciones" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Suponemos que la distribución de un experimento aleatorio es</p>
+<p><span class="math display">\[X \rightarrow Bernoulli (pag)\]</span>
+con un contraste de hipótesis de cola superior para <span class="math inline">\(p\)</span>:</p>
+<ul>
+<li><span class="math inline">\(H_0: p \leq 0.9\)</span> (No satisfactorio)</li>
+<li><span class="math inline">\(H_1: p&gt; 0.9\)</span> (Satisfactorio)</li>
+</ul>
+<p>Entonces si la hipótesis nula es verdadera <span class="math inline">\(\bar{X}\)</span> tiene</p>
+<ul>
+<li><p>media <span class="math inline">\(E(\bar{X})=E(X)=p=0.9\)</span> (estimador insesgado de <span class="math inline">\(p\)</span>)</p></li>
+<li><p>varianza <span class="math inline">\(V(\bar{X})=\frac{V(X)}{n}=\frac{p(1-p)}{n}=0.00045\)</span> (estimador consistente de <span class="math inline">\(p\)</span>)</p></li>
+<li><p>El <span class="math inline">\(\bar{X}\)</span> observado fue <span class="math inline">\(\bar{x}=188/200=0.94\)</span></p></li>
+</ul>
+<hr />
+<hr />
+</div>
+<div id="estimación-de-intervalos-para-proporciones-1" class="section level2 hasAnchor" number="14.31">
+<h2><span class="header-section-number">14.31</span> Estimación de intervalos para proporciones<a href="prueba-de-hipótesis.html#estimación-de-intervalos-para-proporciones-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li>Por el CLT, el <strong>error estandarizado</strong> de la hipótesis nula</li>
+</ul>
+<p><span class="math display">\[Z=\frac{\bar{X}-E(\bar{X})}{\sqrt{V(\bar{X})}}= \frac{\bar{X}-p}{\big[\frac{p(1-p)}{n} \big]^{1/2}}\rightarrow N(0,1)\]</span>
+es una variable normal estándar, cuando <span class="math inline">\(pn&gt;5\)</span> y <span class="math inline">\((p-1)n&gt;5\)</span>.</p>
+<hr />
+<hr />
+</div>
+<div id="estimación-de-intervalos-para-proporciones-2" class="section level2 hasAnchor" number="14.32">
+<h2><span class="header-section-number">14.32</span> Estimación de intervalos para proporciones<a href="prueba-de-hipótesis.html#estimación-de-intervalos-para-proporciones-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>En este ejemplo, <strong>rechazamos</strong> <span class="math inline">\(H_0\)</span> debido a cualquiera de los siguientes contrastes equivalentes:</p>
+<ol style="list-style-type: decimal">
+<li>La región de aceptación para <span class="math inline">\(H_0\)</span> es:</li>
+</ol>
+<p><span class="math display">\[(-\infty, z_{0.05})=( -\infty, 1.644854)\]</span>
+y el error estandarizado observado de <span class="math inline">\(H_0\)</span> es
+<span class="math display">\[z_{obs} = \frac{0.94-0.90}{\sqrt{0.00045}}=1.885618\]</span></p>
+<p>fuera de la región de aceptación (dentro de la zona de rechazo).</p>
+<hr />
+<hr />
+</div>
+<div id="estimación-de-intervalos-para-proporciones-3" class="section level2 hasAnchor" number="14.33">
+<h2><span class="header-section-number">14.33</span> Estimación de intervalos para proporciones<a href="prueba-de-hipótesis.html#estimación-de-intervalos-para-proporciones-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ol start="2" style="list-style-type: decimal">
+<li>Para la cola superior <span class="math display">\[pvalue=1-\phi^{-1}(1.885618)=0.02967323\]</span></li>
+</ol>
+<p>R: <code>1-pnorm(1.885618)</code></p>
+<p>es inferior a <span class="math inline">\(\alpha=0.05\)</span></p>
+<hr />
+<hr />
+</div>
+<div id="estimación-de-intervalos-para-proporciones-4" class="section level2 hasAnchor" number="14.34">
+<h2><span class="header-section-number">14.34</span> Estimación de intervalos para proporciones<a href="prueba-de-hipótesis.html#estimación-de-intervalos-para-proporciones-4" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>En R: <code>prop.test(188, 200, p=0.9, alternative = “greater,” correct=FALSE)</code></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
+<hr />
+<hr />
+</div>
+<div id="prueba-de-varianzas" class="section level2 hasAnchor" number="14.35">
+<h2><span class="header-section-number">14.35</span> Prueba de varianzas<a href="prueba-de-hipótesis.html#prueba-de-varianzas" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>En muchos casos, se realizan experimentos para probar valores específicos de la dispersión de datos.</p>
+<p>Como</p>
+<ul>
+<li>para cumplir con estrictos estándares de diseño donde las medidas deben estar entre ciertos valores</li>
+<li>cuando se toman medidas relativas como la reacción de un tratamiento en un individuo (administración de insulina en los niveles de azúcar de un individuo)</li>
+</ul>
+<hr />
+<hr />
+</div>
+<div id="prueba-de-varianzas-1" class="section level2 hasAnchor" number="14.36">
+<h2><span class="header-section-number">14.36</span> Prueba de varianzas<a href="prueba-de-hipótesis.html#prueba-de-varianzas-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Para una muestra aleatoria <span class="math inline">\(X_1,...X_n\)</span> con una distribución de población normal (<span class="math inline">\(X_i \rightarrow N(\mu, \sigma^2)\)</span>) las estadísticas definidas por</p>
+<p><span class="math display">\[X=\frac{(n-1)S^2}{\sigma^2}\]</span></p>
+<p>Tiene una distribución <span class="math inline">\(\chi^2\)</span> (chi-cuadrado) con n-1 grados de libertad dada por</p>
+<p><span class="math display">\[f(x)=C_n x^{\frac{n-3}{2}} e^{-\frac{x}{2}}\]</span></p>
+<hr />
+<hr />
+</div>
+<div id="prueba-de-varianzas-2" class="section level2 hasAnchor" number="14.37">
+<h2><span class="header-section-number">14.37</span> Prueba de varianzas<a href="prueba-de-hipótesis.html#prueba-de-varianzas-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Supongamos que queremos probar si la varianza de la distribución de la población es igual a un valor dado <span class="math inline">\(\sigma_0\)</span></p>
+<ul>
+<li><span class="math inline">\(H_0:\sigma=\sigma_0\)</span></li>
+</ul>
+<p>Hipótesis alternativa</p>
+<ul>
+<li><p>dos colas: <span class="math inline">\(H_1:\sigma \neq \sigma_0\)</span></p></li>
+<li><p>cola superior: <span class="math inline">\(H_1:\sigma &gt; \sigma_0\)</span></p></li>
+<li><p>cola inferior: <span class="math inline">\(H_1:\sigma &lt; \sigma_0\)</span></p></li>
+</ul>
+<hr />
+<hr />
+</div>
+<div id="prueba-de-varianzas-3" class="section level2 hasAnchor" number="14.38">
+<h2><span class="header-section-number">14.38</span> Prueba de varianzas<a href="prueba-de-hipótesis.html#prueba-de-varianzas-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><span class="math inline">\(S^2\)</span> es una estimación imparcial de <span class="math inline">\(\sigma^2\)</span>: <span class="math inline">\(E(S^2)=\sigma^2\)</span></p>
+<p>La <strong>proporción de error estandarizada</strong></p>
+<p><span class="math display">\[W=\frac{(n-1)S^2}{\sigma_0^2} \rightarrow \chi^2(n-1)\]</span></p>
+<p>Sigue una distribución <span class="math inline">\(\chi^2\)</span> con <span class="math inline">\(n-1\)</span> grados de libertad.</p>
+<hr />
+<hr />
+</div>
+<div id="ejemplo-18" class="section level2 hasAnchor" number="14.39">
+<h2><span class="header-section-number">14.39</span> Ejemplo<a href="prueba-de-hipótesis.html#ejemplo-18" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li><p>La producción de un chip semiconductor está regulada por un proceso que requiere que el espesor de una capa en particular no varíe en más de <span class="math inline">\(\sigma_0=0.6mm\)</span>, de su media de <span class="math inline">\(25mm\)</span>.</p></li>
+<li><p>Para llevar el control del proceso cada cierto tiempo se toma una muestra de <span class="math inline">\(20\)</span> ejemplares.</p></li>
+<li><p>Si en una ocasión la desviación estándar estimada fue de <span class="math inline">\(s=0.8462188\)</span>, ¿el proceso está fuera de control con una confianza de <span class="math inline">\(0.01\)</span> y debe detenerse?</p></li>
+</ul>
+<p>Estos son los datos:</p>
+<pre><code>##  [1] 24.51239 24.79975 26.35608 25.06134 25.11248 26.49211 25.40100 23.89940
+##  [9] 24.40244 24.61227 26.06495 25.31304 25.34867 25.09629 24.51642 26.55461
+## [17] 25.43313 23.28904 25.61018 24.58867</code></pre>
+<hr />
+<hr />
+</div>
+<div id="prueba-de-varianzas-4" class="section level2 hasAnchor" number="14.40">
+<h2><span class="header-section-number">14.40</span> Prueba de varianzas<a href="prueba-de-hipótesis.html#prueba-de-varianzas-4" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Queremos contrastar las hipótesis</p>
+<ul>
+<li><p><span class="math inline">\(H_0:\sigma \leq 0.6\)</span> (Proceso bajo control)</p></li>
+<li><p><span class="math inline">\(H_1:\sigma &gt; 0.6\)</span> (Proceso fuera de control)</p></li>
+<li><p>Estadística: <span class="math inline">\(W=\frac{(n-1)S^2}{\sigma_0^2} \rightarrow \chi^2(n-1)\)</span></p></li>
+<li><p>Límite de umbral <span class="math inline">\(\alpha=0.01\)</span></p></li>
+<li><p>La región de aceptación para <span class="math inline">\(H_0\)</span>: <span class="math inline">\(P(W\leq \chi^2_{0.01,19})=0.99\)</span></p></li>
+</ul>
+<p><span class="math display">\[(0, \chi^2_{0.01,19})=(0,36.19)\]</span></p>
+<p>En R: <span class="math inline">\(\chi^2_{0.01,19}=\)</span><code>qchisq(0.99,19)</code><span class="math inline">\(= 36.19\)</span></p>
+<hr />
+<hr />
+</div>
+<div id="prueba-de-varianzas-5" class="section level2 hasAnchor" number="14.41">
+<h2><span class="header-section-number">14.41</span> Prueba de varianzas<a href="prueba-de-hipótesis.html#prueba-de-varianzas-5" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>En este ejemplo, <strong>rechazamos</strong> <span class="math inline">\(H_0\)</span> debido a cualquiera de los siguientes contrastes equivalentes:</p>
+<ol style="list-style-type: decimal">
+<li>La <strong>proporción de error estandarizado</strong> observada es:</li>
+</ol>
+<p><span class="math display">\[w_{obs}=\frac{19 (0,8462188)^2}{0,60^2}=37,79344\]</span></p>
+<p>Que cae fuera de la región de aceptación (dentro de la zona de rechazo)</p>
+<ol start="2" style="list-style-type: decimal">
+<li>Para la cola superior <span class="math display">\[pvalue=1-F_{\chi,19}^{-1}(37.79344)= 0.006\]</span></li>
+</ol>
+<p>R: <code>1-pchisq(37.79344, 19)</code>
+es inferior a <span class="math inline">\(\alpha=0.05\)</span></p>
+<p>Por lo tanto, debemos concluir que ¡sí! el proceso está fuera de control.</p>
+<hr />
+<hr />
+</div>
+<div id="chi2-estadística-2" class="section level2 hasAnchor" number="14.42">
+<h2><span class="header-section-number">14.42</span> <span class="math inline">\(\chi^2\)</span>-estadística<a href="prueba-de-hipótesis.html#chi2-estadística-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>en R: <code>library(EnvStats);
+varTest(thickness, sigma.squared = 0.6^2, alternative = “greater”) </code></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
+<hr />
+<hr />
+</div>
+<div id="errores-en-la-prueba-de-hipótesis" class="section level2 hasAnchor" number="14.43">
+<h2><span class="header-section-number">14.43</span> Errores en la prueba de hipótesis<a href="prueba-de-hipótesis.html#errores-en-la-prueba-de-hipótesis" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Cuando inferimos un parámetro con una estadística y luego aplicamos un criterio para decidir sobre una hipótesis, tenemos cuatro posibilidades</p>
+<ul>
+<li><span class="math inline">\(H_0\)</span> realidad desconocida: <strong>verdadero</strong> o <strong>falso</strong></li>
+<li>Resultado de la prueba de <span class="math inline">\(H_0\)</span>: <strong>negativo</strong>, <strong>positivo</strong></li>
+</ul>
+<p>Por lo general, nuestro objetivo es rechazar <span class="math inline">\(H_0\)</span> (fiscal):</p>
+<p><strong>positivo</strong>: interés de investigación esperado, rechazo de <span class="math inline">\(H_0\)</span> o el statu quo (rechazo de la inocencia).</p>
 <table>
 <thead>
 <tr class="header">
-<th align="center"><span class="math inline">\(X\)</span></th>
-<th align="center"><span class="math inline">\(P(X=x)\)</span></th>
+<th align="center"><span class="math inline">\(H_0\)</span></th>
+<th align="center">realidad: cierto</th>
+<th align="center">realidad: falso</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="center"><span class="math inline">\(-2\)</span></td>
-<td align="center"><span class="math inline">\(1/8=0.125\)</span></td>
+<td align="center"><strong>prueba: positivo</strong> (resultado negativo)</td>
+<td align="center">verdadero negativo</td>
+<td align="center">falso negativo</td>
 </tr>
 <tr class="even">
-<td align="center"><span class="math inline">\(-1\)</span></td>
-<td align="center"><span class="math inline">\(2/8=0.25\)</span></td>
-</tr>
-<tr class="odd">
-<td align="center"><span class="math inline">\(0\)</span></td>
-<td align="center"><span class="math inline">\(2/8=0.25\)</span></td>
-</tr>
-<tr class="even">
-<td align="center"><span class="math inline">\(1\)</span></td>
-<td align="center"><span class="math inline">\(2/8=0.25\)</span></td>
-</tr>
-<tr class="odd">
-<td align="center"><span class="math inline">\(2\)</span></td>
-<td align="center"><span class="math inline">\(1/8=0.125\)</span></td>
-</tr>
-</tbody>
-</table>
-<ul>
-<li>El promedio <span class="math inline">\(\bar{x}\)</span> es el centro de gravedad de las observaciones (frequencias relativas) <strong>y cambia</strong> de acuerdo a los datos.</li>
-</ul>
-<p>Por ejemplo de</p>
-<table>
-<thead>
-<tr class="header">
-<th align="center"><span class="math inline">\(X\)</span></th>
-<th align="center"><span class="math inline">\(f_i\)</span></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="center"><span class="math inline">\(-2\)</span></td>
-<td align="center"><span class="math inline">\(0.132\)</span></td>
-</tr>
-<tr class="even">
-<td align="center"><span class="math inline">\(-1\)</span></td>
-<td align="center"><span class="math inline">\(0.262\)</span></td>
-</tr>
-<tr class="odd">
-<td align="center"><span class="math inline">\(0\)</span></td>
-<td align="center"><span class="math inline">\(0.240\)</span></td>
-</tr>
-<tr class="even">
-<td align="center"><span class="math inline">\(1\)</span></td>
-<td align="center"><span class="math inline">\(0.248\)</span></td>
-</tr>
-<tr class="odd">
-<td align="center"><span class="math inline">\(2\)</span></td>
-<td align="center"><span class="math inline">\(0.118\)</span></td>
+<td align="center"><strong>test: negativo</strong> (resultado positivo)</td>
+<td align="center">falso positivo</td>
+<td align="center">verdadero positivo</td>
 </tr>
 </tbody>
 </table>
 <hr />
 <hr />
 </div>
-<div id="variación" class="section level2 hasAnchor" number="5.23">
-<h2><span class="header-section-number">5.23</span> Variación<a href="variables-aleatorias-discretas.html#variación" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>En términos similares definimos la distancia media al cuadrado de la media:</p>
-<p><strong>Definición</strong></p>
-<p>La varianza, escrita como <span class="math inline">\(\sigma^2\)</span> o <span class="math inline">\(V(X)\)</span>, de una variable aleatoria discreta <span class="math inline">\(X\)</span> con función de masa <span class="math inline">\(f(x)\)</span> está dada por</p>
-<p><span class="math display">\[\sigma^2 = V(X)= \sum_{i=1}^M (x_i-\mu)^2 f(x_i)\]</span></p>
+<div id="errores-en-la-prueba-de-hipótesis-1" class="section level2 hasAnchor" number="14.44">
+<h2><span class="header-section-number">14.44</span> Errores en la prueba de hipótesis<a href="prueba-de-hipótesis.html#errores-en-la-prueba-de-hipótesis-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Tomas <strong>una</strong> PCR para probar la infección; <span class="math inline">\(H_0\)</span> <strong>no estás infectado</strong></p>
 <ul>
-<li><p><span class="math inline">\(\sigma=\sqrt{V(X)}\)</span> se llama la <strong>desviación estándar</strong> de la variable aleatoria</p></li>
-<li><p>Piense en ello como el momento de inercia de las probabilidades sobre la media.</p></li>
+<li><span class="math inline">\(H_0\)</span> realidad desconocida es: <strong>verdadero</strong>, <strong>falso</strong></li>
+<li>La prueba <span class="math inline">\(H_0\)</span> es: <strong>negativa</strong> (aceptar), <strong>positiva</strong> (rechazar)</li>
 </ul>
-<hr />
-<hr />
-</div>
-<div id="ejemplo-varianza" class="section level2 hasAnchor" number="5.24">
-<h2><span class="header-section-number">5.24</span> Ejemplo: Varianza<a href="variables-aleatorias-discretas.html#ejemplo-varianza" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>¿Cuál es la varianza de <span class="math inline">\(X\)</span> si su función de masa de probabilidad <span class="math inline">\(f(x)\)</span> está dada por</p>
-<p><span class="math inline">\(P(X=0)=1/16\)</span>
-</br><span class="math inline">\(P(X=1)=4/16\)</span>
-</br><span class="math inline">\(P(X=2)=6/16\)</span>
-</br><span class="math inline">\(P(X=3)=4/16\)</span>
-</br><span class="math inline">\(P(X=4)=1/16\)</span></p>
-<p><span class="math display">\[\sigma^2 =V(X)=\sum_{i=1}^m (x_i-\mu)^2 f(x_i)\]</span></p>
-<p><span class="math inline">\(V(X)=\)</span><strong>(0-2)</strong><span class="math inline">\(^2\)</span>* 1/16 + <strong>(1-2)</strong><span class="math inline">\(^2\)</span>* 4/16 + <strong>(2- 2)</strong><span class="math inline">\(^2\)</span>* 6/16 + <strong>(3-2)</strong><span class="math inline">\(^2\)</span>* 4/16 + <strong>(4-2)</strong><span class="math inline">\(^2\)</span>* 1/ 16 = 1</p>
-<p><span class="math display">\[V(X)=\sigma^2=1\]</span>
-<span class="math display">\[\sigma=1\]</span></p>
-<hr />
-<hr />
-</div>
-<div id="funciones-de-x" class="section level2 hasAnchor" number="5.25">
-<h2><span class="header-section-number">5.25</span> Funciones de <span class="math inline">\(X\)</span><a href="variables-aleatorias-discretas.html#funciones-de-x" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><strong>Definición</strong></p>
-<p>Para cualquier función <span class="math inline">\(h\)</span> de una variable aleatoria <span class="math inline">\(X\)</span>, con función de masa <span class="math inline">\(f(x)\)</span>, su <strong>valor esperado</strong> viene dado por</p>
-<p><span class="math display">\[ E[h(X)]= \sum_{i=1}^M h(x_i) f(x_i) \]</span></p>
-<p>Esta es una definición importante que nos permite probar <strong>tres propiedades</strong> importantes de la mediana y la varianza:</p>
-<ul>
-<li><p>La media de una función lineal es la <strong>función lineal</strong> de la media: <span class="math display">\[E(a\times X +b)= a\times E(X) +b\]</span> para <span class="math inline">\(a\)</span> y <span class="math inline">\(b\)</span> escalares (números) .</p></li>
-<li><p>La varianza de una función lineal de <span class="math inline">\(X\)</span> es:<span class="math display">\[V(a\times X +b)= a^2\times V(X)\]</span></p></li>
-<li><p>La varianza <strong>sobre el origen</strong> es la varianza <strong>sobre la media</strong> más la media al cuadrado: <span class="math display">\[E(X^2)=V(X)+E(X)^2\]</span></p></li>
-</ul>
-<hr />
-<hr />
-</div>
-<div id="ejemplo-varianza-sobre-el-origen" class="section level2 hasAnchor" number="5.26">
-<h2><span class="header-section-number">5.26</span> Ejemplo: Varianza sobre el origen<a href="variables-aleatorias-discretas.html#ejemplo-varianza-sobre-el-origen" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>¿Cuál es la varianza <span class="math inline">\(X\)</span> sobre el origen, <span class="math inline">\(E(X^2)\)</span>, si su función de masa de probabilidad <span class="math inline">\(f(x)\)</span> está dada por</p>
-<p><span class="math inline">\(P(X=0)=1/16\)</span>
-</br><span class="math inline">\(P(X=1)=4/16\)</span>
-</br><span class="math inline">\(P(X=2)=6/16\)</span>
-</br><span class="math inline">\(P(X=3)=4/16\)</span>
-</br><span class="math inline">\(P(X=4)=1/16\)</span></p>
-<p><span class="math display">\[E(X^2) =\sum_{i=1}^m x_i^2 f(x_i)\]</span></p>
-<p><span class="math inline">\(E(X^2)=\)</span><strong>(0)</strong><span class="math inline">\(^2\)</span>* 1/16 + <strong>(1)</strong><span class="math inline">\(^2\)</span>* 4/16 + <strong>(2)</strong> <span class="math inline">\(^2\)</span>* 6/16 + <strong>(3)</strong><span class="math inline">\(^2\)</span>* 4/16 + <strong>(4)</strong><span class="math inline">\(^2\)</span>* 1/16 =5</p>
-<p>También podemos verificar:</p>
-<p><span class="math display">\[E(X^2)=V(X)+E(X)^2\]</span></p>
-<p><span class="math inline">\(5=1+2^2\)</span></p>
-<hr />
-<hr />
-</div>
-<div id="distribución-de-probabilidad" class="section level2 hasAnchor" number="5.27">
-<h2><span class="header-section-number">5.27</span> Distribución de probabilidad<a href="variables-aleatorias-discretas.html#distribución-de-probabilidad" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><strong>Definición:</strong></p>
-<p>La función de <strong>distribución de probabilidad</strong> se define como</p>
-<p><span class="math display">\[F(x)=P(X\leq x)=\sum_{x_i\leq x} f(x_i) \]</span></p>
-<p>Esa es la probabilidad acumulada hasta un valor dado <span class="math inline">\(x\)</span></p>
-<p><span class="math inline">\(F(x)\)</span> satisface:</p>
-<ul>
-<li><span class="math inline">\(0\leq F(x) \leq 1\)</span></li>
-<li>Si <span class="math inline">\(x \leq y\)</span>, entonces <span class="math inline">\(F(x) \leq F(y)\)</span></li>
-</ul>
-<hr />
-<hr />
-</div>
-<div id="ejemplo-distribución-de-probabilidad" class="section level2 hasAnchor" number="5.28">
-<h2><span class="header-section-number">5.28</span> Ejemplo: distribución de probabilidad<a href="variables-aleatorias-discretas.html#ejemplo-distribución-de-probabilidad" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Para la función de masa de probabilidad:</p>
-<p><span class="math inline">\(f(0)=P(X=0)=1/16\)</span>
-</br><span class="math inline">\(f(1)=P(X=1)=4/16\)</span>
-</br><span class="math inline">\(f(2)=P(X=2)=6/16\)</span>
-</br><span class="math inline">\(f(3)=P(X=3)=4/16\)</span>
-</br><span class="math inline">\(f(4)=P(X=4)=1/16\)</span></p>
-<p>La distribución de probabilidad es:</p>
-<p><span class="math display">\[
-    F(x)=
-\begin{cases}
-    1/16,&amp; \text{if } 0 \leq x &lt; 1\\
-    5/16,&amp; 1\leq x &lt; 2\\
-    11/16,&amp; 2\leq x &lt; 3\\
-    15/16,&amp; 4\leq x &lt; 5\\
-    16/16,&amp;  x \leq 5\\
-\end{cases}
-\]</span></p>
-<p>Para <span class="math inline">\(X \in \mathbb{Z}\)</span></p>
-<hr />
-<hr />
-</div>
-<div id="probability-distribution" class="section level2 hasAnchor" number="5.29">
-<h2><span class="header-section-number">5.29</span> Probability distribution<a href="variables-aleatorias-discretas.html#probability-distribution" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><img src="_main_files/figure-html/unnamed-chunk-38-1.png" width="672" /></p>
-<hr />
-<hr />
-</div>
-<div id="función-de-probabilidad-y-distribución-de-probabilidad" class="section level2 hasAnchor" number="5.30">
-<h2><span class="header-section-number">5.30</span> Función de probabilidad y Distribución de probabilidad<a href="variables-aleatorias-discretas.html#función-de-probabilidad-y-distribución-de-probabilidad" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Calcule la función de probabilidad de masa de la siguiente distribución de probabilidad:</p>
-<p><span class="math inline">\(F(0)=1/16\)</span>, <span class="math inline">\(F(1)=5/16\)</span>, <span class="math inline">\(F(2)=11/16\)</span>, <span class="math inline">\(F(3)=15/16\)</span>, <span class="math inline">\(F(4)= 16/16\)</span>,</p>
-<p>Trabajemos al revés.</p>
-<p><span class="math inline">\(f(0)=F(0)=1/16\)</span>
-</br><span class="math inline">\(f(1)=F(1)-f(0)=5/32-1/32=4/16\)</span>
-</br><span class="math inline">\(f(2)=F(2)-f(1)-f(0)=F(2)-F(1)=6/16\)</span>
-</br><span class="math inline">\(f(3)=F(3)-f(2)-f(1)-f(0)=F(3)-F(2)=4/16\)</span>
-</br><span class="math inline">\(f(4)=F(4)-F(3)=1/16\)</span></p>
-<hr />
-<hr />
-</div>
-<div id="función-de-probabilidad-y-distribución-de-probabilidad-1" class="section level2 hasAnchor" number="5.31">
-<h2><span class="header-section-number">5.31</span> Función de probabilidad y Distribución de probabilidad<a href="variables-aleatorias-discretas.html#función-de-probabilidad-y-distribución-de-probabilidad-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>La distribución de probabilidad es otra forma de especificar la probabilidad de una variable aleatoria.</p>
-<p><span class="math display">\[f(x_i)=F(x_i)-F(x_{i-1})\]</span></p>
-<p>con</p>
-<p><span class="math display">\[f(x_1)=F(x_1)\]</span></p>
-<p>para <span class="math inline">\(X\)</span> tomando valores en <span class="math inline">\(x_1 \leq x_2 \leq ... \leq x_n\)</span></p>
-<hr />
-<hr />
-</div>
-<div id="cuantiles" class="section level2 hasAnchor" number="5.32">
-<h2><span class="header-section-number">5.32</span> Cuantiles<a href="variables-aleatorias-discretas.html#cuantiles" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Definimos el <strong>q-cuantil</strong> como el valor <span class="math inline">\(x_{p}\)</span> <strong>bajo</strong> el cual hemos acumulado q*100% de la probabilidad</p>
-<p><span class="math display">\[q=\sum_{i=1}^p f(x_i) = F (x_p)\]</span></p>
-<ul>
-<li>La <strong>mediana</strong> es valor <span class="math inline">\(x_m\)</span> tal que <span class="math inline">\(q=0.5\)</span></li>
-</ul>
-<p><span class="math display">\[F(x_{m})=0.5\]</span></p>
-<ul>
-<li>El cuantil <span class="math inline">\(0.05\)</span> es el valor <span class="math inline">\(x_{r}\)</span> tal que <span class="math inline">\(q=0.05\)</span></li>
-</ul>
-<p><span class="math display">\[F(x_{r})=0.05\]</span></p>
-<ul>
-<li>El cuantil <span class="math inline">\(0,25\)</span> es el primer <strong>cuartil</strong> o sea el valor <span class="math inline">\(x_{s}\)</span> tal que <span class="math inline">\(q=0,25\)</span></li>
-</ul>
-<p><span class="math display">\[F(x_{s})=0,25\]</span></p>
-<hr />
-<hr />
-</div>
-<div id="resumen" class="section level2 hasAnchor" number="5.33">
-<h2><span class="header-section-number">5.33</span> Resumen<a href="variables-aleatorias-discretas.html#resumen" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><strong>positivo</strong> para infección.</p>
 <table>
 <colgroup>
-<col width="43%" />
-<col width="30%" />
-<col width="26%" />
+<col width="33%" />
+<col width="33%" />
+<col width="33%" />
 </colgroup>
 <thead>
 <tr class="header">
-<th align="center">nombres de cantidades</th>
-<th align="center">modelo (no observado)</th>
-<th align="center">datos (observados)</th>
+<th align="center"><span class="math inline">\(H_0\)</span></th>
+<th align="center">no infectado: cierto</th>
+<th align="center">no infectado: falso (infectado: verdadero)</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="center">función de masa de probabilidad // frecuencia relativa</td>
-<td align="center"><span class="math inline">\(f(x_i)=P(X=x_i)\)</span></td>
-<td align="center"><span class="math inline">\(f_i=\frac{n_i}{N}\)</span></td>
+<td align="center"><strong>negativo</strong> (aceptar)</td>
+<td align="center">verdadero negativo: <span class="math inline">\(P(aceptar|H_0:verdadero)\)</span></td>
+<td align="center">falso negativo:<span class="math inline">\(P(aceptar|H_0:falso)\)</span></td>
 </tr>
 <tr class="even">
-<td align="center">distribución de probabilidad // frecuencia relativa acumulada</td>
-<td align="center"><span class="math inline">\(F(x_i)=P(X \leq x_i)\)</span></td>
-<td align="center"><span class="math inline">\(F_i=\sum_{k\leq i} f_k\)</span></td>
+<td align="center"><strong>positivo</strong> (rechazar)</td>
+<td align="center">falso positivo: <span class="math inline">\(P(rechazar|H_0:verdadero)\)</span></td>
+<td align="center">verdadero positivo: <span class="math inline">\(P(rechazar|H_0:falso)\)</span></td>
 </tr>
 <tr class="odd">
-<td align="center">media // promedio</td>
-<td align="center"><span class="math inline">\(\mu=E(X)=\sum_{i=1}^M x_i f(x_i)\)</span></td>
-<td align="center"><span class="math inline">\(\bar{x}=\sum_{j=1}^N x_j/N\)</span></td>
-</tr>
-<tr class="even">
-<td align="center">varianza // varianza de la muestra</td>
-<td align="center"><span class="math inline">\(\sigma^2=V(X)=\sum_{i=1}^M (x_i-\mu)^2 f(x_i)\)</span></td>
-<td align="center"><span class="math inline">\(s^2=\sum_{j=1}^N (x_j-\bar{x})^2/(N-1)\)</span></td>
-</tr>
-<tr class="odd">
-<td align="center">desviación estándar // muestra sd</td>
-<td align="center"><span class="math inline">\(\sigma=\sqrt{V(X)}\)</span></td>
-<td align="center"><span class="math inline">\(s\)</span></td>
-</tr>
-<tr class="even">
-<td align="center">varianza sobre el origen // 2º momento muestral</td>
-<td align="center"><span class="math inline">\(E(X^2)=\sum_{i=1}^M x_i^2 f(x_i)\)</span></td>
-<td align="center"><span class="math inline">\(m_2= \sum_{j=1}^N x_j^2/n\)</span></td>
+<td align="center"><strong>suma</strong></td>
+<td align="center">1</td>
+<td align="center">1</td>
 </tr>
 </tbody>
 </table>
-<p>Tenga en cuenta que:</p>
+<hr />
+<hr />
+</div>
+<div id="errores-en-la-prueba-de-hipótesis-2" class="section level2 hasAnchor" number="14.45">
+<h2><span class="header-section-number">14.45</span> Errores en la prueba de hipótesis<a href="prueba-de-hipótesis.html#errores-en-la-prueba-de-hipótesis-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="los-errores-también-se-conocen-como" class="section level3 hasAnchor" number="14.45.1">
+<h3><span class="header-section-number">14.45.1</span> Los errores también se conocen como<a href="prueba-de-hipótesis.html#los-errores-también-se-conocen-como" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ul>
-<li><span class="math inline">\(i=1...M\)</span> es un <strong>resultado</strong> de la variable aleatoria <span class="math inline">\(X\)</span>.</li>
-<li><span class="math inline">\(j=1...N\)</span> es una <strong>observación</strong> de la variable aleatoria <span class="math inline">\(X\)</span>.</li>
+<li><p>Error tipo I: falso positivo (enviar a un inocente a la cárcel)
+<span class="math inline">\(P(rechazar|H_0:verdadero)\)</span></p></li>
+<li><p>Error tipo II: falso negativo (dejar ir a un criminal)
+<span class="math inline">\(P(aceptar|H_0:falso)\)</span></p></li>
 </ul>
-<p>Propiedades:</p>
+</div>
+<div id="los-contrastes-correctos-también-se-conocen-como" class="section level3 hasAnchor" number="14.45.2">
+<h3><span class="header-section-number">14.45.2</span> Los contrastes correctos también se conocen como<a href="prueba-de-hipótesis.html#los-contrastes-correctos-también-se-conocen-como" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ul>
-<li><span class="math inline">\(\sum_{i=1...N} f(x_i)=1\)</span></li>
-<li><span class="math inline">\(f(x_i)=F(x_i)-F(x_{i-1})\)</span></li>
-<li><span class="math inline">\(E(a\times X +b)= a\times E(X) +b\)</span>; para los escalares <span class="math inline">\(a\)</span> y <span class="math inline">\(b\)</span>.</li>
-<li><span class="math inline">\(V(a\times X +b)= a^2\times V(X)\)</span></li>
-<li><span class="math inline">\(E(X^2)=V(X)+E(X)^2\)</span></li>
+<li><p>Sensibilidad: verdadero positivo (enviar a un criminal a la cárcel)
+<span class="math inline">\(P(rechazar|H_0:falso)\)</span></p></li>
+<li><p>Especificidad: verdadero negativo (dejar ir a un hombre inocente)
+<span class="math inline">\(P(aceptar|H_0:verdadero)\)</span></p></li>
+</ul>
+<table>
+<colgroup>
+<col width="33%" />
+<col width="33%" />
+<col width="33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center"><span class="math inline">\(H_0\)</span></th>
+<th align="center">no infectado: cierto</th>
+<th align="center">no infectado: falso (infectado: verdadero)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><strong>negativo</strong> (aceptar)</td>
+<td align="center">Especificidad: <span class="math inline">\(P(aceptar|H_0:verdadero)\)</span></td>
+<td align="center">Error de tipo II: <span class="math inline">\(P(aceptar|H_0:falso)\)</span></td>
+</tr>
+<tr class="even">
+<td align="center"><strong>positivo</strong> (rechazar)</td>
+<td align="center">Error tipo I: <span class="math inline">\(P(rechazar|H_0:verdadero)\)</span></td>
+<td align="center">Especificidad: <span class="math inline">\(P(rechazar|H_0:falso)\)</span></td>
+</tr>
+<tr class="odd">
+<td align="center"><strong>suma</strong></td>
+<td align="center">1</td>
+<td align="center">1</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<hr />
+</div>
+</div>
+<div id="estadísticas-bayesianas" class="section level2 hasAnchor" number="14.46">
+<h2><span class="header-section-number">14.46</span> Estadísticas bayesianas<a href="prueba-de-hipótesis.html#estadísticas-bayesianas" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>¿Qué pasa si aplicamos el teorema de Bayes a la tabla anterior?</p>
+<p><span class="math display">\[P(H_0|datos)=\frac{P(datos|H_0)P(H_0)}{P(datos)}\]</span></p>
+<p>Subvertimos el significado de un evento y lo aplicamos a una hipótesis.</p>
+<p>¿Podemos asignar una probabilidad a una hipótesis?</p>
+<p>Interpretación bayesiana de probabilidad</p>
+<ul>
+<li>La probabilidad es nuestro <strong>estado de creencia</strong> sobre la veracidad de una hipótesis dados los datos.</li>
 </ul>
 
 </div>
@@ -1337,8 +1364,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="probabilidad-condicional.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="variables-aleatorias-continuas.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="estimación-intervalar.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="ejercicios.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -1369,7 +1396,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/USERNAME/REPO/edit/BRANCH/04-DiscreteRandomVariables.Rmd",
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/14-HypothesisTesting.Rmd",
 "text": "Edit"
 },
 "history": {

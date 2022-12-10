@@ -6,7 +6,7 @@
 ]{book}
 \title{Estadística}
 \author{Alejandro Caceres}
-\date{2022-11-27}
+\date{2022-12-10}
 
 \usepackage{amsmath,amssymb}
 \usepackage{lmodern}
@@ -1015,12 +1015,12 @@ Digamos que repetimos el experimento 1000 veces:
 
 \begin{verbatim}
 ##   outcome  ni    fi
-## 1       1 171 0.171
-## 2       2 149 0.149
-## 3       3 153 0.153
-## 4       4 152 0.152
-## 5       5 178 0.178
-## 6       6 197 0.197
+## 1       1 165 0.165
+## 2       2 162 0.162
+## 3       3 187 0.187
+## 4       4 155 0.155
+## 5       5 160 0.160
+## 6       6 171 0.171
 \end{verbatim}
 
 Encontramos que \(f_i\) está convergiendo a un valor constante
@@ -8013,7 +8013,7 @@ Un material metálico se impacta para medir la energía requerida para cortarlo 
 \item
   \(\alpha=0.05\)
 \item
-  \(t_{0.025,9}=2.26\) obtained from \(P(T \leq t_{0.025,9})=0.975\); qt(1-0.025, 9)
+  \(t_{0.025,9}=2.26\) obtenido de \(P(T \leq t_{0.025,9})=0.975=\) qt(1-0.025, 9)
 \end{itemize}
 
 El intervalo de confianza es entonces
@@ -8406,6 +8406,1190 @@ confint.var(0.05, 9)
 El intervalo para la varianza \textbf{no es simétrico} y no podemos formularlo como un margen de error estimado de \(\pm\).
 
 \includegraphics{_main_files/figure-latex/unnamed-chunk-101-1.pdf}
+
+\hypertarget{prueba-de-hipuxf3tesis}{%
+\chapter{Prueba de hipótesis}\label{prueba-de-hipuxf3tesis}}
+
+\hypertarget{objetivo-13}{%
+\section{Objetivo}\label{objetivo-13}}
+
+\begin{itemize}
+\tightlist
+\item
+  Contraste de hipótesis de medias y proporciones
+\item
+  Contraste de hipótesis de varianzas
+\item
+  Errores en la prueba de hipótesis
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{hipuxf3tesis}{%
+\section{Hipótesis}\label{hipuxf3tesis}}
+
+Cuando hacemos inferencias sobre nuestro experimento aleatorio, a menudo queremos probar si el proceso satisface una condición/propiedad deseada.
+
+\begin{itemize}
+\item
+  Las mediciones y sus inferencias proporcionan \textbf{evidencia} para esa condición.
+\item
+  Podemos formular la condición en términos de los valores que pueden tomar algunos \textbf{parámetros} de las distribuciones de probabilidad.
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{hipuxf3tesis-1}{%
+\section{Hipótesis}\label{hipuxf3tesis-1}}
+
+Ejemplos:
+
+\begin{itemize}
+\tightlist
+\item
+  Los fabricantes de neumáticos quieren saber si la vida media de los neumáticos que producen es de al menos 20.000 km.
+\item
+  Los desarrolladores de fertilizantes quieren probar si su nuevo producto tiene un efecto real en el crecimiento de las plantas
+\item
+  Las empresas farmacéuticas necesitan saber si la quimioterapia puede curar al 90\% de los pacientes con cáncer
+\end{itemize}
+
+Estas preguntas se pueden traducir en enunciados de distribuciones de probabilidad.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{hipuxf3tesis-2}{%
+\section{Hipótesis}\label{hipuxf3tesis-2}}
+
+\begin{itemize}
+\tightlist
+\item
+  Los fabricantes de neumáticos quieren saber si la vida media de los neumáticos que producen es de al menos 20.000 km.
+\end{itemize}
+
+Suponiendo que la vida útil de los neumáticos sigue una distribución de probabilidad poblacional, nos interesa saber si la media de la distribución es de al menos 20 000 km.
+
+Esto se puede hacer en dos declaraciones dicotómicas.
+
+\begin{itemize}
+\tightlist
+\item
+  La vida media de los neumáticos es \textbf{menos} de 20.000 km
+\item
+  La vida media de los neumáticos es \textbf{superior} a 20.000 km
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{hipuxf3tesis-3}{%
+\section{Hipótesis}\label{hipuxf3tesis-3}}
+
+o siendo \(\mu\) la media de la distribución de la población
+
+\begin{itemize}
+\tightlist
+\item
+  \(H_0: \mu \leq 20.000km\)
+\item
+  \(H_1: \mu > 20.000km\)
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{hipuxf3tesis-4}{%
+\section{Hipótesis}\label{hipuxf3tesis-4}}
+
+\textbf{Definición}
+
+En estadística, una afirmación (conjetura) sobre la distribución de una variable aleatoria se denomina \textbf{hipótesis}.
+
+La hipótesis generalmente se escribe en dos declaraciones dicotómicas.
+
+\begin{itemize}
+\tightlist
+\item
+  La hipótesis \textbf{nula}: \(H_0\) cuando la conjetura es falsa (generalmente se refiere al statu quo)
+\item
+  La hipótesis \textbf{alternativa}: \(H_1\) cuando la conjetura es verdadera (generalmente se refiere a hipótesis de investigación)
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{hipuxf3tesis-nula}{%
+\section{Hipótesis nula}\label{hipuxf3tesis-nula}}
+
+Entonces, ¿cuáles son la hipótesis nula y la alternativa para estas situaciones?
+
+\begin{itemize}
+\item
+  Los fabricantes de neumáticos quieren saber si la vida media de los neumáticos que producen es de al menos 20.000 km.
+\item
+  Los desarrolladores de fertilizantes quieren probar si su nuevo producto tiene un efecto real en el crecimiento de las plantas
+\item
+  Las farmacéuticas necesitan saber si la quimioterapia puede curar al 90\% de los pacientes con cáncer
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{hipuxf3tesis-nula-1}{%
+\section{Hipótesis nula}\label{hipuxf3tesis-nula-1}}
+
+\begin{itemize}
+\tightlist
+\item
+  Los desarrolladores de fertilizantes quieren probar si su nuevo producto tiene un efecto real en el crecimiento de las plantas
+\end{itemize}
+
+Siendo \(\mu_0\) el crecimiento medio de las plantas \textbf{sin} fertilizante (conocido) y \(\mu\) el crecimiento medio de las plantas con el fertilizante (desconocido)
+
+\begin{itemize}
+\tightlist
+\item
+  \(H_0:\mu \leq \mu_0\) (El fertilizante no hace nada: status quo)
+\item
+  \(H_1:\mu > \mu_0\) (El fertilizante tiene el efecto deseado: interés de investigación)
+\end{itemize}
+
+¿Cuál podría ser una distribución adecuada de \(\mu\)?
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\textbf{Ejemplo:}
+
+Realizamos \(8\) experimentos aleatorios: cargamos un cable hasta que se rompe y registramos la carga de rotura. Estos son los resultados.
+
+\begin{verbatim}
+## [1] 13.34642 13.32620 13.01459 13.10811 12.96999 13.55309 13.75557 12.62747
+\end{verbatim}
+
+\begin{itemize}
+\tightlist
+\item
+  El promedio de los datos es \(\bar{x}=13.21\)
+\item
+  La desviación estándar es \(s=0.3571565\)
+\item
+  Es posible que deseemos usar estos datos para mostrar que nuestros cables se rompen \textbf{en promedio} a más de \(13\) toneladas.
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\textbf{Ejemplo:}
+
+Si \textbf{asumimos} que nuestros cables realmente se distribuyen como \[X \rightarrow N(\mu=13, \sigma^2=0.35^2)\] entonces
+
+\[\bar{X} \rightarrow N(13, \frac{0.35^2}{8})\]
+
+Nos preguntamos:
+
+\begin{itemize}
+\tightlist
+\item
+  ¿Son consistentes las medidas con la hipótesis nula \(H_0: \mu=13\)?
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{prueba-de-hipuxf3tesis-con-zonas-de-aceptaciuxf3nrechazo}{%
+\section{Prueba de hipótesis con zonas de aceptación/rechazo}\label{prueba-de-hipuxf3tesis-con-zonas-de-aceptaciuxf3nrechazo}}
+
+\begin{itemize}
+\tightlist
+\item
+  \(H_0:\mu = 13\) (los cables se rompen como de costumbre: status quo)
+\item
+  \(H_1:\mu \neq 13\) (los cables no frenan como de costumbre: interés de investigación)
+\end{itemize}
+
+Para probar la hipótesis, contraste el \textbf{error observado} con la \textbf{tolerancia de error} si la hipótesis nula es verdad.
+
+Ya que
+
+\[\bar{X} \rightarrow N(13, \frac{0.35^2}{8})\]
+
+Entonces el \textbf{error observado} según la hipótesis nula sigue una distribución estándar
+
+\[Z=\frac{\bar{X}-13}{\frac{0.35}{\sqrt{8}}} \rightarrow N(0,1)\]
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{tolerancia-de-error}{%
+\section{Tolerancia de error}\label{tolerancia-de-error}}
+
+\begin{itemize}
+\tightlist
+\item
+  La \textbf{tolerancia en el error} (estandarizado) está dada por los cuantiles de \(Z\)
+\end{itemize}
+
+\[P(-z_{0.025} \leq Z \leq z_{0.025})=0.95\]
+
+El intervalo: \[(-z_{0.025}, z_{0.025})\] se denomina intervalo de aceptación de \(H_0\) con un nivel de confianza de \(95\%\).
+
+\begin{itemize}
+\tightlist
+\item
+  \(\alpha=0.05=2\times 0.025=1-0.95\) se denomina nivel de \textbf{significación}.
+\end{itemize}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-103-1.pdf}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{error-observado-estandarizado}{%
+\section{Error observado estandarizado}\label{error-observado-estandarizado}}
+
+\begin{itemize}
+\tightlist
+\item
+  El \textbf{error observado} (estandarizado) que obtenemos si la hipétesis nula es verdad es
+\end{itemize}
+
+\[z_{obs}=\frac{\bar{x}-13}{\frac{0.35}{\sqrt{8}}}=1.697056 \in (-z_{0.025}, z_{0.025})\]
+Concluimos:
+
+\begin{itemize}
+\item
+  Nuestro error observado es consistente con \(95\%\) de las observaciones para el estadístico \(Z\) cuando la hipótesis nula es verdadera. Toleramos el error.
+\item
+  Aceptamos que la \(H_0\) es cierta y renunciamos a la idea de que tenemos cables más fuertes de lo esperado.
+\end{itemize}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-104-1.pdf}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{prueba-de-hipuxf3tesis-con-p-valor}{%
+\section{Prueba de hipótesis con P valor}\label{prueba-de-hipuxf3tesis-con-p-valor}}
+
+También podemos contrastar la hipótesis calculando la probabilidad de que el promedio de otra muestra sea más raro que el promedio que acabamos de observar.
+
+\[pvalue = P(Z \leq -z_{obs}) + P(z_{obs} \leq Z) = 2 (1-\phi(|z_{obs}|))\]
+
+\begin{itemize}
+\tightlist
+\item
+  Rechazamos \(H_0\) si \(Pvalue \leq \alpha =0.05\)
+\end{itemize}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-105-1.pdf}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{error-observado}{%
+\section{Error observado}\label{error-observado}}
+
+\begin{itemize}
+\tightlist
+\item
+  El \textbf{P-valor} es
+\end{itemize}
+
+\[pvalue=2 (1-\phi(1.697056))=0.089\]
+R: 2*(1-pnorm(1.697056))
+
+Concluimos:
+
+\begin{itemize}
+\item
+  Si realizamos una nueva muestra es probable que podamos obtener un resultado más extremo para el promedio en el límite \(\alpha=0.05\) si la hipótesis nula es cierta. Toleramos el error observado.
+\item
+  Aceptamos que \(H_0\) podría haber producido nuestros datos y renunciamos a la idea de que tenemos cables más fuertes de lo esperado.
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{prueba-de-hipuxf3tesis-intervalo-de-confianza}{%
+\section{Prueba de hipótesis Intervalo de confianza}\label{prueba-de-hipuxf3tesis-intervalo-de-confianza}}
+
+Desde el punto de vista de la estimación, también podemos contrastar la hipótesis.
+
+\begin{itemize}
+\tightlist
+\item
+  Confiamos en que nuestra estimación de \(\mu\) es correcta con una confianza de \(95\%\)
+\end{itemize}
+
+El IC es:
+
+\[(l,u)=(\bar{x}-z_{0.025} \frac{\sigma}{\sqrt{n}}, \bar{x}+z_{0.025} \frac{\sigma}{\sqrt{n}})= (12.97,13.45)\]
+
+\begin{itemize}
+\item
+  El CI nos dice que podemos estar \(95\%\) seguros de que hemos capturado el verdadero valor de \(\mu\).
+\item
+  No sabemos el valor real de \(\mu\) pero podría ser \(H_0: \mu=13\) Toneladas.
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{prueba-de-hipuxf3tesis-intervalo-de-confianza-1}{%
+\section{Prueba de hipótesis Intervalo de confianza}\label{prueba-de-hipuxf3tesis-intervalo-de-confianza-1}}
+
+\begin{itemize}
+\tightlist
+\item
+  Ya que
+\end{itemize}
+
+\[H_0: \mu=13 \in (12.97,13.45)\]
+Concluimos:
+
+\begin{itemize}
+\item
+  Nuestros datos son consistentes con el hecho de que nuestra estimación de \(\mu\) es la hipótesis nula.
+\item
+  Aceptamos que \(H_0\) podría haber producido nuestro intervalo y renunciamos a la idea de que tenemos cables más fuertes de lo esperado.
+\end{itemize}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-106-1.pdf}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{prueba-de-hipuxf3tesis-con-varianza-desconocida}{%
+\section{Prueba de hipótesis con varianza desconocida}\label{prueba-de-hipuxf3tesis-con-varianza-desconocida}}
+
+Es común \textbf{hipotetizar} los valores de los parámetros que podemos contrastar. Otros parámetros molestos los podemos dejar desconocidos.
+
+Podemos \textbf{presumir} que nuestros cables realmente se distribuyen como \[X \rightarrow N(\mu=13, \sigma^2)\] entonces
+
+\[\bar{X} \rightarrow N(13, \frac{\sigma^2}{8})\]
+Preguntamos de nuevo:
+
+\begin{itemize}
+\tightlist
+\item
+  ¿Son consistentes las medidas con la hipótesis nula \(H_0: \mu=13\)?
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{error-estandarizado-con-varianza-desconocida}{%
+\section{Error estandarizado con varianza desconocida}\label{error-estandarizado-con-varianza-desconocida}}
+
+Si \(X\) es normal
+
+\[X \rightarrow N(\mu, \sigma^2)\] luego los \textbf{errores estandarizados} con respecto a la \textbf{desviación estándar de la muestra} \(S\)
+
+\[T=\frac{\bar{X}-\mu}{\frac{S}{\sqrt{n}}}\]
+
+Sigue una distribución \(t\) con \(n-1\) grados de libertad.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{contraste-de-hipuxf3tesis-con-varianza-desconocida}{%
+\section{Contraste de hipótesis con varianza desconocida}\label{contraste-de-hipuxf3tesis-con-varianza-desconocida}}
+
+aceptamos \(H_0\) debido a cualquiera de los siguientes contrastes equivalentes:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  La región de aceptación para \(H_0\) es:
+\end{enumerate}
+
+\[(-t_{0.025,7}, t_{0.025,7})=( -2.36, 2.36)\]
+
+y el error estandarizado observado de \(H_0\) es
+\[t_{obs} = \frac{13,21268-13}{\frac{0,3571565}{\sqrt{8}}}=1,6843\]
+
+dentro de la región de aceptación.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{contraste-de-hipuxf3tesis-con-varianza-desconocida-1}{%
+\section{Contraste de hipótesis con varianza desconocida}\label{contraste-de-hipuxf3tesis-con-varianza-desconocida-1}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  El \[pvalor=2(1-F_{t,7}(1.6843))=0.136\]
+\end{enumerate}
+
+R: 2*(1-pt(1.6843,7))
+
+es mayor que \(\alpha=0.05\)
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  El intervalo de confianza
+\end{enumerate}
+
+\[(\bar{x}-t_{0.025, n-1} \frac{s}{\sqrt{n}}, \bar{x}+t_{0.025, n-1} \frac{s}{ \sqrt{n}})=(12.91409, 13.51127)\]
+
+contiene \(H_0:\mu=13\).
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+en R:
+t.test(c(13.34642, 13.32620, 13.01459, 13.10811,
+12.96999, 13.55309, 13.75557, 12.62747), mu=13)
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-107-1.pdf}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{prueba-de-una-cola}{%
+\section{Prueba de una cola}\label{prueba-de-una-cola}}
+
+Es posible que nos interese probar solo el hecho de que nuestra estimación es más alta que la hipótesis nula (no nos importa si es más baja)
+
+Prueba de cola superior:
+
+\begin{itemize}
+\tightlist
+\item
+  \(H_0:\mu \leq 13\) (como mucho los cables se rompen como siempre)
+\item
+  \(H_1:\mu > 13\) (los cables se rompen a mayor carga)
+\end{itemize}
+
+Probaremos la cola superior de la distribución.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{prueba-de-hipuxf3tesis-de-la-cola-superior}{%
+\section{Prueba de hipótesis de la cola superior}\label{prueba-de-hipuxf3tesis-de-la-cola-superior}}
+
+En este ejemplo, aceptamos \(H_0\) debido a cualquiera de los siguientes contrastes equivalentes:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  La región de aceptación para \(H_0\) es:
+\end{enumerate}
+
+\[(-\infty, t_{0.05,7})=( -\infty, 1.894579)\]
+
+y el error estandarizado observado de \(H_0\) es
+\[t_{obs} = \frac{13.21268-13}{\frac{0.3571565}{\sqrt{8}}}=1.6843\]
+
+dentro de la región de aceptación.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{contraste-de-hipuxf3tesis-con-varianza-desconocida-2}{%
+\section{Contraste de hipótesis con varianza desconocida}\label{contraste-de-hipuxf3tesis-con-varianza-desconocida-2}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  Para la cola superior \[pvalue=1-F_{t,7}(1.6843)=0.06799782\]
+\end{enumerate}
+
+R: 1-pt(1.6843,7)
+
+es mayor que \(\alpha=0.05\)
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  El intervalo de confianza \textbf{de cola superior}
+\end{enumerate}
+
+\[(\bar{x}-t_{0.05, n-1} \frac{s}{\sqrt{n}}, \infty)=(12.97344, \infty)\]
+
+contiene \(H_0:\mu=13\).
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+en R:
+
+t.test(c(13.34642, 13.32620, 13.01459, 13.10811,
+12.96999, 13.55309, 13.75557, 12.62747), mu=13, alternative=``greater'')
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-108-1.pdf}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{ejemplo-1-4}{%
+\section{Ejemplo 1:}\label{ejemplo-1-4}}
+
+\(11.6 g\) de NaCl se disuelven en \(100 g\) de agua y tiene una concentración molar de \(1.92 mol/L\)
+
+Diseñamos un proceso para eliminar la sal de esta concentración y obtener los siguientes resultados
+
+\begin{verbatim}
+## [1] 1.716 1.889 1.783 1.849 1.891
+\end{verbatim}
+
+\begin{itemize}
+\tightlist
+\item
+  Queremos probar en un umbral significativo de \(0.05\) si el proceso elimina la sal de la concentración.
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{ejemplo-1-5}{%
+\section{Ejemplo 1:}\label{ejemplo-1-5}}
+
+Prueba de dos colas:
+
+\begin{itemize}
+\tightlist
+\item
+  \(H_0:\mu=1.92\); \(H_1:\mu\neq 1.92\)
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{t.test}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\FloatTok{1.716}\NormalTok{, }\FloatTok{1.901}\NormalTok{, }\FloatTok{1.783}\NormalTok{, }\FloatTok{1.849}\NormalTok{, }\FloatTok{1.891}\NormalTok{), }
+       \AttributeTok{mu=}\FloatTok{1.92}\NormalTok{, }\AttributeTok{alternative =} \StringTok{"two.sided"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  One Sample t-test
+## 
+## data:  c(1.716, 1.901, 1.783, 1.849, 1.891)
+## t = -2.6389, df = 4, p-value = 0.05764
+## alternative hypothesis: true mean is not equal to 1.92
+## 95 percent confidence interval:
+##  1.731206 1.924794
+## sample estimates:
+## mean of x 
+##     1.828
+\end{verbatim}
+
+Prueba de cola inferior:
+
+\begin{itemize}
+\tightlist
+\item
+  \(H_0:\mu \geq 1.92\); \(H_1:\mu < 1.92\)
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{t.test}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\FloatTok{1.716}\NormalTok{, }\FloatTok{1.901}\NormalTok{, }\FloatTok{1.783}\NormalTok{, }\FloatTok{1.849}\NormalTok{, }\FloatTok{1.891}\NormalTok{), }
+       \AttributeTok{mu=}\FloatTok{1.92}\NormalTok{, }\AttributeTok{alternative =} \StringTok{"less"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  One Sample t-test
+## 
+## data:  c(1.716, 1.901, 1.783, 1.849, 1.891)
+## t = -2.6389, df = 4, p-value = 0.02882
+## alternative hypothesis: true mean is less than 1.92
+## 95 percent confidence interval:
+##      -Inf 1.902322
+## sample estimates:
+## mean of x 
+##     1.828
+\end{verbatim}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{ejemplo-2-3}{%
+\section{Ejemplo 2:}\label{ejemplo-2-3}}
+
+En algunos casos, no estamos seguros del valor numérico de la hipótesis a contrastar, pero sabemos que queremos mejorar el valor de un parámetro en dos condiciones diferentes.
+
+En el artículo original de Gosset, analizó el efecto de dos medicamentos soporíferos.
+
+\begin{itemize}
+\tightlist
+\item
+  A 10 individuos se les dio \textbf{soporífero 1} y se anotaron las horas adicionales dormidas bajo tratamiento, con una media de \(0.75\)
+\end{itemize}
+
+\begin{verbatim}
+##  [1]  0.7 -1.6 -0.2 -1.2 -0.1  3.4  3.7  0.8  0.0  2.0
+\end{verbatim}
+
+\begin{itemize}
+\tightlist
+\item
+  Los mismos 10 individuos recibieron \textbf{soporífero 2} y anotaron las horas adicionales dormidas bajo tratamiento, con una media de \(2.33\)
+\end{itemize}
+
+\begin{verbatim}
+##  [1]  1.9  0.8  1.1  0.1 -0.1  4.4  5.5  1.6  4.6  3.4
+\end{verbatim}
+
+Hipótesis científica: Soporífero 2 es mejor que soporífero 1
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{ejemplo-2-4}{%
+\section{Ejemplo 2:}\label{ejemplo-2-4}}
+
+Para cada individuo, Gosset marcó la diferencia entre los tratamientos. Tomando \(X\) como la diferencia entre tratamientos, esta fue la muestra observada por \(X\)
+
+\begin{verbatim}
+##  [1] 1.2 2.4 1.3 1.3 0.0 1.0 1.8 0.8 4.6 1.4
+\end{verbatim}
+
+encontrando un promedio de ganancia de tratamiento del soporífero 2 con respecto al soporífero 1 de \(1.58\), y \(s=1.229995\)
+
+\textbf{Prueba t pareada de cola superior}:
+
+\begin{itemize}
+\tightlist
+\item
+  \(H_0:\mu \leq 0\) (sin diferencia de tratamiento); \(H_1:\mu > 0\) (ganancia en tratamiento 2)
+\end{itemize}
+
+Donde \(\mu\) es la media de las diferencias entre tratamientos.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{ejemplo-2-5}{%
+\section{Ejemplo 2:}\label{ejemplo-2-5}}
+
+El \textbf{error estandarizado} es:
+
+\[T=\frac{\bar{X}}{\frac{S}{\sqrt{n}}}\]
+
+y su observación
+
+\[t_{obs}=\frac{\bar{x}}{\frac{s}{\sqrt{n}}}\]
+que también se conoce como la relación \textbf{señal} a \textbf{ruido}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{t.test}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\FloatTok{1.9}\NormalTok{,}\FloatTok{0.8}\NormalTok{,}\FloatTok{1.1}\NormalTok{,}\FloatTok{0.1}\NormalTok{,}\SpecialCharTok{{-}}\FloatTok{0.1}\NormalTok{,}\FloatTok{4.4}\NormalTok{,}\FloatTok{5.5}\NormalTok{,}\FloatTok{1.6}\NormalTok{,}\FloatTok{4.6}\NormalTok{,}\FloatTok{3.4}\NormalTok{),}
+       \FunctionTok{c}\NormalTok{(}\FloatTok{0.7}\NormalTok{,}\SpecialCharTok{{-}}\FloatTok{1.6}\NormalTok{,}\SpecialCharTok{{-}}\FloatTok{0.2}\NormalTok{,}\SpecialCharTok{{-}}\FloatTok{1.2}\NormalTok{,}\SpecialCharTok{{-}}\FloatTok{0.1}\NormalTok{,}\FloatTok{3.4}\NormalTok{,}\FloatTok{3.7}\NormalTok{,}\FloatTok{0.8}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{2}\NormalTok{),}
+       \AttributeTok{paired =} \ConstantTok{TRUE}\NormalTok{,}
+       \AttributeTok{alternative=}\StringTok{"greater"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  Paired t-test
+## 
+## data:  c(1.9, 0.8, 1.1, 0.1, -0.1, 4.4, 5.5, 1.6, 4.6, 3.4) and c(0.7, -1.6, -0.2, -1.2, -0.1, 3.4, 3.7, 0.8, 0, 2)
+## t = 4.0621, df = 9, p-value = 0.001416
+## alternative hypothesis: true difference in means is greater than 0
+## 95 percent confidence interval:
+##  0.8669947       Inf
+## sample estimates:
+## mean of the differences 
+##                    1.58
+\end{verbatim}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-116-1.pdf}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{prueba-de-hipuxf3tesis-con-n-grande-y-cualquier-distribuciuxf3n}{%
+\section{Prueba de hipótesis con n grande y cualquier distribución}\label{prueba-de-hipuxf3tesis-con-n-grande-y-cualquier-distribuciuxf3n}}
+
+En muchas ocasiones, \(X\) no se distribuye normalmente pero podemos tomar muestras grandes \(n \ge 30\) y luego podemos usar el CLT:
+
+Entonces el \textbf{error estandarizado} de la hipótesis nula sigue una distribución estándar
+
+\[Z=\frac{\bar{X}-\mu}{\frac{\sigma}{\sqrt{n}}} \rightarrow N(0,1)\]
+
+y procedemos como antes, y si \(\sigma\) es desconocido lo reemplazamos con su estimado \(s\).
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{prueba-de-hipuxf3tesis-para-proporciones}{%
+\section{Prueba de hipótesis para proporciones}\label{prueba-de-hipuxf3tesis-para-proporciones}}
+
+\textbf{Ejemplo:}
+
+Podemos estar satisfechos con un nuevo proceso si el \(90\%\) de las veces mejoramos el proceso anterior.
+
+\begin{itemize}
+\tightlist
+\item
+  Si ejecutamos una muestra de \(200\) nuevos procesos y encontramos que \(188\) veces mejoramos el proceso anterior, ¿podemos estar satisfechos con el nuevo proceso con una confianza de \(95\%\)?
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{estimaciuxf3n-de-intervalos-para-proporciones}{%
+\section{Estimación de intervalos para proporciones}\label{estimaciuxf3n-de-intervalos-para-proporciones}}
+
+Suponemos que la distribución de un experimento aleatorio es
+
+\[X \rightarrow Bernoulli (pag)\]
+con un contraste de hipótesis de cola superior para \(p\):
+
+\begin{itemize}
+\tightlist
+\item
+  \(H_0: p \leq 0.9\) (No satisfactorio)
+\item
+  \(H_1: p> 0.9\) (Satisfactorio)
+\end{itemize}
+
+Entonces si la hipótesis nula es verdadera \(\bar{X}\) tiene
+
+\begin{itemize}
+\item
+  media \(E(\bar{X})=E(X)=p=0.9\) (estimador insesgado de \(p\))
+\item
+  varianza \(V(\bar{X})=\frac{V(X)}{n}=\frac{p(1-p)}{n}=0.00045\) (estimador consistente de \(p\))
+\item
+  El \(\bar{X}\) observado fue \(\bar{x}=188/200=0.94\)
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{estimaciuxf3n-de-intervalos-para-proporciones-1}{%
+\section{Estimación de intervalos para proporciones}\label{estimaciuxf3n-de-intervalos-para-proporciones-1}}
+
+\begin{itemize}
+\tightlist
+\item
+  Por el CLT, el \textbf{error estandarizado} de la hipótesis nula
+\end{itemize}
+
+\[Z=\frac{\bar{X}-E(\bar{X})}{\sqrt{V(\bar{X})}}= \frac{\bar{X}-p}{\big[\frac{p(1-p)}{n} \big]^{1/2}}\rightarrow N(0,1)\]
+es una variable normal estándar, cuando \(pn>5\) y \((p-1)n>5\).
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{estimaciuxf3n-de-intervalos-para-proporciones-2}{%
+\section{Estimación de intervalos para proporciones}\label{estimaciuxf3n-de-intervalos-para-proporciones-2}}
+
+En este ejemplo, \textbf{rechazamos} \(H_0\) debido a cualquiera de los siguientes contrastes equivalentes:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  La región de aceptación para \(H_0\) es:
+\end{enumerate}
+
+\[(-\infty, z_{0.05})=( -\infty, 1.644854)\]
+y el error estandarizado observado de \(H_0\) es
+\[z_{obs} = \frac{0.94-0.90}{\sqrt{0.00045}}=1.885618\]
+
+fuera de la región de aceptación (dentro de la zona de rechazo).
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{estimaciuxf3n-de-intervalos-para-proporciones-3}{%
+\section{Estimación de intervalos para proporciones}\label{estimaciuxf3n-de-intervalos-para-proporciones-3}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  Para la cola superior \[pvalue=1-\phi^{-1}(1.885618)=0.02967323\]
+\end{enumerate}
+
+R: 1-pnorm(1.885618)
+
+es inferior a \(\alpha=0.05\)
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{estimaciuxf3n-de-intervalos-para-proporciones-4}{%
+\section{Estimación de intervalos para proporciones}\label{estimaciuxf3n-de-intervalos-para-proporciones-4}}
+
+En R: prop.test(188, 200, p=0.9, alternative = ``greater'', correct=FALSE)
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-117-1.pdf}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{prueba-de-varianzas}{%
+\section{Prueba de varianzas}\label{prueba-de-varianzas}}
+
+En muchos casos, se realizan experimentos para probar valores específicos de la dispersión de datos.
+
+Como
+
+\begin{itemize}
+\tightlist
+\item
+  para cumplir con estrictos estándares de diseño donde las medidas deben estar entre ciertos valores
+\item
+  cuando se toman medidas relativas como la reacción de un tratamiento en un individuo (administración de insulina en los niveles de azúcar de un individuo)
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{prueba-de-varianzas-1}{%
+\section{Prueba de varianzas}\label{prueba-de-varianzas-1}}
+
+Para una muestra aleatoria \(X_1,...X_n\) con una distribución de población normal (\(X_i \rightarrow N(\mu, \sigma^2)\)) las estadísticas definidas por
+
+\[X=\frac{(n-1)S^2}{\sigma^2}\]
+
+Tiene una distribución \(\chi^2\) (chi-cuadrado) con n-1 grados de libertad dada por
+
+\[f(x)=C_n x^{\frac{n-3}{2}} e^{-\frac{x}{2}}\]
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{prueba-de-varianzas-2}{%
+\section{Prueba de varianzas}\label{prueba-de-varianzas-2}}
+
+Supongamos que queremos probar si la varianza de la distribución de la población es igual a un valor dado \(\sigma_0\)
+
+\begin{itemize}
+\tightlist
+\item
+  \(H_0:\sigma=\sigma_0\)
+\end{itemize}
+
+Hipótesis alternativa
+
+\begin{itemize}
+\item
+  dos colas: \(H_1:\sigma \neq \sigma_0\)
+\item
+  cola superior: \(H_1:\sigma > \sigma_0\)
+\item
+  cola inferior: \(H_1:\sigma < \sigma_0\)
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{prueba-de-varianzas-3}{%
+\section{Prueba de varianzas}\label{prueba-de-varianzas-3}}
+
+\(S^2\) es una estimación imparcial de \(\sigma^2\): \(E(S^2)=\sigma^2\)
+
+La \textbf{proporción de error estandarizada}
+
+\[W=\frac{(n-1)S^2}{\sigma_0^2} \rightarrow \chi^2(n-1)\]
+
+Sigue una distribución \(\chi^2\) con \(n-1\) grados de libertad.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{ejemplo-18}{%
+\section{Ejemplo}\label{ejemplo-18}}
+
+\begin{itemize}
+\item
+  La producción de un chip semiconductor está regulada por un proceso que requiere que el espesor de una capa en particular no varíe en más de \(\sigma_0=0.6mm\), de su media de \(25mm\).
+\item
+  Para llevar el control del proceso cada cierto tiempo se toma una muestra de \(20\) ejemplares.
+\item
+  Si en una ocasión la desviación estándar estimada fue de \(s=0.8462188\), ¿el proceso está fuera de control con una confianza de \(0.01\) y debe detenerse?
+\end{itemize}
+
+Estos son los datos:
+
+\begin{verbatim}
+##  [1] 24.51239 24.79975 26.35608 25.06134 25.11248 26.49211 25.40100 23.89940
+##  [9] 24.40244 24.61227 26.06495 25.31304 25.34867 25.09629 24.51642 26.55461
+## [17] 25.43313 23.28904 25.61018 24.58867
+\end{verbatim}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{prueba-de-varianzas-4}{%
+\section{Prueba de varianzas}\label{prueba-de-varianzas-4}}
+
+Queremos contrastar las hipótesis
+
+\begin{itemize}
+\item
+  \(H_0:\sigma \leq 0.6\) (Proceso bajo control)
+\item
+  \(H_1:\sigma > 0.6\) (Proceso fuera de control)
+\item
+  Estadística: \(W=\frac{(n-1)S^2}{\sigma_0^2} \rightarrow \chi^2(n-1)\)
+\item
+  Límite de umbral \(\alpha=0.01\)
+\item
+  La región de aceptación para \(H_0\): \(P(W\leq \chi^2_{0.01,19})=0.99\)
+\end{itemize}
+
+\[(0, \chi^2_{0.01,19})=(0,36.19)\]
+
+En R: \(\chi^2_{0.01,19}=\)qchisq(0.99,19)\(= 36.19\)
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{prueba-de-varianzas-5}{%
+\section{Prueba de varianzas}\label{prueba-de-varianzas-5}}
+
+En este ejemplo, \textbf{rechazamos} \(H_0\) debido a cualquiera de los siguientes contrastes equivalentes:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  La \textbf{proporción de error estandarizado} observada es:
+\end{enumerate}
+
+\[w_{obs}=\frac{19 (0,8462188)^2}{0,60^2}=37,79344\]
+
+Que cae fuera de la región de aceptación (dentro de la zona de rechazo)
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  Para la cola superior \[pvalue=1-F_{\chi,19}^{-1}(37.79344)= 0.006\]
+\end{enumerate}
+
+R: 1-pchisq(37.79344, 19)
+es inferior a \(\alpha=0.05\)
+
+Por lo tanto, debemos concluir que ¡sí! el proceso está fuera de control.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{chi2-estaduxedstica-2}{%
+\section{\texorpdfstring{\(\chi^2\)-estadística}{\textbackslash chi\^{}2-estadística}}\label{chi2-estaduxedstica-2}}
+
+en R: library(EnvStats);
+varTest(thickness, sigma.squared = 0.6\^{}2, alternative = ``greater'')
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-119-1.pdf}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{errores-en-la-prueba-de-hipuxf3tesis}{%
+\section{Errores en la prueba de hipótesis}\label{errores-en-la-prueba-de-hipuxf3tesis}}
+
+Cuando inferimos un parámetro con una estadística y luego aplicamos un criterio para decidir sobre una hipótesis, tenemos cuatro posibilidades
+
+\begin{itemize}
+\tightlist
+\item
+  \(H_0\) realidad desconocida: \textbf{verdadero} o \textbf{falso}
+\item
+  Resultado de la prueba de \(H_0\): \textbf{negativo}, \textbf{positivo}
+\end{itemize}
+
+Por lo general, nuestro objetivo es rechazar \(H_0\) (fiscal):
+
+\textbf{positivo}: interés de investigación esperado, rechazo de \(H_0\) o el statu quo (rechazo de la inocencia).
+
+\begin{longtable}[]{@{}ccc@{}}
+\toprule
+\(H_0\) & realidad: cierto & realidad: falso \\
+\midrule
+\endhead
+\textbf{prueba: positivo} (resultado negativo) & verdadero negativo & falso negativo \\
+\textbf{test: negativo} (resultado positivo) & falso positivo & verdadero positivo \\
+\bottomrule
+\end{longtable}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{errores-en-la-prueba-de-hipuxf3tesis-1}{%
+\section{Errores en la prueba de hipótesis}\label{errores-en-la-prueba-de-hipuxf3tesis-1}}
+
+Tomas \textbf{una} PCR para probar la infección; \(H_0\) \textbf{no estás infectado}
+
+\begin{itemize}
+\tightlist
+\item
+  \(H_0\) realidad desconocida es: \textbf{verdadero}, \textbf{falso}
+\item
+  La prueba \(H_0\) es: \textbf{negativa} (aceptar), \textbf{positiva} (rechazar)
+\end{itemize}
+
+\textbf{positivo} para infección.
+
+\begin{longtable}[]{@{}
+  >{\centering\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.33}}
+  >{\centering\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.33}}
+  >{\centering\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.33}}@{}}
+\toprule
+\begin{minipage}[b]{\linewidth}\centering
+\(H_0\)
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+no infectado: cierto
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+no infectado: falso (infectado: verdadero)
+\end{minipage} \\
+\midrule
+\endhead
+\textbf{negativo} (aceptar) & verdadero negativo: \(P(aceptar|H_0:verdadero)\) & falso negativo:\(P(aceptar|H_0:falso)\) \\
+\textbf{positivo} (rechazar) & falso positivo: \(P(rechazar|H_0:verdadero)\) & verdadero positivo: \(P(rechazar|H_0:falso)\) \\
+\textbf{suma} & 1 & 1 \\
+\bottomrule
+\end{longtable}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{errores-en-la-prueba-de-hipuxf3tesis-2}{%
+\section{Errores en la prueba de hipótesis}\label{errores-en-la-prueba-de-hipuxf3tesis-2}}
+
+\hypertarget{los-errores-tambiuxe9n-se-conocen-como}{%
+\subsection{Los errores también se conocen como}\label{los-errores-tambiuxe9n-se-conocen-como}}
+
+\begin{itemize}
+\item
+  Error tipo I: falso positivo (enviar a un inocente a la cárcel)
+  \(P(rechazar|H_0:verdadero)\)
+\item
+  Error tipo II: falso negativo (dejar ir a un criminal)
+  \(P(aceptar|H_0:falso)\)
+\end{itemize}
+
+\hypertarget{los-contrastes-correctos-tambiuxe9n-se-conocen-como}{%
+\subsection{Los contrastes correctos también se conocen como}\label{los-contrastes-correctos-tambiuxe9n-se-conocen-como}}
+
+\begin{itemize}
+\item
+  Sensibilidad: verdadero positivo (enviar a un criminal a la cárcel)
+  \(P(rechazar|H_0:falso)\)
+\item
+  Especificidad: verdadero negativo (dejar ir a un hombre inocente)
+  \(P(aceptar|H_0:verdadero)\)
+\end{itemize}
+
+\begin{longtable}[]{@{}
+  >{\centering\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.33}}
+  >{\centering\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.33}}
+  >{\centering\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.33}}@{}}
+\toprule
+\begin{minipage}[b]{\linewidth}\centering
+\(H_0\)
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+no infectado: cierto
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+no infectado: falso (infectado: verdadero)
+\end{minipage} \\
+\midrule
+\endhead
+\textbf{negativo} (aceptar) & Especificidad: \(P(aceptar|H_0:verdadero)\) & Error de tipo II: \(P(aceptar|H_0:falso)\) \\
+\textbf{positivo} (rechazar) & Error tipo I: \(P(rechazar|H_0:verdadero)\) & Especificidad: \(P(rechazar|H_0:falso)\) \\
+\textbf{suma} & 1 & 1 \\
+\bottomrule
+\end{longtable}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{estaduxedsticas-bayesianas}{%
+\section{Estadísticas bayesianas}\label{estaduxedsticas-bayesianas}}
+
+¿Qué pasa si aplicamos el teorema de Bayes a la tabla anterior?
+
+\[P(H_0|datos)=\frac{P(datos|H_0)P(H_0)}{P(datos)}\]
+
+Subvertimos el significado de un evento y lo aplicamos a una hipótesis.
+
+¿Podemos asignar una probabilidad a una hipótesis?
+
+Interpretación bayesiana de probabilidad
+
+\begin{itemize}
+\tightlist
+\item
+  La probabilidad es nuestro \textbf{estado de creencia} sobre la veracidad de una hipótesis dados los datos.
+\end{itemize}
 
 \hypertarget{ejercicios}{%
 \chapter{Ejercicios}\label{ejercicios}}
@@ -8838,7 +10022,7 @@ Para la densidad de probabilidad
   ¿Cuáles son el primer y tercer cuartiles? (R: 25; 75)
 \end{itemize}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-108-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-126-1.pdf}
 
 \hypertarget{ejercicio-5-1}{%
 \subsubsection{Ejercicio 5}\label{ejercicio-5-1}}
@@ -9025,9 +10209,9 @@ Una máquina automática llena tubos de ensayo con muestras biológicas con una 
 \begin{itemize}
 \item
   para una muestra aleatoria de tamaño \(50\). ¿Cuál es la probabilidad de que
-  la media muestral (promedio) está entre \(128\) y \(132\)gr?
+  la media muestral (promedio) está entre \(128\) y \(132\)gr? (R:0.995)
 \item
-  ¿Cuál debe ser el tamaño de la muestra (\(n\)) para que la media muestral \(\bar{X}\) sea mayor a \(131\)gr con una probabilidad menor o igual a \(0.025\)?
+  ¿Cuál debe ser el tamaño de la muestra (\(n\)) para que la media muestral \(\bar{X}\) sea mayor a \(131\)gr con una probabilidad menor o igual a \(0.025\)? (R:97)
 \end{itemize}
 
 \hypertarget{ejercicio-4-3}{%
@@ -9037,9 +10221,9 @@ En el Caribe, parece haber un promedio de huracanes de \(6\) por año. Teniendo 
 
 \begin{itemize}
 \item
-  ¿Cuál es la probabilidad de que su promedio muestral esté entre \(45\) y \(60\) días?
+  ¿Cuál es la probabilidad de que su promedio muestral esté entre \(45\) y \(60\) días? (R:0.39)
 \item
-  ¿Cuál debe ser el tamaño de la muestra para que tengan una probabilidad de \(0.025\) de que la media muestral sea mayor a \(70\) días?
+  ¿Cuál debe ser el tamaño de la muestra para que tengan una probabilidad de \(0.025\) de que la media muestral sea mayor a \(70\) días? (R:169)
 \end{itemize}
 
 \hypertarget{ejercicio-5-2}{%
@@ -9050,7 +10234,7 @@ La probabilidad de que se encuentre una mutación particular en la población es
 \begin{itemize}
 \tightlist
 \item
-  ¿Cuál es la probabilidad de que el número total de personas con la mutación esté entre \(791\) y \(809\)?
+  ¿Cuál es la probabilidad de que el número total de personas con la mutación esté entre \(791\) y \(809\)? (R:0.31)
 \end{itemize}
 
 sugerencia: use el CLT con una muestra de ensayos de Bernoulli de \(2000\). Esto se conoce como la aproximación normal de la distribución binomial.

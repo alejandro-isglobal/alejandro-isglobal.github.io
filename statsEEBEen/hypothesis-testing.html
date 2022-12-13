@@ -24,7 +24,7 @@
 <meta name="author" content="Alejandro Caceres" />
 
 
-<meta name="date" content="2022-12-11" />
+<meta name="date" content="2022-12-13" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -1065,17 +1065,16 @@ which is also known as the <strong>signal</strong> to <strong>noise</strong> rat
 <h2><span class="header-section-number">14.30</span> Interval estimation for proportions<a href="hypothesis-testing.html#interval-estimation-for-proportions-4" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>We hypothesize that the distribution of a random experiment is</p>
 <p><span class="math display">\[X \rightarrow Bernoulli (p)\]</span>
-with an upper-tailed hypothesis contrast for <span class="math inline">\(p\)</span>:</p>
+with an upper-tailed hypothesis contrast for the null hypothesis <span class="math inline">\(p_0\)</span> is:</p>
 <ul>
-<li><span class="math inline">\(H_0: p \leq 0.9\)</span> (Not satisfactory)</li>
-<li><span class="math inline">\(H_1: p&gt; 0.9\)</span> (Satisfactory)</li>
+<li><span class="math inline">\(H_0: p \leq p_0=0.9\)</span> (Not satisfactory)</li>
+<li><span class="math inline">\(H_1: p&gt; p_0=0.9\)</span> (Satisfactory)</li>
 </ul>
 <p>Then if the null hypothesis is true <span class="math inline">\(\bar{X}\)</span> has</p>
 <ul>
-<li><p>mean <span class="math inline">\(E(\bar{X})=E(X)=p=0.9\)</span> (unbiased estimator of <span class="math inline">\(p\)</span>)<br />
-</p></li>
-<li><p>variance <span class="math inline">\(V(\bar{X})=\frac{V(X)}{n}=\frac{p(1-p)}{n}=0.00045\)</span> (consistent estimator of <span class="math inline">\(p\)</span>)</p></li>
-<li><p>The observed <span class="math inline">\(\bar{X}\)</span> was <span class="math inline">\(\bar{x}=188/200=0.94\)</span></p></li>
+<li><p>mean <span class="math inline">\(E(\bar{X})=E(X)=p_0=0.9\)</span></p></li>
+<li><p>variance <span class="math inline">\(V(\bar{X})=\frac{V(X)}{n}=\frac{p_0(1-p_0)}{n}=0.00045\)</span></p></li>
+<li><p>The observed <span class="math inline">\(\bar{X}\)</span> was <span class="math inline">\(\bar{x}=\hat{p}=188/200=0.94\)</span></p></li>
 </ul>
 <hr />
 <hr />
@@ -1085,8 +1084,8 @@ with an upper-tailed hypothesis contrast for <span class="math inline">\(p\)</sp
 <ul>
 <li>By the CLT, the <strong>standardized error</strong> from the null hypothesis</li>
 </ul>
-<p><span class="math display">\[Z=\frac{\bar{X}-E(\bar{X})}{\sqrt{V(\bar{X})}}= \frac{\bar{X}-p}{\big[\frac{p(1-p)}{n} \big]^{1/2}}\rightarrow N(0,1)\]</span>
-is a standard normal variable, when <span class="math inline">\(pn&gt;5\)</span> and <span class="math inline">\((p-1)n&gt;5\)</span>.</p>
+<p><span class="math display">\[Z=\frac{\bar{X}-E(\bar{X})}{\sqrt{V(\bar{X})}}= \frac{\bar{X}-p_0}{\big[\frac{p_0(1-p_0)}{n} \big]^{1/2}}\rightarrow N(0,1)\]</span>
+is a standard normal variable, when <span class="math inline">\(p_0n&gt;5\)</span> and <span class="math inline">\((1-p_0)n&gt;5\)</span>.</p>
 <hr />
 <hr />
 </div>
@@ -1106,7 +1105,7 @@ is a standard normal variable, when <span class="math inline">\(pn&gt;5\)</span>
 <div id="interval-estimation-for-proportions-7" class="section level2 hasAnchor" number="14.33">
 <h2><span class="header-section-number">14.33</span> Interval estimation for proportions<a href="hypothesis-testing.html#interval-estimation-for-proportions-7" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ol start="2" style="list-style-type: decimal">
-<li>For the upper tail <span class="math display">\[pvalue=1-\phi^{-1}(1.885618)=0.02967323\]</span></li>
+<li>For the upper tail <span class="math display">\[pvalue=1-\phi(1.885618)=0.02967323\]</span></li>
 </ol>
 <p>R: <code>1-pnorm(1.885618)</code></p>
 <p>is lower than <span class="math inline">\(\alpha=0.05\)</span></p>
@@ -1202,10 +1201,10 @@ is a standard normal variable, when <span class="math inline">\(pn&gt;5\)</span>
 <p><span class="math display">\[w_{obs}=\frac{19 (0.8462188)^2}{0.60^2}=37.79344\]</span></p>
 <p>That falls outside the acceptance region (inside the rejection zone)</p>
 <ol start="2" style="list-style-type: decimal">
-<li>For the upper tail <span class="math display">\[pvalue=1-F_{\chi,19}^{-1}(37.79344)= 0.006\]</span></li>
+<li>For the upper tail <span class="math display">\[pvalue=1-F_{\chi^2,19}(37.79344)= 0.006\]</span></li>
 </ol>
 <p>R: <code>1-pchisq(37.79344, 19)</code></p>
-<p>is lower than <span class="math inline">\(\alpha=0.05\)</span></p>
+<p>is lower than <span class="math inline">\(\alpha=0.01\)</span></p>
 <p>Therefore we need to conclude that yes! the process is out of control.</p>
 <hr />
 <hr />
@@ -1213,7 +1212,7 @@ is a standard normal variable, when <span class="math inline">\(pn&gt;5\)</span>
 <div id="chi2-statistic-3" class="section level2 hasAnchor" number="14.42">
 <h2><span class="header-section-number">14.42</span> <span class="math inline">\(\chi^2\)</span>-statistic<a href="hypothesis-testing.html#chi2-statistic-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>in R: <code>library(EnvStats);
-varTest(thickness, sigma.squared = 0.6^2, alternative = “greater”) </code></p>
+varTest(thickness, sigma.squared = 0.6^2, alternative = “greater,” conf.level = 0.99) </code></p>
 <p><img src="_main_files/figure-html/unnamed-chunk-117-1.png" width="672" /></p>
 <hr />
 <hr />

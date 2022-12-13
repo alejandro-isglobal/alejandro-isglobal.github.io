@@ -24,7 +24,7 @@
 <meta name="author" content="Alejandro Caceres" />
 
 
-<meta name="date" content="2022-12-11" />
+<meta name="date" content="2022-12-13" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -1064,16 +1064,16 @@ que también se conoce como la relación <strong>señal</strong> a <strong>ruido
 <div id="estimación-de-intervalos-para-proporciones" class="section level2 hasAnchor" number="14.30">
 <h2><span class="header-section-number">14.30</span> Estimación de intervalos para proporciones<a href="prueba-de-hipótesis.html#estimación-de-intervalos-para-proporciones" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Suponemos que la distribución de un experimento aleatorio es</p>
-<p><span class="math display">\[X \rightarrow Bernoulli (pag)\]</span>
-con un contraste de hipótesis de cola superior para <span class="math inline">\(p\)</span>:</p>
+<p><span class="math display">\[X \rightarrow Bernoulli(p)\]</span>
+con un contraste de hipótesis de cola superior para <span class="math inline">\(p_0\)</span>:</p>
 <ul>
-<li><span class="math inline">\(H_0: p \leq 0.9\)</span> (No satisfactorio)</li>
-<li><span class="math inline">\(H_1: p&gt; 0.9\)</span> (Satisfactorio)</li>
+<li><span class="math inline">\(H_0: p \leq p_0=0.9\)</span> (No satisfactorio)</li>
+<li><span class="math inline">\(H_1: p&gt; p_0=0.9\)</span> (Satisfactorio)</li>
 </ul>
 <p>Entonces si la hipótesis nula es verdadera <span class="math inline">\(\bar{X}\)</span> tiene</p>
 <ul>
-<li><p>media <span class="math inline">\(E(\bar{X})=E(X)=p=0.9\)</span> (estimador insesgado de <span class="math inline">\(p\)</span>)</p></li>
-<li><p>varianza <span class="math inline">\(V(\bar{X})=\frac{V(X)}{n}=\frac{p(1-p)}{n}=0.00045\)</span> (estimador consistente de <span class="math inline">\(p\)</span>)</p></li>
+<li><p>media <span class="math inline">\(E(\bar{X})=E(X)=p_0=0.9\)</span></p></li>
+<li><p>varianza <span class="math inline">\(V(\bar{X})=\frac{V(X)}{n}=\frac{p_0(1-p_0)}{n}=0.00045\)</span></p></li>
 <li><p>El <span class="math inline">\(\bar{X}\)</span> observado fue <span class="math inline">\(\bar{x}=188/200=0.94\)</span></p></li>
 </ul>
 <hr />
@@ -1084,8 +1084,8 @@ con un contraste de hipótesis de cola superior para <span class="math inline">\
 <ul>
 <li>Por el CLT, el <strong>error estandarizado</strong> de la hipótesis nula</li>
 </ul>
-<p><span class="math display">\[Z=\frac{\bar{X}-E(\bar{X})}{\sqrt{V(\bar{X})}}= \frac{\bar{X}-p}{\big[\frac{p(1-p)}{n} \big]^{1/2}}\rightarrow N(0,1)\]</span>
-es una variable normal estándar, cuando <span class="math inline">\(pn&gt;5\)</span> y <span class="math inline">\((p-1)n&gt;5\)</span>.</p>
+<p><span class="math display">\[Z=\frac{\bar{X}-E(\bar{X})}{\sqrt{V(\bar{X})}}= \frac{\bar{X}-p_0}{\big[\frac{p_0(1-p_0)}{n} \big]^{1/2}}\rightarrow N(0,1)\]</span>
+es una variable normal estándar, cuando <span class="math inline">\(p_0n&gt;5\)</span> y <span class="math inline">\((1-p_0)n&gt;5\)</span>.</p>
 <hr />
 <hr />
 </div>
@@ -1105,7 +1105,7 @@ y el error estandarizado observado de <span class="math inline">\(H_0\)</span> e
 <div id="estimación-de-intervalos-para-proporciones-3" class="section level2 hasAnchor" number="14.33">
 <h2><span class="header-section-number">14.33</span> Estimación de intervalos para proporciones<a href="prueba-de-hipótesis.html#estimación-de-intervalos-para-proporciones-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ol start="2" style="list-style-type: decimal">
-<li>Para la cola superior <span class="math display">\[pvalue=1-\phi^{-1}(1.885618)=0.02967323\]</span></li>
+<li>Para la cola superior <span class="math display">\[pvalue=1-\phi(1.885618)=0.02967323\]</span></li>
 </ol>
 <p>R: <code>1-pnorm(1.885618)</code></p>
 <p>es inferior a <span class="math inline">\(\alpha=0.05\)</span></p>
@@ -1156,8 +1156,8 @@ y el error estandarizado observado de <span class="math inline">\(H_0\)</span> e
 </div>
 <div id="prueba-de-varianzas-3" class="section level2 hasAnchor" number="14.38">
 <h2><span class="header-section-number">14.38</span> Prueba de varianzas<a href="prueba-de-hipótesis.html#prueba-de-varianzas-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><span class="math inline">\(S^2\)</span> es una estimación imparcial de <span class="math inline">\(\sigma^2\)</span>: <span class="math inline">\(E(S^2)=\sigma^2\)</span></p>
-<p>La <strong>proporción de error estandarizada</strong></p>
+<p><span class="math inline">\(S^2\)</span> es una estimación insesgada de <span class="math inline">\(\sigma^2\)</span>: <span class="math inline">\(E(S^2)=\sigma^2\)</span></p>
+<p>La <strong>ratio de error estandarizada</strong></p>
 <p><span class="math display">\[W=\frac{(n-1)S^2}{\sigma_0^2} \rightarrow \chi^2(n-1)\]</span></p>
 <p>Sigue una distribución <span class="math inline">\(\chi^2\)</span> con <span class="math inline">\(n-1\)</span> grados de libertad.</p>
 <hr />
@@ -1196,15 +1196,15 @@ y el error estandarizado observado de <span class="math inline">\(H_0\)</span> e
 <h2><span class="header-section-number">14.41</span> Prueba de varianzas<a href="prueba-de-hipótesis.html#prueba-de-varianzas-5" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>En este ejemplo, <strong>rechazamos</strong> <span class="math inline">\(H_0\)</span> debido a cualquiera de los siguientes contrastes equivalentes:</p>
 <ol style="list-style-type: decimal">
-<li>La <strong>proporción de error estandarizado</strong> observada es:</li>
+<li>La <strong>ratio de error estandarizado</strong> observada es:</li>
 </ol>
 <p><span class="math display">\[w_{obs}=\frac{19 (0,8462188)^2}{0,60^2}=37,79344\]</span></p>
 <p>Que cae fuera de la región de aceptación (dentro de la zona de rechazo)</p>
 <ol start="2" style="list-style-type: decimal">
-<li>Para la cola superior <span class="math display">\[pvalue=1-F_{\chi,19}^{-1}(37.79344)= 0.006\]</span></li>
+<li>Para la cola superior <span class="math display">\[pvalue=1-F_{\chi^2,19}(37.79344)= 0.006\]</span></li>
 </ol>
 <p>R: <code>1-pchisq(37.79344, 19)</code>
-es inferior a <span class="math inline">\(\alpha=0.05\)</span></p>
+es inferior a <span class="math inline">\(\alpha=0.01\)</span></p>
 <p>Por lo tanto, debemos concluir que ¡sí! el proceso está fuera de control.</p>
 <hr />
 <hr />
@@ -1212,7 +1212,7 @@ es inferior a <span class="math inline">\(\alpha=0.05\)</span></p>
 <div id="chi2-estadística-2" class="section level2 hasAnchor" number="14.42">
 <h2><span class="header-section-number">14.42</span> <span class="math inline">\(\chi^2\)</span>-estadística<a href="prueba-de-hipótesis.html#chi2-estadística-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>en R: <code>library(EnvStats);
-varTest(thickness, sigma.squared = 0.6^2, alternative = “greater”) </code></p>
+varTest(thickness, sigma.squared = 0.6^2, alternative = “greater,” conf.level = 0.99) </code></p>
 <p><img src="_main_files/figure-html/unnamed-chunk-119-1.png" width="672" /></p>
 <hr />
 <hr />

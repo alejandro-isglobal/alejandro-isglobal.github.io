@@ -67,7 +67,7 @@ Más allá de la estadística, el esfuerzo teórico de una actividad científica
 
 Tomemos una base de datos e interpretémosla en los términos que hemos hablado de experimentos aletorios, observaciones, resultados y frecuencias. En el [World Global Resource Institute](
 https://www.wri.org/publication/global-power-plant-database)
-se han recopilado datos sobre 299910 plantas eléctricas en 64 paises entre los años de 2014-2017. Entre las características que se observaron de cada planta se encuentran, entre otros, el país en donde fue instalada. su tipo (eólica, termoeéctrica, etc ) y su capacidad de producción (GWH). Cargamos los datos tal como han sido descargados
+se han recopilado datos sobre 299910 plantas eléctricas en 64 paises entre los años de 2014-2017. Entre las características que se observaron de cada planta se encuentran, entre otros, el país en donde fue instalada, su tipo (eólica, termoléctrica, etc ) y su capacidad de producción (GWH). Carguemos en R los datos tal como han sido descargados de la página web
 
 ```{r}
 global <- read.csv("./global_power_plant_database.csv")
@@ -100,21 +100,21 @@ Vemos que hay 5188 parques eólicos. Inspeccionemos los primeros 6 de ellos
 head(wind)
 ```
 
-Tenemos pues que cada línea representa un parque eólico, con un nombre, un país de procedencia y el tipo de de fuente eléctrica. Por ejemplo el parque eólico GENERAL ACHA procede de Argentina (ARG). Obtengamos el listado de los paises de cada partque eólico. Ilustramos los primeros 100 de ellos.  
+Cada línea representa un parque eólico, con un nombre, un país de procedencia y el tipo de de fuente eléctrica. Por ejemplo el parque eólico GENERAL ACHA procede de Argentina (ARG). Obtengamos el listado de los paises de cada parque eólico. Ilustremos los primeros 100 de ellos.  
 
 ```{r}
 country <- wind$country
 head(country, 100)
 ```
 
-Entendemos que la cada uno de estos elementos: el país al que pertenece un parque eólico, es una observación de un experimento aleatorio. El experimento consistió en escoger un parque eólico y registrar su país. Al repetir el experimento; es decir, cuando se escogío otro parque eólico, entonces su pais pudo ser otro. En el conjunto total de 5188 observaciones los paises cambiaron de valor. Si bien las observaciones son reportadas en orden alfabético, esto no quiere decir que las observaciones fueron realizadas en ese orden. Los resultados tampoco implican que el proceso de observación necesariamente es aleatorio. Es posible que los datos se hayan recogido de forma sistemática por países. El experimento aleatorio unicamente se refiere a que las observaciones toman diferentes resutados. Veamos los posibles resultados (paises) de estas observaciones    
+Entendemos que la cada uno de estos elementos: el país al que pertenece cada parque eólico, es una observación de un experimento aleatorio. El experimento consistió en escoger un parque eólico y registrar su país. Al repetir el experimento; es decir, cuando se escogío otro parque eólico, entonces su pais pudo ser otro. En el conjunto total de 5188 observaciones los paises cambiaron de valor. Si bien las observaciones son reportadas en orden alfabético, esto no quiere decir que las observaciones fueron realizadas en ese orden. Los resultados tampoco implican que el proceso de observación necesariamente es aleatorio. Es posible que los datos se hayan recogido de forma sistemática por países. El experimento aleatorio unicamente se refiere a que las observaciones (paises) toman diferentes resutados. Veamos los posibles resultados de estas observaciones    
 
 ```{r}
 results <- unique(country)
 results
 length(results)
 ```
-Hay un total de $m=58$ de resultados. Cuando repetimos un experimento aleatorio, hacemos el catálogo de los resultados y resumimos las observaciones **categóricas** contando cuántas veces vimos un resultado en particular. La observación de un país es una variable categórica ya que sólo puede tomar valores en el conjunto discreto de los resultados que hemos visto arriba. 
+Hay un total de $m=58$ de resultados. Cuando repetimos un experimento aleatorio, hacemos el catálogo de los resultados y resumimos las observaciones **categóricas** contando cuántas veces vimos un resultado en particular. La observación de un país es una variable categórica que tomar valores en el conjunto de los resultados que hemos visto arriba. 
 
 Tomemos $i$ como un número entero que indica uno de los resultados. Estamos interesados en contar el número de veces que observamos el resultado $i$. $n_i$ se denomina la frecuencia absoluta del resultado $i$ y se puede calcular como
 
@@ -125,12 +125,19 @@ En nuestro ejemplo, pensemos en ARG (Argentina) como el primer **resultado** pos
 
 ```{r}
 tb <- table(country)
-df <- data.frame(outcome=names(tb), frequency=as.vector(tb)) 
-rownames(df) <- paste0("n",1:length(tb))
+df <- data.frame(outcome=names(tb), ni=as.vector(tb)) 
+rownames(df) <- 1:length(tb)
 df
 ```
 
-Así vemos que 12 parques eólicos fueron observados en Argentina mientras que en Brasil fueron 412. También podemos resumir las observaciones calculando la **proporción** de las veces observamos un resultado en particular en relación al número total de observaciones. La frequencia relativa se define como 
+Así vemos que 12 parques eólicos fueron observados en Argentina mientras que en Brasil fueron 412. Podemos graficar $n_i$ con respecto a los resultados usando un **gráfico de barras**
+
+```{r}
+barplot(df$ni, names.arg=df$outcome, las=2, cex.names=0.5)
+```
+
+
+Las frecuencias se pueden expresar tambien como una **proporción** de las veces que observamos un resultado en particular en relación al número total de observaciones. Definimos frequencia relativas a un resultado $i$ como 
 
 $$f_i= \frac{n_i}{n}$$ 
 En nuestro ejemplo, la frecuencia relativa es la proporción de parques eólicos observada para cada país de un total de  $n= 5188$.
@@ -139,16 +146,16 @@ En nuestro ejemplo, la frecuencia relativa es la proporción de parques eólicos
 ```{r}
 tb2 <- prop.table(tb)
 df <- data.frame(outcome=names(tb), ni=as.vector(tb), fi=as.vector(tb2)) 
-rownames(df) <- paste0("n",1:length(tb))
+rownames(df) <- 1:length(tb)
 df
 ```
 
-La tabla de frecuencias es una tabla sobre los resultados de las observaciones, así pues una línea en la tabla como 
+La tabla de frecuencias es una tabla sobre los resultados de las observaciones, así pues la línea 7 de la tabla  
 
 ```{r, echo=FALSE}
-df[4,]
+df[7,]
 ```
-Da la frecuencia del **resultado** BRA (o número de parques eólicos en Brasil). Recordemos, por contraste, que las **observaciones** son líneas en la base de daros original y por ejemplo
+Da el número de observaciones para el **resultado** BRA ($n_7=412$) y su proporcion respecto al total ($f_7=7\%$). Recordemos, por contraste, que las **observaciones** son líneas en la base de datos original y por ejemplo
 
 ```{r, echo=FALSE}
 wind[150,]
@@ -165,7 +172,9 @@ $$\sum_{i= 1}^m f_i= 1$$
 
 donde $m$ es la cantidad total de posibles resultados observados en los datos, que para los parques eólicos es $m=58$. 
 
-La frecuencia relativa $f_i$ es una cantidad fundamental. $f_i$ es una medida relativa a los otros resultados y claramente indica que si al repetir el experimento aleatorio muchas veces, el resultado $i$ tiene una frecuencia alta, entonces, es eperable que la propensidad de ser observado en una futura repetición sea alta. Este no es el caso de la frecuencia absoluta $n_i$, que no es una frecuencia relativa a los otros resultados. El número $n_i$ puede parecer grande por el simple hecho de haber repetido el experimento muchísimas veces y no nos dice nada sobre su medida relativa a otras observaciones. Al dividir $n_i$ por $n$, creamos una medida relativa a la unidad $n$, por lo que ponemos a todos los $n_i$ en el mismo rango, de $0$ a $1$, y los podemos comparar; inclusive para para diferentes valores de $n$. Entenderemos las frecuencias relativas $f_i$ como observaciones propias del proceso que está detrás de la generación a un dato cualquiera. Nuestro esfuerzo estará en los siguientes capítulos en caracetirizarlas por medio de cantidades propias del proceso como son las probabilidades o en un número mas reducido como son los parámetros.  
+La frecuencia relativa $f_i$ es una cantidad fundamental. $f_i$ es una medida relativa a los otros resultados y claramente indica que si al repetir el experimento aleatorio muchas veces, el resultado $i$ tiene una frecuencia alta, entonces, es esperable que la propensidad de ser observado en una futura repetición sea alta. Este no es el caso de la frecuencia absoluta $n_i$. El número $n_i$ puede ser grande por el simple hecho de haber repetido el experimento muchísimas veces y no nos dice nada sobre valor respecto a las otras observaciones. Al dividir por $n$, ponemos a todas las $n_i$ en el mismo rango ($0,1$) para poderlas comparar; inclusive para para diferentes valores de $n$. 
+
+Entenderemos las frecuencias relativas $f_i$ como observaciones propias del proceso que está detrás de la generación a un dato cualquiera. Nuestro esfuerzo estará en los siguientes capítulos en caracetirizarlas por medio de cantidades propias del proceso como son las probabilidades o en un número mas reducido como son los parámetros.  
 
 Podemos visualizar las frecuencias relativas con un **gráfico de sectores**, donde el área del círculo representa el 100% de las observaciones (proporción= 1) y las secciones del círculo representan las frecuencias relativas de cada uno de los resultados.
 
@@ -173,100 +182,50 @@ Podemos visualizar las frecuencias relativas con un **gráfico de sectores**, do
 pie(tb)
 ```
 
-Es gráfico de sectores es importante para visualizar cuales son, por ejemplo, los resultados con las frecuencias relativas mas altas. Vemos rápidamente como USA, GBR, FRA, CHN, BRA y ESP son los países con mas parques eólicos. 
+El gráfico de sectores es importante para visualizar cuales son, por ejemplo, los resultados con las frecuencias relativas mas altas. Vemos rápidamente como USA, GBR, FRA, CHN, BRA y ESP son los países con mas parques eólicos, sin tener que recurrir a la tabla.
+
 
 ### Descripción de datos categóricos ordenados
 
-Los países no tienen un orden intrínseco con respecto a los resultados. Sin embargo, a veces las variables **categóricas** se pueden **ordenar**, por ejemplo como las medidad temporales (días, meses, años). Seleccionemos de nustra base de tados el año en el cual se tomaron los datos de los parques eólicos
+Los países no tienen un orden intrínseco con respecto a los resultados. Sin embargo, a veces las variables **categóricas** se pueden **ordenar**, por ejemplo como las medidad temporales o la severidad de una enfermedad.
 
 
-```{r}
-#seleccionamos las características de interés
-selvars <- c("name", "country", "year_of_capacity_data")
+La misofonía es un desorden de ansiedad desencadenado por sonidos específicos. En un estudio de misofonía se estudiaron las características de 123 pacientes. Su nivel de ansiedad se clasificó en 4 grupos diferentes de acuerdo al test AMISO.  
 
-#base de datos reducida a parques eólicos
-wind <- global[selwind, selvars]
 
-head(wind)
+Los resultados del diagnóstico de los pacientes por severidad fueron
+
+```{r, echo=FALSE}
+data <- read.delim("./miso.txt")
+data$Misofonia.dic
 ```
 
-Podemos extraer las observaciones de los años, y vemos como hubo casos en que no se recogieron estos datos (NA)
+La tabla de frecuencias del estudio para la severidad es
 
+```{r, echo=FALSE}
+tb <- table(data$Misofonia.dic)
+tb2 <- data.frame(outcome =0:4, ni=as.vector(tb) , fi=as.vector(prop.table(tb)))
+tb2
 
-```{r}
-year <- wind$year_of_capacity_data
-head(year, 50)
-```
-
-Podemos seleccionar los casos observados (1783) 
-
-```{r}
-sel <- complete.cases(year)
-year <- year[sel]
-head(year, 50)
-length(year)
-```
-
-Y hacer una tabla de frecuencias para estas obsevaciones, para ver en qué año se recopilaron los datos de los parques eólicos (frecuencia absoluta) y la proporción de resultados para cada año (frecuencia relativa).
-
-
-```{r}
-#frecuencias absolutas
-tb <- table(year)
-
-#frecuencias relativas
-tb2 <- prop.table(tb)
-df <- data.frame(outcome=names(tb), 
-                 ni=as.vector(tb), 
-                 fi=as.vector(tb2)) 
-
-rownames(df) <- paste0("n",1:length(tb))
-df
 ```
 
 
-El gráfico de barras nos permite, por ejemplo, visualizar los valores de las frecuencias relativas para cada uno de los resultados
 
+La severidad $0$ se refiere a no tener misofonía y la $4$ al grado más alto de ansiedad. La misofonía es por lo tanto una variable **categorica** y **ordenada**.
 
-```{r}
-barplot(df$fi, names.arg = df$outcome, ylab=expression("f"[i]))
-```
+Cuando los resultados se pueden ordenar es útil preguntarnos por el número de observaciones hasta un resultado en concreto. Definimos la frecuencia absoluta acumulada hasta el resultado $i$ como
 
-Cuando se pueden ordenar los resultados, es útil preguntar cuántos resultados se observaron hasta un valor dado; llamamos a este número la frecuencia absoluta acumulada hasta el resultado $i$:
-
-$$N_i= \sum_{k= 1}^i n_k$$
-
-
-
-```{r}
-df <- data.frame(outcome=names(tb), ni=as.vector(tb), fi=as.vector(tb2), Ni= cumsum(as.vector(tb))) 
-df
-```
-
-Así pues podemos decir que 285 parques eólicos fueron observados antes de 2016, o 1774 antes de 2017. Evidentemente cuando $i=m$ entonces $N_m=n$ es el número total de observaciones, que son 1783, que es el total de parque eólicos para los que se recogieron los años en que se hizo su registro. 
-
-$n_i$ y $N_i$ son cantidades equivalentes. La primera nos da el número de observaciones para un resultado, la segunda hasta un resultado. Asi puúes podemos la segunda de la primera, mediante su definición, y la primera de la segunda de acuerdo a
+$$N_i=\sum_{k=1..i} n_k$$
+$n_i$ es equivalente a $N_i$ ya que se puede derivar de: 
 
 $$n_i = N_{i}-N_{i-1}$$
+si tenemos en cuenta que  $N_{i+1}-N_{i}=\sum_{k= 1}^{i} n_k - \sum_{k= 1}^{i-1} n_k=n_i$
 
-ya que $N_{i+1}-N_{i}=\sum_{k= 1}^{i} n_k - \sum_{k= 1}^{i-1} n_k=n_i$
+Así mismo, definimos la proporción de observaciones hasta el resultado $i$ por medio de la frecuencia relativa acumulada
 
-La frecuencia relativa acumulada hasta el resultado $i$, $F_i$, mide la freuencia de datos hasta ese resultado está definida como la suma parcial de las frecuencias relativas hasta $i$
+$$F_i=\sum_{k=1..i} f_k$$
 
-$$F_i= \sum_{k= 1}^i f_k$$
-
-```{r}
-df <- data.frame(outcome=names(tb), 
-                 ni=as.vector(tb), 
-                 fi=as.vector(tb2), 
-                 Ni= cumsum(as.vector(tb)), 
-                 Fi=cumsum(as.vector(tb2))) 
-
-rownames(df) <- paste0("n",1:length(tb))
-df
-```
-
-Así, por ejemplo, podemos decir que hasta 2017 se recogieron el 97.8% de los datos relacionados con el año de registro de los parques eólicos. $F_i$ toma valores de $0$ a $1$, pues definimos
+$F_i$ toma valores de $0$ a $1$, pues definimos
 
 $$F_0=0$$ 
 o $F_j=0$ para $j<1$, y tenemos
@@ -277,48 +236,58 @@ La frecuencia relativa acumulada y la frecuencia relativa son cantidades equival
 
 $$f_i=F_{i}-F_{i-1}$$
 
-$F_i$ es una cantidad interesante porque permite definir frecuencias acumuladas en resultados intermedios no observados. Si $x$ es una cantidad continua tal que $x=x_k$ coincide con los resultados discretos observados, nos podemos preguntas por la frecuencia acumulada cuando $x$ es un punto intermedio $x \in [x_k, x_{k+1})$ definiendo 
 
-$$F(x) = F_k$$ para $x_k \leq x<x_{k+1}$
+```{r}
+df <- data.frame(tb2, 
+                 Ni= cumsum(as.vector(tb2$ni)), 
+                 Fi=cumsum(as.vector(tb2$fi))) 
 
-Asi tememos que la proporción de parques eólicos observados hasta $2016.5$ es la proporción hasta $2016$, siendo que $2016.5$ no es un resultado observado. Teniendo estos puntos en cuenta podemos graficar $F_i$ con respecto a los resultados, e ilustrar su valor en $2016.5$ 
+rownames(df) <- 1:length(tb)
+df
+```
+
+Vemos que el **67%** de los pacientes tienen como mucho misofonia de grado **2**, mientras que **37%** de los pacientes tienen sevridad menor o igual a **1**.
+
+
+$F_i$ es una cantidad interesante porque permite definir frecuencias acumuladas en resultados intermedios no observados. Si $x$ es una cantidad continua tal que $x=x_k$ coincide con los resultados discretos observados, nos podemos preguntar por la frecuencia acumulada cuando $x$ es un punto intermedio $x \in [x_k, x_{k+1})$ definiendo 
+
+$$F(x) = F_k$$ para $x_k \leq x<x_{k+1}$.
+
+Asi tememos que la proporción de severidad de misofonía hasta una gravedad de $2.5$ es la proporción hasta gravedad $2$, siendo que $2.5$ no es un resultado observado. 
+
+Podemos graficar $F(x)$ con respecto a los resultados, e ilustrar su valor en $2.5$ 
 
 
 ```{r}
-plot(c(2014, df$outcome, 2019), 
-     c(0,df$Fi,1), 
-     type="s", col="red", 
-     ylab=expression("F"[i]), xla="outcomes")
+plot(0:4, df$Fi, type="s", col="red", ylab="F", xlab="Severity")
 
 points(df$outcome, c(0,df$Fi[-4]), col="red", bg="white", pch=21)
-points(2016.5, df["n2","Fi"], col="red", pch=19)
+points(2.5, df[3,"Fi"], col="red", pch=19)
 
-legend("topleft", legend="Valor de Fi en 2016.5", pch=19, col="red")
+legend("topleft", legend="Valor de F en 2.5", pch=19, col="red")
 ```
 
 
 ### Descripción de datos continuos
 
 
-El resultado de un experimento aleatorio también puede dar resultados **continuos**, como la capacidad en MW de los parques eólicos observados
-
-
-```{r}
-#seleccionamos las características de interés
-selvars <- c("name", "country", "capacity_mw")
-
-#base de datos reducida a parques eólicos
-wind <- global[selwind, selvars]
-
-head(wind)
-```
-Podemos otra vez considerar que hemos repetido un experimento aleatorio 5188 veces, en donde cada vez obtenemos un valor continuo diferente, y que correnden a la capacidad de producción de cada una de las plantas.  
+El resultado de un experimento aleatorio también puede dar resultados **continuos**. En la universidad de Maryland el grupo CALCE hace experimentos sobre la capacidad de carga de baterías de litio. Los datos de sus experimentos se pueden [descargar]( https://web.calce.umd.edu/batteries/data.htm). 
 
 ```{r}
-capacity <- wind$capacity
-head(capacity, 50)
-length(capacity)
+batery <- read.csv("PLN_Number_SOC_Temp_StoragePeriod.csv")
+head(batery)
 ```
+
+La capacity de descarga (en
+miliamperios-hora) fue medida en 150 baterías. La variable $X$ denota si la betería no estaba en buen estado. Veamos la capacidad de descarga quitando las baterias en mal estado
+
+```{r}
+sel <- batery$X !="bad"
+capacity <- batery$Discharge.Capacity[sel]
+capacity
+```
+
+Consideraremos ahora que hemos repetido un experimento aleatorio 135 veces, en donde cada vez obtenemos un valor continuo diferente, y que correnden a la capacidad de descarga de cada batería.
 
 Para describir estas observaciones, primero nos preguntamos por el rango que pueden que pueden tomar estos valores. Obstenemos así el máximo y el mínimo.
 
@@ -330,25 +299,18 @@ max <- max(capacity)
 max
 ```
 
-Vamos que la capacidad de los parques eólicos oscilan entre (1MW, 600MW). Por simplicidad, describiremos por el momento sólo 4979 parques eólicos, aquellos que producen menos de 200MW
-
-```{r}
-sel <- capacity<=200
-capacity <- capacity[sel]
-length(capacity)
-```
-
-Como los resultados continuos no se pueden contar entonces primero cubrimos el rango de los resultados con pequeños intervalos regulares, todos del mismo tamaño (subintervalos). Los puntos de corte son:
+Vemos que la capacidad de descarga oscila entre (1.52,1. 59). Como los resultados continuos no se pueden contar entonces primero cubrimos el rango de los resultados con pequeños intervalos regulares, todos del mismo tamaño (subintervalos). Los puntos de corte son:
 
 
 ```{r}
-br <- seq(0,200,length=9)
-br
+br <- seq(mn,max,length=9)
+round(br, 3)
 ```
-Con estos puntos de corte, creamos una serie de resultados **categóricos ordenados**, que corresponden a 8 posibles resultados que son los intervalos entre los puntos de corte. Así el intervalo [0,25] es un resultado posible del experimento aleatorio que indicaría que una observación continua cae dentro de este subintervalo.  Así pues a la lista de observaiciones:
+Con estos puntos de corte, creamos una serie de resultados **categóricos ordenados**. Cortamos el intervalo en 8 posibles subintervalos donde los resultados continuos se pueden encontrar. Por ejemplo a las primeras observaciones continuas
 
-```{r, eval=FALSE}
-obs <- c(16.56, 1.80, 2.02, 25.20, 25.20, 6.30)
+```{r}
+obs <- head(capacity)
+obs
 ```
 
 les asignamos las observaciones intervalares:
@@ -356,14 +318,14 @@ les asignamos las observaciones intervalares:
 ```{r, eval=FALSE}
 cut(obs, br, include.lowest=TRUE)
 ```
-Es decir que la primer observación esta entre [0,25], mientras que la cuarta está entre (25, 50]. Todos los datos de capacidad eléctrica de los parques eólicos se verán como
+Es decir que la primer observación esta entre (1.567,1.575], mientras que la cuarta está entre (1.56,1.567]. Estos datos de capacidad de descarga tomaran valores intervalares
 
 ```{r, echo=FALSE}
 dfbin <- data.frame(capacity, "bined.capacity"=cut(capacity, br, include.lowest=TRUE))
 
 head(dfbin)
 ```
-Para la nueva observación intervalar podemos calcular las frecuancias absolutas y relativas como antes
+Para las observaciones intervalares podemos calcular las frecuancias absolutas y relativas como antes
 
 ```{r}
 tb <- table(dfbin$bined.capacity)
@@ -375,7 +337,7 @@ df <- data.frame(outcome=names(tb),
                  Ni= cumsum(as.vector(tb)), 
                  Fi=cumsum(as.vector(tb2))) 
 
-rownames(df) <- paste0("n",1:length(tb))
+rownames(df) <- 1:length(tb)
 df
 ```
 La visualización de $n_i$ o $f_i$ para cada uno de los resultados intervalares es un **histograma**. Este es un gráfico de barras para las resultados continuos categorizados en intervalos
@@ -384,10 +346,7 @@ La visualización de $n_i$ o $f_i$ para cada uno de los resultados intervalares 
 h <- hist(capacity, xlab="Capacity (outcome)", ylab="ni", breaks = br)
 ```
 
-El histograma depende del tamaño de la partición del rango de las observaciones continuas. Al hacer la partición mas fina de 50 subintervalos vemos por ejemplo que los parques eólicos con 50MW son los más frecuentes. Así pues, diferentes visualizaciones de los datos revelan diferentes propiedades de las observaciones. En el histograma mas fino vemos por ejemplo que las los parques eólicos de produccion 50MW están sobre representados. Esto puede ser porque hay un empresa muy exitosa que los construye o que en el proceso de recolección de los datos se les prestó mas atención a estos. Tratar de discernir este tipo de situaciónes es uno de los objetivos de la inferencia estadística. 
-
-
-
+El histograma depende del tamaño de la partición del rango de las observaciones continuas. Al hacer la partición mas fina de 50 subintervalos vemos por ejemplo que hay cuatro descargas frequentes, en vex de una sola. Así pues, diferentes visualizaciones de los datos revelan diferentes propiedades de las observaciones. Tratar de discernir este tipo de situaciónes es uno de los objetivos de la inferencia estadística. 
 
 ```{r}
 hist(capacity, xlab="Capacity (outcome)", ylab="ni", br=50)
@@ -398,16 +357,16 @@ También podemos graficar la frecuencia acumulada con respecto a los resultados 
 ```{r}
 plot(h$breaks, c(0,df$Fi), 
      type="s", col="red", 
-     ylab=expression("F"[i]), 
-     xla="outcomes")
+     ylab="F", 
+     xla="Capacity")
 ```
 
+Esta $F(x)$ de resutados intervalares está definida para todos los valores continuos en el rango de las observaciones. Sin embargo, los saltos discontinuos dependen del tamaño de los intervalos. 
 
-
-Esta $F_i$ de resutados intervalares está definida para todos los valores continuos en el rango de las observaciones. Sin embargo, los saltos discontinuos dependen del tamaño de los intervalos. Podemos tener la varsión de mayor resolución para la frecuencia acumulada si la calculamos la partir de las observaciones y no de los resultados. Asignamos pues un índice $j$ a cada una de las observaciones oredenando sus valores $x_j$ de menor a mayor. Imaginemos que $x$ un número no observado pero en el rango de las observaciones, de tal forma que está entre la observaciónes número $k$ y $k+1$: $x \in [x_k, x_{k+1})$, entonces escibimos 
+Podemos tener la versión de mayor resolución para $F(x)$ si la calculamos a partir de las observaciones y no de los resultados. Asignemos un índice $j$ a cada una de las observaciones oredenando sus valores $x_j$ de menor a mayor ($x_1  <... x_j < x_{j+1} < x_n$). Si $x$ es un número que está entre dos observaciones $k$ y $k+1$ su frecuencia acumulada es  
 
 $$F(x) = \sum_{j \leq k} f_j$$
-cuando $x_k \leq x <x_{k+1}$, donde sumamos **observaciones** y no resultados. Como la frecuencia relativa de la obsevación  $j$ en un total de $n$ es $\frac{1}{n}$, tenemos 
+donde sumamos la frecuencia de cada una de las **observaciones** y no de los resultados. Como la frecuencia relativa de la obsevación  $j$ de un total de $n$ es $\frac{1}{n}$, tenemos 
 
 $$F(x)=\sum_{j \leq k} \frac{1}{n} = \frac{k}{n}$$.  
 
@@ -423,7 +382,7 @@ sorted_capacity <- sort(capacity)
 plot(sorted_capacity, Fx, type="l", col="red")
 ```
 
-Vemos que $F(X)$ es una cantidad interesante porque no depende de los intervalos sino de de las observaciones y además se puede definir para resultados continuos posibles pero no observados. $F(x)$ se conoce como **función de distribución** de frecuencias. El gráfico de $F_x$ nos permite ver un salto discontinuo al rededor de $50$, coincidiendo con el máximo del histograma de mayor resolución. También nos permite ver otros saltos discontinuos menores al rededor de 30 y 100. En un análisis estadístico nos podemos preguntar, por ejemplo, si estos saltos coinciden con algún pais o a un año en particular.   
+Vemos que $F(X)$ es una cantidad interesante porque no depende de los intervalos sino de de las observaciones y además se puede definir para resultados continuos posibles pero no observados. $F(x)$ se conoce como **función de distribución** de frecuencias. El gráfico de $F(x)$ nos permite ver un salto discontinuo al rededor de $1.564$, coincidiendo con el máximo del histograma de menor resolución.   
 
 
 ### Estadísticos descriptivos
@@ -436,22 +395,22 @@ $$\bar{x}= \frac{1}{n} \sum_{j= 1}^n x_j$$
 
 donde $x_j$ es la **observación** $j$ de un total de $n$. Este valor es una suma ponderada que le da una carga de $\frac{1}{n}$ a cada observación. Por lo tanto $\bar{x}$ es una medida del centro de gravedad de las observaciones. 
 
-Por ejemplo, la capacidad media de los parques eólicos está dada por
+Por ejemplo, la capacidad de descarga media de las baterías está dada por
 
 $\bar{c}= \frac{1}{n}\sum_j c_j$
-$= \frac{1}{n}(1.00 + 16.56 + 1.80 + 2.02 + 25.20 + 25.20 + ...)$
-$= 37.16561$
+$= \frac{1}{n}(1.568073 + 1.557777 +1.571983 +1.563704 1.576870 +1.562722+ ...)$
+$= 1.56$
 
 ```{r}
 head(capacity)
 mean(capacity)
 ```
 
-Para variables categoricas ordenadas podemos usar la tabla de frecuencias para calcular el promedio
+Para variables categoricas ordenadas podemos usar la tabla de frecuencias para calcular el promedio, miremos el caso de los grados de misofonía
 
 ```{r}
 #frecuencias absolutas
-tb <- table(year)
+tb <- table(data$Misofonia.dic)
 
 #frecuencias relativas
 tb2 <- prop.table(tb)
@@ -459,39 +418,50 @@ df <- data.frame(outcome=names(tb),
                  ni=as.vector(tb), 
                  fi=as.vector(tb2)) 
 
-rownames(df) <- paste0("n",1:length(tb))
+rownames(df) <- 1:length(tb)
 df
 ```
 
-El promedio anual de los datos de los parques eólicos **también** se puede calcular a partir de las frecuencias relativas 
-
-$\bar{y}=\frac{1}{n}\sum_{j=1}^ny_j$
-
-$=\frac{1}{n}\sum_{i=1}^m y_i n_{i}$
-
-$=\sum_{i=1}^m y_i f_{i}$
-
-$=2015f_{1}+2016f_{2}+2017f_{3}+2018f_{4}$
-
-$=2016.85$
-
-En donde pasamos de sumar las observaciones a sumar los resultados en la segunda línea. Así pues, en términos de los **resultados** que pueden tomar las variables categóricas el **promedio** se puede escribir como
+El promedio de gravedad **también** se puede calcular a partir de las frecuencias relativas como  
 
 $$\bar{x}= \sum_{i = 1}^m x_i f_i$$
-de un total de $m$ posibles resultados categíricos ordenados. Vemos que esta expresión para $\bar{x}$ es la versión usual del centro de gravedad de los resultados, como si cada resultado tuviera una densidad de masa $f_i$.
+de un total de $m$ posibles resultados categóricos ordenados. Vemos que esta expresión para $\bar{x}$ es la versión usual del centro de gravedad de los resultados, como si cada resultado tuviera una densidad de masa $f_i$.
 
-EL promedio no es el resultado de una observación del experimento aletorio sino el resultado de una serie de observaciones. Describe el número en el que se equilibran los valores observados. Es por esto que es posible tener un valor del promedio que no ha sido observado, por ejemplo el año $2016.85$.
 
+```{r}
+mean(data$Misofonia.dic)
+sum(as.numeric(df$outcome)*df$fi)
+```
+
+Estas dos versiones del promedio son equivalentes pues
+
+$\bar{x}=\frac{1}{n}\sum_{j=1}^nx_j$
+
+$=\frac{1}{n}\sum_{i=1}^m x_i n_{i}$
+
+$=\sum_{i=1}^m x_i f_{i}$
+
+$=0^*f_{1}+1*f_{2}+2*f_{3}+3*f_{4}+3*f_{4}$
+
+$=1.691057$
+
+
+En donde pasamos de sumar las observaciones a sumar los resultados en la segunda línea. 
+
+
+El promedio no es el resultado de una observación del experimento aletorio sino el resultado de una serie de observaciones. Describe el número en el que se equilibran los valores observados. Es por esto que es posible tener un valor del promedio que no ha sido observado, por ejemplo el año $1.691057$.
+
+Miremos el promedio de la capacidad de descarga de las baterías junto con su histograma
 
 ```{r}
 h <- hist(capacity, 
           xlab="Capacity", 
-          ylab="fi", freq=FALSE, 
+          ylab="ni", 
           main="", br=50)
 
 mn <- mean(capacity)
 
-lines(c(mn, mn), c(0,1), lty=2)
+lines(c(mn, mn), c(0,40), lty=2, lwd=2)
 
 legend("topright", "Mean", lty=2)
 
@@ -502,41 +472,59 @@ Otra medida de centralidad es la mediana. La mediana $x_{0.5}$ es el valor de $x
 
 $$\sum_{x\leq x_{0.5}} 1 = \frac{n}{2}$$
 
-o en términos de $F_(x)$
+o en términos de $F(x)$
 
 $$F(x_{0.5})=\sum_{j \leq n/2} \frac{1}{n} = \frac{1}{2}$$
 
-por lo tanto la mediana es el valor $x_{0.5}$ que hace que la frecuencia acumulada $F$ sea igual a $1/2$. Potr lo tanto el promedio, también llamado la media mestral, da el centro de masa mientras que ma mediana da la mitad de la masa.
+Por lo tanto la mediana es el valor $x_{0.5}$ que hace que la frecuencia acumulada $F(x)$ sea igual a $1/2$. La mediana da el punto que divide la masa de probabilidad en 2. Cuando los datos son simétricos al rededor de la probabilidad, entonces la media y el promedio coinciden
 
 
 ```{r}
 h <- hist(capacity, 
           xlab="Capacity", 
-          ylab="fi", freq=FALSE, 
+          ylab="ni", 
           main="", br=50)
 
 mn <- mean(capacity)
-lines(c(mn, mn), c(0,1), lty=2)
+lines(c(mn, mn), c(0,6), lty=2, lwd=2)
 points(mn,0, pch=2)
 
-mn <- median(capacity)
-lines(c(mn, mn), c(0,100000), lty=2, col="red")
-points(mn,0, pch=2, col="red")
+md <- median(capacity)
+lines(c(md, md), c(0,6), lty=2, col="red", lwd=2)
+points(md,0, pch=2, col="red")
 
 legend("topright", c("Mean", "Median") , lty=2, col=c("black", "red"))
 ```
 
+Si miramos los datos originales de la capacidad de descarga, inlcuyendo las beterias defectuosas vemos que el promedio y la mediana no coinciden. El promedio cambia sustancialemente al incluir los datos defectuosos, mientras que la mediana no. Decimos entonces que la mediana es mas robusta a datos atípicos 
 
-Otra medida importante de los resultados es su **dispersión**. Muchos experimentos pueden compartir su media, pero difieren en la dispersión de los valores. Imaginemos que queremos medir con precisión la posición de un a estrella en el cielo. Debido a el aparato de medida o condiciones atmosféricas esta nuestras mediciones cambian y nuestro experimento es aleatorio. Si creemos que el promedio es el valor mas verosimil para la posición de la estrella, la dispersión de las observaciones al rededor del la media mos da una medida del error. 
+```{r}
+h <- hist(batery$Discharge.Capacity, 
+          xlab="Capacity", 
+          ylab="ni", 
+          main="", br=50)
+
+mn <- mean(batery$Discharge.Capacity)
+lines(c(mn, mn), c(0,20), lty=2, lwd=2)
+points(mn,0, pch=2)
+
+md <- median(batery$Discharge.Capacity)
+lines(c(md, md), c(0,20), lty=2, col="red", lwd=2)
+points(md,0, pch=2, col="red")
+
+legend("topright", c("Mean", "Median") , lty=2, col=c("black", "red"))
+```
+
+Otra medida importante de los resultados es su **dispersión**. Muchos experimentos pueden compartir su media, pero difieren en la dispersión de los valores. Imaginemos que queremos medir con precisión la posición de un a estrella en el cielo. Debido al aparato de medida o condiciones atmosféricas nuestras mediciones cambian y nuestro experimento es aleatorio. Si creemos que el promedio es el valor mas verosimil para la posición de la estrella, la dispersión de las observaciones al rededor de la media nos da una medida del error. 
 
 
 ```{r, echo=FALSE}
 par(mfrow=c(1,2))
-hist(rnorm(100, 100, 7.5), xlab="outcome", ylab="fi", br=seq(2.5,202.5,5), main="", freq=FALSE)
+hist(rnorm(100, 100, 7.5), xlab="outcome", ylab="ni", br=seq(2.5,202.5,5), main="")
 lines(c(100, 100), c(0,1000), lty=2, col="red")
 points(100,0, pch=2, col="red")
 
-hist(rnorm(100, 100, 20), xlab="outcome", ylab="fi", br=seq(2.5,202.5,5), main="", freq=FALSE)
+hist(rnorm(100, 100, 20), xlab="outcome", ylab="ni", br=seq(2.5,202.5,5), main="")
 lines(c(100, 100), c(0,1000), lty=2, col="red")
 points(100,0, pch=2, col="red")
 ```
@@ -545,15 +533,15 @@ points(100,0, pch=2, col="red")
 La dispersión sobre la media se puede medir con la varianza muestral
 
 $$s^2=\frac{1}{n-1} \sum_{j=1}^n (x_j-\bar{x})^2$$
-que mide la distancia cuadrada promedio de las **observaciones** al promedio. La razón de dividir por $n-1$ y no por $n$ se explicará cuando hablemos de la inferencia de la media como un parametro de un modelo, que llamaremos $\mu$, y que surge de medir las desviaciones no a este parámetro sino al promedio $\bar{x}$. Para **categóricas** observadas podemos escriber $s^2$ en términos de los resultados y las frecuencias relativas
+que da la distancia cuadrada promedio de las **observaciones** al promedio. La razón de dividir por $n-1$ y no por $n$ se explicará cuando hablemos del promedio como una herramienta para inferir la verdadera posición de la estrella. Para variables **categóricas** ordenadas podemos escribir $s^2$ en términos de los resultados y las frecuencias relativas como
 
 $$s^2=\frac{n}{n-1} \sum_{i=1}^m (x_i-\bar{x_i})^2 f_i$$
-sumando ahora hasta $m$ y no $n$. Esta relación claramente se asemeja al momento de inercia de $m$ masas con densidad $f_i$. La raíz cuadrada de la varianza muestral $s$ se llama **desviación estándar** o típica y es una medida del error intrínseco de los datos, cuando interpretamos los datos como una repetición de la propiedad de un objeto, o, i los datos representan una característica en diferentes objetos entonces $s$ represente la variabilidad de esa característica en una población. Por ejemplo la desviación estándar de la capacidad de producción de los parques eólicos es
+sumando ahora sobre observaciones hasta $m$ y no sobre resultados hasta $n$. Esta relación claramente se asemeja al momento de inercia de $m$ masas con densidad $f_i$. La raíz cuadrada de la varianza muestral $s$ se llama **desviación estándar** o típica y es una medida del error intrínseco de los datos, o de su variación, dependiendo de la interpretación. Por ejemplo la desviación estándar de la capacidad de producción de los parques eólicos es
 
-$s= [\frac{1}{n-1}((16.56-35.751)^2+  (1.80-35.751)^2$  
-</br>$+ (2.02-35.751)^2 + ...)]^{1/2} = 37.487$
+$s= [\frac{1}{n-1}((1.56-1.568073)^2+  (1.56-1.568073)^2$  
+</br>$+ (1.56-1.568073)^2 + ...)]^{1/2} = 0.01204489$
 
-La capacidad de los parques eólicos varía al rededor del promedio en  37.487MW.
+La capacidad de descarga varía al rededor del promedio en 0.012 (miliamperios-hora).
 
 Existen otras formas de medir la dispersión de los datos. Si por ejemplo estamos interesados en medir la dispersión al rededor de la mediana, usamos el rango **rango intercuartíco**. Para esto primero definimos el primer cuartil como el valor $x_{0.25}$  en el que se encuentran el primer 25% de las observaciones, por lo tanto 
 
@@ -573,21 +561,21 @@ $F(x_{0.25} \leq x \leq x_{0.75})=F(0.75) - F(0.25)=0.5$
 ```{r}
 h <- hist(capacity, 
           xlab="Capacity (outcome)", 
-          ylab="fi", freq=FALSE, 
+          ylab="ni", 
           main="", br=50)
 
 cp <- capacity
 
 q1 <- quantile(cp, 0.25)
-lines(c(q1, q1), c(0,100000), lty=2, col="blue")
+lines(c(q1, q1), c(0,6), lty=2, col="blue")
 points(q1,0, pch=2, col="blue")
 
 mn <- median(cp)
-lines(c(mn, mn), c(0,100000), lty=2, col="red")
+lines(c(mn, mn), c(0,6), lty=2, col="red")
 points(mn,0, pch=2, col="red")
 
 q3 <- quantile(cp, 0.75)
-lines(c(q3, q3), c(0,100000), lty=2, col="orange")
+lines(c(q3, q3), c(0,6), lty=2, col="orange")
 points(q3,0, pch=2, col="orange")
 
 legend("topright", c("1st quartile", 
@@ -603,6 +591,45 @@ El rango intercuartílico, la mediana y el 5% y el 95% de los datos se pueden vi
 
 ```{r}
 boxplot(capacity, ylab="Capacity (outcome)")
+```
+
+Debido a que la mediana, el primer y tercer cuertil son medidas robustas, se toma una distancia de 3 rangos cuartíclicos desde la mediana como una región en donde se esperan los datos típicos. Datos que se encruentren fuera de esta región se denominan atípicos. Si retomamos los datos de capacidad de descarga con las baterías defectuosas podemos ver que su capacidad de descarga está fuera de esta región y los podemos denominar atípicos y solemos removerlos de nuestros estudios. 
+
+```{r}
+h <- hist(batery$Discharge.Capacity, 
+          xlab="Capacity (outcome)", 
+          ylab="ni", 
+          main="", br=50,
+          xlim=c(1.30,1.70))
+
+cp <- batery$Discharge.Capacity
+
+q1 <- quantile(cp, 0.25)
+lines(c(q1, q1), c(0,20), lty=2, col="blue")
+points(q1,0, pch=2, col="blue")
+
+mn <- median(cp)
+lines(c(mn, mn), c(0,20), lty=2, col="red")
+points(mn,0, pch=2, col="red")
+
+q3 <- quantile(cp, 0.75)
+lines(c(q3, q3), c(0,20), lty=2, col="orange")
+points(q3,0, pch=2, col="orange")
+
+legend("topright", c("1st quartile", 
+                     "2nd quartile (median)", 
+                     "3nd quartile") , 
+       lty=2, 
+       col=c("blue", "red", "orange"))
+
+
+iqr <- q3 - q1
+lines(c(mn -3*iqr, mn - 3*iqr), c(0,20), lty=2, col="black")
+
+
+iqr <- q3 - q1
+lines(c(mn + 3*iqr, mn + 3*iqr), c(0,20), lty=2, col="black")
+
 ```
 
 

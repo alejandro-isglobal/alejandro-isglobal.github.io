@@ -343,13 +343,13 @@ df
 La visualización de $n_i$ o $f_i$ para cada uno de los resultados intervalares es un **histograma**. Este es un gráfico de barras para las resultados continuos categorizados en intervalos
 
 ```{r}
-h <- hist(capacity, xlab="Capacity (outcome)", ylab="ni", breaks = br)
+h <- hist(capacity, xlab="Capacity (outcome)", ylab="n", breaks = br)
 ```
 
 El histograma depende del tamaño de la partición del rango de las observaciones continuas. Al hacer la partición mas fina de 50 subintervalos vemos por ejemplo que hay cuatro descargas frequentes, en vex de una sola. Así pues, diferentes visualizaciones de los datos revelan diferentes propiedades de las observaciones. Tratar de discernir este tipo de situaciónes es uno de los objetivos de la inferencia estadística. 
 
 ```{r}
-hist(capacity, xlab="Capacity (outcome)", ylab="ni", br=50)
+hist(capacity, xlab="Capacity (outcome)", ylab="n", br=50)
 ```
 
 También podemos graficar la frecuencia acumulada con respecto a los resultados intervalares. 
@@ -456,7 +456,7 @@ Miremos el promedio de la capacidad de descarga de las baterías junto con su hi
 ```{r}
 h <- hist(capacity, 
           xlab="Capacity", 
-          ylab="ni", 
+          ylab="n", 
           main="", br=50)
 
 mn <- mean(capacity)
@@ -482,7 +482,7 @@ Por lo tanto la mediana es el valor $x_{0.5}$ que hace que la frecuencia acumula
 ```{r}
 h <- hist(capacity, 
           xlab="Capacity", 
-          ylab="ni", 
+          ylab="n", 
           main="", br=50)
 
 mn <- mean(capacity)
@@ -501,7 +501,7 @@ Si miramos los datos originales de la capacidad de descarga, inlcuyendo las bete
 ```{r}
 h <- hist(batery$Discharge.Capacity, 
           xlab="Capacity", 
-          ylab="ni", 
+          ylab="n", 
           main="", br=50)
 
 mn <- mean(batery$Discharge.Capacity)
@@ -520,11 +520,11 @@ Otra medida importante de los resultados es su **dispersión**. Muchos experimen
 
 ```{r, echo=FALSE}
 par(mfrow=c(1,2))
-hist(rnorm(100, 100, 7.5), xlab="outcome", ylab="ni", br=seq(2.5,202.5,5), main="")
+hist(rnorm(100, 100, 7.5), xlab="outcome", ylab="n", br=seq(2.5,202.5,5), main="")
 lines(c(100, 100), c(0,1000), lty=2, col="red")
 points(100,0, pch=2, col="red")
 
-hist(rnorm(100, 100, 20), xlab="outcome", ylab="ni", br=seq(2.5,202.5,5), main="")
+hist(rnorm(100, 100, 20), xlab="outcome", ylab="n", br=seq(2.5,202.5,5), main="")
 lines(c(100, 100), c(0,1000), lty=2, col="red")
 points(100,0, pch=2, col="red")
 ```
@@ -536,12 +536,12 @@ $$s^2=\frac{1}{n-1} \sum_{j=1}^n (x_j-\bar{x})^2$$
 que da la distancia cuadrada promedio de las **observaciones** al promedio. La razón de dividir por $n-1$ y no por $n$ se explicará cuando hablemos del promedio como una herramienta para inferir la verdadera posición de la estrella. Para variables **categóricas** ordenadas podemos escribir $s^2$ en términos de los resultados y las frecuencias relativas como
 
 $$s^2=\frac{n}{n-1} \sum_{i=1}^m (x_i-\bar{x_i})^2 f_i$$
-sumando ahora sobre observaciones hasta $m$ y no sobre resultados hasta $n$. Esta relación claramente se asemeja al momento de inercia de $m$ masas con densidad $f_i$. La raíz cuadrada de la varianza muestral $s$ se llama **desviación estándar** o típica y es una medida del error intrínseco de los datos, o de su variación, dependiendo de la interpretación. Por ejemplo la desviación estándar de la capacidad de producción de los parques eólicos es
+sumando ahora sobre observaciones hasta $m$ y no sobre resultados hasta $n$. Esta relación claramente se asemeja al momento de inercia de $m$ masas con densidad $f_i$. La raíz cuadrada de la varianza muestral $s$ se llama **desviación estándar** o típica y es una medida del error intrínseco de los datos, o de su variación, dependiendo de la interpretación. Por ejemplo la desviación estándar de la capacidad de descarga de las baterías es
 
 $s= [\frac{1}{n-1}((1.56-1.568073)^2+  (1.56-1.568073)^2$  
 </br>$+ (1.56-1.568073)^2 + ...)]^{1/2} = 0.01204489$
 
-La capacidad de descarga varía al rededor del promedio en 0.012 (miliamperios-hora).
+Es decir que la capacidad de descarga varía al rededor del promedio en $0.012$ (miliamperios-hora).
 
 Existen otras formas de medir la dispersión de los datos. Si por ejemplo estamos interesados en medir la dispersión al rededor de la mediana, usamos el rango **rango intercuartíco**. Para esto primero definimos el primer cuartil como el valor $x_{0.25}$  en el que se encuentran el primer 25% de las observaciones, por lo tanto 
 
@@ -550,7 +550,7 @@ $$F(x_{0.25})=\sum_{j \leq n/4} \frac{1}{n} = 0.25$$
 Así mismo definimos el tercer cuartil como el valor de $x_{0.75}$ por encima del cual se encuentran el 25% de las observaciones
 
 $$F(x_{0.75})= 0.75$$
-En términos generales, entendemos la función de distribución de frecuencias como la función que da el *q*_quantil de cada resultado: $F(x_q)=q$.
+En términos generales, entendemos la función de distribución de frecuencias como la función que da el *q*-quantil de cada resultado: $F(x_q)=q$, y en R se calcula como <code>quantile(x=datos, prob=q)</code>.
 
 La distancia entre el tercer cuartil y el primer cuartil se llama **rango intercuartil** (IQR) y por lo tanto captura el 50% central de las observaciones
 
@@ -559,24 +559,36 @@ $F(x_{0.25} \leq x \leq x_{0.75})=F(0.75) - F(0.25)=0.5$
 
 
 ```{r}
+stats <- summary(capacity)
+stats
+
+
+iqr <- IQR(capacity)
+iqr
+```
+
+Por lo tanto las 50% de las capacidades de descarga estan en un intervalo de magnitud $0.018$ entre el primer y tercer quartil.
+
+```{r}
 h <- hist(capacity, 
           xlab="Capacity (outcome)", 
-          ylab="ni", 
+          ylab="n", 
           main="", br=50)
 
-cp <- capacity
+q1 <- stats[["1st Qu."]]
+mn <- stats[["Median"]]
+q3 <- stats[["3rd Qu."]]
 
-q1 <- quantile(cp, 0.25)
 lines(c(q1, q1), c(0,6), lty=2, col="blue")
 points(q1,0, pch=2, col="blue")
 
-mn <- median(cp)
 lines(c(mn, mn), c(0,6), lty=2, col="red")
 points(mn,0, pch=2, col="red")
 
-q3 <- quantile(cp, 0.75)
+
 lines(c(q3, q3), c(0,6), lty=2, col="orange")
 points(q3,0, pch=2, col="orange")
+
 
 legend("topright", c("1st quartile", 
                      "2nd quartile (median)", 
@@ -593,12 +605,12 @@ El rango intercuartílico, la mediana y el 5% y el 95% de los datos se pueden vi
 boxplot(capacity, ylab="Capacity (outcome)")
 ```
 
-Debido a que la mediana, el primer y tercer cuertil son medidas robustas, se toma una distancia de 3 rangos cuartíclicos desde la mediana como una región en donde se esperan los datos típicos. Datos que se encruentren fuera de esta región se denominan atípicos. Si retomamos los datos de capacidad de descarga con las baterías defectuosas podemos ver que su capacidad de descarga está fuera de esta región y los podemos denominar atípicos y solemos removerlos de nuestros estudios. 
+Debido a que la mediana, el primer y tercer cuartil son medidas robustas, se suele tomar una distancia de 3 rangos cuartíclicos desde la mediana como una región en donde se esperan los datos típicos. Datos que se encruentren fuera de esta región son atípicos y sospechamos que estos datos no comparten algunas de las características del experimento aleatorio de interés. Si retomamos los datos de capacidad de descarga con las baterías defectuosas podemos ver que su capacidad de descarga está fuera de esta región. Estos datos, por su distribución de frecuencias, son atípicos lo que es confirmado en la base de datos porque corresponden a baterias defectuosas. 
 
 ```{r}
 h <- hist(batery$Discharge.Capacity, 
           xlab="Capacity (outcome)", 
-          ylab="ni", 
+          ylab="n", 
           main="", br=50,
           xlim=c(1.30,1.70))
 
@@ -635,9 +647,9 @@ lines(c(mn + 3*iqr, mn + 3*iqr), c(0,20), lty=2, col="black")
 
 
 ### Hacia las probabilidades
-La base de datos de parques eólicos la hemos descrito imaginando que cada parque eólico es un experimento aleatorio. Sin embargo si queremos describir como se han generado las observaciones topamos con un problema de interpretación. Es difícil saber en qué medida las observaciones no han sido influenciadas por el obsorvador. Es decir, es posible tener un experimento aleatorio en el que se elija que observaciones anotar. Existirá pues una estructura en los datos diferente a la de la aleatoridad intrínseca del experimento. 
+Los paises de procedencia de los parques eólicos los hemos descrito imaginando que la observación del país de cada parque eólico es un experimento aleatorio. Sin embargo, si queremos describir cómo se han generado las observaciones topamos con un problema de interpretación. Es difícil saber en qué medida las observaciones han sido influenciadas por el obsorvador. Es decir, es posible tener un experimento aleatorio en el que se elija qué observaciones anotar. Existirá pues una estructura en los datos diferente a la de la aleatoridad intrínseca del experimento. 
 
-Para poder generializar las frecuencias relativas en probabilidades, consideremos un experimento aleatorio donde el único papel del experimentador es anotar los resultados. 
+Para poder generalizar las frecuencias relativas en probabilidades, consideremos un experimento aleatorio donde el único papel del experimentador es anotar los resultados. 
 
 Lanzemos un dado 10 veces, usando la función de simulación <code>sample</code>, que pone en un saco 6 bolas marcadas de 1 a 6, saca una a la vez, la anota y la devuelve al saco. Calculemos las frecuencias para cada resultado
 
@@ -667,7 +679,7 @@ df <- data.frame(outcome=names(tb),
 df
 ```
 
-y ¡cuando $n \rightarrow \infty$?
+y ¿cuando $n \rightarrow \infty$?
 
 
 ```{r}
@@ -690,9 +702,9 @@ for(i in 1:6)
   text(1.9,frdice[i,5]-0.07, paste0("f", i))
 ```
 
-Podemos ver que las frecuencias relativas de los resultados del dado cada vez se asemejan mas unas a otras, cuando $n \rightarrow \infty$. Interpretamos así la **Probabilidad** $P_i$ como el límite cuando $n \rightarrow \infty$ de la frecuencia de observación $f_i$ del resultado $i$ en un experimento aleatorio.
+Podemos ver que las frecuencias relativas de los resultados del dado cada vez se asemejan mas unas a otras, cuando $n \rightarrow \infty$. Interpretamos así la **Probabilidad** $P_i$ como el límite cuando $n \rightarrow \infty$ de la frecuencia de observación $f_i$ del resultado $i$ de un experimento aleatorio.
 
-A pesar de que las probabilidades son abstracciones de $f_i$, las como una característica del experimento aletorio, no dependen del experimentador ni del observador: describen las cosas como son.
+A pesar de que las probabilidades son abstracciones de $f_i$,las entendemos como características del experimento aletorio, no dependen del experimentador ni del observador: describen las cosas como son.
 
 Sin embargo, como no podemos hacer un experimento infinitas veces, nos pregutamos si podemos razonar al revés. Es decir, si creemos que los $P_i$ describen las cosas como son, ¿podemos **predecir** de ellos los valores observados de $f_i$ a cuando $n$ es finito?
 

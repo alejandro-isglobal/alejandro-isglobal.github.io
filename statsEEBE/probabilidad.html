@@ -24,7 +24,7 @@
 <meta name="author" content="Alejandro Cáceres (alejandro.caceres.dominguez@upc.edu)" />
 
 
-<meta name="date" content="2023-02-16" />
+<meta name="date" content="2023-02-20" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -210,7 +210,7 @@
 ## 4       9  1 0.125
 ## 5      10  1 0.125
 ## 6      12  2 0.250</code></pre>
-<p><img src="_main_files/figure-html/unnamed-chunk-28-1.png" width="672" />
+<p><img src="_main_files/figure-html/unnamed-chunk-2-1.png" width="672" />
 La <strong>frecuencia relativa</strong> <span class="math inline">\(f_i=\frac{n_i}{N}\)</span> parece una medida de probabilidad razonable porque</p>
 <ul>
 <li>es un número entre <span class="math inline">\(0\)</span> y <span class="math inline">\(1\)</span>.</li>
@@ -234,14 +234,14 @@ La <strong>frecuencia relativa</strong> <span class="math inline">\(f_i=\frac{n_
 ## 10      11  5581 0.05581
 ## 11      12  2777 0.02777</code></pre>
 <p>y el gráfico de barras es</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-30-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
 <p>Aparecieron nuevos resultados y <span class="math inline">\(f_{12}\)</span> ahora es solo <span class="math inline">\(0.027\)</span>, y entonces estamos sólo un <span class="math inline">\(\sim 3\%\)</span> seguros de obtener <span class="math inline">\(12\)</span> en el próximo experimento. Las probabilidades medidas por <span class="math inline">\(f_i\)</span> cambian con <span class="math inline">\(N\)</span>.</p>
 </div>
 <div id="frecuencias-relativas-en-el-infinito" class="section level2 hasAnchor" number="3.5">
 <h2><span class="header-section-number">3.5</span> Frecuencias relativas en el infinito<a href="probabilidad.html#frecuencias-relativas-en-el-infinito" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Una observación crucial es que si medimos las probabilidades de <span class="math inline">\(f_i\)</span> en valores crecientes de <span class="math inline">\(N\)</span> ¡<strong>convergen</strong>!</p>
 <p>En este gráfico cada sección vertical da la frecuencia relativa de cada observación. Vemos que después de <span class="math inline">\(N=1000\)</span> (<span class="math inline">\(log10(N)=3\)</span>) las proporciones apenas varían con mas <span class="math inline">\(N\)</span>.</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-31-1.png" width="672" />
+<p><img src="_main_files/figure-html/unnamed-chunk-5-1.png" width="672" />
 Encontramos que cada una de las frecuencias relativas <span class="math inline">\(f_i\)</span> converge a un valor constante</p>
 <p><span class="math display">\[lim_{N\rightarrow \infty} f_i = P_i\]</span></p>
 </div>
@@ -622,38 +622,32 @@ Si bien realizamos el experimento muchas veces, anotamos los resultados y calcul
 <h4><span class="header-section-number">3.18.0.2</span> Probabilidad frecuentista: Ejercicio 2<a href="probabilidad.html#probabilidad-frecuentista-ejercicio-2" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>El resultado de un experimento aleatorio es medir la gravedad de la misofonía <strong>y</strong> el estado de depresión de un paciente.</p>
 <ul>
-<li>Gravedad de la misofonía: <span class="math inline">\(x\in \{0,1,2,3,4\}\)</span></li>
-<li>Depresión: <span class="math inline">\(y\in \{0,1\}\)</span> (no:<span class="math inline">\(0\)</span>, si:<span class="math inline">\(1\)</span>)</li>
+<li>Gravedad de la misofonía: <span class="math inline">\(S_M:\{M_0,M_1,M_2,M_3,M_4\}\)</span></li>
+<li>Depresión: <span class="math inline">\(S_D:\{D&#39;, D\}\)</span>)</li>
 </ul>
-<p>Estos son los primeros 6 pacientes:</p>
-<pre><code>##   Misofonia.dic depresion.dic
-## 1             4             1
-## 2             2             0
-## 3             0             0
-## 4             3             0
-## 5             0             0
-## 6             0             0</code></pre>
-<p>El estudio sobre un total de 123 pacientes mostró las frecuencias <span class="math inline">\(n_{x,y}\)</span> dadas en la tabla de contingencia:</p>
-<pre><code>##               
-##                Depression:0 Depression:1
-##   Misophonia:4            0            9
-##   Misophonia:3           25            6
-##   Misophonia:2           34            3
-##   Misophonia:1            5            0
-##   Misophonia:0           36            5</code></pre>
-<p>Supongamos que <span class="math inline">\(N\)</span> es grande y que las frecuencias <strong>estiman</strong> las probabilidades <span class="math inline">\(f_{x,y}=\hat{P}(X, Y)\)</span>, de tal forma que la siguiente es nuestra tabla de contingencia para las probabildades conjuntas</p>
-<pre><code>##               
-##                Depression:0 Depression:1
-##   Misophonia:4   0.00000000   0.07317073
-##   Misophonia:3   0.20325203   0.04878049
-##   Misophonia:2   0.27642276   0.02439024
-##   Misophonia:1   0.04065041   0.00000000
-##   Misophonia:0   0.29268293   0.04065041</code></pre>
+<p>Escribe la tabla de contingencia para las frecuencias absolutas (<span class="math inline">\(n_{M,D}\)</span>) para un estudio sobre un total de 123 pacientes en el que se observó</p>
+<ul>
+<li>100 individuos no tuvieron depresión.</li>
+<li>Ningún individuo con misofonía 4 y depresión.</li>
+<li>5 individuos con misofonía de grado 1 y sin depresión.</li>
+<li>El mismo número que el caso anterior para individuos con depresión y sin misofonía.</li>
+<li>25 individuos sin depresión y grado 3 de misofonía.</li>
+<li>El número de misofónicos sin depresión para los grados 2 y 0 se repartieron a cantiaddes iguales.</li>
+<li>El número de individuos con depresión y misofonía incrementó progresivamente
+en múltiplos de tres, empezando en 0 individuos para grado 1.</li>
+</ul>
+<p>Reponde las siguientes preguntas:</p>
+<ul>
+<li>¿Cuantos individuos tuvieron misofonía? (R:83)</li>
+<li>¿Cuantos individuos tuvieron misofonía de grado 3? (R:31)</li>
+<li>¿Cuantos individuos tuvieron misofonía de grado 2 sin depresión? (R:35)</li>
+</ul>
+<p>Escribe las tabla de consingencia para frecuencias relativas <span class="math inline">\(f_{M,D}\)</span>. Supongamos que <span class="math inline">\(N\)</span> es grande y que las frecuencias absolutas <strong>estiman</strong> las probabilidades <span class="math inline">\(f_{M,D}=\hat{P}(M \cap D)\)</span>. Responde las siguientes preguntas:</p>
 <ul>
 <li>¿Cuál es la probabilidad marginal de misofonía de gravedad 2? (R: 0.3)</li>
-<li>¿Cuál es la probabilidad de no ser misofónico <strong>y</strong> no estar deprimido? (R/0.293)</li>
-<li>¿Cuál es la probabilidad de ser misofónico <strong>o</strong> estar deprimido? (R/0.666)</li>
-<li>¿Cuál es la probabilidad de ser misofónico <strong>y</strong> estar deprimido? (R/0.1219)</li>
+<li>¿Cuál es la probabilidad de no ser misofónico <strong>y</strong> no estar deprimido? (R:0.284)</li>
+<li>¿Cuál es la probabilidad de ser misofónico <strong>o</strong> estar deprimido? (R: 0.715)</li>
+<li>¿Cuál es la probabilidad de ser misofónico <strong>y</strong> estar deprimido? (R: 0.146)</li>
 <li>Describir en lenguaje hablado los resultados con probabilidad 0.</li>
 </ul>
 </div>

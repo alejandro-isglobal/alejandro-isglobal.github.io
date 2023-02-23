@@ -289,10 +289,10 @@
 <p>La conductividad defectuosa es <strong>independiente</strong> de tener fallas estructurales en el material si la probabilidad de tener conductividad defectuosa (<span class="math inline">\(D\)</span>) es la misma <strong>ya sea</strong> que tenga fallas (<span class="math inline">\(F\)</span>) o no (<span class="math inline">\(F&#39;\)</span>) .</p>
 <p>Consideremos primero solamente los materiales que tienen fallas.</p>
 <p>Dentro de aquellos materiales que tienen fallas (<span class="math inline">\(F\)</span>), ¿cuál es la probabilidad estimada de que sean defectuosos?</p>
-<p><span class="math inline">\(\hat{P}(D|F)=\frac{n_{D,F}}{n_{F}}=\frac{n_{D,F}/n}{n_{F}/n}= \frac{f_{D,F}}{f_{F}}\)</span>
-<span class="math display">\[= \frac{\hat{P}(D,F)}{\hat{P}(F)}\]</span>
+<p><span class="math inline">\(\hat{P}(D|F)=\frac{n_{F,D}}{n_{F}}=\frac{n_{F,D}/n}{n_{F}/n}= \frac{f_{F,D}}{f_{F}}\)</span>
+<span class="math display">\[= \frac{\hat{P}(F,D)}{\hat{P}(F)}\]</span>
 Por lo tanto, en el límite cuando <span class="math inline">\(N \rightarrow \infty\)</span>, tenemos</p>
-<p><span class="math display">\[P(D|F)=\frac{P(D, F)}{P(D)}=\frac{P(D \cap F)}{P(D)}\]</span>
+<p><span class="math display">\[P(D|F)=\frac{P(F, D)}{P(D)}=\frac{P(F \cap D)}{P(D)}\]</span>
 <strong>Definición:</strong></p>
 <p>La <em>probabilidad condicional</em> de un evento <span class="math inline">\(B\)</span> dado un evento <span class="math inline">\(A\)</span>, indicado como <span class="math inline">\(P(A|B)\)</span>, es
 <span class="math display">\[P(A|B) = \frac{P(A\cap B)}{P(B)}\]</span>
@@ -485,7 +485,7 @@ Podemos probar que la probabilidad condicional satisface los axiomas de probabil
 <h2><span class="header-section-number">4.6</span> Dependencia estadística<a href="probabilidad-condicional.html#dependencia-estadística" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Un ejemplo importante de dependencia estadística se encuentra en el desempeño de <strong>herramientas de diagnóstico</strong>, donde queremos determinar el estado de un sistema (s) con resultados</p>
 <ul>
-<li>inadecuado (sí)</li>
+<li>inadecuado (si)</li>
 <li>adecuado (no)</li>
 </ul>
 <p>con una prueba (t) con resultados</p>
@@ -512,19 +512,19 @@ Podemos probar que la probabilidad condicional satisface los axiomas de probabil
 <thead>
 <tr class="header">
 <th align="center"></th>
-<th align="center">Infección: Sí</th>
+<th align="center">Infección: si</th>
 <th align="center">Infección: No</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td align="center"><b>Test: positivo</b></td>
-<td align="center">P(positivo <span>|</span> sí)</td>
+<td align="center">P(positivo <span>|</span> si)</td>
 <td align="center">P(positivo <span>|</span> no)</td>
 </tr>
 <tr class="even">
 <td align="center"><b>Test: negativo</b></td>
-<td align="center">P(negativo <span>|</span> sí)</td>
+<td align="center">P(negativo <span>|</span> si)</td>
 <td align="center">P(negativo <span>|</span> no)</td>
 </tr>
 <tr class="odd">
@@ -534,12 +534,12 @@ Podemos probar que la probabilidad condicional satisface los axiomas de probabil
 </tr>
 </tbody>
 </table>
-<p>Miremos las entradas de la tabla</p>
-<ol style="list-style-type: decimal">
-<li><p>Tasa de verdaderos positivos (Sensibilidad): La probabilidad de dar positivo <strong>si</strong> tiene la enfermedad <span class="math inline">\(P(positivo|sí)\)</span></p></li>
+<p>Miremos las entradas de la tabla
+1) Tasa de verdaderos positivos (Sensibilidad): La probabilidad de dar positivo <strong>si</strong> tiene la enfermedad <span class="math inline">\(P(positivo|si)\)</span></p>
+<ol start="2" style="list-style-type: decimal">
 <li><p>Tasa de verdaderos negativos (Especificidad): La probabilidad de dar negativo <strong>si</strong> no tiene la enfermedad <span class="math inline">\(P(negativo|no)\)</span></p></li>
 <li><p>Tasa de falsos positivos: la probabilidad de dar positivo <strong>si</strong> no tiene la enfermedad <span class="math inline">\(P(positivo|no)\)</span></p></li>
-<li><p>Tasa de falsos negativos: la probabilidad de dar negativo <strong>si</strong> tiene la enfermedad <span class="math inline">\(P(negativo|sí)\)</span></p></li>
+<li><p>Tasa de falsos negativos: la probabilidad de dar negativo <strong>si</strong> tiene la enfermedad <span class="math inline">\(P(negativo|si)\)</span></p></li>
 </ol>
 <p>Alta correlación (dependencia estadística) entre la prueba y la infección significa valores altos de las probabilidades 1 y 2 <strong>y</strong> valores bajos para las probabilidades 3 y 4.</p>
 <p><strong>Ejemplo (COVID)</strong></p>
@@ -553,19 +553,19 @@ Podemos probar que la probabilidad condicional satisface los axiomas de probabil
 <thead>
 <tr class="header">
 <th align="center"></th>
-<th align="center">Infección: Sí</th>
+<th align="center">Infección: si</th>
 <th align="center">Infección: No</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td align="center"><b>Test: positivo</b></td>
-<td align="center">P(positivo<span>|</span>sí)=0.7</td>
+<td align="center">P(positivo<span>|</span>si)=0.7</td>
 <td align="center">P(positivo<span>|</span>no)=0.06</td>
 </tr>
 <tr class="even">
 <td align="center"><b>Test: negativo</b></td>
-<td align="center">P(negativo<span>|</span>sí)=0.3</td>
+<td align="center">P(negativo<span>|</span>si)=0.3</td>
 <td align="center">P(negativo<span>|</span>no)=0.94</td>
 </tr>
 <tr class="odd">
@@ -578,12 +578,12 @@ Podemos probar que la probabilidad condicional satisface los axiomas de probabil
 <p>Por lo tanto, los errores en las pruebas de diagnóstico fueron:</p>
 <ul>
 <li>La tasa de falsos positivos es <span class="math inline">\(P(positivo|no)=0.06\)</span></li>
-<li>La tasa de falsos negativos es <span class="math inline">\(P(negativo|sí)=0.3\)</span></li>
+<li>La tasa de falsos negativos es <span class="math inline">\(P(negativo|si)=0.3\)</span></li>
 </ul>
 </div>
 <div id="probabilidades-inversas" class="section level2 hasAnchor" number="4.8">
 <h2><span class="header-section-number">4.8</span> Probabilidades inversas<a href="probabilidad-condicional.html#probabilidades-inversas" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Nos interesa encontrar la probabilidad de estar infectado si la prueba da positivo: <span class="math display">\[P(sí|positivo)\]</span></p>
+<p>Nos interesa encontrar la probabilidad de estar infectado si la prueba da positivo: <span class="math display">\[P(si|positivo)\]</span></p>
 <p>Para eso:</p>
 <ol style="list-style-type: decimal">
 <li>Recuperamos la tabla de contingencia para probabilidades conjuntas, multiplicando por las marginales</li>
@@ -592,7 +592,7 @@ Podemos probar que la probabilidad condicional satisface los axiomas de probabil
 <thead>
 <tr class="header">
 <th align="center"></th>
-<th align="center">Infección: Sí</th>
+<th align="center">Infección: si</th>
 <th align="center">Infección: No</th>
 <th align="center"><b>suma</b></th>
 </tr>
@@ -600,19 +600,19 @@ Podemos probar que la probabilidad condicional satisface los axiomas de probabil
 <tbody>
 <tr class="odd">
 <td align="center"><b>Test: positivo</b></td>
-<td align="center">P(positivo <span>|</span> sí)P(sí)</td>
+<td align="center">P(positivo <span>|</span> si)P(si)</td>
 <td align="center">P(positivo <span>|</span> no)P(no)</td>
 <td align="center">P(positivo)</td>
 </tr>
 <tr class="even">
 <td align="center"><b>Test: negativo</b></td>
-<td align="center">P(negativo <span>|</span> sí)P(sí)</td>
+<td align="center">P(negativo <span>|</span> si)P(si)</td>
 <td align="center">P(negativo <span>|</span> no) P(no)</td>
 <td align="center">P(negativo)</td>
 </tr>
 <tr class="odd">
 <td align="center"><b>suma</b></td>
-<td align="center">P(sí)</td>
+<td align="center">P(si)</td>
 <td align="center">P(no)</td>
 <td align="center">1</td>
 </tr>
@@ -625,7 +625,7 @@ Podemos probar que la probabilidad condicional satisface los axiomas de probabil
 <thead>
 <tr class="header">
 <th align="center"></th>
-<th align="center">Infección: Sí</th>
+<th align="center">Infección: si</th>
 <th align="center">Infección: No</th>
 <th align="center">suma</th>
 </tr>
@@ -633,52 +633,54 @@ Podemos probar que la probabilidad condicional satisface los axiomas de probabil
 <tbody>
 <tr class="odd">
 <td align="center"><b>Test: positivo</b></td>
-<td align="center">P(sí<span>|</span>positivo)</td>
+<td align="center">P(si<span>|</span>positivo)</td>
 <td align="center">P(sin<span>|</span>positivo)</td>
 <td align="center">1</td>
 </tr>
 <tr class="even">
 <td align="center"><b>Test: negativo</b></td>
-<td align="center">P(sí<span>|</span>negativo)</td>
+<td align="center">P(si<span>|</span>negativo)</td>
 <td align="center">P(sin<span>|</span>negativo)</td>
 <td align="center">1</td>
 </tr>
 </tbody>
 </table>
-<p>Por ejemplo:
-<span class="math display">\[P(sí|positivo)=\frac{P(positivo|sí)P(sí)}{P(positivo)}\]</span>
-Para aplicar esta fórmula necesitamos las marginales <span class="math inline">\(P(sí)\)</span> (incidencia) y <span class="math inline">\(P(positivo)\)</span>.</p>
+<p><br>
+<br></p>
+<p>Por ejemplo:</p>
+<p><span class="math display">\[P(si|positivo)=\frac{P(positivo|si)P(si)}{P(positivo)}\]</span></p>
+<p>Para aplicar esta fórmula necesitamos las marginales <span class="math inline">\(P(si)\)</span> (incidencia) y <span class="math inline">\(P(positivo)\)</span>.</p>
 <ul>
-<li><p>Para encontrar <span class="math inline">\(P(sí)\)</span>, necesitamos un nuevo estudio: el primer estudio de prevalencia en España mostró que durante el confinamiento <span class="math inline">\(P(sí)=0.05\)</span>, <span class="math inline">\(P(no)=0.95\)</span>, antes del verano de 2020.</p></li>
+<li><p>Para encontrar <span class="math inline">\(P(si)\)</span>, necesitamos un nuevo estudio: el primer estudio de prevalencia en España mostró que durante el confinamiento <span class="math inline">\(P(si)=0.05\)</span>, <span class="math inline">\(P(no)=0.95\)</span>, antes del verano de 2020.</p></li>
 <li><p>Para encontrar <span class="math inline">\(P(positivo)\)</span>, podemos usar la definición de probabilidad marginal y condicional:</p></li>
 </ul>
-<p><span class="math inline">\(P(positivo)=P(positivo \cap sí) + P(positivo \cap no)\)</span>
-<span class="math display">\[= P(positivo|sí)P(sí)+P(positivo|no)P(no)\]</span>
+<p><span class="math inline">\(P(positivo)=P(positivo \cap si) + P(positivo \cap no)\)</span>
+<span class="math display">\[= P(positivo|si)P(si)+P(positivo|no)P(no)\]</span>
 Esta última relación de las marginales se llama <strong>regla de probabilidad total</strong>.</p>
 </div>
 <div id="teorema-de-bayes" class="section level2 hasAnchor" number="4.9">
 <h2><span class="header-section-number">4.9</span> Teorema de Bayes<a href="probabilidad-condicional.html#teorema-de-bayes" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Después de sustituir la regla de probabilidad total en <span class="math inline">\(P(sí|positivo)\)</span>, tenemos</p>
-<p><span class="math display">\[P(sí|positivo)=\frac{P(positivo|sí)P(sí)}{P(positivo|sí)P(sí)+P(positivo|no)P(no)}\]</span>
+<p>Después de sustituir la regla de probabilidad total en <span class="math inline">\(P(si|positivo)\)</span>, tenemos</p>
+<p><span class="math display">\[P(si|positivo)=\frac{P(positivo|si)P(si)}{P(positivo|si)P(si)+P(positivo|no)P(no)}\]</span>
 Esta expresión se conoce como <strong>teorema de Bayes</strong>. Nos permite invertir los condicionales:</p>
-<p><span class="math display">\[P(positivo|sí) \rightarrow P(sí|positivo)\]</span>
+<p><span class="math display">\[P(positivo|si) \rightarrow P(si|positivo)\]</span>
 O <strong>evaluar</strong> una prueba en una condición controlada (infección) y luego usarla para <strong>inferir</strong> la probabilidad de la condición cuando la prueba es positiva.</p>
 <p><strong>Ejemplo (COVID)</strong>:</p>
 <p>El rendimiento de la prueba fue:</p>
 <ul>
-<li><p>Sensibilidad: <span class="math inline">\(P(positivo|sí)=0.70\)</span></p></li>
+<li><p>Sensibilidad: <span class="math inline">\(P(positivo|si)=0.70\)</span></p></li>
 <li><p>Tasa de falsos positivos: <span class="math inline">\(P(positivo|no)=1- P(negativo|no)=0.06\)</span></p></li>
 </ul>
 <p>El estudio en población española dio:</p>
 <ul>
-<li><span class="math inline">\(P(sí)=0.05\)</span></li>
-<li><span class="math inline">\(P(no)=1-P(sí)=0.95\)</span>.</li>
+<li><span class="math inline">\(P(si)=0.05\)</span></li>
+<li><span class="math inline">\(P(no)=1-P(si)=0.95\)</span>.</li>
 </ul>
 <p>Por lo tanto, la probabilidad de infectarse en caso de dar positivo era:</p>
-<p><span class="math display">\[P(sí|positivo)=0.47\]</span></p>
+<p><span class="math display">\[P(si|positivo)=0.47\]</span></p>
 <p>Concluimos que en ese momento las PCR no eran muy buenas para <strong>confirmar</strong> infecciones.</p>
 <p>Sin embargo, apliquemos ahora el teorema de Bayes a la probabilidad de no estar infectado si la prueba fue negativa.</p>
-<p><span class="math display">\[P(no|negativo) = \frac{P(negativo|no) P(no)}{P(negativo|no) P(no)+P(negativo|sí)P(sí)}\]</span></p>
+<p><span class="math display">\[P(no|negativo) = \frac{P(negativo|no) P(no)}{P(negativo|no) P(no)+P(negativo|si)P(si)}\]</span></p>
 <p>La sustitución de todos los valores da</p>
 <p><span class="math display">\[P(no|negativo)=0.98\]</span></p>
 <p>Por lo tanto, las pruebas eran buenas para <strong>descartar</strong> infecciones y un requisito justo para viajar.</p>
@@ -743,13 +745,13 @@ El denominador es la regla de probabilidad total para la marginal <span class="m
 <thead>
 <tr class="header">
 <th align="center"></th>
-<th align="center">Redondeado: Sí</th>
+<th align="center">Redondeado: si</th>
 <th align="center">Redondeado: No</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="center"><b>superficie lisa: sí</b></td>
+<td align="center"><b>superficie lisa: si</b></td>
 <td align="center">200</td>
 <td align="center">1</td>
 </tr>
@@ -785,13 +787,13 @@ El denominador es la regla de probabilidad total para la marginal <span class="m
 <thead>
 <tr class="header">
 <th align="center"></th>
-<th align="center">Redondeado: Sí</th>
+<th align="center">Redondeado: si</th>
 <th align="center">Redondeado: No</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="center"><b>superficie lisa: sí</b></td>
+<td align="center"><b>superficie lisa: si</b></td>
 <td align="center">200</td>
 <td align="center">1</td>
 </tr>
@@ -807,13 +809,13 @@ El denominador es la regla de probabilidad total para la marginal <span class="m
 <thead>
 <tr class="header">
 <th align="center"></th>
-<th align="center">Redondeado: Sí</th>
+<th align="center">Redondeado: si</th>
 <th align="center">Redondeado: No</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="center"><b>superficie lisa: sí</b></td>
+<td align="center"><b>superficie lisa: si</b></td>
 <td align="center">145</td>
 <td align="center">4</td>
 </tr>

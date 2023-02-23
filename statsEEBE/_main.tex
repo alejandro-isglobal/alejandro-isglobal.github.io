@@ -1640,11 +1640,11 @@ Consideremos primero solamente los materiales que tienen fallas.
 
 Dentro de aquellos materiales que tienen fallas (\(F\)), ¿cuál es la probabilidad estimada de que sean defectuosos?
 
-\(\hat{P}(D|F)=\frac{n_{D,F}}{n_{F}}=\frac{n_{D,F}/n}{n_{F}/n}= \frac{f_{D,F}}{f_{F}}\)
-\[= \frac{\hat{P}(D,F)}{\hat{P}(F)}\]
+\(\hat{P}(D|F)=\frac{n_{F,D}}{n_{F}}=\frac{n_{F,D}/n}{n_{F}/n}= \frac{f_{F,D}}{f_{F}}\)
+\[= \frac{\hat{P}(F,D)}{\hat{P}(F)}\]
 Por lo tanto, en el límite cuando \(N \rightarrow \infty\), tenemos
 
-\[P(D|F)=\frac{P(D, F)}{P(D)}=\frac{P(D \cap F)}{P(D)}\]
+\[P(D|F)=\frac{P(F, D)}{P(D)}=\frac{P(F \cap D)}{P(D)}\]
 \textbf{Definición:}
 
 La \emph{probabilidad condicional} de un evento \(B\) dado un evento \(A\), indicado como \(P(A|B)\), es
@@ -1794,7 +1794,7 @@ Un ejemplo importante de dependencia estadística se encuentra en el desempeño 
 \begin{itemize}
 \tightlist
 \item
-  inadecuado (sí)
+  inadecuado (si)
 \item
   adecuado (no)
 \end{itemize}
@@ -1838,27 +1838,27 @@ La \textbf{tabla de contingencia condicional} es lo que obtenemos en un ambiente
 
 \begin{longtable}[]{@{}ccc@{}}
 \toprule
-& Infección: Sí & Infección: No \\
+& Infección: si & Infección: No \\
 \midrule
 \endhead
-Test: positivo & P(positivo {\textbar{}} sí) & P(positivo {\textbar{}} no) \\
-Test: negativo & P(negativo {\textbar{}} sí) & P(negativo {\textbar{}} no) \\
+Test: positivo & P(positivo {\textbar{}} si) & P(positivo {\textbar{}} no) \\
+Test: negativo & P(negativo {\textbar{}} si) & P(negativo {\textbar{}} no) \\
 suma & 1 & 1 \\
 \bottomrule
 \end{longtable}
 
 Miremos las entradas de la tabla
+1) Tasa de verdaderos positivos (Sensibilidad): La probabilidad de dar positivo \textbf{si} tiene la enfermedad \(P(positivo|si)\)
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi})}
-\item
-  Tasa de verdaderos positivos (Sensibilidad): La probabilidad de dar positivo \textbf{si} tiene la enfermedad \(P(positivo|sí)\)
+\setcounter{enumi}{1}
 \item
   Tasa de verdaderos negativos (Especificidad): La probabilidad de dar negativo \textbf{si} no tiene la enfermedad \(P(negativo|no)\)
 \item
   Tasa de falsos positivos: la probabilidad de dar positivo \textbf{si} no tiene la enfermedad \(P(positivo|no)\)
 \item
-  Tasa de falsos negativos: la probabilidad de dar negativo \textbf{si} tiene la enfermedad \(P(negativo|sí)\)
+  Tasa de falsos negativos: la probabilidad de dar negativo \textbf{si} tiene la enfermedad \(P(negativo|si)\)
 \end{enumerate}
 
 Alta correlación (dependencia estadística) entre la prueba y la infección significa valores altos de las probabilidades 1 y 2 \textbf{y} valores bajos para las probabilidades 3 y 4.
@@ -1879,11 +1879,11 @@ La tabla de contingencia condicional es
 
 \begin{longtable}[]{@{}ccc@{}}
 \toprule
-& Infección: Sí & Infección: No \\
+& Infección: si & Infección: No \\
 \midrule
 \endhead
-Test: positivo & P(positivo{\textbar{}}sí)=0.7 & P(positivo{\textbar{}}no)=0.06 \\
-Test: negativo & P(negativo{\textbar{}}sí)=0.3 & P(negativo{\textbar{}}no)=0.94 \\
+Test: positivo & P(positivo{\textbar{}}si)=0.7 & P(positivo{\textbar{}}no)=0.06 \\
+Test: negativo & P(negativo{\textbar{}}si)=0.3 & P(negativo{\textbar{}}no)=0.94 \\
 suma & 1 & 1 \\
 \bottomrule
 \end{longtable}
@@ -1895,13 +1895,13 @@ Por lo tanto, los errores en las pruebas de diagnóstico fueron:
 \item
   La tasa de falsos positivos es \(P(positivo|no)=0.06\)
 \item
-  La tasa de falsos negativos es \(P(negativo|sí)=0.3\)
+  La tasa de falsos negativos es \(P(negativo|si)=0.3\)
 \end{itemize}
 
 \hypertarget{probabilidades-inversas}{%
 \section{Probabilidades inversas}\label{probabilidades-inversas}}
 
-Nos interesa encontrar la probabilidad de estar infectado si la prueba da positivo: \[P(sí|positivo)\]
+Nos interesa encontrar la probabilidad de estar infectado si la prueba da positivo: \[P(si|positivo)\]
 
 Para eso:
 
@@ -1914,12 +1914,12 @@ Para eso:
 
 \begin{longtable}[]{@{}cccc@{}}
 \toprule
-& Infección: Sí & Infección: No & suma \\
+& Infección: si & Infección: No & suma \\
 \midrule
 \endhead
-Test: positivo & P(positivo {\textbar{}} sí)P(sí) & P(positivo {\textbar{}} no)P(no) & P(positivo) \\
-Test: negativo & P(negativo {\textbar{}} sí)P(sí) & P(negativo {\textbar{}} no) P(no) & P(negativo) \\
-suma & P(sí) & P(no) & 1 \\
+Test: positivo & P(positivo {\textbar{}} si)P(si) & P(positivo {\textbar{}} no)P(no) & P(positivo) \\
+Test: negativo & P(negativo {\textbar{}} si)P(si) & P(negativo {\textbar{}} no) P(no) & P(negativo) \\
+suma & P(si) & P(no) & 1 \\
 \bottomrule
 \end{longtable}
 
@@ -1933,38 +1933,40 @@ suma & P(sí) & P(no) & 1 \\
 
 \begin{longtable}[]{@{}cccc@{}}
 \toprule
-& Infección: Sí & Infección: No & suma \\
+& Infección: si & Infección: No & suma \\
 \midrule
 \endhead
-Test: positivo & P(sí{\textbar{}}positivo) & P(sin{\textbar{}}positivo) & 1 \\
-Test: negativo & P(sí{\textbar{}}negativo) & P(sin{\textbar{}}negativo) & 1 \\
+Test: positivo & P(si{\textbar{}}positivo) & P(sin{\textbar{}}positivo) & 1 \\
+Test: negativo & P(si{\textbar{}}negativo) & P(sin{\textbar{}}negativo) & 1 \\
 \bottomrule
 \end{longtable}
 
 Por ejemplo:
-\[P(sí|positivo)=\frac{P(positivo|sí)P(sí)}{P(positivo)}\]
-Para aplicar esta fórmula necesitamos las marginales \(P(sí)\) (incidencia) y \(P(positivo)\).
+
+\[P(si|positivo)=\frac{P(positivo|si)P(si)}{P(positivo)}\]
+
+Para aplicar esta fórmula necesitamos las marginales \(P(si)\) (incidencia) y \(P(positivo)\).
 
 \begin{itemize}
 \item
-  Para encontrar \(P(sí)\), necesitamos un nuevo estudio: el primer estudio de prevalencia en España mostró que durante el confinamiento \(P(sí)=0.05\), \(P(no)=0.95\), antes del verano de 2020.
+  Para encontrar \(P(si)\), necesitamos un nuevo estudio: el primer estudio de prevalencia en España mostró que durante el confinamiento \(P(si)=0.05\), \(P(no)=0.95\), antes del verano de 2020.
 \item
   Para encontrar \(P(positivo)\), podemos usar la definición de probabilidad marginal y condicional:
 \end{itemize}
 
-\(P(positivo)=P(positivo \cap sí) + P(positivo \cap no)\)
-\[= P(positivo|sí)P(sí)+P(positivo|no)P(no)\]
+\(P(positivo)=P(positivo \cap si) + P(positivo \cap no)\)
+\[= P(positivo|si)P(si)+P(positivo|no)P(no)\]
 Esta última relación de las marginales se llama \textbf{regla de probabilidad total}.
 
 \hypertarget{teorema-de-bayes}{%
 \section{Teorema de Bayes}\label{teorema-de-bayes}}
 
-Después de sustituir la regla de probabilidad total en \(P(sí|positivo)\), tenemos
+Después de sustituir la regla de probabilidad total en \(P(si|positivo)\), tenemos
 
-\[P(sí|positivo)=\frac{P(positivo|sí)P(sí)}{P(positivo|sí)P(sí)+P(positivo|no)P(no)}\]
+\[P(si|positivo)=\frac{P(positivo|si)P(si)}{P(positivo|si)P(si)+P(positivo|no)P(no)}\]
 Esta expresión se conoce como \textbf{teorema de Bayes}. Nos permite invertir los condicionales:
 
-\[P(positivo|sí) \rightarrow P(sí|positivo)\]
+\[P(positivo|si) \rightarrow P(si|positivo)\]
 O \textbf{evaluar} una prueba en una condición controlada (infección) y luego usarla para \textbf{inferir} la probabilidad de la condición cuando la prueba es positiva.
 
 \textbf{Ejemplo (COVID)}:
@@ -1973,7 +1975,7 @@ El rendimiento de la prueba fue:
 
 \begin{itemize}
 \item
-  Sensibilidad: \(P(positivo|sí)=0.70\)
+  Sensibilidad: \(P(positivo|si)=0.70\)
 \item
   Tasa de falsos positivos: \(P(positivo|no)=1- P(negativo|no)=0.06\)
 \end{itemize}
@@ -1983,20 +1985,20 @@ El estudio en población española dio:
 \begin{itemize}
 \tightlist
 \item
-  \(P(sí)=0.05\)
+  \(P(si)=0.05\)
 \item
-  \(P(no)=1-P(sí)=0.95\).
+  \(P(no)=1-P(si)=0.95\).
 \end{itemize}
 
 Por lo tanto, la probabilidad de infectarse en caso de dar positivo era:
 
-\[P(sí|positivo)=0.47\]
+\[P(si|positivo)=0.47\]
 
 Concluimos que en ese momento las PCR no eran muy buenas para \textbf{confirmar} infecciones.
 
 Sin embargo, apliquemos ahora el teorema de Bayes a la probabilidad de no estar infectado si la prueba fue negativa.
 
-\[P(no|negativo) = \frac{P(negativo|no) P(no)}{P(negativo|no) P(no)+P(negativo|sí)P(sí)}\]
+\[P(no|negativo) = \frac{P(negativo|no) P(no)}{P(negativo|no) P(no)+P(negativo|si)P(si)}\]
 
 La sustitución de todos los valores da
 
@@ -2069,10 +2071,10 @@ Se prueba el rendimiento de una máquina para producir varillas de torneado de a
 
 \begin{longtable}[]{@{}ccc@{}}
 \toprule
-& Redondeado: Sí & Redondeado: No \\
+& Redondeado: si & Redondeado: No \\
 \midrule
 \endhead
-superficie lisa: sí & 200 & 1 \\
+superficie lisa: si & 200 & 1 \\
 superficie lisa: no & 4 & 2 \\
 \bottomrule
 \end{longtable}
@@ -2114,10 +2116,10 @@ Se prueba el rendimiento de dos máquinas para producir varillas de torneado de 
 
 \begin{longtable}[]{@{}ccc@{}}
 \toprule
-& Redondeado: Sí & Redondeado: No \\
+& Redondeado: si & Redondeado: No \\
 \midrule
 \endhead
-superficie lisa: sí & 200 & 1 \\
+superficie lisa: si & 200 & 1 \\
 superficie lisa: no & 4 & 2 \\
 \bottomrule
 \end{longtable}
@@ -2126,10 +2128,10 @@ superficie lisa: no & 4 & 2 \\
 
 \begin{longtable}[]{@{}ccc@{}}
 \toprule
-& Redondeado: Sí & Redondeado: No \\
+& Redondeado: si & Redondeado: No \\
 \midrule
 \endhead
-superficie lisa: sí & 145 & 4 \\
+superficie lisa: si & 145 & 4 \\
 superficie lisa: no & 8 & 6 \\
 \bottomrule
 \end{longtable}

@@ -6,7 +6,7 @@
 ]{book}
 \title{Estadística}
 \author{Alejandro Cáceres (\href{mailto:alejandro.caceres.dominguez@upc.edu}{\nolinkurl{alejandro.caceres.dominguez@upc.edu}})}
-\date{2023-03-15}
+\date{2023-03-22}
 
 \usepackage{amsmath,amssymb}
 \usepackage{lmodern}
@@ -4096,8 +4096,18 @@ Ten en cuenta que en realidad hay pruebas de \(6000\).
 \begin{itemize}
 \tightlist
 \item
+  ¿Cuál es la probabilidad de tratar con exactamente \(5\) solicitudes exitosas antes de que el sistema falle?
+\end{itemize}
+
+\(f(5)=\binom {7} 5 0.0005^3 0.9995^5=2.618444 \times 10^{-9}\)
+
+\begin{itemize}
+\tightlist
+\item
   ¿Cuál es la probabilidad de tratar con un máximo de \(5\) solicitudes exitosas antes de que el sistema falle?
 \end{itemize}
+
+En R esto se calcula con dnbinom(5,3,0.0005)
 
 Por lo tanto, queremos calcular la distribución de probabilidad en \(5\):
 
@@ -4111,7 +4121,7 @@ Por lo tanto, queremos calcular la distribución de probabilidad en \(5\):
 
 \(+\binom {6} 4 0.0005^3 0.9995^4 +\binom {7} 5 0.0005^3 0.9995^5\)
 
-\(= 6,9\times 10^{-9}\)
+\(= 6.9\times 10^{-9}\)
 
 En R esto se calcula con pnbinom(5,3,0.0005)
 
@@ -4130,12 +4140,12 @@ en R dnbinom(10, 2, 0.1)
 \begin{itemize}
 \tightlist
 \item
-  ¿Cuál es la probabilidad de que entren \(2\) chicas antes que \(4\) chicos entren a clase si la probabilidad de que entre una chica es de \(0.5\)?
+  ¿Cuál es la probabilidad de que entren \(2\) chicas antes que \(4\) chicos entren a clase si la probabilidad de que entre un chico es de \(0.55\)?
 \end{itemize}
 
-\(f(2; r=4, p=0.5)=0.15625\)
+\(f(2; r=4, p=0.55)=0.1853\)
 
-en R dnbinom(2, 4, 0.5)
+en R dnbinom(2, 4, 0.55)
 
 \hypertarget{distribuciuxf3n-geomuxe9trica}{%
 \section{Distribución geométrica}\label{distribuciuxf3n-geomuxe9trica}}
@@ -4182,7 +4192,7 @@ donde \(k \in \{\max(0, n+KN), ... \min(K, n) \}\)
 
 Entonces decimos que \(X\) sigue una distribución hipergeométrica y escribimos
 
-\[X \rightarrow Hipergeométrico(N,K,n)\]
+\[X \rightarrow Hipergeom(N,K,n)\]
 El modelo hipergeométrico tiene tres parámetros.
 
 \textbf{Propiedades:}
@@ -4264,17 +4274,19 @@ La solución es la adición de las agujas azules en el gráfico.
 \hypertarget{ejercicio-1-4}{%
 \subsubsection{Ejercicio 1}\label{ejercicio-1-4}}
 
-Si el 20\% de los tornillo producidos por una máquina son defectuosos, determina la probabilidad de que, de
-4 tornillos elegidos al azar
+Si el 25\% de los tornillo producidos por una máquina son defectuosos, determina la probabilidad de que, de
+5 tornillos elegidos al azar
 
 \begin{itemize}
 \tightlist
 \item
-  1 tornillo sea defectuosos (R:0:4096)
+  ningún tornillo sea defectuoso (R:0.2373)
 \item
-  0 tornillos sean defectuosos (R::4096)
+  1 tornillo sea defectuoso (R:0.3955)
 \item
-  como máximo 2 tornillos sean defectuosos (R:0:9728)
+  2 tornillos sean defectuosos (R:0.2636)
+\item
+  como máximo 2 tornillos sean defectuosos (R:0.8964)
 \end{itemize}
 
 \hypertarget{ejercicio-2-4}{%
@@ -4291,9 +4303,11 @@ En una población, la probabilidad de que nazca un niño es \(p=0.51\). Consider
 \item
   ¿Cuál es la probabilidad de que una familia tenga solo un niño o solo una niña? (R: 0.4999)
 \item
+  ¿Cuál es la probabilidad de que la familia tenga por mucho dos niños? (R: 0.37470)
+\item
   ¿Cuál es la probabilidad de que la familia tenga al menos dos niños? (R: 0.7023)
 \item
-  ¿Cuál es el número de hijos que debe tener una familia para que la probabilidad de tener al menos una niña sea mayor a \(0.75\)?(R:\(n=3>\log(0.25)/\log(0.51)\))
+  ¿Cuál es el mínimo número de hijos que debe tener una familia para que la probabilidad de tener al menos una niña sea mayor a \(0.75\)?(R:\(n=3 \geq\log(0.25)/\log(0.51)=2.05\))
 \end{itemize}
 
 \hypertarget{ejercicio-3-4}{%
@@ -4307,7 +4321,7 @@ Un motor de búsqueda falla al recuperar información con una probabilidad de \(
 \item
   ¿Cuál es la probabilidad de que el motor complete con éxito \(15\) búsquedas antes del primer fallo? (R:0.020)
 \item
-  Consideramos que un motor de búsqueda funciona suficientemente bien cuando es capaz de encontrar información para más de \(10\) solicitudes por cada \(2\) fallos. ¿Cuál es la probabilidad de que en un ensayo de fiabilidad nuestro buscador sea satisfactorio? (R: 0.697)
+  Consideramos que un motor de búsqueda funciona suficientemente bien cuando es capaz de encontrar información como mínimo para \(10\) solicitudes por cada \(2\) fallos. ¿Cuál es la probabilidad de que en un ensayo de fiabilidad nuestro buscador sea satisfactorio? (R: 0.659)
 \end{itemize}
 
   \bibliography{book.bib,packages.bib}

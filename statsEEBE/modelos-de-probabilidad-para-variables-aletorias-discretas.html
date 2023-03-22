@@ -24,7 +24,7 @@
 <meta name="author" content="Alejandro Cáceres (alejandro.caceres.dominguez@upc.edu)" />
 
 
-<meta name="date" content="2023-03-15" />
+<meta name="date" content="2023-03-22" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -596,15 +596,20 @@ Eso es <span class="math display">\[f(x)=\binom 4 x 0.1^x(1-0.1)^{4-x}\]</span><
 <p><span class="math inline">\(E(Y)=r\frac{1-p}{p}=3\frac{1-0.0005}{0.0005}=5997\)</span></p>
 <p>Ten en cuenta que en realidad hay pruebas de <span class="math inline">\(6000\)</span>.</p>
 <ul>
+<li>¿Cuál es la probabilidad de tratar con exactamente <span class="math inline">\(5\)</span> solicitudes exitosas antes de que el sistema falle?</li>
+</ul>
+<p><span class="math inline">\(f(5)=\binom {7} 5 0.0005^3 0.9995^5=2.618444 \times 10^{-9}\)</span></p>
+<ul>
 <li>¿Cuál es la probabilidad de tratar con un máximo de <span class="math inline">\(5\)</span> solicitudes exitosas antes de que el sistema falle?</li>
 </ul>
+<p>En R esto se calcula con <code>dnbinom(5,3,0.0005)</code></p>
 <p>Por lo tanto, queremos calcular la distribución de probabilidad en <span class="math inline">\(5\)</span>:</p>
 <p><span class="math inline">\(F(5)=P(Y\leq 5)=\Sigma_{y=0}^5 f(y)\)</span></p>
 <p><span class="math inline">\(=\sum_{y=0}^5\binom {y+2} y 0.0005^r0.9995^y\)</span></p>
 <p><span class="math inline">\(=\binom{2} 0 0.0005^3 0.9995^0 +\binom{3} 1 0.0005^3 0.9995^1\)</span></p>
 <p><span class="math inline">\(+\binom {4} 2 0.0005^3 0.9995^2 +\binom {5} 3 0.0005^3 0.9995^3\)</span></p>
 <p><span class="math inline">\(+\binom {6} 4 0.0005^3 0.9995^4 +\binom {7} 5 0.0005^3 0.9995^5\)</span></p>
-<p><span class="math inline">\(= 6,9\times 10^{-9}\)</span></p>
+<p><span class="math inline">\(= 6.9\times 10^{-9}\)</span></p>
 <p>En R esto se calcula con <code>pnbinom(5,3,0.0005)</code></p>
 <p><strong>Ejemplos</strong></p>
 <ul>
@@ -613,10 +618,10 @@ Eso es <span class="math display">\[f(x)=\binom 4 x 0.1^x(1-0.1)^{4-x}\]</span><
 <p><span class="math inline">\(f(10; r=2, p=0.1)=0.03835463\)</span></p>
 <p>en R <code>dnbinom(10, 2, 0.1)</code></p>
 <ul>
-<li>¿Cuál es la probabilidad de que entren <span class="math inline">\(2\)</span> chicas antes que <span class="math inline">\(4\)</span> chicos entren a clase si la probabilidad de que entre una chica es de <span class="math inline">\(0.5\)</span>?</li>
+<li>¿Cuál es la probabilidad de que entren <span class="math inline">\(2\)</span> chicas antes que <span class="math inline">\(4\)</span> chicos entren a clase si la probabilidad de que entre un chico es de <span class="math inline">\(0.55\)</span>?</li>
 </ul>
-<p><span class="math inline">\(f(2; r=4, p=0.5)=0.15625\)</span></p>
-<p>en R <code>dnbinom(2, 4, 0.5)</code></p>
+<p><span class="math inline">\(f(2; r=4, p=0.55)=0.1853\)</span></p>
+<p>en R <code>dnbinom(2, 4, 0.55)</code></p>
 </div>
 <div id="distribución-geométrica" class="section level2 hasAnchor" number="7.11">
 <h2><span class="header-section-number">7.11</span> Distribución geométrica<a href="modelos-de-probabilidad-para-variables-aletorias-discretas.html#distribución-geométrica" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -643,7 +648,7 @@ que tiene</p>
 <p><span class="math display">\[=\frac{1}{\binom N n}\binom K x \binom {NK} {nx}\]</span></p>
 <p>donde <span class="math inline">\(k \in \{\max(0, n+KN), ... \min(K, n) \}\)</span></p>
 <p>Entonces decimos que <span class="math inline">\(X\)</span> sigue una distribución hipergeométrica y escribimos</p>
-<p><span class="math display">\[X \rightarrow Hipergeométrico(N,K,n)\]</span>
+<p><span class="math display">\[X \rightarrow Hipergeom(N,K,n)\]</span>
 El modelo hipergeométrico tiene tres parámetros.</p>
 <p><strong>Propiedades:</strong></p>
 <p>Si <span class="math inline">\(X \rightarrow Hypergeometric(N,K,n)\)</span> entonces tiene</p>
@@ -694,12 +699,13 @@ El modelo hipergeométrico tiene tres parámetros.</p>
 <h2><span class="header-section-number">7.14</span> Ejercicios<a href="modelos-de-probabilidad-para-variables-aletorias-discretas.html#ejercicios-5" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <div id="ejercicio-1-4" class="section level4 hasAnchor" number="7.14.0.1">
 <h4><span class="header-section-number">7.14.0.1</span> Ejercicio 1<a href="modelos-de-probabilidad-para-variables-aletorias-discretas.html#ejercicio-1-4" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>Si el 20% de los tornillo producidos por una máquina son defectuosos, determina la probabilidad de que, de
-4 tornillos elegidos al azar</p>
+<p>Si el 25% de los tornillo producidos por una máquina son defectuosos, determina la probabilidad de que, de
+5 tornillos elegidos al azar</p>
 <ul>
-<li>1 tornillo sea defectuosos (R:0:4096)</li>
-<li>0 tornillos sean defectuosos (R::4096)</li>
-<li>como máximo 2 tornillos sean defectuosos (R:0:9728)</li>
+<li>ningún tornillo sea defectuoso (R:0.2373)</li>
+<li>1 tornillo sea defectuoso (R:0.3955)</li>
+<li>2 tornillos sean defectuosos (R:0.2636)</li>
+<li>como máximo 2 tornillos sean defectuosos (R:0.8964)</li>
 </ul>
 </div>
 <div id="ejercicio-2-4" class="section level4 hasAnchor" number="7.14.0.2">
@@ -709,8 +715,9 @@ El modelo hipergeométrico tiene tres parámetros.</p>
 <li>¿Cuál es la probabilidad de que una familia tenga un solo niño? (R: 0.240)</li>
 <li>¿Cuál es la probabilidad de que una familia tenga una sola niña? (R: 0.259)</li>
 <li>¿Cuál es la probabilidad de que una familia tenga solo un niño o solo una niña? (R: 0.4999)</li>
+<li>¿Cuál es la probabilidad de que la familia tenga por mucho dos niños? (R: 0.37470)</li>
 <li>¿Cuál es la probabilidad de que la familia tenga al menos dos niños? (R: 0.7023)</li>
-<li>¿Cuál es el número de hijos que debe tener una familia para que la probabilidad de tener al menos una niña sea mayor a <span class="math inline">\(0.75\)</span>?(R:<span class="math inline">\(n=3&gt;\log(0.25)/\log(0.51)\)</span>)</li>
+<li>¿Cuál es el mínimo número de hijos que debe tener una familia para que la probabilidad de tener al menos una niña sea mayor a <span class="math inline">\(0.75\)</span>?(R:<span class="math inline">\(n=3 \geq\log(0.25)/\log(0.51)=2.05\)</span>)</li>
 </ul>
 </div>
 <div id="ejercicio-3-4" class="section level4 hasAnchor" number="7.14.0.3">
@@ -719,7 +726,7 @@ El modelo hipergeométrico tiene tres parámetros.</p>
 <ul>
 <li><p>Si nuestro sistema recibe <span class="math inline">\(50\)</span> solicitudes de búsqueda, ¿cuál es la probabilidad de que el sistema no responda a tres de ellas? (R: 0.1385651)</p></li>
 <li><p>¿Cuál es la probabilidad de que el motor complete con éxito <span class="math inline">\(15\)</span> búsquedas antes del primer fallo? (R:0.020)</p></li>
-<li><p>Consideramos que un motor de búsqueda funciona suficientemente bien cuando es capaz de encontrar información para más de <span class="math inline">\(10\)</span> solicitudes por cada <span class="math inline">\(2\)</span> fallos. ¿Cuál es la probabilidad de que en un ensayo de fiabilidad nuestro buscador sea satisfactorio? (R: 0.697)</p></li>
+<li><p>Consideramos que un motor de búsqueda funciona suficientemente bien cuando es capaz de encontrar información como mínimo para <span class="math inline">\(10\)</span> solicitudes por cada <span class="math inline">\(2\)</span> fallos. ¿Cuál es la probabilidad de que en un ensayo de fiabilidad nuestro buscador sea satisfactorio? (R: 0.659)</p></li>
 </ul>
 
 </div>

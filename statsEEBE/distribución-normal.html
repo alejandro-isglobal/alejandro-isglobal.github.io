@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Estadística</title>
+  <title>Chapter 9 Distribución normal | Estadística</title>
   <meta name="description" content="This are slides for the Stats theory of the BIST master" />
   <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Estadística" />
+  <meta property="og:title" content="Chapter 9 Distribución normal | Estadística" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="alejandro-isglobal/master" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Estadística" />
+  <meta name="twitter:title" content="Chapter 9 Distribución normal | Estadística" />
   
   <meta name="twitter:description" content="This are slides for the Stats theory of the BIST master" />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
+<link rel="prev" href="modelos-de-poisson-y-exponencial.html"/>
 
-<link rel="next" href="descripción-de-datos.html"/>
 <script src="libs/header-attrs-2.12/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -243,81 +243,343 @@
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">Estadística</h1>
-<p class="author"><em>Alejandro Cáceres (<a href="mailto:alejandro.caceres.dominguez@upc.edu" class="email">alejandro.caceres.dominguez@upc.edu</a>)</em></p>
-<p class="date"><em>2023-03-26</em></p>
+<div id="distribución-normal" class="section level1 hasAnchor" number="9">
+<h1><span class="header-section-number">Chapter 9</span> Distribución normal<a href="distribución-normal.html#distribución-normal" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="objetivo-5" class="section level2 hasAnchor" number="9.1">
+<h2><span class="header-section-number">9.1</span> Objetivo<a href="distribución-normal.html#objetivo-5" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>En este capítulo introduciremos la distribución de probabilidad normal.</p>
+<p>Hablaremos de su origen y de sus principales propiedades.</p>
 </div>
-<div id="objetivo" class="section level1 hasAnchor" number="1">
-<h1><span class="header-section-number">Chapter 1</span> Objetivo<a href="index.html#objetivo" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>Este es el curso de introducción a la estadística de la EEBE (UPC).</p>
-<p>La estadística es un <strong>lenguaje</strong> que permite afrontar problemas nuevos, sobre los que no tenemos solución, y en donde interviene la <strong>aleatoridad</strong>.</p>
-<p>En este curso trataremos los <strong>conceptos fundamentales</strong> de estadística.</p>
+<div id="historia" class="section level2 hasAnchor" number="9.2">
+<h2><span class="header-section-number">9.2</span> Historia<a href="distribución-normal.html#historia" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>En 1801, Gauss analizó los datos obtenidos sobre la posición de Ceres, un gran asteroide entre Marte y Júpiter.</p>
+<p>En ese momento, la gente sospechaba que era un nuevo planeta, ya que se movía día a día contra las estrellas fijas. En enero, se podía ver en el horizonte justo antes del amanecer. Sin embargo, a medida que pasaban los días, Ceres salía cada vez más tarde hasta que ya no se pudo ver más debido a la salida del Sol.</p>
+<p>Gauss entendió que las medidas para la posición de Ceres tenían errores.</p>
+<p>Por lo tanto, estaba interesado en descubrir cómo se <strong>distribuían</strong> las observaciones para poder encontrar la órbita más <strong>probable</strong>. Con la órbita, podía derivar la masa del objeto y luego decidir si era un planeta o sólo un gran asteroide.</p>
+<p>Los datos estaban disponibles sólo para el mes de enero. Después de lo cual Ceres desaparecería. Quería <strong>predecir</strong> hacia dónde deberían apuntar los astrónomos sus telescopios para encontrarlo seis meses después al anochecer, una vez que hubiera pasado por detrás del Sol.</p>
+<p>Gauss tuvo que dar cuenta de los errores en la posición de ceres en un día determinado debido a la medición</p>
+<p><img src="figures/ceres.jpg" style="width:75%"  align="center"></p>
+<p>Gauss supuso que</p>
+<ol style="list-style-type: decimal">
+<li><p>los errores pequeños eran más probables que los errores grandes</p></li>
+<li><p>el error a una distancia <span class="math inline">\(-\epsilon\)</span> del varlor en la posición de Ceres era igualmente probable que una distancia <span class="math inline">\(\epsilon\)</span></p></li>
+<li><p>la pisición más <strong>probable</strong> de Ceres en un momento dado en el cielo era el <strong>promedio</strong> de múltiples mediciones de altitud en esa latitud.</p></li>
+</ol>
+<p>Eso fue suficiente para mostrar que las desviaciones aleatorias <span class="math inline">\(y\)</span> <strong>de la órbita</strong> distribuidas como</p>
+<p><span class="math display">\[f(y)=\frac{h}{\sqrt{\pi}}e^{-h^2y^2}\]</span></p>
+<p>*La evolución de la distribución Normal, Saul Stahl, Revista de Matemáticas, 2006.</p>
+</div>
+<div id="densidad-normal" class="section level2 hasAnchor" number="9.3">
+<h2><span class="header-section-number">9.3</span> Densidad normal<a href="distribución-normal.html#densidad-normal" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Densidad de probabilidad de Gauss</p>
+<p><span class="math display">\[f(y)=\frac{h}{\sqrt{\pi}}e^{-h^2y^2}\]</span></p>
+<p>da la distribución de los errores de medición desde la posición <strong>real</strong> pero <strong>desconocida</strong> de Ceres en el cielo.</p>
+<p>Escribamos la densidad de errores desde el horizonte usando la variable aleatoria <span class="math inline">\(X\)</span>, o sea <span class="math inline">\(y=x-x_0\)</span>. <span class="math inline">\(x_0\)</span> es la posición <strong>real</strong> pero <strong>desconocida</strong> de Ceres desde el horizonte. Después de un cambio de variable encontramos la función de densidad de probabilidad:</p>
+<p><span class="math display">\[f(x)=\frac{h}{\sqrt{\pi}}e^{-h^2(x-x_0)^2}\]</span></p>
+<p><strong>Propiedades</strong>
+Si una variable aleatoria continua <span class="math inline">\(X\)</span> tiene una densidad de probabilidad como se indicó anteriormente, entonces</p>
+<ol style="list-style-type: decimal">
+<li>su media es</li>
+</ol>
+<p><span class="math display">\[E(X)=\mu=x_0\]</span></p>
+<p>que representa la <strong>verdadera</strong> posición de Ceres desde el horizonte (propiedad del sistema físico).</p>
+<ol start="2" style="list-style-type: decimal">
+<li>su varianza es</li>
+</ol>
+<p><span class="math display">\[V(X)=\sigma^2=\frac{1}{2h^2}\]</span></p>
+<p>que representa la dispersión del error en las observaciones (propiedad del sistema de medida).</p>
+</div>
+<div id="definición" class="section level2 hasAnchor" number="9.4">
+<h2><span class="header-section-number">9.4</span> Definición<a href="distribución-normal.html#definición" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Una variable aleatoria <span class="math inline">\(X\)</span> definida en los números reales tiene una densidad <strong>Normal</strong> si toma la forma</p>
+<p><span class="math display">\[f(x; \mu, \sigma^2)=\frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{(x-\mu)^2}{2\sigma^2}}, x \in {\Bbb R}\]</span></p>
+<p>La variable tiene</p>
+<ol style="list-style-type: decimal">
+<li>media</li>
+</ol>
+<p><span class="math display">\[E(X) = \mu\]</span></p>
+<ol start="2" style="list-style-type: decimal">
+<li>y varianza
+<span class="math display">\[V (X) = \sigma^2\]</span></li>
+</ol>
+<p><span class="math inline">\(\mu\)</span> y <span class="math inline">\(\sigma\)</span> son los <strong>dos parámetros</strong> que describen completamente la función de densidad normal y su <strong>interpretación</strong> depende del experimento aleatorio.</p>
+<p>Cuando <span class="math inline">\(X\)</span> sigue una densidad Normal, es decir, se distribuye normalmente, escribimos</p>
+<p><span class="math display">\[X\rightarrow N(\mu,\sigma^2)\]</span></p>
+<p>Veamos algunas densidades de probabilidad en el modelo paramétrico normal</p>
+<p><img src="_main_files/figure-html/unnamed-chunk-65-1.png" width="672" /></p>
+</div>
+<div id="distribución-de-probabilidad-2" class="section level2 hasAnchor" number="9.5">
+<h2><span class="header-section-number">9.5</span> Distribución de probabilidad<a href="distribución-normal.html#distribución-de-probabilidad-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>La distribución de probabilidad de la densidad Normal:</p>
+<p><span class="math display">\[F_{normal}(a)=P(Z \leq a)\]</span></p>
+<p>es la función de <strong>error</strong> definida por el área bajo la curva de <span class="math inline">\(-\infty\)</span> a <span class="math inline">\(a\)</span></p>
+<p><span class="math display">\[F_{normal}(a)=\int_{-\infty}^{a}\frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{(x-\mu) ^2}{2\sigma^2}} dx\]</span>
+La función se encuentra en la mayoría de los programas de computadora y no tiene una forma cerrada de funciones conocidas.</p>
+<p><strong>Ejemplo (altura de mujer)</strong></p>
+<ol style="list-style-type: decimal">
+<li>¿Cuál es la probabilidad de que una mujer de la población tenga una altura máxima de <span class="math inline">\(150 cm\)</span> si las mujeres tienen una altura media de <span class="math inline">\(165 cm\)</span> con una desviación estándar de <span class="math inline">\(8 cm\)</span>?</li>
+</ol>
+<p><span class="math inline">\(P(X\le 150)=F(150, \mu=165, \sigma=8)=0.03039636\)</span></p>
+<p>en R <code>pnorm(150, 165, 8)</code></p>
+<ol start="2" style="list-style-type: decimal">
+<li>¿Cuál es la probabilidad de que la altura de una mujer en la población esté entre <span class="math inline">\(165cm\)</span> y <span class="math inline">\(170cm\)</span>?</li>
+</ol>
+<p><span class="math inline">\(P(165 \le X \le 170)=F(170, \mu=165, \sigma=8)-F(165, \mu=165, \sigma=8)=0.2340145\)</span></p>
+<p>en R <code>pnorm(170, 165, 8)-pnorm(165, 165, 8)</code></p>
+<p>Veamos la función de distribución de probabilidad</p>
+<p><img src="_main_files/figure-html/unnamed-chunk-66-1.png" width="672" /></p>
+<p><strong>Propiedades de la distribución Normal</strong></p>
+<ol style="list-style-type: decimal">
+<li><p>la media <span class="math inline">\(\mu\)</span> es también la mediana ya que divide las medidas en dos</p></li>
+<li><p>Los valores de <span class="math inline">\(x\)</span> que caen más allá de 2<span class="math inline">\(\sigma\)</span> se consideran <strong>raros</strong> <span class="math inline">\(5\%\)</span></p></li>
+<li><p>Los valores de <span class="math inline">\(x\)</span> que caen más allá de 3<span class="math inline">\(\sigma\)</span> se consideran <strong>extremadamente raros</strong> <span class="math inline">\(0.2\%\)</span></p></li>
+</ol>
+<p><img src="figures/probs.PNG" style="width:50%"  align="center"></p>
+<p><strong>Ejemplo (altura de mujer)</strong></p>
+<p>Podemos definir los límites de <strong>observaciones comunes</strong> para la distribución de la altura de las mujeres en la población.</p>
+<ol style="list-style-type: decimal">
+<li>a una distancia de una desviación estándar de la media, encontramos <span class="math inline">\(68\%\)</span> de la población</li>
+</ol>
+<p><span class="math display">\[P(165-8 \leq X \leq 165+8)=P(157 \leq X \leq 173)=0.68\]</span></p>
+<ol start="2" style="list-style-type: decimal">
+<li>a una distancia de dos desviaciones estándar de la media, encontramos <span class="math inline">\(95\%\)</span> de la población</li>
+</ol>
+<p><span class="math display">\[P(165-2 \times 8 \leq X \leq 165+2\times 8)=P(149 \leq X \leq 181)=0.95\]</span></p>
+<ol start="3" style="list-style-type: decimal">
+<li>a una distancia de tres desviaciones estándar de la media, encontramos <span class="math inline">\(99.7\%\)</span> de la población</li>
+</ol>
+<p><span class="math display">\[P(165-3 \times 8 \leq X \leq 165+3\times 8)=P(141 \leq X \leq 189)=0.997\]</span></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-67-1.png" width="672" /></p>
+</div>
+<div id="densidad-normal-estándar" class="section level2 hasAnchor" number="9.6">
+<h2><span class="header-section-number">9.6</span> Densidad normal estándar<a href="distribución-normal.html#densidad-normal-estándar" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>La densidad normal estándar es la densidad particular de la familia normal</p>
+<p><span class="math display">\[f(x; \mu, \sigma^2)=\frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{(x-\mu)^2}{2\ sigma^2}}, x \in {\Bbb R}\]</span></p>
+<p>Por lo tanto, es la densidad con</p>
+<ol style="list-style-type: decimal">
+<li>media</li>
+</ol>
+<p><span class="math display">\[E(X)= \mu = 0\]</span></p>
+<ol start="2" style="list-style-type: decimal">
+<li>y varianza</li>
+</ol>
+<p><span class="math display">\[V (X)= \sigma^2 =1\]</span></p>
+<p>Cuando una variable aleatoria sigue una densidad de probabilidad normal, decimos que se distribuye normalmente y escribimos</p>
+<p><span class="math display">\[X \rightarrow N(0,1)\]</span></p>
+<p><strong>Estandarización:</strong></p>
+<p>Todas las variables normales se pueden <strong>estandarizar</strong>. Esto significa que si <span class="math inline">\(X \rightarrow N(\mu, \sigma^2)\)</span>, entonces podemos transformar la variable a
+una <strong>variable estandarizada</strong></p>
+<p><span class="math display">\[Z=\frac{X-\mu}{\sigma}\]</span></p>
+<p>que tendrá densidad:</p>
+<p><span class="math display">\[f(z)=\frac{1}{ \sqrt{2\pi}}e^{-\frac{z^2}{2}} dz\]</span>
+Por lo tanto, para cualquier <span class="math inline">\(X \rightarrow N(\mu, \sigma^2)\)</span></p>
+<p><span class="math display">\[Z=\frac{X-\mu}{\sigma} \rightarrow N(0, 1) \]</span></p>
+<p><img src="figures/stand.PNG" style="width:50%" style="height:100%"  align="center"></p>
+<p>Puedes demostrar esto reemplazando <span class="math inline">\(x=\sigma z+\mu\)</span> y <span class="math inline">\(dx=\sigma dz\)</span> en la expresión de probabilidad que tenemos</p>
+<p><span class="math inline">\(P(x\leq X \leq x +dx)=P(z\leq Z \leq z +dz)\)</span>
+<span class="math display">\[=\frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{(x-\mu)^2}{2\sigma^2}}dx\]</span> <span class="math display">\[=\frac{1}{ \sqrt{2\pi}}e^{-\frac{z^2}{2}} dz\]</span></p>
+</div>
+<div id="distribución-estándar" class="section level2 hasAnchor" number="9.7">
+<h2><span class="header-section-number">9.7</span> Distribución estándar<a href="distribución-normal.html#distribución-estándar" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>La distribución de probabilidad de la densidad estándar:</p>
+<p><span class="math display">\[\phi(a)=F_{N(0,1)}(a)=P(Z \leq a)\]</span></p>
+<p>es la función <strong>error</strong> definida por</p>
+<p><span class="math display">\[\phi(a)=\int_{-\infty}^{a} \frac{1}{\sqrt{2\pi}}e^{-\frac{z^2}{2}} dz\]</span></p>
+<p>Debido a que la distribución estándar es especial y aparecerá con frecuencia, usamos la letra <span class="math inline">\(\phi\)</span> para ello.</p>
+<p><img src="figures/st.PNG" style="width:75%" style="height:100%"  align="center"></p>
+<p>Puedes encontrarla en la mayoría de los programas de computadora. En R es <code>pnorm(x)</code> con los parámetros predeterminados, 0 y 1.</p>
+<p>Normalmente definimos los límites de las <strong>observaciones más comunes</strong> para la variable estándar</p>
+<p><img src="figures/phi.jpg" style="width:100%" style="height:100%"  align="center"></p>
+<ol style="list-style-type: decimal">
+<li>El rango intercuartílico <span class="math display">\[P(-0.67 \leq X \leq 0.67)=0.50\]</span></li>
+<li>El rango del <span class="math inline">\(95\%\)</span> <span class="math display">\[P(-1.96 \leq X \leq 1.96)=0.95\]</span></li>
+<li>El rango del <span class="math inline">\(99\%\)</span> <span class="math display">\[P(-2.58 \leq X \leq 2.58)=0.99\]</span></li>
+</ol>
+<p><img src="_main_files/figure-html/unnamed-chunk-68-1.png" width="672" /></p>
+<p>La probabilidad de cualquier variable normal <span class="math inline">\(X\rightarrow N(\mu, \sigma^2)\)</span> usando la distribución estándar</p>
+<p><span class="math inline">\(F(a)=P(X&lt;a)=P(\frac{X-\mu}{\sigma}&lt;\frac{a-\mu}{\sigma})\)</span>
+<span class="math display">\[=P(Z &lt; \frac{a-\mu}{\sigma})= \phi \big(\frac{a-\mu}{\sigma}\big)\]</span></p>
+<p>Para calcular <span class="math inline">\(P(a\leq X \leq b)\)</span>, usamos la propiedad de las distribuciones de probabilidad</p>
+<p><span class="math inline">\(F(b)-F(a)=P(X\leq b)-P(X\leq a)\)</span></p>
+<p><span class="math display">\[=\phi \big(\frac{b-\mu}{\sigma}\big)-\phi \big(\frac{a-\mu}{\sigma}\big)\]</span></p>
+</div>
+<div id="resumen-de-modelos-de-probabilidad" class="section level2 hasAnchor" number="9.8">
+<h2><span class="header-section-number">9.8</span> Resumen de modelos de probabilidad<a href="distribución-normal.html#resumen-de-modelos-de-probabilidad" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<table style="width:100%;">
+<colgroup>
+<col width="16%" />
+<col width="19%" />
+<col width="19%" />
+<col width="16%" />
+<col width="14%" />
+<col width="14%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">Modelo</th>
+<th align="center">X</th>
+<th align="center">rango de x</th>
+<th align="center">f(x)</th>
+<th align="center">E(X)</th>
+<th align="center">V(X)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">Uniforme</td>
+<td align="center">número entero o real</td>
+<td align="center"><span class="math inline">\([a,b]\)</span></td>
+<td align="center"><span class="math inline">\(\frac{1}{n}\)</span></td>
+<td align="center"><span class="math inline">\(\frac{b+a}{2}\)</span></td>
+<td align="center"><span class="math inline">\(\frac{(b-a+1)^2-1}{12}\)</span></td>
+</tr>
+<tr class="even">
+<td align="center">Bernoulli</td>
+<td align="center">evento A</td>
+<td align="center">0,1</td>
+<td align="center"><span class="math inline">\((1-p)^{1-x}p^x\)</span></td>
+<td align="center"><span class="math inline">\(p\)</span></td>
+<td align="center"><span class="math inline">\(p(1-p)\)</span></td>
+</tr>
+<tr class="odd">
+<td align="center">binomial</td>
+<td align="center"># de eventos A en <span class="math inline">\(n\)</span> repeticiones de ensayos de Bernoulli</td>
+<td align="center">0,1,…</td>
+<td align="center"><span class="math inline">\(\binom nx (1-p)^{nx}p^x\)</span></td>
+<td align="center"><span class="math inline">\(np\)</span></td>
+<td align="center"><span class="math inline">\(np(1-p)\)</span></td>
+</tr>
+<tr class="even">
+<td align="center">Binomial negativo para eventos</td>
+<td align="center"># de eventos B en repeticiones de Bernoulli antes de <span class="math inline">\(r\)</span> Como se observan</td>
+<td align="center">0,1,..</td>
+<td align="center"><span class="math inline">\(\binom {x+r-1} x (1-p)^xp^r\)</span></td>
+<td align="center"><span class="math inline">\(\frac{r(1-p)}{p}\)</span></td>
+<td align="center"><span class="math inline">\(\frac{r(1-p)}{p^2}\)</span></td>
+</tr>
+<tr class="odd">
+<td align="center">Hipergeométrico</td>
+<td align="center"># de eventos A en una muestra <span class="math inline">\(n\)</span> de la población <span class="math inline">\(N\)</span> con <span class="math inline">\(K\)</span> As</td>
+<td align="center"><span class="math inline">\(\max(0, n+KN)\)</span>, … <span class="math inline">\(\min(K, n)\)</span></td>
+<td align="center"><span class="math inline">\(\frac{1}{\binom N n}\binom K x \binom {NK} {nx}\)</span></td>
+<td align="center"><span class="math inline">\(n*\frac{N}{K}\)</span></td>
+<td align="center"><span class="math inline">\(n \frac{N}{K} (1-\frac{N}{K})\frac{Nn}{N-1}\)</span></td>
+</tr>
+<tr class="even">
+<td align="center">Veneno</td>
+<td align="center"># de eventos A en un intervalo</td>
+<td align="center">0,1, ..</td>
+<td align="center"><span class="math inline">\(\frac{e^{-\lambda}\lambda^x}{x!}\)</span></td>
+<td align="center"><span class="math inline">\(\lambda\)</span></td>
+<td align="center"><span class="math inline">\(\lambda\)</span></td>
+</tr>
+<tr class="odd">
+<td align="center">Exponencial</td>
+<td align="center">Intervalo entre dos eventos A</td>
+<td align="center"><span class="math inline">\([0,\infty)\)</span></td>
+<td align="center"><span class="math inline">\(\lambda e^{-\lambda x}\)</span></td>
+<td align="center"><span class="math inline">\(\frac{1}{\lambda}\)</span></td>
+<td align="center"><span class="math inline">\(\frac{1}{\lambda^2}\)</span></td>
+</tr>
+<tr class="even">
+<td align="center">normales</td>
+<td align="center">medida con errores simétricos cuyo valor más probable es la media</td>
+<td align="center"><span class="math inline">\((-\infty, \infty)\)</span></td>
+<td align="center"><span class="math inline">\(\frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{(x-\mu)^2}{2\sigma^2 }}\)</span></td>
+<td align="center"><span class="math inline">\(\mu\)</span></td>
+<td align="center"><span class="math inline">\(\sigma^2\)</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="funciones-r-de-modelos-de-probabilidad" class="section level2 hasAnchor" number="9.9">
+<h2><span class="header-section-number">9.9</span> Funciones R de modelos de probabilidad<a href="distribución-normal.html#funciones-r-de-modelos-de-probabilidad" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<table>
+<thead>
+<tr class="header">
+<th align="left">modelo</th>
+<th align="center">R</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Uniforme (continuo)</td>
+<td align="center"><code>dunif(x, a, b)</code></td>
+</tr>
+<tr class="even">
+<td align="left">binomial</td>
+<td align="center"><code>dbimon(x,n,p)</code></td>
+</tr>
+<tr class="odd">
+<td align="left">Binomial negativo para eventos</td>
+<td align="center"><code>dnbinom(x,r,p)</code></td>
+</tr>
+<tr class="even">
+<td align="left">Hipergeométrico</td>
+<td align="center"><code>dhyper(x, K, NK, n)</code></td>
+</tr>
+<tr class="odd">
+<td align="left">Poisson</td>
+<td align="center"><code>dpois(x, lambda)</code></td>
+</tr>
+<tr class="even">
+<td align="left">Exponencial</td>
+<td align="center"><code>dexp(x, lambda)</code></td>
+</tr>
+<tr class="odd">
+<td align="left">normales</td>
+<td align="center"><code>dnomr(x, mu, sigma)</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="preguntas-6" class="section level2 hasAnchor" number="9.10">
+<h2><span class="header-section-number">9.10</span> Preguntas<a href="distribución-normal.html#preguntas-6" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><strong>1)</strong> No es cierto que para una variable normalmente distribuida</p>
+<p><strong><span class="math inline">\(\qquad\)</span>a:</strong> su media y mediana son iguales; <strong><span class="math inline">\(\qquad\)</span>b:</strong> la distribución de probabilidad estándar se puede utilizar para calcular sus probabilidades; <strong><span class="math inline">\(\qquad\)</span>c:</strong> su rango intercuartílico es el doble de su desviación estándar; <strong><span class="math inline">\(\qquad\)</span>d:</strong> <span class="math inline">\(5\%\)</span> de sus observaciones están a una distancia mayor que el doble de su desviación estándar</p>
+<p><strong>2)</strong> Para una variable normal estándar</p>
+<p><strong><span class="math inline">\(\qquad\)</span>a:</strong> <span class="math inline">\(50\%\)</span> de sus observaciones están entre <span class="math inline">\((-0.67,0.67)\)</span>;
+<strong><span class="math inline">\(\qquad\)</span>b:</strong> <span class="math inline">\(2\%\)</span> de sus observaciones son inferiores a <span class="math inline">\(-2,58\)</span>;
+<strong><span class="math inline">\(\qquad\)</span>c:</strong> <span class="math inline">\(5\%\)</span> de sus observaciones son superiores a <span class="math inline">\(1,96\)</span>;
+<strong><span class="math inline">\(\qquad\)</span>d:</strong> <span class="math inline">\(25\%\)</span> de sus observaciones están entre <span class="math inline">\((-1.96,-0.67)\)</span></p>
+<p><strong>3)</strong> si sabemos que <span class="math inline">\(\phi(-0.8416212)=0.2\)</span> entonces que es <span class="math inline">\(\phi(0.8416212)\)</span></p>
+<p><strong><span class="math inline">\(\qquad\)</span>a:</strong> <span class="math inline">\(0.1\)</span>;
+<strong><span class="math inline">\(\qquad\)</span>b:</strong> <span class="math inline">\(0.2\)</span>;
+<strong><span class="math inline">\(\qquad\)</span>c:</strong> <span class="math inline">\(0.8\)</span>;
+<strong><span class="math inline">\(\qquad\)</span>d:</strong> <span class="math inline">\(0.9\)</span></p>
+<p><strong>4)</strong> el tercer cuartil de una variable normal con media <span class="math inline">\(10\)</span> y desviación estándar <span class="math inline">\(2\)</span> es</p>
+<p><strong><span class="math inline">\(\qquad\)</span>a:</strong> <code>qnorm(1/3, 10, 2)=9.138545</code>;
+<strong><span class="math inline">\(\qquad\)</span>b:</strong> <code>qnorm(1-0.75, 10, 2)=8.65102 </code>;
+<strong><span class="math inline">\(\qquad\)</span>c:</strong> <code>qnorm(1-1/3, 10, 2)=10.86145 </code>;
+<strong><span class="math inline">\(\qquad\)</span>d:</strong> <code>qnorm(0.75, 10, 2)= 11.34898 </code></p>
+<p><strong>5)</strong> la probabilidad de que una variable normal con media <span class="math inline">\(10\)</span> y desviación estándar <span class="math inline">\(2\)</span> esté en <span class="math inline">\((-\infty,10)\)</span> es</p>
+<p><strong><span class="math inline">\(\qquad\)</span>a:</strong> 0.25;
+<strong><span class="math inline">\(\qquad\)</span>b:</strong> 0.5;
+<strong><span class="math inline">\(\qquad\)</span>c:</strong> 0.75;
+<strong><span class="math inline">\(\qquad\)</span>d:</strong> 1:</p>
+</div>
+<div id="ejercicios-7" class="section level2 hasAnchor" number="9.11">
+<h2><span class="header-section-number">9.11</span> Ejercicios<a href="distribución-normal.html#ejercicios-7" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="ejercicio-1-6" class="section level4 hasAnchor" number="9.11.0.1">
+<h4><span class="header-section-number">9.11.0.1</span> Ejercicio 1<a href="distribución-normal.html#ejercicio-1-6" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Encuentra el área bajo la curva normal estándar en los siguientes casos:</p>
 <ul>
-<li><p>3 horas de <strong>teoría</strong> por semana: Explicaremos los conceptos, haremos ejercicios.</p></li>
-<li><p>6 horas de <strong>estudio individual</strong> por semana: Notas notas de curso y los recursos en ATENEA.</p></li>
-<li><p>2 horas de Solución de problemas con <strong>R</strong>: Sesiones presenciales con ordenador (Prácticas).</p></li>
+<li>Entre <span class="math inline">\(z=0.81\)</span> y <span class="math inline">\(z=1.94\)</span> (R:0.182)</li>
+<li>A la derecha de <span class="math inline">\(z=-1.28\)</span> (R:0.899)</li>
+<li>A la derecha de <span class="math inline">\(z=2.05\)</span> o a la izquierda de <span class="math inline">\(z=-1.44\)</span> (R:0.0951)</li>
 </ul>
-<p>Las fechas de exámenes y material de estudio adicional se pueden encontrar en <strong>ATENEA metacurso</strong>:</p>
-<p><img src="figures/notas.JPG" style="width:75%"  align="center"></p>
-<p><br>
-<br>
-<br></p>
-<p>Objetivos de evaluación:</p>
-<p><strong>Q1</strong> (10%): Prueba en ordenador duración 2h en las fechas indicadas.</p>
-<ol style="list-style-type: lower-alpha">
-<li>Dominio de comandos básicos en R (Prácticas)</li>
-<li>Capacidad de calcular estadísticos descriptivos y gráficos, en situaciones concretas (Teoría/Práctica)</li>
-<li>Conocimiento sobre la regresión lineal (Prácticas)</li>
-</ol>
-<p><strong>EP1</strong> (25%): Prueba escrita (2-3 problemas)</p>
-<ol style="list-style-type: lower-alpha">
-<li>Capacidad de interpretación de enunciados en fórmulas de probabilidad (Teoría).</li>
-<li>Conocimiento de las herramientas básicas para solucionar problemas de probabilidad conjunta y probabilidad condicional (Teoría).</li>
-<li>Dominio matemático de funciones de probabilidad para calcular sus propiedades básicas (Teoría).</li>
-</ol>
-<p><strong>Q2</strong> (10%): Prueba en ordenador duración 2h en las fechas indicadas</p>
-<ol style="list-style-type: lower-alpha">
-<li>Capacidad de identificación de modelos de probabilidad en problemas concretos (Teoría/Práctica).</li>
-<li>Uso de funciones de R para calcular probabilidades de modelos probabilísticos (Práctica/Teoría)</li>
-</ol>
-<p><strong>Q3</strong> (10%): Prueba en ordenador duración 2h en las fechas indicadas</p>
-<ol style="list-style-type: lower-alpha">
-<li>Capacidad de identificación de un estadístico de muestreo y sus propiedades (Teoría/Práctica)</li>
-<li>Conocimiento de cómo calcular la probabilidad de los estadísticos de muestreo (Teoría/Práctica)</li>
-<li>Uso de comandos en R para calcular probabilidades y hacer simulaciones de muestras aleatorias (Prácticas)</li>
-</ol>
-<p><strong>EP2</strong> (10%): Prueba escrita (2-3 problemas)</p>
-<ol style="list-style-type: lower-alpha">
-<li>Capacidad matemática para determinar estimadores puntuales de modelos de probabilidad.</li>
-<li>Conociemiento de las propiedades de los estimadores puntuales.</li>
-</ol>
-<p><strong>CG</strong> (5%): Prueba escrita (2 preguntas sobre un texto)</p>
-<ol style="list-style-type: lower-alpha">
-<li>Capacidad de expresión escrita sobre un tema relacionado a la estadística.</li>
-</ol>
-<p><br></p>
-<p><strong>EP3</strong> (30%): Prueba por ordenador presencial (2-3 problemas)</p>
-<ol style="list-style-type: lower-alpha">
-<li>Conocimiento de los intervalos de confianza y sus propiedades (Teoría).</li>
-<li>Capacidad de identificar el tipo de intervalo de confianza en un problema concreto (Teoría).</li>
-<li>Capacidad de interpretación del tipo
-de hipótesis a usar en un problema concreto (Teoría).</li>
-<li>Propiedades de las pruebas de hipótesis.</li>
-<li>Uso de comandos en R para resolver problemas de intervalos de confianza y prueabas de hipótesis (Práctica).</li>
-</ol>
-<p>coordinadores:</p>
+</div>
+<div id="ejercicio-2-6" class="section level4 hasAnchor" number="9.11.0.2">
+<h4><span class="header-section-number">9.11.0.2</span> Ejercicio 2<a href="distribución-normal.html#ejercicio-2-6" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <ul>
-<li>Luis Mujica (<a href="mailto:luis.eduardo.mujica@upc.edu" class="email">luis.eduardo.mujica@upc.edu</a>)</li>
-<li>Pablo Buenestado (<a href="mailto:pablo.buenestado@upc.edu" class="email">pablo.buenestado@upc.edu</a>)</li>
-</ul>
-<div id="lectura-recomendada" class="section level2 hasAnchor" number="1.1">
-<h2><span class="header-section-number">1.1</span> Lectura recomendada<a href="index.html#lectura-recomendada" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<ul>
-<li><p>Las notas de clase se nuestra sección estarán accesibles en ATENEA en pdf y en html.</p></li>
-<li><p>Douglas C. Montgomery and George C. Runger. “Applied Statistics and Probability for Engineers” 4th Edition. Wiley 2007.</p></li>
+<li><p>¿Cuál es la probabilidad de que la altura de un hombre sea al menos
+<span class="math inline">\(165\)</span>cm si la media poblacional es <span class="math inline">\(175\)</span>cm y la desviación estándar es <span class="math inline">\(10\)</span>cm? (R:0.841)</p></li>
+<li><p>¿Cuál es la probabilidad de que la altura de un hombre esté entre
+<span class="math inline">\(165\)</span>cm y <span class="math inline">\(185\)</span>cm? (R:0.682)</p></li>
+<li><p>¿Cuál es la altura que define el <span class="math inline">\(5\%\)</span> de los hombres más pequeños? (R:158.55)</p></li>
 </ul>
 
+</div>
 </div>
 </div>
             </section>
@@ -325,8 +587,8 @@ de hipótesis a usar en un problema concreto (Teoría).</li>
           </div>
         </div>
       </div>
+<a href="modelos-de-poisson-y-exponencial.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 
-<a href="descripción-de-datos.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -357,7 +619,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/USERNAME/REPO/edit/BRANCH/index.Rmd",
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/08-NoramalDistribution.Rmd",
 "text": "Edit"
 },
 "history": {

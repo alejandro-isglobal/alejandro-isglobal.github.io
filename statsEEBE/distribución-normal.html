@@ -24,7 +24,7 @@
 <meta name="author" content="Alejandro Cáceres (alejandro.caceres.dominguez@upc.edu)" />
 
 
-<meta name="date" content="2023-03-26" />
+<meta name="date" content="2023-03-30" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -263,31 +263,23 @@
 <ol style="list-style-type: decimal">
 <li><p>los errores pequeños eran más probables que los errores grandes</p></li>
 <li><p>el error a una distancia <span class="math inline">\(-\epsilon\)</span> del varlor en la posición de Ceres era igualmente probable que una distancia <span class="math inline">\(\epsilon\)</span></p></li>
-<li><p>la pisición más <strong>probable</strong> de Ceres en un momento dado en el cielo era el <strong>promedio</strong> de múltiples mediciones de altitud en esa latitud.</p></li>
+<li><p>la pisición más <strong>verosimil</strong> (que nos creemos más) de Ceres en un momento dado en el cielo era el <strong>promedio</strong> de múltiples mediciones de altitud en esa latitud.</p></li>
 </ol>
-<p>Eso fue suficiente para mostrar que las desviaciones aleatorias <span class="math inline">\(y\)</span> <strong>de la órbita</strong> distribuidas como</p>
-<p><span class="math display">\[f(y)=\frac{h}{\sqrt{\pi}}e^{-h^2y^2}\]</span></p>
+<p>Eso fue suficiente para mostrar que las desviaciones de las ibservaciones <span class="math inline">\(y\)</span> <strong>de la órbita</strong> satisfacian la ecuación</p>
+<p><span class="math display">\[\frac{df(y)}{dy}=Cyf(y)\]</span>
+con <span class="math inline">\(C\)</span> una costante. La solución de esta ecuación diferencial es:</p>
+<p><span class="math display">\[f(y)=\frac{\sqrt{C}}{\sqrt{\pi}}e^{-\frac{Cy^2}{2}}\]</span></p>
 <p>*La evolución de la distribución Normal, Saul Stahl, Revista de Matemáticas, 2006.</p>
 </div>
 <div id="densidad-normal" class="section level2 hasAnchor" number="9.3">
 <h2><span class="header-section-number">9.3</span> Densidad normal<a href="distribución-normal.html#densidad-normal" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Densidad de probabilidad de Gauss</p>
-<p><span class="math display">\[f(y)=\frac{h}{\sqrt{\pi}}e^{-h^2y^2}\]</span></p>
-<p>da la distribución de los errores de medición desde la posición <strong>real</strong> pero <strong>desconocida</strong> de Ceres en el cielo.</p>
-<p>Escribamos la densidad de errores desde el horizonte usando la variable aleatoria <span class="math inline">\(X\)</span>, o sea <span class="math inline">\(y=x-x_0\)</span>. <span class="math inline">\(x_0\)</span> es la posición <strong>real</strong> pero <strong>desconocida</strong> de Ceres desde el horizonte. Después de un cambio de variable encontramos la función de densidad de probabilidad:</p>
-<p><span class="math display">\[f(x)=\frac{h}{\sqrt{\pi}}e^{-h^2(x-x_0)^2}\]</span></p>
-<p><strong>Propiedades</strong>
-Si una variable aleatoria continua <span class="math inline">\(X\)</span> tiene una densidad de probabilidad como se indicó anteriormente, entonces</p>
-<ol style="list-style-type: decimal">
-<li>su media es</li>
-</ol>
-<p><span class="math display">\[E(X)=\mu=x_0\]</span></p>
-<p>que representa la <strong>verdadera</strong> posición de Ceres desde el horizonte (propiedad del sistema físico).</p>
+<p>Densidad de probabilidad de Gauss da la distribución de los errores de medición desde la posición <strong>real</strong> pero <strong>desconocida</strong> de Ceres en el cielo. Hagamos un par de cambios en la función.</p>
+<p>1- Escribamos la densidad de errores desde el horizonte usando la variable aleatoria <span class="math inline">\(X\)</span>, o sea <span class="math inline">\(y=x-\mu\)</span>. <span class="math inline">\(\mu\)</span> es la posición <strong>real</strong> pero <strong>desconocida</strong> de Ceres desde el horizonte. Después de un cambio de variable encontramos la función de densidad de probabilidad:</p>
+<p><span class="math display">\[f(x)=\frac{\sqrt{C}}{\sqrt{\pi}}e^{-C(x-\mu)^2}\]</span></p>
 <ol start="2" style="list-style-type: decimal">
-<li>su varianza es</li>
+<li>Cambiemos de nombre la variable <span class="math inline">\(C\)</span> por <span class="math inline">\(\frac{1}{\sigma^2}\)</span></li>
 </ol>
-<p><span class="math display">\[V(X)=\sigma^2=\frac{1}{2h^2}\]</span></p>
-<p>que representa la dispersión del error en las observaciones (propiedad del sistema de medida).</p>
+<p>Entonces, llegamos a la siguente definición.</p>
 </div>
 <div id="definición" class="section level2 hasAnchor" number="9.4">
 <h2><span class="header-section-number">9.4</span> Definición<a href="distribución-normal.html#definición" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -298,10 +290,12 @@ Si una variable aleatoria continua <span class="math inline">\(X\)</span> tiene 
 <li>media</li>
 </ol>
 <p><span class="math display">\[E(X) = \mu\]</span></p>
+<p>que para Gauss representaba la posición real de Ceres.</p>
 <ol start="2" style="list-style-type: decimal">
 <li>y varianza
 <span class="math display">\[V (X) = \sigma^2\]</span></li>
 </ol>
+<p>que representaba la dispersión del error en las observaciones, que depende de la calidad del telescopio.</p>
 <p><span class="math inline">\(\mu\)</span> y <span class="math inline">\(\sigma\)</span> son los <strong>dos parámetros</strong> que describen completamente la función de densidad normal y su <strong>interpretación</strong> depende del experimento aleatorio.</p>
 <p>Cuando <span class="math inline">\(X\)</span> sigue una densidad Normal, es decir, se distribuye normalmente, escribimos</p>
 <p><span class="math display">\[X\rightarrow N(\mu,\sigma^2)\]</span></p>
@@ -311,11 +305,11 @@ Si una variable aleatoria continua <span class="math inline">\(X\)</span> tiene 
 <div id="distribución-de-probabilidad-2" class="section level2 hasAnchor" number="9.5">
 <h2><span class="header-section-number">9.5</span> Distribución de probabilidad<a href="distribución-normal.html#distribución-de-probabilidad-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>La distribución de probabilidad de la densidad Normal:</p>
-<p><span class="math display">\[F_{normal}(a)=P(Z \leq a)\]</span></p>
+<p><span class="math display">\[F(a)=P(Z \leq a)\]</span></p>
 <p>es la función de <strong>error</strong> definida por el área bajo la curva de <span class="math inline">\(-\infty\)</span> a <span class="math inline">\(a\)</span></p>
-<p><span class="math display">\[F_{normal}(a)=\int_{-\infty}^{a}\frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{(x-\mu) ^2}{2\sigma^2}} dx\]</span>
+<p><span class="math display">\[F(a)=\int_{-\infty}^{a}\frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{(x-\mu) ^2}{2\sigma^2}} dx\]</span>
 La función se encuentra en la mayoría de los programas de computadora y no tiene una forma cerrada de funciones conocidas.</p>
-<p><strong>Ejemplo (altura de mujer)</strong></p>
+<p><strong>Ejemplo (altura de mujeres)</strong></p>
 <ol style="list-style-type: decimal">
 <li>¿Cuál es la probabilidad de que una mujer de la población tenga una altura máxima de <span class="math inline">\(150 cm\)</span> si las mujeres tienen una altura media de <span class="math inline">\(165 cm\)</span> con una desviación estándar de <span class="math inline">\(8 cm\)</span>?</li>
 </ol>
@@ -328,6 +322,14 @@ La función se encuentra en la mayoría de los programas de computadora y no tie
 <p>en R <code>pnorm(170, 165, 8)-pnorm(165, 165, 8)</code></p>
 <p>Veamos la función de distribución de probabilidad</p>
 <p><img src="_main_files/figure-html/unnamed-chunk-66-1.png" width="672" /></p>
+<ol start="3" style="list-style-type: decimal">
+<li>¿Cuál es el primer cuartíl para altura de las mujeres?</li>
+</ol>
+<p>El primer cuartíl se define como:</p>
+<p><span class="math inline">\(F(x_{0.25}, \mu=165, \sigma=8)=0.25\)</span></p>
+<p>o</p>
+<p><span class="math inline">\(x_{0.25}=F^{-1}(0.25, \mu=165, \sigma=8)=159.6041\)</span></p>
+<p>en R <code>qnorm(0.25, 165, 8)</code></p>
 <p><strong>Propiedades de la distribución Normal</strong></p>
 <ol style="list-style-type: decimal">
 <li><p>la media <span class="math inline">\(\mu\)</span> es también la mediana ya que divide las medidas en dos</p></li>
@@ -335,26 +337,26 @@ La función se encuentra en la mayoría de los programas de computadora y no tie
 <li><p>Los valores de <span class="math inline">\(x\)</span> que caen más allá de 3<span class="math inline">\(\sigma\)</span> se consideran <strong>extremadamente raros</strong> <span class="math inline">\(0.2\%\)</span></p></li>
 </ol>
 <p><img src="figures/probs.PNG" style="width:50%"  align="center"></p>
-<p><strong>Ejemplo (altura de mujer)</strong></p>
+<p><strong>Ejemplo (altura de mujeres)</strong></p>
 <p>Podemos definir los límites de <strong>observaciones comunes</strong> para la distribución de la altura de las mujeres en la población.</p>
 <ol style="list-style-type: decimal">
 <li>a una distancia de una desviación estándar de la media, encontramos <span class="math inline">\(68\%\)</span> de la población</li>
 </ol>
-<p><span class="math display">\[P(165-8 \leq X \leq 165+8)=P(157 \leq X \leq 173)=0.68\]</span></p>
+<p><span class="math display">\[P(165-8 \leq X \leq 165+8)=P(157 \leq X \leq 173)=F(173)-F(157)=0.68\]</span></p>
 <ol start="2" style="list-style-type: decimal">
 <li>a una distancia de dos desviaciones estándar de la media, encontramos <span class="math inline">\(95\%\)</span> de la población</li>
 </ol>
-<p><span class="math display">\[P(165-2 \times 8 \leq X \leq 165+2\times 8)=P(149 \leq X \leq 181)=0.95\]</span></p>
+<p><span class="math display">\[P(165-2 \times 8 \leq X \leq 165+2\times 8)=F(181)-F(149)=0.95\]</span></p>
 <ol start="3" style="list-style-type: decimal">
 <li>a una distancia de tres desviaciones estándar de la media, encontramos <span class="math inline">\(99.7\%\)</span> de la población</li>
 </ol>
-<p><span class="math display">\[P(165-3 \times 8 \leq X \leq 165+3\times 8)=P(141 \leq X \leq 189)=0.997\]</span></p>
+<p><span class="math display">\[P(165-3 \times 8 \leq X \leq 165+3\times 8)=F(189)-F(141)=0.997\]</span></p>
 <p><img src="_main_files/figure-html/unnamed-chunk-67-1.png" width="672" /></p>
 </div>
 <div id="densidad-normal-estándar" class="section level2 hasAnchor" number="9.6">
 <h2><span class="header-section-number">9.6</span> Densidad normal estándar<a href="distribución-normal.html#densidad-normal-estándar" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>La densidad normal estándar es la densidad particular de la familia normal</p>
-<p><span class="math display">\[f(x; \mu, \sigma^2)=\frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{(x-\mu)^2}{2\ sigma^2}}, x \in {\Bbb R}\]</span></p>
+<p><span class="math display">\[f(x; \mu, \sigma^2)=\frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{(x-\mu)^2}{2\sigma^2}}, x \in {\Bbb R}\]</span></p>
 <p>Por lo tanto, es la densidad con</p>
 <ol style="list-style-type: decimal">
 <li>media</li>
@@ -371,7 +373,7 @@ La función se encuentra en la mayoría de los programas de computadora y no tie
 una <strong>variable estandarizada</strong></p>
 <p><span class="math display">\[Z=\frac{X-\mu}{\sigma}\]</span></p>
 <p>que tendrá densidad:</p>
-<p><span class="math display">\[f(z)=\frac{1}{ \sqrt{2\pi}}e^{-\frac{z^2}{2}} dz\]</span>
+<p><span class="math display">\[f(z)=\frac{1}{ \sqrt{2\pi}}e^{-\frac{z^2}{2}}\]</span>
 Por lo tanto, para cualquier <span class="math inline">\(X \rightarrow N(\mu, \sigma^2)\)</span></p>
 <p><span class="math display">\[Z=\frac{X-\mu}{\sigma} \rightarrow N(0, 1) \]</span></p>
 <p><img src="figures/stand.PNG" style="width:50%" style="height:100%"  align="center"></p>
@@ -392,9 +394,16 @@ Por lo tanto, para cualquier <span class="math inline">\(X \rightarrow N(\mu, \s
 <p><img src="figures/phi.jpg" style="width:100%" style="height:100%"  align="center"></p>
 <ol style="list-style-type: decimal">
 <li>El rango intercuartílico <span class="math display">\[P(-0.67 \leq X \leq 0.67)=0.50\]</span></li>
+</ol>
+<p>en R: <code>c(qnorm(0.25), qnorm(0.75))</code></p>
+<ol start="2" style="list-style-type: decimal">
 <li>El rango del <span class="math inline">\(95\%\)</span> <span class="math display">\[P(-1.96 \leq X \leq 1.96)=0.95\]</span></li>
+</ol>
+<p>en R: <code>c(qnorm(0.025), qnorm(0.975))</code></p>
+<ol start="3" style="list-style-type: decimal">
 <li>El rango del <span class="math inline">\(99\%\)</span> <span class="math display">\[P(-2.58 \leq X \leq 2.58)=0.99\]</span></li>
 </ol>
+<p>en R: <code>c(qnorm(0.005), qnorm(0.995))</code></p>
 <p><img src="_main_files/figure-html/unnamed-chunk-68-1.png" width="672" /></p>
 <p>La probabilidad de cualquier variable normal <span class="math inline">\(X\rightarrow N(\mu, \sigma^2)\)</span> usando la distribución estándar</p>
 <p><span class="math inline">\(F(a)=P(X&lt;a)=P(\frac{X-\mu}{\sigma}&lt;\frac{a-\mu}{\sigma})\)</span>

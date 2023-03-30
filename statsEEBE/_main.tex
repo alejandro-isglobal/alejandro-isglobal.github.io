@@ -6,7 +6,7 @@
 ]{book}
 \title{Estadística}
 \author{Alejandro Cáceres (\href{mailto:alejandro.caceres.dominguez@upc.edu}{\nolinkurl{alejandro.caceres.dominguez@upc.edu}})}
-\date{2023-03-26}
+\date{2023-03-29}
 
 \usepackage{amsmath,amssymb}
 \usepackage{lmodern}
@@ -4867,14 +4867,14 @@ Veamos algunas densidades de probabilidad en el modelo paramétrico normal
 
 La distribución de probabilidad de la densidad Normal:
 
-\[F_{normal}(a)=P(Z \leq a)\]
+\[F(a)=P(Z \leq a)\]
 
 es la función de \textbf{error} definida por el área bajo la curva de \(-\infty\) a \(a\)
 
-\[F_{normal}(a)=\int_{-\infty}^{a}\frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{(x-\mu) ^2}{2\sigma^2}} dx\]
+\[F(a)=\int_{-\infty}^{a}\frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{(x-\mu) ^2}{2\sigma^2}} dx\]
 La función se encuentra en la mayoría de los programas de computadora y no tiene una forma cerrada de funciones conocidas.
 
-\textbf{Ejemplo (altura de mujer)}
+\textbf{Ejemplo (altura de mujeres)}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi})}
@@ -4903,6 +4903,24 @@ Veamos la función de distribución de probabilidad
 
 \includegraphics{_main_files/figure-latex/unnamed-chunk-66-1.pdf}
 
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  ¿Cuál es el primer cuartíl para altura de las mujeres?
+\end{enumerate}
+
+El primer cuartíl se define como:
+
+\(F(x_{0.25}, \mu=165, \sigma=8)=0.25\)
+
+o
+
+\(x_{0.25}=F^{-1}(0.25, \mu=165, \sigma=8)=159.6041\)
+
+en R qnorm(0.25, 165, 8)
+
 \textbf{Propiedades de la distribución Normal}
 
 \begin{enumerate}
@@ -4915,7 +4933,7 @@ Veamos la función de distribución de probabilidad
   Los valores de \(x\) que caen más allá de 3\(\sigma\) se consideran \textbf{extremadamente raros} \(0.2\%\)
 \end{enumerate}
 
-\textbf{Ejemplo (altura de mujer)}
+\textbf{Ejemplo (altura de mujeres)}
 
 Podemos definir los límites de \textbf{observaciones comunes} para la distribución de la altura de las mujeres en la población.
 
@@ -4926,7 +4944,7 @@ Podemos definir los límites de \textbf{observaciones comunes} para la distribuc
   a una distancia de una desviación estándar de la media, encontramos \(68\%\) de la población
 \end{enumerate}
 
-\[P(165-8 \leq X \leq 165+8)=P(157 \leq X \leq 173)=0.68\]
+\[P(165-8 \leq X \leq 165+8)=P(157 \leq X \leq 173)=F(173)-F(157)=0.68\]
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi})}
@@ -4936,7 +4954,7 @@ Podemos definir los límites de \textbf{observaciones comunes} para la distribuc
   a una distancia de dos desviaciones estándar de la media, encontramos \(95\%\) de la población
 \end{enumerate}
 
-\[P(165-2 \times 8 \leq X \leq 165+2\times 8)=P(149 \leq X \leq 181)=0.95\]
+\[P(165-2 \times 8 \leq X \leq 165+2\times 8)=F(181)-F(149)=0.95\]
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi})}
@@ -4946,7 +4964,7 @@ Podemos definir los límites de \textbf{observaciones comunes} para la distribuc
   a una distancia de tres desviaciones estándar de la media, encontramos \(99.7\%\) de la población
 \end{enumerate}
 
-\[P(165-3 \times 8 \leq X \leq 165+3\times 8)=P(141 \leq X \leq 189)=0.997\]
+\[P(165-3 \times 8 \leq X \leq 165+3\times 8)=F(189)-F(141)=0.997\]
 
 \includegraphics{_main_files/figure-latex/unnamed-chunk-67-1.pdf}
 
@@ -4955,7 +4973,7 @@ Podemos definir los límites de \textbf{observaciones comunes} para la distribuc
 
 La densidad normal estándar es la densidad particular de la familia normal
 
-\[f(x; \mu, \sigma^2)=\frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{(x-\mu)^2}{2\ sigma^2}}, x \in {\Bbb R}\]
+\[f(x; \mu, \sigma^2)=\frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{(x-\mu)^2}{2\sigma^2}}, x \in {\Bbb R}\]
 
 Por lo tanto, es la densidad con
 
@@ -5023,11 +5041,29 @@ Normalmente definimos los límites de las \textbf{observaciones más comunes} pa
 \tightlist
 \item
   El rango intercuartílico \[P(-0.67 \leq X \leq 0.67)=0.50\]
+\end{enumerate}
+
+en R: c(qnorm(0.25), qnorm(0.75))
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\setcounter{enumi}{1}
+\tightlist
 \item
   El rango del \(95\%\) \[P(-1.96 \leq X \leq 1.96)=0.95\]
+\end{enumerate}
+
+en R: c(qnorm(0.025), qnorm(0.975))
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\setcounter{enumi}{2}
+\tightlist
 \item
   El rango del \(99\%\) \[P(-2.58 \leq X \leq 2.58)=0.99\]
 \end{enumerate}
+
+en R: c(qnorm(0.005), qnorm(0.995))
 
 \includegraphics{_main_files/figure-latex/unnamed-chunk-68-1.pdf}
 

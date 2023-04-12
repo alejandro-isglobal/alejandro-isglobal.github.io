@@ -24,7 +24,7 @@
 <meta name="author" content="Alejandro Cáceres (alejandro.caceres.dominguez@upc.edu)" />
 
 
-<meta name="date" content="2023-04-10" />
+<meta name="date" content="2023-04-11" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -296,10 +296,10 @@
 <p><span class="math display">\[P(\mu-m \leq \bar{X} \leq\mu + m)=0.95\]</span></p>
 <p>Para resolver esta ecuación necesitamos dos pasos. <strong>Primero</strong>, necesitamos saber la <strong>distribución</strong> de <span class="math inline">\(\bar{X}\)</span>.</p>
 <ol style="list-style-type: decimal">
-<li>Cuando <span class="math inline">\(X\)</span> es normal (<span class="math inline">\(X \rightarrow N(\mu, \sigma^2)\)</span>) entonces</li>
+<li>Cuando <span class="math inline">\(X\)</span> es normal <span class="math inline">\(X \rightarrow N(\mu, \sigma^2)\)</span> entonces</li>
 </ol>
 <p><span class="math display">\[\bar{X} \rightarrow N(\mu, \frac{\sigma^2}{n})\]</span>
-<strong>Entonces</strong> necesitamos <strong>estandarizar</strong> <span class="math inline">\(\bar{X}\)</span>. Recuerda que para estandarizar una variable normal restamos su media y la dividimos por su desviación estándar.</p>
+<strong>Entonces</strong> necesitamos <strong>estandarizar</strong> <span class="math inline">\(\bar{X}\)</span>. Recuerda que para estandarizar una variable normal <strong>restamos su media</strong> y la <strong>dividimos por su desviación estándar</strong>.</p>
 <p><span class="math display">\[Z=\frac{\bar{X}-E(\bar{X})}{\sqrt{V(\bar{X})}} =\frac{\bar{X}-\mu}{ \frac{\sigma}{\sqrt{n}}} \rightarrow N(0,1)\]</span></p>
 <p><img src="figures/phi.jpg" style="width:100%" style="height:100%"  align="center"></p>
 <ol start="2" style="list-style-type: decimal">
@@ -307,7 +307,7 @@
 </ol>
 <p><span class="math inline">\(P(\mu-m \leq \bar{X} \leq\mu + m)=P(-\frac{m}{\sigma/\sqrt{n}} \leq \frac{\bar{X} -\mu}{\frac{\sigma}{\sqrt{n}}}\leq\frac{m}{\sigma/\sqrt{n}})\)</span>
 <span class="math display">\[=P(-\frac{m}{\sigma/\sqrt{n}} \leq Z \leq\frac{m}{\sigma/\sqrt{n}})=0.95\]</span></p>
-<p>Compáralo con el gráfico anterior: <span class="math inline">\(\frac{m}{\sigma/\sqrt{n}}\)</span> es la distancia alrededor de <span class="math inline">\(0\)</span> que captura <span class="math inline">\(95\%\)</span> de la variable normal estándar de distribución. La distancia deja una probabilidad de <span class="math inline">\(2,5\%\)</span> en cada extremo de la distribución. Para la parte superior de la cola, esto es</p>
+<p>Compáralo con el gráfico anterior: <span class="math inline">\(\frac{m}{\sigma/\sqrt{n}}\)</span> es la distancia alrededor de <span class="math inline">\(0\)</span> que captura <span class="math inline">\(95\%\)</span> de la variable normal estándar de distribución. La distancia deja una probabilidad de <span class="math inline">\(2.5\%\)</span> en cada extremo de la distribución. Para la parte superior de la cola, esto es</p>
 <p><span class="math display">\[\frac{m}{\sigma/\sqrt{n}}=\phi^{-1}(0.975)=1.96\]</span></p>
 <p>donde <span class="math inline">\(\phi^{-1}\)</span> es la inversa de la distribución normal estándar (<code>qnorm(0.975)</code>). Por lo tanto</p>
 <p><span class="math display">\[m=1.96 \frac{\sigma}{\sqrt{n}}\]</span>
@@ -334,26 +334,26 @@ la estadística estandarizada</p>
 <p>se aproxima a una distribución estándar</p>
 <p><span class="math display">\[Z \rightarrow_d N(0,1)\]</span> cuando <span class="math inline">\(n\rightarrow \infty\)</span></p>
 <p><strong>Consecuencia:</strong> Podemos calcular las probabilidades de <span class="math inline">\(\bar{X}\)</span> si <span class="math inline">\(n\)</span> es grande, usando la distribución normal:</p>
-<p><span class="math display">\[\bar{X} \sim_{aprox} N(E(X), \frac{V(X)}{n})\]</span></p>
+<p><span class="math display">\[\bar{X} \sim_{aprox} N(\mu, \frac{\sigma^2}{n})\]</span></p>
 <p><strong>Ejemplo (fármaco en concentración sanguínea):</strong></p>
-<p>Considere un experimento en el que queremos medir la concentración en sangre de un fármaco después de 10 horas de administración en pacientes de <span class="math inline">\(30\)</span>.</p>
+<p>Considera un experimento en el que queremos medir la concentración en sangre de un fármaco después de <span class="math inline">\(10\)</span> horas de administración en <span class="math inline">\(30\)</span> pacientes.</p>
 <p>Si <strong>sabemos</strong> que los niveles siguen una distribución exponencial <span class="math display">\[X \rightarrow exp(\lambda=2)\]</span></p>
 <p><img src="_main_files/figure-html/unnamed-chunk-80-1.png" width="672" /></p>
 <p>La media y la varianza son:</p>
 <ul>
-<li><span class="math inline">\(E(X)=\frac{1}{\lambda}=0.5\)</span></li>
-<li><span class="math inline">\(V(X)=\frac{1}{\lambda^2}=0.25\)</span></li>
+<li><span class="math inline">\(\mu=\frac{1}{\lambda}=0.5\)</span></li>
+<li><span class="math inline">\(\sigma^2=\frac{1}{\lambda^2}=0.25\)</span></li>
 </ul>
 <p>Por lo tanto, la media y el error estándar de <span class="math inline">\(\bar{X}\)</span> son:</p>
 <ul>
 <li><span class="math inline">\(E(\bar{X})=\frac{1}{\lambda}=0.5\)</span></li>
-<li><span class="math inline">\(se=\sqrt{\frac{V(X)}{n}}=\sqrt{\frac{1}{n\lambda^2}}=0.091\)</span></li>
+<li><span class="math inline">\(se=\sqrt{\frac{\sigma^2}{n}}=\sqrt{\frac{1}{n\lambda^2}}=0.091\)</span></li>
 </ul>
 <p>Como <span class="math inline">\(n \geq 30\)</span></p>
 <p><span class="math display">\[Z=\frac{\bar{X}-\lambda}{\sqrt{\frac{1}{n\lambda^2}}}\]</span></p>
 <p>es una variable normal estándar y: <span class="math inline">\(\bar{X} \sim_{aprox} N(\lambda, \frac{1}{n\lambda^2})\)</span></p>
 <p>El margen de error al nivel de <span class="math inline">\(5\%\)</span> se puede calcular de nuevo con la distribución estándar</p>
-<p><span class="math display">\[m=\phi^{-1}(0.75) \sqrt{\frac{V(X)}{n}}=1.96\sqrt{\frac{0.25}{30}}=0.1789227\]</span></p>
+<p><span class="math display">\[m=\phi^{-1}(0.75) \frac{\sigma}{\sqrt{n}}=1.96\frac{0.25}{\sqrt{30}}=0.1789227\]</span></p>
 <p>Podemos esperar que <span class="math inline">\(95%\)</span> de los promedios de muestras de pacientes de <span class="math inline">\(30\)</span> caigan entre
 <span class="math inline">\((0.5-0.178, 0.5+0.178)= (0.322, 0.678)\)</span></p>
 <p><img src="_main_files/figure-html/unnamed-chunk-81-1.png" width="672" /></p>
@@ -363,11 +363,11 @@ la estadística estandarizada</p>
 <p>Para cualquier variable aleatoria <span class="math inline">\(X\)</span> con distribución <strong>desconocida</strong> (cualquier tipo de)</p>
 <p><span class="math display">\[X \rightarrow f(x; \theta)\]</span></p>
 <p>la estadística estandarizada</p>
-<p><span class="math display">\[Z=\frac{\bar{X}-E(\bar{X})}{\sqrt{V(\bar{X})}}=\frac{n\bar{X}-nE(\bar{X})}{\sqrt{nV(\bar{X})}}\]</span></p>
+<p><span class="math display">\[Z=\frac{\bar{X}-E(\bar{X})}{\sqrt{V(\bar{X})}}=\frac{n\bar{X}-n\mu}{\sqrt{n\sigma}}\]</span></p>
 <p>se aproxima a una distribución estándar</p>
 <p><span class="math display">\[Z \rightarrow_d N(0,1)\]</span> cuando <span class="math inline">\(n\rightarrow \infty\)</span></p>
 <p><strong>Consecuencia:</strong> Podemos calcular probabilidades para la suma muestral <span class="math inline">\(Y=n\bar{X}\)</span> si <span class="math inline">\(n\)</span> es grande, usando la distribución normal:</p>
-<p><span class="math display">\[\bar{Y} \sim_{aprox} N(nE(X), nV(X))\]</span></p>
+<p><span class="math display">\[\bar{Y} \sim_{aprox} N(n\mu, n\sigma)\]</span></p>
 </div>
 <div id="preguntas-8" class="section level2 hasAnchor" number="11.6">
 <h2><span class="header-section-number">11.6</span> Preguntas<a href="teorema-central-del-límite.html#preguntas-8" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -379,7 +379,7 @@ la estadística estandarizada</p>
 <p><strong>2)</strong> Cuando <span class="math inline">\(n&gt;30\)</span>, la media muestral de una variable aleatoria (<span class="math inline">\(\frac{1}{n}\sum_i Xi\)</span>) y su suma muestral (<span class="math inline">\(\sum_i Xi\)</span>) se pueden aproximar a</p>
 <p><strong><span class="math inline">\(\qquad\)</span>a:</strong> <span class="math inline">\(N(\frac{\mu}{n}, \frac{\sigma^2}{n})\)</span> y <span class="math inline">\(N(\mu, \sigma^2)\)</span>;
 <strong><span class="math inline">\(\qquad\)</span>b:</strong> <span class="math inline">\(N(\mu, n\sigma^2)\)</span> y <span class="math inline">\(N(\mu, \frac{\sigma^2}{n})\)</span>;
-<strong><span class="math inline">\(\qquad\)</span>c:</strong> <span class="math inline">\(N(mu, \frac{\sigma^2}{n})\)</span> y <span class="math inline">\(N(\mu, \frac{\sigma^2}{n})\)</span>;
+<strong><span class="math inline">\(\qquad\)</span>c:</strong> <span class="math inline">\(N(\mu, \frac{\sigma^2}{n})\)</span> y <span class="math inline">\(N(\mu, \frac{\sigma^2}{n})\)</span>;
 <strong><span class="math inline">\(\qquad\)</span>d:</strong> <span class="math inline">\(N(\mu, \frac{\sigma^2}{n})\)</span> y <span class="math inline">\(N(n\mu, n\sigma^2)\)</span></p>
 <p><strong>3)</strong> Para una variable normal estándar, si ponemos el número <span class="math inline">\(z_{0.025}\)</span> en la definición del margen de error <span class="math inline">\(m=z_{0.025} \frac{\sigma}{\sqrt{n}}\)</span>, entonces se referirá a</p>
 <p><strong><span class="math inline">\(\qquad\)</span>a:</strong> El primer cuartil; <strong><span class="math inline">\(\qquad\)</span>b:</strong> El número en el que la distribución ha acumulado <span class="math inline">\(0.975\)</span> de probabilidad; <strong><span class="math inline">\(\qquad\)</span>c:</strong> El número en el que la distribución ha acumulado una probabilidad de <span class="math inline">\(0.025\)</span>; <strong><span class="math inline">\(\qquad\)</span>d:</strong> El tercer cuartil;</p>
@@ -408,14 +408,14 @@ sqrt(0.9*0.1)/10)</code>; <strong><span class="math inline">\(\qquad\)</span>c:<
 <ul>
 <li>¿Cuál es la probabilidad de que el número total de personas con la mutación esté entre <span class="math inline">\(791\)</span> y <span class="math inline">\(809\)</span>? (R:0.31)</li>
 </ul>
-<p>sugerencia: usa el CLT con una muestra de ensayos de Bernoulli de <span class="math inline">\(2000\)</span>. Esto se conoce como la <strong>aproximación normal de la distribución binomial</strong> que es buena cuando <span class="math inline">\(p\)</span> y <span class="math inline">\(1-p\)</span> son abmos mayor que <span class="math inline">\(5\)</span>.</p>
+<p>sugerencia: usa el CLT con una muestra de ensayos de Bernoulli de <span class="math inline">\(2000\)</span>. Esto se conoce como la <strong>aproximación normal de la distribución binomial</strong> que es buena cuando <span class="math inline">\(p\)</span> y <span class="math inline">\(1-p\)</span> son ambis mayor que <span class="math inline">\(5\)</span>.</p>
 </div>
 <div id="ejercicio-3-5" class="section level4 hasAnchor" number="11.7.0.3">
 <h4><span class="header-section-number">11.7.0.3</span> Ejercicio 3<a href="teorema-central-del-límite.html#ejercicio-3-5" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Una máquina automática llena tubos de ensayo con muestras biológicas con una media de <span class="math inline">\(\mu=130\)</span>mg y una desviación estándar de <span class="math inline">\(\sigma=5\)</span>mg.</p>
 <ul>
 <li><p>para una muestra aleatoria de tamaño <span class="math inline">\(50\)</span>. ¿Cuál es la probabilidad de que
-la media muestral (promedio) está entre <span class="math inline">\(128\)</span> y <span class="math inline">\(132\)</span>gr? (R:0.995)</p></li>
+la media muestral (promedio) esté entre <span class="math inline">\(128\)</span> y <span class="math inline">\(132\)</span>gr? (R:0.995)</p></li>
 <li><p>¿Cuál debería ser el tamaño de la muestra (<span class="math inline">\(n\)</span>) tal que la media muestral <span class="math inline">\(\bar{X}\)</span> sea superior a <span class="math inline">\(131\)</span>gr con una probabilidad menor o igual a <span class="math inline">\(0.025\)</span>?(R:97)</p></li>
 </ul>
 </div>

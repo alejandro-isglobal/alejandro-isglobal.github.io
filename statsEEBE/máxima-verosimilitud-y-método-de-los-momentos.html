@@ -24,7 +24,7 @@
 <meta name="author" content="Alejandro Cáceres (alejandro.caceres.dominguez@upc.edu)" />
 
 
-<meta name="date" content="2023-04-06" />
+<meta name="date" content="2023-04-20" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -439,7 +439,7 @@
 El valor máximo del parámetro se denomina <strong>estimación de máxima verosimilitud</strong> para el parámetro y se escribe con un sombrero <span class="math inline">\(\hat{\alpha}\)</span>.</p>
 <p><strong>Ejemplo (Láser)</strong></p>
 <p>Derivamos la función log-verosimilitud</p>
-<p><span class="math display">\[\frac{d \ln L(\alpha)}{d \alpha}= -\frac{n}{\alpha} - \frac{1}{\alpha^2} \Sigma_{i=1.. .n} \ln (x_i)\]</span>
+<p><span class="math display">\[\frac{d \ln L(\alpha)}{d \alpha}= -\frac{n}{\alpha} - \frac{1}{\alpha^2} \Sigma_{i=1.. .n} \ln (x_i-1)\]</span>
 El máximo es donde la derivada es <span class="math inline">\(0\)</span>. Este máximo es el valor de nuestro estimador <span class="math inline">\(\hat{\alpha}_{ml}\)</span>.</p>
 <p><span class="math display">\[\hat{\alpha}_{ml}=-\frac{1}{n}\sum_{i=1}^n \ln (x_i-1)\]</span></p>
 <p>El estimador del parámetro es por lo tanto (nótese las letras mayúsculas)</p>
@@ -448,12 +448,12 @@ El máximo es donde la derivada es <span class="math inline">\(0\)</span>. Este 
 <p><span class="math display">\[(X_1, X_2, ... X_n)\]</span></p>
 <p><em>Estimando los parámetros con los datos</em></p>
 <p>En nuestro ejemplo, tenemos entonces la observación de la muestra aleatoria como un conjunto de 30 números <span class="math inline">\((x_1, x_2, ...x_{30})\)</span>, por lo tanto sustituimos los números en el estimador y esto nos dará su valor observado.</p>
-<p><span class="math inline">\(\hat{\alpha}_{ml}=-\frac{1}{n}\{ \ln (1.11-1)+ \ln (1.64-1)+...\ln (1.04-1)\}=1.320\)</span></p>
+<p><span class="math inline">\(\hat{\alpha}_{ml}=-\frac{1}{30}\{ \ln (1.11-1)+ \ln (1.64-1)+...\ln (1.04-1)\}=1.320\)</span></p>
 <p>Por lo tanto, la estimación de máxima verosimilitud del parámetro es <span class="math inline">\(1.320\)</span>. Si sustituimos este valor en la función de probabilidad y lo superponemos con el histograma, podemos ver que nos da una descripción adecuada de los datos.</p>
 <p><img src="_main_files/figure-html/unnamed-chunk-86-1.png" width="672" /></p>
 <p>Veamos la función del logaritmo de la verosimilitud para nuestros <span class="math inline">\(30\)</span> cortes láser. Recuerda, los datos son fijos para nuestro experimento y <span class="math inline">\(\alpha\)</span> varía. La función tiene un máximo. Sin embargo, si tomamos otra muestra, esta función cambia y también su lo hará su máximo.</p>
 <p><img src="_main_files/figure-html/unnamed-chunk-87-1.png" width="672" /></p>
-<p><strong>Máxima probabilidad: Historial</strong></p>
+<p><strong>Máxima verosimilitud: Historia</strong></p>
 <p>Para inferir la verdadera posición de Ceres en un momento dado, Gauss derivó la función de error</p>
 <p><span class="math display">\[f(x; \mu, \sigma^2)= \frac{1}{\sigma \sqrt{2 \pi}} e^{-\frac{1}{2\sigma^2} (x- \mu)^2}\]</span></p>
 <p>Donde la posición <strong>verdadera</strong> de Ceres era la media <span class="math inline">\(\mu\)</span>. ¿Cómo podemos combinar los datos para tener la mejor estimación de la posición de Ceres?</p>
@@ -481,7 +481,7 @@ El máximo es donde la derivada es <span class="math inline">\(0\)</span>. Este 
 </ol>
 <ol style="list-style-type: lower-alpha">
 <li><p><span class="math inline">\(\frac{d \ln L(\mu, \sigma^2)}{d\mu}=\frac{1}{\sigma^2} \sum_i(x_i-\mu)\)</span></p></li>
-<li><p><span class="math inline">\(\frac{d \ln L(\mu, \sigma^2)}{d\sigma^2}=-\frac{n}{2 \sigma^2}+\frac{1}{2\ sigma^4} \sum_i(x_i-\mu)^2\)</span></p></li>
+<li><p><span class="math inline">\(\frac{d \ln L(\mu, \sigma^2)}{d\sigma^2}=-\frac{n}{2 \sigma^2}+\frac{1}{2\sigma^4} \sum_i(x_i-\mu)^2\)</span></p></li>
 </ol>
 <p>Las derivadas son <span class="math inline">\(0\)</span> en el máximo</p>
 <ol style="list-style-type: lower-alpha">

@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 12 Máxima verosimilitud y Método de los Momentos | Estadística</title>
+  <title>Chapter 13 Intervalos de confianza | Estadística</title>
   <meta name="description" content="This are slides for the Stats theory of the BIST master" />
   <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 12 Máxima verosimilitud y Método de los Momentos | Estadística" />
+  <meta property="og:title" content="Chapter 13 Intervalos de confianza | Estadística" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="alejandro-isglobal/master" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 12 Máxima verosimilitud y Método de los Momentos | Estadística" />
+  <meta name="twitter:title" content="Chapter 13 Intervalos de confianza | Estadística" />
   
   <meta name="twitter:description" content="This are slides for the Stats theory of the BIST master" />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="teorema-central-del-límite.html"/>
-<link rel="next" href="intervalos-de-confianza.html"/>
+<link rel="prev" href="máxima-verosimilitud-y-método-de-los-momentos.html"/>
+
 <script src="libs/header-attrs-2.12/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -374,500 +374,301 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="máxima-verosimilitud-y-método-de-los-momentos" class="section level1 hasAnchor" number="12">
-<h1><span class="header-section-number">Chapter 12</span> Máxima verosimilitud y Método de los Momentos<a href="máxima-verosimilitud-y-método-de-los-momentos.html#máxima-verosimilitud-y-método-de-los-momentos" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<div id="objetivo-8" class="section level2 hasAnchor" number="12.1">
-<h2><span class="header-section-number">12.1</span> Objetivo<a href="máxima-verosimilitud-y-método-de-los-momentos.html#objetivo-8" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>En este capítulo discutiremos qué es un <strong>estimador</strong> y daremos algunos ejemplos. Luego introduciremos dos métodos para obtener <strong>estimadores</strong> de los parámetros de los modelos de probabilidad.</p>
-<p>Estos son la <strong>máxima verosimilitud</strong> y el <strong>método de los momentos</strong>.</p>
+<div id="intervalos-de-confianza" class="section level1 hasAnchor" number="13">
+<h1><span class="header-section-number">Chapter 13</span> Intervalos de confianza<a href="intervalos-de-confianza.html#intervalos-de-confianza" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="objetivo-9" class="section level2 hasAnchor" number="13.1">
+<h2><span class="header-section-number">13.1</span> Objetivo<a href="intervalos-de-confianza.html#objetivo-9" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>En este capítulo, presentaremos el concepto de <strong>intervalos de confianza</strong> para medias, proporciones y varianzas.</p>
+<p>Derivaremos las fórmulas para los intervalos de confianza bajo diferentes condiciones, como normalidad con varianza conocida y desconocida, y <span class="math inline">\(n\)</span> grande.</p>
 </div>
-<div id="estadística-1" class="section level2 hasAnchor" number="12.2">
-<h2><span class="header-section-number">12.2</span> Estadística<a href="máxima-verosimilitud-y-método-de-los-momentos.html#estadística-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><strong>Definición</strong></p>
-<p>Una <strong>estadística</strong> es cualquier función de una <strong>muestra aleatoria</strong>
-<span class="math display">\[T(X_1,X_2, ..., X_n)\]</span></p>
-<p>Por lo general, devuelve un número.</p>
-<p>Las estadísticas son <strong>variables aleatorias</strong> y sus <strong>distribuciones de probabilidad</strong> se llaman <strong>distribuciones de muestreo</strong></p>
-<p>Las estadísticas tienen diferentes funciones:</p>
+<div id="estimación-de-la-media" class="section level2 hasAnchor" number="13.2">
+<h2><span class="header-section-number">13.2</span> Estimación de la media<a href="intervalos-de-confianza.html#estimación-de-la-media" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Hemos visto que siempre que tomamos una muestra aleatoria <span class="math inline">\((X_1, X_2, ... X_n)\)</span>, la media muestral
+<span class="math display">\[\bar{X}=\frac{1}{n}\sum_{i=1}^n X_i\]</span></p>
+<p>es un estimador de la media <span class="math inline">\(\mu\)</span> de la variable aleatoria <span class="math inline">\(X\)</span>. El estimador es <strong>insesgado</strong></p>
+<ul>
+<li><span class="math inline">\(E(\bar{X})=\mu\)</span></li>
+</ul>
+<p>y <strong>consistente</strong></p>
+<ul>
+<li><span class="math inline">\(V(\bar{X})=\frac{\sigma^2}{n}\)</span></li>
+</ul>
+<p>donde <span class="math inline">\(\sigma^2\)</span> es la varianza de <span class="math inline">\(X\)</span>. Llamamos a <span class="math inline">\(se=\frac{\sigma}{\sqrt{n}}\)</span> el <strong>error estándar</strong>.</p>
+<p>cuando tomamos los valores de la muestra aleatoria, tomamos el valor de <span class="math inline">\(\bar{x}\)</span> como el valor de la media. Eso es</p>
+<p><span class="math display">\[\bar{x}=\hat{\mu}\]</span></p>
+<p>Como <span class="math inline">\(\bar{X}\)</span> es una variable aleatoria, la estimación de la media <strong>cambia</strong> cuando tomamos <strong>otra muestra</strong>.</p>
+</div>
+<div id="margen-de-error-1" class="section level2 hasAnchor" number="13.3">
+<h2><span class="header-section-number">13.3</span> Margen de error<a href="intervalos-de-confianza.html#margen-de-error-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Al decidir si el <strong>error</strong> en la estimación <span class="math display">\[\bar{X}-\mu\]</span> es grande o no, generalmente lo comparamos con una tolerancia predefinida. <strong>Si sabemos</strong> que la distribución de <span class="math inline">\(X\)</span> es normal <span class="math inline">\(X \rightarrow N(\mu, \sigma^2)\)</span> y el valor de <span class="math inline">\(\mu\)</span>, podemos calcular qué tan lejos cae la estimación de <span class="math inline">\(\bar{x}\)</span> de <span class="math inline">\(\mu\)</span>.</p>
+<p>Definimos el <strong>margen de error</strong> al nivel de <span class="math inline">\(5\%\)</span> como la distancia <span class="math inline">\(m\)</span> tal que la distribución de <span class="math inline">\(\bar{X}\)</span> captura <span class="math inline">\(95\%\)</span> de las estimaciones:</p>
+<p><span class="math display">\[P(-m \leq \bar{X}-\mu \leq m)=P(\mu-m \leq \bar{X} \leq\mu + m)=0.95\]</span></p>
+<p>Si <span class="math inline">\(\bar{X}\)</span> se distribuye normalmente, entonces el margen de error es</p>
+<p><span class="math display">\[m=z_{0.025} \frac{\sigma}{\sqrt{n}}=1.96\times se\]</span>
+donde <span class="math inline">\(z_{0.025}=\phi^{-1}(0.975)=\)</span> <code>qnorm(0.975)</code></p>
+<p><strong>Ejemplo (cables):</strong></p>
+<p>Tomamos una muestra aleatoria de tamaño <span class="math inline">\(8\)</span>: Cargamos un cable hasta que se rompan y registramos la carga de rotura.</p>
+<p><strong>Si sabemos</strong> que la rotura de los cables realmente se distribuyen normalmente <span class="math display">\[X \rightarrow N(\mu=13, \sigma^2=0.35^2)\]</span> entonces la media muestral es normal</p>
+<p><span class="math display">\[\bar{X} \rightarrow N(13, \frac{0.35^2}{8})\]</span></p>
+<p>Con media <span class="math inline">\(E(\bar{X})=13\)</span> y error estándar <span class="math inline">\(se=\frac{0.35}{\sqrt{8}}=0.1237\)</span></p>
+<p>Por lo tanto, el margen de error en <span class="math inline">\(95\%\)</span> es</p>
+<p><span class="math display">\[m=z_{0,025} \frac{\sigma}{\sqrt{n}}=1.96\times se=1.96\frac{0.35}{\sqrt{8}}=0.24\]</span>
+Ahora, tomamos la muestra aleatoria y encontramos los resultados.</p>
+<pre><code>## [1] 13.34642 13.32620 13.01459 13.10811 12.96999 13.55309 13.75557 12.62747</code></pre>
+<p>El promedio observado es <span class="math inline">\(\bar{x}=13.21\)</span>, y el error que cometeríamos si reemplazamos <span class="math inline">\(\mu\)</span> por <span class="math inline">\(\bar{x}\)</span>, sería</p>
+<p><span class="math display">\[\bar{x}-\mu=13.21-13=0.21\]</span>
+El <strong>error observado</strong> está dentro del margen de error</p>
+<p><span class="math display">\[\bar{x}-\mu &lt;m\]</span></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-89-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-90-1.png" width="672" /></p>
+</div>
+<div id="estimación-de-intervalo-para-la-media" class="section level2 hasAnchor" number="13.4">
+<h2><span class="header-section-number">13.4</span> Estimación de intervalo para la media<a href="intervalos-de-confianza.html#estimación-de-intervalo-para-la-media" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>El problema es que en la vida real <strong>no sabemos</strong> los valores reales de <span class="math inline">\(\mu\)</span> o <span class="math inline">\(\sigma\)</span> para</p>
+<p><span class="math display">\[X \rightarrow N(\mu, \sigma^2)\]</span>
+Empezamos tomando la muestra</p>
+<p><img src="_main_files/figure-html/unnamed-chunk-91-1.png" width="672" /></p>
+<p>y luego calcular la media</p>
+<p><img src="_main_files/figure-html/unnamed-chunk-92-1.png" width="672" /></p>
+<p>¿Cuál es el valor de <span class="math inline">\(\mu\)</span>?</p>
+<p>Nuestros datos sugieren que es <span class="math inline">\(\bar{x}=13.21\)</span>. Reemplazar <span class="math inline">\(\mu\)</span> por <span class="math inline">\(\bar{x}\)</span> se denomina <strong>estimación puntual</strong> del parámetro. Pero ¿qué tan <strong>seguros</strong> estamos al hacer este remplazo? después de todo, sabemos que estamos cometiendo un error, pero no sabemos qué tan grande es.</p>
+<p>Definimos el intervalo de confianza para <span class="math inline">\(\mu\)</span>. De la ecuación del margen de error</p>
+<p><span class="math display">\[P(-m \leq \bar{X} - \mu \leq m)=0.95\]</span>
+resolvamos para <span class="math inline">\(\mu\)</span> que es <strong>la verdadera incógnita</strong></p>
+<p><span class="math display">\[P(\bar{X} - m \leq \mu \leq \bar{X} + m)=0.95\]</span></p>
+<p>Los límites izquierdo y derecho de la desigualdad son variables aleatorias que motivan la definición del <strong>intervalo de confianza aleatorio en <span class="math inline">\(95\%\)</span>:</strong></p>
+<p><span class="math display">\[(L,U)=(\bar{X} - m,\bar{X} + m)\]</span></p>
+<p>Este intervalo es una nueva <strong>variable aleatoria</strong> y tiene por definición una probabilidad de <span class="math inline">\(0.95\)</span> de contener <span class="math inline">\(\mu\)</span>.</p>
+<p>El <strong>intervalo observado</strong> que obtenemos del experimento es (en minúsculas)</p>
+<p><span class="math display">\[(l,u)=(\bar{x} - m,\bar{x} + m)\]</span></p>
+<p>Este intervalo contiene o no el parámetro <span class="math inline">\(\mu\)</span>: ¡<strong>nunca lo sabremos</strong>!</p>
+<p>Decimos que tenemos una confianza de <span class="math inline">\(95\%\)</span> en que el intervalo <span class="math inline">\((l,u)\)</span> capturará el verdadero parámetro desconocido <span class="math inline">\(\mu\)</span>. Piensa en comprar un billete de lotería del raspa y gana pero que no podemos raspar para ver el premio. El billete tiene o no el premio sólo que no lo sabemos.</p>
+<div id="caso-1-varianza-conocida" class="section level3 hasAnchor" number="13.4.1">
+<h3><span class="header-section-number">13.4.1</span> Caso 1 (varianza conocida)<a href="intervalos-de-confianza.html#caso-1-varianza-conocida" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Los intervalos de confianza se pueden estimar en diferentes casos. El primer caso es cuando</p>
 <ol style="list-style-type: decimal">
-<li><strong>Descripción</strong> de los datos de una muestra</li>
+<li><span class="math inline">\(X\)</span> es una variable normal</li>
+<li>y conocemos el valor de <span class="math inline">\(\sigma\)</span></li>
 </ol>
-<ul>
-<li>ubicación: <span class="math inline">\(\bar{X}\)</span></li>
-<li>Mínimo: <span class="math inline">\(\min\{X_i\}\)</span></li>
-<li>Máximo: <span class="math inline">\(\max\{X_i\}\)</span></li>
-</ul>
-<ol start="2" style="list-style-type: decimal">
-<li><strong>Estimación</strong> de los <strong>parámetros</strong> de un modelo de probabilidad</li>
-</ol>
-<ul>
-<li>media: <span class="math inline">\(\bar{X}\)</span> para <span class="math inline">\(\mu\)</span></li>
-<li>varianza: <span class="math inline">\(S^2\)</span> para <span class="math inline">\(\sigma^2\)</span></li>
-</ul>
-<ol start="3" style="list-style-type: decimal">
-<li><strong>Inferencia</strong> para decir algo sobre los parámetros dados los datos</li>
-</ol>
-<ul>
-<li>media: <span class="math inline">\(Z\)</span>, <span class="math inline">\(T\)</span></li>
-<li>varianza: <span class="math inline">\(\chi^2\)</span></li>
-</ul>
-<p>Recuerda: Todas son variables aleatorias. Cada vez que tomamos otra muestra cambian su valor.</p>
-<p><strong>Definición de estimadores</strong></p>
-<p>Un <strong>estimador</strong> es un estadístico cuyos valores observados se utilizan para estimar los <strong>parámetros</strong> de la distribución de la población sobre la que se define la muestra.</p>
-<p>Si escribimos la distribución de la población como</p>
-<p><span class="math display">\[X \rightarrow f(x; \theta)\]</span></p>
-<p>entonces <span class="math inline">\(\theta\)</span> es un parámetro y <span class="math inline">\(\Theta\)</span> es una variable aleatoria cuyas observaciones <span class="math inline">\(\hat{\theta}\)</span> tomamos como estimaciones de <span class="math inline">\(\theta\)</span></p>
-<p><span class="math display">\[\hat{\theta} \sim \theta\]</span></p>
-<p>Por lo tanto hay tres cantidades diferentes que debemos considerar:</p>
+<p>el intervalo de confianza en <span class="math inline">\(95\%\)</span> es</p>
+<p><span class="math display">\[(l,u)=(\bar{x} - m, \bar{x} + m)\]</span>
+donde <span class="math display">\[m=z_{0.025} \frac{\sigma}{\sqrt{n}}\]</span></p>
+<p>Eso es:</p>
+<p><span class="math display">\[(l,u)=(\bar{x} - z_{0.025} \frac{\sigma}{\sqrt{n}}, \bar{x} + z_{0.025} \frac{\sigma}{ \sqrt{n}})\]</span></p>
+<p><strong>Ejemplo (cables):</strong></p>
+<p>En nuestro ejemplo, asumimos que <span class="math inline">\(X\)</span> se distribuye normalmente y que sabemos <span class="math inline">\(\sigma^2=0.35^2\)</span>.</p>
 <ol style="list-style-type: decimal">
-<li><span class="math inline">\(\theta\)</span> es un <strong>parámetro</strong> de la distribución de la población <span class="math inline">\(f(x; \theta)\)</span></li>
-<li><span class="math inline">\(\Theta\)</span> es un <strong>estimador</strong> de <span class="math inline">\(\theta\)</span>: Una variable aleatoria</li>
-<li><span class="math inline">\(\hat{\theta}\)</span> es la <strong>estimación</strong> de <span class="math inline">\(\theta\)</span>: un valor realizado de <span class="math inline">\(\Theta\)</span></li>
+<li>Dado que <span class="math inline">\(\bar{X}\)</span> es normal, el margen de error es</li>
 </ol>
-<p><img src="figures/estimator.jpg" style="width:100%"  align="center"></p>
-<p><strong>Ejemplo (media de la muestra)</strong></p>
-<p>Cuando tenemos una variable aleatoria normal</p>
-<p><span class="math display">\[X \rightarrow N(\mu, \sigma^2)\]</span></p>
-<p>identificamos las tres cantidades diferentes:</p>
+<p><span class="math display">\[m=z_{0.025} \frac{\sigma}{\sqrt{n}}\]</span>
+2. Como sabemos <span class="math inline">\(\sigma^2=0.35^2\)</span>, entonces el intervalo de confianza de <span class="math inline">\(95\%\)</span> es</p>
+<p><span class="math inline">\((l,u)=(\bar{x} - m, \bar{x} + m)=\)</span> <span class="math display">\[(\bar{x}-z_{0.025} \frac{\sigma}{\sqrt{n }}, \bar{x}+z_{0.025} \frac{\sigma}{\sqrt{n}})= (12.97,13.45)\]</span></p>
+<p>o también podemos escribirlo como</p>
+<p><span class="math display">\[\hat{\mu}=\bar{x} \pm m = 13.21 \pm 0.24\]</span>
+Esto significa que, al estimar la media por el promedio, confiamos en las unidades pero no tanto en los lugares decimales.</p>
+<p><img src="_main_files/figure-html/unnamed-chunk-93-1.png" width="672" /></p>
+<p>Recuerda que el intervalo de confianza <span class="math inline">\((l,u)\)</span> es una observación del intervalo de confianza aleatorio <span class="math inline">\((L,U)\)</span>. Por lo tanto, cada vez que obtenemos una nueva muestra entonces <span class="math inline">\((l,u)\)</span> cambia. Si realizamos muestras de <span class="math inline">\(100\)</span> de tamaño <span class="math inline">\(n\)</span> entonces <span class="math inline">\(95%\)</span> de los intervalos de confianza contendrán <span class="math inline">\(\mu\)</span>, ¡pero no sabemos cuál!</p>
+<p><img src="_main_files/figure-html/unnamed-chunk-94-1.png" width="672" /></p>
+</div>
+<div id="nivel-de-confianza" class="section level3 hasAnchor" number="13.4.2">
+<h3><span class="header-section-number">13.4.2</span> Nivel de confianza<a href="intervalos-de-confianza.html#nivel-de-confianza" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Podemos cambiar nuestra confianza de <span class="math inline">\(95\%\)</span> a <span class="math inline">\(99\%\)</span>. Cuando calculamos el margen de error en <span class="math inline">\(95\%\)</span>, dejamos por fuera <span class="math inline">\(\alpha=0.05\)</span> de probabilidad, <span class="math inline">\(0.025\)</span> a cada lado.</p>
+<p>Ahora, podemos dejar fuera <span class="math inline">\(\alpha=0.01\)</span> de probabilidad, <span class="math inline">\(0.005\)</span> a cada lado. Por lo tanto, el intervalo de confianza de <span class="math inline">\(99\%\)</span> es</p>
+<p><span class="math inline">\((l,u) = (\bar{x} - z_{0,005}\frac{\sigma}{\sqrt{n}},\bar{x} + z_{0,005}\frac{\sigma}{\ sqrt{n}})\)</span></p>
+<p><span class="math display">\[= (\bar{x} - 2.58\frac{\sigma}{\sqrt{n}},\bar{x} + 2.58\frac{\sigma}{\sqrt{n}})\]</span></p>
+<p><img src="figures/phi.jpg" style="width:100%" style="height:100%"  align="center"></p>
+<p>donde <span class="math inline">\(z_{0.005}=\phi^{-1}(0.995)=\)</span> <code>qnorm(0.995)</code>. También podemos escribirlo como</p>
+<p><span class="math display">\[\hat{\mu}=\bar{x} \pm 2.58\frac{\sigma}{\sqrt{n}}\]</span>
+Para nuestros cables, el intervalo de confianza de <span class="math inline">\(99\%\)</span> es</p>
+<p><span class="math display">\[\hat{\mu}= 13.21 \pm 0.31\]</span></p>
+<p>Si queremos tener más confianza, ¡necesitamos intervalos de confianza más grandes!</p>
+<p><strong>Ejemplo (Energía de impacto):</strong></p>
+<p>Un material metálico se prueba por impacto para medir la energía requerida para cortarlo a una temperatura dada. Se cortaron diez probetas de acero A238 a 60ºC con las siguientes energías de impacto (J):</p>
+<p><span class="math inline">\(64.1, 64.7, 64.5, 64.6, 64.5, 64.3, 64.6, 64.8, 64.2, 64.3\)</span></p>
+<p>Si <strong>suponemos</strong> que la energía del impacto se distribuye normalmente con <span class="math inline">\(\sigma=1J\)</span>, ¿cuál es el intervalo de confianza de <span class="math inline">\(95\%\)</span> para la media de estos datos?</p>
+<p>Sabemos</p>
 <ol style="list-style-type: decimal">
-<li><span class="math inline">\(\mu\)</span> es un <strong>parámetro</strong> de la distribución de la <strong>población</strong>: <span class="math inline">\(N(\mu, \sigma^2)\)</span></li>
-<li><span class="math inline">\(\bar{X}=\frac{1}{n} \sum_{i=1}^n X_i\)</span> es un <strong>estimador</strong> de <span class="math inline">\(\mu\)</span></li>
-<li><span class="math inline">\(\bar{x}=\hat{\mu}\)</span> es la <strong>estimación</strong> de <span class="math inline">\(\mu\)</span></li>
+<li><span class="math inline">\(X \rightarrow N(\mu, \sigma^2)\)</span></li>
+<li><span class="math inline">\(\sigma=1J\)</span></li>
+<li><span class="math inline">\(\alpha=0.05\)</span> (el límite de confianza)</li>
 </ol>
-<p><strong>Ejemplo (varianza de la muestra)</strong></p>
-<p>Cuando tenemos una variable aleatoria normal</p>
-<p><span class="math display">\[X \rightarrow N(\mu, \sigma^2)\]</span></p>
+<p>El intervalo de confianza de <span class="math inline">\(95\%\)</span> es entonces</p>
+<p><span class="math inline">\((l,u)=(\bar{x}-1.96 \frac{\sigma}{\sqrt{n}}, \bar{x}+1.96 \frac{\sigma}{\sqrt{n}})\)</span>
+<span class="math display">\[=(64,46-1.96 \frac{1}{\sqrt{10}}, 64,46+1.96 \frac{1}{\sqrt{10}})=(63,84,65,08)\]</span></p>
+<p>o</p>
+<p><span class="math display">\[\hat{\mu}=64.46 \pm 0.61\]</span></p>
+<p>esto nos dice que podemos estar seguros del primer dígito (6), algo seguros del segundo (4) e inseguros de los decimales (46).</p>
+<p>¿Qué pasa si <span class="math inline">\(\sigma^2\)</span> es <strong>desconocido</strong>?</p>
+</div>
+</div>
+<div id="margen-de-error-para-varianza-desconocida" class="section level2 hasAnchor" number="13.5">
+<h2><span class="header-section-number">13.5</span> Margen de error para varianza desconocida<a href="intervalos-de-confianza.html#margen-de-error-para-varianza-desconocida" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Pudimos calcular el intervalo de confianza <span class="math inline">\((l,u)=(\bar{x} -m, \bar{x} -m)\)</span> porque pudimos encontrar el margen de error</p>
+<p><span class="math display">\[m=1.96 \frac{\sigma}{\sqrt{n}}\]</span>
+desde que <strong>sabíamos</strong> <span class="math inline">\(\sigma\)</span>. <span class="math inline">\(\sigma\)</span> es un parámetro de la distribución que normalmente <strong>no conocemos</strong>, así cmo <span class="math inline">\(\mu\)</span>. Para encontrar el margen de error con varianza <strong>desconocida</strong>, necesitamos el siguiente teorema, debido a Gosset</p>
+<div id="thorem-estadística-t" class="section level3 hasAnchor" number="13.5.1">
+<h3><span class="header-section-number">13.5.1</span> Thorem (estadística T)<a href="intervalos-de-confianza.html#thorem-estadística-t" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Cuando <span class="math inline">\(X\)</span> es normal, entonces la estadística estandarizada</p>
+<p><span class="math display">\[T=\frac{\bar{X}-\mu}{\frac{S}{\sqrt{n}}}\]</span>
+Sigue una distribución <span class="math inline">\(t\)</span> con <span class="math inline">\(n-1\)</span> grados de libertad, donde <span class="math inline">\(S^2=\frac{1}{n-1} \sum_{i=1}^n (X_i-\bar{X})^2\)</span>. Por lo tanto, podemos calcular probabilidades para <span class="math inline">\(\bar{X}\)</span>, incluso si no conocemos <span class="math inline">\(\sigma\)</span>.</p>
+<p>Veamos algunas densidades de probabilidad en la familia de las distribuciones <span class="math inline">\(T\)</span>.</p>
+<p><img src="_main_files/figure-html/unnamed-chunk-95-1.png" width="672" /></p>
+<p>Ahora necesitamos volver a calcular el margen de error <span class="math inline">\(m\)</span> al nivel de <span class="math inline">\(5\%\)</span> cuando usamos la distribución <span class="math inline">\(t\)</span></p>
+<p><span class="math inline">\(P(\mu-m \leq \bar{X} \leq\mu + m)\)</span>
+<span class="math display">\[=P(-\frac{m}{s/\sqrt{n}} \leq T \leq\frac{m}{s/\sqrt{n}})=0,95\]</span></p>
+<p><span class="math display">\[m=t_{0.025, n-1} \frac{s}{\sqrt{n}}\]</span>
+donde <span class="math inline">\(t_{0.025, n-1}\)</span> es el valor <span class="math inline">\(T\)</span> que deja <span class="math inline">\(2.5\%\)</span> de probabilidad en el lado derecho de la distribución <span class="math inline">\(t\)</span> con <span class="math inline">\(n-1\)</span> grados de libertad.</p>
+</div>
+<div id="caso-2-varianza-desconocida" class="section level3 hasAnchor" number="13.5.2">
+<h3><span class="header-section-number">13.5.2</span> Caso 2 (varianza desconocida)<a href="intervalos-de-confianza.html#caso-2-varianza-desconocida" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>El segundo caso para calcular los intervalos de confianza es más realista. Si</p>
 <ol style="list-style-type: decimal">
-<li><span class="math inline">\(\sigma^2\)</span> es un <strong>parámetro</strong> de la distribución de la población</li>
-<li><span class="math inline">\(S^2=\frac{1}{n-1} \sum_{i=1}^n (X_i-\bar{X})^2\)</span> es un <strong>estimador</strong> de <span class="math inline">\(\sigma^2\)</span></li>
-<li><span class="math inline">\(s^2=\hat{\sigma}^2\)</span> es la <strong>estimación</strong> de <span class="math inline">\(\sigma^2\)</span></li>
+<li><span class="math inline">\(X\)</span> es una variable normal</li>
 </ol>
+<p>el intervalo de confianza en <span class="math inline">\(95\%\)</span> es</p>
+<p><span class="math display">\[(l,u)=(\bar{x} - m, \bar{x} + m)\]</span>
+donde <span class="math display">\[m=t_{0.025, n-1} \frac{s}{\sqrt{n}}\]</span></p>
+<p>Eso es:</p>
+<p><span class="math display">\[(l,u)=(\bar{x} - t_{0.025, n-1} \frac{s}{\sqrt{n}}, \bar{x} + t_{0.025, n-1} \frac{s}{\sqrt{n}})\]</span>
+donde <span class="math inline">\(t_{0.025, n-1}=F^{-1}(0.975)\)</span><code>=qt(0.975, n-1)</code></p>
+<p><strong>Ejemplo (Energía de impacto):</strong></p>
+<p>Un material metálico se prueba por impacto para medir la energía requerida para cortarlo a una temperatura dada. Se cortaron diez probetas de acero A238 a 60ºC con las siguientes energías de impacto (J):</p>
+<p><span class="math inline">\(64.1, 64.7, 64.5, 64.6, 64.5, 64.3, 64.6, 64.8, 64.2, 64.3\)</span></p>
+<p>Si <strong>suponemos</strong> que la energía del impacto se distribuye normalmente pero <strong>no conocemos</strong> la varianza, ¿cuál es el intervalo de confianza de <span class="math inline">\(95\%\)</span> para la media de estos datos?</p>
+<p>Sabemos</p>
+<ul>
+<li><span class="math inline">\(\bar{x}=64.46\)</span></li>
+<li><span class="math inline">\(s=0.227\)</span></li>
+<li><span class="math inline">\(\alpha=0.05\)</span></li>
+<li><span class="math inline">\(t_{0.025,9}=2.26\)</span> obtenido de <span class="math inline">\(t_{0.025,9}=\)</span> <code>qt(0.975, 9)</code></li>
+</ul>
+<p>El intervalo de confianza es entonces</p>
+<p><span class="math inline">\((l,u)=(\bar{x}- t_{0.025,9}\frac{s}{\sqrt{n}},\bar{x}+t_{0.025,9} \frac{s} {\sqrt{n}})\)</span></p>
+<p><span class="math display">\[=(64,46-2,26 \frac{0,227}{\sqrt{10}},64,46+2,26 \frac{0,227}{\sqrt{10}})\]</span> <span class="math display">\[=(64,29,64,62)\]</span></p>
+<p>Tenga en cuenta que cuando asumimos <span class="math inline">\(\sigma=1\)</span> el intervalo de confianza <span class="math inline">\((63.84,65.08)\)</span> era mayor. Por lo tanto, los datos sugieren que <span class="math inline">\(\sigma&lt;1\)</span>.</p>
+<p>En R, podemos calcular el intervalo de confianza con: <code>t.test(c(64.1,64.7,64.5,64.6,64.5,64.3,64.6,64.8,64.2,64.3))</code></p>
 </div>
-<div id="propiedades" class="section level2 hasAnchor" number="12.3">
-<h2><span class="header-section-number">12.3</span> Propiedades<a href="máxima-verosimilitud-y-método-de-los-momentos.html#propiedades" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+</div>
+<div id="estimación-de-proporciones" class="section level2 hasAnchor" number="13.6">
+<h2><span class="header-section-number">13.6</span> Estimación de proporciones<a href="intervalos-de-confianza.html#estimación-de-proporciones" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><strong>Ejemplo (vacuna):</strong></p>
+<p>Se seleccionó una muestra aleatoria de <span class="math inline">\(400\)</span> pacientes para probar una nueva vacuna contra el virus de la influenza, después de <span class="math inline">\(6\)</span> meses de vacunación, <span class="math inline">\(136\)</span> estaban enfermos. ¿Cuál es la eficacia esperada de la vacuna?</p>
+<p>Dado que cada vacunación <span class="math inline">\(X_i\)</span> es un ensayo de Bernoulli</p>
+<p><span class="math display">\[X \rightarrow Bernoulli(p)\]</span>
+Con media <span class="math inline">\(\mu=p\)</span> y varianza <span class="math inline">\(\sigma^2=p(1-p)\)</span>.</p>
+<p>La muestra es algo como
+<span class="math display">\[(x_1,x_2, x_3, ...x_n)=(0,1,0,.. 1, 0)_{400}\]</span> con <span class="math inline">\(136\)</span> unos y en un total de <span class="math inline">\(400\)</span> repeticiones. La muestra tiene un promedio de <span class="math inline">\(\bar{x}=\frac{1}{400}\sum_i^{400} x_i=134/400=0.34\)</span>. Dado que la media muestral es un estimador insesgado de <span class="math inline">\(\mu\)</span>, entonces podemos tener una estimación puntual para <span class="math inline">\(p\)</span></p>
+<p><span class="math display">\[\hat{p}=\bar{x}=134/400=0.34\]</span></p>
+<p>Esto tiene sentido porque <span class="math inline">\(\bar{x}\)</span> es la frecuencia relativa observada para el número de <strong>unos</strong> en la muestra (<span class="math inline">\(f_1\)</span>). Y como tal, es un estimador de la probabilidad de observar un uno en un ensayo de Bernoulli.</p>
+<p><span class="math display">\[f_1 =\hat{P}(X=1)\]</span>
+Esto es consistente con la definición frecuentista de probabilidad que vimos en el capítulo 2. Pero, ¿qué confianza tenemos en esta estimación? Queremos un intervalo de confianza para <span class="math inline">\(p\)</span></p>
+<div id="caso-3-proporciones" class="section level3 hasAnchor" number="13.6.1">
+<h3><span class="header-section-number">13.6.1</span> Caso 3 (proporciones)<a href="intervalos-de-confianza.html#caso-3-proporciones" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ol style="list-style-type: decimal">
-<li>Un estimador es <strong>insesgado</strong> si su valor esperado es el parámetro</li>
+<li>Cuando <span class="math inline">\(\hat{p}n&gt;5\)</span> y <span class="math inline">\((\hat{p}-1)n&gt;5\)</span>, la <strong>estadística estandarizada</strong> de <span class="math inline">\(\bar{X}\)</span> se puede aproximar mediante un estándar distribución (TCL)</li>
 </ol>
-<p><span class="math display">\[E(\Theta)=\theta\]</span></p>
-<p>Por ejemplo:</p>
+<p><span class="math display">\[Z=\frac{\bar{X}-\mu}{\sigma/\sqrt{n}}= \frac{\bar{X}-p}{\big[\frac{p(1-p)}{n} \big]^{1/2}}\rightarrow N(0,1)\]</span>
+y el intervalo de CI al <span class="math inline">\(95\%\)</span> de <span class="math inline">\(p\)</span> es:</p>
+<p><span class="math display">\[CI=(l,u)=(\bar{x}-z_{0.025}\big[\frac{\bar{x}(1-\bar{x})}{n} \big]^{ 1/2}, \bar{x}+z_{0.025}\big[\frac{\bar{x}(1-\bar{x})}{n} \big]^{1/2})\]</span>
+Donde estimamos la varianza de Bernoulli <span class="math inline">\(\sigma=p(1-p)\)</span> por <span class="math inline">\(\hat{\sigma}=\bar{x}(1-\bar{x})\)</span>.</p>
+<p><strong>Ejemplo (vacuna):</strong></p>
+<p>En nuestro caso, estamos contando <span class="math inline">\(136\)</span> fallos de inmunización de <span class="math inline">\(400\)</span> inoculaciones.</p>
+<p>sabemos</p>
 <ul>
-<li><p><span class="math inline">\(\bar{X}\)</span> es un estimador <strong>insesgado</strong> de <span class="math inline">\(\mu\)</span> porque <span class="math inline">\(E(\bar{X})=\mu\)</span></p></li>
-<li><p><span class="math inline">\(S^2\)</span> es un estimador <strong>insesgado</strong> de <span class="math inline">\(\sigma^2\)</span> porque <span class="math inline">\(E(S^2)=\sigma^2\)</span></p></li>
+<li><span class="math inline">\(\bar{x}=134/400=0.34\)</span></li>
+<li><span class="math inline">\(z_{0.025}=1.96\)</span></li>
 </ul>
-<ol start="2" style="list-style-type: decimal">
-<li>Un estimador es <strong>consistente</strong> cuando sus valores observados están cada vez menos dispersos al rededor de la medida a medida que el tamaño de la muestra crece</li>
-</ol>
-<p><span class="math display">\[lim_{n\rightarrow \infty} V(\Theta) = 0\]</span></p>
-<p>Por ejemplo:</p>
-<ul>
-<li><span class="math inline">\(\bar{X}\)</span> es <strong>consistente</strong> porque <span class="math inline">\(V(\bar{X})=\frac{\sigma^2}{n}\rightarrow 0\)</span> cuando <span class="math inline">\(n \rightarrow \infty\)</span>.</li>
-</ul>
+<p>Por lo tanto, el intervalo de confianza de <span class="math inline">\(95\%\)</span> para <span class="math inline">\(p\)</span> es</p>
+<p><span class="math inline">\((l,u)=(\bar{x}-1.96 \big[\frac{\bar{x}(1-\bar{x})}{n} \big]^{1/2}, \bar{x}+1.96 \big[\frac{\bar{x}(1-\bar{x})}{n} \big]^{1/2})\)</span></p>
+<p><span class="math display">\[=(0.29,0.39)\]</span></p>
+<p>La probabilidad de fracaso de la vacuna es</p>
+<p><span class="math display">\[\hat{p}=0.34 \pm 0.05\]</span></p>
+<p>Nota: Las encuestas de intención de voto (ensayo de Bernoulli) en una muestra de <span class="math inline">\(n\)</span> individuos reportan este tipo de estimación con su <strong>margen de error</strong>. No significa que el <strong>valor verdadero</strong> de <span class="math inline">\(p\)</span> esté dentro de este intervalo con una probabilidad de <span class="math inline">\(95\%\)</span>. Significa que tenemos una confianza del <span class="math inline">\(95\%\)</span> de haber atrapado al <span class="math inline">\(p\)</span> que representa esta muestra en particular.</p>
 </div>
-<div id="máxima-verosimilitud" class="section level2 hasAnchor" number="12.4">
-<h2><span class="header-section-number">12.4</span> Máxima verosimilitud<a href="máxima-verosimilitud-y-método-de-los-momentos.html#máxima-verosimilitud" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>¿Cómo se pueden obtener <strong>estimadores</strong> de los parámetros de <strong>cualquier</strong> modelo de probabilidad?</p>
-<p><strong>Ejemplo (Láser)</strong></p>
-<p>Imagina que diseñamos un láser con un diámetro de <span class="math inline">\(1 mm\)</span> que queremos usar para aplicaciones clínicas.</p>
-<p>Queremos caracterizar el diámetro de un piercing en un tejido realizado con láser y tomar una muestra aleatoria de <span class="math inline">\(30\)</span> cortes realizados con láser. Aquí están los resultados</p>
-<pre><code>##  [1] 1.11 1.64 1.20 1.79 1.89 1.01 1.31 1.81 1.34 1.25 1.92 1.24 1.49 1.36 1.03
-## [16] 1.82 1.09 1.01 1.14 1.91 1.80 1.51 1.44 1.98 1.46 1.53 1.33 1.39 1.12 1.04</code></pre>
-<p>y el histograma</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-83-1.png" width="672" /></p>
-<p>¿Cuál sería una función de probabilidad que podría describir los datos?</p>
-<p>Para ello seguimos el siguiente proceso:</p>
+</div>
+<div id="estimación-de-la-varianza" class="section level2 hasAnchor" number="13.7">
+<h2><span class="header-section-number">13.7</span> Estimación de la varianza<a href="intervalos-de-confianza.html#estimación-de-la-varianza" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Hemos visto que siempre que tomamos una muestra aleatoria <span class="math inline">\((X_1, X_2, ... X_n)\)</span>, la varianza muestral
+<span class="math display">\[S^2=\frac{1}{n-1}\sum_{i=1}^n (X_i-\bar{X})^2\]</span>
+es un estimador de la media <span class="math inline">\(\sigma^2\)</span> de la variable aleatoria <span class="math inline">\(X\)</span>. El estimador es <strong>insesgado</strong></p>
+<ul>
+<li><span class="math inline">\(E(S^2)=\sigma^2\)</span></li>
+</ul>
+<p>y también es <strong>consistente</strong>. Cuando tomamos los valores de la muestra aleatoria, tomamos el valor de <span class="math inline">\(S^2\)</span> como el valor de la varianza; eso es</p>
+<p><span class="math display">\[s^2=\hat{\sigma}^2\]</span></p>
+<p>Dado que <span class="math inline">\(S^2\)</span> es una variable aleatoria, la estimación de la varianza cambia cuando tomamos otra muestra.</p>
+<p><strong>Ejemplo (energía de impacto)</strong></p>
+<p>Un material metálico se prueba por impacto para medir la energía requerida para cortarlo a una temperatura dada. Se cortaron diez probetas de acero A238 a 60ºC con las siguientes energías de impacto (J):</p>
+<p><span class="math inline">\(64.1, 64.7, 64.5, 64.6, 64.5, 64.3, 64.6, 64.8, 64.2, 64.3\)</span></p>
+<p>¿Cuál es la estimación de la varianza de estos datos?</p>
+<p><span class="math display">\[s^2=0.05155556\]</span>
+<code>sd(c(64.1, 64.7, 64.5, 64.6, 64.5, 64.3, 64.6, 64.8, 64.2, 64.3))^2 </code></p>
+<p>¿Cuánta confianza tenemos en los decimales de la estimación?</p>
+</div>
+<div id="intervalo-de-confianza-para-la-varianza" class="section level2 hasAnchor" number="13.8">
+<h2><span class="header-section-number">13.8</span> Intervalo de confianza para la varianza<a href="intervalos-de-confianza.html#intervalo-de-confianza-para-la-varianza" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Para calcular un intervalo de confianza para la varianza, necesitamos una estadística que sea una función de <span class="math inline">\(S^2\)</span> y nos permita calcular probabilidades. Usaremos el siguiente teorema</p>
+<div id="teorema-chi2" class="section level3 hasAnchor" number="13.8.1">
+<h3><span class="header-section-number">13.8.1</span> Teorema (<span class="math inline">\(\chi^2\)</span>):<a href="intervalos-de-confianza.html#teorema-chi2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Cuando <span class="math inline">\(X\)</span> es normal, entonces la estadística estandarizada</p>
+<p><span class="math display">\[W=\frac{S^2(n-1)}{\sigma^2}\]</span>
+sigue una distribución <span class="math inline">\(\chi^2\)</span> con <span class="math inline">\(n-1\)</span> grados de libertad</p>
+<p><span class="math display">\[\frac{S^2}{\sigma^2}(n-1)\rightarrow \chi^2_{n-1}\]</span></p>
+<p>Por lo tanto, podemos calcular probabilidades para <span class="math inline">\(W\)</span>.</p>
+<p>Veamos algunas densidades de probabilidad en la familia de las distribuciones <span class="math inline">\(\chi^2\)</span>.</p>
+<p><img src="_main_files/figure-html/unnamed-chunk-96-1.png" width="672" /></p>
+</div>
+<div id="intervalo-de-confianza-para-la-varianza-1" class="section level3 hasAnchor" number="13.8.2">
+<h3><span class="header-section-number">13.8.2</span> Intervalo de confianza para la varianza<a href="intervalos-de-confianza.html#intervalo-de-confianza-para-la-varianza-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Buscamos el intervalo de confianza de <span class="math inline">\(\sigma^2\)</span> con confianza <span class="math inline">\(95\%\)</span> <span class="math inline">\((L,U)\)</span> tal que <span class="math display">\[P(L \leq \sigma^2 \leq U)=0.95\]</span></p>
+<p>Entonces podemos usar el <span class="math inline">\(\chi^2\)</span> para determinar el <span class="math inline">\(95\%\)</span> de la distribución alrededor de <span class="math inline">\(W\)</span>. Comencemos definiendo los valores que capturan los <span class="math inline">\(95\%\)</span> de la distribución</p>
+<p><span class="math display">\[P(\chi^2_{0.975,n-1} \leq W \leq \chi^2_{0.025,n-1})=0.95\]</span>
+Reemplazando el valor de <span class="math inline">\(W\)</span></p>
+<p><span class="math display">\[P(\chi^2_{0.975,n-1} \leq \frac{S^2}{\sigma^2}(n-1) \leq \chi^2_{0.025,n-1})= 0.95\]</span></p>
+<p>y resolviendo para <span class="math inline">\(\sigma^2\)</span></p>
+<p><span class="math display">\[P(\frac{S^2 (n-1)}{\chi^2_{0.025,n-1}}\leq \sigma^2 \leq \frac{S^2(n-1)}{ \chi^2_{0.975,n-1}})=0.95\]</span></p>
+<p>Encontramos un intervalo aleatorio que captura <span class="math inline">\(\sigma^2\)</span>
+con <span class="math inline">\(95\%\)</span> de confianza</p>
+<p><span class="math display">\[(L,U) = (\frac{S^2 (n-1)}{\chi^2_{0.025,n-1}},\frac{S^2(n-1)}{\chi ^2_{0.975,n-1}})\]</span></p>
+</div>
+<div id="caso-4-varianza" class="section level3 hasAnchor" number="13.8.3">
+<h3><span class="header-section-number">13.8.3</span> Caso 4 (varianza)<a href="intervalos-de-confianza.html#caso-4-varianza" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ol style="list-style-type: decimal">
-<li>Proponemos <strong>un modelo</strong> que depende de parámetros</li>
-<li>Derivamos los <strong>estimadores</strong> para los parámetros, por máxima verosimilitud o el método de momentos.</li>
-<li>Finalmente usamos el estimador para <strong>estimar los parámetros</strong> con los datos.</li>
+<li>Cuando <span class="math inline">\(X\)</span> es una variable normal</li>
 </ol>
-<p><em>Proponiendo una densidad de probabilidad</em></p>
-<p>En muchas aplicaciones, podemos proponer la forma de una densidad de probabilidad que depende de algunos parámetros. Proponer un modelo de probabilidad se hace siguiendo <strong>propiedades generales</strong> de las observaciones, o lo que esperamos observar. El modelado requiere experiencia, habilidad y conocimiento de varias funciones matemáticas. Sin embargo, en la mayoría de los casos se suelen aplicar <strong>modelos bien conocidos</strong>.</p>
-<p><strong>Ejemplo (Láser)</strong></p>
-<p>En nuestro ejemplo, podemos considerar, por ejemplo, que se debe dar la máxima probabilidad a los diámetros de <span class="math inline">\(x=1 mm\)</span>, y que los diámetros deben disminuir como la potencia inversa de algún parámetro <strong>desconocido</strong> <span class="math inline">\(\alpha\)</span>, con un límite de <span class="math inline">\(2mm\)</span> más allá del cual la probabilidad es de <span class="math inline">\(0\)</span>.</p>
-<p>Una distribución de densidad de probabilidad adecuada es</p>
-<p><span class="math display">\[
-    f(x)= 
-\begin{cases}
-\frac{1}{\alpha}(x-1)^{\frac{1}{\alpha}-1},&amp; \text{if } x \in (1,2)\\
-    0,&amp; x \notin (1,2)\\
-\end{cases}
-\]</span></p>
-<p>Donde <span class="math inline">\(\alpha\)</span> es un parámetro. Esta es una densidad de probabilidad porque se integra a uno y es positiva. En particular, para <span class="math inline">\(\alpha=2\)</span> podemos graficarlo</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-84-1.png" width="672" /></p>
-<p><em>Derivar los estimadores</em></p>
-<p>Si realizamos una muestra de tamaño <span class="math inline">\(n\)</span>: <span class="math inline">\((X_1,...X_n)\)</span>, ¿Cómo debemos combinar los datos para obtener el mejor valor de <span class="math inline">\(\alpha\)</span>?</p>
-<p>Muchos valores de para el parámetro podrían explicar los datos. Nos interesa <strong>un criterio</strong> para elegir un valor en particular.</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-85-1.png" width="672" /></p>
-<p>El método de <strong>máxima verosimilitud</strong> nos da un estimador para <span class="math inline">\(\alpha\)</span></p>
-<p><span class="math display">\[\hat{\alpha}_{ml}\]</span></p>
-</div>
-<div id="máxima-verosimilitud-1" class="section level2 hasAnchor" number="12.5">
-<h2><span class="header-section-number">12.5</span> Máxima verosimilitud<a href="máxima-verosimilitud-y-método-de-los-momentos.html#máxima-verosimilitud-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>El objetivo es encontrar el valor del parámetro que <strong>creemos</strong> es el que <strong>mejor</strong> representa los datos.</p>
-<p>El método de máxima verosimilitud se basa en la búsqueda del valor del parámetro que hace más <strong>probable</strong> la <strong>observación</strong> de la muestra.</p>
-<p><strong>Máxima verosimilitud paso 1</strong></p>
-<p>Calculamos la probabilidad de haber observado la muestra <span class="math inline">\(n\)</span>: <span class="math inline">\(x_1,...x_n\)</span>. Es el producto de probabilidades porque las observaciones son independientes entre sí:</p>
-<p><span class="math inline">\(P(M=x_1,...x_n)=P(X=x_1)P(X=x_2)...P(X=x_n)\)</span>
-<span class="math display">\[=f(x_1;\alpha)f(x_2;\alpha) ...f(x_n;\alpha)\]</span></p>
-<p>A esta función la llamamos <strong>función de verosimilitud</strong> y consideramos que:</p>
+<p>El intervalo de confianza al <span class="math inline">\(95\%\)</span> <strong>observado</strong> (minúsculas) es</p>
+<p><span class="math display">\[(l,u) = (\frac{s^2 (n-1)}{\chi^2_{0.025,n-1}},\frac{s^2(n-1)}{\chi ^2_{0.975,n-1}})\]</span></p>
+<p>dónde</p>
 <ul>
-<li>Una vez observados los datos estos son <strong>fijos</strong></li>
-<li>La incógnita es <span class="math inline">\(\alpha\)</span></li>
+<li><p><span class="math inline">\(\chi^2_{0.975,n-1}=F^{-1}(0.025)=\)</span> <code>qchisq(0.025, df=n-1)</code></p></li>
+<li><p><span class="math inline">\(\chi^2_{0.025, n-1}=F^{-1}(0,975)=\)</span><code>qchisq(0,975, df=n-1)</code>
+</br>para <span class="math inline">\(n=10\)</span> o <span class="math inline">\(df=n-1=9\)</span></p></li>
 </ul>
-<p><span class="math display">\[L(\alpha)= \Pi_{i=1..n} f(x_i; \alpha)\]</span></p>
-<p><strong>Ejemplo (Láser)</strong></p>
-<p>Para el experimento con láser la función de verosimilitud es</p>
-<p><span class="math inline">\(L(\alpha;x_1,..x_n)= \frac{1}{\alpha^n} \Pi_{i=1..n} (x_i-1)^{\frac{1-\alpha}{ \alpha}}= \frac{1}{\alpha^n} \{(x_1-1)(x_2-1)...(x_n-1)\}^{\frac{1-\alpha}{\alpha}}\)</span></p>
-<p><strong>Máxima verosimilitud paso 2</strong></p>
-<p>Entonces nos preguntamos: ¿cuál es el valor de <span class="math inline">\(\alpha\)</span> que hace que la muestra observada sea el evento más probable? Por lo tanto, queremos maximizar <span class="math inline">\(L(\alpha)\)</span> con respecto a <span class="math inline">\(\alpha\)</span>. Como tenemos la multiplicación de muchos factores es más fácil maximizar el logaritmo de <span class="math inline">\(L(\alpha)\)</span>. Esto se llama la función logaritmo de verosimilitud:</p>
-<p><span class="math display">\[\ln L(\alpha;x_1,..x_n)\]</span></p>
-<p><strong>Ejemplo (Láser)</strong></p>
-<p>En el ejemplo del láser, tomamos el logaritmo y obtenemos la <strong>Logaritmo de verosimilitud</strong></p>
-<p><span class="math display">\[\ln L(\alpha;x_1,..x_n)= -n \ln(\alpha) + {\frac{1-\alpha}{\alpha}} \Sigma_{i=1...n} \ln (x_i-1)\]</span></p>
-<p><strong>Máxima verosimilitud paso 3</strong></p>
-<p>Finalmente <strong>maximizamos</strong> el logaritmo de verosimilitud con respecto al parámetro. Por lo tanto, diferenciamos el log-verosimilitud con respecto al parámetro <span class="math inline">\(\alpha\)</span>, igualamos a cero y resolvemos para el máximo.</p>
-<p><span class="math display">\[\frac{d \ln L(\alpha)}{d \alpha} \big|_{\hat{\alpha}}=0 \]</span>
-El valor máximo del parámetro se denomina <strong>estimación de máxima verosimilitud</strong> para el parámetro y se escribe con un sombrero <span class="math inline">\(\hat{\alpha}\)</span>.</p>
-<p><strong>Ejemplo (Láser)</strong></p>
-<p>Derivamos la función log-verosimilitud</p>
-<p><span class="math display">\[\frac{d \ln L(\alpha)}{d \alpha}= -\frac{n}{\alpha} - \frac{1}{\alpha^2} \Sigma_{i=1.. .n} \ln (x_i-1)\]</span>
-El máximo es donde la derivada es <span class="math inline">\(0\)</span>. Este máximo es el valor de nuestro estimador <span class="math inline">\(\hat{\alpha}_{ml}\)</span>.</p>
-<p><span class="math display">\[\hat{\alpha}_{ml}=-\frac{1}{n}\sum_{i=1}^n \ln (x_i-1)\]</span></p>
-<p>El estimador del parámetro es por lo tanto (nótese las letras mayúsculas)</p>
-<p><span class="math display">\[A=-\frac{1}{n}\sum_{i=1}^n \ln (X_i-1)\]</span></p>
-<p>Que es una variable aleatoria, función de la muestra aleatoria</p>
-<p><span class="math display">\[(X_1, X_2, ... X_n)\]</span></p>
-<p><em>Estimando los parámetros con los datos</em></p>
-<p>En nuestro ejemplo, tenemos entonces la observación de la muestra aleatoria como un conjunto de 30 números <span class="math inline">\((x_1, x_2, ...x_{30})\)</span>, por lo tanto sustituimos los números en el estimador y esto nos dará su valor observado.</p>
-<p><span class="math inline">\(\hat{\alpha}_{ml}=-\frac{1}{30}\{ \ln (1.11-1)+ \ln (1.64-1)+...\ln (1.04-1)\}=1.320\)</span></p>
-<p>Por lo tanto, la estimación de máxima verosimilitud del parámetro es <span class="math inline">\(1.320\)</span>. Si sustituimos este valor en la función de probabilidad y lo superponemos con el histograma, podemos ver que nos da una descripción adecuada de los datos.</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-86-1.png" width="672" /></p>
-<p>Veamos la función del logaritmo de la verosimilitud para nuestros <span class="math inline">\(30\)</span> cortes láser. Recuerda, los datos son fijos para nuestro experimento y <span class="math inline">\(\alpha\)</span> varía. La función tiene un máximo. Sin embargo, si tomamos otra muestra, esta función cambia y también su lo hará su máximo.</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-87-1.png" width="672" /></p>
-<p><strong>Máxima verosimilitud: Historia</strong></p>
-<p>Para inferir la verdadera posición de Ceres en un momento dado, Gauss derivó la función de error</p>
-<p><span class="math display">\[f(x; \mu, \sigma^2)= \frac{1}{\sigma \sqrt{2 \pi}} e^{-\frac{1}{2\sigma^2} (x- \mu)^2}\]</span></p>
-<p>Donde la posición <strong>verdadera</strong> de Ceres era la media <span class="math inline">\(\mu\)</span>. ¿Cómo podemos combinar los datos para tener la mejor estimación de la posición de Ceres?</p>
-<p>¿Cuál es la estadística que mejor puede describir su posición?</p>
-<p><img src="figures/cerestime.jpg" style="width:100%"  align="center"></p>
-<p>Esta pregunta se puede formular como: ¿Cuál es la estimación de máxima verosimilitud de <span class="math inline">\(\mu\)</span> para una variable aleatoria normal?</p>
-<p><strong>Máxima verosimilitud de la distribución normal</strong></p>
-<p>Para una variable aleatoria normal</p>
-<p><span class="math display">\[X \rightarrow N(\mu, \sigma^2)\]</span>.</p>
-<p>¿Cuáles son los estimadores de <span class="math inline">\(\mu\)</span> y <span class="math inline">\(\sigma^2\)</span> que maximizan la probabilidad de los datos observados?</p>
-<p><img src="figures/normpar.JPG" style="width:35%"  align="center"></p>
-<p>Seguimos el método de máxima verosimilitud:</p>
+<p><strong>Ejemplo (energía de impacto)</strong></p>
+<p>Un material metálico se prueba por impacto para medir la energía requerida para cortarlo a una temperatura dada. Se cortaron diez probetas de acero A238 a 60ºC con las siguientes energías de impacto (J):</p>
+<p><span class="math inline">\(64.1, 64.7, 64.5, 64.6, 64.5, 64.3, 64.6, 64.8, 64.2, 64.3\)</span></p>
+<p>¿Cuál es el intervalo de confianza para la varianza de estos datos?</p>
+<p><span class="math display">\[(l,u) = (\frac{s^2 (n-1)}{\chi^2_{0.025,n-1}},\frac{s^2(n-1)}{\chi ^2_{0.975,n-1}})\]</span></p>
 <ol style="list-style-type: decimal">
-<li>La función de verosimilitud, o la probabilidad de haber observado la muestra <span class="math inline">\((x_1, ....x_n)\)</span> es</li>
+<li><p>La desviación estándar de los datos es <span class="math inline">\(s^2=0.05155556\)</span></p></li>
+<li><p><span class="math inline">\(n=10\)</span></p></li>
+<li><p>Luego calculamos <span class="math inline">\(\chi^2_{0.025,n-1}\)</span> y <span class="math inline">\(\chi^2_{0.975,n-1}\)</span></p></li>
 </ol>
-<p><span class="math inline">\(L(\mu, \sigma^2)=\Pi_{i=1..n} f(x_i;\mu,\sigma)\)</span></p>
-<p><span class="math display">\[=\big( \frac{1}{\sigma \sqrt{2 \pi}}\big)^ne^{-\frac{1}{2\sigma^2} \sum_i(x_i-\mu) ^2}\]</span></p>
-<ol start="2" style="list-style-type: decimal">
-<li>Tomamos el logaritmo de <span class="math inline">\(L\)</span> y calculamos la función <strong>log-verosimilitud</strong></li>
-</ol>
-<p><span class="math display">\[\ln L(\mu, \sigma^2)=-n \ln(\sigma \sqrt{2 \pi})-\frac{1}{2\sigma^2} \Sigma_i(x_i-\mu )^2\]</span></p>
-<p>Las estimaciones de <span class="math inline">\(\mu\)</span> y <span class="math inline">\(\sigma^2\)</span> son donde la probabilidad es máxima. Dan la probabilidad más alta para los datos de la muestra.</p>
-<ol start="3" style="list-style-type: decimal">
-<li>Diferenciamos con respecto a <span class="math inline">\(\mu\)</span> y <span class="math inline">\(\sigma^2\)</span>. Estas dos derivadas nos dan dos ecuaciones, una para cada uno de los parámetros. Para derivar con respecto a <span class="math inline">\(\sigma^2\)</span>, es más fácil hacer una sustitución <span class="math inline">\(t=\sigma^2\)</span>.</li>
-</ol>
-<ol style="list-style-type: lower-alpha">
-<li><p><span class="math inline">\(\frac{d \ln L(\mu, \sigma^2)}{d\mu}=\frac{1}{\sigma^2} \sum_i(x_i-\mu)\)</span></p></li>
-<li><p><span class="math inline">\(\frac{d \ln L(\mu, \sigma^2)}{d\sigma^2}=-\frac{n}{2 \sigma^2}+\frac{1}{2\sigma^4} \sum_i(x_i-\mu)^2\)</span></p></li>
-</ol>
-<p>Las derivadas son <span class="math inline">\(0\)</span> en el máximo</p>
-<ol style="list-style-type: lower-alpha">
-<li><span class="math inline">\(\frac{1}{\hat{\sigma}^2} \sum_i(x_i-\hat{\mu})=0\)</span></li>
-<li><span class="math inline">\(-\frac{n}{2 \hat{\sigma}^2}+\frac{1}{2\hat{\sigma}^4} \sum_i(x_i-\hat{\mu})^ 2=0\)</span></li>
-</ol>
-<p>resolviendo ambas ecuaciones para los parámetros, encontramos para <span class="math inline">\(\mu\)</span></p>
-<p><span class="math display">\[\hat{\mu}_{ml}=\frac{1}{n}\sum_i x_i=\bar{x}\]</span></p>
-<p>y para <span class="math inline">\(\sigma^2\)</span></p>
-<p><span class="math display">\[\hat{\sigma}^2_{ml}=\frac{1}{n}\sum_i(x_i-\bar{x})^2\]</span></p>
-<p>Por lo tanto la <strong>media mestral</strong> o promedio <span class="math inline">\(\bar{X}\)</span> es el estimador de máxima verosimilitud de la media <span class="math inline">\(\mu\)</span> de la población. Gauss demostró que la estadística en la que más deberíamos confiar (la que tienen la mayor verosimilitud) para la posición real de Ceres era el <strong>promedio</strong>. Gauss, al resolvier la posición de Ceres, no solo descubrió la distribución normal, sino que también creó el análisis de regresión y mostró la importancia del promedio. Es debido a él que usamos el promedio para muchas cosas, y no otro tipo de estadísticas.</p>
-<p>Además, el estimador de máxima verosimilitud de <span class="math inline">\(\sigma^2\)</span> es un estimador <strong>sesgado</strong> porque se puede demostrar que <span class="math display">\[E(\hat{\sigma}^2_{ml})=\sigma^2+ \frac{\sigma^2}{n}\neq\sigma^2\]</span></p>
-<p>Fue Fisher quien demostró que a pesar de ser sesgado este estimador es importante, ya que lo usó para generalizar el teorema del límite central, donde pierde su sesgo en <span class="math inline">\(n\rightarrow \infty\)</span>.</p>
-</div>
-<div id="método-de-los-momentos" class="section level2 hasAnchor" number="12.6">
-<h2><span class="header-section-number">12.6</span> Método de los Momentos<a href="máxima-verosimilitud-y-método-de-los-momentos.html#método-de-los-momentos" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>El método de máxima verosimilitud tiene como objetivo producir los estimadores de distribuciones de probabilidad a partir de datos. Sin embargo, existe otra forma de producir esos estimadores, que se basa en la idea frecuentista de las probabilidades.</p>
-<p>Hbíamos visto que las frecuancias relativas tienden a las probabilidades cuando <span class="math inline">\(n\)</span> es grande <span class="math inline">\(f_i \rightarrow f(x_i)\)</span>, y como consequencia</p>
-<p><span class="math display">\[\bar{x} \rightarrow \mu\]</span>
-El centro de gravedad de los datos tiende al centro de gravedad de la probabilidad.
-El método de los momentos dice que podemos tomar el valor <strong>observado</strong> de la media meustral <span class="math inline">\(\bar{X}\)</span> como estimador de <span class="math inline">\(E(X)=\mu\)</span></p>
-<p><span class="math display">\[E(X)\sim \bar{x}=\hat{\mu}\]</span></p>
-<p>Es decir que la variable aleatoria que estima la media de la población es el promedio:</p>
-<p><span class="math display">\[\bar{X}= \frac{1}{n}\sum_i X_i\]</span></p>
-<p>que también se denomina el primer <strong>momento de muestra</strong></p>
-<p>En general, si <span class="math inline">\(X \rightarrow f(x, \theta)\)</span> el estimador del parámetro <span class="math inline">\(\theta\)</span> se obtiene entonces de la ecuación:</p>
-<p><span class="math display">\[E(X; \hat{\theta})=\bar{x}\]</span></p>
-<p>debido a que el valor esperado de la variable aletoria siempre es función del parámetro <span class="math inline">\(\theta\)</span>.</p>
-<p><strong>Ejemplo (exponencial)</strong></p>
-<p>Si una variable aleatoria sigue una distribución exponencial</p>
-<p><span class="math display">\[X \hookrightarrow exp(\lambda)\]</span></p>
-<p>entonces podemos usar el método de los momentos para estimar <span class="math inline">\(\lambda\)</span>. El método consta de tres pasos:</p>
-<ol style="list-style-type: decimal">
-<li><p>Calcular el valor esperado de la variable <span class="math display">\[E(X; \lambda)=\mu\]</span></p></li>
-<li><p>Escribir la ecuación donde el valor esperado es igual al primer momento muestral <span class="math display">\[\frac{1}{\hat{\lambda}}=\bar{x}\]</span></p></li>
-<li><p>Resolver para el parámetro</p></li>
-</ol>
-<p><span class="math display">\[\hat{\lambda}=\frac{1}{\bar{x}}\]</span>
-En términos de datos, esto es <span class="math inline">\(\hat{\lambda}=(\frac{1}{n}\sum_i x_i)^{-1}\)</span>. Es decir que si queremos estimar el parámetro <span class="math inline">\(\lambda\)</span> de una variable exponencial de un experimento aleatorio, debemos tomar una muestra aleatoria, sacar su promedio y tomar su inversa. El resultado es el estimador de parámetro que después, junto al modelo, lo podemos usar para calcular las probabilidades de observaciones futuras.</p>
-<p><strong>Ejemplo (Baterías)</strong></p>
-<p>Supongamos que tenemos varias baterías (nuevas y viejas) que cargamos durante el período de 1 hora. Medimos el estado de carga de la batería, siendo 1 un 100% de carga.</p>
-<p>El estado de carga de una batería es una variable aleatoria que puede tener una distribución uniforme, donde no sabemos el valor mínimo que puede tomar <span class="math inline">\(x\)</span>, pero sabemos que el máximo es 1 (<span class="math inline">\(100\%\)</span> de carga)</p>
-<p><span class="math display">\[
-f(x)=
-\begin{cases}
-    \frac{1}{1-a},&amp; \text{if } x\in (a,1)\\
-    0,&amp; x\notin (a,1)
-\end{cases}
-\]</span></p>
-<p>¿Cuál es el estimador de <span class="math inline">\(a\)</span> (la carga mínima después de una hora)?</p>
-<p>Si ejecutamos un experimento y obtenemos <span class="math inline">\(x_1,...x_n\)</span>, nos preguntamos ¿cómo podemos estimar <span class="math inline">\(a\)</span> a partir de los datos?</p>
-<p>Seguimos los tres pasos del método de los momentos:</p>
-<ol style="list-style-type: decimal">
-<li>Calculamos el valor esperado de la variable aleatoria</li>
-</ol>
-<p><span class="math display">\[E(X)=\frac{a+1}{2}\]</span></p>
-<ol start="2" style="list-style-type: decimal">
-<li>Obtenemos la ecuación para <span class="math inline">\(\hat{a}\)</span> donde igualamos el valor esperado al primer momento muestral</li>
-</ol>
-<p><span class="math display">\[\frac{\hat{a}+1}{2}=\bar{x}\]</span></p>
-<ol start="3" style="list-style-type: decimal">
-<li>Resolvemos para el estimador <span class="math inline">\(\hat{a}\)</span></li>
-</ol>
-<p><span class="math display">\[\hat{a}=2\bar{x}-1\]</span></p>
-<p>Este es el estimador de la carga mínima que podemos observar.</p>
-<p>Ten en cuenta si tomaramos el mínimo de las observaciones esto sería claramente subóptimo. El método nos dio una respuesta inteligente que también se puede resumir en los siguientes pasos</p>
-<ol style="list-style-type: lower-alpha">
-<li>Podemos calcular <span class="math inline">\(\bar{x}\)</span> con precisión creciente dada por <span class="math inline">\(n\)</span></li>
-<li>Sabemos que ninguna medida supera <span class="math inline">\(b=1\)</span></li>
-<li>Luego calculamos la distancia entre <span class="math inline">\(\bar{x}\)</span> y <span class="math inline">\(b\)</span> que es <span class="math inline">\(1-\bar{x}\)</span></li>
-<li>Esta distancia la restamos al promedio <span class="math inline">\(\bar{x}\)</span> para estimar el valor mínimo de carga:</li>
-</ol>
-<p><span class="math display">\[\bar{x}-(1-\bar{x})=2\bar{x}-1\]</span></p>
-<p>Esta debería ser nuestra mejor suposición para <span class="math inline">\(\hat{a}\)</span>. Como tal llegamos a la misma estimación dada por el método de los momentos.</p>
-</div>
-<div id="método-de-momentos-para-varios-parámetros" class="section level2 hasAnchor" number="12.7">
-<h2><span class="header-section-number">12.7</span> Método de Momentos para varios parámetros<a href="máxima-verosimilitud-y-método-de-los-momentos.html#método-de-momentos-para-varios-parámetros" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>El método dice que se puede encontrar un estimador para el parámetro <span class="math inline">\(\theta\)</span> de <span class="math inline">\(f(x;\theta)\)</span> a partir de la ecuación:</p>
-<p><span class="math display">\[E(X)=\frac{1}{n}\sum_i x_i\]</span></p>
-<p>Si hay más parámetros, usamos los <strong>momentos de muestra</strong> más altos. Consideremos que el segundo momento muestral es</p>
-<p><span class="math display">\[\frac{1}{n}\sum_i X^2_i\]</span></p>
-<p>Por lo tanto, una observación de este momento es cercana a <span class="math inline">\(E(X^2)\)</span></p>
-<p><span class="math display">\[E(X ^ 2)=\frac{1}{n}\sum_i x^2_i\]</span></p>
-<p>El método para dos parámetros dice que se puede encontrar una estimación para los parámetros <span class="math inline">\(\theta_1\)</span> y <span class="math inline">\(\theta_2\)</span> de <span class="math inline">\(f(x;\theta_1,\theta_2)\)</span> a partir de las ecuaciones:</p>
-<ol style="list-style-type: lower-alpha">
-<li><p><span class="math inline">\(E(X)= \frac{1}{n}\sum_i x_i\)</span></p></li>
-<li><p><span class="math inline">\(E(X^2)=\frac{1}{n}\sum_i x^2_i\)</span></p></li>
-</ol>
-<p>Podemos tener tantas ecuaciones como parámetros necesitemos calcular, incrementando el grado de los momentos, es decir las potencias de <span class="math inline">\(X\)</span>.</p>
-<p><strong>Ejemplo (Distribución normal)</strong></p>
-<p>Si <span class="math inline">\(X\)</span> se distribuye normalmente, tenemos dos parámetros para estimar
-<span class="math display">\[X \rightarrow N(\mu, \sigma^2)\]</span></p>
-<p>Seguimos los pasos del método de los momentos para dos parámetros:</p>
-<ol style="list-style-type: decimal">
-<li>Calculamos el valor esperado de la variable</li>
-</ol>
-<p><span class="math display">\[E(X)=\mu\]</span>
-y el valor esperado de <span class="math inline">\(X^2\)</span></p>
-<p><span class="math display">\[E(X^2)=\sigma^2+\mu^2\]</span></p>
-<p><span class="math inline">\(E(X^2)\)</span> se sigue de la propiedad: <span class="math inline">\(E(X^2) = V(X)+\mu^2\)</span></p>
-<ol start="2" style="list-style-type: decimal">
-<li>Obtenemos las ecuaciones para los parámetros donde hacemos (a) el valor esperado de la variable igual al primer momento muestral, y (b) el valor esperado del segundo momento igual al segundo momento muestral</li>
-</ol>
-<ol style="list-style-type: lower-alpha">
-<li><span class="math inline">\(E(X)\)</span> se estima por <span class="math display">\[\hat{\mu}=\frac{1}{n}\sum_i x_i\]</span></li>
-<li><span class="math inline">\(E(X^2)\)</span> se estima por <span class="math display">\[\hat{\sigma}^2-\hat{\mu}^2=\frac{1}{n}\sum_i x^2_i\]</span></li>
-</ol>
-<ol start="3" style="list-style-type: decimal">
-<li>Resolvemos los parámetros</li>
-</ol>
-<p>La primera ecuación da directamente el estimador de la media <span class="math inline">\(\mu\)</span>.</p>
-<p><span class="math display">\[\hat{\mu}=\frac{1}{n}\sum_i x_i\]</span></p>
-<p>Que de nuevo es el promedio. De la segunda ecuación obtenemos</p>
-<p><span class="math display">\[\hat{\sigma}^2= \frac{1}{n} \sum_i x^2_i-\hat{\mu}^2\]</span></p>
-<p>que también se puede escribir como:
-<span class="math display">\[\hat{\sigma}^2=\frac{1}{n} \sum_i(x_i-\hat{\mu})^2\]</span>
-Encontramos que el método de los momentos y las estimaciones de máxima verosimilitud para la distribución normal son iguales. Sin embargo, este no siempre es el caso.</p>
-<p><strong>Ejemplo (láser)</strong></p>
-<p>¿Cuál es el estimador del parámetro <span class="math inline">\(\alpha\)</span> para el corte láser dado por el método de los momentos?</p>
-<p><span class="math display">\[
-    f(x; \alpha)= 
-\begin{cases}
-\frac{1}{\alpha}(x-1)^{\frac{1}{\alpha}-1},&amp; \text{if } x \in (1,2)\\
-    0,&amp; x \notin (1,2)\\
-\end{cases}
-\]</span></p>
-<p>Donde <span class="math inline">\(\alpha\)</span> es un parámetro.</p>
-<p>El método dice que se puede encontrar un estimador para el parámetro <span class="math inline">\(\alpha\)</span> de <span class="math inline">\(f(x;\alpha)\)</span> a partir de la ecuación:</p>
-<p><span class="math display">\[E(X)=\frac{1}{n}\sum_i x_i\]</span>
-por <span class="math inline">\(\hat{\alpha}\)</span></p>
-<ol style="list-style-type: decimal">
-<li>Calculamos el valor esperado <span class="math inline">\(E(X)\)</span></li>
-</ol>
-<p><span class="math display">\[E(X)=\int_{-\infty}^{\infty} xf(x;\alpha)dx\]</span></p>
-<p>Considera un cambio de variables <span class="math inline">\(Z=X-1\)</span> entonces <span class="math inline">\(E(X)=E(Z)+1\)</span> y</p>
-<p><span class="math inline">\(E(Z)= \frac{1}{\alpha} \int_0^1 zz^{\frac{1-\alpha}{\alpha}}dz= \frac{1}{\alpha} \int_0^1 z^{1+\frac{1-\alpha}{\alpha}}dz\)</span></p>
-<p><span class="math inline">\(= \frac{1}{\alpha} \frac{z^{2+\frac{1-\alpha}{\alpha}}}{{2+\frac{1-\alpha}{\alpha}} } |_0^1=\frac{1}{1+\alpha}\)</span></p>
-<p>Por lo tanto,</p>
-<p><span class="math display">\[E(X)=E(Z+1)=\frac{1}{1+\alpha}+1\]</span></p>
-<ol start="2" style="list-style-type: decimal">
-<li>Obtenemos la ecuación para <span class="math inline">\(\hat{\alpha}_m\)</span> donde igualamos el valor esperado al primer momento muestral. Sustituyendo <span class="math inline">\(\hat{\alpha}_m\)</span>, el método de los momentos nos da la ecuación</li>
-</ol>
-<p><span class="math display">\[\frac{1}{1+\hat{\alpha}}+1=\bar{x}\]</span></p>
-<ol start="3" style="list-style-type: decimal">
-<li><p>Resolvemos para <span class="math inline">\(\hat{\alpha}\)</span> <span class="math display">\[\hat{\alpha}_m=\frac{1}{\bar{x}-1}-1\]</span></p></li>
-<li><p>Calculamos el valor de nuestros datos</p></li>
-</ol>
-<p><span class="math display">\[\hat{\alpha}_m=1.314\]</span></p>
-<p>Tenga en cuenta que este es un ejemplo para el cual las estimaciones por máxima verosimilitud y el método de momentos son <strong>diferentes</strong>.</p>
-<p>La estimación de máxima verosimilitud fue:</p>
-<p><span class="math display">\[\hat{\alpha}_{ml}=-\frac{1}{n}\sum_{i=1}^n \ln (x_i-1)=1.320\]</span></p>
-<p>El método de estimación de momentos fue:</p>
-<p><span class="math display">\[\hat{\alpha}_m=\frac{1}{\bar{x}-1}-1=1.314\]</span></p>
-<p>Necesitamos estudios de <strong>simulación</strong>, donde <strong>sabemos</strong> el verdadero valor del parámetro <span class="math inline">\(\alpha\)</span>, para encontrar cuál de estas estadísticas tiene menos error.</p>
-<p>Nota: los datos para perforaciones con láser de <span class="math inline">\(30\)</span> se simularon con <span class="math inline">\(\alpha=2\)</span>, por lo tanto, debemos preferir la estimación de máxima verosimilitud. Para obtener mejores estimaciones de <span class="math inline">\(\alpha\)</span> necesitamos aumentar el tamaño de la muestra.</p>
-</div>
-<div id="ejercicios-máxima-verosimilitud" class="section level2 hasAnchor" number="12.8">
-<h2><span class="header-section-number">12.8</span> Ejercicios Máxima Verosimilitud<a href="máxima-verosimilitud-y-método-de-los-momentos.html#ejercicios-máxima-verosimilitud" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div id="ejercicio-1-9" class="section level4 hasAnchor" number="12.8.0.1">
-<h4><span class="header-section-number">12.8.0.1</span> Ejercicio 1<a href="máxima-verosimilitud-y-método-de-los-momentos.html#ejercicio-1-9" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>Toma una variable aleatoria con la siguiente función de densidad de probabilidad</p>
-<p><span class="math display">\[
-f(x)=
-\begin{cases}
-    (1+\theta)x^\theta,&amp; \text{if } x\in (0,1)\\
-    0,&amp;  x\notin (0,1)
-\end{cases}
-\]</span></p>
-<ul>
-<li><p>¿Cuál es la estimación de máxima verosimilitud para <span class="math inline">\(\theta\)</span>?</p></li>
-<li><p>Si tomamos una muestra de <span class="math inline">\(5\)</span> obsevaciones
-<span class="math inline">\(x_1 = 0.92; \qquad x_2 = 0.79; \qquad x_3 = 0.90; \qquad x_4 = 0.65; \qquad x_5 = 0.86\)</span></p></li>
-</ul>
-<p>¿Cuál es el valor estimado del parámetro <span class="math inline">\(\theta\)</span>?</p>
-<ul>
-<li>Calcula <span class="math inline">\(E(X)=\mu\)</span> en función de <span class="math inline">\(\theta\)</span>. ¿Cuál es la estimación de máxima verosimilitud para <span class="math inline">\(\mu\)</span>?</li>
-</ul>
-</div>
-<div id="ejercicio-2-9" class="section level4 hasAnchor" number="12.8.0.2">
-<h4><span class="header-section-number">12.8.0.2</span> Ejercicio 2<a href="máxima-verosimilitud-y-método-de-los-momentos.html#ejercicio-2-9" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>Para una variable aleatoria con una función de probabilidad binomial</p>
-<p><span class="math display">\[f(x; p)=\binom nxp^x(1-p)^{n-x}\]</span></p>
-<ul>
-<li><p>¿Cuál es el estimador de máxima verosimilitud de <span class="math inline">\(p\)</span> para una muestra de tamaño <span class="math inline">\(1\)</span> de esta variable aleatoria?</p></li>
-<li><p>¿Es el estimador insesgado y/o consistente?</p></li>
-<li><p>En <strong>un</strong> examen de <span class="math inline">\(100\)</span> estudiantes observamos <span class="math inline">\(x_1=68\)</span> estudiantes que aprobaron el examen. ¿Cuál es la estimación de máxima verosimilitud para la probabilidad de pasar el examen?</p></li>
-</ul>
-</div>
-<div id="ejercicio-3-6" class="section level4 hasAnchor" number="12.8.0.3">
-<h4><span class="header-section-number">12.8.0.3</span> Ejercicio 3<a href="máxima-verosimilitud-y-método-de-los-momentos.html#ejercicio-3-6" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>Toma una variable aleatoria con la siguiente función de densidad de probabilidad</p>
-<p><span class="math display">\[
-    f(x)= 
-\begin{cases}
-    \lambda e^{-\lambda x},&amp;  x &gt; 0 \\
-    0,&amp; x\leq 0  
-\end{cases}
-\]</span></p>
-<ul>
-<li><p>¿Cuál es la estimación de máxima verosimilitud para <span class="math inline">\(\lambda\)</span>?</p></li>
-<li><p>Si tomamos una muestra de <span class="math inline">\(5\)</span> observaciones
-<span class="math inline">\(x_1 = 0.223 \qquad x_2 = 0.681; \qquad x_3 = 0.117; \qquad x_4 = 0.150; \qquad x_5 = 0.520\)</span></p></li>
-</ul>
-<p>¿Cuál es el valor estimado del parámetro <span class="math inline">\(\lambda\)</span>?</p>
-<ul>
-<li><p>¿Cuál es la estimación de máxima verosimilitud de la varianza de la variable exponencial <span class="math inline">\(\sigma^2=\frac{1}{\lambda^2}\)</span>?</p></li>
-<li><p>¿Es <span class="math inline">\(\hat{\sigma}^2\)</span> un estimador insesgado y consistente de <span class="math inline">\(\sigma^2\)</span>?</p></li>
-</ul>
-</div>
-</div>
-<div id="método-de-los-momentos-1" class="section level2 hasAnchor" number="12.9">
-<h2><span class="header-section-number">12.9</span> Método de los momentos<a href="máxima-verosimilitud-y-método-de-los-momentos.html#método-de-los-momentos-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div id="ejercicio-1-10" class="section level4 hasAnchor" number="12.9.0.1">
-<h4><span class="header-section-number">12.9.0.1</span> Ejercicio 1<a href="máxima-verosimilitud-y-método-de-los-momentos.html#ejercicio-1-10" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>¿Cuáles son los estimadores de los siguientes modelos paramétricos dados por el método de los momentos?</p>
-<table>
-<thead>
-<tr class="header">
-<th>Model</th>
-<th>f(x)</th>
-<th>E(X)</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Bernoulli</td>
-<td><span class="math inline">\(p^x(1-p)^{1-x}\)</span></td>
-<td><span class="math inline">\(p\)</span></td>
-</tr>
-<tr class="even">
-<td>Binomial</td>
-<td><span class="math inline">\(\binom n x p^x(1-p)^{n-x}\)</span></td>
-<td><span class="math inline">\(np\)</span></td>
-</tr>
-<tr class="odd">
-<td>Geometrica</td>
-<td><span class="math inline">\(p(1-p)^{x-1}\)</span></td>
-<td><span class="math inline">\(\frac{1}{p}\)</span></td>
-</tr>
-<tr class="even">
-<td>Binomial Negativa</td>
-<td><span class="math inline">\(\binom {x+r-1} x p^r(1-p)^x\)</span></td>
-<td><span class="math inline">\(r\frac{1-p}{p}\)</span></td>
-</tr>
-<tr class="odd">
-<td>Poisson</td>
-<td><span class="math inline">\(\frac{e^{-\lambda}\lambda^x}{x!}\)</span></td>
-<td><span class="math inline">\(\lambda\)</span></td>
-</tr>
-<tr class="even">
-<td>Exponencial</td>
-<td><span class="math inline">\(\lambda e^{-\lambda x}\)</span></td>
-<td><span class="math inline">\(\frac{1}{\lambda}\)</span></td>
-</tr>
-<tr class="odd">
-<td>Normal</td>
-<td><span class="math inline">\(\frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{(x-\mu)^2}{2\sigma^2}}\)</span></td>
-<td><span class="math inline">\(\mu\)</span></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div id="ejercicio-2-10" class="section level4 hasAnchor" number="12.9.0.2">
-<h4><span class="header-section-number">12.9.0.2</span> Ejercicio 2<a href="máxima-verosimilitud-y-método-de-los-momentos.html#ejercicio-2-10" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>Toma una variable aleatoria con la siguiente función de densidad de probabilidad</p>
-<p><span class="math display">\[
-f(x)=
-\begin{cases}
-    (1+\theta)x^\theta,&amp; \text{if } x\in (0,1)\\
-    0,&amp; x\notin (0,1)
-\end{cases}
-\]</span></p>
-<ul>
-<li>Calcula <span class="math inline">\(E(X)\)</span> como una función de <span class="math inline">\(\theta\)</span></li>
-<li>¿Cuál es la estimación de <span class="math inline">\(\theta\)</span> utilizando el método de los momentos?</li>
-<li>Si tomamos una muestra de <span class="math inline">\(5\)</span> observaciones
-<span class="math inline">\(x_1 = 0,92; \qquad x_2 = 0,79; \qquad x_3 = 0,90; \qquad x_4 = 0,65; \qquad x_5 = 0,86\)</span></li>
-</ul>
-<p>¿Cuál es el valor estimado del parámetro <span class="math inline">\(\theta\)</span>?</p>
-</div>
-<div id="ejercicio-3-7" class="section level4 hasAnchor" number="12.9.0.3">
-<h4><span class="header-section-number">12.9.0.3</span> Ejercicio 3<a href="máxima-verosimilitud-y-método-de-los-momentos.html#ejercicio-3-7" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>Considera una variable aleatoria discreta <span class="math inline">\(X\)</span> que sigue una distribución binomial negativa con función de masa de probabilidad:</p>
-<p><span class="math display">\[f(x) = \binom{x+r-1}{x}p^r(1-p)^x\]</span></p>
-<p>Dado que</p>
-<ul>
-<li><span class="math inline">\(E(X)=\dfrac{r(1-p)}{p}\)</span></li>
-<li><span class="math inline">\(V(X) =\dfrac{r(1-p)}{p^2}\)</span></li>
-</ul>
-<p>calcular:</p>
-<ul>
-<li><p>Una estimación del parámetro <span class="math inline">\(r\)</span> y una estimación del parámetro <span class="math inline">\(p\)</span> obtenidas a partir de una muestra aleatoria de tamaño <span class="math inline">\(n\)</span> por el método de los momentos.</p></li>
-<li><p>Los valores de las estimaciones de <span class="math inline">\(r\)</span> y <span class="math inline">\(p\)</span> para la siguiente muestra aleatoria:</p></li>
-</ul>
-<p><span class="math display">\[x_1 = 27; \qquad   x_2 = 8; \qquad   x_3 = 22; \qquad   x_4 = 29; \qquad   x_5 = 19; \qquad   x_5 = 32\]</span></p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="intervalos-de-confianza.html#cb28-1" aria-hidden="true" tabindex="-1"></a>chi0<span class="fl">.975</span> <span class="ot">&lt;-</span> <span class="fu">qchisq</span>(<span class="fl">0.025</span>, <span class="at">df=</span><span class="dv">9</span>)</span>
+<span id="cb28-2"><a href="intervalos-de-confianza.html#cb28-2" aria-hidden="true" tabindex="-1"></a>chi0<span class="fl">.975</span></span></code></pre></div>
+<pre><code>[1] 2.700389</code></pre>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="intervalos-de-confianza.html#cb30-1" aria-hidden="true" tabindex="-1"></a>chi0<span class="fl">.025</span> <span class="ot">&lt;-</span> <span class="fu">qchisq</span>(<span class="fl">0.975</span>, <span class="at">df=</span><span class="dv">9</span>)</span>
+<span id="cb30-2"><a href="intervalos-de-confianza.html#cb30-2" aria-hidden="true" tabindex="-1"></a>chi0<span class="fl">.025</span></span></code></pre></div>
+<pre><code>[1] 19.02277</code></pre>
+<p><img src="_main_files/figure-html/unnamed-chunk-97-1.png" width="672" /></p>
+<p>Por lo tanto</p>
+<p><span class="math display">\[(l,u)= (\frac{0.227^2 (10-1)}{19.02277},\frac{0.227^2(10-1)}{2.700389})=(0.02,0.17)\]</span></p>
+<p>Recuerda que cuando habíamos calculado el intervalo de confianza para la media, asumimos <span class="math inline">\(\sigma^2=1\)</span> (caso 1). Ahora podemos decir que esta elección no fue consistente con los datos porque vemos que el intervalo de confianza no contiene el valor <span class="math inline">\(\sigma^2=1\)</span> .</p>
+<p>Según los datos, <span class="math inline">\(\sigma^2 \neq 1\)</span> con una confianza de <span class="math inline">\(95\%\)</span>.</p>
+<p>en R: <code>biblioteca(Ecfun);
+confint.var(0.05155556, 9)</code></p>
+<p>El intervalo para la varianza <strong>no es simétrico</strong> y no podemos formularlo como un margen de error con <span class="math inline">\(\pm\)</span>.</p>
+<p><img src="_main_files/figure-html/unnamed-chunk-98-1.png" width="672" /></p>
 
 </div>
 </div>
@@ -877,8 +678,8 @@ f(x)=
           </div>
         </div>
       </div>
-<a href="teorema-central-del-límite.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="intervalos-de-confianza.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="máxima-verosimilitud-y-método-de-los-momentos.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -909,7 +710,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/USERNAME/REPO/edit/BRANCH/12-MaximumLikelihood.Rmd",
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/13-InervalEstimation.Rmd",
 "text": "Edit"
 },
 "history": {

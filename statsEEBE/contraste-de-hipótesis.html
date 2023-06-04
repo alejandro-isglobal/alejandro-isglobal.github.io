@@ -23,7 +23,7 @@
 <meta name="author" content="Alejandro Cáceres (alejandro.caceres.dominguez@upc.edu)" />
 
 
-<meta name="date" content="2023-05-24" />
+<meta name="date" content="2023-06-04" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -1039,65 +1039,28 @@ vemos que es menor que <span class="math inline">\(\alpha=0.01\)</span> y rechaz
 </div>
 <div id="errores-en-la-prueba-de-hipótesis" class="section level2 hasAnchor" number="14.8">
 <h2><span class="header-section-number">14.8</span> Errores en la prueba de hipótesis<a href="contraste-de-hipótesis.html#errores-en-la-prueba-de-hipótesis" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Cuando probamos una hipótesis, normalmente intentamos aceptar <span class="math inline">\(H_1\)</span> (interés de investigación). Cuando aceptamos <span class="math inline">\(H_1\)</span> (rechazamos la hipótesis nula), lo llamamos prueba <strong>positiva</strong>. El resultado de la prueba puede dar cuatro posibilidades cuando lo comparamos con la realidad de <span class="math inline">\(H_1\)</span> (si se conoce).</p>
-<table>
-<thead>
-<tr class="header">
-<th align="center">La prueba en <span class="math inline">\(H_1\)</span> es</th>
-<th align="center"><span class="math inline">\(H_1\)</span> es realmente</th>
-<th align="center">correcto/error</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="center">positiva</td>
-<td align="center">verdadera</td>
-<td align="center">correcto: verdadero positivo</td>
-</tr>
-<tr class="even">
-<td align="center">positiva</td>
-<td align="center">falsa</td>
-<td align="center">error: falso positivo</td>
-</tr>
-<tr class="odd">
-<td align="center">negativa</td>
-<td align="center">verdadera</td>
-<td align="center">error: falso negativo</td>
-</tr>
-<tr class="even">
-<td align="center">negativa</td>
-<td align="center">falsa</td>
-<td align="center">correcto: verdadero negativo</td>
-</tr>
-</tbody>
-</table>
-<p>tenemos dos posibilidades para cada condición</p>
+<p>El resultado de una prueba de hipótesis de cola superior puede ser <strong>rechazar</strong> la hipótesis nula:</p>
+<p><span class="math display">\[H_0: \mu\leq\mu_0\]</span></p>
+<p>cuando esta <strong>es verdad</strong>. Debemos tener en cuenta que la decisión de aceptar <span class="math inline">\(H_0\)</span> resulta de considerar los datos. Bien puede ser que el estadístico observado haya caido, por aleatoridad, lejos de la hipótesis nula, en la zona de rechazo de <span class="math inline">\(H_0\)</span>, aún cuando esta sea verdad. La probabilidad de cometer este error es precisamente el nivel de significación estadística <span class="math inline">\(\alpha\)</span>, el que llamamos error de <strong>tipo 1</strong>. Por ejemplo, para el caso 1, un test de cola superior, y una confianza del <span class="math inline">\(95\%\)</span></p>
+<p><span class="math display">\[\alpha = P(z_{obs}&gt; z_{0.05})=0.05\]</span></p>
+<p>done <span class="math inline">\(z_{0.05}=\phi^{-1}(0.95)=\)</span> <code>qnorm(0.95)=1.644</code></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-129-1.png" width="672" /></p>
+<p>Como nuestro interés de investigación está <span class="math inline">\(H_1\)</span>, cuando aceptamos <span class="math inline">\(H_1\)</span> (rechazamos <span class="math inline">\(H_0\)</span>) decimos que el test es <strong>positivo</strong> y cuando la rechazamos <span class="math inline">\(H_1\)</span> (aceptamos <span class="math inline">\(H_0\)</span>) que es <strong>negativo</strong>. Por lo tanto, un error del tipo 1 también se llama un <strong>falso negativo</strong>.</p>
+<p>Existe otro tipo de error. El resultado de una prueba de hipótesis de cola superior puede ser <strong>aceptar</strong> la hipótesis nula:</p>
+<p><span class="math display">\[H_0: \mu\leq\mu_0\]</span></p>
+<p>cuando esta <strong>no es verdad</strong>. En este caso puede ser que el estadístico observado haya caido, por aleatoridad, cerca de la hipótesis nula, en la zona de aceptación de <span class="math inline">\(H_0\)</span>, cuando realmente <span class="math inline">\(H_1\)</span> es verdad. Si supieramos que, por ejemplo, <span class="math inline">\(\mu\)</span> realmente tiene un valor <span class="math inline">\(\mu_1\)</span> entonces la hipóteisis alternativa sería exactamente:</p>
+<p><span class="math display">\[H_1: \mu=\mu_1\]</span></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-130-1.png" width="672" /></p>
+<p>Si <span class="math inline">\(H_1\)</span> es realemente verdadera (línea roja) entonces los estadísticos observados son <strong>realmente</strong> variables aleatorias <span class="math inline">\(Y\)</span> que se distribuyen con media (caso 1)</p>
+<p><span class="math display">\[E(Y)=\frac{\mu_1-\mu_0}{\frac{\sigma}{\sqrt{n}}}\]</span></p>
+<p>y en su mayoría caerán cerca de este valor y, por lo tanto, en la zona de rechazo de <span class="math inline">\(H_0\)</span>. Sin embargo existen casos en que el estadístico observado cae en la zona de acepación de <span class="math inline">\(H_0\)</span> por aleatoreidad, apesar de que los estadísticos los produce <span class="math inline">\(H_1\)</span>. En estos casos aceptamos <span class="math inline">\(H_0\)</span> cuando no es verdad. Este error se llama <strong>un error de tipo 2</strong> o un <strong>falso negativo</strong>. Para el caso 1, con un test de cola superior y nivel de confianza del <span class="math inline">\(95\%\)</span> este es</p>
+<p><span class="math display">\[ \beta= P(Y &lt; z_{0.05})\]</span>
+Donde <span class="math inline">\(Y \rightarrow N(\frac{\mu_1-\mu_0}{\sigma/\sqrt{n}},1)\)</span> es la verdadera distribución de los estadísticos observados.</p>
+<p>Cuando realizamos una prueba de hipótesis tenemos dos posibilidades para cada condición</p>
 <ul>
-<li><span class="math inline">\(H_1\)</span> es en realidad : <strong>verdadera</strong> o <strong>falsa</strong></li>
-<li>La prueba para <span class="math inline">\(H_1\)</span> es: <strong>positiva</strong> o <strong>negativa</strong></li>
+<li><span class="math inline">\(H_1\)</span> es en realidad : <strong>verdadera</strong> (<span class="math inline">\(\mu=\mu_1\)</span>) o <strong>falsa</strong> (<span class="math inline">\(\mu=\mu_0\)</span>)</li>
+<li>La prueba para <span class="math inline">\(H_1\)</span> es: <strong>positiva</strong> (<span class="math inline">\(z_{obs}\)</span> en zona de aceptación de <span class="math inline">\(H_1\)</span>) o <strong>negativa</strong> (<span class="math inline">\(z_{obs}\)</span> en zona de rechazo de <span class="math inline">\(H_1\)</span>)</li>
 </ul>
-<p>Podemos organizar esto en una tabla de contingencia:</p>
-<table>
-<thead>
-<tr class="header">
-<th align="center"></th>
-<th align="center"><span class="math inline">\(H_1\)</span> es realmente cierto</th>
-<th align="center"><span class="math inline">\(H_1\)</span> es realmente falsa</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="center"><strong>La prueba en <span class="math inline">\(H_1\)</span> es positiva</strong></td>
-<td align="center">verdadero positivo</td>
-<td align="center">falso positivo</td>
-</tr>
-<tr class="even">
-<td align="center"><strong>La prueba en <span class="math inline">\(H_1\)</span> es negativa</strong></td>
-<td align="center">falso negativo</td>
-<td align="center">verdadero negativo</td>
-</tr>
-</tbody>
-</table>
 <p><strong>Ejemplo (PCR)</strong></p>
 <p>Hacemos <strong>una</strong> PCR para probar una infección. El contraste de hipótesis es</p>
 <ol style="list-style-type: lower-alpha">
@@ -1109,66 +1072,13 @@ vemos que es menor que <span class="math inline">\(\alpha=0.01\)</span> y rechaz
 <li>negativa: rechazamos la infección (<span class="math inline">\(H_1\)</span>)</li>
 <li>positiva: aceptamos la infección (<span class="math inline">\(H_1\)</span>)</li>
 </ol>
-<p>La tabla de contingencia para las probabilidades de los resultados de la prueba de hipótesis es</p>
-<table>
-<colgroup>
-<col width="33%" />
-<col width="33%" />
-<col width="33%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th align="center"></th>
-<th align="center"><span class="math inline">\(H_1\)</span> es verdadera</th>
-<th align="center"><span class="math inline">\(H_1\)</span> es falsa</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="center"><strong>La prueba en <span class="math inline">\(H_1\)</span> es positiva</strong></td>
-<td align="center"><span class="math inline">\(P(positiva|H_1:verdadera)\)</span></td>
-<td align="center"><span class="math inline">\(P(positiva|H_1:falsa)\)</span></td>
-</tr>
-<tr class="even">
-<td align="center"><strong>La prueba en <span class="math inline">\(H_1\)</span> es negativa</strong></td>
-<td align="center"><span class="math inline">\(P(negativa|H_1:verdadera)\)</span></td>
-<td align="center"><span class="math inline">\(P(negativa|H_1:falsa)\)</span></td>
-</tr>
-<tr class="odd">
-<td align="center"><strong>suma</strong></td>
-<td align="center">1</td>
-<td align="center">1</td>
-</tr>
-</tbody>
-</table>
-<p>Las probabilidades de cometer <strong>errores</strong> en la prueba de hipótesis también se conocen como:</p>
-<ul>
-<li>Tasa de <strong>error de tipo I</strong>: probabilidad de un falso positivo (afirmar un descubrimiento cuando es falso)
-<span class="math display">\[\alpha=P(positiva|H_1:falsa)\]</span></li>
-</ul>
-<p>hablando en términos de la hipótesis nula, esta es la probabilidad de rechazar la hipótesis nula cuando la hipótesis nula es verdadera</p>
-<p><span class="math display">\[\alpha=P(rechazar\,\,H_0 |H_0:verdadera)\]</span>
-<span class="math inline">\(\alpha\)</span> es el límite de <strong>significancia estadística</strong>, es decir <span class="math inline">\(0.05=1-0.95\)</span> a <span class="math inline">\(95\%\)</span> para la confianza.</p>
-<ul>
-<li>Tasa de <strong>error de tipo II</strong>: probabilidad de un falso negativo (ignorar un descubrimiento cuando es verdadero)</li>
-</ul>
-<p><span class="math display">\[\beta=P(negativa|H_1:verdadera)\]</span></p>
-<p>en términos de la hipótesis nula, esta es la probabilidad de aceptar la hipótesis nula cuando la hipótesis nula es falsa</p>
-<p><span class="math display">\[\beta=P(aceptar\,\,H_0|H_0:falsa)\]</span></p>
-<p>La probabilidad de contrastes <strong>correctos</strong> también se conoce como:</p>
-<ul>
-<li><p>Tasa de <strong>verdaderos positivos</strong>: Este es el poder o la sensibilidad de una prueba (afirmar un descubrimiento cuando es verdadero, el objetivo principal)
-<span class="math display">\[1-\beta=P(positiva|H_1:verdadera)\]</span></p></li>
-<li><p>Tasa de <strong>verdaderos negativos</strong>: Esta es la especificidad de una prueba (ignorar un descubrimiento cuando es falso)
-<span class="math display">\[1-\alpha=P(negativa|H_1:falsa)\]</span></p></li>
-</ul>
-<p>La tabla de contingencia en términos de <span class="math inline">\(\alpha\)</span> y <span class="math inline">\(\beta\)</span> es</p>
+<p>Podemos escribir la tabla de contingencia para las probabilidades de los resultados de la prueba de hipótesis como</p>
 <table>
 <thead>
 <tr class="header">
 <th align="center"></th>
 <th align="center"><span class="math inline">\(H_1\)</span> es verdadera</th>
-<th align="center"><span class="math inline">\(H_1\)</span> es falsa</th>
+<th align="center"><span class="math inline">\(H_0\)</span> es verdadera</th>
 </tr>
 </thead>
 <tbody>
@@ -1189,6 +1099,19 @@ vemos que es menor que <span class="math inline">\(\alpha=0.01\)</span> y rechaz
 </tr>
 </tbody>
 </table>
+<p>De tal forma que tenemos</p>
+<ol style="list-style-type: decimal">
+<li>La tasa de <strong>error de tipo 2</strong>: probabilidad de un falso negativo (ignorar un descubrimiento cuando es verdadero)</li>
+</ol>
+<p><span class="math display">\[\beta=P(negativa|H_1)\]</span></p>
+<ol start="2" style="list-style-type: decimal">
+<li><p>Tasa de <strong>verdaderos positivos</strong>: Este es el poder o la sensibilidad de una prueba (afirmar un descubrimiento cuando es verdadero, el objetivo principal)
+<span class="math display">\[1-\beta=P(positiva|H_1)\]</span></p></li>
+<li><p>Tasa de <strong>error de tipo 1</strong>: probabilidad de un falso positivo (afirmar un descubrimiento cuando es falso)
+<span class="math display">\[\alpha=P(positiva|H_0)\]</span></p></li>
+<li><p>Tasa de <strong>verdaderos negativos</strong>: Esta es la especificidad de una prueba (ignorar un descubrimiento cuando es falso)
+<span class="math display">\[1-\alpha=P(negativa|H_0)\]</span></p></li>
+</ol>
 
 </div>
 </div>

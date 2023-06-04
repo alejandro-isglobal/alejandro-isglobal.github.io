@@ -23,7 +23,7 @@
 <meta name="author" content="Alejandro Cáceres (alejandro.caceres.dominguez@upc.edu)" />
 
 
-<meta name="date" content="2023-05-14" />
+<meta name="date" content="2023-06-04" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -689,10 +689,20 @@ con <span class="math inline">\(95\%\)</span> de confianza</p>
 <p><span class="math display">\[(l,u)= (\frac{0.227^2 (10-1)}{19.02277},\frac{0.227^2(10-1)}{2.700389})=(0.02,0.17)\]</span></p>
 <p>Recuerda que cuando habíamos calculado el intervalo de confianza para la media, asumimos <span class="math inline">\(\sigma^2=1\)</span> (caso 1). Ahora podemos decir que esta elección no fue consistente con los datos porque vemos que el intervalo de confianza no contiene el valor <span class="math inline">\(\sigma^2=1\)</span> .</p>
 <p>Según los datos, <span class="math inline">\(\sigma^2 \neq 1\)</span> con una confianza de <span class="math inline">\(95\%\)</span>.</p>
-<p>en R: <code>library(Ecfun);
-confint.var(0.05155556, 9)</code></p>
+<p>en R:</p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="intervalos-de-confianza.html#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(Ecfun)</span></code></pre></div>
+<pre><code>## 
+## Attaching package: &#39;Ecfun&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:base&#39;:
+## 
+##     sign</code></pre>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="intervalos-de-confianza.html#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">confint.var</span>(<span class="fl">0.05155556</span>, <span class="dv">9</span>)</span></code></pre></div>
+<pre><code>##           lower     upper
+## [1,] 0.02439183 0.1718271
+## attr(,&quot;level&quot;)
+## [1] 0.95</code></pre>
 <p>El intervalo para la varianza <strong>no es simétrico</strong> y no podemos formularlo como un margen de error con <span class="math inline">\(\pm\)</span>.</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-98-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-99-1.png" width="672" /></p>
 
 </div>
 </div>

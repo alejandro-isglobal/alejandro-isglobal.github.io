@@ -6,7 +6,7 @@
 ]{book}
 \title{Estadística}
 \author{Alejandro Cáceres (\href{mailto:alejandro.caceres.dominguez@upc.edu}{\nolinkurl{alejandro.caceres.dominguez@upc.edu}})}
-\date{2023-05-14}
+\date{2023-06-04}
 
 \usepackage{amsmath,amssymb}
 \usepackage{lmodern}
@@ -7457,12 +7457,41 @@ Recuerda que cuando habíamos calculado el intervalo de confianza para la media,
 
 Según los datos, \(\sigma^2 \neq 1\) con una confianza de \(95\%\).
 
-en R: library(Ecfun);
-confint.var(0.05155556, 9)
+en R:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(Ecfun)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Attaching package: 'Ecfun'
+\end{verbatim}
+
+\begin{verbatim}
+## The following object is masked from 'package:base':
+## 
+##     sign
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{confint.var}\NormalTok{(}\FloatTok{0.05155556}\NormalTok{, }\DecValTok{9}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##           lower     upper
+## [1,] 0.02439183 0.1718271
+## attr(,"level")
+## [1] 0.95
+\end{verbatim}
 
 El intervalo para la varianza \textbf{no es simétrico} y no podemos formularlo como un margen de error con \(\pm\).
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-98-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-99-1.pdf}
 
 \hypertarget{contraste-de-hipuxf3tesis}{%
 \chapter{Contraste de hipótesis}\label{contraste-de-hipuxf3tesis}}
@@ -7472,28 +7501,22 @@ El intervalo para la varianza \textbf{no es simétrico} y no podemos formularlo 
 
 En este capítulo estudiaremos \textbf{pruebas de hipótesis} de medias y proporciones. Definiremos cuál es la hipótesis nula y la alternativa y cómo utilizar los datos para elegir entre ambas.
 
-También presentaremos la prueba de hipótesis de varianzas y los errores que se cometen cuando se prueba una hipótesis. Estos errores se conocen como falsas positivas y falsas negativas.
+También presentaremos la prueba de hipótesis de varianzas y los errores que se cometen cuando se prueba una hipótesis. Estos errores se conocen como falsos positivos y falsos negativos.
 
 \hypertarget{hipuxf3tesis}{%
 \section{Hipótesis}\label{hipuxf3tesis}}
 
-Cuando hacemos inferencias sobre nuestro experimento aleatorio, a menudo queremos probar si el proceso subyacente satisface una \textbf{condición} o propiedad deseada. ¿Los datos que recabamos pueden deberse a esa condición o no?
+Cuando llevamos a cabo experimentos aleatorios, a menudo queremos probar si los cambios que realizamos sobre el experimento tienen un efecto real. Queremos, por ejemplo, saber si hemos podido influenciar el experimento. O, sihemos sometido el experimento bajo una nueva condición, queremos saber si esa condición affecta el desarrollo del experimento. Usualmente tenemos una idea de cómo deberían ser los datos cuando estos cambios no están presente. Dado que los resultatos del experimento son aleatorios con y sin el cambio ¿cómo podemos diferenciar entre aplicar el cambio o no?
 
-Asi pues, usamos observaiones y sus inferencias para propocionar \textbf{evidencia} sobre la condición de interés.
-
-Podemos formular la condición en términos de los valores que pueden tomar algunos \textbf{parámetros} de las distribuciones de probabilidad.
+La estrategia es formular el cambio o la nueva condición en términos de los valores que pueden tomar los \textbf{parámetros} de las distribuciones de probabilidad asociadas al experimento aleatorio. Después, usamos las observaciones del experimento aleatorio bajo la nueva condición para propocionar \textbf{evidencia} sobre la posible influencia en los parámetros.
 
 \textbf{Ejemplos (Neumáticos)}
 
-Los fabricantes de neumáticos quieren saber si la vida media de los neumáticos que producen es de al menos 20000 km.
+Los fabricantes de neumáticos quieren saber si la vida media de los neumáticos que producen es de al menos 20000 km. Intentemos traducir su interés en términos estadísticos. Imaginemos un experimento alatorio que consiste en medir cuanto dura la vida útil de un neumático en particular. Por lo tanto a los fabricantes les interesa saber si la media de la vida útil de un neumático es de al menos 20000 km.
 
-Estas preguntas se pueden traducir en enunciados de distribuciones de probabilidad.
+\newpage
 
-Tomemos el caso en el que los fabricantes de neumáticos quieren saber si la vida media de los neumáticos que producen es de al menos 20 000 km.
-
-Suponiendo que la vida útil de los neumáticos sigue una distribución de probabilidad poblacional, les interesa saber si la media de la distribución es de al menos 20000 km.
-
-Esto se puede hacer en dos declaraciones dicotómicas.
+Formulemos dos declaraciones dicotómicas, es decir dos situaciones excluyentes:
 
 \begin{enumerate}
 \def\labelenumi{\alph{enumi}.}
@@ -7504,7 +7527,7 @@ Esto se puede hacer en dos declaraciones dicotómicas.
   La vida media de los neumáticos puede ser \textbf{superior} a 20000 km
 \end{enumerate}
 
-Esto significa que sólo uno puede ser verdadera. La pregunta es entonces cómo podemos usar los datos para decidir entre la situación a. o situación b. Consideremos que \(\mu\) es la media de la distribución de la población. Por lo tanto, las afirmaciones a. y B. también se puede escribir como
+Esto significa que sólo una puede ser verdadera. La pregunta es entonces cómo podemos usar los datos para \textbf{decidir} entre la situación a. o situación b. Consideremos que \(\mu\) es la media de la distribución de la población. Por lo tanto, las afirmaciones a. y B. también se puede escribir como
 
 \begin{enumerate}
 \def\labelenumi{\alph{enumi}.}
@@ -7515,13 +7538,13 @@ Esto significa que sólo uno puede ser verdadera. La pregunta es entonces cómo 
   \(H_1: \mu > 20000km\)
 \end{enumerate}
 
-Donde la declaración \(H_0\) es donde los autos no recorren los 20000 km deseados mientras que la declaración \(H_1\) es el caso deseado. \(H_0\) y \(H_1\) se llaman hipótesis.
+Donde la declaración \(H_0\) es para la cual los autos \textbf{no recorren} los 20000 km deseados mientras que la declaración \(H_1\) es \textbf{el caso deseado}. \(H_0\) y \(H_1\) se llaman hipótesis.
 
 \textbf{Definición}
 
 En estadística, una afirmación (conjetura) sobre la distribución de una variable aleatoria se denomina \textbf{hipótesis}.
 
-La hipótesis generalmente se escribe en dos declaraciones dicotómicas.
+Las hipótesis generalmente se escriben en dos declaraciones dicotómicas.
 
 \begin{enumerate}
 \def\labelenumi{\alph{enumi}.}
@@ -7533,9 +7556,7 @@ La hipótesis generalmente se escribe en dos declaraciones dicotómicas.
 
 \textbf{Ejemplo (Fertilizante)}
 
-Entonces, ¿cuáles son la hipótesis nula y la alternativa para la siguiente situación?
-
-Los desarrolladores de fertilizantes quieren probar si su nuevo producto tiene un efecto real en el crecimiento de las plantas.
+Los desarrolladores de fertilizantes quieren probar si su nuevo producto tiene un efecto real en el crecimiento de las plantas. ¿Cuáles son la hipótesis nula y la alternativa?
 
 Siendo \(\mu_0\) el crecimiento medio de las plantas \textbf{sin} fertilizante (conocido) y \(\mu\) el crecimiento medio de las plantas con el fertilizante (desconocido)
 
@@ -7543,34 +7564,40 @@ Siendo \(\mu_0\) el crecimiento medio de las plantas \textbf{sin} fertilizante (
 \def\labelenumi{\alph{enumi}.}
 \tightlist
 \item
-  \(H_0:\mu \leq \mu_0\) (El fertilizante puede no hacer nada: status quo)
+  \(H_0:\mu \leq \mu_0\) (El fertilizante puede que no haga nada: status quo)
 \item
   \(H_1:\mu > \mu_0\) (El fertilizante puede tener el efecto deseado: interés de investigación)
 \end{enumerate}
 
 \textbf{Ejemplo (quimioterapia)}
 
-Las farmacéuticas necesitan saber si una nueva quimioterapia puede curar al 90\% de los pacientes con cáncer.
-
-Siendo \(p_0\) la proporción de pacientes que se curan \textbf{sin} la quimioterapia (conocido) y \(p\) la proporción que se curan \textbf{con} la quimioterapia (desconocido)
+Las farmacéuticas necesitan saber si una nueva quimioterapia puede curar al 90\% de los pacientes con cáncer. Siendo \(p_0\) la proporción de pacientes que se curan \textbf{sin} la quimioterapia (conocido) y \(p\) la proporción que se curan \textbf{con} la quimioterapia (desconocido) podemos formular las hipótesis
 
 \begin{enumerate}
 \def\labelenumi{\alph{enumi}.}
 \tightlist
 \item
-  \(H_0:p \leq p_0\) (La quimioterapia puede no hacer nada: status quo)
+  \(H_0:p \leq p_0\) (La quimioterapia puede que no cambie la proporción de curados: status quo)
 \item
   \(H_1: p > p_0\) (La quimioterapia puede tener el efecto deseado: interés de investigación)
 \end{enumerate}
 
-Ten en cuenta que nuestro nuevo experimento mejorado tiene el parámetro \(p\) y queremos saber cómo se compara con el experimento sin \textbf{ningún efecto mejorado} que tiene el parámetro \(p_0\).
+Ten en cuenta que nuestro nuevo experimento mejorado tiene el parámetro \(p\) y queremos saber cómo se compara con el experimento sin \textbf{ningúna mejora} que tiene el parámetro \(p_0\).
 
-Queremos decidir entre \(H_0\) y \(H_1\). Si aceptamos la hipótesis alternativa \(H_1\) (nuestro interés), rechazamos la hipótesis nula \(H_0\) (la situación habitual).
+Queremos decidir entre \(H_0\) y \(H_1\). Hay dos opciones:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Rechazamos la hipótesis alternativa \(H_1\); es decir, aceptamos la hipótesis nula \(H_0\).
+\item
+  Aceptamos la hipótesis alternativa \(H_1\) (nuestro interés); es decir, rechazamos la hipótesis nula \(H_0\).
+\end{enumerate}
 
 \hypertarget{contraste-de-hipuxf3tesis-1}{%
 \section{Contraste de hipótesis}\label{contraste-de-hipuxf3tesis-1}}
 
-Resumamos los diferentes casos, formas y tipos de prueba de hipótesis. Después discutiremos cada condición con un ejemplo particular.
+Resumamos los diferentes casos, formas y tipos de las pruebas de hipótesis. Después discutiremos cada caso con un ejemplo particular.
 
 Las hipótesis se pueden probar o decidir utilizando intervalos de confianza. Por lo tanto, vamos a probar hipótesis en los cuatro \textbf{casos} que vimos para los intervalos de confianza, a saber:
 
@@ -7591,11 +7618,11 @@ Hay tres \textbf{maneras} de probar las hipótesis:
 \def\labelenumi{\arabic{enumi}.}
 \tightlist
 \item
-  Uso de \textbf{intervalos de confianza}
+  Por medio de \textbf{intervalos de confianza}
 \item
-  usar una \textbf{zona de rechazo}
+  usando una \textbf{zona de rechazo}
 \item
-  usando un \(pvalor\).
+  Con un \(pvalor\).
 \end{enumerate}
 
 Las tres opciones son equivalentes. Finalmente, hay tres \textbf{tipos} de hipótesis que podemos probar:
@@ -7604,17 +7631,17 @@ Las tres opciones son equivalentes. Finalmente, hay tres \textbf{tipos} de hipó
 \def\labelenumi{\arabic{enumi}.}
 \tightlist
 \item
-  \textbf{Dos} colas
+  de \textbf{dos} colas
 \item
-  Cola \textbf{superior}
+  de cola \textbf{superior}
 \item
-  Cola \textbf{inferior}
+  de cola \textbf{inferior}
 \end{enumerate}
 
 \hypertarget{caso-1-para-la-media-con-varianza-conocida}{%
 \section{Caso 1 (para la media con varianza conocida)}\label{caso-1-para-la-media-con-varianza-conocida}}
 
-Un contraste de hipótesis de \textbf{cola de remolque} es de la forma
+Un contraste de hipótesis de \textbf{cola de dos colas} es de la forma
 
 \begin{enumerate}
 \def\labelenumi{\alph{enumi}.}
@@ -7625,7 +7652,7 @@ Un contraste de hipótesis de \textbf{cola de remolque} es de la forma
   \(H_1:\mu \neq \mu_0\) (interés de investigación)
 \end{enumerate}
 
-Esto se llama dos colas porque la hipótesis alternativa \(H_1\) requiere que la media \(\mu\) sea menor o mayor que \(\mu_0\). Esta hipótesis se puede probar en diferentes casos. El \textbf{caso 1} es cuando
+Este contraste se llama de dos colas porque la hipótesis alternativa \(H_1\) requiere que la media \(\mu\) sea menor o mayor que \(\mu_0\). Esta hipótesis se puede probar en diferentes casos. El \textbf{caso 1} es cuando
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -7643,7 +7670,7 @@ Para el \textbf{caso 1} el intervalo de confianza en \(95\%\) es
 
 \[(l,u)=(\bar{x}-z_{0.025} \frac{\sigma}{\sqrt{n}}, \bar{x}+z_{0.025} \frac{\sigma}{ \sqrt{n}})\]
 
-\textbf{Criterios de desición:}
+\textbf{Criterios de decisión:}
 
 \begin{itemize}
 \tightlist
@@ -7661,7 +7688,7 @@ Para el \textbf{caso 1} el intervalo de confianza en \(95\%\) es
 
 \textbf{Ejemplo (Cables)}
 
-Compramos cables de \(8\) a una empresa fabricante que afirma que se rompen con \textbf{media} de \(\mu_0=13\) Toneladas. No estamos seguros y tal vez queramos decidir si los cables se rompen \textbf{en promedio} a \(13\) Toneladas o no. Formulamos el contraste de hipótesis
+Compramos \(8\) cables a una empresa fabricante que afirma que se rompen con \textbf{media} de \(\mu_0=13\) Toneladas. No estamos seguros y tal vez queramos decidir si los cables se rompen \textbf{en promedio} a \(13\) Toneladas o no. Formulamos el contraste de hipótesis
 
 \begin{enumerate}
 \def\labelenumi{\alph{enumi}.}
@@ -7683,7 +7710,7 @@ Como no sabemos qué es cierto, empecemos por \textbf{suponer} que \textbf{el fa
   Sabemos \(\sigma^2=0.35^2\)
 \end{enumerate}
 
-Para decidir entre \(H_0\) o \(H_1\), realizamos experimentos aleatorios de \(8\): Cargue un cable hasta que se rompa y registre la carga de rotura. Estos son los resultados.
+Para decidir entre \(H_0\) o \(H_1\), realizamos una muestra de \(8\) experimentos aleatorios: Cargamos un cable hasta que se rompe y registramos la carga de rotura. Estos son los resultados.
 
 \begin{verbatim}
 ## [1] 13.34642 13.32620 13.01459 13.10811 12.96999 13.55309 13.75557 12.62747
@@ -7692,18 +7719,18 @@ Para decidir entre \(H_0\) o \(H_1\), realizamos experimentos aleatorios de \(8\
 El intervalo de confianza \textbf{si} el fabricante tiene razón, es decir, si la hipótesis nula es verdadera, es
 
 \[(l,u)=(\bar{x}-z_{0.025} \frac{\sigma}{\sqrt{n}}, \bar{x}+z_{0.025} \frac{\sigma}{ \sqrt{n}})= (12.97,13.45)\]
-El intervalo de confianza nos dice que confiamos con \(95\%\) de confianza en que la verdadera carga de rotura de los cables \(\mu\) está en el intervalo. No sabemos el valor real de \(\mu\) pero vemos que podrían ser \(\mu=13\) Toneladas. Ya que el intervalo atrapó \(\mu_0\)
+El intervalo de confianza nos dice que podmeos tener un \(95\%\) de confianza en que la media de la carga de rotura \(\mu\) de los cables que promabos está en el intervalo. No sabemos el valor real de \(\mu\) pero vemos un valor podría ser \(\mu=13\) Toneladas, ya que el intervalo atrapó \(\mu_0\)
 
 \[\mu_0\in (12.97,13.45)\]
 
-Nuestra conclusión es aceptar que \(H_0\) podría haber producido nuestro \textbf{intervalo observado}. También decimos que los datos respaldan la afirmación del fabricante. Más técnicamente, decimos que \textbf{no rechazamos} \(H_0\).
+Nuestra conclusión es aceptar que \(H_0\) podría haber producido nuestro \textbf{intervalo observado}. También decimos que los datos respaldan la afirmación del fabricante. Más técnicamente, decimos que \textbf{no rechazamos} la hipótesis nula \(H_0\).
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-100-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-101-1.pdf}
 
 \hypertarget{prueba-de-hipuxf3tesis-con-zonas-de-aceptaciuxf3nrechazo}{%
 \subsection{Prueba de hipótesis con zonas de aceptación/rechazo}\label{prueba-de-hipuxf3tesis-con-zonas-de-aceptaciuxf3nrechazo}}
 
-Una forma equivalente de probar la hipótesis es ver si nuestro conjunto de observaciones es común o raro si suponemos que la hipótesis nula es verdadera. Recordemos el contraste de hipótesis
+Una forma equivalente de probar la hipótesis es ver si nuestro conjunto de observaciones es raro o común si la hipótesis nula fuera verdadera. Recordemos el contraste de hipótesis
 
 \begin{enumerate}
 \def\labelenumi{\alph{enumi}.}
@@ -7717,16 +7744,16 @@ Una forma equivalente de probar la hipótesis es ver si nuestro conjunto de obse
 Para probar la hipótesis con una \textbf{zona de rechazo} calculamos la estadística estandarizada
 
 \[Z=\frac{\bar{X}-\mu_0}{\frac{\sigma^2}{\sqrt{n}}}\]
-cuando la hipótesis nula es verdadera. Ten en cuenta que estamos estandarizando con \(\mu_0\) (la hipótesis nula). Luego vemos si el valor observado de \(Z\) está dentro del intervalo
+Cuando la hipótesis nula es verdadera. Ten en cuenta que estamos estandarizando con \(\mu_0\) (la hipótesis nula). Este es el error estandarizado que cometemos al estimar \(\mu_0\) con \(\bar{X}\). Luego vemos si el valor observado de \(Z\) está dentro del intervalo
 
 \[(-z_{0.025}, z_{0.025})\]
-Recuerda que este intervalo define los valores más comunes de \(Z\) ya que \(P(-z_{0.025} \leq Z \leq z_{0.025})=0.95\)
+Recuerda que este intervalo define los valores más comunes de \(Z\) ya que \(P(-z_{0.025} \leq Z \leq z_{0.025})=0.95\).
 
 El intervalo \((-z_{0.025}, z_{0.025})\) se denomina \textbf{intervalo de aceptación} de \(H_0\) con un nivel de confianza de \(95\%\).
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-101-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-102-1.pdf}
 
-\textbf{Criterios de desición:}
+\textbf{Criterios de decisión:}
 
 \begin{itemize}
 \tightlist
@@ -7748,33 +7775,32 @@ entonces \textbf{aceptamos} \(H_0\) con una confianza de \(95\%\).
 
 La región \((-z_{0.025}] \cup[z_{0.025})\) se denomina \textbf{zona de rechazo}.
 
+Este criterio de decición nos dice que tan común es nuestra muestra aleatoria si la hipótesis nula es verdad.
+
 \textbf{Ejemplo (Cables)}
 
-Si \(H_0\) es verdadera entonces la estadística estandarizada \(\bar{X}\)
+Si \(H_0\) es verdadera entonces \(\bar{X}\) es el estimador de \(\mu_0\) y la estadística estandarizada
 
 \[Z=\frac{\bar{X}-13}{\frac{0.35}{\sqrt{8}}} \rightarrow N(0,1)\]
-es una estimación de \(\mu_0\) y por lo tanto \(Z\) es el error estandarizado que cometemos cuando realizamos la estimación. Debido a que estamos en \textbf{caso 1}, \(Z\) es estándar normal
-Desde
-
-\[\bar{X} \rightarrow N(13, \frac{0.35^2}{8})\]
+es el error en estimación de \(\mu_0\) que cometemos cuando realizamos la estimación. Debido a que estamos en \textbf{caso 1}, \(Z\) es estándar normal.
 
 Para \textbf{nuestros datos}, el \textbf{error observado} estandarizado está en la región de aceptación
 
 \[z_{obs}=\frac{\bar{x}-13}{\frac{0.35}{\sqrt{8}}}=1.7187 \in (-z_{0.025}, z_{0.025})\]
-Concluimos que nuestro error observado es una observación típica de \(\bar{x}\) cuando la hipótesis nula \(\mu_0\) es verdadera. Por lo tanto, nuevamente aceptamos que los datos son consistentes con la afirmación del fabricante. También decimos que \textbf{no rechazamos} \(H_0\).
+Concluimos que nuestro error observado es típico al \(95\%\) cuando la hipótesis nula \(\mu_0\) es verdadera. Por lo tanto, nuevamente aceptamos que los datos son consistentes con la afirmación del fabricante. También decimos que \textbf{no rechazamos} \(H_0\).
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-102-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-103-1.pdf}
 
 \hypertarget{prueba-de-hipuxf3tesis-con-un-p-valor}{%
 \subsection{Prueba de hipótesis con un P valor}\label{prueba-de-hipuxf3tesis-con-un-p-valor}}
 
-También podemos contrastar la hipótesis de las \textbf{dos colas} calculando la probabilidad de que el promedio de otra muestra sea aún más raro que el promedio que acabamos de observar. Debido a que estamos en el **caso 1*, sabemos que la estadística estandarizada \(Z\) es una variable normal estándar, entonces definimos el \(pvalor\) como
+También podemos contrastar la hipótesis de \textbf{dos colas} calculando la probabilidad de que el promedio de una nueva muestra aleatoria sea aún más raro que el promedio que acabamos de observar. Debido a que estamos en el **caso 1*, sabemos que la estadística estandarizada \(Z\) es una variable normal estándar, entonces definimos el \(pvalor\) como
 
 \[pvalor = P(Z \leq -z_{obs}) + P(z_{obs} \leq Z) = 2 (1-\phi(|z_{obs}|))\]
 
-Esa es la probabilidad de que cuando tomamos otra muestra del mismo tamaño podamos obtener una observación aún más rara. Si nuestra observación ya es rara, entonces este valor será pequeño.
+Esa es la probabilidad de que cuando tomamos otra muestra del mismo tamaño podamos obtener una observación aún más extrema. Si nuestra observación ya es rara, entonces este valor será pequeño.
 
-\textbf{Criterios de desición:}
+\textbf{Criterios de decisión:}
 
 \begin{itemize}
 \tightlist
@@ -7795,11 +7821,11 @@ entonces \textbf{aceptamos} \(H_0\) con una confianza de \(95\%\).
 \[pvalor < \alpha =1-0.95=0.05\]
 entonces \textbf{rechazamos} \(H_0\) con una confianza de \(95\%\).
 
-\(\alpha\) es el nivel de significancia. Nos da cuánto de la distribución estamos omitiendo y define la región que consideramos como observaciones raras.
+\(\alpha\) es el nivel de significancia. Nos dice cuánto de la distribución estamos omitiendo y define la región que consideramos como observaciones raras.
 
 Recuerda: siempre confiamos en nuestros datos. Si la hipótesis nula dice que nuestros datos son una observación \textbf{rara} entonces desconfiamos de la hipótesis nula y la rechazamos.
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-103-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-104-1.pdf}
 
 \textbf{Ejemplo (Cables)}
 
@@ -7868,7 +7894,7 @@ Esto se llama \textbf{de cola superior} porque la hipótesis alternativa \(H_1\)
   conocemos el valor de \(\sigma\)
 \end{enumerate}
 
-\textbf{Criterios de desición:}
+\textbf{Criterios de decisión:}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -7878,7 +7904,7 @@ Esto se llama \textbf{de cola superior} porque la hipótesis alternativa \(H_1\)
 \end{enumerate}
 
 \[\mu_0\in (l,u)=(\bar{x}-z_{0.05} \frac{\sigma}{\sqrt{n}}, \infty)\]
-donde \(z_{0.05}=\phi^{-1}(0.95)=\)qnorm(0.95), entonces \textbf{aceptamos} \(H_0\) con una confianza de \(95\%\). Ten en cuenta que esta prueba es desde el punto de vista de los \textbf{datos}, no estamos centrando el intervalo de confianza alrededor de \(\bar{x}\), sino que estamos dejando todos los \(5\%\) de los casos raros al izquierda del promedio. Por lo tanto, estamos preguntando si la hipótesis nula es menor que el promedio.
+donde \(z_{0.05}=\phi^{-1}(0.95)=\)qnorm(0.95), entonces \textbf{aceptamos} \(H_0\) con una confianza de \(95\%\). Ten en cuenta que esta prueba es desde el punto de vista de los \textbf{datos} y que no estamos centrando el intervalo de confianza alrededor de \(\bar{x}\), sino que estamos dejando todo el \(5\%\) que corresponde a los casos raros a la izquierda del promedio. Por lo tanto, nos estamos preguntando si la hipótesis nula es menor que el promedio.
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -7890,21 +7916,21 @@ donde \(z_{0.05}=\phi^{-1}(0.95)=\)qnorm(0.95), entonces \textbf{aceptamos} \(H_
 
 \[z_{obs}=\frac{\bar{x}-\mu_0}{\frac{\sigma}{\sqrt{n}}} \in (-\infty, z_{0.05})\]
 
-entonces \textbf{aceptamos} \(H_0\) con una confianza de \(95\%\). Ten en cuenta que esta prueba es desde el punto de vista de la \textbf{hipótesis nula}. Dejamos todos los \(5\%\) de los promedios raros a la derecha de la hipótesis nula y, por lo tanto, preguntamos si el promedio es mayor que la hipótesis nula.
+entonces \textbf{aceptamos} \(H_0\) con una confianza de \(95\%\). Ten en cuenta que esta prueba es desde el punto de vista de la \textbf{hipótesis nula}. Dejamos todo el \(5\%\) que corresponde a los promedios raros a la derecha de la hipótesis nula y, por lo tanto, nos preguntamos si el promedio es claramente mayor que la hipótesis nula.
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
 \setcounter{enumi}{2}
 \tightlist
 \item
-  \(pvalor\): Si el pvalor de \textbf{cola superior} \[pvalor= 1-\phi(z_{obs})\]
+  \(pvalor\): Si el P valor de \textbf{cola superior} \[pvalor= 1-\phi(z_{obs})\]
 \end{enumerate}
 
 1-pnorm(zobs) es mayor que \(\alpha=1-0.95=0.05\)
 
 \[pvalor \geq \alpha =0.05\]
 
-entonces \textbf{aceptamos} \(H_0\) con una confianza de \(95\%\). Ten en cuenta que esta prueba es nuevamente desde el punto de vista de la \textbf{hipótesis nula}. Estamos preguntando: si tuviéramos que tomar otro promedio, ¿cuál es la probabilidad de que sea mayor que el observado?
+entonces \textbf{aceptamos} \(H_0\) con una confianza del \(95\%\). Ten en cuenta que esta prueba es nuevamente desde el punto de vista de la \textbf{hipótesis nula}. Nos estamos preguntando: si tuviéramos que tomar otro promedio, ¿cuál es la probabilidad de que sea mayor que el observado?
 
 \textbf{Ejemplo (Cables)}
 
@@ -7956,7 +7982,7 @@ y que el error estandarizado observado no está en la región
 
 donde \(pvalor=\)1-pnorm(1.7187).
 
-La prueba de hipótesis se puede realizar en R, cambiando la alternativa del parámetro a mayor:
+La prueba de hipótesis se puede realizar en R, especificando el parámetro ``alternative'' como ``greater'':
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -7980,7 +8006,7 @@ La prueba de hipótesis se puede realizar en R, cambiando la alternativa del par
 ##  13.21268
 \end{verbatim}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-108-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-109-1.pdf}
 
 \hypertarget{caso-2-para-la-media-con-varianza-desconocida}{%
 \section{Caso 2 (para la media con varianza desconocida)}\label{caso-2-para-la-media-con-varianza-desconocida}}
@@ -7996,7 +8022,7 @@ Un contraste de hipótesis de \textbf{dos colas} de la forma
   \(H_1:\mu \neq \mu_0\) (interés de investigación)
 \end{enumerate}
 
-se puede probar cuando no sabemos \(\sigma^2\) usando \textbf{caso 2}, es decir, cuando
+se puede probar cuando no sabemos \(\sigma^2\) a partir del \textbf{caso 2}, es decir, cuando
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -8007,13 +8033,13 @@ se puede probar cuando no sabemos \(\sigma^2\) usando \textbf{caso 2}, es decir,
   \textbf{no} sabemos el valor de \(\sigma^2\)
 \end{enumerate}
 
-Recordemos que en este caso, entonces el \textbf{error estandarizado} con respecto a la \textbf{desviación estándar de la muestra} \(S\)
+Recordemos que en este caso el \textbf{error estandarizado} con respecto a la \textbf{desviación estándar de la muestra} \(S\)
 
 \[T=\frac{\bar{X}-\mu}{\frac{S}{\sqrt{n}}}\]
 
 Sigue una distribución \(t\) con \(n-1\) grados de libertad. Por lo tanto, podemos aplicar \textbf{los tres criterios} como en el \textbf{caso 1} pero reemplazando \(s\) por \(\sigma\) y \(Z\) por \(T\).
 
-\textbf{Criterios de desición:}
+\textbf{Criterios de decisión:}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -8048,7 +8074,7 @@ donde \(t_{0.025}=F_t^{-1}(0.975, n-1)=\)qt(0.975, n-1), entonces \textbf{acepta
 
 \(pvalor \geq \alpha =1-0.95=0.05\)
 
-entonces \textbf{aceptamos} \(H_0\) con una confianza de \(95\%\). Si se umple un criterio se cumplen los otror, pues son equivalentes. En el caso de no se cumplan entonces no aceptamos \(H_0\) y la rechazamos .
+entonces \textbf{aceptamos} \(H_0\) con una confianza de \(95\%\). Si se cumple un criterio se cumplen los otros. En el caso de no se cumplan entonces no aceptamos \(H_0\) y la rechazamos.
 
 \textbf{Ejemplo (Cables)}
 
@@ -8063,7 +8089,7 @@ Para el contraste de hipótesis para la carga de rotura de los cables
   \(H_1:\mu\neq 13\)
 \end{enumerate}
 
-Sólo supondremos que la rotura de los cables se distribuye normalmente
+Supondremos que la rotura de los cables se distribuye normalmente
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -8080,7 +8106,7 @@ Habiendo obtenido la muestra
 ## [1] 13.34642 13.32620 13.01459 13.10811 12.96999 13.55309 13.75557 12.62747
 \end{verbatim}
 
-con estos datos, aceptamos \(H_0\) con un significado de \(95\%\) debido a cualquiera de los siguientes contrastes equivalentes:
+\textbf{aceptamos} \(H_0\) con confianza de \(95\%\) debido a cualquiera de los siguientes contrastes:
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -8106,7 +8132,7 @@ contiene \(H_0:\mu=13\).
 y el error estandarizado observado de \(H_0\) es
 \[t_{obs} = \frac{13.21268-13}{\frac{0.3571565}{\sqrt{8}}}=1.6843\]
 
-dentro de la región de aceptación.
+el cual está dentro de la región de aceptación.
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -8142,19 +8168,20 @@ En R estos contrastes se realizan con la función t.test:
 ##  13.21268
 \end{verbatim}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-111-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-112-1.pdf}
 
 \textbf{Ejemplo (NaCl)}
 
-\(11,6 g\) de NaCl se disuelven en \(100 g\) de agua y tiene una concentración molar de \(1,92 mol/L\)
+\(11.6 g\) de NaCl se disuelven en \(100 g\) de agua, correpondiendo a una concentración molar de \(1.92 mol/L\).
 
-Diseñamos un proceso para eliminar la sal de esta concentración y obtener los siguientes resultados
+Diseñamos un proceso para eliminar la sal de esta concentración y obtenemos los siguientes resultados
 
 \begin{verbatim}
 ## [1] 1.716 1.889 1.783 1.849 1.891
 \end{verbatim}
 
-Queremos probar con una significancia de \(0.95\) si el proceso cambia la concentración de sal en cualquier dirección. Por lo tanto, proponemos una hipótesis de dos colas:
+Queremos probar con una confianza del \(95º%
+\) si el proceso cambia la concentración de sal en cualquier dirección. Por lo tanto, proponemos una hipótesis de dos colas:
 
 \begin{enumerate}
 \def\labelenumi{\alph{enumi}.}
@@ -8187,6 +8214,8 @@ Supondremos que \(X\) es normal y que no conocemos la varianza \(\sigma^2\). Por
 ## mean of x 
 ##    1.8256
 \end{verbatim}
+
+De tal forma que rechazamos la hipótesis nula: el \(pvalor\) es menor que \(0.05\) y el intervalo de confianza no contiene a \(\mu_0=1.92\). Concluimos pues que el proceso \textbf{altera} la concentración de sal.
 
 \hypertarget{hipuxf3tesis-la-cola-inferior}{%
 \subsection{Hipótesis la cola inferior}\label{hipuxf3tesis-la-cola-inferior}}
@@ -8237,10 +8266,10 @@ Para el contraste inferior de la cola
 \item
   \(H_0:\mu\geq 1.92\)
 \item
-  \(H_1:\mu < 1,92\)
+  \(H_1:\mu < 1.92\)
 \end{enumerate}
 
-Podemos suponer que la concentración es normal y que no sabemos \(\sigma^2\). Por lo tanto, estamos en el \textbf{caso 2} para el cual solo necesitamos cambiar el argumento ``alternative'' en la función t.test.
+Podemos suponer que la concentración es normal y que no sabemos \(\sigma^2\). Por lo tanto, estamos en el \textbf{caso 2} para el cual solo necesitamos cambiar el argumento ``alternative'' en la función t.test. Así pues rechazamos la hipótesis nula.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -8263,11 +8292,13 @@ Podemos suponer que la concentración es normal y que no sabemos \(\sigma^2\). P
 ##    1.8256
 \end{verbatim}
 
+El resultado es mas significativo que el de dos colas, ya que el \(pvalor\) es menor. Concluimos con mas confianza que el proceso \textbf{reduce} la concentración de sal.
+
 \textbf{Ejemplo 2 (soporífero)}
 
 En algunos casos, no estamos seguros del valor numérico de la hipótesis a contrastar, pero sabemos que queremos mejorar el valor de un parámetro en una nueva condición.
 
-En el artículo original de Gosset, analizó el efecto de dos medicamentos soporíferos.
+En su artículo original, Gosset analizó el efecto de dos medicamentos soporíferos.
 
 \begin{itemize}
 \tightlist
@@ -8324,12 +8355,12 @@ La pregunta científica se puede establecer como prueba t pareada \textbf{de col
 \def\labelenumi{\alph{enumi}.}
 \tightlist
 \item
-  \(H_0:\mu \leq 0\) (sin diferencia de tratamiento: \(\mu_2-\mu_1=0\))
+  \(H_0:\mu \leq \mu_0=0\) (sin diferencia de tratamiento: \(\mu_2-\mu_1=0\))
 \item
-  \(H_1:\mu > 0\) (tratamiento 2 superior al tratamiento 1: \(\mu_2-\mu_1>0\))
+  \(H_1:\mu > \mu_0= 0\) (tratamiento 2 superior al tratamiento 1: \(\mu_2-\mu_1>0\))
 \end{enumerate}
 
-Donde \(\mu\) es la media de las \textbf{diferencias} entre tratamientos.
+Donde \(\mu\) es la media de las \textbf{diferencias} entre tratamientos, y la hipótesis nula dice que no hay diferencia \(\mu_0=0\).
 
 Si suponemos que \(X\) es normal y no sabemos \(\sigma^2\) entonces estamos en el \textbf{caso 2}. El \textbf{error estandarizado} es:
 
@@ -8340,7 +8371,7 @@ y su observación
 \[t_{obs}=\frac{\bar{x}}{\frac{s}{\sqrt{n}}}\]
 que también se conoce como la relación \textbf{señal} a \textbf{ruido}.
 
-podemos probar la hipotesis en la diferencia \(X=medicina_1-medicina_2\)
+Podemos probar la hipotesis sobre la diferencia \(X=medicina_1-medicina_2\)
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -8362,7 +8393,7 @@ podemos probar la hipotesis en la diferencia \(X=medicina_1-medicina_2\)
 ##      1.58
 \end{verbatim}
 
-o como una prueba t pareada, donde introducimos cada condición por separado y afirmamos que las observaciones están pareadas
+Esto también se conoce como una prueba t pareada, donde introducimos cada condición por separado y afirmamos que las observaciones están pareadas
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -8386,7 +8417,7 @@ o como una prueba t pareada, donde introducimos cada condición por separado y a
 ##            1.58
 \end{verbatim}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-120-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-121-1.pdf}
 
 \hypertarget{prueba-de-hipuxf3tesis-con-n-grande-y-cualquier-distribuciuxf3n}{%
 \subsection{Prueba de hipótesis con n grande y cualquier distribución}\label{prueba-de-hipuxf3tesis-con-n-grande-y-cualquier-distribuciuxf3n}}
@@ -8397,7 +8428,7 @@ De tal forma que el \textbf{error estandarizado} de la hipótesis nula se puede 
 
 \[Z=\frac{\bar{X}-\mu}{\frac{\sigma}{\sqrt{n}}} \rightarrow N(0,1)\]
 
-Por lo tando procedemos como en el \textbf{caso 1}. Si se desconoce \(\sigma\), lo reemplazamos con su estimación \(s\) y procedemos como en el \textbf{caso 2} usando la estadística t
+Por lo tando procedemos como en el \textbf{caso 1}. Si no se desconoce \(\sigma\), lo reemplazamos por su estimación \(s\) y procedemos como en el \textbf{caso 2} usando la estadística t
 
 \[T=\frac{\bar{X}-\mu_0}{\frac{S}{\sqrt{n}}}\]
 
@@ -8426,13 +8457,13 @@ En este \textbf{caso 3}, podemos probar el valor de la proporción si
   \(np\), \(n(1-p)\) son ambos mayores que \(5\), lo que nos permite aplicar el teorema central del límite.
 \end{enumerate}
 
-Recuerda que si tomamos una muestra de \(n\) ensayos de Bernoulli \((1,0,1,...0)\), \(\bar{X}=\frac{1}{n}\sum_{i=1 }^n X_i\) es la frecuencia relativa de unos en la muestra. Este es un estimador de \(p\).
+Recuerda que si tomamos una muestra de \(n\) ensayos de Bernoulli \((1,0,1,...0)\), \(\bar{X}=\frac{1}{n}\sum_{i=1 }^n X_i\) es la frecuencia relativa de ``unos'' en la muestra. Este es un estimador de \(p\).
 
 Si asumimos que la hipótesis nula es verdadera entonces \(X \rightarrow Bernoulli(p_0)\) y el error estandarizado que cometemos cuando estimamos \(p_0\) con \(\bar{X}\) es
 
 \[Z=\frac{\bar{X}-p_0}{\frac{\sqrt{p_0(1-p_0)}}{\sqrt{n}}} \rightarrow N(0,1)\]
 
-\(\sigma=\sqrt{p_0(1-p_0)}\) es la desviación estándar de \(X\) cuando la hipótesis nula es verdadera: \(V(X)=\sigma^2=p_0(1-p_0)\). Con esta estadística \(Z\), podemos aceptar o rechazar la hipótesis nula usando cualquiera de los tres riterios de desición.
+\(\sigma=\sqrt{p_0(1-p_0)}\) es la desviación estándar de \(X\), cuando la hipótesis nula es verdadera: \(V(X)=\sigma^2=p_0(1-p_0)\). Con esta estadística \(Z\), podemos aceptar o rechazar la hipótesis nula usando cualquiera de los tres riterios de decisión.
 
 \textbf{Ejemplo (mejora de procesos)}
 
@@ -8440,7 +8471,7 @@ Podemos estar satisfechos con un nuevo proceso si el \(90\%\) de las veces mejor
 
 Si tomamos una muestra de \(200\) nuevos procesos y encontramos que \(188\) veces mejoramos el proceso anterior, ¿podemos estar satisfechos con el nuevo proceso con una confianza de \(95\%\)?
 
-De tal forma que formulamos un contraste de hipótesis de cola superior para la hipótesis nula \(p_0=0.9\). Por lo tanto, las hipótesis nula y alternativa son
+Para esto formulamos un contraste de hipótesis de cola superior para la hipótesis nula \(p_0=0.9\). Por lo tanto, las hipótesis nula y alternativa son
 
 \begin{itemize}
 \tightlist
@@ -8469,7 +8500,7 @@ Suponemos que si la hipótesis nula es verdadera entonces
   además \(p_0n=180>5\) y \((1-p_0)=n=20>5\)
 \end{enumerate}
 
-Y por lo tanto puedemos aplicar \textbf{caso 3}.
+Y por lo tanto podemos aplicar \textbf{caso 3}.
 
 Podemos usar cualquiera de los tres criterios para probar la hipótesis. En cualquier caso, \textbf{rechazaremos} \(H_0\) con una confianza de \(95\%\) porque:
 
@@ -8477,10 +8508,10 @@ Podemos usar cualquiera de los tres criterios para probar la hipótesis. En cual
 \def\labelenumi{\arabic{enumi}.}
 \tightlist
 \item
-  El intervalo de confianza de cola superior para \(p\) no incluye \(p_0\)
+  El intervalo de confianza \textbf{de cola superior} para \(p\) no incluye \(p_0\)
 \end{enumerate}
 
-\[p_0=0.9 \notin (\bar{x}-z_{0.05}\big[\frac{p_0(1-p_0)}{n} \big]^{1/2},1)= (0.905,1)\]
+\[p_0=0.9 \notin (\bar{x}-z_{0.05}\big[\frac{\bar{x}(1-\bar{x})}{n} \big]^{1/2},1)= (0.912,1)\]
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -8490,7 +8521,8 @@ Podemos usar cualquiera de los tres criterios para probar la hipótesis. En cual
   El error estandarizado observado bajo la hipótesis nula no está en la región de aceptación
 \end{enumerate}
 
-\[z_{obs}= \frac{\bar{X}-p_0}{\big[\frac{p_0(1-p_0)}{n} \big]^{1/2}} =\frac{0,94 -0.90}{\sqrt{0.00045}}=1.88563 \notin (-\infty, z_{0.05})=(-\infty, 1.644)\]
+\[z_{obs}= \frac{\bar{X}-p_0}{\big[\frac{p_0(1-p_0)}{n} \big]^{1/2}} =\frac{0.94 -0.90}{\sqrt{0.00045}}=1.88563 \notin (-\infty, z_{0.05})=(-\infty, 1.644)\]
+Nota que para este caso usamos \(p_0\) para calcular \(z_{obs}\) porque estamos suponiendo que la hipótesis nula es verdad. Por lo tanto conocemos exactamente la media y la varianza de las observaciones.
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -8504,9 +8536,9 @@ Podemos usar cualquiera de los tres criterios para probar la hipótesis. En cual
 
 en R: 1-pnorm(1.885618)
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-121-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-122-1.pdf}
 
-La prueba se puede realizar en R usando la función prop.test
+La prueba se puede realizar en R usando la función prop.test. Sin embargo nota que los intervalos de confianza no son idénticos a los dados en el criterio 1, porque ahí suponemos que \(\bar{X}\) es exactamente normal mientras que prop.test usa una aproximación mas adecuada
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -8537,7 +8569,7 @@ Como
 
 \begin{itemize}
 \item
-  al cumplir con estrictos estándares de diseño donde las medidas deben estar entre ciertos valores.
+  al cumplir con estándares de diseño donde las medidas deben estar entre ciertos valores.
 \item
   cuando se aplican diferentes tratamientos a diferentes grupos, queremos ver la dispersión de los resultados entre los grupos.
 \end{itemize}
@@ -8553,7 +8585,7 @@ Un contraste de hipótesis \textbf{de dos colas} para la varianza es de la forma
   \(H_1:\sigma^2 \neq \sigma^2_0\) (interés de investigación)
 \end{enumerate}
 
-Esta hipótesis para sigma (\textbf{caso 4}) se puede probar cuando
+Esta hipótesis para \(\sigma^2\) (\textbf{caso 4}) y se puede probar cuando
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -8572,7 +8604,7 @@ cuando \(W=1\) no cometemos ningún error. \(W\) tiene una distribución \(\chi^
 
 \[W \rightarrow \chi^2(n-1)\]
 
-Con \(W\), podemos aceptar o rechazar la hipótesis nula usando cualquiera de los tres criterios de desición.
+Con \(W\), podemos aceptar o rechazar la hipótesis nula usando cualquiera de los tres criterios de decisión.
 
 \textbf{Ejemplo (semiconductor)}
 
@@ -8588,7 +8620,7 @@ En una ocasión se toma una muestra del espesor de 20 semiconductores.
 ## [17] 25.43313 23.28904 25.61018 24.58867
 \end{verbatim}
 
-La desviación estándar estimada para estos datos es \(s=0,8462188\). ¿Estaba el proceso fuera de control con una confianza de \(0,99\%\) y debería detenerse?
+La desviación estándar estimada para estos datos es \(s=0.8462188\). ¿Estaba el proceso fuera de control con una confianza de \(0.99\%\) y debería detenerse?
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -8613,7 +8645,7 @@ Por lo tanto, queremos contrastar las hipótesis de la cola superior
 
 Probemos la hipótesis usando la \textbf{región de aceptación}.
 
-Las estadísticas de contraste son \[W=\frac{(n-1)S^2}{\sigma_0^2} \rightarrow \chi^2(n-1)\]
+La estadística de contraste son \[W=\frac{(n-1)S^2}{\sigma_0^2} \rightarrow \chi^2(n-1)\]
 
 y el límite de umbral \(\alpha=0.01=0-0.99\). Por lo tanto, la región de aceptación \(P(W\leq \chi^2_{0.01,19})=0.99\) es
 
@@ -8638,7 +8670,7 @@ vemos que es menor que \(\alpha=0.01\) y rechazamos la hipótesis nula.
 
 R: 1-pchisq(37.79344, 19)
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-125-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-126-1.pdf}
 
 Para probar la hipótesis, podemos usar la función varTest de la biblioteca EnvStats. Si la biblioteca no está instalada, primero ejecuta
 
@@ -8648,7 +8680,7 @@ Para probar la hipótesis, podemos usar la función varTest de la biblioteca Env
 \end{Highlighting}
 \end{Shaded}
 
-entonces
+y después
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -8701,41 +8733,48 @@ También vemos que \(\sigma_0^2=0.6^2=0.36\) no está en el intervalo de confian
 \hypertarget{errores-en-la-prueba-de-hipuxf3tesis}{%
 \section{Errores en la prueba de hipótesis}\label{errores-en-la-prueba-de-hipuxf3tesis}}
 
-Cuando probamos una hipótesis, normalmente intentamos aceptar \(H_1\) (interés de investigación). Cuando aceptamos \(H_1\) (rechazamos la hipótesis nula), lo llamamos prueba \textbf{positiva}. El resultado de la prueba puede dar cuatro posibilidades cuando lo comparamos con la realidad de \(H_1\) (si se conoce).
+El resultado de una prueba de hipótesis de cola superior puede ser \textbf{rechazar} la hipótesis nula:
 
-\begin{longtable}[]{@{}ccc@{}}
-\toprule
-La prueba en \(H_1\) es & \(H_1\) es realmente & correcto/error \\
-\midrule
-\endhead
-positiva & verdadera & correcto: verdadero positivo \\
-positiva & falsa & error: falso positivo \\
-negativa & verdadera & error: falso negativo \\
-negativa & falsa & correcto: verdadero negativo \\
-\bottomrule
-\end{longtable}
+\[H_0: \mu\leq\mu_0\]
 
-tenemos dos posibilidades para cada condición
+cuando esta \textbf{es verdad}. Debemos tener en cuenta que la decisión de aceptar \(H_0\) resulta de considerar los datos. Bien puede ser que el estadístico observado haya caido, por aleatoridad, lejos de la hipótesis nula, en la zona de rechazo de \(H_0\), aún cuando esta sea verdad. La probabilidad de cometer este error es precisamente el nivel de significación estadística \(\alpha\), el que llamamos error de \textbf{tipo 1}. Por ejemplo, para el caso 1, un test de cola superior, y una confianza del \(95\%\)
+
+\[\alpha = P(z_{obs}> z_{0.05})=0.05\]
+
+done \(z_{0.05}=\phi^{-1}(0.95)=\) qnorm(0.95)=1.644
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-129-1.pdf}
+
+Como nuestro interés de investigación está \(H_1\), cuando aceptamos \(H_1\) (rechazamos \(H_0\)) decimos que el test es \textbf{positivo} y cuando la rechazamos \(H_1\) (aceptamos \(H_0\)) que es \textbf{negativo}. Por lo tanto, un error del tipo 1 también se llama un \textbf{falso negativo}.
+
+Existe otro tipo de error. El resultado de una prueba de hipótesis de cola superior puede ser \textbf{aceptar} la hipótesis nula:
+
+\[H_0: \mu\leq\mu_0\]
+
+cuando esta \textbf{no es verdad}. En este caso puede ser que el estadístico observado haya caido, por aleatoridad, cerca de la hipótesis nula, en la zona de aceptación de \(H_0\), cuando realmente \(H_1\) es verdad. Si supieramos que, por ejemplo, \(\mu\) realmente tiene un valor \(\mu_1\) entonces la hipóteisis alternativa sería exactamente:
+
+\[H_1: \mu=\mu_1\]
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-130-1.pdf}
+
+Si \(H_1\) es realemente verdadera (línea roja) entonces los estadísticos observados son \textbf{realmente} variables aleatorias \(Y\) que se distribuyen con media (caso 1)
+
+\[E(Y)=\frac{\mu_1-\mu_0}{\frac{\sigma}{\sqrt{n}}}\]
+
+y en su mayoría caerán cerca de este valor y, por lo tanto, en la zona de rechazo de \(H_0\). Sin embargo existen casos en que el estadístico observado cae en la zona de acepación de \(H_0\) por aleatoreidad, apesar de que los estadísticos los produce \(H_1\). En estos casos aceptamos \(H_0\) cuando no es verdad. Este error se llama \textbf{un error de tipo 2} o un \textbf{falso negativo}. Para el caso 1, con un test de cola superior y nivel de confianza del \(95\%\) este es
+
+\[ \beta= P(Y < z_{0.05})\]
+Donde \(Y \rightarrow N(\frac{\mu_1-\mu_0}{\sigma/\sqrt{n}},1)\) es la verdadera distribución de los estadísticos observados.
+
+Cuando realizamos una prueba de hipótesis tenemos dos posibilidades para cada condición
 
 \begin{itemize}
 \tightlist
 \item
-  Estado de \(H_1\) realidad desconocida: \textbf{verdadera} o \textbf{falsa}
+  \(H_1\) es en realidad : \textbf{verdadera} (\(\mu=\mu_1\)) o \textbf{falsa} (\(\mu=\mu_0\))
 \item
-  Resultado de la prueba \(H_1\): \textbf{positiva} o \textbf{negativa}
+  La prueba para \(H_1\) es: \textbf{positiva} (\(z_{obs}\) en zona de aceptación de \(H_1\)) o \textbf{negativa} (\(z_{obs}\) en zona de rechazo de \(H_1\))
 \end{itemize}
-
-Podemos organizar esto en una tabla de contingencia:
-
-\begin{longtable}[]{@{}ccc@{}}
-\toprule
-& \(H_1\) es realmente cierto & \(H_1\) es realmente falsa \\
-\midrule
-\endhead
-\textbf{La prueba en \(H_1\) es positiva} & verdadero positivo & falso positivo \\
-\textbf{La prueba en \(H_1\) es negativa} & falso negativo & verdadero negativo \\
-\bottomrule
-\end{longtable}
 
 \textbf{Ejemplo (PCR)}
 
@@ -8756,74 +8795,16 @@ Hacemos la prueba PCR y nos da
 \def\labelenumi{\roman{enumi}.}
 \tightlist
 \item
-  negativa: rechazamos \(H_1\)
+  negativa: rechazamos la infección (\(H_1\))
 \item
-  positiva: aceptamos \(H_1\)
+  positiva: aceptamos la infección (\(H_1\))
 \end{enumerate}
 
-La tabla de contingencia para las probabilidades de los resultados de la prueba de hipótesis es
-
-\begin{longtable}[]{@{}
-  >{\centering\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.33}}
-  >{\centering\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.33}}
-  >{\centering\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.33}}@{}}
-\toprule
-\begin{minipage}[b]{\linewidth}\centering
-\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
-\(H_1\) es verdadera
-\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
-\(H_1\) es falsa
-\end{minipage} \\
-\midrule
-\endhead
-\textbf{La prueba en \(H_1\) es positiva} & \(P(positiva|H_1:verdadera)\) & \(P(positiva|H_1:falsa)\) \\
-\textbf{La prueba en \(H_1\) es negativa} & \(P(negativa|H_1:verdadera)\) & \(P(negativa|H_1:falsa)\) \\
-\textbf{suma} & 1 & 1 \\
-\bottomrule
-\end{longtable}
-
-Las probabilidades de cometer \textbf{errores} en la prueba de hipótesis también se conocen como:
-
-\begin{itemize}
-\tightlist
-\item
-  Tasa de \textbf{error de tipo I}: probabilidad de un falso positivo (afirmar un descubrimiento que es falso)
-  \[\alpha=P(positiva|H_1:falsa)\]
-\end{itemize}
-
-hablando en términos de la hipótesis nula, esta es la probabilidad de rechazar la hipótesis nula cuando la hipótesis nula es verdadera
-
-\[\alpha=P(rechazar\,\,H_0 |H_0:verdadera)\]
-\(\alpha\) es el límite de significancia, es decir \(0.05=1-0.95\) a \(95\%\) para la confianza.
-
-\begin{itemize}
-\tightlist
-\item
-  Tasa de \textbf{error de tipo II}: probabilidad de un falso negativo (ignorando un descubrimiento de que es verdadera)
-\end{itemize}
-
-\[\beta=P(negativa|H_1:verdadera)\]
-
-en términos de la hipótesis nula, esta es la probabilidad de aceptar la hipótesis nula cuando la hipótesis nula es falsa
-
-\[\beta=P(aceptar\,\,H_0|H_0:falsa)\]
-
-La probabilidad de contrastes \textbf{correctos} también se conoce como:
-
-\begin{itemize}
-\item
-  Tasa de \textbf{verdaderos positivos}: Este es el poder o la sensibilidad de una prueba (afirmar un descubrimiento que es verdadera, el objetivo principal)
-  \[1-\beta=P(positiva|H_1:verdadera)\]
-\item
-  Tasa de \textbf{verdaderos negativos}: Esta es la especificidad de una prueba (ignorando un descubrimiento de que es falsa)
-  \[1-\alpha=P(negativa|H_1:falsa)\]
-\end{itemize}
-
-La tabla de contingencia en términos de \(\alpha\) y \(\beta\) es
+Podemos escribir la tabla de contingencia para las probabilidades de los resultados de la prueba de hipótesis como
 
 \begin{longtable}[]{@{}ccc@{}}
 \toprule
-& \(H_1\) es verdadera & \(H_1\) es falsa \\
+& \(H_1\) es verdadera & \(H_0\) es verdadera \\
 \midrule
 \endhead
 \textbf{La prueba en \(H_1\) es positiva} & \(1-\beta\) & \(\alpha\) \\
@@ -8831,6 +8812,31 @@ La tabla de contingencia en términos de \(\alpha\) y \(\beta\) es
 \textbf{suma} & 1 & 1 \\
 \bottomrule
 \end{longtable}
+
+De tal forma que tenemos
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  La tasa de \textbf{error de tipo 2}: probabilidad de un falso negativo (ignorar un descubrimiento cuando es verdadero)
+\end{enumerate}
+
+\[\beta=P(negativa|H_1)\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\item
+  Tasa de \textbf{verdaderos positivos}: Este es el poder o la sensibilidad de una prueba (afirmar un descubrimiento cuando es verdadero, el objetivo principal)
+  \[1-\beta=P(positiva|H_1)\]
+\item
+  Tasa de \textbf{error de tipo 1}: probabilidad de un falso positivo (afirmar un descubrimiento cuando es falso)
+  \[\alpha=P(positiva|H_0)\]
+\item
+  Tasa de \textbf{verdaderos negativos}: Esta es la especificidad de una prueba (ignorar un descubrimiento cuando es falso)
+  \[1-\alpha=P(negativa|H_0)\]
+\end{enumerate}
 
   \bibliography{book.bib,packages.bib}
 

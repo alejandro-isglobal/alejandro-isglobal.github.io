@@ -23,7 +23,7 @@
 <meta name="author" content="Alejandro Cáceres (alejandro.caceres.dominguez@upc.edu)" />
 
 
-<meta name="date" content="2023-06-04" />
+<meta name="date" content="2023-06-05" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -1041,25 +1041,41 @@ vemos que es menor que <span class="math inline">\(\alpha=0.01\)</span> y rechaz
 <h2><span class="header-section-number">14.8</span> Errores en la prueba de hipótesis<a href="contraste-de-hipótesis.html#errores-en-la-prueba-de-hipótesis" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>El resultado de una prueba de hipótesis de cola superior puede ser <strong>rechazar</strong> la hipótesis nula:</p>
 <p><span class="math display">\[H_0: \mu\leq\mu_0\]</span></p>
-<p>cuando esta <strong>es verdad</strong>. Debemos tener en cuenta que la decisión de aceptar <span class="math inline">\(H_0\)</span> resulta de considerar los datos. Bien puede ser que el estadístico observado haya caido, por aleatoridad, lejos de la hipótesis nula, en la zona de rechazo de <span class="math inline">\(H_0\)</span>, aún cuando esta sea verdad. La probabilidad de cometer este error es precisamente el nivel de significación estadística <span class="math inline">\(\alpha\)</span>, el que llamamos error de <strong>tipo 1</strong>. Por ejemplo, para el caso 1, un test de cola superior, y una confianza del <span class="math inline">\(95\%\)</span></p>
-<p><span class="math display">\[\alpha = P(z_{obs}&gt; z_{0.05})=0.05\]</span></p>
-<p>done <span class="math inline">\(z_{0.05}=\phi^{-1}(0.95)=\)</span> <code>qnorm(0.95)=1.644</code></p>
+<p>cuando esta <strong>es verdad</strong>. Debemos tener en cuenta que la decisión se toma con base en los datos. Bien puede ser que el estadístico observado haya caido, por aleatoridad, lejos de la hipótesis nula, en la zona de rechazo de <span class="math inline">\(H_0\)</span> aún cuando esta sea verdad. Cuando realizamos la prueba de hipótesis no sabemos si <span class="math inline">\(H_0\)</span> es verdad, por lo que si ahora lo sabemos es porque asumimos que lo hemos averiguado de alguna otra forma. Aún así, la probabilidad de rechazar <span class="math inline">\(H_0\)</span> cuando es verdad es precisamente el nivel de significación estadística <span class="math inline">\(\alpha\)</span>. Llamamos a esta probabilidad la probabilidad de cometer un error de <strong>tipo 1</strong>. Tomando el ejemplo para el <strong>caso 1</strong>, un test de cola superior, y una confianza del <span class="math inline">\(95\%\)</span> tenemos que</p>
+<p><span class="math display">\[\alpha = P(Z&gt; z_{0.05})=0.05\]</span></p>
+<p>donde <span class="math inline">\(z_{0.05}=\phi^{-1}(0.95)=\)</span> <code>qnorm(0.95)=1.644</code></p>
 <p><img src="_main_files/figure-html/unnamed-chunk-129-1.png" width="672" /></p>
-<p>Como nuestro interés de investigación está <span class="math inline">\(H_1\)</span>, cuando aceptamos <span class="math inline">\(H_1\)</span> (rechazamos <span class="math inline">\(H_0\)</span>) decimos que el test es <strong>positivo</strong> y cuando la rechazamos <span class="math inline">\(H_1\)</span> (aceptamos <span class="math inline">\(H_0\)</span>) que es <strong>negativo</strong>. Por lo tanto, un error del tipo 1 también se llama un <strong>falso negativo</strong>.</p>
+<p>Un error del tipo 1 también se llama un <strong>falso positivo</strong> porque nuestro interés de investigación está en <span class="math inline">\(H_1\)</span>. Cuando rechazamos <span class="math inline">\(H_0\)</span>, aceptamos <span class="math inline">\(H_1\)</span> y decimos que nuestro test es <strong>positivo</strong>. Aceptar <span class="math inline">\(H_1\)</span> se traduce en anunciar un descubrimiento, por lo que el error de tipo 1 es anunciar un descubrimiento cuando este no existe: lo hemos hecho porque los datos nos lo han sugerido.</p>
 <p>Existe otro tipo de error. El resultado de una prueba de hipótesis de cola superior puede ser <strong>aceptar</strong> la hipótesis nula:</p>
 <p><span class="math display">\[H_0: \mu\leq\mu_0\]</span></p>
-<p>cuando esta <strong>no es verdad</strong>. En este caso puede ser que el estadístico observado haya caido, por aleatoridad, cerca de la hipótesis nula, en la zona de aceptación de <span class="math inline">\(H_0\)</span>, cuando realmente <span class="math inline">\(H_1\)</span> es verdad. Si supieramos que, por ejemplo, <span class="math inline">\(\mu\)</span> realmente tiene un valor <span class="math inline">\(\mu_1\)</span> entonces la hipóteisis alternativa sería exactamente:</p>
+<p>cuando esta <strong>no es verdad</strong>. En este caso, puede ser que el estadístico observado haya caido, por aleatoridad, cerca de la hipótesis nula, en la zona de aceptación de <span class="math inline">\(H_0\)</span>, cuando realmente <span class="math inline">\(H_1\)</span> es verdad. Si averiguaramos de alguna forma que, por ejemplo, <span class="math inline">\(\mu\)</span> realmente tiene un valor <span class="math inline">\(\mu_1\)</span> entonces la hipóteisis alternativa sería exactamente:</p>
 <p><span class="math display">\[H_1: \mu=\mu_1\]</span></p>
 <p><img src="_main_files/figure-html/unnamed-chunk-130-1.png" width="672" /></p>
-<p>Si <span class="math inline">\(H_1\)</span> es realemente verdadera (línea roja) entonces los estadísticos observados son <strong>realmente</strong> variables aleatorias <span class="math inline">\(Y\)</span> que se distribuyen con media (caso 1)</p>
+<p>Si <span class="math inline">\(H_1\)</span> es realemente verdadera (línea roja, que no sabemos cuando realizamos la prueba de hipótesis) entonces los estadísticos observados son <strong>realmente</strong> variables aleatorias <span class="math inline">\(Y\)</span> que se distribuyen con media (caso 1)</p>
 <p><span class="math display">\[E(Y)=\frac{\mu_1-\mu_0}{\frac{\sigma}{\sqrt{n}}}\]</span></p>
-<p>y en su mayoría caerán cerca de este valor y, por lo tanto, en la zona de rechazo de <span class="math inline">\(H_0\)</span>. Sin embargo existen casos en que el estadístico observado cae en la zona de acepación de <span class="math inline">\(H_0\)</span> por aleatoreidad, apesar de que los estadísticos los produce <span class="math inline">\(H_1\)</span>. En estos casos aceptamos <span class="math inline">\(H_0\)</span> cuando no es verdad. Este error se llama <strong>un error de tipo 2</strong> o un <strong>falso negativo</strong>. Para el caso 1, con un test de cola superior y nivel de confianza del <span class="math inline">\(95\%\)</span> este es</p>
-<p><span class="math display">\[ \beta= P(Y &lt; z_{0.05})\]</span>
-Donde <span class="math inline">\(Y \rightarrow N(\frac{\mu_1-\mu_0}{\sigma/\sqrt{n}},1)\)</span> es la verdadera distribución de los estadísticos observados.</p>
+<p>y en su mayoría caerán cerca de este valor, por lo tanto, en la zona de rechazo de <span class="math inline">\(H_0\)</span>, dando validez a la prueba de hipótesis. Sin embargo existen casos en que el estadístico observado cae en la zona de acepación de <span class="math inline">\(H_0\)</span> por aleatoreidad, apesar de que los estadísticos los produce <span class="math inline">\(H_1\)</span>. En estos casos aceptamos <span class="math inline">\(H_0\)</span> cuando no es verdad. Este error se llama <strong>un error de tipo 2</strong> o un <strong>falso negativo</strong>. Para el caso 1, con un test de cola superior y nivel de confianza del <span class="math inline">\(95\%\)</span> este es</p>
+<p><span class="math display">\[\beta= P(Y &lt; z_{0.05})\]</span>
+Donde <span class="math inline">\(Y \rightarrow N(\frac{\mu_1-\mu_0}{\sigma/\sqrt{n}},1)\)</span> es la <strong>verdadera distribución</strong> de los estadísticos observados.</p>
+<p><strong>Ejemplo (Bombilla)</strong></p>
+<p>La eficiencia energética de una nueva bombilla es una variable aleatoria normal con desviación estandar de <span class="math inline">\(5\)</span> vátios. Consideramos que las bombillas que producimos son eficientes si su media no supera los <span class="math inline">\(80\)</span> vátios, por lo que planteamos el contraste de hipótesis</p>
+<ol style="list-style-type: lower-alpha">
+<li><span class="math inline">\(H_0 : \mu \geq 80\)</span> (eficientes)</li>
+<li><span class="math inline">\(H_1 : \mu &lt; 80\)</span> (no eficientes)</li>
+</ol>
+<p>Queremos probar que producimos bombillas eficientes y planteamos realizar una muestra aleatoria de tamaño 100, con un nivel de significación estadística del <span class="math inline">\(5\%\)</span>. Si estudios previos han sugerído que las bombillas puedne tener una media de <span class="math inline">\(\mu=\mu_1=79\)</span> vátios ¿Qué error del tipo 2 esperamos?</p>
+<p>El contraste es para el <strong>caso 1</strong> con una <strong>cola inferior</strong>. Por lo tanto la probabilidad de aceptar la hipótesis nula (no prodicimos bombillas eficientes) es</p>
+<p><span class="math display">\[\alpha = P(Z&lt; z_{0.95})=0.05\]</span>
+y <span class="math inline">\(z_{0.95}=\)</span><code>qnorm(0.05)</code><span class="math inline">\(=-1.644\)</span>.</p>
+<p>El error de tipo 2 es por lo tanto</p>
+<p><span class="math display">\[\beta= P(Y &gt; -1.644)\]</span></p>
+<p>es decir, la probabilidad de aceptar que no producimos bombillas eficientes cuando en realidad sí lo hacemos. Al tener el <strong>caso 1</strong> porque conocemos <span class="math inline">\(\sigma\)</span> y la variable es normal, entonces los estadísticos observados realmente se distribuyten como</p>
+<p><span class="math display">\[Y \rightarrow N(\frac{79-80}{5/\sqrt{100}}=-2,1)\]</span> y el error de tipo 2 es</p>
+<p><span class="math display">\[\beta = 1-F(-1.644)=0.36\]</span></p>
+<p>calculado en R como <code>1-pnorm(-1.644,-2,1)=0.36</code>. De tal forma, que sólo un <span class="math inline">\(\alpha=5\%\)</span> de las veces anunciaríamos que producimos bombillas eficientes cuando realmente no lo son, mientras que un <span class="math inline">\(\beta=36\%\)</span> de las veces anunciaríamos tener una producción que no sirve cuando realmente sí sirve.</p>
 <p>Cuando realizamos una prueba de hipótesis tenemos dos posibilidades para cada condición</p>
 <ul>
 <li><span class="math inline">\(H_1\)</span> es en realidad : <strong>verdadera</strong> (<span class="math inline">\(\mu=\mu_1\)</span>) o <strong>falsa</strong> (<span class="math inline">\(\mu=\mu_0\)</span>)</li>
-<li>La prueba para <span class="math inline">\(H_1\)</span> es: <strong>positiva</strong> (<span class="math inline">\(z_{obs}\)</span> en zona de aceptación de <span class="math inline">\(H_1\)</span>) o <strong>negativa</strong> (<span class="math inline">\(z_{obs}\)</span> en zona de rechazo de <span class="math inline">\(H_1\)</span>)</li>
+<li>La prueba para <span class="math inline">\(H_1\)</span> es: <strong>positiva</strong> (<span class="math inline">\(z_{obs}\)</span> en zona de aceptación de <span class="math inline">\(H_1\)</span>) o <strong>negativa</strong> (<span class="math inline">\(z_{obs}\)</span> en zona de aceptación de <span class="math inline">\(H_0\)</span>)</li>
 </ul>
 <p><strong>Ejemplo (PCR)</strong></p>
 <p>Hacemos <strong>una</strong> PCR para probar una infección. El contraste de hipótesis es</p>

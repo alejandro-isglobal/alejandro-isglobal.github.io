@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 12 Maximum likelihood | Stats theory (SDA)</title>
+  <meta name="description" content="This are slides for the Stats theory of the BIST master" />
+  <meta name="generator" content="bookdown 0.34 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 12 Maximum likelihood | Stats theory (SDA)" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="This are slides for the Stats theory of the BIST master" />
+  <meta name="github-repo" content="alejandro-isglobal/master" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 12 Maximum likelihood | Stats theory (SDA)" />
+  
+  <meta name="twitter:description" content="This are slides for the Stats theory of the BIST master" />
+  
+
+<meta name="author" content="Alejandro Caceres" />
+
+
+<meta name="date" content="2023-07-28" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="central-limit-theorem.html"/>
+<link rel="next" href="interval-estimation.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">SDA</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> About</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#schedule"><i class="fa fa-check"></i><b>1.1</b> Schedule:</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#recommended-reading-list"><i class="fa fa-check"></i><b>1.2</b> Recommended reading list</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="data-description.html"><a href="data-description.html"><i class="fa fa-check"></i><b>2</b> Data description</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="data-description.html"><a href="data-description.html#scientific-method"><i class="fa fa-check"></i><b>2.1</b> Scientific method</a></li>
+<li class="chapter" data-level="2.2" data-path="data-description.html"><a href="data-description.html#statistics"><i class="fa fa-check"></i><b>2.2</b> Statistics</a></li>
+<li class="chapter" data-level="2.3" data-path="data-description.html"><a href="data-description.html#data"><i class="fa fa-check"></i><b>2.3</b> Data</a></li>
+<li class="chapter" data-level="2.4" data-path="data-description.html"><a href="data-description.html#result-types"><i class="fa fa-check"></i><b>2.4</b> Result types</a></li>
+<li class="chapter" data-level="2.5" data-path="data-description.html"><a href="data-description.html#random-experiments"><i class="fa fa-check"></i><b>2.5</b> Random experiments</a></li>
+<li class="chapter" data-level="2.6" data-path="data-description.html"><a href="data-description.html#absolute-frequencies"><i class="fa fa-check"></i><b>2.6</b> Absolute frequencies</a></li>
+<li class="chapter" data-level="2.7" data-path="data-description.html"><a href="data-description.html#relative-frequencies"><i class="fa fa-check"></i><b>2.7</b> Relative frequencies</a></li>
+<li class="chapter" data-level="2.8" data-path="data-description.html"><a href="data-description.html#bar-chart"><i class="fa fa-check"></i><b>2.8</b> Bar chart</a></li>
+<li class="chapter" data-level="2.9" data-path="data-description.html"><a href="data-description.html#pie-chart-pie"><i class="fa fa-check"></i><b>2.9</b> Pie chart (pie)</a></li>
+<li class="chapter" data-level="2.10" data-path="data-description.html"><a href="data-description.html#ordinal-categorical-variables"><i class="fa fa-check"></i><b>2.10</b> Ordinal categorical variables</a></li>
+<li class="chapter" data-level="2.11" data-path="data-description.html"><a href="data-description.html#accumulated-absolute-and-relative-frequencies"><i class="fa fa-check"></i><b>2.11</b> Accumulated absolute and relative frequencies</a></li>
+<li class="chapter" data-level="2.12" data-path="data-description.html"><a href="data-description.html#cumulative-frequency-graph"><i class="fa fa-check"></i><b>2.12</b> Cumulative frequency graph</a></li>
+<li class="chapter" data-level="2.13" data-path="data-description.html"><a href="data-description.html#numeric-variables"><i class="fa fa-check"></i><b>2.13</b> Numeric variables</a></li>
+<li class="chapter" data-level="2.14" data-path="data-description.html"><a href="data-description.html#transforming-continuous-data"><i class="fa fa-check"></i><b>2.14</b> Transforming continuous data</a></li>
+<li class="chapter" data-level="2.15" data-path="data-description.html"><a href="data-description.html#frequency-table-for-a-continuous-variable"><i class="fa fa-check"></i><b>2.15</b> Frequency table for a continuous variable</a></li>
+<li class="chapter" data-level="2.16" data-path="data-description.html"><a href="data-description.html#histogram"><i class="fa fa-check"></i><b>2.16</b> Histogram</a></li>
+<li class="chapter" data-level="2.17" data-path="data-description.html"><a href="data-description.html#cumulative-frequency-graph-1"><i class="fa fa-check"></i><b>2.17</b> Cumulative frequency graph</a></li>
+<li class="chapter" data-level="2.18" data-path="data-description.html"><a href="data-description.html#summary-statistics"><i class="fa fa-check"></i><b>2.18</b> Summary Statistics</a></li>
+<li class="chapter" data-level="2.19" data-path="data-description.html"><a href="data-description.html#average-sample-mean"><i class="fa fa-check"></i><b>2.19</b> Average (sample mean)</a></li>
+<li class="chapter" data-level="2.20" data-path="data-description.html"><a href="data-description.html#median"><i class="fa fa-check"></i><b>2.20</b> Median</a></li>
+<li class="chapter" data-level="2.21" data-path="data-description.html"><a href="data-description.html#dispersion"><i class="fa fa-check"></i><b>2.21</b> Dispersion</a></li>
+<li class="chapter" data-level="2.22" data-path="data-description.html"><a href="data-description.html#sample-variance"><i class="fa fa-check"></i><b>2.22</b> Sample variance</a></li>
+<li class="chapter" data-level="2.23" data-path="data-description.html"><a href="data-description.html#interquartile-range-iqr"><i class="fa fa-check"></i><b>2.23</b> Interquartile range (IQR)</a></li>
+<li class="chapter" data-level="2.24" data-path="data-description.html"><a href="data-description.html#boxplot"><i class="fa fa-check"></i><b>2.24</b> Boxplot</a></li>
+<li class="chapter" data-level="2.25" data-path="data-description.html"><a href="data-description.html#questions"><i class="fa fa-check"></i><b>2.25</b> Questions</a></li>
+<li class="chapter" data-level="2.26" data-path="data-description.html"><a href="data-description.html#exercises"><i class="fa fa-check"></i><b>2.26</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="probability.html"><a href="probability.html"><i class="fa fa-check"></i><b>3</b> probability</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="probability.html"><a href="probability.html#random-experiments-1"><i class="fa fa-check"></i><b>3.1</b> Random experiments</a></li>
+<li class="chapter" data-level="3.2" data-path="probability.html"><a href="probability.html#measurement-probability"><i class="fa fa-check"></i><b>3.2</b> Measurement probability</a></li>
+<li class="chapter" data-level="3.3" data-path="probability.html"><a href="probability.html#classical-probability"><i class="fa fa-check"></i><b>3.3</b> Classical probability</a></li>
+<li class="chapter" data-level="3.4" data-path="probability.html"><a href="probability.html#relative-frequencies-1"><i class="fa fa-check"></i><b>3.4</b> Relative frequencies</a></li>
+<li class="chapter" data-level="3.5" data-path="probability.html"><a href="probability.html#relative-frequencies-at-infinity"><i class="fa fa-check"></i><b>3.5</b> Relative frequencies at infinity</a></li>
+<li class="chapter" data-level="3.6" data-path="probability.html"><a href="probability.html#frequentist-probability"><i class="fa fa-check"></i><b>3.6</b> Frequentist probability</a></li>
+<li class="chapter" data-level="3.7" data-path="probability.html"><a href="probability.html#classical-and-frequentist-probabilities"><i class="fa fa-check"></i><b>3.7</b> Classical and frequentist probabilities</a></li>
+<li class="chapter" data-level="3.8" data-path="probability.html"><a href="probability.html#definition-of-probability"><i class="fa fa-check"></i><b>3.8</b> Definition of probability</a></li>
+<li class="chapter" data-level="3.9" data-path="probability.html"><a href="probability.html#probabilities-table"><i class="fa fa-check"></i><b>3.9</b> Probabilities Table</a></li>
+<li class="chapter" data-level="3.10" data-path="probability.html"><a href="probability.html#sample-space"><i class="fa fa-check"></i><b>3.10</b> Sample space</a></li>
+<li class="chapter" data-level="3.11" data-path="probability.html"><a href="probability.html#events"><i class="fa fa-check"></i><b>3.11</b> Events</a></li>
+<li class="chapter" data-level="3.12" data-path="probability.html"><a href="probability.html#algebra-of-events"><i class="fa fa-check"></i><b>3.12</b> Algebra of events</a></li>
+<li class="chapter" data-level="3.13" data-path="probability.html"><a href="probability.html#mutually-exclusive-results"><i class="fa fa-check"></i><b>3.13</b> Mutually exclusive results</a></li>
+<li class="chapter" data-level="3.14" data-path="probability.html"><a href="probability.html#joint-probabilities"><i class="fa fa-check"></i><b>3.14</b> Joint probabilities</a></li>
+<li class="chapter" data-level="3.15" data-path="probability.html"><a href="probability.html#contingency-table"><i class="fa fa-check"></i><b>3.15</b> Contingency table</a></li>
+<li class="chapter" data-level="3.16" data-path="probability.html"><a href="probability.html#the-addition-rule"><i class="fa fa-check"></i><b>3.16</b> The addition rule:</a></li>
+<li class="chapter" data-level="3.17" data-path="probability.html"><a href="probability.html#questions-1"><i class="fa fa-check"></i><b>3.17</b> Questions</a></li>
+<li class="chapter" data-level="3.18" data-path="probability.html"><a href="probability.html#exercises-1"><i class="fa fa-check"></i><b>3.18</b> Exercises</a>
+<ul>
+<li class="chapter" data-level="3.18.1" data-path="probability.html"><a href="probability.html#practice-1"><i class="fa fa-check"></i><b>3.18.1</b> Practice</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="conditional-probability.html"><a href="conditional-probability.html"><i class="fa fa-check"></i><b>4</b> conditional probability</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="conditional-probability.html"><a href="conditional-probability.html#joint-probability"><i class="fa fa-check"></i><b>4.1</b> Joint probability</a></li>
+<li class="chapter" data-level="4.2" data-path="conditional-probability.html"><a href="conditional-probability.html#statistical-independence"><i class="fa fa-check"></i><b>4.2</b> Statistical independence</a></li>
+<li class="chapter" data-level="4.3" data-path="conditional-probability.html"><a href="conditional-probability.html#the-conditional-probability"><i class="fa fa-check"></i><b>4.3</b> The conditional probability</a></li>
+<li class="chapter" data-level="4.4" data-path="conditional-probability.html"><a href="conditional-probability.html#conditional-contingency-table"><i class="fa fa-check"></i><b>4.4</b> Conditional contingency table</a></li>
+<li class="chapter" data-level="4.5" data-path="conditional-probability.html"><a href="conditional-probability.html#statistical-independence-1"><i class="fa fa-check"></i><b>4.5</b> Statistical independence</a></li>
+<li class="chapter" data-level="4.6" data-path="conditional-probability.html"><a href="conditional-probability.html#statistical-dependency"><i class="fa fa-check"></i><b>4.6</b> Statistical dependency</a></li>
+<li class="chapter" data-level="4.7" data-path="conditional-probability.html"><a href="conditional-probability.html#diagnostic-test"><i class="fa fa-check"></i><b>4.7</b> Diagnostic test</a></li>
+<li class="chapter" data-level="4.8" data-path="conditional-probability.html"><a href="conditional-probability.html#inverse-probabilities"><i class="fa fa-check"></i><b>4.8</b> Inverse probabilities</a></li>
+<li class="chapter" data-level="4.9" data-path="conditional-probability.html"><a href="conditional-probability.html#bayes-theorem"><i class="fa fa-check"></i><b>4.9</b> Bayes’ Theorem</a></li>
+<li class="chapter" data-level="4.10" data-path="conditional-probability.html"><a href="conditional-probability.html#exercises-2"><i class="fa fa-check"></i><b>4.10</b> Exercises</a></li>
+<li class="chapter" data-level="4.11" data-path="conditional-probability.html"><a href="conditional-probability.html#questions-2"><i class="fa fa-check"></i><b>4.11</b> Questions</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html"><i class="fa fa-check"></i><b>5</b> Discrete Random Variables</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html#objective"><i class="fa fa-check"></i><b>5.1</b> Objective</a></li>
+<li class="chapter" data-level="5.2" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html#relative-frequencies-2"><i class="fa fa-check"></i><b>5.2</b> Relative frequencies</a></li>
+<li class="chapter" data-level="5.3" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html#random-variable"><i class="fa fa-check"></i><b>5.3</b> Random variable</a></li>
+<li class="chapter" data-level="5.4" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html#events-of-observing-a-random-variable"><i class="fa fa-check"></i><b>5.4</b> Events of observing a random variable</a></li>
+<li class="chapter" data-level="5.5" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html#probability-of-random-variables"><i class="fa fa-check"></i><b>5.5</b> Probability of random variables</a></li>
+<li class="chapter" data-level="5.6" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html#probability-functions"><i class="fa fa-check"></i><b>5.6</b> Probability functions</a></li>
+<li class="chapter" data-level="5.7" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html#probability-functions-1"><i class="fa fa-check"></i><b>5.7</b> Probability functions</a></li>
+<li class="chapter" data-level="5.8" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html#probabilities-and-relative-frequencies"><i class="fa fa-check"></i><b>5.8</b> Probabilities and relative frequencies</a></li>
+<li class="chapter" data-level="5.9" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html#mean-or-expected-value"><i class="fa fa-check"></i><b>5.9</b> Mean or expected value</a></li>
+<li class="chapter" data-level="5.10" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html#variance"><i class="fa fa-check"></i><b>5.10</b> Variance</a></li>
+<li class="chapter" data-level="5.11" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html#probability-functions-for-functions-of-x"><i class="fa fa-check"></i><b>5.11</b> Probability functions for functions of <span class="math inline">\(X\)</span></a></li>
+<li class="chapter" data-level="5.12" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html#probability-distribution"><i class="fa fa-check"></i><b>5.12</b> Probability distribution</a></li>
+<li class="chapter" data-level="5.13" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html#probability-function-and-probability-distribution"><i class="fa fa-check"></i><b>5.13</b> Probability function and probability distribution</a></li>
+<li class="chapter" data-level="5.14" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html#quantiles"><i class="fa fa-check"></i><b>5.14</b> Quantiles</a></li>
+<li class="chapter" data-level="5.15" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html#summary"><i class="fa fa-check"></i><b>5.15</b> Summary</a></li>
+<li class="chapter" data-level="5.16" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html#questions-3"><i class="fa fa-check"></i><b>5.16</b> Questions</a></li>
+<li class="chapter" data-level="5.17" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html#exercises-3"><i class="fa fa-check"></i><b>5.17</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="continous-random-variables.html"><a href="continous-random-variables.html"><i class="fa fa-check"></i><b>6</b> Continous Random Variables</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="continous-random-variables.html"><a href="continous-random-variables.html#objective-1"><i class="fa fa-check"></i><b>6.1</b> Objective</a></li>
+<li class="chapter" data-level="6.2" data-path="continous-random-variables.html"><a href="continous-random-variables.html#continuous-random-variables"><i class="fa fa-check"></i><b>6.2</b> Continuous random variables</a></li>
+<li class="chapter" data-level="6.3" data-path="continous-random-variables.html"><a href="continous-random-variables.html#relative-frequencies-3"><i class="fa fa-check"></i><b>6.3</b> relative frequencies</a></li>
+<li class="chapter" data-level="6.4" data-path="continous-random-variables.html"><a href="continous-random-variables.html#probability-density-function"><i class="fa fa-check"></i><b>6.4</b> probability density function</a></li>
+<li class="chapter" data-level="6.5" data-path="continous-random-variables.html"><a href="continous-random-variables.html#total-area-under-the-curve"><i class="fa fa-check"></i><b>6.5</b> Total area under the curve</a></li>
+<li class="chapter" data-level="6.6" data-path="continous-random-variables.html"><a href="continous-random-variables.html#probabilities-of-continous-variables"><i class="fa fa-check"></i><b>6.6</b> Probabilities of continous variables</a></li>
+<li class="chapter" data-level="6.7" data-path="continous-random-variables.html"><a href="continous-random-variables.html#probability-distribution-1"><i class="fa fa-check"></i><b>6.7</b> Probability distribution</a></li>
+<li class="chapter" data-level="6.8" data-path="continous-random-variables.html"><a href="continous-random-variables.html#probability-plots"><i class="fa fa-check"></i><b>6.8</b> Probability plots</a></li>
+<li class="chapter" data-level="6.9" data-path="continous-random-variables.html"><a href="continous-random-variables.html#mean"><i class="fa fa-check"></i><b>6.9</b> Mean</a></li>
+<li class="chapter" data-level="6.10" data-path="continous-random-variables.html"><a href="continous-random-variables.html#variance-1"><i class="fa fa-check"></i><b>6.10</b> Variance</a></li>
+<li class="chapter" data-level="6.11" data-path="continous-random-variables.html"><a href="continous-random-variables.html#functions-of-x"><i class="fa fa-check"></i><b>6.11</b> Functions of <span class="math inline">\(X\)</span></a></li>
+<li class="chapter" data-level="6.12" data-path="continous-random-variables.html"><a href="continous-random-variables.html#exercises-4"><i class="fa fa-check"></i><b>6.12</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="discrete-probability-models.html"><a href="discrete-probability-models.html"><i class="fa fa-check"></i><b>7</b> Discrete Probability Models</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="discrete-probability-models.html"><a href="discrete-probability-models.html#objective-2"><i class="fa fa-check"></i><b>7.1</b> Objective</a></li>
+<li class="chapter" data-level="7.2" data-path="discrete-probability-models.html"><a href="discrete-probability-models.html#probability-mass-function"><i class="fa fa-check"></i><b>7.2</b> Probability mass function</a></li>
+<li class="chapter" data-level="7.3" data-path="discrete-probability-models.html"><a href="discrete-probability-models.html#probability-model"><i class="fa fa-check"></i><b>7.3</b> Probability model</a></li>
+<li class="chapter" data-level="7.4" data-path="discrete-probability-models.html"><a href="discrete-probability-models.html#parametric-models"><i class="fa fa-check"></i><b>7.4</b> Parametric models</a></li>
+<li class="chapter" data-level="7.5" data-path="discrete-probability-models.html"><a href="discrete-probability-models.html#uniform-distribution-one-parameter"><i class="fa fa-check"></i><b>7.5</b> Uniform distribution (one parameter)</a></li>
+<li class="chapter" data-level="7.6" data-path="discrete-probability-models.html"><a href="discrete-probability-models.html#uniform-distribution-two-parameters"><i class="fa fa-check"></i><b>7.6</b> Uniform distribution (two parameters)</a></li>
+<li class="chapter" data-level="7.7" data-path="discrete-probability-models.html"><a href="discrete-probability-models.html#bernoulli-trial"><i class="fa fa-check"></i><b>7.7</b> Bernoulli trial</a></li>
+<li class="chapter" data-level="7.8" data-path="discrete-probability-models.html"><a href="discrete-probability-models.html#binomial-experiment"><i class="fa fa-check"></i><b>7.8</b> Binomial experiment</a></li>
+<li class="chapter" data-level="7.9" data-path="discrete-probability-models.html"><a href="discrete-probability-models.html#binomial-probability-function"><i class="fa fa-check"></i><b>7.9</b> Binomial probability function</a></li>
+<li class="chapter" data-level="7.10" data-path="discrete-probability-models.html"><a href="discrete-probability-models.html#negative-binomial-probability-function"><i class="fa fa-check"></i><b>7.10</b> Negative binomial probability function</a></li>
+<li class="chapter" data-level="7.11" data-path="discrete-probability-models.html"><a href="discrete-probability-models.html#geometric-distribution"><i class="fa fa-check"></i><b>7.11</b> Geometric distribution</a></li>
+<li class="chapter" data-level="7.12" data-path="discrete-probability-models.html"><a href="discrete-probability-models.html#hypergeometric-model"><i class="fa fa-check"></i><b>7.12</b> Hypergeometric model</a></li>
+<li class="chapter" data-level="7.13" data-path="discrete-probability-models.html"><a href="discrete-probability-models.html#questions-4"><i class="fa fa-check"></i><b>7.13</b> Questions</a></li>
+<li class="chapter" data-level="7.14" data-path="discrete-probability-models.html"><a href="discrete-probability-models.html#exercises-5"><i class="fa fa-check"></i><b>7.14</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="poisson-and-exponential-models.html"><a href="poisson-and-exponential-models.html"><i class="fa fa-check"></i><b>8</b> Poisson and Exponential Models</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="poisson-and-exponential-models.html"><a href="poisson-and-exponential-models.html#objective-3"><i class="fa fa-check"></i><b>8.1</b> Objective</a></li>
+<li class="chapter" data-level="8.2" data-path="poisson-and-exponential-models.html"><a href="poisson-and-exponential-models.html#discrete-probability-models-1"><i class="fa fa-check"></i><b>8.2</b> Discrete probability models</a></li>
+<li class="chapter" data-level="8.3" data-path="poisson-and-exponential-models.html"><a href="poisson-and-exponential-models.html#poissson-experiment"><i class="fa fa-check"></i><b>8.3</b> Poissson experiment</a></li>
+<li class="chapter" data-level="8.4" data-path="poisson-and-exponential-models.html"><a href="poisson-and-exponential-models.html#poisson-probability-mass-function"><i class="fa fa-check"></i><b>8.4</b> Poisson probability mass function</a></li>
+<li class="chapter" data-level="8.5" data-path="poisson-and-exponential-models.html"><a href="poisson-and-exponential-models.html#continuous-probability-models"><i class="fa fa-check"></i><b>8.5</b> Continuous probability models</a></li>
+<li class="chapter" data-level="8.6" data-path="poisson-and-exponential-models.html"><a href="poisson-and-exponential-models.html#exponential-process"><i class="fa fa-check"></i><b>8.6</b> Exponential process</a></li>
+<li class="chapter" data-level="8.7" data-path="poisson-and-exponential-models.html"><a href="poisson-and-exponential-models.html#exponential-probability-density"><i class="fa fa-check"></i><b>8.7</b> Exponential probability density</a></li>
+<li class="chapter" data-level="8.8" data-path="poisson-and-exponential-models.html"><a href="poisson-and-exponential-models.html#exponential-distribution"><i class="fa fa-check"></i><b>8.8</b> Exponential Distribution</a></li>
+<li class="chapter" data-level="8.9" data-path="poisson-and-exponential-models.html"><a href="poisson-and-exponential-models.html#questions-5"><i class="fa fa-check"></i><b>8.9</b> Questions</a></li>
+<li class="chapter" data-level="8.10" data-path="poisson-and-exponential-models.html"><a href="poisson-and-exponential-models.html#exercises-6"><i class="fa fa-check"></i><b>8.10</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="normal-distribution.html"><a href="normal-distribution.html"><i class="fa fa-check"></i><b>9</b> Normal Distribution</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="normal-distribution.html"><a href="normal-distribution.html#objective-4"><i class="fa fa-check"></i><b>9.1</b> Objective</a></li>
+<li class="chapter" data-level="9.2" data-path="normal-distribution.html"><a href="normal-distribution.html#history"><i class="fa fa-check"></i><b>9.2</b> History</a></li>
+<li class="chapter" data-level="9.3" data-path="normal-distribution.html"><a href="normal-distribution.html#normal-density"><i class="fa fa-check"></i><b>9.3</b> normal density</a></li>
+<li class="chapter" data-level="9.4" data-path="normal-distribution.html"><a href="normal-distribution.html#definition"><i class="fa fa-check"></i><b>9.4</b> Definition</a></li>
+<li class="chapter" data-level="9.5" data-path="normal-distribution.html"><a href="normal-distribution.html#probability-distribution-2"><i class="fa fa-check"></i><b>9.5</b> Probability distribution</a></li>
+<li class="chapter" data-level="9.6" data-path="normal-distribution.html"><a href="normal-distribution.html#standard-normal-density"><i class="fa fa-check"></i><b>9.6</b> Standard normal density</a></li>
+<li class="chapter" data-level="9.7" data-path="normal-distribution.html"><a href="normal-distribution.html#standard-distribution"><i class="fa fa-check"></i><b>9.7</b> Standard distribution</a></li>
+<li class="chapter" data-level="9.8" data-path="normal-distribution.html"><a href="normal-distribution.html#summary-of-probability-models"><i class="fa fa-check"></i><b>9.8</b> Summary of probability models</a></li>
+<li class="chapter" data-level="9.9" data-path="normal-distribution.html"><a href="normal-distribution.html#r-functions-of-probability-models"><i class="fa fa-check"></i><b>9.9</b> R functions of probability models</a></li>
+<li class="chapter" data-level="9.10" data-path="normal-distribution.html"><a href="normal-distribution.html#questions-6"><i class="fa fa-check"></i><b>9.10</b> Questions</a></li>
+<li class="chapter" data-level="9.11" data-path="normal-distribution.html"><a href="normal-distribution.html#exercises-7"><i class="fa fa-check"></i><b>9.11</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="sampling-distributions.html"><a href="sampling-distributions.html"><i class="fa fa-check"></i><b>10</b> Sampling distributions</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="sampling-distributions.html"><a href="sampling-distributions.html#objective-5"><i class="fa fa-check"></i><b>10.1</b> Objective</a></li>
+<li class="chapter" data-level="10.2" data-path="sampling-distributions.html"><a href="sampling-distributions.html#aleatory-sample"><i class="fa fa-check"></i><b>10.2</b> Aleatory sample</a></li>
+<li class="chapter" data-level="10.3" data-path="sampling-distributions.html"><a href="sampling-distributions.html#calculation-of-probabilities"><i class="fa fa-check"></i><b>10.3</b> Calculation of probabilities</a></li>
+<li class="chapter" data-level="10.4" data-path="sampling-distributions.html"><a href="sampling-distributions.html#parameter-estimation"><i class="fa fa-check"></i><b>10.4</b> Parameter estimation</a></li>
+<li class="chapter" data-level="10.5" data-path="sampling-distributions.html"><a href="sampling-distributions.html#margin-of-error-of-estimates"><i class="fa fa-check"></i><b>10.5</b> Margin of error of estimates</a></li>
+<li class="chapter" data-level="10.6" data-path="sampling-distributions.html"><a href="sampling-distributions.html#inference"><i class="fa fa-check"></i><b>10.6</b> Inference</a></li>
+<li class="chapter" data-level="10.7" data-path="sampling-distributions.html"><a href="sampling-distributions.html#sample-mean-distribution"><i class="fa fa-check"></i><b>10.7</b> Sample mean distribution</a>
+<ul>
+<li class="chapter" data-level="10.7.1" data-path="sampling-distributions.html"><a href="sampling-distributions.html#sample-sum"><i class="fa fa-check"></i><b>10.7.1</b> Sample sum</a></li>
+</ul></li>
+<li class="chapter" data-level="10.8" data-path="sampling-distributions.html"><a href="sampling-distributions.html#sample-variance-1"><i class="fa fa-check"></i><b>10.8</b> Sample variance</a></li>
+<li class="chapter" data-level="10.9" data-path="sampling-distributions.html"><a href="sampling-distributions.html#probabilities-of-the-sample-variance"><i class="fa fa-check"></i><b>10.9</b> Probabilities of the sample variance</a></li>
+<li class="chapter" data-level="10.10" data-path="sampling-distributions.html"><a href="sampling-distributions.html#chi2-statistic"><i class="fa fa-check"></i><b>10.10</b> <span class="math inline">\(\chi^2\)</span>-statistic</a></li>
+<li class="chapter" data-level="10.11" data-path="sampling-distributions.html"><a href="sampling-distributions.html#questions-7"><i class="fa fa-check"></i><b>10.11</b> Questions</a></li>
+<li class="chapter" data-level="10.12" data-path="sampling-distributions.html"><a href="sampling-distributions.html#exercises-8"><i class="fa fa-check"></i><b>10.12</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="central-limit-theorem.html"><a href="central-limit-theorem.html"><i class="fa fa-check"></i><b>11</b> Central limit theorem</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="central-limit-theorem.html"><a href="central-limit-theorem.html#objective-6"><i class="fa fa-check"></i><b>11.1</b> Objective</a></li>
+<li class="chapter" data-level="11.2" data-path="central-limit-theorem.html"><a href="central-limit-theorem.html#margin-of-error"><i class="fa fa-check"></i><b>11.2</b> Margin of error</a></li>
+<li class="chapter" data-level="11.3" data-path="central-limit-theorem.html"><a href="central-limit-theorem.html#example-cables"><i class="fa fa-check"></i><b>11.3</b> Example (Cables)</a></li>
+<li class="chapter" data-level="11.4" data-path="central-limit-theorem.html"><a href="central-limit-theorem.html#central-limit-theorem-1"><i class="fa fa-check"></i><b>11.4</b> Central Limit Theorem</a></li>
+<li class="chapter" data-level="11.5" data-path="central-limit-theorem.html"><a href="central-limit-theorem.html#sample-sum-and-clt"><i class="fa fa-check"></i><b>11.5</b> Sample sum and CLT</a></li>
+<li class="chapter" data-level="11.6" data-path="central-limit-theorem.html"><a href="central-limit-theorem.html#questions-8"><i class="fa fa-check"></i><b>11.6</b> Questions</a></li>
+<li class="chapter" data-level="11.7" data-path="central-limit-theorem.html"><a href="central-limit-theorem.html#exercises-9"><i class="fa fa-check"></i><b>11.7</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="maximum-likelihood.html"><a href="maximum-likelihood.html"><i class="fa fa-check"></i><b>12</b> Maximum likelihood</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="maximum-likelihood.html"><a href="maximum-likelihood.html#objective-7"><i class="fa fa-check"></i><b>12.1</b> Objective</a></li>
+<li class="chapter" data-level="12.2" data-path="maximum-likelihood.html"><a href="maximum-likelihood.html#statistic"><i class="fa fa-check"></i><b>12.2</b> Statistic</a></li>
+<li class="chapter" data-level="12.3" data-path="maximum-likelihood.html"><a href="maximum-likelihood.html#properties"><i class="fa fa-check"></i><b>12.3</b> Properties</a></li>
+<li class="chapter" data-level="12.4" data-path="maximum-likelihood.html"><a href="maximum-likelihood.html#maximum-likelihood-1"><i class="fa fa-check"></i><b>12.4</b> Maximum likelihood</a></li>
+<li class="chapter" data-level="12.5" data-path="maximum-likelihood.html"><a href="maximum-likelihood.html#maximum-likelihood-2"><i class="fa fa-check"></i><b>12.5</b> Maximum likelihood</a></li>
+<li class="chapter" data-level="12.6" data-path="maximum-likelihood.html"><a href="maximum-likelihood.html#questions-9"><i class="fa fa-check"></i><b>12.6</b> Questions</a></li>
+<li class="chapter" data-level="12.7" data-path="maximum-likelihood.html"><a href="maximum-likelihood.html#exercises-10"><i class="fa fa-check"></i><b>12.7</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="interval-estimation.html"><a href="interval-estimation.html"><i class="fa fa-check"></i><b>13</b> Interval estimation</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="interval-estimation.html"><a href="interval-estimation.html#objective-8"><i class="fa fa-check"></i><b>13.1</b> Objective</a></li>
+<li class="chapter" data-level="13.2" data-path="interval-estimation.html"><a href="interval-estimation.html#estimation-of-the-mean"><i class="fa fa-check"></i><b>13.2</b> Estimation of the mean</a></li>
+<li class="chapter" data-level="13.3" data-path="interval-estimation.html"><a href="interval-estimation.html#margin-of-error-1"><i class="fa fa-check"></i><b>13.3</b> Margin of error</a></li>
+<li class="chapter" data-level="13.4" data-path="interval-estimation.html"><a href="interval-estimation.html#interval-estimation-for-the-mean"><i class="fa fa-check"></i><b>13.4</b> Interval estimation for the mean</a>
+<ul>
+<li class="chapter" data-level="13.4.1" data-path="interval-estimation.html"><a href="interval-estimation.html#case-1-known-variance"><i class="fa fa-check"></i><b>13.4.1</b> Case 1 (known variance)</a></li>
+<li class="chapter" data-level="13.4.2" data-path="interval-estimation.html"><a href="interval-estimation.html#confidence-level"><i class="fa fa-check"></i><b>13.4.2</b> Confidence level</a></li>
+</ul></li>
+<li class="chapter" data-level="13.5" data-path="interval-estimation.html"><a href="interval-estimation.html#marging-of-error-for-unkown-variance"><i class="fa fa-check"></i><b>13.5</b> Marging of error for unkown variance</a>
+<ul>
+<li class="chapter" data-level="13.5.1" data-path="interval-estimation.html"><a href="interval-estimation.html#theorem-t-statistic"><i class="fa fa-check"></i><b>13.5.1</b> Theorem (T-statistic)</a></li>
+<li class="chapter" data-level="13.5.2" data-path="interval-estimation.html"><a href="interval-estimation.html#case-2-unknown-variance"><i class="fa fa-check"></i><b>13.5.2</b> Case 2 (unknown variance)</a></li>
+</ul></li>
+<li class="chapter" data-level="13.6" data-path="interval-estimation.html"><a href="interval-estimation.html#estimation-of-proportions"><i class="fa fa-check"></i><b>13.6</b> Estimation of proportions</a>
+<ul>
+<li class="chapter" data-level="13.6.1" data-path="interval-estimation.html"><a href="interval-estimation.html#case-3-proportions"><i class="fa fa-check"></i><b>13.6.1</b> Case 3 (proportions)</a></li>
+</ul></li>
+<li class="chapter" data-level="13.7" data-path="interval-estimation.html"><a href="interval-estimation.html#estimation-of-the-variance"><i class="fa fa-check"></i><b>13.7</b> Estimation of the variance</a></li>
+<li class="chapter" data-level="13.8" data-path="interval-estimation.html"><a href="interval-estimation.html#confidence-interval-for-the-variance"><i class="fa fa-check"></i><b>13.8</b> Confidence interval for the variance</a>
+<ul>
+<li class="chapter" data-level="13.8.1" data-path="interval-estimation.html"><a href="interval-estimation.html#theorem-chi2"><i class="fa fa-check"></i><b>13.8.1</b> Theorem (<span class="math inline">\(\chi^2\)</span>):</a></li>
+<li class="chapter" data-level="13.8.2" data-path="interval-estimation.html"><a href="interval-estimation.html#confidence-interval-for-the-variance-1"><i class="fa fa-check"></i><b>13.8.2</b> Confidence interval for the variance</a></li>
+<li class="chapter" data-level="13.8.3" data-path="interval-estimation.html"><a href="interval-estimation.html#case-4-variance"><i class="fa fa-check"></i><b>13.8.3</b> Case 4 (variance)</a></li>
+</ul></li>
+<li class="chapter" data-level="13.9" data-path="interval-estimation.html"><a href="interval-estimation.html#questions-10"><i class="fa fa-check"></i><b>13.9</b> Questions</a></li>
+<li class="chapter" data-level="13.10" data-path="interval-estimation.html"><a href="interval-estimation.html#exercises-11"><i class="fa fa-check"></i><b>13.10</b> Exercises</a></li>
+<li class="chapter" data-level="13.11" data-path="interval-estimation.html"><a href="interval-estimation.html#practice-3"><i class="fa fa-check"></i><b>13.11</b> Practice</a></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html"><i class="fa fa-check"></i><b>14</b> Hypothesis testing</a>
+<ul>
+<li class="chapter" data-level="14.1" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#objective-9"><i class="fa fa-check"></i><b>14.1</b> Objective</a></li>
+<li class="chapter" data-level="14.2" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#hypothesis"><i class="fa fa-check"></i><b>14.2</b> Hypothesis</a></li>
+<li class="chapter" data-level="14.3" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#hypothesis-testing-1"><i class="fa fa-check"></i><b>14.3</b> Hypothesis testing</a></li>
+<li class="chapter" data-level="14.4" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#case-1-known-variance-1"><i class="fa fa-check"></i><b>14.4</b> Case 1 (known variance)</a>
+<ul>
+<li class="chapter" data-level="14.4.1" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#hypothesis-test-with-a-confidence-interval"><i class="fa fa-check"></i><b>14.4.1</b> Hypothesis test with a confidence interval</a></li>
+<li class="chapter" data-level="14.4.2" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#hypothesis-test-with-acceptancerejection-zones"><i class="fa fa-check"></i><b>14.4.2</b> Hypothesis test with acceptance/rejection zones</a></li>
+<li class="chapter" data-level="14.4.3" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#hypothesis-test-with-a-p-value"><i class="fa fa-check"></i><b>14.4.3</b> Hypothesis test with a P-value</a></li>
+<li class="chapter" data-level="14.4.4" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#upper-tail-hypothesis"><i class="fa fa-check"></i><b>14.4.4</b> Upper tail hypothesis</a></li>
+</ul></li>
+<li class="chapter" data-level="14.5" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#case-2-unknown-variance-1"><i class="fa fa-check"></i><b>14.5</b> Case 2 (unknown variance)</a>
+<ul>
+<li class="chapter" data-level="14.5.1" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#lower-tail-hypothesis"><i class="fa fa-check"></i><b>14.5.1</b> Lower tail hypothesis</a></li>
+<li class="chapter" data-level="14.5.2" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#hypothesis-testing-with-large-n-and-any-distribution"><i class="fa fa-check"></i><b>14.5.2</b> Hypothesis testing with large n and any distribution</a></li>
+</ul></li>
+<li class="chapter" data-level="14.6" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#case-3-proportions-1"><i class="fa fa-check"></i><b>14.6</b> Case 3 (proportions)</a></li>
+<li class="chapter" data-level="14.7" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#case-4-variances"><i class="fa fa-check"></i><b>14.7</b> Case 4 (variances)</a></li>
+<li class="chapter" data-level="14.8" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#errors-in-hypothesis-testing"><i class="fa fa-check"></i><b>14.8</b> Errors in hypothesis testing</a></li>
+<li class="chapter" data-level="14.9" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#exercises-12"><i class="fa fa-check"></i><b>14.9</b> Exercises</a></li>
+<li class="chapter" data-level="14.10" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#practice-4"><i class="fa fa-check"></i><b>14.10</b> Practice</a></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="contingency-tables.html"><a href="contingency-tables.html"><i class="fa fa-check"></i><b>15</b> Contingency tables</a>
+<ul>
+<li class="chapter" data-level="15.1" data-path="contingency-tables.html"><a href="contingency-tables.html#objective-10"><i class="fa fa-check"></i><b>15.1</b> Objective</a></li>
+<li class="chapter" data-level="15.2" data-path="contingency-tables.html"><a href="contingency-tables.html#difference-between-proportions"><i class="fa fa-check"></i><b>15.2</b> Difference between proportions</a></li>
+<li class="chapter" data-level="15.3" data-path="contingency-tables.html"><a href="contingency-tables.html#difference-between-proportions-1"><i class="fa fa-check"></i><b>15.3</b> Difference between proportions</a></li>
+<li class="chapter" data-level="15.4" data-path="contingency-tables.html"><a href="contingency-tables.html#contingency-table-of-conditional-probabilities"><i class="fa fa-check"></i><b>15.4</b> Contingency table of conditional probabilities</a></li>
+<li class="chapter" data-level="15.5" data-path="contingency-tables.html"><a href="contingency-tables.html#test-for-the-difference-between-proportions"><i class="fa fa-check"></i><b>15.5</b> Test for the difference between proportions</a></li>
+<li class="chapter" data-level="15.6" data-path="contingency-tables.html"><a href="contingency-tables.html#chi2-test"><i class="fa fa-check"></i><b>15.6</b> <span class="math inline">\(\chi^2\)</span> test</a></li>
+<li class="chapter" data-level="15.7" data-path="contingency-tables.html"><a href="contingency-tables.html#fishers-exact-test"><i class="fa fa-check"></i><b>15.7</b> Fisher’s exact test</a></li>
+<li class="chapter" data-level="15.8" data-path="contingency-tables.html"><a href="contingency-tables.html#hypergeometric-distribution"><i class="fa fa-check"></i><b>15.8</b> Hypergeometric distribution</a></li>
+<li class="chapter" data-level="15.9" data-path="contingency-tables.html"><a href="contingency-tables.html#difference-between-several-proportions"><i class="fa fa-check"></i><b>15.9</b> Difference between several proportions</a></li>
+<li class="chapter" data-level="15.10" data-path="contingency-tables.html"><a href="contingency-tables.html#questions-11"><i class="fa fa-check"></i><b>15.10</b> Questions</a></li>
+<li class="chapter" data-level="15.11" data-path="contingency-tables.html"><a href="contingency-tables.html#practice-5"><i class="fa fa-check"></i><b>15.11</b> Practice</a></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="mean-differences-between-two-samples.html"><a href="mean-differences-between-two-samples.html"><i class="fa fa-check"></i><b>16</b> Mean differences between two samples</a>
+<ul>
+<li class="chapter" data-level="16.1" data-path="mean-differences-between-two-samples.html"><a href="mean-differences-between-two-samples.html#objective-11"><i class="fa fa-check"></i><b>16.1</b> Objective</a></li>
+<li class="chapter" data-level="16.2" data-path="mean-differences-between-two-samples.html"><a href="mean-differences-between-two-samples.html#differet-means-between-two-groups"><i class="fa fa-check"></i><b>16.2</b> Differet means between two groups</a></li>
+<li class="chapter" data-level="16.3" data-path="mean-differences-between-two-samples.html"><a href="mean-differences-between-two-samples.html#data-1"><i class="fa fa-check"></i><b>16.3</b> Data</a></li>
+<li class="chapter" data-level="16.4" data-path="mean-differences-between-two-samples.html"><a href="mean-differences-between-two-samples.html#difference-between-means"><i class="fa fa-check"></i><b>16.4</b> Difference between means</a></li>
+<li class="chapter" data-level="16.5" data-path="mean-differences-between-two-samples.html"><a href="mean-differences-between-two-samples.html#hypothesis-test"><i class="fa fa-check"></i><b>16.5</b> hypothesis test</a></li>
+<li class="chapter" data-level="16.6" data-path="mean-differences-between-two-samples.html"><a href="mean-differences-between-two-samples.html#estiamtor-of-the-mean-difference"><i class="fa fa-check"></i><b>16.6</b> Estiamtor of the mean difference</a></li>
+<li class="chapter" data-level="16.7" data-path="mean-differences-between-two-samples.html"><a href="mean-differences-between-two-samples.html#standardized-error"><i class="fa fa-check"></i><b>16.7</b> Standardized error</a></li>
+<li class="chapter" data-level="16.8" data-path="mean-differences-between-two-samples.html"><a href="mean-differences-between-two-samples.html#standardized-error-for-the-null"><i class="fa fa-check"></i><b>16.8</b> Standardized error for the null</a></li>
+<li class="chapter" data-level="16.9" data-path="mean-differences-between-two-samples.html"><a href="mean-differences-between-two-samples.html#mean-differences-when-n-is-small"><i class="fa fa-check"></i><b>16.9</b> Mean differences when <span class="math inline">\(n\)</span> is small</a></li>
+<li class="chapter" data-level="16.10" data-path="mean-differences-between-two-samples.html"><a href="mean-differences-between-two-samples.html#data-2"><i class="fa fa-check"></i><b>16.10</b> Data</a></li>
+<li class="chapter" data-level="16.11" data-path="mean-differences-between-two-samples.html"><a href="mean-differences-between-two-samples.html#difference-between-means-1"><i class="fa fa-check"></i><b>16.11</b> Difference between means</a></li>
+<li class="chapter" data-level="16.12" data-path="mean-differences-between-two-samples.html"><a href="mean-differences-between-two-samples.html#hypothesis-test-1"><i class="fa fa-check"></i><b>16.12</b> hypothesis test</a></li>
+<li class="chapter" data-level="16.13" data-path="mean-differences-between-two-samples.html"><a href="mean-differences-between-two-samples.html#estimator-of-the-mean-difference"><i class="fa fa-check"></i><b>16.13</b> Estimator of the mean difference</a></li>
+<li class="chapter" data-level="16.14" data-path="mean-differences-between-two-samples.html"><a href="mean-differences-between-two-samples.html#standardized-error-for-the-null-1"><i class="fa fa-check"></i><b>16.14</b> Standardized error for the null</a></li>
+<li class="chapter" data-level="16.15" data-path="mean-differences-between-two-samples.html"><a href="mean-differences-between-two-samples.html#unequal-variances"><i class="fa fa-check"></i><b>16.15</b> Unequal variances</a></li>
+<li class="chapter" data-level="16.16" data-path="mean-differences-between-two-samples.html"><a href="mean-differences-between-two-samples.html#questions-12"><i class="fa fa-check"></i><b>16.16</b> Questions</a></li>
+<li class="chapter" data-level="16.17" data-path="mean-differences-between-two-samples.html"><a href="mean-differences-between-two-samples.html#practice-6"><i class="fa fa-check"></i><b>16.17</b> Practice</a></li>
+</ul></li>
+<li class="chapter" data-level="17" data-path="mean-differences-across-several-groups.html"><a href="mean-differences-across-several-groups.html"><i class="fa fa-check"></i><b>17</b> Mean differences across several groups</a>
+<ul>
+<li class="chapter" data-level="17.1" data-path="mean-differences-across-several-groups.html"><a href="mean-differences-across-several-groups.html#objective-12"><i class="fa fa-check"></i><b>17.1</b> Objective</a></li>
+<li class="chapter" data-level="17.2" data-path="mean-differences-across-several-groups.html"><a href="mean-differences-across-several-groups.html#different-means-across-several-conditions"><i class="fa fa-check"></i><b>17.2</b> Different means across several conditions</a></li>
+<li class="chapter" data-level="17.3" data-path="mean-differences-across-several-groups.html"><a href="mean-differences-across-several-groups.html#data-3"><i class="fa fa-check"></i><b>17.3</b> Data</a></li>
+<li class="chapter" data-level="17.4" data-path="mean-differences-across-several-groups.html"><a href="mean-differences-across-several-groups.html#difference-between-means-2"><i class="fa fa-check"></i><b>17.4</b> Difference between means</a></li>
+<li class="chapter" data-level="17.5" data-path="mean-differences-across-several-groups.html"><a href="mean-differences-across-several-groups.html#hypothesis-test-2"><i class="fa fa-check"></i><b>17.5</b> hypothesis test</a></li>
+<li class="chapter" data-level="17.6" data-path="mean-differences-across-several-groups.html"><a href="mean-differences-across-several-groups.html#analysis-of-variance-anova"><i class="fa fa-check"></i><b>17.6</b> Analysis of variance (ANOVA)</a></li>
+<li class="chapter" data-level="17.7" data-path="mean-differences-across-several-groups.html"><a href="mean-differences-across-several-groups.html#anova-for-two-groups"><i class="fa fa-check"></i><b>17.7</b> ANOVA for two groups</a></li>
+<li class="chapter" data-level="17.8" data-path="mean-differences-across-several-groups.html"><a href="mean-differences-across-several-groups.html#linear-model"><i class="fa fa-check"></i><b>17.8</b> Linear model</a></li>
+<li class="chapter" data-level="17.9" data-path="mean-differences-across-several-groups.html"><a href="mean-differences-across-several-groups.html#way-anova"><i class="fa fa-check"></i><b>17.9</b> 2-way ANOVA</a></li>
+<li class="chapter" data-level="17.10" data-path="mean-differences-across-several-groups.html"><a href="mean-differences-across-several-groups.html#data-4"><i class="fa fa-check"></i><b>17.10</b> Data</a></li>
+<li class="chapter" data-level="17.11" data-path="mean-differences-across-several-groups.html"><a href="mean-differences-across-several-groups.html#modeling-residuals"><i class="fa fa-check"></i><b>17.11</b> Modeling residuals</a></li>
+<li class="chapter" data-level="17.12" data-path="mean-differences-across-several-groups.html"><a href="mean-differences-across-several-groups.html#difference-between-means-3"><i class="fa fa-check"></i><b>17.12</b> Difference between means</a></li>
+<li class="chapter" data-level="17.13" data-path="mean-differences-across-several-groups.html"><a href="mean-differences-across-several-groups.html#linear-model-1"><i class="fa fa-check"></i><b>17.13</b> Linear model</a></li>
+<li class="chapter" data-level="17.14" data-path="mean-differences-across-several-groups.html"><a href="mean-differences-across-several-groups.html#hypothesis-test-3"><i class="fa fa-check"></i><b>17.14</b> Hypothesis test</a></li>
+<li class="chapter" data-level="17.15" data-path="mean-differences-across-several-groups.html"><a href="mean-differences-across-several-groups.html#variance-components"><i class="fa fa-check"></i><b>17.15</b> Variance components</a></li>
+<li class="chapter" data-level="17.16" data-path="mean-differences-across-several-groups.html"><a href="mean-differences-across-several-groups.html#way-anova-with-interaction"><i class="fa fa-check"></i><b>17.16</b> 2-way ANOVA with interaction</a></li>
+<li class="chapter" data-level="17.17" data-path="mean-differences-across-several-groups.html"><a href="mean-differences-across-several-groups.html#linear-model-2"><i class="fa fa-check"></i><b>17.17</b> Linear model</a></li>
+<li class="chapter" data-level="17.18" data-path="mean-differences-across-several-groups.html"><a href="mean-differences-across-several-groups.html#hypothesis-test-4"><i class="fa fa-check"></i><b>17.18</b> Hypothesis test</a></li>
+<li class="chapter" data-level="17.19" data-path="mean-differences-across-several-groups.html"><a href="mean-differences-across-several-groups.html#variance-components-1"><i class="fa fa-check"></i><b>17.19</b> Variance components</a></li>
+<li class="chapter" data-level="17.20" data-path="mean-differences-across-several-groups.html"><a href="mean-differences-across-several-groups.html#questions-13"><i class="fa fa-check"></i><b>17.20</b> Questions</a></li>
+<li class="chapter" data-level="17.21" data-path="mean-differences-across-several-groups.html"><a href="mean-differences-across-several-groups.html#practice-7"><i class="fa fa-check"></i><b>17.21</b> Practice</a></li>
+</ul></li>
+<li class="chapter" data-level="18" data-path="regression-and-correlation.html"><a href="regression-and-correlation.html"><i class="fa fa-check"></i><b>18</b> Regression and correlation</a>
+<ul>
+<li class="chapter" data-level="18.1" data-path="regression-and-correlation.html"><a href="regression-and-correlation.html#objective-13"><i class="fa fa-check"></i><b>18.1</b> Objective</a></li>
+<li class="chapter" data-level="18.2" data-path="regression-and-correlation.html"><a href="regression-and-correlation.html#correlations"><i class="fa fa-check"></i><b>18.2</b> Correlations</a></li>
+<li class="chapter" data-level="18.3" data-path="regression-and-correlation.html"><a href="regression-and-correlation.html#data-5"><i class="fa fa-check"></i><b>18.3</b> Data</a></li>
+<li class="chapter" data-level="18.4" data-path="regression-and-correlation.html"><a href="regression-and-correlation.html#normal-bivariate"><i class="fa fa-check"></i><b>18.4</b> Normal bivariate</a></li>
+<li class="chapter" data-level="18.5" data-path="regression-and-correlation.html"><a href="regression-and-correlation.html#estimators"><i class="fa fa-check"></i><b>18.5</b> Estimators</a></li>
+<li class="chapter" data-level="18.6" data-path="regression-and-correlation.html"><a href="regression-and-correlation.html#correlation-coefficient"><i class="fa fa-check"></i><b>18.6</b> Correlation coefficient</a></li>
+<li class="chapter" data-level="18.7" data-path="regression-and-correlation.html"><a href="regression-and-correlation.html#hypothesis-contrast"><i class="fa fa-check"></i><b>18.7</b> Hypothesis contrast</a></li>
+<li class="chapter" data-level="18.8" data-path="regression-and-correlation.html"><a href="regression-and-correlation.html#regression-analysis"><i class="fa fa-check"></i><b>18.8</b> Regression analysis</a></li>
+<li class="chapter" data-level="18.9" data-path="regression-and-correlation.html"><a href="regression-and-correlation.html#linear-model-3"><i class="fa fa-check"></i><b>18.9</b> Linear model</a></li>
+<li class="chapter" data-level="18.10" data-path="regression-and-correlation.html"><a href="regression-and-correlation.html#hypothesis-contrast-1"><i class="fa fa-check"></i><b>18.10</b> Hypothesis contrast</a></li>
+<li class="chapter" data-level="18.11" data-path="regression-and-correlation.html"><a href="regression-and-correlation.html#estimators-1"><i class="fa fa-check"></i><b>18.11</b> Estimators</a></li>
+<li class="chapter" data-level="18.12" data-path="regression-and-correlation.html"><a href="regression-and-correlation.html#hypothesis-testing-2"><i class="fa fa-check"></i><b>18.12</b> Hypothesis testing</a></li>
+<li class="chapter" data-level="18.13" data-path="regression-and-correlation.html"><a href="regression-and-correlation.html#stratified-analysis"><i class="fa fa-check"></i><b>18.13</b> Stratified analysis</a></li>
+<li class="chapter" data-level="18.14" data-path="regression-and-correlation.html"><a href="regression-and-correlation.html#multiple-regression"><i class="fa fa-check"></i><b>18.14</b> Multiple Regression</a></li>
+<li class="chapter" data-level="18.15" data-path="regression-and-correlation.html"><a href="regression-and-correlation.html#multiple-regression-interaction"><i class="fa fa-check"></i><b>18.15</b> Multiple Regression interaction</a></li>
+<li class="chapter" data-level="18.16" data-path="regression-and-correlation.html"><a href="regression-and-correlation.html#model-diagnostics"><i class="fa fa-check"></i><b>18.16</b> Model diagnostics</a></li>
+<li class="chapter" data-level="18.17" data-path="regression-and-correlation.html"><a href="regression-and-correlation.html#questions-14"><i class="fa fa-check"></i><b>18.17</b> Questions</a></li>
+<li class="chapter" data-level="18.18" data-path="regression-and-correlation.html"><a href="regression-and-correlation.html#practice-8"><i class="fa fa-check"></i><b>18.18</b> Practice</a></li>
+</ul></li>
+<li class="chapter" data-level="19" data-path="group-work-sessions.html"><a href="group-work-sessions.html"><i class="fa fa-check"></i><b>19</b> Group Work sessions</a>
+<ul>
+<li class="chapter" data-level="19.1" data-path="group-work-sessions.html"><a href="group-work-sessions.html#objectives"><i class="fa fa-check"></i><b>19.1</b> Objectives</a></li>
+<li class="chapter" data-level="19.2" data-path="group-work-sessions.html"><a href="group-work-sessions.html#misophonia-dataset"><i class="fa fa-check"></i><b>19.2</b> Misophonia dataset</a></li>
+<li class="chapter" data-level="19.3" data-path="group-work-sessions.html"><a href="group-work-sessions.html#group-work-session-1-data-description"><i class="fa fa-check"></i><b>19.3</b> Group Work session 1: Data description</a></li>
+<li class="chapter" data-level="19.4" data-path="group-work-sessions.html"><a href="group-work-sessions.html#group-work-session-2-inference"><i class="fa fa-check"></i><b>19.4</b> Group Work session 2: Inference</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Stats theory (SDA)</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="maximum-likelihood" class="section level1 hasAnchor" number="12">
+<h1><span class="header-section-number">Chapter 12</span> Maximum likelihood<a href="maximum-likelihood.html#maximum-likelihood" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="objective-7" class="section level2 hasAnchor" number="12.1">
+<h2><span class="header-section-number">12.1</span> Objective<a href="maximum-likelihood.html#objective-7" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In this chapter we will discuss what an <strong>estimator</strong> is and give some examples. Then we will introduce a method for obtaining <strong>estimators</strong> of the parameters of probability models. This is the <strong>maximum likelihood</strong> method.</p>
+</div>
+<div id="statistic" class="section level2 hasAnchor" number="12.2">
+<h2><span class="header-section-number">12.2</span> Statistic<a href="maximum-likelihood.html#statistic" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><strong>Definition</strong></p>
+<p>A <strong>statistic</strong> is any function of a <strong>random sample</strong>
+<span class="math display">\[T(X_1,X_2, ..., X_n)\]</span></p>
+<p>It usually returns a number.</p>
+<p>Statistics are <strong>random variables</strong> and their <strong>probability distributions</strong> are called <strong>sampling distributions</strong></p>
+<p>Statistics have different functions:</p>
+<ol style="list-style-type: decimal">
+<li><strong>Description</strong> of a sample’s data</li>
+</ol>
+<ul>
+<li>location: <span class="math inline">\(\bar{X}\)</span></li>
+<li>Minimum: <span class="math inline">\(\min\{X_i\}\)</span></li>
+<li>Maximum: <span class="math inline">\(\max\{X_i\}\)</span></li>
+</ul>
+<ol start="2" style="list-style-type: decimal">
+<li><strong>Estimation</strong> of a probability model’s <strong>parameters</strong></li>
+</ol>
+<ul>
+<li>mean: <span class="math inline">\(\bar{X}\)</span> for <span class="math inline">\(\mu\)</span></li>
+<li>variance: <span class="math inline">\(S^2\)</span> for <span class="math inline">\(\sigma^2\)</span></li>
+</ul>
+<ol start="3" style="list-style-type: decimal">
+<li><strong>Inference</strong> to say something about the parameters given the data</li>
+</ol>
+<ul>
+<li>mean: <span class="math inline">\(Z\)</span>, <span class="math inline">\(T\)</span></li>
+<li>variance: <span class="math inline">\(\chi^2\)</span></li>
+</ul>
+<p>Remember: They are all random variables. Every time we take another sample they change their value.</p>
+<p><strong>Definition of estimators</strong></p>
+<p>An <strong>estimator</strong> is a statistic whose observed values are used to estimate the <strong>parameters</strong> of the population distribution on which the sample is defined.</p>
+<p>If we write the population distribution as</p>
+<p><span class="math display">\[X \rightarrow f(x; \theta)\]</span></p>
+<p>then <span class="math inline">\(\theta\)</span> is a parameter and <span class="math inline">\(\Theta\)</span> is a random variable whose observations <span class="math inline">\(\hat{\theta}\)</span> we take as estimations of <span class="math inline">\(\theta\)</span></p>
+<p><span class="math display">\[\hat{\theta} \sim \theta\]</span></p>
+<p>Therefore there are three different quantities that we must consider:</p>
+<ol style="list-style-type: decimal">
+<li><span class="math inline">\(\theta\)</span> is a <strong>parameter</strong> of the population distribution <span class="math inline">\(f(x; \theta)\)</span></li>
+<li><span class="math inline">\(\Theta\)</span> is an <strong>estimator</strong> of <span class="math inline">\(\theta\)</span>: A random variable</li>
+<li><span class="math inline">\(\hat{\theta}\)</span> is the <strong>estimate</strong> of <span class="math inline">\(\theta\)</span>: A realized value of <span class="math inline">\(\Theta\)</span></li>
+</ol>
+<p><img src="figures/estimator.JPG" style="width:100%"  align="center"></p>
+<p><strong>Example (Sample mean)</strong></p>
+<p>When we have a normal random variable</p>
+<p><span class="math display">\[X \rightarrow N(\mu, \sigma^2)\]</span></p>
+<p>we identify the three different quantities:</p>
+<ol style="list-style-type: decimal">
+<li><span class="math inline">\(\mu\)</span> is a <strong>parameter</strong> of the <strong>population</strong> distribution: distribution of <span class="math inline">\(X\)</span>, <span class="math inline">\(N(\mu, \sigma^2)\)</span></li>
+<li><span class="math inline">\(\bar{X}\)</span> is an <strong>estimator</strong> of <span class="math inline">\(\mu\)</span></li>
+<li><span class="math inline">\(\bar{x}=\hat{\mu}\)</span> is the <strong>estimate</strong> of <span class="math inline">\(\mu\)</span></li>
+</ol>
+<p><strong>Example (Sample variance)</strong></p>
+<p>When we have a normal random variable</p>
+<p><span class="math display">\[X \rightarrow N(\mu, \sigma^2)\]</span></p>
+<ol style="list-style-type: decimal">
+<li><span class="math inline">\(\sigma^2\)</span> is a <strong>parameter</strong> of the population distribution</li>
+<li><span class="math inline">\(S^2\)</span> is an <strong>estimator</strong> of <span class="math inline">\(\sigma^2\)</span></li>
+<li><span class="math inline">\(s^2=\hat{\sigma^2}\)</span> is the <strong>estimate</strong> of <span class="math inline">\(\sigma^2\)</span></li>
+</ol>
+</div>
+<div id="properties" class="section level2 hasAnchor" number="12.3">
+<h2><span class="header-section-number">12.3</span> Properties<a href="maximum-likelihood.html#properties" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ol style="list-style-type: decimal">
+<li>An estimator is <strong>unbiased</strong> if it expected value is the parameter</li>
+</ol>
+<p><span class="math display">\[E(\Theta)=\theta\]</span></p>
+<p>For example:</p>
+<ul>
+<li><p><span class="math inline">\(\bar{X}\)</span> is an <strong>unbiased</strong> estimator of <span class="math inline">\(\mu\)</span> because <span class="math inline">\(E(\bar{X})=\mu\)</span></p></li>
+<li><p><span class="math inline">\(S^2\)</span> is an <strong>unbiased</strong> estimator of <span class="math inline">\(\sigma^2\)</span> because <span class="math inline">\(E(S^2)=\sigma^2\)</span></p></li>
+</ul>
+<ol start="2" style="list-style-type: decimal">
+<li>An estimator is <strong>consistent</strong> when its observed values get closer and closer as the sample size is icreased</li>
+</ol>
+<p><span class="math display">\[lim_{n\rightarrow \infty} V(\Theta) = 0\]</span></p>
+<p>For example:</p>
+<ul>
+<li><span class="math inline">\(\bar{X}\)</span> is <strong>consistent</strong> because <span class="math inline">\(V(\bar{X})=\frac{\sigma^2}{n}\rightarrow 0\)</span> when <span class="math inline">\(n \rightarrow \infty\)</span>.</li>
+</ul>
+<ol start="3" style="list-style-type: decimal">
+<li>The mean squared error <span class="math inline">\(mse\)</span> of <span class="math inline">\(\Theta\)</span> is its expected squared difference from the parameter</li>
+</ol>
+<p><span class="math display">\[mse(\Theta)=E([\Theta - \theta]^2)\]</span></p>
+<p>or equivalently is the sum of the errors</p>
+<p><span class="math display">\[mse(\Theta)=se^2 + bias^2\]</span></p>
+<p>where <span class="math inline">\(se=\sqrt{V(\bar{X})}\)</span> is the standard error.</p>
+</div>
+<div id="maximum-likelihood-1" class="section level2 hasAnchor" number="12.4">
+<h2><span class="header-section-number">12.4</span> Maximum likelihood<a href="maximum-likelihood.html#maximum-likelihood-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>How can obtain <strong>estimators</strong> of the parameters of <strong>any</strong> probability model?</p>
+<p><strong>Example (Laser)</strong></p>
+<p>Imagine we design a laser with a diameter of <span class="math inline">\(1mm\)</span> that we want to use for clinical applications.</p>
+<p>We want to characterize the diameter of a piercing in a tissue made with the laser and take a random sample of <span class="math inline">\(30\)</span> cuts made with the laser. Here are the results</p>
+<pre><code>##  [1] 1.11 1.64 1.20 1.79 1.89 1.01 1.31 1.81 1.34 1.25 1.92 1.24 1.49 1.36 1.03
+## [16] 1.82 1.09 1.01 1.14 1.91 1.80 1.51 1.44 1.98 1.46 1.53 1.33 1.39 1.12 1.04</code></pre>
+<p>and the histogram</p>
+<p><img src="_main_files/figure-html/unnamed-chunk-83-1.png" width="672" /></p>
+<p>What is a probability function that can describe the data?</p>
+<p>For this we follow the following process:</p>
+<ol style="list-style-type: decimal">
+<li>we propose <strong>a model</strong> that depends on parameters</li>
+<li>we derive the <strong>estimators</strong> for the parameters, by maximum likelihood or the method of moments.</li>
+<li>finally we use the estimator to <strong>estimate the parameters</strong> with the data.</li>
+</ol>
+<p><em>Proposing a probability density</em></p>
+<p>In many applications, we can propose the form of a probability density that depends on some parameters. Proposing a probability model is done by following <strong>general properties</strong> of the observations, or what we expect to observe. Modelling requires experience, skill and knowledge of several mathematical functions. However, in most cases <strong>well known models</strong> are typically applied.</p>
+<p><strong>Example (Laser)</strong></p>
+<p>In our example, we may consider for example that maximum probability should be given to diameters of <span class="math inline">\(x=1mm\)</span>, and that the diameters should decrease as the inverse power of some <strong>unknown</strong> parameter <span class="math inline">\(\alpha\)</span>, with a limit of <span class="math inline">\(2mm\)</span> beyond which the probability is <span class="math inline">\(0\)</span>.</p>
+<p>A suitable probability density distribution is</p>
+<p><span class="math display">\[
+    f(x)= 
+\begin{cases}
+\frac{1}{\alpha}(x-1)^{\frac{1}{\alpha}-1},&amp; \text{if } x \in (1,2)\\
+    0,&amp; x \notin (1,2)\\
+\end{cases}
+\]</span></p>
+<p>Where <span class="math inline">\(\alpha\)</span> is a parameter. This is a probability density because it integrates to one and it is positive. In particular, for <span class="math inline">\(\alpha=2\)</span> we can plot it</p>
+<p><img src="_main_files/figure-html/unnamed-chunk-84-1.png" width="672" /></p>
+<p><em>Deriving the estimators</em></p>
+<p>If we perform a <span class="math inline">\(n\)</span>-sample: <span class="math inline">\(X_1,...X_n\)</span>, how should we combine the data for obtaining the best value of <span class="math inline">\(\alpha\)</span>?</p>
+<p>Many values of the parameters could explain the data. We are interested in <strong>one criterion</strong> to choose one particular value.</p>
+<p><img src="_main_files/figure-html/unnamed-chunk-85-1.png" width="672" /></p>
+<p>The <strong>maximum likelihood</strong> method that gives us the estimator for <span class="math inline">\(\alpha\)</span></p>
+<p><span class="math display">\[\hat{\alpha}_{ml}\]</span></p>
+</div>
+<div id="maximum-likelihood-2" class="section level2 hasAnchor" number="12.5">
+<h2><span class="header-section-number">12.5</span> Maximum likelihood<a href="maximum-likelihood.html#maximum-likelihood-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The objective is to find the value of the parameter that we <strong>believe</strong> can <strong>best</strong> represent the data.</p>
+<p>The method of maximum likelihood is based on the search for the parameter value that makes the <strong>observation</strong> of the sample the most <strong>probable</strong>.</p>
+<p><strong>Maximum likelihood step 1</strong></p>
+<p>We calculate the probability of having observed the <span class="math inline">\(n\)</span>-sample: <span class="math inline">\(x_1,...x_n\)</span>. It is the product of probabilities because observations are independent of one another:</p>
+<p><span class="math inline">\(P(M=x_1,...x_n)=P(X=x_1)P(X=x_2)...P(X=x_n)\)</span>
+<span class="math display">\[=f(x_1;\alpha)f(x_2;\alpha) ...f(x_n;\alpha)\]</span></p>
+<p>We call this function the <strong>likelihood function</strong> and we consider that:</p>
+<ul>
+<li>Once the data are observed, they are <strong>fixed</strong></li>
+<li>The unknown is <span class="math inline">\(\alpha\)</span></li>
+</ul>
+<p><span class="math display">\[L(\alpha)= \Pi_{i=1..n} f(x_i; \alpha)\]</span></p>
+<p><strong>Example (Laser)</strong></p>
+<p>For the laser experiment the likelihood is</p>
+<p><span class="math inline">\(L(\alpha;x_1,..x_n)= \frac{1}{\alpha^n} \Pi_{i=1..n} (x_i-1)^{\frac{1-\alpha}{\alpha}}= \frac{1}{\alpha^n} \{(x_1-1)(x_2-1)...(x_n-1)\}^{\frac{1-\alpha}{\alpha}}\)</span></p>
+<p><strong>Maximum likelihood step 2</strong></p>
+<p>We then ask: what is the value of <span class="math inline">\(\alpha\)</span> that makes the observed sample the most probable event? We thus want to maximize <span class="math inline">\(L(\alpha)\)</span> with respect to <span class="math inline">\(\alpha\)</span>. Since we have the multiplication of many factors is easier to maximize the logarithm of <span class="math inline">\(L(\alpha)\)</span>. This is called the the log-likelihood function:</p>
+<p><span class="math display">\[\ln L(\alpha;x_1,..x_n)\]</span></p>
+<p><strong>Example (Laser)</strong></p>
+<p>In the laser example, we therefore take the logarithm and obtain the <strong>Log-likelihood</strong></p>
+<p><span class="math display">\[\ln L(\alpha;x_1,..x_n)= -n \ln(\alpha) + {\frac{1-\alpha}{\alpha}} \Sigma_{i=1...n} \ln (x_i-1)\]</span></p>
+<p><strong>Maximum likelihood step 3</strong></p>
+<p>Finally we <strong>maximize</strong> the log-likelihood with respect to the parameter. Therefore, we differentiate the log-likelihood with respect to the parameter <span class="math inline">\(\alpha\)</span>, equate to zero and solve for the maximum.</p>
+<p><span class="math display">\[\frac{d \ln L(\alpha)}{d \alpha} \big|_{\hat{\alpha}}=0 \]</span>
+The value of the parameter at the maximum is called the <strong>maximum likelihood estimate</strong> for the parameter and its written with a hat <span class="math inline">\(\hat{\alpha}\)</span>.</p>
+<p><strong>Example (Laser)</strong></p>
+<p>We derive the log-likelihood</p>
+<p><span class="math display">\[\frac{d \ln L(\alpha)}{d \alpha}= -\frac{n}{\alpha} - \frac{1}{\alpha^2}  \Sigma_{i=1...n} \ln (x_i)\]</span>
+The maximum is where the derivative is <span class="math inline">\(0\)</span>. This maximum is the value of our estimator <span class="math inline">\(\hat{\alpha}_{ml}\)</span>.</p>
+<p><span class="math display">\[\hat{\alpha}_{ml}=-\frac{1}{n}\sum_{i=1}^n \ln (x_i-1)\]</span></p>
+<p>The estimator of the parameter is therefore (note the capital letters)</p>
+<p><span class="math display">\[A=-\frac{1}{n}\sum_{i=1}^n \ln (X_i-1)\]</span></p>
+<p>Which is a random variable, function of the random sample</p>
+<p><span class="math display">\[(X_1, X_2, ... X_n)\]</span></p>
+<p><em>Estimating the parameters with the data</em></p>
+<p>In our example, we then have the observation of the random sample as a set of 30 numbers <span class="math inline">\((x_1, x_2, ...x_{30})\)</span>, we therefore substitute the numbers in the estimator and this will give us its observed value.</p>
+<p><span class="math inline">\(\hat{\alpha}_{ml}=-\frac{1}{n}\{ \ln (1.11-1)+ \ln (1.64-1)+...\ln (1.04-1)\}=1.320\)</span></p>
+<p>Therefore the maximum likelihood estimate of the parameter is <span class="math inline">\(1.320\)</span>. If we substitute this value in the probability function, and overlay it with the histogram, we can see that it gives us a suitable description of the data.</p>
+<p><img src="_main_files/figure-html/unnamed-chunk-86-1.png" width="672" /></p>
+<p>Let’s look at the log-likelihood function for our <span class="math inline">\(30\)</span> laser cuts. Remember, data is fixed by our experiment and <span class="math inline">\(\alpha\)</span> varies. The function has a maximum. However, if we take another sample this function changes and so does its maximum.</p>
+<p><img src="_main_files/figure-html/unnamed-chunk-87-1.png" width="672" /></p>
+<p><strong>Maximum likelihood: History</strong></p>
+<p>To infer the true position of Ceres at a given time, Gauss derived the error function</p>
+<p><span class="math display">\[f(x; \mu, \sigma^2)= \frac{1}{\sigma \sqrt{2 \pi}} e^{-\frac{1}{2\sigma^2} (x-\mu)^2}\]</span></p>
+<p>Where the <strong>true</strong> position of Ceres was the mean <span class="math inline">\(\mu\)</span>. How can we combine the data for having the best estimate for the position of Ceres?</p>
+<p>What is the statistic that can describe best its position?</p>
+<p><img src="figures/cerestime.JPG" style="width:100%"  align="center"></p>
+<p>This question can be formulated as: What is the maximum likelihood estimate of <span class="math inline">\(\mu\)</span> for a random normal variable?</p>
+<p><strong>Maximum likelihood of the normal distribution</strong></p>
+<p>For a random normal variable</p>
+<p><span class="math display">\[X \rightarrow N(\mu, \sigma^2)\]</span>.</p>
+<p>What are the estimators of <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\sigma^2\)</span> that maximize the probability of the observed data?</p>
+<p><img src="figures/normpar.JPG" style="width:35%"  align="center"></p>
+<p>We follow the maximum likelihhod method:</p>
+<ol style="list-style-type: decimal">
+<li>The likelihood function, or the probability of having observed the sample <span class="math inline">\((x_1, ....x_n)\)</span> is</li>
+</ol>
+<p><span class="math inline">\(L(\mu, \sigma^2)=\Pi_{i=1..n} f(x_i;\mu,\sigma)\)</span></p>
+<p><span class="math display">\[=\big( \frac{1}{\sigma \sqrt{2 \pi}}\big)^n e^{-\frac{1}{2\sigma^2} \sum_i(x_i-\mu)^2}\]</span></p>
+<ol start="2" style="list-style-type: decimal">
+<li>We take the log of <span class="math inline">\(L\)</span>, and compute the <strong>log-likelihood</strong></li>
+</ol>
+<p><span class="math display">\[\ln L(\mu, \sigma^2)=-n \ln(\sigma \sqrt{2 \pi})-\frac{1}{2\sigma^2} \Sigma_i(x_i-\mu)^2\]</span></p>
+<p>The estimates of <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\sigma^2\)</span> are where the likelihood is maximum. They give the highest probability for the data.</p>
+<ol start="3" style="list-style-type: decimal">
+<li>We differentiate with respect to <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\sigma^2\)</span>. These two derivatives give us two equations, one for each of the parameters. For deriving respect to <span class="math inline">\(\sigma^2\)</span>, it is easier to make a substitution <span class="math inline">\(t=\sigma^2\)</span>.</li>
+</ol>
+<ol style="list-style-type: lower-alpha">
+<li><p><span class="math inline">\(\frac{d \ln L(\mu, \sigma^2)}{d\mu}=\frac{1}{\sigma^2} \sum_i(x_i-\mu)\)</span></p></li>
+<li><p><span class="math inline">\(\frac{d \ln L(\mu, \sigma^2)}{d\sigma^2}=-\frac{n}{2 \sigma^2}+\frac{1}{2\sigma^4} \sum_i(x_i-\mu)^2\)</span></p></li>
+</ol>
+<p>The derivatives are <span class="math inline">\(0\)</span> at the maxima</p>
+<ol style="list-style-type: lower-alpha">
+<li><span class="math inline">\(\frac{1}{\hat{\sigma}^2} \sum_i(x_i-\hat{\mu})=0\)</span></li>
+<li><span class="math inline">\(-\frac{n}{2 \hat{\sigma}^2}+\frac{1}{2\hat{\sigma}^4} \sum_i(x_i-\hat{\mu})^2=0\)</span></li>
+</ol>
+<p>solving both equations for the parameters we find for <span class="math inline">\(\mu\)</span></p>
+<p><span class="math display">\[\hat{\mu}_{ml}=\frac{1}{n}\sum_i x_i=\bar{x}\]</span></p>
+<p>and for <span class="math inline">\(\sigma^2\)</span></p>
+<p><span class="math display">\[\hat{\sigma}^2_{ml}=\frac{1}{n}\sum_i(x_i-\bar{x})^2\]</span></p>
+<p>Therefore the average <span class="math inline">\(\bar{X}\)</span> is the maximum likelihood estimator of the mean <span class="math inline">\(\mu\)</span>. Gauss showed that the statistics that we should trust most (that with highest likelihood) for the real position of the Ceres was the <strong>average</strong>. Gauss solving the position of Ceres, not only discover the normal distribution, but also created the regression analysis and showed the importance of the average. It is due to him that we use the average for many things, and not some other statistic.</p>
+<p>In addition, the maximum likelihood estimator of <span class="math inline">\(\sigma^2\)</span> is a <strong>biased</strong> estimator because it can be shown that <span class="math display">\[E(\hat{\sigma}^2_{ml})=\sigma^2+\frac{\sigma^2}{n}\neq \sigma^2\]</span></p>
+<p>It was Fisher who showed that this estimator was important, as he used it to generalize the central limit theorem</p>
+</div>
+<div id="questions-9" class="section level2 hasAnchor" number="12.6">
+<h2><span class="header-section-number">12.6</span> Questions<a href="maximum-likelihood.html#questions-9" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><strong>1)</strong> An estimator is not</p>
+<p><strong><span class="math inline">\(\qquad\)</span>a:</strong> a statistic;
+<strong><span class="math inline">\(\qquad\)</span>b:</strong> a random variable;
+<strong><span class="math inline">\(\qquad\)</span>c:</strong> discrete;
+<strong><span class="math inline">\(\qquad\)</span>d:</strong> an observation of the parameter;</p>
+<p><strong>2)</strong> An estimator is unbiased if</p>
+<p><strong><span class="math inline">\(\qquad\)</span>a:</strong> it is the parameter that it estimates;
+<strong><span class="math inline">\(\qquad\)</span>b:</strong> depends on <span class="math inline">\(1/n\)</span>;
+<strong><span class="math inline">\(\qquad\)</span>c:</strong> its variance is small;
+<strong><span class="math inline">\(\qquad\)</span>d:</strong> its expected value is the parameter it estimates;</p>
+<p><strong>3)</strong> An estimator is consistent if</p>
+<p><strong><span class="math inline">\(\qquad\)</span>a:</strong> it is the parameter that it estimates;
+<strong><span class="math inline">\(\qquad\)</span>b:</strong> depends on <span class="math inline">\(1/n\)</span>;
+<strong><span class="math inline">\(\qquad\)</span>c:</strong> its variance is small;
+<strong><span class="math inline">\(\qquad\)</span>d:</strong> its expected value is the parameter it estimates;</p>
+<p><strong>4)</strong> The maximum likelihood method</p>
+<p><strong><span class="math inline">\(\qquad\)</span>a:</strong> Produces estimators based on the probability of the observations;
+<strong><span class="math inline">\(\qquad\)</span>b:</strong> produces unbiased estimators;
+<strong><span class="math inline">\(\qquad\)</span>c:</strong> produces consistent estimators;
+<strong><span class="math inline">\(\qquad\)</span>d:</strong> produces estimators equal to those of the method of moments;</p>
+</div>
+<div id="exercises-10" class="section level2 hasAnchor" number="12.7">
+<h2><span class="header-section-number">12.7</span> Exercises<a href="maximum-likelihood.html#exercises-10" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="exercise-1-9" class="section level4 hasAnchor" number="12.7.0.1">
+<h4><span class="header-section-number">12.7.0.1</span> Exercise 1<a href="maximum-likelihood.html#exercise-1-9" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Take a random variable with the following probability density function</p>
+<p><span class="math display">\[
+f(x)=
+\begin{cases}
+    (1+\theta)x^\theta,&amp; \text{if } x\in (0,1)\\
+    0,&amp;  x\notin (0,1)
+\end{cases}
+\]</span></p>
+<ul>
+<li><p>What is the maximum likelihood estimate for <span class="math inline">\(\theta\)</span>?</p></li>
+<li><p>If we take a <span class="math inline">\(5\)</span>-sample with observations
+<span class="math inline">\(x_1 = 0.92; \qquad x_2 = 0.79; \qquad x_3 = 0.90; \qquad x_4 = 0.65; \qquad x_5 = 0.86\)</span></p></li>
+</ul>
+<p>What is the estimated value of the parameter <span class="math inline">\(\theta\)</span>?</p>
+<ul>
+<li>Compute <span class="math inline">\(E(X)=\mu\)</span> as a function of <span class="math inline">\(\theta\)</span>. What is the maximum likelihood estimate for <span class="math inline">\(\mu\)</span>?</li>
+</ul>
+</div>
+<div id="exercise-2-9" class="section level4 hasAnchor" number="12.7.0.2">
+<h4><span class="header-section-number">12.7.0.2</span> Exercise 2<a href="maximum-likelihood.html#exercise-2-9" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>For a random variable with a binomial probability function</p>
+<p><span class="math display">\[f(x; p)=\binom n x p^x(1-p)^{n-x}\]</span></p>
+<ul>
+<li><p>What is the maximum-likelihood estimator of <span class="math inline">\(p\)</span> for a sample of size <span class="math inline">\(1\)</span> of this random variable?</p></li>
+<li><p>In <strong>one</strong> exam of <span class="math inline">\(100\)</span> students we observed <span class="math inline">\(x_1=68\)</span> students that passed the exam. What is the estimate of the <span class="math inline">\(p\)</span>?</p></li>
+</ul>
+</div>
+<div id="exercise-3-6" class="section level4 hasAnchor" number="12.7.0.3">
+<h4><span class="header-section-number">12.7.0.3</span> Exercise 3<a href="maximum-likelihood.html#exercise-3-6" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Take a random variable with the following probability density function</p>
+<p><span class="math display">\[
+    f(x)= 
+\begin{cases}
+    \lambda e^{-\lambda x},&amp; \text{if } 0 \leq\\
+    0,&amp; otherwise 
+\end{cases}
+\]</span></p>
+<ul>
+<li><p>What is the maximum likelihood estimate for <span class="math inline">\(\lambda\)</span>?</p></li>
+<li><p>If we take a <span class="math inline">\(5\)</span>-sample with observations
+<span class="math inline">\(x_1 = 0.223 \qquad x_2 = 0.681; \qquad x_3 = 0.117; \qquad x_4 = 0.150; \qquad x_5 = 0.520\)</span></p></li>
+</ul>
+<p>What is the estimated value of the parameter <span class="math inline">\(\lambda\)</span>?</p>
+<ul>
+<li><p>What is the maximum likelihood estimate of the parameter <span class="math inline">\(\alpha=\frac{n}{\lambda}\)</span></p></li>
+<li><p>Is <span class="math inline">\(\alpha\)</span> an unbiased and consistent estimator of the mean of the sample sum <span class="math inline">\(E(Y)\)</span>, where <span class="math inline">\(Y=\sum_1^n X_i\)</span>?</p></li>
+</ul>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="central-limit-theorem.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="interval-estimation.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/12-MaximumLikelihood.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

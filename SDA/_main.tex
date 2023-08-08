@@ -4,9 +4,9 @@
 %
 \documentclass[
 ]{book}
-\title{Stats theory (SDA)}
+\title{Statistical Data Analysis}
 \author{Alejandro Caceres}
-\date{2023-07-28}
+\date{2023-08-08}
 
 \usepackage{amsmath,amssymb}
 \usepackage{lmodern}
@@ -40,7 +40,7 @@
 \IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
 \IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
 \hypersetup{
-  pdftitle={Stats theory (SDA)},
+  pdftitle={Statistical Data Analysis},
   pdfauthor={Alejandro Caceres},
   hidelinks,
   pdfcreator={LaTeX via pandoc}}
@@ -129,23 +129,37 @@
 \hypertarget{about}{%
 \chapter{About}\label{about}}
 
-The course is divided into \textbf{theory} and \textbf{practical} classes (Bootcamps). The classes on theory are subdivided into statistics (Stats), machine learning, and Bayesian inference. Here, are the times, schedules, and content for the statistics theory classes.
+This book serves as the course material for statistical data analysis (SDA). The course is designed for students enrolled in the Master of Multidisciplinary Research in Experimental Sciences program at the Barcelona Institute of Science and Technology (\href{https://bist.eu/}{BIST}).
 
-\textbf{Stats theory} classes comprise a total of 30 hours: 24 plenary lectures (24 hours) divided in
+The primary objective of the course is to provide students with a comprehensive and unified understanding of statistical thinking. Emphasis is placed on both conceptual and procedural levels of comprehension. Students are expected to have prior exposure to basic statistical concepts at the degree level and/or related mathematical procedures.
 
-\begin{itemize}
+Statistics is expressed in mathematical language and implemented using programming languages. While we will utilize both grammars, this is not a mathematics or programming course. The main goal is to grasp the application of statistical thinking and its solutions in scientific inquiry. Having established this, the course aims to help develop a proficient use of both mathematical concepts and programming functions without focusing on theorem demonstrations or code compilations. Our focus lies in understanding nature, and we need the right prose to effectively communicate about it.
+
+\hypertarget{how}{%
+\section{How}\label{how}}
+
+The course is typically divided into \textbf{theory} and \textbf{practical} classes (Bootcamps). The classes on theory are subdivided into statistics (the present material) and complemented with introduction to machine learning, and Bayesian inference.
+
+The statistics theory is covered in three weeks of intense work. They comprise a total of 30 hours: 24 plenary lectures (24 hours) divided in
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
 \item
   Descriptive statistics and probability (4 days)
 \item
+  Group work session 1 (3 hours)
+\item
   Inference (4 days)
 \item
-  2 group work sessions (6 hours)
-\end{itemize}
+  Group work session 2 (3 hours)
+\end{enumerate}
 
-There will be a written exam on the \textbf{31st of November}.
+Evaluation: There will be a written exam on the \textbf{31st of October} and a report of group practicals.
 
 \hypertarget{schedule}{%
-\section{Schedule:}\label{schedule}}
+\section{Schedule}\label{schedule}}
+
+\includegraphics{./figures/calendario.png}
 
 \hypertarget{recommended-reading-list}{%
 \section{Recommended reading list}\label{recommended-reading-list}}
@@ -163,7 +177,7 @@ In this chapter, we will introduce tools for describing data.
 
 We will do so using tables, figures, and descriptive statistics of central tendency and dispersion.
 
-We will also introduce key concepts in statistics such as randomized experiments, observations, outcomes, and absolute and relative frequencies.
+We will also introduce key concepts in statistics such as random experiments, observations, outcomes, and absolute and relative frequencies.
 
 \hypertarget{scientific-method}{%
 \section{Scientific method}\label{scientific-method}}
@@ -186,10 +200,9 @@ The method has three main human activities:
 
 Their complex interaction and results are the basis of \emph{scientific activity}.
 
-\hypertarget{statistics}{%
-\section{Statistics}\label{statistics}}
+\includegraphics{./figures/stats.JPG}
 
-Statistics deals with the interaction between \emph{models} and \emph{data} (the bottom part of the figure).
+\textbf{Statistics} deals with the interaction between \emph{models} and \emph{data} (the bottom part of the figure).
 
 The statistical questions are:
 
@@ -369,8 +382,8 @@ Each observation is the result of a randomized experiment: measurement of the le
 ## 5       4  9 0.07317073
 \end{verbatim}
 
-\hypertarget{accumulated-absolute-and-relative-frequencies}{%
-\section{Accumulated absolute and relative frequencies}\label{accumulated-absolute-and-relative-frequencies}}
+\hypertarget{absolute-and-relative-cumulative-frequencies}{%
+\section{Absolute and relative cumulative frequencies}\label{absolute-and-relative-cumulative-frequencies}}
 
 Misophonia severity is \textbf{categorical} \textbf{ordinal} because its results can be ordered relative to its degree.
 
@@ -727,6 +740,8 @@ In the boxplot, the values of the results are on the y-axis. The IQR is the box,
 
 \textbf{\(\qquad\)a:} \((-1.00, 21.30)\); \textbf{\(\qquad\)b:} \((-1.00, 7.02)\); \textbf{\(\qquad\)c:} \((7.02, 7.96)\); \textbf{\(\qquad\)d:} \((7.02, 14.22)\)
 
+\includegraphics{./figures/box.png}
+
 \textbf{2)} The main disadvantage of a histogram is that:
 
 \textbf{\(\qquad\) a :} Depends on the size of the bin ; \textbf{\(\qquad\)b :} Cannot be used for categorical variables;
@@ -811,15 +826,15 @@ Answer the following questions:
 \end{itemize}
 
 \hypertarget{practice}{%
-\subsubsection{Practice}\label{practice}}
+\section{Practice}\label{practice}}
 
-Load misophonia data data\_0.txt
+Load misophonia data from \url{https://alejandro-isglobal.github.io/SDA/data/data_0.txt}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
 \tightlist
 \item
-  Extract misophonia variable (Misofonia)
+  Extract misophonia variable (Misofonia.dic)
 \end{enumerate}
 
 \begin{itemize}
@@ -842,10 +857,12 @@ Load misophonia data data\_0.txt
   Calculate its mean, standard deviation and make a histogram
 \item
   Calculate its median and inter-quartile range
+\item
+  Draw a boxplot
 \end{itemize}
 
 \hypertarget{probability}{%
-\chapter{probability}\label{probability}}
+\chapter{Probability}\label{probability}}
 
 In this chapter we will introduce the concept of probability from relative frequencies.
 
@@ -1059,6 +1076,8 @@ This probability \textbf{follows} from the fact that the outcome of each die is 
 
 The motivation of the frequentist definition is \textbf{empirical} (data) while that of the classical definition is \textbf{rational} (models). We often combine both approaches (inference and deduction) to find out the probabilities of our random experiment.
 
+\includegraphics{./figures/prob.JPG}
+
 \hypertarget{definition-of-probability}{%
 \section{Definition of probability}\label{definition-of-probability}}
 
@@ -1235,6 +1254,8 @@ To write joint probabilities of non mutually exclusive events (\(A \cap B \neq \
 \(S=\{A\cap B, A \cap B', A'\cap B, A'\cap B'\}\)
 
 \textbf{Let's consider the Ven diagram} for the example where \(A\) is the event that corresponds to drawing a number less than or equal to 3 and \(B\) corresponds to an even number:
+
+\includegraphics{./figures/Venn.JPG}
 
 The \textbf{marginals} of \(A\) and \(B\) are the probability of \(A\) and the probability of \(B\), respectively:
 
@@ -1521,7 +1542,7 @@ We have carried out a randomized experiment \(10\) times, which consists of reco
 \end{itemize}
 
 \hypertarget{practice-1}{%
-\subsection{Practice}\label{practice-1}}
+\section{Practice}\label{practice-1}}
 
 Load misophonia data data\_0.txt
 
@@ -1535,7 +1556,7 @@ Load misophonia data data\_0.txt
 \end{itemize}
 
 \hypertarget{conditional-probability}{%
-\chapter{conditional probability}\label{conditional-probability}}
+\chapter{Conditional probability}\label{conditional-probability}}
 
 In this chapter, we will introduce conditional probability.
 
@@ -2025,6 +2046,8 @@ The denominator is the total probability rule for the marginal \(P(B)\), in term
 
 The total probability rule can also be illustrated using a \textbf{conditional} tree.
 
+\includegraphics{./figures/treetot.PNG}
+
 \textbf{Rule of total probability} for the marginal of \(B\): In how many ways can I get the result \(B\)?
 
 \(P(B)=P(B|A)P(A)+P(B|A')P(A')\)
@@ -2261,6 +2284,8 @@ We defined central tendency (average), dispersion (sample variance) and the freq
 
 In terms of probabilities, how are this quantities defined?
 
+\includegraphics{./figures/randomvar.JPG}
+
 \hypertarget{random-variable}{%
 \section{Random variable}\label{random-variable}}
 
@@ -2455,6 +2480,8 @@ We used the \textbf{average} to measure the centre of gravity of the \textbf{dat
 The \textbf{mean} (\(\mu\)) or expected value of a discrete random variable \(X\), \(E(X)\), with mass function \(f(x)\) is given by
 
 \[ \mu = E(X)= \sum_{i=1}^M x_i f(x_i) \]
+
+\includegraphics{./figures/mu.png}
 
 It is the center of gravity of the \textbf{probabilities}: The point where probability loading on a road are balanced.
 
@@ -2703,6 +2730,8 @@ In general, we define the \textbf{q-quantile} as the value \(x_{p}\) \textbf{und
 
 \hypertarget{summary}{%
 \section{Summary}\label{summary}}
+
+\includegraphics{./figures/randomvarsum.JPG}
 
 \begin{longtable}[]{@{}
   >{\centering\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.43}}
@@ -4364,6 +4393,8 @@ Micrometers are small enough so
   each micrometer can be then be considered a \textbf{Bernoulli trial}
 \end{enumerate}
 
+\includegraphics{./figures/Pois.JPG}
+
 \textbf{From the Binomial to the Poisson probability function}
 
 The probability of observing \(X\) impurities in \(n=10,000\mu\) (1cm) approximately follows a binomial distribution
@@ -4676,6 +4707,8 @@ in R pexp(2,2)
 
 \textbf{\(\qquad\)a:} \(2\); \textbf{\(\qquad\)b:} \(3\); \textbf{\(\qquad\)c:} \(4\); \textbf{\(\qquad\)d:} \(5\)
 
+\includegraphics{./figures/exp.png}
+
 \hypertarget{exercises-6}{%
 \section{Exercises}\label{exercises-6}}
 
@@ -4739,6 +4772,8 @@ Data was available only for the month of January. After which Ceres would disapp
 
 Gauss had to account for the errors in the position of ceres at a given day due to measurement
 
+\includegraphics{./figures/ceres.JPG}
+
 Gauss supposed that
 
 \begin{enumerate}
@@ -4784,7 +4819,7 @@ So, we arrive at the following definition.
 
 A random variable \(X\) defined on the real numbers has a density \textbf{Normal} if it takes the form
 
-\[f(x; \mu, \sigma^2)=\frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{(x-\mu)^2}{2\sigma^2}}, x \in {\Bbb R}\]
+\[f(x; \mu, \sigma^2)=\frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{(x-\mu)^2}{2\sigma^2}}, x \in {\mathbb R}\]
 
 The variable has
 
@@ -4891,6 +4926,8 @@ in R qnorm(0.25, 165, 8)
   \(x\) values that fall farther than 3\(\sigma\) are considered \textbf{extremely rare} \(0.2\%\)
 \end{enumerate}
 
+\includegraphics{./figures/probs.png}
+
 \textbf{Example (women's height)}
 
 We can define the limits of \textbf{common observations} for the distribution of women's height in the population.
@@ -4931,7 +4968,7 @@ We can define the limits of \textbf{common observations} for the distribution of
 
 The standard normal density is the particular density from the normal family
 
-\[f(x; \mu, \sigma^2)=\frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{(x-\mu)^2}{2\sigma^2}}, x \in {\Bbb R}\]
+\[f(x; \mu, \sigma^2)=\frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{(x-\mu)^2}{2\sigma^2}}, x \in {\mathbb R}\]
 
 It is therefore the density with
 
@@ -4972,6 +5009,8 @@ Therefore, for any \(X \rightarrow N(\mu, \sigma^2)\)
 
 \[Z=\frac{X-\mu}{\sigma} \rightarrow N(0, 1) \]
 
+\includegraphics{./figures/stand.png}
+
 You can demonstrate this by replacing \(x=\sigma z+\mu\) and \(dx=\sigma dz\) in the probability expression we have
 
 \(P(x\leq X \leq x +dx)=P(z\leq Z \leq z +dz)\)
@@ -4990,9 +5029,13 @@ is the \textbf{error} function defined by
 
 Because the standard distribution is special and will appear often then we use the letter \(\phi\) for it.
 
+\includegraphics{./figures/st.png}
+
 You can find it in most computer programs. in R is pnorm(x) with the default parameters, 0 and 1.
 
 We usually define the limits of the \textbf{most common observations} for the standard variable
+
+\includegraphics{./figures/phi.JPG}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi})}
@@ -5806,6 +5849,7 @@ To solve this equation we need two steps. \textbf{First}, we need to know the \t
 We \textbf{then} need \textbf{standardize} \(\bar{X}\). Remember that to standardize a normal variable we subtract its mean an divide it by its standard deviation.
 
 \[Z=\frac{\bar{X}-E(\bar{X})}{\sqrt{V(\bar{X})}} =\frac{\bar{X}-\mu}{\frac{\sigma}{\sqrt{n}}}  \rightarrow N(0,1)\]
+\includegraphics{./figures/phi.JPG}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -6123,6 +6167,8 @@ Therefore there are three different quantities that we must consider:
   \(\hat{\theta}\) is the \textbf{estimate} of \(\theta\): A realized value of \(\Theta\)
 \end{enumerate}
 
+\includegraphics{./figures/estimator.JPG}
+
 \textbf{Example (Sample mean)}
 
 When we have a normal random variable
@@ -6375,6 +6421,8 @@ Where the \textbf{true} position of Ceres was the mean \(\mu\). How can we combi
 
 What is the statistic that can describe best its position?
 
+\includegraphics{./figures/cerestime.JPG}
+
 This question can be formulated as: What is the maximum likelihood estimate of \(\mu\) for a random normal variable?
 
 \textbf{Maximum likelihood of the normal distribution}
@@ -6384,6 +6432,8 @@ For a random normal variable
 \[X \rightarrow N(\mu, \sigma^2)\].
 
 What are the estimators of \(\mu\) and \(\sigma^2\) that maximize the probability of the observed data?
+
+\includegraphics{./figures/normpar.JPG}
 
 We follow the maximum likelihhod method:
 
@@ -6743,6 +6793,8 @@ Now, we can leave out \(\alpha=0.01\) probability, \(0.005\) on each side. There
 \((l,u) = (\bar{x} - z_{0.005}\frac{\sigma}{\sqrt{n}},\bar{x} + z_{0.005}\frac{\sigma}{\sqrt{n}})\)
 
 \[= (\bar{x} - 2.58\frac{\sigma}{\sqrt{n}},\bar{x} + 2.58\frac{\sigma}{\sqrt{n}})\]
+
+\includegraphics{./figures/phi.JPG}
 
 where \(z_{0.005}=\phi^{-1}(0.995)=\) qnorm(0.995). We can also write it as
 
@@ -9178,7 +9230,7 @@ we aim to measure \(Y\) several times under two different conditions or groups \
 
 \textbf{Example (leptin)}
 
-Leptin is an adipose tissue hormone that creates the sensation of satiety after eating. We want to study the serum leptin levels in obese children (PMID: 18755049) under different conditions, such as sex. We therefore assume two conditions: \(A:female\) and \(B:male\) and that
+Leptin is an adipose tissue hormone that creates the sensation of satiety after eating. We want to study the serum leptin levels in obese children \href{https://pubmed.ncbi.nlm.nih.gov/18755049/}{(PMID: 18755049)} under different conditions, such as sex. We therefore assume two conditions: \(A:female\) and \(B:male\) and that
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi})}
@@ -9415,7 +9467,7 @@ Finally, you would see that violin plots are also widely used. These are boxplot
 \hypertarget{mean-differences-when-n-is-small}{%
 \section{\texorpdfstring{Mean differences when \(n\) is small}{Mean differences when n is small}}\label{mean-differences-when-n-is-small}}
 
-In a study that wanted to test the effect of leptin in neurodevelopment, 7 male mice had their leptin gene knocked out. While 16 mice were left with normal leptin function (PMID: 30694175). An initial question was to test the effect of leptin on the body weight of the animals. Is the mean weight of the animals different between wild types and knock-outs?
+In a study that wanted to test the effect of leptin in neurodevelopment, 7 male mice had their leptin gene knocked out. While 16 mice were left with normal leptin function \href{https://pubmed.ncbi.nlm.nih.gov/30694175/}{(PMID:30694175)}. An initial question was to test the effect of leptin on the body weight of the animals. Is the mean weight of the animals different between wild types and knock-outs?
 
 We assume that
 
@@ -9734,7 +9786,7 @@ Finally we will use the ANOVA to test that at least one combination of the two c
 \hypertarget{different-means-across-several-conditions}{%
 \section{Different means across several conditions}\label{different-means-across-several-conditions}}
 
-In a study that wanted to test the effect of leptin in neurodevelopment, 7 male mice had their leptin gene knocked out. While 16 mice were left with normal leptin function. In a third group, 10 mice with knocked out leptin were injected leptin (PMID: 30694175). An initial question was to test the effect of the leptin group on the body weight of the animals. We therefore aassume three conditions and that
+In a study that wanted to test the effect of leptin in neurodevelopment, 7 male mice had their leptin gene knocked out. While 16 mice were left with normal leptin function. In a third group, 10 mice with knocked out leptin were injected leptin \href{https://pubmed.ncbi.nlm.nih.gov/30694175/}{(PMID:30694175)}. An initial question was to test the effect of the leptin group on the body weight of the animals. We therefore aassume three conditions and that
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -10484,7 +10536,7 @@ We will also see how to test statistical independence when we consider one of th
 \hypertarget{correlations}{%
 \section{Correlations}\label{correlations}}
 
-Leptin is a hormone produced by adipose tissue. We want to study the serum leptin levels in the adult population (PMID: 23628382, \url{GEO:GSE45987}) under a \textbf{continuous} condition, such as the amount in kilograms of body fat. We assume that
+Leptin is a hormone produced by adipose tissue. We want to study the serum leptin levels in the adult population (\href{https://pubmed.ncbi.nlm.nih.gov/23628382/}{PMID: 23628382}, data available at \href{https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE45987}{GEO:GSE45987}) under a \textbf{continuous} condition, such as the amount in kilograms of body fat. We assume that
 
 \begin{itemize}
 \tightlist

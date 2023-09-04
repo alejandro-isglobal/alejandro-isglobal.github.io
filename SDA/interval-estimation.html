@@ -23,7 +23,7 @@
 <meta name="author" content="Alejandro Caceres" />
 
 
-<meta name="date" content="2023-08-08" />
+<meta name="date" content="2023-09-04" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -210,6 +210,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.9" data-path="conditional-probability.html"><a href="conditional-probability.html#bayes-theorem"><i class="fa fa-check"></i><b>4.9</b> Bayes’ Theorem</a></li>
 <li class="chapter" data-level="4.10" data-path="conditional-probability.html"><a href="conditional-probability.html#exercises-2"><i class="fa fa-check"></i><b>4.10</b> Exercises</a></li>
 <li class="chapter" data-level="4.11" data-path="conditional-probability.html"><a href="conditional-probability.html#questions-2"><i class="fa fa-check"></i><b>4.11</b> Questions</a></li>
+<li class="chapter" data-level="4.12" data-path="conditional-probability.html"><a href="conditional-probability.html#practice-2"><i class="fa fa-check"></i><b>4.12</b> Practice</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html"><i class="fa fa-check"></i><b>5</b> Discrete Random Variables</a>
 <ul>
@@ -285,10 +286,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.5" data-path="normal-distribution.html"><a href="normal-distribution.html#probability-distribution-2"><i class="fa fa-check"></i><b>9.5</b> Probability distribution</a></li>
 <li class="chapter" data-level="9.6" data-path="normal-distribution.html"><a href="normal-distribution.html#standard-normal-density"><i class="fa fa-check"></i><b>9.6</b> Standard normal density</a></li>
 <li class="chapter" data-level="9.7" data-path="normal-distribution.html"><a href="normal-distribution.html#standard-distribution"><i class="fa fa-check"></i><b>9.7</b> Standard distribution</a></li>
-<li class="chapter" data-level="9.8" data-path="normal-distribution.html"><a href="normal-distribution.html#summary-of-probability-models"><i class="fa fa-check"></i><b>9.8</b> Summary of probability models</a></li>
-<li class="chapter" data-level="9.9" data-path="normal-distribution.html"><a href="normal-distribution.html#r-functions-of-probability-models"><i class="fa fa-check"></i><b>9.9</b> R functions of probability models</a></li>
-<li class="chapter" data-level="9.10" data-path="normal-distribution.html"><a href="normal-distribution.html#questions-6"><i class="fa fa-check"></i><b>9.10</b> Questions</a></li>
-<li class="chapter" data-level="9.11" data-path="normal-distribution.html"><a href="normal-distribution.html#exercises-7"><i class="fa fa-check"></i><b>9.11</b> Exercises</a></li>
+<li class="chapter" data-level="9.8" data-path="normal-distribution.html"><a href="normal-distribution.html#standardization"><i class="fa fa-check"></i><b>9.8</b> Standardization</a></li>
+<li class="chapter" data-level="9.9" data-path="normal-distribution.html"><a href="normal-distribution.html#summary-of-probability-models"><i class="fa fa-check"></i><b>9.9</b> Summary of probability models</a></li>
+<li class="chapter" data-level="9.10" data-path="normal-distribution.html"><a href="normal-distribution.html#python-functions-of-probability-models"><i class="fa fa-check"></i><b>9.10</b> Python functions of probability models</a></li>
+<li class="chapter" data-level="9.11" data-path="normal-distribution.html"><a href="normal-distribution.html#questions-6"><i class="fa fa-check"></i><b>9.11</b> Questions</a></li>
+<li class="chapter" data-level="9.12" data-path="normal-distribution.html"><a href="normal-distribution.html#exercises-7"><i class="fa fa-check"></i><b>9.12</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="10" data-path="sampling-distributions.html"><a href="sampling-distributions.html"><i class="fa fa-check"></i><b>10</b> Sampling distributions</a>
 <ul>
@@ -498,57 +500,58 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">13.2</span> Estimation of the mean<a href="interval-estimation.html#estimation-of-the-mean" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>We have seen that whenever we take a random sample <span class="math inline">\((X_1, X_2, ... X_n)\)</span>, the sample mean
 <span class="math display">\[\bar{X}=\frac{1}{n}\sum_{i=1}^n X_i\]</span></p>
-<p>is an estimator of the mean <span class="math inline">\(\mu\)</span> of the random variable <span class="math inline">\(X\)</span>. The estimator is <strong>unbiased</strong></p>
+<p>is an estimator of the mean <span class="math inline">\(\mu\)</span> of the random variable <span class="math inline">\(X\)</span>. The estimator is <strong>unbiased</strong> because its values center about the parameter it is estimating</p>
 <ul>
 <li><span class="math inline">\(E(\bar{X})=\mu\)</span></li>
 </ul>
-<p>and <strong>consistent</strong></p>
+<p>and <strong>consistent</strong> because as <span class="math inline">\(n\)</span> increases then it is closer to the parameter because its variance gets smaller</p>
 <ul>
 <li><span class="math inline">\(V(\bar{X})=\frac{\sigma^2}{n}\)</span></li>
 </ul>
-<p>where <span class="math inline">\(\sigma^2\)</span> is the variance of <span class="math inline">\(X\)</span>. We call <span class="math inline">\(se=\frac{\sigma}{\sqrt{n}}\)</span> the <strong>standard error</strong></p>
-<p>when we take the values of the random sample then we take the value of <span class="math inline">\(\bar{x}\)</span> as the the value of the mean. That is</p>
+<p>where <span class="math inline">\(\sigma^2\)</span> is the variance of <span class="math inline">\(X\)</span>. We call the quantity <span class="math inline">\(\sigma_{\bar{x}}=\frac{\sigma}{\sqrt{n}}\)</span> the <strong>standard error</strong> (<span class="math inline">\(se\)</span>).</p>
+<p>These properties justify that we take the value <span class="math inline">\(\bar{x}\)</span> derived from <strong>one particular sample</strong> as the the value of <span class="math inline">\(\mu\)</span>, which is a characteristic of the <strong>whole population</strong>. That is</p>
 <p><span class="math display">\[\bar{x}=\hat{\mu}\]</span></p>
-<p>Since <span class="math inline">\(\bar{X}\)</span> is a random variable the estimation of the mean changes when we take another sample.</p>
+<p>Since <span class="math inline">\(\bar{X}\)</span> is a random variable the estimation of the mean changes when we take another sample. Therefore, we know that we are making an error every time we take <span class="math inline">\(\bar{x}\)</span> for <span class="math inline">\(\mu\)</span>.</p>
 </div>
 <div id="margin-of-error-1" class="section level2 hasAnchor" number="13.3">
 <h2><span class="header-section-number">13.3</span> Margin of error<a href="interval-estimation.html#margin-of-error-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>When deciding whether the <strong>error</strong> in estimation <span class="math display">\[\bar{X}-\mu\]</span> is large or not we usually compare it with a predefined tolerance. <strong>If we know</strong> that the the distribution of <span class="math inline">\(X\)</span> is normal <span class="math inline">\(X \rightarrow N(\mu, \sigma^2)\)</span>, we can compute how far the estimation of <span class="math inline">\(\bar{x}\)</span> falls from <span class="math inline">\(\mu\)</span>.</p>
+<p>When deciding whether the <strong>error</strong> in estimation <span class="math display">\[\bar{X}-\mu\]</span> is large or not we usually compare it with a predefined tolerance. <strong>If we know</strong> that the distribution of <span class="math inline">\(X\)</span> is normal, <span class="math inline">\(X \rightarrow N(\mu, \sigma^2)\)</span>, and we also know the values of the parameters <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\sigma^2\)</span>, we can then assess how far the estimation of <span class="math inline">\(\bar{x}\)</span> would falls from <span class="math inline">\(\mu\)</span>.</p>
 <p>We defined the <strong>margin of error</strong> at <span class="math inline">\(5\%\)</span> level as the distance <span class="math inline">\(m\)</span> such that distribution of <span class="math inline">\(\bar{X}\)</span> captures <span class="math inline">\(95\%\)</span> of the estimations:</p>
 <p><span class="math display">\[P(-m \leq \bar{X}-\mu \leq m)=P(\mu-m \leq \bar{X} \leq\mu + m)=0.95\]</span></p>
 <p>If <span class="math inline">\(\bar{X}\)</span> is normally distributed then the marging of error is</p>
 <p><span class="math display">\[m=z_{0.025} \frac{\sigma}{\sqrt{n}}=1.96\times se\]</span>
-where <span class="math inline">\(z_{0.025}=\phi^{-1}(0.975)=\)</span> <code>qnorm(0.975)</code></p>
+where <span class="math inline">\(z_{0.025}=\phi^{-1}(0.975)=\)</span> <code>norm.ppf(0.975)</code></p>
 <p><strong>Example (cables):</strong></p>
-<p>We perform take a random sample of size <span class="math inline">\(8\)</span>: Load a cable until it breaks and record the breaking load.</p>
-<p><strong>If we know</strong> that our cables truly distribute as <span class="math display">\[X \rightarrow N(\mu=13, \sigma^2=0.35^2)\]</span> then</p>
+<p>We want to perform take a random sample of size <span class="math inline">\(8\)</span>: Load a cable until it breaks and record the breaking load.</p>
+<p>Before we take the sample, <strong>if we know</strong> that our cables truly distribute as <span class="math display">\[X \rightarrow N(\mu=13, \sigma^2=0.35^2)\]</span> then</p>
 <p><span class="math display">\[\bar{X} \rightarrow N(13, \frac{0.35^2}{8})\]</span></p>
 <p>With mean <span class="math inline">\(E(\bar{X})=13\)</span> and standard error <span class="math inline">\(se=\frac{0.35}{\sqrt{8}}=0.1237\)</span></p>
-<p>Therefore the marging of error at <span class="math inline">\(95\%\)</span> is</p>
-<p><span class="math display">\[m=z_{0.025} \frac{\sigma}{\sqrt{n}}=1.96\times se=1.96\frac{0.35}{\sqrt{8}}=0.24\]</span>
-Now, we take the random sample and find the results</p>
+<p>Therefore the margin of error at <span class="math inline">\(95\%\)</span> is</p>
+<p><span class="math display">\[m=z_{0.025} \frac{\sigma}{\sqrt{n}}=1.96\times se=1.96\frac{0.35}{\sqrt{8}}=0.24\]</span></p>
+<p>We therefore expect that <span class="math inline">\(\%95\)</span> of the averages will be a distance of <span class="math inline">\(0.24\)</span> from the mean. Note that, in this case, the margin of error only depends on <span class="math inline">\(\sigma\)</span> and therefore is a measure of <strong>precision</strong>. Furthermore, it does not care where <span class="math inline">\(\mu\)</span> really is, and therefore is <strong>not</strong> a measure of <strong>accuracy</strong>.</p>
+<p>Now, let us take a random sample for which we find the results</p>
 <pre><code>## [1] 13.34642 13.32620 13.01459 13.10811 12.96999 13.55309 13.75557 12.62747</code></pre>
-<p>The observed average is <span class="math inline">\(\bar{x}=13.21\)</span>, and the error we would make if we replaced <span class="math inline">\(\mu\)</span> by <span class="math inline">\(\bar{x}\)</span>, would be</p>
+<p>The <strong>observed average</strong> is <span class="math inline">\(\bar{x}=13.21\)</span>, and therefore the error we would make if we replaced <span class="math inline">\(\mu\)</span> by <span class="math inline">\(\bar{x}\)</span>, would be</p>
 <p><span class="math display">\[\bar{x}-\mu=13.21-13=0.21\]</span>
 The <strong>observed error</strong> is within the margin of error</p>
-<p><span class="math display">\[\bar{x}-\mu &lt;m\]</span>
-Replacing <span class="math inline">\(\mu\)</span> by <span class="math inline">\(\bar{x}\)</span> is called a <strong>point estimation</strong> of the parameter.</p>
+<p><span class="math display">\[\bar{x}-\mu &lt;m\]</span></p>
+<p>When we use <span class="math inline">\(\bar{x}\)</span> for the value of <span class="math inline">\(\mu\)</span>, we say that we are performing a <strong>point estimation</strong> of the parameter. We are interested in such replacement in the cases where we do not know <span class="math inline">\(\mu\)</span>.</p>
 <p><img src="_main_files/figure-html/unnamed-chunk-89-1.png" width="672" /></p>
 <p><img src="_main_files/figure-html/unnamed-chunk-90-1.png" width="672" /></p>
 </div>
 <div id="interval-estimation-for-the-mean" class="section level2 hasAnchor" number="13.4">
 <h2><span class="header-section-number">13.4</span> Interval estimation for the mean<a href="interval-estimation.html#interval-estimation-for-the-mean" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>The problem is that in real life we <strong>do not know</strong> the real values of <span class="math inline">\(\mu\)</span> or <span class="math inline">\(\sigma\)</span> for</p>
+<p>The problem is that in real life we <strong>do not know</strong> the real values of <span class="math inline">\(\mu\)</span> or <span class="math inline">\(\sigma\)</span> for <span class="math inline">\(X\)</span> given</p>
 <p><span class="math display">\[X \rightarrow N(\mu, \sigma^2)\]</span>
-We start by taking the sample</p>
+What we do is to start by taking a sample</p>
 <p><img src="_main_files/figure-html/unnamed-chunk-91-1.png" width="672" /></p>
-<p>and then computing the mean</p>
+<p>we then compute the mean</p>
 <p><img src="_main_files/figure-html/unnamed-chunk-92-1.png" width="672" /></p>
-<p>What is the value of <span class="math inline">\(\mu\)</span>?</p>
-<p>Our data suggest that it is <span class="math inline">\(\bar{x}=13.21\)</span>, but how <strong>confident</strong> are we? after all we know we are making a mistake but do not how big it is. Lets define the confidence interval for <span class="math inline">\(\mu\)</span></p>
-<p>From the margin of error equation</p>
+<p>and that’s it. What is then the value of <span class="math inline">\(\mu\)</span>?</p>
+<p>Our data suggest that <span class="math inline">\(\mu\)</span> could be <span class="math inline">\(\bar{x}=13.21\)</span>. But, how <strong>confident</strong> are we? after all, we know that when we take <span class="math inline">\(\bar{x}\)</span> for <span class="math inline">\(\mu\)</span>, we are making a mistake and do not how big it actually is.</p>
+<p>To address this question, we are going to define the <strong>confidence interval</strong> for <span class="math inline">\(\mu\)</span>. From the margin of error equation</p>
 <p><span class="math display">\[P(-m \leq \bar{X} - \mu \leq  m)=0.95\]</span>
-let’s solve for <span class="math inline">\(\mu\)</span> which is <strong>the real unknown</strong></p>
+let’s solve for <span class="math inline">\(\mu\)</span> that is indeed <strong>the real unknown</strong></p>
 <p><span class="math display">\[P(\bar{X} - m \leq \mu \leq \bar{X} + m)=0.95\]</span></p>
 <p>The left and right limits of the inequality are random variables which motivate the definition for the <strong>random confidence interval at <span class="math inline">\(95\%\)</span>:</strong></p>
 <p><span class="math display">\[(L,U)=(\bar{X} - m,\bar{X} + m)\]</span></p>
@@ -556,13 +559,13 @@ let’s solve for <span class="math inline">\(\mu\)</span> which is <strong>the 
 <p>The <strong>observed interval</strong> that we obtain from the experiment is (script size)</p>
 <p><span class="math display">\[(l,u)=(\bar{x} - m,\bar{x} + m)\]</span></p>
 <p>This interval either contains or does not the parameter <span class="math inline">\(\mu\)</span>: we will <strong>never know</strong>!</p>
-<p>We say that we have a confidence of <span class="math inline">\(95\%\)</span> that the interval <span class="math inline">\((l,u)\)</span> will capture the true unknown parameter <span class="math inline">\(\mu\)</span>. Think of buying a lottery scratch ticket that we cannot scratch to see the prize. The ticket either has or has not the prize, only that we do not know which case it is.</p>
+<p>However, we can still say that we have a confidence of <span class="math inline">\(95\%\)</span> that the interval <span class="math inline">\((l,u)\)</span> has captured the true unknown parameter <span class="math inline">\(\mu\)</span>. Think of buying a lottery scratch ticket that we cannot scratch to see the prize. The ticket either has or has not the prize, only that we do not know which case it is.</p>
 <div id="case-1-known-variance" class="section level3 hasAnchor" number="13.4.1">
 <h3><span class="header-section-number">13.4.1</span> Case 1 (known variance)<a href="interval-estimation.html#case-1-known-variance" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Confidence intervals can be estimated in different cases. The first case is when</p>
 <ol style="list-style-type: decimal">
-<li><span class="math inline">\(X\)</span> is a normal variable</li>
-<li>and we know the value of <span class="math inline">\(\sigma\)</span></li>
+<li><span class="math inline">\(X\)</span> is a normal variable, and</li>
+<li>we know the value of <span class="math inline">\(\sigma\)</span></li>
 </ol>
 <p>the confidence interval at <span class="math inline">\(95\%\)</span> is</p>
 <p><span class="math display">\[(l,u)=(\bar{x} - m, \bar{x} + m)\]</span>
@@ -575,13 +578,26 @@ where <span class="math display">\[m=z_{0.025} \frac{\sigma}{\sqrt{n}}\]</span><
 <li>Since <span class="math inline">\(\bar{X}\)</span> is normal, the margin of error is</li>
 </ol>
 <p><span class="math display">\[m=z_{0.025} \frac{\sigma}{\sqrt{n}}\]</span>
-2. Since we know <span class="math inline">\(\sigma^2==0.35^2\)</span>, then the <span class="math inline">\(95\%\)</span> confidence interval is</p>
+2. Since we know <span class="math inline">\(\sigma^2=0.35^2\)</span>, then the <span class="math inline">\(95\%\)</span> confidence interval is</p>
 <p><span class="math inline">\((l,u)=(\bar{x} - m, \bar{x} + m)=\)</span> <span class="math display">\[(\bar{x}-z_{0.025} \frac{\sigma}{\sqrt{n}}, \bar{x}+z_{0.025} \frac{\sigma}{\sqrt{n}})= (12.97,13.45)\]</span></p>
-<p>or we can also write it as</p>
+<p>In Python we can compute the confidence interval with</p>
+<pre echo="FALSE," warning="FALSE," message="FALSE"><code># https://pypi.org/project/bioinfokit/
+
+!pip install bioinfokit
+from bioinfokit.analys import stat
+import pandas as pd
+
+data = {&#39;x&#39;: [13.34642, 13.32620, 13.01459, 13.10811, 12.96999, 13.55309, 13.75557, 12.62747]}
+df = pd.DataFrame(data)
+
+res = stat()
+res.ztest(df=df, x=&#39;x&#39;, mu=13, x_std=0.35, test_type=1)
+print(res.summary)</code></pre>
+<p>We can also write the interval as</p>
 <p><span class="math display">\[\hat{\mu}=\bar{x}  \pm m = 13.21 \pm 0.24\]</span>
-This means that, when estimating the mean by the average, we are confident about the units but not so much about the decimal places.</p>
+This means that, when estimating the mean by the average, we are confident up to the number 3 in the units and not so much about the decimal places.</p>
 <p><img src="_main_files/figure-html/unnamed-chunk-93-1.png" width="672" /></p>
-<p>Remember that the confidence interval <span class="math inline">\((l,u)\)</span> is an observation of the random confidence interval <span class="math inline">\((L,U)\)</span>. Therefore, every time that we obtain a new sample then <span class="math inline">\((l,u)\)</span> change. If we perform <span class="math inline">\(100\)</span> samples of size <span class="math inline">\(n\)</span> then <span class="math inline">\(95%\)</span> of the confidence intervals will contain <span class="math inline">\(\mu\)</span>, we jsut do not know which!</p>
+<p>Remember that the confidence interval <span class="math inline">\((l,u)\)</span> is an observation of the random confidence interval <span class="math inline">\((L,U)\)</span>. Therefore, every time that we obtain a new sample then <span class="math inline">\((l,u)\)</span> changes. If we perform <span class="math inline">\(100\)</span> samples of size <span class="math inline">\(n\)</span> then about <span class="math inline">\(95\)</span> of the confidence intervals will contain <span class="math inline">\(\mu\)</span>, we just don’t know which!</p>
 <p><img src="_main_files/figure-html/unnamed-chunk-94-1.png" width="672" /></p>
 </div>
 <div id="confidence-level" class="section level3 hasAnchor" number="13.4.2">
@@ -591,11 +607,11 @@ This means that, when estimating the mean by the average, we are confident about
 <p><span class="math inline">\((l,u) = (\bar{x} - z_{0.005}\frac{\sigma}{\sqrt{n}},\bar{x} + z_{0.005}\frac{\sigma}{\sqrt{n}})\)</span></p>
 <p><span class="math display">\[= (\bar{x} - 2.58\frac{\sigma}{\sqrt{n}},\bar{x} + 2.58\frac{\sigma}{\sqrt{n}})\]</span></p>
 <p><img src="figures/phi.JPG" /></p>
-<p>where <span class="math inline">\(z_{0.005}=\phi^{-1}(0.995)=\)</span> <code>qnorm(0.995)</code>. We can also write it as</p>
+<p>where <span class="math inline">\(z_{0.005}=\phi^{-1}(0.995)=\)</span> <code>norm.ppf(0.995)</code>. We can also write it as</p>
 <p><span class="math display">\[\hat{\mu}=\bar{x} \pm 2.58\frac{\sigma}{\sqrt{n}}\]</span>
 For our cables, the <span class="math inline">\(99\%\)</span> confidence interval is</p>
 <p><span class="math display">\[\hat{\mu}= 13.21 \pm 0.31\]</span></p>
-<p>If we want to be more confident then we need larger confidence intervals!</p>
+<p>If we want to be more confident then we need larger confidence intervals. The more confidence we demand the less precision we obtain.</p>
 <p><strong>Example (Impact energy):</strong></p>
 <p>A metallic material is tested for impact to measure the energy required to cut it at a given temperature. Ten specimens of A238 steel were cut at 60ºC at the following impact energies (J):</p>
 <p><span class="math inline">\(64.1, 64.7, 64.5, 64.6, 64.5, 64.3, 64.6, 64.8, 64.2, 64.3\)</span></p>
@@ -612,27 +628,6 @@ For our cables, the <span class="math inline">\(99\%\)</span> confidence interva
 <p>or</p>
 <p><span class="math display">\[\hat{\mu}=64.46 \pm 0.61\]</span></p>
 <p>this tells us that we can be sure on the first digit (6), somewhat confident on the second (4), and unsure on the decimals (46).</p>
-<p>In R:</p>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="interval-estimation.html#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(BSDA) </span></code></pre></div>
-<pre><code>## Loading required package: lattice</code></pre>
-<pre><code>## 
-## Attaching package: &#39;BSDA&#39;</code></pre>
-<pre><code>## The following object is masked from &#39;package:datasets&#39;:
-## 
-##     Orange</code></pre>
-<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="interval-estimation.html#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">z.test</span>(<span class="fu">c</span>(<span class="fl">64.1</span>, <span class="fl">64.7</span>, <span class="fl">64.5</span>, <span class="fl">64.6</span>, <span class="fl">64.5</span>, <span class="fl">64.3</span>, <span class="fl">64.6</span>, <span class="fl">64.8</span>, <span class="fl">64.2</span>, <span class="fl">64.3</span>), </span>
-<span id="cb32-2"><a href="interval-estimation.html#cb32-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">sigma.x=</span><span class="dv">1</span>)</span></code></pre></div>
-<pre><code>## 
-##  One-sample z-Test
-## 
-## data:  c(64.1, 64.7, 64.5, 64.6, 64.5, 64.3, 64.6, 64.8, 64.2, 64.3)
-## z = 203.84, p-value &lt; 2.2e-16
-## alternative hypothesis: true mean is not equal to 0
-## 95 percent confidence interval:
-##  63.8402 65.0798
-## sample estimates:
-## mean of x 
-##     64.46</code></pre>
 <p>What if <span class="math inline">\(\sigma^2\)</span> is <strong>unknown</strong>?</p>
 </div>
 </div>
@@ -645,14 +640,16 @@ since <strong>we knew</strong> <span class="math inline">\(\sigma\)</span>. <spa
 <h3><span class="header-section-number">13.5.1</span> Theorem (T-statistic)<a href="interval-estimation.html#theorem-t-statistic" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>When <span class="math inline">\(X\)</span> is normal then the standardized statistic</p>
 <p><span class="math display">\[T=\frac{\bar{X}-\mu}{\frac{S}{\sqrt{n}}}\]</span>
-Follows a <span class="math inline">\(t\)</span>-distribution with <span class="math inline">\(n-1\)</span> degrees of freedom, where <span class="math inline">\(S^2=\frac{1}{n-1} \sum_{i=1}^n (X_i-\bar{X})^2\)</span>. We can therefore compute probabilities for <span class="math inline">\(\bar{X}\)</span>, even if we do not know <span class="math inline">\(\sigma\)</span>.</p>
-<p>Let’s look at some probability densities in the family of the <span class="math inline">\(T\)</span> distributions.</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-96-1.png" width="672" /></p>
-<p>Now we need to recompute the the margin of error <span class="math inline">\(m\)</span> at <span class="math inline">\(5\%\)</span> level when We use the <span class="math inline">\(t\)</span>-distribution</p>
+follows a <span class="math inline">\(t\)</span>-distribution with <span class="math inline">\(n-1\)</span> degrees of freedom</p>
+<p><span class="math display">\[T \rightarrow t_{n-1}\]</span></p>
+<p>where <span class="math inline">\(S^2=\frac{1}{n-1} \sum_{i=1}^n (X_i-\bar{X})^2\)</span>. We can therefore compute probabilities for <span class="math inline">\(\bar{X}\)</span>, even if we do not know <span class="math inline">\(\sigma\)</span>.</p>
+<p>Let’s look at some probability densities in the family of the <span class="math inline">\(t\)</span> distributions.</p>
+<p><img src="_main_files/figure-html/unnamed-chunk-95-1.png" width="672" /></p>
+<p>Now we need to recompute the the margin of error <span class="math inline">\(m\)</span> at <span class="math inline">\(5\%\)</span> level when we use the <span class="math inline">\(t\)</span>-distribution</p>
 <p><span class="math inline">\(P(\mu-m \leq \bar{X} \leq\mu + m)\)</span>
 <span class="math display">\[=P(-\frac{m}{s/\sqrt{n}} \leq T \leq\frac{m}{s/\sqrt{n}})=0.95\]</span></p>
 <p><span class="math display">\[m=t_{0.025, n-1} \frac{s}{\sqrt{n}}\]</span>
-where <span class="math inline">\(t_{0.025, n-1}\)</span> is the value <span class="math inline">\(T\)</span> that leaves <span class="math inline">\(2.5\%\)</span> of probability at the right hand side of the <span class="math inline">\(t\)</span>-distribution with <span class="math inline">\(n-1\)</span> degrees of freedom.</p>
+where <span class="math inline">\(t_{0.025, n-1}\)</span> is the value of <span class="math inline">\(T\)</span> that leaves <span class="math inline">\(2.5\%\)</span> of probability at the right hand side of the <span class="math inline">\(t\)</span>-distribution with <span class="math inline">\(n-1\)</span> degrees of freedom. In short, if we do not know <span class="math inline">\(\sigma\)</span>, we can replace it with <span class="math inline">\(s\)</span> but need to use a different distribution in the computation of the margin of error.</p>
 </div>
 <div id="case-2-unknown-variance" class="section level3 hasAnchor" number="13.5.2">
 <h3><span class="header-section-number">13.5.2</span> Case 2 (unknown variance)<a href="interval-estimation.html#case-2-unknown-variance" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -665,50 +662,46 @@ where <span class="math inline">\(t_{0.025, n-1}\)</span> is the value <span cla
 where <span class="math display">\[m=t_{0.025, n-1} \frac{s}{\sqrt{n}}\]</span></p>
 <p>That is:</p>
 <p><span class="math display">\[(l,u)=(\bar{x} - t_{0.025, n-1} \frac{s}{\sqrt{n}}, \bar{x} + t_{0.025, n-1} \frac{s}{\sqrt{n}})\]</span>
-where <span class="math inline">\(t_{0.025, n-1}=F^{-1}(0.975)\)</span><code>=qt(0.975, n-1)</code></p>
+where <span class="math inline">\(t_{0.025, n-1}=F^{-1}(0.975)\)</span><code>=t.ppf(0.975, n-1)</code></p>
 <p><strong>Example (Impact energy):</strong></p>
 <p>A metallic material is tested for impact to measure the energy required to cut it at a given temperature. Ten specimens of A238 steel were cut at 60ºC at the following impact energies (J):</p>
 <p><span class="math inline">\(64.1, 64.7, 64.5, 64.6, 64.5, 64.3, 64.6, 64.8, 64.2, 64.3\)</span></p>
 <p>If we <strong>asumme</strong> that the impact energy is normally distributed but we <strong>do not know</strong> the variance, what is the <span class="math inline">\(95\%\)</span> confidence interval for the mean of these data?</p>
-<p>We know</p>
+<p>We compute from the data</p>
 <ul>
 <li><span class="math inline">\(\bar{x}=64.46\)</span></li>
 <li><span class="math inline">\(s=0.227\)</span></li>
-<li><span class="math inline">\(\alpha=0.05\)</span></li>
-<li><span class="math inline">\(t_{0.025,9}=2.26\)</span> obtained from <span class="math inline">\(t_{0.025,9}=\)</span> <code>qt(0.975, 9)</code></li>
+</ul>
+<p>we assume</p>
+<ul>
+<li><span class="math inline">\(\alpha=0.05\)</span> (the confidence limit)</li>
+<li><span class="math inline">\(t_{0.025,9}=2.26\)</span> obtained from <span class="math inline">\(t_{0.025,9}=\)</span> <code>t.ppf(0.975, 9)</code></li>
 </ul>
 <p>The confidence interval is then</p>
 <p><span class="math inline">\((l,u)=(\bar{x}- t_{0.025,9}\frac{s}{\sqrt{n}},\bar{x}+t_{0.025,9} \frac{s}{\sqrt{n}})\)</span></p>
 <p><span class="math display">\[=(64.46-2.26 \frac{0.227}{\sqrt{10}},64.46+2.26 \frac{0.227}{\sqrt{10}})\]</span> <span class="math display">\[=(64.29,64.62)\]</span></p>
-<p>Note that when we assumed <span class="math inline">\(\sigma=1\)</span> the confidence interval <span class="math inline">\((63.84,65.08)\)</span> was larger. Data therefore suggests that <span class="math inline">\(\sigma&lt;1\)</span>.</p>
-<p>In R, we can compute the confidence interval with:</p>
-<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="interval-estimation.html#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(<span class="fu">c</span>(<span class="fl">64.1</span>,<span class="fl">64.7</span>,<span class="fl">64.5</span>,<span class="fl">64.6</span>,<span class="fl">64.5</span>,<span class="fl">64.3</span>,<span class="fl">64.6</span>,<span class="fl">64.8</span>,<span class="fl">64.2</span>,<span class="fl">64.3</span>))</span></code></pre></div>
-<pre><code>## 
-##  One Sample t-test
-## 
-## data:  c(64.1, 64.7, 64.5, 64.6, 64.5, 64.3, 64.6, 64.8, 64.2, 64.3)
-## t = 897.74, df = 9, p-value &lt; 2.2e-16
-## alternative hypothesis: true mean is not equal to 0
-## 95 percent confidence interval:
-##  64.29757 64.62243
-## sample estimates:
-## mean of x 
-##     64.46</code></pre>
+<p>Note that when we assumed <span class="math inline">\(\sigma=1\)</span> the confidence interval <span class="math inline">\((63.84,65.08)\)</span> was larger. Data therefore suggests that <span class="math inline">\(\sigma&lt;1\)</span> as <span class="math inline">\(s=0.227\)</span>.</p>
+<p>In Python, we can compute the confidence interval with:</p>
+<pre eval="FALSE"><code>from scipy import stats
+x = [64.1,64.7,64.5,64.6,64.5,64.3,64.6,64.8,64.2,64.3]
+res = stats.ttest_1samp(x, popmean=0)
+res.confidence_interval(confidence_level=0.95)</code></pre>
 </div>
 </div>
 <div id="estimation-of-proportions" class="section level2 hasAnchor" number="13.6">
 <h2><span class="header-section-number">13.6</span> Estimation of proportions<a href="interval-estimation.html#estimation-of-proportions" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><strong>Example (vaccine):</strong></p>
 <p>A random sample of <span class="math inline">\(400\)</span> patients was selected for testing a new vaccine for the influenza virus, after <span class="math inline">\(6\)</span> months of vaccination <span class="math inline">\(134\)</span> were ill. What is the expected efficacy of the vaccine?</p>
-<p>Since each vaccination <span class="math inline">\(X_i\)</span> is Bernoulli trial</p>
+<p>Since each vaccination <span class="math inline">\(X_i\)</span> is a Bernoulli trial</p>
 <p><span class="math display">\[X \rightarrow Bernoulli(p)\]</span>
-With mean <span class="math inline">\(\mu=p\)</span> and variance <span class="math inline">\(\sigma^2=p(1-p)\)</span>.</p>
+with mean <span class="math inline">\(\mu=p\)</span> and variance <span class="math inline">\(\sigma^2=p(1-p)\)</span>.</p>
 <p>The sample is something like
-<span class="math display">\[(x_1,x_2, x_3, ...x_n)=(0,1,0,.. 1, 0)_{400}\]</span> with <span class="math inline">\(136\)</span> ones and in a total of <span class="math inline">\(400\)</span> repetitions. The sample has a an average <span class="math inline">\(\bar{x}=\frac{1}{400}\sum_i^{400} x_i=134/400=0.34\)</span>. Since the sample mean is an unbiased estimator of <span class="math inline">\(\mu\)</span>, then we can have a point estimate for <span class="math inline">\(p\)</span></p>
+<span class="math display">\[(x_1,x_2, x_3, ...x_n)=(0,1,0,.. 1, 0)_{400}\]</span> with <span class="math inline">\(136\)</span> ones and in a total of <span class="math inline">\(400\)</span> repetitions. The sample has an average <span class="math display">\[\bar{x}=\frac{1}{400}\sum_i^{400} x_i=134/400=0.34\]</span></p>
+<p>Since the sample mean is an unbiased estimator of <span class="math inline">\(\mu\)</span>, then we can have a point estimate for <span class="math inline">\(p\)</span></p>
 <p><span class="math display">\[\hat{p}=\bar{x}=134/400=0.34\]</span></p>
 <p>This makes sense because <span class="math inline">\(\bar{x}\)</span> is the observed relative frequency of ones <span class="math inline">\(f_1\)</span> in the sample. And as such it is an estimator of the probability of observing a one in a Bernoulli trial</p>
 <p><span class="math display">\[f_1 =\hat{P}(X=1)\]</span>
-This is is consistent with frequentist definition of probability that we saw in chapter 2. But how confident are we about this estimation? We want a confidence interval for <span class="math inline">\(p\)</span></p>
+This is is consistent with frequentist definition of probability that we saw in chapter 2. However, how confident are we about this estimation? That is, how confident are we to take the relative frequency as the value of the probability? We want a confidence interval for <span class="math inline">\(p\)</span></p>
 <div id="case-3-proportions" class="section level3 hasAnchor" number="13.6.1">
 <h3><span class="header-section-number">13.6.1</span> Case 3 (proportions)<a href="interval-estimation.html#case-3-proportions" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ol style="list-style-type: decimal">
@@ -720,62 +713,57 @@ and the <span class="math inline">\(95\%\)</span> CI interval of <span class="ma
 Where we estimate the Bernoulli variance <span class="math inline">\(\sigma=p(1-p)\)</span> by <span class="math inline">\(\hat{\sigma}=\bar{x}(1-\bar{x})\)</span>. That is <span class="math inline">\(\hat{\sigma}=\sqrt{\bar{x}(1-\bar{x})}\)</span>.</p>
 <p><strong>Example (vaccine):</strong></p>
 <p>In our case, we are counting failures on vaccinations <span class="math inline">\(134\)</span> in <span class="math inline">\(400\)</span> trials.</p>
-<p>we know</p>
+<p>We compute from the data</p>
 <ul>
 <li><span class="math inline">\(\bar{x}=134/400=0.34\)</span></li>
-<li><span class="math inline">\(z_{0.025}=1.96\)</span></li>
+</ul>
+<p>we assume</p>
+<ul>
+<li><span class="math inline">\(z_{0.025}=1.96\)</span> (the confidence limit)</li>
 </ul>
 <p>Therefore the <span class="math inline">\(95\%\)</span> confidence interval for <span class="math inline">\(p\)</span> is</p>
 <p><span class="math inline">\((l,u)=(\bar{x}-1.96 \big[\frac{\bar{x}(1-\bar{x})}{n} \big]^{1/2}, \bar{x}+1.96 \big[\frac{\bar{x}(1-\bar{x})}{n} \big]^{1/2})\)</span></p>
 <p><span class="math display">\[=(0.29,0.38)\]</span></p>
-<p>The probability of failure of the vaccine is</p>
+<p>The estimated probability of failure of the vaccine is</p>
 <p><span class="math display">\[\hat{p}=0.34 \pm 0.05\]</span></p>
 <p>Note: Voting intention surveys (Bernoulli test) in a sample of <span class="math inline">\(n\)</span> individuals report this type of estimation with its <strong>margin of error</strong>. It does not mean that the <strong>true value</strong> of <span class="math inline">\(p\)</span> falls within this interval with probability <span class="math inline">\(95\%\)</span>. It means that we are <span class="math inline">\(95\%\)</span> confident that we have caught the <span class="math inline">\(p\)</span> that this particular sample represents.</p>
-<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="interval-estimation.html#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">prop.test</span>(<span class="dv">134</span>, <span class="dv">400</span>, <span class="at">correct=</span><span class="cn">FALSE</span>)</span></code></pre></div>
-<pre><code>## 
-##  1-sample proportions test without continuity correction
-## 
-## data:  134 out of 400, null probability 0.5
-## X-squared = 43.56, df = 1, p-value = 4.112e-11
-## alternative hypothesis: true p is not equal to 0.5
-## 95 percent confidence interval:
-##  0.2905091 0.3826300
-## sample estimates:
-##     p 
-## 0.335</code></pre>
+<p>In Python</p>
+<pre eval="FALSE"><code>from statsmodels.stats.proportion import proportion_confint
+proportion_confint(134, 400)</code></pre>
 </div>
 </div>
 <div id="estimation-of-the-variance" class="section level2 hasAnchor" number="13.7">
 <h2><span class="header-section-number">13.7</span> Estimation of the variance<a href="interval-estimation.html#estimation-of-the-variance" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>We have seen that whenever we take a random sample <span class="math inline">\((X_1, X_2, ... X_n)\)</span>, the sample variance
 <span class="math display">\[S^2=\frac{1}{n-1}\sum_{i=1}^n (X_i-\bar{X})^2\]</span>
-is an estimator of the mean <span class="math inline">\(\sigma^2\)</span> of the random variable <span class="math inline">\(X\)</span>. The estimator is <strong>unbiased</strong></p>
-<ul>
-<li><span class="math inline">\(E(S^2)=\sigma\)</span></li>
-</ul>
-<p>and it is also <strong>consistent</strong>. When we take the values of the random sample, then we take the value of <span class="math inline">\(S^2\)</span> as the the value of the variance; that is</p>
+is an estimator of the mean <span class="math inline">\(\sigma^2\)</span> of the random variable <span class="math inline">\(X\)</span>. The estimator is <strong>unbiased</strong> because its values are centered about the parameter it is estimating</p>
+<p><span class="math display">\[E(S^2)=\sigma\]</span></p>
+<p>and it is also <strong>consistent</strong>. We can then take a the value of <span class="math inline">\(s^2\)</span> from a particular sample as the value of <span class="math inline">\(\sigma\)</span>, which is a characteristic of the whole population. That is</p>
 <p><span class="math display">\[s^2=\hat{\sigma}^2\]</span></p>
 <p>Since <span class="math inline">\(S^2\)</span> is a random variable the estimation of the variance changes when we take another sample.</p>
 <p><strong>Example (impact energy)</strong></p>
 <p>A metallic material is tested for impact to measure the energy required to cut it at a given temperature. Ten specimens of A238 steel were cut at 60ºC at the following impact energies (J):</p>
 <p><span class="math inline">\(64.1, 64.7, 64.5, 64.6, 64.5, 64.3, 64.6, 64.8, 64.2, 64.3\)</span></p>
 <p>what is estimation of the variance of these data?</p>
-<p><span class="math display">\[s^2=0.05155556\]</span>
-In R: <code>sd(c(64.1, 64.7, 64.5, 64.6, 64.5, 64.3, 64.6, 64.8, 64.2, 64.3))^2 </code></p>
+<p><span class="math display">\[s^2=0.05155556\]</span></p>
+<p>In Python:</p>
+<pre eval="FALSE"><code>import numpy as np
+x = [64.1, 64.7, 64.5, 64.6, 64.5, 64.3, 64.6, 64.8, 64.2, 64.3]
+np.var(x)</code></pre>
 <p>How confident are we on the decimals of the estimation?</p>
 </div>
 <div id="confidence-interval-for-the-variance" class="section level2 hasAnchor" number="13.8">
 <h2><span class="header-section-number">13.8</span> Confidence interval for the variance<a href="interval-estimation.html#confidence-interval-for-the-variance" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>To compute a confidence interval of for the variance, we need a statistics that is a function of <span class="math inline">\(S^2\)</span> and allows us to compute probabilities. We will use the following theorem</p>
+<p>To compute a confidence interval of the variance, we need a statistics that is a function of <span class="math inline">\(S^2\)</span> and allows us to compute probabilities. We will use the following theorem</p>
 <div id="theorem-chi2" class="section level3 hasAnchor" number="13.8.1">
 <h3><span class="header-section-number">13.8.1</span> Theorem (<span class="math inline">\(\chi^2\)</span>):<a href="interval-estimation.html#theorem-chi2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>When <span class="math inline">\(X\)</span> is normal then the standardized statistic</p>
 <p><span class="math display">\[W=\frac{S^2(n-1)}{\sigma^2}\]</span>
 follows a <span class="math inline">\(\chi^2\)</span> distribution with <span class="math inline">\(n-1\)</span> degrees of freedom</p>
-<p><span class="math display">\[\frac{S^2}{\sigma^2}(n-1)\rightarrow \chi^2_{n-1}\]</span></p>
+<p><span class="math display">\[W \rightarrow \chi^2_{n-1}\]</span></p>
 <p>We can therefore compute probabilities for <span class="math inline">\(W\)</span>.</p>
 <p>Let’s look at some probability densities in the family of the <span class="math inline">\(\chi^2\)</span> distriutions.</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-99-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-96-1.png" width="672" /></p>
 </div>
 <div id="confidence-interval-for-the-variance-1" class="section level3 hasAnchor" number="13.8.2">
 <h3><span class="header-section-number">13.8.2</span> Confidence interval for the variance<a href="interval-estimation.html#confidence-interval-for-the-variance-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -799,8 +787,8 @@ with <span class="math inline">\(95\%\)</span> confidence</p>
 <p><span class="math display">\[(l,u) = (\frac{s^2 (n-1)}{\chi^2_{0.025,n-1}},\frac{s^2(n-1)}{\chi^2_{0.975,n-1}})\]</span></p>
 <p>where</p>
 <ul>
-<li><p><span class="math inline">\(\chi^2_{0.975,n-1}=F^{-1}(0.025)=\)</span> <code>qchisq(0.025, df=n-1)</code></p></li>
-<li><p><span class="math inline">\(\chi^2_{0.025,n-1}=F^{-1}(0.975)=\)</span><code>qchisq(0.975, df=n-1)</code>
+<li><p><span class="math inline">\(\chi^2_{0.975,n-1}=F^{-1}(0.025)=\)</span> <code>chi2.ppf(0.025, df=n-1)</code></p></li>
+<li><p><span class="math inline">\(\chi^2_{0.025,n-1}=F^{-1}(0.975)=\)</span><code>chi2.ppf(0.975, df=n-1)</code>
 </br>for <span class="math inline">\(n=10\)</span> or <span class="math inline">\(df=n-1=9\)</span></p></li>
 </ul>
 <p><strong>Example (impact energy)</strong></p>
@@ -813,26 +801,21 @@ with <span class="math inline">\(95\%\)</span> confidence</p>
 <li><p><span class="math inline">\(n=10\)</span></p></li>
 <li><p>We then compute <span class="math inline">\(\chi^2_{0.025,n-1}\)</span> and <span class="math inline">\(\chi^2_{0.975,n-1}\)</span></p></li>
 </ol>
-<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="interval-estimation.html#cb38-1" aria-hidden="true" tabindex="-1"></a>chi0<span class="fl">.975</span> <span class="ot">&lt;-</span> <span class="fu">qchisq</span>(<span class="fl">0.025</span>, <span class="at">df=</span><span class="dv">9</span>)</span>
-<span id="cb38-2"><a href="interval-estimation.html#cb38-2" aria-hidden="true" tabindex="-1"></a>chi0<span class="fl">.975</span></span></code></pre></div>
-<pre><code>[1] 2.700389</code></pre>
-<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="interval-estimation.html#cb40-1" aria-hidden="true" tabindex="-1"></a>chi0<span class="fl">.025</span> <span class="ot">&lt;-</span> <span class="fu">qchisq</span>(<span class="fl">0.975</span>, <span class="at">df=</span><span class="dv">9</span>)</span>
-<span id="cb40-2"><a href="interval-estimation.html#cb40-2" aria-hidden="true" tabindex="-1"></a>chi0<span class="fl">.025</span></span></code></pre></div>
-<pre><code>[1] 19.02277</code></pre>
-<p><img src="_main_files/figure-html/unnamed-chunk-100-1.png" width="672" /></p>
+<pre><code>from scipy.stats import chi2
+chi2.ppf(0.025, df=9)
+
+2.700389</code></pre>
+<pre><code>from scipy.stats import chi2
+chi2.ppf(0.975, df=9)
+
+19.02277</code></pre>
+<p><img src="_main_files/figure-html/unnamed-chunk-97-1.png" width="672" /></p>
 <p>Therefore</p>
 <p><span class="math display">\[(l,u)= (\frac{0.227^2 (10-1)}{19.02277},\frac{0.227^2(10-1)}{2.700389})=(0.02,0.17)\]</span>
 Note that when we computed the confidence interval for the mean and assumed <span class="math inline">\(\sigma^2=1\)</span> (case 1), this was not consistent with the data because the confidence interval does not contain the value <span class="math inline">\(\sigma^2=1\)</span>.
 According to the data <span class="math inline">\(\sigma^2 \neq 1\)</span> at <span class="math inline">\(95\%\)</span> confidence.</p>
-<p>in R:</p>
-<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="interval-estimation.html#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(Ecfun)</span>
-<span id="cb42-2"><a href="interval-estimation.html#cb42-2" aria-hidden="true" tabindex="-1"></a><span class="fu">confint.var</span>(<span class="fl">0.05155556</span>, <span class="dv">9</span>)</span></code></pre></div>
-<pre><code>##           lower     upper
-## [1,] 0.02439183 0.1718271
-## attr(,&quot;level&quot;)
-## [1] 0.95</code></pre>
 <p>The interval for the variance is <strong>not symmetric</strong> and we cannot formulate it as an estimate <span class="math inline">\(\pm\)</span> margin of error.</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-102-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-98-1.png" width="672" /></p>
 </div>
 </div>
 <div id="questions-10" class="section level2 hasAnchor" number="13.9">
@@ -874,8 +857,8 @@ According to the data <span class="math inline">\(\sigma^2 \neq 1\)</span> at <s
 </ul>
 <p>hints:</p>
 <ul>
-<li><p>in R <span class="math inline">\(t_{0.025, 24}=\)</span> <code>qt(0.975, 24)</code><span class="math inline">\(\sim 2\)</span></p></li>
-<li><p>in R <span class="math inline">\(t_{0.005, 24}=\)</span><code>qt(0.995, 24)</code><span class="math inline">\(\sim 2.8\)</span></p></li>
+<li><p>in R <span class="math inline">\(t_{0.025, 24}=\)</span> <code>t.ppf(0.975, 24)</code><span class="math inline">\(\sim 2\)</span></p></li>
+<li><p>in R <span class="math inline">\(t_{0.005, 24}=\)</span><code>t.ppf(0.995, 24)</code><span class="math inline">\(\sim 2.8\)</span></p></li>
 </ul>
 </div>
 <div id="exercise-2-10" class="section level4 hasAnchor" number="13.10.0.2">
@@ -897,11 +880,11 @@ According to the data <span class="math inline">\(\sigma^2 \neq 1\)</span> at <s
 </div>
 <div id="practice-3" class="section level2 hasAnchor" number="13.11">
 <h2><span class="header-section-number">13.11</span> Practice<a href="interval-estimation.html#practice-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Load misophonia data <code>data_0.txt</code></p>
+<p>Load misophonia data <code><a href="https://alejandro-isglobal.github.io/SDA/data/data_0.txt" class="uri">https://alejandro-isglobal.github.io/SDA/data/data_0.txt</a></code></p>
 <ul>
 <li><p>Compute the confidence interval for the mean of the cephalometric measures. (“Angulo_convexidad,” “protusion.mandibular,” “Angulo_cuelloYtercio,” “Subnasal_H”)</p></li>
-<li><p>Compute the confidence interval for the proportion of misophonic (“Misofonia.dic”), and depression (“depresion.dic”).</p></li>
-<li><p>Compute the confidence interval for the variance of the age (“Edad”). What is the cofidence interval for the standard deviation of the population?</p></li>
+<li><p>Compute the confidence interval for the proportion of misophonic (“Misofonia”), and depression (“depresion.dic”).</p></li>
+<li><p>Compute the confidence interval for the variance of the age (“Edad”). What is the confidence interval for the standard deviation of the population?</p></li>
 </ul>
 
 </div>

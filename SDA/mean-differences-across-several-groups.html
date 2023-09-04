@@ -23,7 +23,7 @@
 <meta name="author" content="Alejandro Caceres" />
 
 
-<meta name="date" content="2023-08-08" />
+<meta name="date" content="2023-09-04" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -210,6 +210,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.9" data-path="conditional-probability.html"><a href="conditional-probability.html#bayes-theorem"><i class="fa fa-check"></i><b>4.9</b> Bayes’ Theorem</a></li>
 <li class="chapter" data-level="4.10" data-path="conditional-probability.html"><a href="conditional-probability.html#exercises-2"><i class="fa fa-check"></i><b>4.10</b> Exercises</a></li>
 <li class="chapter" data-level="4.11" data-path="conditional-probability.html"><a href="conditional-probability.html#questions-2"><i class="fa fa-check"></i><b>4.11</b> Questions</a></li>
+<li class="chapter" data-level="4.12" data-path="conditional-probability.html"><a href="conditional-probability.html#practice-2"><i class="fa fa-check"></i><b>4.12</b> Practice</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html"><i class="fa fa-check"></i><b>5</b> Discrete Random Variables</a>
 <ul>
@@ -285,10 +286,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.5" data-path="normal-distribution.html"><a href="normal-distribution.html#probability-distribution-2"><i class="fa fa-check"></i><b>9.5</b> Probability distribution</a></li>
 <li class="chapter" data-level="9.6" data-path="normal-distribution.html"><a href="normal-distribution.html#standard-normal-density"><i class="fa fa-check"></i><b>9.6</b> Standard normal density</a></li>
 <li class="chapter" data-level="9.7" data-path="normal-distribution.html"><a href="normal-distribution.html#standard-distribution"><i class="fa fa-check"></i><b>9.7</b> Standard distribution</a></li>
-<li class="chapter" data-level="9.8" data-path="normal-distribution.html"><a href="normal-distribution.html#summary-of-probability-models"><i class="fa fa-check"></i><b>9.8</b> Summary of probability models</a></li>
-<li class="chapter" data-level="9.9" data-path="normal-distribution.html"><a href="normal-distribution.html#r-functions-of-probability-models"><i class="fa fa-check"></i><b>9.9</b> R functions of probability models</a></li>
-<li class="chapter" data-level="9.10" data-path="normal-distribution.html"><a href="normal-distribution.html#questions-6"><i class="fa fa-check"></i><b>9.10</b> Questions</a></li>
-<li class="chapter" data-level="9.11" data-path="normal-distribution.html"><a href="normal-distribution.html#exercises-7"><i class="fa fa-check"></i><b>9.11</b> Exercises</a></li>
+<li class="chapter" data-level="9.8" data-path="normal-distribution.html"><a href="normal-distribution.html#standardization"><i class="fa fa-check"></i><b>9.8</b> Standardization</a></li>
+<li class="chapter" data-level="9.9" data-path="normal-distribution.html"><a href="normal-distribution.html#summary-of-probability-models"><i class="fa fa-check"></i><b>9.9</b> Summary of probability models</a></li>
+<li class="chapter" data-level="9.10" data-path="normal-distribution.html"><a href="normal-distribution.html#python-functions-of-probability-models"><i class="fa fa-check"></i><b>9.10</b> Python functions of probability models</a></li>
+<li class="chapter" data-level="9.11" data-path="normal-distribution.html"><a href="normal-distribution.html#questions-6"><i class="fa fa-check"></i><b>9.11</b> Questions</a></li>
+<li class="chapter" data-level="9.12" data-path="normal-distribution.html"><a href="normal-distribution.html#exercises-7"><i class="fa fa-check"></i><b>9.12</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="10" data-path="sampling-distributions.html"><a href="sampling-distributions.html"><i class="fa fa-check"></i><b>10</b> Sampling distributions</a>
 <ul>
@@ -491,18 +493,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1><span class="header-section-number">Chapter 17</span> Mean differences across several groups<a href="mean-differences-across-several-groups.html#mean-differences-across-several-groups" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <div id="objective-12" class="section level2 hasAnchor" number="17.1">
 <h2><span class="header-section-number">17.1</span> Objective<a href="mean-differences-across-several-groups.html#objective-12" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>In this chapter, we will generalize the test for difference between means across many groups. We will do this by using the analysis of variance (ANOVA) that compares the variance within the groups and the variance between the groups.</p>
-<p>We will see that ANOVA can be used to describe the two different groupings if the random experiment, represented by two different categorical variables. This is called a 2-way ANOVA.</p>
-<p>Finally we will use the ANOVA to test that at least one combination of the two categorical variables can not be explained by the independent contributions of each condition. This is calles a 2-way ANOVA plus interaction.</p>
+<p>In this chapter, we will generalize the test for difference between means across many groups. That is many levels of a categorical variables. We will do this by using the analysis of variance (ANOVA) that compares the variance within the groups and the variance between the groups.</p>
+<p>We will see that ANOVA can be further used to describe the mean of a continuous variable across two different categorical variables with many levels each. This is called a 2-way ANOVA.</p>
+<p>Finally we will use the ANOVA to test that at least one combination of the two categorical variables can not be explained by the independent contributions of each condition. This is called a 2-way ANOVA plus interaction.</p>
 </div>
 <div id="different-means-across-several-conditions" class="section level2 hasAnchor" number="17.2">
 <h2><span class="header-section-number">17.2</span> Different means across several conditions<a href="mean-differences-across-several-groups.html#different-means-across-several-conditions" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>In a study that wanted to test the effect of leptin in neurodevelopment, 7 male mice had their leptin gene knocked out. While 16 mice were left with normal leptin function. In a third group, 10 mice with knocked out leptin were injected leptin <a href="https://pubmed.ncbi.nlm.nih.gov/30694175/">(PMID:30694175)</a>. An initial question was to test the effect of the leptin group on the body weight of the animals. We therefore aassume three conditions and that</p>
+<p>In a study that wanted to test the effect of leptin in neurodevelopment, 7 male mice had their leptin gene knocked out. Whereas, 16 mice were left with normal leptin function. In a third group, 10 mice with knocked out leptin were injected leptin protein <a href="https://pubmed.ncbi.nlm.nih.gov/30694175/">(PMID:30694175)</a>. An initial question was to test the effect of the leptin group on the body weight of the animals. We therefore aassume three conditions and that</p>
 <ol style="list-style-type: decimal">
 <li>the weight of the control animals (wild type) has a probability density</li>
 </ol>
 <p><span class="math display">\[Y_A \rightarrow N(\mu_A, \sigma^2)\]</span></p>
-<p>2 the weight of the animals with no leptin gene (KO) but were injected leptin protein has a probability density</p>
+<ol start="2" style="list-style-type: decimal">
+<li>the weight of the animals with no leptin gene (KO) but were injected leptin protein has a probability density</li>
+</ol>
 <p><span class="math display">\[Y_B \rightarrow N(\mu_B, \sigma^2)\]</span></p>
 <ol start="3" style="list-style-type: decimal">
 <li>the weight of the animals with no leptin gene (KO) has a probability density</li>
@@ -558,19 +562,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="difference-between-means-2" class="section level2 hasAnchor" number="17.4">
 <h2><span class="header-section-number">17.4</span> Difference between means<a href="mean-differences-across-several-groups.html#difference-between-means-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>We take weights <strong>conditioned to</strong> each leptin condition, and observed:</p>
+<p>We take weights <strong>conditioned to</strong> each leptin group, and observed:</p>
 <ul>
 <li><p><span class="math inline">\(n_A=16\)</span> control mice had a weight mean of <span class="math inline">\(\bar{y}_A=26.49813\)</span> and <span class="math inline">\(s_A=2.247577\)</span></p></li>
-<li><p><span class="math inline">\(n_B=10\)</span> leptin KO mice with leptin replacement had a weight mean of <span class="math inline">\(\bar{y}_B=25.668\)</span> and <span class="math inline">\(s_B=5.034161\)</span>
-We can draw boxplots per group</p></li>
+<li><p><span class="math inline">\(n_B=10\)</span> leptin KO mice with leptin replacement had a weight mean of <span class="math inline">\(\bar{y}_B=25.668\)</span> and <span class="math inline">\(s_B=5.034161\)</span></p></li>
 <li><p><span class="math inline">\(n_C=7\)</span> leptin KO mice had a weight mean of <span class="math inline">\(\bar{y}_C=44.53\)</span> and <span class="math inline">\(s_C=4.774167\)</span></p></li>
 </ul>
 <p>We can draw a barplot for each mean with a confidence interval</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-155-1.png" width="672" /></p>
-<p>and we see that the wild type (control) has a similar mean weight (KOplus) to the mice without the leptin gene but which have been injected leptin. The mice without leptin gene and no leptin protein (leptinKO) have mean higher mean weight. As the confidence intervals for this group does not overlap with the other two, we say that the mean of the knock outs is singificanlty higher than for the other two cases.</p>
+<p><img src="_main_files/figure-html/unnamed-chunk-134-1.png" width="672" /></p>
+<p>and we see that the wild type (control) has a similar mean weight to the mice without the leptin gene but which have been injected leptin (KOplus). The mice without leptin gene and no leptin protein (leptinKO) have mean higher mean weight. As the confidence intervals for this group does not overlap with the other two, we say that the mean of the knock outs is singificanlty higher than for the other two cases.</p>
 <p>We can see the differences in distributions with a violin plot</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-156-1.png" width="672" /></p>
-<p>While in a test for the difference in means between two groups, we ask in the hypothesis test if the means are equal (null) in the multiple groups we ask if at least one of the means is different.</p>
+<p><img src="_main_files/figure-html/unnamed-chunk-135-1.png" width="672" /></p>
+<p>When we test for the difference in means between <strong>two groups</strong>, we test in null hypothesis if the means are equal. When we consider more than two groups, we ask if <strong>at least one</strong> of the means is different.</p>
 </div>
 <div id="hypothesis-test-2" class="section level2 hasAnchor" number="17.5">
 <h2><span class="header-section-number">17.5</span> hypothesis test<a href="mean-differences-across-several-groups.html#hypothesis-test-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -580,19 +583,19 @@ We can draw boxplots per group</p></li>
 <li><p><span class="math inline">\(H_1\)</span>: at least one mean <span class="math inline">\(\mu_i\)</span>is different from the rest (research interest).</p></li>
 </ol>
 <p>How can we test this hypothesis? Is there a statistic that we can formulate such that its value give us information on whether we should accept or reject <span class="math inline">\(H_0\)</span>?</p>
-<p>Let’s look at the dispersion of the data.</p>
-<p>Within each group the data disperses about their averages. Therefore an estimator of the variance for each group. For example for group <span class="math inline">\(A\)</span> the sample variance</p>
+<p>Let’s look at the dispersion of <strong>all the data points</strong> at wach group.
+Within each group the data disperses about their averages. Therefore an estimator of the variance for each group. For example for group <span class="math inline">\(A\)</span> the sample variance</p>
 <p><span class="math display">\[S_A^2=\frac{1}{n-1} \sum_{i=1}^n (Y_{Ai}-\bar{Y}_{A})^2\]</span></p>
 <p>is an estimator of the variance <span class="math inline">\(\sigma^2\)</span> of the weights at group <span class="math inline">\(A\)</span>. <span class="math inline">\(n\)</span> is the number of observations made in group <span class="math inline">\(A\)</span>. Since we are assuming that in all groups the data disperses with the same variance <span class="math inline">\(\sigma^2\)</span> then the average of the sample variances</p>
 <p><span class="math display">\[Se^2 = \frac{1}{3}(S_A^2+S_B^2+S_C^2)\]</span></p>
 <p>is another estimator of the variance <span class="math inline">\(\sigma^2\)</span> that takes into account the estimators at each group. <span class="math inline">\(S_e^2\)</span> is called the <strong>mean square error</strong>.</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-157-1.png" width="672" /></p>
-<p>Let’s look now at the averages for each group. We know, for instance, that <span class="math inline">\(\bar{Y}_A\)</span> is normal with mean <span class="math inline">\(\mu_A\)</span> and variance <span class="math inline">\(\frac{\sigma^2}{n}\)</span>.</p>
+<p><img src="_main_files/figure-html/unnamed-chunk-136-1.png" width="672" /></p>
+<p>Let’s now look at the dispersion of <strong>averages</strong> of each group, instead. That is the right part of the plot above (<span class="math inline">\(Y\_bar\)</span> tag), where we look at how the averages disperse about the overall mean of the data. We know, for instance, that <span class="math inline">\(\bar{Y}_A\)</span> is normal with mean <span class="math inline">\(\mu_A\)</span> and variance <span class="math inline">\(\frac{\sigma^2}{n}\)</span>.</p>
 <p>If the <strong>null hypothesis is true</strong> there are no differences between the means and then</p>
 <p><span class="math display">\[\mu_A=\mu_B=\mu_C=\mu\]</span>
-Therefore <span class="math inline">\(\bar{Y}_A, \bar{Y}_B, \bar{Y}_C \rightarrow N(\mu, \sigma^2/n)\)</span> and <span class="math inline">\((\bar{y}_A, \bar{y}_B, \bar{y}_C )\)</span> is the observed sample of size <span class="math inline">\(k=3\)</span> of the same random experiment: one that takes averages on the weights of animals in groups that are identical. In that case the sample variance</p>
+Therefore <span class="math inline">\(\bar{Y}_A, \bar{Y}_B, \bar{Y}_C \rightarrow N(\mu, \sigma^2/n)\)</span> and <span class="math inline">\((\bar{y}_A, \bar{y}_B, \bar{y}_C )\)</span> is the observed sample of size <span class="math inline">\(k=3\)</span> of the same random experiment: one that takes averages on the weights of animals in groups that are identical between each other (no differences between grups). In that case, the sample variance</p>
 <p><span class="math display">\[S^2_{tr}=\frac{1}{k-1} \sum_{j=1}^k(\bar{Y}_{j}-\bar{Y})^2\]</span></p>
-<p>estimates the variance <span class="math inline">\(\sigma^2/n\)</span>. <span class="math inline">\(j\)</span> indicates the groups (<span class="math inline">\(A\)</span>, <span class="math inline">\(B\)</span>, <span class="math inline">\(C\)</span>) and <span class="math inline">\(\bar{Y}\)</span> is the average of the averages or put simply: the mean of all observations (the black dot in the figure) <span class="math display">\[\bar{Y}=\frac{1}{nk}\sum_j \sum_i Y_{ji}\]</span></p>
+<p>estimates the sample maen variance <span class="math inline">\(\sigma^2/n\)</span>. <span class="math inline">\(j\)</span> indicates the groups (<span class="math inline">\(A\)</span>, <span class="math inline">\(B\)</span>, <span class="math inline">\(C\)</span>) and <span class="math inline">\(\bar{Y}\)</span> is the average of the averages or put simply: the mean of all observations (the black dot in the figure) <span class="math display">\[\bar{Y}=\frac{1}{nk}\sum_j \sum_i Y_{ji}\]</span></p>
 <p>If the null <strong>hypothesis is true</strong> and we take more and more observations in each group then all the averages get closer to the grand mean, and the grand mean gets closer to <span class="math inline">\(\mu\)</span>. Since <span class="math inline">\(S_{tr}^2\)</span> estimates <span class="math inline">\(\sigma^2/n\)</span> and <span class="math inline">\(S_e^2\)</span> estimates <span class="math inline">\(\sigma^2\)</span> then the ratio</p>
 <p><span class="math display">\[F=\frac{n S_{tr}^2}{S_e^2}\]</span>
 is a statistic that is close to <span class="math inline">\(1\)</span>, when <span class="math inline">\(H_0\)</span> is true.</p>
@@ -615,14 +618,23 @@ is a statistic that is close to <span class="math inline">\(1\)</span>, when <sp
 <p>Then, the observed value of <span class="math inline">\(F\)</span>, <em>e.g</em> <span class="math inline">\(f_{obs}\)</span> will be <strong>greater</strong> than <span class="math inline">\(1\)</span>.</p>
 <p><strong>Example (mice knockouts)</strong></p>
 <p>The value of the <span class="math inline">\(f_{obs}\)</span> computes from the group (treatments) mean and residual (error) mean squares can be calculated in statistical software that usually output the ANOVA table</p>
-<pre><code>## Analysis of Variance Table
-## 
-## Response: weight
-##           Df  Sum Sq Mean Sq F value    Pr(&gt;F)    
-## group      2 1861.55  930.77  63.373 1.694e-11 ***
-## Residuals 30  440.62   14.69                      
-## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<pre><code>import pandas as pd
+import statsmodels.api as sm
+from statsmodels.formula.api import ols
+
+data = pd.read_csv(&#39;https://alejandro-isglobal.github.io/SDA/data/dataleptin.txt&#39;, sep=&#39; &#39;)
+
+filtsex = data[&#39;sex&#39;]==&#39;M&#39;
+filtered_data = data[filtsex]
+
+model = ols(&#39;weight ~ group&#39;, data=filtered_data).fit()
+
+anova_table = sm.stats.anova_lm(model, typ=1)
+
+print(anova_table)</code></pre>
+<pre><code>            df       sum_sq     mean_sq          F        PR(&gt;F)
+group      2.0  1861.549820  930.774910  63.373347  1.693725e-11
+Residual  30.0   440.615004   14.687167        NaN           NaN</code></pre>
 <p>In this table <span class="math inline">\(MST\)</span> is the Mean squares for the group, computed as the Sum of squares divided by the degrees of freedom (<span class="math inline">\(k-1=2\)</span>).</p>
 <p><span class="math display">\[MST=\frac{1}{k-1}SSq_{group}=930.77\]</span>
 <span class="math inline">\(MST\)</span> is the Mean squares for the group, computed as the Sum of squares divided by the degrees on freedom (<span class="math inline">\(k(n-1)=30\)</span>), where <span class="math inline">\(n=(16 + 7 + 10)/3=11\)</span> is the mean number of observations in each group</p>
@@ -652,7 +664,7 @@ and thus recover the t-test for the difference between two groups.</p>
 The upper tailed p-value for <span class="math inline">\(f_{obs}\)</span> using the Fisher distribution is</p>
 <p><span class="math display">\[pvalue=1-F_{Fisher,1,21}(156.45)=3.377 \times 10^{-11}\]</span> with <span class="math inline">\(k=2\)</span> and <span class="math inline">\(n=11.5\)</span> is the average number of observations per group.</p>
 <p>in R: <code>1-pf(156.45, 1,21)</code></p>
-<p><img src="_main_files/figure-html/unnamed-chunk-159-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-137-1.png" width="672" /></p>
 <p>This p-value is exactly the same as the one we obtained with the t-test with equal variances. Therefore, we reject the hypothesis that the weights between wild types and leptin knock outs are the same.</p>
 <p>We can check the ANOVA table</p>
 <pre><code>## Analysis of Variance Table
@@ -663,6 +675,36 @@ The upper tailed p-value for <span class="math inline">\(f_{obs}\)</span> using 
 ## Residuals 21  212.53   10.12                      
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<pre><code>import pandas as pd
+import statsmodels.api as sm
+from statsmodels.formula.api import ols
+
+data = pd.read_csv(&#39;https://alejandro-isglobal.github.io/SDA/data/dataleptin.txt&#39;, sep=&#39; &#39;)
+
+filtsex = data[&#39;sex&#39;]==&#39;M&#39;
+filtgroups = (data[&#39;group&#39;]==&#39;Control&#39;) | (data[&#39;group&#39;]==&#39;leptinKO&#39;)
+
+filtered_data = data[filtsex &amp; filtgroups]
+
+model = ols(&#39;weight ~ group&#39;, data=filtered_data).fit()
+
+anova_table = sm.stats.anova_lm(model, typ=1)
+
+print(anova_table)</code></pre>
+<pre><code>            df       sum_sq      mean_sq           F        PR(&gt;F)
+group      1.0  1583.331904  1583.331904  156.448328  3.377212e-11
+Residual  21.0   212.530044    10.120478         NaN           NaN</code></pre>
+<p>and compare it with the t-test</p>
+<pre><code>import numpy as np
+from scipy import stats
+
+data = pd.read_csv(&#39;https://alejandro-isglobal.github.io/SDA/data/leptin.txt&#39;, sep=&#39;\t&#39;)
+
+groupA = data[&quot;Control&quot;]
+groupB = data[&quot;LepNull&quot;]
+
+stats.ttest_ind(groupA, groupB, equal_var=True, nan_policy=&#39;omit&#39;)</code></pre>
+<pre><code>Ttest_indResult(statistic=-12.507930602554847, pvalue=3.377211689857233e-11)</code></pre>
 </div>
 <div id="linear-model" class="section level2 hasAnchor" number="17.8">
 <h2><span class="header-section-number">17.8</span> Linear model<a href="mean-differences-across-several-groups.html#linear-model" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -759,27 +801,54 @@ The upper tailed p-value for <span class="math inline">\(f_{obs}\)</span> using 
 <div id="modeling-residuals" class="section level2 hasAnchor" number="17.11">
 <h2><span class="header-section-number">17.11</span> Modeling residuals<a href="mean-differences-across-several-groups.html#modeling-residuals" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>We see that there is no effect of sex when the leptin groups are ignored. No significant differences in means between sexes is observed</p>
-<pre><code>## Analysis of Variance Table
-## 
-## Response: weight
-##           Df Sum Sq Mean Sq F value Pr(&gt;F)
-## sex        1  135.0  134.97  0.8544 0.3613
-## Residuals 37 5844.9  157.97</code></pre>
-<p><img src="_main_files/figure-html/unnamed-chunk-163-1.png" width="672" /></p>
+<pre><code>import pandas as pd
+import statsmodels.api as sm
+from statsmodels.formula.api import ols
+
+
+data = pd.read_csv(&#39;https://alejandro-isglobal.github.io/SDA/data/dataleptin.txt&#39;, sep=&#39; &#39;)
+
+filtgroups = (data[&#39;group&#39;]==&#39;leptinKO&#39;) | (data[&#39;group&#39;]==&#39;KOplus&#39;)
+
+filtered_data = data[filtgroups]
+
+model = ols(&#39;weight ~ sex&#39;, data=filtered_data).fit()
+
+anova_table = sm.stats.anova_lm(model, typ=1)
+
+print(anova_table)</code></pre>
+<pre><code>            df       sum_sq     mean_sq         F    PR(&gt;F)
+sex        1.0   134.975026  134.975026  0.854439  0.361289
+Residual  37.0  5844.862933  157.969268       NaN       NaN</code></pre>
+<p><img src="_main_files/figure-html/unnamed-chunk-140-1.png" width="672" /></p>
 <p>We see however that the points are clustered by leptin group, suggesting that we should adjust by the differences in the lepting before we test the differences in sex. It is possible that when we subtract the differences in lepting the mean weight of males is lower than that of females.</p>
 <p>The way we subtract the effect of leptin is to perform an ANVOVA of mice weight on lepting group and then to obtain the residuals os each observations. The residuals are the observed values of the error <span class="math inline">\(E_{ij}\)</span> and are computes as</p>
 <p><span class="math display">\[r_{ji}=y_{ji}-\bar{y}_j\]</span>
 That is, we subtract the mean of the group <span class="math inline">\(j\)</span> to each observation <span class="math inline">\(i\)</span> in leptin group <span class="math inline">\(j\)</span>. In this example we only consider two groups of leptin (KOplus y leptinKO).</p>
 <p>Then we can perform another ANOVA test for the residuals on sex differences</p>
-<pre><code>## Analysis of Variance Table
-## 
-## Response: residual.weight
-##           Df Sum Sq Mean Sq F value  Pr(&gt;F)  
-## sex        1  73.94  73.939   2.956 0.09392 .
-## Residuals 37 925.49  25.013                  
-## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
-<p><img src="_main_files/figure-html/unnamed-chunk-166-1.png" width="672" /></p>
+<pre><code>import pandas as pd
+import statsmodels.api as sm
+from statsmodels.formula.api import ols
+
+data = pd.read_csv(&#39;https://alejandro-isglobal.github.io/SDA/data/dataleptin.txt&#39;, sep=&#39; &#39;)
+
+filtgroups = (data[&#39;group&#39;]==&#39;leptinKO&#39;) | (data[&#39;group&#39;]==&#39;KOplus&#39;)
+
+filtered_data = data[filtgroups]
+
+model1 = sm.OLS.from_formula(&#39;weight ~ group&#39;, data=filtered_data).fit()
+
+filtered_data[&quot;residuals&quot;] = model1.resid
+
+model2 = ols(&#39;residuals ~ sex&#39;, data=filtered_data).fit()
+
+anova_table = sm.stats.anova_lm(model2, typ=1)
+
+print(anova_table)</code></pre>
+<pre><code>              sum_sq    df         F    PR(&gt;F)
+sex        73.938528   1.0  2.955976  0.093917
+Residual  925.489697  37.0       NaN       NaN</code></pre>
+<p><img src="_main_files/figure-html/unnamed-chunk-143-1.png" width="672" /></p>
 <p>We see that we have adjusted by the differences in leptin, as the dots are mixed together. The lower weight in males is almost significant for the residuals. However, from this model we do not know the contribution of the leptin group to the variability of the data (points). Also, if <span class="math inline">\(n\)</span> is large, it is possible that even if the null hypothesis is true, the means of each sex do not get closer to the grand mean if there is a significant effect of leptin.</p>
 <p>The data are between explained by the simultaneous and added contributions of sex and leptin group.</p>
 </div>
@@ -826,7 +895,7 @@ The dot indicates that we ignore the other factor.</p>
 <p>To decide between each hypothesis in each hypothesis contrast, we need test statistics. We can again measure the dispersion of the observations from their means in each condition given by both factors. For instance the mean <span class="math inline">\(\mu_{M,KO}=\mu_{M \cdot} + \mu_{\cdot KO} - \mu\)</span> is estimated by</p>
 <p><span class="math display">\[\hat{\mu}_{M,KO}= \bar{Y}_{M \cdot}+\bar{Y}_{\cdot KO} - \bar{Y}\]</span></p>
 <p>and represent the dots in the following plot</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-167-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-144-1.png" width="672" /></p>
 <p>The dispersion of the data about this means at condition <span class="math inline">\((M,KO)\)</span> is given by the statistics</p>
 <p><span class="math display">\[S^2_{M,KO}=\frac{1}{n-1}\sum_{i=1}^n (Y_{i,M,KO}-\hat{\mu}_{M,KO})^2\]</span></p>
 <p>If we assume that the variance of the weight in all conditions, given by both factors, is <span class="math inline">\(\sigma^2\)</span> then we can estimate it with the statistic</p>
@@ -842,15 +911,25 @@ and define the <span class="math inline">\(F\)</span> statistics</p>
 <p>and we can define <span class="math display">\[F_2=\frac{kmS_{tr2}^2}{S_{e}^2}\rightarrow Fisher(m-1,(kmn-1)-(k-1)-(m-1))\]</span></p>
 <p>Then, observed values of <span class="math inline">\(F_2\)</span> far from <span class="math inline">\(1\)</span> suggest that the means between groups of the second factor significantly <strong>differ</strong>, rejecting the null.</p>
 <p>All this is summarized in the two-way ANOVA table</p>
-<pre><code>## Analysis of Variance Table
-## 
-## Response: weight
-##           Df Sum Sq Mean Sq  F value    Pr(&gt;F)    
-## sex        1  135.0   135.0   5.2511   0.02789 *  
-## group      1 4919.5  4919.5 191.3887 5.593e-16 ***
-## Residuals 36  925.4    25.7                       
-## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<pre><code>import pandas as pd
+import statsmodels.api as sm
+from statsmodels.formula.api import ols
+
+data = pd.read_csv(&#39;https://alejandro-isglobal.github.io/SDA/data/dataleptin.txt&#39;, sep=&#39; &#39;)
+
+filtgroups = (data[&#39;group&#39;]==&#39;leptinKO&#39;) | (data[&#39;group&#39;]==&#39;KOplus&#39;)
+
+filtered_data = data[filtgroups]
+
+model = ols(&#39;weight ~ sex + group&#39;, data=filtered_data).fit()
+
+anova_table = sm.stats.anova_lm(model, typ=1)
+
+print(anova_table)</code></pre>
+<pre><code>            df       sum_sq      mean_sq           F        PR(&gt;F)
+sex        1.0   134.975026   134.975026    5.251072  2.788981e-02
+group      1.0  4919.508806  4919.508806  191.388693  5.593450e-16
+Residual  36.0   925.354127    25.704281         NaN           NaN</code></pre>
 <p>where for example the observed value of <span class="math inline">\(F_1\)</span> is</p>
 <p><span class="math display">\[f_{1obs}=\frac{MST1}{MSE}=\frac{\frac{1}{k-1}SSq_{sex}}{\frac{1}{(kmn-1)-(k-1)-(m-1)}SSq_{Residual}}=5.2511\]</span></p>
 <p>We can see that there is a significant effect of sex when we also take into account the effect of leptin. From the dispersion plot, we see that males seem to have lower weights than females, whether they are in the group with supplemented leptin (KOplus) or with out it (leptinKO).</p>
@@ -868,7 +947,7 @@ and define the <span class="math inline">\(F\)</span> statistics</p>
 <li><p><span class="math inline">\(n_{M,KO}=7\)</span> leptin KO <strong>male</strong> mice had a weight average of <span class="math inline">\(\bar{y}_{M,KO}=44.530\)</span>.</p></li>
 </ul>
 <p>For these estimations we can draw a barplot with confidence intervals.</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-169-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-145-1.png" width="672" /></p>
 <p>From this plot we can see that most of the difference between male and female weights comes from the knock out condition. In the supplemented leptin groups sexes seem the have similar weights. How can we test the hypothesis that there is a particular combination of conditions that has an effect on the weight of mice?</p>
 <p>The apparent less-than-expected gain in weight of leptin KO males seems like a specific interaction between these two conditions.</p>
 </div>
@@ -917,9 +996,29 @@ Finally, to test the hypothesis contrast for the interaction term, we compute th
 ## Residuals 35  820.6    23.4                     
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
-<p>As we observed from the barplots, the statistical inference confirms that there are significant differences in weight between leptin groups, no significant differences between sexes, and significant interactions between sex and leptin groups. In particular, the effect of leptin knockout in weight is higher in females than males, opposite to what was observed in mice supplemented with leptin protein.</p>
+<pre><code>import pandas as pd
+import statsmodels.api as sm
+from statsmodels.formula.api import ols
+
+data = pd.read_csv(&#39;https://alejandro-isglobal.github.io/SDA/data/dataleptin.txt&#39;, sep=&#39; &#39;)
+
+filtgroups = (data[&#39;group&#39;]==&#39;leptinKO&#39;) | (data[&#39;group&#39;]==&#39;KOplus&#39;)
+
+filtered_data = data[filtgroups]
+
+model = ols(&#39;weight ~ sex*group&#39;, data=filtered_data).fit()
+
+anova_table = sm.stats.anova_lm(model, typ=1)
+
+print(anova_table)</code></pre>
+<pre><code>             df       sum_sq      mean_sq           F        PR(&gt;F)
+sex         1.0   134.975026   134.975026    5.757201  2.187963e-02
+group       1.0  4919.508806  4919.508806  209.835870  2.367238e-16
+sex:group   1.0   104.794667   104.794667    4.469893  4.169367e-02
+Residual   35.0   820.559460    23.444556         NaN           NaN</code></pre>
+<p>As we observed from the barplots, the statistical inference confirms that there are significant differences in weight between leptin groups, significant differences between sexes, and significant interactions between sex and leptin groups. In particular, the effect of leptin knockout in weight is higher in females than males, opposite to what was observed in mice supplemented with leptin protein.</p>
 <p>Interactions are better represented in plots displaying the conditioned means across both factors. Significant interactions are therefore given by non-parallel lines.</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-171-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-147-1.png" width="672" /></p>
 </div>
 <div id="questions-13" class="section level2 hasAnchor" number="17.20">
 <h2><span class="header-section-number">17.20</span> Questions<a href="mean-differences-across-several-groups.html#questions-13" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -951,7 +1050,8 @@ Finally, to test the hypothesis contrast for the interaction term, we compute th
 </div>
 <div id="practice-7" class="section level2 hasAnchor" number="17.21">
 <h2><span class="header-section-number">17.21</span> Practice<a href="mean-differences-across-several-groups.html#practice-7" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Load leptin data (<code>dataleptin.txt</code>)</p>
+<p>Load leptin data (
+<code><a href="https://alejandro-isglobal.github.io/SDA/data/dataleptin.txt" class="uri">https://alejandro-isglobal.github.io/SDA/data/dataleptin.txt</a></code>)</p>
 <ul>
 <li><p>Use a t-test to test the hypothesis that the weight between sexes is different.</p></li>
 <li><p>Use an ANOVA to test that the weight between sexes in difference.</p></li>

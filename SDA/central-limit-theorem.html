@@ -23,7 +23,7 @@
 <meta name="author" content="Alejandro Caceres" />
 
 
-<meta name="date" content="2023-08-08" />
+<meta name="date" content="2023-09-04" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -210,6 +210,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.9" data-path="conditional-probability.html"><a href="conditional-probability.html#bayes-theorem"><i class="fa fa-check"></i><b>4.9</b> Bayes’ Theorem</a></li>
 <li class="chapter" data-level="4.10" data-path="conditional-probability.html"><a href="conditional-probability.html#exercises-2"><i class="fa fa-check"></i><b>4.10</b> Exercises</a></li>
 <li class="chapter" data-level="4.11" data-path="conditional-probability.html"><a href="conditional-probability.html#questions-2"><i class="fa fa-check"></i><b>4.11</b> Questions</a></li>
+<li class="chapter" data-level="4.12" data-path="conditional-probability.html"><a href="conditional-probability.html#practice-2"><i class="fa fa-check"></i><b>4.12</b> Practice</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html"><i class="fa fa-check"></i><b>5</b> Discrete Random Variables</a>
 <ul>
@@ -285,10 +286,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.5" data-path="normal-distribution.html"><a href="normal-distribution.html#probability-distribution-2"><i class="fa fa-check"></i><b>9.5</b> Probability distribution</a></li>
 <li class="chapter" data-level="9.6" data-path="normal-distribution.html"><a href="normal-distribution.html#standard-normal-density"><i class="fa fa-check"></i><b>9.6</b> Standard normal density</a></li>
 <li class="chapter" data-level="9.7" data-path="normal-distribution.html"><a href="normal-distribution.html#standard-distribution"><i class="fa fa-check"></i><b>9.7</b> Standard distribution</a></li>
-<li class="chapter" data-level="9.8" data-path="normal-distribution.html"><a href="normal-distribution.html#summary-of-probability-models"><i class="fa fa-check"></i><b>9.8</b> Summary of probability models</a></li>
-<li class="chapter" data-level="9.9" data-path="normal-distribution.html"><a href="normal-distribution.html#r-functions-of-probability-models"><i class="fa fa-check"></i><b>9.9</b> R functions of probability models</a></li>
-<li class="chapter" data-level="9.10" data-path="normal-distribution.html"><a href="normal-distribution.html#questions-6"><i class="fa fa-check"></i><b>9.10</b> Questions</a></li>
-<li class="chapter" data-level="9.11" data-path="normal-distribution.html"><a href="normal-distribution.html#exercises-7"><i class="fa fa-check"></i><b>9.11</b> Exercises</a></li>
+<li class="chapter" data-level="9.8" data-path="normal-distribution.html"><a href="normal-distribution.html#standardization"><i class="fa fa-check"></i><b>9.8</b> Standardization</a></li>
+<li class="chapter" data-level="9.9" data-path="normal-distribution.html"><a href="normal-distribution.html#summary-of-probability-models"><i class="fa fa-check"></i><b>9.9</b> Summary of probability models</a></li>
+<li class="chapter" data-level="9.10" data-path="normal-distribution.html"><a href="normal-distribution.html#python-functions-of-probability-models"><i class="fa fa-check"></i><b>9.10</b> Python functions of probability models</a></li>
+<li class="chapter" data-level="9.11" data-path="normal-distribution.html"><a href="normal-distribution.html#questions-6"><i class="fa fa-check"></i><b>9.11</b> Questions</a></li>
+<li class="chapter" data-level="9.12" data-path="normal-distribution.html"><a href="normal-distribution.html#exercises-7"><i class="fa fa-check"></i><b>9.12</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="10" data-path="sampling-distributions.html"><a href="sampling-distributions.html"><i class="fa fa-check"></i><b>10</b> Sampling distributions</a>
 <ul>
@@ -525,7 +527,7 @@ We <strong>then</strong> need <strong>standardize</strong> <span class="math inl
 <span class="math display">\[=P(-\frac{m}{\sigma/\sqrt{n}} \leq Z \leq\frac{m}{\sigma/\sqrt{n}})=0.95\]</span></p>
 <p>Compare it with the plot above: <span class="math inline">\(\frac{m}{\sigma/\sqrt{n}}\)</span> is the distance about <span class="math inline">\(0\)</span> that captures <span class="math inline">\(95\%\)</span> of the distribution standard normal variable. The distance leaves <span class="math inline">\(2.5\%\)</span> probability at each tail of the distribution. For the upper tail, this is</p>
 <p><span class="math display">\[\frac{m}{\sigma/\sqrt{n}}=\phi^{-1}(0.975)=1.96\]</span></p>
-<p>where <span class="math inline">\(\phi^{-1}\)</span> is the inverse of the standard normal distribution (<code>qnorm(0.975)</code>). Therefore</p>
+<p>where <span class="math inline">\(\phi^{-1}\)</span> is the inverse of the standard normal distribution (<code>norm.ppf(0.975)</code>). Therefore</p>
 <p><span class="math display">\[m=1.96 \frac{\sigma}{\sqrt{n}}\]</span>
 <strong>Example (cables)</strong></p>
 <p>The sample mean <span class="math inline">\(\bar{X}\)</span> of a sample of <span class="math inline">\(8\)</span> cables follows a normal distribution with:</p>
@@ -597,8 +599,8 @@ is standard normal, because <span class="math inline">\(E(\bar{X})=p\)</span> an
 <div id="questions-8" class="section level2 hasAnchor" number="11.6">
 <h2><span class="header-section-number">11.6</span> Questions<a href="central-limit-theorem.html#questions-8" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><strong>1)</strong> A magnetic resonance imaging of the brain’s hippocampus has <span class="math inline">\(100\)</span> pixels. We expect <span class="math inline">\(90\%\)</span> of the pixels to be white (brain tissue). According to the central limit theorem, what is the probability that the scanning of a patient has at most <span class="math inline">\(85\%\)</span> of white pixels?</p>
-<p><strong><span class="math inline">\(\qquad\)</span>a:</strong><code>pnorm(0.9, 0.85, sqrt(0.85*0.15)/10)</code>; <strong><span class="math inline">\(\qquad\)</span>b:</strong><code>dnorm(0.85, 0.9,
-sqrt(0.9*0.1)/10)</code>; <strong><span class="math inline">\(\qquad\)</span>c:</strong><code>pnorm(0.85, 0.9, sqrt(0.9*0.1)/10)</code>; <strong><span class="math inline">\(\qquad\)</span>d:</strong><code>dnorm(0.9, 0.85, sqrt(0.85*0.15)/10)</code></p>
+<p><strong><span class="math inline">\(\qquad\)</span>a:</strong><code>norm.cdf(0.9, 0.85, sqrt(0.85*0.15)/10)</code>; <strong><span class="math inline">\(\qquad\)</span>b:</strong><code>norm.pdf(0.85, 0.9,
+sqrt(0.9*0.1)/10)</code>; <strong><span class="math inline">\(\qquad\)</span>c:</strong><code>norm.cdf(0.85, 0.9, sqrt(0.9*0.1)/10)</code>; <strong><span class="math inline">\(\qquad\)</span>d:</strong><code>norm.pdf(0.9, 0.85, sqrt(0.85*0.15)/10)</code></p>
 <p><strong>2)</strong> For a standard normal variable, if we the number <span class="math inline">\(z_{0.025}\)</span> in the definition of the margin of error <span class="math inline">\(m=z_{0.025} \frac{\sigma}{\sqrt{n}}\)</span>, then it will refer to</p>
 <p><strong><span class="math inline">\(\qquad\)</span>a:</strong> The first quartile; <strong><span class="math inline">\(\qquad\)</span>b:</strong> The number at which the distribution has accumulated <span class="math inline">\(0.975\)</span> of probability; <strong><span class="math inline">\(\qquad\)</span>c:</strong> The number at which the distribution has accumulated <span class="math inline">\(0.025\)</span> probability; <strong><span class="math inline">\(\qquad\)</span>d:</strong> The third quartile;</p>
 <p><strong>3)</strong> The importance of the central limit theorem is that is applyes to the standardization of</p>

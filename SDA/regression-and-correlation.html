@@ -23,7 +23,7 @@
 <meta name="author" content="Alejandro Caceres" />
 
 
-<meta name="date" content="2023-08-08" />
+<meta name="date" content="2023-09-04" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -210,6 +210,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.9" data-path="conditional-probability.html"><a href="conditional-probability.html#bayes-theorem"><i class="fa fa-check"></i><b>4.9</b> Bayes’ Theorem</a></li>
 <li class="chapter" data-level="4.10" data-path="conditional-probability.html"><a href="conditional-probability.html#exercises-2"><i class="fa fa-check"></i><b>4.10</b> Exercises</a></li>
 <li class="chapter" data-level="4.11" data-path="conditional-probability.html"><a href="conditional-probability.html#questions-2"><i class="fa fa-check"></i><b>4.11</b> Questions</a></li>
+<li class="chapter" data-level="4.12" data-path="conditional-probability.html"><a href="conditional-probability.html#practice-2"><i class="fa fa-check"></i><b>4.12</b> Practice</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html"><i class="fa fa-check"></i><b>5</b> Discrete Random Variables</a>
 <ul>
@@ -285,10 +286,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.5" data-path="normal-distribution.html"><a href="normal-distribution.html#probability-distribution-2"><i class="fa fa-check"></i><b>9.5</b> Probability distribution</a></li>
 <li class="chapter" data-level="9.6" data-path="normal-distribution.html"><a href="normal-distribution.html#standard-normal-density"><i class="fa fa-check"></i><b>9.6</b> Standard normal density</a></li>
 <li class="chapter" data-level="9.7" data-path="normal-distribution.html"><a href="normal-distribution.html#standard-distribution"><i class="fa fa-check"></i><b>9.7</b> Standard distribution</a></li>
-<li class="chapter" data-level="9.8" data-path="normal-distribution.html"><a href="normal-distribution.html#summary-of-probability-models"><i class="fa fa-check"></i><b>9.8</b> Summary of probability models</a></li>
-<li class="chapter" data-level="9.9" data-path="normal-distribution.html"><a href="normal-distribution.html#r-functions-of-probability-models"><i class="fa fa-check"></i><b>9.9</b> R functions of probability models</a></li>
-<li class="chapter" data-level="9.10" data-path="normal-distribution.html"><a href="normal-distribution.html#questions-6"><i class="fa fa-check"></i><b>9.10</b> Questions</a></li>
-<li class="chapter" data-level="9.11" data-path="normal-distribution.html"><a href="normal-distribution.html#exercises-7"><i class="fa fa-check"></i><b>9.11</b> Exercises</a></li>
+<li class="chapter" data-level="9.8" data-path="normal-distribution.html"><a href="normal-distribution.html#standardization"><i class="fa fa-check"></i><b>9.8</b> Standardization</a></li>
+<li class="chapter" data-level="9.9" data-path="normal-distribution.html"><a href="normal-distribution.html#summary-of-probability-models"><i class="fa fa-check"></i><b>9.9</b> Summary of probability models</a></li>
+<li class="chapter" data-level="9.10" data-path="normal-distribution.html"><a href="normal-distribution.html#python-functions-of-probability-models"><i class="fa fa-check"></i><b>9.10</b> Python functions of probability models</a></li>
+<li class="chapter" data-level="9.11" data-path="normal-distribution.html"><a href="normal-distribution.html#questions-6"><i class="fa fa-check"></i><b>9.11</b> Questions</a></li>
+<li class="chapter" data-level="9.12" data-path="normal-distribution.html"><a href="normal-distribution.html#exercises-7"><i class="fa fa-check"></i><b>9.12</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="10" data-path="sampling-distributions.html"><a href="sampling-distributions.html"><i class="fa fa-check"></i><b>10</b> Sampling distributions</a>
 <ul>
@@ -530,7 +532,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="normal-bivariate" class="section level2 hasAnchor" number="18.4">
 <h2><span class="header-section-number">18.4</span> Normal bivariate<a href="regression-and-correlation.html#normal-bivariate" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Let’s consider that one random experiment of the study consists on drawing a pair of measurements of both leptin levels <strong>and</strong> a fat mass of an individual. We therefore have a random variable that it a pair of measurements that follows a probability distribution. We will assume that the distribution in teh 2 dimensional version of a normal probability density</p>
+<p>Let’s consider that one random experiment of the study consists on drawing a pair of measurements of both leptin levels <strong>and</strong> a fat mass of an individual. We therefore have a random variable that its a pair of measurements that follows a probability distribution. We will assume that the distribution is the 2 dimensional version of a normal probability density</p>
 <p><span class="math display">\[(Y, X) \rightarrow N(\mu_y, \sigma^2_y, \mu_x, \sigma^2_x, \rho)\]</span></p>
 <p>This is function has five parameters. More explicitly the function is of the form</p>
 <p><span class="math display">\[f(y,x)=\frac{1}{2\pi \sigma_y\sigma_x \sqrt{1-\rho^2}}e^{\frac{(y-\mu_y)^2}{\sigma_y^2}-\frac{2\rho(y-\mu_y)(x-\mu_x)}{\sigma_y\sigma_x}+\frac{(x-\mu_x)^2}{\sigma_x^2}}\]</span></p>
@@ -547,21 +549,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li><span class="math inline">\(\rho=\frac{E[(Y-\mu_y)(X-\mu_x)]}{\sigma_y\sigma_x}\)</span></li>
 </ul>
-<p><span class="math inline">\(\rho\)</span> is called the correlation coefficient.</p>
-<p>When we draw the probability density in two dimensions, we see that the marginal densities, that is the protection of the densities on each axes define the densities</p>
+<p><span class="math inline">\(\rho\)</span> is called the <strong>correlation coefficient</strong>.</p>
+<p>When we draw the probability density in two dimensions, we see that the marginal densities, these are the projections of the densities on each axis, define the densities</p>
 <p><span class="math display">\[X \rightarrow N(\mu_x, \sigma_x^2)\]</span></p>
 <p>and</p>
 <p><span class="math display">\[Y \rightarrow N(\mu_y, \sigma_y^2)\]</span></p>
-<p>with its parameters. We can plot the 2D density as contour lines</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-174-1.png" width="672" /></p>
-<p>Or as a 3D plot, where the <span class="math inline">\(Z\)</span> axis is the value of the probability density.</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-175-1.png" width="672" /></p>
+<p>with its parameters. We can plot the 2D density as contour lines and the marginal densities on each axis</p>
+<p><img src="_main_files/figure-html/unnamed-chunk-150-1.png" width="672" /></p>
+<p>We can also plot the density in a 3D plot, where the <span class="math inline">\(Z\)</span> axis is the value of the probability density.</p>
+<p><img src="_main_files/figure-html/unnamed-chunk-151-1.png" width="672" /></p>
 <p>If we keep the contour plots of the 2D distribution, we see that the fifth parameter <span class="math inline">\(\rho\)</span> defines the direction on which the ellipses are elongated (mayor axis).</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-176-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-152-1.png" width="672" /></p>
+<p>The density is threfore determined with 5 parameters.</p>
 </div>
 <div id="estimators" class="section level2 hasAnchor" number="18.5">
 <h2><span class="header-section-number">18.5</span> Estimators<a href="regression-and-correlation.html#estimators" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>We can derive the estimator of all four parameters, if we for instance formulate the likelihood function</p>
+<p>We can derive the estimator of all 5 parameters, if we formulate the likelihood function</p>
 <p><span class="math display">\[L=\Pi_{i=1}^n f(y_i,x_i; \mu_x, \mu_y, \sigma^2_x, \sigma_y^2, \rho)\]</span>
 and maximize it for each parameter. As a result, we obtain the following estimators of the parameters.</p>
 <p>The estimators for the means are the usual averages</p>
@@ -581,17 +584,17 @@ and maximize it for each parameter. As a result, we obtain the following estimat
 </div>
 <div id="correlation-coefficient" class="section level2 hasAnchor" number="18.6">
 <h2><span class="header-section-number">18.6</span> Correlation coefficient<a href="regression-and-correlation.html#correlation-coefficient" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><span class="math inline">\(R\)</span> is then a statistics that can be computed from the data and we can take one value as an estimate of <span class="math inline">\(\rho\)</span>. The sampling distribution of <span class="math inline">\(R\)</span> can be obtained if we transform it into a new variable (Fisher’s z transformation)</p>
+<p><span class="math inline">\(R\)</span> is then a <strong>statistics</strong> that can be computed from the data and we can take one value as an estimate of <span class="math inline">\(\rho\)</span>. The sampling distribution of <span class="math inline">\(R\)</span> can be obtained if we transform it into a new variable (Fisher’s z transformation)</p>
 <p><span class="math display">\[Z=\frac{1}{2}\ln (\frac{1+R}{1-R})\]</span>
 The new variable <span class="math inline">\(Z\)</span> is a normal variable</p>
 <p><span class="math display">\[Z \rightarrow_{aprox} N(\frac{1}{2}\ln (\frac{1+\rho}{1-\rho}), \frac{1}{n-3})\]</span></p>
 <p>with mean <span class="math inline">\(\frac{1}{2}\ln (\frac{1+\rho}{1-\rho})\)</span> and variance <span class="math inline">\(\frac{1}{n-3}\)</span>.</p>
 <p>As <span class="math inline">\(R\)</span> estimates <span class="math inline">\(\rho\)</span> we have that</p>
 <ul>
-<li><p>If <span class="math inline">\(R\)</span> is near <span class="math inline">\(0\)</span> then there no linear relationship between <span class="math inline">\(y\)</span> and <span class="math inline">\(x\)</span> (the contour curves of the 2D probability distribution are concentric)</p></li>
-<li><p>If <span class="math inline">\(R\)</span> is near <span class="math inline">\(1\)</span> there is strong evidence of a linear relationship between <span class="math inline">\(y\)</span> and <span class="math inline">\(x\)</span></p></li>
+<li><p>If <span class="math inline">\(R\)</span> is near <span class="math inline">\(0\)</span> then there is no linear relationship between <span class="math inline">\(y\)</span> and <span class="math inline">\(x\)</span> (the mayor and minor axes of the 2D plot are the x and y axes).</p></li>
+<li><p>If <span class="math inline">\(R\)</span> is near <span class="math inline">\(1\)</span> there is strong evidence of a linear relationship between <span class="math inline">\(y\)</span> and <span class="math inline">\(x\)</span> (the mayor axis does not align with neither the x or the y axis).</p></li>
 </ul>
-<p><span class="math inline">\(R\)</span> is then a measure of the statistical dependence between <span class="math inline">\(y\)</span> and <span class="math inline">\(x\)</span>. We can use it to test that hypothesis.</p>
+<p><span class="math inline">\(R\)</span> is then a measure of the statistical dependence between <span class="math inline">\(Y\)</span> and <span class="math inline">\(X\)</span>. We can use it to test that hypothesis.</p>
 </div>
 <div id="hypothesis-contrast" class="section level2 hasAnchor" number="18.7">
 <h2><span class="header-section-number">18.7</span> Hypothesis contrast<a href="regression-and-correlation.html#hypothesis-contrast" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -602,33 +605,33 @@ The new variable <span class="math inline">\(Z\)</span> is a normal variable</p>
 </ol>
 <p>We then use the statistic <span class="math inline">\(R\)</span> to test whether there is a dependency between <span class="math inline">\(y\)</span> and <span class="math inline">\(x\)</span>. For testing the hypothesis contrast , we take the observed value of <span class="math inline">\(R\)</span></p>
 <p><span class="math display">\[r_{obs}=\hat{\rho}=\frac{\sum_{i=0}^n(x_i-\bar{x})(y_i-\bar{y})}{\sqrt{\sum_{i=1}^n(x_i-\bar{x})^2}\sqrt{\sum_{i=1}^n(y_i-\bar{y})^2}}\]</span></p>
-<p>and compute its <span class="math inline">\(pvalue\)</span>. That is the probability that we obtain a larger value if we repeat the sample, if the null hypothesis is true. Under the null hypothesis <span class="math inline">\(\rho=0\)</span>, we then we compute</p>
+<p>and compute its <span class="math inline">\(pvalue\)</span>. That is the probability that we obtain a larger value if we repeat the sample when the <strong>null hypothesis</strong> is true. Under the null hypothesis <span class="math inline">\(\rho=0\)</span>, we then we compute the two-tailed <span class="math inline">\(pvalue\)</span></p>
 <p><span class="math display">\[pvalue=2(1- F(|r_{obs}|)= 2(1- F_{normal}(|z_{obs}|)  \]</span></p>
 <p>where</p>
 <p><span class="math display">\[Z \rightarrow_{aprox} N(0, \frac{1}{n-3})\]</span></p>
 <p><strong>Example (leptin and fat mass)</strong></p>
-<pre><code>## 
-##  Pearson&#39;s product-moment correlation
-## 
-## data:  data$leptin and data$fatmass
-## t = -3.9262, df = 186, p-value = 0.0001214
-## alternative hypothesis: true correlation is not equal to 0
-## 95 percent confidence interval:
-##  -0.4037736 -0.1390439
-## sample estimates:
-##        cor 
-## -0.2766492</code></pre>
+<pre><code>import pandas as pd
+from scipy.stats import pearsonr
+
+data = pd.read_csv(&#39;https://alejandro-isglobal.github.io/SDA/data/leptinFatmass.txt&#39;, sep=&#39; &#39;)
+
+leptin = data[&#39;leptin&#39;]
+fatmass = data[&#39;fatmass&#39;]
+
+pearsonr(leptin, fatmass)</code></pre>
+<pre><code>PearsonRResult(statistic=-0.27664924595293827, pvalue=0.00012143760304939414)</code></pre>
 <p>For our data we have that the observed correlation coefficient is <span class="math inline">\(r_{obs}=-0.2766492\)</span> and its transformed value</p>
 <p><span class="math display">\[z_{obs}=ln((1-0.2766492)/(1+0.2766492))/2=-0.2840499\]</span></p>
 <p>The <span class="math inline">\(pvalue\)</span> is therefore</p>
 <p><span class="math display">\[pvalue=2(1- F_{N(0,1/185)}(0.2840499))=0.0001\]</span></p>
-<p>Therefore, since it is lower than <span class="math inline">\(\alpha=0.05\)</span>, we reject the null hypothesis that leptin and fat mass are independent. Note that Leptin and fat mass are weakly correlated because <span class="math inline">\(r=-0.28\)</span> but the correlation is highly significant because <span class="math inline">\(pvalue=0.0001\)</span>.</p>
+<p>Therefore, since it is lower than <span class="math inline">\(\alpha=0.05\)</span>, we reject the null hypothesis that leptin and fat mass are independent. Note that leptin and fat mass are weakly correlated because <span class="math inline">\(r=-0.28\)</span> but the correlation is highly significant because <span class="math inline">\(pvalue=0.0001\)</span>.</p>
 <p>We should take this result with caution:</p>
 <ul>
 <li><p>Looking at the data we see that the fitted 2D probability function and we see that the <strong>marginal</strong> histograms are not quite normally distributed.</p></li>
 <li><p>From literature we know that as we increase fat mass we should obtain <strong>more</strong> leptin, not the contrary, as it is released from adipose tissue.</p></li>
 </ul>
-<p><img src="_main_files/figure-html/unnamed-chunk-178-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-154-1.png" width="672" /></p>
+<p>So how can we improve our analysis, so that our results are as expected?</p>
 </div>
 <div id="regression-analysis" class="section level2 hasAnchor" number="18.8">
 <h2><span class="header-section-number">18.8</span> Regression analysis<a href="regression-and-correlation.html#regression-analysis" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -638,12 +641,12 @@ The new variable <span class="math inline">\(Z\)</span> is a normal variable</p>
 <p><span class="math display">\[f(y|x)=\frac{f(y,x)}{f(y)}
 =N(\mu_{y|x}, \sigma^2_{y|x})\]</span></p>
 <p>This turns up to be a normal distribution. The conditional probability is the profile, or a slice, of the 2D distribution at a given value of <span class="math inline">\(x\)</span>.</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-179-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-155-1.png" width="672" /></p>
 <p>The mean of the conditional distribution is (the red dot)</p>
 <p><span class="math display">\[\mu_{y|x}=\mu_y+\frac{\sigma_y\rho}{\sigma_x}(x-\mu_x)\]</span></p>
-<p>If we manipulate this equation, we see that the conditional mean is a linear function of <span class="math inline">\(x\)</span></p>
+<p>If we manipulate this equation, we see that the <strong>conditional mean</strong> is a linear function of <span class="math inline">\(x\)</span></p>
 <p><span class="math display">\[\mu_{y|x}=(\mu_y-\mu_x \frac{\sigma_y\rho}{\sigma_x})+\frac{\sigma_y \rho}{\sigma_x} x=\alpha + \beta x\]</span></p>
-<p>where <span class="math inline">\(\alpha=\mu_y-\mu_x \beta\)</span> and <span class="math inline">\(\beta=\frac{\sigma_y \rho}{\sigma_x}\)</span>. This line is called a <strong>regression</strong> line (red line in the figure). That is, when we move along the <span class="math inline">\(X\)</span> axis, the conditional mean of <span class="math inline">\(Y\)</span> moves linearly.</p>
+<p>where <span class="math inline">\(\alpha=\mu_y-\mu_x \beta\)</span> and <span class="math inline">\(\beta=\frac{\sigma_y \rho}{\sigma_x}\)</span>. This line is called a <strong>regression</strong> line (red dotted line in the plot). That is, when we move along the <span class="math inline">\(X\)</span> axis, the conditional mean of <span class="math inline">\(Y\)</span> moves linearly.</p>
 <p>The variance of the conditional density is</p>
 <p><span class="math display">\[\sigma^2_{y|x}= \sigma_y^2(1-\rho^2)\]</span>
 Solving for <span class="math inline">\(\rho^2\)</span>, we have</p>
@@ -654,7 +657,6 @@ Solving for <span class="math inline">\(\rho^2\)</span>, we have</p>
 <h2><span class="header-section-number">18.9</span> Linear model<a href="regression-and-correlation.html#linear-model-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Consider the <strong>linear model</strong> for the values of <span class="math inline">\(Y\)</span> <strong>conditioned</strong> to the value of <span class="math inline">\(x_i\)</span></p>
 <p><span class="math display">\[Y_{x_i} = \alpha + \beta x_i +E_{i}\]</span></p>
-<p>where <span class="math inline">\(\alpha\)</span> is the</p>
 <p>with <strong>Random error</strong>:</p>
 <ul>
 <li><p><span class="math inline">\(E_{i}\)</span> is a <strong>random variable</strong> with expected value <span class="math inline">\(E(E_{i})=0\)</span> and variance <span class="math inline">\(V(E_{i})=\sigma_{y|x}^2\)</span></p></li>
@@ -671,18 +673,20 @@ and</p>
 <h2><span class="header-section-number">18.10</span> Hypothesis contrast<a href="regression-and-correlation.html#hypothesis-contrast-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Null hypothesis:</p>
 <ol style="list-style-type: lower-alpha">
-<li><span class="math inline">\(Y\)</span> and <span class="math inline">\(X\)</span> are statistically independent, therefore <span class="math inline">\(f(y|x)=f(y)\)</span> and <span class="math inline">\(H_0: \beta=0\)</span>. If this is the case then we have the following model</li>
+<li><span class="math inline">\(H_0: \beta=0\)</span>. <span class="math inline">\(Y\)</span> and <span class="math inline">\(X\)</span> are statistically <strong>independent</strong>, and therefore <span class="math inline">\(f(y|x)=f(y)\)</span>. If this is the case then the regression line is flat and we have the following model</li>
 </ol>
-<p><img src="_main_files/figure-html/unnamed-chunk-180-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-156-1.png" width="672" /></p>
+<p>Note that all marginal probability (projection of the probability on the <span class="math inline">\(y\)</span> axis) would be identical to all the conditional probabilities.</p>
 <p>Alternative hypothesis:</p>
 <ol start="2" style="list-style-type: lower-alpha">
-<li><span class="math inline">\(Y\)</span> and <span class="math inline">\(X\)</span> are statistically dependent, therefore <span class="math inline">\(H_1: \beta\neq 0\)</span>. If this is the case then we have the following model</li>
+<li><span class="math inline">\(H_1: \beta\neq 0\)</span>. <span class="math inline">\(Y\)</span> and <span class="math inline">\(X\)</span> are statistically <strong>dependent</strong>. If this is the case then we have the following model</li>
 </ol>
-<p><img src="_main_files/figure-html/unnamed-chunk-181-1.png" width="672" /></p>
+<p>Note that all marginal probability would be the combination of the conditional probabilities.</p>
+<p><img src="_main_files/figure-html/unnamed-chunk-157-1.png" width="672" /></p>
 </div>
 <div id="estimators-1" class="section level2 hasAnchor" number="18.11">
 <h2><span class="header-section-number">18.11</span> Estimators<a href="regression-and-correlation.html#estimators-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><span class="math inline">\(\beta\)</span> is therefore our parameter of interest and therefore we need a probability distribution to test its hypothesis contrast</p>
+<p><span class="math inline">\(\beta\)</span> is therefore our parameter of interest and we need a probability distribution to test its hypothesis contrast</p>
 <ul>
 <li><span class="math inline">\(\beta=\rho\frac{\sigma_y}{\sigma_x}\)</span> suggest the estimator for <span class="math inline">\(\beta\)</span></li>
 </ul>
@@ -695,7 +699,7 @@ and</p>
 <p><span class="math display">\[SSE=\sum_{i=1}^n(Y_i-\bar{Y_i})^2=\sum_{i=1}^n(Y_i-\alpha + \beta x_i)^2\]</span>
 with respect to <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\beta\)</span>. If <span class="math inline">\(\bar{Y_i}\)</span> is normal then</p>
 <p><span class="math display">\[B \rightarrow N(\beta, \frac{n\sigma^2_y}{{(n-2)s^2_x}})\]</span></p>
-<p>with mean <span class="math inline">\(E(B)=\beta\)</span>. Therefore it is an unbiased estimators.</p>
+<p>with mean <span class="math inline">\(E(B)=\beta\)</span> and, therefore, it is an unbiased estimator.</p>
 </div>
 <div id="hypothesis-testing-2" class="section level2 hasAnchor" number="18.12">
 <h2><span class="header-section-number">18.12</span> Hypothesis testing<a href="regression-and-correlation.html#hypothesis-testing-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -704,24 +708,38 @@ with respect to <span class="math inline">\(\alpha\)</span> and <span class="mat
 follows a t-distribution with <span class="math inline">\(n-2\)</span> degrees of freedom.</p>
 <p><strong>Example (leptin and fatmass)</strong></p>
 <p>We can perform the statistical test</p>
-<pre><code>## 
-## Call:
-## lm(formula = leptin ~ fatmass, data = data)
-## 
-## Residuals:
-##      Min       1Q   Median       3Q      Max 
-## -1.89723 -0.66914  0.04445  0.64555  1.81122 
-## 
-## Coefficients:
-##              Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept)  3.720119   0.295149  12.604  &lt; 2e-16 ***
-## fatmass     -0.022624   0.005762  -3.926 0.000121 ***
-## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
-## 
-## Residual standard error: 0.8338 on 186 degrees of freedom
-## Multiple R-squared:  0.07653,    Adjusted R-squared:  0.07157 
-## F-statistic: 15.42 on 1 and 186 DF,  p-value: 0.0001214</code></pre>
+<pre><code>import pandas as pd
+from scipy.stats import pearsonr
+
+data = pd.read_csv(&#39;https://alejandro-isglobal.github.io/SDA/data/leptinFatmass.txt&#39;, sep=&#39;\t&#39;)
+
+model = ols(&#39;leptin ~ fatmass&#39;, data=data).fit()
+
+print(model.summary())</code></pre>
+<pre><code>                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:                 leptin   R-squared:                       0.077
+Model:                            OLS   Adj. R-squared:                  0.072
+Method:                 Least Squares   F-statistic:                     15.42
+Date:                Mon, 04 Sep 2023   Prob (F-statistic):           0.000121
+Time:                        09:33:40   Log-Likelihood:                -231.59
+No. Observations:                 188   AIC:                             467.2
+Df Residuals:                     186   BIC:                             473.7
+Df Model:                           1                                         
+Covariance Type:            nonrobust                                         
+==============================================================================
+                 coef    std err          t      P&gt;|t|      [0.025      0.975]
+------------------------------------------------------------------------------
+Intercept      3.7201      0.295     12.604      0.000       3.138       4.302
+fatmass       -0.0226      0.006     -3.926      0.000      -0.034      -0.011
+==============================================================================
+Omnibus:                       10.660   Durbin-Watson:                   1.753
+Prob(Omnibus):                  0.005   Jarque-Bera (JB):                4.983
+Skew:                          -0.141   Prob(JB):                       0.0828
+Kurtosis:                       2.254   Cond. No.                         249.
+==============================================================================
+
+</code></pre>
 <p>where the observed value of <span class="math inline">\(B\)</span> is</p>
 <p><span class="math display">\[\beta_{obs}= \frac{\sum_{i=1}^m(x_i-\bar{x})(y_i-\bar{y})}{\sum_{i=1}^n(x_i-\bar{x})^2}= -0.02262\]</span>
 and</p>
@@ -729,7 +747,7 @@ and</p>
 and only <span class="math inline">\(7\%\)</span> of the variability is explained by the regression line</p>
 <p><span class="math display">\[R^2=0.07653\]</span></p>
 <p>We can draw the regression line</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-183-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-159-1.png" width="672" /></p>
 <p>We can see that the regression line is negative and there is quite a bit of dispersion about it. Remember that The correct way to interpret the line is to think that these are the values of <span class="math inline">\(Y\)</span> conditioned on <span class="math inline">\(X\)</span>.</p>
 </div>
 <div id="stratified-analysis" class="section level2 hasAnchor" number="18.13">
@@ -744,10 +762,10 @@ and only <span class="math inline">\(7\%\)</span> of the variability is explaine
 ## 5 1.536867  56.644   M  42
 ## 6 1.177115  56.355   M  75</code></pre>
 <p>Consider the previous regression and color the points according to their sex</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-185-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-161-1.png" width="672" /></p>
 <p>We clearly see that the negative association between leptin and fat mass is given by the effect of sex. As males have lower leptin levels and higher fat mass then the negative correlation between leptin and fatma mass is due to sex.</p>
 <p>If we run regression <strong>separating</strong>, or stratifying, by sex we find a positive association between leptin and fat mass, as it is expected from the litterature.</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-186-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-162-1.png" width="672" /></p>
 </div>
 <div id="multiple-regression" class="section level2 hasAnchor" number="18.14">
 <h2><span class="header-section-number">18.14</span> Multiple Regression<a href="regression-and-correlation.html#multiple-regression" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -755,26 +773,38 @@ and only <span class="math inline">\(7\%\)</span> of the variability is explaine
 <p><span class="math display">\[Y_{jr} = \alpha + \beta x_j +\gamma z_{r}+E_{jr}\]</span></p>
 <p>Here, our effect of interest is the coefficient <span class="math inline">\(\beta\)</span> of <span class="math inline">\(x_i\)</span> (leptin) and we want to adjust for the effect of <span class="math inline">\(z_j\)</span> (sex). The mode is similar to the linear model we used for ANOVA, only that now the treatment effects are continous and depend on the variable <span class="math inline">\(X\)</span>.</p>
 <p>When we include both sex and age as additional factors in the regression, we observe that there is a positive increase in leptin when we correct for sex. Males have a negative assotiation with leptin, compared with women, and age has an almost significant association with leptin. Now, everything fits.</p>
-<pre><code>## 
-## Call:
-## lm(formula = leptin ~ fatmass + sex + age, data = data)
-## 
-## Residuals:
-##      Min       1Q   Median       3Q      Max 
-## -1.91314 -0.43523  0.07833  0.38451  1.49707 
-## 
-## Coefficients:
-##              Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept)  1.482557   0.304423   4.870 2.40e-06 ***
-## fatmass      0.027585   0.006002   4.596 7.99e-06 ***
-## sexM        -1.611965   0.135872 -11.864  &lt; 2e-16 ***
-## age          0.005353   0.002957   1.811   0.0718 .  
-## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
-## 
-## Residual standard error: 0.6226 on 184 degrees of freedom
-## Multiple R-squared:  0.4907, Adjusted R-squared:  0.4824 
-## F-statistic: 59.09 on 3 and 184 DF,  p-value: &lt; 2.2e-16</code></pre>
+<pre><code>import pandas as pd
+from scipy.stats import pearsonr
+
+data = pd.read_csv(&#39;https://alejandro-isglobal.github.io/SDA/data/leptinFatmass.txt&#39;, sep=&#39;\t&#39;)
+
+model = ols(&#39;leptin ~ fatmass + sex + age&#39;, data=data).fit()
+
+print(model.summary())</code></pre>
+<pre><code>                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:                 leptin   R-squared:                       0.491
+Model:                            OLS   Adj. R-squared:                  0.482
+Method:                 Least Squares   F-statistic:                     59.09
+Date:                Mon, 04 Sep 2023   Prob (F-statistic):           8.47e-27
+Time:                        09:40:31   Log-Likelihood:                -175.66
+No. Observations:                 188   AIC:                             359.3
+Df Residuals:                     184   BIC:                             372.3
+Df Model:                           3                                         
+Covariance Type:            nonrobust                                         
+==============================================================================
+                 coef    std err          t      P&gt;|t|      [0.025      0.975]
+------------------------------------------------------------------------------
+Intercept      1.4826      0.304      4.870      0.000       0.882       2.083
+sex[T.M]      -1.6120      0.136    -11.864      0.000      -1.880      -1.344
+fatmass        0.0276      0.006      4.596      0.000       0.016       0.039
+age            0.0054      0.003      1.811      0.072      -0.000       0.011
+==============================================================================
+Omnibus:                        4.457   Durbin-Watson:                   1.685
+Prob(Omnibus):                  0.108   Jarque-Bera (JB):                4.067
+Skew:                          -0.345   Prob(JB):                        0.131
+Kurtosis:                       3.207   Cond. No.                         475.
+==============================================================================</code></pre>
 </div>
 <div id="multiple-regression-interaction" class="section level2 hasAnchor" number="18.15">
 <h2><span class="header-section-number">18.15</span> Multiple Regression interaction<a href="regression-and-correlation.html#multiple-regression-interaction" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -784,28 +814,41 @@ and only <span class="math inline">\(7\%\)</span> of the variability is explaine
 The parameter <span class="math inline">\(\delta\)</span> will add a contribution to the slope <span class="math inline">\(\beta\)</span> that is <strong>specific</strong> to the condition <span class="math inline">\(r\)</span>. For instance, if <span class="math inline">\(z_i \in (0,1)\)</span> then when <span class="math inline">\(z=0\)</span> the coefficient of <span class="math inline">\(x_i\)</span> is <span class="math inline">\(\beta\)</span>. But when <span class="math inline">\(z=1\)</span> the coefficient of <span class="math inline">\(x_i\)</span> is <span class="math inline">\(\beta+\gamma\)</span>.</p>
 <p>In our example, if <span class="math inline">\(z\)</span> is sex, then <span class="math inline">\(\gamma\)</span> will test the differences in <span class="math inline">\(\beta\)</span>s between males and females. We can furhter adjust by age.</p>
 <p><span class="math display">\[Y_{jrs} = \alpha + \beta\times fatmass_{j} +\gamma\times sex_{r} + \delta\times (fatmass\times sex)_{jr} + \epsilon_s age+E_{jrs}\]</span></p>
-<pre><code>## 
-## Call:
-## lm(formula = leptin ~ fatmass * sex + age, data = data)
-## 
-## Residuals:
-##      Min       1Q   Median       3Q      Max 
-## -1.82098 -0.38692  0.03192  0.42065  1.43851 
-## 
-## Coefficients:
-##               Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept)   1.800052   0.337279   5.337 2.77e-07 ***
-## fatmass       0.020022   0.006949   2.881  0.00443 ** 
-## sexM         -3.218004   0.775217  -4.151 5.07e-05 ***
-## age           0.005846   0.002939   1.989  0.04815 *  
-## fatmass:sexM  0.028427   0.013513   2.104  0.03677 *  
-## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
-## 
-## Residual standard error: 0.6169 on 183 degrees of freedom
-## Multiple R-squared:  0.5027, Adjusted R-squared:  0.4918 
-## F-statistic: 46.25 on 4 and 183 DF,  p-value: &lt; 2.2e-16</code></pre>
-<p>Our data suggest that a steeper increase of leptin with body fat in males than in females (interaction: <span class="math inline">\(0.028427\)</span>, <span class="math inline">\(pvalue=0.03\)</span>), as we saw in the figures of the stratified analysis. The model now explains <span class="math inline">\(50\%\)</span> of the variace <span class="math inline">\(R^2=0.5\)</span></p>
+<pre><code>import pandas as pd
+from scipy.stats import pearsonr
+
+data = pd.read_csv(&#39;https://alejandro-isglobal.github.io/SDA/data/leptinFatmass.txt&#39;, sep=&#39;\t&#39;)
+
+model = ols(&#39;leptin ~ fatmass*sex + age&#39;, data=data).fit()
+
+print(model.summary())</code></pre>
+<pre><code>
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:                 leptin   R-squared:                       0.503
+Model:                            OLS   Adj. R-squared:                  0.492
+Method:                 Least Squares   F-statistic:                     46.25
+Date:                Mon, 04 Sep 2023   Prob (F-statistic):           8.19e-27
+Time:                        09:43:38   Log-Likelihood:                -173.41
+No. Observations:                 188   AIC:                             356.8
+Df Residuals:                     183   BIC:                             373.0
+Df Model:                           4                                         
+Covariance Type:            nonrobust                                         
+====================================================================================
+                       coef    std err          t      P&gt;|t|      [0.025      0.975]
+------------------------------------------------------------------------------------
+Intercept            1.8001      0.337      5.337      0.000       1.135       2.466
+sex[T.M]            -3.2180      0.775     -4.151      0.000      -4.748      -1.688
+fatmass              0.0200      0.007      2.881      0.004       0.006       0.034
+fatmass:sex[T.M]     0.0284      0.014      2.104      0.037       0.002       0.055
+age                  0.0058      0.003      1.989      0.048    4.81e-05       0.012
+==============================================================================
+Omnibus:                        7.164   Durbin-Watson:                   1.699
+Prob(Omnibus):                  0.028   Jarque-Bera (JB):                6.943
+Skew:                          -0.459   Prob(JB):                       0.0311
+Kurtosis:                       3.209   Cond. No.                     1.27e+03
+==============================================================================</code></pre>
+<p>Our data suggest a steeper increase of leptin with body fat in males than in females (interaction: <span class="math inline">\(0.028427\)</span>, <span class="math inline">\(pvalue=0.03\)</span>), as we saw in the figures of the stratified analysis. The model now explains <span class="math inline">\(50\%\)</span> of the variance <span class="math inline">\(R^2=0.5\)</span></p>
 </div>
 <div id="model-diagnostics" class="section level2 hasAnchor" number="18.16">
 <h2><span class="header-section-number">18.16</span> Model diagnostics<a href="regression-and-correlation.html#model-diagnostics" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -815,7 +858,7 @@ The parameter <span class="math inline">\(\delta\)</span> will add a contributio
 <li><p>Errors have the same variance</p></li>
 </ol>
 <p>There are a number of plots to check that at least the data is consistent with these suppositions. In particular, we are interested to see that the residuals distribute symmetrically against the fitted values, revealing equal variance (homoscedasticity). We also want to check that the points in a quantile-quantile (QQ) plot fall in the line, revealing how close the rediduals distribute normally.</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-189-1.png" width="672" /><img src="_main_files/figure-html/unnamed-chunk-189-2.png" width="672" /><img src="_main_files/figure-html/unnamed-chunk-189-3.png" width="672" /><img src="_main_files/figure-html/unnamed-chunk-189-4.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-165-1.png" width="672" /><img src="_main_files/figure-html/unnamed-chunk-165-2.png" width="672" /><img src="_main_files/figure-html/unnamed-chunk-165-3.png" width="672" /><img src="_main_files/figure-html/unnamed-chunk-165-4.png" width="672" /></p>
 </div>
 <div id="questions-14" class="section level2 hasAnchor" number="18.17">
 <h2><span class="header-section-number">18.17</span> Questions<a href="regression-and-correlation.html#questions-14" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -850,7 +893,7 @@ The parameter <span class="math inline">\(\delta\)</span> will add a contributio
 <h2><span class="header-section-number">18.18</span> Practice<a href="regression-and-correlation.html#practice-8" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <div id="practice-9" class="section level4 hasAnchor" number="18.18.0.1">
 <h4><span class="header-section-number">18.18.0.1</span> Practice<a href="regression-and-correlation.html#practice-9" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>Load misophonia data <code>data_0.txt</code></p>
+<p>Load misophonia data <code><a href="https://alejandro-isglobal.github.io/SDA/data/data_0.txt" class="uri">https://alejandro-isglobal.github.io/SDA/data/data_0.txt</a></code></p>
 <p>We have four measures of anxiety:</p>
 <ul>
 <li>Trait: ansiedad.rasgo (are you an anxious person?) continuous:0-100</li>

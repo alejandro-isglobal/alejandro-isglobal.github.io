@@ -23,7 +23,7 @@
 <meta name="author" content="Alejandro Caceres" />
 
 
-<meta name="date" content="2023-08-08" />
+<meta name="date" content="2023-09-04" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -210,6 +210,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.9" data-path="conditional-probability.html"><a href="conditional-probability.html#bayes-theorem"><i class="fa fa-check"></i><b>4.9</b> Bayes’ Theorem</a></li>
 <li class="chapter" data-level="4.10" data-path="conditional-probability.html"><a href="conditional-probability.html#exercises-2"><i class="fa fa-check"></i><b>4.10</b> Exercises</a></li>
 <li class="chapter" data-level="4.11" data-path="conditional-probability.html"><a href="conditional-probability.html#questions-2"><i class="fa fa-check"></i><b>4.11</b> Questions</a></li>
+<li class="chapter" data-level="4.12" data-path="conditional-probability.html"><a href="conditional-probability.html#practice-2"><i class="fa fa-check"></i><b>4.12</b> Practice</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html"><i class="fa fa-check"></i><b>5</b> Discrete Random Variables</a>
 <ul>
@@ -285,10 +286,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.5" data-path="normal-distribution.html"><a href="normal-distribution.html#probability-distribution-2"><i class="fa fa-check"></i><b>9.5</b> Probability distribution</a></li>
 <li class="chapter" data-level="9.6" data-path="normal-distribution.html"><a href="normal-distribution.html#standard-normal-density"><i class="fa fa-check"></i><b>9.6</b> Standard normal density</a></li>
 <li class="chapter" data-level="9.7" data-path="normal-distribution.html"><a href="normal-distribution.html#standard-distribution"><i class="fa fa-check"></i><b>9.7</b> Standard distribution</a></li>
-<li class="chapter" data-level="9.8" data-path="normal-distribution.html"><a href="normal-distribution.html#summary-of-probability-models"><i class="fa fa-check"></i><b>9.8</b> Summary of probability models</a></li>
-<li class="chapter" data-level="9.9" data-path="normal-distribution.html"><a href="normal-distribution.html#r-functions-of-probability-models"><i class="fa fa-check"></i><b>9.9</b> R functions of probability models</a></li>
-<li class="chapter" data-level="9.10" data-path="normal-distribution.html"><a href="normal-distribution.html#questions-6"><i class="fa fa-check"></i><b>9.10</b> Questions</a></li>
-<li class="chapter" data-level="9.11" data-path="normal-distribution.html"><a href="normal-distribution.html#exercises-7"><i class="fa fa-check"></i><b>9.11</b> Exercises</a></li>
+<li class="chapter" data-level="9.8" data-path="normal-distribution.html"><a href="normal-distribution.html#standardization"><i class="fa fa-check"></i><b>9.8</b> Standardization</a></li>
+<li class="chapter" data-level="9.9" data-path="normal-distribution.html"><a href="normal-distribution.html#summary-of-probability-models"><i class="fa fa-check"></i><b>9.9</b> Summary of probability models</a></li>
+<li class="chapter" data-level="9.10" data-path="normal-distribution.html"><a href="normal-distribution.html#python-functions-of-probability-models"><i class="fa fa-check"></i><b>9.10</b> Python functions of probability models</a></li>
+<li class="chapter" data-level="9.11" data-path="normal-distribution.html"><a href="normal-distribution.html#questions-6"><i class="fa fa-check"></i><b>9.11</b> Questions</a></li>
+<li class="chapter" data-level="9.12" data-path="normal-distribution.html"><a href="normal-distribution.html#exercises-7"><i class="fa fa-check"></i><b>9.12</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="10" data-path="sampling-distributions.html"><a href="sampling-distributions.html"><i class="fa fa-check"></i><b>10</b> Sampling distributions</a>
 <ul>
@@ -507,7 +509,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ol style="list-style-type: decimal">
 <li><p>small errors were more likely than large errors</p></li>
 <li><p>the error at a distance <span class="math inline">\(-\epsilon\)</span> from the value at the position of Ceres was equally likely as a distance <span class="math inline">\(\epsilon\)</span></p></li>
-<li><p>the most <strong>likely</strong> (that we believe) of Ceres at any given time in the sky was the <strong>average</strong> of multiple altitude measurements at that latitude.</p></li>
+<li><p>the most <strong>likely</strong> position (the one that we believe the most) of Ceres at any given time in the sky was the <strong>average</strong> of multiple altitude measurements at that latitude.</p></li>
 </ol>
 <p>That was enough to show that the deviations of the observations <span class="math inline">\(y\)</span> <strong>from the orbit</strong> satisfied the equation</p>
 <p><span class="math display">\[\frac{df(y)}{dy}=-Cyf(y)\]</span>
@@ -518,7 +520,9 @@ with <span class="math inline">\(C\)</span> a positive constant. The solution of
 <div id="normal-density" class="section level2 hasAnchor" number="9.3">
 <h2><span class="header-section-number">9.3</span> normal density<a href="normal-distribution.html#normal-density" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Gaussian probability density gives the distribution of measurement errors from the <strong>actual</strong> but <strong>unknown</strong> position of Ceres in the sky. Let’s make a couple of changes to the function.</p>
-<p>1- Let’s write the error density from the horizon using the random variable <span class="math inline">\(X\)</span>, that is, <span class="math inline">\(y=x-\mu\)</span>. <span class="math inline">\(\mu\)</span> is the <strong>actual</strong> but <strong>unknown</strong> position of Ceres from the horizon. After a change of variable we find the probability density function:</p>
+<ol style="list-style-type: decimal">
+<li>Let’s write the error density from the horizon using the random variable <span class="math inline">\(X\)</span>, that is, <span class="math inline">\(y=x-\mu\)</span>. <span class="math inline">\(\mu\)</span> is the <strong>actual</strong> but <strong>unknown</strong> position of Ceres from the horizon. After a change of variable we find the probability density function:</li>
+</ol>
 <p><span class="math display">\[f(x)=\frac{\sqrt{C}}{\sqrt{2\pi}}e^{-C(x-\mu)^2}\]</span></p>
 <ol start="2" style="list-style-type: decimal">
 <li>Let’s rename the variable <span class="math inline">\(C\)</span> to <span class="math inline">\(\frac{1}{\sigma^2}\)</span></li>
@@ -558,12 +562,12 @@ The function is found in most computer programs, and it does not have a closed f
 <li>What is the probability that a woman in the population is at most <span class="math inline">\(150cm\)</span> tall if women have a mean height of <span class="math inline">\(165cm\)</span> with standard deviation of <span class="math inline">\(8cm\)</span>?</li>
 </ol>
 <p><span class="math inline">\(P(X\le 150)=F(150, \mu=165, \sigma=8)=0.03039636\)</span></p>
-<p>in R <code>pnorm(150, 165, 8)</code></p>
+<p>In Python <code>norm.cdf(150, 165, 8)</code></p>
 <ol start="2" style="list-style-type: decimal">
 <li>What is the probability that a woman’s height in the population is between <span class="math inline">\(165cm\)</span> and <span class="math inline">\(170cm\)</span>?</li>
 </ol>
 <p><span class="math inline">\(P(165 \le X \le 170)=F(170, \mu=165, \sigma=8)-F(165, \mu=165, \sigma=8)=0.2340145\)</span></p>
-<p>in R <code>pnorm(170, 165, 8)-pnorm(165, 165, 8)</code></p>
+<p>In Python <code>norm.cdf(170, 165, 8)-norm.cdf(165, 165, 8)</code></p>
 <p>Let’s look at the probability distribution function</p>
 <p><img src="_main_files/figure-html/unnamed-chunk-66-1.png" width="672" /></p>
 <ol start="3" style="list-style-type: decimal">
@@ -573,7 +577,7 @@ The function is found in most computer programs, and it does not have a closed f
 <p><span class="math inline">\(F(x_{0.25}, \mu=165, \sigma=8)=0.25\)</span></p>
 <p>or</p>
 <p><span class="math inline">\(x_{0.25}=F^{-1}(0.25, µ=165, \sigma=8)=159.6041\)</span></p>
-<p>in R <code>qnorm(0.25, 165, 8)</code></p>
+<p>In Python <code>norm.ppf(0.25, 165, 8)</code></p>
 <p><strong>Properties of the Normal distribution</strong></p>
 <ol style="list-style-type: decimal">
 <li><p>the mean <span class="math inline">\(\mu\)</span> is also the median as it splits the measurements in two</p></li>
@@ -612,18 +616,6 @@ The function is found in most computer programs, and it does not have a closed f
 <p><span class="math display">\[V (X)=  \sigma^2 =1\]</span></p>
 <p>When a random variable follows a normal probability density, we say that it distributes normally and write</p>
 <p><span class="math display">\[X \rightarrow N(0,1)\]</span></p>
-<p><strong>Standardization:</strong></p>
-<p>All normal variables can be <strong>standardized</strong>. This means that if <span class="math inline">\(X \rightarrow N(\mu, \sigma^2)\)</span>, then we can transform the variable to
-a <strong>standardized variable</strong></p>
-<p><span class="math display">\[Z=\frac{X-\mu}{\sigma}\]</span></p>
-<p>which will have density:</p>
-<p><span class="math display">\[f(z)=\frac{1}{ \sqrt{2\pi}}e^{-\frac{z^2}{2}} dz\]</span>
-Therefore, for any <span class="math inline">\(X \rightarrow N(\mu, \sigma^2)\)</span></p>
-<p><span class="math display">\[Z=\frac{X-\mu}{\sigma} \rightarrow N(0, 1) \]</span></p>
-<p><img src="figures/stand.png" /></p>
-<p>You can demonstrate this by replacing <span class="math inline">\(x=\sigma z+\mu\)</span> and <span class="math inline">\(dx=\sigma dz\)</span> in the probability expression we have</p>
-<p><span class="math inline">\(P(x\leq X \leq x +dx)=P(z\leq Z \leq z +dz)\)</span>
-<span class="math display">\[=\frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{(x-\mu)^2}{2\sigma^2}}dx\]</span> <span class="math display">\[=\frac{1}{ \sqrt{2\pi}}e^{-\frac{z^2}{2}} dz\]</span></p>
 </div>
 <div id="standard-distribution" class="section level2 hasAnchor" number="9.7">
 <h2><span class="header-section-number">9.7</span> Standard distribution<a href="normal-distribution.html#standard-distribution" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -633,31 +625,45 @@ Therefore, for any <span class="math inline">\(X \rightarrow N(\mu, \sigma^2)\)<
 <p><span class="math display">\[\phi(a)=\int_{-\infty}^{a} \frac{1}{\sqrt{2\pi}}e^{-\frac{z^2}{2}} dz\]</span></p>
 <p>Because the standard distribution is special and will appear often then we use the letter <span class="math inline">\(\phi\)</span> for it.</p>
 <p><img src="figures/st.png" /></p>
-<p>You can find it in most computer programs. in R is <code>pnorm(x)</code> with the default parameters, 0 and 1.</p>
+<p>You can find it in most computer programs. In Python is <code>norm.cdf(x)</code> with the default parameters, 0 and 1.</p>
 <p>We usually define the limits of the <strong>most common observations</strong> for the standard variable</p>
 <p><img src="figures/phi.JPG" /></p>
 <ol style="list-style-type: decimal">
 <li>The interquartile range <span class="math display">\[P(-0.67 \leq X \leq 0.67)=0.50\]</span></li>
 </ol>
-<p>in R: <code>c(qnorm(0.25), qnorm(0.75))</code></p>
+<p>In Python: <code>[norm.ppf(0.25), norm.ppf(0.75)]</code></p>
 <ol start="2" style="list-style-type: decimal">
 <li><span class="math inline">\(95\%\)</span> range <span class="math display">\[P(-1.96 \leq X \leq 1.96)=0.95\]</span></li>
 </ol>
-<p>in R: <code>c(qnorm(0.025), qnorm(0.975))</code></p>
+<p>In Python: <code>[norm.ppf(0.025), norm.ppf(0.975)]</code></p>
 <ol start="3" style="list-style-type: decimal">
 <li><span class="math inline">\(99\%\)</span> range <span class="math display">\[P(-2.58 \leq X \leq 2.58)=0.99\]</span></li>
 </ol>
-<p>in R: <code>c(qnorm(0.005), qnorm(0.995))</code></p>
+<p>In Python: <code>[norm.ppf(0.005), norm.ppf(0.995)]</code></p>
 <p><img src="_main_files/figure-html/unnamed-chunk-68-1.png" width="672" /></p>
-<p>The probability of any normal variable <span class="math inline">\(X\rightarrow N(\mu, \sigma^2)\)</span> using the standard distribution</p>
+</div>
+<div id="standardization" class="section level2 hasAnchor" number="9.8">
+<h2><span class="header-section-number">9.8</span> Standardization<a href="normal-distribution.html#standardization" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>All normal variables can be <strong>standardized</strong>. This means that if <span class="math inline">\(X \rightarrow N(\mu, \sigma^2)\)</span>, then we can transform the variable to
+a <strong>standardized variable</strong></p>
+<p><span class="math display">\[Z=\frac{X-\mu}{\sigma}\]</span></p>
+<p>which will have density:</p>
+<p><span class="math display">\[f(z)=\frac{1}{ \sqrt{2\pi}}e^{-\frac{z^2}{2}}\]</span>
+Therefore, for any <span class="math inline">\(X \rightarrow N(\mu, \sigma^2)\)</span></p>
+<p><span class="math display">\[Z=\frac{X-\mu}{\sigma} \rightarrow N(0, 1) \]</span></p>
+<p><img src="figures/stand.png" /></p>
+<p>You can demonstrate this by replacing <span class="math inline">\(x=\sigma z+\mu\)</span> and <span class="math inline">\(dx=\sigma dz\)</span> in the probability expression we have</p>
+<p><span class="math inline">\(P(x\leq X \leq x +dx)=P(z\leq Z \leq z +dz)\)</span>
+<span class="math display">\[=\frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{(x-\mu)^2}{2\sigma^2}}dx\]</span> <span class="math display">\[=\frac{1}{ \sqrt{2\pi}}e^{-\frac{z^2}{2}} dz\]</span></p>
+<p>We can compute the probability of <strong>any normal variable</strong> <span class="math inline">\(X\rightarrow N(\mu, \sigma^2)\)</span> using the standard distribution</p>
 <p><span class="math inline">\(F(a)=P(X&lt;a)=P(\frac{X-\mu}{\sigma}&lt;\frac{a-\mu}{\sigma})\)</span>
 <span class="math display">\[=P(Z &lt; \frac{a-\mu}{\sigma})= \phi \big(\frac{a-\mu}{\sigma}\big)\]</span></p>
 <p>For computing <span class="math inline">\(P(a\leq X \leq b)\)</span>, we use the property of the probability distributions</p>
 <p><span class="math inline">\(F(b)-F(a)=P(X\leq b)-P(X\leq a)\)</span></p>
 <p><span class="math display">\[=\phi \big(\frac{b-\mu}{\sigma}\big)-\phi \big(\frac{a-\mu}{\sigma}\big)\]</span></p>
 </div>
-<div id="summary-of-probability-models" class="section level2 hasAnchor" number="9.8">
-<h2><span class="header-section-number">9.8</span> Summary of probability models<a href="normal-distribution.html#summary-of-probability-models" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="summary-of-probability-models" class="section level2 hasAnchor" number="9.9">
+<h2><span class="header-section-number">9.9</span> Summary of probability models<a href="normal-distribution.html#summary-of-probability-models" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <table style="width:100%;">
 <colgroup>
 <col width="16%" />
@@ -745,49 +751,49 @@ Therefore, for any <span class="math inline">\(X \rightarrow N(\mu, \sigma^2)\)<
 </tbody>
 </table>
 </div>
-<div id="r-functions-of-probability-models" class="section level2 hasAnchor" number="9.9">
-<h2><span class="header-section-number">9.9</span> R functions of probability models<a href="normal-distribution.html#r-functions-of-probability-models" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="python-functions-of-probability-models" class="section level2 hasAnchor" number="9.10">
+<h2><span class="header-section-number">9.10</span> Python functions of probability models<a href="normal-distribution.html#python-functions-of-probability-models" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <table>
 <thead>
 <tr class="header">
 <th align="left">Model</th>
-<th align="center">R</th>
+<th align="center">Python</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td align="left">Uniform (continuous)</td>
-<td align="center"><code>dunif(x, a, b)</code></td>
+<td align="center"><code>uniform.pdf(x, a, b)</code></td>
 </tr>
 <tr class="even">
 <td align="left">Binomial</td>
-<td align="center"><code>dbimon(x,n,p)</code></td>
+<td align="center"><code>binom.pmf(x,n,p)</code></td>
 </tr>
 <tr class="odd">
 <td align="left">Negative Binomial for events</td>
-<td align="center"><code>dnbinom(x,r,p)</code></td>
+<td align="center"><code>nbinom.pmf(x,r,p)</code></td>
 </tr>
 <tr class="even">
 <td align="left">Hypergeometric</td>
-<td align="center"><code>dhyper(x, K, N-K, n)</code></td>
+<td align="center"><code>hypergeom.pmf(x, N, K, n)</code></td>
 </tr>
 <tr class="odd">
 <td align="left">Poisson</td>
-<td align="center"><code>dpois(x, lambda)</code></td>
+<td align="center"><code> poisson.pmf(x, lambda)</code></td>
 </tr>
 <tr class="even">
 <td align="left">Exponential</td>
-<td align="center"><code>dexp(x, lambda)</code></td>
+<td align="center"><code> expon.pdf(x,0,1/lambda)</code></td>
 </tr>
 <tr class="odd">
 <td align="left">Normal</td>
-<td align="center"><code>dnomr(x, mu, sigma)</code></td>
+<td align="center"><code>norm.pdf(x, mu, sigma)</code></td>
 </tr>
 </tbody>
 </table>
 </div>
-<div id="questions-6" class="section level2 hasAnchor" number="9.10">
-<h2><span class="header-section-number">9.10</span> Questions<a href="normal-distribution.html#questions-6" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="questions-6" class="section level2 hasAnchor" number="9.11">
+<h2><span class="header-section-number">9.11</span> Questions<a href="normal-distribution.html#questions-6" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><strong>1)</strong> It is not true that for a normally distributed variable</p>
 <p><strong><span class="math inline">\(\qquad\)</span>a:</strong> its mean and median are the same; <strong><span class="math inline">\(\qquad\)</span>b:</strong> the standard probability distribution can be used to compute its probabilities; <strong><span class="math inline">\(\qquad\)</span>c:</strong> its interquartile range is twice its standard deviation; <strong><span class="math inline">\(\qquad\)</span>d:</strong> <span class="math inline">\(5\%\)</span> of its observations are a distance greater than twice its standard deviation</p>
 <p><strong>2)</strong> For a normal standard variable</p>
@@ -801,20 +807,20 @@ Therefore, for any <span class="math inline">\(X \rightarrow N(\mu, \sigma^2)\)<
 <strong><span class="math inline">\(\qquad\)</span>c:</strong> <span class="math inline">\(0.8\)</span>;
 <strong><span class="math inline">\(\qquad\)</span>d:</strong> <span class="math inline">\(0.9\)</span></p>
 <p><strong>4)</strong> the third quartile of a normal variable with mean <span class="math inline">\(10\)</span> and standard deviation <span class="math inline">\(2\)</span> is</p>
-<p><strong><span class="math inline">\(\qquad\)</span>a:</strong> <code>qnorm(1/3, 10, 2)=9.138545</code>;
-<strong><span class="math inline">\(\qquad\)</span>b:</strong> <code>qnorm(1-0.75, 10, 2)=8.65102 </code>;
-<strong><span class="math inline">\(\qquad\)</span>c:</strong> <code>qnorm(1-1/3, 10, 2)=10.86145 </code>;
-<strong><span class="math inline">\(\qquad\)</span>d:</strong> <code>qnorm(0.75, 10, 2)= 11.34898 </code></p>
+<p><strong><span class="math inline">\(\qquad\)</span>a:</strong> <code>norm.ppf(1/3, 10, 2)=9.138545</code>;
+<strong><span class="math inline">\(\qquad\)</span>b:</strong> <code>norm.ppf(1-0.75, 10, 2)=8.65102 </code>;
+<strong><span class="math inline">\(\qquad\)</span>c:</strong> <code>norm.ppf(1-1/3, 10, 2)=10.86145 </code>;
+<strong><span class="math inline">\(\qquad\)</span>d:</strong> <code>norm.ppf(0.75, 10, 2)= 11.34898 </code></p>
 <p><strong>5)</strong> probability that a normal variable with mean <span class="math inline">\(10\)</span> and standard deviation <span class="math inline">\(2\)</span> is in <span class="math inline">\((-\infty,10)\)</span> is</p>
 <p><strong><span class="math inline">\(\qquad\)</span>a:</strong> 0.25;
 <strong><span class="math inline">\(\qquad\)</span>b:</strong> 0.5;
 <strong><span class="math inline">\(\qquad\)</span>c:</strong> 0.75;
 <strong><span class="math inline">\(\qquad\)</span>d:</strong> 1:</p>
 </div>
-<div id="exercises-7" class="section level2 hasAnchor" number="9.11">
-<h2><span class="header-section-number">9.11</span> Exercises<a href="normal-distribution.html#exercises-7" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div id="exercise-1-6" class="section level4 hasAnchor" number="9.11.0.1">
-<h4><span class="header-section-number">9.11.0.1</span> Exercise 1<a href="normal-distribution.html#exercise-1-6" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div id="exercises-7" class="section level2 hasAnchor" number="9.12">
+<h2><span class="header-section-number">9.12</span> Exercises<a href="normal-distribution.html#exercises-7" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="exercise-1-6" class="section level4 hasAnchor" number="9.12.0.1">
+<h4><span class="header-section-number">9.12.0.1</span> Exercise 1<a href="normal-distribution.html#exercise-1-6" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Find the area under the standard normal curve in the following cases:</p>
 <ul>
 <li>Between <span class="math inline">\(z=0.81\)</span> and <span class="math inline">\(z=1.94\)</span> (R:0.182)</li>
@@ -822,8 +828,8 @@ Therefore, for any <span class="math inline">\(X \rightarrow N(\mu, \sigma^2)\)<
 <li>To the right of <span class="math inline">\(z=2.05\)</span> or to the left of <span class="math inline">\(z=-1.44\)</span> (R:0.0951)</li>
 </ul>
 </div>
-<div id="exercise-2-6" class="section level4 hasAnchor" number="9.11.0.2">
-<h4><span class="header-section-number">9.11.0.2</span> Exercise 2<a href="normal-distribution.html#exercise-2-6" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div id="exercise-2-6" class="section level4 hasAnchor" number="9.12.0.2">
+<h4><span class="header-section-number">9.12.0.2</span> Exercise 2<a href="normal-distribution.html#exercise-2-6" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <ul>
 <li><p>What is the probability that a man’s height is at least
 <span class="math inline">\(165\)</span>cm if the population mean is <span class="math inline">\(175\)</span>cm y the standard deviation is <span class="math inline">\(10\)</span>cm? (R:0.841)</p></li>

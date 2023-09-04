@@ -23,7 +23,7 @@
 <meta name="author" content="Alejandro Caceres" />
 
 
-<meta name="date" content="2023-08-08" />
+<meta name="date" content="2023-09-04" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -210,6 +210,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.9" data-path="conditional-probability.html"><a href="conditional-probability.html#bayes-theorem"><i class="fa fa-check"></i><b>4.9</b> Bayes’ Theorem</a></li>
 <li class="chapter" data-level="4.10" data-path="conditional-probability.html"><a href="conditional-probability.html#exercises-2"><i class="fa fa-check"></i><b>4.10</b> Exercises</a></li>
 <li class="chapter" data-level="4.11" data-path="conditional-probability.html"><a href="conditional-probability.html#questions-2"><i class="fa fa-check"></i><b>4.11</b> Questions</a></li>
+<li class="chapter" data-level="4.12" data-path="conditional-probability.html"><a href="conditional-probability.html#practice-2"><i class="fa fa-check"></i><b>4.12</b> Practice</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html"><i class="fa fa-check"></i><b>5</b> Discrete Random Variables</a>
 <ul>
@@ -285,10 +286,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.5" data-path="normal-distribution.html"><a href="normal-distribution.html#probability-distribution-2"><i class="fa fa-check"></i><b>9.5</b> Probability distribution</a></li>
 <li class="chapter" data-level="9.6" data-path="normal-distribution.html"><a href="normal-distribution.html#standard-normal-density"><i class="fa fa-check"></i><b>9.6</b> Standard normal density</a></li>
 <li class="chapter" data-level="9.7" data-path="normal-distribution.html"><a href="normal-distribution.html#standard-distribution"><i class="fa fa-check"></i><b>9.7</b> Standard distribution</a></li>
-<li class="chapter" data-level="9.8" data-path="normal-distribution.html"><a href="normal-distribution.html#summary-of-probability-models"><i class="fa fa-check"></i><b>9.8</b> Summary of probability models</a></li>
-<li class="chapter" data-level="9.9" data-path="normal-distribution.html"><a href="normal-distribution.html#r-functions-of-probability-models"><i class="fa fa-check"></i><b>9.9</b> R functions of probability models</a></li>
-<li class="chapter" data-level="9.10" data-path="normal-distribution.html"><a href="normal-distribution.html#questions-6"><i class="fa fa-check"></i><b>9.10</b> Questions</a></li>
-<li class="chapter" data-level="9.11" data-path="normal-distribution.html"><a href="normal-distribution.html#exercises-7"><i class="fa fa-check"></i><b>9.11</b> Exercises</a></li>
+<li class="chapter" data-level="9.8" data-path="normal-distribution.html"><a href="normal-distribution.html#standardization"><i class="fa fa-check"></i><b>9.8</b> Standardization</a></li>
+<li class="chapter" data-level="9.9" data-path="normal-distribution.html"><a href="normal-distribution.html#summary-of-probability-models"><i class="fa fa-check"></i><b>9.9</b> Summary of probability models</a></li>
+<li class="chapter" data-level="9.10" data-path="normal-distribution.html"><a href="normal-distribution.html#python-functions-of-probability-models"><i class="fa fa-check"></i><b>9.10</b> Python functions of probability models</a></li>
+<li class="chapter" data-level="9.11" data-path="normal-distribution.html"><a href="normal-distribution.html#questions-6"><i class="fa fa-check"></i><b>9.11</b> Questions</a></li>
+<li class="chapter" data-level="9.12" data-path="normal-distribution.html"><a href="normal-distribution.html#exercises-7"><i class="fa fa-check"></i><b>9.12</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="10" data-path="sampling-distributions.html"><a href="sampling-distributions.html"><i class="fa fa-check"></i><b>10</b> Sampling distributions</a>
 <ul>
@@ -557,7 +559,7 @@ This means that the probabilities can be <strong>estimated</strong> (by putting 
 <p><strong>Example (Cables)</strong></p>
 <p>Assuming that the breaking load of our cable is a normal random variable</p>
 <p><span class="math display">\[X \rightarrow N(x; \mu, \sigma^2)\]</span></p>
-<p><strong>we use</strong> the estimates <span class="math inline">\(\bar{x}_{stock}=13.21\)</span> (<code>mean(x)</code>) and <span class="math inline">\(s^2=0.3571565^2\)</span> (<code>sd ( x)^2</code>) as the values of <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\sigma^2\)</span>. So the <strong>fitted</strong> model is</p>
+<p><strong>we use</strong> the estimates <span class="math inline">\(\bar{x}_{stock}=13.21\)</span> (<code>np.mean(x)</code>) and <span class="math inline">\(s^2=0.3571565^2\)</span> (<code>np.var(x)</code>) as the values of <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\sigma^2\)</span>. So the <strong>fitted</strong> model is</p>
 <p><span class="math display">\[X \rightarrow N(x; \mu=13.21, \sigma^2=0.3571565^2)\]</span>
 In this problem we <strong>didn’t know</strong> <span class="math inline">\(\mu\)</span> or <span class="math inline">\(\sigma\)</span> and therefore we are guessing their values and the underlying model</p>
 <p><img src="_main_files/figure-html/unnamed-chunk-72-1.png" width="672" /></p>
@@ -565,7 +567,7 @@ In this problem we <strong>didn’t know</strong> <span class="math inline">\(\m
 <p>Since <span class="math display">\[X \rightarrow N(x; \mu=13.21, \sigma^2=0.3571565^2)\]</span></p>
 <p>so</p>
 <p><span class="math display">\[P(X \leq 12)= F(12; \mu=13.21, \sigma^2=0.1275608)\]</span></p>
-<p>In R <code>pnorm(12,13.21, 0.3571565)</code><span class="math inline">\(=0.000352188\)</span></p>
+<p>In Python <code>norm.cdf(12,13.21, 0.3571565)</code><span class="math inline">\(=0.000352188\)</span></p>
 <p>Given the <strong>observed</strong> sample, there is an estimated probability of <span class="math inline">\(0.03\%\)</span> that a single cable breaks in <span class="math inline">\(12\)</span> Tons. We have a probabilistic argument for selling the cables.</p>
 </div>
 <div id="margin-of-error-of-estimates" class="section level2 hasAnchor" number="10.5">
@@ -629,7 +631,7 @@ We say that <span class="math inline">\(\bar{X}\)</span> is unbiased because its
 <span class="math display">\[V(\bar{X})=\frac{\sigma^2}{n}\]</span>
 We say that <span class="math inline">\(\bar{X}\)</span> is consistent because is gets smaller with large <span class="math inline">\(n\)</span>.</p></li>
 </ol>
-<p>We call <span class="math inline">\(se=\sqrt{V(\bar{X})}\)</span> the <strong>standard error</strong> of the sample mean. The standard error is also written as <span class="math inline">\(\sigma_{\bar{x}}\)</span>. Note that this is the error we expect when using <span class="math inline">\(\bar{x}\)</span> as the value of <span class="math inline">\(\mu\)</span>, and it is the bias we needed to correct for <span class="math inline">\(S_n^2\)</span>.</p>
+<p>We call <span class="math inline">\(se=\sqrt{V(\bar{X})}\)</span> the <strong>standard error</strong> of the sample mean. The standard error is also written as <span class="math inline">\(\sigma_{\bar{x}}\)</span>. Note that this is the error we expect when using <span class="math inline">\(\bar{x}\)</span> as the value of <span class="math inline">\(\mu\)</span>, and it is the bias we need to correct when estimating the variance (Section 10.8).</p>
 <p>So, if we <strong>know</strong> <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\sigma\)</span>, we can calculate the <strong>probabilities of</strong> <span class="math inline">\(\bar{X}\)</span> using the normal distribution.</p>
 <p>Remember that we have <strong>two probability functions</strong>:</p>
 <ol style="list-style-type: decimal">
@@ -652,8 +654,8 @@ We say that <span class="math inline">\(\bar{X}\)</span> is consistent because i
 <p>Finally we want to calculate <strong>the probability</strong> that our estimate has a margin of error of <span class="math inline">\(0.25\)</span>. That is a distance of <span class="math inline">\(0.25\)</span> from the mean. That’s <span class="math display">\[P(-0.25 \leq \bar{X} - 13\leq 0.25)=P(12.75 \leq \bar{X} \leq 13.25)\]</span></p>
 <p><br>
 <span class="math inline">\(=F(13.25; \mu, \sigma^2/n)-F(12.75; \mu, \sigma^2/n)\)</span></p>
-<p>In R we can calculate it as:</p>
-<p><code>pnorm(13.25, 13, 0.1237)-pnorm(12.75, 13, 0.1237)=0.956</code>.</p>
+<p>In Python we can calculate it as:</p>
+<p><code>norm.cdf(13.25, 13, 0.1237)-norm.cdf(12.75, 13, 0.1237)=0.956</code>.</p>
 <p>Remember: <span class="math inline">\(se=\sigma_{\bar{x}}=\sqrt{0.01530169}=0.1237\)</span></p>
 <p>Therefore <span class="math inline">\(95.6\%\)</span> of the means <span class="math inline">\(\bar{X}\)</span> of random samples of size <span class="math inline">\(8\)</span> are at a distance of <span class="math inline">\(0.25\)</span> from the mean <span class="math inline">\(\mu=13\)</span>.</p>
 <p>If we sell our process for building the cables, we can tell new manufacturers that when they follow our instructions, they can test the process by taking a sample of size <span class="math inline">\(8\)</span> cables. In that case, they can expect the sample mean to fall between <span class="math inline">\((12.75, 13.25)\)</span> about <span class="math inline">\(95\%\)</span> of the times.</p>
@@ -691,8 +693,8 @@ We say that <span class="math inline">\(\bar{X}\)</span> is consistent because i
 <p>We want to calculate <span class="math display">\[P(102 \leq Y \leq 106)\]</span></p>
 <p><br>
 <span class="math inline">\(=F(102; n\mu, n\sigma^2)-F(106; n\mu, n\sigma^2)\)</span></p>
-<p>In R we can calculate it as:</p>
-<p><code>pnorm(106, 104, 0.9899495)-pnorm(102, 104, 0.9899495)=0.956</code>.</p>
+<p>In Python we can calculate it as:</p>
+<p><code>norm.cdf(106, 104, 0.9899495)-norm.cdf(102, 104, 0.9899495)=0.956</code>.</p>
 <p>Therefore <span class="math inline">\(95.6\%\)</span> of the total weight that <span class="math inline">\(8\)</span> cables can carry is between <span class="math inline">\(102\)</span> and <span class="math inline">\(106\)</span> Tons, or a distance of <span class="math inline">\(8*0.25=2\)</span> Tons from the total mean <span class="math inline">\(n\mu=104\)</span>.</p>
 </div>
 </div>
@@ -760,8 +762,8 @@ Similar to <span class="math inline">\(\hat{\mu}\)</span>, the error of this est
 <span class="math inline">\(=P(W &gt; \frac{7*0.3}{0.35^2})=P(W &gt; 17.14286)\)</span></p>
 <p><span class="math inline">\(=1-P(W \leq 17.14286)\)</span></p>
 <p><span class="math inline">\(= 1- F_{\chi^2,df=7}(17.14286)=0.016\)</span></p>
-<p>in R
-<code>1-pchisq(17.14286, df=7)=0.016 </code></p>
+<p>in Python
+<code>1-chi2.cdf(17.14286, df=7)=0.016 </code></p>
 <p>There is only a <span class="math inline">\(1\%\)</span> chance of getting a value greater than <span class="math inline">\(s^2=0.3\)</span>. So <span class="math inline">\(s^2&gt;0.3\)</span> seems to be a good criteria to stop production and review the process.</p>
 <p>If we take a random sample and get a value of <span class="math inline">\(s ^2\)</span> that is greater than <span class="math inline">\(0.3\)</span>, it will be a rare observation if all is well. We tend to believe that the observed values are common, not rare, so we may think that something is not right.</p>
 <p>When we perform random sampling we observe:</p>

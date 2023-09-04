@@ -23,7 +23,7 @@
 <meta name="author" content="Alejandro Caceres" />
 
 
-<meta name="date" content="2023-08-08" />
+<meta name="date" content="2023-09-04" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -210,6 +210,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.9" data-path="conditional-probability.html"><a href="conditional-probability.html#bayes-theorem"><i class="fa fa-check"></i><b>4.9</b> Bayes’ Theorem</a></li>
 <li class="chapter" data-level="4.10" data-path="conditional-probability.html"><a href="conditional-probability.html#exercises-2"><i class="fa fa-check"></i><b>4.10</b> Exercises</a></li>
 <li class="chapter" data-level="4.11" data-path="conditional-probability.html"><a href="conditional-probability.html#questions-2"><i class="fa fa-check"></i><b>4.11</b> Questions</a></li>
+<li class="chapter" data-level="4.12" data-path="conditional-probability.html"><a href="conditional-probability.html#practice-2"><i class="fa fa-check"></i><b>4.12</b> Practice</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html"><i class="fa fa-check"></i><b>5</b> Discrete Random Variables</a>
 <ul>
@@ -285,10 +286,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.5" data-path="normal-distribution.html"><a href="normal-distribution.html#probability-distribution-2"><i class="fa fa-check"></i><b>9.5</b> Probability distribution</a></li>
 <li class="chapter" data-level="9.6" data-path="normal-distribution.html"><a href="normal-distribution.html#standard-normal-density"><i class="fa fa-check"></i><b>9.6</b> Standard normal density</a></li>
 <li class="chapter" data-level="9.7" data-path="normal-distribution.html"><a href="normal-distribution.html#standard-distribution"><i class="fa fa-check"></i><b>9.7</b> Standard distribution</a></li>
-<li class="chapter" data-level="9.8" data-path="normal-distribution.html"><a href="normal-distribution.html#summary-of-probability-models"><i class="fa fa-check"></i><b>9.8</b> Summary of probability models</a></li>
-<li class="chapter" data-level="9.9" data-path="normal-distribution.html"><a href="normal-distribution.html#r-functions-of-probability-models"><i class="fa fa-check"></i><b>9.9</b> R functions of probability models</a></li>
-<li class="chapter" data-level="9.10" data-path="normal-distribution.html"><a href="normal-distribution.html#questions-6"><i class="fa fa-check"></i><b>9.10</b> Questions</a></li>
-<li class="chapter" data-level="9.11" data-path="normal-distribution.html"><a href="normal-distribution.html#exercises-7"><i class="fa fa-check"></i><b>9.11</b> Exercises</a></li>
+<li class="chapter" data-level="9.8" data-path="normal-distribution.html"><a href="normal-distribution.html#standardization"><i class="fa fa-check"></i><b>9.8</b> Standardization</a></li>
+<li class="chapter" data-level="9.9" data-path="normal-distribution.html"><a href="normal-distribution.html#summary-of-probability-models"><i class="fa fa-check"></i><b>9.9</b> Summary of probability models</a></li>
+<li class="chapter" data-level="9.10" data-path="normal-distribution.html"><a href="normal-distribution.html#python-functions-of-probability-models"><i class="fa fa-check"></i><b>9.10</b> Python functions of probability models</a></li>
+<li class="chapter" data-level="9.11" data-path="normal-distribution.html"><a href="normal-distribution.html#questions-6"><i class="fa fa-check"></i><b>9.11</b> Questions</a></li>
+<li class="chapter" data-level="9.12" data-path="normal-distribution.html"><a href="normal-distribution.html#exercises-7"><i class="fa fa-check"></i><b>9.12</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="10" data-path="sampling-distributions.html"><a href="sampling-distributions.html"><i class="fa fa-check"></i><b>10</b> Sampling distributions</a>
 <ul>
@@ -910,7 +912,7 @@ Therefore, in the limit when <span class="math inline">\(N \rightarrow \infty\)<
 <p>We are interested in finding the probability of being infected if the test is positive: <span class="math display">\[P(si| positive)\]</span></p>
 <p>For that:</p>
 <ol style="list-style-type: decimal">
-<li>We recover the contingency table for joint probabilities, multiplying by the marginal ones</li>
+<li>We recover the contingency table for joint probabilities, multiplying by the marginal <span class="math inline">\(P(yes)\)</span> and <span class="math inline">\(P(no)\)</span> that we need to know</li>
 </ol>
 <table>
 <thead>
@@ -973,10 +975,10 @@ Therefore, in the limit when <span class="math inline">\(N \rightarrow \infty\)<
 <br></p>
 <p>For example:</p>
 <p><span class="math display">\[P(yes| positive)= \frac{P(positive|yes)P(yes)}{P(positive)}\]</span></p>
-<p>To apply this formula we need the marginals <span class="math inline">\(P(yes)\)</span> (incidence) and <span class="math inline">\(P(positive)\)</span>.</p>
+<p>To apply this formula we need the marginals <span class="math inline">\(P(yes)\)</span> (prevalence) and <span class="math inline">\(P(positive)\)</span>.</p>
 <ul>
-<li><p>To find <span class="math inline">\(P(yes)\)</span>, we need a new study: the first prevalence study in Spain showed that during confinement <span class="math inline">\(P(yes)=0.05\)</span>, <span class="math inline">\(P(no)=0.95\)</span>, before the summer of 2020 .</p></li>
-<li><p>To find <span class="math inline">\(P(positive)\)</span>, we can use the definition of marginal and conditional probability:</p></li>
+<li><p>The prevalence <span class="math inline">\(P(yes)\)</span> needs to be given from another study. The first prevalence study in Spain showed that during confinement <span class="math inline">\(P(yes)=0.05\)</span>, <span class="math inline">\(P(no)=0.95\)</span>, before the summer of 2020.</p></li>
+<li><p>To find the marginal of positives <span class="math inline">\(P(positive)\)</span>, we can then use the definition of marginal and conditional probability:</p></li>
 </ul>
 <p><span class="math inline">\(P(positive)= P(positive \cap yes) + P(positive \cap no)\)</span>
 <span class="math display">\[= P(positive| yes)P (yes)+P(positive|no)P(no)\]</span>
@@ -997,11 +999,11 @@ Or <strong>assess</strong> a test in a controlled condition (infection) and then
 </ul>
 <p>The study in the Spanish population gave:</p>
 <ul>
-<li><span class="math inline">\(P(if)=0.05\)</span></li>
+<li><span class="math inline">\(P(yes)=0.05\)</span></li>
 <li><span class="math inline">\(P(no)=1-P(yes)=0.95\)</span>.</li>
 </ul>
 <p>Therefore, the probability of being infected in case of testing positive was:</p>
-<p><span class="math display">\[P(if| positive)= 0.38\]</span></p>
+<p><span class="math display">\[P(yes| positive)= 0.38\]</span></p>
 <p>We concluded that at that time PCR was not very good at <strong>confirming</strong> infections.</p>
 <p>However, let us now apply Bayes’ theorem to the probability of not being infected if the test was negative.</p>
 <p><span class="math display">\[P(no|negative) = \frac{P(negative|no) P(no )}{ P(negative|no) P(no)+P(negative|yes)P(yes)}\]</span></p>
@@ -1167,30 +1169,6 @@ The denominator is the total probability rule for the marginal <span class="math
 </div>
 <div id="exercise-4" class="section level4 hasAnchor" number="4.11.0.4">
 <h4><span class="header-section-number">4.11.0.4</span> Exercise 4<a href="conditional-probability.html#exercise-4" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>We want to cross an avenue with two traffic lights. The probability of finding the first red light is 0.6. If we stop at the first traffic light, the probability of stopping at the second is 0.15. While the probability of stopping at the second if we don’t stop at the first is 0.25.</p>
-<p>When we try to cross both traffic lights:</p>
-<ul>
-<li>What is the probability of having to stop at each traffic light? (R:0.09)</li>
-<li>What is the probability of having to stop at at least one traffic light? (R:0.7)</li>
-<li>What is the probability of having to stop at a single traffic light? (R:0.61)</li>
-<li>If I stopped at the second traffic light, what is the probability that I would have to stop at the first? (R: 0.47)</li>
-<li>If you were to stop at any traffic light, what is the probability that you would have to stop twice? (R: 0.12)</li>
-<li>Is stopping at the first traffic light an independent event from stopping at the second traffic light? (No)</li>
-</ul>
-<p>Now, we want to cross an avenue with three traffic lights. The probability of finding a red light only depends on the previous one. Specifically, the probability of finding a red traffic light given that the previous one was red is 0.15. While the probability of finding a fair traffic in red given that the previous one was in green is 0.25. Furthermore, the probability of finding the first red light is 0.6.</p>
-<p>What is the probability of having to stop at each traffic light? (R:0.013)
-- What is the probability of having to stop at at least one traffic light? (R:0.775)
-- What is the probability of having to stop at a single traffic light? (R:0.5425)</p>
-<p>tips:</p>
-<ul>
-<li><p>If the probability that a traffic light is red depends only on the previous one, then
-<span class="math inline">\(P(R_3|R_2,R_1)=P(R_3|R_2,\bar{R}_1)=P(R_3|R_2)\)</span> and <span class="math inline">\(P(R_3|\bar{R}_2,R_1)=P(R_3|\bar{R}_2,\bar{R}_1)=P(R_3|\bar{R}_2)\)</span></p></li>
-<li><p>The joint probability of finding three red lights can be written as:
-<span class="math inline">\(P(R_ 1,R _2,R_3)=P(R_3|R_2)P(R_2|R_1)P(R_1)\)</span></p></li>
-</ul>
-</div>
-<div id="exercise-5" class="section level4 hasAnchor" number="4.11.0.5">
-<h4><span class="header-section-number">4.11.0.5</span> Exercise 5<a href="conditional-probability.html#exercise-5" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>A quality test on a random brick is defined by the events:</p>
 <ul>
 <li>Pass the quality test: <span class="math inline">\(E\)</span>, fail the quality test: <span class="math inline">\(\bar{E}\)</span></li>
@@ -1204,15 +1182,15 @@ The denominator is the total probability rule for the marginal <span class="math
 <li><p>Are <span class="math inline">\(D\)</span> and <span class="math inline">\(\bar{E}\)</span> statistically independent? (No)</p></li>
 </ul>
 </div>
-<div id="practice-2" class="section level4 hasAnchor" number="4.11.0.6">
-<h4><span class="header-section-number">4.11.0.6</span> Practice<a href="conditional-probability.html#practice-2" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>Load misophonia data <code>data_0.txt</code></p>
+</div>
+<div id="practice-2" class="section level2 hasAnchor" number="4.12">
+<h2><span class="header-section-number">4.12</span> Practice<a href="conditional-probability.html#practice-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Load misophonia data from <code><a href="https://alejandro-isglobal.github.io/SDA/data/data_0.txt" class="uri">https://alejandro-isglobal.github.io/SDA/data/data_0.txt</a></code></p>
 <ul>
-<li><p>Compute the contingency table of misophophonia (Misofonia.dic) given marital status (Estado). What is the estimated probability of having misophonia if the patient is married?</p></li>
-<li><p>Compute the contingency table of marital status (Estado) given misophonia (Misofonia.dic). What is the estimated probability of being married if the patient is misophonic?</p></li>
+<li><p>Compute the conditional probability table of misophophonia (Misofonia.dic) given marital status (Estado). What is the estimated probability of having misophonia if the patient is married?</p></li>
+<li><p>Compute the conditional probability table of marital status (Estado) given misophonia (Misofonia.dic). What is the estimated probability of being married if the patient is misophonic?</p></li>
 </ul>
 
-</div>
 </div>
 </div>
             </section>

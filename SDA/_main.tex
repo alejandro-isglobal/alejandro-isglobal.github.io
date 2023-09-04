@@ -6,7 +6,7 @@
 ]{book}
 \title{Statistical Data Analysis}
 \author{Alejandro Caceres}
-\date{2023-08-08}
+\date{2023-09-04}
 
 \usepackage{amsmath,amssymb}
 \usepackage{lmodern}
@@ -1197,7 +1197,7 @@ For two events \(A\) and \(B\), we can construct the following derived events us
 \item
   Union \(A \cup B\): the event of \(A\) \textbf{or} \(B\)
 \item
-  Intersection \(A \ cap B\): the event of \(A\) \textbf{and} \(B\)
+  Intersection \(A \cap B\): the event of \(A\) \textbf{and} \(B\)
 \end{itemize}
 
 \textbf{Example (given)}
@@ -1544,7 +1544,7 @@ We have carried out a randomized experiment \(10\) times, which consists of reco
 \hypertarget{practice-1}{%
 \section{Practice}\label{practice-1}}
 
-Load misophonia data data\_0.txt
+Load misophonia data \url{https://alejandro-isglobal.github.io/SDA/data/data_0.txt}
 
 \begin{itemize}
 \item
@@ -1934,7 +1934,7 @@ For that:
 \def\labelenumi{\arabic{enumi}.}
 \tightlist
 \item
-  We recover the contingency table for joint probabilities, multiplying by the marginal ones
+  We recover the contingency table for joint probabilities, multiplying by the marginal \(P(yes)\) and \(P(no)\) that we need to know
 \end{enumerate}
 
 \begin{longtable}[]{@{}cccc@{}}
@@ -1970,13 +1970,13 @@ For example:
 
 \[P(yes| positive)= \frac{P(positive|yes)P(yes)}{P(positive)}\]
 
-To apply this formula we need the marginals \(P(yes)\) (incidence) and \(P(positive)\).
+To apply this formula we need the marginals \(P(yes)\) (prevalence) and \(P(positive)\).
 
 \begin{itemize}
 \item
-  To find \(P(yes)\), we need a new study: the first prevalence study in Spain showed that during confinement \(P(yes)=0.05\), \(P(no)=0.95\), before the summer of 2020 .
+  The prevalence \(P(yes)\) needs to be given from another study. The first prevalence study in Spain showed that during confinement \(P(yes)=0.05\), \(P(no)=0.95\), before the summer of 2020.
 \item
-  To find \(P(positive)\), we can use the definition of marginal and conditional probability:
+  To find the marginal of positives \(P(positive)\), we can then use the definition of marginal and conditional probability:
 \end{itemize}
 
 \(P(positive)= P(positive \cap yes) + P(positive \cap no)\)
@@ -2010,14 +2010,14 @@ The study in the Spanish population gave:
 \begin{itemize}
 \tightlist
 \item
-  \(P(if)=0.05\)
+  \(P(yes)=0.05\)
 \item
   \(P(no)=1-P(yes)=0.95\).
 \end{itemize}
 
 Therefore, the probability of being infected in case of testing positive was:
 
-\[P(if| positive)= 0.38\]
+\[P(yes| positive)= 0.38\]
 
 We concluded that at that time PCR was not very good at \textbf{confirming} infections.
 
@@ -2190,46 +2190,6 @@ smooth surface: no & 8 & 6 \\
 \hypertarget{exercise-4}{%
 \subsubsection{Exercise 4}\label{exercise-4}}
 
-We want to cross an avenue with two traffic lights. The probability of finding the first red light is 0.6. If we stop at the first traffic light, the probability of stopping at the second is 0.15. While the probability of stopping at the second if we don't stop at the first is 0.25.
-
-When we try to cross both traffic lights:
-
-\begin{itemize}
-\tightlist
-\item
-  What is the probability of having to stop at each traffic light? (R:0.09)
-\item
-  What is the probability of having to stop at at least one traffic light? (R:0.7)
-\item
-  What is the probability of having to stop at a single traffic light? (R:0.61)
-\item
-  If I stopped at the second traffic light, what is the probability that I would have to stop at the first? (R: 0.47)
-\item
-  If you were to stop at any traffic light, what is the probability that you would have to stop twice? (R: 0.12)
-\item
-  Is stopping at the first traffic light an independent event from stopping at the second traffic light? (No)
-\end{itemize}
-
-Now, we want to cross an avenue with three traffic lights. The probability of finding a red light only depends on the previous one. Specifically, the probability of finding a red traffic light given that the previous one was red is 0.15. While the probability of finding a fair traffic in red given that the previous one was in green is 0.25. Furthermore, the probability of finding the first red light is 0.6.
-
-What is the probability of having to stop at each traffic light? (R:0.013)
-- What is the probability of having to stop at at least one traffic light? (R:0.775)
-- What is the probability of having to stop at a single traffic light? (R:0.5425)
-
-tips:
-
-\begin{itemize}
-\item
-  If the probability that a traffic light is red depends only on the previous one, then
-  \(P(R_3|R_2,R_1)=P(R_3|R_2,\bar{R}_1)=P(R_3|R_2)\) and \(P(R_3|\bar{R}_2,R_1)=P(R_3|\bar{R}_2,\bar{R}_1)=P(R_3|\bar{R}_2)\)
-\item
-  The joint probability of finding three red lights can be written as:
-  \(P(R_ 1,R _2,R_3)=P(R_3|R_2)P(R_2|R_1)P(R_1)\)
-\end{itemize}
-
-\hypertarget{exercise-5}{%
-\subsubsection{Exercise 5}\label{exercise-5}}
-
 A quality test on a random brick is defined by the events:
 
 \begin{itemize}
@@ -2254,15 +2214,15 @@ If the diagnostic test has sensitivity \(P(E|\bar{D })= 0.99\) and specificity \
 \end{itemize}
 
 \hypertarget{practice-2}{%
-\subsubsection{Practice}\label{practice-2}}
+\section{Practice}\label{practice-2}}
 
-Load misophonia data data\_0.txt
+Load misophonia data from \url{https://alejandro-isglobal.github.io/SDA/data/data_0.txt}
 
 \begin{itemize}
 \item
-  Compute the contingency table of misophophonia (Misofonia.dic) given marital status (Estado). What is the estimated probability of having misophonia if the patient is married?
+  Compute the conditional probability table of misophophonia (Misofonia.dic) given marital status (Estado). What is the estimated probability of having misophonia if the patient is married?
 \item
-  Compute the contingency table of marital status (Estado) given misophonia (Misofonia.dic). What is the estimated probability of being married if the patient is misophonic?
+  Compute the conditional probability table of marital status (Estado) given misophonia (Misofonia.dic). What is the estimated probability of being married if the patient is misophonic?
 \end{itemize}
 
 \hypertarget{discrete-random-variables}{%
@@ -3987,7 +3947,12 @@ That is \[f(x)=\binom 4 x 0.1^x(1-0.1)^{4-x}\]
 
 \(P(X=4)=f(4)=\binom 4 4 0.1^4 0.9^{0}=0.1^4=10^{-4}\)
 
-In R dbinom(4,4,0.1)
+In Python:
+
+\begin{verbatim}
+from scipy.stats import binom
+binom.pmf(4,4,0.1)
+\end{verbatim}
 
 \begin{itemize}
 \tightlist
@@ -3997,7 +3962,11 @@ In R dbinom(4,4,0.1)
 
 \(P(X=2)=\binom 4 2 0.1^2 0.9^2=0.0486\)
 
-In R dbinom(2,4,0.1)
+In Python:
+
+\begin{verbatim}
+binom.pmf(2,4,0.1)
+\end{verbatim}
 
 \textbf{Example (opinion polls):}
 
@@ -4011,12 +3980,12 @@ For this case
 
 \[X \rightarrow Bin(n=10, p=0.9)\]
 
-That is \[f(x)=\binom {10} x 0.9^x(0.1)^{4-x}\]
+That is \[f(x)=\binom {10} x 0.9^x(0.1)^{10-x}\]
 
 We want to compute:
 \(P(X\le 8)=F(8)= \sum_{i=1..8} f(x_i)=0.2639011\)
 
-in R pbinom(8,10, 0.9)
+in Python binom.cdf(8,10, 0.9)
 
 \hypertarget{negative-binomial-probability-function}{%
 \section{Negative binomial probability function}\label{negative-binomial-probability-function}}
@@ -4127,7 +4096,12 @@ We therefore want to compute the probability distribution at \(5\):
 
 \(= 6.9\times 10^{-9}\)
 
-In R this is computed with pnbinom(5,3,0.0005)
+In Python this is computed with
+
+\begin{verbatim}
+from scipy.stats import nbinom
+nbinom.cdf(5,3,0.0005)
+\end{verbatim}
 
 \textbf{Examples}
 
@@ -4139,7 +4113,7 @@ In R this is computed with pnbinom(5,3,0.0005)
 
 \(f(10; r=2, p=0.1)=0.03835463\)
 
-in R dnbinom(10, 2, 0.1)
+in Python: nbinom.pmf(10, 2, 0.1)
 
 \begin{itemize}
 \tightlist
@@ -4149,7 +4123,7 @@ in R dnbinom(10, 2, 0.1)
 
 \(f(2; r=4, p=0.5)=0.15625\)
 
-in R dnbinom(2, 4, 0.5)
+in Python: nbinom.pmf(2, 4, 0.5)
 
 \hypertarget{geometric-distribution}{%
 \section{Geometric distribution}\label{geometric-distribution}}
@@ -4232,7 +4206,12 @@ The probability that we need to compute is
 
 where \(X \rightarrow Hypergeometric(N=600,K=64,n=200)\)
 
-in R phyper(17, 64, 600-64, 200)=0.140565
+in Python:
+
+\begin{verbatim}
+from scipy.stats import hypergeom
+hypergeom.cdf(17, 600, 64, 200)
+\end{verbatim}
 
 The solution is the addition of the blue needles in the plot.
 
@@ -4264,13 +4243,13 @@ The solution is the addition of the blue needles in the plot.
 
 \textbf{4)} Opinion polls for the USA 2022 election give a probability of \(0.55\) that a voter favors the republican party. If we conduct our own poll and ask 100 random people on the street, How would you compute the probability that in our poll democrats win the election?
 
-\textbf{\(\qquad\)a:}pbinom(x=49, n=100, p=0.55)=0.13;
-\textbf{\(\qquad\)b:}1-pbinom(x=49, n=100, p=0.55)=0.86;
-\textbf{\(\qquad\)c:}pbinom(x=51, n=100, p=0.45)=0.90; \textbf{\(\qquad\)d:}1-pbinom(x=51, n=100, p=0.45)=0.095
+\textbf{\(\qquad\)a:}binom.pmf(x=49, n=100, p=0.55)=0.13;
+\textbf{\(\qquad\)b:}1-binom.pmf(x=49, n=100, p=0.55)=0.86;
+\textbf{\(\qquad\)c:}binom.pmf(x=51, n=100, p=0.45)=0.90; \textbf{\(\qquad\)d:}1-binom.pmf(x=51, n=100, p=0.45)=0.095
 
 \textbf{5)} In an exam a student chooses at random one of the four answers that he does not know. If he doesn't know \(10\) questions what is the probability that at least \(5\) questions are correct?
 
-\textbf{\(\qquad\)a:}dbinom(x=5, n=10, p=0.25)\textasciitilde{} 0.05; \textbf{\(\qquad\)b:}pbinom(x=5, n=10, p=0.75)\textasciitilde{} 0.07; \textbf{\(\qquad\)c:}dbinom(x=5, n=10, p=0.75)\textasciitilde{} 0.05; \textbf{\(\qquad\)d:}1-pbinom(x=5, n=10, p=0.25)\textasciitilde{} 0.02
+\textbf{\(\qquad\)a:}binom.cdf(x=5, n=10, p=0.25)\textasciitilde{} 0.05; \textbf{\(\qquad\)b:}binom.pmf(x=5, n=10, p=0.75)\textasciitilde{} 0.07; \textbf{\(\qquad\)c:}binom.cdf(x=5, n=10, p=0.75)\textasciitilde{} 0.05; \textbf{\(\qquad\)d:}1-binom.pmf(x=5, n=10, p=0.25)\textasciitilde{} 0.02
 
 \hypertarget{exercises-5}{%
 \section{Exercises}\label{exercises-5}}
@@ -4340,11 +4319,17 @@ The Poisson model is for discrete random variables while the exponential functio
 In the previous chapter we built complex models from simple ones. At each stage, we introduced some novel concept:
 
 \textbf{Uniform}: Classical interpretation of probability
+
 \(\downarrow\)
+
 \textbf{Bernoulli}: Introduction of a \textbf{parameter} \(p\) (family of models)
+
 \(\downarrow\)
+
 \textbf{Binomial}: Introductio of the \textbf{Repetition} of a random experiment (\(n\)-times Bernoulli trials)
+
 \(\downarrow\)
+
 \textbf{Poisson}: Repetition of random experiment within a continuous interval, having \textbf{no control} on when/where the Bernoulli trial occurs.
 
 The last stage is the Poisson process that describes a the repetition of a random experiment with additional randomness at the time of repetition.
@@ -4485,7 +4470,7 @@ Therefore the probability that the variable takes value 4 is \(P(X=4)\):
 
 \(f(4; \lambda=1)= \frac{e^{-1}1^4}{4!}=0.01532831\)
 
-in R dpois(4,1)
+in Python poisson.pmf(4,1)
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi})}
@@ -4504,7 +4489,7 @@ Therefore the probability that the variable takes value 4 is \(P(X=4)\):
 
 \(f(4; \lambda=3)= \frac{e^{-3}3^4}{4!}=0.1680314\)
 
-in R dpois(4,3)
+in Python poisson.pmf(4,3)
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi})}
@@ -4518,9 +4503,9 @@ We have that the variable is Poisson: \(X \rightarrow Poiss(\lambda)\) with \(\l
 
 \[f(x)= \frac{e^{-5}5^x}{x!}\]
 
-\(P(X \leq 10)=F(10; \lambda=5)=\sum_{x=0, ...10}f(x; \lambda=5)=0.9863047\)?
+\(P(X \leq 10)=F(10; \lambda=5)=\sum_{x=0, ...10}f(x; \lambda=5)=0.9863047\)
 
-in R ppois(10,5)
+in Python poisson.cdf(10,5)
 
 Let's look at some probability mass functions in the family of parametric Poisson models:
 
@@ -4674,7 +4659,7 @@ The median \(x_m\) is such that \(F(x_m)=0.5\). That is \(x_m=\frac{\log(2)}{\la
 \end{enumerate}
 
 \[P(X > 1)=1-P(X \le 1) = 1-F(1,\lambda=2)=0.1353353\]
-in R 1-pexp(1,2)
+in Python 1-expon.cdf(1,0,1/2)
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi})}
@@ -4686,15 +4671,15 @@ in R 1-pexp(1,2)
 
 \[P(X \le 2)=F(2,\lambda=2)=0.9816844\]
 
-in R pexp(2,2)
+in Python expon.cdf(2,0,1/2)
 
 \hypertarget{questions-5}{%
 \section{Questions}\label{questions-5}}
 
 \textbf{1)} During WWII in London, the expected number of bombs that hit an area of \(3km^2\) was \(0.92\). The probability that, in one day, one area received two bombs was
 
-\textbf{\(\qquad\)a:}1-ppois(x=2, lambda=0.92);
-\textbf{\(\qquad\)b:}ppois(x=2, lambda=0.92); \textbf{\(\qquad\)c:}1-dpois(x=2, lambda=0.92); \textbf{\(\qquad\)d:}dpois(x=2, lambda=0.92)
+\textbf{\(\qquad\)a:}1-poisson.cdf(x=2, lambda=0.92);
+\textbf{\(\qquad\)b:}poisson.cdf(x=2, lambda=0.92); \textbf{\(\qquad\)c:}1-poisson.pmf(x=2, lambda=0.92); \textbf{\(\qquad\)d:}poisson.pmf(x=2, lambda=0.92)
 
 \textbf{2)} The probability that a passenger has to wait less than 20 minutes until the next bus arrives at her stop is better described by
 
@@ -4783,7 +4768,7 @@ Gauss supposed that
 \item
   the error at a distance \(-\epsilon\) from the value at the position of Ceres was equally likely as a distance \(\epsilon\)
 \item
-  the most \textbf{likely} (that we believe) of Ceres at any given time in the sky was the \textbf{average} of multiple altitude measurements at that latitude.
+  the most \textbf{likely} position (the one that we believe the most) of Ceres at any given time in the sky was the \textbf{average} of multiple altitude measurements at that latitude.
 \end{enumerate}
 
 That was enough to show that the deviations of the observations \(y\) \textbf{from the orbit} satisfied the equation
@@ -4800,7 +4785,12 @@ with \(C\) a positive constant. The solution of this differential equation is:
 
 Gaussian probability density gives the distribution of measurement errors from the \textbf{actual} but \textbf{unknown} position of Ceres in the sky. Let's make a couple of changes to the function.
 
-1- Let's write the error density from the horizon using the random variable \(X\), that is, \(y=x-\mu\). \(\mu\) is the \textbf{actual} but \textbf{unknown} position of Ceres from the horizon. After a change of variable we find the probability density function:
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\tightlist
+\item
+  Let's write the error density from the horizon using the random variable \(X\), that is, \(y=x-\mu\). \(\mu\) is the \textbf{actual} but \textbf{unknown} position of Ceres from the horizon. After a change of variable we find the probability density function:
+\end{enumerate}
 
 \[f(x)=\frac{\sqrt{C}}{\sqrt{2\pi}}e^{-C(x-\mu)^2}\]
 
@@ -4878,7 +4868,7 @@ The function is found in most computer programs, and it does not have a closed f
 
 \(P(X\le 150)=F(150, \mu=165, \sigma=8)=0.03039636\)
 
-in R pnorm(150, 165, 8)
+In Python norm.cdf(150, 165, 8)
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi})}
@@ -4890,7 +4880,7 @@ in R pnorm(150, 165, 8)
 
 \(P(165 \le X \le 170)=F(170, \mu=165, \sigma=8)-F(165, \mu=165, \sigma=8)=0.2340145\)
 
-in R pnorm(170, 165, 8)-pnorm(165, 165, 8)
+In Python norm.cdf(170, 165, 8)-norm.cdf(165, 165, 8)
 
 Let's look at the probability distribution function
 
@@ -4912,7 +4902,7 @@ or
 
 \(x_{0.25}=F^{-1}(0.25, µ=165, \sigma=8)=159.6041\)
 
-in R qnorm(0.25, 165, 8)
+In Python norm.ppf(0.25, 165, 8)
 
 \textbf{Properties of the Normal distribution}
 
@@ -4995,27 +4985,6 @@ When a random variable follows a normal probability density, we say that it dist
 
 \[X \rightarrow N(0,1)\]
 
-\textbf{Standardization:}
-
-All normal variables can be \textbf{standardized}. This means that if \(X \rightarrow N(\mu, \sigma^2)\), then we can transform the variable to
-a \textbf{standardized variable}
-
-\[Z=\frac{X-\mu}{\sigma}\]
-
-which will have density:
-
-\[f(z)=\frac{1}{ \sqrt{2\pi}}e^{-\frac{z^2}{2}} dz\]
-Therefore, for any \(X \rightarrow N(\mu, \sigma^2)\)
-
-\[Z=\frac{X-\mu}{\sigma} \rightarrow N(0, 1) \]
-
-\includegraphics{./figures/stand.png}
-
-You can demonstrate this by replacing \(x=\sigma z+\mu\) and \(dx=\sigma dz\) in the probability expression we have
-
-\(P(x\leq X \leq x +dx)=P(z\leq Z \leq z +dz)\)
-\[=\frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{(x-\mu)^2}{2\sigma^2}}dx\] \[=\frac{1}{ \sqrt{2\pi}}e^{-\frac{z^2}{2}} dz\]
-
 \hypertarget{standard-distribution}{%
 \section{Standard distribution}\label{standard-distribution}}
 
@@ -5031,7 +5000,7 @@ Because the standard distribution is special and will appear often then we use t
 
 \includegraphics{./figures/st.png}
 
-You can find it in most computer programs. in R is pnorm(x) with the default parameters, 0 and 1.
+You can find it in most computer programs. In Python is norm.cdf(x) with the default parameters, 0 and 1.
 
 We usually define the limits of the \textbf{most common observations} for the standard variable
 
@@ -5044,7 +5013,7 @@ We usually define the limits of the \textbf{most common observations} for the st
   The interquartile range \[P(-0.67 \leq X \leq 0.67)=0.50\]
 \end{enumerate}
 
-in R: c(qnorm(0.25), qnorm(0.75))
+In Python: {[}norm.ppf(0.25), norm.ppf(0.75){]}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi})}
@@ -5054,7 +5023,7 @@ in R: c(qnorm(0.25), qnorm(0.75))
   \(95\%\) range \[P(-1.96 \leq X \leq 1.96)=0.95\]
 \end{enumerate}
 
-in R: c(qnorm(0.025), qnorm(0.975))
+In Python: {[}norm.ppf(0.025), norm.ppf(0.975){]}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi})}
@@ -5064,11 +5033,33 @@ in R: c(qnorm(0.025), qnorm(0.975))
   \(99\%\) range \[P(-2.58 \leq X \leq 2.58)=0.99\]
 \end{enumerate}
 
-in R: c(qnorm(0.005), qnorm(0.995))
+In Python: {[}norm.ppf(0.005), norm.ppf(0.995){]}
 
 \includegraphics{_main_files/figure-latex/unnamed-chunk-68-1.pdf}
 
-The probability of any normal variable \(X\rightarrow N(\mu, \sigma^2)\) using the standard distribution
+\hypertarget{standardization}{%
+\section{Standardization}\label{standardization}}
+
+All normal variables can be \textbf{standardized}. This means that if \(X \rightarrow N(\mu, \sigma^2)\), then we can transform the variable to
+a \textbf{standardized variable}
+
+\[Z=\frac{X-\mu}{\sigma}\]
+
+which will have density:
+
+\[f(z)=\frac{1}{ \sqrt{2\pi}}e^{-\frac{z^2}{2}}\]
+Therefore, for any \(X \rightarrow N(\mu, \sigma^2)\)
+
+\[Z=\frac{X-\mu}{\sigma} \rightarrow N(0, 1) \]
+
+\includegraphics{./figures/stand.png}
+
+You can demonstrate this by replacing \(x=\sigma z+\mu\) and \(dx=\sigma dz\) in the probability expression we have
+
+\(P(x\leq X \leq x +dx)=P(z\leq Z \leq z +dz)\)
+\[=\frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{(x-\mu)^2}{2\sigma^2}}dx\] \[=\frac{1}{ \sqrt{2\pi}}e^{-\frac{z^2}{2}} dz\]
+
+We can compute the probability of \textbf{any normal variable} \(X\rightarrow N(\mu, \sigma^2)\) using the standard distribution
 
 \(F(a)=P(X<a)=P(\frac{X-\mu}{\sigma}<\frac{a-\mu}{\sigma})\)
 \[=P(Z < \frac{a-\mu}{\sigma})= \phi \big(\frac{a-\mu}{\sigma}\big)\]
@@ -5116,21 +5107,21 @@ Normal & measurement with symmetric errors whose most likely value is the averag
 \bottomrule
 \end{longtable}
 
-\hypertarget{r-functions-of-probability-models}{%
-\section{R functions of probability models}\label{r-functions-of-probability-models}}
+\hypertarget{python-functions-of-probability-models}{%
+\section{Python functions of probability models}\label{python-functions-of-probability-models}}
 
 \begin{longtable}[]{@{}lc@{}}
 \toprule
-Model & R \\
+Model & Python \\
 \midrule
 \endhead
-Uniform (continuous) & dunif(x, a, b) \\
-Binomial & dbimon(x,n,p) \\
-Negative Binomial for events & dnbinom(x,r,p) \\
-Hypergeometric & dhyper(x, K, N-K, n) \\
-Poisson & dpois(x, lambda) \\
-Exponential & dexp(x, lambda) \\
-Normal & dnomr(x, mu, sigma) \\
+Uniform (continuous) & uniform.pdf(x, a, b) \\
+Binomial & binom.pmf(x,n,p) \\
+Negative Binomial for events & nbinom.pmf(x,r,p) \\
+Hypergeometric & hypergeom.pmf(x, N, K, n) \\
+Poisson & poisson.pmf(x, lambda) \\
+Exponential & expon.pdf(x,0,1/lambda) \\
+Normal & norm.pdf(x, mu, sigma) \\
 \bottomrule
 \end{longtable}
 
@@ -5157,10 +5148,10 @@ Normal & dnomr(x, mu, sigma) \\
 
 \textbf{4)} the third quartile of a normal variable with mean \(10\) and standard deviation \(2\) is
 
-\textbf{\(\qquad\)a:} qnorm(1/3, 10, 2)=9.138545;
-\textbf{\(\qquad\)b:} qnorm(1-0.75, 10, 2)=8.65102 ;
-\textbf{\(\qquad\)c:} qnorm(1-1/3, 10, 2)=10.86145 ;
-\textbf{\(\qquad\)d:} qnorm(0.75, 10, 2)= 11.34898
+\textbf{\(\qquad\)a:} norm.ppf(1/3, 10, 2)=9.138545;
+\textbf{\(\qquad\)b:} norm.ppf(1-0.75, 10, 2)=8.65102 ;
+\textbf{\(\qquad\)c:} norm.ppf(1-1/3, 10, 2)=10.86145 ;
+\textbf{\(\qquad\)d:} norm.ppf(0.75, 10, 2)= 11.34898
 
 \textbf{5)} probability that a normal variable with mean \(10\) and standard deviation \(2\) is in \((-\infty,10)\) is
 
@@ -5332,7 +5323,7 @@ Assuming that the breaking load of our cable is a normal random variable
 
 \[X \rightarrow N(x; \mu, \sigma^2)\]
 
-\textbf{we use} the estimates \(\bar{x}_{stock}=13.21\) (mean(x)) and \(s^2=0.3571565^2\) (sd ( x)\^{}2) as the values of \(\mu\) and \(\sigma^2\). So the \textbf{fitted} model is
+\textbf{we use} the estimates \(\bar{x}_{stock}=13.21\) (np.mean(x)) and \(s^2=0.3571565^2\) (np.var(x)) as the values of \(\mu\) and \(\sigma^2\). So the \textbf{fitted} model is
 
 \[X \rightarrow N(x; \mu=13.21, \sigma^2=0.3571565^2)\]
 In this problem we \textbf{didn't know} \(\mu\) or \(\sigma\) and therefore we are guessing their values and the underlying model
@@ -5347,7 +5338,7 @@ so
 
 \[P(X \leq 12)= F(12; \mu=13.21, \sigma^2=0.1275608)\]
 
-In R pnorm(12,13.21, 0.3571565)\(=0.000352188\)
+In Python norm.cdf(12,13.21, 0.3571565)\(=0.000352188\)
 
 Given the \textbf{observed} sample, there is an estimated probability of \(0.03\%\) that a single cable breaks in \(12\) Tons. We have a probabilistic argument for selling the cables.
 
@@ -5459,7 +5450,7 @@ and \(\bar{X}\) has
   We say that \(\bar{X}\) is consistent because is gets smaller with large \(n\).
 \end{enumerate}
 
-We call \(se=\sqrt{V(\bar{X})}\) the \textbf{standard error} of the sample mean. The standard error is also written as \(\sigma_{\bar{x}}\). Note that this is the error we expect when using \(\bar{x}\) as the value of \(\mu\), and it is the bias we needed to correct for \(S_n^2\).
+We call \(se=\sqrt{V(\bar{X})}\) the \textbf{standard error} of the sample mean. The standard error is also written as \(\sigma_{\bar{x}}\). Note that this is the error we expect when using \(\bar{x}\) as the value of \(\mu\), and it is the bias we need to correct when estimating the variance (Section 10.8).
 
 So, if we \textbf{know} \(\mu\) and \(\sigma\), we can calculate the \textbf{probabilities of} \(\bar{X}\) using the normal distribution.
 
@@ -5504,9 +5495,9 @@ Finally we want to calculate \textbf{the probability} that our estimate has a ma
 
 \(=F(13.25; \mu, \sigma^2/n)-F(12.75; \mu, \sigma^2/n)\)
 
-In R we can calculate it as:
+In Python we can calculate it as:
 
-pnorm(13.25, 13, 0.1237)-pnorm(12.75, 13, 0.1237)=0.956.
+norm.cdf(13.25, 13, 0.1237)-norm.cdf(12.75, 13, 0.1237)=0.956.
 
 Remember: \(se=\sigma_{\bar{x}}=\sqrt{0.01530169}=0.1237\)
 
@@ -5582,9 +5573,9 @@ We want to calculate \[P(102 \leq Y \leq 106)\]
 
 \(=F(102; n\mu, n\sigma^2)-F(106; n\mu, n\sigma^2)\)
 
-In R we can calculate it as:
+In Python we can calculate it as:
 
-pnorm(106, 104, 0.9899495)-pnorm(102, 104, 0.9899495)=0.956.
+norm.cdf(106, 104, 0.9899495)-norm.cdf(102, 104, 0.9899495)=0.956.
 
 Therefore \(95.6\%\) of the total weight that \(8\) cables can carry is between \(102\) and \(106\) Tons, or a distance of \(8*0.25=2\) Tons from the total mean \(n\mu=104\).
 
@@ -5708,8 +5699,8 @@ we can calculate \[P(S^2 > 0.3)=P(\frac{(n-1)S^2}{\sigma^2} > \frac{(n-1)0.3}{\s
 
 \(= 1- F_{\chi^2,df=7}(17.14286)=0.016\)
 
-in R
-1-pchisq(17.14286, df=7)=0.016
+in Python
+1-chi2.cdf(17.14286, df=7)=0.016
 
 There is only a \(1\%\) chance of getting a value greater than \(s^2=0.3\). So \(s^2>0.3\) seems to be a good criteria to stop production and review the process.
 
@@ -5866,7 +5857,7 @@ Compare it with the plot above: \(\frac{m}{\sigma/\sqrt{n}}\) is the distance ab
 
 \[\frac{m}{\sigma/\sqrt{n}}=\phi^{-1}(0.975)=1.96\]
 
-where \(\phi^{-1}\) is the inverse of the standard normal distribution (qnorm(0.975)). Therefore
+where \(\phi^{-1}\) is the inverse of the standard normal distribution (norm.ppf(0.975)). Therefore
 
 \[m=1.96 \frac{\sigma}{\sqrt{n}}\]
 \textbf{Example (cables)}
@@ -6000,8 +5991,8 @@ This approximation is good when both \(np\) and \(n(1-p)\) are greater than \(5\
 
 \textbf{1)} A magnetic resonance imaging of the brain's hippocampus has \(100\) pixels. We expect \(90\%\) of the pixels to be white (brain tissue). According to the central limit theorem, what is the probability that the scanning of a patient has at most \(85\%\) of white pixels?
 
-\textbf{\(\qquad\)a:}pnorm(0.9, 0.85, sqrt(0.85*0.15)/10); \textbf{\(\qquad\)b:}dnorm(0.85, 0.9,
-sqrt(0.9*0.1)/10); \textbf{\(\qquad\)c:}pnorm(0.85, 0.9, sqrt(0.9*0.1)/10); \textbf{\(\qquad\)d:}dnorm(0.9, 0.85, sqrt(0.85*0.15)/10)
+\textbf{\(\qquad\)a:}norm.cdf(0.9, 0.85, sqrt(0.85*0.15)/10); \textbf{\(\qquad\)b:}norm.pdf(0.85, 0.9,
+sqrt(0.9*0.1)/10); \textbf{\(\qquad\)c:}norm.cdf(0.85, 0.9, sqrt(0.9*0.1)/10); \textbf{\(\qquad\)d:}norm.pdf(0.9, 0.85, sqrt(0.85*0.15)/10)
 
 \textbf{2)} For a standard normal variable, if we the number \(z_{0.025}\) in the definition of the margin of error \(m=z_{0.025} \frac{\sigma}{\sqrt{n}}\), then it will refer to
 
@@ -6624,7 +6615,7 @@ We will derive the formulas for the confidence intervals under different conditi
 We have seen that whenever we take a random sample \((X_1, X_2, ... X_n)\), the sample mean
 \[\bar{X}=\frac{1}{n}\sum_{i=1}^n X_i\]
 
-is an estimator of the mean \(\mu\) of the random variable \(X\). The estimator is \textbf{unbiased}
+is an estimator of the mean \(\mu\) of the random variable \(X\). The estimator is \textbf{unbiased} because its values center about the parameter it is estimating
 
 \begin{itemize}
 \tightlist
@@ -6632,7 +6623,7 @@ is an estimator of the mean \(\mu\) of the random variable \(X\). The estimator 
   \(E(\bar{X})=\mu\)
 \end{itemize}
 
-and \textbf{consistent}
+and \textbf{consistent} because as \(n\) increases then it is closer to the parameter because its variance gets smaller
 
 \begin{itemize}
 \tightlist
@@ -6640,18 +6631,18 @@ and \textbf{consistent}
   \(V(\bar{X})=\frac{\sigma^2}{n}\)
 \end{itemize}
 
-where \(\sigma^2\) is the variance of \(X\). We call \(se=\frac{\sigma}{\sqrt{n}}\) the \textbf{standard error}
+where \(\sigma^2\) is the variance of \(X\). We call the quantity \(\sigma_{\bar{x}}=\frac{\sigma}{\sqrt{n}}\) the \textbf{standard error} (\(se\)).
 
-when we take the values of the random sample then we take the value of \(\bar{x}\) as the the value of the mean. That is
+These properties justify that we take the value \(\bar{x}\) derived from \textbf{one particular sample} as the the value of \(\mu\), which is a characteristic of the \textbf{whole population}. That is
 
 \[\bar{x}=\hat{\mu}\]
 
-Since \(\bar{X}\) is a random variable the estimation of the mean changes when we take another sample.
+Since \(\bar{X}\) is a random variable the estimation of the mean changes when we take another sample. Therefore, we know that we are making an error every time we take \(\bar{x}\) for \(\mu\).
 
 \hypertarget{margin-of-error-1}{%
 \section{Margin of error}\label{margin-of-error-1}}
 
-When deciding whether the \textbf{error} in estimation \[\bar{X}-\mu\] is large or not we usually compare it with a predefined tolerance. \textbf{If we know} that the the distribution of \(X\) is normal \(X \rightarrow N(\mu, \sigma^2)\), we can compute how far the estimation of \(\bar{x}\) falls from \(\mu\).
+When deciding whether the \textbf{error} in estimation \[\bar{X}-\mu\] is large or not we usually compare it with a predefined tolerance. \textbf{If we know} that the distribution of \(X\) is normal, \(X \rightarrow N(\mu, \sigma^2)\), and we also know the values of the parameters \(\mu\) and \(\sigma^2\), we can then assess how far the estimation of \(\bar{x}\) would falls from \(\mu\).
 
 We defined the \textbf{margin of error} at \(5\%\) level as the distance \(m\) such that distribution of \(\bar{X}\) captures \(95\%\) of the estimations:
 
@@ -6660,34 +6651,38 @@ We defined the \textbf{margin of error} at \(5\%\) level as the distance \(m\) s
 If \(\bar{X}\) is normally distributed then the marging of error is
 
 \[m=z_{0.025} \frac{\sigma}{\sqrt{n}}=1.96\times se\]
-where \(z_{0.025}=\phi^{-1}(0.975)=\) qnorm(0.975)
+where \(z_{0.025}=\phi^{-1}(0.975)=\) norm.ppf(0.975)
 
 \textbf{Example (cables):}
 
-We perform take a random sample of size \(8\): Load a cable until it breaks and record the breaking load.
+We want to perform take a random sample of size \(8\): Load a cable until it breaks and record the breaking load.
 
-\textbf{If we know} that our cables truly distribute as \[X \rightarrow N(\mu=13, \sigma^2=0.35^2)\] then
+Before we take the sample, \textbf{if we know} that our cables truly distribute as \[X \rightarrow N(\mu=13, \sigma^2=0.35^2)\] then
 
 \[\bar{X} \rightarrow N(13, \frac{0.35^2}{8})\]
 
 With mean \(E(\bar{X})=13\) and standard error \(se=\frac{0.35}{\sqrt{8}}=0.1237\)
 
-Therefore the marging of error at \(95\%\) is
+Therefore the margin of error at \(95\%\) is
 
 \[m=z_{0.025} \frac{\sigma}{\sqrt{n}}=1.96\times se=1.96\frac{0.35}{\sqrt{8}}=0.24\]
-Now, we take the random sample and find the results
+
+We therefore expect that \(\%95\) of the averages will be a distance of \(0.24\) from the mean. Note that, in this case, the margin of error only depends on \(\sigma\) and therefore is a measure of \textbf{precision}. Furthermore, it does not care where \(\mu\) really is, and therefore is \textbf{not} a measure of \textbf{accuracy}.
+
+Now, let us take a random sample for which we find the results
 
 \begin{verbatim}
 ## [1] 13.34642 13.32620 13.01459 13.10811 12.96999 13.55309 13.75557 12.62747
 \end{verbatim}
 
-The observed average is \(\bar{x}=13.21\), and the error we would make if we replaced \(\mu\) by \(\bar{x}\), would be
+The \textbf{observed average} is \(\bar{x}=13.21\), and therefore the error we would make if we replaced \(\mu\) by \(\bar{x}\), would be
 
 \[\bar{x}-\mu=13.21-13=0.21\]
 The \textbf{observed error} is within the margin of error
 
 \[\bar{x}-\mu <m\]
-Replacing \(\mu\) by \(\bar{x}\) is called a \textbf{point estimation} of the parameter.
+
+When we use \(\bar{x}\) for the value of \(\mu\), we say that we are performing a \textbf{point estimation} of the parameter. We are interested in such replacement in the cases where we do not know \(\mu\).
 
 \includegraphics{_main_files/figure-latex/unnamed-chunk-89-1.pdf}
 
@@ -6696,25 +6691,25 @@ Replacing \(\mu\) by \(\bar{x}\) is called a \textbf{point estimation} of the pa
 \hypertarget{interval-estimation-for-the-mean}{%
 \section{Interval estimation for the mean}\label{interval-estimation-for-the-mean}}
 
-The problem is that in real life we \textbf{do not know} the real values of \(\mu\) or \(\sigma\) for
+The problem is that in real life we \textbf{do not know} the real values of \(\mu\) or \(\sigma\) for \(X\) given
 
 \[X \rightarrow N(\mu, \sigma^2)\]
-We start by taking the sample
+What we do is to start by taking a sample
 
 \includegraphics{_main_files/figure-latex/unnamed-chunk-91-1.pdf}
 
-and then computing the mean
+we then compute the mean
 
 \includegraphics{_main_files/figure-latex/unnamed-chunk-92-1.pdf}
 
-What is the value of \(\mu\)?
+and that's it. What is then the value of \(\mu\)?
 
-Our data suggest that it is \(\bar{x}=13.21\), but how \textbf{confident} are we? after all we know we are making a mistake but do not how big it is. Lets define the confidence interval for \(\mu\)
+Our data suggest that \(\mu\) could be \(\bar{x}=13.21\). But, how \textbf{confident} are we? after all, we know that when we take \(\bar{x}\) for \(\mu\), we are making a mistake and do not how big it actually is.
 
-From the margin of error equation
+To address this question, we are going to define the \textbf{confidence interval} for \(\mu\). From the margin of error equation
 
 \[P(-m \leq \bar{X} - \mu \leq  m)=0.95\]
-let's solve for \(\mu\) which is \textbf{the real unknown}
+let's solve for \(\mu\) that is indeed \textbf{the real unknown}
 
 \[P(\bar{X} - m \leq \mu \leq \bar{X} + m)=0.95\]
 
@@ -6730,7 +6725,7 @@ The \textbf{observed interval} that we obtain from the experiment is (script siz
 
 This interval either contains or does not the parameter \(\mu\): we will \textbf{never know}!
 
-We say that we have a confidence of \(95\%\) that the interval \((l,u)\) will capture the true unknown parameter \(\mu\). Think of buying a lottery scratch ticket that we cannot scratch to see the prize. The ticket either has or has not the prize, only that we do not know which case it is.
+However, we can still say that we have a confidence of \(95\%\) that the interval \((l,u)\) has captured the true unknown parameter \(\mu\). Think of buying a lottery scratch ticket that we cannot scratch to see the prize. The ticket either has or has not the prize, only that we do not know which case it is.
 
 \hypertarget{case-1-known-variance}{%
 \subsection{Case 1 (known variance)}\label{case-1-known-variance}}
@@ -6741,9 +6736,9 @@ Confidence intervals can be estimated in different cases. The first case is when
 \def\labelenumi{\arabic{enumi}.}
 \tightlist
 \item
-  \(X\) is a normal variable
+  \(X\) is a normal variable, and
 \item
-  and we know the value of \(\sigma\)
+  we know the value of \(\sigma\)
 \end{enumerate}
 
 the confidence interval at \(95\%\) is
@@ -6767,19 +6762,35 @@ In our example, we assume that \(X\) is normally distributed and that we know \(
 \end{enumerate}
 
 \[m=z_{0.025} \frac{\sigma}{\sqrt{n}}\]
-2. Since we know \(\sigma^2==0.35^2\), then the \(95\%\) confidence interval is
+2. Since we know \(\sigma^2=0.35^2\), then the \(95\%\) confidence interval is
 
 \((l,u)=(\bar{x} - m, \bar{x} + m)=\) \[(\bar{x}-z_{0.025} \frac{\sigma}{\sqrt{n}}, \bar{x}+z_{0.025} \frac{\sigma}{\sqrt{n}})= (12.97,13.45)\]
 
-or we can also write it as
+In Python we can compute the confidence interval with
+
+\begin{verbatim}
+# https://pypi.org/project/bioinfokit/
+
+!pip install bioinfokit
+from bioinfokit.analys import stat
+import pandas as pd
+
+data = {'x': [13.34642, 13.32620, 13.01459, 13.10811, 12.96999, 13.55309, 13.75557, 12.62747]}
+df = pd.DataFrame(data)
+
+res = stat()
+res.ztest(df=df, x='x', mu=13, x_std=0.35, test_type=1)
+print(res.summary)
+\end{verbatim}
+
+We can also write the interval as
 
 \[\hat{\mu}=\bar{x}  \pm m = 13.21 \pm 0.24\]
-This means that, when estimating the mean by the average, we are confident about the units but not so much about the decimal places.
+This means that, when estimating the mean by the average, we are confident up to the number 3 in the units and not so much about the decimal places.
 
 \includegraphics{_main_files/figure-latex/unnamed-chunk-93-1.pdf}
 
-Remember that the confidence interval \((l,u)\) is an observation of the random confidence interval \((L,U)\). Therefore, every time that we obtain a new sample then \((l,u)\) change. If we perform \(100\) samples of size \(n\) then \(95%
-\) of the confidence intervals will contain \(\mu\), we jsut do not know which!
+Remember that the confidence interval \((l,u)\) is an observation of the random confidence interval \((L,U)\). Therefore, every time that we obtain a new sample then \((l,u)\) changes. If we perform \(100\) samples of size \(n\) then about \(95\) of the confidence intervals will contain \(\mu\), we just don't know which!
 
 \includegraphics{_main_files/figure-latex/unnamed-chunk-94-1.pdf}
 
@@ -6796,14 +6807,14 @@ Now, we can leave out \(\alpha=0.01\) probability, \(0.005\) on each side. There
 
 \includegraphics{./figures/phi.JPG}
 
-where \(z_{0.005}=\phi^{-1}(0.995)=\) qnorm(0.995). We can also write it as
+where \(z_{0.005}=\phi^{-1}(0.995)=\) norm.ppf(0.995). We can also write it as
 
 \[\hat{\mu}=\bar{x} \pm 2.58\frac{\sigma}{\sqrt{n}}\]
 For our cables, the \(99\%\) confidence interval is
 
 \[\hat{\mu}= 13.21 \pm 0.31\]
 
-If we want to be more confident then we need larger confidence intervals!
+If we want to be more confident then we need larger confidence intervals. The more confidence we demand the less precision we obtain.
 
 \textbf{Example (Impact energy):}
 
@@ -6837,50 +6848,6 @@ or
 
 this tells us that we can be sure on the first digit (6), somewhat confident on the second (4), and unsure on the decimals (46).
 
-In R:
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{library}\NormalTok{(BSDA) }
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## Loading required package: lattice
-\end{verbatim}
-
-\begin{verbatim}
-## 
-## Attaching package: 'BSDA'
-\end{verbatim}
-
-\begin{verbatim}
-## The following object is masked from 'package:datasets':
-## 
-##     Orange
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{z.test}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\FloatTok{64.1}\NormalTok{, }\FloatTok{64.7}\NormalTok{, }\FloatTok{64.5}\NormalTok{, }\FloatTok{64.6}\NormalTok{, }\FloatTok{64.5}\NormalTok{, }\FloatTok{64.3}\NormalTok{, }\FloatTok{64.6}\NormalTok{, }\FloatTok{64.8}\NormalTok{, }\FloatTok{64.2}\NormalTok{, }\FloatTok{64.3}\NormalTok{), }
-       \AttributeTok{sigma.x=}\DecValTok{1}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## 
-##  One-sample z-Test
-## 
-## data:  c(64.1, 64.7, 64.5, 64.6, 64.5, 64.3, 64.6, 64.8, 64.2, 64.3)
-## z = 203.84, p-value < 2.2e-16
-## alternative hypothesis: true mean is not equal to 0
-## 95 percent confidence interval:
-##  63.8402 65.0798
-## sample estimates:
-## mean of x 
-##     64.46
-\end{verbatim}
-
 What if \(\sigma^2\) is \textbf{unknown}?
 
 \hypertarget{marging-of-error-for-unkown-variance}{%
@@ -6897,19 +6864,23 @@ since \textbf{we knew} \(\sigma\). \(\sigma\) is a parameter of the distribution
 When \(X\) is normal then the standardized statistic
 
 \[T=\frac{\bar{X}-\mu}{\frac{S}{\sqrt{n}}}\]
-Follows a \(t\)-distribution with \(n-1\) degrees of freedom, where \(S^2=\frac{1}{n-1} \sum_{i=1}^n (X_i-\bar{X})^2\). We can therefore compute probabilities for \(\bar{X}\), even if we do not know \(\sigma\).
+follows a \(t\)-distribution with \(n-1\) degrees of freedom
 
-Let's look at some probability densities in the family of the \(T\) distributions.
+\[T \rightarrow t_{n-1}\]
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-96-1.pdf}
+where \(S^2=\frac{1}{n-1} \sum_{i=1}^n (X_i-\bar{X})^2\). We can therefore compute probabilities for \(\bar{X}\), even if we do not know \(\sigma\).
 
-Now we need to recompute the the margin of error \(m\) at \(5\%\) level when We use the \(t\)-distribution
+Let's look at some probability densities in the family of the \(t\) distributions.
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-95-1.pdf}
+
+Now we need to recompute the the margin of error \(m\) at \(5\%\) level when we use the \(t\)-distribution
 
 \(P(\mu-m \leq \bar{X} \leq\mu + m)\)
 \[=P(-\frac{m}{s/\sqrt{n}} \leq T \leq\frac{m}{s/\sqrt{n}})=0.95\]
 
 \[m=t_{0.025, n-1} \frac{s}{\sqrt{n}}\]
-where \(t_{0.025, n-1}\) is the value \(T\) that leaves \(2.5\%\) of probability at the right hand side of the \(t\)-distribution with \(n-1\) degrees of freedom.
+where \(t_{0.025, n-1}\) is the value of \(T\) that leaves \(2.5\%\) of probability at the right hand side of the \(t\)-distribution with \(n-1\) degrees of freedom. In short, if we do not know \(\sigma\), we can replace it with \(s\) but need to use a different distribution in the computation of the margin of error.
 
 \hypertarget{case-2-unknown-variance}{%
 \subsection{Case 2 (unknown variance)}\label{case-2-unknown-variance}}
@@ -6931,7 +6902,7 @@ where \[m=t_{0.025, n-1} \frac{s}{\sqrt{n}}\]
 That is:
 
 \[(l,u)=(\bar{x} - t_{0.025, n-1} \frac{s}{\sqrt{n}}, \bar{x} + t_{0.025, n-1} \frac{s}{\sqrt{n}})\]
-where \(t_{0.025, n-1}=F^{-1}(0.975)\)=qt(0.975, n-1)
+where \(t_{0.025, n-1}=F^{-1}(0.975)\)=t.ppf(0.975, n-1)
 
 \textbf{Example (Impact energy):}
 
@@ -6941,7 +6912,7 @@ A metallic material is tested for impact to measure the energy required to cut i
 
 If we \textbf{asumme} that the impact energy is normally distributed but we \textbf{do not know} the variance, what is the \(95\%\) confidence interval for the mean of these data?
 
-We know
+We compute from the data
 
 \begin{itemize}
 \tightlist
@@ -6949,10 +6920,16 @@ We know
   \(\bar{x}=64.46\)
 \item
   \(s=0.227\)
+\end{itemize}
+
+we assume
+
+\begin{itemize}
+\tightlist
 \item
-  \(\alpha=0.05\)
+  \(\alpha=0.05\) (the confidence limit)
 \item
-  \(t_{0.025,9}=2.26\) obtained from \(t_{0.025,9}=\) qt(0.975, 9)
+  \(t_{0.025,9}=2.26\) obtained from \(t_{0.025,9}=\) t.ppf(0.975, 9)
 \end{itemize}
 
 The confidence interval is then
@@ -6961,28 +6938,15 @@ The confidence interval is then
 
 \[=(64.46-2.26 \frac{0.227}{\sqrt{10}},64.46+2.26 \frac{0.227}{\sqrt{10}})\] \[=(64.29,64.62)\]
 
-Note that when we assumed \(\sigma=1\) the confidence interval \((63.84,65.08)\) was larger. Data therefore suggests that \(\sigma<1\).
+Note that when we assumed \(\sigma=1\) the confidence interval \((63.84,65.08)\) was larger. Data therefore suggests that \(\sigma<1\) as \(s=0.227\).
 
-In R, we can compute the confidence interval with:
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{t.test}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\FloatTok{64.1}\NormalTok{,}\FloatTok{64.7}\NormalTok{,}\FloatTok{64.5}\NormalTok{,}\FloatTok{64.6}\NormalTok{,}\FloatTok{64.5}\NormalTok{,}\FloatTok{64.3}\NormalTok{,}\FloatTok{64.6}\NormalTok{,}\FloatTok{64.8}\NormalTok{,}\FloatTok{64.2}\NormalTok{,}\FloatTok{64.3}\NormalTok{))}
-\end{Highlighting}
-\end{Shaded}
+In Python, we can compute the confidence interval with:
 
 \begin{verbatim}
-## 
-##  One Sample t-test
-## 
-## data:  c(64.1, 64.7, 64.5, 64.6, 64.5, 64.3, 64.6, 64.8, 64.2, 64.3)
-## t = 897.74, df = 9, p-value < 2.2e-16
-## alternative hypothesis: true mean is not equal to 0
-## 95 percent confidence interval:
-##  64.29757 64.62243
-## sample estimates:
-## mean of x 
-##     64.46
+from scipy import stats
+x = [64.1,64.7,64.5,64.6,64.5,64.3,64.6,64.8,64.2,64.3]
+res = stats.ttest_1samp(x, popmean=0)
+res.confidence_interval(confidence_level=0.95)
 \end{verbatim}
 
 \hypertarget{estimation-of-proportions}{%
@@ -6992,20 +6956,22 @@ In R, we can compute the confidence interval with:
 
 A random sample of \(400\) patients was selected for testing a new vaccine for the influenza virus, after \(6\) months of vaccination \(134\) were ill.~What is the expected efficacy of the vaccine?
 
-Since each vaccination \(X_i\) is Bernoulli trial
+Since each vaccination \(X_i\) is a Bernoulli trial
 
 \[X \rightarrow Bernoulli(p)\]
-With mean \(\mu=p\) and variance \(\sigma^2=p(1-p)\).
+with mean \(\mu=p\) and variance \(\sigma^2=p(1-p)\).
 
 The sample is something like
-\[(x_1,x_2, x_3, ...x_n)=(0,1,0,.. 1, 0)_{400}\] with \(136\) ones and in a total of \(400\) repetitions. The sample has a an average \(\bar{x}=\frac{1}{400}\sum_i^{400} x_i=134/400=0.34\). Since the sample mean is an unbiased estimator of \(\mu\), then we can have a point estimate for \(p\)
+\[(x_1,x_2, x_3, ...x_n)=(0,1,0,.. 1, 0)_{400}\] with \(136\) ones and in a total of \(400\) repetitions. The sample has an average \[\bar{x}=\frac{1}{400}\sum_i^{400} x_i=134/400=0.34\]
+
+Since the sample mean is an unbiased estimator of \(\mu\), then we can have a point estimate for \(p\)
 
 \[\hat{p}=\bar{x}=134/400=0.34\]
 
 This makes sense because \(\bar{x}\) is the observed relative frequency of ones \(f_1\) in the sample. And as such it is an estimator of the probability of observing a one in a Bernoulli trial
 
 \[f_1 =\hat{P}(X=1)\]
-This is is consistent with frequentist definition of probability that we saw in chapter 2. But how confident are we about this estimation? We want a confidence interval for \(p\)
+This is is consistent with frequentist definition of probability that we saw in chapter 2. However, how confident are we about this estimation? That is, how confident are we to take the relative frequency as the value of the probability? We want a confidence interval for \(p\)
 
 \hypertarget{case-3-proportions}{%
 \subsection{Case 3 (proportions)}\label{case-3-proportions}}
@@ -7027,14 +6993,20 @@ Where we estimate the Bernoulli variance \(\sigma=p(1-p)\) by \(\hat{\sigma}=\ba
 
 In our case, we are counting failures on vaccinations \(134\) in \(400\) trials.
 
-we know
+We compute from the data
 
 \begin{itemize}
 \tightlist
 \item
   \(\bar{x}=134/400=0.34\)
+\end{itemize}
+
+we assume
+
+\begin{itemize}
+\tightlist
 \item
-  \(z_{0.025}=1.96\)
+  \(z_{0.025}=1.96\) (the confidence limit)
 \end{itemize}
 
 Therefore the \(95\%\) confidence interval for \(p\) is
@@ -7043,30 +7015,17 @@ Therefore the \(95\%\) confidence interval for \(p\) is
 
 \[=(0.29,0.38)\]
 
-The probability of failure of the vaccine is
+The estimated probability of failure of the vaccine is
 
 \[\hat{p}=0.34 \pm 0.05\]
 
 Note: Voting intention surveys (Bernoulli test) in a sample of \(n\) individuals report this type of estimation with its \textbf{margin of error}. It does not mean that the \textbf{true value} of \(p\) falls within this interval with probability \(95\%\). It means that we are \(95\%\) confident that we have caught the \(p\) that this particular sample represents.
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{prop.test}\NormalTok{(}\DecValTok{134}\NormalTok{, }\DecValTok{400}\NormalTok{, }\AttributeTok{correct=}\ConstantTok{FALSE}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
+In Python
 
 \begin{verbatim}
-## 
-##  1-sample proportions test without continuity correction
-## 
-## data:  134 out of 400, null probability 0.5
-## X-squared = 43.56, df = 1, p-value = 4.112e-11
-## alternative hypothesis: true p is not equal to 0.5
-## 95 percent confidence interval:
-##  0.2905091 0.3826300
-## sample estimates:
-##     p 
-## 0.335
+from statsmodels.stats.proportion import proportion_confint
+proportion_confint(134, 400)
 \end{verbatim}
 
 \hypertarget{estimation-of-the-variance}{%
@@ -7074,15 +7033,11 @@ Note: Voting intention surveys (Bernoulli test) in a sample of \(n\) individuals
 
 We have seen that whenever we take a random sample \((X_1, X_2, ... X_n)\), the sample variance
 \[S^2=\frac{1}{n-1}\sum_{i=1}^n (X_i-\bar{X})^2\]
-is an estimator of the mean \(\sigma^2\) of the random variable \(X\). The estimator is \textbf{unbiased}
+is an estimator of the mean \(\sigma^2\) of the random variable \(X\). The estimator is \textbf{unbiased} because its values are centered about the parameter it is estimating
 
-\begin{itemize}
-\tightlist
-\item
-  \(E(S^2)=\sigma\)
-\end{itemize}
+\[E(S^2)=\sigma\]
 
-and it is also \textbf{consistent}. When we take the values of the random sample, then we take the value of \(S^2\) as the the value of the variance; that is
+and it is also \textbf{consistent}. We can then take a the value of \(s^2\) from a particular sample as the value of \(\sigma\), which is a characteristic of the whole population. That is
 
 \[s^2=\hat{\sigma}^2\]
 
@@ -7097,14 +7052,21 @@ A metallic material is tested for impact to measure the energy required to cut i
 what is estimation of the variance of these data?
 
 \[s^2=0.05155556\]
-In R: sd(c(64.1, 64.7, 64.5, 64.6, 64.5, 64.3, 64.6, 64.8, 64.2, 64.3))\^{}2
+
+In Python:
+
+\begin{verbatim}
+import numpy as np
+x = [64.1, 64.7, 64.5, 64.6, 64.5, 64.3, 64.6, 64.8, 64.2, 64.3]
+np.var(x)
+\end{verbatim}
 
 How confident are we on the decimals of the estimation?
 
 \hypertarget{confidence-interval-for-the-variance}{%
 \section{Confidence interval for the variance}\label{confidence-interval-for-the-variance}}
 
-To compute a confidence interval of for the variance, we need a statistics that is a function of \(S^2\) and allows us to compute probabilities. We will use the following theorem
+To compute a confidence interval of the variance, we need a statistics that is a function of \(S^2\) and allows us to compute probabilities. We will use the following theorem
 
 \hypertarget{theorem-chi2}{%
 \subsection{\texorpdfstring{Theorem (\(\chi^2\)):}{Theorem (\textbackslash chi\^{}2):}}\label{theorem-chi2}}
@@ -7114,13 +7076,13 @@ When \(X\) is normal then the standardized statistic
 \[W=\frac{S^2(n-1)}{\sigma^2}\]
 follows a \(\chi^2\) distribution with \(n-1\) degrees of freedom
 
-\[\frac{S^2}{\sigma^2}(n-1)\rightarrow \chi^2_{n-1}\]
+\[W \rightarrow \chi^2_{n-1}\]
 
 We can therefore compute probabilities for \(W\).
 
 Let's look at some probability densities in the family of the \(\chi^2\) distriutions.
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-99-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-96-1.pdf}
 
 \hypertarget{confidence-interval-for-the-variance-1}{%
 \subsection{Confidence interval for the variance}\label{confidence-interval-for-the-variance-1}}
@@ -7161,9 +7123,9 @@ where
 
 \begin{itemize}
 \item
-  \(\chi^2_{0.975,n-1}=F^{-1}(0.025)=\) qchisq(0.025, df=n-1)
+  \(\chi^2_{0.975,n-1}=F^{-1}(0.025)=\) chi2.ppf(0.025, df=n-1)
 \item
-  \(\chi^2_{0.025,n-1}=F^{-1}(0.975)=\)qchisq(0.975, df=n-1)
+  \(\chi^2_{0.025,n-1}=F^{-1}(0.975)=\)chi2.ppf(0.975, df=n-1)
   for \(n=10\) or \(df=n-1=9\)
 \end{itemize}
 
@@ -7187,29 +7149,21 @@ what is confidence interval for the variance of these data?
   We then compute \(\chi^2_{0.025,n-1}\) and \(\chi^2_{0.975,n-1}\)
 \end{enumerate}
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{chi0}\FloatTok{.975} \OtherTok{\textless{}{-}} \FunctionTok{qchisq}\NormalTok{(}\FloatTok{0.025}\NormalTok{, }\AttributeTok{df=}\DecValTok{9}\NormalTok{)}
-\NormalTok{chi0}\FloatTok{.975}
-\end{Highlighting}
-\end{Shaded}
-
 \begin{verbatim}
-[1] 2.700389
+from scipy.stats import chi2
+chi2.ppf(0.025, df=9)
+
+2.700389
 \end{verbatim}
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{chi0}\FloatTok{.025} \OtherTok{\textless{}{-}} \FunctionTok{qchisq}\NormalTok{(}\FloatTok{0.975}\NormalTok{, }\AttributeTok{df=}\DecValTok{9}\NormalTok{)}
-\NormalTok{chi0}\FloatTok{.025}
-\end{Highlighting}
-\end{Shaded}
-
 \begin{verbatim}
-[1] 19.02277
+from scipy.stats import chi2
+chi2.ppf(0.975, df=9)
+
+19.02277
 \end{verbatim}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-100-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-97-1.pdf}
 
 Therefore
 
@@ -7217,25 +7171,9 @@ Therefore
 Note that when we computed the confidence interval for the mean and assumed \(\sigma^2=1\) (case 1), this was not consistent with the data because the confidence interval does not contain the value \(\sigma^2=1\).
 According to the data \(\sigma^2 \neq 1\) at \(95\%\) confidence.
 
-in R:
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{library}\NormalTok{(Ecfun)}
-\FunctionTok{confint.var}\NormalTok{(}\FloatTok{0.05155556}\NormalTok{, }\DecValTok{9}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-##           lower     upper
-## [1,] 0.02439183 0.1718271
-## attr(,"level")
-## [1] 0.95
-\end{verbatim}
-
 The interval for the variance is \textbf{not symmetric} and we cannot formulate it as an estimate \(\pm\) margin of error.
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-102-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-98-1.pdf}
 
 \hypertarget{questions-10}{%
 \section{Questions}\label{questions-10}}
@@ -7294,9 +7232,9 @@ hints:
 
 \begin{itemize}
 \item
-  in R \(t_{0.025, 24}=\) qt(0.975, 24)\(\sim 2\)
+  in R \(t_{0.025, 24}=\) t.ppf(0.975, 24)\(\sim 2\)
 \item
-  in R \(t_{0.005, 24}=\)qt(0.995, 24)\(\sim 2.8\)
+  in R \(t_{0.005, 24}=\)t.ppf(0.995, 24)\(\sim 2.8\)
 \end{itemize}
 
 \hypertarget{exercise-2-10}{%
@@ -7324,15 +7262,15 @@ What is the confidence interval for population variance of a normal variable if 
 \hypertarget{practice-3}{%
 \section{Practice}\label{practice-3}}
 
-Load misophonia data data\_0.txt
+Load misophonia data \url{https://alejandro-isglobal.github.io/SDA/data/data_0.txt}
 
 \begin{itemize}
 \item
   Compute the confidence interval for the mean of the cephalometric measures. (``Angulo\_convexidad'', ``protusion.mandibular'', ``Angulo\_cuelloYtercio'', ``Subnasal\_H'')
 \item
-  Compute the confidence interval for the proportion of misophonic (``Misofonia.dic''), and depression (``depresion.dic'').
+  Compute the confidence interval for the proportion of misophonic (``Misofonia''), and depression (``depresion.dic'').
 \item
-  Compute the confidence interval for the variance of the age (``Edad''). What is the cofidence interval for the standard deviation of the population?
+  Compute the confidence interval for the variance of the age (``Edad''). What is the confidence interval for the standard deviation of the population?
 \end{itemize}
 
 \hypertarget{hypothesis-testing}{%
@@ -7569,7 +7507,7 @@ The confidence interval tells us that we trust with \(95\%\) confidence that the
 
 Our conclusion is to accept that \(H_0\) could have produced our \textbf{observed interval}. We also say that that the data supports with the manufacturer's claim. More technically, we say that we \textbf{do not reject} \(H_0\).
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-104-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-100-1.pdf}
 
 \hypertarget{hypothesis-test-with-acceptancerejection-zones}{%
 \subsection{Hypothesis test with acceptance/rejection zones}\label{hypothesis-test-with-acceptancerejection-zones}}
@@ -7595,7 +7533,7 @@ Remember that this interval defines the most common values of \(Z\) since \(P(-z
 
 The interval \((-z_{0.025}, z_{0.025})\) is called \textbf{acceptance interval} of \(H_0\) at \(95\%\) confidence level.
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-105-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-101-1.pdf}
 
 \textbf{Testing criteria:}
 
@@ -7634,7 +7572,7 @@ For \textbf{our data} the standardized \textbf{observed error} is in the accepta
 \[z_{obs}=\frac{\bar{x}-13}{\frac{0.35}{\sqrt{8}}}=1.7187 \in (-z_{0.025}, z_{0.025})\]
 We conclude that our observed error is a typical observation of \(\bar{x}\) when the null hypothesis \(\mu_0\) is true. Therefore, we again accept that the data is consistent with the manufacturer's claim. We also say that we \textbf{do not reject} \(H_0\).
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-106-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-102-1.pdf}
 
 \hypertarget{hypothesis-test-with-a-p-value}{%
 \subsection{Hypothesis test with a P-value}\label{hypothesis-test-with-a-p-value}}
@@ -7670,47 +7608,46 @@ then we \textbf{reject} \(H_0\) with \(95\%\) confidence.
 
 Remember: We always trust our data. If the null hypothesis says that our data is a \textbf{rare} observation we then distrust the null hypothesis, and reject it.
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-107-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-103-1.pdf}
 
 \textbf{Example (Cables)}
 
 For our data the observed statistic \(z_{obs}=1.718714\) and its \textbf{p-value} is then
 
 \[pvalue=2 (1-\phi(1.718714))=0.08567\]
-R: 2*(1-pnorm(1.718714))
+Python: 2*(1- norm.cdf(1.718714))
 
 We conclude that if we performed a new sample is likely that we can get a more extreme result that the one we got. The null hypothesis can tolerate the observed error with \(95\%\) confidence. We therefore accept that \(H_0\) could have produced our data and say again that its is consistent with the manufacturer's claim.
 
-In R the entire hypothesis testing can be performed with the function z.test from the library BSDA (that needs to be previously installed)
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{install.packages}\NormalTok{(BSDA) }
-\end{Highlighting}
-\end{Shaded}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{library}\NormalTok{(BSDA) }
-\FunctionTok{z.test}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\FloatTok{13.34642}\NormalTok{, }\FloatTok{13.32620}\NormalTok{, }\FloatTok{13.01459}\NormalTok{, }\FloatTok{13.10811}\NormalTok{, }
-         \FloatTok{12.96999}\NormalTok{, }\FloatTok{13.55309}\NormalTok{, }\FloatTok{13.75557}\NormalTok{, }\FloatTok{12.62747}\NormalTok{), }
-       \AttributeTok{mu=}\DecValTok{13}\NormalTok{, }
-       \AttributeTok{sigma.x=}\FloatTok{0.35}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
+In Python the entire hypothesis testing can be performed with the function ztest from the library bioinfokit (that needs to be previously installed)
 
 \begin{verbatim}
-## 
-##  One-sample z-Test
-## 
-## data:  c(13.34642, 13.3262, 13.01459, 13.10811, 12.96999, 13.55309,     13.75557, 12.62747)
-## z = 1.7187, p-value = 0.08567
-## alternative hypothesis: true mean is not equal to 13
-## 95 percent confidence interval:
-##  12.97015 13.45521
-## sample estimates:
-## mean of x 
-##  13.21268
+# https://pypi.org/project/bioinfokit/
+
+!pip install bioinfokit
+from bioinfokit.analys import stat
+import pandas as pd
+
+data = {'x': [13.34642, 13.32620, 13.01459, 13.10811, 12.96999, 13.55309, 13.75557, 12.62747]}
+df = pd.DataFrame(data)
+
+res = stat()
+res.ztest(df=df, x='x', mu=13, x_std=0.35, test_type=1)
+print(res.summary)
+\end{verbatim}
+
+\begin{verbatim}
+One Sample Z-test 
+
+------------------  ----------
+Sample size          8
+Mean                13.2127
+Z value              1.71871
+p value (one-tail)   0.0428332
+p value (two-tail)   0.0856665
+Lower 95.0%         12.9701
+Upper 95.0%         13.4552
+------------------  ----------
 \end{verbatim}
 
 \hypertarget{upper-tail-hypothesis}{%
@@ -7749,7 +7686,7 @@ This called \textbf{upper-tailed} because the alternative hypothesis \(H_1\) req
 \end{enumerate}
 
 \[\mu_0\in (l,u)=(\bar{x}-z_{0.05} \frac{\sigma}{\sqrt{n}}, \infty)\]
-where \(z_{0.05}=\phi^{-1}(0.95)=\)qnorm(0.95), then we \textbf{accept} \(H_0\) with \(95\%\) confidence. Note that this test is from the point of view of the \textbf{data}, we are not centering the confidence interval around \(\bar{x}\), instead we are leaving all the \(5\%\) of the rare cases to the left of the average. We are therefore asking if the null hypothesis is lower than the average.
+where \(z_{0.05}=\phi^{-1}(0.95)=\)norm.ppf(0.95), then we \textbf{accept} \(H_0\) with \(95\%\) confidence. Note that this test is from the point of view of the \textbf{data}, we are not centering the confidence interval around \(\bar{x}\), instead we are leaving all the \(5\%\) of the rare cases to the left of the average. We are therefore asking if the null hypothesis is lower than the average.
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -7771,7 +7708,7 @@ then we \textbf{accept} \(H_0\) with \(95\%\) confidence. Note that this test is
   \(pvalue\): If the observed \textbf{upper-tailed} \[pvalue= 1-\phi(z_{obs})\]
 \end{enumerate}
 
-1-pnorm(zobs) is greater than \(\alpha=1-0.95=0.05\)
+1-norm.cdf(zobs) is greater than \(\alpha=1-0.95=0.05\)
 
 \[pvalue \geq \alpha =0.05\]
 
@@ -7801,7 +7738,7 @@ For the data that we discussed before, we then \textbf{reject} \(H_0\) at \(95\%
 \end{enumerate}
 
 \[\mu_0=13 \notin (\bar{x}-z_{0.05} \frac{\sigma}{\sqrt{n}}, \infty)=(13.00914, \infty)\]
-where \(z_{0.05}=\)qnorm(0.95)=1.644854
+where \(z_{0.05}=\)norm.ppf(0.95)=1.644854
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -7825,33 +7762,34 @@ and that the observed standardized error is not in the region
   \[pvalue=1-\phi(1.7187)=0.04283451 <0.05\]
 \end{enumerate}
 
-where \(pvalue=\)1-pnorm(1.7187).
+where \(pvalue=\)1-norm.cdf(1.7187).
 
-The hypothesis test can be perform in R, changing the parameter alternative to greater:
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{z.test}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\FloatTok{13.34642}\NormalTok{, }\FloatTok{13.32620}\NormalTok{, }\FloatTok{13.01459}\NormalTok{, }\FloatTok{13.10811}\NormalTok{,}
-         \FloatTok{12.96999}\NormalTok{, }\FloatTok{13.55309}\NormalTok{, }\FloatTok{13.75557}\NormalTok{, }\FloatTok{12.62747}\NormalTok{), }
-       \AttributeTok{mu=}\DecValTok{13}\NormalTok{, }\AttributeTok{alternative=}\StringTok{"greater"}\NormalTok{, }\AttributeTok{sigma.x=}\FloatTok{0.35}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
+The hypothesis test is performed in Python under the label p value (one-tail)
 
 \begin{verbatim}
-## 
-##  One-sample z-Test
-## 
-## data:  c(13.34642, 13.3262, 13.01459, 13.10811, 12.96999, 13.55309,     13.75557, 12.62747)
-## z = 1.7187, p-value = 0.04283
-## alternative hypothesis: true mean is greater than 13
-## 95 percent confidence interval:
-##  13.00914       NA
-## sample estimates:
-## mean of x 
-##  13.21268
+data = {'x': [13.34642, 13.32620, 13.01459, 13.10811, 12.96999, 13.55309, 13.75557, 12.62747]}
+df = pd.DataFrame(data)
+
+res = stat()
+res.ztest(df=df, x='x', mu=13, x_std=0.35, test_type=1)
+print(res.summary)
 \end{verbatim}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-112-1.pdf}
+\begin{verbatim}
+One Sample Z-test 
+
+------------------  ----------
+Sample size          8
+Mean                13.2127
+Z value              1.71871
+p value (one-tail)   0.0428332
+p value (two-tail)   0.0856665
+Lower 95.0%         12.9701
+Upper 95.0%         13.4552
+------------------  ----------
+\end{verbatim}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-104-1.pdf}
 
 \hypertarget{case-2-unknown-variance-1}{%
 \section{Case 2 (unknown variance)}\label{case-2-unknown-variance-1}}
@@ -7905,14 +7843,14 @@ Follows a \(t\)-distribution with \(n-1\) degrees of freedom. Therefore, we can 
 
 \[t_{obs}=\frac{\bar{x}-\mu_0}{\frac{s}{\sqrt{n}}} \in (-t_{0.025}, t_{0.025})\]
 
-where \(t_{0.025}=F_t^{-1}(0.975, n-1)=\)qt(0.975, n-1), then we \textbf{accept} \(H_0\) with \(95\%\) confidence.
+where \(t_{0.025}=F_t^{-1}(0.975, n-1)=\) t.ppf(0.975, n-1), then we \textbf{accept} \(H_0\) with \(95\%\) confidence.
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
 \setcounter{enumi}{2}
 \tightlist
 \item
-  \(pvalue\): If the observed \(pvalue= 2 (1-F_t(|t_{obs}|))=\)2*(1-pt(abs(tobs), n-1)) is
+  \(pvalue\): If the observed \(pvalue= 2 (1-F_t(|t_{obs}|))=\)2*(1- t.cdf(abs(tobs), n-1)) is
 \end{enumerate}
 
 \[pvalue \geq \alpha =1-0.95=0.05\]
@@ -7985,33 +7923,25 @@ within the acceptance region.
   The \[pvalue=2(1-F_{t,7}(1.6843))=0.136\]
 \end{enumerate}
 
-is greater then \(\alpha=0.05\). The \(pvalue\) is computed R like 2*(1-pt(1.6843,7))
+is greater then \(\alpha=0.05\). The \(pvalue\) is computed R like 2*(1- t.cdf(1.6843,7))
 
-In R this contrasts are perform with the function t.test:
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{t.test}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\FloatTok{13.34642}\NormalTok{, }\FloatTok{13.32620}\NormalTok{, }\FloatTok{13.01459}\NormalTok{, }\FloatTok{13.10811}\NormalTok{,}
-         \FloatTok{12.96999}\NormalTok{, }\FloatTok{13.55309}\NormalTok{, }\FloatTok{13.75557}\NormalTok{, }\FloatTok{12.62747}\NormalTok{), }
-       \AttributeTok{mu=}\DecValTok{13}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
+In Python this contrasts are performed with the function stats.ttest\_1samp:
 
 \begin{verbatim}
-## 
-##  One Sample t-test
-## 
-## data:  c(13.34642, 13.3262, 13.01459, 13.10811, 12.96999, 13.55309, 13.75557, 12.62747)
-## t = 1.6843, df = 7, p-value = 0.136
-## alternative hypothesis: true mean is not equal to 13
-## 95 percent confidence interval:
-##  12.91409 13.51127
-## sample estimates:
-## mean of x 
-##  13.21268
+from scipy import stats
+
+data = [13.34642, 13.32620, 13.01459, 13.10811, 
+        12.96999, 13.55309, 13.75557, 12.62747]
+
+res=stats.ttest_1samp(data, popmean=13)
+print (res)
 \end{verbatim}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-115-1.pdf}
+\begin{verbatim}
+TtestResult(statistic=1.68427527723504, pvalue=0.1360005269730744, df=7)
+\end{verbatim}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-106-1.pdf}
 
 \textbf{Example (NaCl)}
 
@@ -8034,27 +7964,21 @@ We want to test at \(0.95\) significance if the process changes the salt concent
   \(H_1:\mu \neq 1.92\)
 \end{enumerate}
 
-We will assume that \(X\) is normal and that we do not know the variance \(\sigma^2\). Therefore, we are in \textbf{case 2} that we test with a t.test
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{t.test}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\FloatTok{1.716}\NormalTok{, }\FloatTok{1.889}\NormalTok{, }\FloatTok{1.783}\NormalTok{, }\FloatTok{1.849}\NormalTok{, }\FloatTok{1.891}\NormalTok{), }
-       \AttributeTok{mu=}\FloatTok{1.92}\NormalTok{, }\AttributeTok{alternative =} \StringTok{"two.sided"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
+We will assume that \(X\) is normal and that we do not know the variance \(\sigma^2\). Therefore, we are in \textbf{case 2} that we test with a stats.ttest\_1samp
 
 \begin{verbatim}
-## 
-##  One Sample t-test
-## 
-## data:  c(1.716, 1.889, 1.783, 1.849, 1.891)
-## t = -2.8038, df = 4, p-value = 0.04862
-## alternative hypothesis: true mean is not equal to 1.92
-## 95 percent confidence interval:
-##  1.732122 1.919078
-## sample estimates:
-## mean of x 
-##    1.8256
+from scipy import stats
+
+data = [1.716, 1.889, 1.783, 1.849, 1.891]
+
+res=stats.ttest_1samp(data, popmean=1.92, alternative='two-sided')
+print (res)
+res.confidence_interval(confidence_level=0.95)
+\end{verbatim}
+
+\begin{verbatim}
+TtestResult(statistic=-2.8038174739802226, pvalue=0.048622042176166516, df=4)
+ConfidenceInterval(low=1.7321215833901604, high=1.9190784166098398)
 \end{verbatim}
 
 \hypertarget{lower-tail-hypothesis}{%
@@ -8111,26 +8035,22 @@ For the lower tail contrast
 
 We can assume that the concentration is normal and that we do not know \(\sigma^2\). Therefore, we are in \textbf{case 2} for which we only need to change the argument alternative to less in the function t.test.
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{t.test}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\FloatTok{1.716}\NormalTok{, }\FloatTok{1.889}\NormalTok{, }\FloatTok{1.783}\NormalTok{, }\FloatTok{1.849}\NormalTok{, }\FloatTok{1.891}\NormalTok{), }
-       \AttributeTok{mu=}\FloatTok{1.92}\NormalTok{, }\AttributeTok{alternative =} \StringTok{"less"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
+\begin{verbatim}
+from scipy import stats
+
+data = [1.716, 1.889, 1.783, 1.849, 1.891]
+
+res=stats.ttest_1samp(data, popmean=1.92, alternative='less')
+print (res)
+res.confidence_interval(confidence_level=0.95)
+\end{verbatim}
 
 \begin{verbatim}
-## 
-##  One Sample t-test
-## 
-## data:  c(1.716, 1.889, 1.783, 1.849, 1.891)
-## t = -2.8038, df = 4, p-value = 0.02431
-## alternative hypothesis: true mean is less than 1.92
-## 95 percent confidence interval:
-##      -Inf 1.897376
-## sample estimates:
-## mean of x 
-##    1.8256
+TtestResult(statistic=-2.8038174739802226, pvalue=0.024311021088083258, df=4)
+ConfidenceInterval(low=-inf, high=1.8973758334933486)
 \end{verbatim}
+
+We see that the p-value is reduced in half, and therefore we have more confidence in rejecting the lower tail hypothesis than the two-sided hypothesis.
 
 \textbf{Example 2 (soporific)}
 
@@ -8144,15 +8064,10 @@ In the original paper of Gosset, he analyzed the effect of two soporific medicin
   10 individuals were given \textbf{soporific 1} and wrote down the additional hours slept under treatment, with a mean \(0.75\)
 \end{itemize}
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{medicine1 }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\FloatTok{0.7}\NormalTok{,}\SpecialCharTok{{-}}\FloatTok{1.6}\NormalTok{,}\SpecialCharTok{{-}}\FloatTok{0.2}\NormalTok{,}\SpecialCharTok{{-}}\FloatTok{1.2}\NormalTok{,}\SpecialCharTok{{-}}\FloatTok{0.1}\NormalTok{,}\FloatTok{3.4}\NormalTok{,}\FloatTok{3.7}\NormalTok{,}\FloatTok{0.8}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{2}\NormalTok{)}
-\NormalTok{medicine1}
-\end{Highlighting}
-\end{Shaded}
-
 \begin{verbatim}
-##  [1]  0.7 -1.6 -0.2 -1.2 -0.1  3.4  3.7  0.8  0.0  2.0
+import numpy as np
+
+medicine1 = np.array([0.7,-1.6,-0.2,-1.2,-0.1,3.4,3.7,0.8,0,2])
 \end{verbatim}
 
 \begin{itemize}
@@ -8161,28 +8076,15 @@ In the original paper of Gosset, he analyzed the effect of two soporific medicin
   The same 10 individuals were given \textbf{soporific 2} and wrote down the additional hours slept under treatment, with a mean \(2.33\)
 \end{itemize}
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{medicine2 }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\FloatTok{1.9}\NormalTok{,}\FloatTok{0.8}\NormalTok{,}\FloatTok{1.1}\NormalTok{,}\FloatTok{0.1}\NormalTok{,}\SpecialCharTok{{-}}\FloatTok{0.1}\NormalTok{,}\FloatTok{4.4}\NormalTok{,}\FloatTok{5.5}\NormalTok{,}\FloatTok{1.6}\NormalTok{,}\FloatTok{4.6}\NormalTok{,}\FloatTok{3.4}\NormalTok{)}
-\NormalTok{medicine2}
-\end{Highlighting}
-\end{Shaded}
-
 \begin{verbatim}
-##  [1]  1.9  0.8  1.1  0.1 -0.1  4.4  5.5  1.6  4.6  3.4
+medicine2 = np.array([1.9,0.8,1.1,0.1,-0.1,4.4,5.5,1.6,4.6,3.4])
 \end{verbatim}
 
 The scientific hypothesis was that soporific 2 was better than soporific 1. For each individual, Gosset computed the difference between the treatments. Taking \(X\) as the \textbf{difference} between treatments, this was the sample observed for \(X\)
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{x }\OtherTok{\textless{}{-}}\NormalTok{ medicine2}\SpecialCharTok{{-}}\NormalTok{medicine1}
-\NormalTok{x}
-\end{Highlighting}
-\end{Shaded}
-
 \begin{verbatim}
-##  [1] 1.2 2.4 1.3 1.3 0.0 1.0 1.8 0.8 4.6 1.4
+x = medicine2-medicine1
+x
 \end{verbatim}
 
 finding an average of treatment gain from soporific 2 with respect to soporific 1 of \(1.58\), and \(s=1.229995\)
@@ -8211,51 +8113,29 @@ which is also known as the \textbf{signal} to \textbf{noise} ratio.
 
 we can test the hipothsis in the difference \(X=medicine_1-medicine_2\)
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{t.test}\NormalTok{(x,}\AttributeTok{alternative=}\StringTok{"greater"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
+\begin{verbatim}
+from scipy import stats
+
+res=stats.ttest_1samp(x, popmean=0, alternative='greater')
+print (res)
+res.confidence_interval(confidence_level=0.95)
+\end{verbatim}
 
 \begin{verbatim}
-## 
-##  One Sample t-test
-## 
-## data:  x
-## t = 4.0621, df = 9, p-value = 0.001416
-## alternative hypothesis: true mean is greater than 0
-## 95 percent confidence interval:
-##  0.8669947       Inf
-## sample estimates:
-## mean of x 
-##      1.58
+TtestResult(statistic=4.062127683382037, pvalue=0.001416445098692135, df=9)
 \end{verbatim}
 
 or as a paired t-test, where we introduce the each separate condition, and state that the observations are paired
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{t.test}\NormalTok{(medicine2, medicine1,}
-       \AttributeTok{paired =} \ConstantTok{TRUE}\NormalTok{,}
-       \AttributeTok{alternative=}\StringTok{"greater"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
 \begin{verbatim}
-## 
-##  Paired t-test
-## 
-## data:  medicine2 and medicine1
-## t = 4.0621, df = 9, p-value = 0.001416
-## alternative hypothesis: true mean difference is greater than 0
-## 95 percent confidence interval:
-##  0.8669947       Inf
-## sample estimates:
-## mean difference 
-##            1.58
+t_statistic, p_value = stats.ttest_rel(medicine2, medicine1, alternative='greater')
 \end{verbatim}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-124-1.pdf}
+\begin{verbatim}
+TtestResult(statistic=4.062127683382037, pvalue=0.001416445098692135, df=9)
+\end{verbatim}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-108-1.pdf}
 
 \hypertarget{hypothesis-testing-with-large-n-and-any-distribution}{%
 \subsection{Hypothesis testing with large n and any distribution}\label{hypothesis-testing-with-large-n-and-any-distribution}}
@@ -8364,31 +8244,22 @@ We can use any of the three criteria to test the hypothesis. In any case, we wil
 
 \[pvalue=1-\phi(1.885618)=0.02967323<0.05\]
 
-in R: 1-pnorm(1.885618)
+in Python: 1-norm.cdf(1.885618)
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-125-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-109-1.pdf}
 
-The test can be performed in R using the prop.test function
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{prop.test}\NormalTok{(}\DecValTok{188}\NormalTok{, }\DecValTok{200}\NormalTok{, }\AttributeTok{p=}\FloatTok{0.9}\NormalTok{, }\AttributeTok{alternative =} \StringTok{"greater"}\NormalTok{ , }\AttributeTok{correct=}\ConstantTok{FALSE}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
+The test can be performed in Python using the proportions\_ztest function
 
 \begin{verbatim}
-## 
-##  1-sample proportions test without continuity correction
-## 
-## data:  188 out of 200, null probability 0.9
-## X-squared = 3.5556, df = 1, p-value = 0.02967
-## alternative hypothesis: true p is greater than 0.9
-## 95 percent confidence interval:
-##  0.9060689 1.0000000
-## sample estimates:
-##    p 
-## 0.94
+from statsmodels.stats.proportion import proportions_ztest
+proportions_ztest(count=0.9*200, nobs=200, value=188/200, alternative='smaller')
 \end{verbatim}
+
+\begin{verbatim}
+(-1.8856180831641234, 0.029673219395960154)
+\end{verbatim}
+
+Note that the function is programmed such that the null hypothesis is in the count argument, which is used to compute the standard deviation of the sample. This is why the value of the statisitcs is negative and the test i \href{https://www.geeksforgeeks.org/how-to-perform-a-one-proportion-z-test-in-python/}{lower tailed}.
 
 \hypertarget{case-4-variances}{%
 \section{Case 4 (variances)}\label{case-4-variances}}
@@ -8481,7 +8352,7 @@ and the threshold limit \(\alpha=0.01=0-0.99\). Therefore, the acceptance region
 
 \[(0, \chi^2_{0.01,19})=(0,36.19)\]
 
-In R: \(\chi^2_{0.01,19}=\)qchisq(0.99,19)\(= 36.19\)
+In Python: \(\chi^2_{0.01,19}=\)chi2.ppf(0.99,19)\(= 36.19\)
 
 For our data, the observed \textbf{standardized error ratio} is:
 
@@ -8498,67 +8369,50 @@ If we, alternativelly, calculate the upper tailed \(pvalue\)
 \[pvalue=1-F_{\chi^2,19}(37.79344)= 0.006\]
 we see that it is lower than \(\alpha=0.01\) and reject the null hypothesis.
 
-R: 1-pchisq(37.79344, 19)
+R: 1-chi2.cdf(37.79344, 19)
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-129-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-112-1.pdf}
 
-For testing the hypothesis we can use the varTest function from EnvStats library. If the library is not installed first run
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{install.packages}\NormalTok{(EnvStats)}
-\end{Highlighting}
-\end{Shaded}
-
-then
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{library}\NormalTok{(EnvStats);}
-\FunctionTok{varTest}\NormalTok{(x, }\AttributeTok{sigma.squared =} \FloatTok{0.6}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{, }\AttributeTok{alternative =} \StringTok{"greater"}\NormalTok{, }\AttributeTok{conf.level =} \FloatTok{0.99}\NormalTok{) }
-\end{Highlighting}
-\end{Shaded}
+For testing the hypothesis we can use the following code in Python
 
 \begin{verbatim}
-## $statistic
-## Chi-Squared 
-##    37.79344 
-## 
-## $parameters
-## df 
-## 19 
-## 
-## $p.value
-## [1] 0.006304231
-## 
-## $estimate
-##  variance 
-## 0.7160863 
-## 
-## $null.value
-## variance 
-##     0.36 
-## 
-## $alternative
-## [1] "greater"
-## 
-## $method
-## [1] "Chi-Squared Test on Variance"
-## 
-## $data.name
-## [1] "x"
-## 
-## $conf.int
-##       LCL       UCL 
-## 0.3759412       Inf 
-## attr(,"conf.level")
-## [1] 0.99
-## 
-## attr(,"class")
-## [1] "htestEnvStats"
+import numpy as np
+from scipy import stats
+
+# Sample data
+x = np.array([24.51239, 24.79975, 26.35608, 25.06134, 25.11248, 
+              26.49211, 25.40100, 23.89940, 24.40244, 24.61227, 
+              26.06495, 25.31304, 25.34867, 25.09629, 24.51642, 
+              26.55461, 25.43313, 23.28904, 25.61018, 24.58867])
+
+# Hypothesized variance
+hypothesized_variance = 0.6**2
+
+# Degrees of freedom
+df = len(x) - 1
+
+# Calculate the test statistic
+chi_square = (len(x) - 1) * np.var(x,ddof=1) / hypothesized_variance
+
+# Calculate the critical value from the Chi-square distribution
+alpha = 1 - 0.99
+critical_value = stats.chi2.ppf(1 - alpha, df)
+
+# Perform the variance test
+p_value = 1 - stats.chi2.cdf(chi_square, df)
+
+print("Variance Test:")
+print("Chi-Square Statistic:", chi_square)
+print("Critical Value:", critical_value)
+print("P-Value:", p_value)
 \end{verbatim}
 
-We also see that \(\sigma_0^2=0.6^2=0.36\) is not in the confidence interval, thus rejecting the null hypothesis.
+\begin{verbatim}
+Variance Test:
+Chi-Square Statistic: 37.79345223227778
+Critical Value: 36.19086912927004
+P-Value: 0.006304215036982974
+\end{verbatim}
 
 \hypertarget{errors-in-hypothesis-testing}{%
 \section{Errors in hypothesis testing}\label{errors-in-hypothesis-testing}}
@@ -8571,9 +8425,9 @@ when \(H_0\) is actually \textbf{true}. We must bear in mind that the decision i
 
 \[\alpha = P(Z> z_{0.05})=0.05\]
 
-where \(z_{0.05}=\phi^{-1}(0.95)=\) qnorm(0.95)=1.644
+where \(z_{0.05}=\phi^{-1}(0.95)=\) norm.ppf(0.95)=1.644
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-132-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-113-1.pdf}
 
 A type 1 error is also called a \textbf{false positive} because our research interest is in \(H_1\). When we reject \(H_0\), we accept \(H_1\) and say that our test is \textbf{positive}. Accepting \(H_1\) translates to announcing a discovery, so the type 1 error is announcing a discovery when it doesn't exist: we did it because the data suggested it.
 
@@ -8585,7 +8439,7 @@ when this is \textbf{not true}. In this case, it may be that the observed statis
 
 \[H_1: \mu=\mu_1\]
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-133-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-114-1.pdf}
 
 If \(H_1\) is indeed true (red line, which we don't know when we perform the hypothesis test) then the observed statistics are \textbf{really} random variables \(Y\) that are distributed with mean (case 1)
 
@@ -8614,7 +8468,7 @@ We want to prove that we produce efficient light bulbs and we plan to draw a ran
 The contrast is for \textbf{case 1} with a \textbf{lower tail}. Therefore the probability of accepting the null hypothesis (we do not produce efficient light bulbs) is
 
 \[\alpha = P(Z< z_{0.95})=0.05\]
-and \(z_{0.95}=\)qnorm(0.05)\(=-1.644\).
+and \(z_{0.95}=\)norm.ppf(0.05)\(=-1.644\).
 
 The type 2 error is therefore
 
@@ -8626,7 +8480,7 @@ that is, the probability of accepting that we do not produce efficient light bul
 
 \[\beta = 1-F(-1.644)=0.36\]
 
-computed in R as 1-pnorm(-1.644,-2,1)=0.36. Therefore, only \(\alpha=5\%\) of the times we would announce that we produce efficient light bulbs when they really are not, while \(\beta=36\%\) of the times we would announce that we have a production that is not useful when it really does work.
+computed in Python as 1-norm.cdf(-1.644,-2,1)=0.36. Therefore, only \(\alpha=5\%\) of the times we would announce that we produce efficient light bulbs when they really are not, while \(\beta=36\%\) of the times we would announce that we have a production that is not useful when it really does work.
 
 When we carry out a hypothesis test we have two possibilities for each condition
 
@@ -8714,7 +8568,7 @@ Imagine we take a random sample of size \(n = 41\) of a normal random variable \
   What is then the confidence interval for the mean of \(X\) at \(95\%\) confidence level?
 \end{itemize}
 
-Consider that \(t_{0.025,40}=\) qt(0.975, 40) \(\sim 2\).
+Consider that \(t_{0.025,40}=\) t.ppf(0.975, 40) \(\sim 2\).
 
 \begin{itemize}
 \item
@@ -8723,7 +8577,7 @@ Consider that \(t_{0.025,40}=\) qt(0.975, 40) \(\sim 2\).
   Write the code to calculate the P-value to test the hypothesis that the mean of \(\mu\) is \textbf{lower} than \(10.5\), using a \(5\%\) significance threshold.
 \end{itemize}
 
-Consider that the code for the T probability distribution with \(n-1\) degrees of freedom is pt(tobs, n-1).
+Consider that the code for the T probability distribution with \(n-1\) degrees of freedom is t.cdf(tobs, n-1).
 
 \hypertarget{exercise-2-11}{%
 \subsubsection{Exercise 2}\label{exercise-2-11}}
@@ -8744,7 +8598,7 @@ Should the customer return the lot due to poor quality?
 \hypertarget{practice-4}{%
 \section{Practice}\label{practice-4}}
 
-Load misophonia data data\_0.txt
+Load misophonia data \url{https://alejandro-isglobal.github.io/SDA/data/data_0.txt}
 
 We have four measures of anxiety:
 
@@ -8809,7 +8663,7 @@ We also write down the hepatitis status of a patient who goes to \textbf{hospita
 
 \[0, 0, 1, 0, 0, ... 1\]
 
-Diagnosis at this hospital is a Bernoulli trial with probability \(p_b\)
+Diagnosis at this hospital is a Bernoulli trial with probability \(p_B\)
 
 \[K_B \rightarrow Bernoulli (p_B)\]
 
@@ -8843,39 +8697,41 @@ The first patient was from hospital A and had hepatitis C.
 
 \textbf{Question:}
 
-Our research question is to find whether \(Disease\) and \(Hospital\) are statistically independent variables. We want to know if there is more infections in one hospital than another and perhaps emit an alarm to the affected hospital. Let's formulate the hypothesis contrast
+Our research question is to find whether \(Disease\) and \(Hospital\) are \textbf{statistically independent} variables. We want to know if there is more infections in one hospital than another and perhaps emit an alarm to the affected hospital. Let's formulate the hypothesis contrast.
 
 \hypertarget{contingency-table-of-conditional-probabilities}{%
 \section{Contingency table of conditional probabilities}\label{contingency-table-of-conditional-probabilities}}
 
-Our experiment is such that we make diagnosis \textbf{conditioned to} each hospital. We then have the conditional probability table
+Our experiment is such that we make diagnosis \textbf{conditioned} to each hospital. We then have the conditional probability table
 
 \begin{longtable}[]{@{}ccc@{}}
 \toprule
 & Hospital: \(A\) & Hospital: \(B\) \\
 \midrule
 \endhead
-\textbf{Hepatitis} (yes) & \(P(yes|A)=p_A\) & \(P(yes|B)=p_B\) \\
 \textbf{Hepatitis} (no) & \(P(no|A)=(1-p_A)\) & \(P(no|B)=(1-p_B)\) \\
+\textbf{Hepatitis} (yes) & \(P(yes|A)=p_A\) & \(P(yes|B)=p_B\) \\
 \textbf{sum} & \(1\) & \(1\) \\
 \bottomrule
 \end{longtable}
 
-We want to know if for example the probability of infection is in hospital \(A\) is different from the probability of infection in hospital \(B\), and therefore the hypothesis contrast is
+We want to know if for example the probability of infection in hospital \(A\) is different from the probability of infection in hospital \(B\), and therefore the hypothesis contrast is
 
 \begin{enumerate}
 \def\labelenumi{\alph{enumi}.}
 \tightlist
 \item
-  \(H_0: p_A=p_B\)
+  \(H_0: p_A=p_B\) (status quo) no differences of infection probability between hospitals.
 \item
-  \(H_1: p_A\neq p_B\)
+  \(H_1: p_A\neq p_B\) (research question) the infection probabilities are different between hospitals.
 \end{enumerate}
 
 \hypertarget{test-for-the-difference-between-proportions}{%
 \section{Test for the difference between proportions}\label{test-for-the-difference-between-proportions}}
 
-If we consider that the null hypothesis is true then, we can consider that the hospital is statistically independent from the probability of disease. Remember the definition of statistical independence: if infection is independence of hospitals then \(p=P(yes)=P(yes|A)=P(yes|B)\)
+If we consider that the \textbf{null hypothesis} is true then, then the hospital tag (``A'' or ``B'') is statistically independent from whether a diagnosed of hepatitis C was observed. Remember the definition of statistical independence: if infection is independence of hospitals then
+\[p=P(yes)=P(yes|A)=P(yes|B)\]
+Therefore the hypothesis contrast is:
 
 \begin{enumerate}
 \def\labelenumi{\alph{enumi}.}
@@ -8886,7 +8742,7 @@ If we consider that the null hypothesis is true then, we can consider that the h
   \(H_1: p\neq p_A \neq p_B\)
 \end{enumerate}
 
-We do not know the values of \(p_A\), \(p_B\), \(p\). Therefore we need to estimate them.
+We do \textbf{not know} the values of \(p\), \(p_A\) and \(p_B\). Therefore we need to \textbf{estimate} them from the data.
 
 \textbf{Example (Hepatitis C)}
 
@@ -8899,7 +8755,7 @@ We perform diagnostic surveillance in both hospitals and found
   Hospital \(B\) included in the study a total of \(n_B=400\) and observed \(46\) infections.
 \end{itemize}
 
-For hospital \(A\) we have that the estimated probability of infection is then
+For hospital \(A\) we have that the estimated probability of infection is the \textbf{relative frequency} of infections, that is
 
 \begin{itemize}
 \tightlist
@@ -8907,7 +8763,7 @@ For hospital \(A\) we have that the estimated probability of infection is then
   \(\bar{x}_A=\hat{p}_A=18/200=0.09\)
 \end{itemize}
 
-For hospital \(B\) we have that the estimated probability of infection is then
+Consequently, for hospital \(B\), we have that the estimated probability of infection is
 
 \begin{itemize}
 \tightlist
@@ -8917,7 +8773,7 @@ For hospital \(B\) we have that the estimated probability of infection is then
 
 If the null hypothesis is true then the rate of infection \(p\) can be estimated from either hospital, or from the two hospitals \textbf{taken together}, as if they were same hospital:
 
-\[\hat{p}=\frac{n_A\bar{x}_A+n_B\bar{x}_B}{n_A+n_B}=\frac{18+46}{200+400}=0.152381\]
+\[\hat{p}=\frac{n_A\bar{x}_A+n_B\bar{x}_B}{n_A+n_B}=\frac{18+46}{200+400}=0.1066667\]
 
 \hypertarget{chi2-test}{%
 \section{\texorpdfstring{\(\chi^2\) test}{\textbackslash chi\^{}2 test}}\label{chi2-test}}
@@ -8930,16 +8786,28 @@ The error made in hospital \(B\) is
 
 \[Z_B= \frac{\bar{X}_B-\hat{p}}{\sqrt\frac{\hat{p}(1-\hat{p})}{n_B}}\]
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-135-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-116-1.pdf}
 
-\begin{verbatim}
-##    
-##         A     B
-##   0 0.910 0.885
-##   1 0.090 0.115
-\end{verbatim}
+In the plot, each cross is a diagnosis (either \(1\) or \(0\)) the dotted line is the estimated probability \(\hat{p}\) of both hospitals taken together and the dots are the estimated probabilities of each separate hospital.
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-136-1.pdf}
+The conditional probability table by hospital is
+
+\begin{longtable}[]{@{}ccc@{}}
+\toprule
+& Hospital: \(A\) & Hospital: \(B\) \\
+\midrule
+\endhead
+\textbf{Hepatitis} (no) & \(0.910\) & \(0.885\) \\
+\textbf{Hepatitis} (yes) & \(0.090\) & \(0.115\) \\
+\textbf{sum} & \(1\) & \(1\) \\
+\bottomrule
+\end{longtable}
+
+Which we can illustrate in a barplot
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-117-1.pdf}
+
+The probabilities of infection within each hospital are different but look very similar. Is the difference significant, although small?
 
 Using the CLT, the total \textbf{standardized squared error} from both hospitals is
 
@@ -8947,20 +8815,20 @@ Using the CLT, the total \textbf{standardized squared error} from both hospitals
 
 which is a random variable that follows a \(\chi^2\) distribution with 1 degree of freedom.
 
-Note: We formulated the null hypothesis from the statistical independence given by conditional probabilities. Another alternative is to formulate it from the product of the marginals.
+Note: We formulated the null hypothesis from the statistical independence given by conditional probabilities. \textbf{Another alternative} is to formulate it from the product of the marginals.
 
 Therefore, the hypothesis test can \textbf{also} be written as
 
 \begin{itemize}
 \tightlist
 \item
-  \(H_0:P(disease, hospital)=P(disease)*P(hospital)\) (Disease and Hospital are statistically \textbf{independent} as the joint probability is the product of the marginals)
+  \(H_0:P(yes, A)=P(yes)*P(A)\) (Disease and Hospital A are statistically \textbf{independent} as the joint probability is the product of the marginals)
 \item
-  \(H_1:P(disease, hospital)\neq P(disease)*P(hospital)\)
-  (Disease and Hospital are statistically \textbf{dependent})
+  \(H_1:P(yes, A)\neq P(yes)*P(A)\)
+  (Disease and Hospital A are statistically \textbf{dependent})
 \end{itemize}
 
-If hospitals and infections are truly independent from each other then one can show that the variable \(W\) above can also be written as the sum of the squared errors that we make when we estimate the joint probabilities (i.e.~\(P(yes,A)\)). That is \textbf{standardized squared error} of before can be re-written as:
+If hospitals and infection status are truly independent from each other then one can show that the variable \(W\) above \textbf{can also} be computed as the sum of the squared errors that we make when we estimate the joint probabilities using the marginals (i.e.~\(\hat{p}_{yes,A}=\hat{p}_{yes}\hat{p}_A\)), which we are allowed if the null hypothesis is true. Therefore the total \textbf{standardized squared error} of before can be re-written as:
 
 \[W= \frac{(\hat{p}_{no,A}-\hat{p}_{no}\hat{p}_{A})^2}{\hat{p}_{no}\hat{p}_{A}}+\frac{(\hat{p}_{no,B}-\hat{p}_{no}\hat{p}_{B})^2}{\hat{p}_{no}\hat{p}_{B}}+\frac{(\hat{p}_{yes,A}-\hat{p}_{yes}\hat{p}_{A})^2}{\hat{p}_{yes}\hat{p}_{A}}+\frac{(\hat{p}_{yes,B}-\hat{p}_{yes}\hat{p}_{B})^2}{\hat{p}_{yes}\hat{p}_{B}}\]
 
@@ -8968,15 +8836,33 @@ If the observed value for \(W\) is a rare error from the null hypothesis, for a 
 
 \textbf{Example (Hepatitis C)}
 
-However, we compute the observed value of \(W\) we find
+When we compute the observed value of \(W\) we find
 
-\[w_{obs}= 0.87453\]
+\[w_{obs}= \frac{0.09-0.1066667}{\sqrt{\frac{0.1066667(1-0.1066667)}{200}}}+ \frac{0.115-0.1066667}{\sqrt{\frac{0.1066667(1-0.1066667)}{400}}}= 0.87453\]
 
 We can test whether this value is large under the null hypothesis. If the null is true this statistics is close to zero, otherwise is large. We can then compute the \(pvalue\) given by
 
 \[pvalue=P(W \geq w_{obs}) =0.3497\]
 
-or in R: chisq.test(matrix(c(182, 18, 354, 46), ncol=2), correct = FALSE)
+or in Python
+
+\begin{verbatim}
+import numpy as np
+from scipy.stats import chi2_contingency
+
+# Create the 2x2 contingency table
+observed = np.array([[182, 18], [354, 46]])
+
+# Perform the chi-squared test
+chi2, p, dof, expected = chi2_contingency(observed, correction=False)
+print(f"Chi-squared statistic: {chi2:.4f}")
+print(f"P-value: {p:.4f}")
+\end{verbatim}
+
+\begin{verbatim}
+Chi-squared statistic: 0.8745
+P-value: 0.3497
+\end{verbatim}
 
 This \(pvalue\) is not lower than the significance level \(\alpha=0.05\) and therefore we \textbf{do not} reject \(H_0\) and acept either
 
@@ -8992,25 +8878,19 @@ This \(pvalue\) is not lower than the significance level \(\alpha=0.05\) and the
 \hypertarget{fishers-exact-test}{%
 \section{Fisher's exact test}\label{fishers-exact-test}}
 
-Another approach is \textbf{Fisher's exact test}
+Another approach is \textbf{Fisher's exact test}: Take a ballot for each of the \(N=600\) patients of both studies into an urn:
 
-Take a ballot for each of the \(N=600\) patients of both studies into an urn:
-
-From a population of \(N\):
+There are a total of \(N\) ballots:
 
 \begin{itemize}
 \tightlist
 \item
-  There are \(K=64\) that have hepatitis C
+  There are \(K=64\) ballots that have hepatitis C
 \item
-  \(N-K=536\) do not have hepatitis C
+  \(N-K=536\) ballots do not have hepatitis C
 \end{itemize}
 
-Then, if we take a sample of \(n=200\) (similar in number to hospital \(A\))
-
-What is the probability of observing more than \(18\) patients with hepatitis C, as observed in hospital \(A\)?
-
-The hypothesis contrast is
+Then, if we take a \(n=200\) randomly selected ballots (similar in number to hospital \(A\)), we may ask: What is the probability of observing more than \(18\) patients with hepatitis C? Remember that \(18\) infections were actually observed. Therefore, we are asking how rare that observation in the case where the Hospital plays no role. That is the probability a more extreme observation under the null hypothesis, or put simply the \(pvalue\). More explicitly the hypothesis contrast is
 
 \begin{enumerate}
 \def\labelenumi{\alph{enumi}.}
@@ -9042,14 +8922,19 @@ The probability of obtaining \(x\) hepatitis C cases in a sample of \(n\) drawn 
 
 \[X \rightarrow Hypergeometric(N,K,n)\]
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-137-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-118-1.pdf}
 
-If the observed value for \(x=18\) is a rare \textbf{observation} from the null hypothesis, we then reject the null hypothesis.
-
-The lower tail \(pvalue\) for an observation \(X=18\) is
+If the observed value for \(x=18\) is a rare \textbf{observation} from the null hypothesis, we then reject the null hypothesis. The lower tail \(pvalue\) for an observation \(X=18\) is
 
 \[pvalue=P_{hyper}(X \leq 18) =0.2147683\]
-In R: phyper(18, 64, 536, 200)
+In Python
+
+\begin{verbatim}
+from scipy.stats import hypergeom
+
+# Calculate the hypergeometric probability
+hypergeom.cdf(18, 600, 64, 200)
+\end{verbatim}
 
 Which is not lower than the significance level \(\alpha=0.05\) and therefore we \textbf{do not} reject \(H_0\) and conclude:
 
@@ -9059,27 +8944,44 @@ Which is not lower than the significance level \(\alpha=0.05\) and therefore we 
   that the frequency of hepatitis C \textbf{is not significantly associated} with the hospital.
 \end{itemize}
 
-The odds ratio is defined as:
+The \textbf{odds ratio} gives us the \textbf{strength} of the of the change in the in the infection proportion between hospitals:
 
 \[OR=\frac{p_A/(1-p_A)}{p_B/(1-p_B)}=0.76\]
 
-It gives the strength of the \textbf{observed association} between hospital and disease. We use the \(OR\) to distinguish between the different cases
+It is a magnitude of the \textbf{observed statistical association} between hospital and disease. We use the \(OR\) to distinguish between the different cases
 
 \begin{itemize}
 \tightlist
 \item
-  When \(p_A\) is equal to \(p_B\) then \(OR=1\)
+  When \(p_A\) is equal to \(p_B\) then \(OR=1\) (idependence of infection and hospital)
 \item
   When \(p_A\) is lower to \(p_B\) then \(OR<1\)
 \item
   When \(p_A\) is greater than \(p_B\) then \(OR>1\)
 \end{itemize}
 
-The way we report the \(OR\) in the case of the hospitals is: there was \textbf{a decrease} of \(24\%\) (\(1-0.74\)) in the risk of hepatitis C for hospital \(A\) but it was not statistically significant.
+The way we report the \(OR\) in the case of the hospitals is: There was \textbf{a decrease} of \(24\%\) (\(1-0.74\)) in the risk of hepatitis C for hospital \(A\) in relation to hospital \(B\) but it was not statistically significant (\(pvalue=0.21\)).
 
 This is how we compute it:
 
-fisher.test(matrix(c(18, 182, 46, 354), ncol=2), alternative=``less'')
+\begin{verbatim}
+import numpy as np
+from scipy.stats import fisher_exact
+
+# Create the 2x2 contingency table
+observed = np.array([[18, 182], [46, 354]])
+
+# Perform the Fisher's exact test with "less" alternative hypothesis
+odds_ratio, p_value = fisher_exact(observed, alternative="less")
+
+print(f"Odds ratio: {odds_ratio:.4f}")
+print(f"P-value: {p_value:.4f}")
+\end{verbatim}
+
+\begin{verbatim}
+Odds ratio: 0.7611
+P-value: 0.2148
+\end{verbatim}
 
 \hypertarget{difference-between-several-proportions}{%
 \section{Difference between several proportions}\label{difference-between-several-proportions}}
@@ -9114,8 +9016,8 @@ When we collect the data we can build a contingancy table for the observations
 & \(A\) & \(B\) & \(C\) & \(D\) & \(E\) \\
 \midrule
 \endhead
-\textbf{Hepatitis} (yes) & \(18\) & \(46\) & \(25\) & \(15\) & \(10\) \\
 \textbf{Hepatitis} (no) & \(182\) & \(354\) & \(375\) & \(85\) & \(90\) \\
+\textbf{Hepatitis} (yes) & \(18\) & \(46\) & \(25\) & \(15\) & \(10\) \\
 \textbf{sum} & \(200\) & \(400\) & \(400\) & \(100\) & \(100\) \\
 \bottomrule
 \end{longtable}
@@ -9136,16 +9038,31 @@ The computation of the observed \textbf{standardized squared error} is
 For which we can test how rare an observation is, using a \(pvalue\)
 
 \[pvalue=P(W \geq w_{obs}) = 0.03448\]
-in R:
-chisq.test(matrix(c(18, 182, 46, 354, 25, 375, 15, 85, 10, 90), nrow=2))
+These valeus can be obtained in Python with the following code
 
-The \(pvalue\) is lower than the significance level \(\alpha=0.05\) and therefore we \textbf{reject} \(H_0\) and conclude that
+\begin{verbatim}
+import numpy as np
+from scipy.stats import chi2_contingency
 
-\begin{itemize}
-\tightlist
-\item
-  The frequency of hepatitis C \textbf{is significantly associated} with the hospital.
-\end{itemize}
+# Create the 2x5 contingency table (adjust the data as needed)
+observed = np.array([[18, 46, 25, 15, 10], [182, 354, 375, 85, 90]])
+
+# Perform the chi-squared test
+chi2_stat, p_value, dof, expected = chi2_contingency(observed)
+
+print(f"Chi-squared statistic: {chi2_stat:.4f}")
+print(f"P-value: {p_value:.4f}")
+print(f"Degrees of freedom: {dof}")
+\end{verbatim}
+
+\begin{verbatim}
+Chi-squared statistic: 10.3809
+P-value: 0.0345
+\end{verbatim}
+
+The \(pvalue\) is lower than the significance level \(\alpha=0.05\) and therefore we \textbf{reject} \(H_0\) and conclude that: The frequency of hepatitis C \textbf{is significantly associated} with the hospital.
+
+We can illustrate the result a conditinal frequency table by hospital or with a barplot. We see that Hospital C and D may have too low and too large infection rates
 
 \begin{verbatim}
 ##    
@@ -9154,7 +9071,7 @@ The \(pvalue\) is lower than the significance level \(\alpha=0.05\) and therefor
 ##   1 0.0900 0.1150 0.0625 0.1500 0.1000
 \end{verbatim}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-139-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-120-1.pdf}
 
 \hypertarget{questions-11}{%
 \section{Questions}\label{questions-11}}
@@ -9196,7 +9113,7 @@ The \(pvalue\) is lower than the significance level \(\alpha=0.05\) and therefor
 \hypertarget{practice-5}{%
 \section{Practice}\label{practice-5}}
 
-Load hospital data (hospital.txt)
+Load hospital data (\url{https://alejandro-isglobal.github.io/SDA/data/hospital.txt})
 
 \begin{itemize}
 \item
@@ -9219,14 +9136,16 @@ In this chapter we will see how to test statistical independence of \textbf{one 
 
 We will see the case where \(n\) is large and we can use a \(Z\) test. We will also introduce \(t\) test that allows testing for the cases of small \(n\) with equal and unequal variances.
 
+We will introduce the concepts with the reanalysis of real data from reported studies relating sex differences in leptin levels.
+
 \hypertarget{differet-means-between-two-groups}{%
 \section{Differet means between two groups}\label{differet-means-between-two-groups}}
 
-We will consider an outcome of interest \(Y\)
+We will consider an outcome of interest
 
 \[ Y \rightarrow N(\mu, \sigma^2)\]
 
-we aim to measure \(Y\) several times under two different conditions or groups \(A\) and \(B\), to determine if the means between conditions change. When testing hypothesis for the mean, we often do not know the value of the null \(\mu_0\) therefore we may draw a sample where we know that the null is true, condition \(A\), and compare it with the mean in a new condition where we have our research interest, condition \(B\). This is the case of testing for example differences in clinical outcomes between cases and controls, or between administration of a drug and a placebo.
+which we aim to measure several times under \textbf{two different conditions} or groups \(A\) and \(B\) and determine if the outcome's mean changes between the conditions. When testing hypothesis for the mean, we often do not know the value of the null \(\mu_0\). Therefore, we often use condition \(A\) as \textbf{the null} (controlled condition) and then compare it with the mean in a \textbf{new condition} where we have our research interest, condition \(B\) (treatment condition). This is the case of testing for example differences in clinical outcomes between cases and controls, or between administration of a drug and a placebo.
 
 \textbf{Example (leptin)}
 
@@ -9236,7 +9155,7 @@ Leptin is an adipose tissue hormone that creates the sensation of satiety after 
 \def\labelenumi{\arabic{enumi})}
 \tightlist
 \item
-  the levels of leptin in girls have a probability density
+  the level of leptin in a randomly chosen girl has a probability density
 \end{enumerate}
 
 \[Y_A \rightarrow N(\mu_A, \sigma_A^2)\]
@@ -9246,7 +9165,7 @@ Leptin is an adipose tissue hormone that creates the sensation of satiety after 
 \setcounter{enumi}{1}
 \tightlist
 \item
-  the levels of leptin in boy have a probability density
+  the level in a boy has a probability density
 \end{enumerate}
 
 \[Y_B \rightarrow N(\mu_B, \sigma_B^2)\]
@@ -9280,7 +9199,7 @@ The repetition of the random experiment \(n\) times is therefore a table such as
 
 \textbf{Example (leptin)}
 
-In the example of leptin we have that the continous outcomes is the level of leptin in a subject
+In the leptin example, we have that the continuous outcome is the level of leptin in a subject
 
 \begin{itemize}
 \tightlist
@@ -9320,9 +9239,9 @@ While the last subjects were
 ## 356  41.87943 boy
 \end{verbatim}
 
-We are interested to know whether boys have different levels of leptin than girls. In other words, if the mean levels of leptin between sexes is different.
+We want to know whether boys have different levels of leptin than girls. In other words, if the mean levels of leptin between sexes is different.
 
-\textbf{Research question:} Are \(Sex\) and \(Leptin\) statistically independent variables?
+\textbf{Research question:} is \(Leptin\) statistically independent from \(Sex\)?
 
 \hypertarget{difference-between-means}{%
 \section{Difference between means}\label{difference-between-means}}
@@ -9331,24 +9250,24 @@ We took leptin levels \textbf{conditioned to} each sex, and observed:
 
 \begin{itemize}
 \item
-  \(n_A=190\) girls had a mean of \(\bar{y}_A=48.0\) and \(s=27.1\)
+  \(n_A=190\) girls had a mean of \(\bar{y}_A=48.13\) and \(s= 25.44\)
 \item
-  \(n_B=166\) boys has a mean of \(\bar{y}_B=34.4\) and \(s=22.4\)
+  \(n_B=166\) boys has a mean of \(\bar{y}_B=35.42\) and \(s=21.99\)
 \end{itemize}
 
 Barplots are popular, although they do not show the spread of the data
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-142-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-123-1.pdf}
 
 We can draw histograms of leptin for each group to have a better idea of the distributions
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-143-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-124-1.pdf}
 
 Or we can overlay the histograms horizontally
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-144-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-125-1.pdf}
 
-The plots suggest that boys have lower levels of leptin but is the difference between the averages \(\bar{y}_A\) and \(\bar{y}_B\) statistically significant? That is, could have we got this lower levels of lepting in boys by chance alone (null hypothesis) or there is difference that cannot be fully explained by chance (alternative hypothesis)?
+The plots suggest that boys have lower levels of leptin but is the difference between the averages \(\bar{y}_A\) and \(\bar{y}_B\) \textbf{statistically significant}? How confident are we on the magnitude of the difference? That is, could have we got this lower levels of lepting in boys by chance alone (null hypothesis) or there is difference that cannot be fully explained by chance (alternative hypothesis)?
 
 \hypertarget{hypothesis-test}{%
 \section{hypothesis test}\label{hypothesis-test}}
@@ -9374,12 +9293,12 @@ If \(\delta\), the difference between means \(\delta=\mu_A-\mu_B=0\) then the hy
   \(H_1: \delta\neq 0\)
 \end{enumerate}
 
-\(\delta\) is the parameter of interest in our study, and to test hypotheses on it, we need to find an estimator for it.
+\(\delta\) is the \textbf{parameter of interest} in our study, and to test hypotheses on it, we need to find an \textbf{estimator} for it.
 
 \hypertarget{estiamtor-of-the-mean-difference}{%
 \section{Estiamtor of the mean difference}\label{estiamtor-of-the-mean-difference}}
 
-The statistic \(D=\bar{Y}_A-\bar{Y}_B\) that is the difference in averages is an estimator of \(\delta\). In particular, we can show that the the estimator is
+The statistic \(D=\bar{Y}_A-\bar{Y}_B\), that is the difference in averages, is an estimator of \(\delta\). In particular, we can show that the the estimator is
 
 \begin{itemize}
 \tightlist
@@ -9401,12 +9320,12 @@ This means that we can take one observed value of \(D\), that is \(d_{obs}\), fo
 
 It is important to have clear the different components in the the estimation and the hipothesis test
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-145-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-126-1.pdf}
 
 \hypertarget{standardized-error}{%
 \section{Standardized error}\label{standardized-error}}
 
-As both \(Y_A\) and \(Y_B\) are normal (uncorrelated) variables, their averages are normal and so it is their difference
+As both \(Y_A\) and \(Y_B\) are normal and independent variables, their averages are normal and so it is their difference
 
 \[Z=\frac{D-\delta}{\sqrt{V(D)}}=\frac{\bar{Y}_A-\bar{Y}_B -\delta}{\sqrt{\frac{s^2_A}{n_A}+\frac{s^2_B}{n_B}}} \rightarrow_{approx} N(0,1)\]
 
@@ -9420,7 +9339,7 @@ If the null hypothesis is true (\(\delta=0\)), then when we estimate \(\delta\) 
 \[Z=\frac{\bar{Y}_A-\bar{Y}_B}{\sqrt{\frac{s_A^2}{n_A}+\frac{s^2_B}{n_B}}}\]
 that follows a standard normal distribution.
 
-To test the hypothesis we then ask if the observed \(z_{obs}\) within the acceptance region of the null hypothesis.
+To test the hypothesis we then ask if the observed \(z_{obs}\) is within the acceptance region of the null hypothesis.
 
 In particular, we ask: is the probability of observing a more extreme value than \(z_{obs}\) lower than \(\alpha=0.05\)?
 
@@ -9430,15 +9349,43 @@ The value of \(z_{obs}\) is the standardized value of the observed difference be
 
 For our data, we have that the \textbf{observed} standardized mean difference is
 
-\[z_{obs}=\frac{\bar{y}_A-\bar{y}_B }{\sqrt{\frac{s^2_A}{n_A}+\frac{s^2_B}{n_B}}}=\frac{48-34.4}{\sqrt{\frac{27.1^2}{190}+\frac{22.4^2}{166}}}=5.181952\]
+\[z_{obs}=\frac{\bar{y}_A-\bar{y}_B }{\sqrt{\frac{s^2_A}{n_A}+\frac{s^2_B}{n_B}}}=\frac{48.13-34.42}{\sqrt{\frac{647.58}{190}+\frac{483.62}{166}}}=5.053\]
 
 Since our hypothesis is two tailed then the the two-tailed \(pvalue\) is
 
-\[pvalue=2(1-\phi(5.181952))=2.195757 \times 10^{-7}\]
+\[pvalue=2(1-\phi(5.053))=4.32 \times 10^{-7}\]
 
 which is much lower than \(\alpha\).
 
 Therefore, we reject the null hypothesis that \(H_0:\delta=0\) that is that the leptin levels in obese children are equal between boys and girls. In other words, we have strong evidence that the mean leptin levels between sexes are different.
+
+In Python
+
+\begin{verbatim}
+import pandas as pd
+import math
+from scipy.stats import norm
+
+data = pd.read_csv('https://alejandro-isglobal.github.io/SDA/data/leptin_sex.txt', sep='\t')
+
+groupA = data[data['sex']=="girl"]['leptin']
+groupB = data[data['sex']=="boy"]['leptin']
+
+yA_bar = np.mean(groupA)
+yB_bar = np.mean(groupB)
+
+s2A = np.var(groupA, ddof=1)
+s2B = np.var(groupB, ddof=1)
+
+d = (yA_bar-yB_bar)/math.sqrt(s2A/len(groupA)+s2B/len(groupB))
+pval= 2*(1-norm.cdf(d))
+
+d, pval
+\end{verbatim}
+
+\begin{verbatim}
+(5.053890638648715, 4.32899547764265e-07)
+\end{verbatim}
 
 \textbf{Example (Abstract)}
 
@@ -9450,19 +9397,19 @@ Therefore, we reject the null hypothesis that \(H_0:\delta=0\) that is that the 
 
 \emph{We analyzed data from 190 obese girls and 166 obese boys and found a significant difference in leptin between sexes (mean difference \(13.6\), \(P=2.195757 \times 10^{-7}\))}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-146-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-127-1.pdf}
 
 Note that in a report we usually add the confidence intervals for the means. Non-overlapping confidence intervals also indicate that the difference between means is \textbf{statistically significant} (reject the null).
 
 Another popular way to visualize the distributional differences between the groups is to use a box plot
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-147-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-128-1.pdf}
 
 In this plot, we do not show the means but a summary of the distribution properties of the data at each condition. Remember that the properties are the median (the middle line), the quartiles (the box edges) and the \(5\%\) and \(95\%\) quantiles (the wiskers).
 
 Finally, you would see that violin plots are also widely used. These are boxplots with the (smoothed) mirrowed histograms overlayed. Here, you do not see the everages of each group but the modes (peaks of the hitograms) but you get the idea that the distribution for girls higher than the distribution for boys.
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-148-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-129-1.pdf}
 
 \hypertarget{mean-differences-when-n-is-small}{%
 \section{\texorpdfstring{Mean differences when \(n\) is small}{Mean differences when n is small}}\label{mean-differences-when-n-is-small}}
@@ -9555,14 +9502,14 @@ We take mice weights \textbf{conditioned to} each lepting group, and observed:
 
 \begin{itemize}
 \item
-  \(n_A=16\) control mice had a weight mean of \(\bar{y}_A=26.49813\) and \(s_A=2.247577\)
+  \(n_A=16\) control mice had a weight mean of \(\bar{y}_A=26.49\) and \(s_A=2.24\)
 \item
-  \(n_B=7\) leptin KO mice had a weight mean of \(\bar{y}_B=44.53\) and \(s_B=4.774167\)
+  \(n_B=7\) leptin KO mice had a weight mean of \(\bar{y}_B=44.53\) and \(s_B=4.77\)
 \end{itemize}
 
 We can draw violin plots per group
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-150-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-131-1.pdf}
 
 We see that the distributions are different and in particular that mice without leptin (leptin KO) have on average higher weights. Can we have a statistical test for this difference?
 
@@ -9590,7 +9537,7 @@ Since the weights for \(A\) and \(B\) are normal variables with the same varianc
 
 then (Theorem) the \textbf{standardized error}
 
-\[T=\frac{\bar{Y}_A-\bar{Y}_B -\delta}{\sqrt{\frac{s_p^2}{n_A+n_B}}} \rightarrow T(n_A+n_B-2)\]
+\[T=\frac{\bar{Y}_A-\bar{Y}_B -\delta}{\sqrt{s_p^2(\frac{1}{n_A}+\frac{1}{n_B})}} \rightarrow T(n_A+n_B-2)\]
 
 follows exactly a T-distribution with \(n_A+n_B-2\) degrees of freedom.
 
@@ -9603,7 +9550,7 @@ The \textbf{pooled variance} \(s_p^2\), is an estimator of \(\sigma^2\)
 
 If the null hypothesis is true (\(\delta=0\)), then when we estimate \(\delta\) with \(D\) we make an error. The \textbf{standardized error} from the null hypothesis is the statistic
 
-\[T=\frac{\bar{Y}_A-\bar{Y}_B }{\sqrt{\frac{s_p^2}{n_A+n_B}}} \rightarrow T(n_A+n_B-2)\]
+\[T=\frac{\bar{Y}_A-\bar{Y}_B }{\sqrt{s_p^2(\frac{1}{n_A}+\frac{1}{n_B})}} \rightarrow T(n_A+n_B-2)\]
 
 that follows a T-distribution.
 
@@ -9613,38 +9560,34 @@ In particular, we ask: is the probability of observing a more extreme value than
 
 The value of \(t_{obs}\) is the standardized value of the observed difference between the averages:
 
-\(t_{obs}=\frac{d_{obs}}{\sqrt{\frac{s_p^2}{n_A+n_B}}}\)
+\(t_{obs}=\frac{d_{obs}}{\sqrt{s_p^2(\frac{1}{n_A}+\frac{1}{n_B})}}\)
 
-\[=\frac{\bar{y}_A-\bar{y}_B }{\sqrt{\frac{s^2_p}{n_A}+\frac{s^2_p}{n_B}}}=\frac{26.49813-44.53}{\sqrt{\frac{3.18127^2}{16}+\frac{3.18127^2}{7}}}=-12.508\]
+\[=\frac{\bar{y}_A-\bar{y}_B }{\sqrt{\frac{s^2_p}{n_A}+\frac{s^2_p}{n_B}}}=\frac{26.49-44.53}{\sqrt{\frac{10.12}{16}+\frac{10.12}{7}}}=-12.508\]
 
 The two-tailed \(pvalue\) of \(t_{obs}\) is
 
-\[pvalue=2(1-F_{t,21}(12.508))=3.376854 \times 10^{-11}\]
+\[pvalue=2(1-F_{t,21}(12.508))=3.37 \times 10^{-11}\]
 
 which is lower than \(\alpha=0.05\).
 
 Therefore, the data shows a very significant increase in \(18.03\)gr (\(P=3.376854 \times 10^{-11}\)) in weight between the wild-type mice and leptin knockouts. ``Absence of leptin signaling in early life alters the energy balance and predisposes the animals to obesity''
 
-in R
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{t.test}\NormalTok{(control, leptinKO, }\AttributeTok{var.equal =} \ConstantTok{TRUE}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
+in Python
 
 \begin{verbatim}
-## 
-##  Two Sample t-test
-## 
-## data:  control and leptinKO
-## t = -12.508, df = 21, p-value = 3.377e-11
-## alternative hypothesis: true difference in means is not equal to 0
-## 95 percent confidence interval:
-##  -21.02992 -15.03383
-## sample estimates:
-## mean of x mean of y 
-##  26.49813  44.53000
+import numpy as np
+from scipy import stats
+
+data = pd.read_csv('https://alejandro-isglobal.github.io/SDA/data/leptin.txt', sep='\t')
+
+groupA = data["Control"]
+groupB = data["LepNull"]
+
+stats.ttest_ind(groupA, groupB, equal_var=True, nan_policy='omit')
+\end{verbatim}
+
+\begin{verbatim}
+Ttest_indResult(statistic=-12.507930602554847, pvalue=3.377211689857233e-11)
 \end{verbatim}
 
 \hypertarget{unequal-variances}{%
@@ -9678,31 +9621,27 @@ approximately follows a t-distribution with
 \[\nu=\frac{(\frac{s_A^2}{n_A}+\frac{s_B^2}{n_B})^2}{\frac{(s_A^2/n_B)^2}{n_A-1}+\frac{(s_B^2/n_B)^2}{n_B-1}}\]
 degrees of freedom.
 
-in R
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{t.test}\NormalTok{(control, leptinKO, }\AttributeTok{var.equal =} \ConstantTok{FALSE}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
+In Python
 
 \begin{verbatim}
-## 
-##  Welch Two Sample t-test
-## 
-## data:  control and leptinKO
-## t = -9.541, df = 7.1929, p-value = 2.444e-05
-## alternative hypothesis: true difference in means is not equal to 0
-## 95 percent confidence interval:
-##  -22.47665 -13.58710
-## sample estimates:
-## mean of x mean of y 
-##  26.49813  44.53000
+import numpy as np
+from scipy import stats
+
+data = pd.read_csv('https://alejandro-isglobal.github.io/SDA/data/leptin.txt', sep='\t')
+
+groupA = data["Control"]
+groupB = data["LepNull"]
+
+stats.ttest_ind(groupA, groupB, equal_var=False, nan_policy='omit')
+\end{verbatim}
+
+\begin{verbatim}
+Ttest_indResult(statistic=-9.541047987836473, pvalue=2.4443518964606636e-05)
 \end{verbatim}
 
 Therefore, the data \textbf{still} shows a very significant increase in \(18.03\)gr (\(P=2.444 \times 10^{-5}\)) in weight between the wild-type mice and leptin knockouts (under a more appropriate test).
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-153-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-132-1.pdf}
 
 \hypertarget{questions-12}{%
 \section{Questions}\label{questions-12}}
@@ -9760,7 +9699,7 @@ which is the best test?
 \hypertarget{practice-6}{%
 \section{Practice}\label{practice-6}}
 
-Load leptin data (dataleptin.txt)
+Load leptin data \url{https://alejandro-isglobal.github.io/SDA/data/dataleptin.txt}
 
 \begin{itemize}
 \item
@@ -9777,16 +9716,16 @@ Load leptin data (dataleptin.txt)
 \hypertarget{objective-12}{%
 \section{Objective}\label{objective-12}}
 
-In this chapter, we will generalize the test for difference between means across many groups. We will do this by using the analysis of variance (ANOVA) that compares the variance within the groups and the variance between the groups.
+In this chapter, we will generalize the test for difference between means across many groups. That is many levels of a categorical variables. We will do this by using the analysis of variance (ANOVA) that compares the variance within the groups and the variance between the groups.
 
-We will see that ANOVA can be used to describe the two different groupings if the random experiment, represented by two different categorical variables. This is called a 2-way ANOVA.
+We will see that ANOVA can be further used to describe the mean of a continuous variable across two different categorical variables with many levels each. This is called a 2-way ANOVA.
 
-Finally we will use the ANOVA to test that at least one combination of the two categorical variables can not be explained by the independent contributions of each condition. This is calles a 2-way ANOVA plus interaction.
+Finally we will use the ANOVA to test that at least one combination of the two categorical variables can not be explained by the independent contributions of each condition. This is called a 2-way ANOVA plus interaction.
 
 \hypertarget{different-means-across-several-conditions}{%
 \section{Different means across several conditions}\label{different-means-across-several-conditions}}
 
-In a study that wanted to test the effect of leptin in neurodevelopment, 7 male mice had their leptin gene knocked out. While 16 mice were left with normal leptin function. In a third group, 10 mice with knocked out leptin were injected leptin \href{https://pubmed.ncbi.nlm.nih.gov/30694175/}{(PMID:30694175)}. An initial question was to test the effect of the leptin group on the body weight of the animals. We therefore aassume three conditions and that
+In a study that wanted to test the effect of leptin in neurodevelopment, 7 male mice had their leptin gene knocked out. Whereas, 16 mice were left with normal leptin function. In a third group, 10 mice with knocked out leptin were injected leptin protein \href{https://pubmed.ncbi.nlm.nih.gov/30694175/}{(PMID:30694175)}. An initial question was to test the effect of the leptin group on the body weight of the animals. We therefore aassume three conditions and that
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -9797,7 +9736,13 @@ In a study that wanted to test the effect of leptin in neurodevelopment, 7 male 
 
 \[Y_A \rightarrow N(\mu_A, \sigma^2)\]
 
-2 the weight of the animals with no leptin gene (KO) but were injected leptin protein has a probability density
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  the weight of the animals with no leptin gene (KO) but were injected leptin protein has a probability density
+\end{enumerate}
 
 \[Y_B \rightarrow N(\mu_B, \sigma^2)\]
 
@@ -9874,29 +9819,28 @@ The data looks like
 \hypertarget{difference-between-means-2}{%
 \section{Difference between means}\label{difference-between-means-2}}
 
-We take weights \textbf{conditioned to} each leptin condition, and observed:
+We take weights \textbf{conditioned to} each leptin group, and observed:
 
 \begin{itemize}
 \item
   \(n_A=16\) control mice had a weight mean of \(\bar{y}_A=26.49813\) and \(s_A=2.247577\)
 \item
   \(n_B=10\) leptin KO mice with leptin replacement had a weight mean of \(\bar{y}_B=25.668\) and \(s_B=5.034161\)
-  We can draw boxplots per group
 \item
   \(n_C=7\) leptin KO mice had a weight mean of \(\bar{y}_C=44.53\) and \(s_C=4.774167\)
 \end{itemize}
 
 We can draw a barplot for each mean with a confidence interval
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-155-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-134-1.pdf}
 
-and we see that the wild type (control) has a similar mean weight (KOplus) to the mice without the leptin gene but which have been injected leptin. The mice without leptin gene and no leptin protein (leptinKO) have mean higher mean weight. As the confidence intervals for this group does not overlap with the other two, we say that the mean of the knock outs is singificanlty higher than for the other two cases.
+and we see that the wild type (control) has a similar mean weight to the mice without the leptin gene but which have been injected leptin (KOplus). The mice without leptin gene and no leptin protein (leptinKO) have mean higher mean weight. As the confidence intervals for this group does not overlap with the other two, we say that the mean of the knock outs is singificanlty higher than for the other two cases.
 
 We can see the differences in distributions with a violin plot
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-156-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-135-1.pdf}
 
-While in a test for the difference in means between two groups, we ask in the hypothesis test if the means are equal (null) in the multiple groups we ask if at least one of the means is different.
+When we test for the difference in means between \textbf{two groups}, we test in null hypothesis if the means are equal. When we consider more than two groups, we ask if \textbf{at least one} of the means is different.
 
 \hypertarget{hypothesis-test-2}{%
 \section{hypothesis test}\label{hypothesis-test-2}}
@@ -9913,8 +9857,7 @@ Let us formulate the hypothesis contrast
 
 How can we test this hypothesis? Is there a statistic that we can formulate such that its value give us information on whether we should accept or reject \(H_0\)?
 
-Let's look at the dispersion of the data.
-
+Let's look at the dispersion of \textbf{all the data points} at wach group.
 Within each group the data disperses about their averages. Therefore an estimator of the variance for each group. For example for group \(A\) the sample variance
 
 \[S_A^2=\frac{1}{n-1} \sum_{i=1}^n (Y_{Ai}-\bar{Y}_{A})^2\]
@@ -9925,18 +9868,18 @@ is an estimator of the variance \(\sigma^2\) of the weights at group \(A\). \(n\
 
 is another estimator of the variance \(\sigma^2\) that takes into account the estimators at each group. \(S_e^2\) is called the \textbf{mean square error}.
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-157-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-136-1.pdf}
 
-Let's look now at the averages for each group. We know, for instance, that \(\bar{Y}_A\) is normal with mean \(\mu_A\) and variance \(\frac{\sigma^2}{n}\).
+Let's now look at the dispersion of \textbf{averages} of each group, instead. That is the right part of the plot above (\(Y\_bar\) tag), where we look at how the averages disperse about the overall mean of the data. We know, for instance, that \(\bar{Y}_A\) is normal with mean \(\mu_A\) and variance \(\frac{\sigma^2}{n}\).
 
 If the \textbf{null hypothesis is true} there are no differences between the means and then
 
 \[\mu_A=\mu_B=\mu_C=\mu\]
-Therefore \(\bar{Y}_A, \bar{Y}_B, \bar{Y}_C \rightarrow N(\mu, \sigma^2/n)\) and \((\bar{y}_A, \bar{y}_B, \bar{y}_C )\) is the observed sample of size \(k=3\) of the same random experiment: one that takes averages on the weights of animals in groups that are identical. In that case the sample variance
+Therefore \(\bar{Y}_A, \bar{Y}_B, \bar{Y}_C \rightarrow N(\mu, \sigma^2/n)\) and \((\bar{y}_A, \bar{y}_B, \bar{y}_C )\) is the observed sample of size \(k=3\) of the same random experiment: one that takes averages on the weights of animals in groups that are identical between each other (no differences between grups). In that case, the sample variance
 
 \[S^2_{tr}=\frac{1}{k-1} \sum_{j=1}^k(\bar{Y}_{j}-\bar{Y})^2\]
 
-estimates the variance \(\sigma^2/n\). \(j\) indicates the groups (\(A\), \(B\), \(C\)) and \(\bar{Y}\) is the average of the averages or put simply: the mean of all observations (the black dot in the figure) \[\bar{Y}=\frac{1}{nk}\sum_j \sum_i Y_{ji}\]
+estimates the sample maen variance \(\sigma^2/n\). \(j\) indicates the groups (\(A\), \(B\), \(C\)) and \(\bar{Y}\) is the average of the averages or put simply: the mean of all observations (the black dot in the figure) \[\bar{Y}=\frac{1}{nk}\sum_j \sum_i Y_{ji}\]
 
 If the null \textbf{hypothesis is true} and we take more and more observations in each group then all the averages get closer to the grand mean, and the grand mean gets closer to \(\mu\). Since \(S_{tr}^2\) estimates \(\sigma^2/n\) and \(S_e^2\) estimates \(\sigma^2\) then the ratio
 
@@ -9979,14 +9922,26 @@ Then, the observed value of \(F\), \emph{e.g} \(f_{obs}\) will be \textbf{greate
 The value of the \(f_{obs}\) computes from the group (treatments) mean and residual (error) mean squares can be calculated in statistical software that usually output the ANOVA table
 
 \begin{verbatim}
-## Analysis of Variance Table
-## 
-## Response: weight
-##           Df  Sum Sq Mean Sq F value    Pr(>F)    
-## group      2 1861.55  930.77  63.373 1.694e-11 ***
-## Residuals 30  440.62   14.69                      
-## ---
-## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+import pandas as pd
+import statsmodels.api as sm
+from statsmodels.formula.api import ols
+
+data = pd.read_csv('https://alejandro-isglobal.github.io/SDA/data/dataleptin.txt', sep=' ')
+
+filtsex = data['sex']=='M'
+filtered_data = data[filtsex]
+
+model = ols('weight ~ group', data=filtered_data).fit()
+
+anova_table = sm.stats.anova_lm(model, typ=1)
+
+print(anova_table)
+\end{verbatim}
+
+\begin{verbatim}
+            df       sum_sq     mean_sq          F        PR(>F)
+group      2.0  1861.549820  930.774910  63.373347  1.693725e-11
+Residual  30.0   440.615004   14.687167        NaN           NaN
 \end{verbatim}
 
 In this table \(MST\) is the Mean squares for the group, computed as the Sum of squares divided by the degrees of freedom (\(k-1=2\)).
@@ -10038,7 +9993,7 @@ The upper tailed p-value for \(f_{obs}\) using the Fisher distribution is
 
 in R: 1-pf(156.45, 1,21)
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-159-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-137-1.pdf}
 
 This p-value is exactly the same as the one we obtained with the t-test with equal variances. Therefore, we reject the hypothesis that the weights between wild types and leptin knock outs are the same.
 
@@ -10053,6 +10008,49 @@ We can check the ANOVA table
 ## Residuals 21  212.53   10.12                      
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+\end{verbatim}
+
+\begin{verbatim}
+import pandas as pd
+import statsmodels.api as sm
+from statsmodels.formula.api import ols
+
+data = pd.read_csv('https://alejandro-isglobal.github.io/SDA/data/dataleptin.txt', sep=' ')
+
+filtsex = data['sex']=='M'
+filtgroups = (data['group']=='Control') | (data['group']=='leptinKO')
+
+filtered_data = data[filtsex & filtgroups]
+
+model = ols('weight ~ group', data=filtered_data).fit()
+
+anova_table = sm.stats.anova_lm(model, typ=1)
+
+print(anova_table)
+\end{verbatim}
+
+\begin{verbatim}
+            df       sum_sq      mean_sq           F        PR(>F)
+group      1.0  1583.331904  1583.331904  156.448328  3.377212e-11
+Residual  21.0   212.530044    10.120478         NaN           NaN
+\end{verbatim}
+
+and compare it with the t-test
+
+\begin{verbatim}
+import numpy as np
+from scipy import stats
+
+data = pd.read_csv('https://alejandro-isglobal.github.io/SDA/data/leptin.txt', sep='\t')
+
+groupA = data["Control"]
+groupB = data["LepNull"]
+
+stats.ttest_ind(groupA, groupB, equal_var=True, nan_policy='omit')
+\end{verbatim}
+
+\begin{verbatim}
+Ttest_indResult(statistic=-12.507930602554847, pvalue=3.377211689857233e-11)
 \end{verbatim}
 
 \hypertarget{linear-model}{%
@@ -10198,15 +10196,31 @@ The data looks like
 We see that there is no effect of sex when the leptin groups are ignored. No significant differences in means between sexes is observed
 
 \begin{verbatim}
-## Analysis of Variance Table
-## 
-## Response: weight
-##           Df Sum Sq Mean Sq F value Pr(>F)
-## sex        1  135.0  134.97  0.8544 0.3613
-## Residuals 37 5844.9  157.97
+import pandas as pd
+import statsmodels.api as sm
+from statsmodels.formula.api import ols
+
+
+data = pd.read_csv('https://alejandro-isglobal.github.io/SDA/data/dataleptin.txt', sep=' ')
+
+filtgroups = (data['group']=='leptinKO') | (data['group']=='KOplus')
+
+filtered_data = data[filtgroups]
+
+model = ols('weight ~ sex', data=filtered_data).fit()
+
+anova_table = sm.stats.anova_lm(model, typ=1)
+
+print(anova_table)
 \end{verbatim}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-163-1.pdf}
+\begin{verbatim}
+            df       sum_sq     mean_sq         F    PR(>F)
+sex        1.0   134.975026  134.975026  0.854439  0.361289
+Residual  37.0  5844.862933  157.969268       NaN       NaN
+\end{verbatim}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-140-1.pdf}
 
 We see however that the points are clustered by leptin group, suggesting that we should adjust by the differences in the lepting before we test the differences in sex. It is possible that when we subtract the differences in lepting the mean weight of males is lower than that of females.
 
@@ -10218,17 +10232,34 @@ That is, we subtract the mean of the group \(j\) to each observation \(i\) in le
 Then we can perform another ANOVA test for the residuals on sex differences
 
 \begin{verbatim}
-## Analysis of Variance Table
-## 
-## Response: residual.weight
-##           Df Sum Sq Mean Sq F value  Pr(>F)  
-## sex        1  73.94  73.939   2.956 0.09392 .
-## Residuals 37 925.49  25.013                  
-## ---
-## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+import pandas as pd
+import statsmodels.api as sm
+from statsmodels.formula.api import ols
+
+data = pd.read_csv('https://alejandro-isglobal.github.io/SDA/data/dataleptin.txt', sep=' ')
+
+filtgroups = (data['group']=='leptinKO') | (data['group']=='KOplus')
+
+filtered_data = data[filtgroups]
+
+model1 = sm.OLS.from_formula('weight ~ group', data=filtered_data).fit()
+
+filtered_data["residuals"] = model1.resid
+
+model2 = ols('residuals ~ sex', data=filtered_data).fit()
+
+anova_table = sm.stats.anova_lm(model2, typ=1)
+
+print(anova_table)
 \end{verbatim}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-166-1.pdf}
+\begin{verbatim}
+              sum_sq    df         F    PR(>F)
+sex        73.938528   1.0  2.955976  0.093917
+Residual  925.489697  37.0       NaN       NaN
+\end{verbatim}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-143-1.pdf}
 
 We see that we have adjusted by the differences in leptin, as the dots are mixed together. The lower weight in males is almost significant for the residuals. However, from this model we do not know the contribution of the leptin group to the variability of the data (points). Also, if \(n\) is large, it is possible that even if the null hypothesis is true, the means of each sex do not get closer to the grand mean if there is a significant effect of leptin.
 
@@ -10307,7 +10338,7 @@ To decide between each hypothesis in each hypothesis contrast, we need test stat
 
 and represent the dots in the following plot
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-167-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-144-1.pdf}
 
 The dispersion of the data about this means at condition \((M,KO)\) is given by the statistics
 
@@ -10338,15 +10369,28 @@ Then, observed values of \(F_2\) far from \(1\) suggest that the means between g
 All this is summarized in the two-way ANOVA table
 
 \begin{verbatim}
-## Analysis of Variance Table
-## 
-## Response: weight
-##           Df Sum Sq Mean Sq  F value    Pr(>F)    
-## sex        1  135.0   135.0   5.2511   0.02789 *  
-## group      1 4919.5  4919.5 191.3887 5.593e-16 ***
-## Residuals 36  925.4    25.7                       
-## ---
-## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+import pandas as pd
+import statsmodels.api as sm
+from statsmodels.formula.api import ols
+
+data = pd.read_csv('https://alejandro-isglobal.github.io/SDA/data/dataleptin.txt', sep=' ')
+
+filtgroups = (data['group']=='leptinKO') | (data['group']=='KOplus')
+
+filtered_data = data[filtgroups]
+
+model = ols('weight ~ sex + group', data=filtered_data).fit()
+
+anova_table = sm.stats.anova_lm(model, typ=1)
+
+print(anova_table)
+\end{verbatim}
+
+\begin{verbatim}
+            df       sum_sq      mean_sq           F        PR(>F)
+sex        1.0   134.975026   134.975026    5.251072  2.788981e-02
+group      1.0  4919.508806  4919.508806  191.388693  5.593450e-16
+Residual  36.0   925.354127    25.704281         NaN           NaN
 \end{verbatim}
 
 where for example the observed value of \(F_1\) is
@@ -10379,7 +10423,7 @@ When we take weights \textbf{conditioned to} each leptin by sex group we observe
 
 For these estimations we can draw a barplot with confidence intervals.
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-169-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-145-1.pdf}
 
 From this plot we can see that most of the difference between male and female weights comes from the knock out condition. In the supplemented leptin groups sexes seem the have similar weights. How can we test the hypothesis that there is a particular combination of conditions that has an effect on the weight of mice?
 
@@ -10459,11 +10503,37 @@ These statistics are given in the ANOVA table with interaction
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 \end{verbatim}
 
-As we observed from the barplots, the statistical inference confirms that there are significant differences in weight between leptin groups, no significant differences between sexes, and significant interactions between sex and leptin groups. In particular, the effect of leptin knockout in weight is higher in females than males, opposite to what was observed in mice supplemented with leptin protein.
+\begin{verbatim}
+import pandas as pd
+import statsmodels.api as sm
+from statsmodels.formula.api import ols
+
+data = pd.read_csv('https://alejandro-isglobal.github.io/SDA/data/dataleptin.txt', sep=' ')
+
+filtgroups = (data['group']=='leptinKO') | (data['group']=='KOplus')
+
+filtered_data = data[filtgroups]
+
+model = ols('weight ~ sex*group', data=filtered_data).fit()
+
+anova_table = sm.stats.anova_lm(model, typ=1)
+
+print(anova_table)
+\end{verbatim}
+
+\begin{verbatim}
+             df       sum_sq      mean_sq           F        PR(>F)
+sex         1.0   134.975026   134.975026    5.757201  2.187963e-02
+group       1.0  4919.508806  4919.508806  209.835870  2.367238e-16
+sex:group   1.0   104.794667   104.794667    4.469893  4.169367e-02
+Residual   35.0   820.559460    23.444556         NaN           NaN
+\end{verbatim}
+
+As we observed from the barplots, the statistical inference confirms that there are significant differences in weight between leptin groups, significant differences between sexes, and significant interactions between sex and leptin groups. In particular, the effect of leptin knockout in weight is higher in females than males, opposite to what was observed in mice supplemented with leptin protein.
 
 Interactions are better represented in plots displaying the conditioned means across both factors. Significant interactions are therefore given by non-parallel lines.
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-171-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-147-1.pdf}
 
 \hypertarget{questions-13}{%
 \section{Questions}\label{questions-13}}
@@ -10506,7 +10576,8 @@ Interactions are better represented in plots displaying the conditioned means ac
 \hypertarget{practice-7}{%
 \section{Practice}\label{practice-7}}
 
-Load leptin data (dataleptin.txt)
+Load leptin data (
+\url{https://alejandro-isglobal.github.io/SDA/data/dataleptin.txt})
 
 \begin{itemize}
 \item
@@ -10594,7 +10665,7 @@ We need to formulate a hypothesis test on a parameter of a distribution.
 \hypertarget{normal-bivariate}{%
 \section{Normal bivariate}\label{normal-bivariate}}
 
-Let's consider that one random experiment of the study consists on drawing a pair of measurements of both leptin levels \textbf{and} a fat mass of an individual. We therefore have a random variable that it a pair of measurements that follows a probability distribution. We will assume that the distribution in teh 2 dimensional version of a normal probability density
+Let's consider that one random experiment of the study consists on drawing a pair of measurements of both leptin levels \textbf{and} a fat mass of an individual. We therefore have a random variable that its a pair of measurements that follows a probability distribution. We will assume that the distribution is the 2 dimensional version of a normal probability density
 
 \[(Y, X) \rightarrow N(\mu_y, \sigma^2_y, \mu_x, \sigma^2_x, \rho)\]
 
@@ -10628,9 +10699,9 @@ The \textbf{correlation} between \(X\) and \(Y\)
   \(\rho=\frac{E[(Y-\mu_y)(X-\mu_x)]}{\sigma_y\sigma_x}\)
 \end{itemize}
 
-\(\rho\) is called the correlation coefficient.
+\(\rho\) is called the \textbf{correlation coefficient}.
 
-When we draw the probability density in two dimensions, we see that the marginal densities, that is the protection of the densities on each axes define the densities
+When we draw the probability density in two dimensions, we see that the marginal densities, these are the projections of the densities on each axis, define the densities
 
 \[X \rightarrow N(\mu_x, \sigma_x^2)\]
 
@@ -10638,22 +10709,24 @@ and
 
 \[Y \rightarrow N(\mu_y, \sigma_y^2)\]
 
-with its parameters. We can plot the 2D density as contour lines
+with its parameters. We can plot the 2D density as contour lines and the marginal densities on each axis
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-174-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-150-1.pdf}
 
-Or as a 3D plot, where the \(Z\) axis is the value of the probability density.
+We can also plot the density in a 3D plot, where the \(Z\) axis is the value of the probability density.
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-175-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-151-1.pdf}
 
 If we keep the contour plots of the 2D distribution, we see that the fifth parameter \(\rho\) defines the direction on which the ellipses are elongated (mayor axis).
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-176-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-152-1.pdf}
+
+The density is threfore determined with 5 parameters.
 
 \hypertarget{estimators}{%
 \section{Estimators}\label{estimators}}
 
-We can derive the estimator of all four parameters, if we for instance formulate the likelihood function
+We can derive the estimator of all 5 parameters, if we formulate the likelihood function
 
 \[L=\Pi_{i=1}^n f(y_i,x_i; \mu_x, \mu_y, \sigma^2_x, \sigma_y^2, \rho)\]
 and maximize it for each parameter. As a result, we obtain the following estimators of the parameters.
@@ -10689,7 +10762,7 @@ The estimator for the correlation
 \hypertarget{correlation-coefficient}{%
 \section{Correlation coefficient}\label{correlation-coefficient}}
 
-\(R\) is then a statistics that can be computed from the data and we can take one value as an estimate of \(\rho\). The sampling distribution of \(R\) can be obtained if we transform it into a new variable (Fisher's z transformation)
+\(R\) is then a \textbf{statistics} that can be computed from the data and we can take one value as an estimate of \(\rho\). The sampling distribution of \(R\) can be obtained if we transform it into a new variable (Fisher's z transformation)
 
 \[Z=\frac{1}{2}\ln (\frac{1+R}{1-R})\]
 The new variable \(Z\) is a normal variable
@@ -10702,12 +10775,12 @@ As \(R\) estimates \(\rho\) we have that
 
 \begin{itemize}
 \item
-  If \(R\) is near \(0\) then there no linear relationship between \(y\) and \(x\) (the contour curves of the 2D probability distribution are concentric)
+  If \(R\) is near \(0\) then there is no linear relationship between \(y\) and \(x\) (the mayor and minor axes of the 2D plot are the x and y axes).
 \item
-  If \(R\) is near \(1\) there is strong evidence of a linear relationship between \(y\) and \(x\)
+  If \(R\) is near \(1\) there is strong evidence of a linear relationship between \(y\) and \(x\) (the mayor axis does not align with neither the x or the y axis).
 \end{itemize}
 
-\(R\) is then a measure of the statistical dependence between \(y\) and \(x\). We can use it to test that hypothesis.
+\(R\) is then a measure of the statistical dependence between \(Y\) and \(X\). We can use it to test that hypothesis.
 
 \hypertarget{hypothesis-contrast}{%
 \section{Hypothesis contrast}\label{hypothesis-contrast}}
@@ -10726,7 +10799,7 @@ We then use the statistic \(R\) to test whether there is a dependency between \(
 
 \[r_{obs}=\hat{\rho}=\frac{\sum_{i=0}^n(x_i-\bar{x})(y_i-\bar{y})}{\sqrt{\sum_{i=1}^n(x_i-\bar{x})^2}\sqrt{\sum_{i=1}^n(y_i-\bar{y})^2}}\]
 
-and compute its \(pvalue\). That is the probability that we obtain a larger value if we repeat the sample, if the null hypothesis is true. Under the null hypothesis \(\rho=0\), we then we compute
+and compute its \(pvalue\). That is the probability that we obtain a larger value if we repeat the sample when the \textbf{null hypothesis} is true. Under the null hypothesis \(\rho=0\), we then we compute the two-tailed \(pvalue\)
 
 \[pvalue=2(1- F(|r_{obs}|)= 2(1- F_{normal}(|z_{obs}|)  \]
 
@@ -10737,17 +10810,19 @@ where
 \textbf{Example (leptin and fat mass)}
 
 \begin{verbatim}
-## 
-##  Pearson's product-moment correlation
-## 
-## data:  data$leptin and data$fatmass
-## t = -3.9262, df = 186, p-value = 0.0001214
-## alternative hypothesis: true correlation is not equal to 0
-## 95 percent confidence interval:
-##  -0.4037736 -0.1390439
-## sample estimates:
-##        cor 
-## -0.2766492
+import pandas as pd
+from scipy.stats import pearsonr
+
+data = pd.read_csv('https://alejandro-isglobal.github.io/SDA/data/leptinFatmass.txt', sep=' ')
+
+leptin = data['leptin']
+fatmass = data['fatmass']
+
+pearsonr(leptin, fatmass)
+\end{verbatim}
+
+\begin{verbatim}
+PearsonRResult(statistic=-0.27664924595293827, pvalue=0.00012143760304939414)
 \end{verbatim}
 
 For our data we have that the observed correlation coefficient is \(r_{obs}=-0.2766492\) and its transformed value
@@ -10758,7 +10833,7 @@ The \(pvalue\) is therefore
 
 \[pvalue=2(1- F_{N(0,1/185)}(0.2840499))=0.0001\]
 
-Therefore, since it is lower than \(\alpha=0.05\), we reject the null hypothesis that leptin and fat mass are independent. Note that Leptin and fat mass are weakly correlated because \(r=-0.28\) but the correlation is highly significant because \(pvalue=0.0001\).
+Therefore, since it is lower than \(\alpha=0.05\), we reject the null hypothesis that leptin and fat mass are independent. Note that leptin and fat mass are weakly correlated because \(r=-0.28\) but the correlation is highly significant because \(pvalue=0.0001\).
 
 We should take this result with caution:
 
@@ -10769,7 +10844,9 @@ We should take this result with caution:
   From literature we know that as we increase fat mass we should obtain \textbf{more} leptin, not the contrary, as it is released from adipose tissue.
 \end{itemize}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-178-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-154-1.pdf}
+
+So how can we improve our analysis, so that our results are as expected?
 
 \hypertarget{regression-analysis}{%
 \section{Regression analysis}\label{regression-analysis}}
@@ -10785,17 +10862,17 @@ Therefore, we first calculate the \textbf{conditional probability density} of \(
 
 This turns up to be a normal distribution. The conditional probability is the profile, or a slice, of the 2D distribution at a given value of \(x\).
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-179-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-155-1.pdf}
 
 The mean of the conditional distribution is (the red dot)
 
 \[\mu_{y|x}=\mu_y+\frac{\sigma_y\rho}{\sigma_x}(x-\mu_x)\]
 
-If we manipulate this equation, we see that the conditional mean is a linear function of \(x\)
+If we manipulate this equation, we see that the \textbf{conditional mean} is a linear function of \(x\)
 
 \[\mu_{y|x}=(\mu_y-\mu_x \frac{\sigma_y\rho}{\sigma_x})+\frac{\sigma_y \rho}{\sigma_x} x=\alpha + \beta x\]
 
-where \(\alpha=\mu_y-\mu_x \beta\) and \(\beta=\frac{\sigma_y \rho}{\sigma_x}\). This line is called a \textbf{regression} line (red line in the figure). That is, when we move along the \(X\) axis, the conditional mean of \(Y\) moves linearly.
+where \(\alpha=\mu_y-\mu_x \beta\) and \(\beta=\frac{\sigma_y \rho}{\sigma_x}\). This line is called a \textbf{regression} line (red dotted line in the plot). That is, when we move along the \(X\) axis, the conditional mean of \(Y\) moves linearly.
 
 The variance of the conditional density is
 
@@ -10811,8 +10888,6 @@ Solving for \(\rho^2\), we have
 Consider the \textbf{linear model} for the values of \(Y\) \textbf{conditioned} to the value of \(x_i\)
 
 \[Y_{x_i} = \alpha + \beta x_i +E_{i}\]
-
-where \(\alpha\) is the
 
 with \textbf{Random error}:
 
@@ -10842,10 +10917,12 @@ Null hypothesis:
 \def\labelenumi{\alph{enumi}.}
 \tightlist
 \item
-  \(Y\) and \(X\) are statistically independent, therefore \(f(y|x)=f(y)\) and \(H_0: \beta=0\). If this is the case then we have the following model
+  \(H_0: \beta=0\). \(Y\) and \(X\) are statistically \textbf{independent}, and therefore \(f(y|x)=f(y)\). If this is the case then the regression line is flat and we have the following model
 \end{enumerate}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-180-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-156-1.pdf}
+
+Note that all marginal probability (projection of the probability on the \(y\) axis) would be identical to all the conditional probabilities.
 
 Alternative hypothesis:
 
@@ -10854,15 +10931,17 @@ Alternative hypothesis:
 \setcounter{enumi}{1}
 \tightlist
 \item
-  \(Y\) and \(X\) are statistically dependent, therefore \(H_1: \beta\neq 0\). If this is the case then we have the following model
+  \(H_1: \beta\neq 0\). \(Y\) and \(X\) are statistically \textbf{dependent}. If this is the case then we have the following model
 \end{enumerate}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-181-1.pdf}
+Note that all marginal probability would be the combination of the conditional probabilities.
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-157-1.pdf}
 
 \hypertarget{estimators-1}{%
 \section{Estimators}\label{estimators-1}}
 
-\(\beta\) is therefore our parameter of interest and therefore we need a probability distribution to test its hypothesis contrast
+\(\beta\) is therefore our parameter of interest and we need a probability distribution to test its hypothesis contrast
 
 \begin{itemize}
 \tightlist
@@ -10887,7 +10966,7 @@ with respect to \(\alpha\) and \(\beta\). If \(\bar{Y_i}\) is normal then
 
 \[B \rightarrow N(\beta, \frac{n\sigma^2_y}{{(n-2)s^2_x}})\]
 
-with mean \(E(B)=\beta\). Therefore it is an unbiased estimators.
+with mean \(E(B)=\beta\) and, therefore, it is an unbiased estimator.
 
 \hypertarget{hypothesis-testing-2}{%
 \section{Hypothesis testing}\label{hypothesis-testing-2}}
@@ -10902,24 +10981,40 @@ follows a t-distribution with \(n-2\) degrees of freedom.
 We can perform the statistical test
 
 \begin{verbatim}
-## 
-## Call:
-## lm(formula = leptin ~ fatmass, data = data)
-## 
-## Residuals:
-##      Min       1Q   Median       3Q      Max 
-## -1.89723 -0.66914  0.04445  0.64555  1.81122 
-## 
-## Coefficients:
-##              Estimate Std. Error t value Pr(>|t|)    
-## (Intercept)  3.720119   0.295149  12.604  < 2e-16 ***
-## fatmass     -0.022624   0.005762  -3.926 0.000121 ***
-## ---
-## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-## 
-## Residual standard error: 0.8338 on 186 degrees of freedom
-## Multiple R-squared:  0.07653,    Adjusted R-squared:  0.07157 
-## F-statistic: 15.42 on 1 and 186 DF,  p-value: 0.0001214
+import pandas as pd
+from scipy.stats import pearsonr
+
+data = pd.read_csv('https://alejandro-isglobal.github.io/SDA/data/leptinFatmass.txt', sep='\t')
+
+model = ols('leptin ~ fatmass', data=data).fit()
+
+print(model.summary())
+\end{verbatim}
+
+\begin{verbatim}
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:                 leptin   R-squared:                       0.077
+Model:                            OLS   Adj. R-squared:                  0.072
+Method:                 Least Squares   F-statistic:                     15.42
+Date:                Mon, 04 Sep 2023   Prob (F-statistic):           0.000121
+Time:                        09:33:40   Log-Likelihood:                -231.59
+No. Observations:                 188   AIC:                             467.2
+Df Residuals:                     186   BIC:                             473.7
+Df Model:                           1                                         
+Covariance Type:            nonrobust                                         
+==============================================================================
+                 coef    std err          t      P>|t|      [0.025      0.975]
+------------------------------------------------------------------------------
+Intercept      3.7201      0.295     12.604      0.000       3.138       4.302
+fatmass       -0.0226      0.006     -3.926      0.000      -0.034      -0.011
+==============================================================================
+Omnibus:                       10.660   Durbin-Watson:                   1.753
+Prob(Omnibus):                  0.005   Jarque-Bera (JB):                4.983
+Skew:                          -0.141   Prob(JB):                       0.0828
+Kurtosis:                       2.254   Cond. No.                         249.
+==============================================================================
+
 \end{verbatim}
 
 where the observed value of \(B\) is
@@ -10934,7 +11029,7 @@ and only \(7\%\) of the variability is explained by the regression line
 
 We can draw the regression line
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-183-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-159-1.pdf}
 
 We can see that the regression line is negative and there is quite a bit of dispersion about it. Remember that The correct way to interpret the line is to think that these are the values of \(Y\) conditioned on \(X\).
 
@@ -10957,13 +11052,13 @@ Our study then includes the outcome \(Y\) with multiple regressors, or explanato
 
 Consider the previous regression and color the points according to their sex
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-185-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-161-1.pdf}
 
 We clearly see that the negative association between leptin and fat mass is given by the effect of sex. As males have lower leptin levels and higher fat mass then the negative correlation between leptin and fatma mass is due to sex.
 
 If we run regression \textbf{separating}, or stratifying, by sex we find a positive association between leptin and fat mass, as it is expected from the litterature.
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-186-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-162-1.pdf}
 
 \hypertarget{multiple-regression}{%
 \section{Multiple Regression}\label{multiple-regression}}
@@ -10977,26 +11072,41 @@ Here, our effect of interest is the coefficient \(\beta\) of \(x_i\) (leptin) an
 When we include both sex and age as additional factors in the regression, we observe that there is a positive increase in leptin when we correct for sex. Males have a negative assotiation with leptin, compared with women, and age has an almost significant association with leptin. Now, everything fits.
 
 \begin{verbatim}
-## 
-## Call:
-## lm(formula = leptin ~ fatmass + sex + age, data = data)
-## 
-## Residuals:
-##      Min       1Q   Median       3Q      Max 
-## -1.91314 -0.43523  0.07833  0.38451  1.49707 
-## 
-## Coefficients:
-##              Estimate Std. Error t value Pr(>|t|)    
-## (Intercept)  1.482557   0.304423   4.870 2.40e-06 ***
-## fatmass      0.027585   0.006002   4.596 7.99e-06 ***
-## sexM        -1.611965   0.135872 -11.864  < 2e-16 ***
-## age          0.005353   0.002957   1.811   0.0718 .  
-## ---
-## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-## 
-## Residual standard error: 0.6226 on 184 degrees of freedom
-## Multiple R-squared:  0.4907, Adjusted R-squared:  0.4824 
-## F-statistic: 59.09 on 3 and 184 DF,  p-value: < 2.2e-16
+import pandas as pd
+from scipy.stats import pearsonr
+
+data = pd.read_csv('https://alejandro-isglobal.github.io/SDA/data/leptinFatmass.txt', sep='\t')
+
+model = ols('leptin ~ fatmass + sex + age', data=data).fit()
+
+print(model.summary())
+\end{verbatim}
+
+\begin{verbatim}
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:                 leptin   R-squared:                       0.491
+Model:                            OLS   Adj. R-squared:                  0.482
+Method:                 Least Squares   F-statistic:                     59.09
+Date:                Mon, 04 Sep 2023   Prob (F-statistic):           8.47e-27
+Time:                        09:40:31   Log-Likelihood:                -175.66
+No. Observations:                 188   AIC:                             359.3
+Df Residuals:                     184   BIC:                             372.3
+Df Model:                           3                                         
+Covariance Type:            nonrobust                                         
+==============================================================================
+                 coef    std err          t      P>|t|      [0.025      0.975]
+------------------------------------------------------------------------------
+Intercept      1.4826      0.304      4.870      0.000       0.882       2.083
+sex[T.M]      -1.6120      0.136    -11.864      0.000      -1.880      -1.344
+fatmass        0.0276      0.006      4.596      0.000       0.016       0.039
+age            0.0054      0.003      1.811      0.072      -0.000       0.011
+==============================================================================
+Omnibus:                        4.457   Durbin-Watson:                   1.685
+Prob(Omnibus):                  0.108   Jarque-Bera (JB):                4.067
+Skew:                          -0.345   Prob(JB):                        0.131
+Kurtosis:                       3.207   Cond. No.                         475.
+==============================================================================
 \end{verbatim}
 
 \hypertarget{multiple-regression-interaction}{%
@@ -11014,30 +11124,45 @@ In our example, if \(z\) is sex, then \(\gamma\) will test the differences in \(
 \[Y_{jrs} = \alpha + \beta\times fatmass_{j} +\gamma\times sex_{r} + \delta\times (fatmass\times sex)_{jr} + \epsilon_s age+E_{jrs}\]
 
 \begin{verbatim}
-## 
-## Call:
-## lm(formula = leptin ~ fatmass * sex + age, data = data)
-## 
-## Residuals:
-##      Min       1Q   Median       3Q      Max 
-## -1.82098 -0.38692  0.03192  0.42065  1.43851 
-## 
-## Coefficients:
-##               Estimate Std. Error t value Pr(>|t|)    
-## (Intercept)   1.800052   0.337279   5.337 2.77e-07 ***
-## fatmass       0.020022   0.006949   2.881  0.00443 ** 
-## sexM         -3.218004   0.775217  -4.151 5.07e-05 ***
-## age           0.005846   0.002939   1.989  0.04815 *  
-## fatmass:sexM  0.028427   0.013513   2.104  0.03677 *  
-## ---
-## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-## 
-## Residual standard error: 0.6169 on 183 degrees of freedom
-## Multiple R-squared:  0.5027, Adjusted R-squared:  0.4918 
-## F-statistic: 46.25 on 4 and 183 DF,  p-value: < 2.2e-16
+import pandas as pd
+from scipy.stats import pearsonr
+
+data = pd.read_csv('https://alejandro-isglobal.github.io/SDA/data/leptinFatmass.txt', sep='\t')
+
+model = ols('leptin ~ fatmass*sex + age', data=data).fit()
+
+print(model.summary())
 \end{verbatim}
 
-Our data suggest that a steeper increase of leptin with body fat in males than in females (interaction: \(0.028427\), \(pvalue=0.03\)), as we saw in the figures of the stratified analysis. The model now explains \(50\%\) of the variace \(R^2=0.5\)
+\begin{verbatim}
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:                 leptin   R-squared:                       0.503
+Model:                            OLS   Adj. R-squared:                  0.492
+Method:                 Least Squares   F-statistic:                     46.25
+Date:                Mon, 04 Sep 2023   Prob (F-statistic):           8.19e-27
+Time:                        09:43:38   Log-Likelihood:                -173.41
+No. Observations:                 188   AIC:                             356.8
+Df Residuals:                     183   BIC:                             373.0
+Df Model:                           4                                         
+Covariance Type:            nonrobust                                         
+====================================================================================
+                       coef    std err          t      P>|t|      [0.025      0.975]
+------------------------------------------------------------------------------------
+Intercept            1.8001      0.337      5.337      0.000       1.135       2.466
+sex[T.M]            -3.2180      0.775     -4.151      0.000      -4.748      -1.688
+fatmass              0.0200      0.007      2.881      0.004       0.006       0.034
+fatmass:sex[T.M]     0.0284      0.014      2.104      0.037       0.002       0.055
+age                  0.0058      0.003      1.989      0.048    4.81e-05       0.012
+==============================================================================
+Omnibus:                        7.164   Durbin-Watson:                   1.699
+Prob(Omnibus):                  0.028   Jarque-Bera (JB):                6.943
+Skew:                          -0.459   Prob(JB):                       0.0311
+Kurtosis:                       3.209   Cond. No.                     1.27e+03
+==============================================================================
+\end{verbatim}
+
+Our data suggest a steeper increase of leptin with body fat in males than in females (interaction: \(0.028427\), \(pvalue=0.03\)), as we saw in the figures of the stratified analysis. The model now explains \(50\%\) of the variance \(R^2=0.5\)
 
 \hypertarget{model-diagnostics}{%
 \section{Model diagnostics}\label{model-diagnostics}}
@@ -11054,7 +11179,7 @@ All linear models have been made on the supposition that
 
 There are a number of plots to check that at least the data is consistent with these suppositions. In particular, we are interested to see that the residuals distribute symmetrically against the fitted values, revealing equal variance (homoscedasticity). We also want to check that the points in a quantile-quantile (QQ) plot fall in the line, revealing how close the rediduals distribute normally.
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-189-1.pdf} \includegraphics{_main_files/figure-latex/unnamed-chunk-189-2.pdf} \includegraphics{_main_files/figure-latex/unnamed-chunk-189-3.pdf} \includegraphics{_main_files/figure-latex/unnamed-chunk-189-4.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-165-1.pdf} \includegraphics{_main_files/figure-latex/unnamed-chunk-165-2.pdf} \includegraphics{_main_files/figure-latex/unnamed-chunk-165-3.pdf} \includegraphics{_main_files/figure-latex/unnamed-chunk-165-4.pdf}
 
 \hypertarget{questions-14}{%
 \section{Questions}\label{questions-14}}
@@ -11102,7 +11227,7 @@ There are a number of plots to check that at least the data is consistent with t
 \hypertarget{practice-9}{%
 \subsubsection{Practice}\label{practice-9}}
 
-Load misophonia data data\_0.txt
+Load misophonia data \url{https://alejandro-isglobal.github.io/SDA/data/data_0.txt}
 
 We have four measures of anxiety:
 
@@ -11321,7 +11446,7 @@ We load the data
 ## 0.3658537 0.6341463
 \end{verbatim}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-192-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-168-1.pdf}
 
 \begin{enumerate}
 \def\labelenumi{\alph{enumi}.}
@@ -11339,7 +11464,7 @@ We load the data
 ## [1] 14.18654
 \end{verbatim}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-193-1.pdf} \includegraphics{_main_files/figure-latex/unnamed-chunk-193-2.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-169-1.pdf} \includegraphics{_main_files/figure-latex/unnamed-chunk-169-2.pdf}
 
 \begin{enumerate}
 \def\labelenumi{\alph{enumi}.}
@@ -11365,7 +11490,7 @@ We load the data
 ## [1] 15.58339
 \end{verbatim}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-194-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-170-1.pdf}
 
 \begin{enumerate}
 \def\labelenumi{\alph{enumi}.}
@@ -11381,7 +11506,7 @@ We load the data
 ## 0.52032520 0.21138211 0.23577236 0.03252033
 \end{verbatim}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-195-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-171-1.pdf}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -11419,7 +11544,7 @@ we describe these clinical outcomes
 ##    1.00   60.00   80.00   68.77   89.00   99.00      15
 \end{verbatim}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-197-1.pdf} \includegraphics{_main_files/figure-latex/unnamed-chunk-197-2.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-173-1.pdf} \includegraphics{_main_files/figure-latex/unnamed-chunk-173-2.pdf}
 
 \begin{enumerate}
 \def\labelenumi{\alph{enumi}.}
@@ -11434,7 +11559,7 @@ we describe these clinical outcomes
 ##    1.00   45.00   77.00   67.85   90.00   99.00      15
 \end{verbatim}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-198-1.pdf} \includegraphics{_main_files/figure-latex/unnamed-chunk-198-2.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-174-1.pdf} \includegraphics{_main_files/figure-latex/unnamed-chunk-174-2.pdf}
 
 \begin{enumerate}
 \def\labelenumi{\alph{enumi}.}
@@ -11444,7 +11569,7 @@ we describe these clinical outcomes
   Diagnosed
 \end{enumerate}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-199-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-175-1.pdf}
 
 We can look at relationships between outcomes
 
@@ -11456,7 +11581,7 @@ We can look at relationships between outcomes
   Trait Vs Estate
 \end{enumerate}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-200-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-176-1.pdf}
 
 We can also look at the relationships between the clinical outcomes and the features of the participants
 
@@ -11468,7 +11593,7 @@ We can also look at the relationships between the clinical outcomes and the feat
   Trait by sex
 \end{enumerate}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-201-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-177-1.pdf}
 
 \begin{enumerate}
 \def\labelenumi{\alph{enumi}.}
@@ -11478,7 +11603,7 @@ We can also look at the relationships between the clinical outcomes and the feat
   State by sex
 \end{enumerate}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-202-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-178-1.pdf}
 
 \begin{enumerate}
 \def\labelenumi{\alph{enumi}.}
@@ -11495,7 +11620,7 @@ We can also look at the relationships between the clinical outcomes and the feat
 ##        si  3  7
 \end{verbatim}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-203-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-179-1.pdf}
 
 \begin{verbatim}
 ##          sex
@@ -11512,7 +11637,7 @@ We can also look at the relationships between the clinical outcomes and the feat
   Trait Vs age
 \end{enumerate}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-204-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-180-1.pdf}
 
 \begin{enumerate}
 \def\labelenumi{\roman{enumi}.}
@@ -11521,7 +11646,7 @@ We can also look at the relationships between the clinical outcomes and the feat
   State Vs age
 \end{enumerate}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-205-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-181-1.pdf}
 
 \begin{enumerate}
 \def\labelenumi{\alph{enumi}.}
@@ -11531,7 +11656,7 @@ We can also look at the relationships between the clinical outcomes and the feat
   age by diagnosis
 \end{enumerate}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-206-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-182-1.pdf}
 
 \hypertarget{group-work-session-2-inference}{%
 \section{Group Work session 2: Inference}\label{group-work-session-2-inference}}
@@ -11590,7 +11715,7 @@ We are interested in the variable anxiety.dif, that is the observed \textbf{exce
   Are the state and trait of anxiety correlated?
 \end{enumerate}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-207-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-183-1.pdf}
 
 \begin{verbatim}
 ## 
@@ -11621,7 +11746,7 @@ We are interested in the variable anxiety.dif, that is the observed \textbf{exce
   We describe the Excess variable with summary statistics and figures (histogram)
 \end{enumerate}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-208-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-184-1.pdf}
 
 \begin{verbatim}
 ##     Min.  1st Qu.   Median     Mean  3rd Qu.     Max.     NA's 
@@ -11673,7 +11798,7 @@ We are interested in the variable anxiety.dif, that is the observed \textbf{exce
   We first describe the conditional distributions
 \end{enumerate}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-210-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-186-1.pdf}
 
 \begin{enumerate}
 \def\labelenumi{\alph{enumi}.}
@@ -11793,7 +11918,7 @@ We are interested in the variable anxiety.dif, that is the observed \textbf{exce
   We make a plot between anxiety and age
 \end{enumerate}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-214-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-190-1.pdf}
 
 \begin{enumerate}
 \def\labelenumi{\alph{enumi}.}
@@ -11827,7 +11952,7 @@ and test the hypothesis \(H_0: \beta=0\) against \(H_1: \beta\neq 0\)
 ## F-statistic: 1.615 on 1 and 121 DF,  p-value: 0.2062
 \end{verbatim}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-215-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-191-1.pdf}
 
 \begin{enumerate}
 \def\labelenumi{\alph{enumi}.}
@@ -11872,7 +11997,7 @@ and test the hypothesis \(H_0: \beta=0\) against \(H_1: \beta\neq 0\)
 \def\labelenumi{\alph{enumi}.}
 \item
   We plot the excess anxiety across groups (boxplot)
-  \includegraphics{_main_files/figure-latex/unnamed-chunk-217-1.pdf}
+  \includegraphics{_main_files/figure-latex/unnamed-chunk-193-1.pdf}
 \item
   We test the hypothesizes \(H_0: \mu_{0}=\mu_{1} ... =\mu_{4}\) against \(H_1:\) at least one of them is different. We fit an ANOVA model.
 \end{enumerate}
@@ -11936,7 +12061,7 @@ and test the hypothesis \(H_0: \beta=0\) against \(H_1: \beta\neq 0\)
   We plot excess anxiety for each misophonic group, for men and women separately
 \end{enumerate}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-219-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-195-1.pdf}
 
 \begin{enumerate}
 \def\labelenumi{\alph{enumi}.}

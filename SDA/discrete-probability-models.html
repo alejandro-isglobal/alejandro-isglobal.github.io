@@ -23,7 +23,7 @@
 <meta name="author" content="Alejandro Caceres" />
 
 
-<meta name="date" content="2023-08-08" />
+<meta name="date" content="2023-09-04" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -210,6 +210,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.9" data-path="conditional-probability.html"><a href="conditional-probability.html#bayes-theorem"><i class="fa fa-check"></i><b>4.9</b> Bayes’ Theorem</a></li>
 <li class="chapter" data-level="4.10" data-path="conditional-probability.html"><a href="conditional-probability.html#exercises-2"><i class="fa fa-check"></i><b>4.10</b> Exercises</a></li>
 <li class="chapter" data-level="4.11" data-path="conditional-probability.html"><a href="conditional-probability.html#questions-2"><i class="fa fa-check"></i><b>4.11</b> Questions</a></li>
+<li class="chapter" data-level="4.12" data-path="conditional-probability.html"><a href="conditional-probability.html#practice-2"><i class="fa fa-check"></i><b>4.12</b> Practice</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html"><i class="fa fa-check"></i><b>5</b> Discrete Random Variables</a>
 <ul>
@@ -285,10 +286,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.5" data-path="normal-distribution.html"><a href="normal-distribution.html#probability-distribution-2"><i class="fa fa-check"></i><b>9.5</b> Probability distribution</a></li>
 <li class="chapter" data-level="9.6" data-path="normal-distribution.html"><a href="normal-distribution.html#standard-normal-density"><i class="fa fa-check"></i><b>9.6</b> Standard normal density</a></li>
 <li class="chapter" data-level="9.7" data-path="normal-distribution.html"><a href="normal-distribution.html#standard-distribution"><i class="fa fa-check"></i><b>9.7</b> Standard distribution</a></li>
-<li class="chapter" data-level="9.8" data-path="normal-distribution.html"><a href="normal-distribution.html#summary-of-probability-models"><i class="fa fa-check"></i><b>9.8</b> Summary of probability models</a></li>
-<li class="chapter" data-level="9.9" data-path="normal-distribution.html"><a href="normal-distribution.html#r-functions-of-probability-models"><i class="fa fa-check"></i><b>9.9</b> R functions of probability models</a></li>
-<li class="chapter" data-level="9.10" data-path="normal-distribution.html"><a href="normal-distribution.html#questions-6"><i class="fa fa-check"></i><b>9.10</b> Questions</a></li>
-<li class="chapter" data-level="9.11" data-path="normal-distribution.html"><a href="normal-distribution.html#exercises-7"><i class="fa fa-check"></i><b>9.11</b> Exercises</a></li>
+<li class="chapter" data-level="9.8" data-path="normal-distribution.html"><a href="normal-distribution.html#standardization"><i class="fa fa-check"></i><b>9.8</b> Standardization</a></li>
+<li class="chapter" data-level="9.9" data-path="normal-distribution.html"><a href="normal-distribution.html#summary-of-probability-models"><i class="fa fa-check"></i><b>9.9</b> Summary of probability models</a></li>
+<li class="chapter" data-level="9.10" data-path="normal-distribution.html"><a href="normal-distribution.html#python-functions-of-probability-models"><i class="fa fa-check"></i><b>9.10</b> Python functions of probability models</a></li>
+<li class="chapter" data-level="9.11" data-path="normal-distribution.html"><a href="normal-distribution.html#questions-6"><i class="fa fa-check"></i><b>9.11</b> Questions</a></li>
+<li class="chapter" data-level="9.12" data-path="normal-distribution.html"><a href="normal-distribution.html#exercises-7"><i class="fa fa-check"></i><b>9.12</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="10" data-path="sampling-distributions.html"><a href="sampling-distributions.html"><i class="fa fa-check"></i><b>10</b> Sampling distributions</a>
 <ul>
@@ -801,22 +803,25 @@ for <span class="math inline">\(x=0,1,2,3,4\)</span></p>
 <p><span class="math display">\[X \rightarrow Bin(n=4, p=0.1)\]</span>
 That is <span class="math display">\[f(x)=\binom 4 x 0.1^x(1-0.1)^{4-x}\]</span></p>
 <p><span class="math inline">\(P(X=4)=f(4)=\binom 4 4 0.1^4 0.9^{0}=0.1^4=10^{-4}\)</span></p>
-<p>In R <code>dbinom(4,4,0.1)</code></p>
+<p>In Python:</p>
+<pre><code>from scipy.stats import binom
+binom.pmf(4,4,0.1)</code></pre>
 <ul>
 <li>What is the probability of observing <span class="math inline">\(2\)</span> errors?</li>
 </ul>
 <p><span class="math inline">\(P(X=2)=\binom 4 2 0.1^2 0.9^2=0.0486\)</span></p>
-<p>In R <code>dbinom(2,4,0.1)</code></p>
+<p>In Python:</p>
+<pre><code>binom.pmf(2,4,0.1)</code></pre>
 <p><strong>Example (opinion polls):</strong></p>
 <ul>
 <li>What is the probability of observing <strong>at most</strong> <span class="math inline">\(8\)</span> voters of the ruling party in an election poll of size <span class="math inline">\(10\)</span>, if the probability of a positive vote for the party is <span class="math inline">\(0.9\)</span></li>
 </ul>
 <p>For this case</p>
 <p><span class="math display">\[X \rightarrow Bin(n=10, p=0.9)\]</span></p>
-<p>That is <span class="math display">\[f(x)=\binom {10} x 0.9^x(0.1)^{4-x}\]</span></p>
+<p>That is <span class="math display">\[f(x)=\binom {10} x 0.9^x(0.1)^{10-x}\]</span></p>
 <p>We want to compute:
 <span class="math inline">\(P(X\le 8)=F(8)= \sum_{i=1..8} f(x_i)=0.2639011\)</span></p>
-<p>in R <code>pbinom(8,10, 0.9)</code></p>
+<p>in Python <code>binom.cdf(8,10, 0.9)</code></p>
 </div>
 <div id="negative-binomial-probability-function" class="section level2 hasAnchor" number="7.10">
 <h2><span class="header-section-number">7.10</span> Negative binomial probability function<a href="discrete-probability-models.html#negative-binomial-probability-function" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -873,18 +878,20 @@ That is <span class="math display">\[f(x)=\binom 4 x 0.1^x(1-0.1)^{4-x}\]</span>
 <p><span class="math inline">\(+\binom {4} 2 0.0005^3 0.9995^2 +\binom {5} 3 0.0005^3 0.9995^3\)</span></p>
 <p><span class="math inline">\(+\binom {6} 4 0.0005^3 0.9995^4 +\binom {7} 5 0.0005^3 0.9995^5\)</span></p>
 <p><span class="math inline">\(= 6.9\times 10^{-9}\)</span></p>
-<p>In R this is computed with <code>pnbinom(5,3,0.0005)</code></p>
+<p>In Python this is computed with</p>
+<pre><code>from scipy.stats import nbinom
+nbinom.cdf(5,3,0.0005)</code></pre>
 <p><strong>Examples</strong></p>
 <ul>
 <li>What is the probability of observing <span class="math inline">\(10\)</span> correct pixels before <span class="math inline">\(2\)</span> errors, if the probability of an error is <span class="math inline">\(0.1\)</span>?</li>
 </ul>
 <p><span class="math inline">\(f(10; r=2, p=0.1)=0.03835463\)</span></p>
-<p>in R <code>dnbinom(10, 2, 0.1)</code></p>
+<p>in Python: <code>nbinom.pmf(10, 2, 0.1)</code></p>
 <ul>
 <li>What is the probability that <span class="math inline">\(2\)</span> girls enter the class before <span class="math inline">\(4\)</span> boys if the probability that a girl enters is <span class="math inline">\(0.5\)</span>?</li>
 </ul>
 <p><span class="math inline">\(f(2; r=4, p=0.5)=0.15625\)</span></p>
-<p>in R <code>dnbinom(2, 4, 0.5)</code></p>
+<p>in Python: <code>nbinom.pmf(2, 4, 0.5)</code></p>
 </div>
 <div id="geometric-distribution" class="section level2 hasAnchor" number="7.11">
 <h2><span class="header-section-number">7.11</span> Geometric distribution<a href="discrete-probability-models.html#geometric-distribution" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -930,7 +937,9 @@ The hypergeometric model has three parameters.</p>
 <p>The probability that we need to compute is
 <span class="math inline">\(P(X \leq 17)=F(17)\)</span></p>
 <p>where <span class="math inline">\(X \rightarrow Hypergeometric(N=600,K=64,n=200)\)</span></p>
-<p>in R <code>phyper(17, 64, 600-64, 200)=0.140565</code></p>
+<p>in Python:</p>
+<pre><code>from scipy.stats import hypergeom
+hypergeom.cdf(17, 600, 64, 200)</code></pre>
 <p>The solution is the addition of the blue needles in the plot.</p>
 <p><img src="_main_files/figure-html/unnamed-chunk-61-1.png" width="672" /></p>
 </div>
@@ -952,11 +961,11 @@ The hypergeometric model has three parameters.</p>
 <strong><span class="math inline">\(\qquad\)</span>c:</strong> <span class="math inline">\(np\)</span>;<br />
 <strong><span class="math inline">\(\qquad\)</span>d:</strong> the limit of the relative frequency when the number of repetitions is large</p>
 <p><strong>4)</strong> Opinion polls for the USA 2022 election give a probability of <span class="math inline">\(0.55\)</span> that a voter favors the republican party. If we conduct our own poll and ask 100 random people on the street, How would you compute the probability that in our poll democrats win the election?</p>
-<p><strong><span class="math inline">\(\qquad\)</span>a:</strong><code>pbinom(x=49, n=100, p=0.55)=0.13</code>;
-<strong><span class="math inline">\(\qquad\)</span>b:</strong><code>1-pbinom(x=49, n=100, p=0.55)=0.86</code>;
-<strong><span class="math inline">\(\qquad\)</span>c:</strong><code>pbinom(x=51, n=100, p=0.45)=0.90</code>; <strong><span class="math inline">\(\qquad\)</span>d:</strong><code>1-pbinom(x=51, n=100, p=0.45)=0.095</code></p>
+<p><strong><span class="math inline">\(\qquad\)</span>a:</strong><code>binom.pmf(x=49, n=100, p=0.55)=0.13</code>;
+<strong><span class="math inline">\(\qquad\)</span>b:</strong><code>1-binom.pmf(x=49, n=100, p=0.55)=0.86</code>;
+<strong><span class="math inline">\(\qquad\)</span>c:</strong><code>binom.pmf(x=51, n=100, p=0.45)=0.90</code>; <strong><span class="math inline">\(\qquad\)</span>d:</strong><code>1-binom.pmf(x=51, n=100, p=0.45)=0.095</code></p>
 <p><strong>5)</strong> In an exam a student chooses at random one of the four answers that he does not know. If he doesn’t know <span class="math inline">\(10\)</span> questions what is the probability that at least <span class="math inline">\(5\)</span> questions are correct?</p>
-<p><strong><span class="math inline">\(\qquad\)</span>a:</strong><code>dbinom(x=5, n=10, p=0.25)~ 0.05</code>; <strong><span class="math inline">\(\qquad\)</span>b:</strong><code>pbinom(x=5, n=10, p=0.75)~ 0.07</code>; <strong><span class="math inline">\(\qquad\)</span>c:</strong><code>dbinom(x=5, n=10, p=0.75)~ 0.05</code>; <strong><span class="math inline">\(\qquad\)</span>d:</strong><code>1-pbinom(x=5, n=10, p=0.25)~ 0.02</code></p>
+<p><strong><span class="math inline">\(\qquad\)</span>a:</strong><code>binom.cdf(x=5, n=10, p=0.25)~ 0.05</code>; <strong><span class="math inline">\(\qquad\)</span>b:</strong><code>binom.pmf(x=5, n=10, p=0.75)~ 0.07</code>; <strong><span class="math inline">\(\qquad\)</span>c:</strong><code>binom.cdf(x=5, n=10, p=0.75)~ 0.05</code>; <strong><span class="math inline">\(\qquad\)</span>d:</strong><code>1-binom.pmf(x=5, n=10, p=0.25)~ 0.02</code></p>
 </div>
 <div id="exercises-5" class="section level2 hasAnchor" number="7.14">
 <h2><span class="header-section-number">7.14</span> Exercises<a href="discrete-probability-models.html#exercises-5" class="anchor-section" aria-label="Anchor link to header"></a></h2>

@@ -23,7 +23,7 @@
 <meta name="author" content="Alejandro Caceres" />
 
 
-<meta name="date" content="2023-08-08" />
+<meta name="date" content="2023-09-04" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -210,6 +210,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.9" data-path="conditional-probability.html"><a href="conditional-probability.html#bayes-theorem"><i class="fa fa-check"></i><b>4.9</b> Bayes’ Theorem</a></li>
 <li class="chapter" data-level="4.10" data-path="conditional-probability.html"><a href="conditional-probability.html#exercises-2"><i class="fa fa-check"></i><b>4.10</b> Exercises</a></li>
 <li class="chapter" data-level="4.11" data-path="conditional-probability.html"><a href="conditional-probability.html#questions-2"><i class="fa fa-check"></i><b>4.11</b> Questions</a></li>
+<li class="chapter" data-level="4.12" data-path="conditional-probability.html"><a href="conditional-probability.html#practice-2"><i class="fa fa-check"></i><b>4.12</b> Practice</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html"><i class="fa fa-check"></i><b>5</b> Discrete Random Variables</a>
 <ul>
@@ -285,10 +286,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.5" data-path="normal-distribution.html"><a href="normal-distribution.html#probability-distribution-2"><i class="fa fa-check"></i><b>9.5</b> Probability distribution</a></li>
 <li class="chapter" data-level="9.6" data-path="normal-distribution.html"><a href="normal-distribution.html#standard-normal-density"><i class="fa fa-check"></i><b>9.6</b> Standard normal density</a></li>
 <li class="chapter" data-level="9.7" data-path="normal-distribution.html"><a href="normal-distribution.html#standard-distribution"><i class="fa fa-check"></i><b>9.7</b> Standard distribution</a></li>
-<li class="chapter" data-level="9.8" data-path="normal-distribution.html"><a href="normal-distribution.html#summary-of-probability-models"><i class="fa fa-check"></i><b>9.8</b> Summary of probability models</a></li>
-<li class="chapter" data-level="9.9" data-path="normal-distribution.html"><a href="normal-distribution.html#r-functions-of-probability-models"><i class="fa fa-check"></i><b>9.9</b> R functions of probability models</a></li>
-<li class="chapter" data-level="9.10" data-path="normal-distribution.html"><a href="normal-distribution.html#questions-6"><i class="fa fa-check"></i><b>9.10</b> Questions</a></li>
-<li class="chapter" data-level="9.11" data-path="normal-distribution.html"><a href="normal-distribution.html#exercises-7"><i class="fa fa-check"></i><b>9.11</b> Exercises</a></li>
+<li class="chapter" data-level="9.8" data-path="normal-distribution.html"><a href="normal-distribution.html#standardization"><i class="fa fa-check"></i><b>9.8</b> Standardization</a></li>
+<li class="chapter" data-level="9.9" data-path="normal-distribution.html"><a href="normal-distribution.html#summary-of-probability-models"><i class="fa fa-check"></i><b>9.9</b> Summary of probability models</a></li>
+<li class="chapter" data-level="9.10" data-path="normal-distribution.html"><a href="normal-distribution.html#python-functions-of-probability-models"><i class="fa fa-check"></i><b>9.10</b> Python functions of probability models</a></li>
+<li class="chapter" data-level="9.11" data-path="normal-distribution.html"><a href="normal-distribution.html#questions-6"><i class="fa fa-check"></i><b>9.11</b> Questions</a></li>
+<li class="chapter" data-level="9.12" data-path="normal-distribution.html"><a href="normal-distribution.html#exercises-7"><i class="fa fa-check"></i><b>9.12</b> Exercises</a></li>
 </ul></li>
 <li class="chapter" data-level="10" data-path="sampling-distributions.html"><a href="sampling-distributions.html"><i class="fa fa-check"></i><b>10</b> Sampling distributions</a>
 <ul>
@@ -507,7 +509,7 @@ We write down the status of hepatitis C of a patient who goes to <strong>hospita
 The parameter <span class="math inline">\(p_A\)</span> is the probability of hepatitis at hospital <span class="math inline">\(A\)</span>.</p>
 <p>We also write down the hepatitis status of a patient who goes to <strong>hospital B</strong>, and observe</p>
 <p><span class="math display">\[0, 0, 1, 0, 0, ... 1\]</span></p>
-<p>Diagnosis at this hospital is a Bernoulli trial with probability <span class="math inline">\(p_b\)</span></p>
+<p>Diagnosis at this hospital is a Bernoulli trial with probability <span class="math inline">\(p_B\)</span></p>
 <p><span class="math display">\[K_B \rightarrow Bernoulli (p_B)\]</span></p>
 </div>
 <div id="difference-between-proportions-1" class="section level2 hasAnchor" number="15.3">
@@ -527,11 +529,11 @@ The parameter <span class="math inline">\(p_A\)</span> is the probability of hep
 ## 5        A      no</code></pre>
 <p>The first patient was from hospital A and had hepatitis C.</p>
 <p><strong>Question:</strong></p>
-<p>Our research question is to find whether <span class="math inline">\(Disease\)</span> and <span class="math inline">\(Hospital\)</span> are statistically independent variables. We want to know if there is more infections in one hospital than another and perhaps emit an alarm to the affected hospital. Let’s formulate the hypothesis contrast</p>
+<p>Our research question is to find whether <span class="math inline">\(Disease\)</span> and <span class="math inline">\(Hospital\)</span> are <strong>statistically independent</strong> variables. We want to know if there is more infections in one hospital than another and perhaps emit an alarm to the affected hospital. Let’s formulate the hypothesis contrast.</p>
 </div>
 <div id="contingency-table-of-conditional-probabilities" class="section level2 hasAnchor" number="15.4">
 <h2><span class="header-section-number">15.4</span> Contingency table of conditional probabilities<a href="contingency-tables.html#contingency-table-of-conditional-probabilities" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Our experiment is such that we make diagnosis <strong>conditioned to</strong> each hospital. We then have the conditional probability table</p>
+<p>Our experiment is such that we make diagnosis <strong>conditioned</strong> to each hospital. We then have the conditional probability table</p>
 <table>
 <thead>
 <tr class="header">
@@ -542,14 +544,14 @@ The parameter <span class="math inline">\(p_A\)</span> is the probability of hep
 </thead>
 <tbody>
 <tr class="odd">
-<td align="center"><strong>Hepatitis</strong> (yes)</td>
-<td align="center"><span class="math inline">\(P(yes|A)=p_A\)</span></td>
-<td align="center"><span class="math inline">\(P(yes|B)=p_B\)</span></td>
-</tr>
-<tr class="even">
 <td align="center"><strong>Hepatitis</strong> (no)</td>
 <td align="center"><span class="math inline">\(P(no|A)=(1-p_A)\)</span></td>
 <td align="center"><span class="math inline">\(P(no|B)=(1-p_B)\)</span></td>
+</tr>
+<tr class="even">
+<td align="center"><strong>Hepatitis</strong> (yes)</td>
+<td align="center"><span class="math inline">\(P(yes|A)=p_A\)</span></td>
+<td align="center"><span class="math inline">\(P(yes|B)=p_B\)</span></td>
 </tr>
 <tr class="odd">
 <td align="center"><strong>sum</strong></td>
@@ -558,36 +560,38 @@ The parameter <span class="math inline">\(p_A\)</span> is the probability of hep
 </tr>
 </tbody>
 </table>
-<p>We want to know if for example the probability of infection is in hospital <span class="math inline">\(A\)</span> is different from the probability of infection in hospital <span class="math inline">\(B\)</span>, and therefore the hypothesis contrast is</p>
+<p>We want to know if for example the probability of infection in hospital <span class="math inline">\(A\)</span> is different from the probability of infection in hospital <span class="math inline">\(B\)</span>, and therefore the hypothesis contrast is</p>
 <ol style="list-style-type: lower-alpha">
-<li><span class="math inline">\(H_0: p_A=p_B\)</span></li>
-<li><span class="math inline">\(H_1: p_A\neq p_B\)</span></li>
+<li><span class="math inline">\(H_0: p_A=p_B\)</span> (status quo) no differences of infection probability between hospitals.</li>
+<li><span class="math inline">\(H_1: p_A\neq p_B\)</span> (research question) the infection probabilities are different between hospitals.</li>
 </ol>
 </div>
 <div id="test-for-the-difference-between-proportions" class="section level2 hasAnchor" number="15.5">
 <h2><span class="header-section-number">15.5</span> Test for the difference between proportions<a href="contingency-tables.html#test-for-the-difference-between-proportions" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>If we consider that the null hypothesis is true then, we can consider that the hospital is statistically independent from the probability of disease. Remember the definition of statistical independence: if infection is independence of hospitals then <span class="math inline">\(p=P(yes)=P(yes|A)=P(yes|B)\)</span></p>
+<p>If we consider that the <strong>null hypothesis</strong> is true then, then the hospital tag (“A” or “B”) is statistically independent from whether a diagnosed of hepatitis C was observed. Remember the definition of statistical independence: if infection is independence of hospitals then
+<span class="math display">\[p=P(yes)=P(yes|A)=P(yes|B)\]</span>
+Therefore the hypothesis contrast is:</p>
 <ol style="list-style-type: lower-alpha">
 <li><span class="math inline">\(H_0: p=p_A=p_B\)</span></li>
 <li><span class="math inline">\(H_1: p\neq p_A \neq p_B\)</span></li>
 </ol>
-<p>We do not know the values of <span class="math inline">\(p_A\)</span>, <span class="math inline">\(p_B\)</span>, <span class="math inline">\(p\)</span>. Therefore we need to estimate them.</p>
+<p>We do <strong>not know</strong> the values of <span class="math inline">\(p\)</span>, <span class="math inline">\(p_A\)</span> and <span class="math inline">\(p_B\)</span>. Therefore we need to <strong>estimate</strong> them from the data.</p>
 <p><strong>Example (Hepatitis C)</strong></p>
 <p>We perform diagnostic surveillance in both hospitals and found</p>
 <ul>
 <li><p>Hospital <span class="math inline">\(A\)</span> included in the study a total of <span class="math inline">\(n_A=200\)</span> and observed <span class="math inline">\(18\)</span> infections.</p></li>
 <li><p>Hospital <span class="math inline">\(B\)</span> included in the study a total of <span class="math inline">\(n_B=400\)</span> and observed <span class="math inline">\(46\)</span> infections.</p></li>
 </ul>
-<p>For hospital <span class="math inline">\(A\)</span> we have that the estimated probability of infection is then</p>
+<p>For hospital <span class="math inline">\(A\)</span> we have that the estimated probability of infection is the <strong>relative frequency</strong> of infections, that is</p>
 <ul>
 <li><span class="math inline">\(\bar{x}_A=\hat{p}_A=18/200=0.09\)</span></li>
 </ul>
-<p>For hospital <span class="math inline">\(B\)</span> we have that the estimated probability of infection is then</p>
+<p>Consequently, for hospital <span class="math inline">\(B\)</span>, we have that the estimated probability of infection is</p>
 <ul>
 <li><span class="math inline">\(\bar{x}_B=\hat{p}_B=46/400=0.115\)</span></li>
 </ul>
 <p>If the null hypothesis is true then the rate of infection <span class="math inline">\(p\)</span> can be estimated from either hospital, or from the two hospitals <strong>taken together</strong>, as if they were same hospital:</p>
-<p><span class="math display">\[\hat{p}=\frac{n_A\bar{x}_A+n_B\bar{x}_B}{n_A+n_B}=\frac{18+46}{200+400}=0.152381\]</span></p>
+<p><span class="math display">\[\hat{p}=\frac{n_A\bar{x}_A+n_B\bar{x}_B}{n_A+n_B}=\frac{18+46}{200+400}=0.1066667\]</span></p>
 </div>
 <div id="chi2-test" class="section level2 hasAnchor" number="15.6">
 <h2><span class="header-section-number">15.6</span> <span class="math inline">\(\chi^2\)</span> test<a href="contingency-tables.html#chi2-test" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -595,31 +599,69 @@ The parameter <span class="math inline">\(p_A\)</span> is the probability of hep
 <p><span class="math display">\[Z_A= \frac{\bar{X}_A-\hat{p}}{\sqrt\frac{\hat{p}(1-\hat{p})}{n_A}}\]</span></p>
 <p>The error made in hospital <span class="math inline">\(B\)</span> is</p>
 <p><span class="math display">\[Z_B= \frac{\bar{X}_B-\hat{p}}{\sqrt\frac{\hat{p}(1-\hat{p})}{n_B}}\]</span></p>
-<p><img src="_main_files/figure-html/unnamed-chunk-135-1.png" width="672" /></p>
-<pre><code>##    
-##         A     B
-##   0 0.910 0.885
-##   1 0.090 0.115</code></pre>
-<p><img src="_main_files/figure-html/unnamed-chunk-136-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-116-1.png" width="672" /></p>
+<p>In the plot, each cross is a diagnosis (either <span class="math inline">\(1\)</span> or <span class="math inline">\(0\)</span>) the dotted line is the estimated probability <span class="math inline">\(\hat{p}\)</span> of both hospitals taken together and the dots are the estimated probabilities of each separate hospital.</p>
+<p>The conditional probability table by hospital is</p>
+<table>
+<thead>
+<tr class="header">
+<th align="center"></th>
+<th align="center">Hospital: <span class="math inline">\(A\)</span></th>
+<th align="center">Hospital: <span class="math inline">\(B\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><strong>Hepatitis</strong> (no)</td>
+<td align="center"><span class="math inline">\(0.910\)</span></td>
+<td align="center"><span class="math inline">\(0.885\)</span></td>
+</tr>
+<tr class="even">
+<td align="center"><strong>Hepatitis</strong> (yes)</td>
+<td align="center"><span class="math inline">\(0.090\)</span></td>
+<td align="center"><span class="math inline">\(0.115\)</span></td>
+</tr>
+<tr class="odd">
+<td align="center"><strong>sum</strong></td>
+<td align="center"><span class="math inline">\(1\)</span></td>
+<td align="center"><span class="math inline">\(1\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>Which we can illustrate in a barplot</p>
+<p><img src="_main_files/figure-html/unnamed-chunk-117-1.png" width="672" /></p>
+<p>The probabilities of infection within each hospital are different but look very similar. Is the difference significant, although small?</p>
 <p>Using the CLT, the total <strong>standardized squared error</strong> from both hospitals is</p>
 <p><span class="math display">\[W= Z_A^2+Z_B^2\rightarrow \chi^2(1)\]</span></p>
 <p>which is a random variable that follows a <span class="math inline">\(\chi^2\)</span> distribution with 1 degree of freedom.</p>
-<p>Note: We formulated the null hypothesis from the statistical independence given by conditional probabilities. Another alternative is to formulate it from the product of the marginals.</p>
+<p>Note: We formulated the null hypothesis from the statistical independence given by conditional probabilities. <strong>Another alternative</strong> is to formulate it from the product of the marginals.</p>
 <p>Therefore, the hypothesis test can <strong>also</strong> be written as</p>
 <ul>
-<li><span class="math inline">\(H_0:P(disease, hospital)=P(disease)*P(hospital)\)</span> (Disease and Hospital are statistically <strong>independent</strong> as the joint probability is the product of the marginals)</li>
-<li><span class="math inline">\(H_1:P(disease, hospital)\neq P(disease)*P(hospital)\)</span>
-(Disease and Hospital are statistically <strong>dependent</strong>)</li>
+<li><span class="math inline">\(H_0:P(yes, A)=P(yes)*P(A)\)</span> (Disease and Hospital A are statistically <strong>independent</strong> as the joint probability is the product of the marginals)</li>
+<li><span class="math inline">\(H_1:P(yes, A)\neq P(yes)*P(A)\)</span>
+(Disease and Hospital A are statistically <strong>dependent</strong>)</li>
 </ul>
-<p>If hospitals and infections are truly independent from each other then one can show that the variable <span class="math inline">\(W\)</span> above can also be written as the sum of the squared errors that we make when we estimate the joint probabilities (i.e. <span class="math inline">\(P(yes,A)\)</span>). That is <strong>standardized squared error</strong> of before can be re-written as:</p>
+<p>If hospitals and infection status are truly independent from each other then one can show that the variable <span class="math inline">\(W\)</span> above <strong>can also</strong> be computed as the sum of the squared errors that we make when we estimate the joint probabilities using the marginals (i.e. <span class="math inline">\(\hat{p}_{yes,A}=\hat{p}_{yes}\hat{p}_A\)</span>), which we are allowed if the null hypothesis is true. Therefore the total <strong>standardized squared error</strong> of before can be re-written as:</p>
 <p><span class="math display">\[W= \frac{(\hat{p}_{no,A}-\hat{p}_{no}\hat{p}_{A})^2}{\hat{p}_{no}\hat{p}_{A}}+\frac{(\hat{p}_{no,B}-\hat{p}_{no}\hat{p}_{B})^2}{\hat{p}_{no}\hat{p}_{B}}+\frac{(\hat{p}_{yes,A}-\hat{p}_{yes}\hat{p}_{A})^2}{\hat{p}_{yes}\hat{p}_{A}}+\frac{(\hat{p}_{yes,B}-\hat{p}_{yes}\hat{p}_{B})^2}{\hat{p}_{yes}\hat{p}_{B}}\]</span></p>
 <p>If the observed value for <span class="math inline">\(W\)</span> is a rare error from the null hypothesis, for a <span class="math inline">\(\chi^2\)</span> variable, we then reject the null hypothesis.</p>
 <p><strong>Example (Hepatitis C)</strong></p>
-<p>However, we compute the observed value of <span class="math inline">\(W\)</span> we find</p>
-<p><span class="math display">\[w_{obs}= 0.87453\]</span></p>
+<p>When we compute the observed value of <span class="math inline">\(W\)</span> we find</p>
+<p><span class="math display">\[w_{obs}= \frac{0.09-0.1066667}{\sqrt{\frac{0.1066667(1-0.1066667)}{200}}}+ \frac{0.115-0.1066667}{\sqrt{\frac{0.1066667(1-0.1066667)}{400}}}= 0.87453\]</span></p>
 <p>We can test whether this value is large under the null hypothesis. If the null is true this statistics is close to zero, otherwise is large. We can then compute the <span class="math inline">\(pvalue\)</span> given by</p>
 <p><span class="math display">\[pvalue=P(W \geq w_{obs}) =0.3497\]</span></p>
-<p>or in R: <code>chisq.test(matrix(c(182, 18, 354, 46), ncol=2), correct = FALSE)</code></p>
+<p>or in Python</p>
+<pre><code>import numpy as np
+from scipy.stats import chi2_contingency
+
+# Create the 2x2 contingency table
+observed = np.array([[182, 18], [354, 46]])
+
+# Perform the chi-squared test
+chi2, p, dof, expected = chi2_contingency(observed, correction=False)
+print(f&quot;Chi-squared statistic: {chi2:.4f}&quot;)
+print(f&quot;P-value: {p:.4f}&quot;)</code></pre>
+<pre><code>Chi-squared statistic: 0.8745
+P-value: 0.3497</code></pre>
 <p>This <span class="math inline">\(pvalue\)</span> is not lower than the significance level <span class="math inline">\(\alpha=0.05\)</span> and therefore we <strong>do not</strong> reject <span class="math inline">\(H_0\)</span> and acept either</p>
 <ul>
 <li><p>that the frequencies of hepatitis C <strong>are equal</strong> between hospitals</p></li>
@@ -629,16 +671,13 @@ The parameter <span class="math inline">\(p_A\)</span> is the probability of hep
 </div>
 <div id="fishers-exact-test" class="section level2 hasAnchor" number="15.7">
 <h2><span class="header-section-number">15.7</span> Fisher’s exact test<a href="contingency-tables.html#fishers-exact-test" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Another approach is <strong>Fisher’s exact test</strong></p>
-<p>Take a ballot for each of the <span class="math inline">\(N=600\)</span> patients of both studies into an urn:</p>
-<p>From a population of <span class="math inline">\(N\)</span>:</p>
+<p>Another approach is <strong>Fisher’s exact test</strong>: Take a ballot for each of the <span class="math inline">\(N=600\)</span> patients of both studies into an urn:</p>
+<p>There are a total of <span class="math inline">\(N\)</span> ballots:</p>
 <ul>
-<li>There are <span class="math inline">\(K=64\)</span> that have hepatitis C</li>
-<li><span class="math inline">\(N-K=536\)</span> do not have hepatitis C</li>
+<li>There are <span class="math inline">\(K=64\)</span> ballots that have hepatitis C</li>
+<li><span class="math inline">\(N-K=536\)</span> ballots do not have hepatitis C</li>
 </ul>
-<p>Then, if we take a sample of <span class="math inline">\(n=200\)</span> (similar in number to hospital <span class="math inline">\(A\)</span>)</p>
-<p>What is the probability of observing more than <span class="math inline">\(18\)</span> patients with hepatitis C, as observed in hospital <span class="math inline">\(A\)</span>?</p>
-<p>The hypothesis contrast is</p>
+<p>Then, if we take a <span class="math inline">\(n=200\)</span> randomly selected ballots (similar in number to hospital <span class="math inline">\(A\)</span>), we may ask: What is the probability of observing more than <span class="math inline">\(18\)</span> patients with hepatitis C? Remember that <span class="math inline">\(18\)</span> infections were actually observed. Therefore, we are asking how rare that observation in the case where the Hospital plays no role. That is the probability a more extreme observation under the null hypothesis, or put simply the <span class="math inline">\(pvalue\)</span>. More explicitly the hypothesis contrast is</p>
 <ol style="list-style-type: lower-alpha">
 <li><span class="math inline">\(H_0: p_A \geq 64/600\)</span></li>
 </ol>
@@ -654,26 +693,41 @@ The parameter <span class="math inline">\(p_A\)</span> is the probability of hep
 <p><span class="math inline">\(P(X=x)=P(one\,sample) \times (Number\, of\, ways\, of\, obtaining\, x)\)</span></p>
 <p><span class="math display">\[=\frac{1}{\binom N n}\binom K x \binom {N-K} {n-x}\]</span></p>
 <p><span class="math display">\[X \rightarrow Hypergeometric(N,K,n)\]</span></p>
-<p><img src="_main_files/figure-html/unnamed-chunk-137-1.png" width="672" /></p>
-<p>If the observed value for <span class="math inline">\(x=18\)</span> is a rare <strong>observation</strong> from the null hypothesis, we then reject the null hypothesis.</p>
-<p>The lower tail <span class="math inline">\(pvalue\)</span> for an observation <span class="math inline">\(X=18\)</span> is</p>
+<p><img src="_main_files/figure-html/unnamed-chunk-118-1.png" width="672" /></p>
+<p>If the observed value for <span class="math inline">\(x=18\)</span> is a rare <strong>observation</strong> from the null hypothesis, we then reject the null hypothesis. The lower tail <span class="math inline">\(pvalue\)</span> for an observation <span class="math inline">\(X=18\)</span> is</p>
 <p><span class="math display">\[pvalue=P_{hyper}(X \leq 18) =0.2147683\]</span>
-In R: <code>phyper(18, 64, 536, 200)</code></p>
+In Python</p>
+<pre><code>from scipy.stats import hypergeom
+
+# Calculate the hypergeometric probability
+hypergeom.cdf(18, 600, 64, 200)</code></pre>
 <p>Which is not lower than the significance level <span class="math inline">\(\alpha=0.05\)</span> and therefore we <strong>do not</strong> reject <span class="math inline">\(H_0\)</span> and conclude:</p>
 <ul>
 <li>that the frequency of hepatitis C <strong>is not significantly associated</strong> with the hospital.</li>
 </ul>
-<p>The odds ratio is defined as:</p>
+<p>The <strong>odds ratio</strong> gives us the <strong>strength</strong> of the of the change in the in the infection proportion between hospitals:</p>
 <p><span class="math display">\[OR=\frac{p_A/(1-p_A)}{p_B/(1-p_B)}=0.76\]</span></p>
-<p>It gives the strength of the <strong>observed association</strong> between hospital and disease. We use the <span class="math inline">\(OR\)</span> to distinguish between the different cases</p>
+<p>It is a magnitude of the <strong>observed statistical association</strong> between hospital and disease. We use the <span class="math inline">\(OR\)</span> to distinguish between the different cases</p>
 <ul>
-<li>When <span class="math inline">\(p_A\)</span> is equal to <span class="math inline">\(p_B\)</span> then <span class="math inline">\(OR=1\)</span></li>
+<li>When <span class="math inline">\(p_A\)</span> is equal to <span class="math inline">\(p_B\)</span> then <span class="math inline">\(OR=1\)</span> (idependence of infection and hospital)</li>
 <li>When <span class="math inline">\(p_A\)</span> is lower to <span class="math inline">\(p_B\)</span> then <span class="math inline">\(OR&lt;1\)</span></li>
 <li>When <span class="math inline">\(p_A\)</span> is greater than <span class="math inline">\(p_B\)</span> then <span class="math inline">\(OR&gt;1\)</span></li>
 </ul>
-<p>The way we report the <span class="math inline">\(OR\)</span> in the case of the hospitals is: there was <strong>a decrease</strong> of <span class="math inline">\(24\%\)</span> (<span class="math inline">\(1-0.74\)</span>) in the risk of hepatitis C for hospital <span class="math inline">\(A\)</span> but it was not statistically significant.</p>
+<p>The way we report the <span class="math inline">\(OR\)</span> in the case of the hospitals is: There was <strong>a decrease</strong> of <span class="math inline">\(24\%\)</span> (<span class="math inline">\(1-0.74\)</span>) in the risk of hepatitis C for hospital <span class="math inline">\(A\)</span> in relation to hospital <span class="math inline">\(B\)</span> but it was not statistically significant (<span class="math inline">\(pvalue=0.21\)</span>).</p>
 <p>This is how we compute it:</p>
-<p><code>fisher.test(matrix(c(18, 182, 46, 354), ncol=2), alternative=“less”)</code></p>
+<pre><code>import numpy as np
+from scipy.stats import fisher_exact
+
+# Create the 2x2 contingency table
+observed = np.array([[18, 182], [46, 354]])
+
+# Perform the Fisher&#39;s exact test with &quot;less&quot; alternative hypothesis
+odds_ratio, p_value = fisher_exact(observed, alternative=&quot;less&quot;)
+
+print(f&quot;Odds ratio: {odds_ratio:.4f}&quot;)
+print(f&quot;P-value: {p_value:.4f}&quot;)</code></pre>
+<pre><code>Odds ratio: 0.7611
+P-value: 0.2148</code></pre>
 </div>
 <div id="difference-between-several-proportions" class="section level2 hasAnchor" number="15.9">
 <h2><span class="header-section-number">15.9</span> Difference between several proportions<a href="contingency-tables.html#difference-between-several-proportions" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -701,20 +755,20 @@ In R: <code>phyper(18, 64, 536, 200)</code></p>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="center"><strong>Hepatitis</strong> (yes)</td>
-<td align="center"><span class="math inline">\(18\)</span></td>
-<td align="center"><span class="math inline">\(46\)</span></td>
-<td align="center"><span class="math inline">\(25\)</span></td>
-<td align="center"><span class="math inline">\(15\)</span></td>
-<td align="center"><span class="math inline">\(10\)</span></td>
-</tr>
-<tr class="even">
 <td align="center"><strong>Hepatitis</strong> (no)</td>
 <td align="center"><span class="math inline">\(182\)</span></td>
 <td align="center"><span class="math inline">\(354\)</span></td>
 <td align="center"><span class="math inline">\(375\)</span></td>
 <td align="center"><span class="math inline">\(85\)</span></td>
 <td align="center"><span class="math inline">\(90\)</span></td>
+</tr>
+<tr class="even">
+<td align="center"><strong>Hepatitis</strong> (yes)</td>
+<td align="center"><span class="math inline">\(18\)</span></td>
+<td align="center"><span class="math inline">\(46\)</span></td>
+<td align="center"><span class="math inline">\(25\)</span></td>
+<td align="center"><span class="math inline">\(15\)</span></td>
+<td align="center"><span class="math inline">\(10\)</span></td>
 </tr>
 <tr class="odd">
 <td align="center"><strong>sum</strong></td>
@@ -735,17 +789,28 @@ In R: <code>phyper(18, 64, 536, 200)</code></p>
 <span class="math display">\[w_{obs}=10.381\]</span></p>
 <p>For which we can test how rare an observation is, using a <span class="math inline">\(pvalue\)</span></p>
 <p><span class="math display">\[pvalue=P(W \geq w_{obs}) = 0.03448\]</span>
-in R:
-<code>chisq.test(matrix(c(18, 182, 46, 354, 25, 375, 15, 85, 10, 90), nrow=2))</code></p>
-<p>The <span class="math inline">\(pvalue\)</span> is lower than the significance level <span class="math inline">\(\alpha=0.05\)</span> and therefore we <strong>reject</strong> <span class="math inline">\(H_0\)</span> and conclude that</p>
-<ul>
-<li>The frequency of hepatitis C <strong>is significantly associated</strong> with the hospital.</li>
-</ul>
+These valeus can be obtained in Python with the following code</p>
+<pre><code>import numpy as np
+from scipy.stats import chi2_contingency
+
+# Create the 2x5 contingency table (adjust the data as needed)
+observed = np.array([[18, 46, 25, 15, 10], [182, 354, 375, 85, 90]])
+
+# Perform the chi-squared test
+chi2_stat, p_value, dof, expected = chi2_contingency(observed)
+
+print(f&quot;Chi-squared statistic: {chi2_stat:.4f}&quot;)
+print(f&quot;P-value: {p_value:.4f}&quot;)
+print(f&quot;Degrees of freedom: {dof}&quot;)</code></pre>
+<pre><code>Chi-squared statistic: 10.3809
+P-value: 0.0345</code></pre>
+<p>The <span class="math inline">\(pvalue\)</span> is lower than the significance level <span class="math inline">\(\alpha=0.05\)</span> and therefore we <strong>reject</strong> <span class="math inline">\(H_0\)</span> and conclude that: The frequency of hepatitis C <strong>is significantly associated</strong> with the hospital.</p>
+<p>We can illustrate the result a conditinal frequency table by hospital or with a barplot. We see that Hospital C and D may have too low and too large infection rates</p>
 <pre><code>##    
 ##          A      B      C      D      E
 ##   0 0.9100 0.8850 0.9375 0.8500 0.9000
 ##   1 0.0900 0.1150 0.0625 0.1500 0.1000</code></pre>
-<p><img src="_main_files/figure-html/unnamed-chunk-139-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-120-1.png" width="672" /></p>
 </div>
 <div id="questions-11" class="section level2 hasAnchor" number="15.10">
 <h2><span class="header-section-number">15.10</span> Questions<a href="contingency-tables.html#questions-11" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -777,7 +842,7 @@ in R:
 </div>
 <div id="practice-5" class="section level2 hasAnchor" number="15.11">
 <h2><span class="header-section-number">15.11</span> Practice<a href="contingency-tables.html#practice-5" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Load hospital data (<code>hospital.txt</code>)</p>
+<p>Load hospital data (<code><a href="https://alejandro-isglobal.github.io/SDA/data/hospital.txt" class="uri">https://alejandro-isglobal.github.io/SDA/data/hospital.txt</a></code>)</p>
 <ul>
 <li><p>Test the hypothesis that the infection proportion at hospitals C and D are different. Use a <span class="math inline">\(\chi^2\)</span> test and a exact Fisher test. Interpret the OR.</p></li>
 <li><p>Make a bar plot</p></li>

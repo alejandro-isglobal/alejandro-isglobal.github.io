@@ -1,0 +1,856 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{book}
+\title{EEBE Estadística}
+\author{Alejandro Cáceres (\href{mailto:alejandro.caceres.dominguez@upc.edu}{\nolinkurl{alejandro.caceres.dominguez@upc.edu}})}
+\date{2023-09-11}
+
+\usepackage{amsmath,amssymb}
+\usepackage{lmodern}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  pdftitle={EEBE Estadística},
+  pdfauthor={Alejandro Cáceres (alejandro.caceres.dominguez@upc.edu)},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
+\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{5}
+\usepackage{booktabs}
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\usepackage[]{natbib}
+\bibliographystyle{plainnat}
+
+\begin{document}
+\maketitle
+
+{
+\setcounter{tocdepth}{1}
+\tableofcontents
+}
+\hypertarget{objetivo}{%
+\chapter{Objetivo}\label{objetivo}}
+
+Este es el curso de introducción a la estadística de la EEBE (UPC).
+
+La estadística es un \textbf{lenguaje} que permite afrontar problemas nuevos, sobre los que no tenemos solución, y en donde interviene la \textbf{aleatoridad}.
+
+En este curso trataremos los \textbf{conceptos fundamentales} de estadística.
+
+\begin{itemize}
+\item
+  3 horas de \textbf{teoría} por semana: Explicaremos los conceptos, haremos ejercicios.
+\item
+  6 horas de \textbf{estudio individual} por semana: Notas notas de curso y los recursos en ATENEA.
+\item
+  2 horas de Solución de problemas con \textbf{R}: Sesiones presenciales con ordenador (Prácticas).
+\end{itemize}
+
+Las fechas de exámenes y material de estudio adicional se pueden encontrar en \textbf{ATENEA metacurso}:
+
+\includegraphics{./figures/notas.JPG}
+
+Objetivos de evaluación:
+
+\textbf{Q1} (10\%): Prueba en ordenador duración 2h en las fechas indicadas.
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi}.}
+\tightlist
+\item
+  Dominio de comandos básicos en R (Prácticas)
+\item
+  Capacidad de calcular estadísticos descriptivos y gráficos, en situaciones concretas (Teoría/Práctica)
+\item
+  Conocimiento sobre la regresión lineal (Prácticas)
+\end{enumerate}
+
+\textbf{EP1} (25\%): Prueba escrita (2-3 problemas)
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi}.}
+\tightlist
+\item
+  Capacidad de interpretación de enunciados en fórmulas de probabilidad (Teoría).
+\item
+  Conocimiento de las herramientas básicas para solucionar problemas de probabilidad conjunta y probabilidad condicional (Teoría).
+\item
+  Dominio matemático de funciones de probabilidad para calcular sus propiedades básicas (Teoría).
+\end{enumerate}
+
+\textbf{Q2} (20\%): Prueba en ordenador duración 2h en horario de clase en las fechas indicadas
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi}.}
+\tightlist
+\item
+  Capacidad de identificación de modelos de probabilidad en problemas concretos (Teoría/Práctica).
+\item
+  Uso de funciones de R para calcular probabilidades de modelos probabilísticos (Práctica/Teoría)
+\item
+  Capacidad de identificación de un estadístico de muestreo y sus propiedades (Teoría/Práctica)
+\item
+  Conocimiento de cómo calcular la probabilidad de los estadísticos de muestreo (Teoría/Práctica)
+\item
+  Uso de comandos en R para calcular probabilidades y hacer simulaciones de muestras aleatorias (Prácticas)
+\end{enumerate}
+
+\textbf{EP2} (40\%): Prueba escrita (2-3 problemas)
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi}.}
+\tightlist
+\item
+  Capacidad matemática para determinar estimadores puntuales de modelos de probabilidad.
+\item
+  Conociemiento de las propiedades de los estimadores puntuales.
+\item
+  Conocimiento de los intervalos de confianza y sus propiedades (Teoría).
+\item
+  Capacidad de identificar el tipo de intervalo de confianza en un problema concreto (Teoría).
+\item
+  Capacidad de interpretación del tipo
+  de hipótesis a usar en un problema concreto (Teoría).
+\item
+  Uso de comandos en R para resolver problemas de intervalos de confianza y prueabas de hipótesis (Práctica).
+\end{enumerate}
+
+\textbf{CG} (5\%): Prueba escrita (2 preguntas sobre un texto)
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi}.}
+\tightlist
+\item
+  Capacidad de expresión escrita sobre un tema relacionado a la estadística.
+\end{enumerate}
+
+coordinadores:
+
+\begin{itemize}
+\tightlist
+\item
+  Luis Mujica (\href{mailto:luis.eduardo.mujica@upc.edu}{\nolinkurl{luis.eduardo.mujica@upc.edu}})
+\item
+  Pablo Buenestado (\href{mailto:pablo.buenestado@upc.edu}{\nolinkurl{pablo.buenestado@upc.edu}})
+\end{itemize}
+
+\hypertarget{lectura-recomendada}{%
+\section{Lectura recomendada}\label{lectura-recomendada}}
+
+\begin{itemize}
+\item
+  Los apuntes de clase se nuestra sección estarán accesibles en ATENEA en pdf y en html.
+\item
+  Douglas C. Montgomery and George C. Runger. ``Applied Statistics and Probability for Engineers'' 4th Edition. Wiley 2007.
+\end{itemize}
+
+\hypertarget{descripciuxf3n-de-datos}{%
+\chapter{Descripción de datos}\label{descripciuxf3n-de-datos}}
+
+En este capítulo, presentaremos herramientas para describir datos.
+
+Lo haremos utilizando tablas, figuras y estadísticos descriptivos de tendencia central y dispersión.
+
+También presentaremos conceptos clave en estadística como experimentos aleatorios, observaciones, resultados y frecuencias absolutas y relativas.
+
+\hypertarget{muxe9todo-cientuxedfico}{%
+\section{Método científico}\label{muxe9todo-cientuxedfico}}
+
+Uno de los objetivos del método científico es proporcionar un marco para resolver los problemas que surgen en el estudio de los fenómenos naturales o en el diseño de nuevas tecnologías.
+
+Los humanos modernos han desarrollado un \textbf{método} durante miles de años que todavía está en desarrollo.
+
+El método tiene tres actividades humanas principales:
+
+\begin{itemize}
+\tightlist
+\item
+  \emph{Observación} caracterizada por la adquisición de \textbf{datos}
+\item
+  \emph{Razón} caracterizada por el desarrollo de \textbf{modelos} matemáticos
+\item
+  \emph{Acción} caracterizada por el desarrollo de nuevos \textbf{experimentos} (tecnología)
+\end{itemize}
+
+Su compleja interacción y resultados son la base de la \emph{actividad científica}.
+
+\includegraphics{./figures/stats.JPG}
+
+\hypertarget{estaduxedstica}{%
+\section{Estadística}\label{estaduxedstica}}
+
+La estadística se ocupa de la interacción entre \emph{modelos} y \emph{datos} (la parte inferior de la figura).
+
+Las preguntas de tipo estadístico son:
+
+\begin{itemize}
+\tightlist
+\item
+  ¿Cuál es el mejor modelo para mis datos (inferencia)?
+\item
+  ¿Cuáles son los datos que produciría un determinado modelo (predicción)?
+\end{itemize}
+
+\hypertarget{datos}{%
+\section{Datos}\label{datos}}
+
+Los datos se presentan en forma de observaciones.
+
+Una \textbf{Observación} o \emph{Realización} es la adquisición de un número o una característica de un experimento.
+
+Por ejemplo, tomemos la serie de números que se producen por la repetición de un experimento (1: éxito, 0: fracaso)
+
+\ldots{} 1 0 0 1 0 \textbf{1} 0 1 1 \ldots{}
+
+El número en negrita es \textbf{una observación} en una repetición del experimento
+
+Un \textbf{resultado} es una \textbf{posible} observación que es el resultado de un experimento.
+
+\textbf{1} es un resultado, \textbf{0} es el otro resultado del experimento.
+
+Recuerda que la observación es \textbf{concreta} es el número que obtienes un día en el laboratorio. El resultado \textbf{abstracto} es una de las características del tipo de experimento que estás realizando.
+
+\hypertarget{tipos-de-resultado}{%
+\section{Tipos de resultado}\label{tipos-de-resultado}}
+
+En estadística nos interesan principalmente dos tipos de resultados.
+
+\begin{itemize}
+\item
+  \textbf{Categóricos}: Si el resultado de un experimento es una cualidad. Pueden ser nominales (binario: sí, no; múltiple: colores) u ordinales cuando las cualidades pueden jerarquizarse (gravedad de una enfermedad).
+\item
+  \textbf{Numéricos}: Si el resultado de un experimento es un número. El número puede ser discreto (número de correos electrónicos recibidos en una hora, número de leucocitos en sangre) o continuo (estado de carga de la batería, temperatura del motor).
+\end{itemize}
+
+\hypertarget{experimentos-aleatorios}{%
+\section{Experimentos aleatorios}\label{experimentos-aleatorios}}
+
+Se puede decir que el tema de estudio de la estadística son los experimentos aleatorios, el medio por el cual producimos datos.
+
+\textbf{Definición:}
+
+Un \textbf{experimento aleatorio} es un experimento que da diferentes resultados cuando se repite de la misma manera.
+
+Los experimentos aleatorios son de diferentes tipos, dependiendo de cómo se realicen:
+
+\begin{itemize}
+\tightlist
+\item
+  en el mismo objeto (persona): temperatura, niveles de azúcar.
+\item
+  sobre objetos diferentes pero de la misma medida: el peso de un animal.
+\item
+  sobre eventos: el número de huracanes por año.
+\end{itemize}
+
+\hypertarget{frecuencias-absolutas}{%
+\section{Frecuencias absolutas}\label{frecuencias-absolutas}}
+
+Cuando repetimos un experimento aleatorio con resultados \textbf{categóricos}, registramos una lista de resultados.
+
+Resumimos las observaciones contando cuántas veces vimos un resultado particular.
+
+\textbf{Frecuencia absoluta}:
+
+\[n_i\]
+
+es el número de veces que observamos el resultado \(i\).
+
+\textbf{Ejemplo (leucocitos)}
+
+Extraigamos un leucocito de \textbf{un} donante y anotemos su tipo. Repitamos el experimento \(N=119\) veces.
+
+\begin{verbatim}
+(célula T, célula T, neutrófilo, ..., célula B)
+\end{verbatim}
+
+La segunda \textbf{célula T} en negrita es la segunda observación. La última \textbf{célula B} es la observación número 119.
+
+Podemos listar los \textbf{resultados} (categorías) en una \textbf{tabla de frecuencia}:
+
+\begin{verbatim}
+##      outcome ni
+## 1     T Cell 34
+## 2     B cell 50
+## 3   basophil 20
+## 4   Monocyte  5
+## 5 Neutrophil 10
+\end{verbatim}
+
+De la tabla, podemos decir que, por ejemplo, \(n_1=34\) es el número total de células T observadas en la repetición del experimento. También notamos que el número total de repeticiones \(N=\sum_i n_i=119\).
+
+\hypertarget{frecuencias-relativas}{%
+\section{Frecuencias relativas}\label{frecuencias-relativas}}
+
+También podemos resumir las observaciones calculando la \textbf{proporción} de cuántas veces vimos un resultado en particular.
+
+\[f_i=n_i/N\] donde \(N\) es el número total de observaciones
+
+En nuestro ejemplo se registraron \(n_1=34\) células T, por lo que nos preguntamos por la proporción de células T del total de \(119\). Podemos agregar estas proporciones \(f_i\) en la tabla las frecuencias.
+
+\begin{verbatim}
+##      outcome ni         fi
+## 1     T Cell 34 0.28571429
+## 2     B cell 50 0.42016807
+## 3   basophil 20 0.16806723
+## 4   Monocyte  5 0.04201681
+## 5 Neutrophil 10 0.08403361
+\end{verbatim}
+
+Las frecuencias relativas son \textbf{fundamentales} en estadística. Dan la proporción de un resultado en relación con los otros resultados. Más adelante las entenderemos como las observaciones de las probabilidades.
+
+Para las frecuencias absolutas y relativas tenemos las propiedades
+
+\begin{itemize}
+\tightlist
+\item
+  \(\sum_{i=1..M} n_i = N\)
+\item
+  \(\sum_{i=1..M} f_i = 1\)
+\end{itemize}
+
+donde \(M\) es el número de resultados.
+
+\hypertarget{diagrama-de-barras}{%
+\section{Diagrama de barras}\label{diagrama-de-barras}}
+
+Cuando tenemos muchos resultados y queremos ver cuáles son los más probables, podemos usar un gráfico de barras que es una cifra de \(n_i\) Vs los resultados.
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-3-1.pdf}
+
+\hypertarget{gruxe1fico-de-sectores-pie}{%
+\section{Gráfico de sectores (pie)}\label{gruxe1fico-de-sectores-pie}}
+
+También podemos visualizar las frecuencias relativas con un gráfico de sectores.
+
+El área del círculo representa el 100\% de las observaciones (proporción = 1) y las secciones las frecuencias relativas de cada resultado.
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-4-1.pdf}
+
+\hypertarget{variables-categuxf3ricas-ordinales}{%
+\section{Variables categóricas ordinales}\label{variables-categuxf3ricas-ordinales}}
+
+El tipo de leucocito de los ejemplos anteriores es una variable nominal \textbf{categórica}. Cada observación pertenece a una categoría (cualidad). Las categorías no siempre tienen un orden determindado.
+
+A veces, las variables \textbf{categóricas} se pueden \textbf{ordenar} cuando cumplen una clasificación natural. Esto permite introducir \textbf{frecuencias acumulativas}.
+
+\textbf{Ejemplo (misofonía)}
+
+Este es un estudio clínico en 123 pacientes que fueron examinados por su grado de misofonía. La misofnía es ansiedad/ira descontrolada producida por ciertos sonidos.
+
+Cada paciente fue evaluado con un cuestionario (AMISO) y se clasificaron en 4 grupos diferentes según la gravedad.
+
+Los resultados del estudio son
+
+\begin{verbatim}
+##   [1] 4 2 0 3 0 0 2 3 0 3 0 2 2 0 2 0 0 3 3 0 3 3 2 0 0 0 4 2 2 0 2 0 0 0 3 0 2
+##  [38] 3 2 2 0 2 3 0 0 2 2 3 3 0 0 4 3 3 2 0 2 0 0 0 2 2 0 0 2 3 0 1 3 2 4 3 2 3
+##  [75] 0 2 3 2 4 1 2 0 2 0 2 0 2 2 4 3 0 3 0 0 0 2 2 1 3 0 0 3 2 1 3 0 4 4 2 3 3
+## [112] 3 0 3 2 1 2 3 3 4 2 3 2
+\end{verbatim}
+
+Cada observación es el resultado de un experimento aleatorio: medición del nivel de misofonía en un paciente. Esta serie de datos se puede resumir en términos de los resultados en la tabla de frecuencia
+
+\begin{verbatim}
+##   outcome ni         fi
+## 1       0 41 0.33333333
+## 2       1  5 0.04065041
+## 3       2 37 0.30081301
+## 4       3 31 0.25203252
+## 5       4  9 0.07317073
+\end{verbatim}
+
+\hypertarget{frecuencias-acumuladas-absolutas-y-relativas}{%
+\section{Frecuencias acumuladas absolutas y relativas}\label{frecuencias-acumuladas-absolutas-y-relativas}}
+
+La gravedad de la misofonía es \textbf{categórica} \textbf{ordinal} porque sus resultados pueden ordenarse en relación con su grado.
+
+Cuando los resultados se pueden ordenar, es útil preguntar cuántas observaciones se obtuvieron hasta un resultado dado. Llamamos a este número la \textbf{frecuencia acumulada absoluta} hasta el resultado \(i\):
+\[N_i=\sum_{k=1..i} n_k\]
+También es útil para calcular la \textbf{proporción} de las observaciones que se obtuvo hasta un resultado dado
+
+\[F_i=\sum_{k=1..i} f_k\]
+
+Podemos agregar estas frecuencias en la \textbf{tabla de frecuencias}
+
+\begin{verbatim}
+##   outcome ni         fi  Ni        Fi
+## 0       0 41 0.33333333  41 0.3333333
+## 1       1  5 0.04065041  46 0.3739837
+## 2       2 37 0.30081301  83 0.6747967
+## 3       3 31 0.25203252 114 0.9268293
+## 4       4  9 0.07317073 123 1.0000000
+\end{verbatim}
+
+Por lo tanto, el \textbf{67 \%} de los pacientes tenían misofonía hasta la gravedad \textbf{2} y el \textbf{37 \%} de los pacientes tenían una gravedad inferior o igual a \textbf{1}.
+
+\hypertarget{gruxe1fica-de-frecuencia-acumulada}{%
+\section{Gráfica de frecuencia acumulada}\label{gruxe1fica-de-frecuencia-acumulada}}
+
+\(F_i\) es una cantidad importante porque nos permite definir la acumulación de probabilidades hasta niveles intermedios.
+
+La probabilidad de un nivel intermedio \(x\) (\(i\leq x< i+1\)) es solo la acumulación hasta el nivel inferior \(F_x=F_i\).
+
+\(F_x\) es por lo tanto una función de rango \textbf{continuo}. Podemos dibujarla con respecto a los resultados.
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-8-1.pdf}
+
+Por lo tanto, podemos decir que el \textbf{67 \%} de los pacientes tenían misofonía hasta gravedad \(2.3\), aunque \(2.3\) no es un resultado observado.
+
+\hypertarget{variables-numuxe9ricas}{%
+\section{Variables numéricas}\label{variables-numuxe9ricas}}
+
+El resultado de un experimento aleatorio puede producir un número. Si el número es \textbf{discreto}, podemos generar una tabla de frecuencias, con frecuencias absolutas, relativas y acumulativas, e ilustrarlas con gráficos de barras, de sectores y acumulativos.
+
+Cuando el número es \textbf{continuo} las frecuencias no son útiles, lo más probable es que observemos o no un número contínuo en particular.
+
+\textbf{Ejemplo (misofonía)}
+
+Los investigadores se preguntaron si la convexidad de la mandíbula afectaría la gravedad de la misofonía. La hipótesis científica es que el ángulo de convexidad de la mandíbula puede influir en el oído y su sensibilidad. Estos son los resultados de la convexidad de la mandíbula (grados) para cada paciente:
+
+\begin{verbatim}
+##   [1]  7.97 18.23 12.27  7.81  9.81 13.50 19.30  7.70 12.30  7.90 12.60 19.00
+##  [13]  7.27 14.00  5.40  8.00 11.20  7.75  7.94 16.69  7.62  7.02  7.00 19.20
+##  [25]  7.96 14.70  7.24  7.80  7.90  4.70  4.40 14.00 14.40 16.00  1.40  9.76
+##  [37]  7.90  7.90  7.40  6.30  7.76  7.30  7.00 11.23 16.00  7.90  7.29  6.91
+##  [49]  7.10 13.40 11.60 -1.00  6.00  7.82  4.80 11.00  9.00 11.50 16.00 15.00
+##  [61]  1.40 16.80  7.70 16.14  7.12 -1.00 17.00  9.26 18.70  3.40 21.30  7.50
+##  [73]  6.03  7.50 19.00 19.01  8.10  7.80  6.10 15.26  7.95 18.00  4.60 15.00
+##  [85]  7.50  8.00 16.80  8.54  7.00 18.30  7.80 16.00 14.00 12.30 11.40  8.50
+##  [97]  7.00  7.96 17.60 10.00  3.50  6.70 17.00 20.26  6.64  1.80  7.02  2.46
+## [109] 19.00 17.86  6.10  6.64 12.00  6.60  8.70 14.05  7.20 19.70  7.70  6.02
+## [121]  2.50 19.00  6.80
+\end{verbatim}
+
+\hypertarget{transformando-datos-continuos}{%
+\section{Transformando datos continuos}\label{transformando-datos-continuos}}
+
+Como los resultados continuos no se pueden contar (de manera informativa), los transformamos en variables categóricas ordenadas.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\tightlist
+\item
+  Primero cubrimos el rango de las observaciones en intervalos regulares del mismo tamaño (contenedores)
+\end{enumerate}
+
+\begin{verbatim}
+## [1] "[-1.02,3.46]" "(3.46,7.92]"  "(7.92,12.4]"  "(12.4,16.8]"  "(16.8,21.3]"
+\end{verbatim}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  Luego mapeamos cada observación a su intervalo: creando una variable categórica \textbf{ordenada}; en este caso con 5 resultados posibles
+\end{enumerate}
+
+\begin{verbatim}
+##   [1] "(7.92,12.4]"  "(16.8,21.3]"  "(7.92,12.4]"  "(3.46,7.92]"  "(7.92,12.4]" 
+##   [6] "(12.4,16.8]"  "(16.8,21.3]"  "(3.46,7.92]"  "(7.92,12.4]"  "(3.46,7.92]" 
+##  [11] "(12.4,16.8]"  "(16.8,21.3]"  "(3.46,7.92]"  "(12.4,16.8]"  "(3.46,7.92]" 
+##  [16] "(7.92,12.4]"  "(7.92,12.4]"  "(3.46,7.92]"  "(7.92,12.4]"  "(12.4,16.8]" 
+##  [21] "(3.46,7.92]"  "(3.46,7.92]"  "(3.46,7.92]"  "(16.8,21.3]"  "(7.92,12.4]" 
+##  [26] "(12.4,16.8]"  "(3.46,7.92]"  "(3.46,7.92]"  "(3.46,7.92]"  "(3.46,7.92]" 
+##  [31] "(3.46,7.92]"  "(12.4,16.8]"  "(12.4,16.8]"  "(12.4,16.8]"  "[-1.02,3.46]"
+##  [36] "(7.92,12.4]"  "(3.46,7.92]"  "(3.46,7.92]"  "(3.46,7.92]"  "(3.46,7.92]" 
+##  [41] "(3.46,7.92]"  "(3.46,7.92]"  "(3.46,7.92]"  "(7.92,12.4]"  "(12.4,16.8]" 
+##  [46] "(3.46,7.92]"  "(3.46,7.92]"  "(3.46,7.92]"  "(3.46,7.92]"  "(12.4,16.8]" 
+##  [51] "(7.92,12.4]"  "[-1.02,3.46]" "(3.46,7.92]"  "(3.46,7.92]"  "(3.46,7.92]" 
+##  [56] "(7.92,12.4]"  "(7.92,12.4]"  "(7.92,12.4]"  "(12.4,16.8]"  "(12.4,16.8]" 
+##  [61] "[-1.02,3.46]" "(12.4,16.8]"  "(3.46,7.92]"  "(12.4,16.8]"  "(3.46,7.92]" 
+##  [66] "[-1.02,3.46]" "(16.8,21.3]"  "(7.92,12.4]"  "(16.8,21.3]"  "[-1.02,3.46]"
+##  [71] "(16.8,21.3]"  "(3.46,7.92]"  "(3.46,7.92]"  "(3.46,7.92]"  "(16.8,21.3]" 
+##  [76] "(16.8,21.3]"  "(7.92,12.4]"  "(3.46,7.92]"  "(3.46,7.92]"  "(12.4,16.8]" 
+##  [81] "(7.92,12.4]"  "(16.8,21.3]"  "(3.46,7.92]"  "(12.4,16.8]"  "(3.46,7.92]" 
+##  [86] "(7.92,12.4]"  "(12.4,16.8]"  "(7.92,12.4]"  "(3.46,7.92]"  "(16.8,21.3]" 
+##  [91] "(3.46,7.92]"  "(12.4,16.8]"  "(12.4,16.8]"  "(7.92,12.4]"  "(7.92,12.4]" 
+##  [96] "(7.92,12.4]"  "(3.46,7.92]"  "(7.92,12.4]"  "(16.8,21.3]"  "(7.92,12.4]" 
+## [101] "(3.46,7.92]"  "(3.46,7.92]"  "(16.8,21.3]"  "(16.8,21.3]"  "(3.46,7.92]" 
+## [106] "[-1.02,3.46]" "(3.46,7.92]"  "[-1.02,3.46]" "(16.8,21.3]"  "(16.8,21.3]" 
+## [111] "(3.46,7.92]"  "(3.46,7.92]"  "(7.92,12.4]"  "(3.46,7.92]"  "(7.92,12.4]" 
+## [116] "(12.4,16.8]"  "(3.46,7.92]"  "(16.8,21.3]"  "(3.46,7.92]"  "(3.46,7.92]" 
+## [121] "[-1.02,3.46]" "(16.8,21.3]"  "(3.46,7.92]"
+\end{verbatim}
+
+Por tanto, en lugar de decir que el primer paciente tenía un ángulo de convexidad de \(7.97\), decimos que su ángulo estaba entre el intervalo (o \textbf{bin}) \((7.92,12.4]\).
+
+Ningún otro paciente tenía un ángulo de \(7.97\), pero muchos tenían ángulos entre \((7.92,12.4]\).
+
+\hypertarget{tabla-de-frecuencias-para-una-variable-continua}{%
+\section{Tabla de frecuencias para una variable continua}\label{tabla-de-frecuencias-para-una-variable-continua}}
+
+Para una partición regular dada del intervalo de resultados en intervalos, podemos producir una tabla de frecuencias como antes
+
+\begin{verbatim}
+##        outcome ni         fi  Ni         Fi
+## 1 [-1.02,3.46]  8 0.06504065   8 0.06504065
+## 2  (3.46,7.92] 51 0.41463415  59 0.47967480
+## 3  (7.92,12.4] 26 0.21138211  85 0.69105691
+## 4  (12.4,16.8] 20 0.16260163 105 0.85365854
+## 5  (16.8,21.3] 18 0.14634146 123 1.00000000
+\end{verbatim}
+
+\hypertarget{histograma}{%
+\section{Histograma}\label{histograma}}
+
+El histograma es la gráfica de \(n_i\) o \(f_i\) Vs los resultados en intervalos (bins). El histograma depende del tamaño de los bins.
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-13-1.pdf}
+
+Este es un histograma con 20 bins.
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-14-1.pdf}
+
+Vemos que la mayoría de las personas tienen ángulos dentro de \((7, 8]\)
+
+\hypertarget{gruxe1fica-de-frecuencia-acumulada-1}{%
+\section{Gráfica de frecuencia acumulada}\label{gruxe1fica-de-frecuencia-acumulada-1}}
+
+También podemos graficar \(F_x\) contra los resultados. Como \(F_x\) es de rango continuo, podemos ordenar las observaciones (\(x_1 <... x_j < x_{j+1} < x_n\)) y por lo tanto
+
+\[F_x = \frac{k}{n}\]
+
+para \(x_{k} \leq x < x_{k+1}\).
+
+\(F_x\) se conoce como la \textbf{distribución} de los datos. \(F_x\) no depende del tamaño del bin. Sin embargo, su \textbf{resolución} depende de la cantidad de datos.
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-15-1.pdf}
+
+\hypertarget{estaduxedsticas-de-resumen}{%
+\section{Estadísticas de resumen}\label{estaduxedsticas-de-resumen}}
+
+Las estadísticas de resumen son números calculados a partir de los datos que nos dicen características importantes de las variables numéricas (discretas o continuas).
+
+Por ejemplo, tenemos estadísticas que describen los valores extremos:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{mínimo}: el resultado mínimo observado
+\item
+  \textbf{máximo}: el resultado máximo observado
+\end{itemize}
+
+\hypertarget{promedio-media-muestral}{%
+\section{Promedio (media muestral)}\label{promedio-media-muestral}}
+
+Una estadística importante que describe el valor central de los resultados (dónde esperar la mayoría de las observaciones) es el \textbf{promedio}
+
+\[\bar{x}=\frac{1}{N} \sum_{j=1..N} x_j\]
+
+donde \(x_j\) es la \textbf{observación} \(j\) de un total de \(N\).
+
+\textbf{Ejemplo (Misofonía)}
+
+La convexidad promedio se puede calcular directamente a partir de las \textbf{observaciones}
+
+\(\bar{x}= \frac{1}{N}\sum_j x_j\)
+
+\(= \frac{1}{N}(7.97 + 18.23 + 12.27... + 6.80) = 10.19894\)
+
+Para variables \textbf{categóricamente ordenadas}, podemos usar las frecuencias relativas para calcular el promedio
+
+\(\bar{x}=\frac{1}{N}\sum_{i=1...N} x_j=\frac{1}{N}\sum_{i=1...M} x_i*n_ {i}\)
+\[=\sum_{i=1...M} x_i*f_{i}\]
+
+donde pasamos de sumar \(N\) \textbf{observaciones} a sumar \(M\) \textbf{resultados}.
+
+La forma \(\bar{x}= \sum_{i = 1...M} x_i f_i\) muestra que el promedio es el \textbf{centro de gravedad} de los resultados. Como si cada resultado tuviera una densidad de masa dada por \(f_i\).
+
+\textbf{Ejemplo (Misofonía)}
+
+La \textbf{severidad} promedio de la misofonía en el estudio se puede calcular a partir de las frecuencias relativas de los \textbf{resultados}
+
+\begin{verbatim}
+##   outcome ni         fi
+## 1       0 41 0.33333333
+## 2       1  5 0.04065041
+## 3       2 37 0.30081301
+## 4       3 31 0.25203252
+## 5       4  9 0.07317073
+\end{verbatim}
+
+\(\bar{x}=0*f_{0}+1*f_{1}+2*f_{2}+3*f_{3}+4*f_{4}=1.691057\)
+
+\hypertarget{promedio}{%
+\section{Promedio}\label{promedio}}
+
+El promedio es también el centro de gravedad de las variables continuas. Ese es el punto donde las frecuencias reativas se equilibran.
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-17-1.pdf}
+
+\hypertarget{mediana}{%
+\section{mediana}\label{mediana}}
+
+Otra medida de centralidad es la mediana. La mediana \(x_m\), o \(q_{0.5}\), es el valor por debajo del cual encontramos la mitad de las observaciones. Cuando ordenamos las observaciones \(x_1 <... x_j < x_{j+1} < x_N\), las contamos hasta encontrar la mitad de ellas. \(x_m\) es tal que
+
+\[\sum_{i\leq m} 1 = \frac{N}{2}\]
+\textbf{Ejemplo (Misofonía)}
+
+Si ordenamos los ángulos de convexidad, vemos que \(62\) observaciones (individuos) (\(N/2 \sim 123/2\)) están por debajo de \(7.96\). La \textbf{convexidad mediana} es por lo tanto \(q_{0.5}=x_{62}=7.96\)
+
+\begin{verbatim}
+##  [1] -1.00 -1.00  1.40  1.40  1.80  2.46  2.50  3.40  3.50  4.40  4.60  4.70
+## [13]  4.80  5.40  6.00  6.02  6.03  6.10  6.10  6.30  6.60  6.64  6.64  6.70
+## [25]  6.80  6.91  7.00  7.00  7.00  7.00  7.02  7.02  7.10  7.12  7.20  7.24
+## [37]  7.27  7.29  7.30  7.40  7.50  7.50  7.50  7.62  7.70  7.70  7.70  7.75
+## [49]  7.76  7.80  7.80  7.80  7.81  7.82  7.90  7.90  7.90  7.90  7.90  7.94
+## [61]  7.95  7.96
+\end{verbatim}
+
+\begin{verbatim}
+##  [1]  7.96  7.97  8.00  8.00  8.10  8.50  8.54  8.70  9.00  9.26  9.76  9.81
+## [13] 10.00 11.00 11.20 11.23 11.40 11.50 11.60 12.00 12.27 12.30 12.30 12.60
+## [25] 13.40 13.50 14.00 14.00 14.00 14.05 14.40 14.70 15.00 15.00 15.26 16.00
+## [37] 16.00 16.00 16.00 16.14 16.69 16.80 16.80 17.00 17.00 17.60 17.86 18.00
+## [49] 18.23 18.30 18.70 19.00 19.00 19.00 19.00 19.01 19.20 19.30 19.70 20.26
+## [61] 21.30
+\end{verbatim}
+
+\begin{verbatim}
+## [1] 7.96
+\end{verbatim}
+
+En términos de frecuencias, \(q_{0.5}\) hace que la frecuencia acumulada \(F_x\) sea igual a \(0.5\)
+
+\[\sum_{i = 0, ... m} f_i =F_{q_{0.5}}=0.5\]
+o
+
+\[q_{0.5}=F^{-1}(0.5)\]
+
+En el gráfico de distribución, la mediana es el valor de \(x\) en el que se encuentra la mitad del máximo de \(F\).
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-20-1.pdf}
+
+El promedio y la mediana no siempre son iguales.
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-21-1.pdf}
+
+\hypertarget{dispersiuxf3n}{%
+\section{Dispersión}\label{dispersiuxf3n}}
+
+Otras estadísticas de resumen importantes de las observaciones son las de \textbf{dispersión}.
+
+Muchos experimentos pueden compartir su media, pero difieren en cuán \textbf{dispersos} son los valores.
+
+La dispersión de las observaciones es una medida del \textbf{ruido}.
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-22-1.pdf} \includegraphics{_main_files/figure-latex/unnamed-chunk-22-2.pdf}
+
+\hypertarget{variaciuxf3n-de-la-muestra}{%
+\section{Variación de la muestra}\label{variaciuxf3n-de-la-muestra}}
+
+La dispersión sobre la media se mide con la varianza muestral
+
+\[s^2=\frac{1}{N-1} \sum_{j=1..N} (x_j-\bar{x})^2\]
+
+Este número, mide la distancia cuadrada promedio de las \textbf{observaciones} al promedio. La razón de \(N-1\) se explicará cuando hablemos de inferencia, cuando estudiemos la dispersión de \(\bar{x}\), además de la dispersión de las observaciones.
+
+En términos de las frecuencias de las variables \textbf{categóricas y ordenadas}
+
+\[s^2=\frac{N}{N-1} \sum_{i=1... M} (x_i-\bar{x})^2 f_i\]
+
+\(s^2\) se puede considerar como el \textbf{momento de inercia} de las observaciones.
+
+La raíz cuadrada de la varianza de la muestra se denomina \textbf{desviación estándar} \(s\).
+
+\textbf{Ejemplo (Misofonía)}
+
+La desviación estándar del ángulo de convexidad es
+
+\(s= [\frac{1}{123-1}((7.97-10.19894)^2+ (18.23-10.19894)^2\)
+\(+ (12.27-10.19894)^2 + ...)]^{1/2} = 5.086707\)
+
+La convexidad de la mandíbula se desvía de su media en \(5.086707\).
+
+\hypertarget{rango-intercuartuxedlico-iqr}{%
+\section{Rango intercuartílico (IQR)}\label{rango-intercuartuxedlico-iqr}}
+
+La dispersión de los datos también se puede medir con respecto a la mediana usando el \textbf{rango intercuartílico}:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\tightlist
+\item
+  Definimos el \textbf{primer} cuartil como el valor \(x_m\) que hace que la frecuencia acumulada \(F_{q_{0.25}}\) sea igual a \(0.25\) (\(x\) donde hemos acumulado una cuarta parte de las observaciones)
+\end{enumerate}
+
+\[F_{q_{0.25}}=0.25\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\tightlist
+\item
+  Definimos el \textbf{tercer} cuartil como el valor \(x_m\) que hace que la frecuencia acumulada \(F_{q_{0.75}}\) sea igual a \(0.75\) (\(x\) donde hemos acumulado tres cuartos de observaciones)
+\end{enumerate}
+
+\[F_{q_{0.75}}=0.75\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  El \textbf{rango intercuartílico} (IQR) es \(IQR=q_{0.75} - q_{0.25}\). Esa es la distancia entre el tercer y el primer cuartil y captura el \(50\%\) central de las observaciones
+\end{enumerate}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-23-1.pdf}
+
+\hypertarget{diagrama-de-caja}{%
+\section{Diagrama de caja}\label{diagrama-de-caja}}
+
+El rango intercuartílico, la mediana y los \(5\%\) y \(95\%\) de los datos se pueden visualizar en un \textbf{diagrama de caja}.
+
+En el diagrama de caja, los valores de los resultados están en el eje y. El IQR es la caja, la mediana es la línea del medio y los bigotes marcan los \(5\%\) y \(95\%\) de los datos.
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-24-1.pdf}
+
+\hypertarget{preguntas}{%
+\section{Preguntas}\label{preguntas}}
+
+\textbf{1)} En el siguiente diagrama de caja, el primer cuartil y el segundo cuartil de los datos son:
+
+\textbf{\(\qquad\)a:} \((-1.00, 21.30)\); \textbf{\(\qquad\)b:} \((-1.00, 7.02)\); \textbf{\(\qquad\)c:} \((7.02, 7.96)\); \textbf{\(\qquad\)d:} \((7.02, 14.22)\)
+
+\includegraphics{./figures/box.png}
+
+\textbf{2)} La principal desventaja de un histograma es que:
+
+\textbf{\(\qquad\)a:} Depende del tamaño del bin; \textbf{\(\qquad\)b:} No se puede utilizar para variables categóricas;
+\textbf{\(\qquad\)c:} No se puede usar cuando el tamaño del bin es pequeño;
+\textbf{\(\qquad\)d:} Se usa solo para frecuencias relativas;
+
+\textbf{3)} Si las frecuencias acumuladas relativas de un experimento aleatorio con resultados \(\{1,2,3,4\}\) son: \(F(1)=0.15, \qquad F(2)=0.60, \qquad F(3)=0.85, \qquad F(4)=1\).
+
+Entonces la frecuencia relativa para el resultado \(3\) es
+
+\textbf{\(\qquad\)a:} \(0.15\); \textbf{\(\qquad\)b:} \(0.85\); \textbf{\(\qquad\)c:} \(0.45\); \textbf{\(\qquad\)d:} \(0.25\)
+
+\textbf{4)} En una muestra de tamaño \(10\) de un experimento aleatorio obtuvimos los siguientes datos:
+
+\(8,\qquad 3,\qquad 3,\qquad 7,\qquad 3,\qquad 6,\qquad 5,\qquad 10,\qquad 3,\qquad 8\).
+
+El primer cuartil de los datos es:
+
+\textbf{\(\qquad\)a:} \(3.5\); \textbf{\(\qquad\)b:} \(4\); \textbf{\(\qquad\)c:} \(5\); \textbf{\(\qquad\)d:} \(3\)
+
+\textbf{5)} Imaginemos que recopilamos datos para dos cantidades que no son mutuamente excluyentes, por ejemplo, el sexo y la nacionalidad de los pasajeros de un vuelo. Si queremos hacer un solo gráfico circular para los datos, ¿cuál de estas afirmaciones es verdadera?
+
+\textbf{\(\qquad\)a:} Solo podemos hacer un gráfico circular de nacionalidad porque tiene más de dos resultados posibles; \textbf{\(\qquad\)b:} Podemos hacer un gráfico circular para una variable nueva que marca el sexo \textbf{y} la nacionalidad; \textbf{\(\qquad\)c:} Podemos hacer un gráfico circular para la variale sexo o la variable nacionalidad; \textbf{\(\qquad\)d:} Solo podemos elegir si hacemos un gráfico circular para el sexo o un gráfico circular para la nacionalidad.
+
+\hypertarget{ejercicios}{%
+\section{Ejercicios}\label{ejercicios}}
+
+\hypertarget{ejercicio-1}{%
+\subsubsection{Ejercicio 1}\label{ejercicio-1}}
+
+Hemos realizado un experimento 8 veces con los siguientes resultados
+
+\begin{verbatim}
+## [1]  3  3 10  2  6 11  5  4
+\end{verbatim}
+
+Responde las siguientes cuestiones:
+
+\begin{itemize}
+\tightlist
+\item
+  Calcula las frecuencias relativas de cada resultado.
+\item
+  Calcula las frecuencias acumuladas de cada resultado.
+\item
+  ¿Cuál es el promedio de las observaciones?
+\item
+  ¿Cuál es la mediana?
+\item
+  ¿Cuál es el tercer cuartil?
+\item
+  ¿Cuál es el primer cuartil?
+\end{itemize}
+
+\hypertarget{ejercicio-2}{%
+\subsubsection{Ejercicio 2}\label{ejercicio-2}}
+
+Hemos realizado un experimento 10 veces con los siguientes resultados
+
+\begin{verbatim}
+##  [1] 2.875775 7.883051 4.089769 8.830174 9.404673 0.455565 5.281055 8.924190
+##  [9] 5.514350 4.566147
+\end{verbatim}
+
+Considera 10 bins de tamaño 1: {[}0,1{]}, (1,2{]}\ldots(9,10).
+
+Responde las siguientes cuestiones:
+
+\begin{itemize}
+\item
+  Calcula las frecuencias relativas de cada resultado y dibuja el histograma
+\item
+  Calcula las frecuencias acumulativas de cada resultado y dibuja la gráfica acumulativa.
+\item
+  Dibuja un diagrama de caja .
+\end{itemize}
+
+  \bibliography{book.bib,packages.bib}
+
+\end{document}

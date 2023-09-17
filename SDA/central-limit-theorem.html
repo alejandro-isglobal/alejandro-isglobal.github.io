@@ -23,7 +23,7 @@
 <meta name="author" content="Alejandro Caceres" />
 
 
-<meta name="date" content="2023-09-04" />
+<meta name="date" content="2023-09-17" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -571,29 +571,39 @@ the standardized statistic</p>
 <p><span class="math display">\[Z=\frac{\bar{X}-\lambda}{\sqrt{\frac{1}{n\lambda^2}}}\]</span></p>
 <p>is a standard normal variable and: <span class="math inline">\(\bar{X} \sim_{aprox} N(\lambda, \frac{1}{n\lambda^2})\)</span></p>
 <p>The margin of error at <span class="math inline">\(5\%\)</span> level can be computed again with the standard distribution</p>
-<p><span class="math display">\[m=\phi^{-1}(0.75) \sqrt{\frac{V(X)}{n}}=1.96\sqrt{\frac{0.25}{30}}=0.1789227\]</span></p>
-<p>We can expect <span class="math inline">\(95%\)</span> of the averages of <span class="math inline">\(30\)</span> patient samples to fall between
+<p><span class="math display">\[m=\phi^{-1}(0.975) \sqrt{\frac{V(X)}{n}}=1.96\sqrt{\frac{0.25}{30}}=0.1789227\]</span></p>
+<p>We can expect <span class="math inline">\(95\%\)</span> of the averages of <span class="math inline">\(30\)</span> patient samples to fall between
 <span class="math inline">\((0.5-0.178, 0.5+0.178)= (0.322, 0.678)\)</span></p>
 <p><img src="_main_files/figure-html/unnamed-chunk-81-1.png" width="672" /></p>
 </div>
 <div id="sample-sum-and-clt" class="section level2 hasAnchor" number="11.5">
 <h2><span class="header-section-number">11.5</span> Sample sum and CLT<a href="central-limit-theorem.html#sample-sum-and-clt" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>For any random variable <span class="math inline">\(X\)</span> with <strong>unknown</strong> (any type of) distribution</p>
+<p>The <strong>sample sum</strong> is the <strong>statistic</strong></p>
+<p><span class="math display">\[Y=X_1+X_2+...X_n=\sum_{i=1}^n X_i=n \bar{X}\]</span></p>
+<p>with</p>
+<ol style="list-style-type: decimal">
+<li>mean <span class="math display">\[E(Y)=n\mu\]</span></li>
+<li>variance <span class="math display">\[V(Y)=nV(X)=n^2V(\bar{X})\]</span></li>
+</ol>
+<p>The CLT tells us that for any random variable <span class="math inline">\(X\)</span> with <strong>unknown</strong> (any type of) distribution</p>
 <p><span class="math display">\[X \rightarrow f(x; \theta)\]</span></p>
 <p>the standardized statistic</p>
-<p><span class="math display">\[Z=\frac{\bar{X}-E(\bar{X})}{\sqrt{V(\bar{X})}}=\frac{n\bar{X}-nE(\bar{X})}{\sqrt{nV(\bar{X})}}\]</span></p>
+<p><span class="math display">\[Z=\frac{\bar{X}-E(\bar{X})}{\sqrt{V(\bar{X})}}\]</span></p>
 <p>approximates to a standard distribution</p>
-<p><span class="math display">\[Z \rightarrow_d N(0,1)\]</span> when <span class="math inline">\(n\rightarrow \infty\)</span></p>
+<p><span class="math display">\[Z \rightarrow_d N(0,1)\]</span> when <span class="math inline">\(n\rightarrow \infty\)</span>. <span class="math inline">\(Z\)</span> can also be written as</p>
+<p><span class="math display">\[Z=\frac{n\bar{X}-nE(\bar{X})}{\sqrt{n^2V(\bar{X})}}=\frac{Y-E(Y)}{\sqrt{V(Y)}}\]</span></p>
 <p><strong>Consequence:</strong> We can compute probabilities for the sample sum <span class="math inline">\(Y=n\bar{X}\)</span> if <span class="math inline">\(n\)</span> is large, using the normal distribution:</p>
-<p><span class="math display">\[\bar{Y} \sim_{aprox}  N(nE(X), nV(X))\]</span></p>
+<p><span class="math display">\[Y \sim_{aprox}  N(nE(X), nV(X))\]</span></p>
 <p><strong>Example (Bernoulli trial)</strong></p>
 <p>For the Bernoulli trial <span class="math inline">\(X \rightarrow Bernoulli(p)\)</span>, the average of a <span class="math inline">\(n\)</span> sample of Bernoulli trials is <span class="math inline">\(\bar{X}=\sum_i^n X_i\)</span>. Therefore</p>
 <p><span class="math display">\[Z=\frac{\bar{X}-p}{\sqrt{\frac{p(1-p)}{n}}}\]</span>
 is standard normal, because <span class="math inline">\(E(\bar{X})=p\)</span> and <span class="math inline">\(V(\bar{X})=\frac{p(1-p)}{n}\)</span>.</p>
 <p>Now, the sample sum <span class="math inline">\(Y=n\bar{X}\)</span> is a random variable that counts the number of events with probability <span class="math inline">\(p\)</span> in a repetition of <span class="math inline">\(n\)</span> trials, therefore
-<span class="math display">\[Y \rightarrow Binom(n, p)\]</span></p>
-<p>Using the CLT, we can proximate the Binomial probability mass function with the normal probability density when <span class="math inline">\(n\)</span> is big</p>
-<p><span class="math display">\[\bar{Y} \rightarrow  Binom(n, p) \sim_{aprox}  N(np, np(1-p))\]</span></p>
+<span class="math display">\[Y \rightarrow Binom(n, p)\]</span>
+With mean <span class="math inline">\(E(Y)=np\)</span> and variance <span class="math inline">\(V(Y)=np(1-p)\)</span>. Since we can write
+<span class="math display">\[Z=\frac{Y-np}{\sqrt{np(1-p)}}\]</span>
+then using the CLT, we can proximate the Binomial probability mass function with the normal probability density when <span class="math inline">\(n\)</span> is big</p>
+<p><span class="math display">\[Y \rightarrow  Binom(n, p) \sim_{aprox}  N(np, np(1-p))\]</span></p>
 <p>This approximation is good when both <span class="math inline">\(np\)</span> and <span class="math inline">\(n(1-p)\)</span> are greater than <span class="math inline">\(5\)</span>.</p>
 </div>
 <div id="questions-8" class="section level2 hasAnchor" number="11.6">

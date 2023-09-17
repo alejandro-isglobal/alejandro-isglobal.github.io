@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 3 Probabilidad | EEBE Estadística</title>
+  <meta name="description" content="EEBE" />
+  <meta name="generator" content="bookdown 0.34 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 3 Probabilidad | EEBE Estadística" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="EEBE" />
+  <meta name="github-repo" content="alejandro-isglobal/master" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 3 Probabilidad | EEBE Estadística" />
+  
+  <meta name="twitter:description" content="EEBE" />
+  
+
+<meta name="author" content="Alejandro Cáceres (alejandro.caceres.dominguez@upc.edu)" />
+
+
+<meta name="date" content="2023-09-17" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="descripción-de-datos.html"/>
+
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Estadística EEBE</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Objetivo</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#lectura-recomendada"><i class="fa fa-check"></i><b>1.1</b> Lectura recomendada</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="descripción-de-datos.html"><a href="descripción-de-datos.html"><i class="fa fa-check"></i><b>2</b> Descripción de datos</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="descripción-de-datos.html"><a href="descripción-de-datos.html#método-científico"><i class="fa fa-check"></i><b>2.1</b> Método científico</a></li>
+<li class="chapter" data-level="2.2" data-path="descripción-de-datos.html"><a href="descripción-de-datos.html#estadística"><i class="fa fa-check"></i><b>2.2</b> Estadística</a></li>
+<li class="chapter" data-level="2.3" data-path="descripción-de-datos.html"><a href="descripción-de-datos.html#datos"><i class="fa fa-check"></i><b>2.3</b> Datos</a></li>
+<li class="chapter" data-level="2.4" data-path="descripción-de-datos.html"><a href="descripción-de-datos.html#tipos-de-resultado"><i class="fa fa-check"></i><b>2.4</b> Tipos de resultado</a></li>
+<li class="chapter" data-level="2.5" data-path="descripción-de-datos.html"><a href="descripción-de-datos.html#experimentos-aleatorios"><i class="fa fa-check"></i><b>2.5</b> Experimentos aleatorios</a></li>
+<li class="chapter" data-level="2.6" data-path="descripción-de-datos.html"><a href="descripción-de-datos.html#frecuencias-absolutas"><i class="fa fa-check"></i><b>2.6</b> Frecuencias absolutas</a></li>
+<li class="chapter" data-level="2.7" data-path="descripción-de-datos.html"><a href="descripción-de-datos.html#frecuencias-relativas"><i class="fa fa-check"></i><b>2.7</b> Frecuencias relativas</a></li>
+<li class="chapter" data-level="2.8" data-path="descripción-de-datos.html"><a href="descripción-de-datos.html#diagrama-de-barras"><i class="fa fa-check"></i><b>2.8</b> Diagrama de barras</a></li>
+<li class="chapter" data-level="2.9" data-path="descripción-de-datos.html"><a href="descripción-de-datos.html#gráfico-de-sectores-pie"><i class="fa fa-check"></i><b>2.9</b> Gráfico de sectores (pie)</a></li>
+<li class="chapter" data-level="2.10" data-path="descripción-de-datos.html"><a href="descripción-de-datos.html#variables-categóricas-ordinales"><i class="fa fa-check"></i><b>2.10</b> Variables categóricas ordinales</a></li>
+<li class="chapter" data-level="2.11" data-path="descripción-de-datos.html"><a href="descripción-de-datos.html#frecuencias-acumuladas-absolutas-y-relativas"><i class="fa fa-check"></i><b>2.11</b> Frecuencias acumuladas absolutas y relativas</a></li>
+<li class="chapter" data-level="2.12" data-path="descripción-de-datos.html"><a href="descripción-de-datos.html#gráfica-de-frecuencia-acumulada"><i class="fa fa-check"></i><b>2.12</b> Gráfica de frecuencia acumulada</a></li>
+<li class="chapter" data-level="2.13" data-path="descripción-de-datos.html"><a href="descripción-de-datos.html#variables-numéricas"><i class="fa fa-check"></i><b>2.13</b> Variables numéricas</a></li>
+<li class="chapter" data-level="2.14" data-path="descripción-de-datos.html"><a href="descripción-de-datos.html#transformando-datos-continuos"><i class="fa fa-check"></i><b>2.14</b> Transformando datos continuos</a></li>
+<li class="chapter" data-level="2.15" data-path="descripción-de-datos.html"><a href="descripción-de-datos.html#tabla-de-frecuencias-para-una-variable-continua"><i class="fa fa-check"></i><b>2.15</b> Tabla de frecuencias para una variable continua</a></li>
+<li class="chapter" data-level="2.16" data-path="descripción-de-datos.html"><a href="descripción-de-datos.html#histograma"><i class="fa fa-check"></i><b>2.16</b> Histograma</a></li>
+<li class="chapter" data-level="2.17" data-path="descripción-de-datos.html"><a href="descripción-de-datos.html#gráfica-de-frecuencia-acumulada-1"><i class="fa fa-check"></i><b>2.17</b> Gráfica de frecuencia acumulada</a></li>
+<li class="chapter" data-level="2.18" data-path="descripción-de-datos.html"><a href="descripción-de-datos.html#estadísticas-de-resumen"><i class="fa fa-check"></i><b>2.18</b> Estadísticas de resumen</a></li>
+<li class="chapter" data-level="2.19" data-path="descripción-de-datos.html"><a href="descripción-de-datos.html#promedio-media-muestral"><i class="fa fa-check"></i><b>2.19</b> Promedio (media muestral)</a></li>
+<li class="chapter" data-level="2.20" data-path="descripción-de-datos.html"><a href="descripción-de-datos.html#promedio"><i class="fa fa-check"></i><b>2.20</b> Promedio</a></li>
+<li class="chapter" data-level="2.21" data-path="descripción-de-datos.html"><a href="descripción-de-datos.html#mediana"><i class="fa fa-check"></i><b>2.21</b> mediana</a></li>
+<li class="chapter" data-level="2.22" data-path="descripción-de-datos.html"><a href="descripción-de-datos.html#dispersión"><i class="fa fa-check"></i><b>2.22</b> Dispersión</a></li>
+<li class="chapter" data-level="2.23" data-path="descripción-de-datos.html"><a href="descripción-de-datos.html#variación-de-la-muestra"><i class="fa fa-check"></i><b>2.23</b> Variación de la muestra</a></li>
+<li class="chapter" data-level="2.24" data-path="descripción-de-datos.html"><a href="descripción-de-datos.html#rango-intercuartílico-iqr"><i class="fa fa-check"></i><b>2.24</b> Rango intercuartílico (IQR)</a></li>
+<li class="chapter" data-level="2.25" data-path="descripción-de-datos.html"><a href="descripción-de-datos.html#diagrama-de-caja"><i class="fa fa-check"></i><b>2.25</b> Diagrama de caja</a></li>
+<li class="chapter" data-level="2.26" data-path="descripción-de-datos.html"><a href="descripción-de-datos.html#preguntas"><i class="fa fa-check"></i><b>2.26</b> Preguntas</a></li>
+<li class="chapter" data-level="2.27" data-path="descripción-de-datos.html"><a href="descripción-de-datos.html#ejercicios"><i class="fa fa-check"></i><b>2.27</b> Ejercicios</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="probabilidad.html"><a href="probabilidad.html"><i class="fa fa-check"></i><b>3</b> Probabilidad</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="probabilidad.html"><a href="probabilidad.html#experimentos-aleatorios-1"><i class="fa fa-check"></i><b>3.1</b> Experimentos aleatorios</a></li>
+<li class="chapter" data-level="3.2" data-path="probabilidad.html"><a href="probabilidad.html#probabilidad-de-medición"><i class="fa fa-check"></i><b>3.2</b> Probabilidad de medición</a></li>
+<li class="chapter" data-level="3.3" data-path="probabilidad.html"><a href="probabilidad.html#probabilidad-clásica"><i class="fa fa-check"></i><b>3.3</b> Probabilidad clásica</a></li>
+<li class="chapter" data-level="3.4" data-path="probabilidad.html"><a href="probabilidad.html#frecuencias-relativas-1"><i class="fa fa-check"></i><b>3.4</b> Frecuencias relativas</a></li>
+<li class="chapter" data-level="3.5" data-path="probabilidad.html"><a href="probabilidad.html#frecuencias-relativas-en-el-infinito"><i class="fa fa-check"></i><b>3.5</b> Frecuencias relativas en el infinito</a></li>
+<li class="chapter" data-level="3.6" data-path="probabilidad.html"><a href="probabilidad.html#probabilidad-frecuentista"><i class="fa fa-check"></i><b>3.6</b> Probabilidad frecuentista</a></li>
+<li class="chapter" data-level="3.7" data-path="probabilidad.html"><a href="probabilidad.html#probabilidades-clásicas-y-frecuentistas"><i class="fa fa-check"></i><b>3.7</b> Probabilidades clásicas y frecuentistas</a></li>
+<li class="chapter" data-level="3.8" data-path="probabilidad.html"><a href="probabilidad.html#definición-de-probabilidad"><i class="fa fa-check"></i><b>3.8</b> Definición de probabilidad</a></li>
+<li class="chapter" data-level="3.9" data-path="probabilidad.html"><a href="probabilidad.html#tabla-de-probabilidades"><i class="fa fa-check"></i><b>3.9</b> Tabla de probabilidades</a></li>
+<li class="chapter" data-level="3.10" data-path="probabilidad.html"><a href="probabilidad.html#espacio-muestral"><i class="fa fa-check"></i><b>3.10</b> Espacio muestral</a></li>
+<li class="chapter" data-level="3.11" data-path="probabilidad.html"><a href="probabilidad.html#eventos"><i class="fa fa-check"></i><b>3.11</b> Eventos</a></li>
+<li class="chapter" data-level="3.12" data-path="probabilidad.html"><a href="probabilidad.html#álgebra-de-eventos"><i class="fa fa-check"></i><b>3.12</b> Álgebra de eventos</a></li>
+<li class="chapter" data-level="3.13" data-path="probabilidad.html"><a href="probabilidad.html#resultados-mutuamente-excluyentes"><i class="fa fa-check"></i><b>3.13</b> Resultados mutuamente excluyentes</a></li>
+<li class="chapter" data-level="3.14" data-path="probabilidad.html"><a href="probabilidad.html#probabilidades-conjuntas"><i class="fa fa-check"></i><b>3.14</b> Probabilidades conjuntas</a></li>
+<li class="chapter" data-level="3.15" data-path="probabilidad.html"><a href="probabilidad.html#tabla-de-contingencia"><i class="fa fa-check"></i><b>3.15</b> Tabla de contingencia</a></li>
+<li class="chapter" data-level="3.16" data-path="probabilidad.html"><a href="probabilidad.html#la-regla-de-la-suma"><i class="fa fa-check"></i><b>3.16</b> La regla de la suma:</a></li>
+<li class="chapter" data-level="3.17" data-path="probabilidad.html"><a href="probabilidad.html#preguntas-1"><i class="fa fa-check"></i><b>3.17</b> Preguntas</a></li>
+<li class="chapter" data-level="3.18" data-path="probabilidad.html"><a href="probabilidad.html#ejercicios-1"><i class="fa fa-check"></i><b>3.18</b> Ejercicios</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">EEBE Estadística</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="probabilidad" class="section level1 hasAnchor" number="3">
+<h1><span class="header-section-number">Chapter 3</span> Probabilidad<a href="probabilidad.html#probabilidad" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>En este capítulo introduciremos el concepto de probabilidad a partir de frecuencias relativas.</p>
+<p>Definiremos los eventos como los elementos sobre los que se aplica la probabilidad. Los eventos compuestos se definirán usando álgebra de conjuntos.</p>
+<p>Luego discutiremos el concepto de probabilidad condicional derivado de la probabilidad conjunta de dos eventos.</p>
+<div id="experimentos-aleatorios-1" class="section level2 hasAnchor" number="3.1">
+<h2><span class="header-section-number">3.1</span> Experimentos aleatorios<a href="probabilidad.html#experimentos-aleatorios-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Recordemos el objetivo básico de la estadística. La estadística se ocupa de los datos que se presentan en forma de observaciones.</p>
+<ul>
+<li>Una <strong>observación</strong> es la adquisición de un número o una característica de un experimento</li>
+</ul>
+<p>Las observaciones son realizaciones de <strong>resultados</strong>.</p>
+<ul>
+<li>Un <strong>resultado</strong> es una posible observación que es el resultado de un experimento.</li>
+</ul>
+<p>Al realizar experimentos, a menudo obtenemos resultados diferentes. La descripción de la variabilidad de los resultados es uno de los objetivos de la estadística.</p>
+<ul>
+<li>Un <strong>experimento aleatorio</strong> es un experimento que da diferentes resultados cuando se repite de la misma manera.</li>
+</ul>
+<p>La pregunta filosófica detrás es ¿Cómo podemos conocer algo si cada vez que lo miramos cambia?</p>
+</div>
+<div id="probabilidad-de-medición" class="section level2 hasAnchor" number="3.2">
+<h2><span class="header-section-number">3.2</span> Probabilidad de medición<a href="probabilidad.html#probabilidad-de-medición" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Nos gustaría tener una medida para el resultado de un experimento aleatorio que nos diga <strong>cuán seguros</strong> estamos de observar el resultado cuando realicemos un <strong>futuro</strong> experimento aleatorio.</p>
+<p>Llamaremos a esta medida la probabilidad del resultado y le asignaremos valores:</p>
+<ul>
+<li><p>0, cuando estamos seguros de que la observación <strong>no</strong> ocurrirá.</p></li>
+<li><p>1, cuando estamos seguros de que la observación sucederá.</p></li>
+</ul>
+</div>
+<div id="probabilidad-clásica" class="section level2 hasAnchor" number="3.3">
+<h2><span class="header-section-number">3.3</span> Probabilidad clásica<a href="probabilidad.html#probabilidad-clásica" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><strong>Siempre que</strong> un experimento aleatorio tenga <span class="math inline">\(M\)</span> resultados posibles que son todos <strong>igualmente probables</strong>, la probabilidad de cada resultado <span class="math inline">\(i\)</span> es <span class="math display">\[P_i=\frac{1}{M}\]</span>.</p>
+<p>La probabilidad clásica fue defendida por Laplace (1814).</p>
+<p>Dado que cada resultado es <strong>igualmente probable</strong> en este tipo de experimento, declaramos una completa ignorancia y lo mejor que podemos hacer es distribuir equitativamente la misma probabilidad para cada resultado.</p>
+<ul>
+<li>No observamos <span class="math inline">\(P_i\)</span></li>
+<li>Deducimos <span class="math inline">\(P_i\)</span> de nuestra razón y no necesitamos realizar ningún experimento para conocerla.</li>
+</ul>
+<p><strong>Ejemplo (dado):</strong></p>
+<p>¿Cuál es la probabilidad de que obtengamos <span class="math inline">\(2\)</span> en el lanzamiento de un dado?</p>
+<p><span class="math inline">\(P_2=1/6=0.166666\)</span>.</p>
+</div>
+<div id="frecuencias-relativas-1" class="section level2 hasAnchor" number="3.4">
+<h2><span class="header-section-number">3.4</span> Frecuencias relativas<a href="probabilidad.html#frecuencias-relativas-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>¿Qué sucede con los experimentos aleatorios cuyos posibles resultados <strong>no</strong> son igualmente probables?</p>
+<p>¿Cómo podemos entonces definir las probabilidades de los resultados?</p>
+<p><strong>Ejemplo (experimento aleatorio)</strong></p>
+<p>Imaginemos que repetimos un experimento aleatorio <span class="math inline">\(8\)</span> veces y obtenemos las siguientes observaciones</p>
+<p>8 4 12 7 10 7 9 12</p>
+<ul>
+<li>¿Qué tan seguro estamos de obtener el resultado <span class="math inline">\(12\)</span> en la siguiente observación?</li>
+</ul>
+<p>La tabla de frecuencias es</p>
+<pre><code>##   outcome ni    fi
+## 1       4  1 0.125
+## 2       7  2 0.250
+## 3       8  1 0.125
+## 4       9  1 0.125
+## 5      10  1 0.125
+## 6      12  2 0.250</code></pre>
+<p><img src="_main_files/figure-html/unnamed-chunk-28-1.png" width="672" />
+La <strong>frecuencia relativa</strong> <span class="math inline">\(f_i=\frac{n_i}{N}\)</span> parece una medida de probabilidad razonable porque</p>
+<ul>
+<li>es un número entre <span class="math inline">\(0\)</span> y <span class="math inline">\(1\)</span>.</li>
+<li>mide la proporción del total de observaciones que observamos de un resultado particular.</li>
+</ul>
+<p>Como <span class="math inline">\(f_{12}=0.25\)</span> entonces estaríamos un cuarto seguros, una de cada 4 observaciones, de obtener <span class="math inline">\(12\)</span>.</p>
+<p><strong>Pregunta</strong>: ¿Qué tan bueno es <span class="math inline">\(f_i\)</span> como medida de certeza del resultado <span class="math inline">\(i\)</span>?</p>
+<p><strong>Ejemplo (experimento aleatorio con mas repeticiones)</strong></p>
+<p>Digamos que repetimos el experimento 100000 veces más:</p>
+<p>La tabla de frecuencias es ahora</p>
+<pre><code>##    outcome    ni      fi
+## 1        2  2807 0.02807
+## 2        3  5607 0.05607
+## 3        4  8435 0.08435
+## 4        5 11070 0.11070
+## 5        6 13940 0.13940
+## 6        7 16613 0.16613
+## 7        8 13806 0.13806
+## 8        9 10962 0.10962
+## 9       10  8402 0.08402
+## 10      11  5581 0.05581
+## 11      12  2777 0.02777</code></pre>
+<p>y el gráfico de barras es</p>
+<p><img src="_main_files/figure-html/unnamed-chunk-30-1.png" width="672" /></p>
+<p>Aparecieron nuevos resultados y <span class="math inline">\(f_{12}\)</span> ahora es solo <span class="math inline">\(0.027\)</span>, y entonces estamos sólo un <span class="math inline">\(\sim 3\%\)</span> seguros de obtener <span class="math inline">\(12\)</span> en el próximo experimento. Las probabilidades medidas por <span class="math inline">\(f_i\)</span> cambian con <span class="math inline">\(N\)</span>.</p>
+</div>
+<div id="frecuencias-relativas-en-el-infinito" class="section level2 hasAnchor" number="3.5">
+<h2><span class="header-section-number">3.5</span> Frecuencias relativas en el infinito<a href="probabilidad.html#frecuencias-relativas-en-el-infinito" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Una observación crucial es que si medimos las probabilidades de <span class="math inline">\(f_i\)</span> en valores crecientes de <span class="math inline">\(N\)</span> ¡<strong>convergen</strong>!</p>
+<p>En este gráfico cada sección vertical da la frecuencia relativa de cada observación. Vemos que después de <span class="math inline">\(N=1000\)</span> (<span class="math inline">\(log10(N)=3\)</span>) las proporciones apenas varían con mas <span class="math inline">\(N\)</span>.</p>
+<p><img src="_main_files/figure-html/unnamed-chunk-31-1.png" width="672" />
+Encontramos que cada una de las frecuencias relativas <span class="math inline">\(f_i\)</span> converge a un valor constante</p>
+<p><span class="math display">\[lim_{N\rightarrow \infty} f_i = P_i\]</span></p>
+</div>
+<div id="probabilidad-frecuentista" class="section level2 hasAnchor" number="3.6">
+<h2><span class="header-section-number">3.6</span> Probabilidad frecuentista<a href="probabilidad.html#probabilidad-frecuentista" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Llamamos <strong>Probabilidad</strong> <span class="math inline">\(P_i\)</span> al límite cuando <span class="math inline">\(N \rightarrow \infty\)</span> de la <strong>frecuencia relativa</strong> de observar el resultado <span class="math inline">\(i\)</span> en un experimento aleatorio.</p>
+<p>Defendida por Venn (1876), la definición frecuentista de probabilidad se deriva de datos/experiencia (empírica).</p>
+<ul>
+<li>No observamos <span class="math inline">\(P_i\)</span>, observamos <span class="math inline">\(f_i\)</span></li>
+<li><strong>Estimamos</strong> <span class="math inline">\(P_i\)</span> con <span class="math inline">\(f_i\)</span> (normalmente cuando <span class="math inline">\(N\)</span> es grande), escribimos: <span class="math display">\[\hat{P_i}=f_i\]</span></li>
+</ul>
+<p>Similar a la relación entre <strong>observación</strong> y <strong>resultado</strong>, tenemos la relación entre <strong>frecuencia relativa</strong> y <strong>probabilidad</strong> como un valor concreto de una cantidad abstracta.</p>
+</div>
+<div id="probabilidades-clásicas-y-frecuentistas" class="section level2 hasAnchor" number="3.7">
+<h2><span class="header-section-number">3.7</span> Probabilidades clásicas y frecuentistas<a href="probabilidad.html#probabilidades-clásicas-y-frecuentistas" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Tenemos situaciones en las que se puede usar la probabilidad clásica para encontrar el límite de frecuencias relativas.</p>
+<ul>
+<li>Si los resultados son <strong>igualmente probables</strong>, la probabilidad clásica nos da el límite:</li>
+</ul>
+<p><span class="math display">\[P_i=lim_{N\rightarrow \infty} \frac{n_i}{N}=\frac{1}{M}\]</span></p>
+<ul>
+<li>Si los resultados en los que estamos interesados pueden derivarse de otros resultados <strong>igualmente probables</strong>; Veremos más sobre esto cuando estudiemos los modelos de probabilidad.</li>
+</ul>
+<p><strong>Ejemplo (suma de dos dados)</strong></p>
+<p>Nuestro ejemplo anterior se basa en la <strong>suma de dos dados</strong>.
+Si bien realizamos el experimento muchas veces, anotamos los resultados y calculamos las <strong>frecuencias relativas</strong>, podemos conocer el valor exacto de probabilidad.</p>
+<p>Esta probabilidad <strong>se deduce</strong> del hecho de que el resultado de cada dado es <strong>igualmente probable</strong>. A partir de esta suposición, podemos encontrar que (Ejercicio 1)</p>
+<p><span class="math display">\[
+    P_i= 
+\begin{cases}
+   \frac{i-1}{36},&amp; i \in \{2,3,4,5,6, 7\} \\
+\frac{13-i}{36},&amp; i \in \{8,9,10,11,12\} \\ 
+\end{cases}
+\]</span></p>
+<p>La motivación de la definición frecuentista es <strong>empírica</strong> (datos) mientras que la de la definición clásica es <strong>racional</strong> (modelos). A menudo combinamos ambos enfoques (inferencia y deducción) para conocer las probabilidades de nuestro experimento aleatorio.</p>
+<p><img src="figures/prob.JPG" /></p>
+</div>
+<div id="definición-de-probabilidad" class="section level2 hasAnchor" number="3.8">
+<h2><span class="header-section-number">3.8</span> Definición de probabilidad<a href="probabilidad.html#definición-de-probabilidad" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Una probabilidad es un número que se asigna a cada resultado posible de un experimento aleatorio y satisface las siguientes propiedades o <strong>axiomas</strong>:</p>
+<ol style="list-style-type: decimal">
+<li>cuando los resultados <span class="math inline">\(E_1\)</span> y <span class="math inline">\(E_2\)</span> son mutuamente excluyentes; es decir, solo uno de ellos puede ocurrir, entonces la probabilidad de observar <span class="math inline">\(E_1\)</span> <strong>o</strong> <span class="math inline">\(E_1\)</span>, escrito como <span class="math inline">\(E_1\cup E_2\)</span>, es su suma:
+<span class="math display">\[P(E_1\cup E_2) = P(E_1) + P(E_2)\]</span></li>
+<li>cuando <span class="math inline">\(S\)</span> es el conjunto de todos los resultados posibles, entonces su probabilidad es <span class="math inline">\(1\)</span> (al menos se observa algo): <span class="math display">\[P(S)=1\]</span></li>
+<li>La probabilidad de cualquier resultado está entre 0 y 1 <span class="math display">\[P(E) \in [0,1]\]</span></li>
+</ol>
+<p>Propuesto por Kolmogorov’s hace menos de 100 años (1933)</p>
+</div>
+<div id="tabla-de-probabilidades" class="section level2 hasAnchor" number="3.9">
+<h2><span class="header-section-number">3.9</span> Tabla de probabilidades<a href="probabilidad.html#tabla-de-probabilidades" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Las propiedades de Kolmogorov son las reglas básicas para construir una <strong>tabla de probabilidad</strong>, de manera similar a la tabla de frecuencia relativa.</p>
+<p><strong>Ejemplo (Dado)</strong></p>
+<p>La tabla de probabilidad para el lanzamiento de un dado</p>
+<table>
+<thead>
+<tr class="header">
+<th align="center">resultado</th>
+<th align="center">Probabilidad</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><span class="math inline">\(1\)</span></td>
+<td align="center">1/6</td>
+</tr>
+<tr class="even">
+<td align="center"><span class="math inline">\(2\)</span></td>
+<td align="center">1/6</td>
+</tr>
+<tr class="odd">
+<td align="center"><span class="math inline">\(3\)</span></td>
+<td align="center">1/6</td>
+</tr>
+<tr class="even">
+<td align="center"><span class="math inline">\(4\)</span></td>
+<td align="center">1/6</td>
+</tr>
+<tr class="odd">
+<td align="center"><span class="math inline">\(5\)</span></td>
+<td align="center">1/6</td>
+</tr>
+<tr class="even">
+<td align="center"><span class="math inline">\(6\)</span></td>
+<td align="center">1/6</td>
+</tr>
+<tr class="odd">
+<td align="center"><span class="math inline">\(P(1 \cup 2\cup ... \cup 6)\)</span></td>
+<td align="center">1</td>
+</tr>
+</tbody>
+</table>
+<p>Verifiquemos los axiomas:</p>
+<ol style="list-style-type: decimal">
+<li><p>Donde <span class="math inline">\(1 \cup 2\)</span> es, por ejemplo, el <strong>evento</strong> de lanzar un <span class="math inline">\(1\)</span> <strong>o</strong> un <span class="math inline">\(2\)</span>. Entonces <span class="math display">\[P(1 \cup 2)=P(1)+P(2)=2/6\]</span></p></li>
+<li><p>Como <span class="math inline">\(S=\{1,2,3,4,5,6\}\)</span> se compone de resultados <strong>mutuamente excluyentes</strong>, entonces</p></li>
+</ol>
+<p><span class="math display">\[P(S)=P(1\cup 2\cup ... \cup 6) = P(1)+P(2)+ ...+P(n)=1\]</span></p>
+<ol start="3" style="list-style-type: decimal">
+<li>Las probabilidades de cada uno de resultados están entre <span class="math inline">\(0\)</span> y <span class="math inline">\(1\)</span>.</li>
+</ol>
+</div>
+<div id="espacio-muestral" class="section level2 hasAnchor" number="3.10">
+<h2><span class="header-section-number">3.10</span> Espacio muestral<a href="probabilidad.html#espacio-muestral" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>El conjunto de todos los resultados posibles de un experimento aleatorio se denomina <strong>espacio muestral</strong> y se denota como <span class="math inline">\(S\)</span>.</p>
+<p>El espacio muestral puede estar formado por resultados categóricos o numéricos.</p>
+<p><em>Por ejemplo:</em></p>
+<ul>
+<li>temperatura humana: <span class="math inline">\(S = (36, 42)\)</span> grados Celsius.</li>
+<li>niveles de azúcar en humanos: <span class="math inline">\(S=(70-80) mg/dL\)</span></li>
+<li>el tamaño de un tornillo de una línea de producción: <span class="math inline">\(S=(70-72) mm\)</span></li>
+<li>número de correos electrónicos recibidos en una hora: <span class="math inline">\(S =\{1, ...\infty \}\)</span></li>
+<li>el lanzamiento de un dado: <span class="math inline">\(S=\{1, 2, 3, 4, 5, 6\}\)</span></li>
+</ul>
+</div>
+<div id="eventos" class="section level2 hasAnchor" number="3.11">
+<h2><span class="header-section-number">3.11</span> Eventos<a href="probabilidad.html#eventos" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Un <strong>evento</strong> <span class="math inline">\(A\)</span> es un <strong>subconjunto</strong> del espacio muestral. Es una <strong>colección</strong> de resultados.</p>
+<p><em>Ejemplos de eventos:</em></p>
+<ul>
+<li>El evento de una temperatura saludable: <span class="math inline">\(A=37-38\)</span> grados Celsius</li>
+<li>El evento de producir un tornillo con un tamaño: <span class="math inline">\(A=71.5mm\)</span></li>
+<li>El evento de recibir más de 4 emails en una hora: <span class="math inline">\(A=\{4, \infty \}\)</span></li>
+<li>El evento de obtener un número menor o igual a 3 en la tirada de a dice: <span class="math inline">\(A=\{1,2,3\}\)</span></li>
+</ul>
+<p>Un evento se refiere a un posible conjunto de <strong>resultados</strong>.</p>
+</div>
+<div id="álgebra-de-eventos" class="section level2 hasAnchor" number="3.12">
+<h2><span class="header-section-number">3.12</span> Álgebra de eventos<a href="probabilidad.html#álgebra-de-eventos" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Para dos eventos <span class="math inline">\(A\)</span> y <span class="math inline">\(B\)</span>, podemos construir los siguientes eventos derivados utilizando las operaciones básicas de conjuntos:</p>
+<ul>
+<li>Complemento <span class="math inline">\(A&#39;\)</span>: el evento de <strong>no</strong> <span class="math inline">\(A\)</span></li>
+<li>Unión <span class="math inline">\(A \cup B\)</span>: el evento de <span class="math inline">\(A\)</span> <strong>o</strong> <span class="math inline">\(B\)</span></li>
+<li>Intersección <span class="math inline">\(A \cap B\)</span>: el evento de <span class="math inline">\(A\)</span> <strong>y</strong> <span class="math inline">\(B\)</span></li>
+</ul>
+<p><strong>Ejemplo (dado)</strong></p>
+<p>Lancemos un dado y veamos los eventos (conjunto de resultados):</p>
+<ul>
+<li>un número menor o igual a tres <span class="math inline">\(A:\{1,2,3\}\)</span></li>
+<li>un número par <span class="math inline">\(B:\{2,4,6\}\)</span></li>
+</ul>
+<p>Veamos como podemos construir nuevos eventos con las operaciones de conjuntos:</p>
+<ul>
+<li>un número no menor de tres: <span class="math inline">\(A&#39;:\{4,5,6\}\)</span></li>
+<li>un número menor o igual a tres <strong>o</strong> par: <span class="math inline">\(A \cup B: \{1,2,3,4,6\}\)</span></li>
+<li>un número menor o igual a tres <strong>y</strong> par <span class="math inline">\(A \cap B: \{2\}\)</span></li>
+</ul>
+</div>
+<div id="resultados-mutuamente-excluyentes" class="section level2 hasAnchor" number="3.13">
+<h2><span class="header-section-number">3.13</span> Resultados mutuamente excluyentes<a href="probabilidad.html#resultados-mutuamente-excluyentes" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Los resultados como tirar <span class="math inline">\(1\)</span> y <span class="math inline">\(2\)</span> en un dado son eventos que no pueden ocurrir al mismo tiempo. Decimos que son <strong>mutuamente excluyentes</strong>.</p>
+<p>En general, dos eventos denotados como <span class="math inline">\(E_1\)</span> y <span class="math inline">\(E_2\)</span> son mutuamente excluyentes cuando</p>
+<p><span class="math display">\[E_1\cap E_2=\emptyset\]</span></p>
+<p><em>Ejemplos:</em></p>
+<ul>
+<li><p>El resultado de tener una gravedad de misofonía de <span class="math inline">\(1\)</span> y una gravedad de <span class="math inline">\(4\)</span>.</p></li>
+<li><p>Los resultados de obtener <span class="math inline">\(12\)</span> y <span class="math inline">\(5\)</span> al sumar el lanzamiento de dos dados.</p></li>
+</ul>
+<p>De acuerdo con las propiedades de Kolmogorov, solo los resultados <strong>mutuamente excluyentes</strong> se pueden organizar en <strong>tablas de probabilidad</strong>, como en las tablas de frecuencias relativas.</p>
+</div>
+<div id="probabilidades-conjuntas" class="section level2 hasAnchor" number="3.14">
+<h2><span class="header-section-number">3.14</span> Probabilidades conjuntas<a href="probabilidad.html#probabilidades-conjuntas" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>La <strong>probabilidad conjunta</strong> de <span class="math inline">\(A\)</span> y <span class="math inline">\(B\)</span> es la probabilidad de <span class="math inline">\(A\)</span> y <span class="math inline">\(B\)</span>. Eso es <span class="math display">\[P(A \cap B)\]</span> o <span class="math inline">\(P(A,B)\)</span>.</p>
+<p>Para escribir probabilidades conjuntas de eventos no mutuamente excluyentes (<span class="math inline">\(A \cap B \neq \emptyset\)</span>) en una tabla de probabilidad, notamos que siempre podemos descomponer el espacio muestral en conjuntos <strong>mutuamente excluyentes</strong> que involucran las intersecciones:</p>
+<p><span class="math inline">\(S=\{A\cap B, A \cap B&#39;, A&#39;\cap B, A&#39;\cap B&#39;\}\)</span></p>
+<p><strong>Consideremos el diagrama de Ven</strong> para el ejemplo donde <span class="math inline">\(A\)</span> es el evento que corresponde a sacar número menor o igual que 3 y <span class="math inline">\(B\)</span> corresponde a un número par:</p>
+<p><img src="figures/Venn.JPG" style="width:75%"  align="center"></p>
+<p>Las <strong>marginales</strong> de <span class="math inline">\(A\)</span> y <span class="math inline">\(B\)</span> son la probabilidad de <span class="math inline">\(A\)</span> y la probabilidad de <span class="math inline">\(B\)</span>, respectivamente:</p>
+<ul>
+<li><span class="math inline">\(P(A)=P(A\cap B&#39;) + P(A \cap B)=2/6+1/6=3/6\)</span></li>
+<li><span class="math inline">\(P(B)=P(A&#39;\cap B) +P(A \cap B)=2/6+1/6=3/6\)</span></li>
+</ul>
+<p>Podemos ahora escribir la <strong>tabla de probabilidad</strong> para las probabilidades conjuntas</p>
+<table>
+<thead>
+<tr class="header">
+<th align="center">Resultado</th>
+<th align="center">Probabilidad</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><span class="math inline">\((A \cap B)\)</span></td>
+<td align="center"><span class="math inline">\(P(A \cap B)=1/6\)</span></td>
+</tr>
+<tr class="even">
+<td align="center"><span class="math inline">\((A\cap B&#39;)\)</span></td>
+<td align="center"><span class="math inline">\(P(A \cap B&#39;)=2/6\)</span></td>
+</tr>
+<tr class="odd">
+<td align="center"><span class="math inline">\((A&#39; \cap B)\)</span></td>
+<td align="center"><span class="math inline">\(P(A&#39; \cap B)=2/6\)</span></td>
+</tr>
+<tr class="even">
+<td align="center"><span class="math inline">\((A&#39; \cap B&#39;)\)</span></td>
+<td align="center"><span class="math inline">\(P(A&#39; \cap B&#39;)=1/6\)</span></td>
+</tr>
+<tr class="odd">
+<td align="center">suma</td>
+<td align="center"><span class="math inline">\(1\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>Cada resultado tiene <span class="math inline">\(dos\)</span> valores (uno para la característica del tipo <span class="math inline">\(A\)</span> y otro para el tipo <span class="math inline">\(B\)</span>)</p>
+</div>
+<div id="tabla-de-contingencia" class="section level2 hasAnchor" number="3.15">
+<h2><span class="header-section-number">3.15</span> Tabla de contingencia<a href="probabilidad.html#tabla-de-contingencia" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>La tabla de probabilidad conjunta también se puede escribir en una <strong>tabla de contingencia</strong></p>
+<table>
+<thead>
+<tr class="header">
+<th align="center"></th>
+<th align="center"><span class="math inline">\(B\)</span></th>
+<th align="center"><span class="math inline">\(B&#39;\)</span></th>
+<th align="center"><b>suma</b></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><span class="math inline">\(A\)</span></td>
+<td align="center"><span class="math inline">\(P(A \cap B )\)</span></td>
+<td align="center"><span class="math inline">\(P(A\cap B&#39; )\)</span></td>
+<td align="center"><span class="math inline">\(P(A)\)</span></td>
+</tr>
+<tr class="even">
+<td align="center"><span class="math inline">\(A&#39;\)</span></td>
+<td align="center"><span class="math inline">\(P(A&#39;\cap B )\)</span></td>
+<td align="center"><span class="math inline">\(P(A&#39;\cap B&#39; )\)</span></td>
+<td align="center"><span class="math inline">\(P(A&#39;)\)</span></td>
+</tr>
+<tr class="odd">
+<td align="center"><b>suma</b></td>
+<td align="center"><span class="math inline">\(P(B)\)</span></td>
+<td align="center"><span class="math inline">\(P(B&#39;)\)</span></td>
+<td align="center">1</td>
+</tr>
+</tbody>
+</table>
+<p>Donde las marginales son las sumas en las márgenes de la tabla, por ejemplo:</p>
+<ul>
+<li><span class="math inline">\(P(A)=P(A \cap B&#39;) + P(A \cap B)\)</span></li>
+<li><span class="math inline">\(P(B)=P(A&#39; \cap B) +P(A \cap B)\)</span></li>
+</ul>
+<p>En nuestro ejemplo, la tabla de contingencia es</p>
+<table>
+<thead>
+<tr class="header">
+<th align="center"></th>
+<th align="center"><span class="math inline">\(B\)</span></th>
+<th align="center"><span class="math inline">\(B&#39;\)</span></th>
+<th align="center"><b>suma</b></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><span class="math inline">\(A\)</span></td>
+<td align="center"><span class="math inline">\(1/6\)</span></td>
+<td align="center"><span class="math inline">\(2/6\)</span></td>
+<td align="center"><span class="math inline">\(3/6\)</span></td>
+</tr>
+<tr class="even">
+<td align="center"><span class="math inline">\(A&#39;\)</span></td>
+<td align="center"><span class="math inline">\(2/6\)</span></td>
+<td align="center"><span class="math inline">\(1/6\)</span></td>
+<td align="center"><span class="math inline">\(3/6\)</span></td>
+</tr>
+<tr class="odd">
+<td align="center"><b>suma</b></td>
+<td align="center"><span class="math inline">\(3/6\)</span></td>
+<td align="center"><span class="math inline">\(3/6\)</span></td>
+<td align="center">1</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="la-regla-de-la-suma" class="section level2 hasAnchor" number="3.16">
+<h2><span class="header-section-number">3.16</span> La regla de la suma:<a href="probabilidad.html#la-regla-de-la-suma" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>La regla de la suma nos permite calcular la probabilidad de <span class="math inline">\(A\)</span> o <span class="math inline">\(B\)</span>, <span class="math inline">\(P(A \cup B)\)</span>, en términos de la probabilidad de <span class="math inline">\(A\)</span> y <span class="math inline">\(B\)</span>, <span class="math inline">\(P(A \cap B)\)</span>. Podemos hacer esto de tres maneras equivalentes:</p>
+<ol style="list-style-type: decimal">
+<li><p>Usando las marginales y la probabilidad conjunta
+<span class="math display">\[P(A \cup B)=P(A) + P(B) - P(A\cap B)\]</span></p></li>
+<li><p>Usando solo probabilidades conjuntas
+<span class="math display">\[P(A \cup B)=P(A \cap B)+P(A\cap B&#39;)+P(A&#39;\cap B)\]</span></p></li>
+<li><p>Usando el complemento de la probabilidad conjunta
+<span class="math display">\[P(A \cup B)=1-P(A&#39;\cap B&#39;)\]</span></p></li>
+</ol>
+<p><strong>Ejemplo (dado)</strong></p>
+<p>Tomemos los eventos <span class="math inline">\(A:\{1,2,3\}\)</span>, sacar un número menor o igual que <span class="math inline">\(3\)</span>, y <span class="math inline">\(B:\{2,4,6\}\)</span>, sacar un número par en el lanzamiento de un dado.</p>
+<p>Por lo tanto:</p>
+<ol style="list-style-type: decimal">
+<li><p><span class="math inline">\(P(A \cup B)=P(A) + P(B) - P(A\cap B)=3/6+3/6-1/6=5/6\)</span></p></li>
+<li><p><span class="math inline">\(P(A \cup B)=P(A \cap B)+P(A\cap B&#39;)+P(A&#39;\cap B)=1/6+2/6+2/6=5/6\)</span></p></li>
+<li><p><span class="math inline">\(P(A \cup B)=1-P(A&#39;\cap B&#39;)= 1-1/6=5/6\)</span></p></li>
+</ol>
+<p>En la tabla de contingencia <span class="math inline">\(P(A \cup B)\)</span> corresponde a las casillas en negrita (método 2 arriba), o todas menos el 1/6 de abajo a la derecha (método 3).</p>
+<table>
+<thead>
+<tr class="header">
+<th align="center"></th>
+<th align="center"><span class="math inline">\(B\)</span></th>
+<th align="center"><span class="math inline">\(B&#39;\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><span class="math inline">\(A\)</span></td>
+<td align="center"><strong>1/6</strong></td>
+<td align="center"><strong>2/6</strong></td>
+</tr>
+<tr class="even">
+<td align="center"><span class="math inline">\(A&#39;\)</span></td>
+<td align="center"><strong>2/6</strong></td>
+<td align="center"><em>1/6</em></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="preguntas-1" class="section level2 hasAnchor" number="3.17">
+<h2><span class="header-section-number">3.17</span> Preguntas<a href="probabilidad.html#preguntas-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Recopilamos la edad y categoría de 100 deportistas en una competición</p>
+<table>
+<thead>
+<tr class="header">
+<th align="center"></th>
+<th align="center"><span class="math inline">\(edad:junior\)</span></th>
+<th align="center"><span class="math inline">\(edad:senior\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><span class="math inline">\(categoria:1ra\)</span></td>
+<td align="center"><span class="math inline">\(14\)</span></td>
+<td align="center"><span class="math inline">\(12\)</span></td>
+</tr>
+<tr class="even">
+<td align="center"><span class="math inline">\(categoria:2a\)</span></td>
+<td align="center"><span class="math inline">\(21\)</span></td>
+<td align="center"><span class="math inline">\(18\)</span></td>
+</tr>
+<tr class="odd">
+<td align="center"><span class="math inline">\(categoria:3a\)</span></td>
+<td align="center"><span class="math inline">\(22\)</span></td>
+<td align="center"><span class="math inline">\(13\)</span></td>
+</tr>
+</tbody>
+</table>
+<p><strong>1)</strong> ¿Cuál es la probabilidad estimada de que un deportista sea de 2ª categoría y senior?</p>
+<p><strong><span class="math inline">\(\qquad\)</span>a:</strong> <span class="math inline">\(18/100\)</span>; <strong><span class="math inline">\(\qquad\)</span>b:</strong> <span class="math inline">\(18/43\)</span>; <strong><span class="math inline">\(\qquad\)</span>c:</strong> <span class="math inline">\(18\)</span>; <strong><span class="math inline">\(\qquad\)</span>d:</strong> <span class="math inline">\(18/39\)</span></p>
+<p><strong>2)</strong> ¿Cuál es la probabilidad estimada de que el atleta no esté en la tercera categoría y sea senior?</p>
+<p><strong><span class="math inline">\(\qquad\)</span>a:</strong> <span class="math inline">\(35/100\)</span>; <strong><span class="math inline">\(\qquad\)</span>b:</strong> <span class="math inline">\(30/100\)</span>; <strong><span class="math inline">\(\qquad\)</span>c:</strong> <span class="math inline">\(22/100\)</span>; <strong><span class="math inline">\(\qquad\)</span>d:</strong> <span class="math inline">\(13/100\)</span></p>
+<p><strong>3)</strong> ¿Cuál es la probabilidad marginal de la tercera categoría?</p>
+<p><strong><span class="math inline">\(\qquad\)</span>a:</strong> <span class="math inline">\(13/100\)</span>; <strong><span class="math inline">\(\qquad\)</span>b:</strong> <span class="math inline">\(35/100\)</span>; <strong><span class="math inline">\(\qquad\)</span>c:</strong> <span class="math inline">\(22/100\)</span>; <strong><span class="math inline">\(\qquad\)</span>d:</strong> <span class="math inline">\(13/22\)</span></p>
+<p><strong>4)</strong> ¿Cuál es la probabilidad marginal de ser senior?</p>
+<p><strong><span class="math inline">\(\qquad\)</span>a:</strong> <span class="math inline">\(13/100\)</span>; <strong><span class="math inline">\(\qquad\)</span>b:</strong> <span class="math inline">\(43/100\)</span>; <strong><span class="math inline">\(\qquad\)</span>c:</strong> <span class="math inline">\(43/57\)</span>; <strong><span class="math inline">\(\qquad\)</span>d:</strong> <span class="math inline">\(57/100\)</span></p>
+<p><strong>5)</strong> ¿Cuál es la probabilidad de ser senior o de tercera categoría?</p>
+<p><strong><span class="math inline">\(\qquad\)</span>a:</strong> <span class="math inline">\(65/100\)</span>; <strong><span class="math inline">\(\qquad\)</span>b:</strong> <span class="math inline">\(86/100\)</span>; <strong><span class="math inline">\(\qquad\)</span>c:</strong> <span class="math inline">\(78/100\)</span>; <strong><span class="math inline">\(\qquad\)</span>d:</strong> <span class="math inline">\(13/100\)</span></p>
+</div>
+<div id="ejercicios-1" class="section level2 hasAnchor" number="3.18">
+<h2><span class="header-section-number">3.18</span> Ejercicios<a href="probabilidad.html#ejercicios-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="probabilidad-clásica-ejercicio-1" class="section level4 hasAnchor" number="3.18.0.1">
+<h4><span class="header-section-number">3.18.0.1</span> Probabilidad clásica: Ejercicio 1<a href="probabilidad.html#probabilidad-clásica-ejercicio-1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<ul>
+<li><p>Escribe la tabla de <strong>probabilidad conjunta</strong> para los <strong>resultados</strong> de lanzar dos dados; en las filas escribe los resultados del primer dado y en las columnas los resultados del segundo dado.</p></li>
+<li><p>¿Cuál es la probabilidad de sacar <span class="math inline">\((3,4)\)</span>? (R:1/36)</p></li>
+<li><p>¿Cuál es la probabilidad de tirar <span class="math inline">\(3\)</span> y <span class="math inline">\(4\)</span> con cualquiera de los dos dados? (R:2/36)</p></li>
+<li><p>¿Cuál es la probabilidad de tirar <span class="math inline">\(3\)</span> en el primer dado o <span class="math inline">\(4\)</span> en el segundo? (A:11/36)</p></li>
+<li><p>¿Cuál es la probabilidad de tirar <span class="math inline">\(3\)</span> o <span class="math inline">\(4\)</span> con cualquier dado? (R:20/36)</p></li>
+<li><p>Escribe la <strong>tabla de probabilidad</strong> para el resultado de la <strong>suma</strong> de dos dados. Supon que el resultado de cada dado es <strong>igualmente probable</strong>. Verifica que es:</p></li>
+</ul>
+<p><span class="math display">\[
+    P_i= 
+\begin{cases}
+   \frac{i-1}{36},&amp; i \in \{2,3,4,5,6, 7\} \\
+\frac{13-i}{36},&amp; i \in \{8,9,10,11,12\} \\ 
+\end{cases}
+\]</span></p>
+</div>
+<div id="probabilidad-frecuentista-ejercicio-2" class="section level4 hasAnchor" number="3.18.0.2">
+<h4><span class="header-section-number">3.18.0.2</span> Probabilidad frecuentista: Ejercicio 2<a href="probabilidad.html#probabilidad-frecuentista-ejercicio-2" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>El resultado de un experimento aleatorio es medir la gravedad de la misofonía <strong>y</strong> el estado de depresión de un paciente.</p>
+<ul>
+<li>Gravedad de la misofonía: <span class="math inline">\(S_M:\{M_0,M_1,M_2,M_3,M_4\}\)</span></li>
+<li>Depresión: <span class="math inline">\(S_D:\{D&#39;, D\}\)</span>)</li>
+</ul>
+<p>Escribe la tabla de contingencia para las frecuencias absolutas (<span class="math inline">\(n_{M,D}\)</span>) para un estudio sobre un total de 123 pacientes en el que se observó</p>
+<ul>
+<li>100 individuos no tuvieron depresión.</li>
+<li>Ningún individuo con misofonía 4 y sin depresión.</li>
+<li>5 individuos con misofonía de grado 1 y sin depresión.</li>
+<li>El mismo número que el caso anterior para individuos con depresión y sin misofonía.</li>
+<li>25 individuos sin depresión y grado 3 de misofonía.</li>
+<li>El número de misofónicos sin depresión para los grados 2 y 0 se repartieron a cantiaddes iguales.</li>
+<li>El número de individuos con depresión y misofonía incrementó progresivamente
+en múltiplos de tres, empezando en 0 individuos para grado 1.</li>
+</ul>
+<p>Reponde las siguientes preguntas:</p>
+<ul>
+<li>¿Cuantos individuos tuvieron misofonía? (R:83)</li>
+<li>¿Cuantos individuos tuvieron misofonía de grado 3? (R:31)</li>
+<li>¿Cuantos individuos tuvieron misofonía de grado 2 sin depresión? (R:35)</li>
+</ul>
+<p>Escribe las tabla de consingencia para frecuencias relativas <span class="math inline">\(f_{M,D}\)</span>. Supongamos que <span class="math inline">\(N\)</span> es grande y que las frecuencias absolutas <strong>estiman</strong> las probabilidades <span class="math inline">\(f_{M,D}=\hat{P}(M \cap D)\)</span>. Responde las siguientes preguntas:</p>
+<ul>
+<li>¿Cuál es la probabilidad marginal de misofonía de gravedad 2? (R: 0.3)</li>
+<li>¿Cuál es la probabilidad de no ser misofónico <strong>y</strong> no estar deprimido? (R:0.284)</li>
+<li>¿Cuál es la probabilidad de ser misofónico <strong>o</strong> estar deprimido? (R: 0.715)</li>
+<li>¿Cuál es la probabilidad de ser misofónico <strong>y</strong> estar deprimido? (R: 0.146)</li>
+<li>Describir en lenguaje hablado los resultados con probabilidad 0.</li>
+</ul>
+</div>
+<div id="ejercicio-3" class="section level4 hasAnchor" number="3.18.0.3">
+<h4><span class="header-section-number">3.18.0.3</span> Ejercicio 3<a href="probabilidad.html#ejercicio-3" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Hemos realizado un experimento aleatorio <span class="math inline">\(10\)</span> veces, que consiste en anotar el sexo y el estado vital de pacientes con algún tipo de cáncer después de 10 años del diagnóstico. Obtuvimos los siguientes resultados</p>
+<pre><code>##         A     B
+## 1    male  dead
+## 2    male  dead
+## 3    male  dead
+## 4  female alive
+## 5    male  dead
+## 6  female alive
+## 7  female  dead
+## 8  female alive
+## 9    male alive
+## 10   male alive</code></pre>
+<ul>
+<li>Crea la tabla de contingencia para el número (<span class="math inline">\(n_{i,j}\)</span>) de observaciones de cada resultado (<span class="math inline">\(A,B\)</span>)</li>
+<li>Crea la tabla de contingencia para la frecuencia relativa (<span class="math inline">\(f_{i,j}\)</span>) de los resultados</li>
+<li>¿Cuál es la frecuencia marginal de ser hombre? (R/0.6)</li>
+<li>¿Cuál es la frecuencia marginal de estar vivo? (R/0.5)</li>
+<li>¿Cuál es la frecuencia de estar vivo <strong>o</strong> ser mujer? (R/0.6)</li>
+</ul>
+</div>
+<div id="teoría-ejercicio-4" class="section level4 hasAnchor" number="3.18.0.4">
+<h4><span class="header-section-number">3.18.0.4</span> Teoría: Ejercicio 4<a href="probabilidad.html#teoría-ejercicio-4" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<ul>
+<li><p>De la segunda forma de la regla de la suma, obtener la primera y la tercera forma.</p></li>
+<li><p>¿Cuál es la regla de la suma de la tercera forma para la probabilidad de tres eventos <span class="math inline">\(P(A \cup B \cup C)\)</span>?</p></li>
+</ul>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="descripción-de-datos.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/02-Probability.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

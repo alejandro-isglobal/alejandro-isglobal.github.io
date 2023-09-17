@@ -6,7 +6,7 @@
 ]{book}
 \title{EEBE stats}
 \author{Alejandro Caceres}
-\date{2023-09-04}
+\date{2023-09-17}
 
 \usepackage{amsmath,amssymb}
 \usepackage{lmodern}
@@ -864,6 +864,686 @@ Answer the following questions:
   Calculate the cumulative frequencies of each result and draw the cumulative graph.
 \item
   Draw a box plot .
+\end{itemize}
+
+\hypertarget{probability}{%
+\chapter{Probability}\label{probability}}
+
+In this chapter we will introduce the concept of probability from relative frequencies.
+
+We will define the events as the elements on which the probability is applied. Composite events will be defined using set algebra.
+
+Then we will discuss the concept of conditional probability derived from the joint probability of two events.
+
+\hypertarget{random-experiments-1}{%
+\section{Random experiments}\label{random-experiments-1}}
+
+Let's remember the basic objective of statistics. Statistics deals with data that is presented in the form of observations.
+
+\begin{itemize}
+\tightlist
+\item
+  An \textbf{observation} is the acquisition of a number or characteristic from an experiment
+\end{itemize}
+
+Observations are realizations of \textbf{results}.
+
+\begin{itemize}
+\tightlist
+\item
+  An \textbf{outcome} is a possible observation that is the result of an experiment.
+\end{itemize}
+
+When conducting experiments, we often get different results. The description of the variability of the results is one of the objectives of statistics.
+
+\begin{itemize}
+\tightlist
+\item
+  A \textbf{random experiment} is an experiment that gives different results when repeated in the same way.
+\end{itemize}
+
+The philosophical question behind it is how can we know something if every time we look at it it changes?
+
+\hypertarget{measurement-probability}{%
+\section{Measurement probability}\label{measurement-probability}}
+
+We would like to have a measure for the outcome of a randomized experiment that tells us \textbf{how sure} we are of observing the outcome when we perform a \textbf{future} randomized experiment.
+
+We will call this measure the probability of the outcome and assign values to it:
+
+\begin{itemize}
+\item
+  0, when we are sure that the observation will \textbf{not} occur.
+\item
+  1, when we are sure that the observation will happen.
+\end{itemize}
+
+\hypertarget{classical-probability}{%
+\section{Classical probability}\label{classical-probability}}
+
+\textbf{As long as} a random experiment has \(M\) possible outcomes that are all \textbf{equally likely}, the probability of each \(i\) outcome is \[P_i =\frac{1}{ M}\].
+
+Classical probability was defended by Laplace (1814).
+
+Since every outcome is \textbf{equally likely} in this type of experiment, we declare complete ignorance and the best we can do is equally distribute the same probability for each outcome.
+
+\begin{itemize}
+\tightlist
+\item
+  We do not observe \(P_i\)
+\item
+  We deduce \(P_i\) from our ratio and we don't need to carry out any experiment to know it.
+\end{itemize}
+
+\textbf{Example (dice):}
+
+What is the probability that we will get \(2\) on the roll of a die?
+
+\(P_2=1/6=0.166666\).
+
+\hypertarget{relative-frequencies-1}{%
+\section{Relative frequencies}\label{relative-frequencies-1}}
+
+What about random experiments whose possible outcomes are \textbf{not} equally likely?
+
+How then can we define the probabilities of the outcomes?
+
+\textbf{Example (random experiment)}
+
+Imagine that we repeat a random experiment \(8\) times and obtain the following observations
+
+8 4 12 7 10 7 9 12
+
+\begin{itemize}
+\tightlist
+\item
+  How sure are we of obtaining the result \(12\) in the following observation?
+\end{itemize}
+
+The frequency table is
+
+\begin{verbatim}
+##   outcome ni    fi
+## 1       4  1 0.125
+## 2       7  2 0.250
+## 3       8  1 0.125
+## 4       9  1 0.125
+## 5      10  1 0.125
+## 6      12  2 0.250
+\end{verbatim}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-29-1.pdf}
+
+The \textbf{relative frequency} \(f_i =\frac{ n_ i }{ N}\) seems like a reasonable probability measure because
+
+\begin{itemize}
+\tightlist
+\item
+  is a number between \(0\) and \(1\).
+\item
+  measures the proportion of the total number of observations that we observe of a particular result.
+\end{itemize}
+
+Since \(f_{12}=0.25\) then we would be one quarter sure, one out of every 4 observations, of getting \(12\).
+
+\textbf{Question}: How good is \(f_i\) as a measure of certainty of the result \(i\)?
+
+\textbf{Example (random experiment with more repetitions)}
+
+Let's say we repeat the experiment 100,000 more times:
+
+The frequency table is now
+
+\begin{verbatim}
+##    outcome    ni      fi
+## 1        2  2807 0.02807
+## 2        3  5607 0.05607
+## 3        4  8435 0.08435
+## 4        5 11070 0.11070
+## 5        6 13940 0.13940
+## 6        7 16613 0.16613
+## 7        8 13806 0.13806
+## 8        9 10962 0.10962
+## 9       10  8402 0.08402
+## 10      11  5581 0.05581
+## 11      12  2777 0.02777
+\end{verbatim}
+
+and the barplot is
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-31-1.pdf}
+
+New results came out and \(f_{12}\) is now only \(0.027\), and so we are only \(\sim 3\%\) sure to get \(12\) in the next experiment. The probabilities measured by \(f_i\) change with \(N\).
+
+\hypertarget{relative-frequencies-at-infinity}{%
+\section{Relative frequencies at infinity}\label{relative-frequencies-at-infinity}}
+
+A crucial observation is that if we measure the probabilities of \(f_i\) in increasing values of \(N\) they \textbf{converge}!
+
+In this graph each vertical section gives the relative frequency of each observation. We see that after \(N=1000\) (\(log10(N)=3\)) the proportions hardly change with more \(N\).
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-32-1.pdf}
+
+We find that each of the relative frequencies \(f_i\) converges to a constant value
+
+\[lim_{N\rightarrow \infty} f_i = P_i\]
+
+\hypertarget{frequentist-probability}{%
+\section{Frequentist probability}\label{frequentist-probability}}
+
+We call \textbf{Probability} \(P_i\) the limit as \(N \rightarrow \infty\) of the \textbf{relative frequency} of observing the outcome \(i\) in a random experiment.
+
+Defended by Venn (1876), the frequentist definition of probability is derived from (empirical) data/experience.
+
+\begin{itemize}
+\tightlist
+\item
+  We do not observe \(P_i\), we observe \(f_i\)
+\item
+  \textbf{We estimate} \(P_i\) with \(f_i\) (usually when \(N\) is large), we write: \[\hat {P_ i}= f_i\]
+\end{itemize}
+
+Similar to the relationship between \textbf{observation} and \textbf{result}, we have the relationship between \textbf{relative frequency} and \textbf{probability} as a concrete value of an abstract quantity.
+
+\hypertarget{classical-and-frequentist-probabilities}{%
+\section{Classical and frequentist probabilities}\label{classical-and-frequentist-probabilities}}
+
+We have situations where classical probability can be used to find the limit of relative frequencies:
+
+\begin{itemize}
+\tightlist
+\item
+  If the results are \textbf{equally probable}, the classical probability gives us the limit:
+\end{itemize}
+
+\[P_i=lim_{N\rightarrow \infty} \frac{n_i}{N}=\frac{1}{M}\]
+
+\begin{itemize}
+\tightlist
+\item
+  If the results in which we are interested can be derived from other \textbf{equally probable} results. We will see more about this when we study probability models.
+\end{itemize}
+
+\textbf{Example (sum of two dice)}
+
+Our previous example is based on the \textbf{sum of two dice}.
+Although we perform the experiment many times, write down the results, and calculate the \textbf{relative frequencies}, we can know the exact value of probability.
+
+This probability \textbf{follows} from the fact that the outcome of each die is \textbf{equally likely}. From this assumption, we can find that (Exercise 1)
+
+\[
+    P_i =
+\begin{cases}
+\frac{i-1}{36},& i \in \{2,3,4,5,6, 7\} \\
+\frac{13-i}{36},& i \in \{8,9,10,11,12\} \\
+\end{cases}
+\]
+
+The motivation of the frequentist definition is \textbf{empirical} (data) while that of the classical definition is \textbf{rational} (models). We often combine both approaches (inference and deduction) to find out the probabilities of our random experiment.
+
+\includegraphics{./figures/prob.JPG}
+
+\hypertarget{definition-of-probability}{%
+\section{Definition of probability}\label{definition-of-probability}}
+
+A probability is a number that is assigned to each possible outcome of a random experiment and satisfies the following properties or \textbf{axioms}:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\tightlist
+\item
+  when the results \(E_1\) and \(E_2\) are mutually exclusive; that is, only one of them can occur, so the probability of observing \(E_1\) \textbf{or} \(E_1\), written as \(E_1\cup E_2\), is their sum:
+  \[ P( E_1\cup E_2) = P(E_1) + P(E_2)\]
+\item
+  when \(S\) is the set of all possible outcomes, then its probability is \(1\) (at least something is observed): \[P(S)=1\]
+\item
+  The probability of any outcome is between 0 and 1 \[P(E) \in [0,1]\]
+\end{enumerate}
+
+Proposed by Kolmogorov's less than 100 years ago (1933)
+
+\hypertarget{probabilities-table}{%
+\section{Probabilities Table}\label{probabilities-table}}
+
+Kolmogorov properties are the basic rules for building a \textbf{probability table}, similar to the relative frequency table.
+
+\textbf{Example (dice)}
+
+The probability table for the throw of a dice
+
+\begin{longtable}[]{@{}cc@{}}
+\toprule
+result & probability \\
+\midrule
+\endhead
+\(1\) & 1/6 \\
+\(2\) & 1/6 \\
+\(3\) & 1/6 \\
+\(4\) & 1/6 \\
+\(5\) & 1/6 \\
+\(6\) & 1/6 \\
+\(P( 1 \cup 2\cup ... \cup 6)\) & 1 \\
+\bottomrule
+\end{longtable}
+
+Let's verify the axioms:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\item
+  Where \(1 \cup 2\) is, for example, the \textbf{event} of rolling a \(1\) \textbf{or} a \(2\). So \[ P( 1 \cup 2)=P(1)+P(2)=2/6\]
+\item
+  Since \(S= \{ 1,2,3,4,5,6\}\) is made up of \textbf{mutually exclusive} outcomes, then
+\end{enumerate}
+
+\[P(S)=P(1\cup 2\cup ... \cup 6) = P(1)+P(2)+ ...+P(n)=1\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  The probabilities of each outcome are between \(0\) and \(1\).
+\end{enumerate}
+
+\hypertarget{sample-space}{%
+\section{Sample space}\label{sample-space}}
+
+The set of all possible outcomes of a random experiment is called the \textbf{sample space} and is denoted \(S\).
+
+The sample space can be made up of categorical or numerical outcomes.
+
+\emph{For example:}
+
+\begin{itemize}
+\tightlist
+\item
+  human temperature: \(S = (36, 42)\) degrees Celsius.
+\item
+  sugar levels in humans: \(S =( 70-80) mg/ dL\)
+\item
+  the size of a production line screw: \(S =( 70-72) mm\)
+\item
+  number of emails received in an hour: \(S = \{ 1, ...\infty \}\)
+\item
+  the throw of a dice: \(S= \{ 1, 2, 3, 4, 5, 6\}\)
+\end{itemize}
+
+\hypertarget{events}{%
+\section{Events}\label{events}}
+
+An \textbf{event} \(A\) is a \textbf{subset} of the sample space. It is a \textbf{collection} of posible results.
+
+\emph{Examples of events:}
+
+\begin{itemize}
+\tightlist
+\item
+  The event of a healthy temperature: \(A=37-38\) degrees Celsius
+\item
+  The event of producing a screw with a size: \(A=71.5mm\)
+\item
+  The event of receiving more than 4 emails in an hour: \(A= \{ 4, \infty \}\)
+\item
+  The event of obtaining a number less than or equal to 3 in the roll of a says: \(A= \{ 1,2,3\}\)
+\end{itemize}
+
+An event refers to a possible set of \textbf{outcomes}.
+
+\hypertarget{algebra-of-events}{%
+\section{Algebra of events}\label{algebra-of-events}}
+
+For two events \(A\) and \(B\), we can construct the following derived events using the basic set operations:
+
+\begin{itemize}
+\tightlist
+\item
+  Complement \(A'\): the event of \textbf{not} \(A\)
+\item
+  Union \(A \cup B\): the event of \(A\) \textbf{or} \(B\)
+\item
+  Intersection \(A \ cap B\): the event of \(A\) \textbf{and} \(B\)
+\end{itemize}
+
+\textbf{Example (dice)}
+
+Let's roll a die and look at the events (result set):
+
+\begin{itemize}
+\tightlist
+\item
+  a number less than or equal to three \(A:\{ 1,2,3\}\)
+\item
+  an even number \(B:\{ 2,4,6\}\)
+\end{itemize}
+
+Let's see how we can build new events with set operations:
+
+\begin{itemize}
+\tightlist
+\item
+  a number not less than three: \(A ':\{4,5,6\}\)
+\item
+  a number less than or equal to three \textbf{or} even: \(A \cup B: \{ 1,2,3,4,6\}\)
+\item
+  a number less than or equal to three \textbf{and} even \(A \cap B: \{ 2\}\)
+\end{itemize}
+
+\hypertarget{mutually-exclusive-results}{%
+\section{Mutually exclusive results}\label{mutually-exclusive-results}}
+
+Outcomes like rolling \(1\) and \(2\) on a die are events that cannot occur at the same time. We say that they are \textbf{mutually exclusive}.
+
+In general, two events denoted as \(E_1\) and \(E_2\) are mutually exclusive when
+
+\[E_1\cap E_2=\emptyset\]
+
+\emph{Examples:}
+
+\begin{itemize}
+\item
+  The result of having a misophonia severity of \(1\) and a severity of \(4\).
+\item
+  The results of obtaining \(12\) and \(5\) by adding the throw of two dice.
+\end{itemize}
+
+According to the Kolmogorov properties , only \textbf{mutually exclusive} outcomes can be arranged in \textbf{probability tables}, as in relative frequency tables.
+
+\hypertarget{joint-probabilities}{%
+\section{Joint probabilities}\label{joint-probabilities}}
+
+The \textbf{joint probability} of \(A\) and \(B\) is the probability of \(A\) and \(B\). That's \[P( A \cap B)\] or \(P(A,B)\).
+
+To write joint probabilities of non mutually exclusive events (\(A \cap B \neq \emptyset\)) into a probability table, we note that we can always decompose the sample space into \textbf{mutually exclusive} sets involving the intersections:
+
+\(S=\{A\cap B, A \cap B', A'\cap B, A'\cap B'\}\)
+
+\textbf{Let's consider the Ven diagram} for the example where \(A\) is the event that corresponds to drawing a number less than or equal to 3 and \(B\) corresponds to an even number:
+
+\includegraphics{./figures/Venn.JPG}
+
+The \textbf{marginals} of \(A\) and \(B\) are the probability of \(A\) and the probability of \(B\), respectively:
+
+\begin{itemize}
+\tightlist
+\item
+  \(P(A)=P(A\cap B') + P(A \cap B)=2/6+1/6=3/6\)
+\item
+  \(P(B)=P(A'\cap B) +P(A \cap B)=2/6+1/6=3/6\)
+\end{itemize}
+
+We can now write the \textbf{probability table} for the joint probabilities
+
+\begin{longtable}[]{@{}cc@{}}
+\toprule
+Result & probability \\
+\midrule
+\endhead
+\((A\cap B)\) & \(P(A \cap B)=1/6\) \\
+\((A\cap B')\) & \(P(A \cap B')=2/6\) \\
+\((A'\cap B)\) & \(P(A' \cap B)=2/6\) \\
+\((A'\cap B')\) & \(P(A' \cap B')=1/6\) \\
+sum & \(1\) \\
+\bottomrule
+\end{longtable}
+
+Each result has \(two\) values (one for the feature of type \(A\) and one for type \(B\))
+
+\hypertarget{contingency-table}{%
+\section{Contingency table}\label{contingency-table}}
+
+The joint probability table can also be written in a \textbf{contingency table}
+
+\begin{longtable}[]{@{}cccc@{}}
+\toprule
+& \(B\) & \(B'\) & sum \\
+\midrule
+\endhead
+\(A\) & \(P(A \cap B )\) & \(P(A\cap B' )\) & \(P(A)\) \\
+\(A'\) & \(P(A'\cap B )\) & \(P(A'\cap B' )\) & \(P(A')\) \\
+sum & \(P(B)\) & \(P(B')\) & 1 \\
+\bottomrule
+\end{longtable}
+
+Where the marginals are the sums in the margins of the table, for example:
+
+\begin{itemize}
+\tightlist
+\item
+  \(P(A)=P(A \cap B') + P(A \cap B)\)
+\item
+  \(P(B)=P(A' \cap B) +P(A \cap B)\)
+\end{itemize}
+
+In our example, the contingency table is
+
+\begin{longtable}[]{@{}cccc@{}}
+\toprule
+& \(B\) & \(B'\) & sum \\
+\midrule
+\endhead
+\(A\) & \(1/6\) & \(2/6\) & \(3/6\) \\
+\(A'\) & \(2/6\) & \(1/6\) & \(3/6\) \\
+sum & \(3/6\) & \(3/6\) & \(1\) \\
+\bottomrule
+\end{longtable}
+
+\hypertarget{the-addition-rule}{%
+\section{The addition rule:}\label{the-addition-rule}}
+
+The addition rule allows us to calculate the probability of \(A\) or \(B\), \(P( A \cup B)\), in terms of the probability of \(A\) and \(B\), \(P(A \cup B )\). We can do this in three equivalent ways:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\item
+  Using the marginals and the joint probability
+  \[P(A \cup B)=P(A) + P(B) - P(A\cap B)\]
+\item
+  Using only joint probabilities
+  \[P( A \cup B)=P(A \cap B)+P(A\cap B')+P(A'\cap B)\]
+\item
+  Using the complement of joint probability
+  \[P(A \cup B)=1-P(A'\cap B')\]
+\end{enumerate}
+
+\textbf{Example (dice)}
+
+Take the events \(A:\{ 1,2,3\}\), rolling a number less than or equal to \(3\), and \(B:\{2,4,6\}\), rolling an even number on the roll of a dice.
+
+Therefore:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\item
+  \(P( A \cup B)=P(A) + P(B) - P(A\cap B)=3/6+3/6-1/6=5/6\)
+\item
+  \(P(A \cup B)=P(A \cap B)+P(A\cap B')+P(A'\cap B)=1/6+2/6+2/6=5/6\)
+\item
+  \(P(A \cup B)=1-P(A'\cap B')= 1-1/6=5/6\)
+\end{enumerate}
+
+In the contingency table \(P( A \cup B)\) corresponds to the cells in bold (method 2 above). That is all cells but 1/6 from the bottom right (method 3).
+
+\begin{longtable}[]{@{}ccc@{}}
+\toprule
+& \(B\) & \(B'\) \\
+\midrule
+\endhead
+\(A\) & \textbf{1/6} & \textbf{2/6} \\
+\(A'\) & \textbf{2/6} & \emph{1/6} \\
+\bottomrule
+\end{longtable}
+
+\hypertarget{questions-1}{%
+\section{Questions}\label{questions-1}}
+
+We collect the age and category of 100 athletes in a competition
+
+\begin{longtable}[]{@{}ccc@{}}
+\toprule
+& \(age:junior\) & \(age:senior\) \\
+\midrule
+\endhead
+\(category:1st\) & \(14\) & \(12\) \\
+\(category:2nd\) & \(21\) & \(18\) \\
+\(category:3rd\) & \(22\) & \(13\) \\
+\bottomrule
+\end{longtable}
+
+\textbf{1)} What is the estimated probability that an athlete is 2nd category and senior?
+
+\textbf{\(\qquad\)a:} \(18/100\); \textbf{\(\qquad\)b:} \(18/43\); \textbf{\(\qquad\)c:} \(18\); \textbf{\(\qquad\)d:} \(18/39\)
+
+\textbf{2)} What is the estimated probability that the athlete is not in the third category and is senior?
+
+\textbf{\(\qquad\)a:} \(35/100\); \textbf{\(\qquad\)b:} \(30/100\); \textbf{\(\qquad\)c:} \(22/100\); \textbf{\(\qquad\)d:} \(13/100\)
+
+\textbf{3)} What is the marginal probability of the third category?
+
+\textbf{\(\qquad\)a:} \(13/100\); \textbf{\(\qquad\)b:} \(35/100\); \textbf{\(\qquad\)c:} \(22/100\); \textbf{\(\qquad\)d:} \(13/22\)
+
+\textbf{4)} What is the marginal probability of being senior?
+
+\textbf{\(\qquad\)a:} \(13/100\); \textbf{\(\qquad\)b:} \(43/100\); \textbf{\(\qquad\)c:} \(43/57\); \textbf{\(\qquad\)d:} \(57/100\)
+
+\textbf{5)} What is the probability of being senior or third category?
+
+\textbf{\(\qquad\)a:} \(65/100\); \textbf{\(\qquad\)b:} \(86/100\); \textbf{\(\qquad\)c:} \(78/100\); \textbf{\(\qquad\)d:} \(13/100\)
+
+\hypertarget{exercises-1}{%
+\section{Exercises}\label{exercises-1}}
+
+\hypertarget{classical-probability-exercise-1}{%
+\subsubsection{Classical probability: Exercise 1}\label{classical-probability-exercise-1}}
+
+\begin{itemize}
+\item
+  Write the table of \textbf{joint probability} for the \textbf{results} of rolling two dice; In the rows write the results of the first die and in the columns the results of the second die.
+\item
+  What is the probability of drawing \((3, 4)\) ? (R:1/36)
+\item
+  What is the probability of rolling \(3\) and \(4\) with any of the two dice? (R:2/36)
+\item
+  What is the probability of rolling \(3\) on the first die or \(4\) on the second? (To:11/36)
+\item
+  What is the probability of rolling \(3\) or \(4\) with any dice? (R:20/36)
+\item
+  Write the \textbf{probability table} for the result of the \textbf{add} of two dice. Assume that the outcome of each die is \textbf{equally likely}. Verify that it is:
+\end{itemize}
+
+\[
+P_i=
+\begin{cases}
+\frac{i-1}{36},& i \in \{2,3,4,5,6, 7\} \\
+\frac{13-i}{36},& i \in \{8,9,10,11,12\} \\
+\end{cases}
+\]
+
+\hypertarget{frequentist-probability-exercise-2}{%
+\subsubsection{Frequentist probability: Exercise 2}\label{frequentist-probability-exercise-2}}
+
+The result of a randomized experiment is to measure the severity of misophonia \textbf{and} the state of depression of a patient.
+
+Misophonia
+
+\begin{itemize}
+\tightlist
+\item
+  severity: \(S_M:\{M_ 0,M _1,M_2,M_3,M_4\}\)
+\item
+  Depression: \(S_ D:\{ D', D\}\))
+\end{itemize}
+
+Write the contingency table for the absolute frequencies (\(n_{ M,D }\)) for a study on a total of 123 patients in which it was observed
+
+\begin{itemize}
+\tightlist
+\item
+  100 individuals did not have depression.
+\item
+  No individual with misophonia 4 and without depression.
+\item
+  5 individuals with grade 1 misophonia and no depression.
+\item
+  The same number as the previous case for individuals with depression and without misophonia .
+\item
+  25 individuals without depression and grade 3 misophonia .
+\item
+  The number of misophonics without depression for grades 2 and 0 were distributed equally .
+\item
+  The number of individuals with depression and misophonia increased progressively
+  in multiples of three, starting at 0 individuals for grade 1.
+\end{itemize}
+
+Answer the following questions:
+
+\begin{itemize}
+\tightlist
+\item
+  How many individuals had misophonia ? (A:83)
+\item
+  How many individuals had grade 3 misophonia ? (R:31)
+\item
+  How many individuals had grade 2 misophonia without depression? (R:35)
+\end{itemize}
+
+Write down the contingency table for relative frequencies \(f_{ M,D }\). Suppose \(N\) is large and the absolute frequencies \textbf{estimate} the probabilities \(f_{ M,D }=\hat {P}(M \cap D)\). Answer the following questions:
+
+\begin{itemize}
+\tightlist
+\item
+  What is the marginal probability of severity 2 misophonia ? (R: 0.3)
+\item
+  What is the probability of not being misophonic \textbf{and} not being depressed? (R:0.284)
+\item
+  What is the probability of being misophonic \textbf{or} depressed? (R: 0.715)
+\item
+  What is the probability of being misophonic \textbf{and} being depressed? (R: 0.146)
+\item
+  Describe in spoken language the results with probability 0.
+\end{itemize}
+
+\hypertarget{exercise-3}{%
+\subsubsection{Exercise 3}\label{exercise-3}}
+
+We have carried out a randomized experiment \(10\) times, which consists of recording the sex and vital status of patients with some type of cancer after 10 years of diagnosis. We got the following results
+
+\begin{verbatim}
+##           A     B
+## 1     male   dead
+## 2     male   dead
+## 3     male   dead
+## 4   female  alive
+## 5     male   dead
+## 6   female  alive
+## 7   female   dead
+## 8   female  alive
+## 9     male  alive
+## 10    male  alive
+\end{verbatim}
+
+\begin{itemize}
+\tightlist
+\item
+  Create the contingency table for the number (\(n_{ i,j }\)) of observations of each result (\(A,B\))
+\item
+  Create the contingency table for the relative frequency (\(f_{ i,j }\)) of the results
+\item
+  What is the marginal frequency of being a man? (R/0.6)
+\item
+  What is the marginal frequency of being alive? (R/0.5)
+\item
+  What is the frequency of being alive \textbf{or} being a woman? (R/0.6)
+\end{itemize}
+
+\hypertarget{theory-exercise-4}{%
+\subsubsection{Theory: Exercise 4}\label{theory-exercise-4}}
+
+\begin{itemize}
+\item
+  From the second form of the addition rule, obtain the first and the third form.
+\item
+  What is the third form addition rule for the probability of three events \(P(A \cup B \cup C)\)?
 \end{itemize}
 
   \bibliography{book.bib,packages.bib}

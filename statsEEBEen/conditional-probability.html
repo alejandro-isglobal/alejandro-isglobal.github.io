@@ -1,0 +1,963 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 4 Conditional probability | EEBE stats</title>
+  <meta name="description" content="EEBE" />
+  <meta name="generator" content="bookdown 0.34 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 4 Conditional probability | EEBE stats" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="EEBE" />
+  <meta name="github-repo" content="alejandro-isglobal/master" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 4 Conditional probability | EEBE stats" />
+  
+  <meta name="twitter:description" content="EEBE" />
+  
+
+<meta name="author" content="Alejandro Caceres" />
+
+
+<meta name="date" content="2023-09-20" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="probability.html"/>
+
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">EEBE</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Objective</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#recommended-reading"><i class="fa fa-check"></i><b>1.1</b> Recommended reading</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="data-description.html"><a href="data-description.html"><i class="fa fa-check"></i><b>2</b> Data description</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="data-description.html"><a href="data-description.html#scientific-method"><i class="fa fa-check"></i><b>2.1</b> Scientific method</a></li>
+<li class="chapter" data-level="2.2" data-path="data-description.html"><a href="data-description.html#statistics"><i class="fa fa-check"></i><b>2.2</b> Statistics</a></li>
+<li class="chapter" data-level="2.3" data-path="data-description.html"><a href="data-description.html#data"><i class="fa fa-check"></i><b>2.3</b> Data</a></li>
+<li class="chapter" data-level="2.4" data-path="data-description.html"><a href="data-description.html#result-types"><i class="fa fa-check"></i><b>2.4</b> Result types</a></li>
+<li class="chapter" data-level="2.5" data-path="data-description.html"><a href="data-description.html#random-experiments"><i class="fa fa-check"></i><b>2.5</b> Random experiments</a></li>
+<li class="chapter" data-level="2.6" data-path="data-description.html"><a href="data-description.html#absolute-frequencies"><i class="fa fa-check"></i><b>2.6</b> Absolute frequencies</a></li>
+<li class="chapter" data-level="2.7" data-path="data-description.html"><a href="data-description.html#relative-frequencies"><i class="fa fa-check"></i><b>2.7</b> Relative frequencies</a></li>
+<li class="chapter" data-level="2.8" data-path="data-description.html"><a href="data-description.html#bar-chart"><i class="fa fa-check"></i><b>2.8</b> Bar chart</a></li>
+<li class="chapter" data-level="2.9" data-path="data-description.html"><a href="data-description.html#pie-chart-pie"><i class="fa fa-check"></i><b>2.9</b> Pie chart (pie)</a></li>
+<li class="chapter" data-level="2.10" data-path="data-description.html"><a href="data-description.html#ordinal-categorical-variables"><i class="fa fa-check"></i><b>2.10</b> Ordinal categorical variables</a></li>
+<li class="chapter" data-level="2.11" data-path="data-description.html"><a href="data-description.html#accumulated-absolute-and-relative-frequencies"><i class="fa fa-check"></i><b>2.11</b> Accumulated absolute and relative frequencies</a></li>
+<li class="chapter" data-level="2.12" data-path="data-description.html"><a href="data-description.html#cumulative-frequency-graph"><i class="fa fa-check"></i><b>2.12</b> Cumulative frequency graph</a></li>
+<li class="chapter" data-level="2.13" data-path="data-description.html"><a href="data-description.html#numeric-variables"><i class="fa fa-check"></i><b>2.13</b> Numeric variables</a></li>
+<li class="chapter" data-level="2.14" data-path="data-description.html"><a href="data-description.html#transforming-continuous-data"><i class="fa fa-check"></i><b>2.14</b> Transforming continuous data</a></li>
+<li class="chapter" data-level="2.15" data-path="data-description.html"><a href="data-description.html#frequency-table-for-a-continuous-variable"><i class="fa fa-check"></i><b>2.15</b> Frequency table for a continuous variable</a></li>
+<li class="chapter" data-level="2.16" data-path="data-description.html"><a href="data-description.html#histogram"><i class="fa fa-check"></i><b>2.16</b> Histogram</a></li>
+<li class="chapter" data-level="2.17" data-path="data-description.html"><a href="data-description.html#cumulative-frequency-graph-1"><i class="fa fa-check"></i><b>2.17</b> Cumulative frequency graph</a></li>
+<li class="chapter" data-level="2.18" data-path="data-description.html"><a href="data-description.html#summary-statistics"><i class="fa fa-check"></i><b>2.18</b> Summary Statistics</a></li>
+<li class="chapter" data-level="2.19" data-path="data-description.html"><a href="data-description.html#average-sample-mean"><i class="fa fa-check"></i><b>2.19</b> Average (sample mean)</a></li>
+<li class="chapter" data-level="2.20" data-path="data-description.html"><a href="data-description.html#median"><i class="fa fa-check"></i><b>2.20</b> Median</a></li>
+<li class="chapter" data-level="2.21" data-path="data-description.html"><a href="data-description.html#dispersion"><i class="fa fa-check"></i><b>2.21</b> Dispersion</a></li>
+<li class="chapter" data-level="2.22" data-path="data-description.html"><a href="data-description.html#sample-variance"><i class="fa fa-check"></i><b>2.22</b> Sample variance</a></li>
+<li class="chapter" data-level="2.23" data-path="data-description.html"><a href="data-description.html#interquartile-range-iqr"><i class="fa fa-check"></i><b>2.23</b> Interquartile range (IQR)</a></li>
+<li class="chapter" data-level="2.24" data-path="data-description.html"><a href="data-description.html#boxplot"><i class="fa fa-check"></i><b>2.24</b> Boxplot</a></li>
+<li class="chapter" data-level="2.25" data-path="data-description.html"><a href="data-description.html#questions"><i class="fa fa-check"></i><b>2.25</b> Questions</a></li>
+<li class="chapter" data-level="2.26" data-path="data-description.html"><a href="data-description.html#exercises"><i class="fa fa-check"></i><b>2.26</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="probability.html"><a href="probability.html"><i class="fa fa-check"></i><b>3</b> Probability</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="probability.html"><a href="probability.html#random-experiments-1"><i class="fa fa-check"></i><b>3.1</b> Random experiments</a></li>
+<li class="chapter" data-level="3.2" data-path="probability.html"><a href="probability.html#measurement-probability"><i class="fa fa-check"></i><b>3.2</b> Measurement probability</a></li>
+<li class="chapter" data-level="3.3" data-path="probability.html"><a href="probability.html#classical-probability"><i class="fa fa-check"></i><b>3.3</b> Classical probability</a></li>
+<li class="chapter" data-level="3.4" data-path="probability.html"><a href="probability.html#relative-frequencies-1"><i class="fa fa-check"></i><b>3.4</b> Relative frequencies</a></li>
+<li class="chapter" data-level="3.5" data-path="probability.html"><a href="probability.html#relative-frequencies-at-infinity"><i class="fa fa-check"></i><b>3.5</b> Relative frequencies at infinity</a></li>
+<li class="chapter" data-level="3.6" data-path="probability.html"><a href="probability.html#frequentist-probability"><i class="fa fa-check"></i><b>3.6</b> Frequentist probability</a></li>
+<li class="chapter" data-level="3.7" data-path="probability.html"><a href="probability.html#classical-and-frequentist-probabilities"><i class="fa fa-check"></i><b>3.7</b> Classical and frequentist probabilities</a></li>
+<li class="chapter" data-level="3.8" data-path="probability.html"><a href="probability.html#definition-of-probability"><i class="fa fa-check"></i><b>3.8</b> Definition of probability</a></li>
+<li class="chapter" data-level="3.9" data-path="probability.html"><a href="probability.html#probabilities-table"><i class="fa fa-check"></i><b>3.9</b> Probabilities Table</a></li>
+<li class="chapter" data-level="3.10" data-path="probability.html"><a href="probability.html#sample-space"><i class="fa fa-check"></i><b>3.10</b> Sample space</a></li>
+<li class="chapter" data-level="3.11" data-path="probability.html"><a href="probability.html#events"><i class="fa fa-check"></i><b>3.11</b> Events</a></li>
+<li class="chapter" data-level="3.12" data-path="probability.html"><a href="probability.html#algebra-of-events"><i class="fa fa-check"></i><b>3.12</b> Algebra of events</a></li>
+<li class="chapter" data-level="3.13" data-path="probability.html"><a href="probability.html#mutually-exclusive-results"><i class="fa fa-check"></i><b>3.13</b> Mutually exclusive results</a></li>
+<li class="chapter" data-level="3.14" data-path="probability.html"><a href="probability.html#joint-probabilities"><i class="fa fa-check"></i><b>3.14</b> Joint probabilities</a></li>
+<li class="chapter" data-level="3.15" data-path="probability.html"><a href="probability.html#contingency-table"><i class="fa fa-check"></i><b>3.15</b> Contingency table</a></li>
+<li class="chapter" data-level="3.16" data-path="probability.html"><a href="probability.html#the-addition-rule"><i class="fa fa-check"></i><b>3.16</b> The addition rule:</a></li>
+<li class="chapter" data-level="3.17" data-path="probability.html"><a href="probability.html#questions-1"><i class="fa fa-check"></i><b>3.17</b> Questions</a></li>
+<li class="chapter" data-level="3.18" data-path="probability.html"><a href="probability.html#exercises-1"><i class="fa fa-check"></i><b>3.18</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="conditional-probability.html"><a href="conditional-probability.html"><i class="fa fa-check"></i><b>4</b> Conditional probability</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="conditional-probability.html"><a href="conditional-probability.html#joint-probability"><i class="fa fa-check"></i><b>4.1</b> Joint probability</a></li>
+<li class="chapter" data-level="4.2" data-path="conditional-probability.html"><a href="conditional-probability.html#statistical-independence"><i class="fa fa-check"></i><b>4.2</b> Statistical independence</a></li>
+<li class="chapter" data-level="4.3" data-path="conditional-probability.html"><a href="conditional-probability.html#the-conditional-probability"><i class="fa fa-check"></i><b>4.3</b> The conditional probability</a></li>
+<li class="chapter" data-level="4.4" data-path="conditional-probability.html"><a href="conditional-probability.html#conditional-contingency-table"><i class="fa fa-check"></i><b>4.4</b> Conditional contingency table</a></li>
+<li class="chapter" data-level="4.5" data-path="conditional-probability.html"><a href="conditional-probability.html#statistical-independence-1"><i class="fa fa-check"></i><b>4.5</b> Statistical independence</a></li>
+<li class="chapter" data-level="4.6" data-path="conditional-probability.html"><a href="conditional-probability.html#statistical-dependency"><i class="fa fa-check"></i><b>4.6</b> Statistical dependency</a></li>
+<li class="chapter" data-level="4.7" data-path="conditional-probability.html"><a href="conditional-probability.html#diagnostic-test"><i class="fa fa-check"></i><b>4.7</b> Diagnostic test</a></li>
+<li class="chapter" data-level="4.8" data-path="conditional-probability.html"><a href="conditional-probability.html#inverse-probabilities"><i class="fa fa-check"></i><b>4.8</b> Inverse probabilities</a></li>
+<li class="chapter" data-level="4.9" data-path="conditional-probability.html"><a href="conditional-probability.html#bayes-theorem"><i class="fa fa-check"></i><b>4.9</b> Bayes’ Theorem</a></li>
+<li class="chapter" data-level="4.10" data-path="conditional-probability.html"><a href="conditional-probability.html#exercises-2"><i class="fa fa-check"></i><b>4.10</b> Exercises</a></li>
+<li class="chapter" data-level="4.11" data-path="conditional-probability.html"><a href="conditional-probability.html#questions-2"><i class="fa fa-check"></i><b>4.11</b> Questions</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">EEBE stats</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="conditional-probability" class="section level1 hasAnchor" number="4">
+<h1><span class="header-section-number">Chapter 4</span> Conditional probability<a href="conditional-probability.html#conditional-probability" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>In this chapter, we will introduce conditional probability.</p>
+<p>We will use conditional probability to define statistical independence.</p>
+<p>We will discuss Bayes’ theorem and we will discuss one of its main applications, which is the predictive efficiency of a diagnostic tool.</p>
+<div id="joint-probability" class="section level2 hasAnchor" number="4.1">
+<h2><span class="header-section-number">4.1</span> Joint probability<a href="conditional-probability.html#joint-probability" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Recall that the joint probability of two events <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> is defined as their intersection</p>
+<p><span class="math display">\[P( A ,B )=P(A \cap B)\]</span></p>
+<p>Now imagine randomized experiments that measure two different types of outcomes.</p>
+<ul>
+<li><p>height and weight of an individual: <span class="math inline">\((h, w)\)</span></p></li>
+<li><p>time and position of an electric charge: <span class="math inline">\((p, t)\)</span></p></li>
+<li><p>the throw of two dice: (<span class="math inline">\(n_1\)</span>, <span class="math inline">\(n_2\)</span>)</p></li>
+<li><p>cross two green traffic lights: (<span class="math inline">\(\bar{ R_ 1}\)</span> , <span class="math inline">\(\bar{R_2}\)</span>)</p></li>
+</ul>
+<p>We are often interested in whether the values of one result <strong>condition</strong> the values of the other.</p>
+</div>
+<div id="statistical-independence" class="section level2 hasAnchor" number="4.2">
+<h2><span class="header-section-number">4.2</span> Statistical independence<a href="conditional-probability.html#statistical-independence" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In many cases, we are interested in whether two events often tend to occur together. We want to be able to discern between two cases.</p>
+<ul>
+<li><p><strong>Independence</strong> between events. For example, rolling a 1 on one die does not make it more likely to roll another 1 on a second die.</p></li>
+<li><p><strong>Correlation</strong> between events. For example, if a man is tall, he is probably heavy.</p></li>
+</ul>
+<p><strong>Example (conductor)</strong></p>
+<p>We conducted an experiment to find out if observing structural flaws in a material affects its conductivity.</p>
+<p>The data would look like</p>
+<table>
+<thead>
+<tr class="header">
+<th align="center">Conductor</th>
+<th align="center">Structure</th>
+<th align="center">conductivity</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><span class="math inline">\(c_1\)</span></td>
+<td align="center">flaws</td>
+<td align="center">low</td>
+</tr>
+<tr class="even">
+<td align="center"><span class="math inline">\(c_2\)</span></td>
+<td align="center">no flaws</td>
+<td align="center">high</td>
+</tr>
+<tr class="odd">
+<td align="center"><span class="math inline">\(c_3\)</span></td>
+<td align="center">flaws</td>
+<td align="center">low</td>
+</tr>
+<tr class="even">
+<td align="center">…</td>
+<td align="center">…</td>
+<td align="center">…</td>
+</tr>
+<tr class="odd">
+<td align="center"><span class="math inline">\(c_i\)</span></td>
+<td align="center">no flaws</td>
+<td align="center">low*</td>
+</tr>
+<tr class="even">
+<td align="center">…</td>
+<td align="center">…</td>
+<td align="center">…</td>
+</tr>
+<tr class="odd">
+<td align="center">…</td>
+<td align="center">…</td>
+<td align="center">…</td>
+</tr>
+<tr class="even">
+<td align="center"><span class="math inline">\(c_n\)</span></td>
+<td align="center">flaws</td>
+<td align="center">high*</td>
+</tr>
+</tbody>
+</table>
+<p>We can expect low conductivity to occur more often with flaws than without flaws if the flaws affect conductivity.</p>
+<p>Let’s imagine that from the data we obtain the following contingency table of <strong>estimated joint probabilities</strong></p>
+<table>
+<thead>
+<tr class="header">
+<th align="center"></th>
+<th align="center">with flaws (F)</th>
+<th align="center">no flaws (F’)</th>
+<th align="center">sum</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><b>low (L) </b></td>
+<td align="center"><span class="math inline">\(0.005\)</span></td>
+<td align="center"><span class="math inline">\(0.045\)</span></td>
+<td align="center"><span class="math inline">\(0.05\)</span></td>
+</tr>
+<tr class="even">
+<td align="center"><b> high (L’) </b></td>
+<td align="center"><span class="math inline">\(0.095\)</span></td>
+<td align="center"><span class="math inline">\(0.855\)</span></td>
+<td align="center"><span class="math inline">\(0.95\)</span></td>
+</tr>
+<tr class="odd">
+<td align="center"><b>sum</b></td>
+<td align="center"><span class="math inline">\(0.1\)</span></td>
+<td align="center"><span class="math inline">\(0.9\)</span></td>
+<td align="center">1</td>
+</tr>
+</tbody>
+</table>
+<p>where, for example, the joint probability of <span class="math inline">\(L\)</span> and <span class="math inline">\(F\)</span> is</p>
+<ul>
+<li><span class="math inline">\(P(L,F )=0.005\)</span></li>
+</ul>
+<p>and the marginal probabilities are</p>
+<ul>
+<li><span class="math inline">\(P(L)=P(L, F) + P(L, F&#39;)=0.05\)</span></li>
+<li><span class="math inline">\(P(F)=P(L, F) + P(L&#39;, F)= 0.1\)</span>.</li>
+</ul>
+</div>
+<div id="the-conditional-probability" class="section level2 hasAnchor" number="4.3">
+<h2><span class="header-section-number">4.3</span> The conditional probability<a href="conditional-probability.html#the-conditional-probability" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Low conductivity is <strong>independent</strong> of having structural flaws if the probability of having low conductivity (<span class="math inline">\(L\)</span>) is the same <strong>whether</strong> it has flaws (<span class="math inline">\(F\)</span>) or not (<span class="math inline">\(F&#39;\)</span> ) .</p>
+<p>Let us first consider only the materials that have flaws.</p>
+<p>Among those materials that have flaws (<span class="math inline">\(F\)</span>), what is the estimated probability that they have low conductivity?</p>
+<p><span class="math inline">\(\hat{P}(L| F)= \frac{n_{L,F}}{n_{F}}=\frac{n_{L,F}/n}{n_{F}/n}= \frac{f_{L,F}}{f_{F}}\)</span>
+<span class="math display">\[= \frac{\hat{P}( L,F )}{\hat{P}(F)}\]</span>
+Therefore, in the limit when <span class="math inline">\(N \rightarrow \infty\)</span>, we have</p>
+<p><span class="math display">\[P(L| F)= \frac{P(L,F)}{P(D)}=\frac{P(L\cap F)}{P(D)}\]</span>
+<strong>Definition:</strong></p>
+<p>The <em>conditional probability</em> of an event <span class="math inline">\(B\)</span> given an event <span class="math inline">\(A\)</span>, denoted <span class="math inline">\(P(A| B)\)</span> , is</p>
+<p><span class="math display">\[P(A|B) = \frac{P(A\cap B)}{P(B)}\]</span></p>
+<p>We can prove that conditional probability satisfies the axioms of probability. The conditional probability can be understood as a probability with a sample space given by <span class="math inline">\(B\)</span>: <span class="math inline">\(S_B\)</span>. In our example, the materials with stuctural flaw.</p>
+</div>
+<div id="conditional-contingency-table" class="section level2 hasAnchor" number="4.4">
+<h2><span class="header-section-number">4.4</span> Conditional contingency table<a href="conditional-probability.html#conditional-contingency-table" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>If we divide the columns of the joint probability table by the marginal probabilities of the conditioning effects (<span class="math inline">\(F\)</span> and <span class="math inline">\(F&#39;\)</span>), we can write <strong>a conditional contingency table</strong></p>
+<table>
+<thead>
+<tr class="header">
+<th align="center"></th>
+<th align="center">F</th>
+<th align="center">F’</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><b>L</b></td>
+<td align="center">P( L <span>|</span> F)</td>
+<td align="center">P(L <span>|</span> F’)</td>
+</tr>
+<tr class="even">
+<td align="center"><b>L’</b></td>
+<td align="center">P(L’ <span>|</span> F)</td>
+<td align="center">P(L’ <span>|</span> F’)</td>
+</tr>
+<tr class="odd">
+<td align="center"><b>sum</b></td>
+<td align="center">1</td>
+<td align="center">1</td>
+</tr>
+</tbody>
+</table>
+<p>where the column probabilities sum to one. The first column shows the probabilities of low conductivity or not only of the materials that have flaws (first condition: <span class="math inline">\(F\)</span>). The second column shows the probabilities only for the materials that have no flaws (second condition: <span class="math inline">\(F&#39;\)</span>).</p>
+<p>Conditional probabilities are the probabilities of the event within each condition. We read them as:</p>
+<ul>
+<li><span class="math inline">\(P(L| F)\)</span>: Probability of having low conductivity <strong>if</strong> it has flaws</li>
+<li><span class="math inline">\(P(L&#39;| F)\)</span>: Probability of not having low conductivity <strong>if</strong> it has flaws</li>
+<li><span class="math inline">\(P(L|F &#39;)\)</span>: Probability of having low conductivity <strong>if</strong> it has no flaws</li>
+<li><span class="math inline">\(P(L&#39;|F &#39;)\)</span>: Probability of not having low conductivity <strong>if</strong> it has no flaws</li>
+</ul>
+</div>
+<div id="statistical-independence-1" class="section level2 hasAnchor" number="4.5">
+<h2><span class="header-section-number">4.5</span> Statistical independence<a href="conditional-probability.html#statistical-independence-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In our example, the conditional contingency table is</p>
+<table>
+<thead>
+<tr class="header">
+<th align="center"></th>
+<th align="center">F</th>
+<th align="center">F’</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><b>L</b></td>
+<td align="center">P(L<span>|</span>F) = 0.05</td>
+<td align="center">P(L<span>|</span>F’)= 0.05</td>
+</tr>
+<tr class="even">
+<td align="center"><b>L’ </b></td>
+<td align="center">P(L’<span>|</span>F)=0.95</td>
+<td align="center">P(L’<span>|</span>F’)=0.95</td>
+</tr>
+<tr class="odd">
+<td align="center"><b>sum</b></td>
+<td align="center">1</td>
+<td align="center">1</td>
+</tr>
+</tbody>
+</table>
+<p>We note that the marginal and conditional probabilities are the same!</p>
+<ul>
+<li><span class="math inline">\(P(L| F)= P(L|F&#39;)=P(L)\)</span></li>
+<li><span class="math inline">\(P(L&#39;| F)= P(L&#39;|F&#39;)=P(L&#39;)\)</span></li>
+</ul>
+<p>This means that the probability of observing a low conductivity is <strong>not</strong> dependent on having a structural flaw or not.</p>
+<p>We conclude that low conductivity is not affected by having a structural flaw.</p>
+<p><strong>Definition</strong></p>
+<p>Two events <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are statistically independent if either of the equivalent cases occurs.</p>
+<ol style="list-style-type: decimal">
+<li><span class="math inline">\(P(A| B)= P(A)\)</span>; <span class="math inline">\(A\)</span> is independent of <span class="math inline">\(B\)</span></li>
+<li><span class="math inline">\(P(B| A)= P(B)\)</span>; <span class="math inline">\(B\)</span> is independent of <span class="math inline">\(A\)</span></li>
+</ol>
+<p>and by the definition of conditional probability</p>
+<ol start="3" style="list-style-type: decimal">
+<li><span class="math inline">\(P(A\cap B)=P(A|B)P(B)=P(A)P(B)\)</span></li>
+</ol>
+<p>This third form is a statement about joint probabilities. It says that we can obtain joint probabilities by multiplying the marginal ones.</p>
+<p>In our original joint probability table</p>
+<table>
+<thead>
+<tr class="header">
+<th align="center"></th>
+<th align="center">F</th>
+<th align="center">F’</th>
+<th align="center">sum</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><b>L</b></td>
+<td align="center"><span class="math inline">\(0.005\)</span></td>
+<td align="center"><span class="math inline">\(0.045\)</span></td>
+<td align="center"><span class="math inline">\(0.05\)</span></td>
+</tr>
+<tr class="even">
+<td align="center"><b>L’</b></td>
+<td align="center"><span class="math inline">\(0.095\)</span></td>
+<td align="center"><span class="math inline">\(0.855\)</span></td>
+<td align="center"><span class="math inline">\(0.95\)</span></td>
+</tr>
+<tr class="odd">
+<td align="center"><b>sum</b></td>
+<td align="center"><span class="math inline">\(0.1\)</span></td>
+<td align="center"><span class="math inline">\(0.9\)</span></td>
+<td align="center">1</td>
+</tr>
+</tbody>
+</table>
+<p>we can confirm that all the entries of the matrix are the product of the marginal ones. For example: <span class="math inline">\(P(F)P(L)= P( L \cap F)\)</span> and <span class="math inline">\(P(L&#39;)P(F&#39;)=P(L&#39; \cap F&#39;)\)</span>. Therefore, low conductivity is independent of having a structural flaw.</p>
+<p><strong>Example (Coins)</strong></p>
+<p>We want to confirm that the results of tossing two coins are independent. We consider all outcomes to be equally likely:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="center">result</th>
+<th align="center">probability</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><span class="math inline">\(( H,T )\)</span></td>
+<td align="center">1/4</td>
+</tr>
+<tr class="even">
+<td align="center"><span class="math inline">\(( H,H )\)</span></td>
+<td align="center">1/4</td>
+</tr>
+<tr class="odd">
+<td align="center"><span class="math inline">\(( T,T )\)</span></td>
+<td align="center">1/4</td>
+</tr>
+<tr class="even">
+<td align="center"><span class="math inline">\(( T, H )\)</span></td>
+<td align="center">1/4</td>
+</tr>
+<tr class="odd">
+<td align="center">sum</td>
+<td align="center">1</td>
+</tr>
+</tbody>
+</table>
+<p>where <span class="math inline">\(( H,T )\)</span> is, for example, the event of heads on the first coin and tails on the second coin. The contingency table for the joint probabilities is:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="center"></th>
+<th align="center">H</th>
+<th align="center">T</th>
+<th align="center">sum</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><b>H</b></td>
+<td align="center"><span class="math inline">\(1/4\)</span></td>
+<td align="center"><span class="math inline">\(1/4\)</span></td>
+<td align="center"><span class="math inline">\(1/2\)</span></td>
+</tr>
+<tr class="even">
+<td align="center"><b>T</b></td>
+<td align="center"><span class="math inline">\(1/4\)</span></td>
+<td align="center"><span class="math inline">\(1/4\)</span></td>
+<td align="center"><span class="math inline">\(1/2\)</span></td>
+</tr>
+<tr class="odd">
+<td align="center"><b>sum</b></td>
+<td align="center"><span class="math inline">\(1/2\)</span></td>
+<td align="center"><span class="math inline">\(1/2\)</span></td>
+<td align="center">1</td>
+</tr>
+</tbody>
+</table>
+<p>From this table, we see that the probability of getting a head and then a tail is the product of the marginals <span class="math inline">\(P( H, T)=P(H)*P(T)=1/4\)</span>. Therefore, the events of heads in the first coin and tails in the second are independent.</p>
+<p>If we build the conditional contingency table on the toss of the first coin, we will see that obtaining tails in the second coin is not conditioned by having obtained heads in the first coin: <span class="math inline">\(P(T| H)= P(T) =1 / 2\)</span></p>
+</div>
+<div id="statistical-dependency" class="section level2 hasAnchor" number="4.6">
+<h2><span class="header-section-number">4.6</span> Statistical dependency<a href="conditional-probability.html#statistical-dependency" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>An important example of statistical dependency is found in the performance of <strong>diagnostic tools</strong>, where we want to determine the state of a system(s) with results</p>
+<ul>
+<li>satisfactory (yes)</li>
+<li>unsatisfactory (not)</li>
+</ul>
+<p>with a test (t) with results</p>
+<ul>
+<li>positive</li>
+<li>negative</li>
+</ul>
+<p>For example, we test a battery to see how long it can last. We load a cable to find out if it resists carrying a certain load. We run a PCR to see if someone is infected.</p>
+</div>
+<div id="diagnostic-test" class="section level2 hasAnchor" number="4.7">
+<h2><span class="header-section-number">4.7</span> Diagnostic test<a href="conditional-probability.html#diagnostic-test" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Let’s consider diagnosing an infection with a new test. Infection status:</p>
+<ul>
+<li>yes (infected)</li>
+<li>no (not infected)</li>
+</ul>
+<p>Test:</p>
+<ul>
+<li>positive</li>
+<li>negative</li>
+</ul>
+<p>The <strong>conditional contingency table</strong> is what we get in a controlled environment (laboratory)</p>
+<table>
+<thead>
+<tr class="header">
+<th align="center"></th>
+<th align="center">Infection: yes</th>
+<th align="center">Infection: No</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><b>Test: positive</b></td>
+<td align="center">P(positive <span>|</span> yes)</td>
+<td align="center">P(positive <span>|</span> no)</td>
+</tr>
+<tr class="even">
+<td align="center"><b>Test: negative</b></td>
+<td align="center">P(negative <span>|</span> yes)</td>
+<td align="center">P(negative <span>|</span> no)</td>
+</tr>
+<tr class="odd">
+<td align="center"><b>sum</b></td>
+<td align="center">1</td>
+<td align="center">1</td>
+</tr>
+</tbody>
+</table>
+<p>Let’s look at the table entries
+1) Rate of true positives (Sensitivity): The probability of testing positive <strong>if</strong> you have the disease <span class="math inline">\(P(positive| yes)\)</span></p>
+<ol start="2" style="list-style-type: decimal">
+<li><p>Rate of true negatives (Specificity): The probability of testing negative <strong>if</strong> you do not have the disease <span class="math inline">\(P(negative| no)\)</span></p></li>
+<li><p>False positive rate: the probability of testing positive <strong>if</strong> you do not have the disease <span class="math inline">\(P(positive| no)\)</span></p></li>
+<li><p>False negative rate: the probability of testing negative <strong>if</strong> you have the disease <span class="math inline">\(P(negative| yes)\)</span></p></li>
+</ol>
+<p>High correlation (statistical dependence) between test and infection means high values for probabilities 1 and 2 <strong>and</strong> low values for probabilities 3 and 4.</p>
+<p><strong>Example (COVID)</strong></p>
+<p>Now let’s consider a real situation. In the early days of the coronavirus pandemic, there was no measure of the effectiveness of PCRs in detecting the virus. One of the first published studies (<a href="https://www.nejm.org/doi/full/10.1056/NEJMp2015897" class="uri">https://www.nejm.org/doi/full/10.1056/NEJMp2015897</a>) found that</p>
+<ul>
+<li>The PCR had a sensitivity of 70%, in infection condition.</li>
+<li>The PCR had a specificity of 94%, in non-infected condition.</li>
+</ul>
+<p>The conditional contingency table is</p>
+<table>
+<thead>
+<tr class="header">
+<th align="center"></th>
+<th align="center">Infection: yes</th>
+<th align="center">Infection: No</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><b>Test: positive</b></td>
+<td align="center">P(positive<span>|</span> yes)= 0.7</td>
+<td align="center">P(positive<span>|</span>no)=0.06</td>
+</tr>
+<tr class="even">
+<td align="center"><b>Test: negative</b></td>
+<td align="center">P(negative<span>|</span> yes)= 0.3</td>
+<td align="center">P(negative<span>|</span>no)=0.94</td>
+</tr>
+<tr class="odd">
+<td align="center"><b>sum</b></td>
+<td align="center">1</td>
+<td align="center">1</td>
+</tr>
+</tbody>
+</table>
+<p>Therefore, the errors in the diagnostic tests were:</p>
+<ul>
+<li>The false positive rate is <span class="math inline">\(P(positive| no)= 0.06\)</span></li>
+<li>The false negative rate is <span class="math inline">\(P(negative| yes)= 0.3\)</span></li>
+</ul>
+</div>
+<div id="inverse-probabilities" class="section level2 hasAnchor" number="4.8">
+<h2><span class="header-section-number">4.8</span> Inverse probabilities<a href="conditional-probability.html#inverse-probabilities" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>We are interested in finding the probability of being infected if the test is positive: <span class="math display">\[P(si| positive)\]</span></p>
+<p>For that:</p>
+<ol style="list-style-type: decimal">
+<li>We recover the contingency table for joint probabilities, multiplying by the marginal <span class="math inline">\(P(yes)\)</span> and <span class="math inline">\(P(no)\)</span> that we need to know</li>
+</ol>
+<table>
+<thead>
+<tr class="header">
+<th align="center"></th>
+<th align="center">Infection: yes</th>
+<th align="center">Infection: No</th>
+<th align="center"><b>sum</b></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><b>Test: positive</b></td>
+<td align="center">P( positive <span>|</span> yes)P(yes)</td>
+<td align="center">P(positive <span>|</span> no)P(no)</td>
+<td align="center">P(positive)</td>
+</tr>
+<tr class="even">
+<td align="center"><b>Test: negative</b></td>
+<td align="center">P( negative <span>|</span> yes)P(yes)</td>
+<td align="center">P(negative <span>|</span> no) P(no)</td>
+<td align="center">P(negative)</td>
+</tr>
+<tr class="odd">
+<td align="center"><b>sum</b></td>
+<td align="center">P(yes)</td>
+<td align="center">P(no)</td>
+<td align="center">1</td>
+</tr>
+</tbody>
+</table>
+<ol start="2" style="list-style-type: decimal">
+<li>We use the definition of conditional probabilities for rows instead of columns (we divide by the marginal of the test results)</li>
+</ol>
+<table>
+<thead>
+<tr class="header">
+<th align="center"></th>
+<th align="center">Infection: yes</th>
+<th align="center">Infection: No</th>
+<th align="center">sum</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><b>Test: positive</b></td>
+<td align="center">P(yes<span>|</span>positive)</td>
+<td align="center">P(no<span>|</span>positive)</td>
+<td align="center">1</td>
+</tr>
+<tr class="even">
+<td align="center"><b>Test: negative</b></td>
+<td align="center">P(yes<span>|</span>negative)</td>
+<td align="center">P(no<span>|</span>negative)</td>
+<td align="center">1</td>
+</tr>
+</tbody>
+</table>
+<p><br>
+<br></p>
+<p>For example:</p>
+<p><span class="math display">\[P(yes| positive)= \frac{P(positive|yes)P(yes)}{P(positive)}\]</span></p>
+<p>To apply this formula we need the marginals <span class="math inline">\(P(yes)\)</span> (prevalence) and <span class="math inline">\(P(positive)\)</span>.</p>
+<ul>
+<li><p>The prevalence <span class="math inline">\(P(yes)\)</span> needs to be given from another study. The first prevalence study in Spain showed that during confinement <span class="math inline">\(P(yes)=0.05\)</span>, <span class="math inline">\(P(no)=0.95\)</span>, before the summer of 2020.</p></li>
+<li><p>To find the marginal of positives <span class="math inline">\(P(positive)\)</span>, we can then use the definition of marginal and conditional probability:</p></li>
+</ul>
+<p><span class="math inline">\(P(positive)= P(positive \cap yes) + P(positive \cap no)\)</span>
+<span class="math display">\[= P(positive| yes)P (yes)+P(positive|no)P(no)\]</span>
+This last relation of the marginals is called <strong>rule of total probability</strong>.</p>
+</div>
+<div id="bayes-theorem" class="section level2 hasAnchor" number="4.9">
+<h2><span class="header-section-number">4.9</span> Bayes’ Theorem<a href="conditional-probability.html#bayes-theorem" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>After substituting the total probability rule into <span class="math inline">\(P(yes| positive)\)</span> , we have</p>
+<p><span class="math display">\[P(yes| positive)= \frac{P(positive|yes)P(yes)}{P(positive|yes)P(yes)+P(positive|no)P(no)}\]</span>
+This expression is known as <strong>Bayes’ theorem</strong>. It allows us to reverse the conditionals:</p>
+<p><span class="math display">\[P(positive|yes) \rightarrow P(yes| positive)\]</span>
+Or <strong>assess</strong> a test in a controlled condition (infection) and then use it to <strong>infer</strong> the probability of the condition when the test is positive.</p>
+<p><strong>Example (COVID)</strong>:</p>
+<p>The test performance was:</p>
+<ul>
+<li><p>Sensitivity: <span class="math inline">\(P(positive| yes)= 0.70\)</span></p></li>
+<li><p>False positive rate: <span class="math inline">\(P(positive| no)= 1- P(negative|no)=0.06\)</span></p></li>
+</ul>
+<p>The study in the Spanish population gave:</p>
+<ul>
+<li><span class="math inline">\(P(yes)=0.05\)</span></li>
+<li><span class="math inline">\(P(no)=1-P(yes)=0.95\)</span>.</li>
+</ul>
+<p>Therefore, the probability of being infected in case of testing positive was:</p>
+<p><span class="math display">\[P(yes| positive)= 0.38\]</span></p>
+<p>We concluded that at that time PCR was not very good at <strong>confirming</strong> infections.</p>
+<p>However, let us now apply Bayes’ theorem to the probability of not being infected if the test was negative.</p>
+<p><span class="math display">\[P(no|negative) = \frac{P(negative|no) P(no )}{ P(negative|no) P(no)+P(negative|yes)P(yes)}\]</span></p>
+<p>Substituting all values gives</p>
+<p><span class="math display">\[P(no| negative)= 0.98\]</span></p>
+<p>So the tests were good for <strong>ruling out</strong> infections and a fair requirement for travel.</p>
+<p><strong>Bayes’s theorem</strong></p>
+<p>In general, we can have more than two conditioning events. Therefore, Baye’s theorem says:</p>
+<p>If <span class="math inline">\(E1, E2, ..., Ek\)</span> are <span class="math inline">\(k\)</span> mutually exclusive and exhaustive events and <span class="math inline">\(B\)</span> is any event, then the probability inverse <span class="math inline">\(P(Ei| B)\)</span> is</p>
+<p><span class="math display">\[P(Ei| B)= \frac{P(B|Ei)P(Ei)}{P(B|E1)P(E1) +...+ P(B|Ek)P(Ek)}\]</span>
+The denominator is the total probability rule for the marginal <span class="math inline">\(P(B)\)</span>, in terms of the marginals <span class="math inline">\(P(E1), P(E2), ... P(Ek)\)</span>.</p>
+<p><span class="math display">\[P(B)=P(B|E 1)P (E1) +...+ P(B|Ek)P(Ek)\]</span></p>
+<p><strong>Conditional tree</strong></p>
+<p>The total probability rule can also be illustrated using a <strong>conditional</strong> tree.</p>
+<p><img src="figures/treetot.PNG" /></p>
+<p><strong>Rule of total probability</strong> for the marginal of <span class="math inline">\(B\)</span>: In how many ways can I get the result <span class="math inline">\(B\)</span>?</p>
+<p><span class="math inline">\(P(B)=P(B|A)P(A)+P(B|A&#39;)P(A&#39;)\)</span></p>
+</div>
+<div id="exercises-2" class="section level2 hasAnchor" number="4.10">
+<h2><span class="header-section-number">4.10</span> Exercises<a href="conditional-probability.html#exercises-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+</div>
+<div id="questions-2" class="section level2 hasAnchor" number="4.11">
+<h2><span class="header-section-number">4.11</span> Questions<a href="conditional-probability.html#questions-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>We collect the age and category of 100 athletes in a competition</p>
+<table>
+<thead>
+<tr class="header">
+<th align="center"></th>
+<th align="center"><span class="math inline">\(junior\)</span></th>
+<th align="center"><span class="math inline">\(senior\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><span class="math inline">\(1st\)</span></td>
+<td align="center"><span class="math inline">\(14\)</span></td>
+<td align="center"><span class="math inline">\(12\)</span></td>
+</tr>
+<tr class="even">
+<td align="center"><span class="math inline">\(2nd\)</span></td>
+<td align="center"><span class="math inline">\(21\)</span></td>
+<td align="center"><span class="math inline">\(18\)</span></td>
+</tr>
+<tr class="odd">
+<td align="center"><span class="math inline">\(3rd\)</span></td>
+<td align="center"><span class="math inline">\(22\)</span></td>
+<td align="center"><span class="math inline">\(13\)</span></td>
+</tr>
+</tbody>
+</table>
+<p><strong>1)</strong> What is the estimated probability that the athlete is in the third category if the athlete is a junior?</p>
+<p><strong><span class="math inline">\(\qquad\)</span>a:</strong> <span class="math inline">\(22\)</span>; <strong><span class="math inline">\(\qquad\)</span>b:</strong> <span class="math inline">\(22/100\)</span>; <strong><span class="math inline">\(\qquad\)</span>c:</strong> <span class="math inline">\(22/57\)</span>; <strong><span class="math inline">\(\qquad\)</span>d:</strong> <span class="math inline">\(22/35\)</span>;</p>
+<p><strong>2)</strong> What is the estimated probability that the athlete is a junior and is in the 1st category if the athlete is not in the 3rd category?</p>
+<p><strong><span class="math inline">\(\qquad\)</span>a:</strong> <span class="math inline">\(14/35\)</span>; <strong><span class="math inline">\(\qquad\)</span>b:</strong> <span class="math inline">\(14/65\)</span>; <strong><span class="math inline">\(\qquad\)</span>c:</strong> <span class="math inline">\(14/100\)</span>; <strong><span class="math inline">\(\qquad\)</span>d:</strong> <span class="math inline">\(14/26\)</span></p>
+<p><strong>3)</strong> A diagnostic test has a probability of <span class="math inline">\(8/9\)</span> of detecting a disease if the patients are sick and a probability of <span class="math inline">\(3/9\)</span> of detecting the disease if the patients are healthy. If the probability of being sick is <span class="math inline">\(1/9\)</span>. What is the probability that a patient is sick if a test detects the disease?</p>
+<p><strong><span class="math inline">\(\qquad\)</span>a:</strong> <span class="math inline">\(\frac{8/9}{8/9+3/9}*1/9\)</span>;
+<strong><span class="math inline">\(\qquad\)</span>b:</strong> <span class="math inline">\(\frac{3/9}{8/9+3/9}*1/9\)</span>;
+<strong><span class="math inline">\(\qquad\)</span>c:</strong> <span class="math inline">\(\frac{3/9*8/9}{8/9*1/9+3/9*8/9}\)</span>; <strong><span class="math inline">\(\qquad\)</span>d:</strong> <span class="math inline">\(\frac{8/9*1/9}{8/9*1/9+3/9*8/9}\)</span>;</p>
+<p><strong>4)</strong> As discussed in the notes, a PCR test for coronavirus had a sensitivity of 70% and a specificity of 94% and in Spain during confinement there was an incidence of 5%. With these data, what was the probability of testing positive in Spain (<span class="math inline">\(P(positive)\)</span>)</p>
+<p><strong><span class="math inline">\(\qquad\)</span>a:</strong> <span class="math inline">\(0.035\)</span>; <strong><span class="math inline">\(\qquad\)</span>b:</strong> <span class="math inline">\(0.092\)</span>; <strong><span class="math inline">\(\qquad\)</span>c:</strong> <span class="math inline">\(0.908\)</span>; <strong><span class="math inline">\(\qquad\)</span>d:</strong> <span class="math inline">\(0.95\)</span></p>
+<p><strong>5)</strong> With the same data as in question 4, testing positive in the PCR and being infected are not independent events because:</p>
+<p><strong><span class="math inline">\(\qquad\)</span> a:</strong> Sensitivity is 70%;
+<strong><span class="math inline">\(\qquad\)</span>b:</strong> Sensitivity and false positive rate are different;
+<strong><span class="math inline">\(\qquad\)</span>c:</strong> The false positive rate is 0.06%; <strong><span class="math inline">\(\qquad\)</span>d:</strong> the specificity is 96%</p>
+<div id="exercise-1-1" class="section level4 hasAnchor" number="4.11.0.1">
+<h4><span class="header-section-number">4.11.0.1</span> Exercise 1<a href="conditional-probability.html#exercise-1-1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>A machine is tested for its performance in producing high-quality turning rods. These are the test results</p>
+<table>
+<thead>
+<tr class="header">
+<th align="center"></th>
+<th align="center">Rounded: yes</th>
+<th align="center">Rounded: No</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><b>smooth surface: yes</b></td>
+<td align="center">200</td>
+<td align="center">1</td>
+</tr>
+<tr class="even">
+<td align="center"><b>smooth surface: no</b></td>
+<td align="center">4</td>
+<td align="center">2</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><p>What is the estimated probability that the machine will produce a rod that does not satisfy any quality control? (A: 2/207)</p></li>
+<li><p>What is the estimated probability that the machine will produce a rod that fails at least one quality check? (A: 7/207)</p></li>
+<li><p>What is the estimated probability that the machine will produce rods with a rounded and smooth surface? (A: 200/207)</p></li>
+<li><p>What is the estimated probability that the bar is rounded if the bar is smooth? (A: 200/201)</p></li>
+<li><p>What is the estimated probability that the rod is smooth if it is rounded? (A: 200/204)</p></li>
+<li><p>What is the estimated probability that the rod is neither smooth nor rounded if it does not satisfy at least one quality check? (A: 2/7)</p></li>
+<li><p>Are smoothness and roundness independent events? (No)</p></li>
+</ul>
+</div>
+<div id="exercise-2-1" class="section level4 hasAnchor" number="4.11.0.2">
+<h4><span class="header-section-number">4.11.0.2</span> Exercise 2<a href="conditional-probability.html#exercise-2-1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>We developed a test to detect the presence of bacteria in a lake. We found that if the lake contains the bacteria, the test is positive 70% of the time. If there are no bacteria, the test is negative 60% of the time. We implemented the test in a region where we know that 20% of the lakes have bacteria.</p>
+<ul>
+<li>What is the probability that a lake that tests positive is contaminated with bacteria? (R: 0.30)</li>
+</ul>
+</div>
+<div id="exercise-3-1" class="section level4 hasAnchor" number="4.11.0.3">
+<h4><span class="header-section-number">4.11.0.3</span> Exercise 3<a href="conditional-probability.html#exercise-3-1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Two machines are tested for their performance in producing high-quality turning rods. These are the test results</p>
+<p><strong>Machine 1</strong></p>
+<table>
+<thead>
+<tr class="header">
+<th align="center"></th>
+<th align="center">Rounded: yes</th>
+<th align="center">Rounded: No</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><b>smooth surface: yes</b></td>
+<td align="center">200</td>
+<td align="center">1</td>
+</tr>
+<tr class="even">
+<td align="center"><b>smooth surface: no</b></td>
+<td align="center">4</td>
+<td align="center">2</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Machine 2</strong></p>
+<table>
+<thead>
+<tr class="header">
+<th align="center"></th>
+<th align="center">Rounded: yes</th>
+<th align="center">Rounded: No</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><b>smooth surface: yes</b></td>
+<td align="center">145</td>
+<td align="center">4</td>
+</tr>
+<tr class="even">
+<td align="center"><b>smooth surface: no</b></td>
+<td align="center">8</td>
+<td align="center">6</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>What is the probability that the bar is rounded? (A: 357/370)</li>
+<li>What is the probability that the rod was produced by machine 1? (A: 207/370)</li>
+<li>What is the probability that the rod is not smooth? (R: 20/370)</li>
+<li>What is the probability that the rod is smooth or rounded or produced by machine 1? (A: 364/370)</li>
+<li>What is the probability that the rod will be rounded if it is smoothed and from machine 1? (A: 200/201)</li>
+<li>What is the probability that the rod is not rounded if it is not smooth and it is from machine 2? (A: 6/8)</li>
+<li>What is the probability that the rod has come out of machine 1 if it is smooth and rounded? (R: 200/345)</li>
+<li>What is the probability that the rod came from machine 2 if it fails at least one of the quality controls? (R:0.72)</li>
+</ul>
+</div>
+<div id="exercise-4" class="section level4 hasAnchor" number="4.11.0.4">
+<h4><span class="header-section-number">4.11.0.4</span> Exercise 4<a href="conditional-probability.html#exercise-4" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>We want to cross an avenue with two traffic lights. The probability of finding the first red light is 0.6. If we stop at the first traffic light, the probability of stopping at the second is 0.15. While the probability of stopping at the second if we don’t stop at the first is 0.25.</p>
+<p>When we try to cross both traffic lights:</p>
+<ul>
+<li>What is the probability of having to stop at each traffic light? (R:0.09)</li>
+<li>What is the probability of having to stop at at least one traffic light? (R:0.7)</li>
+<li>What is the probability of having to stop at a single traffic light? (R:0.61)</li>
+<li>If I stopped at the second traffic light, what is the probability that I would have to stop at the first? (R: 0.47)</li>
+<li>If you were to stop at any traffic light, what is the probability that you would have to stop twice? (R: 0.12)</li>
+<li>Is stopping at the first traffic light an independent event from stopping at the second traffic light? (No)</li>
+</ul>
+<p>Now, we want to cross an avenue with three traffic lights. The probability of finding a red light only depends on the previous one. Specifically, the probability of finding a red traffic light given that the previous one was red is 0.15. While the probability of finding a fair traffic in red given that the previous one was in green is 0.25. Furthermore, the probability of finding the first red light is 0.6.</p>
+<p>What is the probability of having to stop at each traffic light? (R:0.013)
+- What is the probability of having to stop at at least one traffic light? (R:0.775)
+- What is the probability of having to stop at a single traffic light? (R:0.5425)</p>
+<p>tips:</p>
+<ul>
+<li><p>If the probability that a traffic light is red depends only on the previous one, then
+<span class="math inline">\(P(R_3|R_2,R_1)=P(R_3|R_2,\bar{R}_1)=P(R_3|R_2)\)</span> and <span class="math inline">\(P(R_3|\bar{R}_2,R_1)=P(R_3|\bar{R}_2,\bar{R}_1)=P(R_3|\bar{R}_2)\)</span></p></li>
+<li><p>The joint probability of finding three red lights can be written as:
+<span class="math inline">\(P(R_ 1,R _2,R_3)=P(R_3|R_2)P(R_2|R_1)P(R_1)\)</span></p></li>
+</ul>
+</div>
+<div id="exercise-5" class="section level4 hasAnchor" number="4.11.0.5">
+<h4><span class="header-section-number">4.11.0.5</span> Exercise 5<a href="conditional-probability.html#exercise-5" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>A quality test on a random brick is defined by the events:</p>
+<ul>
+<li>Pass the quality test: <span class="math inline">\(E\)</span>, fail the quality test: <span class="math inline">\(\bar{E}\)</span></li>
+<li>Defective: <span class="math inline">\(D\)</span>, non-defective: <span class="math inline">\(\bar{D}\)</span></li>
+</ul>
+<p>If the diagnostic test has sensitivity <span class="math inline">\(P(E|\bar{D })= 0.99\)</span> and specificity <span class="math inline">\(P(\bar{E}|D)=0.98\)</span>, and the probability of passing the test is <span class="math inline">\(P(E) =0.893\)</span> then</p>
+<ul>
+<li><p>What is the probability that a randomly chosen brick is defective <span class="math inline">\(P(D)\)</span>? (R:0.1)</p></li>
+<li><p>What is the probability that a brick that has passed the test is actually defective? (R:0.022)</p></li>
+<li><p>The probability that a brick is not defective <strong>and</strong> that it fails the test (R:0.009)</p></li>
+<li><p>Are <span class="math inline">\(D\)</span> and <span class="math inline">\(\bar{E}\)</span> statistically independent? (No)</p></li>
+</ul>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="probability.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/03-ConditionalProbability.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

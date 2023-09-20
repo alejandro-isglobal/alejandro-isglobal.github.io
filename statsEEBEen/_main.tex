@@ -6,7 +6,7 @@
 ]{book}
 \title{EEBE stats}
 \author{Alejandro Caceres}
-\date{2023-09-17}
+\date{2023-09-20}
 
 \usepackage{amsmath,amssymb}
 \usepackage{lmodern}
@@ -1544,6 +1544,704 @@ We have carried out a randomized experiment \(10\) times, which consists of reco
   From the second form of the addition rule, obtain the first and the third form.
 \item
   What is the third form addition rule for the probability of three events \(P(A \cup B \cup C)\)?
+\end{itemize}
+
+\hypertarget{conditional-probability}{%
+\chapter{Conditional probability}\label{conditional-probability}}
+
+In this chapter, we will introduce conditional probability.
+
+We will use conditional probability to define statistical independence.
+
+We will discuss Bayes' theorem and we will discuss one of its main applications, which is the predictive efficiency of a diagnostic tool.
+
+\hypertarget{joint-probability}{%
+\section{Joint probability}\label{joint-probability}}
+
+Recall that the joint probability of two events \(A\) and \(B\) is defined as their intersection
+
+\[P( A ,B )=P(A \cap B)\]
+
+Now imagine randomized experiments that measure two different types of outcomes.
+
+\begin{itemize}
+\item
+  height and weight of an individual: \((h, w)\)
+\item
+  time and position of an electric charge: \((p, t)\)
+\item
+  the throw of two dice: (\(n_1\), \(n_2\))
+\item
+  cross two green traffic lights: (\(\bar{ R_ 1}\) , \(\bar{R_2}\))
+\end{itemize}
+
+We are often interested in whether the values of one result \textbf{condition} the values of the other.
+
+\hypertarget{statistical-independence}{%
+\section{Statistical independence}\label{statistical-independence}}
+
+In many cases, we are interested in whether two events often tend to occur together. We want to be able to discern between two cases.
+
+\begin{itemize}
+\item
+  \textbf{Independence} between events. For example, rolling a 1 on one die does not make it more likely to roll another 1 on a second die.
+\item
+  \textbf{Correlation} between events. For example, if a man is tall, he is probably heavy.
+\end{itemize}
+
+\textbf{Example (conductor)}
+
+We conducted an experiment to find out if observing structural flaws in a material affects its conductivity.
+
+The data would look like
+
+\begin{longtable}[]{@{}ccc@{}}
+\toprule
+Conductor & Structure & conductivity \\
+\midrule
+\endhead
+\(c_1\) & flaws & low \\
+\(c_2\) & no flaws & high \\
+\(c_3\) & flaws & low \\
+\ldots{} & \ldots{} & \ldots{} \\
+\(c_i\) & no flaws & low* \\
+\ldots{} & \ldots{} & \ldots{} \\
+\ldots{} & \ldots{} & \ldots{} \\
+\(c_n\) & flaws & high* \\
+\bottomrule
+\end{longtable}
+
+We can expect low conductivity to occur more often with flaws than without flaws if the flaws affect conductivity.
+
+Let's imagine that from the data we obtain the following contingency table of \textbf{estimated joint probabilities}
+
+\begin{longtable}[]{@{}cccc@{}}
+\toprule
+& with flaws (F) & no flaws (F') & sum \\
+\midrule
+\endhead
+low (L) & \(0.005\) & \(0.045\) & \(0.05\) \\
+high (L') & \(0.095\) & \(0.855\) & \(0.95\) \\
+sum & \(0.1\) & \(0.9\) & 1 \\
+\bottomrule
+\end{longtable}
+
+where, for example, the joint probability of \(L\) and \(F\) is
+
+\begin{itemize}
+\tightlist
+\item
+  \(P(L,F )=0.005\)
+\end{itemize}
+
+and the marginal probabilities are
+
+\begin{itemize}
+\tightlist
+\item
+  \(P(L)=P(L, F) + P(L, F')=0.05\)
+\item
+  \(P(F)=P(L, F) + P(L', F)= 0.1\).
+\end{itemize}
+
+\hypertarget{the-conditional-probability}{%
+\section{The conditional probability}\label{the-conditional-probability}}
+
+Low conductivity is \textbf{independent} of having structural flaws if the probability of having low conductivity (\(L\)) is the same \textbf{whether} it has flaws (\(F\)) or not (\(F'\) ) .
+
+Let us first consider only the materials that have flaws.
+
+Among those materials that have flaws (\(F\)), what is the estimated probability that they have low conductivity?
+
+\(\hat{P}(L| F)= \frac{n_{L,F}}{n_{F}}=\frac{n_{L,F}/n}{n_{F}/n}= \frac{f_{L,F}}{f_{F}}\)
+\[= \frac{\hat{P}( L,F )}{\hat{P}(F)}\]
+Therefore, in the limit when \(N \rightarrow \infty\), we have
+
+\[P(L| F)= \frac{P(L,F)}{P(D)}=\frac{P(L\cap F)}{P(D)}\]
+\textbf{Definition:}
+
+The \emph{conditional probability} of an event \(B\) given an event \(A\), denoted \(P(A| B)\) , is
+
+\[P(A|B) = \frac{P(A\cap B)}{P(B)}\]
+
+We can prove that conditional probability satisfies the axioms of probability. The conditional probability can be understood as a probability with a sample space given by \(B\): \(S_B\). In our example, the materials with stuctural flaw.
+
+\hypertarget{conditional-contingency-table}{%
+\section{Conditional contingency table}\label{conditional-contingency-table}}
+
+If we divide the columns of the joint probability table by the marginal probabilities of the conditioning effects (\(F\) and \(F'\)), we can write \textbf{a conditional contingency table}
+
+\begin{longtable}[]{@{}ccc@{}}
+\toprule
+& F & F' \\
+\midrule
+\endhead
+L & P( L {\textbar{}} F) & P(L {\textbar{}} F') \\
+L' & P(L' {\textbar{}} F) & P(L' {\textbar{}} F') \\
+sum & 1 & 1 \\
+\bottomrule
+\end{longtable}
+
+where the column probabilities sum to one. The first column shows the probabilities of low conductivity or not only of the materials that have flaws (first condition: \(F\)). The second column shows the probabilities only for the materials that have no flaws (second condition: \(F'\)).
+
+Conditional probabilities are the probabilities of the event within each condition. We read them as:
+
+\begin{itemize}
+\tightlist
+\item
+  \(P(L| F)\): Probability of having low conductivity \textbf{if} it has flaws
+\item
+  \(P(L'| F)\): Probability of not having low conductivity \textbf{if} it has flaws
+\item
+  \(P(L|F ')\): Probability of having low conductivity \textbf{if} it has no flaws
+\item
+  \(P(L'|F ')\): Probability of not having low conductivity \textbf{if} it has no flaws
+\end{itemize}
+
+\hypertarget{statistical-independence-1}{%
+\section{Statistical independence}\label{statistical-independence-1}}
+
+In our example, the conditional contingency table is
+
+\begin{longtable}[]{@{}ccc@{}}
+\toprule
+& F & F' \\
+\midrule
+\endhead
+L & P(L{\textbar{}}F) = 0.05 & P(L{\textbar{}}F')= 0.05 \\
+L' & P(L'{\textbar{}}F)=0.95 & P(L'{\textbar{}}F')=0.95 \\
+sum & 1 & 1 \\
+\bottomrule
+\end{longtable}
+
+We note that the marginal and conditional probabilities are the same!
+
+\begin{itemize}
+\tightlist
+\item
+  \(P(L| F)= P(L|F')=P(L)\)
+\item
+  \(P(L'| F)= P(L'|F')=P(L')\)
+\end{itemize}
+
+This means that the probability of observing a low conductivity is \textbf{not} dependent on having a structural flaw or not.
+
+We conclude that low conductivity is not affected by having a structural flaw.
+
+\textbf{Definition}
+
+Two events \(A\) and \(B\) are statistically independent if either of the equivalent cases occurs.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\tightlist
+\item
+  \(P(A| B)= P(A)\); \(A\) is independent of \(B\)
+\item
+  \(P(B| A)= P(B)\); \(B\) is independent of \(A\)
+\end{enumerate}
+
+and by the definition of conditional probability
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  \(P(A\cap B)=P(A|B)P(B)=P(A)P(B)\)
+\end{enumerate}
+
+This third form is a statement about joint probabilities. It says that we can obtain joint probabilities by multiplying the marginal ones.
+
+In our original joint probability table
+
+\begin{longtable}[]{@{}cccc@{}}
+\toprule
+& F & F' & sum \\
+\midrule
+\endhead
+L & \(0.005\) & \(0.045\) & \(0.05\) \\
+L' & \(0.095\) & \(0.855\) & \(0.95\) \\
+sum & \(0.1\) & \(0.9\) & 1 \\
+\bottomrule
+\end{longtable}
+
+we can confirm that all the entries of the matrix are the product of the marginal ones. For example: \(P(F)P(L)= P( L \cap F)\) and \(P(L')P(F')=P(L' \cap F')\). Therefore, low conductivity is independent of having a structural flaw.
+
+\textbf{Example (Coins)}
+
+We want to confirm that the results of tossing two coins are independent. We consider all outcomes to be equally likely:
+
+\begin{longtable}[]{@{}cc@{}}
+\toprule
+result & probability \\
+\midrule
+\endhead
+\(( H,T )\) & 1/4 \\
+\(( H,H )\) & 1/4 \\
+\(( T,T )\) & 1/4 \\
+\(( T, H )\) & 1/4 \\
+sum & 1 \\
+\bottomrule
+\end{longtable}
+
+where \(( H,T )\) is, for example, the event of heads on the first coin and tails on the second coin. The contingency table for the joint probabilities is:
+
+\begin{longtable}[]{@{}cccc@{}}
+\toprule
+& H & T & sum \\
+\midrule
+\endhead
+H & \(1/4\) & \(1/4\) & \(1/2\) \\
+T & \(1/4\) & \(1/4\) & \(1/2\) \\
+sum & \(1/2\) & \(1/2\) & 1 \\
+\bottomrule
+\end{longtable}
+
+From this table, we see that the probability of getting a head and then a tail is the product of the marginals \(P( H, T)=P(H)*P(T)=1/4\). Therefore, the events of heads in the first coin and tails in the second are independent.
+
+If we build the conditional contingency table on the toss of the first coin, we will see that obtaining tails in the second coin is not conditioned by having obtained heads in the first coin: \(P(T| H)= P(T) =1 / 2\)
+
+\hypertarget{statistical-dependency}{%
+\section{Statistical dependency}\label{statistical-dependency}}
+
+An important example of statistical dependency is found in the performance of \textbf{diagnostic tools}, where we want to determine the state of a system(s) with results
+
+\begin{itemize}
+\tightlist
+\item
+  satisfactory (yes)
+\item
+  unsatisfactory (not)
+\end{itemize}
+
+with a test (t) with results
+
+\begin{itemize}
+\tightlist
+\item
+  positive
+\item
+  negative
+\end{itemize}
+
+For example, we test a battery to see how long it can last. We load a cable to find out if it resists carrying a certain load. We run a PCR to see if someone is infected.
+
+\hypertarget{diagnostic-test}{%
+\section{Diagnostic test}\label{diagnostic-test}}
+
+Let's consider diagnosing an infection with a new test. Infection status:
+
+\begin{itemize}
+\tightlist
+\item
+  yes (infected)
+\item
+  no (not infected)
+\end{itemize}
+
+Test:
+
+\begin{itemize}
+\tightlist
+\item
+  positive
+\item
+  negative
+\end{itemize}
+
+The \textbf{conditional contingency table} is what we get in a controlled environment (laboratory)
+
+\begin{longtable}[]{@{}ccc@{}}
+\toprule
+& Infection: yes & Infection: No \\
+\midrule
+\endhead
+Test: positive & P(positive {\textbar{}} yes) & P(positive {\textbar{}} no) \\
+Test: negative & P(negative {\textbar{}} yes) & P(negative {\textbar{}} no) \\
+sum & 1 & 1 \\
+\bottomrule
+\end{longtable}
+
+Let's look at the table entries
+1) Rate of true positives (Sensitivity): The probability of testing positive \textbf{if} you have the disease \(P(positive| yes)\)
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\setcounter{enumi}{1}
+\item
+  Rate of true negatives (Specificity): The probability of testing negative \textbf{if} you do not have the disease \(P(negative| no)\)
+\item
+  False positive rate: the probability of testing positive \textbf{if} you do not have the disease \(P(positive| no)\)
+\item
+  False negative rate: the probability of testing negative \textbf{if} you have the disease \(P(negative| yes)\)
+\end{enumerate}
+
+High correlation (statistical dependence) between test and infection means high values for probabilities 1 and 2 \textbf{and} low values for probabilities 3 and 4.
+
+\textbf{Example (COVID)}
+
+Now let's consider a real situation. In the early days of the coronavirus pandemic, there was no measure of the effectiveness of PCRs in detecting the virus. One of the first published studies (\url{https://www.nejm.org/doi/full/10.1056/NEJMp2015897}) found that
+
+\begin{itemize}
+\tightlist
+\item
+  The PCR had a sensitivity of 70\%, in infection condition.
+\item
+  The PCR had a specificity of 94\%, in non-infected condition.
+\end{itemize}
+
+The conditional contingency table is
+
+\begin{longtable}[]{@{}ccc@{}}
+\toprule
+& Infection: yes & Infection: No \\
+\midrule
+\endhead
+Test: positive & P(positive{\textbar{}} yes)= 0.7 & P(positive{\textbar{}}no)=0.06 \\
+Test: negative & P(negative{\textbar{}} yes)= 0.3 & P(negative{\textbar{}}no)=0.94 \\
+sum & 1 & 1 \\
+\bottomrule
+\end{longtable}
+
+Therefore, the errors in the diagnostic tests were:
+
+\begin{itemize}
+\tightlist
+\item
+  The false positive rate is \(P(positive| no)= 0.06\)
+\item
+  The false negative rate is \(P(negative| yes)= 0.3\)
+\end{itemize}
+
+\hypertarget{inverse-probabilities}{%
+\section{Inverse probabilities}\label{inverse-probabilities}}
+
+We are interested in finding the probability of being infected if the test is positive: \[P(si| positive)\]
+
+For that:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  We recover the contingency table for joint probabilities, multiplying by the marginal \(P(yes)\) and \(P(no)\) that we need to know
+\end{enumerate}
+
+\begin{longtable}[]{@{}cccc@{}}
+\toprule
+& Infection: yes & Infection: No & sum \\
+\midrule
+\endhead
+Test: positive & P( positive {\textbar{}} yes)P(yes) & P(positive {\textbar{}} no)P(no) & P(positive) \\
+Test: negative & P( negative {\textbar{}} yes)P(yes) & P(negative {\textbar{}} no) P(no) & P(negative) \\
+sum & P(yes) & P(no) & 1 \\
+\bottomrule
+\end{longtable}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  We use the definition of conditional probabilities for rows instead of columns (we divide by the marginal of the test results)
+\end{enumerate}
+
+\begin{longtable}[]{@{}cccc@{}}
+\toprule
+& Infection: yes & Infection: No & sum \\
+\midrule
+\endhead
+Test: positive & P(yes{\textbar{}}positive) & P(no{\textbar{}}positive) & 1 \\
+Test: negative & P(yes{\textbar{}}negative) & P(no{\textbar{}}negative) & 1 \\
+\bottomrule
+\end{longtable}
+
+For example:
+
+\[P(yes| positive)= \frac{P(positive|yes)P(yes)}{P(positive)}\]
+
+To apply this formula we need the marginals \(P(yes)\) (prevalence) and \(P(positive)\).
+
+\begin{itemize}
+\item
+  The prevalence \(P(yes)\) needs to be given from another study. The first prevalence study in Spain showed that during confinement \(P(yes)=0.05\), \(P(no)=0.95\), before the summer of 2020.
+\item
+  To find the marginal of positives \(P(positive)\), we can then use the definition of marginal and conditional probability:
+\end{itemize}
+
+\(P(positive)= P(positive \cap yes) + P(positive \cap no)\)
+\[= P(positive| yes)P (yes)+P(positive|no)P(no)\]
+This last relation of the marginals is called \textbf{rule of total probability}.
+
+\hypertarget{bayes-theorem}{%
+\section{Bayes' Theorem}\label{bayes-theorem}}
+
+After substituting the total probability rule into \(P(yes| positive)\) , we have
+
+\[P(yes| positive)= \frac{P(positive|yes)P(yes)}{P(positive|yes)P(yes)+P(positive|no)P(no)}\]
+This expression is known as \textbf{Bayes' theorem}. It allows us to reverse the conditionals:
+
+\[P(positive|yes) \rightarrow P(yes| positive)\]
+Or \textbf{assess} a test in a controlled condition (infection) and then use it to \textbf{infer} the probability of the condition when the test is positive.
+
+\textbf{Example (COVID)}:
+
+The test performance was:
+
+\begin{itemize}
+\item
+  Sensitivity: \(P(positive| yes)= 0.70\)
+\item
+  False positive rate: \(P(positive| no)= 1- P(negative|no)=0.06\)
+\end{itemize}
+
+The study in the Spanish population gave:
+
+\begin{itemize}
+\tightlist
+\item
+  \(P(yes)=0.05\)
+\item
+  \(P(no)=1-P(yes)=0.95\).
+\end{itemize}
+
+Therefore, the probability of being infected in case of testing positive was:
+
+\[P(yes| positive)= 0.38\]
+
+We concluded that at that time PCR was not very good at \textbf{confirming} infections.
+
+However, let us now apply Bayes' theorem to the probability of not being infected if the test was negative.
+
+\[P(no|negative) = \frac{P(negative|no) P(no )}{ P(negative|no) P(no)+P(negative|yes)P(yes)}\]
+
+Substituting all values gives
+
+\[P(no| negative)= 0.98\]
+
+So the tests were good for \textbf{ruling out} infections and a fair requirement for travel.
+
+\textbf{Bayes's theorem}
+
+In general, we can have more than two conditioning events. Therefore, Baye's theorem says:
+
+If \(E1, E2, ..., Ek\) are \(k\) mutually exclusive and exhaustive events and \(B\) is any event, then the probability inverse \(P(Ei| B)\) is
+
+\[P(Ei| B)= \frac{P(B|Ei)P(Ei)}{P(B|E1)P(E1) +...+ P(B|Ek)P(Ek)}\]
+The denominator is the total probability rule for the marginal \(P(B)\), in terms of the marginals \(P(E1), P(E2), ... P(Ek)\).
+
+\[P(B)=P(B|E 1)P (E1) +...+ P(B|Ek)P(Ek)\]
+
+\textbf{Conditional tree}
+
+The total probability rule can also be illustrated using a \textbf{conditional} tree.
+
+\includegraphics{./figures/treetot.PNG}
+
+\textbf{Rule of total probability} for the marginal of \(B\): In how many ways can I get the result \(B\)?
+
+\(P(B)=P(B|A)P(A)+P(B|A')P(A')\)
+
+\hypertarget{exercises-2}{%
+\section{Exercises}\label{exercises-2}}
+
+\hypertarget{questions-2}{%
+\section{Questions}\label{questions-2}}
+
+We collect the age and category of 100 athletes in a competition
+
+\begin{longtable}[]{@{}ccc@{}}
+\toprule
+& \(junior\) & \(senior\) \\
+\midrule
+\endhead
+\(1st\) & \(14\) & \(12\) \\
+\(2nd\) & \(21\) & \(18\) \\
+\(3rd\) & \(22\) & \(13\) \\
+\bottomrule
+\end{longtable}
+
+\textbf{1)} What is the estimated probability that the athlete is in the third category if the athlete is a junior?
+
+\textbf{\(\qquad\)a:} \(22\); \textbf{\(\qquad\)b:} \(22/100\); \textbf{\(\qquad\)c:} \(22/57\); \textbf{\(\qquad\)d:} \(22/35\);
+
+\textbf{2)} What is the estimated probability that the athlete is a junior and is in the 1st category if the athlete is not in the 3rd category?
+
+\textbf{\(\qquad\)a:} \(14/35\); \textbf{\(\qquad\)b:} \(14/65\); \textbf{\(\qquad\)c:} \(14/100\); \textbf{\(\qquad\)d:} \(14/26\)
+
+\textbf{3)} A diagnostic test has a probability of \(8/9\) of detecting a disease if the patients are sick and a probability of \(3/9\) of detecting the disease if the patients are healthy. If the probability of being sick is \(1/9\). What is the probability that a patient is sick if a test detects the disease?
+
+\textbf{\(\qquad\)a:} \(\frac{8/9}{8/9+3/9}*1/9\);
+\textbf{\(\qquad\)b:} \(\frac{3/9}{8/9+3/9}*1/9\);
+\textbf{\(\qquad\)c:} \(\frac{3/9*8/9}{8/9*1/9+3/9*8/9}\); \textbf{\(\qquad\)d:} \(\frac{8/9*1/9}{8/9*1/9+3/9*8/9}\);
+
+\textbf{4)} As discussed in the notes, a PCR test for coronavirus had a sensitivity of 70\% and a specificity of 94\% and in Spain during confinement there was an incidence of 5\%. With these data, what was the probability of testing positive in Spain (\(P(positive)\))
+
+\textbf{\(\qquad\)a:} \(0.035\); \textbf{\(\qquad\)b:} \(0.092\); \textbf{\(\qquad\)c:} \(0.908\); \textbf{\(\qquad\)d:} \(0.95\)
+
+\textbf{5)} With the same data as in question 4, testing positive in the PCR and being infected are not independent events because:
+
+\textbf{\(\qquad\) a:} Sensitivity is 70\%;
+\textbf{\(\qquad\)b:} Sensitivity and false positive rate are different;
+\textbf{\(\qquad\)c:} The false positive rate is 0.06\%; \textbf{\(\qquad\)d:} the specificity is 96\%
+
+\hypertarget{exercise-1-1}{%
+\subsubsection{Exercise 1}\label{exercise-1-1}}
+
+A machine is tested for its performance in producing high-quality turning rods. These are the test results
+
+\begin{longtable}[]{@{}ccc@{}}
+\toprule
+& Rounded: yes & Rounded: No \\
+\midrule
+\endhead
+smooth surface: yes & 200 & 1 \\
+smooth surface: no & 4 & 2 \\
+\bottomrule
+\end{longtable}
+
+\begin{itemize}
+\item
+  What is the estimated probability that the machine will produce a rod that does not satisfy any quality control? (A: 2/207)
+\item
+  What is the estimated probability that the machine will produce a rod that fails at least one quality check? (A: 7/207)
+\item
+  What is the estimated probability that the machine will produce rods with a rounded and smooth surface? (A: 200/207)
+\item
+  What is the estimated probability that the bar is rounded if the bar is smooth? (A: 200/201)
+\item
+  What is the estimated probability that the rod is smooth if it is rounded? (A: 200/204)
+\item
+  What is the estimated probability that the rod is neither smooth nor rounded if it does not satisfy at least one quality check? (A: 2/7)
+\item
+  Are smoothness and roundness independent events? (No)
+\end{itemize}
+
+\hypertarget{exercise-2-1}{%
+\subsubsection{Exercise 2}\label{exercise-2-1}}
+
+We developed a test to detect the presence of bacteria in a lake. We found that if the lake contains the bacteria, the test is positive 70\% of the time. If there are no bacteria, the test is negative 60\% of the time. We implemented the test in a region where we know that 20\% of the lakes have bacteria.
+
+\begin{itemize}
+\tightlist
+\item
+  What is the probability that a lake that tests positive is contaminated with bacteria? (R: 0.30)
+\end{itemize}
+
+\hypertarget{exercise-3-1}{%
+\subsubsection{Exercise 3}\label{exercise-3-1}}
+
+Two machines are tested for their performance in producing high-quality turning rods. These are the test results
+
+\textbf{Machine 1}
+
+\begin{longtable}[]{@{}ccc@{}}
+\toprule
+& Rounded: yes & Rounded: No \\
+\midrule
+\endhead
+smooth surface: yes & 200 & 1 \\
+smooth surface: no & 4 & 2 \\
+\bottomrule
+\end{longtable}
+
+\textbf{Machine 2}
+
+\begin{longtable}[]{@{}ccc@{}}
+\toprule
+& Rounded: yes & Rounded: No \\
+\midrule
+\endhead
+smooth surface: yes & 145 & 4 \\
+smooth surface: no & 8 & 6 \\
+\bottomrule
+\end{longtable}
+
+\begin{itemize}
+\tightlist
+\item
+  What is the probability that the bar is rounded? (A: 357/370)
+\item
+  What is the probability that the rod was produced by machine 1? (A: 207/370)
+\item
+  What is the probability that the rod is not smooth? (R: 20/370)
+\item
+  What is the probability that the rod is smooth or rounded or produced by machine 1? (A: 364/370)
+\item
+  What is the probability that the rod will be rounded if it is smoothed and from machine 1? (A: 200/201)
+\item
+  What is the probability that the rod is not rounded if it is not smooth and it is from machine 2? (A: 6/8)
+\item
+  What is the probability that the rod has come out of machine 1 if it is smooth and rounded? (R: 200/345)
+\item
+  What is the probability that the rod came from machine 2 if it fails at least one of the quality controls? (R:0.72)
+\end{itemize}
+
+\hypertarget{exercise-4}{%
+\subsubsection{Exercise 4}\label{exercise-4}}
+
+We want to cross an avenue with two traffic lights. The probability of finding the first red light is 0.6. If we stop at the first traffic light, the probability of stopping at the second is 0.15. While the probability of stopping at the second if we don't stop at the first is 0.25.
+
+When we try to cross both traffic lights:
+
+\begin{itemize}
+\tightlist
+\item
+  What is the probability of having to stop at each traffic light? (R:0.09)
+\item
+  What is the probability of having to stop at at least one traffic light? (R:0.7)
+\item
+  What is the probability of having to stop at a single traffic light? (R:0.61)
+\item
+  If I stopped at the second traffic light, what is the probability that I would have to stop at the first? (R: 0.47)
+\item
+  If you were to stop at any traffic light, what is the probability that you would have to stop twice? (R: 0.12)
+\item
+  Is stopping at the first traffic light an independent event from stopping at the second traffic light? (No)
+\end{itemize}
+
+Now, we want to cross an avenue with three traffic lights. The probability of finding a red light only depends on the previous one. Specifically, the probability of finding a red traffic light given that the previous one was red is 0.15. While the probability of finding a fair traffic in red given that the previous one was in green is 0.25. Furthermore, the probability of finding the first red light is 0.6.
+
+What is the probability of having to stop at each traffic light? (R:0.013)
+- What is the probability of having to stop at at least one traffic light? (R:0.775)
+- What is the probability of having to stop at a single traffic light? (R:0.5425)
+
+tips:
+
+\begin{itemize}
+\item
+  If the probability that a traffic light is red depends only on the previous one, then
+  \(P(R_3|R_2,R_1)=P(R_3|R_2,\bar{R}_1)=P(R_3|R_2)\) and \(P(R_3|\bar{R}_2,R_1)=P(R_3|\bar{R}_2,\bar{R}_1)=P(R_3|\bar{R}_2)\)
+\item
+  The joint probability of finding three red lights can be written as:
+  \(P(R_ 1,R _2,R_3)=P(R_3|R_2)P(R_2|R_1)P(R_1)\)
+\end{itemize}
+
+\hypertarget{exercise-5}{%
+\subsubsection{Exercise 5}\label{exercise-5}}
+
+A quality test on a random brick is defined by the events:
+
+\begin{itemize}
+\tightlist
+\item
+  Pass the quality test: \(E\), fail the quality test: \(\bar{E}\)
+\item
+  Defective: \(D\), non-defective: \(\bar{D}\)
+\end{itemize}
+
+If the diagnostic test has sensitivity \(P(E|\bar{D })= 0.99\) and specificity \(P(\bar{E}|D)=0.98\), and the probability of passing the test is \(P(E) =0.893\) then
+
+\begin{itemize}
+\item
+  What is the probability that a randomly chosen brick is defective \(P(D)\)? (R:0.1)
+\item
+  What is the probability that a brick that has passed the test is actually defective? (R:0.022)
+\item
+  The probability that a brick is not defective \textbf{and} that it fails the test (R:0.009)
+\item
+  Are \(D\) and \(\bar{E}\) statistically independent? (No)
 \end{itemize}
 
   \bibliography{book.bib,packages.bib}

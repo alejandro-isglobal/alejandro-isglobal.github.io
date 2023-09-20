@@ -6,7 +6,7 @@
 ]{book}
 \title{EEBE Estadística}
 \author{Alejandro Cáceres (\href{mailto:alejandro.caceres.dominguez@upc.edu}{\nolinkurl{alejandro.caceres.dominguez@upc.edu}})}
-\date{2023-09-17}
+\date{2023-09-20}
 
 \usepackage{amsmath,amssymb}
 \usepackage{lmodern}
@@ -1523,6 +1523,703 @@ Hemos realizado un experimento aleatorio \(10\) veces, que consiste en anotar el
   De la segunda forma de la regla de la suma, obtener la primera y la tercera forma.
 \item
   ¿Cuál es la regla de la suma de la tercera forma para la probabilidad de tres eventos \(P(A \cup B \cup C)\)?
+\end{itemize}
+
+\hypertarget{probabilidad-condicional}{%
+\chapter{Probabilidad condicional}\label{probabilidad-condicional}}
+
+En este capítulo, introduciremos la probabilidad condicional.
+
+Usaremos la probabilidad condicional para definir la independencia estadística.
+
+Discutiremos el teorema de Bayes y discutiremos una de sus principales aplicaciones, que es la eficacia de predicción de una herramienta de diagnóstico.
+
+\hypertarget{probabilidad-conjunta}{%
+\section{Probabilidad conjunta}\label{probabilidad-conjunta}}
+
+Recordemos que la probabilidad conjunta de dos eventos \(A\) y \(B\) se define como su intersección
+
+\[P( A,B )=P(A \cap B)\]
+
+Ahora, imagina experimentos aleatorios que miden dos tipos diferentes de resultados.
+
+\begin{itemize}
+\item
+  altura y peso de un individuo: \((h, w)\)
+\item
+  tiempo y posición de una carga eléctrica: \((p, t)\)
+\item
+  el lanzamiento de dos dados: (\(n_1\),\(n_2\))
+\item
+  cruzar dos semáforos en verde: (\(\bar{R_ 1}\) , \(\bar{R_2}\))
+\end{itemize}
+
+A menudo nos interesa saber si los valores de un resultado \textbf{condicionan} los valores del otro.
+
+\hypertarget{independencia-estaduxedstica}{%
+\section{Independencia estadística}\label{independencia-estaduxedstica}}
+
+En muchos casos, estamos interesados en saber si dos eventos a menudo tienden a ocurrir juntos. Queremos poder discernir entre dos casos.
+
+\begin{itemize}
+\item
+  \textbf{Independencia} entre eventos. Por ejemplo, sacar un 1 en un dado no hace más probable sacar otro 1 en un segundo dado.
+\item
+  \textbf{Correlación} entre eventos. Por ejemplo, si un hombre es alto, probablemente sea pesado.
+\end{itemize}
+
+\textbf{Ejemplo (conductor)}
+
+Realizamos un experimento para averiguar si observar fallas estructurales en un material afecta su conductividad.
+
+Los datos se verían como
+
+\begin{longtable}[]{@{}ccc@{}}
+\toprule
+Conductor & Estructura & Conductividad \\
+\midrule
+\endhead
+\(c_1\) & con fallas & defectuosa \\
+\(c_2\) & sin fallas & sin defectos \\
+\(c_3\) & con fallas & defectuosa \\
+\ldots{} & \ldots{} & \ldots{} \\
+\(c_i\) & sin fallas & defectuosa* \\
+\ldots{} & \ldots{} & \ldots{} \\
+\ldots{} & \ldots{} & \ldots{} \\
+\(c_n\) & con fallas & sin defectos* \\
+\bottomrule
+\end{longtable}
+
+Podemos esperar que la conductividad defectuosa ocurra más a menudo con fallas que sin fallas si las fallas afectan la conductividad.
+
+Imaginemos que a partir de los datos obtenemos la siguiente tabla de contingencia de \textbf{probabilidades conjuntas} estimadas
+
+\begin{longtable}[]{@{}cccc@{}}
+\toprule
+& con fallas (F) & sin fallas (F') & suma \\
+\midrule
+\endhead
+defectuoso (D) & \(0.005\) & \(0.045\) & \(0.05\) \\
+sin defectos (D') & \(0.095\) & \(0.855\) & \(0.95\) \\
+suma & \(0.1\) & \(0.9\) & 1 \\
+\bottomrule
+\end{longtable}
+
+donde, por ejemplo, la probabilidad conjunta de \(F\) y \(D\) es
+
+\begin{itemize}
+\tightlist
+\item
+  \(P(D,F)=0.005\)
+\end{itemize}
+
+y las probabilidades marginales son
+
+\begin{itemize}
+\tightlist
+\item
+  \(P(D)=P(D, F) + P(D, F')=0.05\)
+\item
+  \(P(F)=P(D, F) + P(D', F)= 0.1\).
+\end{itemize}
+
+\hypertarget{la-probabilidad-condicional}{%
+\section{La probabilidad condicional}\label{la-probabilidad-condicional}}
+
+La conductividad defectuosa es \textbf{independiente} de tener fallas estructurales en el material si la probabilidad de tener conductividad defectuosa (\(D\)) es la misma \textbf{ya sea} que tenga fallas (\(F\)) o no (\(F'\)) .
+
+Consideremos primero solamente los materiales que tienen fallas.
+
+Dentro de aquellos materiales que tienen fallas (\(F\)), ¿cuál es la probabilidad estimada de que sean defectuosos?
+
+\(\hat{P}(D|F)=\frac{n_{F,D}}{n_{F}}=\frac{n_{F,D}/n}{n_{F}/n}= \frac{f_{F,D}}{f_{F}}\)
+\[= \frac{\hat{P}(F,D)}{\hat{P}(F)}\]
+Por lo tanto, en el límite cuando \(N \rightarrow \infty\), tenemos
+
+\[P(D|F)=\frac{P(F, D)}{P(D)}=\frac{P(F \cap D)}{P(D)}\]
+\textbf{Definición:}
+
+La \emph{probabilidad condicional} de un evento \(B\) dado un evento \(A\), indicado como \(P(A|B)\), es
+\[P(A|B) = \frac{P(A\cap B)}{P(B)}\]
+Podemos probar que la probabilidad condicional satisface los axiomas de probabilidad. La probabilidad condicional se puede entender como una probabilidad con un espacio muestral dado por \(B\): \(S_B\). En nuestro ejemplo, los materiales con fallas.
+
+\hypertarget{tabla-de-contingencia-condicional}{%
+\section{Tabla de contingencia condicional}\label{tabla-de-contingencia-condicional}}
+
+Si dividimos las columnas de la tabla de probabilidad conjunta por las probabilidades marginales de los efectos condicionantes (\(F\) y \(F'\)), podemos escribir \textbf{una tabla de contingencia condicional}
+
+\begin{longtable}[]{@{}ccc@{}}
+\toprule
+& F & F' \\
+\midrule
+\endhead
+D & P(D {\textbar{}} F) & P(D {\textbar{}} F') \\
+D' & P(D' {\textbar{}} F) & P(D' {\textbar{}} F') \\
+suma & 1 & 1 \\
+\bottomrule
+\end{longtable}
+
+Donde las probabilidades por columnas suman uno. La primera columna muestra las probabilidades de ser defectuoso o no solo de que los materiales que tienen fallas (primera condición: \(F\)). La segunda columna muestra las probabilidades solo para los materiales que no tienen fallas (segunda condición: \(F'\)).
+
+Las probabilidades condicionales son las probabilidades del evento dentro de cada condición. Las leemos como:
+
+\begin{itemize}
+\item
+  \(P(D|F)\): Probabilidad de tener conductividad defectuosa \textbf{si} tiene fallas
+\item
+  \(P(D'|F)\): Probabilidad de no tener conductividad defectuosa \textbf{si} tiene fallas
+\item
+  \(P(D|F')\): Probabilidad de tener conductividad defectuosa \textbf{si} no tiene fallas
+\item
+  \(P(D'|F')\) Probabilidad de no tener conductividad defectuosa \textbf{si} no tiene fallas
+\end{itemize}
+
+\hypertarget{independencia-estaduxedstica-1}{%
+\section{Independencia estadística}\label{independencia-estaduxedstica-1}}
+
+En nuestro ejemplo, la tabla de contingencia condicional es
+
+\begin{longtable}[]{@{}ccc@{}}
+\toprule
+& F & F' \\
+\midrule
+\endhead
+D & P(D{\textbar{}}F) = 0.05 & P(D{\textbar{}}F')=0.05 \\
+D' & P(D'{\textbar{}}F)=0.95 & P(D'{\textbar{}}F')=0.95 \\
+suma & 1 & 1 \\
+\bottomrule
+\end{longtable}
+
+¡Observamos que las probabilidades marginales y condicionales son las mismas!
+
+\begin{itemize}
+\tightlist
+\item
+  \(P(D|F)=P(D|F')=P(D)\)
+\item
+  \(P(D'|F)=P(D'|F')=P(D')\)
+\end{itemize}
+
+Esto quiere decir que la probabilidad de observar un conductor defectuoso \textbf{no} depende tener una falla estructural o no.
+
+Concluimos que la conductividad defectuosa no se ve afectada por tener una falla estructural.
+
+\textbf{Definición}
+
+Dos eventos \(A\) y \(B\) son estadísticamente independientes si ocurre cualquiera de los casos equivalentes
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\tightlist
+\item
+  \(P(A|B)=P(A)\); \(A\) es independiente de \(B\)
+\item
+  \(P(B|A)=P(B)\); \(B\) es independiente de \(A\)
+\end{enumerate}
+
+y por la definición de probabilidad condicional
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  \(P(A\cap B)=P(A|B)P(B)=P(A)P(B)\)
+\end{enumerate}
+
+Esta tercera forma es un enunciado sobre las probabilidades conjuntas. Dice que podemos obtener probabilidades conjuntas por la multiplicación de las marginales.
+
+En nuestra tabla de probabilidad conjunta original
+
+\begin{longtable}[]{@{}cccc@{}}
+\toprule
+& F & F' & suma \\
+\midrule
+\endhead
+D & \(0.005\) & \(0.045\) & \(0.05\) \\
+D' & \(0.095\) & \(0.855\) & \(0.95\) \\
+suma & \(0.1\) & \(0.9\) & 1 \\
+\bottomrule
+\end{longtable}
+
+podemos confirmar que todas las entradas de la matriz son el producto de las marginales. Por ejemplo: \(P(F)P(D)= P(D \cap F)\) y \(P(D')P(F')=P(D' \cap F')\). Por lo tanto, ser defectuoso es independiente de tener un defecto.
+
+\textbf{Ejemplo (Monedas)}
+
+Queremos confirmar que los resultados de lanzar dos monedas son independientes. Consideramos que todos los resultados son igualmente probables:
+
+\begin{longtable}[]{@{}cc@{}}
+\toprule
+resultado & Probabilidad \\
+\midrule
+\endhead
+\((H,T)\) & 1/4 \\
+\((H,H)\) & 1/4 \\
+\((T,T)\) & 1/4 \\
+\((T,H)\) & 1/4 \\
+suma & 1 \\
+\bottomrule
+\end{longtable}
+
+donde \((H,T)\) es, por ejemplo, el evento de cara en la primera moneda y cruz en la segunda moneda. La tabla de contingencia para las probabilidades conjuntas es:
+
+\begin{longtable}[]{@{}cccc@{}}
+\toprule
+& H & T & suma \\
+\midrule
+\endhead
+H & \(1/4\) & \(1/4\) & \(1/2\) \\
+T & \(1/4\) & \(1/4\) & \(1/2\) \\
+suma & \(1/2\) & \(1/2\) & 1 \\
+\bottomrule
+\end{longtable}
+
+De esta tabla vemos que la probabilidad de obtener una cara y luego una cruz es el producto de las marginales \(P(H, T)=P(H)*P(T)=1/4\). Por lo tanto, el evento de cara en la primera moneda y cruz en la segunda son independientes.
+
+Si elaboramos la tabla de contingencia condicional sobre el lanzamiento de la primera moneda veremos que obtener cruz en la segunda moneda no está condicionado por haber obtenido cara en la primera moneda: \(P(T|H)=P(T) =1/2\)
+
+\hypertarget{dependencia-estaduxedstica}{%
+\section{Dependencia estadística}\label{dependencia-estaduxedstica}}
+
+Un ejemplo importante de dependencia estadística se encuentra en el desempeño de \textbf{herramientas de diagnóstico}, donde queremos determinar el estado de un sistema (s) con resultados
+
+\begin{itemize}
+\tightlist
+\item
+  inadecuado (si)
+\item
+  adecuado (no)
+\end{itemize}
+
+con una prueba (t) con resultados
+
+\begin{itemize}
+\tightlist
+\item
+  positivo
+\item
+  negativo
+\end{itemize}
+
+Por ejemplo, probamos una batería para saber cuánto tiempo puede durar. Tensamos un cable para saber si resiste llevar cierta carga. Realizamos una PCR para ver si alguien está infectado.
+
+\hypertarget{prueba-de-diagnuxf3stico}{%
+\section{Prueba de diagnóstico}\label{prueba-de-diagnuxf3stico}}
+
+Consideremos diagnosticar una infección con una nueva prueba. Estado de infección:
+
+\begin{itemize}
+\tightlist
+\item
+  si (infectado)
+\item
+  no (no infectado)
+\end{itemize}
+
+Prueba:
+
+\begin{itemize}
+\tightlist
+\item
+  positivo
+\item
+  negativo
+\end{itemize}
+
+La \textbf{tabla de contingencia condicional} es lo que obtenemos en un ambiente controlado (laboratorio)
+
+\begin{longtable}[]{@{}ccc@{}}
+\toprule
+& Infección: si & Infección: No \\
+\midrule
+\endhead
+Test: positivo & P(positivo {\textbar{}} si) & P(positivo {\textbar{}} no) \\
+Test: negativo & P(negativo {\textbar{}} si) & P(negativo {\textbar{}} no) \\
+suma & 1 & 1 \\
+\bottomrule
+\end{longtable}
+
+Miremos las entradas de la tabla
+1) Tasa de verdaderos positivos (Sensibilidad): La probabilidad de dar positivo \textbf{si} tiene la enfermedad \(P(positivo|si)\)
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\setcounter{enumi}{1}
+\item
+  Tasa de verdaderos negativos (Especificidad): La probabilidad de dar negativo \textbf{si} no tiene la enfermedad \(P(negativo|no)\)
+\item
+  Tasa de falsos positivos: la probabilidad de dar positivo \textbf{si} no tiene la enfermedad \(P(positivo|no)\)
+\item
+  Tasa de falsos negativos: la probabilidad de dar negativo \textbf{si} tiene la enfermedad \(P(negativo|si)\)
+\end{enumerate}
+
+Alta correlación (dependencia estadística) entre la prueba y la infección significa valores altos de las probabilidades 1 y 2 \textbf{y} valores bajos para las probabilidades 3 y 4.
+
+\textbf{Ejemplo (COVID)}
+
+Ahora consideremos una situación real. En los días iniciales de la pandemia de coronavirus no había una medida de la eficacia de las PCR para detectar el virus. Uno de los primeros estudios publicados (\url{https://www.nejm.org/doi/full/10.1056/NEJMp2015897}) encontró que
+
+\begin{itemize}
+\tightlist
+\item
+  Las PCR tuvieron una sensibilidad del 70\%, en condición de infección.
+\item
+  Las PCR tuvieron una especificidad del 94\%, en condición de no infección.
+\end{itemize}
+
+La tabla de contingencia condicional es
+
+\begin{longtable}[]{@{}ccc@{}}
+\toprule
+& Infección: si & Infección: No \\
+\midrule
+\endhead
+Test: positivo & P(positivo{\textbar{}}si)=0.7 & P(positivo{\textbar{}}no)=0.06 \\
+Test: negativo & P(negativo{\textbar{}}si)=0.3 & P(negativo{\textbar{}}no)=0.94 \\
+suma & 1 & 1 \\
+\bottomrule
+\end{longtable}
+
+Por lo tanto, los errores en las pruebas de diagnóstico fueron:
+
+\begin{itemize}
+\tightlist
+\item
+  La tasa de falsos positivos es \(P(positivo|no)=0.06\)
+\item
+  La tasa de falsos negativos es \(P(negativo|si)=0.3\)
+\end{itemize}
+
+\hypertarget{probabilidades-inversas}{%
+\section{Probabilidades inversas}\label{probabilidades-inversas}}
+
+Nos interesa encontrar la probabilidad de estar infectado si la prueba da positivo: \[P(si|positivo)\]
+
+Para eso:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Recuperamos la tabla de contingencia para probabilidades conjuntas, multiplicando por las marginales
+\end{enumerate}
+
+\begin{longtable}[]{@{}cccc@{}}
+\toprule
+& Infección: si & Infección: No & suma \\
+\midrule
+\endhead
+Test: positivo & P(positivo {\textbar{}} si)P(si) & P(positivo {\textbar{}} no)P(no) & P(positivo) \\
+Test: negativo & P(negativo {\textbar{}} si)P(si) & P(negativo {\textbar{}} no) P(no) & P(negativo) \\
+suma & P(si) & P(no) & 1 \\
+\bottomrule
+\end{longtable}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  Usamos la definición de probabilidades condicionales para filas en lugar de columnas (dividimos por la marginal de los resultados de la prueba)
+\end{enumerate}
+
+\begin{longtable}[]{@{}cccc@{}}
+\toprule
+& Infección: si & Infección: No & suma \\
+\midrule
+\endhead
+Test: positivo & P(si{\textbar{}}positivo) & P(sin{\textbar{}}positivo) & 1 \\
+Test: negativo & P(si{\textbar{}}negativo) & P(sin{\textbar{}}negativo) & 1 \\
+\bottomrule
+\end{longtable}
+
+Por ejemplo:
+
+\[P(si|positivo)=\frac{P(positivo|si)P(si)}{P(positivo)}\]
+
+Para aplicar esta fórmula necesitamos las marginales \(P(si)\) (incidencia) y \(P(positivo)\).
+
+\begin{itemize}
+\item
+  Para encontrar \(P(si)\), necesitamos un nuevo estudio: el primer estudio de prevalencia en España mostró que durante el confinamiento \(P(si)=0.05\), \(P(no)=0.95\), antes del verano de 2020.
+\item
+  Para encontrar \(P(positivo)\), podemos usar la definición de probabilidad marginal y condicional:
+\end{itemize}
+
+\(P(positivo)=P(positivo \cap si) + P(positivo \cap no)\)
+\[= P(positivo|si)P(si)+P(positivo|no)P(no)\]
+Esta última relación de las marginales se llama \textbf{regla de probabilidad total}.
+
+\hypertarget{teorema-de-bayes}{%
+\section{Teorema de Bayes}\label{teorema-de-bayes}}
+
+Después de sustituir la regla de probabilidad total en \(P(si|positivo)\), tenemos
+
+\[P(si|positivo)=\frac{P(positivo|si)P(si)}{P(positivo|si)P(si)+P(positivo|no)P(no)}\]
+Esta expresión se conoce como \textbf{teorema de Bayes}. Nos permite invertir los condicionales:
+
+\[P(positivo|si) \rightarrow P(si|positivo)\]
+O \textbf{evaluar} una prueba en una condición controlada (infección) y luego usarla para \textbf{inferir} la probabilidad de la condición cuando la prueba es positiva.
+
+\textbf{Ejemplo (COVID)}:
+
+El rendimiento de la prueba fue:
+
+\begin{itemize}
+\item
+  Sensibilidad: \(P(positivo|si)=0.70\)
+\item
+  Tasa de falsos positivos: \(P(positivo|no)=1- P(negativo|no)=0.06\)
+\end{itemize}
+
+El estudio en población española dio:
+
+\begin{itemize}
+\tightlist
+\item
+  \(P(si)=0.05\)
+\item
+  \(P(no)=1-P(si)=0.95\).
+\end{itemize}
+
+Por lo tanto, la probabilidad de estar infectado en caso de dar positivo era:
+
+\[P(si|positivo)=0.38\]
+
+Concluimos que en ese momento las PCR no eran muy buenas para \textbf{confirmar} infecciones.
+
+Sin embargo, apliquemos ahora el teorema de Bayes a la probabilidad de no estar infectado si la prueba fue negativa.
+
+\[P(no|negativo) = \frac{P(negativo|no) P(no)}{P(negativo|no) P(no)+P(negativo|si)P(si)}\]
+
+La sustitución de todos los valores da
+
+\[P(no|negativo)=0.98\]
+
+Por lo tanto, las pruebas eran buenas para \textbf{descartar} infecciones y un requisito justo para viajar.
+
+\textbf{Teorema de Bayes}
+
+En general, podemos tener más de dos eventos condicionantes. Por lo tanto, el teorema de Baye dice:
+
+Si \(E1, E2, ..., Ek\) son \(k\) eventos mutuamente excluyentes y exhaustivos y \(B\) es cualquier evento, entonces la probabilidad inversa \(P(Ei|B)\) es
+
+\[P(Ei|B)=\frac{P(B|Ei)P(Ei)}{P(B|E1)P(E1) +...+ P(B|Ek)P(Ek)} \]
+El denominador es la regla de probabilidad total para la marginal \(P(B)\), en términos de las marginales \(P(E1), P(E2), ... P(Ek)\).
+
+\[P(B)=P(B|E1)P(E1) +...+ P(B|Ek)P(Ek)\]
+
+\textbf{Árbol condicional}
+
+La regla de probabilidad total también se puede ilustrar usando un árbol \textbf{condicional}.
+
+\includegraphics{./figures/treetot.PNG}
+
+\textbf{Regla de probabilidad total} para la marginal de \(B\): ¿De cuántas maneras puedo obtener el resultado \(B\)?
+
+\(P(B)=P(B|A)P(A)+P(B|A')P(A')\)
+
+\hypertarget{ejercicios-2}{%
+\section{Ejercicios}\label{ejercicios-2}}
+
+\hypertarget{preguntas-2}{%
+\section{Preguntas}\label{preguntas-2}}
+
+Recopilamos la edad y categoría de 100 deportistas en una competición
+
+\begin{longtable}[]{@{}ccc@{}}
+\toprule
+& \(junior\) & \(senior\) \\
+\midrule
+\endhead
+\(1er\) & \(14\) & \(12\) \\
+\(2do\) & \(21\) & \(18\) \\
+\(3er\) & \(22\) & \(13\) \\
+\bottomrule
+\end{longtable}
+
+\textbf{1)} ¿Cuál es la probabilidad estimada de que el atleta esté en la tercera categoría si el atleta es junior?
+
+\textbf{\(\qquad\)a:} \(22\); \textbf{\(\qquad\)b:} \(22/100\); \textbf{\(\qquad\)c:} \(22/57\); \textbf{\(\qquad\)d:} \(22/35\);
+
+\textbf{2)} ¿Cuál es la probabilidad estimada de que el atleta sea junior y esté en 1ra categoría si el atleta no está en 3ra categoría?
+
+\textbf{\(\qquad\)a:} \(14/35\); \textbf{\(\qquad\)b:} \(14/65\); \textbf{\(\qquad\)c:} \(14/100\); \textbf{\(\qquad\)d:} \(14/26\)
+
+\textbf{3)} Una prueba diagnóstica tiene una probabilidad de \(8/9\) de detectar una enfermedad si los pacientes están enfermos y una probabilidad de \(3/9\) de detectar la enfermedad si los pacientes están sanos. Si la probabilidad de estar enfermo es \(1/9\). ¿Cuál es la probabilidad de que un paciente esté enfermo si una prueba detecta la enfermedad?
+
+\textbf{\(\qquad\)a:} \(\frac{8/9}{8/9+3/9}*1/9\); \textbf{\(\qquad\)b:} \(\frac{3/9}{8/9+3/9}*1/9\); \textbf{\(\qquad\)c:} \(\frac{3/9*8/9}{8/9*1/9+3/9*8/9}\); \textbf{\(\qquad\)d:} \(\frac{8/9*1/9}{8/9*1/9+3/9*8/9}\);
+
+\textbf{4)} Como se comenta en las notas, una prueba PCR para coronavirus tenía una sensibilidad del 70 \% y una especificidad del 94 \% y en España durante el confinamiento hubo una incidencia del 5 \%. Con estos datos, ¿cuál era la probabilidad de dar positivo en España (\(P(positivo)\))
+
+\textbf{\(\qquad\)a:} \(0.035\); \textbf{\(\qquad\)b:} \(0.092\); \textbf{\(\qquad\)c:} \(0.908\); \textbf{\(\qquad\)d:} \(0.95\)
+
+\textbf{5)} Con los mismos datos que en la pregunta 4, dar positivo en la PCR y estar infectado no son eventos independientes porque:
+
+\textbf{\(\qquad\)a:} La sensibilidad es del 70\%; \textbf{\(\qquad\)b:} La sensibilidad y la tasa de falsos positivos son diferentes; \textbf{\(\qquad\)c:} La tasa de falsos positivos es del 0.06\%; \textbf{\(\qquad\)d:} la especificidad es del 96\%
+
+\hypertarget{ejercicio-1-1}{%
+\subsubsection{Ejercicio 1}\label{ejercicio-1-1}}
+
+Se prueba el rendimiento de una máquina para producir varillas de torneado de alta calidad. Estos son los resultados de las pruebas
+
+\begin{longtable}[]{@{}ccc@{}}
+\toprule
+& Redondeado: si & Redondeado: No \\
+\midrule
+\endhead
+superficie lisa: si & 200 & 1 \\
+superficie lisa: no & 4 & 2 \\
+\bottomrule
+\end{longtable}
+
+\begin{itemize}
+\item
+  ¿Cuál es la probabilidad estimada de que la máquina produzca una varilla que no satisfaga ningún control de calidad? (R: 2/207)
+\item
+  ¿Cuál es la probabilidad estimada de que la máquina produzca una varilla que no satisfaga al menos un control de calidad? (R: 7/207)
+\item
+  ¿Cuál es la probabilidad estimada de que la máquina produzca varillas de superficie redondeada y alisada? (R: 200/207)
+\item
+  ¿Cuál es la probabilidad estimada de que la barra sea redondeada si la barra es lisa? (R: 200/201)
+\item
+  ¿Cuál es la probabilidad estimada de que la varilla sea lisa si es redondeada? (R: 200/204)
+\item
+  ¿Cuál es la probabilidad estimada de que la varilla no sea ni lisa ni redondeada si no satisface al menos un control de calidad? (R: 2/7)
+\item
+  ¿Son eventos independientes la lisa y la redondez? (No)
+\end{itemize}
+
+\hypertarget{ejercicio-2-1}{%
+\subsubsection{Ejercicio 2}\label{ejercicio-2-1}}
+
+Desarrollamos un test para detectar la presencia de bacterias en un lago. Encontramos que si el lago contiene la bacteria, la prueba es positiva el 70\% de las veces. Si no hay bacterias, la prueba es negativa el 60\% de las veces. Implementamos la prueba en una región donde sabemos que el 20\% de los lagos tienen bacterias.
+
+\begin{itemize}
+\tightlist
+\item
+  ¿Cuál es la probabilidad de que un lago que dé positivo esté contaminado con bacterias? (R: 0.30)
+\end{itemize}
+
+\hypertarget{ejercicio-3-1}{%
+\subsubsection{Ejercicio 3}\label{ejercicio-3-1}}
+
+Se prueba el rendimiento de dos máquinas para producir varillas de torneado de alta calidad. Estos son los resultados de las pruebas
+
+\textbf{Máquina 1}
+
+\begin{longtable}[]{@{}ccc@{}}
+\toprule
+& Redondeado: si & Redondeado: No \\
+\midrule
+\endhead
+superficie lisa: si & 200 & 1 \\
+superficie lisa: no & 4 & 2 \\
+\bottomrule
+\end{longtable}
+
+\textbf{Máquina 2}
+
+\begin{longtable}[]{@{}ccc@{}}
+\toprule
+& Redondeado: si & Redondeado: No \\
+\midrule
+\endhead
+superficie lisa: si & 145 & 4 \\
+superficie lisa: no & 8 & 6 \\
+\bottomrule
+\end{longtable}
+
+\begin{itemize}
+\tightlist
+\item
+  ¿Cuál es la probabilidad de que la barra sea redondeada? (R: 357/370)
+\item
+  ¿Cuál es la probabilidad de que la varilla haya sido producida por la máquina 1? (R: 207/370)
+\item
+  ¿Cuál es la probabilidad de que la varilla no sea lisa? (R: 20/370)
+\item
+  ¿Cuál es la probabilidad de que la varilla sea lisa o redondeada o producida por la máquina 1? (R: 364/370)
+\item
+  ¿Cuál es la probabilidad de que la varilla quede redondeada si es alisada y de la máquina 1? (R: 200/201)
+\item
+  ¿Cuál es la probabilidad de que la varilla no esté redondeada si no está alisada y es de la máquina 2? (R: 6/8)
+\item
+  ¿Cuál es la probabilidad de que la varilla haya salido de la máquina 1 si está alisada y redondeada? (R: 200/345)
+\item
+  ¿Cuál es la probabilidad de que la varilla haya venido de la máquina 2 si no pasa al menos uno de los controles de calidad? (R:0.72)
+\end{itemize}
+
+\hypertarget{ejercicio-4}{%
+\subsubsection{Ejercicio 4}\label{ejercicio-4}}
+
+Queremos cruzar una avenida con dos semáforos. La probabilidad de encontrar el primer semáforo en rojo es 0.6. Si paramos en el primer semáforo, la probabilidad de parar en el segundo es 0.15. Mientras que la probabilidad de detenernos en el segundo si no nos detenemos en el primero es 0.25.
+
+Cuando intentamos cruzar ambos semáforos:
+
+\begin{itemize}
+\tightlist
+\item
+  ¿Cuál es la probabilidad de tener que detenerse en cada semáforo? (R:0.09)
+\item
+  ¿Cuál es la probabilidad de tener que parar en al menos un semáforo? (R:0.7)
+\item
+  ¿Cuál es la probabilidad de tener que detenerse en un solo semáforo? (R:0.61)
+\item
+  Si paré en el segundo semáforo, ¿cuál es la probabilidad de que tuviera que parar en el primero? (R: 0.47)
+\item
+  Si tuviera que parar en cualquier semáforo, ¿cuál es la probabilidad de que tuviera que hacerlo dos veces? (R: 0.12)
+\item
+  ¿Parar en el primer semáforo es un evento independiente de detenerse en el segundo semáforo? (No)
+\end{itemize}
+
+Ahora, queremos cruzar una avenida con tres semáforos. La probabilidad de encontrar un semáforo en rojo solo depende de la anterior. En concreto, la probabilidad de encontrar un semáforo en rojo dado que el anterior estaba en rojo es de 0.15. Mientras que la probabilidad de encontrar un tráfico justo en rojo dado que el anterior estaba en verde es de 0.25. Además, la probabilidad de encontrar el primer semáforo en rojo es de 0.6.
+
+\begin{itemize}
+\tightlist
+\item
+  ¿Cuál es la probabilidad de tener que parar en cada semáforo? (R:0.013)
+\item
+  ¿Cuál es la probabilidad de tener que parar en al menos un semáforo? (R:0.775)
+\item
+  ¿Cuál es la probabilidad de tener que detenerse en un solo semáforo? (R:0.5425)
+\end{itemize}
+
+consejos:
+
+\begin{itemize}
+\item
+  Si la probabilidad de que un semáforo esté en rojo depende únicamente del anterior, entonces
+  \(P(R_3|R_2,R_1)=P(R_3|R_2,\bar{R}_1)=P(R_3|R_2)\) y \(P(R_3|\bar{R}_2,R_1)=P(R_3 |\bar{R}_2,\bar{R}_1)=P(R_3|\bar{R}_2)\)
+\item
+  La probabilidad conjunta de encontrar tres semáforos en rojo se puede escribir como:
+  \(P(R_1,R_2,R_3)=P(R_3|R_2)P(R_2|R_1)P(R_1)\)
+\end{itemize}
+
+\hypertarget{ejercicio-5}{%
+\subsubsection{Ejercicio 5}\label{ejercicio-5}}
+
+Una prueba de calidad en un ladrillo aleatorio se define por los eventos:
+
+\begin{itemize}
+\tightlist
+\item
+  Pasar la prueba de calidad: \(E\), no pasar la prueba de calidad: \(\bar{E}\)
+\item
+  Defectuoso: \(D\), no defectuoso: \(\bar{D}\)
+\end{itemize}
+
+Si la prueba diagnóstica tiene sensibilidad \(P(E|\bar{D})=0.99\) y especificidad \(P(\bar{E}|D)=0.98\), y la probabilidad de pasar la prueba es \(P(E) =0.893\) entonces
+
+\begin{itemize}
+\item
+  ¿Cuál es la probabilidad de que un ladrillo elegido al azar sea defectuoso \(P(D)\)? (R:0.1)
+\item
+  ¿Cuál es la probabilidad de que un ladrillo que ha pasado la prueba sea realmente defectuoso? (R:0.022)
+\item
+  La probabilidad de que un ladrillo no sea defectuoso \textbf{y} que no pase la prueba (R:0.009)
+\item
+  ¿Son \(D\) y \(\bar{E}\) estadísticamente independientes? (No)
 \end{itemize}
 
   \bibliography{book.bib,packages.bib}

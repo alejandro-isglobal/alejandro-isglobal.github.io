@@ -6,7 +6,7 @@
 ]{book}
 \title{EEBE stats}
 \author{Alejandro Caceres}
-\date{2023-09-20}
+\date{2023-10-01}
 
 \usepackage{amsmath,amssymb}
 \usepackage{lmodern}
@@ -2043,9 +2043,6 @@ The total probability rule can also be illustrated using a \textbf{conditional} 
 
 \(P(B)=P(B|A)P(A)+P(B|A')P(A')\)
 
-\hypertarget{exercises-2}{%
-\section{Exercises}\label{exercises-2}}
-
 \hypertarget{questions-2}{%
 \section{Questions}\label{questions-2}}
 
@@ -2085,6 +2082,9 @@ We collect the age and category of 100 athletes in a competition
 \textbf{\(\qquad\) a:} Sensitivity is 70\%;
 \textbf{\(\qquad\)b:} Sensitivity and false positive rate are different;
 \textbf{\(\qquad\)c:} The false positive rate is 0.06\%; \textbf{\(\qquad\)d:} the specificity is 96\%
+
+\hypertarget{exercises-2}{%
+\section{Exercises}\label{exercises-2}}
 
 \hypertarget{exercise-1-1}{%
 \subsubsection{Exercise 1}\label{exercise-1-1}}
@@ -2171,7 +2171,7 @@ smooth surface: no & 8 & 6 \\
 \item
   What is the probability that the rod will be rounded if it is smoothed and from machine 1? (A: 200/201)
 \item
-  What is the probability that the rod is not rounded if it is not smooth and it is from machine 2? (A: 6/8)
+  What is the probability that the rod is not rounded if it is not smooth and it is from machine 2? (A: 6/14)
 \item
   What is the probability that the rod has come out of machine 1 if it is smooth and rounded? (R: 200/345)
 \item
@@ -2201,22 +2201,34 @@ When we try to cross both traffic lights:
   Is stopping at the first traffic light an independent event from stopping at the second traffic light? (No)
 \end{itemize}
 
-Now, we want to cross an avenue with three traffic lights. The probability of finding a red light only depends on the previous one. Specifically, the probability of finding a red traffic light given that the previous one was red is 0.15. While the probability of finding a fair traffic in red given that the previous one was in green is 0.25. Furthermore, the probability of finding the first red light is 0.6.
+Now, we want to cross an avenue with three traffic lights. The probability of encountering the first red light is 0.6, and the probability of encountering a red light at the second signal depends solely on the probability of the first light. Similarly, the probability of encountering a red light at the third signal depends only on the probabilities of the second light. As previously mentioned, the probability of stopping at a traffic light is 0.15 if we stopped at the previous light. If we didn't stop at the previous one, the probability of stopping at a traffic light is 0.25.
 
-What is the probability of having to stop at each traffic light? (R:0.013)
-- What is the probability of having to stop at at least one traffic light? (R:0.775)
-- What is the probability of having to stop at a single traffic light? (R:0.5425)
+\begin{itemize}
+\item
+  What is the probability of having to stop at each traffic light? (R:0.013)
+\item
+  What is the probability of having to stop at at least one traffic light? (R:0.775)
+\item
+  What is the probability of having to stop at a single traffic light? (R:0.5425)
+\end{itemize}
 
 tips:
 
 \begin{itemize}
+\tightlist
 \item
   If the probability that a traffic light is red depends only on the previous one, then
-  \(P(R_3|R_2,R_1)=P(R_3|R_2,\bar{R}_1)=P(R_3|R_2)\) and \(P(R_3|\bar{R}_2,R_1)=P(R_3|\bar{R}_2,\bar{R}_1)=P(R_3|\bar{R}_2)\)
+\end{itemize}
+
+\(P(R_3|R_2,R_1)=P(R_3|R_2,\bar{R}_1)=P(R_3|R_2)\) and \(P(R_3|\bar{R}_2,R_1)=P(R_3|\bar{R}_2,\bar{R}_1)=P(R_3|\bar{R}_2)\)
+
+\begin{itemize}
+\tightlist
 \item
   The joint probability of finding three red lights can be written as:
-  \(P(R_ 1,R _2,R_3)=P(R_3|R_2)P(R_2|R_1)P(R_1)\)
 \end{itemize}
+
+\(P(R_ 1,R _2,R_3)=P(R_3|R_2)P(R_2|R_1)P(R_1)\)
 
 \hypertarget{exercise-5}{%
 \subsubsection{Exercise 5}\label{exercise-5}}
@@ -2242,6 +2254,678 @@ If the diagnostic test has sensitivity \(P(E|\bar{D })= 0.99\) and specificity \
   The probability that a brick is not defective \textbf{and} that it fails the test (R:0.009)
 \item
   Are \(D\) and \(\bar{E}\) statistically independent? (No)
+\end{itemize}
+
+\hypertarget{discrete-random-variables}{%
+\chapter{Discrete Random Variables}\label{discrete-random-variables}}
+
+\hypertarget{objective-1}{%
+\section{Objective}\label{objective-1}}
+
+In this chapter we will define a random variables and study discrete random variables.
+
+We will define the probability mass function and its main properties of mean and variance. Following the abstraction process of the relative frequencies into probabilities we also define the probability distribution as the limiting case of the relative cumulative frequency.
+
+\hypertarget{relative-frequencies-2}{%
+\section{Relative frequencies}\label{relative-frequencies-2}}
+
+Relative frequencies of the outcomes of a random experiment are a measure of their propensity. We can used them as estimators of their probabilities, when the we repeat the random experiment a lot of times (\(n \rightarrow \infty\)).
+
+We defined central tendency (average), dispersion (sample variance) and the frequency distribution the data (\(F_i\)).
+
+In terms of probabilities, how are this quantities defined?
+
+\includegraphics{./figures/randomvar.JPG}
+
+\hypertarget{random-variable}{%
+\section{Random variable}\label{random-variable}}
+
+We defined the relative frequencies on the \textbf{observations} of the experiments. We now define the equivalent quantities for probabilities in terms of the \textbf{outcomes} of the experiments. We will deal with numerical outcomes only.
+
+A \textbf{random variable} is a symbol that represents a \textbf{numerical outcome} of a random experiment. We write the random variable in \textbf{capitals} (i.e.~\(X\)).
+
+\textbf{Definition:}
+
+A \textbf{random variable} is a function that assigns a real \textbf{number} to an \textbf{event} from the sample space of a random experiment.
+
+Remember than an event can be an outcome or a collection of outcomes.
+
+When the random variable takes a \textbf{value}, it indicates the realization of an \textbf{event} of a random experiment.
+
+\emph{Example:}
+
+If \(X \in \{0,1\}\), we then say \(X\) is a random variable that can take the values \(0\) or \(1\).
+
+\hypertarget{events-of-observing-a-random-variable}{%
+\section{Events of observing a random variable}\label{events-of-observing-a-random-variable}}
+
+We make the distinction between variables in the model space with capital letters, as abstract entities, and the realization of a particular event or outcome. For instance:
+
+\begin{itemize}
+\tightlist
+\item
+  \(X=1\) is the \textbf{event} of observing the random variable \(X\) with value \(1\)
+\item
+  \(X=2\) is the \textbf{event} of observing the random variable \(X\) with value \(2\)
+\end{itemize}
+
+\ldots{}
+
+\textbf{In general:}
+
+\begin{itemize}
+\tightlist
+\item
+  \(X=x\) is the \textbf{event} of observing the random variable \(X\) (big \(X\)) with value \(x\) (little \(x\)).
+\end{itemize}
+
+\hypertarget{probability-of-random-variables}{%
+\section{Probability of random variables}\label{probability-of-random-variables}}
+
+We are interested in assigning probabilities to the events of observing a particular value of a random variable.
+
+For instance for the dice we will write the probability table as
+
+\begin{longtable}[]{@{}cc@{}}
+\toprule
+\(X\) & Probability \\
+\midrule
+\endhead
+\(1\) & \(P(X=1)=1/6\) \\
+\(2\) & \(P(X=2)=1/6\) \\
+\(3\) & \(P(X=3)=1/6\) \\
+\(4\) & \(P(X=4)=1/6\) \\
+\(5\) & \(P(X=5)=1/6\) \\
+\(6\) & \(P(X=6)=1/6\) \\
+\bottomrule
+\end{longtable}
+
+where we make explicit the events that the variable takes a given outcome \(X=x\).
+
+\hypertarget{probability-functions}{%
+\section{Probability functions}\label{probability-functions}}
+
+Because (little) \(x\) is a numerical variable, the probabilities of the random variable can be plotted
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-36-1.pdf}
+
+or written as the mathematical function
+
+\[f(x)=P(X=x)=1/6\]
+
+\hypertarget{probability-functions-1}{%
+\section{Probability functions}\label{probability-functions-1}}
+
+We can \textbf{create} any type of probability function if we satisfy Kolmogorov's probability rules:
+
+For a discrete random variable \(X \in \{x_1 , x_2 , .. , x_M\}\), a \textbf{probability mass function} that is used to compute probabilities
+
+\begin{itemize}
+\tightlist
+\item
+  \(f(x_i)=P(X=x_i)\)
+\end{itemize}
+
+is always positive
+
+\begin{itemize}
+\tightlist
+\item
+  \(f(x_i)\geq 0\)
+\end{itemize}
+
+and its sum over all the values of the variable is \(1\):
+
+\begin{itemize}
+\tightlist
+\item
+  \(\sum_{i=1}^M f(x_i)=1\)
+\end{itemize}
+
+Where \(M\) is the number of possible outcomes.
+
+Note that the definition of \(X\) and its probability mass function is general \textbf{without reference} to any experiment. The functions live in the model (abstract) space.
+
+Here is an example
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-37-1.pdf}
+
+\(X\) and \(f(x)\) are abstract objects that may or may not map to an experiment. We have the freedom to construct them as we want as long as we respect their definition.
+
+Probability mass functions have some \textbf{properties} that are derived exclusively from their definition.
+
+\hypertarget{probabilities-and-relative-frequencies}{%
+\section{Probabilities and relative frequencies}\label{probabilities-and-relative-frequencies}}
+
+\textbf{Consider the example}
+
+Make following set-up: In one urn put \(8\) balls and:
+
+\begin{itemize}
+\tightlist
+\item
+  mark \(1\) ball with \(-2\)
+\item
+  mark \(2\) balls with \(-1\)
+\item
+  mark \(2\) balls with \(0\)
+\item
+  mark \(2\) balls with \(1\)
+\item
+  mark \(1\) ball with \(2\)
+\end{itemize}
+
+And consider performing the following random \textbf{experiment:} Take one ball and read the number.
+
+From the classical probability, we can write the probability table, for which we do not need to run any experiment
+
+\begin{longtable}[]{@{}cc@{}}
+\toprule
+\(X\) & \(P(X=x)\) \\
+\midrule
+\endhead
+\(-2\) & \(1/8=0.125\) \\
+\(-1\) & \(2/8=0.25\) \\
+\(0\) & \(2/8=0.25\) \\
+\(1\) & \(2/8=0.25\) \\
+\(2\) & \(1/8=0.125\) \\
+\bottomrule
+\end{longtable}
+
+Now, let's perform the experiment \(30\) times and write the frequency table
+
+\begin{longtable}[]{@{}cc@{}}
+\toprule
+\(X\) & \(f_i\) \\
+\midrule
+\endhead
+\(-2\) & \(0.132\) \\
+\(-1\) & \(0.262\) \\
+\(0\) & \(0.240\) \\
+\(1\) & \(0.248\) \\
+\(2\) & \(0.118\) \\
+\bottomrule
+\end{longtable}
+
+The frequentist probability tells us
+\[lim_{N \rightarrow \infty} f_i = f(x_i)=P(X=x_i)\]
+Then, if we did not know the set up of the experiment (black box), the best we can do is to \textbf{estimate} the probabilities with the frequencies, obtained from \(N\) repetitions of the random experiment:
+
+\[f_i = \hat{P}_i\]
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-38-1.pdf}
+
+Everytime we estimate the probabilities, our estimates \(\hat{P}_i=f_i\) change. But \(P_i\) is an abstract quantity that never changes. As \(N\) increases we get closer to it.
+
+\hypertarget{mean-or-expected-value}{%
+\section{Mean or expected value}\label{mean-or-expected-value}}
+
+When we discussed summary statistics of data, we defined the centre of the observations as a value around which the outcome frequencies are concentrated.
+
+We used the \textbf{average} to measure the centre of gravity of the \textbf{data}. In terms of the relative frequencies of the values of discrete outcomes, we wrote the average as
+
+\(\bar{x}= \sum_{i=1}^M x_i \frac{n_i}{N}=\) \[\sum_{i=1}^M x_i f_i\]
+
+\textbf{Definition}
+
+The \textbf{mean} (\(\mu\)) or expected value of a discrete random variable \(X\), \(E(X)\), with mass function \(f(x)\) is given by
+
+\[ \mu = E(X)= \sum_{i=1}^M x_i f(x_i) \]
+
+\includegraphics{./figures/mu.png}
+
+It is the center of gravity of the \textbf{probabilities}: The point where probability loading on a road are balanced.
+
+From the definition we have
+
+\[\bar{x} \rightarrow \mu\] in the \textbf{limit} when
+\(N \rightarrow \infty\) as the frequency tends to the probability mass fucntion \(f_i \rightarrow f(x_i)\).
+
+\textbf{Example}
+
+What is the mean of \(X\) if its probability mass function \(f(x)\) is given by
+
+\begin{longtable}[]{@{}cc@{}}
+\toprule
+\(X\) & \(f(x)=P(X=x)\) \\
+\midrule
+\endhead
+\(0\) & \(1/16\) \\
+\(1\) & \(4/16\) \\
+\(2\) & \(6/16\) \\
+\(3\) & \(4/16\) \\
+\(4\) & \(1/16\) \\
+\bottomrule
+\end{longtable}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-39-1.pdf}
+
+\[ \mu =E(X)=\sum_{i=1}^m x_i f(x_i) \]
+
+\(E(X)=\)\textbf{0} * 1/16 + \textbf{1} * 4/16 + \textbf{2} * 6/16 + \textbf{3} * 4/16 + \textbf{4} * 1/16 =2
+
+The mean \(\mu\) is the centre of gravity of the probability mass function \textbf{it does not change}. However, the average \(\bar{x}\) is the centre of gravity of the observations (relative frequencies) it \textbf{changes} with different data.
+
+\hypertarget{variance}{%
+\section{Variance}\label{variance}}
+
+When we discussed summary statistics of data, we also defined the spread of the observations as an average distance from the data average.
+
+\textbf{Definition}
+
+The variance, written as \(\sigma^2\) or \(V(X)\), of a discrete random variable \(X\) with mass function \(f(x)\) is given by
+
+\[\sigma^2 = V(X)= \sum_{i=1}^M (x_i-\mu)^2 f(x_i)\]
+\(\sigma=\sqrt{V(X)}\) is called the \textbf{standard deviation} of the random variable.
+
+Teh variance is the spread of the \textbf{probabilities} about the mean: The moment of inertia of probabilities about the mean.
+
+\textbf{Example}
+
+What is the variance of \(X\) if its probability mass function \(f(x)\) is given by
+
+\begin{longtable}[]{@{}cc@{}}
+\toprule
+\(X\) & \(f(x)=P(X=x)\) \\
+\midrule
+\endhead
+\(0\) & \(1/16\) \\
+\(1\) & \(4/16\) \\
+\(2\) & \(6/16\) \\
+\(3\) & \(4/16\) \\
+\(4\) & \(1/16\) \\
+\bottomrule
+\end{longtable}
+
+\[\sigma^2 =V(X)=\sum_{i=1}^m (x_i-\mu)^2 f(x_i)\]
+
+\(V(X)=\)\textbf{(0-2)}\(^2\)* 1/16 + \textbf{(1-2)}\(^2\)* 4/16 + \textbf{(2-2)}\(^2\)* 6/16 + \textbf{(3-2)}\(^2\)* 4/16 + \textbf{(4-2)}\(^2\)* 1/16 =1
+
+\[V(X)=\sigma^2=1\]
+\[\sigma=1\]
+
+\hypertarget{probability-functions-for-functions-of-x}{%
+\section{\texorpdfstring{Probability functions for functions of \(X\)}{Probability functions for functions of X}}\label{probability-functions-for-functions-of-x}}
+
+In many occasions, we will be interested in outcomes that are function of the random variables. Perhaps, we are interested in the square of the number of flu infections, or on the square root of the number of emails in an hour.
+
+\textbf{Definition}
+
+For any function \(h\) of a random variable \(X\), with mass function \(f(x)\), its expected value is given by
+
+\[ E[h(X)]= \sum_{i=1}^M h(x_i) f(x_i) \]
+
+This is an important definition that allows us to prove three frequently used properties of the mean and variance:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\item
+  The mean of a linear function is the linear function fo the mean: \[E(a\times X +b)= a\times E(X) +b\] for \(a\) and \(b\) scalars (numbers).
+\item
+  The variance of a linear function of \(X\) is:\[V(a\times X +b)= a^2\times V(X)\]
+\item
+  The variance \textbf{about the origin} is the variance \textbf{about the mean} plus the mean squared: \[E(X^2)=V(X)+E(X)^2\]
+\end{enumerate}
+
+\textbf{Example}
+
+What is the variance \(X\) about the origin, \(E(X^2)\), if its probability mass function \(f(x)\) is given by
+
+\begin{longtable}[]{@{}cc@{}}
+\toprule
+\(X\) & \(f(x)=P(X=x)\) \\
+\midrule
+\endhead
+\(0\) & \(1/16\) \\
+\(1\) & \(4/16\) \\
+\(2\) & \(6/16\) \\
+\(3\) & \(4/16\) \\
+\(4\) & \(1/16\) \\
+\bottomrule
+\end{longtable}
+
+\[E(X^2) =\sum_{i=1}^m x_i^2 f(x_i)\]
+
+\(E(X^2)=\)\textbf{(0)}\(^2\)* 1/16 + \textbf{(1)}\(^2\)* 4/16 + \textbf{(2)}\(^2\)* 6/16 + \textbf{(3)}\(^2\)* 4/16 + \textbf{(4)}\(^2\)* 1/16 =5
+
+We can also verify:
+
+\[E(X^2)=V(X)+E(X)^2\]
+
+\(5=1+2^2\)
+
+\hypertarget{probability-distribution}{%
+\section{Probability distribution}\label{probability-distribution}}
+
+When we discussed summary statistics of data, we also defined the frequency distribution (or the relative cumulative frequency) \(F_i\). \(F_i\) is an important quantity because it is a continuous function \(F_x\) is therefore a \textbf{continuous} function, even if the outcomes are discrete.
+
+\textbf{Definition:}
+
+The \textbf{probability distribution} function is defined as
+
+\[F(x)=P(X\leq x)=\sum_{x_i\leq x} f(x_i) \]
+
+That is the accumulated probability up to a given value \(x\)
+
+\(F(x)\) satisfies therefore satisifies:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\tightlist
+\item
+  \(0\leq F(x) \leq 1\)
+\item
+  If \(x \leq y\), then \(F(x) \leq F(y)\)
+\end{enumerate}
+
+For the probability mass function:
+
+\begin{longtable}[]{@{}cc@{}}
+\toprule
+\(X\) & \(f(x)=P(X=x)\) \\
+\midrule
+\endhead
+\(0\) & \(1/16\) \\
+\(1\) & \(4/16\) \\
+\(2\) & \(6/16\) \\
+\(3\) & \(4/16\) \\
+\(4\) & \(1/16\) \\
+\bottomrule
+\end{longtable}
+
+The probability distribution is:
+
+\[
+    F(x)=
+\begin{cases}
+    1/16,& \text{if } 0 \leq x < 1\\
+    5/16,& 1\leq x < 2\\
+    11/16,& 2\leq x < 3\\
+    15/16,& 4\leq x < 5\\
+    16/16,&  x \leq 5\\
+\end{cases}
+\]
+
+For\(X \in \mathbb{Z}\)
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-40-1.pdf}
+
+\hypertarget{probability-function-and-probability-distribution}{%
+\section{Probability function and probability distribution}\label{probability-function-and-probability-distribution}}
+
+The probability function and distribution are equivalent. We can get one from the other and vice-versa
+
+\[f(x_i)=F(x_i)-F(x_{i-1})\]
+
+with
+
+\[f(x_1)=F(x_1)\]
+
+for \(X\) taking values in \(x_1 \leq x_2 \leq ... \leq x_n\)
+
+\textbf{Example}
+
+From probability distribution:
+
+\[
+    F(x)=
+\begin{cases}
+    1/16,& \text{if } 0 \leq x < 1\\
+    5/16,& 1\leq x < 2\\
+    11/16,& 2\leq x < 3\\
+    15/16,& 4\leq x < 5\\
+    16/16,&  x \leq 5\\
+\end{cases}
+\]
+
+We can obtain the probability mas function.
+
+\(f(0)=F(0)=1/16\)
+\(f(1)=F(1)-f(0)=5/32-1/32=4/16\)
+\(f(2)=F(2)-f(1)-f(0)=F(2)-F(1)=6/16\)
+\(f(3)=F(3)-f(2)-f(1)-f(0)=F(3)-F(2)=4/16\)
+\(f(4)=F(4)-F(3)=1/16\)
+
+\hypertarget{quantiles}{%
+\section{Quantiles}\label{quantiles}}
+
+Finally, we can use the probability distribution \(F(x)\) to define the median and the quartiles of the radom variable \(X\).
+
+In general, we define the \textbf{q-quantile} as the value \(x_{p}\) \textbf{under} which we have accumulated q*100\% of the probability
+
+\[q=\sum_{i=1}^p f(x_i) = F (x_p)\]
+
+\begin{itemize}
+\tightlist
+\item
+  The \textbf{median} is value \(x_m\) such that \(q=0.5\)
+\end{itemize}
+
+\[F(x_{m})=0.5\]
+
+\begin{itemize}
+\tightlist
+\item
+  The \(0.05\)-quantile is the value \(x_{r}\) such that \(q=0.05\)
+\end{itemize}
+
+\[F(x_{r})=0.05\]
+
+\begin{itemize}
+\tightlist
+\item
+  The \(0.25\)-quantile is \textbf{first quartile} the value \(x_{s}\) such that \(q=0.25\)
+\end{itemize}
+
+\[F(x_{s})=0.25\]
+
+\hypertarget{summary}{%
+\section{Summary}\label{summary}}
+
+\includegraphics{./figures/randomvarsum.JPG}
+
+\begin{longtable}[]{@{}
+  >{\centering\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.43}}
+  >{\centering\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.30}}
+  >{\centering\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.26}}@{}}
+\toprule
+\begin{minipage}[b]{\linewidth}\centering
+quantity names
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+model (unobserved)
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+data (observed)
+\end{minipage} \\
+\midrule
+\endhead
+probability mass function // relative frequency & \(f(x_i)=P(X=x_i)\) & \(f_i=\frac{n_i}{N}\) \\
+probability distribution // cumulative relative frequency & \(F(x_i)=P(X \leq x_i)\) & \(F_i=\sum_{k\leq i} f_k\) \\
+mean // average & \(\mu=E(X)=\sum_{i=1}^M x_i f(x_i)\) & \(\bar{x}=\sum_{j=1}^N x_j/N\) \\
+variance // sample variance & \(\sigma^2=V(X)=\sum_{i=1}^M (x_i-\mu)^2 f(x_i)\) & \(s^2=\sum_{j=1}^N (x_j-\bar{x})^2/(N-1)\) \\
+standard deviation // sample sd & \(\sigma=\sqrt{V(X)}\) & \(s\) \\
+variance about the origin // 2nd sample moment & \(E(X^2)=\sum_{i=1}^M x_i^2 f(x_i)\) & \(m_2= \sum_{j=1}^N x_j^2/n\) \\
+\bottomrule
+\end{longtable}
+
+Note that:
+
+\begin{itemize}
+\tightlist
+\item
+  \(i=1...M\) is an \textbf{outcome} of the random variable \(X\).
+\item
+  \(j=1...N\) is an \textbf{observation} of the random variable \(X\).
+\end{itemize}
+
+Properties:
+
+\begin{itemize}
+\tightlist
+\item
+  \(\sum_{i=1...N} f(x_i)=1\)
+\item
+  \(f(x_i)=F(x_i)-F(x_{i-1})\)
+\item
+  \(E(a\times X +b)= a\times E(X) +b\); for \(a\) and \(b\) scalars.
+\item
+  \(V(a\times X +b)= a^2\times V(X)\)
+\item
+  \(E(X^2)=V(X)+E(X)^2\)
+\end{itemize}
+
+\hypertarget{questions-3}{%
+\section{Questions}\label{questions-3}}
+
+\textbf{1)} For a probability mass function is not true that
+
+\textbf{\(\qquad\)a:} the addition of their image values is 1; \textbf{\(\qquad\)b:} its values can be interpreted as probabilities of events;
+\textbf{\(\qquad\)c:} it is always positive;
+\textbf{\(\qquad\)d:} cannot take value 1;
+
+\textbf{2)} A value of a random variable is
+
+\textbf{\(\qquad\)a:} an observation of a random experiment; \textbf{\(\qquad\)b:} the frequency of an outcome of a random experiment;
+\textbf{\(\qquad\)c:} an outcome of a random experiment;
+\textbf{\(\qquad\)d:} a probability of an outcome;
+
+\textbf{3)} The estimated value of a probability \(\hat{P_i}\) is equal to the probability \(P_i\) when the number of repetitions of the random experiment is
+
+\textbf{\(\qquad\)a:} large; \textbf{\(\qquad\)b:} infinite;
+\textbf{\(\qquad\)c:} small
+\textbf{\(\qquad\)d:} zero;
+
+\textbf{4)} If a probability mass function is symmetric around \(x=0\)
+
+\textbf{\(\qquad\)a:} The mean is lower than the median; \textbf{\(\qquad\)b:} The mean is greater than the median;
+\textbf{\(\qquad\)c:} The mean and the median are equal;
+\textbf{\(\qquad\)d:} The mean and the median are different from 0;
+
+\textbf{5)} The mean and variance
+
+\textbf{\(\qquad\)a:} are inversely proportional; \textbf{\(\qquad\)b:} are expected values of functions of \(X\);
+\textbf{\(\qquad\)c:} of a linear function are the linear function of the mean and the linear function of the variance;
+\textbf{\(\qquad\)d:} change when we repeat the random experiment;
+
+\hypertarget{exercises-3}{%
+\section{Exercises}\label{exercises-3}}
+
+\hypertarget{exercise-1-2}{%
+\subsubsection{Exercise 1}\label{exercise-1-2}}
+
+Consider the following random variable \(X\) over the outcomes
+
+\begin{longtable}[]{@{}cc@{}}
+\toprule
+outcome & \(X\) \\
+\midrule
+\endhead
+\(a\) & 0 \\
+\(b\) & 0 \\
+\(c\) & 1.5 \\
+\(d\) & 1.5 \\
+\(e\) & 2 \\
+\(f\) & 3 \\
+\bottomrule
+\end{longtable}
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi})}
+\item
+  If each outcome is equally probable then what is the probability mass function of \(x\)?
+\item
+  Find:
+\end{enumerate}
+
+\begin{itemize}
+\tightlist
+\item
+  \(P(X>3)\)
+\item
+  \(P(X=0\, \cup \, X=2 )\)
+\item
+  \(P(X \leq 2)\)
+\end{itemize}
+
+\hypertarget{exercise-2-2}{%
+\subsubsection{Exercise 2}\label{exercise-2-2}}
+
+Given the probability mass function
+
+\begin{longtable}[]{@{}cc@{}}
+\toprule
+\(x\) & \(f(x)=P(X=x)\) \\
+\midrule
+\endhead
+10 & 0.1 \\
+12 & 0.3 \\
+14 & 0.25 \\
+15 & 0.15 \\
+17 & ? \\
+20 & 0.15 \\
+\bottomrule
+\end{longtable}
+
+\begin{itemize}
+\tightlist
+\item
+  what is its expected value and standard deviation? (R: 14.2; 2.95)
+\end{itemize}
+
+\hypertarget{exercise-3-2}{%
+\subsubsection{Exercise 3}\label{exercise-3-2}}
+
+Given the probability distribution for a discrete variable \(X\)
+
+\[
+    F(x)= 
+\begin{cases}
+0, & x < -1 \\
+0.2,& x \in [-1,0)\\
+0.35,& x \in [0,1)\\
+0.45,& x \in [1,2)\\
+1,& x \geq 2\\
+\end{cases}
+\]
+
+\begin{itemize}
+\tightlist
+\item
+  find \(f(x)\)
+\item
+  find \(E(X)\) and \(V(X)\) (R:1; 1.5)
+\item
+  what is the expected value and variance of \(Y=2X+3\) (R: 6)
+\item
+  what is the median and the first and third quartiles of \(X\)? (R:2,0,2)
+\end{itemize}
+
+\hypertarget{exercise-4-1}{%
+\subsubsection{Exercise 4}\label{exercise-4-1}}
+
+We are testing a system to transmit digital pictures. We first consider the experiment of sending \(3\) pixels and having as \textbf{possible} outcomes events such like \((0,1,1)\). This is the event of receiving the first pixel with no error, the second with error and third with error.
+
+\begin{itemize}
+\item
+  List in one column the sample space of the random experiment.
+\item
+  In the a second column assign the random variable that counts the number of errors transmitted for each outcome
+\end{itemize}
+
+Consider that we have a totally noisy channel, that is any outcome of three pixels is equally likely.
+
+\begin{itemize}
+\item
+  What is the probability of receiving \(0\), \(1\), \(2\), or \(3\) errors in the transmission of \(3\) pixels? (R: 1/8; 3/8; 3/8; 1/8)
+\item
+  Sketch the probability mass function for the number of errors
+\item
+  What is the expected value for the number of errors? (R:1.5)
+\item
+  What is its variance? (R: 0.75)
+\item
+  Sketch the probability distribution
+\item
+  What is the probability of transmitting at least 1 error? (R:7/8)
 \end{itemize}
 
   \bibliography{book.bib,packages.bib}

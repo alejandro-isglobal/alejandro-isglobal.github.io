@@ -6,7 +6,7 @@
 ]{book}
 \title{EEBE Estadística}
 \author{Alejandro Cáceres (\href{mailto:alejandro.caceres.dominguez@upc.edu}{\nolinkurl{alejandro.caceres.dominguez@upc.edu}})}
-\date{2023-10-01}
+\date{2023-10-04}
 
 \usepackage{amsmath,amssymb}
 \usepackage{lmodern}
@@ -2892,6 +2892,540 @@ Considera que tenemos un canal totalmente ruidoso, es decir, cualquier resultado
   Dibuja la distribución de probabilidad
 \item
   ¿Cuál es la probabilidad de transmitir al menos 1 error? (R:7/8)
+\end{itemize}
+
+\hypertarget{variables-aleatorias-continuas}{%
+\chapter{Variables aleatorias continuas}\label{variables-aleatorias-continuas}}
+
+\hypertarget{objetivo-2}{%
+\section{Objetivo}\label{objetivo-2}}
+
+En este capítulo estudiaremos variables aleatorias continuas.
+
+Definiremos la función de densidad de probabilidad, su media y varianza. De forma similar a las variables aleatorias discretas, definiremos la función de distribución de probabilidad.
+
+\hypertarget{variables-aleatorias-continuas-1}{%
+\section{Variables aleatorias continuas}\label{variables-aleatorias-continuas-1}}
+
+En el capítulo pasado usamos las probabilidades de variables aleatorias discretas para definir la función de masa de probabilidad \[f(x)=P(X= x)\]
+
+Donde la probabilidad de que la variable aleatoria tome el valor \(x\) la entendemos como el valor de su frecuencia relativa, cuando el número de repeticiones del experimiento aleatorio tiende a infinito.
+
+Cuando hablamos de datos continous vimos que teníamos que transformarlos en variables discretas (bins) para producir tablas de frecuencias relativas o histogramas. Veamos cómo definir las probabilidades de las variables continuas teniendo en cuenta estas particiones.
+
+\textbf{Ejemplo (misofonía)}
+
+Reconsideremos el ángulo de convexidad de los pacientes con misofonía (Sección 2.21). El ángulo de convexidas de 123 pacientes fue medido. Entendimos cada medición como el resultado de un experimento aleatorio que repetimos 123 veces y que podíamos describir en una tabla de frecuencias o en un histograma.
+
+Para hacer esto, redefinimos los resultados como pequeños intervalos regulares (bins) y calculamos la frecuencia relativa de cada intervalo.
+
+\begin{verbatim}
+##        outcome ni         fi
+## 1 [-1.02,3.46]  8 0.06504065
+## 2  (3.46,7.92] 51 0.41463415
+## 3  (7.92,12.4] 26 0.21138211
+## 4  (12.4,16.8] 20 0.16260163
+## 5  (16.8,21.3] 18 0.14634146
+\end{verbatim}
+
+\hypertarget{frecuencias-relativas-3}{%
+\section{frecuencias relativas}\label{frecuencias-relativas-3}}
+
+Por lo tanto, definimos la probabilidad de observar un intervalo \(i\) como la frecuencia relativa del intervalo cuando \(N \rightarrow \infty\)
+
+\[ f_i =\frac{ n_ i }{ N} \rightarrow P( x_i \leq X \leq x_i + \Delta x)\]
+
+Esta probabilidad depende de la longitud de los bins \(\Delta x\).
+
+Si hacemos los bins cada vez más pequeños, las frecuencias se hacen más pequeñas y, por lo tanto,
+
+\[P(x_i \leq X \leq x_i + \Delta x) \rightarrow 0\] cuando \(\Delta x \rightarrow 0\) porque \(n_i \rightarrow 0\)
+
+Veamos cómo las frecuencias relativas se hacen más pequeñas cuando dividimos el rango de \(X\) en \(20\) bins
+
+\begin{verbatim}
+##          outcome ni         fi
+## 1  [-1.02,0.115]  2 0.01626016
+## 2   (0.115,1.23]  0 0.00000000
+## 3    (1.23,2.34]  3 0.02439024
+## 4    (2.34,3.46]  3 0.02439024
+## 5    (3.46,4.58]  2 0.01626016
+## 6    (4.58,5.69]  4 0.03252033
+## 7     (5.69,6.8] 11 0.08943089
+## 8     (6.8,7.92] 34 0.27642276
+## 9    (7.92,9.04] 12 0.09756098
+## 10   (9.04,10.2]  4 0.03252033
+## 11   (10.2,11.3]  3 0.02439024
+## 12   (11.3,12.4]  7 0.05691057
+## 13   (12.4,13.5]  2 0.01626016
+## 14   (13.5,14.6]  6 0.04878049
+## 15   (14.6,15.7]  4 0.03252033
+## 16   (15.7,16.8]  8 0.06504065
+## 17     (16.8,18]  4 0.03252033
+## 18     (18,19.1]  9 0.07317073
+## 19   (19.1,20.2]  3 0.02439024
+## 20   (20.2,21.3]  2 0.01626016
+\end{verbatim}
+
+\hypertarget{funciuxf3n-de-densidad-de-probabilidad}{%
+\section{función de densidad de probabilidad}\label{funciuxf3n-de-densidad-de-probabilidad}}
+
+Definimos una cantidad en un punto \(x\) que es \textbf{la probabilidad por unidad de distancia} de que una observación esté en el bin \textbf{infinitesimal} entre \(x\) y \(x+dx\)
+
+\[f(x)= \frac{ P(x\leq X \leq x+dx )}{dx}\]
+
+\(f(x)\) se llama la \textbf{función de densidad de probabilidad}.
+
+Por lo tanto, la probabilidad de observar \(X\) entre \(x\) y \(x+dx\)
+está dada por
+
+\[P( x\leq X \leq x+dx )= f(x) dx\]
+
+\textbf{Definición}
+
+Para una variable aleatoria continua \(X\), una función de \textbf{densidad de probabilidad} es tal que
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\tightlist
+\item
+  Es positiva:
+\end{enumerate}
+
+\[f(x) \geq 0\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  La probabilidad de observar \textbf{cualquier} valor de \(x\) es 1:
+\end{enumerate}
+
+\[\int_{-\infty}^{\infty} f(x) dx = 1\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  La probabilidad de observar un valor dentro de un intervalo es el \textbf{área bajo la curva}:
+\end{enumerate}
+
+\[ P( a\leq X \leq b)=\int_{a}^{b} f(x) dx\]
+
+Las propiedades aseguran que \(f(x)dx\) satisfacen las propiedades de probabilidad de Kolmogorov.
+
+La función de densidad de probabilidad es un paso más en la abstracción de probabilidades en la que añadimos el límite continuo
+
+\[dx \rightarrow 0\]
+
+Todas las propiedades de las probabilidades se traducen en términos de densidades y por lo tanto cambiamos sumatorios por integrales
+
+\[\sum \rightarrow \int\]
+
+Las densidades de probabilidad son cantidades matemáticas que no necesariamente representan experimientos aleatorios.
+
+Un interés fundamental en estadística es describir las densidades que describen nuestro experimento aleatorio concreto.
+
+\hypertarget{uxe1rea-total-bajo-la-curva}{%
+\section{Área total bajo la curva}\label{uxe1rea-total-bajo-la-curva}}
+
+\textbf{Ejemplo (gotas de lluvia)}
+
+tomemos una \textbf{densidad de probabilidad} que podría describir la variable aleatoria que mide dónde cae una gota de lluvia en una canaleta de \(100\) cm de longitud.
+
+\[
+    f(x)= 
+\begin{cases}
+    \frac{1}{100},& \text{si } x\in (0,100)\\
+    0,& de\, otra\, forma 
+\end{cases}
+\]
+
+Verifiquemos que la función satisface las tres propiedades de una densidad de probabilidad.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\item
+  es evidente a partir de la definición que \(f(x) \geq 0\)
+\item
+  La probabilidad de observar \textbf{cualquier valor} de \(X\) es el \textbf{área total bajo la curva}
+\end{enumerate}
+
+\(P( -\infty \leq X \leq \infty )= \int_{-\infty }^{\infty } f(x) dx = 100*0.01= 1\)
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-42-1.pdf}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  La probabilidad de observar \(X\) en un intervalo es el \textbf{área bajo la curva} dentro del intervalo
+\end{enumerate}
+
+\begin{itemize}
+\tightlist
+\item
+  \(P( 20 \leq X \leq 60) = \int_{20}^{60} f(x) dx = (60-20)*0.01=0.4\)
+\end{itemize}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-43-1.pdf}
+
+\hypertarget{probabilidades-de-variables-continuas}{%
+\section{Probabilidades de variables continuas}\label{probabilidades-de-variables-continuas}}
+
+Para variables continuas, calculamos la probabilidad de que la variable esté en un intervalo dado. Eso es
+
+\[P( a \leq X \leq b)\]
+Recordemos que para variables continuas, la probabilidad de que el experimento nos dé un número real particular es cero: \(P(X= a)= 0\)
+
+La probabilidad \(P( a \leq X \leq b)\) es el área bajo la curva de \(f(x)\) entre \(a\) y \(b\)
+
+\begin{itemize}
+\tightlist
+\item
+  \(P( a \leq X \leq b) = \int_{a}^{b} f(x) dx\)
+\end{itemize}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-44-1.pdf}
+
+\hypertarget{distribuciuxf3n-de-probabilidad-1}{%
+\section{Distribución de probabilidad}\label{distribuciuxf3n-de-probabilidad-1}}
+
+La \textbf{distribución de probabilidad} \(F(c)\) definida como la acumulación de probabilidad hasta el resultado \(C\)
+
+\(F(c) = P( X \leq c)\)
+
+se puede utilizar para calcular la probabilidad \(P( a \leq X \leq b)\).
+
+Si consideramos que:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\tightlist
+\item
+  la probabilidad acumulada hasta \(b\) está dada por
+\end{enumerate}
+
+\begin{itemize}
+\tightlist
+\item
+  \(F(b) = P( X \leq b)=\int_{-\infty }^bf(x)dx\)
+\end{itemize}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-45-1.pdf}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  la probabilidad acumulada hasta \(a\) es
+\end{enumerate}
+
+\begin{itemize}
+\tightlist
+\item
+  \(F(a) = P( X \leq a)\)
+\end{itemize}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-46-1.pdf}
+
+Entonces, la probabilidad entre \(a\) y \(b\) viene dada por la diferencia en el valor de la distribución de probabilidad
+
+\begin{itemize}
+\tightlist
+\item
+  \(P( a\leq X \leq b) = \int_a^b f(x)dx=F(b)-F(a)\)
+\end{itemize}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-47-1.pdf}
+
+\textbf{Definición}
+
+La \textbf{distribución de probabilidad} de una variable aleatoria continua se define como
+
+\[F(a)= P( X\leq a) =\int_{-\infty } ^af(x)dx\]
+
+y tiene las siguientes propiedades:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\tightlist
+\item
+  Está entre \(0\) y \(1\):
+\end{enumerate}
+
+\[F(-\infty )= 0\,\, y \,\,F(\infty )=1\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  Siempre aumenta:
+\end{enumerate}
+
+\[F(a)\leq F(b)\]
+
+si \(a \leq b\)
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  Se puede utilizar para calcular probabilidades:
+\end{enumerate}
+
+\[P( a \leq X \leq b)=F(b)-F(a)\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\setcounter{enumi}{3}
+\tightlist
+\item
+  Recupera la densidad de probabilidad:
+\end{enumerate}
+
+\[f(x)=\frac{ dF (x )}{ dx}\]
+
+Usamos \textbf{distribuciones de probabilidad} para \textbf{calcular probabilidades} de una variable aleatoria dentro de intervalos, y su derivada es la función de densidad de probabilidad.
+
+\textbf{Ejemplo (gotas de lluvia)}
+
+Para la función de densidad uniforme:
+
+\[
+    f(x)= 
+\begin{cases}
+    \frac{1}{100},& \text{si } x\in (0,100)\\
+    0,& de\, otra\, forma 
+\end{cases}
+\]
+
+Encontramos que la distribución de probabilidad es
+
+\[
+    F(a)= 
+\begin{cases}
+    0,& \text{si } a \leq 0 \\
+    \frac{a}{100},& \text{si } a\in (0,100)\\
+    1, & \text{si } 100 \leq a \\
+    \\
+\end{cases}
+\]
+
+\newpage
+
+\hypertarget{gruxe1ficas-de-probabilidad}{%
+\section{Gráficas de probabilidad}\label{gruxe1ficas-de-probabilidad}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\tightlist
+\item
+  Podemos dibujar la probabilidad de una variable aleatoria en un intervalo como el \emph{área} bajo la curva de la \textbf{densidad}. Por ejemplo
+\end{enumerate}
+
+\[P(20<X< 60)\]
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-48-1.pdf}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  También podemos dibujar la probabilidad \(P(20<X< 60)\) como la \emph{diferencia} en los valores de la \textbf{distribución}
+\end{enumerate}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-49-1.pdf}
+
+\hypertarget{media}{%
+\section{Media}\label{media}}
+
+Como en el caso discreto, la \textbf{media} mide el centro de masa de las probabilidades
+
+\textbf{Definición}
+
+Supongamos que \(X\) es una variable aleatoria continua con función de probabilidad \textbf{densidad} \(f(x)\). El valor medio o esperado de \(X\), denotado como \(\mu\) o \(E(X)\), es
+
+\[\mu=E(X)=\int_{-\infty}^\infty x f(x) dx\]
+
+Es la versión continua del centro de gravedad.
+
+\textbf{Ejemplo (gotas de lluvia)}
+
+La variable aleatoria con densidad de probabilidad
+
+\[
+    f(x)= 
+\begin{cases}
+    \frac{1}{100},& \text{si } x\in (0,100)\\
+    0,& de\, otra\, forma 
+\end{cases}
+\]
+
+Tiene un valor esperado en
+
+\[E(X)=50\]
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-50-1.pdf}
+
+\hypertarget{varianza-1}{%
+\section{Varianza}\label{varianza-1}}
+
+Como en el caso discreto, la varianza mide la dispersión de probabilidades sobre la media
+
+\textbf{Definición}
+
+Supongamos que \(X\) es una variable aleatoria continua con función de densidad de probabilidad \(f(x)\). La varianza de \(X\), denotada como \(\sigma^2\) o \(V(X)\), es
+
+\[\sigma^2=V(X)=\int_{-\infty}^\infty (x-\mu)^2 f(x) dx\]
+
+Es la versión continua del momento de inercia.
+
+\hypertarget{funciones-de-x}{%
+\section{\texorpdfstring{Funciones de \(X\)}{Funciones de X}}\label{funciones-de-x}}
+
+En muchas ocasiones, estaremos interesados en resultados que sean función de las variables aleatorias. Tal vez nos interese el cuadrado de la elongación de un muelle, o la raíz cuadrada de la temperatura de un motor.
+
+\textbf{Definición}
+
+Para cualquier función \(h\) de una variable aleatoria \(X\), con función de masa \(f(x)\), su valor esperado viene dado por
+
+\[E[h(X)]= \int_{-\infty}^{\infty} h(x) f(x)dx\]
+De esta definición recuperamos las mismas propiedades que en el caso discreto
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\item
+  La media de una función lineal es la función lineal de la media: \[ E( a\times X +b)= a\times E(X) +b\] para \(a\) y \(b\) escalares.
+\item
+  La varianza de una función lineal de \(X\) es:
+\end{enumerate}
+
+\[V(a\times X +b)= a^2\times V(X)\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  La varianza sobre el origen es la varianza sobre la media más la media al cuadrado:
+\end{enumerate}
+
+\[E(X^2)= V(X)+E(X)^2\]
+
+\hypertarget{ejercicios-4}{%
+\section{Ejercicios}\label{ejercicios-4}}
+
+\hypertarget{ejercicio-1-3}{%
+\subsubsection{Ejercicio 1}\label{ejercicio-1-3}}
+
+Para la densidad de probabilidad
+
+\[
+    f(x)= 
+\begin{cases}
+    \frac{1}{100},& \text{si } x\in (0,100)\\
+    0,& de\, otra\, forma 
+\end{cases}
+\]
+
+\begin{itemize}
+\tightlist
+\item
+  calcular la media (R:50)
+\item
+  calcular la varianza usando \(E(X^2)= V(X)+E(X)^2\) (R:100\^{}2/12)
+\item
+  calcula \(P( \mu-\sigma \leq X \leq \mu+\sigma)\) (R: 0.57)
+\item
+  ¿Cuáles son el primer y tercer cuartiles? (R: 25; 75)
+\end{itemize}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-51-1.pdf}
+
+\hypertarget{ejercicio-2-3}{%
+\subsubsection{Ejercicio 2}\label{ejercicio-2-3}}
+
+Dado
+
+\[
+    f(x)= 
+\begin{cases}
+0, & x < 0 \\
+ax, & x \in [0,3] \\
+b, & x \in (3,5) \\
+\frac{b}{3}(8-x),& x \in [5,8]\\
+0, & x > 8 \\
+\end{cases}
+\]
+
+\begin{itemize}
+\item
+  ¿Cuáles son los valores de \(a\) y \(b\) tales que \(f(x)\) es una función de densidad de probabilidad continua ? (R: 1/15; 1/5)
+\item
+  ¿Cuál es la media de \(X\)? (R:4)
+\end{itemize}
+
+\hypertarget{ejercicio-3-3}{%
+\subsubsection{Ejercicio 3}\label{ejercicio-3-3}}
+
+Para la densidad de probabilidad
+
+\[
+    f(x)= 
+\begin{cases}
+    \lambda e^{-\lambda x},& \text{si } x \geq 0\\
+    0,& de\, otra\, forma 
+\end{cases}
+\]
+
+\begin{itemize}
+\tightlist
+\item
+  Confirmar que se trata de una densidad de probabilidad
+\item
+  Calcular la media (R: 1/\(\lambda\))
+\item
+  Calcule el valor esperado de \(X^2\) (R: 2/\(\lambda^2\))
+\item
+  Calcular la varianza (R: 1/\(\lambda^2\))
+\item
+  Hallar la distribución de probabilidad \(F(a)\) (R: \(1- exp( -\lambda a)\))
+\item
+  Encuentra la mediana (R: \(\log{ 2}\) /\(\lambda\))
+\end{itemize}
+
+\hypertarget{ejercicio-4-2}{%
+\subsubsection{Ejercicio 4}\label{ejercicio-4-2}}
+
+Dada la distribución acumulativa de una variable aleatoria \(X\)
+
+\[
+    F(x)= 
+\begin{cases}
+0, & x  < -1 \\
+\frac{1}{80}(17+16x-x^2),& x \in [-1,7)\\
+1,& x \geq 7\\
+\end{cases}
+\]
+
+calcular:
+
+\begin{itemize}
+\tightlist
+\item
+  \(P(X> 0)\) (R:63/80)
+\item
+  \(E(X)\) (R:1.93)
+\item
+  \(P(X>0|X< 2)\) (R:28/45)
 \end{itemize}
 
   \bibliography{book.bib,packages.bib}

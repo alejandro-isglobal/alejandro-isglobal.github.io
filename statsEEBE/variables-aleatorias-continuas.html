@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>EEBE Estadística</title>
+  <title>Chapter 6 Variables aleatorias continuas | EEBE Estadística</title>
   <meta name="description" content="EEBE" />
   <meta name="generator" content="bookdown 0.34 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="EEBE Estadística" />
+  <meta property="og:title" content="Chapter 6 Variables aleatorias continuas | EEBE Estadística" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="EEBE" />
   <meta name="github-repo" content="alejandro-isglobal/master" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="EEBE Estadística" />
+  <meta name="twitter:title" content="Chapter 6 Variables aleatorias continuas | EEBE Estadística" />
   
   <meta name="twitter:description" content="EEBE" />
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
+<link rel="prev" href="variables-aleatorias-discretas.html"/>
 
-<link rel="next" href="descripción-de-datos.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -200,70 +200,326 @@
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">EEBE Estadística</h1>
-<p class="author"><em>Alejandro Cáceres (<a href="mailto:alejandro.caceres.dominguez@upc.edu" class="email">alejandro.caceres.dominguez@upc.edu</a>)</em></p>
-<p class="date"><em>2023-10-04</em></p>
+<div id="variables-aleatorias-continuas" class="section level1 hasAnchor" number="6">
+<h1><span class="header-section-number">Chapter 6</span> Variables aleatorias continuas<a href="variables-aleatorias-continuas.html#variables-aleatorias-continuas" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="objetivo-2" class="section level2 hasAnchor" number="6.1">
+<h2><span class="header-section-number">6.1</span> Objetivo<a href="variables-aleatorias-continuas.html#objetivo-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>En este capítulo estudiaremos variables aleatorias continuas.</p>
+<p>Definiremos la función de densidad de probabilidad, su media y varianza. De forma similar a las variables aleatorias discretas, definiremos la función de distribución de probabilidad.</p>
 </div>
-<div id="objetivo" class="section level1 hasAnchor" number="1">
-<h1><span class="header-section-number">Chapter 1</span> Objetivo<a href="index.html#objetivo" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>Este es el curso de introducción a la estadística de la EEBE (UPC).</p>
-<p>La estadística es un <strong>lenguaje</strong> que permite afrontar problemas nuevos, sobre los que no tenemos solución, y en donde interviene la <strong>aleatoridad</strong>.</p>
-<p>En este curso trataremos los <strong>conceptos fundamentales</strong> de estadística.</p>
+<div id="variables-aleatorias-continuas-1" class="section level2 hasAnchor" number="6.2">
+<h2><span class="header-section-number">6.2</span> Variables aleatorias continuas<a href="variables-aleatorias-continuas.html#variables-aleatorias-continuas-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>En el capítulo pasado usamos las probabilidades de variables aleatorias discretas para definir la función de masa de probabilidad <span class="math display">\[f(x)=P(X= x)\]</span></p>
+<p>Donde la probabilidad de que la variable aleatoria tome el valor <span class="math inline">\(x\)</span> la entendemos como el valor de su frecuencia relativa, cuando el número de repeticiones del experimiento aleatorio tiende a infinito.</p>
+<p>Cuando hablamos de datos continous vimos que teníamos que transformarlos en variables discretas (bins) para producir tablas de frecuencias relativas o histogramas. Veamos cómo definir las probabilidades de las variables continuas teniendo en cuenta estas particiones.</p>
+<p><strong>Ejemplo (misofonía)</strong></p>
+<p>Reconsideremos el ángulo de convexidad de los pacientes con misofonía (Sección 2.21). El ángulo de convexidas de 123 pacientes fue medido. Entendimos cada medición como el resultado de un experimento aleatorio que repetimos 123 veces y que podíamos describir en una tabla de frecuencias o en un histograma.</p>
+<p>Para hacer esto, redefinimos los resultados como pequeños intervalos regulares (bins) y calculamos la frecuencia relativa de cada intervalo.</p>
+<pre><code>##        outcome ni         fi
+## 1 [-1.02,3.46]  8 0.06504065
+## 2  (3.46,7.92] 51 0.41463415
+## 3  (7.92,12.4] 26 0.21138211
+## 4  (12.4,16.8] 20 0.16260163
+## 5  (16.8,21.3] 18 0.14634146</code></pre>
+</div>
+<div id="frecuencias-relativas-3" class="section level2 hasAnchor" number="6.3">
+<h2><span class="header-section-number">6.3</span> frecuencias relativas<a href="variables-aleatorias-continuas.html#frecuencias-relativas-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Por lo tanto, definimos la probabilidad de observar un intervalo <span class="math inline">\(i\)</span> como la frecuencia relativa del intervalo cuando <span class="math inline">\(N \rightarrow \infty\)</span></p>
+<p><span class="math display">\[ f_i =\frac{ n_ i }{ N} \rightarrow P( x_i \leq X \leq x_i + \Delta x)\]</span></p>
+<p>Esta probabilidad depende de la longitud de los bins <span class="math inline">\(\Delta x\)</span>.</p>
+<p>Si hacemos los bins cada vez más pequeños, las frecuencias se hacen más pequeñas y, por lo tanto,</p>
+<p><span class="math display">\[P(x_i \leq X \leq x_i + \Delta x) \rightarrow 0\]</span> cuando <span class="math inline">\(\Delta x \rightarrow 0\)</span> porque <span class="math inline">\(n_i \rightarrow 0\)</span></p>
+<p>Veamos cómo las frecuencias relativas se hacen más pequeñas cuando dividimos el rango de <span class="math inline">\(X\)</span> en <span class="math inline">\(20\)</span> bins</p>
+<pre><code>##          outcome ni         fi
+## 1  [-1.02,0.115]  2 0.01626016
+## 2   (0.115,1.23]  0 0.00000000
+## 3    (1.23,2.34]  3 0.02439024
+## 4    (2.34,3.46]  3 0.02439024
+## 5    (3.46,4.58]  2 0.01626016
+## 6    (4.58,5.69]  4 0.03252033
+## 7     (5.69,6.8] 11 0.08943089
+## 8     (6.8,7.92] 34 0.27642276
+## 9    (7.92,9.04] 12 0.09756098
+## 10   (9.04,10.2]  4 0.03252033
+## 11   (10.2,11.3]  3 0.02439024
+## 12   (11.3,12.4]  7 0.05691057
+## 13   (12.4,13.5]  2 0.01626016
+## 14   (13.5,14.6]  6 0.04878049
+## 15   (14.6,15.7]  4 0.03252033
+## 16   (15.7,16.8]  8 0.06504065
+## 17     (16.8,18]  4 0.03252033
+## 18     (18,19.1]  9 0.07317073
+## 19   (19.1,20.2]  3 0.02439024
+## 20   (20.2,21.3]  2 0.01626016</code></pre>
+</div>
+<div id="función-de-densidad-de-probabilidad" class="section level2 hasAnchor" number="6.4">
+<h2><span class="header-section-number">6.4</span> función de densidad de probabilidad<a href="variables-aleatorias-continuas.html#función-de-densidad-de-probabilidad" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Definimos una cantidad en un punto <span class="math inline">\(x\)</span> que es <strong>la probabilidad por unidad de distancia</strong> de que una observación esté en el bin <strong>infinitesimal</strong> entre <span class="math inline">\(x\)</span> y <span class="math inline">\(x+dx\)</span></p>
+<p><span class="math display">\[f(x)= \frac{ P(x\leq X \leq x+dx )}{dx}\]</span></p>
+<p><span class="math inline">\(f(x)\)</span> se llama la <strong>función de densidad de probabilidad</strong>.</p>
+<p>Por lo tanto, la probabilidad de observar <span class="math inline">\(X\)</span> entre <span class="math inline">\(x\)</span> y <span class="math inline">\(x+dx\)</span>
+está dada por</p>
+<p><span class="math display">\[P( x\leq X \leq x+dx )= f(x) dx\]</span></p>
+<p><strong>Definición</strong></p>
+<p>Para una variable aleatoria continua <span class="math inline">\(X\)</span>, una función de <strong>densidad de probabilidad</strong> es tal que</p>
+<ol style="list-style-type: decimal">
+<li>Es positiva:</li>
+</ol>
+<p><span class="math display">\[f(x) \geq 0\]</span></p>
+<ol start="2" style="list-style-type: decimal">
+<li>La probabilidad de observar <strong>cualquier</strong> valor de <span class="math inline">\(x\)</span> es 1:</li>
+</ol>
+<p><span class="math display">\[\int_{-\infty}^{\infty} f(x) dx = 1\]</span></p>
+<ol start="3" style="list-style-type: decimal">
+<li>La probabilidad de observar un valor dentro de un intervalo es el <strong>área bajo la curva</strong>:</li>
+</ol>
+<p><span class="math display">\[ P( a\leq X \leq b)=\int_{a}^{b} f(x) dx\]</span></p>
+<p>Las propiedades aseguran que <span class="math inline">\(f(x)dx\)</span> satisfacen las propiedades de probabilidad de Kolmogorov.</p>
+<p>La función de densidad de probabilidad es un paso más en la abstracción de probabilidades en la que añadimos el límite continuo</p>
+<p><span class="math display">\[dx \rightarrow 0\]</span></p>
+<p>Todas las propiedades de las probabilidades se traducen en términos de densidades y por lo tanto cambiamos sumatorios por integrales</p>
+<p><span class="math display">\[\sum \rightarrow \int\]</span></p>
+<p>Las densidades de probabilidad son cantidades matemáticas que no necesariamente representan experimientos aleatorios.</p>
+<p>Un interés fundamental en estadística es describir las densidades que describen nuestro experimento aleatorio concreto.</p>
+</div>
+<div id="área-total-bajo-la-curva" class="section level2 hasAnchor" number="6.5">
+<h2><span class="header-section-number">6.5</span> Área total bajo la curva<a href="variables-aleatorias-continuas.html#área-total-bajo-la-curva" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><strong>Ejemplo (gotas de lluvia)</strong></p>
+<p>tomemos una <strong>densidad de probabilidad</strong> que podría describir la variable aleatoria que mide dónde cae una gota de lluvia en una canaleta de <span class="math inline">\(100\)</span> cm de longitud.</p>
+<p><span class="math display">\[
+    f(x)= 
+\begin{cases}
+    \frac{1}{100},&amp; \text{si } x\in (0,100)\\
+    0,&amp; de\, otra\, forma 
+\end{cases}
+\]</span></p>
+<p>Verifiquemos que la función satisface las tres propiedades de una densidad de probabilidad.</p>
+<ol style="list-style-type: decimal">
+<li><p>es evidente a partir de la definición que <span class="math inline">\(f(x) \geq 0\)</span></p></li>
+<li><p>La probabilidad de observar <strong>cualquier valor</strong> de <span class="math inline">\(X\)</span> es el <strong>área total bajo la curva</strong></p></li>
+</ol>
+<p><span class="math inline">\(P( -\infty \leq X \leq \infty )= \int_{-\infty }^{\infty } f(x) dx = 100*0.01= 1\)</span></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-42-1.png" width="672" /></p>
+<ol start="3" style="list-style-type: decimal">
+<li>La probabilidad de observar <span class="math inline">\(X\)</span> en un intervalo es el <strong>área bajo la curva</strong> dentro del intervalo</li>
+</ol>
 <ul>
-<li><p>3 horas de <strong>teoría</strong> por semana: Explicaremos los conceptos, haremos ejercicios.</p></li>
-<li><p>6 horas de <strong>estudio individual</strong> por semana: Notas notas de curso y los recursos en ATENEA.</p></li>
-<li><p>2 horas de Solución de problemas con <strong>R</strong>: Sesiones presenciales con ordenador (Prácticas).</p></li>
+<li><span class="math inline">\(P( 20 \leq X \leq 60) = \int_{20}^{60} f(x) dx = (60-20)*0.01=0.4\)</span></li>
 </ul>
-<p>Las fechas de exámenes y material de estudio adicional se pueden encontrar en <strong>ATENEA metacurso</strong>:</p>
-<p><img src="figures/notas.JPG" /></p>
-<p>Objetivos de evaluación:</p>
-<p><strong>Q1</strong> (10%): Prueba en ordenador duración 2h en las fechas indicadas.</p>
-<ol style="list-style-type: lower-alpha">
-<li>Dominio de comandos básicos en R (Prácticas)</li>
-<li>Capacidad de calcular estadísticos descriptivos y gráficos, en situaciones concretas (Teoría/Práctica)</li>
-<li>Conocimiento sobre la regresión lineal (Prácticas)</li>
-</ol>
-<p><strong>EP1</strong> (25%): Prueba escrita (2-3 problemas)</p>
-<ol style="list-style-type: lower-alpha">
-<li>Capacidad de interpretación de enunciados en fórmulas de probabilidad (Teoría).</li>
-<li>Conocimiento de las herramientas básicas para solucionar problemas de probabilidad conjunta y probabilidad condicional (Teoría).</li>
-<li>Dominio matemático de funciones de probabilidad para calcular sus propiedades básicas (Teoría).</li>
-</ol>
-<p><strong>Q2</strong> (20%): Prueba en ordenador duración 2h en horario de clase en las fechas indicadas</p>
-<ol style="list-style-type: lower-alpha">
-<li>Capacidad de identificación de modelos de probabilidad en problemas concretos (Teoría/Práctica).</li>
-<li>Uso de funciones de R para calcular probabilidades de modelos probabilísticos (Práctica/Teoría)</li>
-<li>Capacidad de identificación de un estadístico de muestreo y sus propiedades (Teoría/Práctica)</li>
-<li>Conocimiento de cómo calcular la probabilidad de los estadísticos de muestreo (Teoría/Práctica)</li>
-<li>Uso de comandos en R para calcular probabilidades y hacer simulaciones de muestras aleatorias (Prácticas)</li>
-</ol>
-<p><strong>EP2</strong> (40%): Prueba escrita (2-3 problemas)</p>
-<ol style="list-style-type: lower-alpha">
-<li>Capacidad matemática para determinar estimadores puntuales de modelos de probabilidad.</li>
-<li>Conociemiento de las propiedades de los estimadores puntuales.</li>
-<li>Conocimiento de los intervalos de confianza y sus propiedades (Teoría).</li>
-<li>Capacidad de identificar el tipo de intervalo de confianza en un problema concreto (Teoría).</li>
-<li>Capacidad de interpretación del tipo
-de hipótesis a usar en un problema concreto (Teoría).</li>
-<li>Uso de comandos en R para resolver problemas de intervalos de confianza y prueabas de hipótesis (Práctica).</li>
-</ol>
-<p><strong>CG</strong> (5%): Prueba escrita (2 preguntas sobre un texto)</p>
-<ol style="list-style-type: lower-alpha">
-<li>Capacidad de expresión escrita sobre un tema relacionado a la estadística.</li>
-</ol>
-<p>coordinadores:</p>
+<p><img src="_main_files/figure-html/unnamed-chunk-43-1.png" width="672" /></p>
+</div>
+<div id="probabilidades-de-variables-continuas" class="section level2 hasAnchor" number="6.6">
+<h2><span class="header-section-number">6.6</span> Probabilidades de variables continuas<a href="variables-aleatorias-continuas.html#probabilidades-de-variables-continuas" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Para variables continuas, calculamos la probabilidad de que la variable esté en un intervalo dado. Eso es</p>
+<p><span class="math display">\[P( a \leq X \leq b)\]</span>
+Recordemos que para variables continuas, la probabilidad de que el experimento nos dé un número real particular es cero: <span class="math inline">\(P(X= a)= 0\)</span></p>
+<p>La probabilidad <span class="math inline">\(P( a \leq X \leq b)\)</span> es el área bajo la curva de <span class="math inline">\(f(x)\)</span> entre <span class="math inline">\(a\)</span> y <span class="math inline">\(b\)</span></p>
 <ul>
-<li>Luis Mujica (<a href="mailto:luis.eduardo.mujica@upc.edu" class="email">luis.eduardo.mujica@upc.edu</a>)</li>
-<li>Pablo Buenestado (<a href="mailto:pablo.buenestado@upc.edu" class="email">pablo.buenestado@upc.edu</a>)</li>
+<li><span class="math inline">\(P( a \leq X \leq b) = \int_{a}^{b} f(x) dx\)</span></li>
 </ul>
-<div id="lectura-recomendada" class="section level2 hasAnchor" number="1.1">
-<h2><span class="header-section-number">1.1</span> Lectura recomendada<a href="index.html#lectura-recomendada" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><img src="_main_files/figure-html/unnamed-chunk-44-1.png" width="672" /></p>
+</div>
+<div id="distribución-de-probabilidad-1" class="section level2 hasAnchor" number="6.7">
+<h2><span class="header-section-number">6.7</span> Distribución de probabilidad<a href="variables-aleatorias-continuas.html#distribución-de-probabilidad-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>La <strong>distribución de probabilidad</strong> <span class="math inline">\(F(c)\)</span> definida como la acumulación de probabilidad hasta el resultado <span class="math inline">\(C\)</span></p>
+<p><span class="math inline">\(F(c) = P( X \leq c)\)</span></p>
+<p>se puede utilizar para calcular la probabilidad <span class="math inline">\(P( a \leq X \leq b)\)</span>.</p>
+<p>Si consideramos que:</p>
+<ol style="list-style-type: decimal">
+<li>la probabilidad acumulada hasta <span class="math inline">\(b\)</span> está dada por</li>
+</ol>
 <ul>
-<li><p>Los apuntes de clase se nuestra sección estarán accesibles en ATENEA en pdf y en html.</p></li>
-<li><p>Douglas C. Montgomery and George C. Runger. “Applied Statistics and Probability for Engineers” 4th Edition. Wiley 2007.</p></li>
+<li><span class="math inline">\(F(b) = P( X \leq b)=\int_{-\infty }^bf(x)dx\)</span></li>
+</ul>
+<p><img src="_main_files/figure-html/unnamed-chunk-45-1.png" width="672" /></p>
+<ol start="2" style="list-style-type: decimal">
+<li>la probabilidad acumulada hasta <span class="math inline">\(a\)</span> es</li>
+</ol>
+<ul>
+<li><span class="math inline">\(F(a) = P( X \leq a)\)</span></li>
+</ul>
+<p><img src="_main_files/figure-html/unnamed-chunk-46-1.png" width="672" /></p>
+<p>Entonces, la probabilidad entre <span class="math inline">\(a\)</span> y <span class="math inline">\(b\)</span> viene dada por la diferencia en el valor de la distribución de probabilidad</p>
+<ul>
+<li><span class="math inline">\(P( a\leq X \leq b) = \int_a^b f(x)dx=F(b)-F(a)\)</span></li>
+</ul>
+<p><img src="_main_files/figure-html/unnamed-chunk-47-1.png" width="672" /></p>
+<p><strong>Definición</strong></p>
+<p>La <strong>distribución de probabilidad</strong> de una variable aleatoria continua se define como</p>
+<p><span class="math display">\[F(a)= P( X\leq a) =\int_{-\infty } ^af(x)dx\]</span></p>
+<p>y tiene las siguientes propiedades:</p>
+<ol style="list-style-type: decimal">
+<li>Está entre <span class="math inline">\(0\)</span> y <span class="math inline">\(1\)</span>:</li>
+</ol>
+<p><span class="math display">\[F(-\infty )= 0\,\, y \,\,F(\infty )=1\]</span></p>
+<ol start="2" style="list-style-type: decimal">
+<li>Siempre aumenta:</li>
+</ol>
+<p><span class="math display">\[F(a)\leq F(b)\]</span></p>
+<p>si <span class="math inline">\(a \leq b\)</span></p>
+<ol start="3" style="list-style-type: decimal">
+<li>Se puede utilizar para calcular probabilidades:</li>
+</ol>
+<p><span class="math display">\[P( a \leq X \leq b)=F(b)-F(a)\]</span></p>
+<ol start="4" style="list-style-type: decimal">
+<li>Recupera la densidad de probabilidad:</li>
+</ol>
+<p><span class="math display">\[f(x)=\frac{ dF (x )}{ dx}\]</span></p>
+<p>Usamos <strong>distribuciones de probabilidad</strong> para <strong>calcular probabilidades</strong> de una variable aleatoria dentro de intervalos, y su derivada es la función de densidad de probabilidad.</p>
+<p><strong>Ejemplo (gotas de lluvia)</strong></p>
+<p>Para la función de densidad uniforme:</p>
+<p><span class="math display">\[
+    f(x)= 
+\begin{cases}
+    \frac{1}{100},&amp; \text{si } x\in (0,100)\\
+    0,&amp; de\, otra\, forma 
+\end{cases}
+\]</span></p>
+<p>Encontramos que la distribución de probabilidad es</p>
+<p><span class="math display">\[
+    F(a)= 
+\begin{cases}
+    0,&amp; \text{si } a \leq 0 \\
+    \frac{a}{100},&amp; \text{si } a\in (0,100)\\
+    1, &amp; \text{si } 100 \leq a \\
+    \\
+\end{cases}
+\]</span></p>
+<div style="page-break-after: always;"></div>
+</div>
+<div id="gráficas-de-probabilidad" class="section level2 hasAnchor" number="6.8">
+<h2><span class="header-section-number">6.8</span> Gráficas de probabilidad<a href="variables-aleatorias-continuas.html#gráficas-de-probabilidad" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ol style="list-style-type: decimal">
+<li>Podemos dibujar la probabilidad de una variable aleatoria en un intervalo como el <em>área</em> bajo la curva de la <strong>densidad</strong>. Por ejemplo</li>
+</ol>
+<p><span class="math display">\[P(20&lt;X&lt; 60)\]</span></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-48-1.png" width="672" /></p>
+<ol start="2" style="list-style-type: decimal">
+<li>También podemos dibujar la probabilidad <span class="math inline">\(P(20&lt;X&lt; 60)\)</span> como la <em>diferencia</em> en los valores de la <strong>distribución</strong></li>
+</ol>
+<p><img src="_main_files/figure-html/unnamed-chunk-49-1.png" width="672" /></p>
+</div>
+<div id="media" class="section level2 hasAnchor" number="6.9">
+<h2><span class="header-section-number">6.9</span> Media<a href="variables-aleatorias-continuas.html#media" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Como en el caso discreto, la <strong>media</strong> mide el centro de masa de las probabilidades</p>
+<p><strong>Definición</strong></p>
+<p>Supongamos que <span class="math inline">\(X\)</span> es una variable aleatoria continua con función de probabilidad <strong>densidad</strong> <span class="math inline">\(f(x)\)</span>. El valor medio o esperado de <span class="math inline">\(X\)</span>, denotado como <span class="math inline">\(\mu\)</span> o <span class="math inline">\(E(X)\)</span>, es</p>
+<p><span class="math display">\[\mu=E(X)=\int_{-\infty}^\infty x f(x) dx\]</span></p>
+<p>Es la versión continua del centro de gravedad.</p>
+<p><strong>Ejemplo (gotas de lluvia)</strong></p>
+<p>La variable aleatoria con densidad de probabilidad</p>
+<p><span class="math display">\[
+    f(x)= 
+\begin{cases}
+    \frac{1}{100},&amp; \text{si } x\in (0,100)\\
+    0,&amp; de\, otra\, forma 
+\end{cases}
+\]</span></p>
+<p>Tiene un valor esperado en</p>
+<p><span class="math display">\[E(X)=50\]</span></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-50-1.png" width="672" /></p>
+</div>
+<div id="varianza-1" class="section level2 hasAnchor" number="6.10">
+<h2><span class="header-section-number">6.10</span> Varianza<a href="variables-aleatorias-continuas.html#varianza-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Como en el caso discreto, la varianza mide la dispersión de probabilidades sobre la media</p>
+<p><strong>Definición</strong></p>
+<p>Supongamos que <span class="math inline">\(X\)</span> es una variable aleatoria continua con función de densidad de probabilidad <span class="math inline">\(f(x)\)</span>. La varianza de <span class="math inline">\(X\)</span>, denotada como <span class="math inline">\(\sigma^2\)</span> o <span class="math inline">\(V(X)\)</span>, es</p>
+<p><span class="math display">\[\sigma^2=V(X)=\int_{-\infty}^\infty (x-\mu)^2 f(x) dx\]</span></p>
+<p>Es la versión continua del momento de inercia.</p>
+</div>
+<div id="funciones-de-x" class="section level2 hasAnchor" number="6.11">
+<h2><span class="header-section-number">6.11</span> Funciones de <span class="math inline">\(X\)</span><a href="variables-aleatorias-continuas.html#funciones-de-x" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>En muchas ocasiones, estaremos interesados en resultados que sean función de las variables aleatorias. Tal vez nos interese el cuadrado de la elongación de un muelle, o la raíz cuadrada de la temperatura de un motor.</p>
+<p><strong>Definición</strong></p>
+<p>Para cualquier función <span class="math inline">\(h\)</span> de una variable aleatoria <span class="math inline">\(X\)</span>, con función de masa <span class="math inline">\(f(x)\)</span>, su valor esperado viene dado por</p>
+<p><span class="math display">\[E[h(X)]= \int_{-\infty}^{\infty} h(x) f(x)dx\]</span>
+De esta definición recuperamos las mismas propiedades que en el caso discreto</p>
+<ol style="list-style-type: decimal">
+<li><p>La media de una función lineal es la función lineal de la media: <span class="math display">\[ E( a\times X +b)= a\times E(X) +b\]</span> para <span class="math inline">\(a\)</span> y <span class="math inline">\(b\)</span> escalares.</p></li>
+<li><p>La varianza de una función lineal de <span class="math inline">\(X\)</span> es:</p></li>
+</ol>
+<p><span class="math display">\[V(a\times X +b)= a^2\times V(X)\]</span></p>
+<ol start="3" style="list-style-type: decimal">
+<li>La varianza sobre el origen es la varianza sobre la media más la media al cuadrado:</li>
+</ol>
+<p><span class="math display">\[E(X^2)= V(X)+E(X)^2\]</span></p>
+</div>
+<div id="ejercicios-4" class="section level2 hasAnchor" number="6.12">
+<h2><span class="header-section-number">6.12</span> Ejercicios<a href="variables-aleatorias-continuas.html#ejercicios-4" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="ejercicio-1-3" class="section level4 hasAnchor" number="6.12.0.1">
+<h4><span class="header-section-number">6.12.0.1</span> Ejercicio 1<a href="variables-aleatorias-continuas.html#ejercicio-1-3" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Para la densidad de probabilidad</p>
+<p><span class="math display">\[
+    f(x)= 
+\begin{cases}
+    \frac{1}{100},&amp; \text{si } x\in (0,100)\\
+    0,&amp; de\, otra\, forma 
+\end{cases}
+\]</span></p>
+<ul>
+<li>calcular la media (R:50)</li>
+<li>calcular la varianza usando <span class="math inline">\(E(X^2)= V(X)+E(X)^2\)</span> (R:100^2/12)</li>
+<li>calcula <span class="math inline">\(P( \mu-\sigma \leq X \leq \mu+\sigma)\)</span> (R: 0.57)</li>
+<li>¿Cuáles son el primer y tercer cuartiles? (R: 25; 75)</li>
+</ul>
+<p><img src="_main_files/figure-html/unnamed-chunk-51-1.png" width="672" /></p>
+</div>
+<div id="ejercicio-2-3" class="section level4 hasAnchor" number="6.12.0.2">
+<h4><span class="header-section-number">6.12.0.2</span> Ejercicio 2<a href="variables-aleatorias-continuas.html#ejercicio-2-3" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Dado</p>
+<p><span class="math display">\[
+    f(x)= 
+\begin{cases}
+0, &amp; x &lt; 0 \\
+ax, &amp; x \in [0,3] \\
+b, &amp; x \in (3,5) \\
+\frac{b}{3}(8-x),&amp; x \in [5,8]\\
+0, &amp; x &gt; 8 \\
+\end{cases}
+\]</span></p>
+<ul>
+<li><p>¿Cuáles son los valores de <span class="math inline">\(a\)</span> y <span class="math inline">\(b\)</span> tales que <span class="math inline">\(f(x)\)</span> es una función de densidad de probabilidad continua ? (R: 1/15; 1/5)</p></li>
+<li><p>¿Cuál es la media de <span class="math inline">\(X\)</span>? (R:4)</p></li>
+</ul>
+</div>
+<div id="ejercicio-3-3" class="section level4 hasAnchor" number="6.12.0.3">
+<h4><span class="header-section-number">6.12.0.3</span> Ejercicio 3<a href="variables-aleatorias-continuas.html#ejercicio-3-3" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Para la densidad de probabilidad</p>
+<p><span class="math display">\[
+    f(x)= 
+\begin{cases}
+    \lambda e^{-\lambda x},&amp; \text{si } x \geq 0\\
+    0,&amp; de\, otra\, forma 
+\end{cases}
+\]</span></p>
+<ul>
+<li>Confirmar que se trata de una densidad de probabilidad</li>
+<li>Calcular la media (R: 1/<span class="math inline">\(\lambda\)</span>)</li>
+<li>Calcule el valor esperado de <span class="math inline">\(X^2\)</span> (R: 2/<span class="math inline">\(\lambda^2\)</span>)</li>
+<li>Calcular la varianza (R: 1/<span class="math inline">\(\lambda^2\)</span>)</li>
+<li>Hallar la distribución de probabilidad <span class="math inline">\(F(a)\)</span> (R: <span class="math inline">\(1- exp( -\lambda a)\)</span>)</li>
+<li>Encuentra la mediana (R: <span class="math inline">\(\log{ 2}\)</span> /<span class="math inline">\(\lambda\)</span>)</li>
+</ul>
+</div>
+<div id="ejercicio-4-2" class="section level4 hasAnchor" number="6.12.0.4">
+<h4><span class="header-section-number">6.12.0.4</span> Ejercicio 4<a href="variables-aleatorias-continuas.html#ejercicio-4-2" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Dada la distribución acumulativa de una variable aleatoria <span class="math inline">\(X\)</span></p>
+<p><span class="math display">\[
+    F(x)= 
+\begin{cases}
+0, &amp; x  &lt; -1 \\
+\frac{1}{80}(17+16x-x^2),&amp; x \in [-1,7)\\
+1,&amp; x \geq 7\\
+\end{cases}
+\]</span></p>
+<p>calcular:</p>
+<ul>
+<li><span class="math inline">\(P(X&gt; 0)\)</span> (R:63/80)</li>
+<li><span class="math inline">\(E(X)\)</span> (R:1.93)</li>
+<li><span class="math inline">\(P(X&gt;0|X&lt; 2)\)</span> (R:28/45)</li>
 </ul>
 
+</div>
 </div>
 </div>
             </section>
@@ -271,8 +527,8 @@ de hipótesis a usar en un problema concreto (Teoría).</li>
           </div>
         </div>
       </div>
+<a href="variables-aleatorias-discretas.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 
-<a href="descripción-de-datos.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -303,7 +559,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/USERNAME/REPO/edit/BRANCH/index.Rmd",
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/05-ContinuousRandomVariables.Rmd",
 "text": "Edit"
 },
 "history": {

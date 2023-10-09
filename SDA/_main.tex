@@ -6,7 +6,7 @@
 ]{book}
 \title{Statistical Data Analysis}
 \author{Alejandro Caceres}
-\date{2023-09-04}
+\date{2023-10-08}
 
 \usepackage{amsmath,amssymb}
 \usepackage{lmodern}
@@ -131,9 +131,11 @@
 
 This book serves as the course material for statistical data analysis (SDA). The course is designed for students enrolled in the Master of Multidisciplinary Research in Experimental Sciences program at the Barcelona Institute of Science and Technology (\href{https://bist.eu/}{BIST}).
 
-The primary objective of the course is to provide students with a comprehensive and unified understanding of statistical thinking. Emphasis is placed on both conceptual and procedural levels of comprehension. Students are expected to have prior exposure to basic statistical concepts at the degree level and/or related mathematical procedures.
+The primary objective of the course is to provide students with a comprehensive and unified understanding of statistical thinking. Emphasis is placed on both conceptual and know-how levels of comprehension. Students are expected to have prior exposure to basic statistical concepts at the degree level and/or related mathematical courses.
 
-Statistics is expressed in mathematical language and implemented using programming languages. While we will utilize both grammars, this is not a mathematics or programming course. The main goal is to grasp the application of statistical thinking and its solutions in scientific inquiry. Having established this, the course aims to help develop a proficient use of both mathematical concepts and programming functions without focusing on theorem demonstrations or code compilations. Our focus lies in understanding nature, and we need the right prose to effectively communicate about it.
+Statistics is expressed in mathematical language and implemented using programming languages. While we will utilize both languages, this is not a mathematics or programming course. The main goal is to grasp the application of statistical thinking and its solutions in scientific inquiry. Having clarified this, the course aims to help develop a proficient use of both mathematical concepts and programming functions without focusing on theorem demonstrations or code compilations.
+
+Our focus lies in understanding nature, and we need the right prose to effectively communicate about it.
 
 \hypertarget{how}{%
 \section{How}\label{how}}
@@ -154,20 +156,54 @@ The statistics theory is covered in three weeks of intense work. They comprise a
   Group work session 2 (3 hours)
 \end{enumerate}
 
-Evaluation: There will be a written exam on the \textbf{31st of October} and a report of group practicals.
+Evaluation: There will be a written exam (\(60\%\)) on the \textbf{31st of October} and a report of group practicals (\(40\%\)). These grades will constitute the \(64\%\) of the SDA grade. Machine learning (\(18\%\)) and Bayesian statistics (\(18\%\)) modules comprise the rest.
+
+Evaluation objectives:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Knowledge on how to describe and interpret data in tables and figures using Python.
+\item
+  Understanding of joint probability, conditional probability and Bayes theorem. Ability to read off information from contingency and conditional tables.
+\item
+  Knowledge on how to identify probability models and ability to compute their probabilities in Python.
+\item
+  Understanding the distributions of the sample mean and sample sum, and the concept of estimators. knowledge of the central limit theorem and when to apply it.
+\item
+  Understanding and know how to compute confidence intervals in python.
+\item
+  Ability to formulate hypothesis tests in different situations. Interpretation of the p-value.
+\item
+  Ability to perform and interpret the results using Python commands and output for different statistical tests depending of the type of data.
+\end{enumerate}
+
+The theory test will combine multiple choice questions and the solution of exercises.
 
 \hypertarget{schedule}{%
 \section{Schedule}\label{schedule}}
+
+Statistics theory classes are shown in the orange blocks with the chapters within.
 
 \includegraphics{./figures/calendario.png}
 
 \hypertarget{recommended-reading-list}{%
 \section{Recommended reading list}\label{recommended-reading-list}}
 
+If further reading is desired for more applications with good mathematical background, I suggest:
+
 \begin{itemize}
 \tightlist
 \item
   Douglas C. Montgomery and George C. Runger. ``Applied Statistics and Probability for Engineers'' 4th Edition. Wiley 2007.
+\end{itemize}
+
+If you are looking for mathematical demonstrations but keeping an eye on applications:
+
+\begin{itemize}
+\tightlist
+\item
+  Irwin Miller and Marylees Miller. ``John E. Freund's Mathematical Statistics'' 8th Edition.
 \end{itemize}
 
 \hypertarget{data-description}{%
@@ -254,7 +290,7 @@ It can be said that the subject of study of statistics is random experiments, th
 
 A \textbf{random experiment} is an experiment that gives different results when repeated in the same way.
 
-Randomized experiments are of different types, depending on how they are conducted:
+Random experiments are of different types, depending on how they are conducted:
 
 \begin{itemize}
 \tightlist
@@ -268,7 +304,7 @@ Randomized experiments are of different types, depending on how they are conduct
 \hypertarget{absolute-frequencies}{%
 \section{Absolute frequencies}\label{absolute-frequencies}}
 
-When we repeat a randomized experiment with \textbf{categorical} results, we record a list of results.
+When we repeat a Random experiment with \textbf{categorical} results, we record a list of results.
 
 We summarize observations by counting how many times we saw a particular result.
 
@@ -371,7 +407,7 @@ The results of the study are
 ## [112] 3 0 3 2 1 2 3 3 4 2 3 2
 \end{verbatim}
 
-Each observation is the result of a randomized experiment: measurement of the level of misophonia in a patient. This data series can be summarized in terms of the results in the frequency table
+Each observation is the result of a Random experiment: measurement of the level of misophonia in a patient. This data series can be summarized in terms of the results in the frequency table
 
 \begin{verbatim}
 ##   outcome ni         fi
@@ -1102,7 +1138,7 @@ Proposed by Kolmogorov's less than 100 years ago (1933)
 
 Kolmogorov properties are the basic rules for building a \textbf{probability table}, similar to the relative frequency table.
 
-\textbf{Example (Given)}
+\textbf{Example (dice)}
 
 The probability table for the throw of a dice
 
@@ -1200,7 +1236,7 @@ For two events \(A\) and \(B\), we can construct the following derived events us
   Intersection \(A \cap B\): the event of \(A\) \textbf{and} \(B\)
 \end{itemize}
 
-\textbf{Example (given)}
+\textbf{Example (dice)}
 
 Let's roll a die and look at the events (result set):
 
@@ -1242,7 +1278,7 @@ In general, two events denoted as \(E_1\) and \(E_2\) are mutually exclusive whe
   The results of obtaining \(12\) and \(5\) by adding the throw of two dice.
 \end{itemize}
 
-According to the Kolmogorov properties , only \textbf{mutually exclusive} outcomes can be arranged in \textbf{probability tables}, as in relative frequency tables.
+According to the Kolmogorov properties, only \textbf{mutually exclusive} outcomes can be arranged in \textbf{probability tables}, as in relative frequency tables.
 
 \hypertarget{joint-probabilities}{%
 \section{Joint probabilities}\label{joint-probabilities}}
@@ -1357,7 +1393,7 @@ Therefore:
   \(P(A \cup B)=1-P(A'\cap B')= 1-1/6=5/6\)
 \end{enumerate}
 
-In the contingency table \(P( A \cup B)\) corresponds to the cells in bold (that is, all but 1/6 from the bottom right)
+In the contingency table \(P( A \cup B)\) corresponds to the three cells in bold (method 2 above). That is all cells but 1/6 from the bottom right (method 3).
 
 \begin{longtable}[]{@{}ccc@{}}
 \toprule
@@ -1365,7 +1401,7 @@ In the contingency table \(P( A \cup B)\) corresponds to the cells in bold (that
 \midrule
 \endhead
 \(A\) & \textbf{1/6} & \textbf{2/6} \\
-\(A'\) & \textbf{2/6} & \textbf{1/6} \\
+\(A'\) & \textbf{2/6} & \emph{1/6} \\
 \bottomrule
 \end{longtable}
 
@@ -2052,9 +2088,6 @@ The total probability rule can also be illustrated using a \textbf{conditional} 
 
 \(P(B)=P(B|A)P(A)+P(B|A')P(A')\)
 
-\hypertarget{exercises-2}{%
-\section{Exercises}\label{exercises-2}}
-
 \hypertarget{questions-2}{%
 \section{Questions}\label{questions-2}}
 
@@ -2094,6 +2127,9 @@ We collect the age and category of 100 athletes in a competition
 \textbf{\(\qquad\) a:} Sensitivity is 70\%;
 \textbf{\(\qquad\)b:} Sensitivity and false positive rate are different;
 \textbf{\(\qquad\)c:} The false positive rate is 0.06\%; \textbf{\(\qquad\)d:} the specificity is 96\%
+
+\hypertarget{exercises-2}{%
+\section{Exercises}\label{exercises-2}}
 
 \hypertarget{exercise-1-1}{%
 \subsubsection{Exercise 1}\label{exercise-1-1}}
@@ -2180,7 +2216,7 @@ smooth surface: no & 8 & 6 \\
 \item
   What is the probability that the rod will be rounded if it is smoothed and from machine 1? (A: 200/201)
 \item
-  What is the probability that the rod is not rounded if it is not smooth and it is from machine 2? (A: 6/8)
+  What is the probability that the rod is not rounded if it is not smooth and it is from machine 2? (A: 6/14)
 \item
   What is the probability that the rod has come out of machine 1 if it is smooth and rounded? (R: 200/345)
 \item
@@ -4243,13 +4279,13 @@ The solution is the addition of the blue needles in the plot.
 
 \textbf{4)} Opinion polls for the USA 2022 election give a probability of \(0.55\) that a voter favors the republican party. If we conduct our own poll and ask 100 random people on the street, How would you compute the probability that in our poll democrats win the election?
 
-\textbf{\(\qquad\)a:}binom.pmf(x=49, n=100, p=0.55)=0.13;
-\textbf{\(\qquad\)b:}1-binom.pmf(x=49, n=100, p=0.55)=0.86;
-\textbf{\(\qquad\)c:}binom.pmf(x=51, n=100, p=0.45)=0.90; \textbf{\(\qquad\)d:}1-binom.pmf(x=51, n=100, p=0.45)=0.095
+\textbf{\(\qquad\)a:}binom.cdf(49, 100, 0.55)=0.13;
+\textbf{\(\qquad\)b:}1-binom.cdf(49, 100, 0.55)=0.86;
+\textbf{\(\qquad\)c:}binom.cdf(51, 100, 0.45)=0.90; \textbf{\(\qquad\)d:}1-binom.cdf(51, 100, 0.45)=0.095
 
-\textbf{5)} In an exam a student chooses at random one of the four answers that he does not know. If he doesn't know \(10\) questions what is the probability that at least \(5\) questions are correct?
+\textbf{5)} In an exam a student chooses at random one of the four answers that he does not know. If he doesn't know \(10\) questions what is the probability that more than \(5\) (\(<5\)) questions are correct?
 
-\textbf{\(\qquad\)a:}binom.cdf(x=5, n=10, p=0.25)\textasciitilde{} 0.05; \textbf{\(\qquad\)b:}binom.pmf(x=5, n=10, p=0.75)\textasciitilde{} 0.07; \textbf{\(\qquad\)c:}binom.cdf(x=5, n=10, p=0.75)\textasciitilde{} 0.05; \textbf{\(\qquad\)d:}1-binom.pmf(x=5, n=10, p=0.25)\textasciitilde{} 0.02
+\textbf{\(\qquad\)a:}binom.pmf(5, 10, 0.25)\textasciitilde{} 0.05; \textbf{\(\qquad\)b:}binom.cdf(5, 10, 0.75)\textasciitilde{} 0.07; \textbf{\(\qquad\)c:}binom.pmf(5, 10, 0.75)\textasciitilde{} 0.05; \textbf{\(\qquad\)d:}1-binom.cdf(5, 10, 0.25)\textasciitilde{} 0.01
 
 \hypertarget{exercises-5}{%
 \section{Exercises}\label{exercises-5}}
@@ -4503,9 +4539,9 @@ We have that the variable is Poisson: \(X \rightarrow Poiss(\lambda)\) with \(\l
 
 \[f(x)= \frac{e^{-5}5^x}{x!}\]
 
-\(P(X \leq 10)=F(10; \lambda=5)=\sum_{x=0, ...10}f(x; \lambda=5)=0.9863047\)
+\(P(X\geq 10)=1-P(X < 10)=1-P(X \leq 9)=1-F(9; \lambda=5)=0.03182806\)
 
-in Python poisson.cdf(10,5)
+in Python 1-poisson.cdf(9,5)
 
 Let's look at some probability mass functions in the family of parametric Poisson models:
 
@@ -5943,10 +5979,9 @@ is a standard normal variable and: \(\bar{X} \sim_{aprox} N(\lambda, \frac{1}{n\
 
 The margin of error at \(5\%\) level can be computed again with the standard distribution
 
-\[m=\phi^{-1}(0.75) \sqrt{\frac{V(X)}{n}}=1.96\sqrt{\frac{0.25}{30}}=0.1789227\]
+\[m=\phi^{-1}(0.975) \sqrt{\frac{V(X)}{n}}=1.96\sqrt{\frac{0.25}{30}}=0.1789227\]
 
-We can expect \(95%
-\) of the averages of \(30\) patient samples to fall between
+We can expect \(95\%\) of the averages of \(30\) patient samples to fall between
 \((0.5-0.178, 0.5+0.178)= (0.322, 0.678)\)
 
 \includegraphics{_main_files/figure-latex/unnamed-chunk-81-1.pdf}
@@ -5954,21 +5989,38 @@ We can expect \(95%
 \hypertarget{sample-sum-and-clt}{%
 \section{Sample sum and CLT}\label{sample-sum-and-clt}}
 
-For any random variable \(X\) with \textbf{unknown} (any type of) distribution
+The \textbf{sample sum} is the \textbf{statistic}
+
+\[Y=X_1+X_2+...X_n=\sum_{i=1}^n X_i=n \bar{X}\]
+
+with
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\tightlist
+\item
+  mean \[E(Y)=n\mu\]
+\item
+  variance \[V(Y)=nV(X)=n^2V(\bar{X})\]
+\end{enumerate}
+
+The CLT tells us that for any random variable \(X\) with \textbf{unknown} (any type of) distribution
 
 \[X \rightarrow f(x; \theta)\]
 
 the standardized statistic
 
-\[Z=\frac{\bar{X}-E(\bar{X})}{\sqrt{V(\bar{X})}}=\frac{n\bar{X}-nE(\bar{X})}{\sqrt{nV(\bar{X})}}\]
+\[Z=\frac{\bar{X}-E(\bar{X})}{\sqrt{V(\bar{X})}}\]
 
 approximates to a standard distribution
 
-\[Z \rightarrow_d N(0,1)\] when \(n\rightarrow \infty\)
+\[Z \rightarrow_d N(0,1)\] when \(n\rightarrow \infty\). \(Z\) can also be written as
+
+\[Z=\frac{n\bar{X}-nE(\bar{X})}{\sqrt{n^2V(\bar{X})}}=\frac{Y-E(Y)}{\sqrt{V(Y)}}\]
 
 \textbf{Consequence:} We can compute probabilities for the sample sum \(Y=n\bar{X}\) if \(n\) is large, using the normal distribution:
 
-\[\bar{Y} \sim_{aprox}  N(nE(X), nV(X))\]
+\[Y \sim_{aprox}  N(nE(X), nV(X))\]
 
 \textbf{Example (Bernoulli trial)}
 
@@ -5979,10 +6031,11 @@ is standard normal, because \(E(\bar{X})=p\) and \(V(\bar{X})=\frac{p(1-p)}{n}\)
 
 Now, the sample sum \(Y=n\bar{X}\) is a random variable that counts the number of events with probability \(p\) in a repetition of \(n\) trials, therefore
 \[Y \rightarrow Binom(n, p)\]
+With mean \(E(Y)=np\) and variance \(V(Y)=np(1-p)\). Since we can write
+\[Z=\frac{Y-np}{\sqrt{np(1-p)}}\]
+then using the CLT, we can proximate the Binomial probability mass function with the normal probability density when \(n\) is big
 
-Using the CLT, we can proximate the Binomial probability mass function with the normal probability density when \(n\) is big
-
-\[\bar{Y} \rightarrow  Binom(n, p) \sim_{aprox}  N(np, np(1-p))\]
+\[Y \rightarrow  Binom(n, p) \sim_{aprox}  N(np, np(1-p))\]
 
 This approximation is good when both \(np\) and \(n(1-p)\) are greater than \(5\).
 
@@ -8082,9 +8135,15 @@ medicine2 = np.array([1.9,0.8,1.1,0.1,-0.1,4.4,5.5,1.6,4.6,3.4])
 
 The scientific hypothesis was that soporific 2 was better than soporific 1. For each individual, Gosset computed the difference between the treatments. Taking \(X\) as the \textbf{difference} between treatments, this was the sample observed for \(X\)
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x }\OtherTok{=}\NormalTok{ medicine2}\SpecialCharTok{{-}}\NormalTok{medicine1}
+\NormalTok{x}
+\end{Highlighting}
+\end{Shaded}
+
 \begin{verbatim}
-x = medicine2-medicine1
-x
+##  [1] 0 0 0 0 0 0 0 0 0 0
 \end{verbatim}
 
 finding an average of treatment gain from soporific 2 with respect to soporific 1 of \(1.58\), and \(s=1.229995\)
@@ -8135,7 +8194,7 @@ t_statistic, p_value = stats.ttest_rel(medicine2, medicine1, alternative='greate
 TtestResult(statistic=4.062127683382037, pvalue=0.001416445098692135, df=9)
 \end{verbatim}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-108-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-110-1.pdf}
 
 \hypertarget{hypothesis-testing-with-large-n-and-any-distribution}{%
 \subsection{Hypothesis testing with large n and any distribution}\label{hypothesis-testing-with-large-n-and-any-distribution}}
@@ -8246,7 +8305,7 @@ We can use any of the three criteria to test the hypothesis. In any case, we wil
 
 in Python: 1-norm.cdf(1.885618)
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-109-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-111-1.pdf}
 
 The test can be performed in Python using the proportions\_ztest function
 
@@ -8371,7 +8430,7 @@ we see that it is lower than \(\alpha=0.01\) and reject the null hypothesis.
 
 R: 1-chi2.cdf(37.79344, 19)
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-112-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-114-1.pdf}
 
 For testing the hypothesis we can use the following code in Python
 
@@ -8427,7 +8486,7 @@ when \(H_0\) is actually \textbf{true}. We must bear in mind that the decision i
 
 where \(z_{0.05}=\phi^{-1}(0.95)=\) norm.ppf(0.95)=1.644
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-113-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-115-1.pdf}
 
 A type 1 error is also called a \textbf{false positive} because our research interest is in \(H_1\). When we reject \(H_0\), we accept \(H_1\) and say that our test is \textbf{positive}. Accepting \(H_1\) translates to announcing a discovery, so the type 1 error is announcing a discovery when it doesn't exist: we did it because the data suggested it.
 
@@ -8439,7 +8498,7 @@ when this is \textbf{not true}. In this case, it may be that the observed statis
 
 \[H_1: \mu=\mu_1\]
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-114-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-116-1.pdf}
 
 If \(H_1\) is indeed true (red line, which we don't know when we perform the hypothesis test) then the observed statistics are \textbf{really} random variables \(Y\) that are distributed with mean (case 1)
 
@@ -8623,11 +8682,11 @@ Test the following hypotheses
 \begin{enumerate}
 \def\labelenumi{\alph{enumi}.}
 \item
-  Is excess in anxiety higher than \(0\)?
+  Is excess in anxiety different from 0? is it higher?
 \item
-  Is excess in anxiety higher than \(0\) for men and women separately?
+  Is excess in anxiety higher than 0 for men and women separately?
 \item
-  Is the proportion of anxious patients higher than \(0.05\)?
+  Is the proportion of anxious patients different from \(0.03\)?
 \end{enumerate}
 
 \hypertarget{contingency-tables}{%
@@ -8786,7 +8845,7 @@ The error made in hospital \(B\) is
 
 \[Z_B= \frac{\bar{X}_B-\hat{p}}{\sqrt\frac{\hat{p}(1-\hat{p})}{n_B}}\]
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-116-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-118-1.pdf}
 
 In the plot, each cross is a diagnosis (either \(1\) or \(0\)) the dotted line is the estimated probability \(\hat{p}\) of both hospitals taken together and the dots are the estimated probabilities of each separate hospital.
 
@@ -8805,7 +8864,7 @@ The conditional probability table by hospital is
 
 Which we can illustrate in a barplot
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-117-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-119-1.pdf}
 
 The probabilities of infection within each hospital are different but look very similar. Is the difference significant, although small?
 
@@ -8922,7 +8981,7 @@ The probability of obtaining \(x\) hepatitis C cases in a sample of \(n\) drawn 
 
 \[X \rightarrow Hypergeometric(N,K,n)\]
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-118-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-120-1.pdf}
 
 If the observed value for \(x=18\) is a rare \textbf{observation} from the null hypothesis, we then reject the null hypothesis. The lower tail \(pvalue\) for an observation \(X=18\) is
 
@@ -8960,7 +9019,7 @@ It is a magnitude of the \textbf{observed statistical association} between hospi
   When \(p_A\) is greater than \(p_B\) then \(OR>1\)
 \end{itemize}
 
-The way we report the \(OR\) in the case of the hospitals is: There was \textbf{a decrease} of \(24\%\) (\(1-0.74\)) in the risk of hepatitis C for hospital \(A\) in relation to hospital \(B\) but it was not statistically significant (\(pvalue=0.21\)).
+The way we report the \(OR\) in the case of the hospitals is: There was \textbf{a decrease} of \(24\%\) (\(1-0.76\)) in the risk of hepatitis C for hospital \(A\) in relation to hospital \(B\) but it was not statistically significant (\(pvalue=0.21\)).
 
 This is how we compute it:
 
@@ -9071,7 +9130,7 @@ We can illustrate the result a conditinal frequency table by hospital or with a 
 ##   1 0.0900 0.1150 0.0625 0.1500 0.1000
 \end{verbatim}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-120-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-122-1.pdf}
 
 \hypertarget{questions-11}{%
 \section{Questions}\label{questions-11}}
@@ -9138,8 +9197,8 @@ We will see the case where \(n\) is large and we can use a \(Z\) test. We will a
 
 We will introduce the concepts with the reanalysis of real data from reported studies relating sex differences in leptin levels.
 
-\hypertarget{differet-means-between-two-groups}{%
-\section{Differet means between two groups}\label{differet-means-between-two-groups}}
+\hypertarget{differece-in-means-between-two-groups}{%
+\section{Differece in means between two groups}\label{differece-in-means-between-two-groups}}
 
 We will consider an outcome of interest
 
@@ -9257,15 +9316,15 @@ We took leptin levels \textbf{conditioned to} each sex, and observed:
 
 Barplots are popular, although they do not show the spread of the data
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-123-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-125-1.pdf}
 
 We can draw histograms of leptin for each group to have a better idea of the distributions
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-124-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-126-1.pdf}
 
 Or we can overlay the histograms horizontally
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-125-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-127-1.pdf}
 
 The plots suggest that boys have lower levels of leptin but is the difference between the averages \(\bar{y}_A\) and \(\bar{y}_B\) \textbf{statistically significant}? How confident are we on the magnitude of the difference? That is, could have we got this lower levels of lepting in boys by chance alone (null hypothesis) or there is difference that cannot be fully explained by chance (alternative hypothesis)?
 
@@ -9320,7 +9379,7 @@ This means that we can take one observed value of \(D\), that is \(d_{obs}\), fo
 
 It is important to have clear the different components in the the estimation and the hipothesis test
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-126-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-128-1.pdf}
 
 \hypertarget{standardized-error}{%
 \section{Standardized error}\label{standardized-error}}
@@ -9397,19 +9456,19 @@ d, pval
 
 \emph{We analyzed data from 190 obese girls and 166 obese boys and found a significant difference in leptin between sexes (mean difference \(13.6\), \(P=2.195757 \times 10^{-7}\))}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-127-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-129-1.pdf}
 
 Note that in a report we usually add the confidence intervals for the means. Non-overlapping confidence intervals also indicate that the difference between means is \textbf{statistically significant} (reject the null).
 
 Another popular way to visualize the distributional differences between the groups is to use a box plot
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-128-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-130-1.pdf}
 
 In this plot, we do not show the means but a summary of the distribution properties of the data at each condition. Remember that the properties are the median (the middle line), the quartiles (the box edges) and the \(5\%\) and \(95\%\) quantiles (the wiskers).
 
 Finally, you would see that violin plots are also widely used. These are boxplots with the (smoothed) mirrowed histograms overlayed. Here, you do not see the everages of each group but the modes (peaks of the hitograms) but you get the idea that the distribution for girls higher than the distribution for boys.
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-129-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-131-1.pdf}
 
 \hypertarget{mean-differences-when-n-is-small}{%
 \section{\texorpdfstring{Mean differences when \(n\) is small}{Mean differences when n is small}}\label{mean-differences-when-n-is-small}}
@@ -9509,7 +9568,7 @@ We take mice weights \textbf{conditioned to} each lepting group, and observed:
 
 We can draw violin plots per group
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-131-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-133-1.pdf}
 
 We see that the distributions are different and in particular that mice without leptin (leptin KO) have on average higher weights. Can we have a statistical test for this difference?
 
@@ -9641,7 +9700,7 @@ Ttest_indResult(statistic=-9.541047987836473, pvalue=2.4443518964606636e-05)
 
 Therefore, the data \textbf{still} shows a very significant increase in \(18.03\)gr (\(P=2.444 \times 10^{-5}\)) in weight between the wild-type mice and leptin knockouts (under a more appropriate test).
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-132-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-134-1.pdf}
 
 \hypertarget{questions-12}{%
 \section{Questions}\label{questions-12}}
@@ -9689,7 +9748,7 @@ each condition;
 \bottomrule
 \end{longtable}
 
-which is the best test?
+assuming that \(Y\) is normally distributed, which is the best test?
 
 \textbf{\(\qquad\)a:} \(t\)-test with equal variances
 \textbf{\(\qquad\)b:} \(t\)-test with unequal variances
@@ -9832,13 +9891,13 @@ We take weights \textbf{conditioned to} each leptin group, and observed:
 
 We can draw a barplot for each mean with a confidence interval
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-134-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-136-1.pdf}
 
 and we see that the wild type (control) has a similar mean weight to the mice without the leptin gene but which have been injected leptin (KOplus). The mice without leptin gene and no leptin protein (leptinKO) have mean higher mean weight. As the confidence intervals for this group does not overlap with the other two, we say that the mean of the knock outs is singificanlty higher than for the other two cases.
 
 We can see the differences in distributions with a violin plot
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-135-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-137-1.pdf}
 
 When we test for the difference in means between \textbf{two groups}, we test in null hypothesis if the means are equal. When we consider more than two groups, we ask if \textbf{at least one} of the means is different.
 
@@ -9868,7 +9927,7 @@ is an estimator of the variance \(\sigma^2\) of the weights at group \(A\). \(n\
 
 is another estimator of the variance \(\sigma^2\) that takes into account the estimators at each group. \(S_e^2\) is called the \textbf{mean square error}.
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-136-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-138-1.pdf}
 
 Let's now look at the dispersion of \textbf{averages} of each group, instead. That is the right part of the plot above (\(Y\_bar\) tag), where we look at how the averages disperse about the overall mean of the data. We know, for instance, that \(\bar{Y}_A\) is normal with mean \(\mu_A\) and variance \(\frac{\sigma^2}{n}\).
 
@@ -9993,7 +10052,7 @@ The upper tailed p-value for \(f_{obs}\) using the Fisher distribution is
 
 in R: 1-pf(156.45, 1,21)
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-137-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-139-1.pdf}
 
 This p-value is exactly the same as the one we obtained with the t-test with equal variances. Therefore, we reject the hypothesis that the weights between wild types and leptin knock outs are the same.
 
@@ -10220,7 +10279,7 @@ sex        1.0   134.975026  134.975026  0.854439  0.361289
 Residual  37.0  5844.862933  157.969268       NaN       NaN
 \end{verbatim}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-140-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-142-1.pdf}
 
 We see however that the points are clustered by leptin group, suggesting that we should adjust by the differences in the lepting before we test the differences in sex. It is possible that when we subtract the differences in lepting the mean weight of males is lower than that of females.
 
@@ -10259,7 +10318,7 @@ sex        73.938528   1.0  2.955976  0.093917
 Residual  925.489697  37.0       NaN       NaN
 \end{verbatim}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-143-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-145-1.pdf}
 
 We see that we have adjusted by the differences in leptin, as the dots are mixed together. The lower weight in males is almost significant for the residuals. However, from this model we do not know the contribution of the leptin group to the variability of the data (points). Also, if \(n\) is large, it is possible that even if the null hypothesis is true, the means of each sex do not get closer to the grand mean if there is a significant effect of leptin.
 
@@ -10324,7 +10383,7 @@ Second
 
 \begin{itemize}
 \item
-  \(H_0: \beta_1=\beta_2, ...=\beta_k\) There are no difference between group means for the second factor
+  \(H_0: \beta_1=\beta_2, ...=\beta_m\) There are no difference between group means for the second factor
 \item
   \(H_1\) at least one \(\beta_i\) is different
 \end{itemize}
@@ -10338,7 +10397,7 @@ To decide between each hypothesis in each hypothesis contrast, we need test stat
 
 and represent the dots in the following plot
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-144-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-146-1.pdf}
 
 The dispersion of the data about this means at condition \((M,KO)\) is given by the statistics
 
@@ -10423,7 +10482,7 @@ When we take weights \textbf{conditioned to} each leptin by sex group we observe
 
 For these estimations we can draw a barplot with confidence intervals.
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-145-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-147-1.pdf}
 
 From this plot we can see that most of the difference between male and female weights comes from the knock out condition. In the supplemented leptin groups sexes seem the have similar weights. How can we test the hypothesis that there is a particular combination of conditions that has an effect on the weight of mice?
 
@@ -10533,7 +10592,7 @@ As we observed from the barplots, the statistical inference confirms that there 
 
 Interactions are better represented in plots displaying the conditioned means across both factors. Significant interactions are therefore given by non-parallel lines.
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-147-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-149-1.pdf}
 
 \hypertarget{questions-13}{%
 \section{Questions}\label{questions-13}}
@@ -10583,7 +10642,7 @@ Load leptin data (
 \item
   Use a t-test to test the hypothesis that the weight between sexes is different.
 \item
-  Use an ANOVA to test that the weight between sexes in difference.
+  Use an ANOVA to test that the weight between sexes is different.
 \item
   Extract residuals from the ANOVA on leptin group and do a second anova on sex.
 \item
@@ -10711,15 +10770,15 @@ and
 
 with its parameters. We can plot the 2D density as contour lines and the marginal densities on each axis
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-150-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-152-1.pdf}
 
 We can also plot the density in a 3D plot, where the \(Z\) axis is the value of the probability density.
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-151-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-153-1.pdf}
 
 If we keep the contour plots of the 2D distribution, we see that the fifth parameter \(\rho\) defines the direction on which the ellipses are elongated (mayor axis).
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-152-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-154-1.pdf}
 
 The density is threfore determined with 5 parameters.
 
@@ -10844,7 +10903,7 @@ We should take this result with caution:
   From literature we know that as we increase fat mass we should obtain \textbf{more} leptin, not the contrary, as it is released from adipose tissue.
 \end{itemize}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-154-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-156-1.pdf}
 
 So how can we improve our analysis, so that our results are as expected?
 
@@ -10862,7 +10921,7 @@ Therefore, we first calculate the \textbf{conditional probability density} of \(
 
 This turns up to be a normal distribution. The conditional probability is the profile, or a slice, of the 2D distribution at a given value of \(x\).
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-155-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-157-1.pdf}
 
 The mean of the conditional distribution is (the red dot)
 
@@ -10920,7 +10979,7 @@ Null hypothesis:
   \(H_0: \beta=0\). \(Y\) and \(X\) are statistically \textbf{independent}, and therefore \(f(y|x)=f(y)\). If this is the case then the regression line is flat and we have the following model
 \end{enumerate}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-156-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-158-1.pdf}
 
 Note that all marginal probability (projection of the probability on the \(y\) axis) would be identical to all the conditional probabilities.
 
@@ -10936,7 +10995,7 @@ Alternative hypothesis:
 
 Note that all marginal probability would be the combination of the conditional probabilities.
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-157-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-159-1.pdf}
 
 \hypertarget{estimators-1}{%
 \section{Estimators}\label{estimators-1}}
@@ -11029,7 +11088,7 @@ and only \(7\%\) of the variability is explained by the regression line
 
 We can draw the regression line
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-159-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-161-1.pdf}
 
 We can see that the regression line is negative and there is quite a bit of dispersion about it. Remember that The correct way to interpret the line is to think that these are the values of \(Y\) conditioned on \(X\).
 
@@ -11052,13 +11111,13 @@ Our study then includes the outcome \(Y\) with multiple regressors, or explanato
 
 Consider the previous regression and color the points according to their sex
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-161-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-163-1.pdf}
 
 We clearly see that the negative association between leptin and fat mass is given by the effect of sex. As males have lower leptin levels and higher fat mass then the negative correlation between leptin and fatma mass is due to sex.
 
 If we run regression \textbf{separating}, or stratifying, by sex we find a positive association between leptin and fat mass, as it is expected from the litterature.
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-162-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-164-1.pdf}
 
 \hypertarget{multiple-regression}{%
 \section{Multiple Regression}\label{multiple-regression}}
@@ -11179,7 +11238,7 @@ All linear models have been made on the supposition that
 
 There are a number of plots to check that at least the data is consistent with these suppositions. In particular, we are interested to see that the residuals distribute symmetrically against the fitted values, revealing equal variance (homoscedasticity). We also want to check that the points in a quantile-quantile (QQ) plot fall in the line, revealing how close the rediduals distribute normally.
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-165-1.pdf} \includegraphics{_main_files/figure-latex/unnamed-chunk-165-2.pdf} \includegraphics{_main_files/figure-latex/unnamed-chunk-165-3.pdf} \includegraphics{_main_files/figure-latex/unnamed-chunk-165-4.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-167-1.pdf} \includegraphics{_main_files/figure-latex/unnamed-chunk-167-2.pdf} \includegraphics{_main_files/figure-latex/unnamed-chunk-167-3.pdf} \includegraphics{_main_files/figure-latex/unnamed-chunk-167-4.pdf}
 
 \hypertarget{questions-14}{%
 \section{Questions}\label{questions-14}}
@@ -11446,14 +11505,14 @@ We load the data
 ## 0.3658537 0.6341463
 \end{verbatim}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-168-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-170-1.pdf}
 
 \begin{enumerate}
 \def\labelenumi{\alph{enumi}.}
 \setcounter{enumi}{1}
 \tightlist
 \item
-  Age
+  Age, mean and standard deviation
 \end{enumerate}
 
 \begin{verbatim}
@@ -11464,14 +11523,14 @@ We load the data
 ## [1] 14.18654
 \end{verbatim}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-169-1.pdf} \includegraphics{_main_files/figure-latex/unnamed-chunk-169-2.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-171-1.pdf} \includegraphics{_main_files/figure-latex/unnamed-chunk-171-2.pdf}
 
 \begin{enumerate}
 \def\labelenumi{\alph{enumi}.}
 \setcounter{enumi}{2}
 \tightlist
 \item
-  Age by sex
+  Age by sex, mean and standard deviation for males, and mean and standard deviation for females
 \end{enumerate}
 
 \begin{verbatim}
@@ -11490,7 +11549,7 @@ We load the data
 ## [1] 15.58339
 \end{verbatim}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-170-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-172-1.pdf}
 
 \begin{enumerate}
 \def\labelenumi{\alph{enumi}.}
@@ -11506,7 +11565,7 @@ We load the data
 ## 0.52032520 0.21138211 0.23577236 0.03252033
 \end{verbatim}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-171-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-173-1.pdf}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -11544,7 +11603,7 @@ we describe these clinical outcomes
 ##    1.00   60.00   80.00   68.77   89.00   99.00      15
 \end{verbatim}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-173-1.pdf} \includegraphics{_main_files/figure-latex/unnamed-chunk-173-2.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-175-1.pdf} \includegraphics{_main_files/figure-latex/unnamed-chunk-175-2.pdf}
 
 \begin{enumerate}
 \def\labelenumi{\alph{enumi}.}
@@ -11559,7 +11618,7 @@ we describe these clinical outcomes
 ##    1.00   45.00   77.00   67.85   90.00   99.00      15
 \end{verbatim}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-174-1.pdf} \includegraphics{_main_files/figure-latex/unnamed-chunk-174-2.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-176-1.pdf} \includegraphics{_main_files/figure-latex/unnamed-chunk-176-2.pdf}
 
 \begin{enumerate}
 \def\labelenumi{\alph{enumi}.}
@@ -11569,7 +11628,7 @@ we describe these clinical outcomes
   Diagnosed
 \end{enumerate}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-175-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-177-1.pdf}
 
 We can look at relationships between outcomes
 
@@ -11581,7 +11640,7 @@ We can look at relationships between outcomes
   Trait Vs Estate
 \end{enumerate}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-176-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-178-1.pdf}
 
 We can also look at the relationships between the clinical outcomes and the features of the participants
 
@@ -11593,7 +11652,7 @@ We can also look at the relationships between the clinical outcomes and the feat
   Trait by sex
 \end{enumerate}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-177-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-179-1.pdf}
 
 \begin{enumerate}
 \def\labelenumi{\alph{enumi}.}
@@ -11603,7 +11662,7 @@ We can also look at the relationships between the clinical outcomes and the feat
   State by sex
 \end{enumerate}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-178-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-180-1.pdf}
 
 \begin{enumerate}
 \def\labelenumi{\alph{enumi}.}
@@ -11620,7 +11679,7 @@ We can also look at the relationships between the clinical outcomes and the feat
 ##        si  3  7
 \end{verbatim}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-179-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-181-1.pdf}
 
 \begin{verbatim}
 ##          sex
@@ -11637,7 +11696,7 @@ We can also look at the relationships between the clinical outcomes and the feat
   Trait Vs age
 \end{enumerate}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-180-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-182-1.pdf}
 
 \begin{enumerate}
 \def\labelenumi{\roman{enumi}.}
@@ -11646,7 +11705,7 @@ We can also look at the relationships between the clinical outcomes and the feat
   State Vs age
 \end{enumerate}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-181-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-183-1.pdf}
 
 \begin{enumerate}
 \def\labelenumi{\alph{enumi}.}
@@ -11656,7 +11715,7 @@ We can also look at the relationships between the clinical outcomes and the feat
   age by diagnosis
 \end{enumerate}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-182-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-184-1.pdf}
 
 \hypertarget{group-work-session-2-inference}{%
 \section{Group Work session 2: Inference}\label{group-work-session-2-inference}}
@@ -11715,7 +11774,7 @@ We are interested in the variable anxiety.dif, that is the observed \textbf{exce
   Are the state and trait of anxiety correlated?
 \end{enumerate}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-183-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-185-1.pdf}
 
 \begin{verbatim}
 ## 
@@ -11746,7 +11805,7 @@ We are interested in the variable anxiety.dif, that is the observed \textbf{exce
   We describe the Excess variable with summary statistics and figures (histogram)
 \end{enumerate}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-184-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-186-1.pdf}
 
 \begin{verbatim}
 ##     Min.  1st Qu.   Median     Mean  3rd Qu.     Max.     NA's 
@@ -11798,7 +11857,7 @@ We are interested in the variable anxiety.dif, that is the observed \textbf{exce
   We first describe the conditional distributions
 \end{enumerate}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-186-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-188-1.pdf}
 
 \begin{enumerate}
 \def\labelenumi{\alph{enumi}.}
@@ -11918,7 +11977,7 @@ We are interested in the variable anxiety.dif, that is the observed \textbf{exce
   We make a plot between anxiety and age
 \end{enumerate}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-190-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-192-1.pdf}
 
 \begin{enumerate}
 \def\labelenumi{\alph{enumi}.}
@@ -11952,7 +12011,7 @@ and test the hypothesis \(H_0: \beta=0\) against \(H_1: \beta\neq 0\)
 ## F-statistic: 1.615 on 1 and 121 DF,  p-value: 0.2062
 \end{verbatim}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-191-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-193-1.pdf}
 
 \begin{enumerate}
 \def\labelenumi{\alph{enumi}.}
@@ -11997,7 +12056,7 @@ and test the hypothesis \(H_0: \beta=0\) against \(H_1: \beta\neq 0\)
 \def\labelenumi{\alph{enumi}.}
 \item
   We plot the excess anxiety across groups (boxplot)
-  \includegraphics{_main_files/figure-latex/unnamed-chunk-193-1.pdf}
+  \includegraphics{_main_files/figure-latex/unnamed-chunk-195-1.pdf}
 \item
   We test the hypothesizes \(H_0: \mu_{0}=\mu_{1} ... =\mu_{4}\) against \(H_1:\) at least one of them is different. We fit an ANOVA model.
 \end{enumerate}
@@ -12061,7 +12120,7 @@ and test the hypothesis \(H_0: \beta=0\) against \(H_1: \beta\neq 0\)
   We plot excess anxiety for each misophonic group, for men and women separately
 \end{enumerate}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-195-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-197-1.pdf}
 
 \begin{enumerate}
 \def\labelenumi{\alph{enumi}.}

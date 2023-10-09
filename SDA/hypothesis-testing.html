@@ -23,7 +23,7 @@
 <meta name="author" content="Alejandro Caceres" />
 
 
-<meta name="date" content="2023-09-04" />
+<meta name="date" content="2023-10-08" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -208,8 +208,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.7" data-path="conditional-probability.html"><a href="conditional-probability.html#diagnostic-test"><i class="fa fa-check"></i><b>4.7</b> Diagnostic test</a></li>
 <li class="chapter" data-level="4.8" data-path="conditional-probability.html"><a href="conditional-probability.html#inverse-probabilities"><i class="fa fa-check"></i><b>4.8</b> Inverse probabilities</a></li>
 <li class="chapter" data-level="4.9" data-path="conditional-probability.html"><a href="conditional-probability.html#bayes-theorem"><i class="fa fa-check"></i><b>4.9</b> Bayes’ Theorem</a></li>
-<li class="chapter" data-level="4.10" data-path="conditional-probability.html"><a href="conditional-probability.html#exercises-2"><i class="fa fa-check"></i><b>4.10</b> Exercises</a></li>
-<li class="chapter" data-level="4.11" data-path="conditional-probability.html"><a href="conditional-probability.html#questions-2"><i class="fa fa-check"></i><b>4.11</b> Questions</a></li>
+<li class="chapter" data-level="4.10" data-path="conditional-probability.html"><a href="conditional-probability.html#questions-2"><i class="fa fa-check"></i><b>4.10</b> Questions</a></li>
+<li class="chapter" data-level="4.11" data-path="conditional-probability.html"><a href="conditional-probability.html#exercises-2"><i class="fa fa-check"></i><b>4.11</b> Exercises</a></li>
 <li class="chapter" data-level="4.12" data-path="conditional-probability.html"><a href="conditional-probability.html#practice-2"><i class="fa fa-check"></i><b>4.12</b> Practice</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html"><i class="fa fa-check"></i><b>5</b> Discrete Random Variables</a>
@@ -400,7 +400,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="16" data-path="mean-differences-between-two-samples.html"><a href="mean-differences-between-two-samples.html"><i class="fa fa-check"></i><b>16</b> Mean differences between two samples</a>
 <ul>
 <li class="chapter" data-level="16.1" data-path="mean-differences-between-two-samples.html"><a href="mean-differences-between-two-samples.html#objective-11"><i class="fa fa-check"></i><b>16.1</b> Objective</a></li>
-<li class="chapter" data-level="16.2" data-path="mean-differences-between-two-samples.html"><a href="mean-differences-between-two-samples.html#differet-means-between-two-groups"><i class="fa fa-check"></i><b>16.2</b> Differet means between two groups</a></li>
+<li class="chapter" data-level="16.2" data-path="mean-differences-between-two-samples.html"><a href="mean-differences-between-two-samples.html#differece-in-means-between-two-groups"><i class="fa fa-check"></i><b>16.2</b> Differece in means between two groups</a></li>
 <li class="chapter" data-level="16.3" data-path="mean-differences-between-two-samples.html"><a href="mean-differences-between-two-samples.html#data-1"><i class="fa fa-check"></i><b>16.3</b> Data</a></li>
 <li class="chapter" data-level="16.4" data-path="mean-differences-between-two-samples.html"><a href="mean-differences-between-two-samples.html#difference-between-means"><i class="fa fa-check"></i><b>16.4</b> Difference between means</a></li>
 <li class="chapter" data-level="16.5" data-path="mean-differences-between-two-samples.html"><a href="mean-differences-between-two-samples.html#hypothesis-test"><i class="fa fa-check"></i><b>16.5</b> hypothesis test</a></li>
@@ -910,8 +910,9 @@ medicine1 = np.array([0.7,-1.6,-0.2,-1.2,-0.1,3.4,3.7,0.8,0,2])</code></pre>
 </ul>
 <pre eval="FALSE"><code>medicine2 = np.array([1.9,0.8,1.1,0.1,-0.1,4.4,5.5,1.6,4.6,3.4])</code></pre>
 <p>The scientific hypothesis was that soporific 2 was better than soporific 1. For each individual, Gosset computed the difference between the treatments. Taking <span class="math inline">\(X\)</span> as the <strong>difference</strong> between treatments, this was the sample observed for <span class="math inline">\(X\)</span></p>
-<pre eval="FALSE"><code>x = medicine2-medicine1
-x</code></pre>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="hypothesis-testing.html#cb53-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">=</span> medicine2<span class="sc">-</span>medicine1</span>
+<span id="cb53-2"><a href="hypothesis-testing.html#cb53-2" aria-hidden="true" tabindex="-1"></a>x</span></code></pre></div>
+<pre><code>##  [1] 0 0 0 0 0 0 0 0 0 0</code></pre>
 <p>finding an average of treatment gain from soporific 2 with respect to soporific 1 of <span class="math inline">\(1.58\)</span>, and <span class="math inline">\(s=1.229995\)</span></p>
 <p>The scientific question can be stated as <strong>upper-tailed</strong> paired t-test:</p>
 <ol style="list-style-type: lower-alpha">
@@ -934,7 +935,7 @@ res.confidence_interval(confidence_level=0.95)</code></pre>
 <p>or as a paired t-test, where we introduce the each separate condition, and state that the observations are paired</p>
 <pre><code>t_statistic, p_value = stats.ttest_rel(medicine2, medicine1, alternative=&#39;greater&#39;)</code></pre>
 <pre><code>TtestResult(statistic=4.062127683382037, pvalue=0.001416445098692135, df=9)</code></pre>
-<p><img src="_main_files/figure-html/unnamed-chunk-108-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-110-1.png" width="672" /></p>
 </div>
 <div id="hypothesis-testing-with-large-n-and-any-distribution" class="section level3 hasAnchor" number="14.5.2">
 <h3><span class="header-section-number">14.5.2</span> Hypothesis testing with large n and any distribution<a href="hypothesis-testing.html#hypothesis-testing-with-large-n-and-any-distribution" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -990,7 +991,7 @@ res.confidence_interval(confidence_level=0.95)</code></pre>
 </ol>
 <p><span class="math display">\[pvalue=1-\phi(1.885618)=0.02967323&lt;0.05\]</span></p>
 <p>in Python: <code>1-norm.cdf(1.885618)</code></p>
-<p><img src="_main_files/figure-html/unnamed-chunk-109-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-111-1.png" width="672" /></p>
 <p>The test can be performed in Python using the <code>proportions_ztest</code> function</p>
 <pre eval="FALSE"><code>from statsmodels.stats.proportion import proportions_ztest
 proportions_ztest(count=0.9*200, nobs=200, value=188/200, alternative=&#39;smaller&#39;)</code></pre>
@@ -1028,7 +1029,7 @@ proportions_ztest(count=0.9*200, nobs=200, value=188/200, alternative=&#39;small
 ##  [9] 24.40244 24.61227 26.06495 25.31304 25.34867 25.09629 24.51642 26.55461
 ## [17] 25.43313 23.28904 25.61018 24.58867</code></pre>
 <p>The estimated standard deviation for this data is <span class="math inline">\(s=0.8462188\)</span> was the process out of control at <span class="math inline">\(0.99\%\)</span> confidence and should be stopped?</p>
-<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="hypothesis-testing.html#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(x)</span></code></pre></div>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="hypothesis-testing.html#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(x)</span></code></pre></div>
 <pre><code>## [1] 0.8462188</code></pre>
 <p>We therefore want to contrast the upper tail hypotheses</p>
 <ol style="list-style-type: lower-alpha">
@@ -1049,7 +1050,7 @@ proportions_ztest(count=0.9*200, nobs=200, value=188/200, alternative=&#39;small
 <p><span class="math display">\[pvalue=1-F_{\chi^2,19}(37.79344)= 0.006\]</span>
 we see that it is lower than <span class="math inline">\(\alpha=0.01\)</span> and reject the null hypothesis.</p>
 <p>R: <code>1-chi2.cdf(37.79344, 19)</code></p>
-<p><img src="_main_files/figure-html/unnamed-chunk-112-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-114-1.png" width="672" /></p>
 <p>For testing the hypothesis we can use the following code in Python</p>
 <pre eval="FALSE"><code>import numpy as np
 from scipy import stats
@@ -1092,13 +1093,13 @@ P-Value: 0.006304215036982974</code></pre>
 <p>when <span class="math inline">\(H_0\)</span> is actually <strong>true</strong>. We must bear in mind that the decision is made based on the data. It may well be that the observed statistic has fallen, by chance, far from the null hypothesis, in the rejection zone of <span class="math inline">\(H_0\)</span> even when this is true. When we perform the hypothesis test, we don’t know if <span class="math inline">\(H_0\)</span> is true. If we now know that <span class="math inline">\(H_0\)</span> is true, it is because we are assuming that we have found it out in some other way. Still, the probability of rejecting <span class="math inline">\(H_0\)</span> when it is true is precisely the level of statistical significance <span class="math inline">\(\alpha\)</span>. We call this probability the probability of making a <strong>type 1</strong> error. Taking the example for <strong>case 1</strong>, an upper tail test, and a confidence of <span class="math inline">\(95\%\)</span> we have that</p>
 <p><span class="math display">\[\alpha = P(Z&gt; z_{0.05})=0.05\]</span></p>
 <p>where <span class="math inline">\(z_{0.05}=\phi^{-1}(0.95)=\)</span> <code>norm.ppf(0.95)=1.644</code></p>
-<p><img src="_main_files/figure-html/unnamed-chunk-113-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-115-1.png" width="672" /></p>
 <p>A type 1 error is also called a <strong>false positive</strong> because our research interest is in <span class="math inline">\(H_1\)</span>. When we reject <span class="math inline">\(H_0\)</span>, we accept <span class="math inline">\(H_1\)</span> and say that our test is <strong>positive</strong>. Accepting <span class="math inline">\(H_1\)</span> translates to announcing a discovery, so the type 1 error is announcing a discovery when it doesn’t exist: we did it because the data suggested it.</p>
 <p>There is another type of error. The result of an upper tail hypothesis test can be <strong>accepting</strong> the null hypothesis:</p>
 <p><span class="math display">\[H_0: \mu\leq\mu_0\]</span></p>
 <p>when this is <strong>not true</strong>. In this case, it may be that the observed statistic has fallen, due to randomness, close to the null hypothesis, in the zone of acceptance of <span class="math inline">\(H_0\)</span>, when really <span class="math inline">\(H_1\)</span> is true. If we found out somehow that, for example, <span class="math inline">\(\mu\)</span> really does have a value of <span class="math inline">\(\mu_1\)</span> then the alternative hypothesis would be exactly:</p>
 <p><span class="math display">\[H_1: \mu=\mu_1\]</span></p>
-<p><img src="_main_files/figure-html/unnamed-chunk-114-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-116-1.png" width="672" /></p>
 <p>If <span class="math inline">\(H_1\)</span> is indeed true (red line, which we don’t know when we perform the hypothesis test) then the observed statistics are <strong>really</strong> random variables <span class="math inline">\(Y\)</span> that are distributed with mean (case 1)</p>
 <p><span class="math display">\[E(Y)=\frac{\mu_1-\mu_0}{\frac{\sigma}{\sqrt{n}}}\]</span></p>
 <p>and most of them will fall close to this value, therefore, in the rejection area of <span class="math inline">\(H_0\)</span>, validating the hypothesis test. However, there are cases in which the observed statistic falls within the acceptance zone of <span class="math inline">\(H_0\)</span> due to randomness, despite the fact that the statistics are produced by <span class="math inline">\(H_1\)</span>. In these cases we accept <span class="math inline">\(H_0\)</span> when it is not true. This error is called <strong>a type 2 error</strong> or a <strong>false negative</strong>. For case 1, with an upper tailed test and a confidence level of <span class="math inline">\(95\%\)</span>, this is</p>
@@ -1218,9 +1219,9 @@ and <span class="math inline">\(z_{0.95}=\)</span><code>norm.ppf(0.05)</code><sp
 <p><span class="math inline">\(excess = state - trait\)</span></p>
 <p>Test the following hypotheses</p>
 <ol style="list-style-type: lower-alpha">
-<li><p>Is excess in anxiety higher than <span class="math inline">\(0\)</span>?</p></li>
-<li><p>Is excess in anxiety higher than <span class="math inline">\(0\)</span> for men and women separately?</p></li>
-<li><p>Is the proportion of anxious patients higher than <span class="math inline">\(0.05\)</span>?</p></li>
+<li><p>Is excess in anxiety different from 0? is it higher?</p></li>
+<li><p>Is excess in anxiety higher than 0 for men and women separately?</p></li>
+<li><p>Is the proportion of anxious patients different from <span class="math inline">\(0.03\)</span>?</p></li>
 </ol>
 
 </div>

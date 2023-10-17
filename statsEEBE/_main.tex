@@ -4,21 +4,20 @@
 %
 \documentclass[
 ]{book}
-\title{EEBE Estadística}
-\author{Alejandro Cáceres (\href{mailto:alejandro.caceres.dominguez@upc.edu}{\nolinkurl{alejandro.caceres.dominguez@upc.edu}})}
-\date{2023-10-04}
-
 \usepackage{amsmath,amssymb}
-\usepackage{lmodern}
 \usepackage{iftex}
 \ifPDFTeX
   \usepackage[T1]{fontenc}
   \usepackage[utf8]{inputenc}
   \usepackage{textcomp} % provide euro and other symbols
 \else % if luatex or xetex
-  \usepackage{unicode-math}
+  \usepackage{unicode-math} % this also loads fontspec
   \defaultfontfeatures{Scale=MatchLowercase}
   \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
 \fi
 % Use upquote if available, for straight quotes in verbatim environments
 \IfFileExists{upquote.sty}{\usepackage{upquote}}{}
@@ -37,14 +36,6 @@
   \KOMAoptions{parskip=half}}
 \makeatother
 \usepackage{xcolor}
-\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
-\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
-\hypersetup{
-  pdftitle={EEBE Estadística},
-  pdfauthor={Alejandro Cáceres (alejandro.caceres.dominguez@upc.edu)},
-  hidelinks,
-  pdfcreator={LaTeX via pandoc}}
-\urlstyle{same} % disable monospaced font for URLs
 \usepackage{longtable,booktabs,array}
 \usepackage{calc} % for calculating minipage widths
 % Correct order of tables after \paragraph or \subparagraph
@@ -78,6 +69,18 @@
 \fi
 \usepackage[]{natbib}
 \bibliographystyle{plainnat}
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={EEBE Estadística},
+  pdfauthor={Alejandro Cáceres (alejandro.caceres.dominguez@upc.edu)},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{EEBE Estadística}
+\author{Alejandro Cáceres (\href{mailto:alejandro.caceres.dominguez@upc.edu}{\nolinkurl{alejandro.caceres.dominguez@upc.edu}})}
+\date{2023-10-17}
 
 \begin{document}
 \maketitle
@@ -1095,10 +1098,12 @@ Las propiedades de Kolmogorov son las reglas básicas para construir una \textbf
 La tabla de probabilidad para el lanzamiento de un dado
 
 \begin{longtable}[]{@{}cc@{}}
-\toprule
+\toprule\noalign{}
 resultado & Probabilidad \\
-\midrule
+\midrule\noalign{}
 \endhead
+\bottomrule\noalign{}
+\endlastfoot
 \(1\) & 1/6 \\
 \(2\) & 1/6 \\
 \(3\) & 1/6 \\
@@ -1106,7 +1111,6 @@ resultado & Probabilidad \\
 \(5\) & 1/6 \\
 \(6\) & 1/6 \\
 \(P(1 \cup 2\cup ... \cup 6)\) & 1 \\
-\bottomrule
 \end{longtable}
 
 Verifiquemos los axiomas:
@@ -1256,16 +1260,17 @@ Las \textbf{marginales} de \(A\) y \(B\) son la probabilidad de \(A\) y la proba
 Podemos ahora escribir la \textbf{tabla de probabilidad} para las probabilidades conjuntas
 
 \begin{longtable}[]{@{}cc@{}}
-\toprule
+\toprule\noalign{}
 Resultado & Probabilidad \\
-\midrule
+\midrule\noalign{}
 \endhead
+\bottomrule\noalign{}
+\endlastfoot
 \((A \cap B)\) & \(P(A \cap B)=1/6\) \\
 \((A\cap B')\) & \(P(A \cap B')=2/6\) \\
 \((A' \cap B)\) & \(P(A' \cap B)=2/6\) \\
 \((A' \cap B')\) & \(P(A' \cap B')=1/6\) \\
 suma & \(1\) \\
-\bottomrule
 \end{longtable}
 
 Cada resultado tiene \(dos\) valores (uno para la característica del tipo \(A\) y otro para el tipo \(B\))
@@ -1276,14 +1281,15 @@ Cada resultado tiene \(dos\) valores (uno para la característica del tipo \(A\)
 La tabla de probabilidad conjunta también se puede escribir en una \textbf{tabla de contingencia}
 
 \begin{longtable}[]{@{}cccc@{}}
-\toprule
+\toprule\noalign{}
 & \(B\) & \(B'\) & suma \\
-\midrule
+\midrule\noalign{}
 \endhead
+\bottomrule\noalign{}
+\endlastfoot
 \(A\) & \(P(A \cap B )\) & \(P(A\cap B' )\) & \(P(A)\) \\
 \(A'\) & \(P(A'\cap B )\) & \(P(A'\cap B' )\) & \(P(A')\) \\
 suma & \(P(B)\) & \(P(B')\) & 1 \\
-\bottomrule
 \end{longtable}
 
 Donde las marginales son las sumas en las márgenes de la tabla, por ejemplo:
@@ -1299,14 +1305,15 @@ Donde las marginales son las sumas en las márgenes de la tabla, por ejemplo:
 En nuestro ejemplo, la tabla de contingencia es
 
 \begin{longtable}[]{@{}cccc@{}}
-\toprule
+\toprule\noalign{}
 & \(B\) & \(B'\) & suma \\
-\midrule
+\midrule\noalign{}
 \endhead
+\bottomrule\noalign{}
+\endlastfoot
 \(A\) & \(1/6\) & \(2/6\) & \(3/6\) \\
 \(A'\) & \(2/6\) & \(1/6\) & \(3/6\) \\
 suma & \(3/6\) & \(3/6\) & 1 \\
-\bottomrule
 \end{longtable}
 
 \hypertarget{la-regla-de-la-suma}{%
@@ -1346,13 +1353,14 @@ Por lo tanto:
 En la tabla de contingencia \(P(A \cup B)\) corresponde a las casillas en negrita (método 2 arriba), o todas menos el 1/6 de abajo a la derecha (método 3).
 
 \begin{longtable}[]{@{}ccc@{}}
-\toprule
+\toprule\noalign{}
 & \(B\) & \(B'\) \\
-\midrule
+\midrule\noalign{}
 \endhead
+\bottomrule\noalign{}
+\endlastfoot
 \(A\) & \textbf{1/6} & \textbf{2/6} \\
 \(A'\) & \textbf{2/6} & \emph{1/6} \\
-\bottomrule
 \end{longtable}
 
 \hypertarget{preguntas-1}{%
@@ -1361,14 +1369,15 @@ En la tabla de contingencia \(P(A \cup B)\) corresponde a las casillas en negrit
 Recopilamos la edad y categoría de 100 deportistas en una competición
 
 \begin{longtable}[]{@{}ccc@{}}
-\toprule
+\toprule\noalign{}
 & \(edad:junior\) & \(edad:senior\) \\
-\midrule
+\midrule\noalign{}
 \endhead
+\bottomrule\noalign{}
+\endlastfoot
 \(categoria:1ra\) & \(14\) & \(12\) \\
 \(categoria:2a\) & \(21\) & \(18\) \\
 \(categoria:3a\) & \(22\) & \(13\) \\
-\bottomrule
 \end{longtable}
 
 \textbf{1)} ¿Cuál es la probabilidad estimada de que un deportista sea de 2ª categoría y senior?
@@ -1575,10 +1584,12 @@ Realizamos un experimento para averiguar si observar fallas estructurales en un 
 Los datos se verían como
 
 \begin{longtable}[]{@{}ccc@{}}
-\toprule
+\toprule\noalign{}
 Conductor & Estructura & Conductividad \\
-\midrule
+\midrule\noalign{}
 \endhead
+\bottomrule\noalign{}
+\endlastfoot
 \(c_1\) & con fallas & defectuosa \\
 \(c_2\) & sin fallas & sin defectos \\
 \(c_3\) & con fallas & defectuosa \\
@@ -1587,7 +1598,6 @@ Conductor & Estructura & Conductividad \\
 \ldots{} & \ldots{} & \ldots{} \\
 \ldots{} & \ldots{} & \ldots{} \\
 \(c_n\) & con fallas & sin defectos* \\
-\bottomrule
 \end{longtable}
 
 Podemos esperar que la conductividad defectuosa ocurra más a menudo con fallas que sin fallas si las fallas afectan la conductividad.
@@ -1595,14 +1605,15 @@ Podemos esperar que la conductividad defectuosa ocurra más a menudo con fallas 
 Imaginemos que a partir de los datos obtenemos la siguiente tabla de contingencia de \textbf{probabilidades conjuntas} estimadas
 
 \begin{longtable}[]{@{}cccc@{}}
-\toprule
+\toprule\noalign{}
 & con fallas (F) & sin fallas (F') & suma \\
-\midrule
+\midrule\noalign{}
 \endhead
+\bottomrule\noalign{}
+\endlastfoot
 defectuoso (D) & \(0.005\) & \(0.045\) & \(0.05\) \\
 sin defectos (D') & \(0.095\) & \(0.855\) & \(0.95\) \\
 suma & \(0.1\) & \(0.9\) & 1 \\
-\bottomrule
 \end{longtable}
 
 donde, por ejemplo, la probabilidad conjunta de \(F\) y \(D\) es
@@ -1648,15 +1659,24 @@ Podemos probar que la probabilidad condicional satisface los axiomas de probabil
 
 Si dividimos las columnas de la tabla de probabilidad conjunta por las probabilidades marginales de los efectos condicionantes (\(F\) y \(F'\)), podemos escribir \textbf{una tabla de contingencia condicional}
 
-\begin{longtable}[]{@{}ccc@{}}
-\toprule
-& F & F' \\
-\midrule
+\begin{longtable}[]{@{}
+  >{\centering\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3438}}
+  >{\centering\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3438}}
+  >{\centering\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3125}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\centering
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+F
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+F'
+\end{minipage} \\
+\midrule\noalign{}
 \endhead
+\bottomrule\noalign{}
+\endlastfoot
 D & P(D {\textbar{}} F) & P(D {\textbar{}} F') \\
 D' & P(D' {\textbar{}} F) & P(D' {\textbar{}} F') \\
 suma & 1 & 1 \\
-\bottomrule
 \end{longtable}
 
 Donde las probabilidades por columnas suman uno. La primera columna muestra las probabilidades de ser defectuoso o no solo de que los materiales que tienen fallas (primera condición: \(F\)). La segunda columna muestra las probabilidades solo para los materiales que no tienen fallas (segunda condición: \(F'\)).
@@ -1679,15 +1699,24 @@ Las probabilidades condicionales son las probabilidades del evento dentro de cad
 
 En nuestro ejemplo, la tabla de contingencia condicional es
 
-\begin{longtable}[]{@{}ccc@{}}
-\toprule
-& F & F' \\
-\midrule
+\begin{longtable}[]{@{}
+  >{\centering\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3438}}
+  >{\centering\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3438}}
+  >{\centering\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3125}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\centering
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+F
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+F'
+\end{minipage} \\
+\midrule\noalign{}
 \endhead
+\bottomrule\noalign{}
+\endlastfoot
 D & P(D{\textbar{}}F) = 0.05 & P(D{\textbar{}}F')=0.05 \\
 D' & P(D'{\textbar{}}F)=0.95 & P(D'{\textbar{}}F')=0.95 \\
 suma & 1 & 1 \\
-\bottomrule
 \end{longtable}
 
 ¡Observamos que las probabilidades marginales y condicionales son las mismas!
@@ -1732,14 +1761,15 @@ Esta tercera forma es un enunciado sobre las probabilidades conjuntas. Dice que 
 En nuestra tabla de probabilidad conjunta original
 
 \begin{longtable}[]{@{}cccc@{}}
-\toprule
+\toprule\noalign{}
 & F & F' & suma \\
-\midrule
+\midrule\noalign{}
 \endhead
+\bottomrule\noalign{}
+\endlastfoot
 D & \(0.005\) & \(0.045\) & \(0.05\) \\
 D' & \(0.095\) & \(0.855\) & \(0.95\) \\
 suma & \(0.1\) & \(0.9\) & 1 \\
-\bottomrule
 \end{longtable}
 
 podemos confirmar que todas las entradas de la matriz son el producto de las marginales. Por ejemplo: \(P(F)P(D)= P(D \cap F)\) y \(P(D')P(F')=P(D' \cap F')\). Por lo tanto, ser defectuoso es independiente de tener un defecto.
@@ -1749,29 +1779,31 @@ podemos confirmar que todas las entradas de la matriz son el producto de las mar
 Queremos confirmar que los resultados de lanzar dos monedas son independientes. Consideramos que todos los resultados son igualmente probables:
 
 \begin{longtable}[]{@{}cc@{}}
-\toprule
+\toprule\noalign{}
 resultado & Probabilidad \\
-\midrule
+\midrule\noalign{}
 \endhead
+\bottomrule\noalign{}
+\endlastfoot
 \((H,T)\) & 1/4 \\
 \((H,H)\) & 1/4 \\
 \((T,T)\) & 1/4 \\
 \((T,H)\) & 1/4 \\
 suma & 1 \\
-\bottomrule
 \end{longtable}
 
 donde \((H,T)\) es, por ejemplo, el evento de cara en la primera moneda y cruz en la segunda moneda. La tabla de contingencia para las probabilidades conjuntas es:
 
 \begin{longtable}[]{@{}cccc@{}}
-\toprule
+\toprule\noalign{}
 & H & T & suma \\
-\midrule
+\midrule\noalign{}
 \endhead
+\bottomrule\noalign{}
+\endlastfoot
 H & \(1/4\) & \(1/4\) & \(1/2\) \\
 T & \(1/4\) & \(1/4\) & \(1/2\) \\
 suma & \(1/2\) & \(1/2\) & 1 \\
-\bottomrule
 \end{longtable}
 
 De esta tabla vemos que la probabilidad de obtener una cara y luego una cruz es el producto de las marginales \(P(H, T)=P(H)*P(T)=1/4\). Por lo tanto, el evento de cara en la primera moneda y cruz en la segunda son independientes.
@@ -1828,15 +1860,24 @@ Prueba:
 
 La \textbf{tabla de contingencia condicional} es lo que obtenemos en un ambiente controlado (laboratorio)
 
-\begin{longtable}[]{@{}ccc@{}}
-\toprule
-& Infección: si & Infección: No \\
-\midrule
+\begin{longtable}[]{@{}
+  >{\centering\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3438}}
+  >{\centering\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3438}}
+  >{\centering\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3125}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\centering
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+Infección: si
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+Infección: No
+\end{minipage} \\
+\midrule\noalign{}
 \endhead
+\bottomrule\noalign{}
+\endlastfoot
 Test: positivo & P(positivo {\textbar{}} si) & P(positivo {\textbar{}} no) \\
 Test: negativo & P(negativo {\textbar{}} si) & P(negativo {\textbar{}} no) \\
 suma & 1 & 1 \\
-\bottomrule
 \end{longtable}
 
 Miremos las entradas de la tabla
@@ -1869,15 +1910,24 @@ Ahora consideremos una situación real. En los días iniciales de la pandemia de
 
 La tabla de contingencia condicional es
 
-\begin{longtable}[]{@{}ccc@{}}
-\toprule
-& Infección: si & Infección: No \\
-\midrule
+\begin{longtable}[]{@{}
+  >{\centering\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3438}}
+  >{\centering\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3438}}
+  >{\centering\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3125}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\centering
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+Infección: si
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+Infección: No
+\end{minipage} \\
+\midrule\noalign{}
 \endhead
+\bottomrule\noalign{}
+\endlastfoot
 Test: positivo & P(positivo{\textbar{}}si)=0.7 & P(positivo{\textbar{}}no)=0.06 \\
 Test: negativo & P(negativo{\textbar{}}si)=0.3 & P(negativo{\textbar{}}no)=0.94 \\
 suma & 1 & 1 \\
-\bottomrule
 \end{longtable}
 
 Por lo tanto, los errores en las pruebas de diagnóstico fueron:
@@ -1904,15 +1954,27 @@ Para eso:
   Recuperamos la tabla de contingencia para probabilidades conjuntas, multiplicando por las marginales
 \end{enumerate}
 
-\begin{longtable}[]{@{}cccc@{}}
-\toprule
-& Infección: si & Infección: No & suma \\
-\midrule
+\begin{longtable}[]{@{}
+  >{\centering\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2619}}
+  >{\centering\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2619}}
+  >{\centering\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2381}}
+  >{\centering\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2381}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\centering
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+Infección: si
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+Infección: No
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+suma
+\end{minipage} \\
+\midrule\noalign{}
 \endhead
+\bottomrule\noalign{}
+\endlastfoot
 Test: positivo & P(positivo {\textbar{}} si)P(si) & P(positivo {\textbar{}} no)P(no) & P(positivo) \\
 Test: negativo & P(negativo {\textbar{}} si)P(si) & P(negativo {\textbar{}} no) P(no) & P(negativo) \\
 suma & P(si) & P(no) & 1 \\
-\bottomrule
 \end{longtable}
 
 \begin{enumerate}
@@ -1923,14 +1985,26 @@ suma & P(si) & P(no) & 1 \\
   Usamos la definición de probabilidades condicionales para filas en lugar de columnas (dividimos por la marginal de los resultados de la prueba)
 \end{enumerate}
 
-\begin{longtable}[]{@{}cccc@{}}
-\toprule
-& Infección: si & Infección: No & suma \\
-\midrule
+\begin{longtable}[]{@{}
+  >{\centering\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2619}}
+  >{\centering\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2619}}
+  >{\centering\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2381}}
+  >{\centering\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2381}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\centering
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+Infección: si
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+Infección: No
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+suma
+\end{minipage} \\
+\midrule\noalign{}
 \endhead
+\bottomrule\noalign{}
+\endlastfoot
 Test: positivo & P(si{\textbar{}}positivo) & P(sin{\textbar{}}positivo) & 1 \\
 Test: negativo & P(si{\textbar{}}negativo) & P(sin{\textbar{}}negativo) & 1 \\
-\bottomrule
 \end{longtable}
 
 Por ejemplo:
@@ -2025,14 +2099,15 @@ La regla de probabilidad total también se puede ilustrar usando un árbol \text
 Recopilamos la edad y categoría de 100 deportistas en una competición
 
 \begin{longtable}[]{@{}ccc@{}}
-\toprule
+\toprule\noalign{}
 & \(junior\) & \(senior\) \\
-\midrule
+\midrule\noalign{}
 \endhead
+\bottomrule\noalign{}
+\endlastfoot
 \(1er\) & \(14\) & \(12\) \\
 \(2do\) & \(21\) & \(18\) \\
 \(3er\) & \(22\) & \(13\) \\
-\bottomrule
 \end{longtable}
 
 \textbf{1)} ¿Cuál es la probabilidad estimada de que el atleta esté en la tercera categoría si el atleta es junior?
@@ -2064,13 +2139,14 @@ Recopilamos la edad y categoría de 100 deportistas en una competición
 Se prueba el rendimiento de una máquina para producir varillas de torneado de alta calidad. Estos son los resultados de las pruebas
 
 \begin{longtable}[]{@{}ccc@{}}
-\toprule
+\toprule\noalign{}
 & Redondeado: si & Redondeado: No \\
-\midrule
+\midrule\noalign{}
 \endhead
+\bottomrule\noalign{}
+\endlastfoot
 superficie lisa: si & 200 & 1 \\
 superficie lisa: no & 4 & 2 \\
-\bottomrule
 \end{longtable}
 
 \begin{itemize}
@@ -2109,25 +2185,27 @@ Se prueba el rendimiento de dos máquinas para producir varillas de torneado de 
 \textbf{Máquina 1}
 
 \begin{longtable}[]{@{}ccc@{}}
-\toprule
+\toprule\noalign{}
 & Redondeado: si & Redondeado: No \\
-\midrule
+\midrule\noalign{}
 \endhead
+\bottomrule\noalign{}
+\endlastfoot
 superficie lisa: si & 200 & 1 \\
 superficie lisa: no & 4 & 2 \\
-\bottomrule
 \end{longtable}
 
 \textbf{Máquina 2}
 
 \begin{longtable}[]{@{}ccc@{}}
-\toprule
+\toprule\noalign{}
 & Redondeado: si & Redondeado: No \\
-\midrule
+\midrule\noalign{}
 \endhead
+\bottomrule\noalign{}
+\endlastfoot
 superficie lisa: si & 145 & 4 \\
 superficie lisa: no & 8 & 6 \\
-\bottomrule
 \end{longtable}
 
 \begin{itemize}
@@ -2293,17 +2371,18 @@ Nos interesa asignar probabilidades a los eventos de observar un valor particula
 Por ejemplo, para los dados escribiremos la tabla de probabilidad como
 
 \begin{longtable}[]{@{}cc@{}}
-\toprule
+\toprule\noalign{}
 \(X\) & Probabilidad \\
-\midrule
+\midrule\noalign{}
 \endhead
+\bottomrule\noalign{}
+\endlastfoot
 \(1\) & \(P(X=1)=1/6\) \\
 \(2\) & \(P(X=2)=1/6\) \\
 \(3\) & \(P(X=3)=1/6\) \\
 \(4\) & \(P(X=4)=1/6\) \\
 \(5\) & \(P(X=5)=1/6\) \\
 \(6\) & \(P(X=6)=1/6\) \\
-\bottomrule
 \end{longtable}
 
 donde hacemos explícitos los eventos de que la variable toma un resultado dado \(X=x\).
@@ -2386,31 +2465,33 @@ Y considere realizar el siguiente \textbf{experimento aleatorio:} Tome una bola 
 A partir de la probabilidad clásica, podemos escribir la tabla de probabilidades, para lo cual no necesitamos realizar ningún experimento
 
 \begin{longtable}[]{@{}cc@{}}
-\toprule
+\toprule\noalign{}
 \(X\) & \(P(X=x)\) \\
-\midrule
+\midrule\noalign{}
 \endhead
+\bottomrule\noalign{}
+\endlastfoot
 \(-2\) & \(1/8=0.125\) \\
 \(-1\) & \(2/8=0.25\) \\
 \(0\) & \(2/8=0.25\) \\
 \(1\) & \(2/8=0.25\) \\
 \(2\) & \(1/8=0.125\) \\
-\bottomrule
 \end{longtable}
 
 Ahora, realicemos el experimento \(30\) veces y escribamos la tabla de frecuencia
 
 \begin{longtable}[]{@{}cc@{}}
-\toprule
+\toprule\noalign{}
 \(X\) & \(f_i\) \\
-\midrule
+\midrule\noalign{}
 \endhead
+\bottomrule\noalign{}
+\endlastfoot
 \(-2\) & \(0.132\) \\
 \(-1\) & \(0.262\) \\
 \(0\) & \(0.240\) \\
 \(1\) & \(0.248\) \\
 \(2\) & \(0.118\) \\
-\bottomrule
 \end{longtable}
 
 La probabilidad frecuentista nos dice
@@ -2452,16 +2533,17 @@ De la definición tenemos
 ¿Cuál es la media de \(X\) si su función de masa de probabilidad \(f(x)\) está dada por
 
 \begin{longtable}[]{@{}cc@{}}
-\toprule
+\toprule\noalign{}
 \(X\) & \(f(x)=P(X=x)\) \\
-\midrule
+\midrule\noalign{}
 \endhead
+\bottomrule\noalign{}
+\endlastfoot
 \(0\) & \(1/16\) \\
 \(1\) & \(4/16\) \\
 \(2\) & \(6/16\) \\
 \(3\) & \(4/16\) \\
 \(4\) & \(1/16\) \\
-\bottomrule
 \end{longtable}
 
 \includegraphics{_main_files/figure-latex/unnamed-chunk-38-1.pdf}
@@ -2491,16 +2573,17 @@ La varianza es la dispersión de las \textbf{probabilidades} con respecto a la m
 ¿Cuál es la varianza de \(X\) si su función de masa de probabilidad \(f(x)\) está dada por
 
 \begin{longtable}[]{@{}cc@{}}
-\toprule
+\toprule\noalign{}
 \(X\) & \(f(x)=P(X=x)\) \\
-\midrule
+\midrule\noalign{}
 \endhead
+\bottomrule\noalign{}
+\endlastfoot
 \(0\) & \(1/16\) \\
 \(1\) & \(4/16\) \\
 \(2\) & \(6/16\) \\
 \(3\) & \(4/16\) \\
 \(4\) & \(1/16\) \\
-\bottomrule
 \end{longtable}
 
 \[\sigma^2 =V(X)=\sum_{i=1}^m (x_i-\mu)^2 f(x_i)\]
@@ -2538,16 +2621,17 @@ Esta es una definición importante que nos permite probar tres propiedades de la
 ¿Cuál es la varianza \(X\) con respecto al origen, \(E(X^2)\), si su función de masa de probabilidad \(f(x)\) está dada por
 
 \begin{longtable}[]{@{}cc@{}}
-\toprule
+\toprule\noalign{}
 \(X\) & \(f(x)=P(X=x)\) \\
-\midrule
+\midrule\noalign{}
 \endhead
+\bottomrule\noalign{}
+\endlastfoot
 \(0\) & \(1/16\) \\
 \(1\) & \(4/16\) \\
 \(2\) & \(6/16\) \\
 \(3\) & \(4/16\) \\
 \(4\) & \(1/16\) \\
-\bottomrule
 \end{longtable}
 
 \[E(X^2) =\sum_{i=1}^m x_i^2 f(x_i)\]
@@ -2587,16 +2671,17 @@ Esa es la probabilidad acumulada hasta un valor dado \(x\)
 Para la función de masa de probabilidad:
 
 \begin{longtable}[]{@{}cc@{}}
-\toprule
+\toprule\noalign{}
 \(X\) & \(f(x)=P(X=x)\) \\
-\midrule
+\midrule\noalign{}
 \endhead
+\bottomrule\noalign{}
+\endlastfoot
 \(0\) & \(1/16\) \\
 \(1\) & \(4/16\) \\
 \(2\) & \(6/16\) \\
 \(3\) & \(4/16\) \\
 \(4\) & \(1/16\) \\
-\bottomrule
 \end{longtable}
 
 La distribución de probabilidad es:
@@ -2691,10 +2776,10 @@ En general, definimos el \textbf{q-cuantil} como el valor \(x_{p}\) \textbf{bajo
 \includegraphics{./figures/randomvarsum.JPG}
 
 \begin{longtable}[]{@{}
-  >{\centering\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.43}}
-  >{\centering\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.30}}
-  >{\centering\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.26}}@{}}
-\toprule
+  >{\centering\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.4348}}
+  >{\centering\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3043}}
+  >{\centering\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.2609}}@{}}
+\toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\centering
 nombres de cantidades
 \end{minipage} & \begin{minipage}[b]{\linewidth}\centering
@@ -2702,15 +2787,16 @@ modelo (no observado)
 \end{minipage} & \begin{minipage}[b]{\linewidth}\centering
 datos (observados)
 \end{minipage} \\
-\midrule
+\midrule\noalign{}
 \endhead
+\bottomrule\noalign{}
+\endlastfoot
 función de masa de probabilidad // frecuencia relativa & \(f(x_i)=P(X=x_i)\) & \(f_i=\frac{n_i}{N}\) \\
 distribución de probabilidad // frecuencia relativa acumulada & \(F(x_i)=P(X \leq x_i)\) & \(F_i=\sum_{k\leq i} f_k\) \\
 media // promedio & \(\mu=E(X)=\sum_{i=1}^M x_i f(x_i)\) & \(\bar{x}=\sum_{j=1}^N x_j/N\) \\
 varianza // varianza de la muestra & \(\sigma^2=V(X)=\sum_{i=1}^M (x_i-\mu)^2 f(x_i)\) & \(s^2=\sum_{j=1}^N (x_j-\bar{x})^2/(N-1)\) \\
 desviación estándar // muestra sd & \(\sigma=\sqrt{V(X)}\) & \(s\) \\
 varianza con respecto al origen // 2º momento muestral & \(E(X^2)=\sum_{i=1}^M x_i^2 f(x_i)\) & \(m_2= \sum_{j=1}^N x_j^2/n\) \\
-\bottomrule
 \end{longtable}
 
 Ten en cuenta:
@@ -2778,39 +2864,19 @@ Propiedades:
 \hypertarget{ejercicio-1-2}{%
 \subsubsection{Ejercicio 1}\label{ejercicio-1-2}}
 
-Considera la siguiente variable aleatoria \(X\) sobre los resultados
-
-\begin{longtable}[]{@{}cc@{}}
-\toprule
-resultado & \(X\) \\
-\midrule
-\endhead
-\(a\) & 0 \\
-\(b\) & 0 \\
-\(c\) & 1.5 \\
-\(d\) & 1.5 \\
-\(e\) & 2 \\
-\(f\) & 3 \\
-\bottomrule
-\end{longtable}
+Ponemos en una urna papeletas con letras de la a la f.~Considera el sorteo que da \(0\) euros a las dos primeras letras del abecedario, \(1.5\) euros a las dos siguientes, y \(2\) y \(3\) euros a las siguientes.
 
 \begin{enumerate}
 \def\labelenumi{\alph{enumi})}
 \item
-  Si cada resultado es igualmente probable, ¿cuál es la función de masa de probabilidad de \(x\)?
+  ¿cuál es la función de masa de probabilidad y función de distribución de probabilidad de para los premios en dinero del juego?
 \item
-  Encuentra:
+  ¿cuál es el valor esperado del premio? (R:1.3)
+\item
+  ¿cuál es la varianza del premio? (R:1.13)
+\item
+  ¿cuál es la probabilidad de ganar 2 o mas euros? (R:2/6)
 \end{enumerate}
-
-\begin{itemize}
-\tightlist
-\item
-  \(P(X>3)\)
-\item
-  \(P(X=0\, \cup \, X=2 )\)
-\item
-  \(P(X \leq 2)\)
-\end{itemize}
 
 \hypertarget{ejercicio-2-2}{%
 \subsubsection{Ejercicio 2}\label{ejercicio-2-2}}
@@ -2818,17 +2884,18 @@ resultado & \(X\) \\
 Dada la función de masa de probabilidad
 
 \begin{longtable}[]{@{}cc@{}}
-\toprule
+\toprule\noalign{}
 \(x\) & \(f(x)=P(X=x)\) \\
-\midrule
+\midrule\noalign{}
 \endhead
+\bottomrule\noalign{}
+\endlastfoot
 10 & 0.1 \\
 12 & 0.3 \\
 14 & 0.25 \\
 15 & 0.15 \\
 17 & ? \\
 20 & 0.15 \\
-\bottomrule
 \end{longtable}
 
 \begin{itemize}
@@ -3426,6 +3493,895 @@ calcular:
   \(E(X)\) (R:1.93)
 \item
   \(P(X>0|X< 2)\) (R:28/45)
+\end{itemize}
+
+\hypertarget{modelos-de-probabilidad-para-variables-aletorias-discretas}{%
+\chapter{Modelos de probabilidad para variables aletorias discretas}\label{modelos-de-probabilidad-para-variables-aletorias-discretas}}
+
+\hypertarget{objetivo-3}{%
+\section{Objetivo}\label{objetivo-3}}
+
+En este capítulo veremos algunas funciones de masa de probabilidad que se utilizan para describir experimentos aleatorios comunes.
+
+Introduciremos el concepto de parámetro y por tanto de modelos paramétricos.
+
+En particular, discutiremos las funciones de probabilidad uniforme y de Bernoulli y cómo se usan para derivar las funciones de probabilidad binomial y binomial negativa. También hableramos del modelo hipergeométrico.
+
+\hypertarget{funciuxf3n-de-probabilidad}{%
+\section{Función de probabilidad}\label{funciuxf3n-de-probabilidad}}
+
+Recordemos que una función de masa de probabilidad de una \textbf{variable aleatoria discreta} \(X\) con valores posibles \(x_1 , x_2 , .. , x_M\) es \textbf{cualquier función} tal que
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\tightlist
+\item
+  Nos permite calcular probabilidades para todos los resultados
+\end{enumerate}
+
+\[f(x_i)=P(X=x_i)\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  Siempre es positiva:
+\end{enumerate}
+
+\[f(x_i)\geq 0\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  La probabilidad de obtener algo en el experimento aleatorio es \(1\)
+\end{enumerate}
+
+\[\sum_{i=1}^M f(x_i)=1\]
+
+Estudiamos dos \textbf{propiedades importantes:}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\tightlist
+\item
+  La media como medida de tendencia central:
+\end{enumerate}
+
+\[E(X)= \sum_{i=1}^M x_i f(x_i)\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  La varianza como medida de dispersión:
+\end{enumerate}
+
+\[V(X)= \sum_{i=1}^M (x_i-\mu)^2 f(x_i)\]
+
+\hypertarget{modelo-de-probabilidad}{%
+\section{Modelo de probabilidad}\label{modelo-de-probabilidad}}
+
+Un \textbf{modelo de probabilidad} es una función de masa de probabilidad que puede representar las probabilidades de un experimento aleatorio.
+
+\textbf{Ejemplos:}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\tightlist
+\item
+  La función de masa de probabilidad definida por
+\end{enumerate}
+
+\begin{longtable}[]{@{}cc@{}}
+\toprule\noalign{}
+\(X\) & \(f(x)\) \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\(-2\) & \(1/8\) \\
+\(-1\) & \(2/8\) \\
+\(0\) & \(2/8\) \\
+\(1\) & \(2/8\) \\
+\(2\) & \(1/8\) \\
+\end{longtable}
+
+Representa la probabilidad de sacar \textbf{una} bola de una urna donde hay dos bolas con etiquetas: \(-1, 0, 1\) y una bola con etiquetas: \(-2, 2\).
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  \(f(x)=P(X=x)=1/6\) representa la probabilidad de los resultados de \textbf{un} lanzamiento de un dado.
+\end{enumerate}
+
+\hypertarget{modelos-paramuxe9tricos}{%
+\section{Modelos paramétricos}\label{modelos-paramuxe9tricos}}
+
+Cuando tenemos un experimento aleatorio con \(M\) resultados posibles, necesitamos encontrar \(M\) números para determinar la función de masa de probabilidad. Como en el ejemplo 1 anterior, necesitábamos \(5\) valores en la columna \(f(x)\) de la tabla de probabilidad.
+
+Sin embargo, \textbf{en muchos casos}, podemos formular funciones de probabilidad \(f(x)\) que dependen únicamente de \textbf{muy pocos} números. Al igual que en el ejemplo 2 anterior, solo necesitábamos saber cuántos resultados posibles puede dar un dado.
+
+\textbf{Ejemplo (probabilidad clásica):}
+
+Un experimento aleatorio con \(M\) resultados igualmente probables tiene una función de masa de probabilidad:
+\[f(x)=P(X=x)=1/M\]
+
+Sólo necesitamos saber \(M\).
+
+Los números que \textbf{necesitamos saber} para determinar completamente una función de probabilidad se llaman \textbf{parámetros}.
+
+\hypertarget{distribuciuxf3n-uniforme-un-paruxe1metro}{%
+\section{Distribución uniforme (un parámetro)}\label{distribuciuxf3n-uniforme-un-paruxe1metro}}
+
+El ejemplo anterior es la interpretación clásica de la probabilidad y define nuestro primer modelo paramétrico.
+
+\textbf{Definición}
+
+Una variable aleatoria \(X\) con resultados \(\{1,...M\}\) tiene una \textbf{distribución uniforme} discreta si todos sus resultados \(M\) tienen la misma probabilidad
+
+\[f(x)=\frac{1}{M}\]
+
+\(M\) es el parámetro natural del modelo. Una vez que definimos \(M\) para un experimento, elegimos una función de masa de probabilidad particular. La función anterior es realmente una \textbf{familia} de funciones que dependen de \(M\): \(f(x; M)\).
+
+La media y la varianza de una variable que sigue una distribución uniforme son:
+
+\[E(X)= \frac{M+1}{2}\]
+
+y
+
+\[V(X)= \frac{M^2-1}{12}\]
+
+Nota: \(E(X)\) y \(V(X)\) también son \textbf{parámetros}. Si conocemos alguno de ellos, entonces podemos determinar completamente la distribución. Por ejemplo:
+
+\[f(x)=\frac{1}{2E(X)-1}\]
+
+Veamos algunas funciones de masa de probabilidad en la familia de modelos paramétricos uniformes:
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-52-1.pdf}
+
+\hypertarget{distribuciuxf3n-uniforme-dos-paruxe1metros}{%
+\section{Distribución uniforme (dos parámetros)}\label{distribuciuxf3n-uniforme-dos-paruxe1metros}}
+
+Presentemos un nuevo modelo de probabilidad \textbf{uniforme} con \textbf{dos parámetros}: los resultados mínimo y máximo.
+
+Si la variable aleatoria toma valores en \(\{a, a+1, ...b\}\), donde \(a\) y \(b\) son números enteros y todos los resultados son igualmente probables, entonces
+
+\[f(x)=\frac{1}{b-a+1}\]
+
+porque \(M=b-a+1\).
+
+Entonces decimos que \(X\) se distribuye uniformemente entre \(a\) y \(b\) y escribimos
+
+\[X \rightarrow Unif(a,b)\]
+
+\textbf{Propiedades:}
+
+Si \(X\) se distribuye uniformemente entre \(a\) y \(b\)
+
+\[X \rightarrow Unif(a,b)\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\tightlist
+\item
+  Su media es
+\end{enumerate}
+
+\[E(X)= \frac{b+a}{2}\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  Su varianza es
+\end{enumerate}
+
+\[V(X)= \frac{(b-a+1)^2-1}{12}\]
+
+Para probar esto cambia las variables \(X=Y+a-1\), \(y \in \{1,...M\}\).
+
+\textbf{Funciones de masa de probabilidad}
+
+Veamos algunas funciones de masa de probabilidad en la familia de modelos paramétricos uniformes:
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-53-1.pdf}
+
+\textbf{Ejemplo (clases escolares):}
+
+¿Cuál es la probabilidad de observar a un niño de una edad particular en una escuela primaria (si todas las clases tienen la misma cantidad de niños)?
+
+De la configuración del experimento sabemos: \(a=6\) y \(b=11\) entonces
+
+\[X \rightarrow Unif(a=6, b=11)\] eso es
+
+\[f(x)=\frac{1}{6}\] para \(x\in \{6,7,8,9,10,11\}\), y \(0\) en caso contrario.
+
+La media y la varianza de esta función de masa de probabilidad es:
+
+\begin{itemize}
+\tightlist
+\item
+  \(E(X)=8.5\)
+\item
+  \(V(X)=2.916667\)
+\end{itemize}
+
+Recuerda
+
+\begin{itemize}
+\item
+  El valor esperado es la \textbf{media} \(\mu=8.5\)
+\item
+  La \textbf{desviación estándar} \(\sigma=1.707825\) es la distancia promedio desde la media y se calcula a partir de la raíz cuadrada de la varianza.
+\end{itemize}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-54-1.pdf}
+
+\textbf{Parámetros y Modelos:}
+
+Un \textbf{modelo} es una función particular \(f(x)\) que \textbf{describe} nuestro experimento.
+
+Si el modelo es una función \textbf{conocida} que depende de algunos parámetros, al cambiar el valor de los parámetros producimos una \textbf{familia de modelos}: \(f(x; a,b)\).
+
+El conocimiento de \(f(x)\) se reduce al conocimiento del valor de los parámetros \(a\), \(b\).
+
+Idealmente, el modelo y los parámetros son \textbf{interpretables}.
+
+En nuestro ejemplo, \(a\) representa la edad mínima en la escuela y \(b\) la edad máxima. Pueden considerarse como las \textbf{propiedades físicas} del experimento.
+
+\hypertarget{ensayo-de-bernoulli}{%
+\section{Ensayo de Bernoulli}\label{ensayo-de-bernoulli}}
+
+Intentemos avanzar desde el caso de probabilidad igual y supongamos un modelo con solo dos resultados posibles (\(A\) y \(B\)) que tienen probabilidades \textbf{desiguales}
+
+\textbf{Ejemplos:}
+
+\begin{itemize}
+\item
+  Anotar el sexo de un paciente que acude a urgencias de un hospital (\(A:masculino\) y \(B:femenino\)).
+\item
+  Registrar si una máquina fabricada es defectuosa o no (\(A:defectuosa\) y \(B:no\,\,defectuosa\)).
+\item
+  Dar en el blanco (\(A:éxito\) y \(B:fracaso\)).
+\item
+  Transmitir un píxel correctamente (\(A:sí\) y \(B:no\)).
+\end{itemize}
+
+En estos ejemplos, la probabilidad del resultado \(A\) suele ser \textbf{desconocida}.
+
+\textbf{Modelo de probabilidad:}
+
+Introduciremos la probabilidad de un resultado (\(A\)) como el \textbf{parámetro} del modelo. El modelo se puede escribir en diferentes formas.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\tightlist
+\item
+  Como una tabla de probabilidad:
+\end{enumerate}
+
+\begin{longtable}[]{@{}cc@{}}
+\toprule\noalign{}
+\(Resultado\) & \(P_i\) \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\(A\) & \(p\) \\
+\(B\) & \(1-p\) \\
+\end{longtable}
+
+\begin{itemize}
+\tightlist
+\item
+  \(i \in \{A,B\}\)
+\item
+  resultado \(A\) (éxito): tiene probabilidad \(p\) (parámetro)
+\item
+  resultado \(B\) (fracaso): tiene una probabilidad \(1-p\)
+\end{itemize}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  Como función de masa de probabilidad de la variable aleatoria \(K\) tomando valores \(\{0, 1\}\) para \(B\) y \(A\), respectivamente.
+\end{enumerate}
+
+\[
+    f(k)= 
+\begin{cases}
+    1-p,&  k=0\, (event\, B)\\
+    p,& k=1\, (event\, A) 
+\end{cases}
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  Como una función de \(k\)
+\end{enumerate}
+
+\[f(k; p)=p^k(1-p)^{1-k} \]
+
+para \(k=(0,1)\).
+
+Entonces decimos que \(K\) sigue una distribución de Bernoulli con parámetro \(p\)
+\[K \rightarrow Bernoulli(p)\]
+
+\textbf{Propiedades:}
+
+Si \(K\) sigue una distribución de Bernoulli, entonces
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\tightlist
+\item
+  su media es
+\end{enumerate}
+
+\[E(K)=p\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  su varianza es
+\end{enumerate}
+
+\[V(K)=(1-p)p\]
+
+Ten en cuenta que la probabilidad del resultado \(A\) es el parámetro \(p\)
+que es lo mismo que su valor en \(k=1\): \(f(1)=P(k=1)\). El parámetro determina completamente la función de masa de probabilidad, incluidas su media y varianza.
+
+Veamos algunas funciones de masa de probabilidad en la familia de modelos paramétricos uniformes:
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-55-1.pdf}
+
+\hypertarget{experimento-binomial}{%
+\section{Experimento binomial}\label{experimento-binomial}}
+
+Cuando estamos interesados en predecir \textbf{frecuencias absolutas} cuando conocemos el parámetro \(p\) de un ensayo particular de Bernoulli, entonces
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\item
+  \textbf{repetimos} el ensayo de Bernoulli \(n\) veces y contamos cuantas veces obtuvimos \(A\) usando la frecuencia absoluta de \(A\): \(N_A\).
+\item
+  definimos una \textbf{variable aleatoria} \(X=N_A\) tomando valores \(x \in {0,1,...n}\)
+\end{enumerate}
+
+Cuando repetimos \(n\) veces una ensayo de Bernoulli, obtenemos un valor para \(n_A\). Si realizamos otros \(n\) ensayos de Bernoulli, entonces \(n_A\) cambia de valor. \(X=N_A\) es por lo tanto una variable aleatoria y \(x=n_A\) es su observación.
+
+\textbf{Ejemplos (Algunos experimentos binomiales):}
+
+\begin{itemize}
+\item
+  Anotamos el sexo de \(n=10\) pacientes que acuden a urgencias de un hospital. ¿Cuál es la probabilidad de que \(X=9\) los pacientes sean hombres cuando \(p=0.8\)?
+\item
+  Intentamos \(n=5\) veces de dar en un blanco (\(A:éxito\) y \(B:fracaso\)). ¿Cuál es la probabilidad de que alcancemos el objetivo \(X=5\) veces cuando normalmente lo hacemos el \(25\%\) de las veces (\(p=0.25\))?
+\item
+  Transmitimos \(n=100\) píxeles correctamente (\(A:sí\) y \(B:no\)). ¿Cuál es la probabilidad de que \(X=2\) píxeles sean errores, cuando la probabilidad de error es \(p=0.1\)?
+\end{itemize}
+
+\hypertarget{funciuxf3n-de-probabilidad-binomial}{%
+\section{Función de probabilidad binomial}\label{funciuxf3n-de-probabilidad-binomial}}
+
+Supongamos que \textbf{sabemos} el valor real del parámetro del ensayo de Bernoulli \(p\).
+
+Cuando repetimos un ensayo de Bernoulli y paramos en la repetición número \(n\), ¿el valor \(x\) que obtenemos es un valor común o es raro? ¿cuál es su función de masa de probabilidad \(P(X=x)=f(x)\)?
+
+\textbf{Ejemplo (transmisión de píxeles):}
+
+¿Cuál es la probabilidad de observar errores \(X=x\) al transmitir \(n=4\) píxeles, si la probabilidad de error es \(p\)?
+
+Consideremos que
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\item
+  Una variable aleatoria del \textbf{experimento de transmisión} es el vector \[(K_1, K_2, K_3, K_4)\] donde una observación puede ser \((K_1=0, K_2=1, K_3=0, K_4= 1)\) o \((0, 1, 0, 1)\).
+\item
+  Cada \[K_i \rightarrow Bernoulli(p)\] \(k_i \in \{0, 1\}\)
+\item
+  \(X=N_A\) se puede calcular como la suma \[X=\sum_{i=1}^4 K_i\] \(x\in \{0,1,2,3,4\}\). Por ejemplo \(X=2\) para el resultado \((0, 1, 0, 1)\).
+\end{enumerate}
+
+Ahora veamos las probabilidades del número de \textbf{errores} y luego las generalizaremos.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\tightlist
+\item
+  ¿Cuál es la probabilidad de observar \(4\) \textbf{errores}?
+\end{enumerate}
+
+La probabilidad de observar \(4\) errores es la probabilidad de observar un error en \(1^{er}\) \textbf{y} \(2^{o}\) \textbf{y} \(3^{o}\) \textbf{y} \(4 ^{o}\) píxel:
+
+\[P(X=4)=P(1,1,1,1)=p*p*p*p=p^4\]
+
+porque \(K_i\) son \textbf{independientes}.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  ¿Cuál es la probabilidad de observar \(0\) \textbf{errores}?
+\end{enumerate}
+
+La probabilidad de errores \(0\) es la probabilidad conjunta de observar \textbf{ningún error} en \textbf{cualquier} transmisión:
+
+\[P(X=0)=P(0,0,0,0)=(1-p)(1-p)(1-p)(1-p)=(1-p)^4\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  ¿Cuál es la probabilidad de observar \(3\) \textbf{errores}?
+\end{enumerate}
+
+La probabilidad de \(3\) errores es la \textbf{suma} de la probabilidad de observar \(3\) errores en \textbf{eventos diferentes}:
+
+\[P(X=3)=P(0,1,1,1)+P(1,0,1,1)+P(1,1,0,1)+P(1,1,1, 0)=4p^3(1-p)^1\]
+porque todos estos eventos son \textbf{mutuamente excluyentes}.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\setcounter{enumi}{3}
+\tightlist
+\item
+  Por lo tanto, la probabilidad de \(x\) \textbf{errores} es
+\end{enumerate}
+
+\[
+    f(x)= 
+\begin{cases}
+    1*p^0(1-p)^4,&  x=0 \\
+    4*p^1(1-p)^3,&  x=1 \\
+    6*p^2(1-p)^2,&  x=2 \\
+    4*p^3(1-p)^1,&  x=3 \\
+    1*p^4(1-p)^0,&  x=4 \\
+\end{cases}
+\]
+
+o más en breve
+
+\[f(x)=\binom 4 xp^x(1-p)^{4-x}\]
+para \(x=0,1,2,3,4\)
+
+donde \(\binom 4 x\) es el número de \textbf{posibles resultados} (transmisiones de \(4\) píxeles) con \(x\) errores.
+
+\textbf{Definición:}
+
+La función de \textbf{probabilidad binomial} es la función de masa de probabilidad de observar \(x\) resultados de tipo \(A\) en \(n\) ensayos independientes de Bernoulli, donde \(A\) tiene la misma probabilidad \(p\) en cada ensayo.
+
+La función está dada por
+
+\(f(x)=\binom nxp^x(1-p)^{nx}\), \(x=0,1,...n\)
+
+\(\binom nx= \frac{n!}{x!(nx)!}\) se denomina \textbf{coeficiente binomial} y da el número de formas en que se pueden obtener \(x\) eventos de tipo \(A\) en un conjunto de \(n\).
+
+Cuando una variable \(X\) tiene una función de probabilidad binomial decimos que se distribuye binomialmente y escribimos
+
+\[X\rightarrow Bin(n,p)\]
+
+donde \(n\) y \(p\) son parámetros.
+
+Veamos algunas funciones de masa de probabilidad en la familia de modelos paramétricos binomiales:
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-56-1.pdf}
+
+\textbf{Propiedades:}
+
+Si una variable aleatoria \(X\rightarrow Bin(n,p)\) entonces
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\tightlist
+\item
+  su media es
+\end{enumerate}
+
+\[E(X)=np\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  su varianza es
+\end{enumerate}
+
+\[V(X)=np(1-p)\]
+
+Estas propiedades se pueden demostrar por el hecho de que \(X\) es la suma de \(n\) variables de Bernoulli independientes. Por lo tanto,
+
+\(E(X)=E(\sum_{i=1}^n K_i)=np\)
+
+y
+
+\(V(X)=V(\sum_{i=1}^n K_i)=n(1-p)p\)
+
+\textbf{Ejemplo (transmisión de píxeles):}
+
+\begin{itemize}
+\item
+  El valor esperado para el número de errores en la transmisión de \(4\) píxeles es \(np=4*0.1=0.4\) cuando la probabilidad de error es \(0.1\).
+\item
+  La varianza es \(n(1-p)p=0.36\)
+\item
+  ¿Cuál es la probabilidad de observar \(4\) errores?
+\end{itemize}
+
+Dado que estamos repitiendo una ensayo de Bernoulli \(n=4\) veces y contando el número de eventos de tipo \(A\) (errores), cuando \(P(A)=p=0.1\) entonces
+
+\[X \rightarrow Bin(n=4, p=0.1)\]
+Eso es \[f(x)=\binom 4 x 0.1^x(1-0.1)^{4-x}\]
+
+\(P(X=4)=f(4)=\binom 4 4 0.1^4 0.9^{0}=0.1^4=10^{-4}\)
+
+En R dbinom(4,4,0.1)
+
+\begin{itemize}
+\tightlist
+\item
+  ¿Cuál es la probabilidad de observar \(2\) errores?
+\end{itemize}
+
+\(P(X=2)=\binom 4 2 0.1^2 0.9^2=0.0486\)
+
+En R dbinom(2,4,0.1)
+
+\textbf{Ejemplo (encuestas de opinión):}
+
+\begin{itemize}
+\tightlist
+\item
+  ¿Cuál es la probabilidad de observar \textbf{como máximo} \(8\) votantes del partido de gobierno en una encuesta electoral de tamaño \(10\), si la probabilidad de un voto para el partido es de \(0.9\)?
+\end{itemize}
+
+Para este caso
+
+\[X \rightarrow Bin(n=10, p=0.9)\]
+
+Eso es \[f(x)=\binom {10} x 0.9^x(0.1)^{4-x}\]
+
+Queremos calcular:
+\(P(X\le 8)=F(8)= \sum_{i=1..8} f(x_i)=0.2639011\)
+
+en R pbinom(8,10, 0.9)
+
+\hypertarget{funciuxf3n-de-probabilidad-binomial-negativa}{%
+\section{Función de probabilidad binomial negativa}\label{funciuxf3n-de-probabilidad-binomial-negativa}}
+
+Ahora imaginemos que estamos interesados en contar los píxeles bien transmitidos antes de que ocurra un \textbf{número dado} de errores. Digamos que podemos \textbf{tolerar} \(r\) errores en la transmisión.
+
+Nuestro experimento aleatorio ahora es: Repetir las pruebas de Bernoulli hasta que observemos que el resultado \(A\) aparece \(r\) veces.
+
+El resultado del experimento es el número de eventos \(n_B=y\)
+
+Estamos interesados en encontrar la probabilidad de observar un número particular de eventos \(B\), \(P(Y=y)\), donde \(Y=N_B\) es la variable aleatoria.
+
+\textbf{Ejemplo (transmisión de píxeles):}
+
+¿Cuál es la probabilidad de observar \(y\) píxeles bien transmitidos (\(B\)) antes de \(r\) errores (\(A\))?
+
+Primero encontremos la probabilidad de \textbf{un} evento de transmisión \textbf{en particular} con \(y\) número de píxeles correctos (\(B\)) y \(r\) número de errores (\(A\)).
+
+\[(0,0,1,., 0,1,...0,1)\]
+
+donde consideramos que hay \(y\) ceros y \(r\) unos. Por lo tanto, observamos \(y\) píxeles correctos en un total de \(y + r\) píxeles.
+
+La probabilidad de este evento es:
+
+\[P(0,0,1,., 0,1,...0,1)=p^r(1-p)^y\]
+
+Recuerda que \(p\) es la probabilidad de error (\(A\)).
+
+¿Cuántos \textbf{eventos de transmisión} pueden tener \(y\) píxeles correctos (0) antes de \(r\) errores (1)?
+
+Ten en cuenta que
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\item
+  El último pixel es fijo (marca el final de la transmisión)
+\item
+  El número total de formas en que \(y\) el número de ceros se puede asignar en \(y + r-1\) píxeles es: \(\binom {y + r-1} y\)
+\end{enumerate}
+
+Por lo tanto, la probabilidad de observar \(y\) 1 antes de \(r\) 0 (cada 1 con probabilidad \(p\)) es
+
+\[P(Y=y)=f(y)=\binom {y+r-1} yp^r(1-p)^y\]
+
+para \(y=0,1,...\)
+
+Entonces decimos que \(Y\) sigue una distribución binomial negativa y escribimos
+
+\[Y\rightarrow NB(r,p)\]
+
+donde \(r\) y \(p\) son parámetros que representan la tolerancia y la probabilidad de un solo error (evento \(A\)).
+
+\textbf{Propiedades:}
+
+Una variable aleatoria \(Y\rightarrow NB(r,p)\) tiene
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\item
+  media \[E(Y)= r\frac{1-p}{p}\]
+\item
+  y varianza \[V(Y)= r\frac{1-p}{p^2}\]
+\end{enumerate}
+
+Veamos algunas funciones de masa de probabilidad en la familia de modelos paramétricos binomiales negativos:
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-57-1.pdf}
+
+\textbf{Ejemplo (sitio web)}
+
+Un sitio web tiene tres servidores. Un servidor opera a la vez y solo cuando falla una solicitud se usa otro servidor.
+
+Si se sabe que la probabilidad de que falle una solicitud es \(p=0.0005\), entonces
+
+\begin{itemize}
+\tightlist
+\item
+  ¿Cuál es el número esperado de solicitudes exitosas antes de que las tres computadoras fallen?
+\end{itemize}
+
+Ya que estamos repitiendo un ensayo de Bernoulli hasta \(r=3\) se observan eventos de tipo \(A\) (fallo) (cada uno con \(P(A)=p=0.0005\)) y estamos contando el número de eventos de tipo \(B\) (solicitudes exitosas) entonces
+
+\[Y \rightarrow NB(r=3, p=0.0005)\]
+
+Por lo tanto, el número esperado de solicitudes antes de que el sistema falle es:
+
+\(E(Y)=r\frac{1-p}{p}=3\frac{1-0.0005}{0.0005}=5997\)
+
+Ten en cuenta que en realidad hay pruebas de \(6000\).
+
+\begin{itemize}
+\tightlist
+\item
+  ¿Cuál es la probabilidad de observar \(5\) solicitudes exitosas antes de que el sistema falle?
+\end{itemize}
+
+\(f(5)=\binom {7} 5 0.0005^3 0.9995^5=2.618444 \times 10^{-9}\)
+
+\begin{itemize}
+\tightlist
+\item
+  ¿Cuál es la probabilidad de tratar con un máximo de \(5\) solicitudes exitosas antes de que el sistema falle?
+\end{itemize}
+
+En R esto se calcula con dnbinom(5,3,0.0005)
+
+Por lo tanto, queremos calcular la distribución de probabilidad en \(5\):
+
+\(F(5)=P(Y\leq 5)=\Sigma_{y=0}^5 f(y)\)
+
+\(=\sum_{y=0}^5\binom {y+2} y 0.0005^r0.9995^y\)
+
+\(=\binom{2} 0 0.0005^3 0.9995^0 +\binom{3} 1 0.0005^3 0.9995^1\)
+
+\(+\binom {4} 2 0.0005^3 0.9995^2 +\binom {5} 3 0.0005^3 0.9995^3\)
+
+\(+\binom {6} 4 0.0005^3 0.9995^4 +\binom {7} 5 0.0005^3 0.9995^5\)
+
+\(= 6.9\times 10^{-9}\)
+
+En R esto se calcula con pnbinom(5,3,0.0005)
+
+\textbf{Ejemplos}
+
+\begin{itemize}
+\tightlist
+\item
+  ¿Cuál es la probabilidad de observar \(10\) píxeles correctos antes de \(2\) errores, si la probabilidad de error es \(0.1\)?
+\end{itemize}
+
+\(f(10; r=2, p=0.1)=0.03835463\)
+
+en R dnbinom(10, 2, 0.1)
+
+\begin{itemize}
+\tightlist
+\item
+  ¿Cuál es la probabilidad de que entren \(2\) chicas antes que \(4\) chicos entren a clase si la probabilidad de que entre un chico es de \(0.55\)?
+\end{itemize}
+
+\(f(2; r=4, p=0.55)=0.1853\)
+
+en R dnbinom(2, 4, 0.55)
+
+\hypertarget{distribuciuxf3n-geomuxe9trica}{%
+\section{Distribución geométrica}\label{distribuciuxf3n-geomuxe9trica}}
+
+Llamamos \textbf{distribución geométrica} a la distribución \textbf{binomial negativa} con \(r=1\)
+
+La probabilidad de observar \(B\) eventos antes de observar el \textbf{primer} evento de tipo \(A\) es
+
+\[P(Y=y)=f(y)= p(1-p)^y\]
+
+\[Y\rightarrow Geom(p)\]
+que tiene
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\item
+  media \[E(Y)= \frac{1-p}{p}\]
+\item
+  y varianza \[V(Y)= \frac{1-p}{p^2}\]
+\end{enumerate}
+
+\hypertarget{modelo-hipergeomuxe9trico}{%
+\section{Modelo hipergeométrico}\label{modelo-hipergeomuxe9trico}}
+
+El \textbf{modelo hipergeométrico} surge cuando queremos contar el número de eventos de tipo \(A\) que se extraen de una población finita.
+
+El modelo general es considerar \(N\) bolas totales en una urna. Marquemos \(K\) con la etiqueta \(A\) y \(NK\) con la etiqueta \(B\). Saquemos \(n\) bolas una por una sin reemplazo en la urna y luego contemos cuántos \(A\) obtuvimos.
+
+El modelo \textbf{Binomial} se puede derivar del modelo \textbf{Hipergeométrico} cuando consideramos que \(N\) es infinito, o que cada vez que sacamos una bola la volvemos a colocar en la urna.
+
+\textbf{Ejemplo (varicela):}
+
+Una escuela de \(N=600\) niños tiene una epidemia de varicela. Testamos a \(n=200\) niños y observamos que \(x=17\) dieron positivo. Si supiéramos que un total de \(K=64\) estaban realmente infectados en la escuela, ¿cuál es la probabilidad de nuestra observación?
+
+\textbf{Definición:}
+
+La probabilidad de obtener \(x\) casos (tipo \(A\)) en una muestra de \(n\) extraída de una población de \(N\) donde \(K\) son casos (tipo \(A\)).
+
+\(P(X=x)=P(una\,muestra) \times (Número\, de\, formas\, de\, obteniendo\, x)\)
+
+\[=\frac{1}{\binom N n}\binom K x \binom {NK} {nx}\]
+
+donde \(k \in \{\max(0, n+KN), ... \min(K, n) \}\)
+
+Entonces decimos que \(X\) sigue una distribución hipergeométrica y escribimos
+
+\[X \rightarrow Hipergeom(N,K,n)\]
+El modelo hipergeométrico tiene tres parámetros.
+
+\textbf{Propiedades:}
+
+Si \(X \rightarrow Hypergeometric(N,K,n)\) entonces tiene
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\item
+  media \[E(X) = n \frac{K}{N} = np\]
+\item
+  y varianza \[V(X) = np(1-p)\frac{Nn}{N-1}\]
+\end{enumerate}
+
+cuando \(p=\frac{K}{N}\) es la proporción de casos (\(A\)) en una población de tamaño \(N\). Ten en cuenta que cuando \(N \rightarrow \infty\) recuperamos las propiedades binomiales.
+
+Veamos algunas funciones de masa de probabilidad en la familia de modelos paramétricos hipergeométricos:
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-58-1.pdf}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-59-1.pdf}
+
+\textbf{Ejemplo (varicela):}
+
+\begin{itemize}
+\tightlist
+\item
+  ¿Cuál es la probabilidad ver como mucho \(17\) casos de varicela en en una muestra de \(200\) alumnos de una ecuela de \(600\) alumnos donde \(64\) están infectados?
+\end{itemize}
+
+La probabilidad que necesitamos calcular es
+\(P(X \leq 17)=F(17)\)
+
+donde \(X \rightarrow Hypergeometric(N=600,K=64,n=200)\)
+
+en R phyper(17, 64, 600-64, 200)=0.140565
+
+La solución es la adición de las agujas azules en el gráfico.
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-60-1.pdf}
+
+\hypertarget{preguntas-4}{%
+\section{Preguntas}\label{preguntas-4}}
+
+\textbf{1)} ¿Cuál es el valor esperado y la varianza del número de fallos en \(100\) prototipos, cuando la probabilidad de un fallo es de \(0.25\)?
+
+\textbf{\(\qquad\)a:} \(0.25\), \(0.1875\);
+\textbf{\(\qquad\)b:} \(25\), \(0.1875\);
+\textbf{\(\qquad\)c:} \(0.25\), \(18.75\);
+\textbf{\(\qquad\)d:} \(25\), \(18.75\)
+
+\textbf{2)} ¿Qué modelo de probabilidad describe mejor el número de mesas disponibles a la hora de la cena en un restaurante?
+
+\textbf{\(\qquad\)a:} Binomial;
+\textbf{\(\qquad\)b:} Uniforme;
+\textbf{\(\qquad\)c:} Binomial negativo;
+\textbf{\(\qquad\)d:} Hipergeométrico
+
+\textbf{3)} El valor esperado de una distribución Binomial no es
+
+\textbf{\(\qquad\)a:} \(n\) veces el valor esperado de un Bernoulli;
+\textbf{\(\qquad\)b:} el valor esperado de un Hipergeométrico, cuando la población es muy grande;
+\textbf{\(\qquad\)c:} \(np\);
+\textbf{\(\qquad\)d:} el límite de la frecuencia relativa cuando el número de repeticiones es grande
+
+\textbf{4)} Las encuestas de opinión para las elecciones de EE. UU. dan una probabilidad de \(0.55\) de que un votante esté a favor del partido republicano. Si realizamos nuestra propia encuesta y preguntamos a 100 personas al azar en la calle, ¿cómo calcularías la probabilidad de que en nuestra encuesta los demócratas ganen las elecciones?
+
+\textbf{\(\qquad\)a:}pbinom(x=49, n=100, p=0.55)=0.13;
+\textbf{\(\qquad\)b:}1-pbinom(x=49, n=100, p=0.55)=0.86;
+\textbf{\(\qquad\)c:}pbinom(x=51, n=100, p=0.45)=0.90; \textbf{\(\qquad\)d:}1-pbinom(x=51, n=100, p=0.45)=0.095
+
+\textbf{5)} En un examen un alumno cuando no sabe la respuesta elige al azar una de las cuatro respuestas en una pregunta de selección múltiple. Si no sabe \(10\) preguntas, ¿cuál es la probabilidad de que al menos \(5\) preguntas sean correctas?
+
+\textbf{\(\qquad\)a:}dbinom(x=4, n=10, p=0.25); \textbf{\(\qquad\)b:}pbinom(x=4, n=10, p=0.75); \textbf{\(\qquad\)c:}dbinom(x=4, n=10, p=0.75); \textbf{\(\qquad\)d:}1-pbinom(x=4, n=10, p=0.25)
+
+\hypertarget{ejercicios-5}{%
+\section{Ejercicios}\label{ejercicios-5}}
+
+\hypertarget{ejercicio-1-4}{%
+\subsubsection{Ejercicio 1}\label{ejercicio-1-4}}
+
+Si el 25\% de los tornillo producidos por una máquina son defectuosos, determina la probabilidad de que, de
+5 tornillos elegidos al azar
+
+\begin{itemize}
+\tightlist
+\item
+  ningún tornillo sea defectuoso (R:0.2373)
+\item
+  1 tornillo sea defectuoso (R:0.3955)
+\item
+  2 tornillos sean defectuosos (R:0.2636)
+\item
+  como máximo 2 tornillos sean defectuosos (R:0.8964)
+\end{itemize}
+
+\hypertarget{ejercicio-2-4}{%
+\subsubsection{Ejercicio 2}\label{ejercicio-2-4}}
+
+En una población, la probabilidad de que nazca un niño es \(p=0.51\). Considera una familia de 4 hijos.
+
+\begin{itemize}
+\tightlist
+\item
+  ¿Cuál es la probabilidad de que una familia tenga un solo niño? (R: 0.240)
+\item
+  ¿Cuál es la probabilidad de que una familia tenga una sola niña? (R: 0.259)
+\item
+  ¿Cuál es la probabilidad de que una familia tenga solo un niño o solo una niña? (R: 0.4999)
+\item
+  ¿Cuál es la probabilidad de que la familia tenga por mucho dos niños? (R: 0.6723)
+\item
+  ¿Cuál es la probabilidad de que la familia tenga al menos dos niños? (R: 0.7023)
+\item
+  ¿Cuál es el mínimo número de hijos que debe tener una familia para que la probabilidad de tener al menos una niña sea mayor a \(0.75\)?(R:\(n=3 \geq\log(0.25)/\log(0.51)=2.05\))
+\end{itemize}
+
+\hypertarget{ejercicio-3-4}{%
+\subsubsection{Ejercicio 3}\label{ejercicio-3-4}}
+
+Un motor de búsqueda falla al recuperar información con una probabilidad de \(0.1\)
+
+\begin{itemize}
+\item
+  Si nuestro sistema recibe \(50\) solicitudes de búsqueda, ¿cuál es la probabilidad de que el sistema no responda a tres de ellas? (R: 0.1385651)
+\item
+  ¿Cuál es la probabilidad de que el motor complete con éxito \(15\) búsquedas antes del primer fallo? (R:0.020)
+\item
+  Consideramos que un motor de búsqueda funciona suficientemente bien cuando es capaz de encontrar información como mínimo para \(10\) solicitudes por cada \(2\) fallos. ¿Cuál es la probabilidad de que en un ensayo de fiabilidad nuestro buscador sea satisfactorio? (R: 0.659)
 \end{itemize}
 
   \bibliography{book.bib,packages.bib}

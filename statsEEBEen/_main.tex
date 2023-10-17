@@ -4,21 +4,20 @@
 %
 \documentclass[
 ]{book}
-\title{EEBE stats}
-\author{Alejandro Caceres}
-\date{2023-10-01}
-
 \usepackage{amsmath,amssymb}
-\usepackage{lmodern}
 \usepackage{iftex}
 \ifPDFTeX
   \usepackage[T1]{fontenc}
   \usepackage[utf8]{inputenc}
   \usepackage{textcomp} % provide euro and other symbols
 \else % if luatex or xetex
-  \usepackage{unicode-math}
+  \usepackage{unicode-math} % this also loads fontspec
   \defaultfontfeatures{Scale=MatchLowercase}
   \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
 \fi
 % Use upquote if available, for straight quotes in verbatim environments
 \IfFileExists{upquote.sty}{\usepackage{upquote}}{}
@@ -37,14 +36,6 @@
   \KOMAoptions{parskip=half}}
 \makeatother
 \usepackage{xcolor}
-\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
-\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
-\hypersetup{
-  pdftitle={EEBE stats},
-  pdfauthor={Alejandro Caceres},
-  hidelinks,
-  pdfcreator={LaTeX via pandoc}}
-\urlstyle{same} % disable monospaced font for URLs
 \usepackage{longtable,booktabs,array}
 \usepackage{calc} % for calculating minipage widths
 % Correct order of tables after \paragraph or \subparagraph
@@ -78,6 +69,18 @@
 \fi
 \usepackage[]{natbib}
 \bibliographystyle{plainnat}
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={EEBE stats},
+  pdfauthor={Alejandro Caceres},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{EEBE stats}
+\author{Alejandro Caceres}
+\date{2023-10-17}
 
 \begin{document}
 \maketitle
@@ -1112,10 +1115,12 @@ Kolmogorov properties are the basic rules for building a \textbf{probability tab
 The probability table for the throw of a dice
 
 \begin{longtable}[]{@{}cc@{}}
-\toprule
+\toprule\noalign{}
 result & probability \\
-\midrule
+\midrule\noalign{}
 \endhead
+\bottomrule\noalign{}
+\endlastfoot
 \(1\) & 1/6 \\
 \(2\) & 1/6 \\
 \(3\) & 1/6 \\
@@ -1123,7 +1128,6 @@ result & probability \\
 \(5\) & 1/6 \\
 \(6\) & 1/6 \\
 \(P( 1 \cup 2\cup ... \cup 6)\) & 1 \\
-\bottomrule
 \end{longtable}
 
 Let's verify the axioms:
@@ -1275,16 +1279,17 @@ The \textbf{marginals} of \(A\) and \(B\) are the probability of \(A\) and the p
 We can now write the \textbf{probability table} for the joint probabilities
 
 \begin{longtable}[]{@{}cc@{}}
-\toprule
+\toprule\noalign{}
 Result & probability \\
-\midrule
+\midrule\noalign{}
 \endhead
+\bottomrule\noalign{}
+\endlastfoot
 \((A\cap B)\) & \(P(A \cap B)=1/6\) \\
 \((A\cap B')\) & \(P(A \cap B')=2/6\) \\
 \((A'\cap B)\) & \(P(A' \cap B)=2/6\) \\
 \((A'\cap B')\) & \(P(A' \cap B')=1/6\) \\
 sum & \(1\) \\
-\bottomrule
 \end{longtable}
 
 Each result has \(two\) values (one for the feature of type \(A\) and one for type \(B\))
@@ -1295,14 +1300,15 @@ Each result has \(two\) values (one for the feature of type \(A\) and one for ty
 The joint probability table can also be written in a \textbf{contingency table}
 
 \begin{longtable}[]{@{}cccc@{}}
-\toprule
+\toprule\noalign{}
 & \(B\) & \(B'\) & sum \\
-\midrule
+\midrule\noalign{}
 \endhead
+\bottomrule\noalign{}
+\endlastfoot
 \(A\) & \(P(A \cap B )\) & \(P(A\cap B' )\) & \(P(A)\) \\
 \(A'\) & \(P(A'\cap B )\) & \(P(A'\cap B' )\) & \(P(A')\) \\
 sum & \(P(B)\) & \(P(B')\) & 1 \\
-\bottomrule
 \end{longtable}
 
 Where the marginals are the sums in the margins of the table, for example:
@@ -1318,14 +1324,15 @@ Where the marginals are the sums in the margins of the table, for example:
 In our example, the contingency table is
 
 \begin{longtable}[]{@{}cccc@{}}
-\toprule
+\toprule\noalign{}
 & \(B\) & \(B'\) & sum \\
-\midrule
+\midrule\noalign{}
 \endhead
+\bottomrule\noalign{}
+\endlastfoot
 \(A\) & \(1/6\) & \(2/6\) & \(3/6\) \\
 \(A'\) & \(2/6\) & \(1/6\) & \(3/6\) \\
 sum & \(3/6\) & \(3/6\) & \(1\) \\
-\bottomrule
 \end{longtable}
 
 \hypertarget{the-addition-rule}{%
@@ -1365,13 +1372,14 @@ Therefore:
 In the contingency table \(P( A \cup B)\) corresponds to the cells in bold (method 2 above). That is all cells but 1/6 from the bottom right (method 3).
 
 \begin{longtable}[]{@{}ccc@{}}
-\toprule
+\toprule\noalign{}
 & \(B\) & \(B'\) \\
-\midrule
+\midrule\noalign{}
 \endhead
+\bottomrule\noalign{}
+\endlastfoot
 \(A\) & \textbf{1/6} & \textbf{2/6} \\
 \(A'\) & \textbf{2/6} & \emph{1/6} \\
-\bottomrule
 \end{longtable}
 
 \hypertarget{questions-1}{%
@@ -1380,14 +1388,15 @@ In the contingency table \(P( A \cup B)\) corresponds to the cells in bold (meth
 We collect the age and category of 100 athletes in a competition
 
 \begin{longtable}[]{@{}ccc@{}}
-\toprule
+\toprule\noalign{}
 & \(age:junior\) & \(age:senior\) \\
-\midrule
+\midrule\noalign{}
 \endhead
+\bottomrule\noalign{}
+\endlastfoot
 \(category:1st\) & \(14\) & \(12\) \\
 \(category:2nd\) & \(21\) & \(18\) \\
 \(category:3rd\) & \(22\) & \(13\) \\
-\bottomrule
 \end{longtable}
 
 \textbf{1)} What is the estimated probability that an athlete is 2nd category and senior?
@@ -1596,10 +1605,12 @@ We conducted an experiment to find out if observing structural flaws in a materi
 The data would look like
 
 \begin{longtable}[]{@{}ccc@{}}
-\toprule
+\toprule\noalign{}
 Conductor & Structure & conductivity \\
-\midrule
+\midrule\noalign{}
 \endhead
+\bottomrule\noalign{}
+\endlastfoot
 \(c_1\) & flaws & low \\
 \(c_2\) & no flaws & high \\
 \(c_3\) & flaws & low \\
@@ -1608,7 +1619,6 @@ Conductor & Structure & conductivity \\
 \ldots{} & \ldots{} & \ldots{} \\
 \ldots{} & \ldots{} & \ldots{} \\
 \(c_n\) & flaws & high* \\
-\bottomrule
 \end{longtable}
 
 We can expect low conductivity to occur more often with flaws than without flaws if the flaws affect conductivity.
@@ -1616,14 +1626,15 @@ We can expect low conductivity to occur more often with flaws than without flaws
 Let's imagine that from the data we obtain the following contingency table of \textbf{estimated joint probabilities}
 
 \begin{longtable}[]{@{}cccc@{}}
-\toprule
+\toprule\noalign{}
 & with flaws (F) & no flaws (F') & sum \\
-\midrule
+\midrule\noalign{}
 \endhead
+\bottomrule\noalign{}
+\endlastfoot
 low (L) & \(0.005\) & \(0.045\) & \(0.05\) \\
 high (L') & \(0.095\) & \(0.855\) & \(0.95\) \\
 sum & \(0.1\) & \(0.9\) & 1 \\
-\bottomrule
 \end{longtable}
 
 where, for example, the joint probability of \(L\) and \(F\) is
@@ -1671,15 +1682,24 @@ We can prove that conditional probability satisfies the axioms of probability. T
 
 If we divide the columns of the joint probability table by the marginal probabilities of the conditioning effects (\(F\) and \(F'\)), we can write \textbf{a conditional contingency table}
 
-\begin{longtable}[]{@{}ccc@{}}
-\toprule
-& F & F' \\
-\midrule
+\begin{longtable}[]{@{}
+  >{\centering\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3438}}
+  >{\centering\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3438}}
+  >{\centering\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3125}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\centering
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+F
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+F'
+\end{minipage} \\
+\midrule\noalign{}
 \endhead
+\bottomrule\noalign{}
+\endlastfoot
 L & P( L {\textbar{}} F) & P(L {\textbar{}} F') \\
 L' & P(L' {\textbar{}} F) & P(L' {\textbar{}} F') \\
 sum & 1 & 1 \\
-\bottomrule
 \end{longtable}
 
 where the column probabilities sum to one. The first column shows the probabilities of low conductivity or not only of the materials that have flaws (first condition: \(F\)). The second column shows the probabilities only for the materials that have no flaws (second condition: \(F'\)).
@@ -1703,15 +1723,24 @@ Conditional probabilities are the probabilities of the event within each conditi
 
 In our example, the conditional contingency table is
 
-\begin{longtable}[]{@{}ccc@{}}
-\toprule
-& F & F' \\
-\midrule
+\begin{longtable}[]{@{}
+  >{\centering\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3438}}
+  >{\centering\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3438}}
+  >{\centering\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3125}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\centering
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+F
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+F'
+\end{minipage} \\
+\midrule\noalign{}
 \endhead
+\bottomrule\noalign{}
+\endlastfoot
 L & P(L{\textbar{}}F) = 0.05 & P(L{\textbar{}}F')= 0.05 \\
 L' & P(L'{\textbar{}}F)=0.95 & P(L'{\textbar{}}F')=0.95 \\
 sum & 1 & 1 \\
-\bottomrule
 \end{longtable}
 
 We note that the marginal and conditional probabilities are the same!
@@ -1756,14 +1785,15 @@ This third form is a statement about joint probabilities. It says that we can ob
 In our original joint probability table
 
 \begin{longtable}[]{@{}cccc@{}}
-\toprule
+\toprule\noalign{}
 & F & F' & sum \\
-\midrule
+\midrule\noalign{}
 \endhead
+\bottomrule\noalign{}
+\endlastfoot
 L & \(0.005\) & \(0.045\) & \(0.05\) \\
 L' & \(0.095\) & \(0.855\) & \(0.95\) \\
 sum & \(0.1\) & \(0.9\) & 1 \\
-\bottomrule
 \end{longtable}
 
 we can confirm that all the entries of the matrix are the product of the marginal ones. For example: \(P(F)P(L)= P( L \cap F)\) and \(P(L')P(F')=P(L' \cap F')\). Therefore, low conductivity is independent of having a structural flaw.
@@ -1773,29 +1803,31 @@ we can confirm that all the entries of the matrix are the product of the margina
 We want to confirm that the results of tossing two coins are independent. We consider all outcomes to be equally likely:
 
 \begin{longtable}[]{@{}cc@{}}
-\toprule
+\toprule\noalign{}
 result & probability \\
-\midrule
+\midrule\noalign{}
 \endhead
+\bottomrule\noalign{}
+\endlastfoot
 \(( H,T )\) & 1/4 \\
 \(( H,H )\) & 1/4 \\
 \(( T,T )\) & 1/4 \\
 \(( T, H )\) & 1/4 \\
 sum & 1 \\
-\bottomrule
 \end{longtable}
 
 where \(( H,T )\) is, for example, the event of heads on the first coin and tails on the second coin. The contingency table for the joint probabilities is:
 
 \begin{longtable}[]{@{}cccc@{}}
-\toprule
+\toprule\noalign{}
 & H & T & sum \\
-\midrule
+\midrule\noalign{}
 \endhead
+\bottomrule\noalign{}
+\endlastfoot
 H & \(1/4\) & \(1/4\) & \(1/2\) \\
 T & \(1/4\) & \(1/4\) & \(1/2\) \\
 sum & \(1/2\) & \(1/2\) & 1 \\
-\bottomrule
 \end{longtable}
 
 From this table, we see that the probability of getting a head and then a tail is the product of the marginals \(P( H, T)=P(H)*P(T)=1/4\). Therefore, the events of heads in the first coin and tails in the second are independent.
@@ -1852,15 +1884,24 @@ Test:
 
 The \textbf{conditional contingency table} is what we get in a controlled environment (laboratory)
 
-\begin{longtable}[]{@{}ccc@{}}
-\toprule
-& Infection: yes & Infection: No \\
-\midrule
+\begin{longtable}[]{@{}
+  >{\centering\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3438}}
+  >{\centering\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3438}}
+  >{\centering\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3125}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\centering
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+Infection: yes
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+Infection: No
+\end{minipage} \\
+\midrule\noalign{}
 \endhead
+\bottomrule\noalign{}
+\endlastfoot
 Test: positive & P(positive {\textbar{}} yes) & P(positive {\textbar{}} no) \\
 Test: negative & P(negative {\textbar{}} yes) & P(negative {\textbar{}} no) \\
 sum & 1 & 1 \\
-\bottomrule
 \end{longtable}
 
 Let's look at the table entries
@@ -1893,15 +1934,24 @@ Now let's consider a real situation. In the early days of the coronavirus pandem
 
 The conditional contingency table is
 
-\begin{longtable}[]{@{}ccc@{}}
-\toprule
-& Infection: yes & Infection: No \\
-\midrule
+\begin{longtable}[]{@{}
+  >{\centering\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3438}}
+  >{\centering\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3438}}
+  >{\centering\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3125}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\centering
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+Infection: yes
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+Infection: No
+\end{minipage} \\
+\midrule\noalign{}
 \endhead
+\bottomrule\noalign{}
+\endlastfoot
 Test: positive & P(positive{\textbar{}} yes)= 0.7 & P(positive{\textbar{}}no)=0.06 \\
 Test: negative & P(negative{\textbar{}} yes)= 0.3 & P(negative{\textbar{}}no)=0.94 \\
 sum & 1 & 1 \\
-\bottomrule
 \end{longtable}
 
 Therefore, the errors in the diagnostic tests were:
@@ -1928,15 +1978,27 @@ For that:
   We recover the contingency table for joint probabilities, multiplying by the marginal \(P(yes)\) and \(P(no)\) that we need to know
 \end{enumerate}
 
-\begin{longtable}[]{@{}cccc@{}}
-\toprule
-& Infection: yes & Infection: No & sum \\
-\midrule
+\begin{longtable}[]{@{}
+  >{\centering\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2619}}
+  >{\centering\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2619}}
+  >{\centering\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2381}}
+  >{\centering\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2381}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\centering
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+Infection: yes
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+Infection: No
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+sum
+\end{minipage} \\
+\midrule\noalign{}
 \endhead
+\bottomrule\noalign{}
+\endlastfoot
 Test: positive & P( positive {\textbar{}} yes)P(yes) & P(positive {\textbar{}} no)P(no) & P(positive) \\
 Test: negative & P( negative {\textbar{}} yes)P(yes) & P(negative {\textbar{}} no) P(no) & P(negative) \\
 sum & P(yes) & P(no) & 1 \\
-\bottomrule
 \end{longtable}
 
 \begin{enumerate}
@@ -1947,14 +2009,26 @@ sum & P(yes) & P(no) & 1 \\
   We use the definition of conditional probabilities for rows instead of columns (we divide by the marginal of the test results)
 \end{enumerate}
 
-\begin{longtable}[]{@{}cccc@{}}
-\toprule
-& Infection: yes & Infection: No & sum \\
-\midrule
+\begin{longtable}[]{@{}
+  >{\centering\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2619}}
+  >{\centering\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2619}}
+  >{\centering\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2381}}
+  >{\centering\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2381}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\centering
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+Infection: yes
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+Infection: No
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+sum
+\end{minipage} \\
+\midrule\noalign{}
 \endhead
+\bottomrule\noalign{}
+\endlastfoot
 Test: positive & P(yes{\textbar{}}positive) & P(no{\textbar{}}positive) & 1 \\
 Test: negative & P(yes{\textbar{}}negative) & P(no{\textbar{}}negative) & 1 \\
-\bottomrule
 \end{longtable}
 
 For example:
@@ -2049,14 +2123,15 @@ The total probability rule can also be illustrated using a \textbf{conditional} 
 We collect the age and category of 100 athletes in a competition
 
 \begin{longtable}[]{@{}ccc@{}}
-\toprule
+\toprule\noalign{}
 & \(junior\) & \(senior\) \\
-\midrule
+\midrule\noalign{}
 \endhead
+\bottomrule\noalign{}
+\endlastfoot
 \(1st\) & \(14\) & \(12\) \\
 \(2nd\) & \(21\) & \(18\) \\
 \(3rd\) & \(22\) & \(13\) \\
-\bottomrule
 \end{longtable}
 
 \textbf{1)} What is the estimated probability that the athlete is in the third category if the athlete is a junior?
@@ -2092,13 +2167,14 @@ We collect the age and category of 100 athletes in a competition
 A machine is tested for its performance in producing high-quality turning rods. These are the test results
 
 \begin{longtable}[]{@{}ccc@{}}
-\toprule
+\toprule\noalign{}
 & Rounded: yes & Rounded: No \\
-\midrule
+\midrule\noalign{}
 \endhead
+\bottomrule\noalign{}
+\endlastfoot
 smooth surface: yes & 200 & 1 \\
 smooth surface: no & 4 & 2 \\
-\bottomrule
 \end{longtable}
 
 \begin{itemize}
@@ -2137,25 +2213,27 @@ Two machines are tested for their performance in producing high-quality turning 
 \textbf{Machine 1}
 
 \begin{longtable}[]{@{}ccc@{}}
-\toprule
+\toprule\noalign{}
 & Rounded: yes & Rounded: No \\
-\midrule
+\midrule\noalign{}
 \endhead
+\bottomrule\noalign{}
+\endlastfoot
 smooth surface: yes & 200 & 1 \\
 smooth surface: no & 4 & 2 \\
-\bottomrule
 \end{longtable}
 
 \textbf{Machine 2}
 
 \begin{longtable}[]{@{}ccc@{}}
-\toprule
+\toprule\noalign{}
 & Rounded: yes & Rounded: No \\
-\midrule
+\midrule\noalign{}
 \endhead
+\bottomrule\noalign{}
+\endlastfoot
 smooth surface: yes & 145 & 4 \\
 smooth surface: no & 8 & 6 \\
-\bottomrule
 \end{longtable}
 
 \begin{itemize}
@@ -2327,17 +2405,18 @@ We are interested in assigning probabilities to the events of observing a partic
 For instance for the dice we will write the probability table as
 
 \begin{longtable}[]{@{}cc@{}}
-\toprule
+\toprule\noalign{}
 \(X\) & Probability \\
-\midrule
+\midrule\noalign{}
 \endhead
+\bottomrule\noalign{}
+\endlastfoot
 \(1\) & \(P(X=1)=1/6\) \\
 \(2\) & \(P(X=2)=1/6\) \\
 \(3\) & \(P(X=3)=1/6\) \\
 \(4\) & \(P(X=4)=1/6\) \\
 \(5\) & \(P(X=5)=1/6\) \\
 \(6\) & \(P(X=6)=1/6\) \\
-\bottomrule
 \end{longtable}
 
 where we make explicit the events that the variable takes a given outcome \(X=x\).
@@ -2420,31 +2499,33 @@ And consider performing the following random \textbf{experiment:} Take one ball 
 From the classical probability, we can write the probability table, for which we do not need to run any experiment
 
 \begin{longtable}[]{@{}cc@{}}
-\toprule
+\toprule\noalign{}
 \(X\) & \(P(X=x)\) \\
-\midrule
+\midrule\noalign{}
 \endhead
+\bottomrule\noalign{}
+\endlastfoot
 \(-2\) & \(1/8=0.125\) \\
 \(-1\) & \(2/8=0.25\) \\
 \(0\) & \(2/8=0.25\) \\
 \(1\) & \(2/8=0.25\) \\
 \(2\) & \(1/8=0.125\) \\
-\bottomrule
 \end{longtable}
 
 Now, let's perform the experiment \(30\) times and write the frequency table
 
 \begin{longtable}[]{@{}cc@{}}
-\toprule
+\toprule\noalign{}
 \(X\) & \(f_i\) \\
-\midrule
+\midrule\noalign{}
 \endhead
+\bottomrule\noalign{}
+\endlastfoot
 \(-2\) & \(0.132\) \\
 \(-1\) & \(0.262\) \\
 \(0\) & \(0.240\) \\
 \(1\) & \(0.248\) \\
 \(2\) & \(0.118\) \\
-\bottomrule
 \end{longtable}
 
 The frequentist probability tells us
@@ -2486,16 +2567,17 @@ From the definition we have
 What is the mean of \(X\) if its probability mass function \(f(x)\) is given by
 
 \begin{longtable}[]{@{}cc@{}}
-\toprule
+\toprule\noalign{}
 \(X\) & \(f(x)=P(X=x)\) \\
-\midrule
+\midrule\noalign{}
 \endhead
+\bottomrule\noalign{}
+\endlastfoot
 \(0\) & \(1/16\) \\
 \(1\) & \(4/16\) \\
 \(2\) & \(6/16\) \\
 \(3\) & \(4/16\) \\
 \(4\) & \(1/16\) \\
-\bottomrule
 \end{longtable}
 
 \includegraphics{_main_files/figure-latex/unnamed-chunk-39-1.pdf}
@@ -2525,16 +2607,17 @@ Teh variance is the spread of the \textbf{probabilities} about the mean: The mom
 What is the variance of \(X\) if its probability mass function \(f(x)\) is given by
 
 \begin{longtable}[]{@{}cc@{}}
-\toprule
+\toprule\noalign{}
 \(X\) & \(f(x)=P(X=x)\) \\
-\midrule
+\midrule\noalign{}
 \endhead
+\bottomrule\noalign{}
+\endlastfoot
 \(0\) & \(1/16\) \\
 \(1\) & \(4/16\) \\
 \(2\) & \(6/16\) \\
 \(3\) & \(4/16\) \\
 \(4\) & \(1/16\) \\
-\bottomrule
 \end{longtable}
 
 \[\sigma^2 =V(X)=\sum_{i=1}^m (x_i-\mu)^2 f(x_i)\]
@@ -2572,16 +2655,17 @@ This is an important definition that allows us to prove three frequently used pr
 What is the variance \(X\) about the origin, \(E(X^2)\), if its probability mass function \(f(x)\) is given by
 
 \begin{longtable}[]{@{}cc@{}}
-\toprule
+\toprule\noalign{}
 \(X\) & \(f(x)=P(X=x)\) \\
-\midrule
+\midrule\noalign{}
 \endhead
+\bottomrule\noalign{}
+\endlastfoot
 \(0\) & \(1/16\) \\
 \(1\) & \(4/16\) \\
 \(2\) & \(6/16\) \\
 \(3\) & \(4/16\) \\
 \(4\) & \(1/16\) \\
-\bottomrule
 \end{longtable}
 
 \[E(X^2) =\sum_{i=1}^m x_i^2 f(x_i)\]
@@ -2621,16 +2705,17 @@ That is the accumulated probability up to a given value \(x\)
 For the probability mass function:
 
 \begin{longtable}[]{@{}cc@{}}
-\toprule
+\toprule\noalign{}
 \(X\) & \(f(x)=P(X=x)\) \\
-\midrule
+\midrule\noalign{}
 \endhead
+\bottomrule\noalign{}
+\endlastfoot
 \(0\) & \(1/16\) \\
 \(1\) & \(4/16\) \\
 \(2\) & \(6/16\) \\
 \(3\) & \(4/16\) \\
 \(4\) & \(1/16\) \\
-\bottomrule
 \end{longtable}
 
 The probability distribution is:
@@ -2725,10 +2810,10 @@ In general, we define the \textbf{q-quantile} as the value \(x_{p}\) \textbf{und
 \includegraphics{./figures/randomvarsum.JPG}
 
 \begin{longtable}[]{@{}
-  >{\centering\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.43}}
-  >{\centering\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.30}}
-  >{\centering\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.26}}@{}}
-\toprule
+  >{\centering\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.4348}}
+  >{\centering\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3043}}
+  >{\centering\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.2609}}@{}}
+\toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\centering
 quantity names
 \end{minipage} & \begin{minipage}[b]{\linewidth}\centering
@@ -2736,15 +2821,16 @@ model (unobserved)
 \end{minipage} & \begin{minipage}[b]{\linewidth}\centering
 data (observed)
 \end{minipage} \\
-\midrule
+\midrule\noalign{}
 \endhead
+\bottomrule\noalign{}
+\endlastfoot
 probability mass function // relative frequency & \(f(x_i)=P(X=x_i)\) & \(f_i=\frac{n_i}{N}\) \\
 probability distribution // cumulative relative frequency & \(F(x_i)=P(X \leq x_i)\) & \(F_i=\sum_{k\leq i} f_k\) \\
 mean // average & \(\mu=E(X)=\sum_{i=1}^M x_i f(x_i)\) & \(\bar{x}=\sum_{j=1}^N x_j/N\) \\
 variance // sample variance & \(\sigma^2=V(X)=\sum_{i=1}^M (x_i-\mu)^2 f(x_i)\) & \(s^2=\sum_{j=1}^N (x_j-\bar{x})^2/(N-1)\) \\
 standard deviation // sample sd & \(\sigma=\sqrt{V(X)}\) & \(s\) \\
 variance about the origin // 2nd sample moment & \(E(X^2)=\sum_{i=1}^M x_i^2 f(x_i)\) & \(m_2= \sum_{j=1}^N x_j^2/n\) \\
-\bottomrule
 \end{longtable}
 
 Note that:
@@ -2812,39 +2898,19 @@ Properties:
 \hypertarget{exercise-1-2}{%
 \subsubsection{Exercise 1}\label{exercise-1-2}}
 
-Consider the following random variable \(X\) over the outcomes
-
-\begin{longtable}[]{@{}cc@{}}
-\toprule
-outcome & \(X\) \\
-\midrule
-\endhead
-\(a\) & 0 \\
-\(b\) & 0 \\
-\(c\) & 1.5 \\
-\(d\) & 1.5 \\
-\(e\) & 2 \\
-\(f\) & 3 \\
-\bottomrule
-\end{longtable}
+We place ballots with letters from a to f in an urn. Consider the drawing that gives \(0\) euros to the first two letters of the alphabet, \(1.5\) euros to the next two, and \(2\) and \(3\) euros to the following ones.
 
 \begin{enumerate}
 \def\labelenumi{\alph{enumi})}
 \item
-  If each outcome is equally probable then what is the probability mass function of \(x\)?
+  What are the probability mass function and the probability distribution for the money prizes in the game?
 \item
-  Find:
+  What is the expected value of the prize? (R: 1.3)
+\item
+  What is the variance of the prize? (R: 1.13)
+\item
+  What is the probability of winning 2 or more euros? (R: 2/6)
 \end{enumerate}
-
-\begin{itemize}
-\tightlist
-\item
-  \(P(X>3)\)
-\item
-  \(P(X=0\, \cup \, X=2 )\)
-\item
-  \(P(X \leq 2)\)
-\end{itemize}
 
 \hypertarget{exercise-2-2}{%
 \subsubsection{Exercise 2}\label{exercise-2-2}}
@@ -2852,17 +2918,18 @@ outcome & \(X\) \\
 Given the probability mass function
 
 \begin{longtable}[]{@{}cc@{}}
-\toprule
+\toprule\noalign{}
 \(x\) & \(f(x)=P(X=x)\) \\
-\midrule
+\midrule\noalign{}
 \endhead
+\bottomrule\noalign{}
+\endlastfoot
 10 & 0.1 \\
 12 & 0.3 \\
 14 & 0.25 \\
 15 & 0.15 \\
 17 & ? \\
 20 & 0.15 \\
-\bottomrule
 \end{longtable}
 
 \begin{itemize}
@@ -2926,6 +2993,1395 @@ Consider that we have a totally noisy channel, that is any outcome of three pixe
   Sketch the probability distribution
 \item
   What is the probability of transmitting at least 1 error? (R:7/8)
+\end{itemize}
+
+\hypertarget{continous-random-variables}{%
+\chapter{Continous Random Variables}\label{continous-random-variables}}
+
+\hypertarget{objective-2}{%
+\section{Objective}\label{objective-2}}
+
+In this chapter we will study continous random variables.
+
+We will define the probability density function, its mean and variance and, similar to discrete random variables, we will define the probability distribution function.
+
+\hypertarget{continuous-random-variables}{%
+\section{Continuous random variables}\label{continuous-random-variables}}
+
+In the last chapter we used the probabilities of discrete random variables to define the probability mass function \[f(x)=P(X= x)\]
+
+Where the probability that the random variable takes the value \(x\) is understood as the value of its relative frequency, when the number of repetitions of the random experiment tends to infinity.
+
+When we talked about continuous data, we saw that we had to transform them into discrete variables (bins) to produce relative frequency tables or histograms. Let's see how to define the probabilities of continuous variables taking these partitions into account.
+
+\textbf{Example (misophonia)}
+
+Let us reconsider the angle of convexity of patients with misophonia (Section 2.21). The angle of convexity of 123 patients was measured. We understood each measurement as the result of a random experiment that we repeated 123 times and that we could describe in a frequency table or in a histogram.
+
+To do this, we redefine the results as small regular intervals (bins) and calculate the relative frequency of each interval.
+
+\begin{verbatim}
+##        outcome ni         fi
+## 1 [-1.02,3.46]  8 0.06504065
+## 2  (3.46,7.92] 51 0.41463415
+## 3  (7.92,12.4] 26 0.21138211
+## 4  (12.4,16.8] 20 0.16260163
+## 5  (16.8,21.3] 18 0.14634146
+\end{verbatim}
+
+\hypertarget{relative-frequencies-3}{%
+\section{relative frequencies}\label{relative-frequencies-3}}
+
+Relative frequencies for the intervals are the probabilities when \(N \rightarrow \infty\)
+
+\[f_i=\frac{n_i}{N} \rightarrow P(x_i \leq X  \leq x_i + \Delta x)\]
+
+The probability depends now on the length of the bins \(\Delta x\). If we make the bins smaller and smaller then the frequencies get smaller and therefore
+
+\[P(x_i \leq X  \leq x_i + \Delta x) \rightarrow 0\] when \(\Delta x \rightarrow 0\), because \(n_i \rightarrow 0\)
+
+Let's see how the frequencies get smaller when we divide the range of \(X\) into \(20\) bins
+
+\begin{verbatim}
+##          outcome ni         fi
+## 1  [-1.02,0.115]  2 0.01626016
+## 2   (0.115,1.23]  0 0.00000000
+## 3    (1.23,2.34]  3 0.02439024
+## 4    (2.34,3.46]  3 0.02439024
+## 5    (3.46,4.58]  2 0.01626016
+## 6    (4.58,5.69]  4 0.03252033
+## 7     (5.69,6.8] 11 0.08943089
+## 8     (6.8,7.92] 34 0.27642276
+## 9    (7.92,9.04] 12 0.09756098
+## 10   (9.04,10.2]  4 0.03252033
+## 11   (10.2,11.3]  3 0.02439024
+## 12   (11.3,12.4]  7 0.05691057
+## 13   (12.4,13.5]  2 0.01626016
+## 14   (13.5,14.6]  6 0.04878049
+## 15   (14.6,15.7]  4 0.03252033
+## 16   (15.7,16.8]  8 0.06504065
+## 17     (16.8,18]  4 0.03252033
+## 18     (18,19.1]  9 0.07317073
+## 19   (19.1,20.2]  3 0.02439024
+## 20   (20.2,21.3]  2 0.01626016
+\end{verbatim}
+
+\hypertarget{probability-density-function}{%
+\section{probability density function}\label{probability-density-function}}
+
+We define a quantity at a point \(x\) that is the amount of probability per unit distance that we would find in an \textbf{infinitesimal} bin \(dx\) at \(x\)
+
+\[f(x)= \frac{P(x\leq X \leq x+dx)}{dx}\]
+
+\(f(x)\) is called the probability \textbf{density} function.
+
+Therefore, the probability of observing \(x\) between \(x\) and \(x+dx\)
+is given by
+
+\[P(x\leq X \leq x+dx)= f(x) dx\]
+
+\textbf{Definition}
+
+For a continuous random variable \(X\), a \textbf{probability density} function is such that
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\tightlist
+\item
+  The function is positive:
+\end{enumerate}
+
+\[f(x) \geq 0\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  The probability of observing \textbf{any} value is 1:
+\end{enumerate}
+
+\[\int_{-\infty}^{\infty} f(x) dx = 1\]
+3) The probability of observing a value within an interval is the \textbf{area under the curve}:
+
+\[P(a\leq X \leq b)=\int_{a}^{b} f(x) dx\]
+
+The properties make sure that \(f(x)dx\) satisfy Kolmogorov's properties of a probability measure.
+
+The probability density function is a step forward in the abstraction of probabilities: we add the continuous limit
+
+\[dx \rightarrow 0\]
+
+All the properties of probabilities are translated in terms of densities
+
+\[\sum \rightarrow \int\]
+
+Probability densities are mathematical quantities that do not necessarily represent random experiments.
+
+A fundamental interest in statistics is to describe the densities that describe our particular random experiment.
+
+\hypertarget{total-area-under-the-curve}{%
+\section{Total area under the curve}\label{total-area-under-the-curve}}
+
+\textbf{Example (raindrop fall)}
+
+take the \textbf{probability density} that may describe the random variable that measures where a raindrop falls in a rain gutter of length \(100cm\).
+
+\[
+    f(x)= 
+\begin{cases}
+    \frac{1}{100},& \text{if } x\in (0,100)\\
+    0,& otherwise 
+\end{cases}
+\]
+
+Let us verify that the function satisfies the three properties of a probability density.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\item
+  it is evident from the definition that \(f(x) \geq 0\)
+\item
+  The probability of observing \textbf{anything} is the total \textbf{area under the curve}
+\end{enumerate}
+
+\(P(-\infty\leq X \leq \infty)= \int_{-\infty}^{\infty} f(x) dx = 100*0.01= 1\)
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-43-1.pdf}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  The probability of observing \(x\) in an interval is the \textbf{area under the curve} within the interval
+\end{enumerate}
+
+\begin{itemize}
+\tightlist
+\item
+  \(P(20 \leq X \leq 60) = \int_{20}^{60} f(x) dx = (60-20)*0.01=0.4\)
+\end{itemize}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-44-1.pdf}
+
+\hypertarget{probabilities-of-continous-variables}{%
+\section{Probabilities of continous variables}\label{probabilities-of-continous-variables}}
+
+For continuous variables, we compute the probability that the variable is in a given interval. That is
+
+\[P(a \leq X \leq b)\]
+We saw that for continuous variables, the probability that the experiment gives us a particular real number is zero: \(P(X=a)=0\)
+
+The \(P(a \leq X \leq b)\) is the area under the curve of \(f(x)\) between \(a\) and \(b\)
+
+\begin{itemize}
+\tightlist
+\item
+  \(P(a \leq X \leq b) = \int_{a}^{b} f(x) dx\)
+\end{itemize}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-45-1.pdf}
+
+\hypertarget{probability-distribution-1}{%
+\section{Probability distribution}\label{probability-distribution-1}}
+
+The \textbf{probability distribution} \(F(c)\) defined as the accumulation of probability up to the outcome \(C\)
+
+\(F(c) = P(X \leq c)\)
+
+can be used to compute the probability \(P(a \leq X \leq b)\).
+
+Consider:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\tightlist
+\item
+  that the probability accumulated up to \(b\) is given by
+\end{enumerate}
+
+\begin{itemize}
+\tightlist
+\item
+  \(F(b) = P(X \leq b)=\int_{-\infty}^bf(x)dx\)
+\end{itemize}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-46-1.pdf}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  that the probability accumulated up to \(a\) is
+\end{enumerate}
+
+\begin{itemize}
+\tightlist
+\item
+  \(F(a) = P(X \leq a)\)
+\end{itemize}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-47-1.pdf}
+
+Then the probability between \(a\) and \(b\) is given by the difference in the value of the probability distribution
+
+\begin{itemize}
+\tightlist
+\item
+  \(P(a\leq X \leq b) = \int_a^b f(x)dx=F(b)-F(a)\)
+\end{itemize}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-48-1.pdf}
+
+\textbf{Definition}
+
+The \textbf{probability distribution} of a continuous random variable is defined as
+
+\[F(a)=P(X\leq a) =\int_{-\infty} ^a f(x)dx\]
+
+and have the properties:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\tightlist
+\item
+  It is between \(0\) and \(1\):
+\end{enumerate}
+
+\[F(-\infty)= 0 \,\, and \,\,F(\infty)=1\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  It always increases:
+\end{enumerate}
+
+\[F(a)\leq F(b)\]
+
+if \(a\leq b\)
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  It can be used to compute probabilities:
+\end{enumerate}
+
+\[P(a \leq X \leq b)=F(b)-F(a)\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\setcounter{enumi}{3}
+\tightlist
+\item
+  It recovers the probability density:
+\end{enumerate}
+
+\[f(x)=\frac{dF(x)}{dx}\]
+
+We use \textbf{probability distributions} to \textbf{compute probabilities} of a random variable within intervals, and its derivative is the probability density function.
+
+\textbf{Example (raindrop fall)}
+
+For the uniform density function:
+
+\[
+    f(x)= 
+\begin{cases}
+    \frac{1}{100},& \text{if } x\in (0,100)\\
+    0,& otherwise 
+\end{cases}
+\]
+
+We find that the probability distribution is
+
+\[
+    F(a)= 
+\begin{cases}
+    0,& a \leq 0 \\
+    \frac{a}{100},& \text{if } a\in (0,100)\\
+    1, & 100 \leq a \\
+    \\
+\end{cases}
+\]
+
+\newpage
+
+\hypertarget{probability-plots}{%
+\section{Probability plots}\label{probability-plots}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\tightlist
+\item
+  We can plot the the probability of a random variable in an interval as the \emph{area} under the \textbf{density} curve. For instance
+\end{enumerate}
+
+\[P(20<X<60)\]
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-49-1.pdf}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  Equivalenty, we can plot the probability \(P(20<X<60)\) as the \emph{difference} in \textbf{distribution} values
+\end{enumerate}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-50-1.pdf}
+
+\hypertarget{mean}{%
+\section{Mean}\label{mean}}
+
+As in the discrete case, the \textbf{mean} measures the center of mass of probabilities
+
+\textbf{Definition}
+
+Suppose \(X\) is a continuous random variable with probability \textbf{density} function \(f(x)\). The mean or expected value of \(X\), denoted as \(\mu\) or \(E(X)\), is
+
+\[\mu=E(X)=\int_{-\infty}^\infty x f(x) dx\]
+
+It is the continuous version of the center of mass.
+
+\textbf{Example (raindrop fall)}
+
+The random variable with probability density
+
+\[
+    f(x)= 
+\begin{cases}
+    \frac{1}{100},& \text{if } x\in (0,100)\\
+    0,& otherwise 
+\end{cases}
+\]
+
+Has an expected value at
+
+\[E(X)=50\]
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-51-1.pdf}
+
+\hypertarget{variance-1}{%
+\section{Variance}\label{variance-1}}
+
+As in the discrete case, the variance measures the dispersion of probabilities about the mean
+
+\textbf{Definition}
+
+Suppose \(X\) is a continuous random variable with probability density function \(f(x)\). The variance of \(X\), denoted as \(\sigma^2\) or \(V(X)\), is
+
+\[\sigma^2=V(X)=\int_{-\infty}^\infty (x-\mu)^2 f(x) dx\]
+
+It is the continuous version of the moment of inertia.
+
+\hypertarget{functions-of-x}{%
+\section{\texorpdfstring{Functions of \(X\)}{Functions of X}}\label{functions-of-x}}
+
+In many occasions, we will be interested in outcomes that are function of the random variables. Perhaps, we are interested in the square of the elongation of a spring, or on the square root of the temperature of an engine.
+
+\textbf{Definition}
+
+For any function \(h\) of a random variable \(X\), with mass function \(f(x)\), its expected value is given by
+
+\[E[h(X)]= \int_{-\infty}^{\infty} h(x) f(x)dx\]
+
+From this definition we recover the same properties as in the discrete case
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\item
+  The mean of a linear function is the linear function fo the mean: \[E(a\times X +b)= a\times E(X) +b\] for \(a\) and \(b\) scalars.
+\item
+  The variance of a linear function of \(X\) is:\[V(a\times X +b)= a^2\times V(X)\]
+\item
+  The variance about the origin is the variance about the mean plus the mean squared: \[E(X^2)=V(X)+E(X)^2\]
+\end{enumerate}
+
+\hypertarget{exercises-4}{%
+\section{Exercises}\label{exercises-4}}
+
+\hypertarget{exercise-1-3}{%
+\subsubsection{Exercise 1}\label{exercise-1-3}}
+
+For the probability density
+
+\[
+    f(x)= 
+\begin{cases}
+    \frac{1}{100},& \text{if } x\in (0,100)\\
+    0,& otherwise 
+\end{cases}
+\]
+
+\begin{itemize}
+\tightlist
+\item
+  compute the mean (R:50)
+\item
+  compute variance using \(E(X^2)=V(X)+E(X)^2\) (R:100\^{}2/12)
+\item
+  compute \(P(\mu-\sigma\leq X \leq \mu+\sigma)\) (R: 0.57)
+\item
+  What are the first and third quartiles? (R: 25; 75)
+\end{itemize}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-52-1.pdf}
+
+\hypertarget{exercise-2-3}{%
+\subsubsection{Exercise 2}\label{exercise-2-3}}
+
+Given
+\[
+    f(x)= 
+\begin{cases}
+0, & x < 0 \\
+ax, & x \in [0,3] \\
+b, & x \in (3,5) \\
+\frac{b}{3}(8-x),& x \in [5,8]\\
+0, & x > 8 \\
+\end{cases}
+\]
+
+\begin{itemize}
+\item
+  What are the values of \(a\) and \(b\) such that \(f(x)\) is a continous probability density function? (R: 1/15; 1/5)
+\item
+  what is the mean of \(X\)? (R:4)
+\end{itemize}
+
+\hypertarget{exercise-3-3}{%
+\subsubsection{Exercise 3}\label{exercise-3-3}}
+
+For the probability density
+
+\[
+    f(x)= 
+\begin{cases}
+    \lambda e^{-\lambda x},& \text{if } x \geq 0\\
+    0,& otherwise 
+\end{cases}
+\]
+
+\begin{itemize}
+\tightlist
+\item
+  Confirm that this is a probability density
+\item
+  Compute the mean (R: 1/\(\lambda\))
+\item
+  Compute the expected value of \(X^2\) (R: 2/\(\lambda^2\))
+\item
+  Compute variance (R: 1/\(\lambda^2\))
+\item
+  Find the probability distribution \(F(a)\) (R: \(1-exp(-\lambda a)\))
+\item
+  Find the median (R: \(\log{2}\)/\(\lambda\))
+\end{itemize}
+
+\hypertarget{exercise-4-2}{%
+\subsubsection{Exercise 4}\label{exercise-4-2}}
+
+Given the cumulative distribution for a random variable X
+
+\[
+    F(x)= 
+\begin{cases}
+0, & x  < -1 \\
+\frac{1}{80}(17+16x-x^2),& x \in [-1,7)\\
+1,& x \geq 7\\
+\end{cases}
+\]
+
+compute:
+
+\begin{itemize}
+\tightlist
+\item
+  \(P(X>0)\) (R:63/80)
+\item
+  \(E(X)\) (R:1.93)
+\item
+  \(P(X>0|X<2)\) (R:28/45)
+\end{itemize}
+
+\hypertarget{discrete-probability-models}{%
+\chapter{Discrete Probability Models}\label{discrete-probability-models}}
+
+\hypertarget{objective-3}{%
+\section{Objective}\label{objective-3}}
+
+In this chapter we will see some probability mass functions that are used to describe common random experiments.
+
+We will introduce the concept of parameter and thus parametric models.
+
+In particular, we will discuss the uniform and Bernoulli probability functions and how they are used to derive the binomial and negative binomial probability functions.
+
+\hypertarget{probability-mass-function}{%
+\section{Probability mass function}\label{probability-mass-function}}
+
+Let us remenber that a probability mass function of a \textbf{discrete random variable} \(X\) with possible values \(x_1 , x_2 , .. , x_M\) is \textbf{any function} such that
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\tightlist
+\item
+  It Allows us to compute probabilities for all outcomes
+\end{enumerate}
+
+\[f(x_i)=P(X=x_i)\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  It is always positive:
+\end{enumerate}
+
+\[f(x_i)\geq 0\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  The probability of of obtaining anything in the random experiment is \(1\)
+\end{enumerate}
+
+\[\sum_{i=1}^M f(x_i)=1\]
+
+We studied two important \textbf{properties:}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\tightlist
+\item
+  The mean as a measure of central tendency:
+\end{enumerate}
+
+\[E(X)= \sum_{i=1}^M x_i f(x_i)\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  The variance as a measure of dispersion:
+\end{enumerate}
+
+\[V(X)= \sum_{i=1}^M (x_i-\mu)^2 f(x_i)\]
+
+\hypertarget{probability-model}{%
+\section{Probability model}\label{probability-model}}
+
+A \textbf{probability model} is a probability mass function that may represent the probabilities of a random experiment.
+
+\textbf{Examples:}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\tightlist
+\item
+  The probability mass function defined by
+\end{enumerate}
+
+\begin{longtable}[]{@{}cc@{}}
+\toprule\noalign{}
+\(X\) & \(f(x)\) \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\(-2\) & \(1/8\) \\
+\(-1\) & \(2/8\) \\
+\(0\) & \(2/8\) \\
+\(1\) & \(2/8\) \\
+\(2\) & \(1/8\) \\
+\end{longtable}
+
+Represents the probability of drawing \textbf{one} ball from an urn where there are two balls with labels: \(-1, 0, 1\) and one ball with labels: \(-2, 2\).
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  \(f(x)=P(X=x)=1/6\) represents the probability of the outcomes of \textbf{one} throw of a dice.
+\end{enumerate}
+
+\hypertarget{parametric-models}{%
+\section{Parametric models}\label{parametric-models}}
+
+When we have a random experiment with \(M\) possible outcomes, we need to find \(M\) numbers to determine the probability mass function. As in the previous example 1, we needed \(5\) values in the column \(f(x)\) of the probability table.
+
+However, \textbf{in many cases}, we can formulate probability functions \(f(x)\) that depend on \textbf{very few} numbers only. As in the previous example 2, we only needed to know how many possible outcomes the throw of a dice has.
+
+\textbf{Example (classical probability):}
+
+A random experiment with \(M\) equally likely outcomes has a probability mass function:
+\[f(x)=P(X=x)=1/M\]
+
+We only need to know \(M\).
+
+The numbers we \textbf{need to know} to fully determine a probability function are called \textbf{parameters}.
+
+\hypertarget{uniform-distribution-one-parameter}{%
+\section{Uniform distribution (one parameter)}\label{uniform-distribution-one-parameter}}
+
+The previous example is the classical interpretation of probability, and defines our first parametric model.
+
+\textbf{Definition}
+
+A random variable \(X\) with outcomes \(\{1,...M\}\) has a discrete \textbf{uniform distribution} if all its \(M\) outcomes have the same probability
+
+\[f(x)=\frac{1}{M}\]
+
+\(M\) is the natural parameter of the model. Once we define \(M\) for an experiment, we choose a particular probability mass function. The function above is really a family of functions that depend on \(M\): \(f(x; M)\).
+
+The mean and variance of a variable that follows a uniform distribution are:
+
+\[E(X)= \frac{M+1}{2}\]
+
+and
+
+\[V(X)= \frac{M^2-1}{12}\]
+
+Note: \(E(X)\) and \(V(X)\) are also \textbf{parameters}. If we know any of them then we can fully determine the distribution. For instance:
+
+\[f(x)=\frac{1}{2E(X)-1}\]
+Let's look at some probability mass functions in the family of uniform parametric models:
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-53-1.pdf}
+
+\hypertarget{uniform-distribution-two-parameters}{%
+\section{Uniform distribution (two parameters)}\label{uniform-distribution-two-parameters}}
+
+Let's introduce a new \textbf{uniform} probability model with \textbf{two parameters}: The minimum and maximum outcomes.
+
+If the random variable takes values in \(\{a, a+1, ...b\}\), where \(a\) and \(b\) are integers and all the outcomes are equally probable then
+
+\[f(x)=\frac{1}{b-a+1}\]
+
+as \(M=b-a+1\).
+
+We then say that \(X\) distributes uniformly between \(a\) and \(b\) and write
+
+\[X \rightarrow Unif(a,b)\]
+
+\textbf{Properties:}
+
+If \(X\) distributes uniformly between \(a\) and \(b\)
+
+\[X \rightarrow Unif(a,b)\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\tightlist
+\item
+  Its mean is
+\end{enumerate}
+
+\[E(X)= \frac{b+a}{2}\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  Its variance is
+\end{enumerate}
+
+\[V(X)= \frac{(b-a+1)^2-1}{12}\]
+
+To prove this change variables \(X=Y+a-1\), \(y \in \{1,...M\}\).
+
+\textbf{Probability mass functions}
+
+Let's look at some probability mass functions in the family of uniform parametric models:
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-54-1.pdf}
+
+\textbf{Example (school classes):}
+
+What is the probability of observing a child of a particular age in a primary school (if all classes have the same amount of children)?
+
+From the set up of the experiment we know: \(a=6\) and \(b=11\) then
+
+\[X \rightarrow Unif(a=6, b=11)\] that is
+
+\[f(x)=\frac{1}{6}\] for \(x\in \{6,7,8,9,10,11\}\), and \(0\) otherwise.
+
+The mean and variance for this probability mass function is:
+
+\begin{itemize}
+\tightlist
+\item
+  \(E(X)=8.5\)
+\item
+  \(V(X)=2.916667\)
+\end{itemize}
+
+Remember that
+
+\begin{itemize}
+\item
+  The expected value is the \textbf{mean} \(\mu=8.5\)
+\item
+  The \textbf{standard deviation} \(\sigma=1.707825\) is the average distance from the mean and is computed from the square root of the variance.
+\end{itemize}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-55-1.pdf}
+
+\textbf{Parameters and Models:}
+
+A \textbf{model} is a particular function \(f(x)\) that \textbf{describes} our experiment.
+
+If the model is a \textbf{known} function that depends on a few parameters then changing the value of the parameters we produce a \textbf{family of models}: \(f(x; a,b)\).
+
+Knowledge of \(f(x)\) is reduced to the knowledge of the value of the parameters \(a\), \(b\).
+
+Ideally, the model and the parameters are \textbf{interpretable}.
+
+In our example, \(a\) represents the the minimum age at school and \(b\) the maximum age. They can be considered as the \textbf{physical properties} of the experiment.
+
+\hypertarget{bernoulli-trial}{%
+\section{Bernoulli trial}\label{bernoulli-trial}}
+
+Let's try to advance from the equal probability case and suppose a model with only two possible outcomes (\(A\) and \(B\)) that have \textbf{unequal} probabilities
+
+\textbf{Examples:}
+
+\begin{itemize}
+\item
+  Writing down the sex of a patient who goes into an emergency room of a hospital (\(A:male\) and \(B:female\)).
+\item
+  Recording whether a manufactured machine is defective or not (\(A:defective\) and \(B:not \,\, defective\)).
+\item
+  Hitting a target (\(A:success\) and \(B:failure\)).
+\item
+  Transmitting one pixel correctly (\(A:yes\) and \(B:no\)).
+\end{itemize}
+
+In these examples, the probability of outcome \(A\) is usually \textbf{unknown}.
+
+\textbf{Probability model:}
+
+We will introduce the probability of an outcome (\(A\)) as the \textbf{parameter} of the model. The model can be written in different forms
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\tightlist
+\item
+  As a probability table:
+\end{enumerate}
+
+\begin{longtable}[]{@{}cc@{}}
+\toprule\noalign{}
+\(Outcome\) & \(P_i\) \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\(A\) & \(p\) \\
+\(B\) & \(1-p\) \\
+\end{longtable}
+
+\begin{itemize}
+\tightlist
+\item
+  \(i \in \{A,B\}\)
+\item
+  outcome A (success): has probability \(p\) (parameter)
+\item
+  outcome B (failure): has a probability \(1-p\)
+\end{itemize}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  As a probability mass function of the random variable \(K\) taking values \(\{0, 1\}\) for \(B\) and \(A\), respectively.
+\end{enumerate}
+
+\[
+    f(k)= 
+\begin{cases}
+    1-p,&  k=0\, (event\, B)\\
+    p,& k=1\, (event\, A) 
+\end{cases}
+\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  As a concise probability mass function
+\end{enumerate}
+
+\[f(k; p)=p^k(1-p)^{1-k} \]
+
+for \(k=(0,1)\).
+
+We then say that \(X\) follows a Bernoulli distribution with parameter \(p\)
+\[X \rightarrow Bernoulli(p)\]
+
+\textbf{Properties:}
+
+If \(X\) follows a Bernoulli distribution then
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\tightlist
+\item
+  its mean is
+\end{enumerate}
+
+\[E(K)=p\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  its variance is
+\end{enumerate}
+
+\[V(K)=(1-p)p\]
+
+Note that the probability of the outcome \(A\) is the parameter \(p\)
+which is the same as its value at \(1\): \(f(1)=P(X=1)\). The parameter fully determines the probability mass function, including its mean and variance.
+
+Let's look at some probability mass functions in the family of uniform parametric models:
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-56-1.pdf}
+
+\hypertarget{binomial-experiment}{%
+\section{Binomial experiment}\label{binomial-experiment}}
+
+When we are interested in predicting \textbf{absolute frequencies} when we know the parameter \(p\) of particular Bernoulli trial, we
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\item
+  \textbf{repeat} the Bernoulli trial \(n\) times and count how many times we obtained \(A\) using the absolute frequency of \(A\): \(N_A\).
+\item
+  define a \textbf{random variable} \(X=N_A\) taking values \(x \in {0,1,...n}\)
+\end{enumerate}
+
+When we repeat \(n\) times a Bernoulli trial, we obtain one value for \(n_A\). If we perform other \(n\) Bernoulli trials then \(n_A\) changes its value. Therefore, \(X=N_A\) is a random variable and \(x=n_A\) is its observation.
+
+\textbf{Examples (Some binomial experiments):}
+
+\begin{itemize}
+\item
+  Writing down the sex of \(n=10\) patients who go into an emergency room of a hospital. What is the probability that \(X=9\) patients are men when \(p=0.8\)?
+\item
+  Trying \(n=5\) times to hit a target (\(A:success\) and \(B:failure\)). What is the probability that I hit the target \(X=5\) times when I usually hit it \(25\%\) of the times (\(p=0.25\))?
+\item
+  Transmitting \(n=100\) pixels correctly (\(A:yes\) and \(B:no\)). What is the probability that \(X=2\) pixels are errors, when the probability of error is \(p=0.1\)?
+\end{itemize}
+
+\hypertarget{binomial-probability-function}{%
+\section{Binomial probability function}\label{binomial-probability-function}}
+
+Let us suppose that \textbf{we know} the real value of the parameter of the Bernoulli trial \(p\).
+
+When we repeat a Bernoulli trial and stop at \(n\), is the value \(x\) that we obtain common or rare? what is its probability mass function \(P(X=x)=f(x)\)?
+
+\textbf{Example (transmission of pixels):}
+
+What is the probability of observing \(X=x\) errors when transmitting \(n=4\) pixels, if the probability of an error is \(p\)?
+
+Let us consider that
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\item
+  A random variable of the \textbf{transmission experiment} is the vector \[(K_1, K_2, K_3, K_4)\] where one observation may be \((K_1=0, K_2=1, K_3=0, K_4=1)\) or \((0, 1, 0, 1)\).
+\item
+  Each \[K_i \rightarrow Bernoulli(p)\] \(k_i \in \{0, 1\}\)
+\item
+  \(X=N_A\) can be computed as the sum \[X=\sum_{i=1}^4 K_i\] \(x\in \{0,1,2,3,4\}\). For example \(X=2\) for the outcome \((0, 1, 0, 1)\).
+\end{enumerate}
+
+Now let's see the probabilities of some \textbf{error events} and then we will generalize them.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\tightlist
+\item
+  What is the probability of observing \(4\) \textbf{errors}?
+\end{enumerate}
+
+The probability of observing \(4\) errors is the probability of observing an error in the \(1^{st}\) \textbf{and} \(2^{nd}\) \textbf{and} \(3^{rd}\) \textbf{and} \(4^{th}\) pixel:
+
+\[P(X=4)=P(1,1,1,1)=p*p*p*p=p^4\]
+
+because \(K_i\) are \textbf{independent}.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  What is the probability of observing \(0\) \textbf{errors}?
+\end{enumerate}
+
+The probability of \(0\) errors is the joint probability of observing \textbf{no error} in \textbf{any} transmission:
+
+\[P(X=0)=P(0,0,0,0)=(1-p)(1-p)(1-p)(1-p)=(1-p)^4\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  What is the probability of observing \(3\) \textbf{errors}?
+\end{enumerate}
+
+The probability of \(3\) errors is the \textbf{addition} of probability of observing \(3\) errors in \textbf{different events}:
+
+\[P(X=3)=P(0,1,1,1)+P(1,0,1,1)+P(1,1,0,1)+P(1,1,1,0)=4p^3(1-p)^1\]
+because all off these events are \textbf{mutually exclusive}.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\setcounter{enumi}{3}
+\tightlist
+\item
+  Therefore the probability of \(x\) \textbf{errors} is
+\end{enumerate}
+
+\[
+    f(x)= 
+\begin{cases}
+    1*p^0(1-p)^4,&  x=0 \\
+    4*p^1(1-p)^3,&  x=1 \\
+    6*p^2(1-p)^2,&  x=2 \\
+    4*p^3(1-p)^1,&  x=3 \\
+    1*p^4(1-p)^0,&  x=4 \\
+\end{cases}
+\]
+
+or more shortly
+
+\[f(x)=\binom 4 x p^x(1-p)^{4-x}\]
+for \(x=0,1,2,3,4\)
+
+where \(\binom 4 x\) is the number of \textbf{possible outcomes} (transmissions of \(4\) pixels) with \(x\) errors.
+
+\textbf{Definition:}
+
+The \textbf{binomial probability} function is the probability mass function of observing \(x\) outcomes of type \(A\) in \(n\) independent Bernoulli trials, where \(A\) has the same probability \(p\) in each trial.
+
+The function is given by
+
+\(f(x)=\binom n x p^x(1-p)^{n-x}\), \(x=0,1,...n\)
+
+\(\binom n x= \frac{n!}{x!(n-x)!}\) is called \textbf{the binomial coefficient} and gives the number of ways one can obtain \(x\) events of type \(A\) in a set of \(n\).
+
+When a variable \(X\) has a binomial probability function we say it distributes binomially and write
+
+\[X\rightarrow Bin(n,p)\]
+
+where \(n\) and \(p\) are parameters.
+
+Let's look at some probability mass functions in the family of binomial parametric models:
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-57-1.pdf}
+
+\textbf{Properties:}
+
+If a random variable \(X\rightarrow Bin(n,p)\) then
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\tightlist
+\item
+  its mean is
+\end{enumerate}
+
+\[E(X)=np\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  its variance is
+\end{enumerate}
+
+\[V(X)=np(1-p)\]
+
+These properties can be demonstrated by the fact that \(X\) is the sum of \(n\) independent Bernoulli variables. Therefore,
+
+\(E(X)=E(\sum_{i=1}^n K_i)=np\)
+
+and
+
+\(V(X)=V(\sum_{i=1}^n K_i)=n(1-p)p\)
+
+\textbf{Example (transmission of pixels):}
+
+\begin{itemize}
+\item
+  The expected value for the number of errors in the transmission of \(4\) pixels is \(np=4*0.1=0.4\) when the probability of an error is \(0.1\).
+\item
+  The variance is \(n(1-p)p=0.36\)
+\item
+  What is the probability of observing \(4\) errors?
+\end{itemize}
+
+Since we are repeating a Bernoulli trial \(n=4\) times and counting the number of events of type \(A\) (errors), when \(P(A)=p=0.1\) then
+
+\[X \rightarrow Bin(n=4, p=0.1)\]
+That is \[f(x)=\binom 4 x 0.1^x(1-0.1)^{4-x}\]
+
+\(P(X=4)=f(4)=\binom 4 4 0.1^4 0.9^{0}=0.1^4=10^{-4}\)
+
+In R dbinom(4,4,0.1)
+
+\begin{itemize}
+\tightlist
+\item
+  What is the probability of observing \(2\) errors?
+\end{itemize}
+
+\(P(X=2)=\binom 4 2 0.1^2 0.9^2=0.0486\)
+
+In R dbinom(2,4,0.1)
+
+\textbf{Example (opinion polls):}
+
+\begin{itemize}
+\tightlist
+\item
+  What is the probability of observing \textbf{at most} \(8\) voters of the ruling party in an election poll of size \(10\), if the probability of a positive vote for the party is \(0.9\)
+\end{itemize}
+
+For this case
+
+\[X \rightarrow Bin(n=10, p=0.9)\]
+
+That is \[f(x)=\binom {10} x 0.9^x(0.1)^{4-x}\]
+
+We want to compute:
+\(P(X\le 8)=F(8)= \sum_{i=1..8} f(x_i)=0.2639011\)
+
+in R pbinom(8,10, 0.9)
+
+\hypertarget{negative-binomial-probability-function}{%
+\section{Negative binomial probability function}\label{negative-binomial-probability-function}}
+
+Now let us imagine that we are interested in counting the well-transmitted pixels before a \textbf{given number} of errors occur. Say we can \textbf{tolerate} \(r\) errors in transmission.
+
+Our random experiment is now: Repeat Bernoulli trials until we observe the outcome \(A\) appears \(r\) times.
+
+The outcome of the experiment is the number of events \(n_B=y\)
+
+We are interested in finding the probability of observing a particular number of events \(B\), \(P(Y=y)\), where \(Y=N_B\) is the random variable.
+
+\textbf{Example (transmission of pixels):}
+
+What is the probability of observing \(y\) well-transmitted (\(B\)) pixels before \(r\) errors (\(A\))?
+
+Let's first find the probability of \textbf{one particular} \textbf{transmission event} with \(y\) number of correct pixels (\(B\)) and \(r\) number of errors (\(A\)).
+
+\[(0,0,1,., 0,1,...0,1)\]
+
+where we consider that there are \(y\) zeros and \(r\) ones. Therefore, we observe \(y\) correct pixels in a total of \(y + r\) pixels.
+
+The probability of this event is:
+
+\[P(0,0,1,., 0,1,...0,1)=p^r(1-p)^y\]
+
+Remember that \(p\) is the probability of error (\(A\)).
+
+How many \textbf{transmissions events} can have \(y\) correct pixels (0's) before \(r\) errors (1's)?
+
+Note that
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\item
+  The last bit is fixed (marks the end of transmission)
+\item
+  The total number of ways in which \(y\) number of zeros can be allocated in \(y + r-1\) pixels (the last pixel is fixed with value 1) is: \(\binom {y + r-1} y\)
+\end{enumerate}
+
+Therefore, the probability of observing \(y\) 1's before \(r\) 0's (each 1 with probability \(p\)) is
+
+\[P(Y=y)=f(y)=\binom {y+r-1} y p^r(1-p)^y\]
+
+for \(y=0,1,...\)
+
+We then say that \(Y\) follows a negative binomial distribution and we write
+
+\[Y\rightarrow NB(r,p)\]
+
+where \(r\) and \(p\) are parameters representing the tolerance and the probability of a single error (event \(A\)).
+
+\textbf{Properties:}
+
+A random variable \(Y\rightarrow NB(r,p)\) has
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\item
+  mean \[E(Y)= r\frac{1-p}{p}\]
+\item
+  and variance \[V(Y)= r\frac{1-p}{p^2}\]
+\end{enumerate}
+
+Let's look at some probability mass functions in the family of negative binomial parametric models:
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-58-1.pdf}
+
+\textbf{Example (website)}
+
+A website has three servers. One server operates at a time and only when a request fails another server is used.
+
+If the probability of failure for a request is known to be \(p=0.0005\) then
+
+\begin{itemize}
+\tightlist
+\item
+  what is the expected number of successful requests before the three computers fail?
+\end{itemize}
+
+Since we are repeating a Bernoulli trial until \(r=3\) events of type \(A\) (failure) are observed (each with \(P(A)=p=0.0005\)) and are counting the number of events of type \(B\) (successful requests) then
+
+\[Y \rightarrow NB(r=3, p=0.0005)\]
+
+Therefore, the expected number of requests before the system fails is:
+
+\(E(Y)=r\frac{1-p}{p}=3\frac{1-0.0005}{0.0005}=5997\)
+
+Note that there are actually \(6000\) trials.
+
+\begin{itemize}
+\tightlist
+\item
+  What is the probability of dealing with at most \(5\) successful requests before the system fails?
+\end{itemize}
+
+We therefore want to compute the probability distribution at \(5\):
+
+\(F(5)=P(Y\leq 5)=\Sigma_{y=0}^5 f(y)\)
+
+\(=\sum_{y=0}^5\binom {y+2} y 0.0005^r0.9995^y\)
+
+\(=\binom {2} 0 0.0005^3 0.9995^0 +\binom {3} 1 0.0005^3 0.9995^1\)
+
+\(+\binom {4} 2 0.0005^3 0.9995^2 +\binom {5} 3 0.0005^3 0.9995^3\)
+
+\(+\binom {6} 4 0.0005^3 0.9995^4 +\binom {7} 5 0.0005^3 0.9995^5\)
+
+\(= 6.9\times 10^{-9}\)
+
+In R this is computed with pnbinom(5,3,0.0005)
+
+\textbf{Examples}
+
+\begin{itemize}
+\tightlist
+\item
+  What is the probability of observing \(10\) correct pixels before \(2\) errors, if the probability of an error is \(0.1\)?
+\end{itemize}
+
+\(f(10; r=2, p=0.1)=0.03835463\)
+
+in R dnbinom(10, 2, 0.1)
+
+\begin{itemize}
+\tightlist
+\item
+  What is the probability that \(2\) girls enter the class before \(4\) boys if the probability that a girl enters is \(0.5\)?
+\end{itemize}
+
+\(f(2; r=4, p=0.5)=0.15625\)
+
+in R dnbinom(2, 4, 0.5)
+
+\hypertarget{geometric-distribution}{%
+\section{Geometric distribution}\label{geometric-distribution}}
+
+We call \textbf{geometric distribution} to the \textbf{negative binomial} distribution with \(r=1\)
+
+The probability of observing \(B\) events before observing the \textbf{first} event of type \(A\) is
+
+\[P(Y=y)=f(y)= p(1-p)^y\]
+
+\[Y\rightarrow Geom(p)\]
+which has
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\item
+  mean \[E(Y)= \frac{1-p}{p}\]
+\item
+  and variance \[V(Y)= \frac{1-p}{p^2}\]
+\end{enumerate}
+
+\hypertarget{hypergeometric-model}{%
+\section{Hypergeometric model}\label{hypergeometric-model}}
+
+The \textbf{hypergeometric model} arises when we want to count the number of events of type \(A\) that are drawn from a finite population.
+
+The general model is to consider \(N\) total balls in a urn. Mark \(K\) with label \(A\) and \(N-K\) with label \(B\). Take out \(n\) balls one by one with no replacement in the urn, and then count how many \(A\)'s you obtained.
+
+The \textbf{Binomial} model can be derived from the \textbf{Hypergeometric} model when we consider that either \(N\) is infinite, or that every time we draw a ball we replace it back in the urn.
+
+\textbf{Example (chickenpox):}
+
+A school of \(N=600\) children has an epidemic of chickenpox. We tested \(n=200\) children and observed that \(x=17\) were positive. If we knew that a total of \(K=64\) were really infected in the school, what is the probability of our observation?
+
+\textbf{Definition:}
+
+The probability of obtaining \(x\) cases (type \(A\)) in a sample of \(n\) drawn from a population of \(N\) where \(K\) are cases (type \(A\)).
+
+\(P(X=x)=P(one\,sample) \times (Number\, of\, ways\, of\, obtaining\, x)\)
+
+\[=\frac{1}{\binom N n}\binom K x \binom {N-K} {n-x}\]
+
+where \(k \in \{\max(0, n+K-N), ... \min(K, n) \}\)
+
+We then say that \(X\) follows a hypergeometric distribution and write
+
+\[X \rightarrow Hypergeometric(N,K,n)\]
+The hypergeometric model has three parameters.
+
+\textbf{Properties:}
+
+If \(X \rightarrow Hypergeometric(N,K,n)\) then it has
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\item
+  mean \[E(X) =  n  \frac{K}{N} = np\]
+\item
+  and variance \[V(X) = np(1-p)\frac{N-n}{N-1}\]
+\end{enumerate}
+
+when \(p=\frac{K}{N}\) is the proportion of hepatitis C in a population of size \(N\). Note that when \(N \rightarrow \infty\) then we recover the binomial properties.
+
+Let's look at some probability mass functions in the family of hypergeometric parametric models:
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-59-1.pdf}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-60-1.pdf}
+
+\textbf{Example (chickenpox):}
+
+\begin{itemize}
+\tightlist
+\item
+  what is the probability of infections less or equal than \(17\) in a sample of \(200\), drawn from a population of \(600\) where \(64\) are infected?
+\end{itemize}
+
+The probability that we need to compute is
+\(P(X \leq 17)=F(17)\)
+
+where \(X \rightarrow Hypergeometric(N=600,K=64,n=200)\)
+
+in R phyper(17, 64, 600-64, 200)=0.140565
+
+The solution is the addition of the blue needles in the plot.
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-61-1.pdf}
+
+\hypertarget{questions-4}{%
+\section{Questions}\label{questions-4}}
+
+\textbf{1)} What is the expected value and the variance of the number of failures in \(100\) prototypes, when the probability of a failure is \(0.25\)
+
+\textbf{\(\qquad\)a:} \(0.25\), \(0.1875\);
+\textbf{\(\qquad\)b:} \(25\), \(0.1875\);
+\textbf{\(\qquad\)c:} \(0.25\), \(18.75\);\\
+\textbf{\(\qquad\)d:} \(25\), \(18.75\)
+
+\textbf{2)} The number of available tables at lunch time in a restaurant is better described by which probability model
+
+\textbf{\(\qquad\)a:} Binomial;
+\textbf{\(\qquad\)b:} Uniform;
+\textbf{\(\qquad\)c:} Negative Binomial;\\
+\textbf{\(\qquad\)d:} Hypergeometric
+
+\textbf{3)} The expected value of a Binomial distribution is not
+
+\textbf{\(\qquad\)a:} \(n\) times the expected value of a Bernoulli;
+\textbf{\(\qquad\)b:} the expected value of a Hypergeometric, when the population is very big;
+\textbf{\(\qquad\)c:} \(np\);\\
+\textbf{\(\qquad\)d:} the limit of the relative frequency when the number of repetitions is large
+
+\textbf{4)} Opinion polls for the USA 2022 election give a probability of \(0.55\) that a voter favors the republican party. If we conduct our own poll and ask 100 random people on the street, How would you compute the probability that in our poll democrats win the election?
+
+\textbf{\(\qquad\)a:}pbinom(x=49, n=100, p=0.55)=0.13;
+\textbf{\(\qquad\)b:}1-pbinom(x=49, n=100, p=0.55)=0.86;
+\textbf{\(\qquad\)c:}pbinom(x=51, n=100, p=0.45)=0.90; \textbf{\(\qquad\)d:}1-pbinom(x=51, n=100, p=0.45)=0.095
+
+\textbf{5)} In an exam a student chooses at random one of the four answers that he does not know. If he doesn't know \(10\) questions what is the probability that at least \(5\) questions are correct?
+
+\textbf{\(\qquad\)a:}dbinom(x=5, n=10, p=0.25)\textasciitilde{} 0.05; \textbf{\(\qquad\)b:}pbinom(x=5, n=10, p=0.75)\textasciitilde{} 0.07; \textbf{\(\qquad\)c:}dbinom(x=5, n=10, p=0.75)\textasciitilde{} 0.05; \textbf{\(\qquad\)d:}1-pbinom(x=5, n=10, p=0.25)\textasciitilde{} 0.02
+
+\hypertarget{exercises-5}{%
+\section{Exercises}\label{exercises-5}}
+
+\hypertarget{exercise-1-4}{%
+\subsubsection{Exercise 1}\label{exercise-1-4}}
+
+If 20\% of the bolts produced by a machine are defective, determine the probability that, out of
+4 bolts chosen at random
+
+\begin{itemize}
+\tightlist
+\item
+  1 bolts will be defective (R:0:4096)
+\item
+  0 bolts will be defective (R::4096)
+\item
+  at most 2 bolts will be defective (R:0:9728)
+\end{itemize}
+
+\hypertarget{exercise-2-4}{%
+\subsubsection{Exercise 2}\label{exercise-2-4}}
+
+In a population, the probability that a baby boy is born is \(p=0.51\). Consider a family of 4 children
+
+\begin{itemize}
+\tightlist
+\item
+  What is the probability that a family has only one boy?(R: 0.240)
+\item
+  What is the probability that a family has only one girl?(R: 0.259)
+\item
+  What is the probability that a family has only one boy or only one girl?(R: 0.4999)
+\item
+  What is the probability that the family has at least two boys?(R: 0.7023)
+\item
+  What is the number of children that a family should have such that the probability of having at least one girl is more than \(0.75\)?(R:\(n=3>\log(0.25)/\log(0.51)\))
+\end{itemize}
+
+\hypertarget{exercise-3-4}{%
+\subsubsection{Exercise 3}\label{exercise-3-4}}
+
+A search engine fails to retrieve information with a probability \(0.1\)
+
+\begin{itemize}
+\item
+  If we system receives \(50\) search requests, what is the probability that the system fails to answer three of them?(R:0.1385651)
+\item
+  What is the probability that the engine successfully completes \(15\) searches before the first failure?(R:0.020)
+\item
+  We consider that a search engine works sufficiently well when it is able to find information for moe than \(10\) requests for every \(2\) failures. What is the probability that in a reliability trial our search engine is satisfactory?(R: 0.697)
 \end{itemize}
 
   \bibliography{book.bib,packages.bib}

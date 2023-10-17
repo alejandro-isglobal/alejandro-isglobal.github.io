@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 6 Continous Random Variables | EEBE stats</title>
   <meta name="description" content="EEBE" />
-  <meta name="generator" content="bookdown 0.34 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.36 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 6 Continous Random Variables | EEBE stats" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Alejandro Caceres" />
 
 
-<meta name="date" content="2023-10-04" />
+<meta name="date" content="2023-10-17" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -31,7 +31,7 @@
   
   
 <link rel="prev" href="discrete-random-variables.html"/>
-
+<link rel="next" href="discrete-probability-models.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -179,6 +179,23 @@
 <li class="chapter" data-level="6.11" data-path="continous-random-variables.html"><a href="continous-random-variables.html#functions-of-x"><i class="fa fa-check"></i><b>6.11</b> Functions of <span class="math inline">\(X\)</span></a></li>
 <li class="chapter" data-level="6.12" data-path="continous-random-variables.html"><a href="continous-random-variables.html#exercises-4"><i class="fa fa-check"></i><b>6.12</b> Exercises</a></li>
 </ul></li>
+<li class="chapter" data-level="7" data-path="discrete-probability-models.html"><a href="discrete-probability-models.html"><i class="fa fa-check"></i><b>7</b> Discrete Probability Models</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="discrete-probability-models.html"><a href="discrete-probability-models.html#objective-3"><i class="fa fa-check"></i><b>7.1</b> Objective</a></li>
+<li class="chapter" data-level="7.2" data-path="discrete-probability-models.html"><a href="discrete-probability-models.html#probability-mass-function"><i class="fa fa-check"></i><b>7.2</b> Probability mass function</a></li>
+<li class="chapter" data-level="7.3" data-path="discrete-probability-models.html"><a href="discrete-probability-models.html#probability-model"><i class="fa fa-check"></i><b>7.3</b> Probability model</a></li>
+<li class="chapter" data-level="7.4" data-path="discrete-probability-models.html"><a href="discrete-probability-models.html#parametric-models"><i class="fa fa-check"></i><b>7.4</b> Parametric models</a></li>
+<li class="chapter" data-level="7.5" data-path="discrete-probability-models.html"><a href="discrete-probability-models.html#uniform-distribution-one-parameter"><i class="fa fa-check"></i><b>7.5</b> Uniform distribution (one parameter)</a></li>
+<li class="chapter" data-level="7.6" data-path="discrete-probability-models.html"><a href="discrete-probability-models.html#uniform-distribution-two-parameters"><i class="fa fa-check"></i><b>7.6</b> Uniform distribution (two parameters)</a></li>
+<li class="chapter" data-level="7.7" data-path="discrete-probability-models.html"><a href="discrete-probability-models.html#bernoulli-trial"><i class="fa fa-check"></i><b>7.7</b> Bernoulli trial</a></li>
+<li class="chapter" data-level="7.8" data-path="discrete-probability-models.html"><a href="discrete-probability-models.html#binomial-experiment"><i class="fa fa-check"></i><b>7.8</b> Binomial experiment</a></li>
+<li class="chapter" data-level="7.9" data-path="discrete-probability-models.html"><a href="discrete-probability-models.html#binomial-probability-function"><i class="fa fa-check"></i><b>7.9</b> Binomial probability function</a></li>
+<li class="chapter" data-level="7.10" data-path="discrete-probability-models.html"><a href="discrete-probability-models.html#negative-binomial-probability-function"><i class="fa fa-check"></i><b>7.10</b> Negative binomial probability function</a></li>
+<li class="chapter" data-level="7.11" data-path="discrete-probability-models.html"><a href="discrete-probability-models.html#geometric-distribution"><i class="fa fa-check"></i><b>7.11</b> Geometric distribution</a></li>
+<li class="chapter" data-level="7.12" data-path="discrete-probability-models.html"><a href="discrete-probability-models.html#hypergeometric-model"><i class="fa fa-check"></i><b>7.12</b> Hypergeometric model</a></li>
+<li class="chapter" data-level="7.13" data-path="discrete-probability-models.html"><a href="discrete-probability-models.html#questions-4"><i class="fa fa-check"></i><b>7.13</b> Questions</a></li>
+<li class="chapter" data-level="7.14" data-path="discrete-probability-models.html"><a href="discrete-probability-models.html#exercises-5"><i class="fa fa-check"></i><b>7.14</b> Exercises</a></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -283,10 +300,10 @@ is given by</p>
 <p><strong>Example (raindrop fall)</strong></p>
 <p>take the <strong>probability density</strong> that may describe the random variable that measures where a raindrop falls in a rain gutter of length <span class="math inline">\(100cm\)</span>.</p>
 <p><span class="math display">\[
-    f(x)= 
+    f(x)=
 \begin{cases}
     \frac{1}{100},&amp; \text{if } x\in (0,100)\\
-    0,&amp; otherwise 
+    0,&amp; otherwise
 \end{cases}
 \]</span></p>
 <p>Let us verify that the function satisfies the three properties of a probability density.</p>
@@ -365,19 +382,19 @@ We saw that for continuous variables, the probability that the experiment gives 
 <p><strong>Example (raindrop fall)</strong></p>
 <p>For the uniform density function:</p>
 <p><span class="math display">\[
-    f(x)= 
+    f(x)=
 \begin{cases}
     \frac{1}{100},&amp; \text{if } x\in (0,100)\\
-    0,&amp; otherwise 
+    0,&amp; otherwise
 \end{cases}
 \]</span></p>
 <p>We find that the probability distribution is</p>
 <p><span class="math display">\[
-    F(a)= 
+    F(a)=
 \begin{cases}
     0,&amp; a \leq 0 \\
     \frac{a}{100},&amp; \text{if } a\in (0,100)\\
-    1, &amp; 10 \leq a \\
+    1, &amp; 100 \leq a \\
     \\
 \end{cases}
 \]</span></p>
@@ -405,10 +422,10 @@ We saw that for continuous variables, the probability that the experiment gives 
 <p><strong>Example (raindrop fall)</strong></p>
 <p>The random variable with probability density</p>
 <p><span class="math display">\[
-    f(x)= 
+    f(x)=
 \begin{cases}
     \frac{1}{100},&amp; \text{if } x\in (0,100)\\
-    0,&amp; otherwise 
+    0,&amp; otherwise
 \end{cases}
 \]</span></p>
 <p>Has an expected value at</p>
@@ -442,10 +459,10 @@ We saw that for continuous variables, the probability that the experiment gives 
 <h4><span class="header-section-number">6.12.0.1</span> Exercise 1<a href="continous-random-variables.html#exercise-1-3" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>For the probability density</p>
 <p><span class="math display">\[
-    f(x)= 
+    f(x)=
 \begin{cases}
     \frac{1}{100},&amp; \text{if } x\in (0,100)\\
-    0,&amp; otherwise 
+    0,&amp; otherwise
 \end{cases}
 \]</span></p>
 <ul>
@@ -460,7 +477,7 @@ We saw that for continuous variables, the probability that the experiment gives 
 <h4><span class="header-section-number">6.12.0.2</span> Exercise 2<a href="continous-random-variables.html#exercise-2-3" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Given
 <span class="math display">\[
-    f(x)= 
+    f(x)=
 \begin{cases}
 0, &amp; x &lt; 0 \\
 ax, &amp; x \in [0,3] \\
@@ -478,10 +495,10 @@ b, &amp; x \in (3,5) \\
 <h4><span class="header-section-number">6.12.0.3</span> Exercise 3<a href="continous-random-variables.html#exercise-3-3" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>For the probability density</p>
 <p><span class="math display">\[
-    f(x)= 
+    f(x)=
 \begin{cases}
     \lambda e^{-\lambda x},&amp; \text{if } x \geq 0\\
-    0,&amp; otherwise 
+    0,&amp; otherwise
 \end{cases}
 \]</span></p>
 <ul>
@@ -497,7 +514,7 @@ b, &amp; x \in (3,5) \\
 <h4><span class="header-section-number">6.12.0.4</span> Exercise 4<a href="continous-random-variables.html#exercise-4-2" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Given the cumulative distribution for a random variable X</p>
 <p><span class="math display">\[
-    F(x)= 
+    F(x)=
 \begin{cases}
 0, &amp; x  &lt; -1 \\
 \frac{1}{80}(17+16x-x^2),&amp; x \in [-1,7)\\
@@ -519,8 +536,8 @@ b, &amp; x \in (3,5) \\
           </div>
         </div>
       </div>
-<a href="discrete-random-variables.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="discrete-random-variables.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="discrete-probability-models.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

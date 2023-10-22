@@ -4,21 +4,20 @@
 %
 \documentclass[
 ]{book}
-\title{Statistical Data Analysis}
-\author{Alejandro Caceres}
-\date{2023-10-08}
-
 \usepackage{amsmath,amssymb}
-\usepackage{lmodern}
 \usepackage{iftex}
 \ifPDFTeX
   \usepackage[T1]{fontenc}
   \usepackage[utf8]{inputenc}
   \usepackage{textcomp} % provide euro and other symbols
 \else % if luatex or xetex
-  \usepackage{unicode-math}
+  \usepackage{unicode-math} % this also loads fontspec
   \defaultfontfeatures{Scale=MatchLowercase}
   \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
 \fi
 % Use upquote if available, for straight quotes in verbatim environments
 \IfFileExists{upquote.sty}{\usepackage{upquote}}{}
@@ -37,14 +36,6 @@
   \KOMAoptions{parskip=half}}
 \makeatother
 \usepackage{xcolor}
-\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
-\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
-\hypersetup{
-  pdftitle={Statistical Data Analysis},
-  pdfauthor={Alejandro Caceres},
-  hidelinks,
-  pdfcreator={LaTeX via pandoc}}
-\urlstyle{same} % disable monospaced font for URLs
 \usepackage{color}
 \usepackage{fancyvrb}
 \newcommand{\VerbBar}{|}
@@ -56,13 +47,13 @@
 \newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
 \newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
 \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
 \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
 \newcommand{\BuiltInTok}[1]{#1}
 \newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
 \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
 \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
 \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
 \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
 \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
@@ -70,7 +61,7 @@
 \newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
 \newcommand{\ExtensionTok}[1]{#1}
 \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
-\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
 \newcommand{\ImportTok}[1]{#1}
 \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
 \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
@@ -79,7 +70,7 @@
 \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
 \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
 \newcommand{\RegionMarkerTok}[1]{#1}
-\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
 \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
 \newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
 \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
@@ -118,6 +109,18 @@
 \fi
 \usepackage[]{natbib}
 \bibliographystyle{plainnat}
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={Statistical Data Analysis},
+  pdfauthor={Alejandro Caceres},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{Statistical Data Analysis}
+\author{Alejandro Caceres}
+\date{2023-10-22}
 
 \begin{document}
 \maketitle
@@ -1143,10 +1146,12 @@ Kolmogorov properties are the basic rules for building a \textbf{probability tab
 The probability table for the throw of a dice
 
 \begin{longtable}[]{@{}cc@{}}
-\toprule
+\toprule\noalign{}
 result & probability \\
-\midrule
+\midrule\noalign{}
 \endhead
+\bottomrule\noalign{}
+\endlastfoot
 \(1\) & 1/6 \\
 \(2\) & 1/6 \\
 \(3\) & 1/6 \\
@@ -1154,7 +1159,6 @@ result & probability \\
 \(5\) & 1/6 \\
 \(6\) & 1/6 \\
 \(P( 1 \cup 2\cup ... \cup 6)\) & 1 \\
-\bottomrule
 \end{longtable}
 
 Let's verify the axioms:
@@ -1306,16 +1310,17 @@ The \textbf{marginals} of \(A\) and \(B\) are the probability of \(A\) and the p
 We can now write the \textbf{probability table} for the joint probabilities
 
 \begin{longtable}[]{@{}cc@{}}
-\toprule
+\toprule\noalign{}
 Result & probability \\
-\midrule
+\midrule\noalign{}
 \endhead
+\bottomrule\noalign{}
+\endlastfoot
 \((A\cap B)\) & \(P(A \cap B)=1/6\) \\
 \((A\cap B')\) & \(P(A \cap B')=2/6\) \\
 \((A'\cap B)\) & \(P(A' \cap B)=2/6\) \\
 \((A'\cap B')\) & \(P(A' \cap B')=1/6\) \\
 sum & \(1\) \\
-\bottomrule
 \end{longtable}
 
 Each result has \(two\) values (one for the feature of type \(A\) and one for type \(B\))
@@ -1326,14 +1331,15 @@ Each result has \(two\) values (one for the feature of type \(A\) and one for ty
 The joint probability table can also be written in a \textbf{contingency table}
 
 \begin{longtable}[]{@{}cccc@{}}
-\toprule
+\toprule\noalign{}
 & \(B\) & \(B'\) & sum \\
-\midrule
+\midrule\noalign{}
 \endhead
+\bottomrule\noalign{}
+\endlastfoot
 \(A\) & \(P(A \cap B )\) & \(P(A\cap B' )\) & \(P(A)\) \\
 \(A'\) & \(P(A'\cap B )\) & \(P(A'\cap B' )\) & \(P(A')\) \\
 sum & \(P(B)\) & \(P(B')\) & 1 \\
-\bottomrule
 \end{longtable}
 
 Where the marginals are the sums in the margins of the table, for example:
@@ -1349,14 +1355,15 @@ Where the marginals are the sums in the margins of the table, for example:
 In our example, the contingency table is
 
 \begin{longtable}[]{@{}cccc@{}}
-\toprule
+\toprule\noalign{}
 & \(B\) & \(B'\) & sum \\
-\midrule
+\midrule\noalign{}
 \endhead
+\bottomrule\noalign{}
+\endlastfoot
 \(A\) & \(1/6\) & \(2/6\) & \(3/6\) \\
 \(A'\) & \(2/6\) & \(1/6\) & \(3/6\) \\
 sum & \(3/6\) & \(3/6\) & \(1\) \\
-\bottomrule
 \end{longtable}
 
 \hypertarget{the-addition-rule}{%
@@ -1396,13 +1403,14 @@ Therefore:
 In the contingency table \(P( A \cup B)\) corresponds to the three cells in bold (method 2 above). That is all cells but 1/6 from the bottom right (method 3).
 
 \begin{longtable}[]{@{}ccc@{}}
-\toprule
+\toprule\noalign{}
 & \(B\) & \(B'\) \\
-\midrule
+\midrule\noalign{}
 \endhead
+\bottomrule\noalign{}
+\endlastfoot
 \(A\) & \textbf{1/6} & \textbf{2/6} \\
 \(A'\) & \textbf{2/6} & \emph{1/6} \\
-\bottomrule
 \end{longtable}
 
 \hypertarget{questions-1}{%
@@ -1411,14 +1419,15 @@ In the contingency table \(P( A \cup B)\) corresponds to the three cells in bold
 We collect the age and category of 100 athletes in a competition
 
 \begin{longtable}[]{@{}ccc@{}}
-\toprule
+\toprule\noalign{}
 & \(age:junior\) & \(age:senior\) \\
-\midrule
+\midrule\noalign{}
 \endhead
+\bottomrule\noalign{}
+\endlastfoot
 \(category:1st\) & \(14\) & \(12\) \\
 \(category:2nd\) & \(21\) & \(18\) \\
 \(category:3rd\) & \(22\) & \(13\) \\
-\bottomrule
 \end{longtable}
 
 \textbf{1)} What is the estimated probability that an athlete is 2nd category and senior?
@@ -1641,10 +1650,12 @@ We conducted an experiment to find out if observing structural flaws in a materi
 The data would look like
 
 \begin{longtable}[]{@{}ccc@{}}
-\toprule
+\toprule\noalign{}
 Conductor & Structure & conductivity \\
-\midrule
+\midrule\noalign{}
 \endhead
+\bottomrule\noalign{}
+\endlastfoot
 \(c_1\) & flaws & low \\
 \(c_2\) & no flaws & high \\
 \(c_3\) & flaws & low \\
@@ -1653,7 +1664,6 @@ Conductor & Structure & conductivity \\
 \ldots{} & \ldots{} & \ldots{} \\
 \ldots{} & \ldots{} & \ldots{} \\
 \(c_n\) & flaws & high* \\
-\bottomrule
 \end{longtable}
 
 We can expect low conductivity to occur more often with flaws than without flaws if the flaws affect conductivity.
@@ -1661,14 +1671,15 @@ We can expect low conductivity to occur more often with flaws than without flaws
 Let's imagine that from the data we obtain the following contingency table of \textbf{estimated joint probabilities}
 
 \begin{longtable}[]{@{}cccc@{}}
-\toprule
+\toprule\noalign{}
 & with flaws (F) & no flaws (F') & sum \\
-\midrule
+\midrule\noalign{}
 \endhead
+\bottomrule\noalign{}
+\endlastfoot
 low (L) & \(0.005\) & \(0.045\) & \(0.05\) \\
 high (L') & \(0.095\) & \(0.855\) & \(0.95\) \\
 sum & \(0.1\) & \(0.9\) & 1 \\
-\bottomrule
 \end{longtable}
 
 where, for example, the joint probability of \(L\) and \(F\) is
@@ -1716,15 +1727,24 @@ We can prove that conditional probability satisfies the axioms of probability. T
 
 If we divide the columns of the joint probability table by the marginal probabilities of the conditioning effects (\(F\) and \(F'\)), we can write \textbf{a conditional contingency table}
 
-\begin{longtable}[]{@{}ccc@{}}
-\toprule
-& F & F' \\
-\midrule
+\begin{longtable}[]{@{}
+  >{\centering\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3438}}
+  >{\centering\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3438}}
+  >{\centering\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3125}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\centering
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+F
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+F'
+\end{minipage} \\
+\midrule\noalign{}
 \endhead
+\bottomrule\noalign{}
+\endlastfoot
 L & P( L {\textbar{}} F) & P(L {\textbar{}} F') \\
 L' & P(L' {\textbar{}} F) & P(L' {\textbar{}} F') \\
 sum & 1 & 1 \\
-\bottomrule
 \end{longtable}
 
 where the column probabilities sum to one. The first column shows the probabilities of low conductivity or not only of the materials that have flaws (first condition: \(F\)). The second column shows the probabilities only for the materials that have no flaws (second condition: \(F'\)).
@@ -1748,15 +1768,24 @@ Conditional probabilities are the probabilities of the event within each conditi
 
 In our example, the conditional contingency table is
 
-\begin{longtable}[]{@{}ccc@{}}
-\toprule
-& F & F' \\
-\midrule
+\begin{longtable}[]{@{}
+  >{\centering\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3438}}
+  >{\centering\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3438}}
+  >{\centering\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3125}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\centering
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+F
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+F'
+\end{minipage} \\
+\midrule\noalign{}
 \endhead
+\bottomrule\noalign{}
+\endlastfoot
 L & P(L{\textbar{}}F) = 0.05 & P(L{\textbar{}}F')= 0.05 \\
 L' & P(L'{\textbar{}}F)=0.95 & P(L'{\textbar{}}F')=0.95 \\
 sum & 1 & 1 \\
-\bottomrule
 \end{longtable}
 
 We note that the marginal and conditional probabilities are the same!
@@ -1801,14 +1830,15 @@ This third form is a statement about joint probabilities. It says that we can ob
 In our original joint probability table
 
 \begin{longtable}[]{@{}cccc@{}}
-\toprule
+\toprule\noalign{}
 & F & F' & sum \\
-\midrule
+\midrule\noalign{}
 \endhead
+\bottomrule\noalign{}
+\endlastfoot
 L & \(0.005\) & \(0.045\) & \(0.05\) \\
 L' & \(0.095\) & \(0.855\) & \(0.95\) \\
 sum & \(0.1\) & \(0.9\) & 1 \\
-\bottomrule
 \end{longtable}
 
 we can confirm that all the entries of the matrix are the product of the marginal ones. For example: \(P(F)P(L)= P( L \cap F)\) and \(P(L')P(F')=P(L' \cap F')\). Therefore, low conductivity is independent of having a structural flaw.
@@ -1818,29 +1848,31 @@ we can confirm that all the entries of the matrix are the product of the margina
 We want to confirm that the results of tossing two coins are independent. We consider all outcomes to be equally likely:
 
 \begin{longtable}[]{@{}cc@{}}
-\toprule
+\toprule\noalign{}
 result & probability \\
-\midrule
+\midrule\noalign{}
 \endhead
+\bottomrule\noalign{}
+\endlastfoot
 \(( H,T )\) & 1/4 \\
 \(( H,H )\) & 1/4 \\
 \(( T,T )\) & 1/4 \\
 \(( T, H )\) & 1/4 \\
 sum & 1 \\
-\bottomrule
 \end{longtable}
 
 where \(( H,T )\) is, for example, the event of heads on the first coin and tails on the second coin. The contingency table for the joint probabilities is:
 
 \begin{longtable}[]{@{}cccc@{}}
-\toprule
+\toprule\noalign{}
 & H & T & sum \\
-\midrule
+\midrule\noalign{}
 \endhead
+\bottomrule\noalign{}
+\endlastfoot
 H & \(1/4\) & \(1/4\) & \(1/2\) \\
 T & \(1/4\) & \(1/4\) & \(1/2\) \\
 sum & \(1/2\) & \(1/2\) & 1 \\
-\bottomrule
 \end{longtable}
 
 From this table, we see that the probability of getting a head and then a tail is the product of the marginals \(P( H, T)=P(H)*P(T)=1/4\). Therefore, the events of heads in the first coin and tails in the second are independent.
@@ -1897,15 +1929,24 @@ Test:
 
 The \textbf{conditional contingency table} is what we get in a controlled environment (laboratory)
 
-\begin{longtable}[]{@{}ccc@{}}
-\toprule
-& Infection: yes & Infection: No \\
-\midrule
+\begin{longtable}[]{@{}
+  >{\centering\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3438}}
+  >{\centering\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3438}}
+  >{\centering\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3125}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\centering
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+Infection: yes
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+Infection: No
+\end{minipage} \\
+\midrule\noalign{}
 \endhead
+\bottomrule\noalign{}
+\endlastfoot
 Test: positive & P(positive {\textbar{}} yes) & P(positive {\textbar{}} no) \\
 Test: negative & P(negative {\textbar{}} yes) & P(negative {\textbar{}} no) \\
 sum & 1 & 1 \\
-\bottomrule
 \end{longtable}
 
 Let's look at the table entries
@@ -1938,15 +1979,24 @@ Now let's consider a real situation. In the early days of the coronavirus pandem
 
 The conditional contingency table is
 
-\begin{longtable}[]{@{}ccc@{}}
-\toprule
-& Infection: yes & Infection: No \\
-\midrule
+\begin{longtable}[]{@{}
+  >{\centering\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3438}}
+  >{\centering\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3438}}
+  >{\centering\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3125}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\centering
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+Infection: yes
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+Infection: No
+\end{minipage} \\
+\midrule\noalign{}
 \endhead
+\bottomrule\noalign{}
+\endlastfoot
 Test: positive & P(positive{\textbar{}} yes)= 0.7 & P(positive{\textbar{}}no)=0.06 \\
 Test: negative & P(negative{\textbar{}} yes)= 0.3 & P(negative{\textbar{}}no)=0.94 \\
 sum & 1 & 1 \\
-\bottomrule
 \end{longtable}
 
 Therefore, the errors in the diagnostic tests were:
@@ -1973,15 +2023,27 @@ For that:
   We recover the contingency table for joint probabilities, multiplying by the marginal \(P(yes)\) and \(P(no)\) that we need to know
 \end{enumerate}
 
-\begin{longtable}[]{@{}cccc@{}}
-\toprule
-& Infection: yes & Infection: No & sum \\
-\midrule
+\begin{longtable}[]{@{}
+  >{\centering\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2619}}
+  >{\centering\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2619}}
+  >{\centering\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2381}}
+  >{\centering\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2381}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\centering
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+Infection: yes
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+Infection: No
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+sum
+\end{minipage} \\
+\midrule\noalign{}
 \endhead
+\bottomrule\noalign{}
+\endlastfoot
 Test: positive & P( positive {\textbar{}} yes)P(yes) & P(positive {\textbar{}} no)P(no) & P(positive) \\
 Test: negative & P( negative {\textbar{}} yes)P(yes) & P(negative {\textbar{}} no) P(no) & P(negative) \\
 sum & P(yes) & P(no) & 1 \\
-\bottomrule
 \end{longtable}
 
 \begin{enumerate}
@@ -1992,14 +2054,26 @@ sum & P(yes) & P(no) & 1 \\
   We use the definition of conditional probabilities for rows instead of columns (we divide by the marginal of the test results)
 \end{enumerate}
 
-\begin{longtable}[]{@{}cccc@{}}
-\toprule
-& Infection: yes & Infection: No & sum \\
-\midrule
+\begin{longtable}[]{@{}
+  >{\centering\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2619}}
+  >{\centering\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2619}}
+  >{\centering\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2381}}
+  >{\centering\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2381}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\centering
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+Infection: yes
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+Infection: No
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+sum
+\end{minipage} \\
+\midrule\noalign{}
 \endhead
+\bottomrule\noalign{}
+\endlastfoot
 Test: positive & P(yes{\textbar{}}positive) & P(no{\textbar{}}positive) & 1 \\
 Test: negative & P(yes{\textbar{}}negative) & P(no{\textbar{}}negative) & 1 \\
-\bottomrule
 \end{longtable}
 
 For example:
@@ -2094,14 +2168,15 @@ The total probability rule can also be illustrated using a \textbf{conditional} 
 We collect the age and category of 100 athletes in a competition
 
 \begin{longtable}[]{@{}ccc@{}}
-\toprule
+\toprule\noalign{}
 & \(junior\) & \(senior\) \\
-\midrule
+\midrule\noalign{}
 \endhead
+\bottomrule\noalign{}
+\endlastfoot
 \(1st\) & \(14\) & \(12\) \\
 \(2nd\) & \(21\) & \(18\) \\
 \(3rd\) & \(22\) & \(13\) \\
-\bottomrule
 \end{longtable}
 
 \textbf{1)} What is the estimated probability that the athlete is in the third category if the athlete is a junior?
@@ -2137,13 +2212,14 @@ We collect the age and category of 100 athletes in a competition
 A machine is tested for its performance in producing high-quality turning rods. These are the test results
 
 \begin{longtable}[]{@{}ccc@{}}
-\toprule
+\toprule\noalign{}
 & Rounded: yes & Rounded: No \\
-\midrule
+\midrule\noalign{}
 \endhead
+\bottomrule\noalign{}
+\endlastfoot
 smooth surface: yes & 200 & 1 \\
 smooth surface: no & 4 & 2 \\
-\bottomrule
 \end{longtable}
 
 \begin{itemize}
@@ -2182,25 +2258,27 @@ Two machines are tested for their performance in producing high-quality turning 
 \textbf{Machine 1}
 
 \begin{longtable}[]{@{}ccc@{}}
-\toprule
+\toprule\noalign{}
 & Rounded: yes & Rounded: No \\
-\midrule
+\midrule\noalign{}
 \endhead
+\bottomrule\noalign{}
+\endlastfoot
 smooth surface: yes & 200 & 1 \\
 smooth surface: no & 4 & 2 \\
-\bottomrule
 \end{longtable}
 
 \textbf{Machine 2}
 
 \begin{longtable}[]{@{}ccc@{}}
-\toprule
+\toprule\noalign{}
 & Rounded: yes & Rounded: No \\
-\midrule
+\midrule\noalign{}
 \endhead
+\bottomrule\noalign{}
+\endlastfoot
 smooth surface: yes & 145 & 4 \\
 smooth surface: no & 8 & 6 \\
-\bottomrule
 \end{longtable}
 
 \begin{itemize}
@@ -2332,17 +2410,18 @@ We are interested in assigning probabilities to the events of observing a partic
 For instance for the dice we will write the probability table as
 
 \begin{longtable}[]{@{}cc@{}}
-\toprule
+\toprule\noalign{}
 \(X\) & Probability \\
-\midrule
+\midrule\noalign{}
 \endhead
+\bottomrule\noalign{}
+\endlastfoot
 \(1\) & \(P(X=1)=1/6\) \\
 \(2\) & \(P(X=2)=1/6\) \\
 \(3\) & \(P(X=3)=1/6\) \\
 \(4\) & \(P(X=4)=1/6\) \\
 \(5\) & \(P(X=5)=1/6\) \\
 \(6\) & \(P(X=6)=1/6\) \\
-\bottomrule
 \end{longtable}
 
 where we make explicit the events that the variable takes a given outcome \(X=x\).
@@ -2425,31 +2504,33 @@ And consider performing the following random \textbf{experiment:} Take one ball 
 From the classical probability, we can write the probability table, for which we do not need to run any experiment
 
 \begin{longtable}[]{@{}cc@{}}
-\toprule
+\toprule\noalign{}
 \(X\) & \(P(X=x)\) \\
-\midrule
+\midrule\noalign{}
 \endhead
+\bottomrule\noalign{}
+\endlastfoot
 \(-2\) & \(1/8=0.125\) \\
 \(-1\) & \(2/8=0.25\) \\
 \(0\) & \(2/8=0.25\) \\
 \(1\) & \(2/8=0.25\) \\
 \(2\) & \(1/8=0.125\) \\
-\bottomrule
 \end{longtable}
 
 Now, let's perform the experiment \(30\) times and write the frequency table
 
 \begin{longtable}[]{@{}cc@{}}
-\toprule
+\toprule\noalign{}
 \(X\) & \(f_i\) \\
-\midrule
+\midrule\noalign{}
 \endhead
+\bottomrule\noalign{}
+\endlastfoot
 \(-2\) & \(0.132\) \\
 \(-1\) & \(0.262\) \\
 \(0\) & \(0.240\) \\
 \(1\) & \(0.248\) \\
 \(2\) & \(0.118\) \\
-\bottomrule
 \end{longtable}
 
 The frequentist probability tells us
@@ -2491,16 +2572,17 @@ From the definition we have
 What is the mean of \(X\) if its probability mass function \(f(x)\) is given by
 
 \begin{longtable}[]{@{}cc@{}}
-\toprule
+\toprule\noalign{}
 \(X\) & \(f(x)=P(X=x)\) \\
-\midrule
+\midrule\noalign{}
 \endhead
+\bottomrule\noalign{}
+\endlastfoot
 \(0\) & \(1/16\) \\
 \(1\) & \(4/16\) \\
 \(2\) & \(6/16\) \\
 \(3\) & \(4/16\) \\
 \(4\) & \(1/16\) \\
-\bottomrule
 \end{longtable}
 
 \includegraphics{_main_files/figure-latex/unnamed-chunk-39-1.pdf}
@@ -2530,16 +2612,17 @@ Teh variance is the spread of the \textbf{probabilities} about the mean: The mom
 What is the variance of \(X\) if its probability mass function \(f(x)\) is given by
 
 \begin{longtable}[]{@{}cc@{}}
-\toprule
+\toprule\noalign{}
 \(X\) & \(f(x)=P(X=x)\) \\
-\midrule
+\midrule\noalign{}
 \endhead
+\bottomrule\noalign{}
+\endlastfoot
 \(0\) & \(1/16\) \\
 \(1\) & \(4/16\) \\
 \(2\) & \(6/16\) \\
 \(3\) & \(4/16\) \\
 \(4\) & \(1/16\) \\
-\bottomrule
 \end{longtable}
 
 \[\sigma^2 =V(X)=\sum_{i=1}^m (x_i-\mu)^2 f(x_i)\]
@@ -2577,16 +2660,17 @@ This is an important definition that allows us to prove three frequently used pr
 What is the variance \(X\) about the origin, \(E(X^2)\), if its probability mass function \(f(x)\) is given by
 
 \begin{longtable}[]{@{}cc@{}}
-\toprule
+\toprule\noalign{}
 \(X\) & \(f(x)=P(X=x)\) \\
-\midrule
+\midrule\noalign{}
 \endhead
+\bottomrule\noalign{}
+\endlastfoot
 \(0\) & \(1/16\) \\
 \(1\) & \(4/16\) \\
 \(2\) & \(6/16\) \\
 \(3\) & \(4/16\) \\
 \(4\) & \(1/16\) \\
-\bottomrule
 \end{longtable}
 
 \[E(X^2) =\sum_{i=1}^m x_i^2 f(x_i)\]
@@ -2626,16 +2710,17 @@ That is the accumulated probability up to a given value \(x\)
 For the probability mass function:
 
 \begin{longtable}[]{@{}cc@{}}
-\toprule
+\toprule\noalign{}
 \(X\) & \(f(x)=P(X=x)\) \\
-\midrule
+\midrule\noalign{}
 \endhead
+\bottomrule\noalign{}
+\endlastfoot
 \(0\) & \(1/16\) \\
 \(1\) & \(4/16\) \\
 \(2\) & \(6/16\) \\
 \(3\) & \(4/16\) \\
 \(4\) & \(1/16\) \\
-\bottomrule
 \end{longtable}
 
 The probability distribution is:
@@ -2730,10 +2815,10 @@ In general, we define the \textbf{q-quantile} as the value \(x_{p}\) \textbf{und
 \includegraphics{./figures/randomvarsum.JPG}
 
 \begin{longtable}[]{@{}
-  >{\centering\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.43}}
-  >{\centering\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.30}}
-  >{\centering\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.26}}@{}}
-\toprule
+  >{\centering\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.4348}}
+  >{\centering\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3043}}
+  >{\centering\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.2609}}@{}}
+\toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\centering
 quantity names
 \end{minipage} & \begin{minipage}[b]{\linewidth}\centering
@@ -2741,15 +2826,16 @@ model (unobserved)
 \end{minipage} & \begin{minipage}[b]{\linewidth}\centering
 data (observed)
 \end{minipage} \\
-\midrule
+\midrule\noalign{}
 \endhead
+\bottomrule\noalign{}
+\endlastfoot
 probability mass function // relative frequency & \(f(x_i)=P(X=x_i)\) & \(f_i=\frac{n_i}{N}\) \\
 probability distribution // cumulative relative frequency & \(F(x_i)=P(X \leq x_i)\) & \(F_i=\sum_{k\leq i} f_k\) \\
 mean // average & \(\mu=E(X)=\sum_{i=1}^M x_i f(x_i)\) & \(\bar{x}=\sum_{j=1}^N x_j/N\) \\
 variance // sample variance & \(\sigma^2=V(X)=\sum_{i=1}^M (x_i-\mu)^2 f(x_i)\) & \(s^2=\sum_{j=1}^N (x_j-\bar{x})^2/(N-1)\) \\
 standard deviation // sample sd & \(\sigma=\sqrt{V(X)}\) & \(s\) \\
 variance about the origin // 2nd sample moment & \(E(X^2)=\sum_{i=1}^M x_i^2 f(x_i)\) & \(m_2= \sum_{j=1}^N x_j^2/n\) \\
-\bottomrule
 \end{longtable}
 
 Note that:
@@ -2820,17 +2906,18 @@ Properties:
 Consider the following random variable \(X\) over the outcomes
 
 \begin{longtable}[]{@{}cc@{}}
-\toprule
+\toprule\noalign{}
 outcome & \(X\) \\
-\midrule
+\midrule\noalign{}
 \endhead
+\bottomrule\noalign{}
+\endlastfoot
 \(a\) & 0 \\
 \(b\) & 0 \\
 \(c\) & 1.5 \\
 \(d\) & 1.5 \\
 \(e\) & 2 \\
 \(f\) & 3 \\
-\bottomrule
 \end{longtable}
 
 \begin{enumerate}
@@ -2857,17 +2944,18 @@ outcome & \(X\) \\
 Given the probability mass function
 
 \begin{longtable}[]{@{}cc@{}}
-\toprule
+\toprule\noalign{}
 \(x\) & \(f(x)=P(X=x)\) \\
-\midrule
+\midrule\noalign{}
 \endhead
+\bottomrule\noalign{}
+\endlastfoot
 10 & 0.1 \\
 12 & 0.3 \\
 14 & 0.25 \\
 15 & 0.15 \\
 17 & ? \\
 20 & 0.15 \\
-\bottomrule
 \end{longtable}
 
 \begin{itemize}
@@ -3530,16 +3618,17 @@ A \textbf{probability model} is a probability mass function that may represent t
 \end{enumerate}
 
 \begin{longtable}[]{@{}cc@{}}
-\toprule
+\toprule\noalign{}
 \(X\) & \(f(x)\) \\
-\midrule
+\midrule\noalign{}
 \endhead
+\bottomrule\noalign{}
+\endlastfoot
 \(-2\) & \(1/8\) \\
 \(-1\) & \(2/8\) \\
 \(0\) & \(2/8\) \\
 \(1\) & \(2/8\) \\
 \(2\) & \(1/8\) \\
-\bottomrule
 \end{longtable}
 
 Represents the probability of drawing \textbf{one} ball from an urn where there are two balls with labels: \(-1, 0, 1\) and one ball with labels: \(-2, 2\).
@@ -3719,13 +3808,14 @@ We will introduce the probability of an outcome (\(A\)) as the \textbf{parameter
 \end{enumerate}
 
 \begin{longtable}[]{@{}cc@{}}
-\toprule
+\toprule\noalign{}
 \(Outcome\) & \(P_i\) \\
-\midrule
+\midrule\noalign{}
 \endhead
+\bottomrule\noalign{}
+\endlastfoot
 \(A\) & \(p\) \\
 \(B\) & \(1-p\) \\
-\bottomrule
 \end{longtable}
 
 \begin{itemize}
@@ -4283,7 +4373,7 @@ The solution is the addition of the blue needles in the plot.
 \textbf{\(\qquad\)b:}1-binom.cdf(49, 100, 0.55)=0.86;
 \textbf{\(\qquad\)c:}binom.cdf(51, 100, 0.45)=0.90; \textbf{\(\qquad\)d:}1-binom.cdf(51, 100, 0.45)=0.095
 
-\textbf{5)} In an exam a student chooses at random one of the four answers that he does not know. If he doesn't know \(10\) questions what is the probability that more than \(5\) (\(<5\)) questions are correct?
+\textbf{5)} In an exam a student chooses at random one of the four answers that he does not know. If he doesn't know \(10\) questions what is the probability that more than \(5\) (\(>5\)) questions are correct?
 
 \textbf{\(\qquad\)a:}binom.pmf(5, 10, 0.25)\textasciitilde{} 0.05; \textbf{\(\qquad\)b:}binom.cdf(5, 10, 0.75)\textasciitilde{} 0.07; \textbf{\(\qquad\)c:}binom.pmf(5, 10, 0.75)\textasciitilde{} 0.05; \textbf{\(\qquad\)d:}1-binom.cdf(5, 10, 0.25)\textasciitilde{} 0.01
 
@@ -5110,13 +5200,13 @@ For computing \(P(a\leq X \leq b)\), we use the property of the probability dist
 \section{Summary of probability models}\label{summary-of-probability-models}}
 
 \begin{longtable}[]{@{}
-  >{\centering\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.17}}
-  >{\centering\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.19}}
-  >{\centering\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.19}}
-  >{\centering\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.17}}
-  >{\centering\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.14}}
-  >{\centering\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.14}}@{}}
-\toprule
+  >{\centering\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1667}}
+  >{\centering\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1905}}
+  >{\centering\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1905}}
+  >{\centering\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1667}}
+  >{\centering\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1429}}
+  >{\centering\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1429}}@{}}
+\toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\centering
 Model
 \end{minipage} & \begin{minipage}[b]{\linewidth}\centering
@@ -5130,35 +5220,39 @@ E(X)
 \end{minipage} & \begin{minipage}[b]{\linewidth}\centering
 V(X)
 \end{minipage} \\
-\midrule
+\midrule\noalign{}
 \endhead
+\bottomrule\noalign{}
+\endlastfoot
 Uniform & integer or real number & \([a, b]\) & \(\frac{1}{n}\) & \(\frac{b+a}{2}\) & \(\frac{(b-a+1)^2-1}{12}\) \\
 Bernoulli & event A & 0,1 & \((1-p)^{1-x}p^x\) & \(p\) & \(p(1-p)\) \\
 Binomial & \# of A events in \(n\) repetitions of Bernoulli trials & 0,1,\ldots{} & \(\binom n x (1-p)^{n-x}p^x\) & \(np\) & \(np(1-p)\) \\
 Negative Binomial for events & \# of B events in Bernoulli repetitions before \(r\) As are observed & 0,1,.. & \(\binom {x+r-1} x (1-p)^xp^r\) & \(\frac{r(1-p)}{p}\) & \(\frac{r(1-p)}{p^2}\) \\
-Hypergeometric & \# A events in a sample \(n\) from population \(N\) with \(K\) As & \(\max(0, n+K-N)\), \ldots{} \(\min(K, n)\) & \(\frac{1}{\binom N n}\binom K x \binom {N-K} {n-x}\) & \(n*\frac{N}{K}\) & \(n \frac{N}{K} (1-\frac{N}{K})\frac{N-n}{N-1}\) \\
+Hypergeom & \# A events in a sample \(n\) from population \(N\) with \(K\) As & \(\max(0, n+K-N)\), \ldots{} \(\min(K, n)\) & \(\frac{1}{\binom N n}\binom K x \binom {N-K} {n-x}\) & \(n*\frac{N}{K}\) & \(n \frac{N}{K} (1-\frac{N}{K})\frac{N-n}{N-1}\) \\
 Poisson & \# of events A in an interval & 0,1, .. & \(\frac{e^{-\lambda}\lambda^x}{x!}\) & \(\lambda\) & \(\lambda\) \\
 Exponential & Interval between two events A & \([0,\infty)\) & \(\lambda e^{-\lambda x}\) & \(\frac{1}{\lambda}\) & \(\frac{1}{\lambda^2}\) \\
 Normal & measurement with symmetric errors whose most likely value is the average & \((-\infty, \infty)\) & \(\frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{(x-\mu)^2}{2\sigma^2}}\) & \(\mu\) & \(\sigma^2\) \\
-\bottomrule
 \end{longtable}
+
+\newpage
 
 \hypertarget{python-functions-of-probability-models}{%
 \section{Python functions of probability models}\label{python-functions-of-probability-models}}
 
 \begin{longtable}[]{@{}lc@{}}
-\toprule
+\toprule\noalign{}
 Model & Python \\
-\midrule
+\midrule\noalign{}
 \endhead
+\bottomrule\noalign{}
+\endlastfoot
 Uniform (continuous) & uniform.pdf(x, a, b) \\
 Binomial & binom.pmf(x,n,p) \\
 Negative Binomial for events & nbinom.pmf(x,r,p) \\
-Hypergeometric & hypergeom.pmf(x, N, K, n) \\
+Hypergeom & hypergeom.pmf(x, N, K, n) \\
 Poisson & poisson.pmf(x, lambda) \\
 Exponential & expon.pdf(x,0,1/lambda) \\
 Normal & norm.pdf(x, mu, sigma) \\
-\bottomrule
 \end{longtable}
 
 \hypertarget{questions-6}{%
@@ -6630,7 +6724,7 @@ Take a random variable with the following probability density function
 \[
     f(x)= 
 \begin{cases}
-    \lambda e^{-\lambda x},& \text{if } 0 \leq\\
+    \lambda e^{-\lambda x},& \text{if } 0 \leq x\\
     0,& otherwise 
 \end{cases}
 \]
@@ -7240,16 +7334,16 @@ The interval for the variance is \textbf{not symmetric} and we cannot formulate 
 
 \textbf{2)} when we talk about \(z_{0.025}\) we mean:
 
-\textbf{\(\qquad\)a:} The value of a normal standard variable that has accumulates up to \(75\%\) of probability;
-\textbf{\(\qquad\)b:} The value of a normal standard variable that has accumulates up to \(25\%\) of probability;
-\textbf{\(\qquad\)c:} The probability of standard variable up to \(75\%\);
-\textbf{\(\qquad\)d:} The probability of standard variable up to \(25\%\)
+\textbf{\(\qquad\)a:} The value of a normal standard variable that has accumulated up to \(99.75\%\) of probability;
+\textbf{\(\qquad\)b:} The value of a normal standard variable that has accumulates up to \(0.25\%\) of probability;
+\textbf{\(\qquad\)c:} The probability of a standard variable up to \(99.75\%\);
+\textbf{\(\qquad\)d:} The probability of a standard variable up to \(0.25\%\)
 
 \textbf{3)} The random confident interval \((L,U)\) for the mean at \(95\%\)
 
 \textbf{\(\qquad\)a:} is a two dimensional parameter of the sample distribution;
 \textbf{\(\qquad\)b:} gives the limits where \(\mu\) has a probability of occurring \(95\%\) of the times;
-\textbf{\(\qquad\)c:} is an estimate of the mean;
+\textbf{\(\qquad\)c:} is an estimate of the average;
 \textbf{\(\qquad\)d:} captures \(\mu\) \(95\%\) of the times
 
 \textbf{4)} A confidence interval for the mean written as \(\hat{\mu}=56.99 \pm 0.01\)
@@ -7681,7 +7775,8 @@ In Python the entire hypothesis testing can be performed with the function ztest
 from bioinfokit.analys import stat
 import pandas as pd
 
-data = {'x': [13.34642, 13.32620, 13.01459, 13.10811, 12.96999, 13.55309, 13.75557, 12.62747]}
+data = {'x': [13.34642, 13.32620, 13.01459, 13.10811, 
+              12.96999, 13.55309, 13.75557, 12.62747]}
 df = pd.DataFrame(data)
 
 res = stat()
@@ -7820,7 +7915,8 @@ where \(pvalue=\)1-norm.cdf(1.7187).
 The hypothesis test is performed in Python under the label p value (one-tail)
 
 \begin{verbatim}
-data = {'x': [13.34642, 13.32620, 13.01459, 13.10811, 12.96999, 13.55309, 13.75557, 12.62747]}
+data = {'x': [13.34642, 13.32620, 13.01459, 13.10811, 
+              12.96999, 13.55309, 13.75557, 12.62747]}
 df = pd.DataFrame(data)
 
 res = stat()
@@ -8578,14 +8674,15 @@ We do the PCR test and it gives us
 We can write the contingency table for the probabilities of the results of the hypothesis test as
 
 \begin{longtable}[]{@{}ccc@{}}
-\toprule
+\toprule\noalign{}
 & \(H_1\) is true & \(H_0\) is true \\
-\midrule
+\midrule\noalign{}
 \endhead
+\bottomrule\noalign{}
+\endlastfoot
 \textbf{The test on \(H_1\) is positive} & \(1-\beta\) & \(\alpha\) \\
 \textbf{The test on \(H_1\) is negative} & \(\beta\) & \(1-\alpha\) \\
 \textbf{sum} & 1 & 1 \\
-\bottomrule
 \end{longtable}
 
 we therefore have
@@ -8764,14 +8861,15 @@ Our research question is to find whether \(Disease\) and \(Hospital\) are \textb
 Our experiment is such that we make diagnosis \textbf{conditioned} to each hospital. We then have the conditional probability table
 
 \begin{longtable}[]{@{}ccc@{}}
-\toprule
+\toprule\noalign{}
 & Hospital: \(A\) & Hospital: \(B\) \\
-\midrule
+\midrule\noalign{}
 \endhead
+\bottomrule\noalign{}
+\endlastfoot
 \textbf{Hepatitis} (no) & \(P(no|A)=(1-p_A)\) & \(P(no|B)=(1-p_B)\) \\
 \textbf{Hepatitis} (yes) & \(P(yes|A)=p_A\) & \(P(yes|B)=p_B\) \\
 \textbf{sum} & \(1\) & \(1\) \\
-\bottomrule
 \end{longtable}
 
 We want to know if for example the probability of infection in hospital \(A\) is different from the probability of infection in hospital \(B\), and therefore the hypothesis contrast is
@@ -8852,14 +8950,15 @@ In the plot, each cross is a diagnosis (either \(1\) or \(0\)) the dotted line i
 The conditional probability table by hospital is
 
 \begin{longtable}[]{@{}ccc@{}}
-\toprule
+\toprule\noalign{}
 & Hospital: \(A\) & Hospital: \(B\) \\
-\midrule
+\midrule\noalign{}
 \endhead
+\bottomrule\noalign{}
+\endlastfoot
 \textbf{Hepatitis} (no) & \(0.910\) & \(0.885\) \\
 \textbf{Hepatitis} (yes) & \(0.090\) & \(0.115\) \\
 \textbf{sum} & \(1\) & \(1\) \\
-\bottomrule
 \end{longtable}
 
 Which we can illustrate in a barplot
@@ -9071,14 +9170,15 @@ The alternative hypothesis assumed that \textbf{at least one hospital} is not in
 When we collect the data we can build a contingancy table for the observations
 
 \begin{longtable}[]{@{}cccccc@{}}
-\toprule
+\toprule\noalign{}
 & \(A\) & \(B\) & \(C\) & \(D\) & \(E\) \\
-\midrule
+\midrule\noalign{}
 \endhead
+\bottomrule\noalign{}
+\endlastfoot
 \textbf{Hepatitis} (no) & \(182\) & \(354\) & \(375\) & \(85\) & \(90\) \\
 \textbf{Hepatitis} (yes) & \(18\) & \(46\) & \(25\) & \(15\) & \(10\) \\
 \textbf{sum} & \(200\) & \(400\) & \(400\) & \(100\) & \(100\) \\
-\bottomrule
 \end{longtable}
 
 We have that the \textbf{standardized squared error} from the null hypothesis can be written as:
@@ -9158,11 +9258,11 @@ We can illustrate the result a conditinal frequency table by hospital or with a 
 
 \textbf{4)} The null hypothesis in testing for differences in proportions across different conditions assume
 
-\textbf{\(\qquad\)a:} the different conditions for different proportions;
+\textbf{\(\qquad\)a:} different conditions for different proportions;
 \textbf{\(\qquad\)b:} the same condition across different proportion;
 \textbf{\(\qquad\)c:} different proportions across the conditions;
 \textbf{\(\qquad\)d:} the same proportion across the conditions\\
-\textbf{5)} if the \(pvalue\) is lower than \(0.5\) in a test of several proportions then
+\textbf{5)} if the \(pvalue\) is lower than \(0.05\) in a test of several proportions then
 
 \textbf{\(\qquad\)a:} we accept that at least one proportion is different from the rest;
 \textbf{\(\qquad\)b:} We accept that all proportions are different between each other;
@@ -9245,15 +9345,16 @@ One random experiment has two variables: \((y, c)\).
 The repetition of the random experiment \(n\) times is therefore a table such as
 
 \begin{longtable}[]{@{}ccc@{}}
-\toprule
+\toprule\noalign{}
 \(subject\) & \(Y\) & \(C\) \\
-\midrule
+\midrule\noalign{}
 \endhead
+\bottomrule\noalign{}
+\endlastfoot
 \(1\) & \(1.2\) & \(A\) \\
 \(2\) & \(0.9\) & \(A\) \\
 \ldots{} & \ldots{} & \ldots{} \\
 \(n\) & \(1.4\) & \(B\) \\
-\bottomrule
 \end{longtable}
 
 \textbf{Example (leptin)}
@@ -9425,7 +9526,8 @@ import pandas as pd
 import math
 from scipy.stats import norm
 
-data = pd.read_csv('https://alejandro-isglobal.github.io/SDA/data/leptin_sex.txt', sep='\t')
+data = pd.read_csv('https://alejandro-isglobal.github.io/SDA/data/leptin_sex.txt', 
+sep='\t')
 
 groupA = data[data['sex']=="girl"]['leptin']
 groupB = data[data['sex']=="boy"]['leptin']
@@ -9637,7 +9739,8 @@ in Python
 import numpy as np
 from scipy import stats
 
-data = pd.read_csv('https://alejandro-isglobal.github.io/SDA/data/leptin.txt', sep='\t')
+data = pd.read_csv('https://alejandro-isglobal.github.io/SDA/data/leptin.txt', 
+sep='\t')
 
 groupA = data["Control"]
 groupB = data["LepNull"]
@@ -9686,7 +9789,8 @@ In Python
 import numpy as np
 from scipy import stats
 
-data = pd.read_csv('https://alejandro-isglobal.github.io/SDA/data/leptin.txt', sep='\t')
+data = pd.read_csv('https://alejandro-isglobal.github.io/SDA/data/leptin.txt', 
+sep='\t')
 
 groupA = data["Control"]
 groupB = data["LepNull"]
@@ -9730,22 +9834,23 @@ Therefore, the data \textbf{still} shows a very significant increase in \(18.03\
 
 \textbf{\(\qquad\)a:} we have small samples of the continuous variable in
 each condition;
-\textbf{\(\qquad\)b:} the distributions of the continuous variable are in each condition are normal;
+\textbf{\(\qquad\)b:} the distributions of the continuous variable in each condition are normal;
 \textbf{\(\qquad\)c:} \(D\) is unbiased;
 \textbf{\(\qquad\)d:} we cannot use a \(Z\)-test
 
 \textbf{5)} For the data
 
 \begin{longtable}[]{@{}ccc@{}}
-\toprule
+\toprule\noalign{}
 \(subject\) & \(Y\) & \(C\) \\
-\midrule
+\midrule\noalign{}
 \endhead
+\bottomrule\noalign{}
+\endlastfoot
 \(1\) & \(1.1\) & \(A\) \\
 \(2\) & \(0.9\) & \(A\) \\
 \(3\) & \(0.8\) & \(B\) \\
 \(4\) & \(0.6\) & \(B\) \\
-\bottomrule
 \end{longtable}
 
 assuming that \(Y\) is normally distributed, which is the best test?
@@ -9985,7 +10090,8 @@ import pandas as pd
 import statsmodels.api as sm
 from statsmodels.formula.api import ols
 
-data = pd.read_csv('https://alejandro-isglobal.github.io/SDA/data/dataleptin.txt', sep=' ')
+data = pd.read_csv('https://alejandro-isglobal.github.io/SDA/data/dataleptin.txt', 
+sep=' ')
 
 filtsex = data['sex']=='M'
 filtered_data = data[filtsex]
@@ -10074,7 +10180,8 @@ import pandas as pd
 import statsmodels.api as sm
 from statsmodels.formula.api import ols
 
-data = pd.read_csv('https://alejandro-isglobal.github.io/SDA/data/dataleptin.txt', sep=' ')
+data = pd.read_csv('https://alejandro-isglobal.github.io/SDA/data/dataleptin.txt', 
+sep=' ')
 
 filtsex = data['sex']=='M'
 filtgroups = (data['group']=='Control') | (data['group']=='leptinKO')
@@ -10100,7 +10207,8 @@ and compare it with the t-test
 import numpy as np
 from scipy import stats
 
-data = pd.read_csv('https://alejandro-isglobal.github.io/SDA/data/leptin.txt', sep='\t')
+data = pd.read_csv('https://alejandro-isglobal.github.io/SDA/data/leptin.txt', 
+sep='\t')
 
 groupA = data["Control"]
 groupB = data["LepNull"]
@@ -10260,7 +10368,8 @@ import statsmodels.api as sm
 from statsmodels.formula.api import ols
 
 
-data = pd.read_csv('https://alejandro-isglobal.github.io/SDA/data/dataleptin.txt', sep=' ')
+data = pd.read_csv('https://alejandro-isglobal.github.io/SDA/data/dataleptin.txt', 
+sep=' ')
 
 filtgroups = (data['group']=='leptinKO') | (data['group']=='KOplus')
 
@@ -10295,7 +10404,8 @@ import pandas as pd
 import statsmodels.api as sm
 from statsmodels.formula.api import ols
 
-data = pd.read_csv('https://alejandro-isglobal.github.io/SDA/data/dataleptin.txt', sep=' ')
+data = pd.read_csv('https://alejandro-isglobal.github.io/SDA/data/dataleptin.txt', 
+sep=' ')
 
 filtgroups = (data['group']=='leptinKO') | (data['group']=='KOplus')
 
@@ -10432,7 +10542,8 @@ import pandas as pd
 import statsmodels.api as sm
 from statsmodels.formula.api import ols
 
-data = pd.read_csv('https://alejandro-isglobal.github.io/SDA/data/dataleptin.txt', sep=' ')
+data = pd.read_csv('https://alejandro-isglobal.github.io/SDA/data/dataleptin.txt', 
+sep=' ')
 
 filtgroups = (data['group']=='leptinKO') | (data['group']=='KOplus')
 
@@ -10567,7 +10678,8 @@ import pandas as pd
 import statsmodels.api as sm
 from statsmodels.formula.api import ols
 
-data = pd.read_csv('https://alejandro-isglobal.github.io/SDA/data/dataleptin.txt', sep=' ')
+data = pd.read_csv('https://alejandro-isglobal.github.io/SDA/data/dataleptin.txt', 
+sep=' ')
 
 filtgroups = (data['group']=='leptinKO') | (data['group']=='KOplus')
 
@@ -10604,12 +10716,12 @@ Interactions are better represented in plots displaying the conditioned means ac
 \textbf{\(\qquad\)c:} several continuous random variables and several categorical variables;
 \textbf{\(\qquad\)d:} a continuous random variable and several categorical outcomes;
 
-\textbf{2)} The statistic \(F=\frac{MST}{MSE}\) estimates
+\textbf{2)} The statistic \(F=\frac{MST}{MSE}\) is
 
-\textbf{\(\qquad\)a:} the estimation of \(\sigma\) by the residuals;
-\textbf{\(\qquad\)b:} the estimation of \(\sigma\) by the group means;
-\textbf{\(\qquad\)c:} the estimation of \(\sigma\) by the group means minus by the estimation of \(\sigma\) by the residuals;
-\textbf{\(\qquad\)d:} the estimation of \(\sigma\) by the group means divided by the estimation of \(\sigma\) by the residuals
+\textbf{\(\qquad\)a:} the estimation of \(\sigma^2\) by the residuals;
+\textbf{\(\qquad\)b:} the estimation of \(\sigma^2\) by the group means;
+\textbf{\(\qquad\)c:} the estimation of \(\sigma^2\) by the group means minus by the estimation of \(\sigma^2\) by the residuals;
+\textbf{\(\qquad\)d:} the estimation of \(\sigma^2\) by the group means divided by the estimation of \(\sigma^2\) by the residuals
 
 \textbf{3)} We accept the null hypothesis that the groups have equal means when the value of \(F=\frac{MST}{MSE}\) is
 
@@ -10629,8 +10741,8 @@ Interactions are better represented in plots displaying the conditioned means ac
 
 \textbf{\(\qquad\)a:} the group means of factor 1 are different from the group means of factor 2 ;
 \textbf{\(\qquad\)b:} the mean of a group of factor 1 is different from the mean of the other groups of factor 1;
-\textbf{\(\qquad\)c:} the mean of a group of factor 1 is different from the mean of a group of factor 2;
-\textbf{\(\qquad\)d:} that the means across all groups of factor 1 and 2 are different;
+\textbf{\(\qquad\)c:} the means of the groups across both factors are not added contributions of each factor;
+\textbf{\(\qquad\)d:} the means of the groups across both factors are different;
 
 \hypertarget{practice-7}{%
 \section{Practice}\label{practice-7}}
@@ -10872,7 +10984,8 @@ where
 import pandas as pd
 from scipy.stats import pearsonr
 
-data = pd.read_csv('https://alejandro-isglobal.github.io/SDA/data/leptinFatmass.txt', sep=' ')
+data = pd.read_csv('https://alejandro-isglobal.github.io/SDA/data/leptinFatmass.txt', 
+sep=' ')
 
 leptin = data['leptin']
 fatmass = data['fatmass']
@@ -11032,7 +11145,7 @@ with mean \(E(B)=\beta\) and, therefore, it is an unbiased estimator.
 
 Under the null hypothesis, \(\beta=0\) and the standardized error from the null hypothesis are
 
-\[\frac{E(B)}{\sqrt{\frac{ns^2_y}{{(n-2)s^2_x}}}} \rightarrow T(n-2)\]
+\[\frac{\hat{\beta}}{\sqrt{\frac{ns^2_y}{{(n-2)s^2_x}}}} \rightarrow T(n-2)\]
 follows a t-distribution with \(n-2\) degrees of freedom.
 
 \textbf{Example (leptin and fatmass)}
@@ -11043,7 +11156,8 @@ We can perform the statistical test
 import pandas as pd
 from scipy.stats import pearsonr
 
-data = pd.read_csv('https://alejandro-isglobal.github.io/SDA/data/leptinFatmass.txt', sep='\t')
+data = pd.read_csv('https://alejandro-isglobal.github.io/SDA/data/leptinFatmass.txt', 
+sep='\t')
 
 model = ols('leptin ~ fatmass', data=data).fit()
 
@@ -11134,7 +11248,8 @@ When we include both sex and age as additional factors in the regression, we obs
 import pandas as pd
 from scipy.stats import pearsonr
 
-data = pd.read_csv('https://alejandro-isglobal.github.io/SDA/data/leptinFatmass.txt', sep='\t')
+data = pd.read_csv('https://alejandro-isglobal.github.io/SDA/data/leptinFatmass.txt', 
+sep='\t')
 
 model = ols('leptin ~ fatmass + sex + age', data=data).fit()
 
@@ -11186,7 +11301,8 @@ In our example, if \(z\) is sex, then \(\gamma\) will test the differences in \(
 import pandas as pd
 from scipy.stats import pearsonr
 
-data = pd.read_csv('https://alejandro-isglobal.github.io/SDA/data/leptinFatmass.txt', sep='\t')
+data = pd.read_csv('https://alejandro-isglobal.github.io/SDA/data/leptinFatmass.txt', 
+sep='\t')
 
 model = ols('leptin ~ fatmass*sex + age', data=data).fit()
 
@@ -11194,6 +11310,7 @@ print(model.summary())
 \end{verbatim}
 
 \begin{verbatim}
+
                             OLS Regression Results                            
 ==============================================================================
 Dep. Variable:                 leptin   R-squared:                       0.503

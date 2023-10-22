@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 18 Regression and correlation | Statistical Data Analysis</title>
   <meta name="description" content="This is the book for the statistics theory of the BIST master" />
-  <meta name="generator" content="bookdown 0.34 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.36 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 18 Regression and correlation | Statistical Data Analysis" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Alejandro Caceres" />
 
 
-<meta name="date" content="2023-10-10" />
+<meta name="date" content="2023-10-22" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -92,7 +92,7 @@ code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
+code span.bu { color: #008000; } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -105,7 +105,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
+code span.im { color: #008000; font-weight: bold; } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -613,7 +613,8 @@ The new variable <span class="math inline">\(Z\)</span> is a normal variable</p>
 <pre><code>import pandas as pd
 from scipy.stats import pearsonr
 
-data = pd.read_csv(&#39;https://alejandro-isglobal.github.io/SDA/data/leptinFatmass.txt&#39;, sep=&#39; &#39;)
+data = pd.read_csv(&#39;https://alejandro-isglobal.github.io/SDA/data/leptinFatmass.txt&#39;, 
+sep=&#39; &#39;)
 
 leptin = data[&#39;leptin&#39;]
 fatmass = data[&#39;fatmass&#39;]
@@ -711,7 +712,8 @@ follows a t-distribution with <span class="math inline">\(n-2\)</span> degrees o
 <pre><code>import pandas as pd
 from scipy.stats import pearsonr
 
-data = pd.read_csv(&#39;https://alejandro-isglobal.github.io/SDA/data/leptinFatmass.txt&#39;, sep=&#39;\t&#39;)
+data = pd.read_csv(&#39;https://alejandro-isglobal.github.io/SDA/data/leptinFatmass.txt&#39;, 
+sep=&#39;\t&#39;)
 
 model = ols(&#39;leptin ~ fatmass&#39;, data=data).fit()
 
@@ -776,7 +778,8 @@ and only <span class="math inline">\(7\%\)</span> of the variability is explaine
 <pre><code>import pandas as pd
 from scipy.stats import pearsonr
 
-data = pd.read_csv(&#39;https://alejandro-isglobal.github.io/SDA/data/leptinFatmass.txt&#39;, sep=&#39;\t&#39;)
+data = pd.read_csv(&#39;https://alejandro-isglobal.github.io/SDA/data/leptinFatmass.txt&#39;, 
+sep=&#39;\t&#39;)
 
 model = ols(&#39;leptin ~ fatmass + sex + age&#39;, data=data).fit()
 
@@ -817,7 +820,8 @@ The parameter <span class="math inline">\(\delta\)</span> will add a contributio
 <pre><code>import pandas as pd
 from scipy.stats import pearsonr
 
-data = pd.read_csv(&#39;https://alejandro-isglobal.github.io/SDA/data/leptinFatmass.txt&#39;, sep=&#39;\t&#39;)
+data = pd.read_csv(&#39;https://alejandro-isglobal.github.io/SDA/data/leptinFatmass.txt&#39;, 
+sep=&#39;\t&#39;)
 
 model = ols(&#39;leptin ~ fatmass*sex + age&#39;, data=data).fit()
 

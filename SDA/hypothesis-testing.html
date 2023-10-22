@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 14 Hypothesis testing | Statistical Data Analysis</title>
   <meta name="description" content="This is the book for the statistics theory of the BIST master" />
-  <meta name="generator" content="bookdown 0.34 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.36 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 14 Hypothesis testing | Statistical Data Analysis" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Alejandro Caceres" />
 
 
-<meta name="date" content="2023-10-08" />
+<meta name="date" content="2023-10-22" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -92,7 +92,7 @@ code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
+code span.bu { color: #008000; } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -105,7 +105,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
+code span.im { color: #008000; font-weight: bold; } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -676,7 +676,8 @@ Python: <code>2*(1- norm.cdf(1.718714))</code></p>
 from bioinfokit.analys import stat
 import pandas as pd
 
-data = {&#39;x&#39;: [13.34642, 13.32620, 13.01459, 13.10811, 12.96999, 13.55309, 13.75557, 12.62747]}
+data = {&#39;x&#39;: [13.34642, 13.32620, 13.01459, 13.10811, 
+              12.96999, 13.55309, 13.75557, 12.62747]}
 df = pd.DataFrame(data)
 
 res = stat()
@@ -749,7 +750,8 @@ where <span class="math inline">\(z_{0.05}=\)</span><code>norm.ppf(0.95)=1.64485
 </ol>
 <p>where <span class="math inline">\(pvalue=\)</span><code>1-norm.cdf(1.7187)</code>.</p>
 <p>The hypothesis test is performed in Python under the label <code>p value (one-tail)</code></p>
-<pre ecal="FALSE"><code>data = {&#39;x&#39;: [13.34642, 13.32620, 13.01459, 13.10811, 12.96999, 13.55309, 13.75557, 12.62747]}
+<pre ecal="FALSE"><code>data = {&#39;x&#39;: [13.34642, 13.32620, 13.01459, 13.10811, 
+              12.96999, 13.55309, 13.75557, 12.62747]}
 df = pd.DataFrame(data)
 
 res = stat()
@@ -910,8 +912,8 @@ medicine1 = np.array([0.7,-1.6,-0.2,-1.2,-0.1,3.4,3.7,0.8,0,2])</code></pre>
 </ul>
 <pre eval="FALSE"><code>medicine2 = np.array([1.9,0.8,1.1,0.1,-0.1,4.4,5.5,1.6,4.6,3.4])</code></pre>
 <p>The scientific hypothesis was that soporific 2 was better than soporific 1. For each individual, Gosset computed the difference between the treatments. Taking <span class="math inline">\(X\)</span> as the <strong>difference</strong> between treatments, this was the sample observed for <span class="math inline">\(X\)</span></p>
-<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="hypothesis-testing.html#cb53-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">=</span> medicine2<span class="sc">-</span>medicine1</span>
-<span id="cb53-2"><a href="hypothesis-testing.html#cb53-2" aria-hidden="true" tabindex="-1"></a>x</span></code></pre></div>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="hypothesis-testing.html#cb53-1" tabindex="-1"></a>x <span class="ot">=</span> medicine2<span class="sc">-</span>medicine1</span>
+<span id="cb53-2"><a href="hypothesis-testing.html#cb53-2" tabindex="-1"></a>x</span></code></pre></div>
 <pre><code>##  [1] 0 0 0 0 0 0 0 0 0 0</code></pre>
 <p>finding an average of treatment gain from soporific 2 with respect to soporific 1 of <span class="math inline">\(1.58\)</span>, and <span class="math inline">\(s=1.229995\)</span></p>
 <p>The scientific question can be stated as <strong>upper-tailed</strong> paired t-test:</p>
@@ -1029,7 +1031,7 @@ proportions_ztest(count=0.9*200, nobs=200, value=188/200, alternative=&#39;small
 ##  [9] 24.40244 24.61227 26.06495 25.31304 25.34867 25.09629 24.51642 26.55461
 ## [17] 25.43313 23.28904 25.61018 24.58867</code></pre>
 <p>The estimated standard deviation for this data is <span class="math inline">\(s=0.8462188\)</span> was the process out of control at <span class="math inline">\(0.99\%\)</span> confidence and should be stopped?</p>
-<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="hypothesis-testing.html#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(x)</span></code></pre></div>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="hypothesis-testing.html#cb62-1" tabindex="-1"></a><span class="fu">sd</span>(x)</span></code></pre></div>
 <pre><code>## [1] 0.8462188</code></pre>
 <p>We therefore want to contrast the upper tail hypotheses</p>
 <ol style="list-style-type: lower-alpha">

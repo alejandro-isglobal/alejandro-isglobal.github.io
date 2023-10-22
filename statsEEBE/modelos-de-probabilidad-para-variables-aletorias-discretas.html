@@ -23,7 +23,7 @@
 <meta name="author" content="Alejandro Cáceres (alejandro.caceres.dominguez@upc.edu)" />
 
 
-<meta name="date" content="2023-10-17" />
+<meta name="date" content="2023-10-22" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -31,7 +31,7 @@
   
   
 <link rel="prev" href="variables-aleatorias-continuas.html"/>
-
+<link rel="next" href="modelos-de-poisson-y-exponencial.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -196,6 +196,19 @@
 <li class="chapter" data-level="7.12" data-path="modelos-de-probabilidad-para-variables-aletorias-discretas.html"><a href="modelos-de-probabilidad-para-variables-aletorias-discretas.html#modelo-hipergeométrico"><i class="fa fa-check"></i><b>7.12</b> Modelo hipergeométrico</a></li>
 <li class="chapter" data-level="7.13" data-path="modelos-de-probabilidad-para-variables-aletorias-discretas.html"><a href="modelos-de-probabilidad-para-variables-aletorias-discretas.html#preguntas-4"><i class="fa fa-check"></i><b>7.13</b> Preguntas</a></li>
 <li class="chapter" data-level="7.14" data-path="modelos-de-probabilidad-para-variables-aletorias-discretas.html"><a href="modelos-de-probabilidad-para-variables-aletorias-discretas.html#ejercicios-5"><i class="fa fa-check"></i><b>7.14</b> Ejercicios</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="modelos-de-poisson-y-exponencial.html"><a href="modelos-de-poisson-y-exponencial.html"><i class="fa fa-check"></i><b>8</b> Modelos de Poisson y Exponencial</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="modelos-de-poisson-y-exponencial.html"><a href="modelos-de-poisson-y-exponencial.html#objetivo-4"><i class="fa fa-check"></i><b>8.1</b> Objetivo</a></li>
+<li class="chapter" data-level="8.2" data-path="modelos-de-poisson-y-exponencial.html"><a href="modelos-de-poisson-y-exponencial.html#modelos-de-probabilidad-para-variables-discretas"><i class="fa fa-check"></i><b>8.2</b> Modelos de probabilidad para variables discretas</a></li>
+<li class="chapter" data-level="8.3" data-path="modelos-de-poisson-y-exponencial.html"><a href="modelos-de-poisson-y-exponencial.html#experimento-de-poissson"><i class="fa fa-check"></i><b>8.3</b> Experimento de Poissson</a></li>
+<li class="chapter" data-level="8.4" data-path="modelos-de-poisson-y-exponencial.html"><a href="modelos-de-poisson-y-exponencial.html#función-de-masa-de-probabilidad-de-poisson"><i class="fa fa-check"></i><b>8.4</b> Función de masa de probabilidad de Poisson</a></li>
+<li class="chapter" data-level="8.5" data-path="modelos-de-poisson-y-exponencial.html"><a href="modelos-de-poisson-y-exponencial.html#modelos-de-probabilidad-para-variables-continuas"><i class="fa fa-check"></i><b>8.5</b> Modelos de probabilidad para variables continuas</a></li>
+<li class="chapter" data-level="8.6" data-path="modelos-de-poisson-y-exponencial.html"><a href="modelos-de-poisson-y-exponencial.html#experimento-exponencial"><i class="fa fa-check"></i><b>8.6</b> Experimento exponencial</a></li>
+<li class="chapter" data-level="8.7" data-path="modelos-de-poisson-y-exponencial.html"><a href="modelos-de-poisson-y-exponencial.html#densidad-de-probabilidad-exponencial"><i class="fa fa-check"></i><b>8.7</b> Densidad de probabilidad exponencial</a></li>
+<li class="chapter" data-level="8.8" data-path="modelos-de-poisson-y-exponencial.html"><a href="modelos-de-poisson-y-exponencial.html#distribución-exponencial"><i class="fa fa-check"></i><b>8.8</b> Distribución exponencial</a></li>
+<li class="chapter" data-level="8.9" data-path="modelos-de-poisson-y-exponencial.html"><a href="modelos-de-poisson-y-exponencial.html#preguntas-5"><i class="fa fa-check"></i><b>8.9</b> Preguntas</a></li>
+<li class="chapter" data-level="8.10" data-path="modelos-de-poisson-y-exponencial.html"><a href="modelos-de-poisson-y-exponencial.html#ejercicios-6"><i class="fa fa-check"></i><b>8.10</b> Ejercicios</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -690,7 +703,7 @@ El modelo hipergeométrico tiene tres parámetros.</p>
 <p><strong><span class="math inline">\(\qquad\)</span>a:</strong><code>pbinom(x=49, n=100, p=0.55)=0.13</code>;
 <strong><span class="math inline">\(\qquad\)</span>b:</strong><code>1-pbinom(x=49, n=100, p=0.55)=0.86</code>;
 <strong><span class="math inline">\(\qquad\)</span>c:</strong><code>pbinom(x=51, n=100, p=0.45)=0.90</code>; <strong><span class="math inline">\(\qquad\)</span>d:</strong><code>1-pbinom(x=51, n=100, p=0.45)=0.095</code></p>
-<p><strong>5)</strong> En un examen un alumno cuando no sabe la respuesta elige al azar una de las cuatro respuestas en una pregunta de selección múltiple. Si no sabe <span class="math inline">\(10\)</span> preguntas, ¿cuál es la probabilidad de que al menos <span class="math inline">\(5\)</span> preguntas sean correctas?</p>
+<p><strong>5)</strong> En un examen un alumno cuando no sabe la respuesta elige al azar una de las cuatro respuestas en una pregunta de selección múltiple. Si no sabe <span class="math inline">\(10\)</span> preguntas, ¿cuál es la probabilidad de que al mas de <span class="math inline">\(5\)</span> preguntas (<span class="math inline">\(&gt;5\)</span>) sean correctas?</p>
 <p><strong><span class="math inline">\(\qquad\)</span>a:</strong><code>dbinom(x=4, n=10, p=0.25)</code>; <strong><span class="math inline">\(\qquad\)</span>b:</strong><code>pbinom(x=4, n=10, p=0.75)</code>; <strong><span class="math inline">\(\qquad\)</span>c:</strong><code>dbinom(x=4, n=10, p=0.75)</code>; <strong><span class="math inline">\(\qquad\)</span>d:</strong><code>1-pbinom(x=4, n=10, p=0.25)</code></p>
 </div>
 <div id="ejercicios-5" class="section level2 hasAnchor" number="7.14">
@@ -735,8 +748,8 @@ El modelo hipergeométrico tiene tres parámetros.</p>
           </div>
         </div>
       </div>
-<a href="variables-aleatorias-continuas.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="variables-aleatorias-continuas.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="modelos-de-poisson-y-exponencial.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>EEBE Estadística</title>
+  <title>Chapter 8 Modelos de Poisson y Exponencial | EEBE Estadística</title>
   <meta name="description" content="EEBE" />
   <meta name="generator" content="bookdown 0.36 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="EEBE Estadística" />
+  <meta property="og:title" content="Chapter 8 Modelos de Poisson y Exponencial | EEBE Estadística" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="EEBE" />
   <meta name="github-repo" content="alejandro-isglobal/master" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="EEBE Estadística" />
+  <meta name="twitter:title" content="Chapter 8 Modelos de Poisson y Exponencial | EEBE Estadística" />
   
   <meta name="twitter:description" content="EEBE" />
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
+<link rel="prev" href="modelos-de-probabilidad-para-variables-aletorias-discretas.html"/>
 
-<link rel="next" href="descripción-de-datos.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -230,70 +230,235 @@
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">EEBE Estadística</h1>
-<p class="author"><em>Alejandro Cáceres (<a href="mailto:alejandro.caceres.dominguez@upc.edu" class="email">alejandro.caceres.dominguez@upc.edu</a>)</em></p>
-<p class="date"><em>2023-10-22</em></p>
+<div id="modelos-de-poisson-y-exponencial" class="section level1 hasAnchor" number="8">
+<h1><span class="header-section-number">Chapter 8</span> Modelos de Poisson y Exponencial<a href="modelos-de-poisson-y-exponencial.html#modelos-de-poisson-y-exponencial" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="objetivo-4" class="section level2 hasAnchor" number="8.1">
+<h2><span class="header-section-number">8.1</span> Objetivo<a href="modelos-de-poisson-y-exponencial.html#objetivo-4" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>En este capítulo veremos dos modelos de probabilidad estrechamente relacionados: los modelos <strong>Poisson</strong> y <strong>exponencial</strong>.</p>
+<p>El modelo de Poisson es para variables aleatorias discretas, mientras que la función exponencial es para variables aleatorias <strong>continuas</strong></p>
 </div>
-<div id="objetivo" class="section level1 hasAnchor" number="1">
-<h1><span class="header-section-number">Chapter 1</span> Objetivo<a href="index.html#objetivo" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>Este es el curso de introducción a la estadística de la EEBE (UPC).</p>
-<p>La estadística es un <strong>lenguaje</strong> que permite afrontar problemas nuevos, sobre los que no tenemos solución, y en donde interviene la <strong>aleatoridad</strong>.</p>
-<p>En este curso trataremos los <strong>conceptos fundamentales</strong> de estadística.</p>
+<div id="modelos-de-probabilidad-para-variables-discretas" class="section level2 hasAnchor" number="8.2">
+<h2><span class="header-section-number">8.2</span> Modelos de probabilidad para variables discretas<a href="modelos-de-poisson-y-exponencial.html#modelos-de-probabilidad-para-variables-discretas" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>En el capítulo anterior construimos modelos complejos a partir de modelos simples. En cada etapa, introdujimos algún concepto novedoso:</p>
+<p><strong>Uniforme</strong>: interpretación clásica de la probabilidad
+</br><span class="math inline">\(\downarrow\)</span>
+</br><strong>Bernoulli</strong>: Introducción de un <strong>parámetro</strong> <span class="math inline">\(p\)</span> (familia de modelos)
+</br><span class="math inline">\(\downarrow\)</span>
+</br><strong>Binomial</strong>: Introducción a la <strong>Repetición</strong> de un experimento aleatorio (<span class="math inline">\(n\)</span> ensayos de Bernoulli)
+</br><span class="math inline">\(\downarrow\)</span>
+</br><strong>Poisson</strong>: Repetición de un experimento aleatorio dentro de un intervalo continuo, sin <strong>control</strong> sobre cuándo/dónde ocurre el ensayo de Bernoulli.</p>
+<p>El último modelo es para procesos de Poisson que describen la repetición de un experimento aleatorio con la aleatoriedad adicional del momento en que la repeticiones se producen.</p>
+</div>
+<div id="experimento-de-poissson" class="section level2 hasAnchor" number="8.3">
+<h2><span class="header-section-number">8.3</span> Experimento de Poissson<a href="modelos-de-poisson-y-exponencial.html#experimento-de-poissson" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Imagina que estamos observando eventos que <strong>dependen</strong> de <strong>intervalos</strong> de tiempo o distancia.</p>
+<p>Por ejemplo:</p>
 <ul>
-<li><p>3 horas de <strong>teoría</strong> por semana: Explicaremos los conceptos, haremos ejercicios.</p></li>
-<li><p>6 horas de <strong>estudio individual</strong> por semana: Notas notas de curso y los recursos en ATENEA.</p></li>
-<li><p>2 horas de Solución de problemas con <strong>R</strong>: Sesiones presenciales con ordenador (Prácticas).</p></li>
+<li>coches que llegan a un semáforo</li>
+<li>mensajes que recibimos en el teléfono móvil</li>
+<li>impurezas que ocurren al azar en un alambre de cobre</li>
 </ul>
-<p>Las fechas de exámenes y material de estudio adicional se pueden encontrar en <strong>ATENEA metacurso</strong>:</p>
-<p><img src="figures/notas.JPG" /></p>
-<p>Objetivos de evaluación:</p>
-<p><strong>Q1</strong> (10%): Prueba en ordenador duración 2h en las fechas indicadas.</p>
-<ol style="list-style-type: lower-alpha">
-<li>Dominio de comandos básicos en R (Prácticas)</li>
-<li>Capacidad de calcular estadísticos descriptivos y gráficos, en situaciones concretas (Teoría/Práctica)</li>
-<li>Conocimiento sobre la regresión lineal (Prácticas)</li>
+<p>Supongamos que los eventos son resultados de ensayos de Bernoulli <strong>independientes</strong>, cada uno de los cuales aparece aleatoriamente en un intervalo continuo, y queremos <strong>contarlos</strong>.</p>
+<p>¿Cuál es la probabilidad de observar <span class="math inline">\(X\)</span> eventos en una unidad de intervalo (tiempo o distancia)?</p>
+<p><strong>Ejemplo (Impurezas en un alambre):</strong></p>
+<p>Imaginemos que algunas impurezas se depositan al azar a lo largo de un cable de cobre. Quieremos contar el número de impurezas en un centímetro de alambre (<span class="math inline">\(X\)</span>).</p>
+<p>Considera que sabemos que en promedio hay <span class="math inline">\(10\)</span> impurezas por centímetro <span class="math inline">\(\lambda=10/cm\)</span>.</p>
+<p>¿Cuál es la probabilidad de observar <span class="math inline">\(X=5\)</span> impurezas en una muestra de un centímetro en particular?</p>
+</div>
+<div id="función-de-masa-de-probabilidad-de-poisson" class="section level2 hasAnchor" number="8.4">
+<h2><span class="header-section-number">8.4</span> Función de masa de probabilidad de Poisson<a href="modelos-de-poisson-y-exponencial.html#función-de-masa-de-probabilidad-de-poisson" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Para calcular la función masa de probabilidad <span class="math inline">\(f(x)=P(X=x)\)</span> del ejemplo anterior dividimos el centímetro en micrómetros (<span class="math inline">\(0.0001cm\)</span>).</p>
+<p>Los micrómetros son lo suficientemente pequeños como para</p>
+<ol style="list-style-type: decimal">
+<li><p>que hay ao no haya una impureza en cada micrómetro</p></li>
+<li><p>cada micrómetro se pueda considerar como un <strong>ensayo de Bernoulli</strong></p></li>
 </ol>
-<p><strong>EP1</strong> (25%): Prueba escrita (2-3 problemas)</p>
-<ol style="list-style-type: lower-alpha">
-<li>Capacidad de interpretación de enunciados en fórmulas de probabilidad (Teoría).</li>
-<li>Conocimiento de las herramientas básicas para solucionar problemas de probabilidad conjunta y probabilidad condicional (Teoría).</li>
-<li>Dominio matemático de funciones de probabilidad para calcular sus propiedades básicas (Teoría).</li>
+<p><img src="figures/Pois.JPG" /></p>
+<p><strong>De la función binomial a la función de probabilidad de Poisson</strong></p>
+<p>La probabilidad de observar <span class="math inline">\(X\)</span> impurezas en <span class="math inline">\(n=10,000\mu\)</span> (1cm) sigue aproximadamente una distribución binomial</p>
+<p><span class="math display">\[f(x) \sim \binom nxp^x(1-p)^{nx}\]</span></p>
+<p>donde <span class="math inline">\(p\)</span> es la probabilidad de encontrar una impureza en un micrómetro.</p>
+<p>Dado que el valor esperado de una variable Binomial es <span class="math inline">\(E(X)=np\)</span>. Este es el número promedio de impurezas por 1 cm o <span class="math inline">\(\lambda=np\)</span>. Por lo tanto, sustituimos <span class="math inline">\(p=\lambda/n\)</span></p>
+<p><span class="math display">\[f(x) \sim \binom nx \big(\frac{\lambda}{n}\big)^x(1-\frac{\lambda}{n})^{nx}\]</span></p>
+<p>Dado que <strong>podría</strong> haber todavía dos impurezas en un micrómetro, necesitamos aumentar la partición del alambre y <span class="math inline">\(n \rightarrow \infty\)</span>.</p>
+<p>Luego en el límite:</p>
+<p><span class="math display">\[f(x)= \frac{e^{-\lambda}\lambda^x}{x!}\]</span></p>
+<p>Donde <span class="math inline">\(\lambda\)</span> es constante porque es la densidad de impurezas por centímetro, una <strong>propiedad física</strong> del sistema. <span class="math inline">\(\lambda\)</span> es por lo tanto el <strong>parámetro</strong> del modelo de probabilidad.</p>
+<p><strong>Detalles de la derivación:</strong></p>
+<p>Para <span class="math inline">\(f(x) \sim \binom nx \big(\frac{\lambda}{n}\big)^x(1-\frac{\lambda}{n})^{nx}\)</span></p>
+<p>en el límite (<span class="math inline">\(n \rightarrow \infty\)</span>)</p>
+<ol style="list-style-type: decimal">
+<li><span class="math inline">\(\frac{1}{n^x}\binom n x =\frac{1}{n^x}\frac{n!}{x! (n-x)!}=\frac{(n-x)!(n-x+1)...(n-1)n}{n^x x! (n-x)!}=\frac{n(n-1)..(n-x+1)}{n^x x!} \rightarrow \frac{1}{x!}\)</span></li>
+<li><span class="math inline">\((1-\frac{\lambda}{n})^{n} \rightarrow e^{-\lambda}\)</span> (definition of exponential)</li>
+<li><span class="math inline">\((1-\frac{\lambda}{n})^{-x} \rightarrow 1\)</span></li>
 </ol>
-<p><strong>Q2</strong> (20%): Prueba en ordenador duración 2h en horario de clase en las fechas indicadas</p>
-<ol style="list-style-type: lower-alpha">
-<li>Capacidad de identificación de modelos de probabilidad en problemas concretos (Teoría/Práctica).</li>
-<li>Uso de funciones de R para calcular probabilidades de modelos probabilísticos (Práctica/Teoría)</li>
-<li>Capacidad de identificación de un estadístico de muestreo y sus propiedades (Teoría/Práctica)</li>
-<li>Conocimiento de cómo calcular la probabilidad de los estadísticos de muestreo (Teoría/Práctica)</li>
-<li>Uso de comandos en R para calcular probabilidades y hacer simulaciones de muestras aleatorias (Prácticas)</li>
+<p>Poniendo todo junto entonces:</p>
+<p><span class="math inline">\(f(x)= \frac{e^{-\lambda}\lambda^x}{x!}\)</span></p>
+<p><strong>Definición</strong></p>
+<p>Dado</p>
+<ol style="list-style-type: decimal">
+<li>un intervalo en los números reales</li>
+<li>hay eventos que ocurren al azar en el intervalo</li>
+<li>se conoce el número promedio de eventos en el intervalo (<span class="math inline">\(\lambda\)</span>)</li>
+<li>si se puede encontrar una pequeña partición regular del intervalo tal que en cada partición la podamos considerar como un ensayo de Bernoulli.</li>
 </ol>
-<p><strong>EP2</strong> (40%): Prueba escrita (2-3 problemas)</p>
-<ol style="list-style-type: lower-alpha">
-<li>Capacidad matemática para determinar estimadores puntuales de modelos de probabilidad.</li>
-<li>Conociemiento de las propiedades de los estimadores puntuales.</li>
-<li>Conocimiento de los intervalos de confianza y sus propiedades (Teoría).</li>
-<li>Capacidad de identificar el tipo de intervalo de confianza en un problema concreto (Teoría).</li>
-<li>Capacidad de interpretación del tipo
-de hipótesis a usar en un problema concreto (Teoría).</li>
-<li>Uso de comandos en R para resolver problemas de intervalos de confianza y prueabas de hipótesis (Práctica).</li>
+<p>Entonces, la variable aleatoria <span class="math inline">\(X\)</span> que cuenta eventos a lo largo del intervalo es una variable <strong>Poisson</strong> con función de masa de probabilidad
+<span class="math display">\[f(x)= \frac{e^{-\lambda}\lambda^x}{x!}, \lambda&gt;0\]</span></p>
+<p><strong>Propiedades:</strong>
+Cuando <span class="math inline">\(X \rightarrow Poiss(\lambda)\)</span> tiene</p>
+<ol style="list-style-type: decimal">
+<li>media <span class="math display">\[E(X)= \lambda\]</span></li>
+<li>y varianza <span class="math display">\[V(X)= \lambda\]</span></li>
 </ol>
-<p><strong>CG</strong> (5%): Prueba escrita (2 preguntas sobre un texto)</p>
-<ol style="list-style-type: lower-alpha">
-<li>Capacidad de expresión escrita sobre un tema relacionado a la estadística.</li>
+<p><strong>Ejemplos</strong></p>
+<ol style="list-style-type: decimal">
+<li>¿Cuál es la probabilidad de recibir 4 correos electrónicos en una hora, cuando el promedio de correos electrónicos en una hora es de <span class="math inline">\(1\)</span>?</li>
 </ol>
-<p>coordinadores:</p>
+<p>Tenemos que la varible es de Poisson: <span class="math inline">\(X \rightarrow Poiss(\lambda)\)</span> con <span class="math inline">\(\lambda=1\)</span> y su función de masa de probabilidad es:</p>
+<p><span class="math display">\[f(x)= \frac{e^{-1}1^x}{x!}\]</span>
+Por lo tanto la probabilidad de que la variable tome valor 4 es <span class="math inline">\(P(X=4)\)</span>:</p>
+<p><span class="math inline">\(f(4; \lambda=1)= \frac{e^{-1}1^4}{4!}=0.01532831\)</span></p>
+<p>in R <code>dpois(4,1)</code></p>
+<ol start="2" style="list-style-type: decimal">
+<li>¿Cuál es la probabilidad de recibir 4 correos electrónicos en <strong>tres horas</strong>, cuando el promedio de correos electrónicos en una hora es de <span class="math inline">\(1\)</span>?</li>
+</ol>
+<p>La unidad sobre la cual hacemos los conteos ha cambiado de 1 hora a 2 horas, por lo tanto tenemos que <strong>re-escalar</strong> <span class="math inline">\(\lambda\)</span>. Si antes el promedio de correos era <span class="math inline">\(\lambda=1\)</span> en una hora, el promedio de correos en tres horas es ahora 3: <span class="math inline">\(\lambda_{3h}=3\lambda_{1h}=3*1=3\)</span></p>
+<p>Tenemos que la varible es de Poisson: <span class="math inline">\(X \rightarrow Poiss(\lambda_{3h})\)</span> con <span class="math inline">\(\lambda_{3h}=3\)</span> y su función de masa de probabilidad es:</p>
+<p><span class="math display">\[f(x)= \frac{e^{-3}3^x}{x!}\]</span>
+Por lo tanto la probabilidad de que la variable tome valor 4 es <span class="math inline">\(P(X=4)\)</span>:</p>
+<p><span class="math inline">\(f(4; \lambda=3)= \frac{e^{-3}3^4}{4!}=0.1680314\)</span></p>
+<p>in R <code>dpois(4,3)</code></p>
+<ol start="3" style="list-style-type: decimal">
+<li>¿Cuál es la probabilidad de contar <strong>al menos</strong> <span class="math inline">\(10\)</span> automóviles que llegan a un peaje en un minuto, cuando el promedio de automóviles que llegan a un peaje en un minuto es de <span class="math inline">\(5\)</span>;</li>
+</ol>
+<p>Tenemos que la varible es de Poisson: <span class="math inline">\(X \rightarrow Poiss(\lambda)\)</span> con <span class="math inline">\(\lambda=5\)</span> y su función de masa de probabilidad es:</p>
+<p><span class="math display">\[f(x)= \frac{e^{-5}5^x}{x!}\]</span></p>
+<p><span class="math inline">\(P(X\geq 10)=1-P(X &lt; 10)=1-P(X \leq 9)=1-F(9; \lambda=5)=1-\sum_{x=0, ...10}f(x; \lambda=5)=0.03182806\)</span></p>
+<p>en R <code>1-ppois(9,5)</code></p>
+<p>Veamos algunas funciones de masa de probabilidad en la familia de modelos paramétricos de Poisson:</p>
+<p><img src="_main_files/figure-html/unnamed-chunk-61-1.png" width="672" /></p>
+</div>
+<div id="modelos-de-probabilidad-para-variables-continuas" class="section level2 hasAnchor" number="8.5">
+<h2><span class="header-section-number">8.5</span> Modelos de probabilidad para variables continuas<a href="modelos-de-poisson-y-exponencial.html#modelos-de-probabilidad-para-variables-continuas" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Los modelos de probabilidad para variables continuas son <strong>funciones de densidad</strong> de probabilidad <span class="math inline">\(f(x)\)</span> que <strong>creemos</strong> describen experimentos aleatorios reales.</p>
+<p>La función de densidad de probabilidad <span class="math inline">\(f(x)\)</span></p>
+<ol style="list-style-type: decimal">
+<li>es positiva</li>
+</ol>
+<p><span class="math display">\[f(x) \geq 0\]</span></p>
+<ol start="2" style="list-style-type: decimal">
+<li>nos permite calcular probabilidades usando el área bajo la curva:</li>
+</ol>
+<p><span class="math display">\[P(a\leq X \leq b)=\int_{a}^{b} f(x) dx\]</span></p>
+<ol start="3" style="list-style-type: decimal">
+<li>es tal que la probabilidad de que obtengamos cualquier resultado es <span class="math inline">\(1\)</span>:</li>
+</ol>
+<p><span class="math display">\[\int_{-\infty}^{\infty} f(x) dx = 1\]</span></p>
+</div>
+<div id="experimento-exponencial" class="section level2 hasAnchor" number="8.6">
+<h2><span class="header-section-number">8.6</span> Experimento exponencial<a href="modelos-de-poisson-y-exponencial.html#experimento-exponencial" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Volvamos a un <strong>proceso de Poisson</strong> definido por la probabilidad</p>
+<p><span class="math display">\[f(k)=\frac{e^{-\lambda}\lambda^k}{k!}, \lambda&gt;0\]</span></p>
+<p>para el número de eventos (<span class="math inline">\(k\)</span>) en un intervalo.</p>
+<p>Consideremos ahora que estamos interesados en la duración/tiempo que debemos esperar hasta que ocurra el <strong>primer</strong> conteo.</p>
+<p>Podemos preguntarnos por la probabilidad de que el primer evento ocurra después de la duración/tiempo <span class="math inline">\(X\)</span>.</p>
+<p>Por lo tanto, dado que <span class="math inline">\(X\)</span> es una variable aleatoria <strong>continua</strong>, buscamos su función de densidad de probabilidad <span class="math inline">\(f(x)\)</span>.</p>
+</div>
+<div id="densidad-de-probabilidad-exponencial" class="section level2 hasAnchor" number="8.7">
+<h2><span class="header-section-number">8.7</span> Densidad de probabilidad exponencial<a href="modelos-de-poisson-y-exponencial.html#densidad-de-probabilidad-exponencial" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>La probabilidad de <span class="math inline">\(0\)</span> eventos <strong>si</strong> un intervalo tiene unidad <span class="math inline">\(x\)</span> (rescalando como en el ejemplo 2) es</p>
+<p><span class="math display">\[f(0|x)=\frac{e^{-x\lambda}(x\lambda)^0}{0!}\]</span></p>
+<p>o</p>
+<p><span class="math display">\[f(0|x)=e^{-x\lambda}\]</span></p>
+<p>Podemos tratar esto como la probabilidad condicional de <span class="math inline">\(0\)</span> eventos dada una distancia <span class="math inline">\(x\)</span>: <span class="math inline">\(f(K=0|X=x)\)</span> y aplicar el teorema de Bayes para invertirlo:</p>
+<p><span class="math display">\[f(x|0)=C f(0|x)=C e^{-x\lambda}\]</span></p>
+<p>Esta es la <strong>probabilidad de observar una distancia</strong> <span class="math inline">\(x\)</span> para <span class="math inline">\(0\)</span> eventos. Esta es la distancia hasta el primer evento.</p>
+<p><strong>Definición</strong></p>
+<p>En un proceso de Poisson con parámetro <span class="math inline">\(\lambda\)</span> la probabilidad de esperar una distancia/tiempo <span class="math inline">\(X\)</span> entre dos conteos viene dada por la <strong>densidad de probabilidad</strong></p>
+<p><span class="math display">\[f(x)= C e^{-x\lambda}\]</span></p>
 <ul>
-<li>Luis Mujica (<a href="mailto:luis.eduardo.mujica@upc.edu" class="email">luis.eduardo.mujica@upc.edu</a>)</li>
-<li>Pablo Buenestado (<a href="mailto:pablo.buenestado@upc.edu" class="email">pablo.buenestado@upc.edu</a>)</li>
+<li><p><span class="math inline">\(C\)</span> es una constante que asegura: <span class="math inline">\(\int_{-\infty}^{\infty} f(x) dx =1\)</span></p></li>
+<li><p>por integración <span class="math inline">\(C=\lambda\)</span></p></li>
 </ul>
-<div id="lectura-recomendada" class="section level2 hasAnchor" number="1.1">
-<h2><span class="header-section-number">1.1</span> Lectura recomendada<a href="index.html#lectura-recomendada" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Por lo tanto:</p>
+<p><span class="math display">\[f(x)=\lambda e^{-\lambda x}, x\geq 0\]</span></p>
+<p><span class="math inline">\(\lambda\)</span> es el parámetro del modelo, también conocido como <strong>tasa de decaimiento</strong>.</p>
+<p><strong>Propiedades:</strong></p>
+<p>Cuando <span class="math inline">\(X \rightarrow Exp(\lambda)\)</span> entonces</p>
+<ol style="list-style-type: decimal">
+<li>tiene media</li>
+</ol>
+<p><span class="math display">\[E(X)=\frac{1}{\lambda}\]</span></p>
+<ol start="2" style="list-style-type: decimal">
+<li>y varianza
+<span class="math display">\[V(Y)=\frac{1}{\lambda^2}\]</span></li>
+</ol>
+<p>Veamos un par de densidades de probabilidad en la familia exponencial</p>
+<p><img src="_main_files/figure-html/unnamed-chunk-62-1.png" width="672" /></p>
+</div>
+<div id="distribución-exponencial" class="section level2 hasAnchor" number="8.8">
+<h2><span class="header-section-number">8.8</span> Distribución exponencial<a href="modelos-de-poisson-y-exponencial.html#distribución-exponencial" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Consideremos las siguientes preguntas:</p>
+<ol style="list-style-type: decimal">
+<li>En un proceso de Poisson ¿Cuál es la probabilidad de observar un intervalo <strong>menor</strong> que <span class="math inline">\(a\)</span> hasta el primer evento?</li>
+</ol>
+<p>Recuerda que esta probabilidad <span class="math inline">\(F(a)=P(X \leq a)\)</span> es la densidad de probabilidad</p>
+<p><span class="math display">\[F(a)=\lambda\int_\infty^ae^{-x\lambda}dx=1-e^{-a\lambda}\]</span>
+2) En un proceso de Poisson ¿Cuál es la probabilidad de observar un intervalo <strong>mayor</strong> que <span class="math inline">\(a\)</span> hasta el primer evento?</p>
+<p><span class="math display">\[P(X &gt; a)=1- P(X \leq a)= 1- F(a) = e^{-a\lambda}\]</span></p>
+<p>Veamos un par de distribuciones exponenciales de la familia exponencial</p>
+<p><img src="_main_files/figure-html/unnamed-chunk-63-1.png" width="672" /></p>
+<p>La mediana <span class="math inline">\(x_m\)</span> es tal que <span class="math inline">\(F(x_m)=0.5\)</span>. Eso es <span class="math inline">\(x_m=\frac{\log(2)}{\lambda}\)</span></p>
+<p><strong>Ejemplos</strong></p>
+<ol style="list-style-type: decimal">
+<li>¿Cuál es la probabilidad de que tengamos que esperar un bus por más de <span class="math inline">\(1\)</span> hora cuando en promedio hay dos buses por hora?</li>
+</ol>
+<p><span class="math display">\[P(X &gt; 1)=1-P(X \le 1) = 1-F(1,\lambda=2)=0.1353353\]</span></p>
+<p>En R <code>1-pexp(1,2)</code></p>
+<ol start="2" style="list-style-type: decimal">
+<li>¿Cuál es la probabilidad de tener que esperar menos de <span class="math inline">\(2\)</span> segundos para detectar una partícula cuando la tasa de desintegración radiactiva es de <span class="math inline">\(2\)</span> partículas por segundo; <span class="math inline">\(F(2,\lambda=2)\)</span></li>
+</ol>
+<p><span class="math display">\[P(X\le 2)=F(2,\lambda=2)=0.9816844\]</span></p>
+<p>En R <code>pexp(2,2)</code></p>
+</div>
+<div id="preguntas-5" class="section level2 hasAnchor" number="8.9">
+<h2><span class="header-section-number">8.9</span> Preguntas<a href="modelos-de-poisson-y-exponencial.html#preguntas-5" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><strong>1)</strong> Durante la Segunda Guerra Mundial, en un día de bombardeo sobre Londres, el valor eperado de que cayera una bomba en <span class="math inline">\(1.5km^2\)</span> era de <span class="math inline">\(0.92\)</span>. La probabilidad de que en Hyde Park, de área aproximadamente <span class="math inline">\(1.5km^2\)</span>, cayeran como mucho dos bombas era de</p>
+<p><strong><span class="math inline">\(\qquad\)</span>a:</strong><code>1-ppois(x=2, lambda=0.92)</code>;
+<strong><span class="math inline">\(\qquad\)</span>b:</strong><code>ppois(x=2, lambda=0.92)</code>; <strong><span class="math inline">\(\qquad\)</span>c:</strong><code>1-dpois(x=2, lambda=0.92)</code>; <strong><span class="math inline">\(\qquad\)</span>d:</strong><code>dpois(x=2, lambda=0.92)</code></p>
+<p><strong>2)</strong> La probabilidad de que un pasajero tenga que esperar menos de 20 minutos hasta que llegue el próximo taxi a su parada está mejor descrita por</p>
+<p><strong><span class="math inline">\(\qquad\)</span>a:</strong> Un modelo de Poisson sobre el número de taxis que pasan cada 20 minutos;
+<strong><span class="math inline">\(\qquad\)</span>b:</strong> Una distribución exponencial con <span class="math inline">\(\lambda=1/20\)</span> ;
+<strong><span class="math inline">\(\qquad\)</span>c:</strong> Un modelo binomial que cuenta el número de taxis cada 20 minutos
+<strong><span class="math inline">\(\qquad\)</span>d:</strong> Una distribución uniforme entre 0 y 20 minutos;</p>
+<p><strong>3)</strong> A partir de la distribución de probabilidad exponencial de la siguiente figura, ¿cuál es el valor más posible de la mediana?</p>
+<p><strong><span class="math inline">\(\qquad\)</span>a:</strong> <span class="math inline">\(2\)</span>; <strong><span class="math inline">\(\qquad\)</span>b:</strong> <span class="math inline">\(3\)</span>; <strong><span class="math inline">\(\qquad\)</span>c:</strong> <span class="math inline">\(4\)</span>; <strong><span class="math inline">\(\qquad\)</span>d:</strong> <span class="math inline">\(5\)</span></p>
+<p><img src="figures/exp.png" /></p>
+</div>
+<div id="ejercicios-6" class="section level2 hasAnchor" number="8.10">
+<h2><span class="header-section-number">8.10</span> Ejercicios<a href="modelos-de-poisson-y-exponencial.html#ejercicios-6" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="ejercicio-1-5" class="section level4 hasAnchor" number="8.10.0.1">
+<h4><span class="header-section-number">8.10.0.1</span> Ejercicio 1<a href="modelos-de-poisson-y-exponencial.html#ejercicio-1-5" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>El promedio de llamadas telefónicas por hora que ingresan a la centralita de una empresa es de <span class="math inline">\(150\)</span>. Encuentra la probabilidad de que durante un minuto en particular haya</p>
 <ul>
-<li><p>Los apuntes de clase se nuestra sección estarán accesibles en ATENEA en pdf y en html.</p></li>
-<li><p>Douglas C. Montgomery and George C. Runger. “Applied Statistics and Probability for Engineers” 4th Edition. Wiley 2007.</p></li>
+<li>0 llamadas telefónicas (R:0.082)</li>
+<li>1 llamada telefónica (R:0.205)</li>
+<li>4 o menos llamadas (R:0.891)</li>
+<li>más de 6 llamadas telefónicas (R:0.0141)</li>
+</ul>
+</div>
+<div id="ejercicio-2-5" class="section level4 hasAnchor" number="8.10.0.2">
+<h4><span class="header-section-number">8.10.0.2</span> Ejercicio 2<a href="modelos-de-poisson-y-exponencial.html#ejercicio-2-5" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>La cantidad promedio de partículas radiactivas que golpean un contador Geiger en una planta de energía nuclear bajo control es de <span class="math inline">\(2.3\)</span> por minuto.</p>
+<ul>
+<li><p>¿Cuál es la probabilidad de contar exactamente <span class="math inline">\(2\)</span> partículas en un minuto? (R:0.265)</p></li>
+<li><p>¿Cuál es la probabilidad de detectar exactamente <span class="math inline">\(10\)</span> partículas en <span class="math inline">\(5\)</span> minutos? (R:0.112)</p></li>
+<li><p>¿Cuál es la probabilidad de al menos un conteo en dos minutos? (R:0.9899)</p></li>
+<li><p>¿Cuál es la probabilidad de tener que esperar menos de <span class="math inline">\(1\)</span> segundo para detectar una partícula radiactiva, después de encender el detector? (R:0.037)</p></li>
+<li><p>Sospechamos que una planta nuclear tiene una fuga radiactiva si esperamos menos de <span class="math inline">\(1\)</span> segundo para detectar una partícula radiactiva, después de encender el detector. ¿Cuál es la probabilidad de que cuando visitemos <span class="math inline">\(5\)</span> plantas que están bajo control, sospechemos que al menos una tiene una fuga? (R:0.1744).</p></li>
 </ul>
 
+</div>
 </div>
 </div>
             </section>
@@ -301,8 +466,8 @@ de hipótesis a usar en un problema concreto (Teoría).</li>
           </div>
         </div>
       </div>
+<a href="modelos-de-probabilidad-para-variables-aletorias-discretas.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 
-<a href="descripción-de-datos.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -333,7 +498,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/USERNAME/REPO/edit/BRANCH/index.Rmd",
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/07-PoissonExponential.Rmd",
 "text": "Edit"
 },
 "history": {

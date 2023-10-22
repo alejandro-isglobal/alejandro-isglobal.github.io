@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 6 Continous Random Variables | EEBE stats</title>
+  <title>Chapter 8 Poisson and Exponential Models | EEBE stats</title>
   <meta name="description" content="EEBE" />
   <meta name="generator" content="bookdown 0.36 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 6 Continous Random Variables | EEBE stats" />
+  <meta property="og:title" content="Chapter 8 Poisson and Exponential Models | EEBE stats" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="EEBE" />
   <meta name="github-repo" content="alejandro-isglobal/master" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 6 Continous Random Variables | EEBE stats" />
+  <meta name="twitter:title" content="Chapter 8 Poisson and Exponential Models | EEBE stats" />
   
   <meta name="twitter:description" content="EEBE" />
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="discrete-random-variables.html"/>
-<link rel="next" href="discrete-probability-models.html"/>
+<link rel="prev" href="discrete-probability-models.html"/>
+
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -229,316 +229,233 @@
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="continous-random-variables" class="section level1 hasAnchor" number="6">
-<h1><span class="header-section-number">Chapter 6</span> Continous Random Variables<a href="continous-random-variables.html#continous-random-variables" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<div id="objective-2" class="section level2 hasAnchor" number="6.1">
-<h2><span class="header-section-number">6.1</span> Objective<a href="continous-random-variables.html#objective-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>In this chapter we will study continous random variables.</p>
-<p>We will define the probability density function, its mean and variance and, similar to discrete random variables, we will define the probability distribution function.</p>
+<div id="poisson-and-exponential-models" class="section level1 hasAnchor" number="8">
+<h1><span class="header-section-number">Chapter 8</span> Poisson and Exponential Models<a href="poisson-and-exponential-models.html#poisson-and-exponential-models" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="objective-4" class="section level2 hasAnchor" number="8.1">
+<h2><span class="header-section-number">8.1</span> Objective<a href="poisson-and-exponential-models.html#objective-4" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In this chapter we will see two tightly related probability models: the <strong>Poisson</strong> and the <strong>exponential</strong> models.</p>
+<p>The Poisson model is for discrete random variables while the exponential function is <strong>continuous</strong> random variables</p>
 </div>
-<div id="continuous-random-variables" class="section level2 hasAnchor" number="6.2">
-<h2><span class="header-section-number">6.2</span> Continuous random variables<a href="continous-random-variables.html#continuous-random-variables" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>In the last chapter we used the probabilities of discrete random variables to define the probability mass function <span class="math display">\[f(x)=P(X= x)\]</span></p>
-<p>Where the probability that the random variable takes the value <span class="math inline">\(x\)</span> is understood as the value of its relative frequency, when the number of repetitions of the random experiment tends to infinity.</p>
-<p>When we talked about continuous data, we saw that we had to transform them into discrete variables (bins) to produce relative frequency tables or histograms. Let’s see how to define the probabilities of continuous variables taking these partitions into account.</p>
-<p><strong>Example (misophonia)</strong></p>
-<p>Let us reconsider the angle of convexity of patients with misophonia (Section 2.21). The angle of convexity of 123 patients was measured. We understood each measurement as the result of a random experiment that we repeated 123 times and that we could describe in a frequency table or in a histogram.</p>
-<p>To do this, we redefine the results as small regular intervals (bins) and calculate the relative frequency of each interval.</p>
-<pre><code>##        outcome ni         fi
-## 1 [-1.02,3.46]  8 0.06504065
-## 2  (3.46,7.92] 51 0.41463415
-## 3  (7.92,12.4] 26 0.21138211
-## 4  (12.4,16.8] 20 0.16260163
-## 5  (16.8,21.3] 18 0.14634146</code></pre>
+<div id="discrete-probability-models-1" class="section level2 hasAnchor" number="8.2">
+<h2><span class="header-section-number">8.2</span> Discrete probability models<a href="poisson-and-exponential-models.html#discrete-probability-models-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In the previous chapter we built complex models from simple ones. At each stage, we introduced some novel concept:</p>
+<p><strong>Uniform</strong>: Classical interpretation of probability
+</br><span class="math inline">\(\downarrow\)</span>
+</br><strong>Bernoulli</strong>: Introduction of a <strong>parameter</strong> <span class="math inline">\(p\)</span> (family of models)
+</br><span class="math inline">\(\downarrow\)</span>
+</br><strong>Binomial</strong>: Introductio of the <strong>Repetition</strong> of a random experiment (<span class="math inline">\(n\)</span>-times Bernoulli trials)
+</br><span class="math inline">\(\downarrow\)</span>
+</br><strong>Poisson</strong>: Repetition of random experiment within a continuous interval, having <strong>no control</strong> on when/where the Bernoulli trial occurs.</p>
+<p>The last stage is the Poisson process that describes a the repetition of a random experiment with additional randomness at the time of repetition.</p>
 </div>
-<div id="relative-frequencies-3" class="section level2 hasAnchor" number="6.3">
-<h2><span class="header-section-number">6.3</span> relative frequencies<a href="continous-random-variables.html#relative-frequencies-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Relative frequencies for the intervals are the probabilities when <span class="math inline">\(N \rightarrow \infty\)</span></p>
-<p><span class="math display">\[f_i=\frac{n_i}{N} \rightarrow P(x_i \leq X  \leq x_i + \Delta x)\]</span></p>
-<p>The probability depends now on the length of the bins <span class="math inline">\(\Delta x\)</span>. If we make the bins smaller and smaller then the frequencies get smaller and therefore</p>
-<p><span class="math display">\[P(x_i \leq X  \leq x_i + \Delta x) \rightarrow 0\]</span> when <span class="math inline">\(\Delta x \rightarrow 0\)</span>, because <span class="math inline">\(n_i \rightarrow 0\)</span></p>
-<p>Let’s see how the frequencies get smaller when we divide the range of <span class="math inline">\(X\)</span> into <span class="math inline">\(20\)</span> bins</p>
-<pre><code>##          outcome ni         fi
-## 1  [-1.02,0.115]  2 0.01626016
-## 2   (0.115,1.23]  0 0.00000000
-## 3    (1.23,2.34]  3 0.02439024
-## 4    (2.34,3.46]  3 0.02439024
-## 5    (3.46,4.58]  2 0.01626016
-## 6    (4.58,5.69]  4 0.03252033
-## 7     (5.69,6.8] 11 0.08943089
-## 8     (6.8,7.92] 34 0.27642276
-## 9    (7.92,9.04] 12 0.09756098
-## 10   (9.04,10.2]  4 0.03252033
-## 11   (10.2,11.3]  3 0.02439024
-## 12   (11.3,12.4]  7 0.05691057
-## 13   (12.4,13.5]  2 0.01626016
-## 14   (13.5,14.6]  6 0.04878049
-## 15   (14.6,15.7]  4 0.03252033
-## 16   (15.7,16.8]  8 0.06504065
-## 17     (16.8,18]  4 0.03252033
-## 18     (18,19.1]  9 0.07317073
-## 19   (19.1,20.2]  3 0.02439024
-## 20   (20.2,21.3]  2 0.01626016</code></pre>
+<div id="poissson-experiment" class="section level2 hasAnchor" number="8.3">
+<h2><span class="header-section-number">8.3</span> Poissson experiment<a href="poisson-and-exponential-models.html#poissson-experiment" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Imagine that we are observing events that <strong>depend</strong> on time or distance <strong>intervals</strong>.</p>
+<p>for example:</p>
+<ul>
+<li>cars arriving at a traffic light</li>
+<li>getting messages on your mobile phone</li>
+<li>impurities occurring at random in a copper wire</li>
+</ul>
+<p>Suppose that the events are outcomes of <strong>independent</strong> Bernoulli trials each appearing randomly on a continuous interval, and we want to <strong>count</strong> them.</p>
+<p>What is the probability of observing <span class="math inline">\(X\)</span> events in an interval’s unit (time or distance)?</p>
+<p><strong>Example (Impurities in a wire):</strong></p>
+<p>Imagine that some impurities deposit randomly along a copper wire. You want to count the number of impurities in one given centimeter of the wire (<span class="math inline">\(X\)</span>).</p>
+<p>Consider that you know that on average there are <span class="math inline">\(10\)</span> impurities per centimeter <span class="math inline">\(\lambda=10/cm\)</span>.</p>
+<p>What is the probability of observing <span class="math inline">\(X=5\)</span> impurities in one specimen of one centimeter in particular?</p>
 </div>
-<div id="probability-density-function" class="section level2 hasAnchor" number="6.4">
-<h2><span class="header-section-number">6.4</span> probability density function<a href="continous-random-variables.html#probability-density-function" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>We define a quantity at a point <span class="math inline">\(x\)</span> that is the amount of probability per unit distance that we would find in an <strong>infinitesimal</strong> bin <span class="math inline">\(dx\)</span> at <span class="math inline">\(x\)</span></p>
-<p><span class="math display">\[f(x)= \frac{P(x\leq X \leq x+dx)}{dx}\]</span></p>
-<p><span class="math inline">\(f(x)\)</span> is called the probability <strong>density</strong> function.</p>
-<p>Therefore, the probability of observing <span class="math inline">\(x\)</span> between <span class="math inline">\(x\)</span> and <span class="math inline">\(x+dx\)</span>
-is given by</p>
-<p><span class="math display">\[P(x\leq X \leq x+dx)= f(x) dx\]</span></p>
-<p><strong>Definition</strong></p>
-<p>For a continuous random variable <span class="math inline">\(X\)</span>, a <strong>probability density</strong> function is such that</p>
+<div id="poisson-probability-mass-function" class="section level2 hasAnchor" number="8.4">
+<h2><span class="header-section-number">8.4</span> Poisson probability mass function<a href="poisson-and-exponential-models.html#poisson-probability-mass-function" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>To calculate the probability mass function <span class="math inline">\(f(x)=P(X=x)\)</span> of the previous example we divide the centimeter into micrometers (<span class="math inline">\(0.0001cm\)</span>).</p>
+<p>Micrometers are small enough so</p>
 <ol style="list-style-type: decimal">
-<li>The function is positive:</li>
+<li><p>either there is or there is not an impurity in each micrometer</p></li>
+<li><p>each micrometer can be then be considered a <strong>Bernoulli trial</strong></p></li>
+</ol>
+<p><img src="figures/Pois.JPG" /></p>
+<p><strong>From the Binomial to the Poisson probability function</strong></p>
+<p>The probability of observing <span class="math inline">\(X\)</span> impurities in <span class="math inline">\(n=10,000\mu\)</span> (1cm) approximately follows a binomial distribution</p>
+<p><span class="math display">\[f(x) \sim \binom n x p^x(1-p)^{n-x}\]</span></p>
+<p>where <span class="math inline">\(p\)</span> is the probability of finding an impurity in a micrometer.</p>
+<p>Since the expected value of a Binomial variable is:
+<span class="math inline">\(E(X)=np\)</span>. This is the average number of impurities per 1cm or <span class="math inline">\(\lambda=np\)</span>. Therefore, substitute <span class="math inline">\(p=\lambda/n\)</span></p>
+<p><span class="math display">\[f(x) \sim \binom n x \big(\frac{\lambda}{n}\big)^x(1-\frac{\lambda}{n})^{n-x}\]</span></p>
+<p>Since, there <strong>could</strong> still be two impurities in a micrometer, we need to increase the partition of the wire and <span class="math inline">\(n \rightarrow \infty\)</span>.</p>
+<p>Then in the limit:</p>
+<p><span class="math display">\[f(x)= \frac{e^{-\lambda}\lambda^x}{x!}\]</span></p>
+<p>Where <span class="math inline">\(\lambda\)</span> is constant because it is the density of impurities per centimeter, a <strong>physical property</strong> of the system. <span class="math inline">\(\lambda\)</span> is therefore the <strong>parameter</strong> of the probability model.</p>
+<p><strong>Derivation details:</strong></p>
+<p>For <span class="math inline">\(f(x) \sim \binom n x \big(\frac{\lambda}{n}\big)^x(1-\frac{\lambda}{n})^{n-x}\)</span></p>
+<p>in the limit (<span class="math inline">\(n \rightarrow \infty\)</span>)</p>
+<ol style="list-style-type: decimal">
+<li><span class="math inline">\(\frac{1}{n^x}\binom n x =\frac{1}{n^x}\frac{n!}{x! (n-x)!}=\frac{(n-x)!(n-x+1)...(n-1)n}{n^x x! (n-x)!}=\frac{n(n-1)..(n-x+1)}{n^x x!} \rightarrow \frac{1}{x!}\)</span></li>
+<li><span class="math inline">\((1-\frac{\lambda}{n})^{n} \rightarrow e^{-\lambda}\)</span> (definition of exponential)</li>
+<li><span class="math inline">\((1-\frac{\lambda}{n})^{-x} \rightarrow 1\)</span></li>
+</ol>
+<p>Putting everything together then:</p>
+<p><span class="math inline">\(f(x)= \frac{e^{-\lambda}\lambda^x}{x!}\)</span></p>
+<p><strong>Definition</strong></p>
+<p>Given</p>
+<ol style="list-style-type: decimal">
+<li>an interval in the real numbers</li>
+<li>counts occur at random in the interval</li>
+<li>the average number of counts on the interval is known (<span class="math inline">\(\lambda\)</span>)</li>
+<li>if one can find a small regular partition of the interval such that each of them can be considered Bernoulli trials.</li>
+</ol>
+<p>Then the random variable <span class="math inline">\(X\)</span> that counts events across the interval is a <strong>Poisson</strong> variable with probability mass function<br />
+<span class="math display">\[f(x)= \frac{e^{-\lambda}\lambda^x}{x!}, \lambda&gt;0\]</span></p>
+<p><strong>Properties:</strong>
+When <span class="math inline">\(X \rightarrow Poiss(\lambda)\)</span> it has</p>
+<ol style="list-style-type: decimal">
+<li>mean <span class="math display">\[E(X)= \lambda\]</span></li>
+<li>and variance <span class="math display">\[V(X)= \lambda\]</span></li>
+</ol>
+<p><strong>Examples</strong></p>
+<ol style="list-style-type: decimal">
+<li>What is the probability of receiving 4 emails in an hour, when the average number of emails in an hour is <span class="math inline">\(1\)</span>?</li>
+</ol>
+<p>We have that the variable is Poisson: <span class="math inline">\(X \rightarrow Poiss(\lambda)\)</span> with <span class="math inline">\(\lambda=1\)</span> and its probability mass function is:</p>
+<p><span class="math display">\[f(x)= \frac{e^{-1}1^x}{x!}\]</span>
+Therefore the probability that the variable takes value 4 is <span class="math inline">\(P(X=4)\)</span>:</p>
+<p><span class="math inline">\(f(4; \lambda=1)= \frac{e^{-1}1^4}{4!}=0.01532831\)</span></p>
+<p>in R <code>dpois(4,1)</code></p>
+<ol start="2" style="list-style-type: decimal">
+<li>What is the probability of receiving 4 emails in <strong>three hours</strong>, when the average number of emails in an hour is <span class="math inline">\(1\)</span>?</li>
+</ol>
+<p>The unit in which we do the counts has changed from 1 hour to 2 hours, so we have to <strong>re-scale</strong> <span class="math inline">\(\lambda\)</span>. If before the average number of emails in one hour was <span class="math inline">\(\lambda=1\)</span>, the average number of emails in three hours is now 3: <span class="math inline">\(\lambda_{3h}=3\lambda_{1h}=3*1=3\)</span></p>
+<p>We have that the variable is Poisson: <span class="math inline">\(X \rightarrow Poiss(\lambda_{3h})\)</span> with <span class="math inline">\(\lambda_{3h}=3\)</span> and its probability mass function is:</p>
+<p><span class="math display">\[f(x)= \frac{e^{-3}3^x}{x!}\]</span>
+Therefore the probability that the variable takes value 4 is <span class="math inline">\(P(X=4)\)</span>:</p>
+<p><span class="math inline">\(f(4; \lambda=3)= \frac{e^{-3}3^4}{4!}=0.1680314\)</span></p>
+<p>in R <code>dpois(4,3)</code></p>
+<ol start="3" style="list-style-type: decimal">
+<li>What is the probability of counting <strong>at least</strong> <span class="math inline">\(10\)</span> cars arriving at a toll booth in one minute, when the average number of cars arriving at a toll booth in one minute is <span class="math inline">\(5\)</span>;</li>
+</ol>
+<p>We have that the variable is Poisson: <span class="math inline">\(X \rightarrow Poiss(\lambda)\)</span> with <span class="math inline">\(\lambda=5\)</span> and its probability mass function is:</p>
+<p><span class="math display">\[f(x)= \frac{e^{-5}5^x}{x!}\]</span></p>
+<p><span class="math inline">\(P(X\geq 10)=1-P(X &lt; 10)=1-P(X \leq 9)=1-F(9; \lambda=5)=1-\sum_{x=0, ...10}f(x; \lambda=5)=0.03182806\)</span></p>
+<p>in R <code>1-ppois(9,5)</code></p>
+<p>Let’s look at some probability mass functions in the family of parametric Poisson models:</p>
+<p><img src="_main_files/figure-html/unnamed-chunk-62-1.png" width="672" /></p>
+</div>
+<div id="continuous-probability-models" class="section level2 hasAnchor" number="8.5">
+<h2><span class="header-section-number">8.5</span> Continuous probability models<a href="poisson-and-exponential-models.html#continuous-probability-models" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Continuous probability models are probability density functions <span class="math inline">\(f(x)\)</span> of a continuous random variables that we <strong>believe</strong> describe real random experiments.</p>
+<p>Probability density function <span class="math inline">\(f(x)\)</span></p>
+<ol style="list-style-type: decimal">
+<li>is positive</li>
 </ol>
 <p><span class="math display">\[f(x) \geq 0\]</span></p>
 <ol start="2" style="list-style-type: decimal">
-<li>The probability of observing <strong>any</strong> value is 1:</li>
+<li>allows us to compute probabilities using the area under the curve:</li>
 </ol>
-<p><span class="math display">\[\int_{-\infty}^{\infty} f(x) dx = 1\]</span>
-3) The probability of observing a value within an interval is the <strong>area under the curve</strong>:</p>
 <p><span class="math display">\[P(a\leq X \leq b)=\int_{a}^{b} f(x) dx\]</span></p>
-<p>The properties make sure that <span class="math inline">\(f(x)dx\)</span> satisfy Kolmogorov’s properties of a probability measure.</p>
-<p>The probability density function is a step forward in the abstraction of probabilities: we add the continuous limit</p>
-<p><span class="math display">\[dx \rightarrow 0\]</span></p>
-<p>All the properties of probabilities are translated in terms of densities</p>
-<p><span class="math display">\[\sum \rightarrow \int\]</span></p>
-<p>Probability densities are mathematical quantities that do not necessarily represent random experiments.</p>
-<p>A fundamental interest in statistics is to describe the densities that describe our particular random experiment.</p>
-</div>
-<div id="total-area-under-the-curve" class="section level2 hasAnchor" number="6.5">
-<h2><span class="header-section-number">6.5</span> Total area under the curve<a href="continous-random-variables.html#total-area-under-the-curve" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><strong>Example (raindrop fall)</strong></p>
-<p>take the <strong>probability density</strong> that may describe the random variable that measures where a raindrop falls in a rain gutter of length <span class="math inline">\(100cm\)</span>.</p>
-<p><span class="math display">\[
-    f(x)=
-\begin{cases}
-    \frac{1}{100},&amp; \text{if } x\in (0,100)\\
-    0,&amp; otherwise
-\end{cases}
-\]</span></p>
-<p>Let us verify that the function satisfies the three properties of a probability density.</p>
-<ol style="list-style-type: decimal">
-<li><p>it is evident from the definition that <span class="math inline">\(f(x) \geq 0\)</span></p></li>
-<li><p>The probability of observing <strong>anything</strong> is the total <strong>area under the curve</strong></p></li>
-</ol>
-<p><span class="math inline">\(P(-\infty\leq X \leq \infty)= \int_{-\infty}^{\infty} f(x) dx = 100*0.01= 1\)</span></p>
-<p><img src="_main_files/figure-html/unnamed-chunk-43-1.png" width="672" /></p>
 <ol start="3" style="list-style-type: decimal">
-<li>The probability of observing <span class="math inline">\(x\)</span> in an interval is the <strong>area under the curve</strong> within the interval</li>
+<li>is such that the probability of anything is <span class="math inline">\(1\)</span>:</li>
 </ol>
-<ul>
-<li><span class="math inline">\(P(20 \leq X \leq 60) = \int_{20}^{60} f(x) dx = (60-20)*0.01=0.4\)</span></li>
-</ul>
-<p><img src="_main_files/figure-html/unnamed-chunk-44-1.png" width="672" /></p>
+<p><span class="math display">\[\int_{-\infty}^{\infty} f(x) dx = 1\]</span></p>
 </div>
-<div id="probabilities-of-continous-variables" class="section level2 hasAnchor" number="6.6">
-<h2><span class="header-section-number">6.6</span> Probabilities of continous variables<a href="continous-random-variables.html#probabilities-of-continous-variables" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>For continuous variables, we compute the probability that the variable is in a given interval. That is</p>
-<p><span class="math display">\[P(a \leq X \leq b)\]</span>
-We saw that for continuous variables, the probability that the experiment gives us a particular real number is zero: <span class="math inline">\(P(X=a)=0\)</span></p>
-<p>The <span class="math inline">\(P(a \leq X \leq b)\)</span> is the area under the curve of <span class="math inline">\(f(x)\)</span> between <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span></p>
-<ul>
-<li><span class="math inline">\(P(a \leq X \leq b) = \int_{a}^{b} f(x) dx\)</span></li>
-</ul>
-<p><img src="_main_files/figure-html/unnamed-chunk-45-1.png" width="672" /></p>
+<div id="exponential-process" class="section level2 hasAnchor" number="8.6">
+<h2><span class="header-section-number">8.6</span> Exponential process<a href="poisson-and-exponential-models.html#exponential-process" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Let’s go back to a <strong>Poisson process</strong> defined by probability</p>
+<p><span class="math display">\[f(k)=\frac{e^{-\lambda}\lambda^k}{k!}, \lambda&gt;0\]</span></p>
+<p>for the number of events (<span class="math inline">\(k\)</span>) in an interval.</p>
+<p>Let us now consider that we are interested in the duration/time we should wait for the <strong>first</strong> count to occur.</p>
+<p>We can ask about the probability that the first event occurs after duration/time <span class="math inline">\(X\)</span>.</p>
+<p>Therefore, since <span class="math inline">\(X\)</span> is a <strong>continuous</strong> random variable, we look for its probaility density function <span class="math inline">\(f(x)\)</span>.</p>
 </div>
-<div id="probability-distribution-1" class="section level2 hasAnchor" number="6.7">
-<h2><span class="header-section-number">6.7</span> Probability distribution<a href="continous-random-variables.html#probability-distribution-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>The <strong>probability distribution</strong> <span class="math inline">\(F(c)\)</span> defined as the accumulation of probability up to the outcome <span class="math inline">\(C\)</span></p>
-<p><span class="math inline">\(F(c) = P(X \leq c)\)</span></p>
-<p>can be used to compute the probability <span class="math inline">\(P(a \leq X \leq b)\)</span>.</p>
-<p>Consider:</p>
+<div id="exponential-probability-density" class="section level2 hasAnchor" number="8.7">
+<h2><span class="header-section-number">8.7</span> Exponential probability density<a href="poisson-and-exponential-models.html#exponential-probability-density" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The probability of <span class="math inline">\(0\)</span> counts <strong>if</strong> an interval has unit <span class="math inline">\(x\)</span> is</p>
+<p><span class="math display">\[f(0|x)=\frac{e^{-x\lambda}x\lambda^0}{0!}\]</span></p>
+<p>or</p>
+<p><span class="math display">\[f(0|x)=e^{-x\lambda}\]</span></p>
+<p>We can treat this as the conditional probability of <span class="math inline">\(0\)</span> events in a distance <span class="math inline">\(x\)</span>: <span class="math inline">\(f(K=0|X=x)\)</span> and apply the Bayes theorem to reverse it:</p>
+<p><span class="math display">\[f(x|0)=C f(0|x)=C e^{-x\lambda}\]</span></p>
+<p>So we can calculate the <strong>probability of observing a distance</strong> a distance <span class="math inline">\(x\)</span> with <span class="math inline">\(0\)</span> counts. This is the distance between any two events or the distance until the first event.</p>
+<p><strong>Definition</strong></p>
+<p>In a Poisson process with parameter <span class="math inline">\(\lambda\)</span> the probability of waiting a distance/time <span class="math inline">\(X\)</span> between two counts is given by the <strong>probability density</strong></p>
+<p><span class="math display">\[f(x)= C e^{-x\lambda}\]</span></p>
+<ul>
+<li><p><span class="math inline">\(C\)</span> is a constant that ensures: <span class="math inline">\(\int_{-\infty}^{\infty} f(x) dx =1\)</span></p></li>
+<li><p>by integration <span class="math inline">\(C=\lambda\)</span></p></li>
+</ul>
+<p>Therefore:</p>
+<p><span class="math display">\[f(x)=\lambda e^{-\lambda x}, x\geq 0\]</span></p>
+<p><span class="math inline">\(\lambda\)</span> is the paramenter of the model also known as a <strong>decay rate</strong>.</p>
+<p><strong>Properties:</strong></p>
+<p>When <span class="math inline">\(X \rightarrow Exp(\lambda)\)</span> then</p>
 <ol style="list-style-type: decimal">
-<li>that the probability accumulated up to <span class="math inline">\(b\)</span> is given by</li>
+<li>It has mean</li>
 </ol>
-<ul>
-<li><span class="math inline">\(F(b) = P(X \leq b)=\int_{-\infty}^bf(x)dx\)</span></li>
-</ul>
-<p><img src="_main_files/figure-html/unnamed-chunk-46-1.png" width="672" /></p>
+<p><span class="math display">\[E(X)=\frac{1}{\lambda}\]</span></p>
 <ol start="2" style="list-style-type: decimal">
-<li>that the probability accumulated up to <span class="math inline">\(a\)</span> is</li>
+<li>and variance
+<span class="math display">\[V(Y)=\frac{1}{\lambda^2}\]</span></li>
 </ol>
-<ul>
-<li><span class="math inline">\(F(a) = P(X \leq a)\)</span></li>
-</ul>
-<p><img src="_main_files/figure-html/unnamed-chunk-47-1.png" width="672" /></p>
-<p>Then the probability between <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> is given by the difference in the value of the probability distribution</p>
-<ul>
-<li><span class="math inline">\(P(a\leq X \leq b) = \int_a^b f(x)dx=F(b)-F(a)\)</span></li>
-</ul>
-<p><img src="_main_files/figure-html/unnamed-chunk-48-1.png" width="672" /></p>
-<p><strong>Definition</strong></p>
-<p>The <strong>probability distribution</strong> of a continuous random variable is defined as</p>
-<p><span class="math display">\[F(a)=P(X\leq a) =\int_{-\infty} ^a f(x)dx\]</span></p>
-<p>and have the properties:</p>
+<p>Let’s look at a couple of the probability densities in the exponential family</p>
+<p><img src="_main_files/figure-html/unnamed-chunk-63-1.png" width="672" /></p>
+</div>
+<div id="exponential-distribution" class="section level2 hasAnchor" number="8.8">
+<h2><span class="header-section-number">8.8</span> Exponential Distribution<a href="poisson-and-exponential-models.html#exponential-distribution" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Consider the following questions:</p>
 <ol style="list-style-type: decimal">
-<li>It is between <span class="math inline">\(0\)</span> and <span class="math inline">\(1\)</span>:</li>
+<li>In a Poisson process ¿What is the probability of observing an interval <strong>smaller</strong> than size <span class="math inline">\(a\)</span> until the first count?</li>
 </ol>
-<p><span class="math display">\[F(-\infty)= 0 \,\, and \,\,F(\infty)=1\]</span></p>
+<p>Remember that this probability <span class="math inline">\(F(a)=P(X \leq a)\)</span> is the probability density</p>
+<p><span class="math display">\[F(a)=\lambda \int_\infty^a e^{-x\lambda}dx=1-e^{-a\lambda}\]</span>
+2) In a Poisson process ¿What is the probability of observing an interval <strong>larger</strong> than size <span class="math inline">\(a\)</span> until the first event?</p>
+<p><span class="math display">\[P(X &gt; a)=1- P(X \leq a)= 1- F(a) = e^{-a\lambda}\]</span></p>
+<p>Let’s look at a couple of exponential distributions from the exponential family</p>
+<p><img src="_main_files/figure-html/unnamed-chunk-64-1.png" width="672" /></p>
+<p>The median <span class="math inline">\(x_m\)</span> is such that <span class="math inline">\(F(x_m)=0.5\)</span>. That is <span class="math inline">\(x_m=\frac{\log(2)}{\lambda}\)</span></p>
+<p><strong>Examples</strong></p>
+<ol style="list-style-type: decimal">
+<li>What is the probability that we have to wait for a bus for more than <span class="math inline">\(1\)</span> hour when on average there are two buses per hour?</li>
+</ol>
+<p><span class="math display">\[P(X &gt; 1)=1-P(X \le 1) = 1-F(1,\lambda=2)=0.1353353\]</span>
+in R <code>1-pexp(1,2)</code></p>
 <ol start="2" style="list-style-type: decimal">
-<li>It always increases:</li>
+<li>What is the probability of having to wait less than <span class="math inline">\(2\)</span> seconds to detect one particle when the radioactive decay rate is <span class="math inline">\(2\)</span> particles each second; <span class="math inline">\(F(2,\lambda=2)\)</span></li>
 </ol>
-<p><span class="math display">\[F(a)\leq F(b)\]</span></p>
-<p>if <span class="math inline">\(a\leq b\)</span></p>
-<ol start="3" style="list-style-type: decimal">
-<li>It can be used to compute probabilities:</li>
-</ol>
-<p><span class="math display">\[P(a \leq X \leq b)=F(b)-F(a)\]</span></p>
-<ol start="4" style="list-style-type: decimal">
-<li>It recovers the probability density:</li>
-</ol>
-<p><span class="math display">\[f(x)=\frac{dF(x)}{dx}\]</span></p>
-<p>We use <strong>probability distributions</strong> to <strong>compute probabilities</strong> of a random variable within intervals, and its derivative is the probability density function.</p>
-<p><strong>Example (raindrop fall)</strong></p>
-<p>For the uniform density function:</p>
-<p><span class="math display">\[
-    f(x)=
-\begin{cases}
-    \frac{1}{100},&amp; \text{if } x\in (0,100)\\
-    0,&amp; otherwise
-\end{cases}
-\]</span></p>
-<p>We find that the probability distribution is</p>
-<p><span class="math display">\[
-    F(a)=
-\begin{cases}
-    0,&amp; a \leq 0 \\
-    \frac{a}{100},&amp; \text{if } a\in (0,100)\\
-    1, &amp; 100 \leq a \\
-    \\
-\end{cases}
-\]</span></p>
-<div style="page-break-after: always;"></div>
+<p><span class="math display">\[P(X \le 2)=F(2,\lambda=2)=0.9816844\]</span></p>
+<p>in R <code>pexp(2,2)</code></p>
 </div>
-<div id="probability-plots" class="section level2 hasAnchor" number="6.8">
-<h2><span class="header-section-number">6.8</span> Probability plots<a href="continous-random-variables.html#probability-plots" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<ol style="list-style-type: decimal">
-<li>We can plot the the probability of a random variable in an interval as the <em>area</em> under the <strong>density</strong> curve. For instance</li>
-</ol>
-<p><span class="math display">\[P(20&lt;X&lt;60)\]</span></p>
-<p><img src="_main_files/figure-html/unnamed-chunk-49-1.png" width="672" /></p>
-<ol start="2" style="list-style-type: decimal">
-<li>Equivalenty, we can plot the probability <span class="math inline">\(P(20&lt;X&lt;60)\)</span> as the <em>difference</em> in <strong>distribution</strong> values</li>
-</ol>
-<p><img src="_main_files/figure-html/unnamed-chunk-50-1.png" width="672" /></p>
+<div id="questions-5" class="section level2 hasAnchor" number="8.9">
+<h2><span class="header-section-number">8.9</span> Questions<a href="poisson-and-exponential-models.html#questions-5" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><strong>1)</strong> During WWII in London, the expected number of bombs that hit an area of <span class="math inline">\(3km^2\)</span> was <span class="math inline">\(0.92\)</span>. The probability that, in one day, one area received two bombs was</p>
+<p><strong><span class="math inline">\(\qquad\)</span>a:</strong><code>1-ppois(x=2, lambda=0.92)</code>;
+<strong><span class="math inline">\(\qquad\)</span>b:</strong><code>ppois(x=2, lambda=0.92)</code>; <strong><span class="math inline">\(\qquad\)</span>c:</strong><code>1-dpois(x=2, lambda=0.92)</code>; <strong><span class="math inline">\(\qquad\)</span>d:</strong><code>dpois(x=2, lambda=0.92)</code></p>
+<p><strong>2)</strong> The probability that a passenger has to wait less than 20 minutes until the next bus arrives at her stop is better described by</p>
+<p><strong><span class="math inline">\(\qquad\)</span>a:</strong> A poisson model on the number of buses per 20 minutes;<br />
+<strong><span class="math inline">\(\qquad\)</span>b:</strong> An exponential distribution at 20 minutes with a given expectation of buses per minute;
+<strong><span class="math inline">\(\qquad\)</span>c:</strong> A binomial model that counts the number of buses per 20 minutes
+<strong><span class="math inline">\(\qquad\)</span>d:</strong> A normal distribution with an average of buses per 20 minutes and a given standard deviation;</p>
+<p><strong>3)</strong> From the exponential probability distribution in the figure below, what is the most likely value of the median?</p>
+<p><strong><span class="math inline">\(\qquad\)</span>a:</strong> <span class="math inline">\(2\)</span>; <strong><span class="math inline">\(\qquad\)</span>b:</strong> <span class="math inline">\(3\)</span>; <strong><span class="math inline">\(\qquad\)</span>c:</strong> <span class="math inline">\(4\)</span>; <strong><span class="math inline">\(\qquad\)</span>d:</strong> <span class="math inline">\(5\)</span></p>
+<p><img src="figures/exp.png" /></p>
 </div>
-<div id="mean" class="section level2 hasAnchor" number="6.9">
-<h2><span class="header-section-number">6.9</span> Mean<a href="continous-random-variables.html#mean" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>As in the discrete case, the <strong>mean</strong> measures the center of mass of probabilities</p>
-<p><strong>Definition</strong></p>
-<p>Suppose <span class="math inline">\(X\)</span> is a continuous random variable with probability <strong>density</strong> function <span class="math inline">\(f(x)\)</span>. The mean or expected value of <span class="math inline">\(X\)</span>, denoted as <span class="math inline">\(\mu\)</span> or <span class="math inline">\(E(X)\)</span>, is</p>
-<p><span class="math display">\[\mu=E(X)=\int_{-\infty}^\infty x f(x) dx\]</span></p>
-<p>It is the continuous version of the center of mass.</p>
-<p><strong>Example (raindrop fall)</strong></p>
-<p>The random variable with probability density</p>
-<p><span class="math display">\[
-    f(x)=
-\begin{cases}
-    \frac{1}{100},&amp; \text{if } x\in (0,100)\\
-    0,&amp; otherwise
-\end{cases}
-\]</span></p>
-<p>Has an expected value at</p>
-<p><span class="math display">\[E(X)=50\]</span></p>
-<p><img src="_main_files/figure-html/unnamed-chunk-51-1.png" width="672" /></p>
-</div>
-<div id="variance-1" class="section level2 hasAnchor" number="6.10">
-<h2><span class="header-section-number">6.10</span> Variance<a href="continous-random-variables.html#variance-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>As in the discrete case, the variance measures the dispersion of probabilities about the mean</p>
-<p><strong>Definition</strong></p>
-<p>Suppose <span class="math inline">\(X\)</span> is a continuous random variable with probability density function <span class="math inline">\(f(x)\)</span>. The variance of <span class="math inline">\(X\)</span>, denoted as <span class="math inline">\(\sigma^2\)</span> or <span class="math inline">\(V(X)\)</span>, is</p>
-<p><span class="math display">\[\sigma^2=V(X)=\int_{-\infty}^\infty (x-\mu)^2 f(x) dx\]</span></p>
-<p>It is the continuous version of the moment of inertia.</p>
-</div>
-<div id="functions-of-x" class="section level2 hasAnchor" number="6.11">
-<h2><span class="header-section-number">6.11</span> Functions of <span class="math inline">\(X\)</span><a href="continous-random-variables.html#functions-of-x" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>In many occasions, we will be interested in outcomes that are function of the random variables. Perhaps, we are interested in the square of the elongation of a spring, or on the square root of the temperature of an engine.</p>
-<p><strong>Definition</strong></p>
-<p>For any function <span class="math inline">\(h\)</span> of a random variable <span class="math inline">\(X\)</span>, with mass function <span class="math inline">\(f(x)\)</span>, its expected value is given by</p>
-<p><span class="math display">\[E[h(X)]= \int_{-\infty}^{\infty} h(x) f(x)dx\]</span></p>
-<p>From this definition we recover the same properties as in the discrete case</p>
-<ol style="list-style-type: decimal">
-<li><p>The mean of a linear function is the linear function fo the mean: <span class="math display">\[E(a\times X +b)= a\times E(X) +b\]</span> for <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> scalars.</p></li>
-<li><p>The variance of a linear function of <span class="math inline">\(X\)</span> is:<span class="math display">\[V(a\times X +b)= a^2\times V(X)\]</span></p></li>
-<li><p>The variance about the origin is the variance about the mean plus the mean squared: <span class="math display">\[E(X^2)=V(X)+E(X)^2\]</span></p></li>
-</ol>
-</div>
-<div id="exercises-4" class="section level2 hasAnchor" number="6.12">
-<h2><span class="header-section-number">6.12</span> Exercises<a href="continous-random-variables.html#exercises-4" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div id="exercise-1-3" class="section level4 hasAnchor" number="6.12.0.1">
-<h4><span class="header-section-number">6.12.0.1</span> Exercise 1<a href="continous-random-variables.html#exercise-1-3" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>For the probability density</p>
-<p><span class="math display">\[
-    f(x)=
-\begin{cases}
-    \frac{1}{100},&amp; \text{if } x\in (0,100)\\
-    0,&amp; otherwise
-\end{cases}
-\]</span></p>
+<div id="exercises-6" class="section level2 hasAnchor" number="8.10">
+<h2><span class="header-section-number">8.10</span> Exercises<a href="poisson-and-exponential-models.html#exercises-6" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="exercise-1-5" class="section level4 hasAnchor" number="8.10.0.1">
+<h4><span class="header-section-number">8.10.0.1</span> Exercise 1<a href="poisson-and-exponential-models.html#exercise-1-5" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>The average number of phone calls per hour coming into the switchboard of a company is <span class="math inline">\(150\)</span>. Find the probability that during one particular minute there will be</p>
 <ul>
-<li>compute the mean (R:50)</li>
-<li>compute variance using <span class="math inline">\(E(X^2)=V(X)+E(X)^2\)</span> (R:100^2/12)</li>
-<li>compute <span class="math inline">\(P(\mu-\sigma\leq X \leq \mu+\sigma)\)</span> (R: 0.57)</li>
-<li>What are the first and third quartiles? (R: 25; 75)</li>
-</ul>
-<p><img src="_main_files/figure-html/unnamed-chunk-52-1.png" width="672" /></p>
-</div>
-<div id="exercise-2-3" class="section level4 hasAnchor" number="6.12.0.2">
-<h4><span class="header-section-number">6.12.0.2</span> Exercise 2<a href="continous-random-variables.html#exercise-2-3" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>Given
-<span class="math display">\[
-    f(x)=
-\begin{cases}
-0, &amp; x &lt; 0 \\
-ax, &amp; x \in [0,3] \\
-b, &amp; x \in (3,5) \\
-\frac{b}{3}(8-x),&amp; x \in [5,8]\\
-0, &amp; x &gt; 8 \\
-\end{cases}
-\]</span></p>
-<ul>
-<li><p>What are the values of <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> such that <span class="math inline">\(f(x)\)</span> is a continous probability density function? (R: 1/15; 1/5)</p></li>
-<li><p>what is the mean of <span class="math inline">\(X\)</span>? (R:4)</p></li>
+<li>0 phone calls (R:0.082)</li>
+<li>1 phone call (R:0.205)</li>
+<li>4 or fewer calls (R:0.891)</li>
+<li>more than 6 phone calls (R:0.0141)</li>
 </ul>
 </div>
-<div id="exercise-3-3" class="section level4 hasAnchor" number="6.12.0.3">
-<h4><span class="header-section-number">6.12.0.3</span> Exercise 3<a href="continous-random-variables.html#exercise-3-3" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>For the probability density</p>
-<p><span class="math display">\[
-    f(x)=
-\begin{cases}
-    \lambda e^{-\lambda x},&amp; \text{if } x \geq 0\\
-    0,&amp; otherwise
-\end{cases}
-\]</span></p>
+<div id="exercise-2-5" class="section level4 hasAnchor" number="8.10.0.2">
+<h4><span class="header-section-number">8.10.0.2</span> Exercise 2<a href="poisson-and-exponential-models.html#exercise-2-5" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>The average number of radioactive particles hitting a Geiger counter in a nuclear energy plant under control is <span class="math inline">\(2.3\)</span> per minute.</p>
 <ul>
-<li>Confirm that this is a probability density</li>
-<li>Compute the mean (R: 1/<span class="math inline">\(\lambda\)</span>)</li>
-<li>Compute the expected value of <span class="math inline">\(X^2\)</span> (R: 2/<span class="math inline">\(\lambda^2\)</span>)</li>
-<li>Compute variance (R: 1/<span class="math inline">\(\lambda^2\)</span>)</li>
-<li>Find the probability distribution <span class="math inline">\(F(a)\)</span> (R: <span class="math inline">\(1-exp(-\lambda a)\)</span>)</li>
-<li>Find the median (R: <span class="math inline">\(\log{2}\)</span>/<span class="math inline">\(\lambda\)</span>)</li>
-</ul>
-</div>
-<div id="exercise-4-2" class="section level4 hasAnchor" number="6.12.0.4">
-<h4><span class="header-section-number">6.12.0.4</span> Exercise 4<a href="continous-random-variables.html#exercise-4-2" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>Given the cumulative distribution for a random variable X</p>
-<p><span class="math display">\[
-    F(x)=
-\begin{cases}
-0, &amp; x  &lt; -1 \\
-\frac{1}{80}(17+16x-x^2),&amp; x \in [-1,7)\\
-1,&amp; x \geq 7\\
-\end{cases}
-\]</span></p>
-<p>compute:</p>
-<ul>
-<li><span class="math inline">\(P(X&gt;0)\)</span> (R:63/80)</li>
-<li><span class="math inline">\(E(X)\)</span> (R:1.93)</li>
-<li><span class="math inline">\(P(X&gt;0|X&lt;2)\)</span> (R:28/45)</li>
+<li><p>What is the probability of counting exactly <span class="math inline">\(2\)</span> particles in a minute? (R:0.265)</p></li>
+<li><p>What is the probability of detecting exactly <span class="math inline">\(10\)</span> particles in <span class="math inline">\(5\)</span> minute? (R:0.112)</p></li>
+<li><p>What is the probability of at least one count in two minutes? (R:0.9899)</p></li>
+<li><p>What is the probability of having to wait less than <span class="math inline">\(1\)</span> second to detect a radioactive particle, after we switch on the detector? (R:0.037)</p></li>
+<li><p>We suspect that a nuclear plant has a radioactive leak if we wait less than <span class="math inline">\(1\)</span> second to detect a radioactive particle, after we switch on the detector. What is the probability that when we visit in <span class="math inline">\(5\)</span> plants that are under control, we suspect that at least one has a leak? (R:0.1744).</p></li>
 </ul>
 
 </div>
@@ -549,8 +466,8 @@ b, &amp; x \in (3,5) \\
           </div>
         </div>
       </div>
-<a href="discrete-random-variables.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="discrete-probability-models.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="discrete-probability-models.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -581,7 +498,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/USERNAME/REPO/edit/BRANCH/05-ContinuousRandomVariables.Rmd",
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/07-PoissonExponential.Rmd",
 "text": "Edit"
 },
 "history": {

@@ -23,7 +23,7 @@
 <meta name="author" content="Alejandro Caceres" />
 
 
-<meta name="date" content="2023-10-17" />
+<meta name="date" content="2023-10-22" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -31,7 +31,7 @@
   
   
 <link rel="prev" href="continous-random-variables.html"/>
-
+<link rel="next" href="poisson-and-exponential-models.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -195,6 +195,19 @@
 <li class="chapter" data-level="7.12" data-path="discrete-probability-models.html"><a href="discrete-probability-models.html#hypergeometric-model"><i class="fa fa-check"></i><b>7.12</b> Hypergeometric model</a></li>
 <li class="chapter" data-level="7.13" data-path="discrete-probability-models.html"><a href="discrete-probability-models.html#questions-4"><i class="fa fa-check"></i><b>7.13</b> Questions</a></li>
 <li class="chapter" data-level="7.14" data-path="discrete-probability-models.html"><a href="discrete-probability-models.html#exercises-5"><i class="fa fa-check"></i><b>7.14</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="poisson-and-exponential-models.html"><a href="poisson-and-exponential-models.html"><i class="fa fa-check"></i><b>8</b> Poisson and Exponential Models</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="poisson-and-exponential-models.html"><a href="poisson-and-exponential-models.html#objective-4"><i class="fa fa-check"></i><b>8.1</b> Objective</a></li>
+<li class="chapter" data-level="8.2" data-path="poisson-and-exponential-models.html"><a href="poisson-and-exponential-models.html#discrete-probability-models-1"><i class="fa fa-check"></i><b>8.2</b> Discrete probability models</a></li>
+<li class="chapter" data-level="8.3" data-path="poisson-and-exponential-models.html"><a href="poisson-and-exponential-models.html#poissson-experiment"><i class="fa fa-check"></i><b>8.3</b> Poissson experiment</a></li>
+<li class="chapter" data-level="8.4" data-path="poisson-and-exponential-models.html"><a href="poisson-and-exponential-models.html#poisson-probability-mass-function"><i class="fa fa-check"></i><b>8.4</b> Poisson probability mass function</a></li>
+<li class="chapter" data-level="8.5" data-path="poisson-and-exponential-models.html"><a href="poisson-and-exponential-models.html#continuous-probability-models"><i class="fa fa-check"></i><b>8.5</b> Continuous probability models</a></li>
+<li class="chapter" data-level="8.6" data-path="poisson-and-exponential-models.html"><a href="poisson-and-exponential-models.html#exponential-process"><i class="fa fa-check"></i><b>8.6</b> Exponential process</a></li>
+<li class="chapter" data-level="8.7" data-path="poisson-and-exponential-models.html"><a href="poisson-and-exponential-models.html#exponential-probability-density"><i class="fa fa-check"></i><b>8.7</b> Exponential probability density</a></li>
+<li class="chapter" data-level="8.8" data-path="poisson-and-exponential-models.html"><a href="poisson-and-exponential-models.html#exponential-distribution"><i class="fa fa-check"></i><b>8.8</b> Exponential Distribution</a></li>
+<li class="chapter" data-level="8.9" data-path="poisson-and-exponential-models.html"><a href="poisson-and-exponential-models.html#questions-5"><i class="fa fa-check"></i><b>8.9</b> Questions</a></li>
+<li class="chapter" data-level="8.10" data-path="poisson-and-exponential-models.html"><a href="poisson-and-exponential-models.html#exercises-6"><i class="fa fa-check"></i><b>8.10</b> Exercises</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -684,7 +697,7 @@ The hypergeometric model has three parameters.</p>
 <p><strong><span class="math inline">\(\qquad\)</span>a:</strong><code>pbinom(x=49, n=100, p=0.55)=0.13</code>;
 <strong><span class="math inline">\(\qquad\)</span>b:</strong><code>1-pbinom(x=49, n=100, p=0.55)=0.86</code>;
 <strong><span class="math inline">\(\qquad\)</span>c:</strong><code>pbinom(x=51, n=100, p=0.45)=0.90</code>; <strong><span class="math inline">\(\qquad\)</span>d:</strong><code>1-pbinom(x=51, n=100, p=0.45)=0.095</code></p>
-<p><strong>5)</strong> In an exam a student chooses at random one of the four answers that he does not know. If he doesn’t know <span class="math inline">\(10\)</span> questions what is the probability that at least <span class="math inline">\(5\)</span> questions are correct?</p>
+<p><strong>5)</strong> In an exam a student chooses at random one of the four answers that he does not know. If he doesn’t know <span class="math inline">\(10\)</span> questions what is the probability that more than <span class="math inline">\(5\)</span> (<span class="math inline">\(&gt;5\)</span>) questions are correct?</p>
 <p><strong><span class="math inline">\(\qquad\)</span>a:</strong><code>dbinom(x=5, n=10, p=0.25)~ 0.05</code>; <strong><span class="math inline">\(\qquad\)</span>b:</strong><code>pbinom(x=5, n=10, p=0.75)~ 0.07</code>; <strong><span class="math inline">\(\qquad\)</span>c:</strong><code>dbinom(x=5, n=10, p=0.75)~ 0.05</code>; <strong><span class="math inline">\(\qquad\)</span>d:</strong><code>1-pbinom(x=5, n=10, p=0.25)~ 0.02</code></p>
 </div>
 <div id="exercises-5" class="section level2 hasAnchor" number="7.14">
@@ -727,8 +740,8 @@ The hypergeometric model has three parameters.</p>
           </div>
         </div>
       </div>
-<a href="continous-random-variables.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="continous-random-variables.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="poisson-and-exponential-models.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

@@ -80,7 +80,7 @@
 
 \title{EEBE stats}
 \author{Alejandro Caceres}
-\date{2023-10-17}
+\date{2023-10-22}
 
 \begin{document}
 \maketitle
@@ -4328,7 +4328,7 @@ The solution is the addition of the blue needles in the plot.
 \textbf{\(\qquad\)b:}1-pbinom(x=49, n=100, p=0.55)=0.86;
 \textbf{\(\qquad\)c:}pbinom(x=51, n=100, p=0.45)=0.90; \textbf{\(\qquad\)d:}1-pbinom(x=51, n=100, p=0.45)=0.095
 
-\textbf{5)} In an exam a student chooses at random one of the four answers that he does not know. If he doesn't know \(10\) questions what is the probability that at least \(5\) questions are correct?
+\textbf{5)} In an exam a student chooses at random one of the four answers that he does not know. If he doesn't know \(10\) questions what is the probability that more than \(5\) (\(>5\)) questions are correct?
 
 \textbf{\(\qquad\)a:}dbinom(x=5, n=10, p=0.25)\textasciitilde{} 0.05; \textbf{\(\qquad\)b:}pbinom(x=5, n=10, p=0.75)\textasciitilde{} 0.07; \textbf{\(\qquad\)c:}dbinom(x=5, n=10, p=0.75)\textasciitilde{} 0.05; \textbf{\(\qquad\)d:}1-pbinom(x=5, n=10, p=0.25)\textasciitilde{} 0.02
 
@@ -4382,6 +4382,429 @@ A search engine fails to retrieve information with a probability \(0.1\)
   What is the probability that the engine successfully completes \(15\) searches before the first failure?(R:0.020)
 \item
   We consider that a search engine works sufficiently well when it is able to find information for moe than \(10\) requests for every \(2\) failures. What is the probability that in a reliability trial our search engine is satisfactory?(R: 0.697)
+\end{itemize}
+
+\hypertarget{poisson-and-exponential-models}{%
+\chapter{Poisson and Exponential Models}\label{poisson-and-exponential-models}}
+
+\hypertarget{objective-4}{%
+\section{Objective}\label{objective-4}}
+
+In this chapter we will see two tightly related probability models: the \textbf{Poisson} and the \textbf{exponential} models.
+
+The Poisson model is for discrete random variables while the exponential function is \textbf{continuous} random variables
+
+\hypertarget{discrete-probability-models-1}{%
+\section{Discrete probability models}\label{discrete-probability-models-1}}
+
+In the previous chapter we built complex models from simple ones. At each stage, we introduced some novel concept:
+
+\textbf{Uniform}: Classical interpretation of probability
+\(\downarrow\)
+\textbf{Bernoulli}: Introduction of a \textbf{parameter} \(p\) (family of models)
+\(\downarrow\)
+\textbf{Binomial}: Introductio of the \textbf{Repetition} of a random experiment (\(n\)-times Bernoulli trials)
+\(\downarrow\)
+\textbf{Poisson}: Repetition of random experiment within a continuous interval, having \textbf{no control} on when/where the Bernoulli trial occurs.
+
+The last stage is the Poisson process that describes a the repetition of a random experiment with additional randomness at the time of repetition.
+
+\hypertarget{poissson-experiment}{%
+\section{Poissson experiment}\label{poissson-experiment}}
+
+Imagine that we are observing events that \textbf{depend} on time or distance \textbf{intervals}.
+
+for example:
+
+\begin{itemize}
+\tightlist
+\item
+  cars arriving at a traffic light
+\item
+  getting messages on your mobile phone
+\item
+  impurities occurring at random in a copper wire
+\end{itemize}
+
+Suppose that the events are outcomes of \textbf{independent} Bernoulli trials each appearing randomly on a continuous interval, and we want to \textbf{count} them.
+
+What is the probability of observing \(X\) events in an interval's unit (time or distance)?
+
+\textbf{Example (Impurities in a wire):}
+
+Imagine that some impurities deposit randomly along a copper wire. You want to count the number of impurities in one given centimeter of the wire (\(X\)).
+
+Consider that you know that on average there are \(10\) impurities per centimeter \(\lambda=10/cm\).
+
+What is the probability of observing \(X=5\) impurities in one specimen of one centimeter in particular?
+
+\hypertarget{poisson-probability-mass-function}{%
+\section{Poisson probability mass function}\label{poisson-probability-mass-function}}
+
+To calculate the probability mass function \(f(x)=P(X=x)\) of the previous example we divide the centimeter into micrometers (\(0.0001cm\)).
+
+Micrometers are small enough so
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\item
+  either there is or there is not an impurity in each micrometer
+\item
+  each micrometer can be then be considered a \textbf{Bernoulli trial}
+\end{enumerate}
+
+\includegraphics{./figures/Pois.JPG}
+
+\textbf{From the Binomial to the Poisson probability function}
+
+The probability of observing \(X\) impurities in \(n=10,000\mu\) (1cm) approximately follows a binomial distribution
+
+\[f(x) \sim \binom n x p^x(1-p)^{n-x}\]
+
+where \(p\) is the probability of finding an impurity in a micrometer.
+
+Since the expected value of a Binomial variable is:
+\(E(X)=np\). This is the average number of impurities per 1cm or \(\lambda=np\). Therefore, substitute \(p=\lambda/n\)
+
+\[f(x) \sim \binom n x \big(\frac{\lambda}{n}\big)^x(1-\frac{\lambda}{n})^{n-x}\]
+
+Since, there \textbf{could} still be two impurities in a micrometer, we need to increase the partition of the wire and \(n \rightarrow \infty\).
+
+Then in the limit:
+
+\[f(x)= \frac{e^{-\lambda}\lambda^x}{x!}\]
+
+Where \(\lambda\) is constant because it is the density of impurities per centimeter, a \textbf{physical property} of the system. \(\lambda\) is therefore the \textbf{parameter} of the probability model.
+
+\textbf{Derivation details:}
+
+For \(f(x) \sim \binom n x \big(\frac{\lambda}{n}\big)^x(1-\frac{\lambda}{n})^{n-x}\)
+
+in the limit (\(n \rightarrow \infty\))
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\tightlist
+\item
+  \(\frac{1}{n^x}\binom n x =\frac{1}{n^x}\frac{n!}{x! (n-x)!}=\frac{(n-x)!(n-x+1)...(n-1)n}{n^x x! (n-x)!}=\frac{n(n-1)..(n-x+1)}{n^x x!} \rightarrow \frac{1}{x!}\)
+\item
+  \((1-\frac{\lambda}{n})^{n} \rightarrow e^{-\lambda}\) (definition of exponential)
+\item
+  \((1-\frac{\lambda}{n})^{-x} \rightarrow 1\)
+\end{enumerate}
+
+Putting everything together then:
+
+\(f(x)= \frac{e^{-\lambda}\lambda^x}{x!}\)
+
+\textbf{Definition}
+
+Given
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\tightlist
+\item
+  an interval in the real numbers
+\item
+  counts occur at random in the interval
+\item
+  the average number of counts on the interval is known (\(\lambda\))
+\item
+  if one can find a small regular partition of the interval such that each of them can be considered Bernoulli trials.
+\end{enumerate}
+
+Then the random variable \(X\) that counts events across the interval is a \textbf{Poisson} variable with probability mass function\\
+\[f(x)= \frac{e^{-\lambda}\lambda^x}{x!}, \lambda>0\]
+
+\textbf{Properties:}
+When \(X \rightarrow Poiss(\lambda)\) it has
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\tightlist
+\item
+  mean \[E(X)= \lambda\]
+\item
+  and variance \[V(X)= \lambda\]
+\end{enumerate}
+
+\textbf{Examples}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\tightlist
+\item
+  What is the probability of receiving 4 emails in an hour, when the average number of emails in an hour is \(1\)?
+\end{enumerate}
+
+We have that the variable is Poisson: \(X \rightarrow Poiss(\lambda)\) with \(\lambda=1\) and its probability mass function is:
+
+\[f(x)= \frac{e^{-1}1^x}{x!}\]
+Therefore the probability that the variable takes value 4 is \(P(X=4)\):
+
+\(f(4; \lambda=1)= \frac{e^{-1}1^4}{4!}=0.01532831\)
+
+in R dpois(4,1)
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  What is the probability of receiving 4 emails in \textbf{three hours}, when the average number of emails in an hour is \(1\)?
+\end{enumerate}
+
+The unit in which we do the counts has changed from 1 hour to 2 hours, so we have to \textbf{re-scale} \(\lambda\). If before the average number of emails in one hour was \(\lambda=1\), the average number of emails in three hours is now 3: \(\lambda_{3h}=3\lambda_{1h}=3*1=3\)
+
+We have that the variable is Poisson: \(X \rightarrow Poiss(\lambda_{3h})\) with \(\lambda_{3h}=3\) and its probability mass function is:
+
+\[f(x)= \frac{e^{-3}3^x}{x!}\]
+Therefore the probability that the variable takes value 4 is \(P(X=4)\):
+
+\(f(4; \lambda=3)= \frac{e^{-3}3^4}{4!}=0.1680314\)
+
+in R dpois(4,3)
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  What is the probability of counting \textbf{at least} \(10\) cars arriving at a toll booth in one minute, when the average number of cars arriving at a toll booth in one minute is \(5\);
+\end{enumerate}
+
+We have that the variable is Poisson: \(X \rightarrow Poiss(\lambda)\) with \(\lambda=5\) and its probability mass function is:
+
+\[f(x)= \frac{e^{-5}5^x}{x!}\]
+
+\(P(X\geq 10)=1-P(X < 10)=1-P(X \leq 9)=1-F(9; \lambda=5)=1-\sum_{x=0, ...10}f(x; \lambda=5)=0.03182806\)
+
+in R 1-ppois(9,5)
+
+Let's look at some probability mass functions in the family of parametric Poisson models:
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-62-1.pdf}
+
+\hypertarget{continuous-probability-models}{%
+\section{Continuous probability models}\label{continuous-probability-models}}
+
+Continuous probability models are probability density functions \(f(x)\) of a continuous random variables that we \textbf{believe} describe real random experiments.
+
+Probability density function \(f(x)\)
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\tightlist
+\item
+  is positive
+\end{enumerate}
+
+\[f(x) \geq 0\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  allows us to compute probabilities using the area under the curve:
+\end{enumerate}
+
+\[P(a\leq X \leq b)=\int_{a}^{b} f(x) dx\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  is such that the probability of anything is \(1\):
+\end{enumerate}
+
+\[\int_{-\infty}^{\infty} f(x) dx = 1\]
+
+\hypertarget{exponential-process}{%
+\section{Exponential process}\label{exponential-process}}
+
+Let's go back to a \textbf{Poisson process} defined by probability
+
+\[f(k)=\frac{e^{-\lambda}\lambda^k}{k!}, \lambda>0\]
+
+for the number of events (\(k\)) in an interval.
+
+Let us now consider that we are interested in the duration/time we should wait for the \textbf{first} count to occur.
+
+We can ask about the probability that the first event occurs after duration/time \(X\).
+
+Therefore, since \(X\) is a \textbf{continuous} random variable, we look for its probaility density function \(f(x)\).
+
+\hypertarget{exponential-probability-density}{%
+\section{Exponential probability density}\label{exponential-probability-density}}
+
+The probability of \(0\) counts \textbf{if} an interval has unit \(x\) is
+
+\[f(0|x)=\frac{e^{-x\lambda}x\lambda^0}{0!}\]
+
+or
+
+\[f(0|x)=e^{-x\lambda}\]
+
+We can treat this as the conditional probability of \(0\) events in a distance \(x\): \(f(K=0|X=x)\) and apply the Bayes theorem to reverse it:
+
+\[f(x|0)=C f(0|x)=C e^{-x\lambda}\]
+
+So we can calculate the \textbf{probability of observing a distance} a distance \(x\) with \(0\) counts. This is the distance between any two events or the distance until the first event.
+
+\textbf{Definition}
+
+In a Poisson process with parameter \(\lambda\) the probability of waiting a distance/time \(X\) between two counts is given by the \textbf{probability density}
+
+\[f(x)= C e^{-x\lambda}\]
+
+\begin{itemize}
+\item
+  \(C\) is a constant that ensures: \(\int_{-\infty}^{\infty} f(x) dx =1\)
+\item
+  by integration \(C=\lambda\)
+\end{itemize}
+
+Therefore:
+
+\[f(x)=\lambda e^{-\lambda x}, x\geq 0\]
+
+\(\lambda\) is the paramenter of the model also known as a \textbf{decay rate}.
+
+\textbf{Properties:}
+
+When \(X \rightarrow Exp(\lambda)\) then
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\tightlist
+\item
+  It has mean
+\end{enumerate}
+
+\[E(X)=\frac{1}{\lambda}\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  and variance
+  \[V(Y)=\frac{1}{\lambda^2}\]
+\end{enumerate}
+
+Let's look at a couple of the probability densities in the exponential family
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-63-1.pdf}
+
+\hypertarget{exponential-distribution}{%
+\section{Exponential Distribution}\label{exponential-distribution}}
+
+Consider the following questions:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\tightlist
+\item
+  In a Poisson process ¿What is the probability of observing an interval \textbf{smaller} than size \(a\) until the first count?
+\end{enumerate}
+
+Remember that this probability \(F(a)=P(X \leq a)\) is the probability density
+
+\[F(a)=\lambda \int_\infty^a e^{-x\lambda}dx=1-e^{-a\lambda}\]
+2) In a Poisson process ¿What is the probability of observing an interval \textbf{larger} than size \(a\) until the first event?
+
+\[P(X > a)=1- P(X \leq a)= 1- F(a) = e^{-a\lambda}\]
+
+Let's look at a couple of exponential distributions from the exponential family
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-64-1.pdf}
+
+The median \(x_m\) is such that \(F(x_m)=0.5\). That is \(x_m=\frac{\log(2)}{\lambda}\)
+
+\textbf{Examples}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\tightlist
+\item
+  What is the probability that we have to wait for a bus for more than \(1\) hour when on average there are two buses per hour?
+\end{enumerate}
+
+\[P(X > 1)=1-P(X \le 1) = 1-F(1,\lambda=2)=0.1353353\]
+in R 1-pexp(1,2)
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  What is the probability of having to wait less than \(2\) seconds to detect one particle when the radioactive decay rate is \(2\) particles each second; \(F(2,\lambda=2)\)
+\end{enumerate}
+
+\[P(X \le 2)=F(2,\lambda=2)=0.9816844\]
+
+in R pexp(2,2)
+
+\hypertarget{questions-5}{%
+\section{Questions}\label{questions-5}}
+
+\textbf{1)} During WWII in London, the expected number of bombs that hit an area of \(3km^2\) was \(0.92\). The probability that, in one day, one area received two bombs was
+
+\textbf{\(\qquad\)a:}1-ppois(x=2, lambda=0.92);
+\textbf{\(\qquad\)b:}ppois(x=2, lambda=0.92); \textbf{\(\qquad\)c:}1-dpois(x=2, lambda=0.92); \textbf{\(\qquad\)d:}dpois(x=2, lambda=0.92)
+
+\textbf{2)} The probability that a passenger has to wait less than 20 minutes until the next bus arrives at her stop is better described by
+
+\textbf{\(\qquad\)a:} A poisson model on the number of buses per 20 minutes;\\
+\textbf{\(\qquad\)b:} An exponential distribution at 20 minutes with a given expectation of buses per minute;
+\textbf{\(\qquad\)c:} A binomial model that counts the number of buses per 20 minutes
+\textbf{\(\qquad\)d:} A normal distribution with an average of buses per 20 minutes and a given standard deviation;
+
+\textbf{3)} From the exponential probability distribution in the figure below, what is the most likely value of the median?
+
+\textbf{\(\qquad\)a:} \(2\); \textbf{\(\qquad\)b:} \(3\); \textbf{\(\qquad\)c:} \(4\); \textbf{\(\qquad\)d:} \(5\)
+
+\includegraphics{./figures/exp.png}
+
+\hypertarget{exercises-6}{%
+\section{Exercises}\label{exercises-6}}
+
+\hypertarget{exercise-1-5}{%
+\subsubsection{Exercise 1}\label{exercise-1-5}}
+
+The average number of phone calls per hour coming into the switchboard of a company is \(150\). Find the probability that during one particular minute there will be
+
+\begin{itemize}
+\tightlist
+\item
+  0 phone calls (R:0.082)
+\item
+  1 phone call (R:0.205)
+\item
+  4 or fewer calls (R:0.891)
+\item
+  more than 6 phone calls (R:0.0141)
+\end{itemize}
+
+\hypertarget{exercise-2-5}{%
+\subsubsection{Exercise 2}\label{exercise-2-5}}
+
+The average number of radioactive particles hitting a Geiger counter in a nuclear energy plant under control is \(2.3\) per minute.
+
+\begin{itemize}
+\item
+  What is the probability of counting exactly \(2\) particles in a minute? (R:0.265)
+\item
+  What is the probability of detecting exactly \(10\) particles in \(5\) minute? (R:0.112)
+\item
+  What is the probability of at least one count in two minutes? (R:0.9899)
+\item
+  What is the probability of having to wait less than \(1\) second to detect a radioactive particle, after we switch on the detector? (R:0.037)
+\item
+  We suspect that a nuclear plant has a radioactive leak if we wait less than \(1\) second to detect a radioactive particle, after we switch on the detector. What is the probability that when we visit in \(5\) plants that are under control, we suspect that at least one has a leak? (R:0.1744).
 \end{itemize}
 
   \bibliography{book.bib,packages.bib}

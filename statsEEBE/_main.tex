@@ -80,7 +80,7 @@
 
 \title{EEBE Estadística}
 \author{Alejandro Cáceres (\href{mailto:alejandro.caceres.dominguez@upc.edu}{\nolinkurl{alejandro.caceres.dominguez@upc.edu}})}
-\date{2023-10-17}
+\date{2023-10-22}
 
 \begin{document}
 \maketitle
@@ -4324,7 +4324,7 @@ La solución es la adición de las agujas azules en el gráfico.
 \textbf{\(\qquad\)b:}1-pbinom(x=49, n=100, p=0.55)=0.86;
 \textbf{\(\qquad\)c:}pbinom(x=51, n=100, p=0.45)=0.90; \textbf{\(\qquad\)d:}1-pbinom(x=51, n=100, p=0.45)=0.095
 
-\textbf{5)} En un examen un alumno cuando no sabe la respuesta elige al azar una de las cuatro respuestas en una pregunta de selección múltiple. Si no sabe \(10\) preguntas, ¿cuál es la probabilidad de que al menos \(5\) preguntas sean correctas?
+\textbf{5)} En un examen un alumno cuando no sabe la respuesta elige al azar una de las cuatro respuestas en una pregunta de selección múltiple. Si no sabe \(10\) preguntas, ¿cuál es la probabilidad de que al mas de \(5\) preguntas (\(>5\)) sean correctas?
 
 \textbf{\(\qquad\)a:}dbinom(x=4, n=10, p=0.25); \textbf{\(\qquad\)b:}pbinom(x=4, n=10, p=0.75); \textbf{\(\qquad\)c:}dbinom(x=4, n=10, p=0.75); \textbf{\(\qquad\)d:}1-pbinom(x=4, n=10, p=0.25)
 
@@ -4382,6 +4382,429 @@ Un motor de búsqueda falla al recuperar información con una probabilidad de \(
   ¿Cuál es la probabilidad de que el motor complete con éxito \(15\) búsquedas antes del primer fallo? (R:0.020)
 \item
   Consideramos que un motor de búsqueda funciona suficientemente bien cuando es capaz de encontrar información como mínimo para \(10\) solicitudes por cada \(2\) fallos. ¿Cuál es la probabilidad de que en un ensayo de fiabilidad nuestro buscador sea satisfactorio? (R: 0.659)
+\end{itemize}
+
+\hypertarget{modelos-de-poisson-y-exponencial}{%
+\chapter{Modelos de Poisson y Exponencial}\label{modelos-de-poisson-y-exponencial}}
+
+\hypertarget{objetivo-4}{%
+\section{Objetivo}\label{objetivo-4}}
+
+En este capítulo veremos dos modelos de probabilidad estrechamente relacionados: los modelos \textbf{Poisson} y \textbf{exponencial}.
+
+El modelo de Poisson es para variables aleatorias discretas, mientras que la función exponencial es para variables aleatorias \textbf{continuas}
+
+\hypertarget{modelos-de-probabilidad-para-variables-discretas}{%
+\section{Modelos de probabilidad para variables discretas}\label{modelos-de-probabilidad-para-variables-discretas}}
+
+En el capítulo anterior construimos modelos complejos a partir de modelos simples. En cada etapa, introdujimos algún concepto novedoso:
+
+\textbf{Uniforme}: interpretación clásica de la probabilidad
+\(\downarrow\)
+\textbf{Bernoulli}: Introducción de un \textbf{parámetro} \(p\) (familia de modelos)
+\(\downarrow\)
+\textbf{Binomial}: Introducción a la \textbf{Repetición} de un experimento aleatorio (\(n\) ensayos de Bernoulli)
+\(\downarrow\)
+\textbf{Poisson}: Repetición de un experimento aleatorio dentro de un intervalo continuo, sin \textbf{control} sobre cuándo/dónde ocurre el ensayo de Bernoulli.
+
+El último modelo es para procesos de Poisson que describen la repetición de un experimento aleatorio con la aleatoriedad adicional del momento en que la repeticiones se producen.
+
+\hypertarget{experimento-de-poissson}{%
+\section{Experimento de Poissson}\label{experimento-de-poissson}}
+
+Imagina que estamos observando eventos que \textbf{dependen} de \textbf{intervalos} de tiempo o distancia.
+
+Por ejemplo:
+
+\begin{itemize}
+\tightlist
+\item
+  coches que llegan a un semáforo
+\item
+  mensajes que recibimos en el teléfono móvil
+\item
+  impurezas que ocurren al azar en un alambre de cobre
+\end{itemize}
+
+Supongamos que los eventos son resultados de ensayos de Bernoulli \textbf{independientes}, cada uno de los cuales aparece aleatoriamente en un intervalo continuo, y queremos \textbf{contarlos}.
+
+¿Cuál es la probabilidad de observar \(X\) eventos en una unidad de intervalo (tiempo o distancia)?
+
+\textbf{Ejemplo (Impurezas en un alambre):}
+
+Imaginemos que algunas impurezas se depositan al azar a lo largo de un cable de cobre. Quieremos contar el número de impurezas en un centímetro de alambre (\(X\)).
+
+Considera que sabemos que en promedio hay \(10\) impurezas por centímetro \(\lambda=10/cm\).
+
+¿Cuál es la probabilidad de observar \(X=5\) impurezas en una muestra de un centímetro en particular?
+
+\hypertarget{funciuxf3n-de-masa-de-probabilidad-de-poisson}{%
+\section{Función de masa de probabilidad de Poisson}\label{funciuxf3n-de-masa-de-probabilidad-de-poisson}}
+
+Para calcular la función masa de probabilidad \(f(x)=P(X=x)\) del ejemplo anterior dividimos el centímetro en micrómetros (\(0.0001cm\)).
+
+Los micrómetros son lo suficientemente pequeños como para
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\item
+  que hay ao no haya una impureza en cada micrómetro
+\item
+  cada micrómetro se pueda considerar como un \textbf{ensayo de Bernoulli}
+\end{enumerate}
+
+\includegraphics{./figures/Pois.JPG}
+
+\textbf{De la función binomial a la función de probabilidad de Poisson}
+
+La probabilidad de observar \(X\) impurezas en \(n=10,000\mu\) (1cm) sigue aproximadamente una distribución binomial
+
+\[f(x) \sim \binom nxp^x(1-p)^{nx}\]
+
+donde \(p\) es la probabilidad de encontrar una impureza en un micrómetro.
+
+Dado que el valor esperado de una variable Binomial es \(E(X)=np\). Este es el número promedio de impurezas por 1 cm o \(\lambda=np\). Por lo tanto, sustituimos \(p=\lambda/n\)
+
+\[f(x) \sim \binom nx \big(\frac{\lambda}{n}\big)^x(1-\frac{\lambda}{n})^{nx}\]
+
+Dado que \textbf{podría} haber todavía dos impurezas en un micrómetro, necesitamos aumentar la partición del alambre y \(n \rightarrow \infty\).
+
+Luego en el límite:
+
+\[f(x)= \frac{e^{-\lambda}\lambda^x}{x!}\]
+
+Donde \(\lambda\) es constante porque es la densidad de impurezas por centímetro, una \textbf{propiedad física} del sistema. \(\lambda\) es por lo tanto el \textbf{parámetro} del modelo de probabilidad.
+
+\textbf{Detalles de la derivación:}
+
+Para \(f(x) \sim \binom nx \big(\frac{\lambda}{n}\big)^x(1-\frac{\lambda}{n})^{nx}\)
+
+en el límite (\(n \rightarrow \infty\))
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\tightlist
+\item
+  \(\frac{1}{n^x}\binom n x =\frac{1}{n^x}\frac{n!}{x! (n-x)!}=\frac{(n-x)!(n-x+1)...(n-1)n}{n^x x! (n-x)!}=\frac{n(n-1)..(n-x+1)}{n^x x!} \rightarrow \frac{1}{x!}\)
+\item
+  \((1-\frac{\lambda}{n})^{n} \rightarrow e^{-\lambda}\) (definition of exponential)
+\item
+  \((1-\frac{\lambda}{n})^{-x} \rightarrow 1\)
+\end{enumerate}
+
+Poniendo todo junto entonces:
+
+\(f(x)= \frac{e^{-\lambda}\lambda^x}{x!}\)
+
+\textbf{Definición}
+
+Dado
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\tightlist
+\item
+  un intervalo en los números reales
+\item
+  hay eventos que ocurren al azar en el intervalo
+\item
+  se conoce el número promedio de eventos en el intervalo (\(\lambda\))
+\item
+  si se puede encontrar una pequeña partición regular del intervalo tal que en cada partición la podamos considerar como un ensayo de Bernoulli.
+\end{enumerate}
+
+Entonces, la variable aleatoria \(X\) que cuenta eventos a lo largo del intervalo es una variable \textbf{Poisson} con función de masa de probabilidad
+\[f(x)= \frac{e^{-\lambda}\lambda^x}{x!}, \lambda>0\]
+
+\textbf{Propiedades:}
+Cuando \(X \rightarrow Poiss(\lambda)\) tiene
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\tightlist
+\item
+  media \[E(X)= \lambda\]
+\item
+  y varianza \[V(X)= \lambda\]
+\end{enumerate}
+
+\textbf{Ejemplos}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\tightlist
+\item
+  ¿Cuál es la probabilidad de recibir 4 correos electrónicos en una hora, cuando el promedio de correos electrónicos en una hora es de \(1\)?
+\end{enumerate}
+
+Tenemos que la varible es de Poisson: \(X \rightarrow Poiss(\lambda)\) con \(\lambda=1\) y su función de masa de probabilidad es:
+
+\[f(x)= \frac{e^{-1}1^x}{x!}\]
+Por lo tanto la probabilidad de que la variable tome valor 4 es \(P(X=4)\):
+
+\(f(4; \lambda=1)= \frac{e^{-1}1^4}{4!}=0.01532831\)
+
+in R dpois(4,1)
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  ¿Cuál es la probabilidad de recibir 4 correos electrónicos en \textbf{tres horas}, cuando el promedio de correos electrónicos en una hora es de \(1\)?
+\end{enumerate}
+
+La unidad sobre la cual hacemos los conteos ha cambiado de 1 hora a 2 horas, por lo tanto tenemos que \textbf{re-escalar} \(\lambda\). Si antes el promedio de correos era \(\lambda=1\) en una hora, el promedio de correos en tres horas es ahora 3: \(\lambda_{3h}=3\lambda_{1h}=3*1=3\)
+
+Tenemos que la varible es de Poisson: \(X \rightarrow Poiss(\lambda_{3h})\) con \(\lambda_{3h}=3\) y su función de masa de probabilidad es:
+
+\[f(x)= \frac{e^{-3}3^x}{x!}\]
+Por lo tanto la probabilidad de que la variable tome valor 4 es \(P(X=4)\):
+
+\(f(4; \lambda=3)= \frac{e^{-3}3^4}{4!}=0.1680314\)
+
+in R dpois(4,3)
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  ¿Cuál es la probabilidad de contar \textbf{al menos} \(10\) automóviles que llegan a un peaje en un minuto, cuando el promedio de automóviles que llegan a un peaje en un minuto es de \(5\);
+\end{enumerate}
+
+Tenemos que la varible es de Poisson: \(X \rightarrow Poiss(\lambda)\) con \(\lambda=5\) y su función de masa de probabilidad es:
+
+\[f(x)= \frac{e^{-5}5^x}{x!}\]
+
+\(P(X\geq 10)=1-P(X < 10)=1-P(X \leq 9)=1-F(9; \lambda=5)=1-\sum_{x=0, ...10}f(x; \lambda=5)=0.03182806\)
+
+en R 1-ppois(9,5)
+
+Veamos algunas funciones de masa de probabilidad en la familia de modelos paramétricos de Poisson:
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-61-1.pdf}
+
+\hypertarget{modelos-de-probabilidad-para-variables-continuas}{%
+\section{Modelos de probabilidad para variables continuas}\label{modelos-de-probabilidad-para-variables-continuas}}
+
+Los modelos de probabilidad para variables continuas son \textbf{funciones de densidad} de probabilidad \(f(x)\) que \textbf{creemos} describen experimentos aleatorios reales.
+
+La función de densidad de probabilidad \(f(x)\)
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\tightlist
+\item
+  es positiva
+\end{enumerate}
+
+\[f(x) \geq 0\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  nos permite calcular probabilidades usando el área bajo la curva:
+\end{enumerate}
+
+\[P(a\leq X \leq b)=\int_{a}^{b} f(x) dx\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  es tal que la probabilidad de que obtengamos cualquier resultado es \(1\):
+\end{enumerate}
+
+\[\int_{-\infty}^{\infty} f(x) dx = 1\]
+
+\hypertarget{experimento-exponencial}{%
+\section{Experimento exponencial}\label{experimento-exponencial}}
+
+Volvamos a un \textbf{proceso de Poisson} definido por la probabilidad
+
+\[f(k)=\frac{e^{-\lambda}\lambda^k}{k!}, \lambda>0\]
+
+para el número de eventos (\(k\)) en un intervalo.
+
+Consideremos ahora que estamos interesados en la duración/tiempo que debemos esperar hasta que ocurra el \textbf{primer} conteo.
+
+Podemos preguntarnos por la probabilidad de que el primer evento ocurra después de la duración/tiempo \(X\).
+
+Por lo tanto, dado que \(X\) es una variable aleatoria \textbf{continua}, buscamos su función de densidad de probabilidad \(f(x)\).
+
+\hypertarget{densidad-de-probabilidad-exponencial}{%
+\section{Densidad de probabilidad exponencial}\label{densidad-de-probabilidad-exponencial}}
+
+La probabilidad de \(0\) eventos \textbf{si} un intervalo tiene unidad \(x\) (rescalando como en el ejemplo 2) es
+
+\[f(0|x)=\frac{e^{-x\lambda}(x\lambda)^0}{0!}\]
+
+o
+
+\[f(0|x)=e^{-x\lambda}\]
+
+Podemos tratar esto como la probabilidad condicional de \(0\) eventos dada una distancia \(x\): \(f(K=0|X=x)\) y aplicar el teorema de Bayes para invertirlo:
+
+\[f(x|0)=C f(0|x)=C e^{-x\lambda}\]
+
+Esta es la \textbf{probabilidad de observar una distancia} \(x\) para \(0\) eventos. Esta es la distancia hasta el primer evento.
+
+\textbf{Definición}
+
+En un proceso de Poisson con parámetro \(\lambda\) la probabilidad de esperar una distancia/tiempo \(X\) entre dos conteos viene dada por la \textbf{densidad de probabilidad}
+
+\[f(x)= C e^{-x\lambda}\]
+
+\begin{itemize}
+\item
+  \(C\) es una constante que asegura: \(\int_{-\infty}^{\infty} f(x) dx =1\)
+\item
+  por integración \(C=\lambda\)
+\end{itemize}
+
+Por lo tanto:
+
+\[f(x)=\lambda e^{-\lambda x}, x\geq 0\]
+
+\(\lambda\) es el parámetro del modelo, también conocido como \textbf{tasa de decaimiento}.
+
+\textbf{Propiedades:}
+
+Cuando \(X \rightarrow Exp(\lambda)\) entonces
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\tightlist
+\item
+  tiene media
+\end{enumerate}
+
+\[E(X)=\frac{1}{\lambda}\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  y varianza
+  \[V(Y)=\frac{1}{\lambda^2}\]
+\end{enumerate}
+
+Veamos un par de densidades de probabilidad en la familia exponencial
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-62-1.pdf}
+
+\hypertarget{distribuciuxf3n-exponencial}{%
+\section{Distribución exponencial}\label{distribuciuxf3n-exponencial}}
+
+Consideremos las siguientes preguntas:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\tightlist
+\item
+  En un proceso de Poisson ¿Cuál es la probabilidad de observar un intervalo \textbf{menor} que \(a\) hasta el primer evento?
+\end{enumerate}
+
+Recuerda que esta probabilidad \(F(a)=P(X \leq a)\) es la densidad de probabilidad
+
+\[F(a)=\lambda\int_\infty^ae^{-x\lambda}dx=1-e^{-a\lambda}\]
+2) En un proceso de Poisson ¿Cuál es la probabilidad de observar un intervalo \textbf{mayor} que \(a\) hasta el primer evento?
+
+\[P(X > a)=1- P(X \leq a)= 1- F(a) = e^{-a\lambda}\]
+
+Veamos un par de distribuciones exponenciales de la familia exponencial
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-63-1.pdf}
+
+La mediana \(x_m\) es tal que \(F(x_m)=0.5\). Eso es \(x_m=\frac{\log(2)}{\lambda}\)
+
+\textbf{Ejemplos}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\tightlist
+\item
+  ¿Cuál es la probabilidad de que tengamos que esperar un bus por más de \(1\) hora cuando en promedio hay dos buses por hora?
+\end{enumerate}
+
+\[P(X > 1)=1-P(X \le 1) = 1-F(1,\lambda=2)=0.1353353\]
+
+En R 1-pexp(1,2)
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  ¿Cuál es la probabilidad de tener que esperar menos de \(2\) segundos para detectar una partícula cuando la tasa de desintegración radiactiva es de \(2\) partículas por segundo; \(F(2,\lambda=2)\)
+\end{enumerate}
+
+\[P(X\le 2)=F(2,\lambda=2)=0.9816844\]
+
+En R pexp(2,2)
+
+\hypertarget{preguntas-5}{%
+\section{Preguntas}\label{preguntas-5}}
+
+\textbf{1)} Durante la Segunda Guerra Mundial, en un día de bombardeo sobre Londres, el valor eperado de que cayera una bomba en \(1.5km^2\) era de \(0.92\). La probabilidad de que en Hyde Park, de área aproximadamente \(1.5km^2\), cayeran como mucho dos bombas era de
+
+\textbf{\(\qquad\)a:}1-ppois(x=2, lambda=0.92);
+\textbf{\(\qquad\)b:}ppois(x=2, lambda=0.92); \textbf{\(\qquad\)c:}1-dpois(x=2, lambda=0.92); \textbf{\(\qquad\)d:}dpois(x=2, lambda=0.92)
+
+\textbf{2)} La probabilidad de que un pasajero tenga que esperar menos de 20 minutos hasta que llegue el próximo taxi a su parada está mejor descrita por
+
+\textbf{\(\qquad\)a:} Un modelo de Poisson sobre el número de taxis que pasan cada 20 minutos;
+\textbf{\(\qquad\)b:} Una distribución exponencial con \(\lambda=1/20\) ;
+\textbf{\(\qquad\)c:} Un modelo binomial que cuenta el número de taxis cada 20 minutos
+\textbf{\(\qquad\)d:} Una distribución uniforme entre 0 y 20 minutos;
+
+\textbf{3)} A partir de la distribución de probabilidad exponencial de la siguiente figura, ¿cuál es el valor más posible de la mediana?
+
+\textbf{\(\qquad\)a:} \(2\); \textbf{\(\qquad\)b:} \(3\); \textbf{\(\qquad\)c:} \(4\); \textbf{\(\qquad\)d:} \(5\)
+
+\includegraphics{./figures/exp.png}
+
+\hypertarget{ejercicios-6}{%
+\section{Ejercicios}\label{ejercicios-6}}
+
+\hypertarget{ejercicio-1-5}{%
+\subsubsection{Ejercicio 1}\label{ejercicio-1-5}}
+
+El promedio de llamadas telefónicas por hora que ingresan a la centralita de una empresa es de \(150\). Encuentra la probabilidad de que durante un minuto en particular haya
+
+\begin{itemize}
+\tightlist
+\item
+  0 llamadas telefónicas (R:0.082)
+\item
+  1 llamada telefónica (R:0.205)
+\item
+  4 o menos llamadas (R:0.891)
+\item
+  más de 6 llamadas telefónicas (R:0.0141)
+\end{itemize}
+
+\hypertarget{ejercicio-2-5}{%
+\subsubsection{Ejercicio 2}\label{ejercicio-2-5}}
+
+La cantidad promedio de partículas radiactivas que golpean un contador Geiger en una planta de energía nuclear bajo control es de \(2.3\) por minuto.
+
+\begin{itemize}
+\item
+  ¿Cuál es la probabilidad de contar exactamente \(2\) partículas en un minuto? (R:0.265)
+\item
+  ¿Cuál es la probabilidad de detectar exactamente \(10\) partículas en \(5\) minutos? (R:0.112)
+\item
+  ¿Cuál es la probabilidad de al menos un conteo en dos minutos? (R:0.9899)
+\item
+  ¿Cuál es la probabilidad de tener que esperar menos de \(1\) segundo para detectar una partícula radiactiva, después de encender el detector? (R:0.037)
+\item
+  Sospechamos que una planta nuclear tiene una fuga radiactiva si esperamos menos de \(1\) segundo para detectar una partícula radiactiva, después de encender el detector. ¿Cuál es la probabilidad de que cuando visitemos \(5\) plantas que están bajo control, sospechemos que al menos una tiene una fuga? (R:0.1744).
 \end{itemize}
 
   \bibliography{book.bib,packages.bib}

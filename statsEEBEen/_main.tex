@@ -80,7 +80,7 @@
 
 \title{EEBE stats}
 \author{Alejandro Caceres}
-\date{2023-10-22}
+\date{2023-10-24}
 
 \begin{document}
 \maketitle
@@ -4805,6 +4805,463 @@ The average number of radioactive particles hitting a Geiger counter in a nuclea
   What is the probability of having to wait less than \(1\) second to detect a radioactive particle, after we switch on the detector? (R:0.037)
 \item
   We suspect that a nuclear plant has a radioactive leak if we wait less than \(1\) second to detect a radioactive particle, after we switch on the detector. What is the probability that when we visit in \(5\) plants that are under control, we suspect that at least one has a leak? (R:0.1744).
+\end{itemize}
+
+\hypertarget{normal-distribution}{%
+\chapter{Normal Distribution}\label{normal-distribution}}
+
+\hypertarget{objective-5}{%
+\section{Objective}\label{objective-5}}
+
+In this chapter we will introduce the normal probability distribution.
+
+We will discuss its origin and its main properties.
+
+\hypertarget{history}{%
+\section{History}\label{history}}
+
+In 1801 Gauss analyzed data obtained for the position of the Ceres, a large asteroid between Mars and Jupiter.
+
+At the time people suspected it was a new planet, as it moved day to day against the fixed stars. In January, it could be seen at the horizon just before dawn. However, as days passed Ceres will rise latter and latter until it could not longer be seen because of the Sun rise.
+
+Gauss understood that the measurements for the position of Ceres had errors.
+
+He was therefore interested in finding how the observations were \textbf{distributed} so he could find the most \textbf{likely} orbit. With the orbit, we could derive the mass of the object and then decide whether it was a planet or a big asteroid.
+
+Data was available only for the month of January. After which Ceres would disappear. He wanted to \textbf{predict} where astronomers should point their telescopes to find it six months after at dusk, once it had passed behind the Sun.
+
+Gauss had to account for the errors in the position of ceres at a given day due to measurement
+
+\includegraphics{./figures/ceres.JPG}
+
+Gauss supposed that
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\item
+  small errors were more likely than large errors
+\item
+  the error at a distance \(-\epsilon\) from the value at the position of Ceres was equally likely as a distance \(\epsilon\)
+\item
+  the most \textbf{likely} (that we believe) of Ceres at any given time in the sky was the \textbf{average} of multiple altitude measurements at that latitude.
+\end{enumerate}
+
+That was enough to show that the deviations of the observations \(y\) \textbf{from the orbit} satisfied the equation
+
+\[\frac{df(y)}{dy}=-Cyf(y)\]
+with \(C\) a positive constant. The solution of this differential equation is:
+
+\[f(y)=\frac{\sqrt{C}}{\sqrt{2\pi}}e^{-\frac{Cy^2}{2}}\]
+
+*The evolution of the normal distribution, Saul Stahl, Mathemetics Magazine, 2006.
+
+\hypertarget{normal-density}{%
+\section{normal density}\label{normal-density}}
+
+Gaussian probability density gives the distribution of measurement errors from the \textbf{actual} but \textbf{unknown} position of Ceres in the sky. Let's make a couple of changes to the function.
+
+1- Let's write the error density from the horizon using the random variable \(X\), that is, \(y=x-\mu\). \(\mu\) is the \textbf{actual} but \textbf{unknown} position of Ceres from the horizon. After a change of variable we find the probability density function:
+
+\[f(x)=\frac{\sqrt{C}}{\sqrt{2\pi}}e^{-C(x-\mu)^2}\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  Let's rename the variable \(C\) to \(\frac{1}{\sigma^2}\)
+\end{enumerate}
+
+So, we arrive at the following definition.
+
+\hypertarget{definition}{%
+\section{Definition}\label{definition}}
+
+A random variable \(X\) defined on the real numbers has a density \textbf{Normal} if it takes the form
+
+\[f(x; \mu, \sigma^2)=\frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{(x-\mu)^2}{2\sigma^2}}, x \in {\mathbb R}\]
+
+The variable has
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\tightlist
+\item
+  mean
+\end{enumerate}
+
+\[E(X) = \mu\]
+
+which for Gauss represented the actual position of Ceres.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  and variance
+  \[V(X) = \sigma^2\]
+\end{enumerate}
+
+which represented the dispersion of the error in the observations, which depends on the quality of the telescope.
+
+\(\mu\) and \(\sigma\) are the \textbf{two parameters} that completely describe the normal density function and their \textbf{interpretation} depends on the random experiment.
+
+When \(X\) follows a Normal density, that is, it is normally distributed, we write
+
+\[X\rightarrow N(\mu,\sigma^2)\]
+
+Let's look at some probability densities in the normal parametric model
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-65-1.pdf}
+
+\hypertarget{probability-distribution-2}{%
+\section{Probability distribution}\label{probability-distribution-2}}
+
+The probability distribution of the Normal density:
+
+\[F_{normal}(a)=P(Z \leq a)\]
+
+is the \textbf{error} function defined by the area under the curve from \(-\infty\) to \(a\)
+
+\[F_{normal}(a)=\int_{-\infty}^{a}\frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{(x-\mu)^2}{2\sigma^2}} dx\]
+The function is found in most computer programs, and it does not have a closed form of known functions.
+
+\textbf{Example (women's height)}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\tightlist
+\item
+  What is the probability that a woman in the population is at most \(150cm\) tall if women have a mean height of \(165cm\) with standard deviation of \(8cm\)?
+\end{enumerate}
+
+\(P(X\le 150)=F(150, \mu=165, \sigma=8)=0.03039636\)
+
+in R pnorm(150, 165, 8)
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  What is the probability that a woman's height in the population is between \(165cm\) and \(170cm\)?
+\end{enumerate}
+
+\(P(165 \le X \le 170)=F(170, \mu=165, \sigma=8)-F(165, \mu=165, \sigma=8)=0.2340145\)
+
+in R pnorm(170, 165, 8)-pnorm(165, 165, 8)
+
+Let's look at the probability distribution function
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-66-1.pdf}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  What is the first quartile for height in women?
+\end{enumerate}
+
+The first quartile is defined as:
+
+\(F(x_{0.25}, \mu=165, \sigma=8)=0.25\)
+
+or
+
+\(x_{0.25}=F^{-1}(0.25, µ=165, \sigma=8)=159.6041\)
+
+in R qnorm(0.25, 165, 8)
+
+\textbf{Properties of the Normal distribution}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\item
+  the mean \(\mu\) is also the median as it splits the measurements in two
+\item
+  \(x\) values that fall farther than 2\(\sigma\) are considered \textbf{rare} \(5\%\)
+\item
+  \(x\) values that fall farther than 3\(\sigma\) are considered \textbf{extremely rare} \(0.2\%\)
+\end{enumerate}
+
+\includegraphics{./figures/probs.png}
+
+\textbf{Example (women's height)}
+
+We can define the limits of \textbf{common observations} for the distribution of women's height in the population.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\tightlist
+\item
+  at a distance of one standard deviation from the mean, we find \(68\%\) of the population
+\end{enumerate}
+
+\[P(165-8 \leq X \leq 165+8)=P(157 \leq X \leq 173)=F(173)-F(157)=0.68\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  at a distance of two standard deviations from the mean, we find \(95\%\) of the population
+\end{enumerate}
+
+\[P(165-2 \times 8 \leq X \leq 165+2\times 8)=F(181)-F(149)=0.95\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  at a distance of three standard deviations from the mean, we find \(99.7\%\) of the population
+\end{enumerate}
+
+\[P(165-3 \times 8 \leq X \leq 165+3\times 8)=F(189)-F(141)=0.997\]
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-67-1.pdf}
+
+\hypertarget{standard-normal-density}{%
+\section{Standard normal density}\label{standard-normal-density}}
+
+The standard normal density is the particular density from the normal family
+
+\[f(x; \mu, \sigma^2)=\frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{(x-\mu)^2}{2\sigma^2}}, x \in {\mathbb R}\]
+
+It is therefore the density with
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\tightlist
+\item
+  mean
+\end{enumerate}
+
+\[E (X)= \mu = 0\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  and variance
+\end{enumerate}
+
+\[V (X)=  \sigma^2 =1\]
+
+When a random variable follows a normal probability density, we say that it distributes normally and write
+
+\[X \rightarrow N(0,1)\]
+
+\hypertarget{standard-distribution}{%
+\section{Standard distribution}\label{standard-distribution}}
+
+The probability distribution of the standard density:
+
+\[\phi(a)=F_{N(0,1)}(a)=P(Z \leq a)\]
+
+is the \textbf{error} function defined by
+
+\[\phi(a)=\int_{-\infty}^{a} \frac{1}{\sqrt{2\pi}}e^{-\frac{z^2}{2}} dz\]
+
+Because the standard distribution is special and will appear often then we use the letter \(\phi\) for it.
+
+\includegraphics{./figures/st.png}
+
+You can find it in most computer programs. in R is pnorm(x) with the default parameters, 0 and 1.
+
+We usually define the limits of the \textbf{most common observations} for the standard variable
+
+\includegraphics{./figures/phi.JPG}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\tightlist
+\item
+  The interquartile range \[P(-0.67 \leq X \leq 0.67)=0.50\]
+\end{enumerate}
+
+in R: c(qnorm(0.25), qnorm(0.75))
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  \(95\%\) range \[P(-1.96 \leq X \leq 1.96)=0.95\]
+\end{enumerate}
+
+in R: c(qnorm(0.025), qnorm(0.975))
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  \(99\%\) range \[P(-2.58 \leq X \leq 2.58)=0.99\]
+\end{enumerate}
+
+in R: c(qnorm(0.005), qnorm(0.995))
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-68-1.pdf}
+
+\hypertarget{standardization}{%
+\section{Standardization}\label{standardization}}
+
+All normal variables can be \textbf{standardized}. This means that if \(X \rightarrow N(\mu, \sigma^2)\), then we can transform the variable to
+a \textbf{standardized variable}
+
+\[Z=\frac{X-\mu}{\sigma}\]
+
+which will have density:
+
+\[f(z)=\frac{1}{ \sqrt{2\pi}}e^{-\frac{z^2}{2}} \]
+Therefore, for any \(X \rightarrow N(\mu, \sigma^2)\)
+
+\[Z=\frac{X-\mu}{\sigma} \rightarrow N(0, 1) \]
+
+\includegraphics{./figures/stand.png}
+
+You can demonstrate this by replacing \(x=\sigma z+\mu\) and \(dx=\sigma dz\) in the probability expression we have
+
+\(P(x\leq X \leq x +dx)=P(z\leq Z \leq z +dz)\)
+\[=\frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{(x-\mu)^2}{2\sigma^2}}dx\] \[=\frac{1}{ \sqrt{2\pi}}e^{-\frac{z^2}{2}} dz\]
+
+The probability of \textbf{any normal variable} \(X\rightarrow N(\mu, \sigma^2)\) can be computed using the standard distribution
+
+\(F(a)=P(X<a)=P(\frac{X-\mu}{\sigma}<\frac{a-\mu}{\sigma})\)
+\[=P(Z < \frac{a-\mu}{\sigma})= \phi \big(\frac{a-\mu}{\sigma}\big)\]
+
+For computing \(P(a\leq X \leq b)\), we can use the property of the probability distributions
+
+\(F(b)-F(a)=P(X\leq b)-P(X\leq a)\)
+
+\[=\phi \big(\frac{b-\mu}{\sigma}\big)-\phi \big(\frac{a-\mu}{\sigma}\big)\]
+
+\hypertarget{summary-of-probability-models}{%
+\section{Summary of probability models}\label{summary-of-probability-models}}
+
+\begin{longtable}[]{@{}
+  >{\centering\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1667}}
+  >{\centering\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1905}}
+  >{\centering\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1905}}
+  >{\centering\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1667}}
+  >{\centering\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1429}}
+  >{\centering\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1429}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\centering
+Model
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+X
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+range of x
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+f(x)
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+E(X)
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+V(X)
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Uniform & integer or real number & \([a, b]\) & \(\frac{1}{n}\) & \(\frac{b+a}{2}\) & \(\frac{(b-a+1)^2-1}{12}\) \\
+Bernoulli & event A & 0,1 & \((1-p)^{1-x}p^x\) & \(p\) & \(p(1-p)\) \\
+Binomial & \# of A events in \(n\) repetitions of Bernoulli trials & 0,1,\ldots{} & \(\binom n x (1-p)^{n-x}p^x\) & \(np\) & \(np(1-p)\) \\
+Negative Binomial for events & \# of B events in Bernoulli repetitions before \(r\) As are observed & 0,1,.. & \(\binom {x+r-1} x (1-p)^xp^r\) & \(\frac{r(1-p)}{p}\) & \(\frac{r(1-p)}{p^2}\) \\
+Hypergeometric & \# A events in a sample \(n\) from population \(N\) with \(K\) As & \(\max(0, n+K-N)\), \ldots{} \(\min(K, n)\) & \(\frac{1}{\binom N n}\binom K x \binom {N-K} {n-x}\) & \(n*\frac{N}{K}\) & \(n \frac{N}{K} (1-\frac{N}{K})\frac{N-n}{N-1}\) \\
+Poisson & \# of events A in an interval & 0,1, .. & \(\frac{e^{-\lambda}\lambda^x}{x!}\) & \(\lambda\) & \(\lambda\) \\
+Exponential & Interval between two events A & \([0,\infty)\) & \(\lambda e^{-\lambda x}\) & \(\frac{1}{\lambda}\) & \(\frac{1}{\lambda^2}\) \\
+Normal & measurement with symmetric errors whose most likely value is the average & \((-\infty, \infty)\) & \(\frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{(x-\mu)^2}{2\sigma^2}}\) & \(\mu\) & \(\sigma^2\) \\
+\end{longtable}
+
+\hypertarget{r-functions-of-probability-models}{%
+\section{R functions of probability models}\label{r-functions-of-probability-models}}
+
+\begin{longtable}[]{@{}lc@{}}
+\toprule\noalign{}
+Model & R \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Uniform (continuous) & dunif(x, a, b) \\
+Binomial & dbinom(x,n,p) \\
+Negative Binomial for events & dnbinom(x,r,p) \\
+Hypergeometric & dhyper(x, K, N-K, n) \\
+Poisson & dpois(x, lambda) \\
+Exponential & dexp(x, lambda) \\
+Normal & dnorm(x, mu, sigma) \\
+\end{longtable}
+
+\hypertarget{questions-6}{%
+\section{Questions}\label{questions-6}}
+
+\textbf{1)} It is not true that for a normally distributed variable
+
+\textbf{\(\qquad\)a:} its mean and median are the same; \textbf{\(\qquad\)b:} the standard probability distribution can be used to compute its probabilities; \textbf{\(\qquad\)c:} its interquartile range is twice its standard deviation; \textbf{\(\qquad\)d:} \(5\%\) of its observations are a distance greater than twice its standard deviation
+
+\textbf{2)} For a normal standard variable
+
+\textbf{\(\qquad\)a:} \(50\%\) of its observations are between \((-0.67,0.67)\);
+\textbf{\(\qquad\)b:} \(2\%\) of its observations are lower than \(-2.58\);
+\textbf{\(\qquad\)c:} \(5\%\) of its observations are greater than \(1.96\);
+\textbf{\(\qquad\)d:} \(25\%\) of its observations are between \((-1.96,-0.67)\)
+
+\textbf{3)} if we know that \(\phi(-0.8416212)=0.2\) then what is \(\phi(0.8416212)\)
+
+\textbf{\(\qquad\)a:} \(0.1\);
+\textbf{\(\qquad\)b:} \(0.2\);
+\textbf{\(\qquad\)c:} \(0.8\);
+\textbf{\(\qquad\)d:} \(0.9\)
+
+\textbf{4)} the third quartile of a normal variable with mean \(10\) and standard deviation \(2\) is
+
+\textbf{\(\qquad\)a:} qnorm(1/3, 10, 2)=9.138545;
+\textbf{\(\qquad\)b:} qnorm(1-0.75, 10, 2)=8.65102 ;
+\textbf{\(\qquad\)c:} qnorm(1-1/3, 10, 2)=10.86145 ;
+\textbf{\(\qquad\)d:} qnorm(0.75, 10, 2)= 11.34898
+
+\textbf{5)} probability that a normal variable with mean \(10\) and standard deviation \(2\) is in \((-\infty,10)\) is
+
+\textbf{\(\qquad\)a:} 0.25;
+\textbf{\(\qquad\)b:} 0.5;
+\textbf{\(\qquad\)c:} 0.75;
+\textbf{\(\qquad\)d:} 1:
+
+\hypertarget{exercises-7}{%
+\section{Exercises}\label{exercises-7}}
+
+\hypertarget{exercise-1-6}{%
+\subsubsection{Exercise 1}\label{exercise-1-6}}
+
+Find the area under the standard normal curve in the following cases:
+
+\begin{itemize}
+\tightlist
+\item
+  Between \(z=0.81\) and \(z=1.94\) (R:0.182)
+\item
+  To the right of \(z=-1.28\) (R:0.899)
+\item
+  To the right of \(z=2.05\) or to the left of \(z=-1.44\) (R:0.0951)
+\end{itemize}
+
+\hypertarget{exercise-2-6}{%
+\subsubsection{Exercise 2}\label{exercise-2-6}}
+
+\begin{itemize}
+\item
+  What is the probability that a man's height is at least
+  \(165\)cm if the population mean is \(175\)cm y the standard deviation is \(10\)cm? (R:0.841)
+\item
+  What is the probability that a man's height is between
+  \(165\)cm and \(185\)cm? (R:0.682)
+\item
+  What is the height that defines the \(5\%\) of the smallest men? (R:158.55)
 \end{itemize}
 
   \bibliography{book.bib,packages.bib}

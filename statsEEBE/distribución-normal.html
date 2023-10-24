@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 8 Modelos de Poisson y Exponencial | EEBE Estadística</title>
+  <title>Chapter 9 Distribución normal | EEBE Estadística</title>
   <meta name="description" content="EEBE" />
   <meta name="generator" content="bookdown 0.36 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 8 Modelos de Poisson y Exponencial | EEBE Estadística" />
+  <meta property="og:title" content="Chapter 9 Distribución normal | EEBE Estadística" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="EEBE" />
   <meta name="github-repo" content="alejandro-isglobal/master" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 8 Modelos de Poisson y Exponencial | EEBE Estadística" />
+  <meta name="twitter:title" content="Chapter 9 Distribución normal | EEBE Estadística" />
   
   <meta name="twitter:description" content="EEBE" />
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="modelos-de-probabilidad-para-variables-aletorias-discretas.html"/>
-<link rel="next" href="distribución-normal.html"/>
+<link rel="prev" href="modelos-de-poisson-y-exponencial.html"/>
+
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -245,232 +245,364 @@
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="modelos-de-poisson-y-exponencial" class="section level1 hasAnchor" number="8">
-<h1><span class="header-section-number">Chapter 8</span> Modelos de Poisson y Exponencial<a href="modelos-de-poisson-y-exponencial.html#modelos-de-poisson-y-exponencial" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<div id="objetivo-4" class="section level2 hasAnchor" number="8.1">
-<h2><span class="header-section-number">8.1</span> Objetivo<a href="modelos-de-poisson-y-exponencial.html#objetivo-4" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>En este capítulo veremos dos modelos de probabilidad estrechamente relacionados: los modelos <strong>Poisson</strong> y <strong>exponencial</strong>.</p>
-<p>El modelo de Poisson es para variables aleatorias discretas, mientras que la función exponencial es para variables aleatorias <strong>continuas</strong></p>
+<div id="distribución-normal" class="section level1 hasAnchor" number="9">
+<h1><span class="header-section-number">Chapter 9</span> Distribución normal<a href="distribución-normal.html#distribución-normal" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="objetivo-5" class="section level2 hasAnchor" number="9.1">
+<h2><span class="header-section-number">9.1</span> Objetivo<a href="distribución-normal.html#objetivo-5" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>En este capítulo introduciremos la distribución de probabilidad normal.</p>
+<p>Hablaremos de su origen y de sus principales propiedades.</p>
 </div>
-<div id="modelos-de-probabilidad-para-variables-discretas" class="section level2 hasAnchor" number="8.2">
-<h2><span class="header-section-number">8.2</span> Modelos de probabilidad para variables discretas<a href="modelos-de-poisson-y-exponencial.html#modelos-de-probabilidad-para-variables-discretas" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>En el capítulo anterior construimos modelos complejos a partir de modelos simples. En cada etapa, introdujimos algún concepto novedoso:</p>
-<p><strong>Uniforme</strong>: interpretación clásica de la probabilidad
-</br><span class="math inline">\(\downarrow\)</span>
-</br><strong>Bernoulli</strong>: Introducción de un <strong>parámetro</strong> <span class="math inline">\(p\)</span> (familia de modelos)
-</br><span class="math inline">\(\downarrow\)</span>
-</br><strong>Binomial</strong>: Introducción a la <strong>Repetición</strong> de un experimento aleatorio (<span class="math inline">\(n\)</span> ensayos de Bernoulli)
-</br><span class="math inline">\(\downarrow\)</span>
-</br><strong>Poisson</strong>: Repetición de un experimento aleatorio dentro de un intervalo continuo, sin <strong>control</strong> sobre cuándo/dónde ocurre el ensayo de Bernoulli.</p>
-<p>El último modelo es para procesos de Poisson que describen la repetición de un experimento aleatorio con la aleatoriedad adicional del momento en que la repeticiones se producen.</p>
+<div id="historia" class="section level2 hasAnchor" number="9.2">
+<h2><span class="header-section-number">9.2</span> Historia<a href="distribución-normal.html#historia" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>En 1801, Gauss analizó los datos obtenidos sobre la posición de Ceres, un gran asteroide entre Marte y Júpiter.</p>
+<p>En ese momento, la gente sospechaba que era un nuevo planeta, ya que se movía día a día contra las estrellas fijas. En enero, se podía ver en el horizonte justo antes del amanecer. Sin embargo, a medida que pasaban los días, Ceres salía cada vez más tarde hasta que ya no se pudo ver más debido a la salida del Sol.</p>
+<p>Gauss entendió que las medidas para la posición de Ceres tenían errores.</p>
+<p>Por lo tanto, estaba interesado en descubrir cómo se <strong>distribuían</strong> las observaciones para poder encontrar la órbita más <strong>probable</strong>. Con la órbita, podía derivar la masa del objeto y luego decidir si era un planeta o sólo un gran asteroide.</p>
+<p>Los datos estaban disponibles sólo para el mes de enero. Después de lo cual Ceres desaparecería. Quería <strong>predecir</strong> hacia dónde deberían apuntar los astrónomos sus telescopios para encontrarlo seis meses después al anochecer, una vez que hubiera pasado por detrás del Sol.</p>
+<p>Gauss tuvo que dar cuenta de los errores en la posición de ceres en un día determinado debido a la medición</p>
+<p><img src="figures/ceres.JPG" /></p>
+<p>Gauss supuso que</p>
+<ol style="list-style-type: decimal">
+<li><p>los errores pequeños eran más probables que los errores grandes</p></li>
+<li><p>el error a una distancia <span class="math inline">\(-\epsilon\)</span> del varlor en la posición de Ceres era igualmente probable que una distancia <span class="math inline">\(\epsilon\)</span></p></li>
+<li><p>la pisición más <strong>verosimil</strong> (que nos creemos más) de Ceres en un momento dado en el cielo era el <strong>promedio</strong> de múltiples mediciones de altitud en esa latitud.</p></li>
+</ol>
+<p>Eso fue suficiente para mostrar que las desviaciones de las observaciones <span class="math inline">\(y\)</span> <strong>de la órbita</strong> satisfacian la ecuación</p>
+<p><span class="math display">\[\frac{df(y)}{dy}=-Cyf(y)\]</span>
+con <span class="math inline">\(C\)</span> una costante positiva. La solución de esta ecuación diferencial es:</p>
+<p><span class="math display">\[f(y)=\frac{\sqrt{C}}{\sqrt{2\pi}}e^{-\frac{Cy^2}{2}}\]</span></p>
+<p>*The evolution of the normal distribution, Saul Stahl, Mathemetics Magazine, 2006.</p>
 </div>
-<div id="experimento-de-poissson" class="section level2 hasAnchor" number="8.3">
-<h2><span class="header-section-number">8.3</span> Experimento de Poissson<a href="modelos-de-poisson-y-exponencial.html#experimento-de-poissson" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Imagina que estamos observando eventos que <strong>dependen</strong> de <strong>intervalos</strong> de tiempo o distancia.</p>
-<p>Por ejemplo:</p>
-<ul>
-<li>coches que llegan a un semáforo</li>
-<li>mensajes que recibimos en el teléfono móvil</li>
-<li>impurezas que ocurren al azar en un alambre de cobre</li>
-</ul>
-<p>Supongamos que los eventos son resultados de ensayos de Bernoulli <strong>independientes</strong>, cada uno de los cuales aparece aleatoriamente en un intervalo continuo, y queremos <strong>contarlos</strong>.</p>
-<p>¿Cuál es la probabilidad de observar <span class="math inline">\(X\)</span> eventos en una unidad de intervalo (tiempo o distancia)?</p>
-<p><strong>Ejemplo (Impurezas en un alambre):</strong></p>
-<p>Imaginemos que algunas impurezas se depositan al azar a lo largo de un cable de cobre. Quieremos contar el número de impurezas en un centímetro de alambre (<span class="math inline">\(X\)</span>).</p>
-<p>Considera que sabemos que en promedio hay <span class="math inline">\(10\)</span> impurezas por centímetro <span class="math inline">\(\lambda=10/cm\)</span>.</p>
-<p>¿Cuál es la probabilidad de observar <span class="math inline">\(X=5\)</span> impurezas en una muestra de un centímetro en particular?</p>
-</div>
-<div id="función-de-masa-de-probabilidad-de-poisson" class="section level2 hasAnchor" number="8.4">
-<h2><span class="header-section-number">8.4</span> Función de masa de probabilidad de Poisson<a href="modelos-de-poisson-y-exponencial.html#función-de-masa-de-probabilidad-de-poisson" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Para calcular la función masa de probabilidad <span class="math inline">\(f(x)=P(X=x)\)</span> del ejemplo anterior dividimos el centímetro en micrómetros (<span class="math inline">\(0.0001cm\)</span>).</p>
-<p>Los micrómetros son lo suficientemente pequeños como para</p>
-<ol style="list-style-type: decimal">
-<li><p>que hay ao no haya una impureza en cada micrómetro</p></li>
-<li><p>cada micrómetro se pueda considerar como un <strong>ensayo de Bernoulli</strong></p></li>
-</ol>
-<p><img src="figures/Pois.JPG" /></p>
-<p><strong>De la función binomial a la función de probabilidad de Poisson</strong></p>
-<p>La probabilidad de observar <span class="math inline">\(X\)</span> impurezas en <span class="math inline">\(n=10,000\mu\)</span> (1cm) sigue aproximadamente una distribución binomial</p>
-<p><span class="math display">\[f(x) \sim \binom nxp^x(1-p)^{nx}\]</span></p>
-<p>donde <span class="math inline">\(p\)</span> es la probabilidad de encontrar una impureza en un micrómetro.</p>
-<p>Dado que el valor esperado de una variable Binomial es <span class="math inline">\(E(X)=np\)</span>. Este es el número promedio de impurezas por 1 cm o <span class="math inline">\(\lambda=np\)</span>. Por lo tanto, sustituimos <span class="math inline">\(p=\lambda/n\)</span></p>
-<p><span class="math display">\[f(x) \sim \binom nx \big(\frac{\lambda}{n}\big)^x(1-\frac{\lambda}{n})^{nx}\]</span></p>
-<p>Dado que <strong>podría</strong> haber todavía dos impurezas en un micrómetro, necesitamos aumentar la partición del alambre y <span class="math inline">\(n \rightarrow \infty\)</span>.</p>
-<p>Luego en el límite:</p>
-<p><span class="math display">\[f(x)= \frac{e^{-\lambda}\lambda^x}{x!}\]</span></p>
-<p>Donde <span class="math inline">\(\lambda\)</span> es constante porque es la densidad de impurezas por centímetro, una <strong>propiedad física</strong> del sistema. <span class="math inline">\(\lambda\)</span> es por lo tanto el <strong>parámetro</strong> del modelo de probabilidad.</p>
-<p><strong>Detalles de la derivación:</strong></p>
-<p>Para <span class="math inline">\(f(x) \sim \binom nx \big(\frac{\lambda}{n}\big)^x(1-\frac{\lambda}{n})^{nx}\)</span></p>
-<p>en el límite (<span class="math inline">\(n \rightarrow \infty\)</span>)</p>
-<ol style="list-style-type: decimal">
-<li><span class="math inline">\(\frac{1}{n^x}\binom n x =\frac{1}{n^x}\frac{n!}{x! (n-x)!}=\frac{(n-x)!(n-x+1)...(n-1)n}{n^x x! (n-x)!}=\frac{n(n-1)..(n-x+1)}{n^x x!} \rightarrow \frac{1}{x!}\)</span></li>
-<li><span class="math inline">\((1-\frac{\lambda}{n})^{n} \rightarrow e^{-\lambda}\)</span> (definition of exponential)</li>
-<li><span class="math inline">\((1-\frac{\lambda}{n})^{-x} \rightarrow 1\)</span></li>
-</ol>
-<p>Poniendo todo junto entonces:</p>
-<p><span class="math inline">\(f(x)= \frac{e^{-\lambda}\lambda^x}{x!}\)</span></p>
-<p><strong>Definición</strong></p>
-<p>Dado</p>
-<ol style="list-style-type: decimal">
-<li>un intervalo en los números reales</li>
-<li>hay eventos que ocurren al azar en el intervalo</li>
-<li>se conoce el número promedio de eventos en el intervalo (<span class="math inline">\(\lambda\)</span>)</li>
-<li>si se puede encontrar una pequeña partición regular del intervalo tal que en cada partición la podamos considerar como un ensayo de Bernoulli.</li>
-</ol>
-<p>Entonces, la variable aleatoria <span class="math inline">\(X\)</span> que cuenta eventos a lo largo del intervalo es una variable <strong>Poisson</strong> con función de masa de probabilidad
-<span class="math display">\[f(x)= \frac{e^{-\lambda}\lambda^x}{x!}, \lambda&gt;0\]</span></p>
-<p><strong>Propiedades:</strong>
-Cuando <span class="math inline">\(X \rightarrow Poiss(\lambda)\)</span> tiene</p>
-<ol style="list-style-type: decimal">
-<li>media <span class="math display">\[E(X)= \lambda\]</span></li>
-<li>y varianza <span class="math display">\[V(X)= \lambda\]</span></li>
-</ol>
-<p><strong>Ejemplos</strong></p>
-<ol style="list-style-type: decimal">
-<li>¿Cuál es la probabilidad de recibir 4 correos electrónicos en una hora, cuando el promedio de correos electrónicos en una hora es de <span class="math inline">\(1\)</span>?</li>
-</ol>
-<p>Tenemos que la varible es de Poisson: <span class="math inline">\(X \rightarrow Poiss(\lambda)\)</span> con <span class="math inline">\(\lambda=1\)</span> y su función de masa de probabilidad es:</p>
-<p><span class="math display">\[f(x)= \frac{e^{-1}1^x}{x!}\]</span>
-Por lo tanto la probabilidad de que la variable tome valor 4 es <span class="math inline">\(P(X=4)\)</span>:</p>
-<p><span class="math inline">\(f(4; \lambda=1)= \frac{e^{-1}1^4}{4!}=0.01532831\)</span></p>
-<p>in R <code>dpois(4,1)</code></p>
+<div id="densidad-normal" class="section level2 hasAnchor" number="9.3">
+<h2><span class="header-section-number">9.3</span> Densidad normal<a href="distribución-normal.html#densidad-normal" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Densidad de probabilidad de Gauss da la distribución de los errores de medición desde la posición <strong>real</strong> pero <strong>desconocida</strong> de Ceres en el cielo. Hagamos un par de cambios en la función.</p>
+<p>1- Escribamos la densidad de errores desde el horizonte usando la variable aleatoria <span class="math inline">\(X\)</span>, o sea <span class="math inline">\(y=x-\mu\)</span>. <span class="math inline">\(\mu\)</span> es la posición <strong>real</strong> pero <strong>desconocida</strong> de Ceres desde el horizonte. Después de un cambio de variable encontramos la función de densidad de probabilidad:</p>
+<p><span class="math display">\[f(x)=\frac{\sqrt{C}}{\sqrt{2\pi}}e^{-C(x-\mu)^2}\]</span></p>
 <ol start="2" style="list-style-type: decimal">
-<li>¿Cuál es la probabilidad de recibir 4 correos electrónicos en <strong>tres horas</strong>, cuando el promedio de correos electrónicos en una hora es de <span class="math inline">\(1\)</span>?</li>
+<li>Cambiemos de nombre la variable <span class="math inline">\(C\)</span> por <span class="math inline">\(\frac{1}{\sigma^2}\)</span></li>
 </ol>
-<p>La unidad sobre la cual hacemos los conteos ha cambiado de 1 hora a 2 horas, por lo tanto tenemos que <strong>re-escalar</strong> <span class="math inline">\(\lambda\)</span>. Si antes el promedio de correos era <span class="math inline">\(\lambda=1\)</span> en una hora, el promedio de correos en tres horas es ahora 3: <span class="math inline">\(\lambda_{3h}=3\lambda_{1h}=3*1=3\)</span></p>
-<p>Tenemos que la varible es de Poisson: <span class="math inline">\(X \rightarrow Poiss(\lambda_{3h})\)</span> con <span class="math inline">\(\lambda_{3h}=3\)</span> y su función de masa de probabilidad es:</p>
-<p><span class="math display">\[f(x)= \frac{e^{-3}3^x}{x!}\]</span>
-Por lo tanto la probabilidad de que la variable tome valor 4 es <span class="math inline">\(P(X=4)\)</span>:</p>
-<p><span class="math inline">\(f(4; \lambda=3)= \frac{e^{-3}3^4}{4!}=0.1680314\)</span></p>
-<p>in R <code>dpois(4,3)</code></p>
-<ol start="3" style="list-style-type: decimal">
-<li>¿Cuál es la probabilidad de contar <strong>al menos</strong> <span class="math inline">\(10\)</span> automóviles que llegan a un peaje en un minuto, cuando el promedio de automóviles que llegan a un peaje en un minuto es de <span class="math inline">\(5\)</span>;</li>
-</ol>
-<p>Tenemos que la varible es de Poisson: <span class="math inline">\(X \rightarrow Poiss(\lambda)\)</span> con <span class="math inline">\(\lambda=5\)</span> y su función de masa de probabilidad es:</p>
-<p><span class="math display">\[f(x)= \frac{e^{-5}5^x}{x!}\]</span></p>
-<p><span class="math inline">\(P(X\geq 10)=1-P(X &lt; 10)=1-P(X \leq 9)=1-F(9; \lambda=5)=1-\sum_{x=0, ...10}f(x; \lambda=5)=0.03182806\)</span></p>
-<p>en R <code>1-ppois(9,5)</code></p>
-<p>Veamos algunas funciones de masa de probabilidad en la familia de modelos paramétricos de Poisson:</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-61-1.png" width="672" /></p>
+<p>Entonces, llegamos a la siguente definición.</p>
 </div>
-<div id="modelos-de-probabilidad-para-variables-continuas" class="section level2 hasAnchor" number="8.5">
-<h2><span class="header-section-number">8.5</span> Modelos de probabilidad para variables continuas<a href="modelos-de-poisson-y-exponencial.html#modelos-de-probabilidad-para-variables-continuas" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Los modelos de probabilidad para variables continuas son <strong>funciones de densidad</strong> de probabilidad <span class="math inline">\(f(x)\)</span> que <strong>creemos</strong> describen experimentos aleatorios reales.</p>
-<p>La función de densidad de probabilidad <span class="math inline">\(f(x)\)</span></p>
+<div id="definición" class="section level2 hasAnchor" number="9.4">
+<h2><span class="header-section-number">9.4</span> Definición<a href="distribución-normal.html#definición" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Una variable aleatoria <span class="math inline">\(X\)</span> definida en los números reales tiene una densidad <strong>Normal</strong> si toma la forma</p>
+<p><span class="math display">\[f(x; \mu, \sigma^2)=\frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{(x-\mu)^2}{2\sigma^2}}, x \in {\mathbb R}\]</span></p>
+<p>La variable tiene</p>
 <ol style="list-style-type: decimal">
-<li>es positiva</li>
+<li>media</li>
 </ol>
-<p><span class="math display">\[f(x) \geq 0\]</span></p>
-<ol start="2" style="list-style-type: decimal">
-<li>nos permite calcular probabilidades usando el área bajo la curva:</li>
-</ol>
-<p><span class="math display">\[P(a\leq X \leq b)=\int_{a}^{b} f(x) dx\]</span></p>
-<ol start="3" style="list-style-type: decimal">
-<li>es tal que la probabilidad de que obtengamos cualquier resultado es <span class="math inline">\(1\)</span>:</li>
-</ol>
-<p><span class="math display">\[\int_{-\infty}^{\infty} f(x) dx = 1\]</span></p>
-</div>
-<div id="experimento-exponencial" class="section level2 hasAnchor" number="8.6">
-<h2><span class="header-section-number">8.6</span> Experimento exponencial<a href="modelos-de-poisson-y-exponencial.html#experimento-exponencial" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Volvamos a un <strong>proceso de Poisson</strong> definido por la probabilidad</p>
-<p><span class="math display">\[f(k)=\frac{e^{-\lambda}\lambda^k}{k!}, \lambda&gt;0\]</span></p>
-<p>para el número de eventos (<span class="math inline">\(k\)</span>) en un intervalo.</p>
-<p>Consideremos ahora que estamos interesados en la duración/tiempo que debemos esperar hasta que ocurra el <strong>primer</strong> conteo.</p>
-<p>Podemos preguntarnos por la probabilidad de que el primer evento ocurra después de la duración/tiempo <span class="math inline">\(X\)</span>.</p>
-<p>Por lo tanto, dado que <span class="math inline">\(X\)</span> es una variable aleatoria <strong>continua</strong>, buscamos su función de densidad de probabilidad <span class="math inline">\(f(x)\)</span>.</p>
-</div>
-<div id="densidad-de-probabilidad-exponencial" class="section level2 hasAnchor" number="8.7">
-<h2><span class="header-section-number">8.7</span> Densidad de probabilidad exponencial<a href="modelos-de-poisson-y-exponencial.html#densidad-de-probabilidad-exponencial" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>La probabilidad de <span class="math inline">\(0\)</span> eventos <strong>si</strong> un intervalo tiene unidad <span class="math inline">\(x\)</span> (rescalando como en el ejemplo 2) es</p>
-<p><span class="math display">\[f(0|x)=\frac{e^{-x\lambda}(x\lambda)^0}{0!}\]</span></p>
-<p>o</p>
-<p><span class="math display">\[f(0|x)=e^{-x\lambda}\]</span></p>
-<p>Podemos tratar esto como la probabilidad condicional de <span class="math inline">\(0\)</span> eventos dada una distancia <span class="math inline">\(x\)</span>: <span class="math inline">\(f(K=0|X=x)\)</span> y aplicar el teorema de Bayes para invertirlo:</p>
-<p><span class="math display">\[f(x|0)=C f(0|x)=C e^{-x\lambda}\]</span></p>
-<p>Esta es la <strong>probabilidad de observar una distancia</strong> <span class="math inline">\(x\)</span> para <span class="math inline">\(0\)</span> eventos. Esta es la distancia hasta el primer evento.</p>
-<p><strong>Definición</strong></p>
-<p>En un proceso de Poisson con parámetro <span class="math inline">\(\lambda\)</span> la probabilidad de esperar una distancia/tiempo <span class="math inline">\(X\)</span> entre dos conteos viene dada por la <strong>densidad de probabilidad</strong></p>
-<p><span class="math display">\[f(x)= C e^{-x\lambda}\]</span></p>
-<ul>
-<li><p><span class="math inline">\(C\)</span> es una constante que asegura: <span class="math inline">\(\int_{-\infty}^{\infty} f(x) dx =1\)</span></p></li>
-<li><p>por integración <span class="math inline">\(C=\lambda\)</span></p></li>
-</ul>
-<p>Por lo tanto:</p>
-<p><span class="math display">\[f(x)=\lambda e^{-\lambda x}, x\geq 0\]</span></p>
-<p><span class="math inline">\(\lambda\)</span> es el parámetro del modelo, también conocido como <strong>tasa de decaimiento</strong>.</p>
-<p><strong>Propiedades:</strong></p>
-<p>Cuando <span class="math inline">\(X \rightarrow Exp(\lambda)\)</span> entonces</p>
-<ol style="list-style-type: decimal">
-<li>tiene media</li>
-</ol>
-<p><span class="math display">\[E(X)=\frac{1}{\lambda}\]</span></p>
+<p><span class="math display">\[E(X) = \mu\]</span></p>
+<p>que para Gauss representaba la posición real de Ceres.</p>
 <ol start="2" style="list-style-type: decimal">
 <li>y varianza
-<span class="math display">\[V(Y)=\frac{1}{\lambda^2}\]</span></li>
+<span class="math display">\[V (X) = \sigma^2\]</span></li>
 </ol>
-<p>Veamos un par de densidades de probabilidad en la familia exponencial</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-62-1.png" width="672" /></p>
+<p>que representaba la dispersión del error en las observaciones, que depende de la calidad del telescopio.</p>
+<p><span class="math inline">\(\mu\)</span> y <span class="math inline">\(\sigma\)</span> son los <strong>dos parámetros</strong> que describen completamente la función de densidad normal y su <strong>interpretación</strong> depende del experimento aleatorio.</p>
+<p>Cuando <span class="math inline">\(X\)</span> sigue una densidad Normal, es decir, se distribuye normalmente, escribimos</p>
+<p><span class="math display">\[X\rightarrow N(\mu,\sigma^2)\]</span></p>
+<p>Veamos algunas densidades de probabilidad en el modelo paramétrico normal</p>
+<p><img src="_main_files/figure-html/unnamed-chunk-64-1.png" width="672" /></p>
 </div>
-<div id="distribución-exponencial" class="section level2 hasAnchor" number="8.8">
-<h2><span class="header-section-number">8.8</span> Distribución exponencial<a href="modelos-de-poisson-y-exponencial.html#distribución-exponencial" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Consideremos las siguientes preguntas:</p>
+<div id="distribución-de-probabilidad-2" class="section level2 hasAnchor" number="9.5">
+<h2><span class="header-section-number">9.5</span> Distribución de probabilidad<a href="distribución-normal.html#distribución-de-probabilidad-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>La distribución de probabilidad de la densidad Normal:</p>
+<p><span class="math display">\[F(a)=P(Z \leq a)\]</span></p>
+<p>es la función de <strong>error</strong> definida por el área bajo la curva de <span class="math inline">\(-\infty\)</span> a <span class="math inline">\(a\)</span></p>
+<p><span class="math display">\[F(a)=\int_{-\infty}^{a}\frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{(x-\mu) ^2}{2\sigma^2}} dx\]</span>
+La función se encuentra en la mayoría de los programas de computadora y no tiene una forma cerrada de funciones conocidas.</p>
+<p><strong>Ejemplo (altura de mujeres)</strong></p>
 <ol style="list-style-type: decimal">
-<li>En un proceso de Poisson ¿Cuál es la probabilidad de observar un intervalo <strong>menor</strong> que <span class="math inline">\(a\)</span> hasta el primer evento?</li>
+<li>¿Cuál es la probabilidad de que una mujer de la población tenga una altura máxima de <span class="math inline">\(150 cm\)</span> si las mujeres tienen una altura media de <span class="math inline">\(165 cm\)</span> con una desviación estándar de <span class="math inline">\(8 cm\)</span>?</li>
 </ol>
-<p>Recuerda que esta probabilidad <span class="math inline">\(F(a)=P(X \leq a)\)</span> es la densidad de probabilidad</p>
-<p><span class="math display">\[F(a)=\lambda\int_\infty^ae^{-x\lambda}dx=1-e^{-a\lambda}\]</span>
-2) En un proceso de Poisson ¿Cuál es la probabilidad de observar un intervalo <strong>mayor</strong> que <span class="math inline">\(a\)</span> hasta el primer evento?</p>
-<p><span class="math display">\[P(X &gt; a)=1- P(X \leq a)= 1- F(a) = e^{-a\lambda}\]</span></p>
-<p>Veamos un par de distribuciones exponenciales de la familia exponencial</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-63-1.png" width="672" /></p>
-<p>La mediana <span class="math inline">\(x_m\)</span> es tal que <span class="math inline">\(F(x_m)=0.5\)</span>. Eso es <span class="math inline">\(x_m=\frac{\log(2)}{\lambda}\)</span></p>
-<p><strong>Ejemplos</strong></p>
-<ol style="list-style-type: decimal">
-<li>¿Cuál es la probabilidad de que tengamos que esperar un bus por más de <span class="math inline">\(1\)</span> hora cuando en promedio hay dos buses por hora?</li>
-</ol>
-<p><span class="math display">\[P(X &gt; 1)=1-P(X \le 1) = 1-F(1,\lambda=2)=0.1353353\]</span></p>
-<p>En R <code>1-pexp(1,2)</code></p>
+<p><span class="math inline">\(P(X\le 150)=F(150, \mu=165, \sigma=8)=0.03039636\)</span></p>
+<p>en R <code>pnorm(150, 165, 8)</code></p>
 <ol start="2" style="list-style-type: decimal">
-<li>¿Cuál es la probabilidad de tener que esperar menos de <span class="math inline">\(2\)</span> segundos para detectar una partícula cuando la tasa de desintegración radiactiva es de <span class="math inline">\(2\)</span> partículas por segundo; <span class="math inline">\(F(2,\lambda=2)\)</span></li>
+<li>¿Cuál es la probabilidad de que la altura de una mujer en la población esté entre <span class="math inline">\(165cm\)</span> y <span class="math inline">\(170cm\)</span>?</li>
 </ol>
-<p><span class="math display">\[P(X\le 2)=F(2,\lambda=2)=0.9816844\]</span></p>
-<p>En R <code>pexp(2,2)</code></p>
+<p><span class="math inline">\(P(165 \le X \le 170)=F(170, \mu=165, \sigma=8)-F(165, \mu=165, \sigma=8)=0.2340145\)</span></p>
+<p>en R <code>pnorm(170, 165, 8)-pnorm(165, 165, 8)</code></p>
+<p>Veamos la función de distribución de probabilidad</p>
+<p><img src="_main_files/figure-html/unnamed-chunk-65-1.png" width="672" /></p>
+<ol start="3" style="list-style-type: decimal">
+<li>¿Cuál es el primer cuartíl para altura de las mujeres?</li>
+</ol>
+<p>El primer cuartíl se define como:</p>
+<p><span class="math inline">\(F(x_{0.25}, \mu=165, \sigma=8)=0.25\)</span></p>
+<p>o</p>
+<p><span class="math inline">\(x_{0.25}=F^{-1}(0.25, \mu=165, \sigma=8)=159.6041\)</span></p>
+<p>en R <code>qnorm(0.25, 165, 8)</code></p>
+<p><strong>Propiedades de la distribución Normal</strong></p>
+<ol style="list-style-type: decimal">
+<li><p>la media <span class="math inline">\(\mu\)</span> es también la mediana ya que divide las medidas en dos</p></li>
+<li><p>Los valores de <span class="math inline">\(x\)</span> que caen más allá de 2<span class="math inline">\(\sigma\)</span> se consideran <strong>raros</strong> <span class="math inline">\(5\%\)</span></p></li>
+<li><p>Los valores de <span class="math inline">\(x\)</span> que caen más allá de 3<span class="math inline">\(\sigma\)</span> se consideran <strong>extremadamente raros</strong> <span class="math inline">\(0.2\%\)</span></p></li>
+</ol>
+<p><img src="figures/probs.png" /></p>
+<p><strong>Ejemplo (altura de mujeres)</strong></p>
+<p>Podemos definir los límites de <strong>observaciones comunes</strong> para la distribución de la altura de las mujeres en la población.</p>
+<ol style="list-style-type: decimal">
+<li>a una distancia de una desviación estándar de la media, encontramos <span class="math inline">\(68\%\)</span> de la población</li>
+</ol>
+<p><span class="math display">\[P(165-8 \leq X \leq 165+8)=P(157 \leq X \leq 173)=F(173)-F(157)=0.68\]</span></p>
+<ol start="2" style="list-style-type: decimal">
+<li>a una distancia de dos desviaciones estándar de la media, encontramos <span class="math inline">\(95\%\)</span> de la población</li>
+</ol>
+<p><span class="math display">\[P(165-2 \times 8 \leq X \leq 165+2\times 8)=F(181)-F(149)=0.95\]</span></p>
+<ol start="3" style="list-style-type: decimal">
+<li>a una distancia de tres desviaciones estándar de la media, encontramos <span class="math inline">\(99.7\%\)</span> de la población</li>
+</ol>
+<p><span class="math display">\[P(165-3 \times 8 \leq X \leq 165+3\times 8)=F(189)-F(141)=0.997\]</span></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-66-1.png" width="672" /></p>
 </div>
-<div id="preguntas-5" class="section level2 hasAnchor" number="8.9">
-<h2><span class="header-section-number">8.9</span> Preguntas<a href="modelos-de-poisson-y-exponencial.html#preguntas-5" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><strong>1)</strong> Durante la Segunda Guerra Mundial, en un día de bombardeo sobre Londres, el valor eperado de que cayera una bomba en <span class="math inline">\(1.5km^2\)</span> era de <span class="math inline">\(0.92\)</span>. La probabilidad de que en Hyde Park, de área aproximadamente <span class="math inline">\(1.5km^2\)</span>, cayeran como mucho dos bombas era de</p>
-<p><strong><span class="math inline">\(\qquad\)</span>a:</strong><code>1-ppois(x=2, lambda=0.92)</code>;
-<strong><span class="math inline">\(\qquad\)</span>b:</strong><code>ppois(x=2, lambda=0.92)</code>; <strong><span class="math inline">\(\qquad\)</span>c:</strong><code>1-dpois(x=2, lambda=0.92)</code>; <strong><span class="math inline">\(\qquad\)</span>d:</strong><code>dpois(x=2, lambda=0.92)</code></p>
-<p><strong>2)</strong> La probabilidad de que un pasajero tenga que esperar menos de 20 minutos hasta que llegue el próximo taxi a su parada está mejor descrita por</p>
-<p><strong><span class="math inline">\(\qquad\)</span>a:</strong> Un modelo de Poisson sobre el número de taxis que pasan cada 20 minutos;
-<strong><span class="math inline">\(\qquad\)</span>b:</strong> Una distribución exponencial con <span class="math inline">\(\lambda=1/20\)</span> ;
-<strong><span class="math inline">\(\qquad\)</span>c:</strong> Un modelo binomial que cuenta el número de taxis cada 20 minutos
-<strong><span class="math inline">\(\qquad\)</span>d:</strong> Una distribución uniforme entre 0 y 20 minutos;</p>
-<p><strong>3)</strong> A partir de la distribución de probabilidad exponencial de la siguiente figura, ¿cuál es el valor más posible de la mediana?</p>
-<p><strong><span class="math inline">\(\qquad\)</span>a:</strong> <span class="math inline">\(2\)</span>; <strong><span class="math inline">\(\qquad\)</span>b:</strong> <span class="math inline">\(3\)</span>; <strong><span class="math inline">\(\qquad\)</span>c:</strong> <span class="math inline">\(4\)</span>; <strong><span class="math inline">\(\qquad\)</span>d:</strong> <span class="math inline">\(5\)</span></p>
-<p><img src="figures/exp.png" /></p>
+<div id="densidad-normal-estándar" class="section level2 hasAnchor" number="9.6">
+<h2><span class="header-section-number">9.6</span> Densidad normal estándar<a href="distribución-normal.html#densidad-normal-estándar" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>La densidad normal estándar es la densidad particular de la familia normal</p>
+<p><span class="math display">\[f(x; \mu, \sigma^2)=\frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{(x-\mu)^2}{2\sigma^2}}, x \in {\mathbb R}\]</span></p>
+<p>Por lo tanto, es la densidad con</p>
+<ol style="list-style-type: decimal">
+<li>media</li>
+</ol>
+<p><span class="math display">\[E(X)= \mu = 0\]</span></p>
+<ol start="2" style="list-style-type: decimal">
+<li>y varianza</li>
+</ol>
+<p><span class="math display">\[V (X)= \sigma^2 =1\]</span></p>
+<p>Cuando una variable aleatoria sigue una densidad de probabilidad normal, decimos que se distribuye normalmente y escribimos</p>
+<p><span class="math display">\[X \rightarrow N(0,1)\]</span></p>
 </div>
-<div id="ejercicios-6" class="section level2 hasAnchor" number="8.10">
-<h2><span class="header-section-number">8.10</span> Ejercicios<a href="modelos-de-poisson-y-exponencial.html#ejercicios-6" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div id="ejercicio-1-5" class="section level4 hasAnchor" number="8.10.0.1">
-<h4><span class="header-section-number">8.10.0.1</span> Ejercicio 1<a href="modelos-de-poisson-y-exponencial.html#ejercicio-1-5" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>El promedio de llamadas telefónicas por hora que ingresan a la centralita de una empresa es de <span class="math inline">\(150\)</span>. Encuentra la probabilidad de que durante un minuto en particular haya</p>
+<div id="distribución-estándar" class="section level2 hasAnchor" number="9.7">
+<h2><span class="header-section-number">9.7</span> Distribución estándar<a href="distribución-normal.html#distribución-estándar" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>La distribución estándar es:</p>
+<p><span class="math display">\[\phi(a)=F_{N(0,1)}(a)=P(Z \leq a)\]</span></p>
+<p>es la función <strong>error</strong> definida por</p>
+<p><span class="math display">\[\phi(a)=\int_{-\infty}^{a} \frac{1}{\sqrt{2\pi}}e^{-\frac{z^2}{2}} dz\]</span></p>
+<p>Debido a que la distribución estándar es especial y aparecerá con frecuencia, usamos la letra <span class="math inline">\(\phi\)</span> para ello.</p>
+<p><img src="figures/st.png" /></p>
+<p>Puedes encontrarla en la mayoría de los programas de computadora. En R es <code>pnorm(x)</code> con los parámetros predeterminados, 0 y 1.</p>
+<p>Normalmente definimos los límites de las <strong>observaciones más comunes</strong> para la variable estándar</p>
+<p><img src="figures/phi.JPG" /></p>
+<ol style="list-style-type: decimal">
+<li>El rango intercuartílico <span class="math display">\[P(-0.67 \leq X \leq 0.67)=0.50\]</span></li>
+</ol>
+<p>en R: <code>c(qnorm(0.25), qnorm(0.75))</code></p>
+<ol start="2" style="list-style-type: decimal">
+<li>El rango del <span class="math inline">\(95\%\)</span> <span class="math display">\[P(-1.96 \leq X \leq 1.96)=0.95\]</span></li>
+</ol>
+<p>en R: <code>c(qnorm(0.025), qnorm(0.975))</code></p>
+<ol start="3" style="list-style-type: decimal">
+<li>El rango del <span class="math inline">\(99\%\)</span> <span class="math display">\[P(-2.58 \leq X \leq 2.58)=0.99\]</span></li>
+</ol>
+<p>en R: <code>c(qnorm(0.005), qnorm(0.995))</code></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-67-1.png" width="672" /></p>
+</div>
+<div id="estandarización" class="section level2 hasAnchor" number="9.8">
+<h2><span class="header-section-number">9.8</span> Estandarización<a href="distribución-normal.html#estandarización" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Todas las variables normales se pueden <strong>estandarizar</strong>. Esto significa que si <span class="math inline">\(X \rightarrow N(\mu, \sigma^2)\)</span>, entonces podemos transformar la variable a
+una <strong>variable estandarizada</strong></p>
+<p><span class="math display">\[Z=\frac{X-\mu}{\sigma}\]</span></p>
+<p>que tendrá densidad:</p>
+<p><span class="math display">\[f(z)=\frac{1}{ \sqrt{2\pi}}e^{-\frac{z^2}{2}}\]</span>
+Por lo tanto, para cualquier <span class="math inline">\(X \rightarrow N(\mu, \sigma^2)\)</span></p>
+<p><span class="math display">\[Z=\frac{X-\mu}{\sigma} \rightarrow N(0, 1) \]</span></p>
+<p><img src="figures/stand.png" /></p>
+<p>Puedes demostrar esto reemplazando <span class="math inline">\(x=\sigma z+\mu\)</span> y <span class="math inline">\(dx=\sigma dz\)</span> en la expresión de probabilidad que tenemos</p>
+<p><span class="math inline">\(P(x\leq X \leq x +dx)=P(z\leq Z \leq z +dz)\)</span>
+<span class="math display">\[=\frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{(x-\mu)^2}{2\sigma^2}}dx\]</span> <span class="math display">\[=\frac{1}{ \sqrt{2\pi}}e^{-\frac{z^2}{2}} dz\]</span></p>
+<p>La probabilidad de <strong>cualquier variable normal</strong> <span class="math inline">\(X\rightarrow N(\mu, \sigma^2)\)</span> se puede calcular usando la distribución estándar</p>
+<p><span class="math inline">\(F(a)=P(X&lt;a)=P(\frac{X-\mu}{\sigma}&lt;\frac{a-\mu}{\sigma})\)</span>
+<span class="math display">\[=P(Z &lt; \frac{a-\mu}{\sigma})= \phi \big(\frac{a-\mu}{\sigma}\big)\]</span></p>
+<p>Para calcular <span class="math inline">\(P(a\leq X \leq b)\)</span>, usamos la propiedad de las distribuciones de probabilidad</p>
+<p><span class="math inline">\(F(b)-F(a)=P(X\leq b)-P(X\leq a)\)</span></p>
+<p><span class="math display">\[=\phi \big(\frac{b-\mu}{\sigma}\big)-\phi \big(\frac{a-\mu}{\sigma}\big)\]</span></p>
+</div>
+<div id="resumen-de-modelos-de-probabilidad" class="section level2 hasAnchor" number="9.9">
+<h2><span class="header-section-number">9.9</span> Resumen de modelos de probabilidad<a href="distribución-normal.html#resumen-de-modelos-de-probabilidad" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<table style="width:100%;">
+<colgroup>
+<col width="16%" />
+<col width="19%" />
+<col width="19%" />
+<col width="16%" />
+<col width="14%" />
+<col width="14%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">Modelo</th>
+<th align="center">X</th>
+<th align="center">rango de x</th>
+<th align="center">f(x)</th>
+<th align="center">E(X)</th>
+<th align="center">V(X)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">Uniforme</td>
+<td align="center">número entero o real</td>
+<td align="center"><span class="math inline">\([a,b]\)</span></td>
+<td align="center"><span class="math inline">\(\frac{1}{n}\)</span></td>
+<td align="center"><span class="math inline">\(\frac{b+a}{2}\)</span></td>
+<td align="center"><span class="math inline">\(\frac{(b-a+1)^2-1}{12}\)</span></td>
+</tr>
+<tr class="even">
+<td align="center">Bernoulli</td>
+<td align="center">evento A (1)</td>
+<td align="center">0,1</td>
+<td align="center"><span class="math inline">\((1-p)^{1-x}p^x\)</span></td>
+<td align="center"><span class="math inline">\(p\)</span></td>
+<td align="center"><span class="math inline">\(p(1-p)\)</span></td>
+</tr>
+<tr class="odd">
+<td align="center">Binomial</td>
+<td align="center"># de eventos A en <span class="math inline">\(n\)</span> repeticiones de ensayos de Bernoulli</td>
+<td align="center">0,1,…</td>
+<td align="center"><span class="math inline">\(\binom nx (1-p)^{nx}p^x\)</span></td>
+<td align="center"><span class="math inline">\(np\)</span></td>
+<td align="center"><span class="math inline">\(np(1-p)\)</span></td>
+</tr>
+<tr class="even">
+<td align="center">Binomial negativo para eventos</td>
+<td align="center"># de eventos B (0) en repeticiones de Bernoulli antes de <span class="math inline">\(r\)</span> eventos A (1)</td>
+<td align="center">0,1,..</td>
+<td align="center"><span class="math inline">\(\binom {x+r-1} x (1-p)^xp^r\)</span></td>
+<td align="center"><span class="math inline">\(\frac{r(1-p)}{p}\)</span></td>
+<td align="center"><span class="math inline">\(\frac{r(1-p)}{p^2}\)</span></td>
+</tr>
+<tr class="odd">
+<td align="center">Hipergeométrico</td>
+<td align="center"># de eventos A en una muestra <span class="math inline">\(n\)</span> de la población <span class="math inline">\(N\)</span> con <span class="math inline">\(K\)</span> numero de As</td>
+<td align="center"><span class="math inline">\(\max(0, n+KN)\)</span>, … <span class="math inline">\(\min(K, n)\)</span></td>
+<td align="center"><span class="math inline">\(\frac{1}{\binom N n}\binom K x \binom {N-K} {n-x}\)</span></td>
+<td align="center"><span class="math inline">\(n*\frac{N}{K}\)</span></td>
+<td align="center"><span class="math inline">\(n \frac{N}{K} (1-\frac{N}{K})\frac{Nn}{N-1}\)</span></td>
+</tr>
+<tr class="even">
+<td align="center">Poisson</td>
+<td align="center"># de eventos A en un intervalo</td>
+<td align="center">0,1, ..</td>
+<td align="center"><span class="math inline">\(\frac{e^{-\lambda}\lambda^x}{x!}\)</span></td>
+<td align="center"><span class="math inline">\(\lambda\)</span></td>
+<td align="center"><span class="math inline">\(\lambda\)</span></td>
+</tr>
+<tr class="odd">
+<td align="center">Exponencial</td>
+<td align="center">Intervalo entre dos eventos A</td>
+<td align="center"><span class="math inline">\([0,\infty)\)</span></td>
+<td align="center"><span class="math inline">\(\lambda e^{-\lambda x}\)</span></td>
+<td align="center"><span class="math inline">\(\frac{1}{\lambda}\)</span></td>
+<td align="center"><span class="math inline">\(\frac{1}{\lambda^2}\)</span></td>
+</tr>
+<tr class="even">
+<td align="center">Normal</td>
+<td align="center">medida con errores simétricos cuyo valor más probable es la media</td>
+<td align="center"><span class="math inline">\((-\infty, \infty)\)</span></td>
+<td align="center"><span class="math inline">\(\frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{(x-\mu)^2}{2\sigma^2 }}\)</span></td>
+<td align="center"><span class="math inline">\(\mu\)</span></td>
+<td align="center"><span class="math inline">\(\sigma^2\)</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="funciones-r-de-modelos-de-probabilidad" class="section level2 hasAnchor" number="9.10">
+<h2><span class="header-section-number">9.10</span> Funciones R de modelos de probabilidad<a href="distribución-normal.html#funciones-r-de-modelos-de-probabilidad" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<table>
+<colgroup>
+<col width="33%" />
+<col width="33%" />
+<col width="33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">modelo</th>
+<th align="center">R f(x)</th>
+<th align="center">R F(x)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Uniforme (continuo)</td>
+<td align="center"><code>dunif(x, a, b)</code></td>
+<td align="center"><code>punif(x, a, b)</code></td>
+</tr>
+<tr class="even">
+<td align="left">Binomial</td>
+<td align="center"><code>dbinom(x,n,p)</code></td>
+<td align="center"><code>pbimon(x,n,p)</code></td>
+</tr>
+<tr class="odd">
+<td align="left">Binomial negativo para eventos</td>
+<td align="center"><code>dnbinom(x,r,p)</code></td>
+<td align="center"><code>pnbinom(x,r,p)</code></td>
+</tr>
+<tr class="even">
+<td align="left">Hipergeométrico</td>
+<td align="center"><code>dhyper(x, K, N-K, n)</code></td>
+<td align="center"><code>phyper(x, K, N-K, n)</code></td>
+</tr>
+<tr class="odd">
+<td align="left">Poisson</td>
+<td align="center"><code>dpois(x, lambda)</code></td>
+<td align="center"><code>ppois(x, lambda)</code></td>
+</tr>
+<tr class="even">
+<td align="left">Exponencial</td>
+<td align="center"><code>dexp(x, lambda)</code></td>
+<td align="center"><code>pexp(x, lambda)</code></td>
+</tr>
+<tr class="odd">
+<td align="left">normales</td>
+<td align="center"><code>dnorm(x, mu, sigma)</code></td>
+<td align="center"><code>pnomr(x, mu, sigma)</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="preguntas-6" class="section level2 hasAnchor" number="9.11">
+<h2><span class="header-section-number">9.11</span> Preguntas<a href="distribución-normal.html#preguntas-6" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><strong>1)</strong> Para una variable normal estándar</p>
+<p><strong><span class="math inline">\(\qquad\)</span>a:</strong> <span class="math inline">\(50\%\)</span> de sus observaciones están entre <span class="math inline">\((-0.67,0.67)\)</span>;
+<strong><span class="math inline">\(\qquad\)</span>b:</strong> <span class="math inline">\(2\%\)</span> de sus observaciones son inferiores a <span class="math inline">\(-2.58\)</span>;
+<strong><span class="math inline">\(\qquad\)</span>c:</strong> <span class="math inline">\(5\%\)</span> de sus observaciones son superiores a <span class="math inline">\(1.96\)</span>;
+<strong><span class="math inline">\(\qquad\)</span>d:</strong> <span class="math inline">\(25\%\)</span> de sus observaciones están entre <span class="math inline">\((-1.96,-0.67)\)</span></p>
+<p><strong>2)</strong> si sabemos que <span class="math inline">\(\phi(-0.8416212)=0.2\)</span> entonces que es <span class="math inline">\(\phi(0.8416212)\)</span></p>
+<p><strong><span class="math inline">\(\qquad\)</span>a:</strong> <span class="math inline">\(0.1\)</span>;
+<strong><span class="math inline">\(\qquad\)</span>b:</strong> <span class="math inline">\(0.2\)</span>;
+<strong><span class="math inline">\(\qquad\)</span>c:</strong> <span class="math inline">\(0.8\)</span>;
+<strong><span class="math inline">\(\qquad\)</span>d:</strong> <span class="math inline">\(0.9\)</span></p>
+<p><strong>3)</strong> el tercer cuartil de una variable normal con media <span class="math inline">\(10\)</span> y desviación estándar <span class="math inline">\(2\)</span> es</p>
+<p><strong><span class="math inline">\(\qquad\)</span>a:</strong> <code>qnorm(1/3, 10, 2)=9.138545</code>;
+<strong><span class="math inline">\(\qquad\)</span>b:</strong> <code>qnorm(1-0.75, 10, 2)=8.65102 </code>;
+<strong><span class="math inline">\(\qquad\)</span>c:</strong> <code>qnorm(1-1/3, 10, 2)=10.86145 </code>;
+<strong><span class="math inline">\(\qquad\)</span>d:</strong> <code>qnorm(0.75, 10, 2)= 11.34898 </code></p>
+<p><strong>4)</strong> la probabilidad de que una variable normal con media <span class="math inline">\(10\)</span> y desviación estándar <span class="math inline">\(2\)</span> esté en <span class="math inline">\((-\infty,10)\)</span> es</p>
+<p><strong><span class="math inline">\(\qquad\)</span>a:</strong> 0.25;
+<strong><span class="math inline">\(\qquad\)</span>b:</strong> 0.5;
+<strong><span class="math inline">\(\qquad\)</span>c:</strong> 0.75;
+<strong><span class="math inline">\(\qquad\)</span>d:</strong> 1:</p>
+<p><strong>5)</strong> No es cierto que para una variable normal estándar</p>
+<p><strong><span class="math inline">\(\qquad\)</span>a:</strong> su media y mediana son iguales; <strong><span class="math inline">\(\qquad\)</span>b:</strong> la distribución de probabilidad estándar se puede utilizar para calcular sus probabilidades; <strong><span class="math inline">\(\qquad\)</span>c:</strong> su rango intercuartílico es el doble de su desviación estándar; <strong><span class="math inline">\(\qquad\)</span>d:</strong> <span class="math inline">\(5\%\)</span> de sus observaciones están a una distancia desde <span class="math inline">\(0\)</span> mas grande que su desviación estándar</p>
+</div>
+<div id="ejercicios-7" class="section level2 hasAnchor" number="9.12">
+<h2><span class="header-section-number">9.12</span> Ejercicios<a href="distribución-normal.html#ejercicios-7" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="ejercicio-1-6" class="section level4 hasAnchor" number="9.12.0.1">
+<h4><span class="header-section-number">9.12.0.1</span> Ejercicio 1<a href="distribución-normal.html#ejercicio-1-6" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Encuentra el área bajo la curva normal estándar en los siguientes casos:</p>
 <ul>
-<li>0 llamadas telefónicas (R:0.082)</li>
-<li>1 llamada telefónica (R:0.205)</li>
-<li>4 o menos llamadas (R:0.891)</li>
-<li>más de 6 llamadas telefónicas (R:0.0141)</li>
+<li>Entre <span class="math inline">\(z=0.81\)</span> y <span class="math inline">\(z=1.94\)</span> (R:0.182)</li>
+<li>A la derecha de <span class="math inline">\(z=-1.28\)</span> (R:0.899)</li>
+<li>A la derecha de <span class="math inline">\(z=2.05\)</span> o a la izquierda de <span class="math inline">\(z=-1.44\)</span> (R:0.0951)</li>
 </ul>
 </div>
-<div id="ejercicio-2-5" class="section level4 hasAnchor" number="8.10.0.2">
-<h4><span class="header-section-number">8.10.0.2</span> Ejercicio 2<a href="modelos-de-poisson-y-exponencial.html#ejercicio-2-5" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>La cantidad promedio de partículas radiactivas que golpean un contador Geiger en una planta de energía nuclear bajo control es de <span class="math inline">\(2.3\)</span> por minuto.</p>
+<div id="ejercicio-2-6" class="section level4 hasAnchor" number="9.12.0.2">
+<h4><span class="header-section-number">9.12.0.2</span> Ejercicio 2<a href="distribución-normal.html#ejercicio-2-6" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <ul>
-<li><p>¿Cuál es la probabilidad de contar exactamente <span class="math inline">\(2\)</span> partículas en un minuto? (R:0.265)</p></li>
-<li><p>¿Cuál es la probabilidad de detectar exactamente <span class="math inline">\(10\)</span> partículas en <span class="math inline">\(5\)</span> minutos? (R:0.112)</p></li>
-<li><p>¿Cuál es la probabilidad de al menos un conteo en dos minutos? (R:0.9899)</p></li>
-<li><p>¿Cuál es la probabilidad de tener que esperar menos de <span class="math inline">\(1\)</span> segundo para detectar una partícula radiactiva, después de encender el detector? (R:0.037)</p></li>
-<li><p>Sospechamos que una planta nuclear tiene una fuga radiactiva si esperamos menos de <span class="math inline">\(1\)</span> segundo para detectar una partícula radiactiva, después de encender el detector. ¿Cuál es la probabilidad de que cuando visitemos <span class="math inline">\(5\)</span> plantas que están bajo control, sospechemos que al menos una tiene una fuga? (R:0.1744).</p></li>
+<li><p>¿Cuál es la probabilidad de que la altura de un hombre sea al menos
+<span class="math inline">\(165\)</span>cm si la media poblacional es <span class="math inline">\(175\)</span>cm y la desviación estándar es <span class="math inline">\(10\)</span>cm? (R:0.841)</p></li>
+<li><p>¿Cuál es la probabilidad de que la altura de un hombre esté entre
+<span class="math inline">\(165\)</span>cm y <span class="math inline">\(185\)</span>cm? (R:0.682)</p></li>
+<li><p>¿Cuál es la altura que define el <span class="math inline">\(5\%\)</span> de los hombres más pequeños? (R:158.55)</p></li>
 </ul>
 
 </div>
@@ -481,8 +613,8 @@ Por lo tanto la probabilidad de que la variable tome valor 4 es <span class="mat
           </div>
         </div>
       </div>
-<a href="modelos-de-probabilidad-para-variables-aletorias-discretas.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="distribución-normal.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="modelos-de-poisson-y-exponencial.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -513,7 +645,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/USERNAME/REPO/edit/BRANCH/07-PoissonExponential.Rmd",
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/08-NoramalDistribution.Rmd",
 "text": "Edit"
 },
 "history": {

@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 10 Distribuciones de muestreo | EEBE Estadística</title>
+  <meta name="description" content="EEBE" />
+  <meta name="generator" content="bookdown 0.36 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 10 Distribuciones de muestreo | EEBE Estadística" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="EEBE" />
+  <meta name="github-repo" content="alejandro-isglobal/master" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 10 Distribuciones de muestreo | EEBE Estadística" />
+  
+  <meta name="twitter:description" content="EEBE" />
+  
+
+<meta name="author" content="Alejandro Cáceres (alejandro.caceres.dominguez@upc.edu)" />
+
+
+<meta name="date" content="2023-11-01" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="distribución-normal.html"/>
+
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Estadística EEBE</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Objetivo</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#lectura-recomendada"><i class="fa fa-check"></i><b>1.1</b> Lectura recomendada</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="descripción-de-datos.html"><a href="descripción-de-datos.html"><i class="fa fa-check"></i><b>2</b> Descripción de datos</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="descripción-de-datos.html"><a href="descripción-de-datos.html#método-científico"><i class="fa fa-check"></i><b>2.1</b> Método científico</a></li>
+<li class="chapter" data-level="2.2" data-path="descripción-de-datos.html"><a href="descripción-de-datos.html#estadística"><i class="fa fa-check"></i><b>2.2</b> Estadística</a></li>
+<li class="chapter" data-level="2.3" data-path="descripción-de-datos.html"><a href="descripción-de-datos.html#datos"><i class="fa fa-check"></i><b>2.3</b> Datos</a></li>
+<li class="chapter" data-level="2.4" data-path="descripción-de-datos.html"><a href="descripción-de-datos.html#tipos-de-resultado"><i class="fa fa-check"></i><b>2.4</b> Tipos de resultado</a></li>
+<li class="chapter" data-level="2.5" data-path="descripción-de-datos.html"><a href="descripción-de-datos.html#experimentos-aleatorios"><i class="fa fa-check"></i><b>2.5</b> Experimentos aleatorios</a></li>
+<li class="chapter" data-level="2.6" data-path="descripción-de-datos.html"><a href="descripción-de-datos.html#frecuencias-absolutas"><i class="fa fa-check"></i><b>2.6</b> Frecuencias absolutas</a></li>
+<li class="chapter" data-level="2.7" data-path="descripción-de-datos.html"><a href="descripción-de-datos.html#frecuencias-relativas"><i class="fa fa-check"></i><b>2.7</b> Frecuencias relativas</a></li>
+<li class="chapter" data-level="2.8" data-path="descripción-de-datos.html"><a href="descripción-de-datos.html#diagrama-de-barras"><i class="fa fa-check"></i><b>2.8</b> Diagrama de barras</a></li>
+<li class="chapter" data-level="2.9" data-path="descripción-de-datos.html"><a href="descripción-de-datos.html#gráfico-de-sectores-pie"><i class="fa fa-check"></i><b>2.9</b> Gráfico de sectores (pie)</a></li>
+<li class="chapter" data-level="2.10" data-path="descripción-de-datos.html"><a href="descripción-de-datos.html#variables-categóricas-ordinales"><i class="fa fa-check"></i><b>2.10</b> Variables categóricas ordinales</a></li>
+<li class="chapter" data-level="2.11" data-path="descripción-de-datos.html"><a href="descripción-de-datos.html#frecuencias-acumuladas-absolutas-y-relativas"><i class="fa fa-check"></i><b>2.11</b> Frecuencias acumuladas absolutas y relativas</a></li>
+<li class="chapter" data-level="2.12" data-path="descripción-de-datos.html"><a href="descripción-de-datos.html#gráfica-de-frecuencia-acumulada"><i class="fa fa-check"></i><b>2.12</b> Gráfica de frecuencia acumulada</a></li>
+<li class="chapter" data-level="2.13" data-path="descripción-de-datos.html"><a href="descripción-de-datos.html#variables-numéricas"><i class="fa fa-check"></i><b>2.13</b> Variables numéricas</a></li>
+<li class="chapter" data-level="2.14" data-path="descripción-de-datos.html"><a href="descripción-de-datos.html#transformando-datos-continuos"><i class="fa fa-check"></i><b>2.14</b> Transformando datos continuos</a></li>
+<li class="chapter" data-level="2.15" data-path="descripción-de-datos.html"><a href="descripción-de-datos.html#tabla-de-frecuencias-para-una-variable-continua"><i class="fa fa-check"></i><b>2.15</b> Tabla de frecuencias para una variable continua</a></li>
+<li class="chapter" data-level="2.16" data-path="descripción-de-datos.html"><a href="descripción-de-datos.html#histograma"><i class="fa fa-check"></i><b>2.16</b> Histograma</a></li>
+<li class="chapter" data-level="2.17" data-path="descripción-de-datos.html"><a href="descripción-de-datos.html#gráfica-de-frecuencia-acumulada-1"><i class="fa fa-check"></i><b>2.17</b> Gráfica de frecuencia acumulada</a></li>
+<li class="chapter" data-level="2.18" data-path="descripción-de-datos.html"><a href="descripción-de-datos.html#estadísticas-de-resumen"><i class="fa fa-check"></i><b>2.18</b> Estadísticas de resumen</a></li>
+<li class="chapter" data-level="2.19" data-path="descripción-de-datos.html"><a href="descripción-de-datos.html#promedio-media-muestral"><i class="fa fa-check"></i><b>2.19</b> Promedio (media muestral)</a></li>
+<li class="chapter" data-level="2.20" data-path="descripción-de-datos.html"><a href="descripción-de-datos.html#promedio"><i class="fa fa-check"></i><b>2.20</b> Promedio</a></li>
+<li class="chapter" data-level="2.21" data-path="descripción-de-datos.html"><a href="descripción-de-datos.html#mediana"><i class="fa fa-check"></i><b>2.21</b> mediana</a></li>
+<li class="chapter" data-level="2.22" data-path="descripción-de-datos.html"><a href="descripción-de-datos.html#dispersión"><i class="fa fa-check"></i><b>2.22</b> Dispersión</a></li>
+<li class="chapter" data-level="2.23" data-path="descripción-de-datos.html"><a href="descripción-de-datos.html#variación-de-la-muestra"><i class="fa fa-check"></i><b>2.23</b> Variación de la muestra</a></li>
+<li class="chapter" data-level="2.24" data-path="descripción-de-datos.html"><a href="descripción-de-datos.html#rango-intercuartílico-iqr"><i class="fa fa-check"></i><b>2.24</b> Rango intercuartílico (IQR)</a></li>
+<li class="chapter" data-level="2.25" data-path="descripción-de-datos.html"><a href="descripción-de-datos.html#diagrama-de-caja"><i class="fa fa-check"></i><b>2.25</b> Diagrama de caja</a></li>
+<li class="chapter" data-level="2.26" data-path="descripción-de-datos.html"><a href="descripción-de-datos.html#preguntas"><i class="fa fa-check"></i><b>2.26</b> Preguntas</a></li>
+<li class="chapter" data-level="2.27" data-path="descripción-de-datos.html"><a href="descripción-de-datos.html#ejercicios"><i class="fa fa-check"></i><b>2.27</b> Ejercicios</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="probabilidad.html"><a href="probabilidad.html"><i class="fa fa-check"></i><b>3</b> Probabilidad</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="probabilidad.html"><a href="probabilidad.html#experimentos-aleatorios-1"><i class="fa fa-check"></i><b>3.1</b> Experimentos aleatorios</a></li>
+<li class="chapter" data-level="3.2" data-path="probabilidad.html"><a href="probabilidad.html#probabilidad-de-medición"><i class="fa fa-check"></i><b>3.2</b> Probabilidad de medición</a></li>
+<li class="chapter" data-level="3.3" data-path="probabilidad.html"><a href="probabilidad.html#probabilidad-clásica"><i class="fa fa-check"></i><b>3.3</b> Probabilidad clásica</a></li>
+<li class="chapter" data-level="3.4" data-path="probabilidad.html"><a href="probabilidad.html#frecuencias-relativas-1"><i class="fa fa-check"></i><b>3.4</b> Frecuencias relativas</a></li>
+<li class="chapter" data-level="3.5" data-path="probabilidad.html"><a href="probabilidad.html#frecuencias-relativas-en-el-infinito"><i class="fa fa-check"></i><b>3.5</b> Frecuencias relativas en el infinito</a></li>
+<li class="chapter" data-level="3.6" data-path="probabilidad.html"><a href="probabilidad.html#probabilidad-frecuentista"><i class="fa fa-check"></i><b>3.6</b> Probabilidad frecuentista</a></li>
+<li class="chapter" data-level="3.7" data-path="probabilidad.html"><a href="probabilidad.html#probabilidades-clásicas-y-frecuentistas"><i class="fa fa-check"></i><b>3.7</b> Probabilidades clásicas y frecuentistas</a></li>
+<li class="chapter" data-level="3.8" data-path="probabilidad.html"><a href="probabilidad.html#definición-de-probabilidad"><i class="fa fa-check"></i><b>3.8</b> Definición de probabilidad</a></li>
+<li class="chapter" data-level="3.9" data-path="probabilidad.html"><a href="probabilidad.html#tabla-de-probabilidades"><i class="fa fa-check"></i><b>3.9</b> Tabla de probabilidades</a></li>
+<li class="chapter" data-level="3.10" data-path="probabilidad.html"><a href="probabilidad.html#espacio-muestral"><i class="fa fa-check"></i><b>3.10</b> Espacio muestral</a></li>
+<li class="chapter" data-level="3.11" data-path="probabilidad.html"><a href="probabilidad.html#eventos"><i class="fa fa-check"></i><b>3.11</b> Eventos</a></li>
+<li class="chapter" data-level="3.12" data-path="probabilidad.html"><a href="probabilidad.html#álgebra-de-eventos"><i class="fa fa-check"></i><b>3.12</b> Álgebra de eventos</a></li>
+<li class="chapter" data-level="3.13" data-path="probabilidad.html"><a href="probabilidad.html#resultados-mutuamente-excluyentes"><i class="fa fa-check"></i><b>3.13</b> Resultados mutuamente excluyentes</a></li>
+<li class="chapter" data-level="3.14" data-path="probabilidad.html"><a href="probabilidad.html#probabilidades-conjuntas"><i class="fa fa-check"></i><b>3.14</b> Probabilidades conjuntas</a></li>
+<li class="chapter" data-level="3.15" data-path="probabilidad.html"><a href="probabilidad.html#tabla-de-contingencia"><i class="fa fa-check"></i><b>3.15</b> Tabla de contingencia</a></li>
+<li class="chapter" data-level="3.16" data-path="probabilidad.html"><a href="probabilidad.html#la-regla-de-la-suma"><i class="fa fa-check"></i><b>3.16</b> La regla de la suma:</a></li>
+<li class="chapter" data-level="3.17" data-path="probabilidad.html"><a href="probabilidad.html#preguntas-1"><i class="fa fa-check"></i><b>3.17</b> Preguntas</a></li>
+<li class="chapter" data-level="3.18" data-path="probabilidad.html"><a href="probabilidad.html#ejercicios-1"><i class="fa fa-check"></i><b>3.18</b> Ejercicios</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="probabilidad-condicional.html"><a href="probabilidad-condicional.html"><i class="fa fa-check"></i><b>4</b> Probabilidad condicional</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="probabilidad-condicional.html"><a href="probabilidad-condicional.html#probabilidad-conjunta"><i class="fa fa-check"></i><b>4.1</b> Probabilidad conjunta</a></li>
+<li class="chapter" data-level="4.2" data-path="probabilidad-condicional.html"><a href="probabilidad-condicional.html#independencia-estadística"><i class="fa fa-check"></i><b>4.2</b> Independencia estadística</a></li>
+<li class="chapter" data-level="4.3" data-path="probabilidad-condicional.html"><a href="probabilidad-condicional.html#la-probabilidad-condicional"><i class="fa fa-check"></i><b>4.3</b> La probabilidad condicional</a></li>
+<li class="chapter" data-level="4.4" data-path="probabilidad-condicional.html"><a href="probabilidad-condicional.html#tabla-de-contingencia-condicional"><i class="fa fa-check"></i><b>4.4</b> Tabla de contingencia condicional</a></li>
+<li class="chapter" data-level="4.5" data-path="probabilidad-condicional.html"><a href="probabilidad-condicional.html#independencia-estadística-1"><i class="fa fa-check"></i><b>4.5</b> Independencia estadística</a></li>
+<li class="chapter" data-level="4.6" data-path="probabilidad-condicional.html"><a href="probabilidad-condicional.html#dependencia-estadística"><i class="fa fa-check"></i><b>4.6</b> Dependencia estadística</a></li>
+<li class="chapter" data-level="4.7" data-path="probabilidad-condicional.html"><a href="probabilidad-condicional.html#prueba-de-diagnóstico"><i class="fa fa-check"></i><b>4.7</b> Prueba de diagnóstico</a></li>
+<li class="chapter" data-level="4.8" data-path="probabilidad-condicional.html"><a href="probabilidad-condicional.html#probabilidades-inversas"><i class="fa fa-check"></i><b>4.8</b> Probabilidades inversas</a></li>
+<li class="chapter" data-level="4.9" data-path="probabilidad-condicional.html"><a href="probabilidad-condicional.html#teorema-de-bayes"><i class="fa fa-check"></i><b>4.9</b> Teorema de Bayes</a></li>
+<li class="chapter" data-level="4.10" data-path="probabilidad-condicional.html"><a href="probabilidad-condicional.html#preguntas-2"><i class="fa fa-check"></i><b>4.10</b> Preguntas</a></li>
+<li class="chapter" data-level="4.11" data-path="probabilidad-condicional.html"><a href="probabilidad-condicional.html#ejercicios-2"><i class="fa fa-check"></i><b>4.11</b> Ejercicios</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="variables-aleatorias-discretas.html"><a href="variables-aleatorias-discretas.html"><i class="fa fa-check"></i><b>5</b> Variables aleatorias discretas</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="variables-aleatorias-discretas.html"><a href="variables-aleatorias-discretas.html#objetivo-1"><i class="fa fa-check"></i><b>5.1</b> Objetivo</a></li>
+<li class="chapter" data-level="5.2" data-path="variables-aleatorias-discretas.html"><a href="variables-aleatorias-discretas.html#frecuencias-relativas-2"><i class="fa fa-check"></i><b>5.2</b> Frecuencias relativas</a></li>
+<li class="chapter" data-level="5.3" data-path="variables-aleatorias-discretas.html"><a href="variables-aleatorias-discretas.html#variable-aleatoria"><i class="fa fa-check"></i><b>5.3</b> Variable aleatoria</a></li>
+<li class="chapter" data-level="5.4" data-path="variables-aleatorias-discretas.html"><a href="variables-aleatorias-discretas.html#eventos-de-observar-una-variable-aleatoria"><i class="fa fa-check"></i><b>5.4</b> Eventos de observar una variable aleatoria</a></li>
+<li class="chapter" data-level="5.5" data-path="variables-aleatorias-discretas.html"><a href="variables-aleatorias-discretas.html#probabilidad-de-variables-aleatorias"><i class="fa fa-check"></i><b>5.5</b> Probabilidad de variables aleatorias</a></li>
+<li class="chapter" data-level="5.6" data-path="variables-aleatorias-discretas.html"><a href="variables-aleatorias-discretas.html#funciones-de-probabilidad"><i class="fa fa-check"></i><b>5.6</b> Funciones de probabilidad</a></li>
+<li class="chapter" data-level="5.7" data-path="variables-aleatorias-discretas.html"><a href="variables-aleatorias-discretas.html#funciones-de-probabilidad-1"><i class="fa fa-check"></i><b>5.7</b> Funciones de probabilidad</a></li>
+<li class="chapter" data-level="5.8" data-path="variables-aleatorias-discretas.html"><a href="variables-aleatorias-discretas.html#probabilidades-y-frecuencias-relativas"><i class="fa fa-check"></i><b>5.8</b> Probabilidades y frecuencias relativas</a></li>
+<li class="chapter" data-level="5.9" data-path="variables-aleatorias-discretas.html"><a href="variables-aleatorias-discretas.html#la-media-o-el-valor-esperado"><i class="fa fa-check"></i><b>5.9</b> La media o el valor esperado</a></li>
+<li class="chapter" data-level="5.10" data-path="variables-aleatorias-discretas.html"><a href="variables-aleatorias-discretas.html#varianza"><i class="fa fa-check"></i><b>5.10</b> Varianza</a></li>
+<li class="chapter" data-level="5.11" data-path="variables-aleatorias-discretas.html"><a href="variables-aleatorias-discretas.html#funciones-de-probabilidad-para-funciones-de-x"><i class="fa fa-check"></i><b>5.11</b> Funciones de probabilidad para funciones de <span class="math inline">\(X\)</span></a></li>
+<li class="chapter" data-level="5.12" data-path="variables-aleatorias-discretas.html"><a href="variables-aleatorias-discretas.html#distribución-de-probabilidad"><i class="fa fa-check"></i><b>5.12</b> Distribución de probabilidad</a></li>
+<li class="chapter" data-level="5.13" data-path="variables-aleatorias-discretas.html"><a href="variables-aleatorias-discretas.html#función-de-probabilidad-y-distribución-de-probabilidad"><i class="fa fa-check"></i><b>5.13</b> Función de probabilidad y distribución de probabilidad</a></li>
+<li class="chapter" data-level="5.14" data-path="variables-aleatorias-discretas.html"><a href="variables-aleatorias-discretas.html#cuantiles"><i class="fa fa-check"></i><b>5.14</b> Cuantiles</a></li>
+<li class="chapter" data-level="5.15" data-path="variables-aleatorias-discretas.html"><a href="variables-aleatorias-discretas.html#resumen"><i class="fa fa-check"></i><b>5.15</b> Resumen</a></li>
+<li class="chapter" data-level="5.16" data-path="variables-aleatorias-discretas.html"><a href="variables-aleatorias-discretas.html#preguntas-3"><i class="fa fa-check"></i><b>5.16</b> Preguntas</a></li>
+<li class="chapter" data-level="5.17" data-path="variables-aleatorias-discretas.html"><a href="variables-aleatorias-discretas.html#ejercicios-3"><i class="fa fa-check"></i><b>5.17</b> Ejercicios</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="variables-aleatorias-continuas.html"><a href="variables-aleatorias-continuas.html"><i class="fa fa-check"></i><b>6</b> Variables aleatorias continuas</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="variables-aleatorias-continuas.html"><a href="variables-aleatorias-continuas.html#objetivo-2"><i class="fa fa-check"></i><b>6.1</b> Objetivo</a></li>
+<li class="chapter" data-level="6.2" data-path="variables-aleatorias-continuas.html"><a href="variables-aleatorias-continuas.html#variables-aleatorias-continuas-1"><i class="fa fa-check"></i><b>6.2</b> Variables aleatorias continuas</a></li>
+<li class="chapter" data-level="6.3" data-path="variables-aleatorias-continuas.html"><a href="variables-aleatorias-continuas.html#frecuencias-relativas-3"><i class="fa fa-check"></i><b>6.3</b> frecuencias relativas</a></li>
+<li class="chapter" data-level="6.4" data-path="variables-aleatorias-continuas.html"><a href="variables-aleatorias-continuas.html#función-de-densidad-de-probabilidad"><i class="fa fa-check"></i><b>6.4</b> función de densidad de probabilidad</a></li>
+<li class="chapter" data-level="6.5" data-path="variables-aleatorias-continuas.html"><a href="variables-aleatorias-continuas.html#área-total-bajo-la-curva"><i class="fa fa-check"></i><b>6.5</b> Área total bajo la curva</a></li>
+<li class="chapter" data-level="6.6" data-path="variables-aleatorias-continuas.html"><a href="variables-aleatorias-continuas.html#probabilidades-de-variables-continuas"><i class="fa fa-check"></i><b>6.6</b> Probabilidades de variables continuas</a></li>
+<li class="chapter" data-level="6.7" data-path="variables-aleatorias-continuas.html"><a href="variables-aleatorias-continuas.html#distribución-de-probabilidad-1"><i class="fa fa-check"></i><b>6.7</b> Distribución de probabilidad</a></li>
+<li class="chapter" data-level="6.8" data-path="variables-aleatorias-continuas.html"><a href="variables-aleatorias-continuas.html#gráficas-de-probabilidad"><i class="fa fa-check"></i><b>6.8</b> Gráficas de probabilidad</a></li>
+<li class="chapter" data-level="6.9" data-path="variables-aleatorias-continuas.html"><a href="variables-aleatorias-continuas.html#media"><i class="fa fa-check"></i><b>6.9</b> Media</a></li>
+<li class="chapter" data-level="6.10" data-path="variables-aleatorias-continuas.html"><a href="variables-aleatorias-continuas.html#varianza-1"><i class="fa fa-check"></i><b>6.10</b> Varianza</a></li>
+<li class="chapter" data-level="6.11" data-path="variables-aleatorias-continuas.html"><a href="variables-aleatorias-continuas.html#funciones-de-x"><i class="fa fa-check"></i><b>6.11</b> Funciones de <span class="math inline">\(X\)</span></a></li>
+<li class="chapter" data-level="6.12" data-path="variables-aleatorias-continuas.html"><a href="variables-aleatorias-continuas.html#ejercicios-4"><i class="fa fa-check"></i><b>6.12</b> Ejercicios</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="modelos-de-probabilidad-para-variables-aletorias-discretas.html"><a href="modelos-de-probabilidad-para-variables-aletorias-discretas.html"><i class="fa fa-check"></i><b>7</b> Modelos de probabilidad para variables aletorias discretas</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="modelos-de-probabilidad-para-variables-aletorias-discretas.html"><a href="modelos-de-probabilidad-para-variables-aletorias-discretas.html#objetivo-3"><i class="fa fa-check"></i><b>7.1</b> Objetivo</a></li>
+<li class="chapter" data-level="7.2" data-path="modelos-de-probabilidad-para-variables-aletorias-discretas.html"><a href="modelos-de-probabilidad-para-variables-aletorias-discretas.html#función-de-probabilidad"><i class="fa fa-check"></i><b>7.2</b> Función de probabilidad</a></li>
+<li class="chapter" data-level="7.3" data-path="modelos-de-probabilidad-para-variables-aletorias-discretas.html"><a href="modelos-de-probabilidad-para-variables-aletorias-discretas.html#modelo-de-probabilidad"><i class="fa fa-check"></i><b>7.3</b> Modelo de probabilidad</a></li>
+<li class="chapter" data-level="7.4" data-path="modelos-de-probabilidad-para-variables-aletorias-discretas.html"><a href="modelos-de-probabilidad-para-variables-aletorias-discretas.html#modelos-paramétricos"><i class="fa fa-check"></i><b>7.4</b> Modelos paramétricos</a></li>
+<li class="chapter" data-level="7.5" data-path="modelos-de-probabilidad-para-variables-aletorias-discretas.html"><a href="modelos-de-probabilidad-para-variables-aletorias-discretas.html#distribución-uniforme-un-parámetro"><i class="fa fa-check"></i><b>7.5</b> Distribución uniforme (un parámetro)</a></li>
+<li class="chapter" data-level="7.6" data-path="modelos-de-probabilidad-para-variables-aletorias-discretas.html"><a href="modelos-de-probabilidad-para-variables-aletorias-discretas.html#distribución-uniforme-dos-parámetros"><i class="fa fa-check"></i><b>7.6</b> Distribución uniforme (dos parámetros)</a></li>
+<li class="chapter" data-level="7.7" data-path="modelos-de-probabilidad-para-variables-aletorias-discretas.html"><a href="modelos-de-probabilidad-para-variables-aletorias-discretas.html#ensayo-de-bernoulli"><i class="fa fa-check"></i><b>7.7</b> Ensayo de Bernoulli</a></li>
+<li class="chapter" data-level="7.8" data-path="modelos-de-probabilidad-para-variables-aletorias-discretas.html"><a href="modelos-de-probabilidad-para-variables-aletorias-discretas.html#experimento-binomial"><i class="fa fa-check"></i><b>7.8</b> Experimento binomial</a></li>
+<li class="chapter" data-level="7.9" data-path="modelos-de-probabilidad-para-variables-aletorias-discretas.html"><a href="modelos-de-probabilidad-para-variables-aletorias-discretas.html#función-de-probabilidad-binomial"><i class="fa fa-check"></i><b>7.9</b> Función de probabilidad binomial</a></li>
+<li class="chapter" data-level="7.10" data-path="modelos-de-probabilidad-para-variables-aletorias-discretas.html"><a href="modelos-de-probabilidad-para-variables-aletorias-discretas.html#función-de-probabilidad-binomial-negativa"><i class="fa fa-check"></i><b>7.10</b> Función de probabilidad binomial negativa</a></li>
+<li class="chapter" data-level="7.11" data-path="modelos-de-probabilidad-para-variables-aletorias-discretas.html"><a href="modelos-de-probabilidad-para-variables-aletorias-discretas.html#distribución-geométrica"><i class="fa fa-check"></i><b>7.11</b> Distribución geométrica</a></li>
+<li class="chapter" data-level="7.12" data-path="modelos-de-probabilidad-para-variables-aletorias-discretas.html"><a href="modelos-de-probabilidad-para-variables-aletorias-discretas.html#modelo-hipergeométrico"><i class="fa fa-check"></i><b>7.12</b> Modelo hipergeométrico</a></li>
+<li class="chapter" data-level="7.13" data-path="modelos-de-probabilidad-para-variables-aletorias-discretas.html"><a href="modelos-de-probabilidad-para-variables-aletorias-discretas.html#preguntas-4"><i class="fa fa-check"></i><b>7.13</b> Preguntas</a></li>
+<li class="chapter" data-level="7.14" data-path="modelos-de-probabilidad-para-variables-aletorias-discretas.html"><a href="modelos-de-probabilidad-para-variables-aletorias-discretas.html#ejercicios-5"><i class="fa fa-check"></i><b>7.14</b> Ejercicios</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="modelos-de-poisson-y-exponencial.html"><a href="modelos-de-poisson-y-exponencial.html"><i class="fa fa-check"></i><b>8</b> Modelos de Poisson y Exponencial</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="modelos-de-poisson-y-exponencial.html"><a href="modelos-de-poisson-y-exponencial.html#objetivo-4"><i class="fa fa-check"></i><b>8.1</b> Objetivo</a></li>
+<li class="chapter" data-level="8.2" data-path="modelos-de-poisson-y-exponencial.html"><a href="modelos-de-poisson-y-exponencial.html#modelos-de-probabilidad-para-variables-discretas"><i class="fa fa-check"></i><b>8.2</b> Modelos de probabilidad para variables discretas</a></li>
+<li class="chapter" data-level="8.3" data-path="modelos-de-poisson-y-exponencial.html"><a href="modelos-de-poisson-y-exponencial.html#experimento-de-poissson"><i class="fa fa-check"></i><b>8.3</b> Experimento de Poissson</a></li>
+<li class="chapter" data-level="8.4" data-path="modelos-de-poisson-y-exponencial.html"><a href="modelos-de-poisson-y-exponencial.html#función-de-masa-de-probabilidad-de-poisson"><i class="fa fa-check"></i><b>8.4</b> Función de masa de probabilidad de Poisson</a></li>
+<li class="chapter" data-level="8.5" data-path="modelos-de-poisson-y-exponencial.html"><a href="modelos-de-poisson-y-exponencial.html#modelos-de-probabilidad-para-variables-continuas"><i class="fa fa-check"></i><b>8.5</b> Modelos de probabilidad para variables continuas</a></li>
+<li class="chapter" data-level="8.6" data-path="modelos-de-poisson-y-exponencial.html"><a href="modelos-de-poisson-y-exponencial.html#experimento-exponencial"><i class="fa fa-check"></i><b>8.6</b> Experimento exponencial</a></li>
+<li class="chapter" data-level="8.7" data-path="modelos-de-poisson-y-exponencial.html"><a href="modelos-de-poisson-y-exponencial.html#densidad-de-probabilidad-exponencial"><i class="fa fa-check"></i><b>8.7</b> Densidad de probabilidad exponencial</a></li>
+<li class="chapter" data-level="8.8" data-path="modelos-de-poisson-y-exponencial.html"><a href="modelos-de-poisson-y-exponencial.html#distribución-exponencial"><i class="fa fa-check"></i><b>8.8</b> Distribución exponencial</a></li>
+<li class="chapter" data-level="8.9" data-path="modelos-de-poisson-y-exponencial.html"><a href="modelos-de-poisson-y-exponencial.html#preguntas-5"><i class="fa fa-check"></i><b>8.9</b> Preguntas</a></li>
+<li class="chapter" data-level="8.10" data-path="modelos-de-poisson-y-exponencial.html"><a href="modelos-de-poisson-y-exponencial.html#ejercicios-6"><i class="fa fa-check"></i><b>8.10</b> Ejercicios</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="distribución-normal.html"><a href="distribución-normal.html"><i class="fa fa-check"></i><b>9</b> Distribución normal</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="distribución-normal.html"><a href="distribución-normal.html#objetivo-5"><i class="fa fa-check"></i><b>9.1</b> Objetivo</a></li>
+<li class="chapter" data-level="9.2" data-path="distribución-normal.html"><a href="distribución-normal.html#historia"><i class="fa fa-check"></i><b>9.2</b> Historia</a></li>
+<li class="chapter" data-level="9.3" data-path="distribución-normal.html"><a href="distribución-normal.html#densidad-normal"><i class="fa fa-check"></i><b>9.3</b> Densidad normal</a></li>
+<li class="chapter" data-level="9.4" data-path="distribución-normal.html"><a href="distribución-normal.html#definición"><i class="fa fa-check"></i><b>9.4</b> Definición</a></li>
+<li class="chapter" data-level="9.5" data-path="distribución-normal.html"><a href="distribución-normal.html#distribución-de-probabilidad-2"><i class="fa fa-check"></i><b>9.5</b> Distribución de probabilidad</a></li>
+<li class="chapter" data-level="9.6" data-path="distribución-normal.html"><a href="distribución-normal.html#densidad-normal-estándar"><i class="fa fa-check"></i><b>9.6</b> Densidad normal estándar</a></li>
+<li class="chapter" data-level="9.7" data-path="distribución-normal.html"><a href="distribución-normal.html#distribución-estándar"><i class="fa fa-check"></i><b>9.7</b> Distribución estándar</a></li>
+<li class="chapter" data-level="9.8" data-path="distribución-normal.html"><a href="distribución-normal.html#estandarización"><i class="fa fa-check"></i><b>9.8</b> Estandarización</a></li>
+<li class="chapter" data-level="9.9" data-path="distribución-normal.html"><a href="distribución-normal.html#resumen-de-modelos-de-probabilidad"><i class="fa fa-check"></i><b>9.9</b> Resumen de modelos de probabilidad</a></li>
+<li class="chapter" data-level="9.10" data-path="distribución-normal.html"><a href="distribución-normal.html#funciones-r-de-modelos-de-probabilidad"><i class="fa fa-check"></i><b>9.10</b> Funciones R de modelos de probabilidad</a></li>
+<li class="chapter" data-level="9.11" data-path="distribución-normal.html"><a href="distribución-normal.html#preguntas-6"><i class="fa fa-check"></i><b>9.11</b> Preguntas</a></li>
+<li class="chapter" data-level="9.12" data-path="distribución-normal.html"><a href="distribución-normal.html#ejercicios-7"><i class="fa fa-check"></i><b>9.12</b> Ejercicios</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="distribuciones-de-muestreo.html"><a href="distribuciones-de-muestreo.html"><i class="fa fa-check"></i><b>10</b> Distribuciones de muestreo</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="distribuciones-de-muestreo.html"><a href="distribuciones-de-muestreo.html#objetivo-6"><i class="fa fa-check"></i><b>10.1</b> Objetivo</a></li>
+<li class="chapter" data-level="10.2" data-path="distribuciones-de-muestreo.html"><a href="distribuciones-de-muestreo.html#muestra-aleatoria"><i class="fa fa-check"></i><b>10.2</b> Muestra aleatoria</a></li>
+<li class="chapter" data-level="10.3" data-path="distribuciones-de-muestreo.html"><a href="distribuciones-de-muestreo.html#cálculo-de-probabilidades"><i class="fa fa-check"></i><b>10.3</b> Cálculo de probabilidades</a></li>
+<li class="chapter" data-level="10.4" data-path="distribuciones-de-muestreo.html"><a href="distribuciones-de-muestreo.html#estimación-de-los-parámetros"><i class="fa fa-check"></i><b>10.4</b> Estimación de los parámetros</a></li>
+<li class="chapter" data-level="10.5" data-path="distribuciones-de-muestreo.html"><a href="distribuciones-de-muestreo.html#margen-de-error-de-las-estimaciones"><i class="fa fa-check"></i><b>10.5</b> Margen de error de las estimaciones</a></li>
+<li class="chapter" data-level="10.6" data-path="distribuciones-de-muestreo.html"><a href="distribuciones-de-muestreo.html#inferencia"><i class="fa fa-check"></i><b>10.6</b> Inferencia</a></li>
+<li class="chapter" data-level="10.7" data-path="distribuciones-de-muestreo.html"><a href="distribuciones-de-muestreo.html#distribución-media-muestral"><i class="fa fa-check"></i><b>10.7</b> Distribución media muestral</a>
+<ul>
+<li class="chapter" data-level="10.7.1" data-path="distribuciones-de-muestreo.html"><a href="distribuciones-de-muestreo.html#suma-muestral"><i class="fa fa-check"></i><b>10.7.1</b> Suma muestral</a></li>
+</ul></li>
+<li class="chapter" data-level="10.8" data-path="distribuciones-de-muestreo.html"><a href="distribuciones-de-muestreo.html#variaza-muestral"><i class="fa fa-check"></i><b>10.8</b> Variaza muestral</a></li>
+<li class="chapter" data-level="10.9" data-path="distribuciones-de-muestreo.html"><a href="distribuciones-de-muestreo.html#probabilidades-de-la-varianza-muestral"><i class="fa fa-check"></i><b>10.9</b> Probabilidades de la varianza muestral</a></li>
+<li class="chapter" data-level="10.10" data-path="distribuciones-de-muestreo.html"><a href="distribuciones-de-muestreo.html#chi2-estadística"><i class="fa fa-check"></i><b>10.10</b> <span class="math inline">\(\chi^2\)</span>-estadística</a></li>
+<li class="chapter" data-level="10.11" data-path="distribuciones-de-muestreo.html"><a href="distribuciones-de-muestreo.html#preguntas-7"><i class="fa fa-check"></i><b>10.11</b> Preguntas</a></li>
+<li class="chapter" data-level="10.12" data-path="distribuciones-de-muestreo.html"><a href="distribuciones-de-muestreo.html#ejercicios-8"><i class="fa fa-check"></i><b>10.12</b> Ejercicios</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">EEBE Estadística</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="distribuciones-de-muestreo" class="section level1 hasAnchor" number="10">
+<h1><span class="header-section-number">Chapter 10</span> Distribuciones de muestreo<a href="distribuciones-de-muestreo.html#distribuciones-de-muestreo" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="objetivo-6" class="section level2 hasAnchor" number="10.1">
+<h2><span class="header-section-number">10.1</span> Objetivo<a href="distribuciones-de-muestreo.html#objetivo-6" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>En este capítulo, vamos a estudiar las estimaciones de la media y la varianza de las distribuciones normales utilizando <strong>muestras aleatorias</strong>.</p>
+<p>Introduciremos la <strong>media muestral</strong> y la <strong>varianza muestral</strong> como variables aleatorias que estiman los parámetros de la distribución normal.</p>
+<p>La media muestral y la varianza muestral tienen funciones de densidad de probabilidad, estas se denominan <strong>funciones de densidad muestral</strong>.</p>
+</div>
+<div id="muestra-aleatoria" class="section level2 hasAnchor" number="10.2">
+<h2><span class="header-section-number">10.2</span> Muestra aleatoria<a href="distribuciones-de-muestreo.html#muestra-aleatoria" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><strong>Ejemplo (Cables)</strong></p>
+<p>Imagina que un cliente le pide a tu empresa metalúrgica que le venda cables a <span class="math inline">\(8\)</span> que pueden transportar hasta <span class="math inline">\(96\)</span> Toneladas; eso es <span class="math inline">\(12\)</span> Toneladas cada uno. Debes garantizar que ninguno de ellos romperá con este peso.</p>
+<p>Tienes en <strong>existencia</strong> un conjunto de cables que podrían servir, pero no estás seguro. Por lo que tomas <span class="math inline">\(8\)</span> cables aleatoriamente, y los cargas hasta que se rompen.</p>
+<p>Decimos que tomas una <strong>muestra aleatoria</strong> de tamaño <span class="math inline">\(8\)</span>, lo que significa que repites el experimento aleatorio <span class="math inline">\(8\)</span> veces. Aquí están los resultados</p>
+<pre><code>## [1] 13.34642 13.32620 13.01459 13.10811 12.96999 13.55309 13.75557 12.62747</code></pre>
+<p><img src="_main_files/figure-html/unnamed-chunk-69-1.png" width="672" /></p>
+<p><strong>Definición:</strong></p>
+<p>Una <strong>muestra aleatoria</strong> de tamaño <span class="math inline">\(n\)</span> es la <strong>repetición</strong> de un experimento aleatorio <span class="math inline">\(n\)</span> <strong>independientes</strong> veces.</p>
+<ul>
+<li>Una muestra aleatoria es una <strong>variable aleatoria</strong> <span class="math inline">\(n\)</span>-dimensional</li>
+</ul>
+<p><span class="math display">\[(X_1, X_2, ... X_n)\]</span></p>
+<p>donde <span class="math inline">\(X_i\)</span> es la <em>i-ésima</em> repetición del experimento aleatorio con distribución común <span class="math inline">\(f(x; \theta)\)</span> para cualquier <span class="math inline">\(i\)</span></p>
+<ul>
+<li><strong>Una observación</strong> de una muestra aleatoria es el conjunto de <span class="math inline">\(n\)</span> valores obtenidos de los experimentos</li>
+</ul>
+<p><span class="math display">\[(x_1, x_2, ... x_n)\]</span>
+Nuestra <strong>observación</strong> de la muestra de tamaño <span class="math inline">\(8\)</span> cables fue</p>
+<pre><code>## [1] 13.34642 13.32620 13.01459 13.10811 12.96999 13.55309 13.75557 12.62747</code></pre>
+<p><strong>Ejemplo (Cables)</strong></p>
+<p>En la muestra observada de la carga de rotura de los cables se observó que</p>
+<ol style="list-style-type: decimal">
+<li><p>Ninguno de ellos rompió en <span class="math inline">\(12\)</span> Toneladas.</p></li>
+<li><p>Hubo uno que rompió en <span class="math inline">\(12.62747\)</span> Toneladas.</p></li>
+</ol>
+<p>¿Te arriesgas y vendes una muestra aleatoria de <span class="math inline">\(8\)</span> cables de tu stock? ¿Qué sucede si su empresa es responsable de la rotura de un cable y tiene que pagar una multa elevada?</p>
+<p>Para garantizar al cliente que los cables no se romperán a <span class="math inline">\(12\)</span> Toneladas, nos gustaría ver que <span class="math inline">\(P(X \leq 12)\)</span> es razonablemente bajo.</p>
+</div>
+<div id="cálculo-de-probabilidades" class="section level2 hasAnchor" number="10.3">
+<h2><span class="header-section-number">10.3</span> Cálculo de probabilidades<a href="distribuciones-de-muestreo.html#cálculo-de-probabilidades" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Para calcular probabilidades necesitamos:</p>
+<ol style="list-style-type: decimal">
+<li><p>Un modelo de probabilidad (función de probabilidad)</p></li>
+<li><p>Los parámetros del modelo (los valores de la función de probabilidad)</p></li>
+</ol>
+<p>Vamos a <strong>suponer</strong> que la carga de rotura de los cables sigue una función de densidad de probabilidad <strong>normal</strong>.</p>
+<p><span class="math display">\[X \rightarrow N(x; \mu, \sigma^2)\]</span></p>
+<p>Para calcular <span class="math inline">\(P(X \leq 12)\)</span>, necesitamos los parámetros <span class="math inline">\(\mu\)</span> y <span class="math inline">\(\sigma^2\)</span>. ¿Cómo podemos estimar los parámetros de la muestra observada?</p>
+</div>
+<div id="estimación-de-los-parámetros" class="section level2 hasAnchor" number="10.4">
+<h2><span class="header-section-number">10.4</span> Estimación de los parámetros<a href="distribuciones-de-muestreo.html#estimación-de-los-parámetros" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Para encontrar valores probables para los parámetros usamos datos. Por lo tanto, tomamos una <strong>muestra aleatoria</strong>. Es decir, repetimos el experimento <span class="math inline">\(n\)</span> veces, recolectamos datos y los usamos para estimar los parámetros.</p>
+<p><strong>Estimación de la media y la varianza</strong></p>
+<p>Recordemos que para una variable aleatoria discreta, definimos la media como</p>
+<p><span class="math display">\[\mu=\sum_{i}^m x_if(x_i)\]</span></p>
+<p>que es el centro de gravedad de las <strong>probabilidades</strong>, donde <span class="math inline">\(f(x_i)\)</span> es la función de probabilidad. Esta definición fue motivada por el centro de gravedad de las <strong>observaciones</strong></p>
+<p><span class="math display">\[\bar{x}= \frac{1}{n} \sum_{i}^n x_i = \sum_{i}^m x_if_i\]</span></p>
+<p>que definimos como <strong>promedio</strong>, y donde <span class="math inline">\(f_i\)</span> son las frecuencias relativas. Recuerda que <span class="math inline">\(n\)</span> es el número de observaciones (puede ser tan grande como queramos) y <span class="math inline">\(m\)</span> es el número de resultados posibles (normalmente fijado por el espacio muestral). Discutimos que cuando <span class="math inline">\(n \rightarrow \infty\)</span> entonces</p>
+<p><span class="math display">\[\hat{P}(X=x)=f_i\]</span>
+Esto significa que las probabilidades pueden ser <strong>estimadas</strong> (poniéndose un <strong>sombrero</strong>) por las frecuencias relativas cuando <span class="math inline">\(n\)</span> es grande, porque <span class="math inline">\(lim_{n\rightarrow \infty}f_i=f(x_i)\)</span>. Por lo tanto, también deberíamos tener que la <strong>media</strong> <span class="math inline">\(\mu\)</span> puede ser estimada por el <strong>promedio</strong> <span class="math inline">\(\bar{x}\)</span></p>
+<p><span class="math display">\[\hat{\mu}=\bar{x}= \sum_{i}^m x_i\hat{P}(X=x)\]</span></p>
+<p>Asi pues, podemos tomar el centro de la función de probabilidad como el centro de gravedad de los datos. Al hacer esto cometeremos un error que podemos asumir, como explicaremos luego.</p>
+<p>Con la varianza</p>
+<p><span class="math display">\[\sigma^2=\sum_{i}^m (x_i-\mu)^2f(x_i)\]</span></p>
+<p>tenemos una situación similar. En el límite cuando <span class="math inline">\(n \rightarrow \infty\)</span></p>
+<p><span class="math display">\[\hat{\sigma}^2=s^2=\frac{1}{n-1}\sum_{i=1}^n (x_i-\bar{x})^2\]</span></p>
+<p>y suponemos que el momento de inercia de los datos es cercano al momento de inercia de las probabilidades.</p>
+<p><strong>Ejemplo (Cables)</strong></p>
+<p>Suponiendo que la carga de rotura de nuestro cable es una variable aleatoria normal</p>
+<p><span class="math display">\[X \rightarrow N(x; \mu, \sigma^2)\]</span></p>
+<p><strong>usamos</strong> las estimaciones <span class="math inline">\(\bar{x}_{stock}=13,21\)</span> (<code>mean(x)</code>) y <span class="math inline">\(s^2=0.3571565^2\)</span> (<code>sd( x)^2</code>) como los valores de <span class="math inline">\(\mu\)</span> y <span class="math inline">\(\sigma^2\)</span>. De tal forma que el modelo <strong>ajustado</strong> es</p>
+<p><span class="math display">\[X \rightarrow N(x; \mu=13.21, \sigma^2=0.3571565^2)\]</span>
+En este problema <strong>no sabíamos</strong> <span class="math inline">\(\mu\)</span> o <span class="math inline">\(\sigma\)</span> y, por lo tanto, estamos adivinando su valor y el modelo subyacente</p>
+<p><img src="_main_files/figure-html/unnamed-chunk-71-1.png" width="672" /></p>
+<p>¿Cuál es la probabilidad de que el cable se rompa a <span class="math inline">\(12\)</span> Toneladas?</p>
+<p>Como <span class="math display">\[X \rightarrow N(x; \mu=13.21, \sigma^2=0.3571565^2)\]</span></p>
+<p>entonces</p>
+<p><span class="math display">\[P(X \leq 12)= F(12; \mu=13.21, \sigma^2=0.1275608)\]</span></p>
+<p>En R <code>pnorm(12,13.21, 0.3571565)</code><span class="math inline">\(=0.000352188\)</span></p>
+<p>Dada la muestra <strong>observada</strong>, existe una probabilidad estimada de <span class="math inline">\(0.03\%\)</span> de que un solo cable se rompa en <span class="math inline">\(12\)</span> Toneladas. Tenemos un argumento probabilístico para vender los cables.</p>
+</div>
+<div id="margen-de-error-de-las-estimaciones" class="section level2 hasAnchor" number="10.5">
+<h2><span class="header-section-number">10.5</span> Margen de error de las estimaciones<a href="distribuciones-de-muestreo.html#margen-de-error-de-las-estimaciones" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Cuando estimamos los parámetros usando datos, como al tomar el valor de <span class="math display">\[\hat{\mu}=\bar{x}\]</span></p>
+<p>por el valor de <span class="math inline">\(\mu\)</span>; y el valor de</p>
+<p><span class="math display">\[\hat{\sigma}^2=s^2\]</span>
+por el valor de <span class="math inline">\(\sigma^2\)</span>, sabemos que estamos <strong>cometiendo un error</strong>. Sabemos que si tomamos otra muestra de tamaño <span class="math inline">\(8\)</span> cables <strong>la estimación cambiará</strong>, porque el promedio <span class="math inline">\(\bar{x}\)</span> cambiará.</p>
+<p>¿Podemos tener una idea de cuán grande es el error de nuestra estimación?</p>
+<p>Lo primero que debemos darnos cuenta es que el valor numérico que obtenemos para <span class="math display">\[\bar{x}\]</span> es la observación de una <strong>variable aleatoria</strong> <span class="math display">\[\bar{X}\]</span></p>
+<p><strong>Definición</strong></p>
+<p>La <strong>media muestral</strong> (o promedio) de una muestra aleatoria de tamaño <span class="math inline">\(n\)</span> se define como</p>
+<p><span class="math display">\[\bar{X}=\frac{1}{n}\sum_{i=1}^n X_i\]</span></p>
+<p>El promedio es una <strong>variable aleatoria</strong> que en nuestra muestra de tamaño <span class="math inline">\(8\)</span> tomó el valor</p>
+<p><span class="math display">\[\bar{x}_{stock}=13.21\]</span></p>
+<p>Si tomamos otra muestra, este número cambiará.</p>
+<p><strong>La media como estimador</strong></p>
+<p>El número <span class="math inline">\(\bar{x}\)</span> se puede usar para <strong>estimar</strong> el parámetro desconocido <span class="math inline">\(\mu\)</span> porque la variable aleatoria <span class="math inline">\(\bar{X}\)</span> satisface estas dos propiedades importantes</p>
+<ol style="list-style-type: decimal">
+<li>es <strong>insesgada</strong>: <span class="math display">\[E(\bar{X})=\mu\]</span></li>
+<li>es <strong>consistente</strong>: <span class="math display">\[lim_{n \rightarrow \infty} V(\bar{X}) = 0\]</span></li>
+</ol>
+<p>La primera propiedad se tiene porque
+<span class="math display">\[E(\bar{X})=E\big(\frac{1}{n}\sum_{i=1}^n X_i\big)=E(X)=\mu\]</span></p>
+<p>La segunda propiedad se tien porque
+<span class="math display">\[V(\bar{X})=V\big(\frac{1}{n}\sum_{i=1}^n X_i\big)=\frac{V(\sum_{i=1}^ nX_i)}{n^2}=\frac{V(X)}{n}=\frac{\sigma^2}{n}\]</span></p>
+<p>Que utiliza el hecho de que cada experimento aleatorio en la muestra es independiente y por lo tanto <span class="math inline">\(V(\sum_{i=1}^n X_i)=nV(X)\)</span>.</p>
+<p><em>Estimación de <span class="math inline">\(\mu\)</span></em></p>
+<p>Como consecuencia de las propiedades 1 y 2, entendemos que el valor <span class="math inline">\(\bar{x}\)</span> <strong>se concentra más y más cerca</strong> de <span class="math inline">\(\mu\)</span> a medida que aumenta <span class="math inline">\(n\)</span>. Esto significa que el error que cometemos cuando tomamos un valor de <span class="math inline">\(\bar{x}\)</span> como la estimación de <span class="math inline">\(\mu\)</span></p>
+<p><span class="math display">\[\bar{x}=\hat{\mu}\]</span></p>
+<p>se vuelve más y más pequeño a medida que la muestra se hace más y más grande porque la varianza de <span class="math inline">\(\bar{x}\)</span> disminuye cuando <span class="math inline">\(n\)</span> aumenta.</p>
+</div>
+<div id="inferencia" class="section level2 hasAnchor" number="10.6">
+<h2><span class="header-section-number">10.6</span> Inferencia<a href="distribuciones-de-muestreo.html#inferencia" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Sabemos que cuando tomamos muestras grandes, nuestro error es pequeño. Sin embargo, para un valor dado de <span class="math inline">\(n\)</span> queremos tener una <strong>medida del error</strong>. Por lo tanto, nos preguntamos por la <strong>probabilidad de cometer un error</strong> de un tamaño dado cuando estimamos <span class="math inline">\(\mu\)</span> con <span class="math inline">\(\bar{x}\)</span>.</p>
+<p>Cuando calculamos probabilidades en un estimador, decimos que estamos haciendo una <strong>inferencia</strong>. Los problemas de inferencia suelen surgir cuando nos interesa calcular la probabilidad de cometer un error al estimar <span class="math inline">\(\mu\)</span> con <span class="math inline">\(\bar{x}\)</span>.</p>
+<p>Para calcular probabilidades necesitamos</p>
+<ol style="list-style-type: decimal">
+<li><p>Un modelo de probabilidad (función de probabilidad)</p></li>
+<li><p>Los parámetros del modelo (los valores de la función de probabilidad)</p></li>
+</ol>
+<p>¿Cuáles son las funciones de probabilidad de <span class="math inline">\(\bar{X}\)</span> y <span class="math inline">\(S^2\)</span> para que podamos calcular sus probabilidades?</p>
+<p>Estas funciones de probabilidad se denominan <strong>funciones de probabilidad de muestreo</strong>, porque se derivan de un experimento de muestreo.</p>
+<p><strong>Ejemplo (cables)</strong></p>
+<p>Hagamos una pregunta de inferencia. Imagina que nuestros cables están <strong>certificados</strong> para romperse con una carga promedio de <span class="math inline">\(\mu = 13\)</span> Toneladas con varianza <span class="math inline">\(\sigma^2=0.35^2\)</span>.</p>
+<p>Si tomamos una muestra aleatoria de <span class="math inline">\(8\)</span> cables, ¿Cuál es la probabilidad de que la media de la muestra <span class="math inline">\(\bar{X}\)</span> esté dentro de un <strong>margen de error</strong> de <span class="math inline">\(0.25\)</span> Toneladas de la media <span class="math inline">\(\mu\)</span>?</p>
+<p><span class="math display">\[P(- 0.25\leq \bar{X}-\mu \leq 0.25)\]</span></p>
+<p>Para calcular esta probabilidad, necesitamos conocer la función de probabilidad de <span class="math inline">\(\bar{X}\)</span>.</p>
+</div>
+<div id="distribución-media-muestral" class="section level2 hasAnchor" number="10.7">
+<h2><span class="header-section-number">10.7</span> Distribución media muestral<a href="distribuciones-de-muestreo.html#distribución-media-muestral" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><strong>Teorema:</strong> Si <span class="math inline">\(X\)</span> sigue una distribución normal <span class="math display">\[X \rightarrow N(\mu, \sigma^2)\]</span></p>
+<p>entonces <span class="math inline">\(\bar{X}\)</span> es normal</p>
+<p><span class="math display">\[\bar{X} \rightarrow N(\mu, \frac{\sigma^2}{n})\]</span>
+y <span class="math inline">\(\bar{X}\)</span> tiene</p>
+<ol style="list-style-type: decimal">
+<li><p>media
+<span class="math display">\[E(\bar{X})=\mu\]</span>
+decimos que <span class="math inline">\(\bar{X}\)</span> es insesgado porque su valor esperado es <span class="math inline">\(\mu\)</span></p></li>
+<li><p>varianza
+<span class="math display">\[V(\bar{X})=\frac{\sigma^2}{n}\]</span>
+Decimos que <span class="math inline">\(\bar{X}\)</span> es consistente porque tiende a cero cuando <span class="math inline">\(n\)</span> es grande.</p></li>
+</ol>
+<p>Llamamos <span class="math inline">\(se=\sqrt{V(\bar{X})}\)</span> al <strong>error estándar</strong> de la media muestral. El error estándar también se escribe como <span class="math inline">\(\sigma_{\bar{x}}\)</span>. Ten en cuenta que este es el error que esperamos cuando usamos <span class="math inline">\(\bar{x}\)</span> como el valor de <span class="math inline">\(\mu\)</span>, y es el sesgo que necesitábamos corregir para <span class="math inline">\(S_n^2\)</span>.</p>
+<p>Entonces, si <strong>sabemos</strong> <span class="math inline">\(\mu\)</span> y <span class="math inline">\(\sigma\)</span>, podemos calcular las <strong>probabilidades de</strong> <span class="math inline">\(\bar{X}\)</span> usando la distribución normal.</p>
+<p>Recuerda que tenemos <strong>dos funciones de probabilidad</strong>:</p>
+<ol style="list-style-type: decimal">
+<li><p>La función de probabilidad de <span class="math inline">\(X\)</span> también se conoce como la función de probabilidad de la <strong>población</strong></p></li>
+<li><p>La función de probabilidad de <span class="math inline">\(\bar{X}\)</span> es una función de probabilidad de la <strong>muestra</strong>.</p></li>
+</ol>
+<p><strong>Ejemplo (cables)</strong></p>
+<p><em>Densidades de probabilidad para <span class="math inline">\(X\)</span> y <span class="math inline">\(\bar{X}\)</span></em></p>
+<p>En nuestro nuevo problema, ahora <strong>sabemos</strong> <span class="math inline">\(\mu\)</span> y <span class="math inline">\(\sigma\)</span> y la función de probabilidad de la <strong>población</strong></p>
+<p><span class="math display">\[X \rightarrow N(\mu=13, \sigma^2=0.35^2)\]</span></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-72-1.png" width="672" /></p>
+<p>Dado que <span class="math inline">\(X\)</span> es normal, entonces <span class="math inline">\(\bar{X}\)</span> es normal y, por lo tanto, también conocemos la función de probabilidad de la media muestral <span class="math inline">\(\bar{X}\)</span></p>
+<p><span class="math display">\[\bar{X} \rightarrow N(13, \frac{0.35^2}{8})\]</span></p>
+<p>que tiene media y varianza</p>
+<ol style="list-style-type: decimal">
+<li><span class="math inline">\(E(\bar{X})=\mu=13\)</span></li>
+<li><span class="math inline">\(V(\bar{X})=\frac{\sigma^2}{n}=\frac{0.35^2}{8}=0.01530169\)</span></li>
+</ol>
+<p><img src="_main_files/figure-html/unnamed-chunk-73-1.png" width="672" /></p>
+<p>Finalmente queremos calcular <strong>la probabilidad</strong> de que nuestra estimación tenga un margen de error de <span class="math inline">\(0.25\)</span>. Esa es una distancia de <span class="math inline">\(0.25\)</span> de la media. Eso es <span class="math display">\[P(-0.25 \leq \bar{X} - 13\leq 0.25)=P(12.75 \leq \bar{X} \leq 13.25)\]</span></p>
+<p><br>
+<span class="math inline">\(=F(13.25; \mu, \sigma^2/n)-F(12.75; \mu, \sigma^2/n)\)</span></p>
+<p>En R podemos calcularlo como:</p>
+<p><code>pnorm(13.25, 13, 0.1237)-pnorm(12.75, 13, 0.1237)=0.956</code>.</p>
+<p>Recuerda: <span class="math inline">\(se=\sigma_{\bar{x}}=\sqrt{0.01530169}=0.1237\)</span></p>
+<p>Por lo tanto el <span class="math inline">\(95.6\%\)</span> de los promedios <span class="math inline">\(\bar{X}\)</span> de muestras aleatorias de tamaño <span class="math inline">\(8\)</span> están a una distancia de <span class="math inline">\(0.25\)</span> de la media <span class="math inline">\(\mu=13\)</span>.</p>
+<p>Si vendemos nuestro proceso para construir los cables, podemos decirles a los nuevos fabricantes que cuando sigan nuestras instrucciones, pueden probar el proceso tomando una muestra de tamaño <span class="math inline">\(8\)</span> cables. En ese caso, pueden esperar que el promedio de la muestra caiga entre <span class="math inline">\((12.75, 13.25)\)</span> alrededor de <span class="math inline">\(95\%\)</span> de las veces.</p>
+<p><img src="_main_files/figure-html/unnamed-chunk-74-1.png" width="672" /></p>
+<p>Cuando realizamos el muestreo aleatorio observamos:</p>
+<pre><code>## [1] 13.34642 13.32620 13.01459 13.10811 12.96999 13.55309 13.75557 12.62747</code></pre>
+<p>Asumiendo que <span class="math inline">\(\mu=13\)</span> entonces nuestro <strong>error observado</strong> en la estimación de la media es la diferencia</p>
+<p><span class="math display">\[\bar{x}_{stock}-\mu=13.21-13=0.21\]</span></p>
+<p>Lo cual está dentro del margen de error de <span class="math inline">\(95.6\%\)</span> y por lo tanto, debemos considerar que el proceso de fabricación está funcionando como se esperaba.</p>
+<p><img src="_main_files/figure-html/unnamed-chunk-76-1.png" width="672" /></p>
+<div id="suma-muestral" class="section level3 hasAnchor" number="10.7.1">
+<h3><span class="header-section-number">10.7.1</span> Suma muestral<a href="distribuciones-de-muestreo.html#suma-muestral" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Si estamos interesados en usar todos los <span class="math inline">\(8\)</span> cables al mismo tiempo para transportar un total de <span class="math inline">\(96\)</span> Toneladas, entonces deberíamos considerar <strong>sumar</strong> sus contribuciones individuales.</p>
+<p>La <strong>suma muestral</strong> es la <strong>estadística</strong></p>
+<p><span class="math display">\[Y=n \bar{X}=\sum_{i=1}^n X_i\]</span></p>
+<p>Una <strong>estadística</strong> es cualquier función de la muestra aleatoria <span class="math inline">\((X_1, ... X_n)\)</span>.</p>
+<p><strong>Teorema:</strong> si <span class="math inline">\(X\)</span> sigue una distribución normal
+<span class="math display">\[X \rightarrow N(\mu, \sigma^2)\]</span></p>
+<p>entonces <span class="math inline">\(Y\)</span> es normal</p>
+<p><span class="math display">\[Y \rightarrow N(n\mu, n\sigma^2)\]</span></p>
+<p><span class="math inline">\(Y\)</span> tiene</p>
+<ol style="list-style-type: decimal">
+<li>media <span class="math display">\[E(Y)=n\mu\]</span></li>
+<li>varianza <span class="math display">\[V(Y)=n\sigma^2\]</span></li>
+</ol>
+<p><strong>Ejemplo (suma de cables)</strong></p>
+<p>¿Cuál es la probabilidad de que cuando juntamos todos los cables, puedan llevar un peso total entre <span class="math inline">\(102=8(13 - 0.25)\)</span> y <span class="math inline">\(106=8(13+ 0.25)\)</span> Toneladas?</p>
+<p><strong>Sabemos</strong> que para nuestros cables <span class="math display">\[X \rightarrow N(\mu=13, \sigma^2=0.35^2)\]</span> entonces</p>
+<p><span class="math display">\[Y \rightarrow N(n\mu=104, n\sigma^2=8\times 0.35^2)\]</span></p>
+<p>con media y varianza</p>
+<ol style="list-style-type: decimal">
+<li><span class="math inline">\(E(Y)=n\mu=104\)</span></li>
+<li><span class="math inline">\(V(Y)=n\sigma^2=8\times 0.35^2=0.98\)</span>; <span class="math inline">\(\sqrt{V(Y)}=0.9899495\)</span></li>
+</ol>
+<p>Queremos calcular <span class="math display">\[P(102 \leq Y \leq 106)\]</span></p>
+<p><br>
+<span class="math inline">\(=F(102; n\mu, n\sigma^2)-F(106; n\mu, n\sigma^2)\)</span></p>
+<p>En R podemos calcularlo como:</p>
+<p><code>pnorm(106, 104, 0.9899495)-pnorm(102, 104, 0.9899495)=0.956</code>.</p>
+<p>Por lo tanto <span class="math inline">\(95.6\%\)</span> del peso total que pueden llevar <span class="math inline">\(8\)</span> cables están entre <span class="math inline">\(102\)</span> y <span class="math inline">\(106\)</span> Toneladas, o una distancia de <span class="math inline">\(8*0.25=2\)</span> Toneladas de la media total <span class="math inline">\(n\mu=104\)</span>.</p>
+</div>
+</div>
+<div id="variaza-muestral" class="section level2 hasAnchor" number="10.8">
+<h2><span class="header-section-number">10.8</span> Variaza muestral<a href="distribuciones-de-muestreo.html#variaza-muestral" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Al estimar la varianza</p>
+<p><span class="math display">\[s^2=\hat{\sigma}\]</span></p>
+<p>También cometemos un error. ¿Cómo podemos estimar el error que cometemos?</p>
+<p><strong>Definición</strong></p>
+<p>La <strong>varianza muestral</strong> <span class="math inline">\(S^2\)</span> de una muestra aleatoria de tamaño <span class="math inline">\(n\)</span></p>
+<p><span class="math display">\[S^2= \frac{1}{n-1}\sum_{i=1}^n (X_i-\bar{X})^2\]</span></p>
+<p>es la dispersión de las medidas al rededor de <span class="math inline">\(\bar{X}\)</span>. En nuestra muestra de tamaño <span class="math inline">\(8\)</span>, <span class="math inline">\(S^2\)</span> tomó el valor</p>
+<p><span class="math display">\[s_{stock}^2=\frac{1}{n-1}\sum_{i=1}^n (x_i-\bar{x})^2=0.1275608\]</span></p>
+<p><span class="math inline">\(S^2\)</span> es</p>
+<ol style="list-style-type: decimal">
+<li>insesgada: <span class="math inline">\(E(S^2)=V(X)=\sigma^2\)</span></li>
+<li>consistente: <span class="math inline">\(n \rightarrow \infty\)</span>, <span class="math inline">\(V(\bar{S^2}) \rightarrow 0\)</span></li>
+</ol>
+<p>y por lo tanto <span class="math inline">\(S^2\)</span> estima consistentemente <span class="math inline">\(\sigma^2\)</span></p>
+<p>Podemos tomar un valor de <span class="math inline">\(s^2\)</span> como estimación para <span class="math inline">\(\sigma^2\)</span> o</p>
+<p><span class="math display">\[s^2=\hat{\sigma}^2\]</span>
+De manera similar a <span class="math inline">\(\hat{\mu}\)</span>, el error de esta estimación se hace cada vez más pequeño a medida que <span class="math inline">\(n\)</span> se hace cada vez más grande.</p>
+<p><strong>La varianza muestral insesgada (¿por qué dividimos entre n-1?)</strong></p>
+<p>Podríamos proponer estimar <span class="math inline">\(\sigma^2\)</span> dividiendo las diferencias cuadráticas de <span class="math inline">\(\bar{X}\)</span> por <span class="math inline">\(n\)</span></p>
+<p><span class="math display">\[S_n^2=\frac{1}{n}\sum_{i=1}^n (X_i-\bar{X})^2\]</span></p>
+<p><span class="math inline">\(S_n^2\)</span> es por lo tanto</p>
+<ol style="list-style-type: decimal">
+<li><strong>sesgada</strong>: <span class="math inline">\(E(S_n^2) = \sigma^2-\frac{\sigma^2}{n} \neq \sigma^2\)</span></li>
+<li>pero consistente <span class="math inline">\(V(S_n^2) \rightarrow 0\)</span> cuando <span class="math inline">\(n\rightarrow \infty\)</span></li>
+</ol>
+<p>El término de sesgo <span class="math inline">\(\frac{\sigma^2}{n}\)</span> surge porque <span class="math inline">\(S_n^2\)</span> mide la dispersión al rededor de <span class="math inline">\(\bar{X}\)</span> y no al rededor de <span class="math inline">\(\mu\)</span>. Recuerda que el error que cometemos cuando sustituimos <span class="math inline">\(\bar{x}\)</span> por <span class="math inline">\(\mu\)</span> es la varianza de <span class="math inline">\(\bar{X}\)</span>: <span class="math inline">\(\sigma^2/n\)</span>. Corrijamos el sesgo, escribiendo la ecuación 1 anterior como:</p>
+<p><span class="math display">\[E(\frac{n}{n-1}S_n^2)=\sigma^2\]</span></p>
+<p>Podemos definir la <strong>varianza muestral</strong> (corregida) <span class="math display">\[S^2=\frac{n}{n-1}S_n^2=\frac{1}{n-1}\sum_{i=1}^n (X_i-\bar{X})^2\]</span></p>
+<p>que es un estimador insesgado de <span class="math inline">\(\sigma^2\)</span> porque <span class="math inline">\(E(S^2)=\sigma^2\)</span>.</p>
+<p>También podemos tener problemas de inferencia cuando estamos interesados en la probabilidad de la <strong>varianza muestral</strong> <span class="math inline">\(S^2\)</span>.</p>
+<p>Considera un proceso de control de calidad que requiera que los cables se produzcan cerca del valor especificado <span class="math inline">\(\mu\)</span>. No queremos cables que se rompan demasiado lejos de la media.</p>
+<p>Si una muestra de tamaño <span class="math inline">\(8\)</span> cables está muy dispersa (<span class="math inline">\(S^2&gt;0.3\)</span>), detenemos la producción: el proceso está fuera de control.</p>
+<p>¿Cuál es la probabilidad de que la varianza muestral de una muestra de tamaño <span class="math inline">\(8\)</span> cables sea mayor que los <span class="math inline">\(0.3\)</span> requeridos?</p>
+</div>
+<div id="probabilidades-de-la-varianza-muestral" class="section level2 hasAnchor" number="10.9">
+<h2><span class="header-section-number">10.9</span> Probabilidades de la varianza muestral<a href="distribuciones-de-muestreo.html#probabilidades-de-la-varianza-muestral" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><strong>Teorema:</strong> Si <span class="math inline">\(X\)</span> sigue una distribución normal
+<span class="math display">\[X \rightarrow N(\mu, \sigma^2)\]</span></p>
+<p>La <strong>estadística</strong>:</p>
+<p><span class="math display">\[W=\frac{(n-1)S^2}{\sigma^2} \rightarrow \chi^2(n-1)\]</span></p>
+<p>tiene una distribución <span class="math inline">\(\chi^2\)</span> (chi-cuadrado) con <span class="math inline">\(df=n-1\)</span> grados de libertad dada por</p>
+<p><span class="math display">\[f(w)=C_n w^{\frac{n-3}{2}} e^{-\frac{w}{2}}\]</span></p>
+<p>dónde:</p>
+<ol style="list-style-type: decimal">
+<li><span class="math inline">\(C_n=\frac{1}{2^{(n-1)/2\sqrt{\pi(n-1)}}}\)</span> asegura <span class="math inline">\(\int_{-\infty}^{\infty} f (t)dt=1\)</span></li>
+<li><span class="math inline">\(\Gamma(x)\)</span> es el factorial de Euler para números reales</li>
+</ol>
+<p>Si <strong>sabemos</strong> el valor de <span class="math inline">\(\sigma\)</span>, podemos calcular las probabilidades de <span class="math inline">\(S^2\)</span> usando la distribución <span class="math inline">\(\chi^2\)</span> para <span class="math inline">\(W\)</span>.</p>
+</div>
+<div id="chi2-estadística" class="section level2 hasAnchor" number="10.10">
+<h2><span class="header-section-number">10.10</span> <span class="math inline">\(\chi^2\)</span>-estadística<a href="distribuciones-de-muestreo.html#chi2-estadística" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>La densidad de probabilidad <span class="math inline">\(\chi^2\)</span> tiene un parámetro <span class="math inline">\(df=n-1\)</span>, llamado grados de libertad. Veamos algunas densidades de probabilidad en la familia de modelos de probabilidad <span class="math inline">\(\chi^2\)</span></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-77-1.png" width="672" /></p>
+<p><strong>Ejemplo (variaciones en la rotura del cable)</strong></p>
+<p>Si <strong>sabemos</strong> que nuestros cables
+<span class="math display">\[X \rightarrow N(\mu=13, \sigma^2=0.35^2)\]</span></p>
+<p>entonces</p>
+<p><span class="math display">\[W=\frac{(n-1)S^2}{\sigma^2}= \frac{7S^2}{0.35^2} \rightarrow \chi^2(n-1)\]</span></p>
+<p>podemos calcular <span class="math display">\[P(S^2 &gt; 0.3)=P(\frac{(n-1)S^2}{\sigma^2} &gt; \frac{(n-1)0.3}{\sigma^2 })\]</span>
+<span class="math inline">\(=P(W &gt; \frac{7*0.3}{0.35^2})=P(W &gt; 17.14286)\)</span></p>
+<p><span class="math inline">\(=1-P(W \leq 17.14286)\)</span></p>
+<p><span class="math inline">\(= 1- F_{\chi^2,df=7}(17.14286)=0.016\)</span></p>
+<p>En R
+<code>1-pchisq(17.14286, df=7)=0.016 </code></p>
+<p>Solo hay una probabilidad de <span class="math inline">\(1\%\)</span> de obtener un valor superior a <span class="math inline">\(s^2=0.3\)</span>. Por lo tanto, <span class="math inline">\(s^2&gt;0.3\)</span> parece ser un buen criterio para detener la producción y revisar el proceso.</p>
+<p>Si tomamos una muestra aleatoria y obtenemos un valor de <span class="math inline">\(s ^2\)</span> que es mayor que <span class="math inline">\(0.3\)</span>, será una observación rara si todo está bien. Solemos creer que los valores observados son comunes, no raros, por lo que podemos pensar que algo no está bien.</p>
+<p>Cuando realizamos el muestreo aleatorio observamos:</p>
+<pre><code>## [1] 13.34642 13.32620 13.01459 13.10811 12.96999 13.55309 13.75557 12.62747</code></pre>
+<p>Por lo tanto, nuestro valor observado fue <span class="math inline">\(s^2_{stock}=0.1275608\)</span></p>
+<p>La muestra no está muy dispersa porque <span class="math inline">\(s^2_{stock} &lt; 0.3\)</span> y creemos que todo está bien y la producción está bajo control.</p>
+</div>
+<div id="preguntas-7" class="section level2 hasAnchor" number="10.11">
+<h2><span class="header-section-number">10.11</span> Preguntas<a href="distribuciones-de-muestreo.html#preguntas-7" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><strong>1)</strong> La media muestral es un estimador insesgado de la media poblacional porque</p>
+<p><strong><span class="math inline">\(\qquad\)</span>a:</strong> El valor esperado de la media muestral es la media poblacional;
+<strong><span class="math inline">\(\qquad\)</span>b:</strong> El valor esperado de la media poblacional es la media muestral;
+<strong><span class="math inline">\(\qquad\)</span>c:</strong> El error estándar tiende a cero cuando <span class="math inline">\(n\)</span> tiende a infinito;
+<strong><span class="math inline">\(\qquad\)</span>d:</strong> La varianza de la media muestral tiende a cero cuando <span class="math inline">\(n\)</span> tiende a infinito;</p>
+<p><strong>2)</strong> ¿Por qué se usa la estadística <span class="math inline">\(S^2=\frac{1}{n-1}\sum_{i=1}^{n}(X_i -\bar{X})^2\)</span> en su lugar de <span class="math inline">\(S_n^2=\frac{1}{n}\sum_{i=1}^{n}(X_i -\bar{X})^2\)</span> para estimar la varianza de una variable aleatoria?</p>
+<p><strong><span class="math inline">\(\qquad\)</span>a:</strong> porque su varianza es <span class="math inline">\(0\)</span>;
+<strong><span class="math inline">\(\qquad\)</span>b:</strong> porque es un estimador consistente de <span class="math inline">\(\sigma^2\)</span>;
+<strong><span class="math inline">\(\qquad\)</span>c:</strong> porque es un estimador insesgado de <span class="math inline">\(\sigma^2\)</span>;
+<strong><span class="math inline">\(\qquad\)</span>d:</strong> porque es la distancia cuadrática promedio a la media muestral (<span class="math inline">\(\bar{X}\)</span>);</p>
+<p><strong>3)</strong> ¿Cuál es la varianza de la media muestral <span class="math inline">\(\bar{X}=\frac{1}{n}\sum_{i=1}^n X_i\)</span>?</p>
+<p><strong><span class="math inline">\(\qquad\)</span>a:</strong><span class="math inline">\(\sigma\)</span>;
+<strong><span class="math inline">\(\qquad\)</span>b:</strong><span class="math inline">\(\frac{\sigma}{\sqrt{n}}\)</span>;
+<strong><span class="math inline">\(\qquad\)</span>c:</strong><span class="math inline">\(\sigma^2\)</span>;
+<strong><span class="math inline">\(\qquad\)</span>d:</strong><span class="math inline">\(\frac{\sigma^2}{n}\)</span>;</p>
+<p><strong>4)</strong> ¿Cuál es la media y la varianza de la suma muestral?</p>
+<p><strong><span class="math inline">\(\qquad\)</span>a:</strong><span class="math inline">\(\mu\)</span>, <span class="math inline">\(n\sigma\)</span>;
+<strong><span class="math inline">\(\qquad\)</span>b:</strong><span class="math inline">\(n\mu\)</span>,<span class="math inline">\(n\sigma\)</span>;
+<strong><span class="math inline">\(\qquad\)</span>c:</strong><span class="math inline">\(\mu\)</span>, <span class="math inline">\(n\sigma^2\)</span>;
+<strong><span class="math inline">\(\qquad\)</span>d:</strong><span class="math inline">\(n\mu\)</span>, <span class="math inline">\(n\sigma^2\)</span>;</p>
+<p><strong>5)</strong> Una pregunta de inferencia implica:</p>
+<p><strong><span class="math inline">\(\qquad\)</span>a:</strong> calcular el valor esperado de un estimador;
+<strong><span class="math inline">\(\qquad\)</span>b:</strong> estimar el valor de un parámetro;
+<strong><span class="math inline">\(\qquad\)</span>c:</strong> calcular una probabilidad de un estimador;
+<strong><span class="math inline">\(\qquad\)</span>d:</strong> ajustar un modelo de probabilidad;</p>
+</div>
+<div id="ejercicios-8" class="section level2 hasAnchor" number="10.12">
+<h2><span class="header-section-number">10.12</span> Ejercicios<a href="distribuciones-de-muestreo.html#ejercicios-8" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="ejercicio-1-7" class="section level4 hasAnchor" number="10.12.0.1">
+<h4><span class="header-section-number">10.12.0.1</span> Ejercicio 1<a href="distribuciones-de-muestreo.html#ejercicio-1-7" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Una empresa de electrónica fabrica resistencias que tienen una resistencia media de 100 ohmios y
+una desviación estándar de 10 ohmios. La distribución de la resistencia es normal.</p>
+<ul>
+<li><p>¿Cuál es la media muestral de <span class="math inline">\(n=25\)</span> resistencias? (R:100)</p></li>
+<li><p>¿Cuál es la varianza de la media muestral de <span class="math inline">\(n=25\)</span> resistencias? (R:4)</p></li>
+<li><p>¿Cuál es el error estándar de la media muestral de <span class="math inline">\(n=25\)</span> resistencias? (R:2)</p></li>
+<li><p>Encuentra la probabilidad
+que una muestra aleatoria de <span class="math inline">\(n = 25\)</span> resistencias tenga una resistencia promedio de menos de <span class="math inline">\(95\)</span> ohmios (R: 0.0062)</p></li>
+</ul>
+</div>
+<div id="ejercicio-2-7" class="section level4 hasAnchor" number="10.12.0.2">
+<h4><span class="header-section-number">10.12.0.2</span> Ejercicio 2<a href="distribuciones-de-muestreo.html#ejercicio-2-7" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Un modelo de batería carga una media de <span class="math inline">\(75\%\)</span> de su capacidad en una hora con una desviación estándar de <span class="math inline">\(15\%\)</span>.</p>
+<ul>
+<li><p>Si la carga de la batería es una variable normal, ¿cuál es la probabilidad de que la diferencia de carga entre la media muestral de <span class="math inline">\(25\)</span> baterías y la carga media sea como mucho de <span class="math inline">\(5\%\)</span>? (R:0.9044)</p></li>
+<li><p>Si cargamos <span class="math inline">\(100\)</span> baterías, ¿cuál es esa probabilidad? (R:0.9991)</p></li>
+<li><p>Si en cambio solo cargamos <span class="math inline">\(9\)</span> baterías, ¿qué carga <span class="math inline">\(c\)</span> es superada por la media muestral con probabilidad de <span class="math inline">\(0.015\)</span>? (R:85.850)</p></li>
+</ul>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="distribución-normal.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/09-SamplingDistriutions.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

@@ -36,6 +36,46 @@
   \KOMAoptions{parskip=half}}
 \makeatother
 \usepackage{xcolor}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
 \usepackage{longtable,booktabs,array}
 \usepackage{calc} % for calculating minipage widths
 % Correct order of tables after \paragraph or \subparagraph
@@ -80,7 +120,7 @@
 
 \title{EEBE Estadística}
 \author{Alejandro Cáceres (\href{mailto:alejandro.caceres.dominguez@upc.edu}{\nolinkurl{alejandro.caceres.dominguez@upc.edu}})}
-\date{2023-11-10}
+\date{2023-11-26}
 
 \begin{document}
 \maketitle
@@ -7066,6 +7106,722 @@ calcular:
 \end{itemize}
 
 \[x_1 = 27; \qquad   x_2 = 8; \qquad   x_3 = 22; \qquad   x_4 = 29; \qquad   x_5 = 19; \qquad   x_5 = 32\]
+
+\hypertarget{intervalos-de-confianza}{%
+\chapter{Intervalos de confianza}\label{intervalos-de-confianza}}
+
+\hypertarget{objetivo-9}{%
+\section{Objetivo}\label{objetivo-9}}
+
+En este capítulo, presentaremos el concepto de \textbf{intervalos de confianza} para medias, proporciones y varianzas.
+
+Derivaremos las fórmulas para los intervalos de confianza bajo diferentes condiciones, como normalidad con varianza conocida y desconocida, y \(n\) grande.
+
+\hypertarget{estimaciuxf3n-de-la-media}{%
+\section{Estimación de la media}\label{estimaciuxf3n-de-la-media}}
+
+Hemos visto que siempre que tomamos una muestra aleatoria \((X_1, X_2, ... X_n)\), la media muestral
+\[\bar{X}=\frac{1}{n}\sum_{i=1}^n X_i\]
+
+es un estimador de la media \(\mu\) de la variable aleatoria \(X\). El estimador es \textbf{insesgado}
+
+\begin{itemize}
+\tightlist
+\item
+  \(E(\bar{X})=\mu\)
+\end{itemize}
+
+y \textbf{consistente}
+
+\begin{itemize}
+\tightlist
+\item
+  \(V(\bar{X})=\frac{\sigma^2}{n}\)
+\end{itemize}
+
+donde \(\sigma^2\) es la varianza de \(X\). Llamamos a \(se=\frac{\sigma}{\sqrt{n}}\) el \textbf{error estándar}.
+
+cuando tomamos los valores de la muestra aleatoria, tomamos el valor de \(\bar{x}\) como el valor de la media. Eso es
+
+\[\bar{x}=\hat{\mu}\]
+
+Como \(\bar{X}\) es una variable aleatoria, la estimación de la media \textbf{cambia} cuando tomamos \textbf{otra muestra}.
+
+\hypertarget{margen-de-error-1}{%
+\section{Margen de error}\label{margen-de-error-1}}
+
+Al decidir si el \textbf{error} en la estimación \[\bar{X}-\mu\] es grande o no, generalmente lo comparamos con una tolerancia predefinida. \textbf{Si sabemos} que la distribución de \(X\) es normal \(X \rightarrow N(\mu, \sigma^2)\) y el valor de \(\mu\), podemos calcular qué tan lejos cae la estimación de \(\bar{x}\) de \(\mu\).
+
+Definimos el \textbf{margen de error} al nivel de \(5\%\) como la distancia \(m\) tal que la distribución de \(\bar{X}\) captura \(95\%\) de las estimaciones:
+
+\[P(-m \leq \bar{X}-\mu \leq m)=P(\mu-m \leq \bar{X} \leq\mu + m)=0.95\]
+
+Si \(\bar{X}\) se distribuye normalmente, entonces el margen de error es
+
+\[m=z_{0.025} \frac{\sigma}{\sqrt{n}}=1.96\times se\]
+donde \(z_{0.025}=\phi^{-1}(0.975)=\) qnorm(0.975)
+
+\textbf{Ejemplo (cables):}
+
+Tomamos una muestra aleatoria de tamaño \(8\): Cargamos un cable hasta que se rompan y registramos la carga de rotura.
+
+\textbf{Si sabemos} que la rotura de los cables realmente se distribuyen normalmente \[X \rightarrow N(\mu=13, \sigma^2=0.35^2)\] entonces la media muestral es normal
+
+\[\bar{X} \rightarrow N(13, \frac{0.35^2}{8})\]
+
+Con media \(E(\bar{X})=13\) y error estándar \(se=\frac{0.35}{\sqrt{8}}=0.1237\)
+
+Por lo tanto, el margen de error en \(95\%\) es
+
+\[m=z_{0.025} \frac{\sigma}{\sqrt{n}}=1.96\times se=1.96\frac{0.35}{\sqrt{8}}=0.24\]
+Ahora, tomamos la muestra aleatoria y encontramos los resultados.
+
+\begin{verbatim}
+## [1] 13.34642 13.32620 13.01459 13.10811 12.96999 13.55309 13.75557 12.62747
+\end{verbatim}
+
+El promedio observado es \(\bar{x}=13.21\), y el error que cometeríamos si reemplazamos \(\mu\) por \(\bar{x}\), sería
+
+\[\bar{x}-\mu=13.21-13=0.21\]
+El \textbf{error observado} está dentro del margen de error
+
+\[\bar{x}-\mu <m\]
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-88-1.pdf}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-89-1.pdf}
+
+\hypertarget{estimaciuxf3n-de-intervalo-para-la-media}{%
+\section{Estimación de intervalo para la media}\label{estimaciuxf3n-de-intervalo-para-la-media}}
+
+El problema es que en la vida real \textbf{no sabemos} los valores reales de \(\mu\) o \(\sigma\) para
+
+\[X \rightarrow N(\mu, \sigma^2)\]
+Empezamos tomando la muestra
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-90-1.pdf}
+
+y luego calcular la media
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-91-1.pdf}
+
+¿Cuál es el valor de \(\mu\)?
+
+Nuestros datos sugieren que es \(\bar{x}=13.21\). Reemplazar \(\mu\) por \(\bar{x}\) se denomina \textbf{estimación puntual} del parámetro. Pero ¿qué tan \textbf{seguros} estamos al hacer este remplazo? después de todo, sabemos que estamos cometiendo un error, pero no sabemos qué tan grande es.
+
+Definimos el intervalo de confianza para \(\mu\). De la ecuación del margen de error
+
+\[P(-m \leq \bar{X} - \mu \leq m)=0.95\]
+resolvamos para \(\mu\) que es \textbf{la verdadera incógnita}
+
+\[P(\bar{X} - m \leq \mu \leq \bar{X} + m)=0.95\]
+
+Los límites izquierdo y derecho de la desigualdad son variables aleatorias que motivan la definición del \textbf{intervalo de confianza aleatorio en \(95\%\):}
+
+\[(L,U)=(\bar{X} - m,\bar{X} + m)\]
+
+Este intervalo es una nueva \textbf{variable aleatoria} y tiene por definición una probabilidad de \(0.95\) de contener \(\mu\).
+
+El \textbf{intervalo observado} que obtenemos del experimento es (en minúsculas)
+
+\[(l,u)=(\bar{x} - m,\bar{x} + m)\]
+
+Este intervalo contiene o no el parámetro \(\mu\): ¡\textbf{nunca lo sabremos}!
+
+Decimos que tenemos una confianza de \(95\%\) en que el intervalo \((l,u)\) capturará el verdadero parámetro desconocido \(\mu\). Piensa en comprar un billete de lotería del raspa y gana pero que no podemos raspar para ver el premio. El billete tiene o no el premio sólo que no lo sabemos.
+
+\hypertarget{caso-1-varianza-conocida}{%
+\subsection{Caso 1 (varianza conocida)}\label{caso-1-varianza-conocida}}
+
+Los intervalos de confianza se pueden estimar en diferentes casos. El primer caso es cuando
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \(X\) es una variable normal
+\item
+  y conocemos el valor de \(\sigma\)
+\end{enumerate}
+
+el intervalo de confianza en \(95\%\) es
+
+\[(l,u)=(\bar{x} - m, \bar{x} + m)\]
+donde \[m=z_{0.025} \frac{\sigma}{\sqrt{n}}\]
+
+Eso es:
+
+\[(l,u)=(\bar{x} - z_{0.025} \frac{\sigma}{\sqrt{n}}, \bar{x} + z_{0.025} \frac{\sigma}{ \sqrt{n}})\]
+
+\textbf{Ejemplo (cables):}
+
+En nuestro ejemplo, asumimos que \(X\) se distribuye normalmente y que sabemos \(\sigma^2=0.35^2\).
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Dado que \(\bar{X}\) es normal, el margen de error es
+\end{enumerate}
+
+\[m=z_{0.025} \frac{\sigma}{\sqrt{n}}\]
+2. Como sabemos \(\sigma^2=0.35^2\), entonces el intervalo de confianza de \(95\%\) es
+
+\((l,u)=(\bar{x} - m, \bar{x} + m)=\) \[(\bar{x}-z_{0.025} \frac{\sigma}{\sqrt{n }}, \bar{x}+z_{0.025} \frac{\sigma}{\sqrt{n}})= (12.97,13.45)\]
+
+o también podemos escribirlo como
+
+\[\hat{\mu}=\bar{x} \pm m = 13.21 \pm 0.24\]
+Esto significa que, al estimar la media por el promedio, confiamos en las unidades pero no tanto en los lugares decimales.
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-92-1.pdf}
+
+Recuerda que el intervalo de confianza \((l,u)\) es una observación del intervalo de confianza aleatorio \((L,U)\). Por lo tanto, cada vez que obtenemos una nueva muestra entonces \((l,u)\) cambia. Si realizamos muestras de \(100\) de tamaño \(n\) entonces \(95%
+\) de los intervalos de confianza contendrán \(\mu\), ¡pero no sabemos cuál!
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-93-1.pdf}
+
+\hypertarget{nivel-de-confianza}{%
+\subsection{Nivel de confianza}\label{nivel-de-confianza}}
+
+Podemos cambiar nuestra confianza de \(95\%\) a \(99\%\). Cuando calculamos el margen de error en \(95\%\), dejamos por fuera \(\alpha=0.05\) de probabilidad, \(0.025\) a cada lado.
+
+Ahora, podemos dejar fuera \(\alpha=0.01\) de probabilidad, \(0.005\) a cada lado. Por lo tanto, el intervalo de confianza de \(99\%\) es
+
+\((l,u) = (\bar{x} - z_{0.005}\frac{\sigma}{\sqrt{n}},\bar{x} + z_{0.005}\frac{\sigma}{\sqrt{n}})\)
+
+\[= (\bar{x} - 2.58\frac{\sigma}{\sqrt{n}},\bar{x} + 2.58\frac{\sigma}{\sqrt{n}})\]
+
+\includegraphics{./figures/phi.JPG}
+
+donde \(z_{0.005}=\phi^{-1}(0.995)=\) qnorm(0.995). También podemos escribirlo como
+
+\[\hat{\mu}=\bar{x} \pm 2.58\frac{\sigma}{\sqrt{n}}\]
+Para nuestros cables, el intervalo de confianza de \(99\%\) es
+
+\[\hat{\mu}= 13.21 \pm 0.31\]
+
+Si queremos tener más confianza, ¡necesitamos intervalos de confianza más grandes!
+
+\textbf{Ejemplo (Energía de impacto):}
+
+Un material metálico se prueba por impacto para medir la energía requerida para cortarlo a una temperatura dada. Se cortaron diez probetas de acero A238 a 60ºC con las siguientes energías de impacto (J):
+
+\(64.1, 64.7, 64.5, 64.6, 64.5, 64.3, 64.6, 64.8, 64.2, 64.3\)
+
+Si \textbf{suponemos} que la energía del impacto se distribuye normalmente con \(\sigma=1J\), ¿cuál es el intervalo de confianza de \(95\%\) para la media de estos datos?
+
+Sabemos
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \(X \rightarrow N(\mu, \sigma^2)\)
+\item
+  \(\sigma=1J\)
+\item
+  \(\alpha=0.05\) (el límite de confianza)
+\end{enumerate}
+
+El intervalo de confianza de \(95\%\) es entonces
+
+\((l,u)=(\bar{x}-1.96 \frac{\sigma}{\sqrt{n}}, \bar{x}+1.96 \frac{\sigma}{\sqrt{n}})\)
+\[=(64.46-1.96 \frac{1}{\sqrt{10}}, 64.46+1.96 \frac{1}{\sqrt{10}})=(63.84,65.08)\]
+
+o
+
+\[\hat{\mu}=64.46 \pm 0.61\]
+
+esto nos dice que podemos estar seguros del primer dígito (6), algo seguros del segundo (4) e inseguros de los decimales (46).
+
+En R:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(BSDA) }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Loading required package: lattice
+\end{verbatim}
+
+\begin{verbatim}
+## 
+## Attaching package: 'BSDA'
+\end{verbatim}
+
+\begin{verbatim}
+## The following object is masked from 'package:datasets':
+## 
+##     Orange
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{z.test}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\FloatTok{64.1}\NormalTok{, }\FloatTok{64.7}\NormalTok{, }\FloatTok{64.5}\NormalTok{, }\FloatTok{64.6}\NormalTok{, }\FloatTok{64.5}\NormalTok{, }\FloatTok{64.3}\NormalTok{, }\FloatTok{64.6}\NormalTok{, }\FloatTok{64.8}\NormalTok{, }\FloatTok{64.2}\NormalTok{, }\FloatTok{64.3}\NormalTok{), }
+       \AttributeTok{sigma.x=}\DecValTok{1}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  One-sample z-Test
+## 
+## data:  c(64.1, 64.7, 64.5, 64.6, 64.5, 64.3, 64.6, 64.8, 64.2, 64.3)
+## z = 203.84, p-value < 2.2e-16
+## alternative hypothesis: true mean is not equal to 0
+## 95 percent confidence interval:
+##  63.8402 65.0798
+## sample estimates:
+## mean of x 
+##     64.46
+\end{verbatim}
+
+¿Qué pasa si \(\sigma^2\) es \textbf{desconocido}?
+
+\hypertarget{margen-de-error-para-varianza-desconocida}{%
+\section{Margen de error para varianza desconocida}\label{margen-de-error-para-varianza-desconocida}}
+
+Pudimos calcular el intervalo de confianza \((l,u)=(\bar{x} -m, \bar{x} -m)\) porque pudimos encontrar el margen de error
+
+\[m=1.96 \frac{\sigma}{\sqrt{n}}\]
+desde que \textbf{sabíamos} \(\sigma\). \(\sigma\) es un parámetro de la distribución que normalmente \textbf{no conocemos}, así cmo \(\mu\). Para encontrar el margen de error con varianza \textbf{desconocida}, necesitamos el siguiente teorema, debido a Gosset
+
+\hypertarget{teorema-estaduxedstica-t}{%
+\subsection{Teorema (estadística T)}\label{teorema-estaduxedstica-t}}
+
+Cuando \(X\) es normal, entonces la estadística estandarizada
+
+\[T=\frac{\bar{X}-\mu}{\frac{S}{\sqrt{n}}}\]
+Sigue una distribución \(t\) con \(n-1\) grados de libertad, donde \(S^2=\frac{1}{n-1} \sum_{i=1}^n (X_i-\bar{X})^2\). Por lo tanto, podemos calcular probabilidades para \(\bar{X}\), incluso si no conocemos \(\sigma\).
+
+Veamos algunas densidades de probabilidad en la familia de las distribuciones \(T\).
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-95-1.pdf}
+
+Ahora necesitamos volver a calcular el margen de error \(m\) al nivel de \(5\%\) cuando usamos la distribución \(t\)
+
+\(P(\mu-m \leq \bar{X} \leq\mu + m)\)
+\[=P(-\frac{m}{s/\sqrt{n}} \leq T \leq\frac{m}{s/\sqrt{n}})=0.95\]
+
+\[m=t_{0.025, n-1} \frac{s}{\sqrt{n}}\]
+donde \(t_{0.025, n-1}\) es el valor \(T\) que deja \(2.5\%\) de probabilidad en el lado derecho de la distribución \(t\) con \(n-1\) grados de libertad.
+
+\hypertarget{caso-2-varianza-desconocida}{%
+\subsection{Caso 2 (varianza desconocida)}\label{caso-2-varianza-desconocida}}
+
+El segundo caso para calcular los intervalos de confianza es más realista. Si
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \(X\) es una variable normal
+\end{enumerate}
+
+el intervalo de confianza en \(95\%\) es
+
+\[(l,u)=(\bar{x} - m, \bar{x} + m)\]
+donde \[m=t_{0.025, n-1} \frac{s}{\sqrt{n}}\]
+
+Eso es:
+
+\[(l,u)=(\bar{x} - t_{0.025, n-1} \frac{s}{\sqrt{n}}, \bar{x} + t_{0.025, n-1} \frac{s}{\sqrt{n}})\]
+donde \(t_{0.025, n-1}=F^{-1}(0.975)\)=qt(0.975, n-1)
+
+\textbf{Ejemplo (Energía de impacto):}
+
+Un material metálico se prueba por impacto para medir la energía requerida para cortarlo a una temperatura dada. Se cortaron diez probetas de acero A238 a 60ºC con las siguientes energías de impacto (J):
+
+\(64.1, 64.7, 64.5, 64.6, 64.5, 64.3, 64.6, 64.8, 64.2, 64.3\)
+
+Si \textbf{suponemos} que la energía del impacto se distribuye normalmente pero \textbf{no conocemos} la varianza, ¿cuál es el intervalo de confianza de \(95\%\) para la media de estos datos?
+
+Sabemos
+
+\begin{itemize}
+\tightlist
+\item
+  \(\bar{x}=64.46\)
+\item
+  \(s=0.227\)
+\item
+  \(\alpha=0.05\)
+\item
+  \(t_{0.025,9}=2.26\) obtenido de \(t_{0.025,9}=\) qt(0.975, 9)
+\end{itemize}
+
+El intervalo de confianza es entonces
+
+\((l,u)=(\bar{x}- t_{0.025,9}\frac{s}{\sqrt{n}},\bar{x}+t_{0.025,9} \frac{s} {\sqrt{n}})\)
+
+\[=(64.46-2.26 \frac{0.227}{\sqrt{10}},64.46+2.26 \frac{0.227}{\sqrt{10}})\] \[=(64.29,64.62)\]
+
+Tenga en cuenta que cuando asumimos \(\sigma=1\) el intervalo de confianza \((63.84,65.08)\) era mayor. Por lo tanto, los datos sugieren que \(\sigma<1\).
+
+En R, podemos calcular el intervalo de confianza con:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{t.test}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\FloatTok{64.1}\NormalTok{,}\FloatTok{64.7}\NormalTok{,}\FloatTok{64.5}\NormalTok{,}\FloatTok{64.6}\NormalTok{,}\FloatTok{64.5}\NormalTok{,}\FloatTok{64.3}\NormalTok{,}\FloatTok{64.6}\NormalTok{,}\FloatTok{64.8}\NormalTok{,}\FloatTok{64.2}\NormalTok{,}\FloatTok{64.3}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  One Sample t-test
+## 
+## data:  c(64.1, 64.7, 64.5, 64.6, 64.5, 64.3, 64.6, 64.8, 64.2, 64.3)
+## t = 897.74, df = 9, p-value < 2.2e-16
+## alternative hypothesis: true mean is not equal to 0
+## 95 percent confidence interval:
+##  64.29757 64.62243
+## sample estimates:
+## mean of x 
+##     64.46
+\end{verbatim}
+
+\hypertarget{estimaciuxf3n-de-proporciones}{%
+\section{Estimación de proporciones}\label{estimaciuxf3n-de-proporciones}}
+
+\textbf{Ejemplo (vacuna):}
+
+Se seleccionó una muestra aleatoria de \(400\) pacientes para probar una nueva vacuna contra el virus de la influenza, después de \(6\) meses de vacunación, \(134\) estaban enfermos. ¿Cuál es la eficacia esperada de la vacuna?
+
+Dado que cada vacunación \(X_i\) es un ensayo de Bernoulli
+
+\[X \rightarrow Bernoulli(p)\]
+Con media \(\mu=p\) y varianza \(\sigma^2=p(1-p)\).
+
+La muestra es algo como
+\[(x_1,x_2, x_3, ...x_n)=(0,1,0,.. 1, 0)_{400}\] con \(134\) unos y en un total de \(400\) repeticiones. La muestra tiene un promedio de \(\bar{x}=\frac{1}{400}\sum_i^{400} x_i=134/400=0.34\). Dado que la media muestral es un estimador insesgado de \(\mu\), entonces podemos tener una estimación puntual para \(p\)
+
+\[\hat{p}=\bar{x}=134/400=0.34\]
+
+Esto tiene sentido porque \(\bar{x}\) es la frecuencia relativa observada para el número de \textbf{unos} en la muestra (\(f_1\)). Y como tal, es un estimador de la probabilidad de observar un uno en un ensayo de Bernoulli.
+
+\[f_1 =\hat{P}(X=1)\]
+Esto es consistente con la definición frecuentista de probabilidad que vimos en el capítulo 2. Pero, ¿qué confianza tenemos en esta estimación? Queremos un intervalo de confianza para \(p\)
+
+\hypertarget{caso-3-proporciones}{%
+\subsection{Caso 3 (proporciones)}\label{caso-3-proporciones}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Cuando \(\hat{p}n>5\) y \((\hat{p}-1)n>5\), la \textbf{estadística estandarizada} de \(\bar{X}\) se puede aproximar mediante un estándar distribución (TCL)
+\end{enumerate}
+
+\[Z=\frac{\bar{X}-\mu}{\sigma/\sqrt{n}}= \frac{\bar{X}-p}{\big[\frac{p(1-p)}{n} \big]^{1/2}}\rightarrow N(0,1)\]
+y el intervalo de CI al \(95\%\) de \(p\) es:
+
+\[CI=(l,u)=(\bar{x}-z_{0.025}\big[\frac{\bar{x}(1-\bar{x})}{n} \big]^{ 1/2}, \bar{x}+z_{0.025}\big[\frac{\bar{x}(1-\bar{x})}{n} \big]^{1/2})\]
+Donde estimamos la varianza de Bernoulli \(\sigma^2=p(1-p)\) por \(\hat{\sigma}^2=\bar{x}(1-\bar{x})\). Es decir \(\hat{\sigma}=\sqrt{\bar{x}(1-\bar{x})}\).
+
+\textbf{Ejemplo (vacuna):}
+
+En nuestro caso, estamos contando \(134\) fallos de inmunización de \(400\) inoculaciones.
+
+sabemos
+
+\begin{itemize}
+\tightlist
+\item
+  \(\bar{x}=134/400=0.34\)
+\item
+  \(z_{0.025}=1.96\)
+\end{itemize}
+
+Por lo tanto, el intervalo de confianza de \(95\%\) para \(p\) es
+
+\((l,u)=(\bar{x}-1.96 \big[\frac{\bar{x}(1-\bar{x})}{n} \big]^{1/2}, \bar{x}+1.96 \big[\frac{\bar{x}(1-\bar{x})}{n} \big]^{1/2})\)
+
+\[=(0.29,0.38)\]
+
+La probabilidad de fracaso de la vacuna es
+
+\[\hat{p}=0.34 \pm 0.05\]
+
+en R
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{prop.test}\NormalTok{(}\DecValTok{134}\NormalTok{, }\DecValTok{400}\NormalTok{, }\AttributeTok{correct=}\ConstantTok{FALSE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  1-sample proportions test without continuity correction
+## 
+## data:  134 out of 400, null probability 0.5
+## X-squared = 43.56, df = 1, p-value = 4.112e-11
+## alternative hypothesis: true p is not equal to 0.5
+## 95 percent confidence interval:
+##  0.2905091 0.3826300
+## sample estimates:
+##     p 
+## 0.335
+\end{verbatim}
+
+Nota: Las encuestas de intención de voto (ensayo de Bernoulli) en una muestra de \(n\) individuos reportan este tipo de estimación con su \textbf{margen de error}. No significa que el \textbf{valor verdadero} de \(p\) esté dentro de este intervalo con una probabilidad de \(95\%\). Significa que tenemos una confianza del \(95\%\) de haber atrapado al \(p\) que representa esta muestra en particular.
+
+\hypertarget{estimaciuxf3n-de-la-varianza}{%
+\section{Estimación de la varianza}\label{estimaciuxf3n-de-la-varianza}}
+
+Hemos visto que siempre que tomamos una muestra aleatoria \((X_1, X_2, ... X_n)\), la varianza muestral
+\[S^2=\frac{1}{n-1}\sum_{i=1}^n (X_i-\bar{X})^2\]
+es un estimador de la media \(\sigma^2\) de la variable aleatoria \(X\). El estimador es \textbf{insesgado}
+
+\begin{itemize}
+\tightlist
+\item
+  \(E(S^2)=\sigma^2\)
+\end{itemize}
+
+y también es \textbf{consistente}. Cuando tomamos los valores de la muestra aleatoria, tomamos el valor de \(S^2\) como el valor de la varianza; eso es
+
+\[s^2=\hat{\sigma}^2\]
+
+Dado que \(S^2\) es una variable aleatoria, la estimación de la varianza cambia cuando tomamos otra muestra.
+
+\textbf{Ejemplo (energía de impacto)}
+
+Un material metálico se prueba por impacto para medir la energía requerida para cortarlo a una temperatura dada. Se cortaron diez probetas de acero A238 a 60ºC con las siguientes energías de impacto (J):
+
+\(64.1, 64.7, 64.5, 64.6, 64.5, 64.3, 64.6, 64.8, 64.2, 64.3\)
+
+¿Cuál es la estimación de la varianza de estos datos?
+
+\[s^2=0.05155556\]
+En R: sd(c(64.1, 64.7, 64.5, 64.6, 64.5, 64.3, 64.6, 64.8, 64.2, 64.3))\^{}2
+
+¿Cuánta confianza tenemos en los decimales de la estimación?
+
+\hypertarget{intervalo-de-confianza-para-la-varianza}{%
+\section{Intervalo de confianza para la varianza}\label{intervalo-de-confianza-para-la-varianza}}
+
+Para calcular un intervalo de confianza para la varianza, necesitamos una estadística que sea una función de \(S^2\) y nos permita calcular probabilidades. Usaremos el siguiente teorema
+
+\hypertarget{teorema-chi2}{%
+\subsection{\texorpdfstring{Teorema (\(\chi^2\)):}{Teorema (\textbackslash chi\^{}2):}}\label{teorema-chi2}}
+
+Cuando \(X\) es normal, entonces la estadística estandarizada
+
+\[W=\frac{S^2(n-1)}{\sigma^2}\]
+sigue una distribución \(\chi^2\) con \(n-1\) grados de libertad
+
+\[\frac{S^2}{\sigma^2}(n-1)\rightarrow \chi^2_{n-1}\]
+
+Por lo tanto, podemos calcular probabilidades para \(W\).
+
+Veamos algunas densidades de probabilidad en la familia de las distribuciones \(\chi^2\).
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-98-1.pdf}
+
+\hypertarget{intervalo-de-confianza-para-la-varianza-1}{%
+\subsection{Intervalo de confianza para la varianza}\label{intervalo-de-confianza-para-la-varianza-1}}
+
+Buscamos el intervalo de confianza de \(\sigma^2\) con confianza \(95\%\) \((L,U)\) tal que \[P(L \leq \sigma^2 \leq U)=0.95\]
+
+Entonces podemos usar el \(\chi^2\) para determinar el \(95\%\) de la distribución alrededor de \(W\). Comencemos definiendo los valores que capturan los \(95\%\) de la distribución
+
+\[P(\chi^2_{0.975,n-1} \leq W \leq \chi^2_{0.025,n-1})=0.95\]
+Reemplazando el valor de \(W\)
+
+\[P(\chi^2_{0.975,n-1} \leq \frac{S^2}{\sigma^2}(n-1) \leq \chi^2_{0.025,n-1})= 0.95\]
+
+y resolviendo para \(\sigma^2\)
+
+\[P(\frac{S^2 (n-1)}{\chi^2_{0.025,n-1}}\leq \sigma^2 \leq \frac{S^2(n-1)}{ \chi^2_{0.975,n-1}})=0.95\]
+
+Encontramos un intervalo aleatorio que captura \(\sigma^2\)
+con \(95\%\) de confianza
+
+\[(L,U) = (\frac{S^2 (n-1)}{\chi^2_{0.025,n-1}},\frac{S^2(n-1)}{\chi ^2_{0.975,n-1}})\]
+
+\hypertarget{caso-4-varianza}{%
+\subsection{Caso 4 (varianza)}\label{caso-4-varianza}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Cuando \(X\) es una variable normal
+\end{enumerate}
+
+El intervalo de confianza al \(95\%\) \textbf{observado} (minúsculas) es
+
+\[(l,u) = (\frac{s^2 (n-1)}{\chi^2_{0.025,n-1}},\frac{s^2(n-1)}{\chi ^2_{0.975,n-1}})\]
+
+dónde
+
+\begin{itemize}
+\item
+  \(\chi^2_{0.975,n-1}=F^{-1}(0.025)=\) qchisq(0.025, df=n-1)
+\item
+  \(\chi^2_{0.025, n-1}=F^{-1}(0,975)=\)qchisq(0,975, df=n-1)
+  para \(n=10\) o \(df=n-1=9\)
+\end{itemize}
+
+\textbf{Ejemplo (energía de impacto)}
+
+Un material metálico se prueba por impacto para medir la energía requerida para cortarlo a una temperatura dada. Se cortaron diez probetas de acero A238 a 60ºC con las siguientes energías de impacto (J):
+
+\(64.1, 64.7, 64.5, 64.6, 64.5, 64.3, 64.6, 64.8, 64.2, 64.3\)
+
+¿Cuál es el intervalo de confianza para la varianza de estos datos?
+
+\[(l,u) = (\frac{s^2 (n-1)}{\chi^2_{0.025,n-1}},\frac{s^2(n-1)}{\chi ^2_{0.975,n-1}})\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  La desviación estándar de los datos es \(s^2=0.05155556\)
+\item
+  \(n=10\)
+\item
+  Luego calculamos \(\chi^2_{0.025,n-1}\) y \(\chi^2_{0.975,n-1}\)
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{chi0}\FloatTok{.975} \OtherTok{\textless{}{-}} \FunctionTok{qchisq}\NormalTok{(}\FloatTok{0.025}\NormalTok{, }\AttributeTok{df=}\DecValTok{9}\NormalTok{)}
+\NormalTok{chi0}\FloatTok{.975}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] 2.700389
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{chi0}\FloatTok{.025} \OtherTok{\textless{}{-}} \FunctionTok{qchisq}\NormalTok{(}\FloatTok{0.975}\NormalTok{, }\AttributeTok{df=}\DecValTok{9}\NormalTok{)}
+\NormalTok{chi0}\FloatTok{.025}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] 19.02277
+\end{verbatim}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-99-1.pdf}
+
+Por lo tanto
+
+\[(l,u)= (\frac{0.227^2 (10-1)}{19.02277},\frac{0.227^2(10-1)}{2.700389})=(0.02,0.17)\]
+
+Recuerda que cuando habíamos calculado el intervalo de confianza para la media, asumimos \(\sigma^2=1\) (caso 1). Ahora podemos decir que esta elección no fue consistente con los datos porque vemos que el intervalo de confianza no contiene el valor \(\sigma^2=1\) .
+
+Según los datos, \(\sigma^2 \neq 1\) con una confianza de \(95\%\).
+
+en R:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(Ecfun)}
+\FunctionTok{confint.var}\NormalTok{(}\FloatTok{0.05155556}\NormalTok{, }\DecValTok{9}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##           lower     upper
+## [1,] 0.02439183 0.1718271
+## attr(,"level")
+## [1] 0.95
+\end{verbatim}
+
+El intervalo para la varianza \textbf{no es simétrico} y no podemos formularlo como un margen de error con \(\pm\).
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-101-1.pdf}
+
+\hypertarget{preguntas-10}{%
+\section{Preguntas}\label{preguntas-10}}
+
+\textbf{1)} El margen de error a \(95\%\) de confianza de una variable normal es
+
+\textbf{\(\qquad\)a:} \(\frac{s}{\sqrt{n}}\);
+\textbf{\(\qquad\)b:} \(1.96\times se\);
+\textbf{\(\qquad\)c:} \(\frac{\sigma}{\sqrt{n}}\);
+\textbf{\(\qquad\)d:} \(\sigma\)
+
+\textbf{2)} cuando hablamos de \(z_{0.025}\) queremos encontrar:
+
+\textbf{\(\qquad\)a:} El valor de una variable normal estándar que acumula hasta \(99.75\%\) de probabilidad;
+\textbf{\(\qquad\)b:} El valor de una variable normal estándar que acumula hasta \(0.25\%\) de probabilidad;
+\textbf{\(\qquad\)c:} La probabilidad de una variable estándar hasta \(99.75\%\);
+\textbf{\(\qquad\)d:} La probabilidad de una variable estándar hasta \(0.25\%\)
+
+\textbf{3)} El intervalo de confianza aleatorio \((L,U)\) para la media al \(95\%\)
+
+\textbf{\(\qquad\)a:} es un parámetro bidimensional de la distribución de la muestra;
+\textbf{\(\qquad\)b:} da los límites donde \(\mu\) tiene una probabilidad de ocurrir el \(95\%\) de las veces;
+\textbf{\(\qquad\)c:} es una estimación del promedio;
+\textbf{\(\qquad\)d:} captura \(\mu\) \(95\%\) de las veces
+
+\textbf{4)} Un intervalo de confianza para la media escrito como \(\hat{\mu}=56.99 \pm 0.01\)
+
+\textbf{\(\qquad\)a:} indica que estamos \(\%99\) seguros de que la media es \(56.99\);
+\textbf{\(\qquad\)b:} indica que no podemos confiar en el último decimal en la estimación de la media;
+\textbf{\(\qquad\)c:} indica que la media de la población es en \(56.99\) con un error de \(0.01\);
+\textbf{\(\qquad\)d:} indica que podemos confiar en la cifra unitaria (\(6\)) en la estimación de la media
+
+\textbf{5)}Si conocemos el valor de \(\mu\) y encontramos que el intervalo de confianza no lo atrapó, entonces
+
+\textbf{\(\qquad\)a:} el intervalo de confianza no está bien calculado;
+\textbf{\(\qquad\)b:} tenemos una observación rara del intervalo de confianza;
+\textbf{\(\qquad\)c:} el intervalo de confianza no estima la media;
+\textbf{\(\qquad\)f:} hay poca probabilidad de encontrar la media en el intervalo de confianza
+
+\hypertarget{ejercicios-11}{%
+\section{Ejercicios}\label{ejercicios-11}}
+
+\hypertarget{ejercicio-1-11}{%
+\subsubsection{Ejercicio 1}\label{ejercicio-1-11}}
+
+En un artículo científico, los autores reportan un intervalo de confianza de \(95\%\) de \((228, 232)\) para la frecuencia natural (Hz) de un haz metálico. Utilizaron una muestra de tamaño \(25\) y consideraron que las medidas estaban distribuidas normalmente.
+
+\begin{itemize}
+\item
+  ¿Cuál es la media y la desviación estándar de las medidas?
+\item
+  Calcule el intervalo de confianza de \(99\%\).
+\end{itemize}
+
+consejos:
+
+\begin{itemize}
+\item
+  en R \(t_{0.025, 24}=\) qt(0.975, 24)\(\sim 2\)
+\item
+  en R \(t_{0.005, 24}=\)qt(0.995, 24)\(\sim 2.8\)
+\end{itemize}
+
+\hypertarget{ejercicio-2-11}{%
+\subsubsection{Ejercicio 2}\label{ejercicio-2-11}}
+
+calcular \(95\%\) CI la media de una variable normal con varianza conocida \(\sigma^2=9\) y \(\bar{x}=22\), usando una muestra de tamaño \(36\).
+
+\hypertarget{ejercicio-3-8}{%
+\subsubsection{Ejercicio 3}\label{ejercicio-3-8}}
+
+Este año, \(17\) de \(1000\) de pacientes con influenza desarrollaron complicaciones.
+
+\begin{itemize}
+\item
+  Calcular el intervalo de confianza de \(99\%\) para la proporción de complicaciones.
+\item
+  El año anterior \(2\%\) presentó complicaciones. ¿Podemos decir con \(99\%\) de confianza que este año hay una caída significativa en las complicaciones de la influenza?
+\end{itemize}
+
+\hypertarget{ejercicio-4-4}{%
+\subsubsection{Ejercicio 4}\label{ejercicio-4-4}}
+
+¿Cuál es el intervalo de confianza para la varianza poblacional de una variable normal si tomamos una muestra aleatoria de tamaño \(n=10\) y observamos una varianza muestral de \(0.5\)?
 
   \bibliography{book.bib,packages.bib}
 

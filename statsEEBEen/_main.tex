@@ -36,6 +36,46 @@
   \KOMAoptions{parskip=half}}
 \makeatother
 \usepackage{xcolor}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
 \usepackage{longtable,booktabs,array}
 \usepackage{calc} % for calculating minipage widths
 % Correct order of tables after \paragraph or \subparagraph
@@ -80,7 +120,7 @@
 
 \title{EEBE stats}
 \author{Alejandro Caceres}
-\date{2023-11-10}
+\date{2023-11-26}
 
 \begin{document}
 \maketitle
@@ -7059,6 +7099,750 @@ compute:
 \end{itemize}
 
 \[x_1 = 27; \qquad x_2 = 8; \qquad  x_3 = 22; \qquad  x_4 = 29; \qquad  x_5 = 19; \qquad  x_5 = 32\]
+
+\hypertarget{interval-estimation}{%
+\chapter{Interval estimation}\label{interval-estimation}}
+
+\hypertarget{objective-9}{%
+\section{Objective}\label{objective-9}}
+
+In this chapter, we will introduce the concept of \textbf{confidence intervals} for means, proportions and variances.
+
+We will derive the formulas for the confidence intervals under different conditions, like normality with known and unknown variance, and large \(n\).
+
+\hypertarget{estimation-of-the-mean}{%
+\section{Estimation of the mean}\label{estimation-of-the-mean}}
+
+We have seen that whenever we take a random sample \((X_1, X_2, ... X_n)\), the sample mean
+\[\bar{X}=\frac{1}{n}\sum_{i=1}^n X_i\]
+
+is an estimator of the mean \(\mu\) of the random variable \(X\). The estimator is \textbf{unbiased} because its values center about the parameter it is estimating
+
+\begin{itemize}
+\tightlist
+\item
+  \(E(\bar{X})=\mu\)
+\end{itemize}
+
+and \textbf{consistent} because as \(n\) increases then it is closer to the parameter because its variance gets smaller
+
+\begin{itemize}
+\tightlist
+\item
+  \(V(\bar{X})=\frac{\sigma^2}{n}\)
+\end{itemize}
+
+where \(\sigma^2\) is the variance of \(X\). We call the quantity \(\sigma_{\bar{x}}=\frac{\sigma}{\sqrt{n}}\) the \textbf{standard error} (\(se\)).
+
+These properties justify that we take the value \(\bar{x}\) derived from \textbf{one particular sample} as the the value of \(\mu\), which is a characteristic of the \textbf{whole population}. That is
+
+\[\bar{x}=\hat{\mu}\]
+
+Since \(\bar{X}\) is a random variable the estimation of the mean changes when we take another sample. Therefore, we know that we are making an error every time we take \(\bar{x}\) for \(\mu\).
+
+\hypertarget{margin-of-error-1}{%
+\section{Margin of error}\label{margin-of-error-1}}
+
+When deciding whether the \textbf{error} in estimation \[\bar{X}-\mu\] is large or not we usually compare it with a predefined tolerance. \textbf{If we know} that the distribution of \(X\) is normal, \(X \rightarrow N(\mu, \sigma^2)\), and we also know the values of the parameters \(\mu\) and \(\sigma^2\), we can then assess how far the estimation of \(\bar{x}\) would falls from \(\mu\).
+
+We defined the \textbf{margin of error} at \(5\%\) level as the distance \(m\) such that distribution of \(\bar{X}\) captures \(95\%\) of the estimations:
+
+\[P(-m \leq \bar{X}-\mu \leq m)=P(\mu-m \leq \bar{X} \leq\mu + m)=0.95\]
+
+If \(\bar{X}\) is normally distributed then the marging of error is
+
+\[m=z_{0.025} \frac{\sigma}{\sqrt{n}}=1.96\times se\]
+where \(z_{0.025}=\phi^{-1}(0.975)=\) qnorm(0.975)
+
+\textbf{Example (cables):}
+
+We want to perform take a random sample of size \(8\): Load a cable until it breaks and record the breaking load.
+
+Before we take the sample, \textbf{if we know} that our cables truly distribute as \[X \rightarrow N(\mu=13, \sigma^2=0.35^2)\] then
+
+\[\bar{X} \rightarrow N(13, \frac{0.35^2}{8})\]
+
+With mean \(E(\bar{X})=13\) and standard error \(se=\frac{0.35}{\sqrt{8}}=0.1237\)
+
+Therefore the margin of error at \(95\%\) is
+
+\[m=z_{0.025} \frac{\sigma}{\sqrt{n}}=1.96\times se=1.96\frac{0.35}{\sqrt{8}}=0.24\]
+
+We therefore expect that \(\%95\) of the averages will be a distance of \(0.24\) from the mean. Note that, in this case, the margin of error only depends on \(\sigma\) and therefore is a measure of \textbf{precision}. Furthermore, it does not care where \(\mu\) really is, and therefore is \textbf{not} a measure of \textbf{accuracy}.
+
+Now, let us take a random sample for which we find the results
+
+\begin{verbatim}
+## [1] 13.34642 13.32620 13.01459 13.10811 12.96999 13.55309 13.75557 12.62747
+\end{verbatim}
+
+The \textbf{observed average} is \(\bar{x}=13.21\), and therefore the error we would make if we replaced \(\mu\) by \(\bar{x}\), would be
+
+\[\bar{x}-\mu=13.21-13=0.21\]
+The \textbf{observed error} is within the margin of error
+
+\[\bar{x}-\mu <m\]
+
+When we use \(\bar{x}\) for the value of \(\mu\), we say that we are performing a \textbf{point estimation} of the parameter. We are interested in such replacement in the cases where we do not know \(\mu\).
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-89-1.pdf}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-90-1.pdf}
+
+\hypertarget{interval-estimation-for-the-mean}{%
+\section{Interval estimation for the mean}\label{interval-estimation-for-the-mean}}
+
+The problem is that in real life we \textbf{do not know} the real values of \(\mu\) or \(\sigma\) for \(X\) given
+
+\[X \rightarrow N(\mu, \sigma^2)\]
+What we do is to start by taking a sample
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-91-1.pdf}
+
+we then compute the mean
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-92-1.pdf}
+
+and that's it. What is then the value of \(\mu\)?
+
+Our data suggest that \(\mu\) could be \(\bar{x}=13.21\). But, how \textbf{confident} are we? after all, we know that when we take \(\bar{x}\) for \(\mu\), we are making a mistake and do not how big it actually is.
+
+To address this question, we are going to define the \textbf{confidence interval} for \(\mu\). From the margin of error equation
+
+\[P(-m \leq \bar{X} - \mu \leq  m)=0.95\]
+let's solve for \(\mu\) that is indeed \textbf{the real unknown}
+
+\[P(\bar{X} - m \leq \mu \leq \bar{X} + m)=0.95\]
+
+The left and right limits of the inequality are random variables which motivate the definition for the \textbf{random confidence interval at \(95\%\):}
+
+\[(L,U)=(\bar{X} - m,\bar{X} + m)\]
+
+This interval is a new \textbf{random variable} and it has by definition a probability of \(0.95\) to contain \(\mu\).
+
+The \textbf{observed interval} that we obtain from the experiment is (script size)
+
+\[(l,u)=(\bar{x} - m,\bar{x} + m)\]
+
+This interval either contains or does not the parameter \(\mu\): we will \textbf{never know}!
+
+However, we can still say that we have a confidence of \(95\%\) that the interval \((l,u)\) has captured the true unknown parameter \(\mu\). Think of buying a lottery scratch ticket that we cannot scratch to see the prize. The ticket either has or has not the prize, only that we do not know which case it is.
+
+\hypertarget{case-1-known-variance}{%
+\subsection{Case 1 (known variance)}\label{case-1-known-variance}}
+
+Confidence intervals can be estimated in different cases. The first case is when
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \(X\) is a normal variable, and
+\item
+  we know the value of \(\sigma\)
+\end{enumerate}
+
+the confidence interval at \(95\%\) is
+
+\[(l,u)=(\bar{x} - m, \bar{x} + m)\]
+where \[m=z_{0.025} \frac{\sigma}{\sqrt{n}}\]
+
+That is:
+
+\[(l,u)=(\bar{x} - z_{0.025} \frac{\sigma}{\sqrt{n}}, \bar{x} + z_{0.025} \frac{\sigma}{\sqrt{n}})\]
+
+\textbf{Example (cables):}
+
+In our example, we assume that \(X\) is normally distributed and that we know \(\sigma^2=0.35^2\).
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Since \(\bar{X}\) is normal, the margin of error is
+\end{enumerate}
+
+\[m=z_{0.025} \frac{\sigma}{\sqrt{n}}\]
+2. Since we know \(\sigma^2=0.35^2\), then the \(95\%\) confidence interval is
+
+\((l,u)=(\bar{x} - m, \bar{x} + m)=\) \[(\bar{x}-z_{0.025} \frac{\sigma}{\sqrt{n}}, \bar{x}+z_{0.025} \frac{\sigma}{\sqrt{n}})= (12.97,13.45)\]
+
+or we can also write it as
+
+\[\hat{\mu}=\bar{x}  \pm m = 13.21 \pm 0.24\]
+This means that, when estimating the mean by the average, we are confident up to the number 3 in the units and not so much about the decimal places.
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-93-1.pdf}
+
+Remember that the confidence interval \((l,u)\) is an observation of the random confidence interval \((L,U)\). Therefore, every time that we obtain a new sample then \((l,u)\) changes. If we perform \(100\) samples of size \(n\) then about \(95\) of the confidence intervals will contain \(\mu\), we just don't know which!
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-94-1.pdf}
+
+\hypertarget{confidence-level}{%
+\subsection{Confidence level}\label{confidence-level}}
+
+We can change our confidence from \(95\%\) to \(99\%\). When we computed the margin of error at \(95\%\), we left out \(\alpha=0.05\) probability, \(0.025\) on each side.
+
+Now, we can leave out \(\alpha=0.01\) probability, \(0.005\) on each side. Therefore the \(99\%\) confidence interval is
+
+\((l,u) = (\bar{x} - z_{0.005}\frac{\sigma}{\sqrt{n}},\bar{x} + z_{0.005}\frac{\sigma}{\sqrt{n}})\)
+
+\[= (\bar{x} - 2.58\frac{\sigma}{\sqrt{n}},\bar{x} + 2.58\frac{\sigma}{\sqrt{n}})\]
+
+\includegraphics{./figures/phi.JPG}
+
+where \(z_{0.005}=\phi^{-1}(0.995)=\) qnorm(0.995). We can also write it as
+
+\[\hat{\mu}=\bar{x} \pm 2.58\frac{\sigma}{\sqrt{n}}\]
+For our cables, the \(99\%\) confidence interval is
+
+\[\hat{\mu}= 13.21 \pm 0.31\]
+
+If we want to be more confident then we need larger confidence intervals. The more confidence we demand the less precision we obtain.
+
+\textbf{Example (Impact energy):}
+
+A metallic material is tested for impact to measure the energy required to cut it at a given temperature. Ten specimens of A238 steel were cut at 60ºC at the following impact energies (J):
+
+\(64.1, 64.7, 64.5, 64.6, 64.5, 64.3, 64.6, 64.8, 64.2, 64.3\)
+
+If we \textbf{asume} that the impact energy is normally distributed with \(\sigma=1J\) what is the \(95\%\) confidence interval for the mean of these data?
+
+We know
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \(X \rightarrow N(\mu, \sigma^2)\)
+\item
+  \(\sigma=1J\)
+\item
+  \(\alpha=0.05\) (the confidence limit)
+\end{enumerate}
+
+The \(95\%\) confidence interval is then
+
+\((l,u)=(\bar{x}-1.96 \frac{\sigma}{\sqrt{n}}, \bar{x}+1.96 \frac{\sigma}{\sqrt{n}})\)
+\[=(64.46-1.96 \frac{1}{\sqrt{10}}, 64.46+1.96  \frac{1}{\sqrt{10}})=(63.84,65.08)\]
+
+or
+
+\[\hat{\mu}=64.46 \pm 0.61\]
+
+this tells us that we can be sure on the first digit (6), somewhat confident on the second (4), and unsure on the decimals (46).
+
+In R:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(BSDA) }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Loading required package: lattice
+\end{verbatim}
+
+\begin{verbatim}
+## 
+## Attaching package: 'BSDA'
+\end{verbatim}
+
+\begin{verbatim}
+## The following object is masked from 'package:datasets':
+## 
+##     Orange
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{z.test}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\FloatTok{64.1}\NormalTok{, }\FloatTok{64.7}\NormalTok{, }\FloatTok{64.5}\NormalTok{, }\FloatTok{64.6}\NormalTok{, }\FloatTok{64.5}\NormalTok{, }\FloatTok{64.3}\NormalTok{, }\FloatTok{64.6}\NormalTok{, }\FloatTok{64.8}\NormalTok{, }\FloatTok{64.2}\NormalTok{, }\FloatTok{64.3}\NormalTok{), }
+       \AttributeTok{sigma.x=}\DecValTok{1}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  One-sample z-Test
+## 
+## data:  c(64.1, 64.7, 64.5, 64.6, 64.5, 64.3, 64.6, 64.8, 64.2, 64.3)
+## z = 203.84, p-value < 2.2e-16
+## alternative hypothesis: true mean is not equal to 0
+## 95 percent confidence interval:
+##  63.8402 65.0798
+## sample estimates:
+## mean of x 
+##     64.46
+\end{verbatim}
+
+What if \(\sigma^2\) is \textbf{unknown}?
+
+\hypertarget{marging-of-error-for-unkown-variance}{%
+\section{Marging of error for unkown variance}\label{marging-of-error-for-unkown-variance}}
+
+We were able to compute the confidence interval \((l,u)=(\bar{x} -m, \bar{x} -m)\) because we were able to find the margin of error
+
+\[m=1.96 \frac{\sigma}{\sqrt{n}}\]
+since \textbf{we knew} \(\sigma\). \(\sigma\) is a parameter of the distribution that we usually \textbf{do not know}, likewise \(\mu\). To find the margin of error with \textbf{unknown} variance, we need the following theorem, due to Gosset
+
+\hypertarget{theorem-t-statistic}{%
+\subsection{Theorem (T-statistic)}\label{theorem-t-statistic}}
+
+When \(X\) is normal then the standardized statistic
+
+\[T=\frac{\bar{X}-\mu}{\frac{S}{\sqrt{n}}}\]
+follows a \(t\)-distribution with \(n-1\) degrees of freedom
+
+\[T \rightarrow t_{n-1}\]
+
+where \(S^2=\frac{1}{n-1} \sum_{i=1}^n (X_i-\bar{X})^2\). We can therefore compute probabilities for \(\bar{X}\), even if we do not know \(\sigma\).
+
+Let's look at some probability densities in the family of the \(t\) distributions.
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-96-1.pdf}
+
+Now we need to recompute the the margin of error \(m\) at \(5\%\) level when we use the \(t\)-distribution
+
+\(P(\mu-m \leq \bar{X} \leq\mu + m)\)
+\[=P(-\frac{m}{s/\sqrt{n}} \leq T \leq\frac{m}{s/\sqrt{n}})=0.95\]
+
+\[m=t_{0.025, n-1} \frac{s}{\sqrt{n}}\]
+where \(t_{0.025, n-1}\) is the value of \(T\) that leaves \(2.5\%\) of probability at the right hand side of the \(t\)-distribution with \(n-1\) degrees of freedom. In short, if we do not know \(\sigma\), we can replace it with \(s\) but need to use a different distribution in the computation of the margin of error.
+
+\hypertarget{case-2-unknown-variance}{%
+\subsection{Case 2 (unknown variance)}\label{case-2-unknown-variance}}
+
+The second case to compute confidence intervals is more realistic. If
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \(X\) is a normal variable
+\end{enumerate}
+
+the confidence interval at \(95\%\) is
+
+\[(l,u)=(\bar{x} - m, \bar{x} + m)\]
+where \[m=t_{0.025, n-1} \frac{s}{\sqrt{n}}\]
+
+That is:
+
+\[(l,u)=(\bar{x} - t_{0.025, n-1} \frac{s}{\sqrt{n}}, \bar{x} + t_{0.025, n-1} \frac{s}{\sqrt{n}})\]
+where \(t_{0.025, n-1}=F^{-1}(0.975)\)=qt(0.975, n-1)
+
+\textbf{Example (Impact energy):}
+
+A metallic material is tested for impact to measure the energy required to cut it at a given temperature. Ten specimens of A238 steel were cut at 60ºC at the following impact energies (J):
+
+\(64.1, 64.7, 64.5, 64.6, 64.5, 64.3, 64.6, 64.8, 64.2, 64.3\)
+
+If we \textbf{asumme} that the impact energy is normally distributed but we \textbf{do not know} the variance, what is the \(95\%\) confidence interval for the mean of these data?
+
+We compute from the data
+
+\begin{itemize}
+\tightlist
+\item
+  \(\bar{x}=64.46\)
+\item
+  \(s=0.227\)
+\end{itemize}
+
+we assume
+
+\begin{itemize}
+\tightlist
+\item
+  \(\alpha=0.05\) (the confidence limit)
+\item
+  \(t_{0.025,9}=2.26\) obtained from \(t_{0.025,9}=\) qt(0.975, 9)
+\end{itemize}
+
+The confidence interval is then
+
+\((l,u)=(\bar{x}- t_{0.025,9}\frac{s}{\sqrt{n}},\bar{x}+t_{0.025,9} \frac{s}{\sqrt{n}})\)
+
+\[=(64.46-2.26 \frac{0.227}{\sqrt{10}},64.46+2.26 \frac{0.227}{\sqrt{10}})\] \[=(64.29,64.62)\]
+
+Note that when we assumed \(\sigma=1\) the confidence interval \((63.84,65.08)\) was larger. Data therefore suggests that \(\sigma<1\) as \(s=0.227\).
+
+In R, we can compute the confidence interval with:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{t.test}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\FloatTok{64.1}\NormalTok{,}\FloatTok{64.7}\NormalTok{,}\FloatTok{64.5}\NormalTok{,}\FloatTok{64.6}\NormalTok{,}\FloatTok{64.5}\NormalTok{,}\FloatTok{64.3}\NormalTok{,}\FloatTok{64.6}\NormalTok{,}\FloatTok{64.8}\NormalTok{,}\FloatTok{64.2}\NormalTok{,}\FloatTok{64.3}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  One Sample t-test
+## 
+## data:  c(64.1, 64.7, 64.5, 64.6, 64.5, 64.3, 64.6, 64.8, 64.2, 64.3)
+## t = 897.74, df = 9, p-value < 2.2e-16
+## alternative hypothesis: true mean is not equal to 0
+## 95 percent confidence interval:
+##  64.29757 64.62243
+## sample estimates:
+## mean of x 
+##     64.46
+\end{verbatim}
+
+\hypertarget{estimation-of-proportions}{%
+\section{Estimation of proportions}\label{estimation-of-proportions}}
+
+\textbf{Example (vaccine):}
+
+A random sample of \(400\) patients was selected for testing a new vaccine for the influenza virus, after \(6\) months of vaccination \(134\) were ill.~What is the expected efficacy of the vaccine?
+
+Since each vaccination \(X_i\) is a Bernoulli trial
+
+\[X \rightarrow Bernoulli(p)\]
+with mean \(\mu=p\) and variance \(\sigma^2=p(1-p)\).
+
+The sample is something like
+\[(x_1,x_2, x_3, ...x_n)=(0,1,0,.. 1, 0)_{400}\] with \(136\) ones and in a total of \(400\) repetitions. The sample has an average \[\bar{x}=\frac{1}{400}\sum_i^{400} x_i=134/400=0.34\]
+
+Since the sample mean is an unbiased estimator of \(\mu\), then we can have a point estimate for \(p\)
+
+\[\hat{p}=\bar{x}=134/400=0.34\]
+
+This makes sense because \(\bar{x}\) is the observed relative frequency of ones \(f_1\) in the sample. And as such it is an estimator of the probability of observing a one in a Bernoulli trial
+
+\[f_1 =\hat{P}(X=1)\]
+This is is consistent with frequentist definition of probability that we saw in chapter 2. However, how confident are we about this estimation? That is, how confident are we to take the relative frequency as the value of the probability? We want a confidence interval for \(p\)
+
+\hypertarget{case-3-proportions}{%
+\subsection{Case 3 (proportions)}\label{case-3-proportions}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  When \(\hat{p}n>5\) and \((\hat{p}-1)n>5\), the \textbf{standardized statistic} of \(\bar{X}\) can be approximated by a standard distribution (CLT)
+\end{enumerate}
+
+\[Z=\frac{\bar{X}-\mu}{\sigma/\sqrt{n}}= \frac{\bar{X}-p}{\big[\frac{p(1-p)}{n} \big]^{1/2}}\rightarrow N(0,1)\]
+and the \(95\%\) CI interval of \(p\) is:
+
+\[CI=(l,u)=(\bar{x}-z_{0.025}\big[\frac{\bar{x}(1-\bar{x})}{n} \big]^{1/2},  \bar{x}+z_{0.025}\big[\frac{\bar{x}(1-\bar{x})}{n} \big]^{1/2})\]
+Where we estimate the Bernoulli variance \(\sigma=p(1-p)\) by \(\hat{\sigma}=\bar{x}(1-\bar{x})\). That is \(\hat{\sigma}=\sqrt{\bar{x}(1-\bar{x})}\).
+
+\textbf{Example (vaccine):}
+
+In our case, we are counting failures on vaccinations \(134\) in \(400\) trials.
+
+We compute from the data
+
+\begin{itemize}
+\tightlist
+\item
+  \(\bar{x}=134/400=0.34\)
+\end{itemize}
+
+we assume
+
+\begin{itemize}
+\tightlist
+\item
+  \(z_{0.025}=1.96\) (the confidence limit)
+\end{itemize}
+
+Therefore the \(95\%\) confidence interval for \(p\) is
+
+\((l,u)=(\bar{x}-1.96 \big[\frac{\bar{x}(1-\bar{x})}{n} \big]^{1/2}, \bar{x}+1.96 \big[\frac{\bar{x}(1-\bar{x})}{n} \big]^{1/2})\)
+
+\[=(0.29,0.38)\]
+
+The estimated probability of failure of the vaccine is
+
+\[\hat{p}=0.34 \pm 0.05\]
+
+Note: Voting intention surveys (Bernoulli test) in a sample of \(n\) individuals report this type of estimation with its \textbf{margin of error}. It does not mean that the \textbf{true value} of \(p\) falls within this interval with probability \(95\%\). It means that we are \(95\%\) confident that we have caught the \(p\) that this particular sample represents.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{prop.test}\NormalTok{(}\DecValTok{134}\NormalTok{, }\DecValTok{400}\NormalTok{, }\AttributeTok{correct=}\ConstantTok{FALSE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  1-sample proportions test without continuity correction
+## 
+## data:  134 out of 400, null probability 0.5
+## X-squared = 43.56, df = 1, p-value = 4.112e-11
+## alternative hypothesis: true p is not equal to 0.5
+## 95 percent confidence interval:
+##  0.2905091 0.3826300
+## sample estimates:
+##     p 
+## 0.335
+\end{verbatim}
+
+\hypertarget{estimation-of-the-variance}{%
+\section{Estimation of the variance}\label{estimation-of-the-variance}}
+
+We have seen that whenever we take a random sample \((X_1, X_2, ... X_n)\), the sample variance
+\[S^2=\frac{1}{n-1}\sum_{i=1}^n (X_i-\bar{X})^2\]
+is an estimator of the mean \(\sigma^2\) of the random variable \(X\). The estimator is \textbf{unbiased} because its values are centered about the parameter it is estimating
+
+\[E(S^2)=\sigma\]
+
+and it is also \textbf{consistent}. We can then take a the value of \(s^2\) from a particular sample as the value of \(\sigma\), which is a characteristic of the whole population. That is
+
+\[s^2=\hat{\sigma}^2\]
+
+Since \(S^2\) is a random variable the estimation of the variance changes when we take another sample.
+
+\textbf{Example (impact energy)}
+
+A metallic material is tested for impact to measure the energy required to cut it at a given temperature. Ten specimens of A238 steel were cut at 60ºC at the following impact energies (J):
+
+\(64.1, 64.7, 64.5, 64.6, 64.5, 64.3, 64.6, 64.8, 64.2, 64.3\)
+
+what is estimation of the variance of these data?
+
+\[s^2=0.05155556\]
+In R: sd(c(64.1, 64.7, 64.5, 64.6, 64.5, 64.3, 64.6, 64.8, 64.2, 64.3))\^{}2
+
+How confident are we on the decimals of the estimation?
+
+\hypertarget{confidence-interval-for-the-variance}{%
+\section{Confidence interval for the variance}\label{confidence-interval-for-the-variance}}
+
+To compute a confidence interval of the variance, we need a statistics that is a function of \(S^2\) and allows us to compute probabilities. We will use the following theorem
+
+\hypertarget{theorem-chi2}{%
+\subsection{\texorpdfstring{Theorem (\(\chi^2\)):}{Theorem (\textbackslash chi\^{}2):}}\label{theorem-chi2}}
+
+When \(X\) is normal then the standardized statistic
+
+\[W=\frac{S^2(n-1)}{\sigma^2}\]
+follows a \(\chi^2\) distribution with \(n-1\) degrees of freedom
+
+\[W \rightarrow \chi^2_{n-1}\]
+
+We can therefore compute probabilities for \(W\).
+
+Let's look at some probability densities in the family of the \(\chi^2\) distriutions.
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-99-1.pdf}
+
+\hypertarget{confidence-interval-for-the-variance-1}{%
+\subsection{Confidence interval for the variance}\label{confidence-interval-for-the-variance-1}}
+
+We look for confidence interval of \(\sigma^2\) at confidence \(95\%\) \((L,U)\) such that \[P(L \leq \sigma^2 \leq U)=0.95\]
+
+We can then use the \(\chi^2\) to determine the \(95\%\) of the distribution about \(W\). Lets start by defining the values that capture the \(95\%\) of the distribution
+
+\[P(\chi^2_{0.975,n-1} \leq W \leq \chi^2_{0.025,n-1})=0.95\]
+Replacing the value of \(W\)
+
+\[P(\chi^2_{0.975,n-1} \leq \frac{S^2}{\sigma^2}(n-1) \leq \chi^2_{0.025,n-1})=0.95\]
+
+and solving for \(\sigma^2\)
+
+\[P(\frac{S^2 (n-1)}{\chi^2_{0.025,n-1}}\leq \sigma^2 \leq \frac{S^2(n-1)}{\chi^2_{0.975,n-1}})=0.95\]
+
+We find a random interval that captures \(\sigma^2\)
+with \(95\%\) confidence
+
+\[(L,U) = (\frac{S^2 (n-1)}{\chi^2_{0.025,n-1}},\frac{S^2(n-1)}{\chi^2_{0.975,n-1}})\]
+
+\hypertarget{case-4-variance}{%
+\subsection{Case 4 (variance)}\label{case-4-variance}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  When \(X\) is a normal variable
+\end{enumerate}
+
+The \textbf{observed} \(95\%\) confidence interval (script size) is
+
+\[(l,u) = (\frac{s^2 (n-1)}{\chi^2_{0.025,n-1}},\frac{s^2(n-1)}{\chi^2_{0.975,n-1}})\]
+
+where
+
+\begin{itemize}
+\item
+  \(\chi^2_{0.975,n-1}=F^{-1}(0.025)=\) qchisq(0.025, df=n-1)
+\item
+  \(\chi^2_{0.025,n-1}=F^{-1}(0.975)=\)qchisq(0.975, df=n-1)
+  for \(n=10\) or \(df=n-1=9\)
+\end{itemize}
+
+\textbf{Example (impact energy)}
+
+A metallic material is tested for impact to measure the energy required to cut it at a given temperature. Ten specimens of A238 steel were cut at 60ºC at the following impact energies (J):
+
+\(64.1, 64.7, 64.5, 64.6, 64.5, 64.3, 64.6, 64.8, 64.2, 64.3\)
+
+what is confidence interval for the variance of these data?
+
+\[(l,u) = (\frac{s^2 (n-1)}{\chi^2_{0.025,n-1}},\frac{s^2(n-1)}{\chi^2_{0.975,n-1}})\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  The standard deviation of the data is \(s^2=0.05155556\)
+\item
+  \(n=10\)
+\item
+  We then compute \(\chi^2_{0.025,n-1}\) and \(\chi^2_{0.975,n-1}\)
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{chi0}\FloatTok{.975} \OtherTok{\textless{}{-}} \FunctionTok{qchisq}\NormalTok{(}\FloatTok{0.025}\NormalTok{, }\AttributeTok{df=}\DecValTok{9}\NormalTok{)}
+\NormalTok{chi0}\FloatTok{.975}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] 2.700389
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{chi0}\FloatTok{.025} \OtherTok{\textless{}{-}} \FunctionTok{qchisq}\NormalTok{(}\FloatTok{0.975}\NormalTok{, }\AttributeTok{df=}\DecValTok{9}\NormalTok{)}
+\NormalTok{chi0}\FloatTok{.025}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] 19.02277
+\end{verbatim}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-100-1.pdf}
+
+Therefore
+
+\[(l,u)= (\frac{0.227^2 (10-1)}{19.02277},\frac{0.227^2(10-1)}{2.700389})=(0.02,0.17)\]
+Note that when we computed the confidence interval for the mean and assumed \(\sigma^2=1\) (case 1), this was not consistent with the data because the confidence interval does not contain the value \(\sigma^2=1\).
+According to the data \(\sigma^2 \neq 1\) at \(95\%\) confidence.
+
+in R:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(Ecfun)}
+\FunctionTok{confint.var}\NormalTok{(}\FloatTok{0.05155556}\NormalTok{, }\DecValTok{9}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##           lower     upper
+## [1,] 0.02439183 0.1718271
+## attr(,"level")
+## [1] 0.95
+\end{verbatim}
+
+The interval for the variance is \textbf{not symmetric} and we cannot formulate it as an estimate \(\pm\) margin of error.
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-102-1.pdf}
+
+\hypertarget{questions-10}{%
+\section{Questions}\label{questions-10}}
+
+\textbf{1)} The margin of error at \(95\%\) confidence of a normal variable is
+
+\textbf{\(\qquad\)a:} \(\frac{s}{\sqrt{n}}\);
+\textbf{\(\qquad\)b:} \(1.96\times se\);
+\textbf{\(\qquad\)c:} \(\frac{\sigma}{\sqrt{n}}\);
+\textbf{\(\qquad\)d:} \(\sigma\)
+
+\textbf{2)} when we talk about \(z_{0.025}\) we mean:
+
+\textbf{\(\qquad\)a:} The value of a normal standard variable that has accumulated up to \(99.75\%\) of probability;
+\textbf{\(\qquad\)b:} The value of a normal standard variable that has accumulates up to \(0.25\%\) of probability;
+\textbf{\(\qquad\)c:} The probability of a standard variable up to \(99.75\%\);
+\textbf{\(\qquad\)d:} The probability of a standard variable up to \(0.25\%\)
+
+\textbf{3)} The random confident interval \((L,U)\) for the mean at \(95\%\)
+
+\textbf{\(\qquad\)a:} is a two dimensional parameter of the sample distribution;
+\textbf{\(\qquad\)b:} gives the limits where \(\mu\) has a probability of occurring \(95\%\) of the times;
+\textbf{\(\qquad\)c:} is an estimate of the average;
+\textbf{\(\qquad\)d:} captures \(\mu\) \(95\%\) of the times
+
+\textbf{4)} A confidence interval for the mean written as \(\hat{\mu}=56.99 \pm 0.01\)
+
+\textbf{\(\qquad\)a:} indicates that we are \(\%99\) confident that the mean is \(56.99\);
+\textbf{\(\qquad\)b:} indicates that we cannot trust the last decimal place on the estimation of the mean;
+\textbf{\(\qquad\)c:} indicates that the mean of the population is at \(56.99\) with error \(0.01\);
+\textbf{\(\qquad\)d:} indicates that we can trust the unit figure (\(6\)) on the estimation of the mean
+
+\textbf{5)}If we know the value of \(\mu\) and find that the confidence interval did not catch it then
+
+\textbf{\(\qquad\)a:} the confidence interval is not well computed;
+\textbf{\(\qquad\)b:} it is a rare observation of the confidence interval;
+\textbf{\(\qquad\)c:} the confidence interval does not estimate the mean;
+\textbf{\(\qquad\)f:} there is little probability of finding the mean in the confidence interval
+
+\hypertarget{exercises-11}{%
+\section{Exercises}\label{exercises-11}}
+
+\hypertarget{exercise-1-11}{%
+\subsubsection{Exercise 1}\label{exercise-1-11}}
+
+In a scientific paper, the authors report a \(95\%\) confidence interval of \((228, 232)\) for the natural frequency (Hz) of a metallic beam. They used a sample of size \(25\) and considered that the measurements were distributed normally.
+
+\begin{itemize}
+\item
+  What is the mean and the standard deviation of the measurements?
+\item
+  Compute the \(99\%\) confidence interval.
+\end{itemize}
+
+hints:
+
+\begin{itemize}
+\item
+  in R \(t_{0.025, 24}=\) qt(0.975, 24)\(\sim 2\)
+\item
+  in R \(t_{0.005, 24}=\)qt(0.995, 24)\(\sim 2.8\)
+\end{itemize}
+
+\hypertarget{exercise-2-11}{%
+\subsubsection{Exercise 2}\label{exercise-2-11}}
+
+compute \(95\%\) CI the mean of a normal variable with known variance \(\sigma^2=9\) and \(\bar{x}=22\), using a sample of size \(36\).
+
+\hypertarget{exercise-3-8}{%
+\subsubsection{Exercise 3}\label{exercise-3-8}}
+
+This year, \(17\) of \(1000\) of patients with influenza developed complications.
+
+\begin{itemize}
+\item
+  Compute the \(99\%\) confidence interval for the proportion of complications.
+\item
+  The previous year \(2\%\) showed complications. Can we say with \(99\%\) confidence that this year there is a significant drop in influenza complications?
+\end{itemize}
+
+\hypertarget{exercise-4-4}{%
+\subsubsection{Exercise 4}\label{exercise-4-4}}
+
+What is the confidence interval for population variance of a normal variable if we take a random sample of size \(n=10\) and observe a sample variance of \(0.5\)?
+
+\hypertarget{practice}{%
+\section{Practice}\label{practice}}
+
+Load misophonia data data\_0.txt
+
+\begin{itemize}
+\item
+  Compute the confidence interval for the mean of the cephalometric measures. (``Angulo\_convexidad'', ``protusion.mandibular'', ``Angulo\_cuelloYtercio'', ``Subnasal\_H'')
+\item
+  Compute the confidence interval for the proportion of misophonic (``Misofonia.dic''), and depression (``depresion.dic'').
+\item
+  Compute the confidence interval for the variance of the age (``Edad''). What is the cofidence interval for the standard deviation of the population?
+\end{itemize}
 
   \bibliography{book.bib,packages.bib}
 

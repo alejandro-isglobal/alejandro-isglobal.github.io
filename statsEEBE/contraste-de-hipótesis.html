@@ -1,0 +1,1242 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 14 Contraste de hipótesis | EEBE Estadística</title>
+  <meta name="description" content="EEBE" />
+  <meta name="generator" content="bookdown 0.36 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 14 Contraste de hipótesis | EEBE Estadística" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="EEBE" />
+  <meta name="github-repo" content="alejandro-isglobal/master" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 14 Contraste de hipótesis | EEBE Estadística" />
+  
+  <meta name="twitter:description" content="EEBE" />
+  
+
+<meta name="author" content="Alejandro Cáceres (alejandro.caceres.dominguez@upc.edu)" />
+
+
+<meta name="date" content="2023-12-10" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="intervalos-de-confianza.html"/>
+<link rel="next" href="soluciones-a-las-preguntas.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Estadística EEBE</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Objetivo</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#lectura-recomendada"><i class="fa fa-check"></i><b>1.1</b> Lectura recomendada</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="descripción-de-datos.html"><a href="descripción-de-datos.html"><i class="fa fa-check"></i><b>2</b> Descripción de datos</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="descripción-de-datos.html"><a href="descripción-de-datos.html#método-científico"><i class="fa fa-check"></i><b>2.1</b> Método científico</a></li>
+<li class="chapter" data-level="2.2" data-path="descripción-de-datos.html"><a href="descripción-de-datos.html#estadística"><i class="fa fa-check"></i><b>2.2</b> Estadística</a></li>
+<li class="chapter" data-level="2.3" data-path="descripción-de-datos.html"><a href="descripción-de-datos.html#datos"><i class="fa fa-check"></i><b>2.3</b> Datos</a></li>
+<li class="chapter" data-level="2.4" data-path="descripción-de-datos.html"><a href="descripción-de-datos.html#tipos-de-resultado"><i class="fa fa-check"></i><b>2.4</b> Tipos de resultado</a></li>
+<li class="chapter" data-level="2.5" data-path="descripción-de-datos.html"><a href="descripción-de-datos.html#experimentos-aleatorios"><i class="fa fa-check"></i><b>2.5</b> Experimentos aleatorios</a></li>
+<li class="chapter" data-level="2.6" data-path="descripción-de-datos.html"><a href="descripción-de-datos.html#frecuencias-absolutas"><i class="fa fa-check"></i><b>2.6</b> Frecuencias absolutas</a></li>
+<li class="chapter" data-level="2.7" data-path="descripción-de-datos.html"><a href="descripción-de-datos.html#frecuencias-relativas"><i class="fa fa-check"></i><b>2.7</b> Frecuencias relativas</a></li>
+<li class="chapter" data-level="2.8" data-path="descripción-de-datos.html"><a href="descripción-de-datos.html#diagrama-de-barras"><i class="fa fa-check"></i><b>2.8</b> Diagrama de barras</a></li>
+<li class="chapter" data-level="2.9" data-path="descripción-de-datos.html"><a href="descripción-de-datos.html#gráfico-de-sectores-pie"><i class="fa fa-check"></i><b>2.9</b> Gráfico de sectores (pie)</a></li>
+<li class="chapter" data-level="2.10" data-path="descripción-de-datos.html"><a href="descripción-de-datos.html#variables-categóricas-ordinales"><i class="fa fa-check"></i><b>2.10</b> Variables categóricas ordinales</a></li>
+<li class="chapter" data-level="2.11" data-path="descripción-de-datos.html"><a href="descripción-de-datos.html#frecuencias-acumuladas-absolutas-y-relativas"><i class="fa fa-check"></i><b>2.11</b> Frecuencias acumuladas absolutas y relativas</a></li>
+<li class="chapter" data-level="2.12" data-path="descripción-de-datos.html"><a href="descripción-de-datos.html#gráfica-de-frecuencia-acumulada"><i class="fa fa-check"></i><b>2.12</b> Gráfica de frecuencia acumulada</a></li>
+<li class="chapter" data-level="2.13" data-path="descripción-de-datos.html"><a href="descripción-de-datos.html#variables-numéricas"><i class="fa fa-check"></i><b>2.13</b> Variables numéricas</a></li>
+<li class="chapter" data-level="2.14" data-path="descripción-de-datos.html"><a href="descripción-de-datos.html#transformando-datos-continuos"><i class="fa fa-check"></i><b>2.14</b> Transformando datos continuos</a></li>
+<li class="chapter" data-level="2.15" data-path="descripción-de-datos.html"><a href="descripción-de-datos.html#tabla-de-frecuencias-para-una-variable-continua"><i class="fa fa-check"></i><b>2.15</b> Tabla de frecuencias para una variable continua</a></li>
+<li class="chapter" data-level="2.16" data-path="descripción-de-datos.html"><a href="descripción-de-datos.html#histograma"><i class="fa fa-check"></i><b>2.16</b> Histograma</a></li>
+<li class="chapter" data-level="2.17" data-path="descripción-de-datos.html"><a href="descripción-de-datos.html#gráfica-de-frecuencia-acumulada-1"><i class="fa fa-check"></i><b>2.17</b> Gráfica de frecuencia acumulada</a></li>
+<li class="chapter" data-level="2.18" data-path="descripción-de-datos.html"><a href="descripción-de-datos.html#estadísticas-de-resumen"><i class="fa fa-check"></i><b>2.18</b> Estadísticas de resumen</a></li>
+<li class="chapter" data-level="2.19" data-path="descripción-de-datos.html"><a href="descripción-de-datos.html#promedio-media-muestral"><i class="fa fa-check"></i><b>2.19</b> Promedio (media muestral)</a></li>
+<li class="chapter" data-level="2.20" data-path="descripción-de-datos.html"><a href="descripción-de-datos.html#promedio"><i class="fa fa-check"></i><b>2.20</b> Promedio</a></li>
+<li class="chapter" data-level="2.21" data-path="descripción-de-datos.html"><a href="descripción-de-datos.html#mediana"><i class="fa fa-check"></i><b>2.21</b> mediana</a></li>
+<li class="chapter" data-level="2.22" data-path="descripción-de-datos.html"><a href="descripción-de-datos.html#dispersión"><i class="fa fa-check"></i><b>2.22</b> Dispersión</a></li>
+<li class="chapter" data-level="2.23" data-path="descripción-de-datos.html"><a href="descripción-de-datos.html#variación-de-la-muestra"><i class="fa fa-check"></i><b>2.23</b> Variación de la muestra</a></li>
+<li class="chapter" data-level="2.24" data-path="descripción-de-datos.html"><a href="descripción-de-datos.html#rango-intercuartílico-iqr"><i class="fa fa-check"></i><b>2.24</b> Rango intercuartílico (IQR)</a></li>
+<li class="chapter" data-level="2.25" data-path="descripción-de-datos.html"><a href="descripción-de-datos.html#diagrama-de-caja"><i class="fa fa-check"></i><b>2.25</b> Diagrama de caja</a></li>
+<li class="chapter" data-level="2.26" data-path="descripción-de-datos.html"><a href="descripción-de-datos.html#preguntas"><i class="fa fa-check"></i><b>2.26</b> Preguntas</a></li>
+<li class="chapter" data-level="2.27" data-path="descripción-de-datos.html"><a href="descripción-de-datos.html#ejercicios"><i class="fa fa-check"></i><b>2.27</b> Ejercicios</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="probabilidad.html"><a href="probabilidad.html"><i class="fa fa-check"></i><b>3</b> Probabilidad</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="probabilidad.html"><a href="probabilidad.html#experimentos-aleatorios-1"><i class="fa fa-check"></i><b>3.1</b> Experimentos aleatorios</a></li>
+<li class="chapter" data-level="3.2" data-path="probabilidad.html"><a href="probabilidad.html#probabilidad-de-medición"><i class="fa fa-check"></i><b>3.2</b> Probabilidad de medición</a></li>
+<li class="chapter" data-level="3.3" data-path="probabilidad.html"><a href="probabilidad.html#probabilidad-clásica"><i class="fa fa-check"></i><b>3.3</b> Probabilidad clásica</a></li>
+<li class="chapter" data-level="3.4" data-path="probabilidad.html"><a href="probabilidad.html#frecuencias-relativas-1"><i class="fa fa-check"></i><b>3.4</b> Frecuencias relativas</a></li>
+<li class="chapter" data-level="3.5" data-path="probabilidad.html"><a href="probabilidad.html#frecuencias-relativas-en-el-infinito"><i class="fa fa-check"></i><b>3.5</b> Frecuencias relativas en el infinito</a></li>
+<li class="chapter" data-level="3.6" data-path="probabilidad.html"><a href="probabilidad.html#probabilidad-frecuentista"><i class="fa fa-check"></i><b>3.6</b> Probabilidad frecuentista</a></li>
+<li class="chapter" data-level="3.7" data-path="probabilidad.html"><a href="probabilidad.html#probabilidades-clásicas-y-frecuentistas"><i class="fa fa-check"></i><b>3.7</b> Probabilidades clásicas y frecuentistas</a></li>
+<li class="chapter" data-level="3.8" data-path="probabilidad.html"><a href="probabilidad.html#definición-de-probabilidad"><i class="fa fa-check"></i><b>3.8</b> Definición de probabilidad</a></li>
+<li class="chapter" data-level="3.9" data-path="probabilidad.html"><a href="probabilidad.html#tabla-de-probabilidades"><i class="fa fa-check"></i><b>3.9</b> Tabla de probabilidades</a></li>
+<li class="chapter" data-level="3.10" data-path="probabilidad.html"><a href="probabilidad.html#espacio-muestral"><i class="fa fa-check"></i><b>3.10</b> Espacio muestral</a></li>
+<li class="chapter" data-level="3.11" data-path="probabilidad.html"><a href="probabilidad.html#eventos"><i class="fa fa-check"></i><b>3.11</b> Eventos</a></li>
+<li class="chapter" data-level="3.12" data-path="probabilidad.html"><a href="probabilidad.html#álgebra-de-eventos"><i class="fa fa-check"></i><b>3.12</b> Álgebra de eventos</a></li>
+<li class="chapter" data-level="3.13" data-path="probabilidad.html"><a href="probabilidad.html#resultados-mutuamente-excluyentes"><i class="fa fa-check"></i><b>3.13</b> Resultados mutuamente excluyentes</a></li>
+<li class="chapter" data-level="3.14" data-path="probabilidad.html"><a href="probabilidad.html#probabilidades-conjuntas"><i class="fa fa-check"></i><b>3.14</b> Probabilidades conjuntas</a></li>
+<li class="chapter" data-level="3.15" data-path="probabilidad.html"><a href="probabilidad.html#tabla-de-contingencia"><i class="fa fa-check"></i><b>3.15</b> Tabla de contingencia</a></li>
+<li class="chapter" data-level="3.16" data-path="probabilidad.html"><a href="probabilidad.html#la-regla-de-la-suma"><i class="fa fa-check"></i><b>3.16</b> La regla de la suma:</a></li>
+<li class="chapter" data-level="3.17" data-path="probabilidad.html"><a href="probabilidad.html#preguntas-1"><i class="fa fa-check"></i><b>3.17</b> Preguntas</a></li>
+<li class="chapter" data-level="3.18" data-path="probabilidad.html"><a href="probabilidad.html#ejercicios-1"><i class="fa fa-check"></i><b>3.18</b> Ejercicios</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="probabilidad-condicional.html"><a href="probabilidad-condicional.html"><i class="fa fa-check"></i><b>4</b> Probabilidad condicional</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="probabilidad-condicional.html"><a href="probabilidad-condicional.html#probabilidad-conjunta"><i class="fa fa-check"></i><b>4.1</b> Probabilidad conjunta</a></li>
+<li class="chapter" data-level="4.2" data-path="probabilidad-condicional.html"><a href="probabilidad-condicional.html#independencia-estadística"><i class="fa fa-check"></i><b>4.2</b> Independencia estadística</a></li>
+<li class="chapter" data-level="4.3" data-path="probabilidad-condicional.html"><a href="probabilidad-condicional.html#la-probabilidad-condicional"><i class="fa fa-check"></i><b>4.3</b> La probabilidad condicional</a></li>
+<li class="chapter" data-level="4.4" data-path="probabilidad-condicional.html"><a href="probabilidad-condicional.html#tabla-de-contingencia-condicional"><i class="fa fa-check"></i><b>4.4</b> Tabla de contingencia condicional</a></li>
+<li class="chapter" data-level="4.5" data-path="probabilidad-condicional.html"><a href="probabilidad-condicional.html#independencia-estadística-1"><i class="fa fa-check"></i><b>4.5</b> Independencia estadística</a></li>
+<li class="chapter" data-level="4.6" data-path="probabilidad-condicional.html"><a href="probabilidad-condicional.html#dependencia-estadística"><i class="fa fa-check"></i><b>4.6</b> Dependencia estadística</a></li>
+<li class="chapter" data-level="4.7" data-path="probabilidad-condicional.html"><a href="probabilidad-condicional.html#prueba-de-diagnóstico"><i class="fa fa-check"></i><b>4.7</b> Prueba de diagnóstico</a></li>
+<li class="chapter" data-level="4.8" data-path="probabilidad-condicional.html"><a href="probabilidad-condicional.html#probabilidades-inversas"><i class="fa fa-check"></i><b>4.8</b> Probabilidades inversas</a></li>
+<li class="chapter" data-level="4.9" data-path="probabilidad-condicional.html"><a href="probabilidad-condicional.html#teorema-de-bayes"><i class="fa fa-check"></i><b>4.9</b> Teorema de Bayes</a></li>
+<li class="chapter" data-level="4.10" data-path="probabilidad-condicional.html"><a href="probabilidad-condicional.html#preguntas-2"><i class="fa fa-check"></i><b>4.10</b> Preguntas</a></li>
+<li class="chapter" data-level="4.11" data-path="probabilidad-condicional.html"><a href="probabilidad-condicional.html#ejercicios-2"><i class="fa fa-check"></i><b>4.11</b> Ejercicios</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="variables-aleatorias-discretas.html"><a href="variables-aleatorias-discretas.html"><i class="fa fa-check"></i><b>5</b> Variables aleatorias discretas</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="variables-aleatorias-discretas.html"><a href="variables-aleatorias-discretas.html#objetivo-1"><i class="fa fa-check"></i><b>5.1</b> Objetivo</a></li>
+<li class="chapter" data-level="5.2" data-path="variables-aleatorias-discretas.html"><a href="variables-aleatorias-discretas.html#frecuencias-relativas-2"><i class="fa fa-check"></i><b>5.2</b> Frecuencias relativas</a></li>
+<li class="chapter" data-level="5.3" data-path="variables-aleatorias-discretas.html"><a href="variables-aleatorias-discretas.html#variable-aleatoria"><i class="fa fa-check"></i><b>5.3</b> Variable aleatoria</a></li>
+<li class="chapter" data-level="5.4" data-path="variables-aleatorias-discretas.html"><a href="variables-aleatorias-discretas.html#eventos-de-observar-una-variable-aleatoria"><i class="fa fa-check"></i><b>5.4</b> Eventos de observar una variable aleatoria</a></li>
+<li class="chapter" data-level="5.5" data-path="variables-aleatorias-discretas.html"><a href="variables-aleatorias-discretas.html#probabilidad-de-variables-aleatorias"><i class="fa fa-check"></i><b>5.5</b> Probabilidad de variables aleatorias</a></li>
+<li class="chapter" data-level="5.6" data-path="variables-aleatorias-discretas.html"><a href="variables-aleatorias-discretas.html#funciones-de-probabilidad"><i class="fa fa-check"></i><b>5.6</b> Funciones de probabilidad</a></li>
+<li class="chapter" data-level="5.7" data-path="variables-aleatorias-discretas.html"><a href="variables-aleatorias-discretas.html#funciones-de-probabilidad-1"><i class="fa fa-check"></i><b>5.7</b> Funciones de probabilidad</a></li>
+<li class="chapter" data-level="5.8" data-path="variables-aleatorias-discretas.html"><a href="variables-aleatorias-discretas.html#probabilidades-y-frecuencias-relativas"><i class="fa fa-check"></i><b>5.8</b> Probabilidades y frecuencias relativas</a></li>
+<li class="chapter" data-level="5.9" data-path="variables-aleatorias-discretas.html"><a href="variables-aleatorias-discretas.html#la-media-o-el-valor-esperado"><i class="fa fa-check"></i><b>5.9</b> La media o el valor esperado</a></li>
+<li class="chapter" data-level="5.10" data-path="variables-aleatorias-discretas.html"><a href="variables-aleatorias-discretas.html#varianza"><i class="fa fa-check"></i><b>5.10</b> Varianza</a></li>
+<li class="chapter" data-level="5.11" data-path="variables-aleatorias-discretas.html"><a href="variables-aleatorias-discretas.html#funciones-de-probabilidad-para-funciones-de-x"><i class="fa fa-check"></i><b>5.11</b> Funciones de probabilidad para funciones de <span class="math inline">\(X\)</span></a></li>
+<li class="chapter" data-level="5.12" data-path="variables-aleatorias-discretas.html"><a href="variables-aleatorias-discretas.html#distribución-de-probabilidad"><i class="fa fa-check"></i><b>5.12</b> Distribución de probabilidad</a></li>
+<li class="chapter" data-level="5.13" data-path="variables-aleatorias-discretas.html"><a href="variables-aleatorias-discretas.html#función-de-probabilidad-y-distribución-de-probabilidad"><i class="fa fa-check"></i><b>5.13</b> Función de probabilidad y distribución de probabilidad</a></li>
+<li class="chapter" data-level="5.14" data-path="variables-aleatorias-discretas.html"><a href="variables-aleatorias-discretas.html#cuantiles"><i class="fa fa-check"></i><b>5.14</b> Cuantiles</a></li>
+<li class="chapter" data-level="5.15" data-path="variables-aleatorias-discretas.html"><a href="variables-aleatorias-discretas.html#resumen"><i class="fa fa-check"></i><b>5.15</b> Resumen</a></li>
+<li class="chapter" data-level="5.16" data-path="variables-aleatorias-discretas.html"><a href="variables-aleatorias-discretas.html#preguntas-3"><i class="fa fa-check"></i><b>5.16</b> Preguntas</a></li>
+<li class="chapter" data-level="5.17" data-path="variables-aleatorias-discretas.html"><a href="variables-aleatorias-discretas.html#ejercicios-3"><i class="fa fa-check"></i><b>5.17</b> Ejercicios</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="variables-aleatorias-continuas.html"><a href="variables-aleatorias-continuas.html"><i class="fa fa-check"></i><b>6</b> Variables aleatorias continuas</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="variables-aleatorias-continuas.html"><a href="variables-aleatorias-continuas.html#objetivo-2"><i class="fa fa-check"></i><b>6.1</b> Objetivo</a></li>
+<li class="chapter" data-level="6.2" data-path="variables-aleatorias-continuas.html"><a href="variables-aleatorias-continuas.html#variables-aleatorias-continuas-1"><i class="fa fa-check"></i><b>6.2</b> Variables aleatorias continuas</a></li>
+<li class="chapter" data-level="6.3" data-path="variables-aleatorias-continuas.html"><a href="variables-aleatorias-continuas.html#frecuencias-relativas-3"><i class="fa fa-check"></i><b>6.3</b> frecuencias relativas</a></li>
+<li class="chapter" data-level="6.4" data-path="variables-aleatorias-continuas.html"><a href="variables-aleatorias-continuas.html#función-de-densidad-de-probabilidad"><i class="fa fa-check"></i><b>6.4</b> función de densidad de probabilidad</a></li>
+<li class="chapter" data-level="6.5" data-path="variables-aleatorias-continuas.html"><a href="variables-aleatorias-continuas.html#área-total-bajo-la-curva"><i class="fa fa-check"></i><b>6.5</b> Área total bajo la curva</a></li>
+<li class="chapter" data-level="6.6" data-path="variables-aleatorias-continuas.html"><a href="variables-aleatorias-continuas.html#probabilidades-de-variables-continuas"><i class="fa fa-check"></i><b>6.6</b> Probabilidades de variables continuas</a></li>
+<li class="chapter" data-level="6.7" data-path="variables-aleatorias-continuas.html"><a href="variables-aleatorias-continuas.html#distribución-de-probabilidad-1"><i class="fa fa-check"></i><b>6.7</b> Distribución de probabilidad</a></li>
+<li class="chapter" data-level="6.8" data-path="variables-aleatorias-continuas.html"><a href="variables-aleatorias-continuas.html#gráficas-de-probabilidad"><i class="fa fa-check"></i><b>6.8</b> Gráficas de probabilidad</a></li>
+<li class="chapter" data-level="6.9" data-path="variables-aleatorias-continuas.html"><a href="variables-aleatorias-continuas.html#media"><i class="fa fa-check"></i><b>6.9</b> Media</a></li>
+<li class="chapter" data-level="6.10" data-path="variables-aleatorias-continuas.html"><a href="variables-aleatorias-continuas.html#varianza-1"><i class="fa fa-check"></i><b>6.10</b> Varianza</a></li>
+<li class="chapter" data-level="6.11" data-path="variables-aleatorias-continuas.html"><a href="variables-aleatorias-continuas.html#funciones-de-x"><i class="fa fa-check"></i><b>6.11</b> Funciones de <span class="math inline">\(X\)</span></a></li>
+<li class="chapter" data-level="6.12" data-path="variables-aleatorias-continuas.html"><a href="variables-aleatorias-continuas.html#ejercicios-4"><i class="fa fa-check"></i><b>6.12</b> Ejercicios</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="modelos-de-probabilidad-para-variables-aletorias-discretas.html"><a href="modelos-de-probabilidad-para-variables-aletorias-discretas.html"><i class="fa fa-check"></i><b>7</b> Modelos de probabilidad para variables aletorias discretas</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="modelos-de-probabilidad-para-variables-aletorias-discretas.html"><a href="modelos-de-probabilidad-para-variables-aletorias-discretas.html#objetivo-3"><i class="fa fa-check"></i><b>7.1</b> Objetivo</a></li>
+<li class="chapter" data-level="7.2" data-path="modelos-de-probabilidad-para-variables-aletorias-discretas.html"><a href="modelos-de-probabilidad-para-variables-aletorias-discretas.html#función-de-probabilidad"><i class="fa fa-check"></i><b>7.2</b> Función de probabilidad</a></li>
+<li class="chapter" data-level="7.3" data-path="modelos-de-probabilidad-para-variables-aletorias-discretas.html"><a href="modelos-de-probabilidad-para-variables-aletorias-discretas.html#modelo-de-probabilidad"><i class="fa fa-check"></i><b>7.3</b> Modelo de probabilidad</a></li>
+<li class="chapter" data-level="7.4" data-path="modelos-de-probabilidad-para-variables-aletorias-discretas.html"><a href="modelos-de-probabilidad-para-variables-aletorias-discretas.html#modelos-paramétricos"><i class="fa fa-check"></i><b>7.4</b> Modelos paramétricos</a></li>
+<li class="chapter" data-level="7.5" data-path="modelos-de-probabilidad-para-variables-aletorias-discretas.html"><a href="modelos-de-probabilidad-para-variables-aletorias-discretas.html#distribución-uniforme-un-parámetro"><i class="fa fa-check"></i><b>7.5</b> Distribución uniforme (un parámetro)</a></li>
+<li class="chapter" data-level="7.6" data-path="modelos-de-probabilidad-para-variables-aletorias-discretas.html"><a href="modelos-de-probabilidad-para-variables-aletorias-discretas.html#distribución-uniforme-dos-parámetros"><i class="fa fa-check"></i><b>7.6</b> Distribución uniforme (dos parámetros)</a></li>
+<li class="chapter" data-level="7.7" data-path="modelos-de-probabilidad-para-variables-aletorias-discretas.html"><a href="modelos-de-probabilidad-para-variables-aletorias-discretas.html#ensayo-de-bernoulli"><i class="fa fa-check"></i><b>7.7</b> Ensayo de Bernoulli</a></li>
+<li class="chapter" data-level="7.8" data-path="modelos-de-probabilidad-para-variables-aletorias-discretas.html"><a href="modelos-de-probabilidad-para-variables-aletorias-discretas.html#experimento-binomial"><i class="fa fa-check"></i><b>7.8</b> Experimento binomial</a></li>
+<li class="chapter" data-level="7.9" data-path="modelos-de-probabilidad-para-variables-aletorias-discretas.html"><a href="modelos-de-probabilidad-para-variables-aletorias-discretas.html#función-de-probabilidad-binomial"><i class="fa fa-check"></i><b>7.9</b> Función de probabilidad binomial</a></li>
+<li class="chapter" data-level="7.10" data-path="modelos-de-probabilidad-para-variables-aletorias-discretas.html"><a href="modelos-de-probabilidad-para-variables-aletorias-discretas.html#función-de-probabilidad-binomial-negativa"><i class="fa fa-check"></i><b>7.10</b> Función de probabilidad binomial negativa</a></li>
+<li class="chapter" data-level="7.11" data-path="modelos-de-probabilidad-para-variables-aletorias-discretas.html"><a href="modelos-de-probabilidad-para-variables-aletorias-discretas.html#distribución-geométrica"><i class="fa fa-check"></i><b>7.11</b> Distribución geométrica</a></li>
+<li class="chapter" data-level="7.12" data-path="modelos-de-probabilidad-para-variables-aletorias-discretas.html"><a href="modelos-de-probabilidad-para-variables-aletorias-discretas.html#modelo-hipergeométrico"><i class="fa fa-check"></i><b>7.12</b> Modelo hipergeométrico</a></li>
+<li class="chapter" data-level="7.13" data-path="modelos-de-probabilidad-para-variables-aletorias-discretas.html"><a href="modelos-de-probabilidad-para-variables-aletorias-discretas.html#preguntas-4"><i class="fa fa-check"></i><b>7.13</b> Preguntas</a></li>
+<li class="chapter" data-level="7.14" data-path="modelos-de-probabilidad-para-variables-aletorias-discretas.html"><a href="modelos-de-probabilidad-para-variables-aletorias-discretas.html#ejercicios-5"><i class="fa fa-check"></i><b>7.14</b> Ejercicios</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="modelos-de-poisson-y-exponencial.html"><a href="modelos-de-poisson-y-exponencial.html"><i class="fa fa-check"></i><b>8</b> Modelos de Poisson y Exponencial</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="modelos-de-poisson-y-exponencial.html"><a href="modelos-de-poisson-y-exponencial.html#objetivo-4"><i class="fa fa-check"></i><b>8.1</b> Objetivo</a></li>
+<li class="chapter" data-level="8.2" data-path="modelos-de-poisson-y-exponencial.html"><a href="modelos-de-poisson-y-exponencial.html#modelos-de-probabilidad-para-variables-discretas"><i class="fa fa-check"></i><b>8.2</b> Modelos de probabilidad para variables discretas</a></li>
+<li class="chapter" data-level="8.3" data-path="modelos-de-poisson-y-exponencial.html"><a href="modelos-de-poisson-y-exponencial.html#experimento-de-poissson"><i class="fa fa-check"></i><b>8.3</b> Experimento de Poissson</a></li>
+<li class="chapter" data-level="8.4" data-path="modelos-de-poisson-y-exponencial.html"><a href="modelos-de-poisson-y-exponencial.html#función-de-masa-de-probabilidad-de-poisson"><i class="fa fa-check"></i><b>8.4</b> Función de masa de probabilidad de Poisson</a></li>
+<li class="chapter" data-level="8.5" data-path="modelos-de-poisson-y-exponencial.html"><a href="modelos-de-poisson-y-exponencial.html#modelos-de-probabilidad-para-variables-continuas"><i class="fa fa-check"></i><b>8.5</b> Modelos de probabilidad para variables continuas</a></li>
+<li class="chapter" data-level="8.6" data-path="modelos-de-poisson-y-exponencial.html"><a href="modelos-de-poisson-y-exponencial.html#experimento-exponencial"><i class="fa fa-check"></i><b>8.6</b> Experimento exponencial</a></li>
+<li class="chapter" data-level="8.7" data-path="modelos-de-poisson-y-exponencial.html"><a href="modelos-de-poisson-y-exponencial.html#densidad-de-probabilidad-exponencial"><i class="fa fa-check"></i><b>8.7</b> Densidad de probabilidad exponencial</a></li>
+<li class="chapter" data-level="8.8" data-path="modelos-de-poisson-y-exponencial.html"><a href="modelos-de-poisson-y-exponencial.html#distribución-exponencial"><i class="fa fa-check"></i><b>8.8</b> Distribución exponencial</a></li>
+<li class="chapter" data-level="8.9" data-path="modelos-de-poisson-y-exponencial.html"><a href="modelos-de-poisson-y-exponencial.html#preguntas-5"><i class="fa fa-check"></i><b>8.9</b> Preguntas</a></li>
+<li class="chapter" data-level="8.10" data-path="modelos-de-poisson-y-exponencial.html"><a href="modelos-de-poisson-y-exponencial.html#ejercicios-6"><i class="fa fa-check"></i><b>8.10</b> Ejercicios</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="distribución-normal.html"><a href="distribución-normal.html"><i class="fa fa-check"></i><b>9</b> Distribución normal</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="distribución-normal.html"><a href="distribución-normal.html#objetivo-5"><i class="fa fa-check"></i><b>9.1</b> Objetivo</a></li>
+<li class="chapter" data-level="9.2" data-path="distribución-normal.html"><a href="distribución-normal.html#historia"><i class="fa fa-check"></i><b>9.2</b> Historia</a></li>
+<li class="chapter" data-level="9.3" data-path="distribución-normal.html"><a href="distribución-normal.html#densidad-normal"><i class="fa fa-check"></i><b>9.3</b> Densidad normal</a></li>
+<li class="chapter" data-level="9.4" data-path="distribución-normal.html"><a href="distribución-normal.html#definición"><i class="fa fa-check"></i><b>9.4</b> Definición</a></li>
+<li class="chapter" data-level="9.5" data-path="distribución-normal.html"><a href="distribución-normal.html#distribución-de-probabilidad-2"><i class="fa fa-check"></i><b>9.5</b> Distribución de probabilidad</a></li>
+<li class="chapter" data-level="9.6" data-path="distribución-normal.html"><a href="distribución-normal.html#densidad-normal-estándar"><i class="fa fa-check"></i><b>9.6</b> Densidad normal estándar</a></li>
+<li class="chapter" data-level="9.7" data-path="distribución-normal.html"><a href="distribución-normal.html#distribución-estándar"><i class="fa fa-check"></i><b>9.7</b> Distribución estándar</a></li>
+<li class="chapter" data-level="9.8" data-path="distribución-normal.html"><a href="distribución-normal.html#estandarización"><i class="fa fa-check"></i><b>9.8</b> Estandarización</a></li>
+<li class="chapter" data-level="9.9" data-path="distribución-normal.html"><a href="distribución-normal.html#resumen-de-modelos-de-probabilidad"><i class="fa fa-check"></i><b>9.9</b> Resumen de modelos de probabilidad</a></li>
+<li class="chapter" data-level="9.10" data-path="distribución-normal.html"><a href="distribución-normal.html#funciones-r-de-modelos-de-probabilidad"><i class="fa fa-check"></i><b>9.10</b> Funciones R de modelos de probabilidad</a></li>
+<li class="chapter" data-level="9.11" data-path="distribución-normal.html"><a href="distribución-normal.html#preguntas-6"><i class="fa fa-check"></i><b>9.11</b> Preguntas</a></li>
+<li class="chapter" data-level="9.12" data-path="distribución-normal.html"><a href="distribución-normal.html#ejercicios-7"><i class="fa fa-check"></i><b>9.12</b> Ejercicios</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="distribuciones-de-muestreo.html"><a href="distribuciones-de-muestreo.html"><i class="fa fa-check"></i><b>10</b> Distribuciones de muestreo</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="distribuciones-de-muestreo.html"><a href="distribuciones-de-muestreo.html#objetivo-6"><i class="fa fa-check"></i><b>10.1</b> Objetivo</a></li>
+<li class="chapter" data-level="10.2" data-path="distribuciones-de-muestreo.html"><a href="distribuciones-de-muestreo.html#muestra-aleatoria"><i class="fa fa-check"></i><b>10.2</b> Muestra aleatoria</a></li>
+<li class="chapter" data-level="10.3" data-path="distribuciones-de-muestreo.html"><a href="distribuciones-de-muestreo.html#cálculo-de-probabilidades"><i class="fa fa-check"></i><b>10.3</b> Cálculo de probabilidades</a></li>
+<li class="chapter" data-level="10.4" data-path="distribuciones-de-muestreo.html"><a href="distribuciones-de-muestreo.html#estimación-de-los-parámetros"><i class="fa fa-check"></i><b>10.4</b> Estimación de los parámetros</a></li>
+<li class="chapter" data-level="10.5" data-path="distribuciones-de-muestreo.html"><a href="distribuciones-de-muestreo.html#margen-de-error-de-las-estimaciones"><i class="fa fa-check"></i><b>10.5</b> Margen de error de las estimaciones</a></li>
+<li class="chapter" data-level="10.6" data-path="distribuciones-de-muestreo.html"><a href="distribuciones-de-muestreo.html#inferencia"><i class="fa fa-check"></i><b>10.6</b> Inferencia</a></li>
+<li class="chapter" data-level="10.7" data-path="distribuciones-de-muestreo.html"><a href="distribuciones-de-muestreo.html#distribución-media-muestral"><i class="fa fa-check"></i><b>10.7</b> Distribución media muestral</a>
+<ul>
+<li class="chapter" data-level="10.7.1" data-path="distribuciones-de-muestreo.html"><a href="distribuciones-de-muestreo.html#suma-muestral"><i class="fa fa-check"></i><b>10.7.1</b> Suma muestral</a></li>
+</ul></li>
+<li class="chapter" data-level="10.8" data-path="distribuciones-de-muestreo.html"><a href="distribuciones-de-muestreo.html#variaza-muestral"><i class="fa fa-check"></i><b>10.8</b> Variaza muestral</a></li>
+<li class="chapter" data-level="10.9" data-path="distribuciones-de-muestreo.html"><a href="distribuciones-de-muestreo.html#probabilidades-de-la-varianza-muestral"><i class="fa fa-check"></i><b>10.9</b> Probabilidades de la varianza muestral</a></li>
+<li class="chapter" data-level="10.10" data-path="distribuciones-de-muestreo.html"><a href="distribuciones-de-muestreo.html#chi2-estadística"><i class="fa fa-check"></i><b>10.10</b> <span class="math inline">\(\chi^2\)</span>-estadística</a></li>
+<li class="chapter" data-level="10.11" data-path="distribuciones-de-muestreo.html"><a href="distribuciones-de-muestreo.html#preguntas-7"><i class="fa fa-check"></i><b>10.11</b> Preguntas</a></li>
+<li class="chapter" data-level="10.12" data-path="distribuciones-de-muestreo.html"><a href="distribuciones-de-muestreo.html#ejercicios-8"><i class="fa fa-check"></i><b>10.12</b> Ejercicios</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="teorema-central-del-límite.html"><a href="teorema-central-del-límite.html"><i class="fa fa-check"></i><b>11</b> Teorema central del límite</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="teorema-central-del-límite.html"><a href="teorema-central-del-límite.html#objetivo-7"><i class="fa fa-check"></i><b>11.1</b> Objetivo</a></li>
+<li class="chapter" data-level="11.2" data-path="teorema-central-del-límite.html"><a href="teorema-central-del-límite.html#margen-de-error"><i class="fa fa-check"></i><b>11.2</b> Margen de error</a></li>
+<li class="chapter" data-level="11.3" data-path="teorema-central-del-límite.html"><a href="teorema-central-del-límite.html#ejemplo-cables"><i class="fa fa-check"></i><b>11.3</b> Ejemplo (cables)</a></li>
+<li class="chapter" data-level="11.4" data-path="teorema-central-del-límite.html"><a href="teorema-central-del-límite.html#teorema-central-del-límite-1"><i class="fa fa-check"></i><b>11.4</b> Teorema central del límite</a></li>
+<li class="chapter" data-level="11.5" data-path="teorema-central-del-límite.html"><a href="teorema-central-del-límite.html#suma-muestral-y-clt"><i class="fa fa-check"></i><b>11.5</b> Suma muestral y CLT</a></li>
+<li class="chapter" data-level="11.6" data-path="teorema-central-del-límite.html"><a href="teorema-central-del-límite.html#preguntas-8"><i class="fa fa-check"></i><b>11.6</b> Preguntas</a></li>
+<li class="chapter" data-level="11.7" data-path="teorema-central-del-límite.html"><a href="teorema-central-del-límite.html#ejercicios-9"><i class="fa fa-check"></i><b>11.7</b> Ejercicios</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="máxima-verosimilitud-y-método-de-los-momentos.html"><a href="máxima-verosimilitud-y-método-de-los-momentos.html"><i class="fa fa-check"></i><b>12</b> Máxima verosimilitud y Método de los Momentos</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="máxima-verosimilitud-y-método-de-los-momentos.html"><a href="máxima-verosimilitud-y-método-de-los-momentos.html#objetivo-8"><i class="fa fa-check"></i><b>12.1</b> Objetivo</a></li>
+<li class="chapter" data-level="12.2" data-path="máxima-verosimilitud-y-método-de-los-momentos.html"><a href="máxima-verosimilitud-y-método-de-los-momentos.html#estadística-1"><i class="fa fa-check"></i><b>12.2</b> Estadística</a></li>
+<li class="chapter" data-level="12.3" data-path="máxima-verosimilitud-y-método-de-los-momentos.html"><a href="máxima-verosimilitud-y-método-de-los-momentos.html#propiedades"><i class="fa fa-check"></i><b>12.3</b> Propiedades</a></li>
+<li class="chapter" data-level="12.4" data-path="máxima-verosimilitud-y-método-de-los-momentos.html"><a href="máxima-verosimilitud-y-método-de-los-momentos.html#máxima-verosimilitud"><i class="fa fa-check"></i><b>12.4</b> Máxima verosimilitud</a></li>
+<li class="chapter" data-level="12.5" data-path="máxima-verosimilitud-y-método-de-los-momentos.html"><a href="máxima-verosimilitud-y-método-de-los-momentos.html#máxima-verosimilitud-1"><i class="fa fa-check"></i><b>12.5</b> Máxima verosimilitud</a></li>
+<li class="chapter" data-level="12.6" data-path="máxima-verosimilitud-y-método-de-los-momentos.html"><a href="máxima-verosimilitud-y-método-de-los-momentos.html#método-de-los-momentos"><i class="fa fa-check"></i><b>12.6</b> Método de los Momentos</a></li>
+<li class="chapter" data-level="12.7" data-path="máxima-verosimilitud-y-método-de-los-momentos.html"><a href="máxima-verosimilitud-y-método-de-los-momentos.html#método-de-momentos-para-varios-parámetros"><i class="fa fa-check"></i><b>12.7</b> Método de Momentos para varios parámetros</a></li>
+<li class="chapter" data-level="12.8" data-path="máxima-verosimilitud-y-método-de-los-momentos.html"><a href="máxima-verosimilitud-y-método-de-los-momentos.html#preguntas-9"><i class="fa fa-check"></i><b>12.8</b> Preguntas</a></li>
+<li class="chapter" data-level="12.9" data-path="máxima-verosimilitud-y-método-de-los-momentos.html"><a href="máxima-verosimilitud-y-método-de-los-momentos.html#ejercicios-10"><i class="fa fa-check"></i><b>12.9</b> Ejercicios</a></li>
+<li class="chapter" data-level="12.10" data-path="máxima-verosimilitud-y-método-de-los-momentos.html"><a href="máxima-verosimilitud-y-método-de-los-momentos.html#método-de-los-momentos-1"><i class="fa fa-check"></i><b>12.10</b> Método de los momentos</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="intervalos-de-confianza.html"><a href="intervalos-de-confianza.html"><i class="fa fa-check"></i><b>13</b> Intervalos de confianza</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="intervalos-de-confianza.html"><a href="intervalos-de-confianza.html#objetivo-9"><i class="fa fa-check"></i><b>13.1</b> Objetivo</a></li>
+<li class="chapter" data-level="13.2" data-path="intervalos-de-confianza.html"><a href="intervalos-de-confianza.html#estimación-de-la-media"><i class="fa fa-check"></i><b>13.2</b> Estimación de la media</a></li>
+<li class="chapter" data-level="13.3" data-path="intervalos-de-confianza.html"><a href="intervalos-de-confianza.html#margen-de-error-1"><i class="fa fa-check"></i><b>13.3</b> Margen de error</a></li>
+<li class="chapter" data-level="13.4" data-path="intervalos-de-confianza.html"><a href="intervalos-de-confianza.html#estimación-de-intervalo-para-la-media"><i class="fa fa-check"></i><b>13.4</b> Estimación de intervalo para la media</a>
+<ul>
+<li class="chapter" data-level="13.4.1" data-path="intervalos-de-confianza.html"><a href="intervalos-de-confianza.html#caso-1-varianza-conocida"><i class="fa fa-check"></i><b>13.4.1</b> Caso 1 (varianza conocida)</a></li>
+<li class="chapter" data-level="13.4.2" data-path="intervalos-de-confianza.html"><a href="intervalos-de-confianza.html#nivel-de-confianza"><i class="fa fa-check"></i><b>13.4.2</b> Nivel de confianza</a></li>
+</ul></li>
+<li class="chapter" data-level="13.5" data-path="intervalos-de-confianza.html"><a href="intervalos-de-confianza.html#margen-de-error-para-varianza-desconocida"><i class="fa fa-check"></i><b>13.5</b> Margen de error para varianza desconocida</a>
+<ul>
+<li class="chapter" data-level="13.5.1" data-path="intervalos-de-confianza.html"><a href="intervalos-de-confianza.html#teorema-estadística-t"><i class="fa fa-check"></i><b>13.5.1</b> Teorema (estadística T)</a></li>
+<li class="chapter" data-level="13.5.2" data-path="intervalos-de-confianza.html"><a href="intervalos-de-confianza.html#caso-2-varianza-desconocida"><i class="fa fa-check"></i><b>13.5.2</b> Caso 2 (varianza desconocida)</a></li>
+</ul></li>
+<li class="chapter" data-level="13.6" data-path="intervalos-de-confianza.html"><a href="intervalos-de-confianza.html#estimación-de-proporciones"><i class="fa fa-check"></i><b>13.6</b> Estimación de proporciones</a>
+<ul>
+<li class="chapter" data-level="13.6.1" data-path="intervalos-de-confianza.html"><a href="intervalos-de-confianza.html#caso-3-proporciones"><i class="fa fa-check"></i><b>13.6.1</b> Caso 3 (proporciones)</a></li>
+</ul></li>
+<li class="chapter" data-level="13.7" data-path="intervalos-de-confianza.html"><a href="intervalos-de-confianza.html#estimación-de-la-varianza"><i class="fa fa-check"></i><b>13.7</b> Estimación de la varianza</a></li>
+<li class="chapter" data-level="13.8" data-path="intervalos-de-confianza.html"><a href="intervalos-de-confianza.html#intervalo-de-confianza-para-la-varianza"><i class="fa fa-check"></i><b>13.8</b> Intervalo de confianza para la varianza</a>
+<ul>
+<li class="chapter" data-level="13.8.1" data-path="intervalos-de-confianza.html"><a href="intervalos-de-confianza.html#teorema-chi2"><i class="fa fa-check"></i><b>13.8.1</b> Teorema (<span class="math inline">\(\chi^2\)</span>):</a></li>
+<li class="chapter" data-level="13.8.2" data-path="intervalos-de-confianza.html"><a href="intervalos-de-confianza.html#intervalo-de-confianza-para-la-varianza-1"><i class="fa fa-check"></i><b>13.8.2</b> Intervalo de confianza para la varianza</a></li>
+<li class="chapter" data-level="13.8.3" data-path="intervalos-de-confianza.html"><a href="intervalos-de-confianza.html#caso-4-varianza"><i class="fa fa-check"></i><b>13.8.3</b> Caso 4 (varianza)</a></li>
+</ul></li>
+<li class="chapter" data-level="13.9" data-path="intervalos-de-confianza.html"><a href="intervalos-de-confianza.html#preguntas-10"><i class="fa fa-check"></i><b>13.9</b> Preguntas</a></li>
+<li class="chapter" data-level="13.10" data-path="intervalos-de-confianza.html"><a href="intervalos-de-confianza.html#ejercicios-11"><i class="fa fa-check"></i><b>13.10</b> Ejercicios</a></li>
+<li class="chapter" data-level="13.11" data-path="intervalos-de-confianza.html"><a href="intervalos-de-confianza.html#práctica"><i class="fa fa-check"></i><b>13.11</b> Práctica</a></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="contraste-de-hipótesis.html"><a href="contraste-de-hipótesis.html"><i class="fa fa-check"></i><b>14</b> Contraste de hipótesis</a>
+<ul>
+<li class="chapter" data-level="14.1" data-path="contraste-de-hipótesis.html"><a href="contraste-de-hipótesis.html#objetivo-10"><i class="fa fa-check"></i><b>14.1</b> Objetivo</a></li>
+<li class="chapter" data-level="14.2" data-path="contraste-de-hipótesis.html"><a href="contraste-de-hipótesis.html#hipótesis"><i class="fa fa-check"></i><b>14.2</b> Hipótesis</a></li>
+<li class="chapter" data-level="14.3" data-path="contraste-de-hipótesis.html"><a href="contraste-de-hipótesis.html#contraste-de-hipótesis-1"><i class="fa fa-check"></i><b>14.3</b> Contraste de hipótesis</a></li>
+<li class="chapter" data-level="14.4" data-path="contraste-de-hipótesis.html"><a href="contraste-de-hipótesis.html#caso-1-para-la-media-con-varianza-conocida"><i class="fa fa-check"></i><b>14.4</b> Caso 1 (para la media con varianza conocida)</a>
+<ul>
+<li class="chapter" data-level="14.4.1" data-path="contraste-de-hipótesis.html"><a href="contraste-de-hipótesis.html#prueba-de-hipótesis-con-un-intervalo-de-confianza"><i class="fa fa-check"></i><b>14.4.1</b> Prueba de hipótesis con un intervalo de confianza</a></li>
+<li class="chapter" data-level="14.4.2" data-path="contraste-de-hipótesis.html"><a href="contraste-de-hipótesis.html#prueba-de-hipótesis-con-zonas-de-aceptaciónrechazo"><i class="fa fa-check"></i><b>14.4.2</b> Prueba de hipótesis con zonas de aceptación/rechazo</a></li>
+<li class="chapter" data-level="14.4.3" data-path="contraste-de-hipótesis.html"><a href="contraste-de-hipótesis.html#prueba-de-hipótesis-con-un-p-valor"><i class="fa fa-check"></i><b>14.4.3</b> Prueba de hipótesis con un P valor</a></li>
+<li class="chapter" data-level="14.4.4" data-path="contraste-de-hipótesis.html"><a href="contraste-de-hipótesis.html#hipótesis-de-la-cola-superior"><i class="fa fa-check"></i><b>14.4.4</b> Hipótesis de la cola superior</a></li>
+</ul></li>
+<li class="chapter" data-level="14.5" data-path="contraste-de-hipótesis.html"><a href="contraste-de-hipótesis.html#caso-2-para-la-media-con-varianza-desconocida"><i class="fa fa-check"></i><b>14.5</b> Caso 2 (para la media con varianza desconocida)</a>
+<ul>
+<li class="chapter" data-level="14.5.1" data-path="contraste-de-hipótesis.html"><a href="contraste-de-hipótesis.html#hipótesis-la-cola-inferior"><i class="fa fa-check"></i><b>14.5.1</b> Hipótesis la cola inferior</a></li>
+<li class="chapter" data-level="14.5.2" data-path="contraste-de-hipótesis.html"><a href="contraste-de-hipótesis.html#prueba-de-hipótesis-con-n-grande-y-cualquier-distribución"><i class="fa fa-check"></i><b>14.5.2</b> Prueba de hipótesis con n grande y cualquier distribución</a></li>
+</ul></li>
+<li class="chapter" data-level="14.6" data-path="contraste-de-hipótesis.html"><a href="contraste-de-hipótesis.html#caso-3-para-proporciones"><i class="fa fa-check"></i><b>14.6</b> Caso 3 (para proporciones)</a></li>
+<li class="chapter" data-level="14.7" data-path="contraste-de-hipótesis.html"><a href="contraste-de-hipótesis.html#caso-4-para-la-varianza"><i class="fa fa-check"></i><b>14.7</b> Caso 4 (para la varianza)</a></li>
+<li class="chapter" data-level="14.8" data-path="contraste-de-hipótesis.html"><a href="contraste-de-hipótesis.html#errores-en-la-prueba-de-hipótesis"><i class="fa fa-check"></i><b>14.8</b> Errores en la prueba de hipótesis</a></li>
+<li class="chapter" data-level="14.9" data-path="contraste-de-hipótesis.html"><a href="contraste-de-hipótesis.html#ejercicios-12"><i class="fa fa-check"></i><b>14.9</b> Ejercicios</a></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="soluciones-a-las-preguntas.html"><a href="soluciones-a-las-preguntas.html"><i class="fa fa-check"></i><b>15</b> Soluciones a las preguntas</a>
+<ul>
+<li class="chapter" data-level="15.1" data-path="soluciones-a-las-preguntas.html"><a href="soluciones-a-las-preguntas.html#capítulo-2"><i class="fa fa-check"></i><b>15.1</b> Capítulo 2</a></li>
+<li class="chapter" data-level="15.2" data-path="soluciones-a-las-preguntas.html"><a href="soluciones-a-las-preguntas.html#capítulo-3"><i class="fa fa-check"></i><b>15.2</b> Capítulo 3</a></li>
+<li class="chapter" data-level="15.3" data-path="soluciones-a-las-preguntas.html"><a href="soluciones-a-las-preguntas.html#capítulo-4"><i class="fa fa-check"></i><b>15.3</b> Capítulo 4</a></li>
+<li class="chapter" data-level="15.4" data-path="soluciones-a-las-preguntas.html"><a href="soluciones-a-las-preguntas.html#capítulo-5"><i class="fa fa-check"></i><b>15.4</b> Capítulo 5</a></li>
+<li class="chapter" data-level="15.5" data-path="soluciones-a-las-preguntas.html"><a href="soluciones-a-las-preguntas.html#capítulo-7"><i class="fa fa-check"></i><b>15.5</b> Capítulo 7</a></li>
+<li class="chapter" data-level="15.6" data-path="soluciones-a-las-preguntas.html"><a href="soluciones-a-las-preguntas.html#capítulo-8"><i class="fa fa-check"></i><b>15.6</b> Capítulo 8</a></li>
+<li class="chapter" data-level="15.7" data-path="soluciones-a-las-preguntas.html"><a href="soluciones-a-las-preguntas.html#capítulo-9"><i class="fa fa-check"></i><b>15.7</b> Capítulo 9</a></li>
+<li class="chapter" data-level="15.8" data-path="soluciones-a-las-preguntas.html"><a href="soluciones-a-las-preguntas.html#capítulo-10"><i class="fa fa-check"></i><b>15.8</b> Capítulo 10</a></li>
+<li class="chapter" data-level="15.9" data-path="soluciones-a-las-preguntas.html"><a href="soluciones-a-las-preguntas.html#capítulo-11"><i class="fa fa-check"></i><b>15.9</b> Capítulo 11</a></li>
+<li class="chapter" data-level="15.10" data-path="soluciones-a-las-preguntas.html"><a href="soluciones-a-las-preguntas.html#capítulo-12"><i class="fa fa-check"></i><b>15.10</b> Capítulo 12</a></li>
+<li class="chapter" data-level="15.11" data-path="soluciones-a-las-preguntas.html"><a href="soluciones-a-las-preguntas.html#capítulo-13"><i class="fa fa-check"></i><b>15.11</b> Capítulo 13</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">EEBE Estadística</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="contraste-de-hipótesis" class="section level1 hasAnchor" number="14">
+<h1><span class="header-section-number">Chapter 14</span> Contraste de hipótesis<a href="contraste-de-hipótesis.html#contraste-de-hipótesis" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="objetivo-10" class="section level2 hasAnchor" number="14.1">
+<h2><span class="header-section-number">14.1</span> Objetivo<a href="contraste-de-hipótesis.html#objetivo-10" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>En este capítulo estudiaremos <strong>pruebas de hipótesis</strong> de medias y proporciones. Definiremos cuál es la hipótesis nula y la alternativa y cómo utilizar los datos para elegir entre ambas.</p>
+<p>También presentaremos la prueba de hipótesis de varianzas y los errores que se cometen cuando se prueba una hipótesis. Estos errores se conocen como falsos positivos y falsos negativos.</p>
+</div>
+<div id="hipótesis" class="section level2 hasAnchor" number="14.2">
+<h2><span class="header-section-number">14.2</span> Hipótesis<a href="contraste-de-hipótesis.html#hipótesis" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Cuando llevamos a cabo experimentos aleatorios, a menudo queremos probar si los cambios que realizamos sobre el experimento tienen un efecto real. Queremos, por ejemplo, saber si hemos podido influenciar el experimento. O, sihemos sometido el experimento bajo una nueva condición, queremos saber si esa condición affecta el desarrollo del experimento. Usualmente tenemos una idea de cómo deberían ser los datos cuando estos cambios no están presente. Dado que los resultatos del experimento son aleatorios con y sin el cambio ¿cómo podemos diferenciar entre aplicar el cambio o no?</p>
+<p>La estrategia es formular el cambio o la nueva condición en términos de los valores que pueden tomar los <strong>parámetros</strong> de las distribuciones de probabilidad asociadas al experimento aleatorio. Después, usamos las observaciones del experimento aleatorio bajo la nueva condición para propocionar <strong>evidencia</strong> sobre la posible influencia en los parámetros.</p>
+<p><strong>Ejemplos (Neumáticos)</strong></p>
+<p>Los fabricantes de neumáticos quieren saber si la vida media de los neumáticos que producen es de al menos 20000 km. Intentemos traducir su interés en términos estadísticos. Imaginemos un experimento alatorio que consiste en medir cuanto dura la vida útil de un neumático en particular. Por lo tanto a los fabricantes les interesa saber si la media de la vida útil de un neumático es de al menos 20000 km.</p>
+<div style="page-break-after: always;"></div>
+<p>Formulemos dos declaraciones dicotómicas, es decir dos situaciones excluyentes:</p>
+<ol style="list-style-type: lower-alpha">
+<li>La vida media de los neumáticos puede ser <strong>menos</strong> de 20 000 km</li>
+<li>La vida media de los neumáticos puede ser <strong>superior</strong> a 20000 km</li>
+</ol>
+<p>Esto significa que sólo una puede ser verdadera. La pregunta es entonces cómo podemos usar los datos para <strong>decidir</strong> entre la situación a. o situación b. Consideremos que <span class="math inline">\(\mu\)</span> es la media de la distribución de la población. Por lo tanto, las afirmaciones a. y B. también se puede escribir como</p>
+<ol style="list-style-type: lower-alpha">
+<li><span class="math inline">\(H_0: \mu \leq 20000km\)</span></li>
+<li><span class="math inline">\(H_1: \mu &gt; 20000km\)</span></li>
+</ol>
+<p>Donde la declaración <span class="math inline">\(H_0\)</span> es para la cual los autos <strong>no recorren</strong> los 20000 km deseados mientras que la declaración <span class="math inline">\(H_1\)</span> es <strong>el caso deseado</strong>. <span class="math inline">\(H_0\)</span> y <span class="math inline">\(H_1\)</span> se llaman hipótesis.</p>
+<p><strong>Definición</strong></p>
+<p>En estadística, una afirmación (conjetura) sobre la distribución de una variable aleatoria se denomina <strong>hipótesis</strong>.</p>
+<p>Las hipótesis generalmente se escriben en dos declaraciones dicotómicas.</p>
+<ol style="list-style-type: lower-alpha">
+<li><p>La hipótesis <strong>nula</strong>: <span class="math inline">\(H_0\)</span> cuando la conjetura es falsa generalmente se refiere al <strong>statu quo</strong>. Los datos pueden ser explicados por el satus quo.</p></li>
+<li><p>La <strong>hipótesis alternativa</strong>: <span class="math inline">\(H_1\)</span> cuando la conjetura es verdadera generalmente se refiere a la <strong>hipótesis de investigación</strong>. Los datos pueden ser explicados por la alternativa deseada.</p></li>
+</ol>
+<p><strong>Ejemplo (Fertilizante)</strong></p>
+<p>Los desarrolladores de fertilizantes quieren probar si su nuevo producto tiene un efecto real en el crecimiento de las plantas. ¿Cuáles son la hipótesis nula y la alternativa?</p>
+<p>Siendo <span class="math inline">\(\mu_0\)</span> el crecimiento medio de las plantas <strong>sin</strong> fertilizante (conocido) y <span class="math inline">\(\mu\)</span> el crecimiento medio de las plantas con el fertilizante (desconocido)</p>
+<ol style="list-style-type: lower-alpha">
+<li><span class="math inline">\(H_0:\mu \leq \mu_0\)</span> (El fertilizante puede que no haga nada: status quo)</li>
+<li><span class="math inline">\(H_1:\mu &gt; \mu_0\)</span> (El fertilizante puede tener el efecto deseado: interés de investigación)</li>
+</ol>
+<p><strong>Ejemplo (quimioterapia)</strong></p>
+<p>Las farmacéuticas necesitan saber si una nueva quimioterapia puede curar al 90% de los pacientes con cáncer. Siendo <span class="math inline">\(p_0\)</span> la proporción de pacientes que se curan <strong>sin</strong> la quimioterapia (conocido) y <span class="math inline">\(p\)</span> la proporción que se curan <strong>con</strong> la quimioterapia (desconocido) podemos formular las hipótesis</p>
+<ol style="list-style-type: lower-alpha">
+<li><span class="math inline">\(H_0:p \leq p_0\)</span> (La quimioterapia puede que no cambie la proporción de curados: status quo)</li>
+<li><span class="math inline">\(H_1: p &gt; p_0\)</span> (La quimioterapia puede tener el efecto deseado: interés de investigación)</li>
+</ol>
+<p>Ten en cuenta que nuestro nuevo experimento mejorado tiene el parámetro <span class="math inline">\(p\)</span> y queremos saber cómo se compara con el experimento sin <strong>ningúna mejora</strong> que tiene el parámetro <span class="math inline">\(p_0\)</span>.</p>
+<p>Queremos decidir entre <span class="math inline">\(H_0\)</span> y <span class="math inline">\(H_1\)</span>. Hay dos opciones:</p>
+<ol style="list-style-type: decimal">
+<li><p>Rechazamos la hipótesis alternativa <span class="math inline">\(H_1\)</span>; es decir, aceptamos la hipótesis nula <span class="math inline">\(H_0\)</span>.</p></li>
+<li><p>Aceptamos la hipótesis alternativa <span class="math inline">\(H_1\)</span> (nuestro interés); es decir, rechazamos la hipótesis nula <span class="math inline">\(H_0\)</span>.</p></li>
+</ol>
+</div>
+<div id="contraste-de-hipótesis-1" class="section level2 hasAnchor" number="14.3">
+<h2><span class="header-section-number">14.3</span> Contraste de hipótesis<a href="contraste-de-hipótesis.html#contraste-de-hipótesis-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Resumamos los diferentes casos, formas y tipos de las pruebas de hipótesis. Después discutiremos cada caso con un ejemplo particular.</p>
+<p>Las hipótesis se pueden probar o decidir utilizando intervalos de confianza. Por lo tanto, vamos a probar hipótesis en los cuatro <strong>casos</strong> que vimos para los intervalos de confianza, a saber:</p>
+<ul>
+<li><p><strong>Caso 1</strong>: Prueba de hipótesis para la media <span class="math inline">\(\mu\)</span>, cuando <span class="math inline">\(X \rightarrow N(\mu, \sigma^2)\)</span> y sabemos <span class="math inline">\(\sigma\)</span></p></li>
+<li><p><strong>Caso 2</strong>: Prueba de hipótesis para la media <span class="math inline">\(\mu\)</span>, cuando <span class="math inline">\(X \rightarrow N(\mu, \sigma^2)\)</span> y no sabemos <span class="math inline">\(\sigma\)</span></p></li>
+<li><p><strong>Caso 3</strong>: Prueba de hipótesis para la proporción <span class="math inline">\(p\)</span> cuando <span class="math inline">\(X \rightarrow Bernoulli(p)\)</span> y tanto <span class="math inline">\(np\)</span> como <span class="math inline">\(n(1-p)\)</span> <span class="math inline">\(&gt; 5\)</span>.</p></li>
+<li><p><strong>Caso 4</strong>: Prueba de hipótesis para la varianza <span class="math inline">\(\sigma^2\)</span>, cuando <span class="math inline">\(X \rightarrow N(\mu, \sigma^2)\)</span></p></li>
+</ul>
+<p>Hay tres <strong>maneras</strong> de probar las hipótesis:</p>
+<ol style="list-style-type: decimal">
+<li>Por medio de <strong>intervalos de confianza</strong></li>
+<li>usando una <strong>zona de rechazo</strong></li>
+<li>Con un <span class="math inline">\(pvalor\)</span>.</li>
+</ol>
+<p>Las tres opciones son equivalentes. Finalmente, hay tres <strong>tipos</strong> de hipótesis que podemos probar:</p>
+<ol style="list-style-type: decimal">
+<li>de <strong>dos</strong> colas</li>
+<li>de cola <strong>superior</strong></li>
+<li>de cola <strong>inferior</strong></li>
+</ol>
+</div>
+<div id="caso-1-para-la-media-con-varianza-conocida" class="section level2 hasAnchor" number="14.4">
+<h2><span class="header-section-number">14.4</span> Caso 1 (para la media con varianza conocida)<a href="contraste-de-hipótesis.html#caso-1-para-la-media-con-varianza-conocida" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Un contraste de hipótesis de <strong>cola de dos colas</strong> es de la forma</p>
+<ol style="list-style-type: lower-alpha">
+<li><span class="math inline">\(H_0:\mu = \mu_0\)</span> (status quo)</li>
+<li><span class="math inline">\(H_1:\mu \neq \mu_0\)</span> (interés de investigación)</li>
+</ol>
+<p>Este contraste se llama de dos colas porque la hipótesis alternativa <span class="math inline">\(H_1\)</span> requiere que la media <span class="math inline">\(\mu\)</span> sea menor o mayor que <span class="math inline">\(\mu_0\)</span>. Esta hipótesis se puede probar en diferentes casos. El <strong>caso 1</strong> es cuando</p>
+<ol style="list-style-type: decimal">
+<li><span class="math inline">\(X\)</span> es una variable normal, y</li>
+<li>conocemos el valor de <span class="math inline">\(\sigma^2\)</span></li>
+</ol>
+<div id="prueba-de-hipótesis-con-un-intervalo-de-confianza" class="section level3 hasAnchor" number="14.4.1">
+<h3><span class="header-section-number">14.4.1</span> Prueba de hipótesis con un intervalo de confianza<a href="contraste-de-hipótesis.html#prueba-de-hipótesis-con-un-intervalo-de-confianza" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Para el <strong>caso 1</strong> el intervalo de confianza en <span class="math inline">\(95\%\)</span> es</p>
+<p><span class="math display">\[(l,u)=(\bar{x}-z_{0.025} \frac{\sigma}{\sqrt{n}}, \bar{x}+z_{0.025} \frac{\sigma}{ \sqrt{n}})\]</span></p>
+<p><strong>Criterios de decisión:</strong></p>
+<ul>
+<li>Si el intervalo de confianza <strong>contiene</strong> la hipótesis nula</li>
+</ul>
+<p><span class="math display">\[\mu_0\in (l,u)\]</span> entonces <strong>aceptamos</strong> <span class="math inline">\(H_0\)</span> con una confianza de <span class="math inline">\(95\%\)</span>.</p>
+<ul>
+<li>Si el intervalo de confianza <strong>no contiene</strong> la hipótesis nula<span class="math display">\[\mu_0\notin (l,u)\]</span> entonces <strong>rechazamos</strong> <span class="math inline">\(H_0\)</span> con <span class="math inline">\(95\%\)</span> de confianza.</li>
+</ul>
+<p><strong>Ejemplo (Cables)</strong></p>
+<p>Compramos <span class="math inline">\(8\)</span> cables a una empresa fabricante que afirma que se rompen con <strong>media</strong> de <span class="math inline">\(\mu_0=13\)</span> Toneladas. No estamos seguros y tal vez queramos decidir si los cables se rompen <strong>en promedio</strong> a <span class="math inline">\(13\)</span> Toneladas o no. Formulamos el contraste de hipótesis</p>
+<ol style="list-style-type: lower-alpha">
+<li><span class="math inline">\(H_0:\mu = 13\)</span> (Los cables <strong>pueden</strong> romperse como afirma el fabricante: status quo)</li>
+<li><span class="math inline">\(H_1:\mu \neq 13\)</span> (Los cables <strong>pueden</strong> no romperse como afirma el fabricante: interés de investigación)</li>
+</ol>
+<p>Como no sabemos qué es cierto, empecemos por <strong>suponer</strong> que <strong>el fabricante tiene razón</strong> y que los cables realmente satisfacen la hipótesis nula y, por lo tanto,</p>
+<ol style="list-style-type: decimal">
+<li><span class="math inline">\(X \rightarrow N(\mu=13, \sigma^2=0.35^2)\)</span></li>
+<li>Sabemos <span class="math inline">\(\sigma^2=0.35^2\)</span></li>
+</ol>
+<p>Para decidir entre <span class="math inline">\(H_0\)</span> o <span class="math inline">\(H_1\)</span>, realizamos una muestra de <span class="math inline">\(8\)</span> experimentos aleatorios: Cargamos un cable hasta que se rompe y registramos la carga de rotura. Estos son los resultados.</p>
+<pre><code>## [1] 13.34642 13.32620 13.01459 13.10811 12.96999 13.55309 13.75557 12.62747</code></pre>
+<p>El intervalo de confianza <strong>si</strong> el fabricante tiene razón, es decir, si la hipótesis nula es verdadera, es</p>
+<p><span class="math display">\[(l,u)=(\bar{x}-z_{0.025} \frac{\sigma}{\sqrt{n}}, \bar{x}+z_{0.025} \frac{\sigma}{ \sqrt{n}})= (12.97,13.45)\]</span>
+El intervalo de confianza nos dice que podmeos tener un <span class="math inline">\(95\%\)</span> de confianza en que la media de la carga de rotura <span class="math inline">\(\mu\)</span> de los cables que promabos está en el intervalo. No sabemos el valor real de <span class="math inline">\(\mu\)</span> pero vemos un valor podría ser <span class="math inline">\(\mu=13\)</span> Toneladas, ya que el intervalo atrapó <span class="math inline">\(\mu_0\)</span></p>
+<p><span class="math display">\[\mu_0\in (12.97,13.45)\]</span></p>
+<p>Nuestra conclusión es aceptar que <span class="math inline">\(H_0\)</span> podría haber producido nuestro <strong>intervalo observado</strong>. También decimos que los datos respaldan la afirmación del fabricante. Más técnicamente, decimos que <strong>no rechazamos</strong> la hipótesis nula <span class="math inline">\(H_0\)</span>.</p>
+<p><img src="_main_files/figure-html/unnamed-chunk-103-1.png" width="672" /></p>
+</div>
+<div id="prueba-de-hipótesis-con-zonas-de-aceptaciónrechazo" class="section level3 hasAnchor" number="14.4.2">
+<h3><span class="header-section-number">14.4.2</span> Prueba de hipótesis con zonas de aceptación/rechazo<a href="contraste-de-hipótesis.html#prueba-de-hipótesis-con-zonas-de-aceptaciónrechazo" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Una forma equivalente de probar la hipótesis es ver si nuestro conjunto de observaciones es raro o común si la hipótesis nula fuera verdadera. Recordemos el contraste de hipótesis</p>
+<ol style="list-style-type: lower-alpha">
+<li><span class="math inline">\(H_0:\mu = \mu_0\)</span> (status quo)</li>
+<li><span class="math inline">\(H_1:\mu \neq \mu_0\)</span> (interés de investigación)</li>
+</ol>
+<p>Para probar la hipótesis con una <strong>zona de rechazo</strong> calculamos la estadística estandarizada</p>
+<p><span class="math display">\[Z=\frac{\bar{X}-\mu_0}{\frac{\sigma^2}{\sqrt{n}}}\]</span>
+Cuando la hipótesis nula es verdadera. Ten en cuenta que estamos estandarizando con <span class="math inline">\(\mu_0\)</span> (la hipótesis nula). Este es el error estandarizado que cometemos al estimar <span class="math inline">\(\mu_0\)</span> con <span class="math inline">\(\bar{X}\)</span>. Luego vemos si el valor observado de <span class="math inline">\(Z\)</span> está dentro del intervalo</p>
+<p><span class="math display">\[(-z_{0.025}, z_{0.025})\]</span>
+Recuerda que este intervalo define los valores más comunes de <span class="math inline">\(Z\)</span> ya que <span class="math inline">\(P(-z_{0.025} \leq Z \leq z_{0.025})=0.95\)</span>.</p>
+<p>El intervalo <span class="math inline">\((-z_{0.025}, z_{0.025})\)</span> se denomina <strong>intervalo de aceptación</strong> de <span class="math inline">\(H_0\)</span> con un nivel de confianza de <span class="math inline">\(95\%\)</span>.</p>
+<p><img src="_main_files/figure-html/unnamed-chunk-104-1.png" width="672" /></p>
+<p><strong>Criterios de decisión:</strong></p>
+<ul>
+<li>Si la estadística observada <span class="math inline">\(z_{obs}\)</span> bajo la hipótesis nula <strong>está</strong> en la región de aceptación</li>
+</ul>
+<p><span class="math display">\[z_{obs} \in (-z_{0.025}, z_{0.025})\]</span></p>
+<p>entonces <strong>aceptamos</strong> <span class="math inline">\(H_0\)</span> con una confianza de <span class="math inline">\(95\%\)</span>.</p>
+<ul>
+<li>Si la estadística observada <span class="math inline">\(z_{obs}\)</span> bajo la hipótesis nula <strong>no</strong> está en la región de aceptación</li>
+</ul>
+<p><span class="math display">\[z_{obs} \notin (-z_{0.025}, z_{0.025})\]</span> entonces <strong>rechazamos</strong> <span class="math inline">\(H_0\)</span> con una confianza de <span class="math inline">\(95\%\)</span>.</p>
+<p>La región <span class="math inline">\((-z_{0.025}] \cup[z_{0.025})\)</span> se denomina <strong>zona de rechazo</strong>.</p>
+<p>Este criterio de decición nos dice que tan común es nuestra muestra aleatoria si la hipótesis nula es verdad.</p>
+<p><strong>Ejemplo (Cables)</strong></p>
+<p>Si <span class="math inline">\(H_0\)</span> es verdadera entonces <span class="math inline">\(\bar{X}\)</span> es el estimador de <span class="math inline">\(\mu_0\)</span> y la estadística estandarizada</p>
+<p><span class="math display">\[Z=\frac{\bar{X}-13}{\frac{0.35}{\sqrt{8}}} \rightarrow N(0,1)\]</span>
+es el error en estimación de <span class="math inline">\(\mu_0\)</span> que cometemos cuando realizamos la estimación. Debido a que estamos en <strong>caso 1</strong>, <span class="math inline">\(Z\)</span> es estándar normal.</p>
+<p>Para <strong>nuestros datos</strong>, el <strong>error observado</strong> estandarizado está en la región de aceptación</p>
+<p><span class="math display">\[z_{obs}=\frac{\bar{x}-13}{\frac{0.35}{\sqrt{8}}}=1.7187 \in (-z_{0.025}, z_{0.025})\]</span>
+Concluimos que nuestro error observado es típico al <span class="math inline">\(95\%\)</span> cuando la hipótesis nula <span class="math inline">\(\mu_0\)</span> es verdadera. Por lo tanto, nuevamente aceptamos que los datos son consistentes con la afirmación del fabricante. También decimos que <strong>no rechazamos</strong> <span class="math inline">\(H_0\)</span>.</p>
+<p><img src="_main_files/figure-html/unnamed-chunk-105-1.png" width="672" /></p>
+</div>
+<div id="prueba-de-hipótesis-con-un-p-valor" class="section level3 hasAnchor" number="14.4.3">
+<h3><span class="header-section-number">14.4.3</span> Prueba de hipótesis con un P valor<a href="contraste-de-hipótesis.html#prueba-de-hipótesis-con-un-p-valor" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>También podemos contrastar la hipótesis de <strong>dos colas</strong> calculando la probabilidad de que el promedio de una nueva muestra aleatoria sea aún más raro que el promedio que acabamos de observar. Debido a que estamos en el **caso 1*, sabemos que la estadística estandarizada <span class="math inline">\(Z\)</span> es una variable normal estándar, entonces definimos el <span class="math inline">\(pvalor\)</span> como</p>
+<p><span class="math display">\[pvalor = P(Z \leq -z_{obs}) + P(z_{obs} \leq Z) = 2 (1-\phi(|z_{obs}|))\]</span></p>
+<p>Esa es la probabilidad de que cuando tomamos otra muestra del mismo tamaño podamos obtener una observación aún más extrema. Si nuestra observación ya es rara, entonces este valor será pequeño.</p>
+<p><strong>Criterios de decisión:</strong></p>
+<ul>
+<li>Si el <span class="math inline">\(pvalor\)</span> observado es</li>
+</ul>
+<p><span class="math display">\[pvalor \geq \alpha =1-0.95=0.05\]</span></p>
+<p>entonces <strong>aceptamos</strong> <span class="math inline">\(H_0\)</span> con una confianza de <span class="math inline">\(95\%\)</span>.</p>
+<ul>
+<li>Si el <span class="math inline">\(pvalor\)</span> observado es</li>
+</ul>
+<p><span class="math display">\[pvalor &lt; \alpha =1-0.95=0.05\]</span>
+entonces <strong>rechazamos</strong> <span class="math inline">\(H_0\)</span> con una confianza de <span class="math inline">\(95\%\)</span>.</p>
+<p><span class="math inline">\(\alpha\)</span> es el nivel de significancia. Nos dice cuánto de la distribución estamos omitiendo y define la región que consideramos como observaciones raras.</p>
+<p>Recuerda: siempre confiamos en nuestros datos. Si la hipótesis nula dice que nuestros datos son una observación <strong>rara</strong> entonces desconfiamos de la hipótesis nula y la rechazamos.</p>
+<p><img src="_main_files/figure-html/unnamed-chunk-106-1.png" width="672" /></p>
+<p><strong>Ejemplo (Cables)</strong></p>
+<p>Para nuestros datos, la estadística observada <span class="math inline">\(z_{obs}=1.718714\)</span> y su <strong>P valor</strong> es entonces</p>
+<p><span class="math display">\[pvalor=2 (1-\phi(1.718714))=0.08567\]</span>
+R: <code>2*(1-pnorm(1.718714))</code></p>
+<p>Concluimos que si realizamos una nueva muestra es probable que podamos obtener un resultado más extremo que el que obtuvimos. La hipótesis nula puede tolerar el error observado con una confianza de <span class="math inline">\(95\%\)</span>. Por lo tanto, aceptamos que <span class="math inline">\(H_0\)</span> podría haber producido nuestros datos y decimos nuevamente que es consistente con la afirmación del fabricante.</p>
+<p>En R todo el contraste de hipótesis se puede realizar con la función z.test de la librería BSDA (que es necesario instalar previamente)</p>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="contraste-de-hipótesis.html#cb45-1" tabindex="-1"></a><span class="fu">install.packages</span>(BSDA) </span></code></pre></div>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="contraste-de-hipótesis.html#cb46-1" tabindex="-1"></a><span class="fu">library</span>(BSDA) </span>
+<span id="cb46-2"><a href="contraste-de-hipótesis.html#cb46-2" tabindex="-1"></a><span class="fu">z.test</span>(<span class="fu">c</span>(<span class="fl">13.34642</span>, <span class="fl">13.32620</span>, <span class="fl">13.01459</span>, <span class="fl">13.10811</span>, </span>
+<span id="cb46-3"><a href="contraste-de-hipótesis.html#cb46-3" tabindex="-1"></a>         <span class="fl">12.96999</span>, <span class="fl">13.55309</span>, <span class="fl">13.75557</span>, <span class="fl">12.62747</span>), </span>
+<span id="cb46-4"><a href="contraste-de-hipótesis.html#cb46-4" tabindex="-1"></a>       <span class="at">mu=</span><span class="dv">13</span>, </span>
+<span id="cb46-5"><a href="contraste-de-hipótesis.html#cb46-5" tabindex="-1"></a>       <span class="at">sigma.x=</span><span class="fl">0.35</span>)</span></code></pre></div>
+<pre><code>## 
+##  One-sample z-Test
+## 
+## data:  c(13.34642, 13.3262, 13.01459, 13.10811, 12.96999, 13.55309,     13.75557, 12.62747)
+## z = 1.7187, p-value = 0.08567
+## alternative hypothesis: true mean is not equal to 13
+## 95 percent confidence interval:
+##  12.97015 13.45521
+## sample estimates:
+## mean of x 
+##  13.21268</code></pre>
+</div>
+<div id="hipótesis-de-la-cola-superior" class="section level3 hasAnchor" number="14.4.4">
+<h3><span class="header-section-number">14.4.4</span> Hipótesis de la cola superior<a href="contraste-de-hipótesis.html#hipótesis-de-la-cola-superior" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Es posible que nos interese probar solo el hecho de que la media de nuestro experimento es una media más alta que la media nula.</p>
+<p>Prueba de cola superior:</p>
+<ul>
+<li><span class="math inline">\(H_0:\mu \leq 13\)</span> (<strong>como mucho</strong> los cables se rompen como siempre)</li>
+<li><span class="math inline">\(H_1:\mu &gt; 13\)</span> (los cables se rompen con una carga <strong>mayor</strong>)</li>
+</ul>
+<p>Esto se llama <strong>de cola superior</strong> porque la hipótesis alternativa <span class="math inline">\(H_1\)</span> requiere que la media <span class="math inline">\(\mu\)</span> sea <strong>mayor</strong> que <span class="math inline">\(\mu_0\)</span>. Esta hipótesis se puede probar en diferentes casos. El <strong>caso 1</strong> es cuando</p>
+<ol style="list-style-type: decimal">
+<li><span class="math inline">\(X\)</span> es una variable normal, y</li>
+<li>conocemos el valor de <span class="math inline">\(\sigma\)</span></li>
+</ol>
+<p><strong>Criterios de decisión:</strong></p>
+<ol style="list-style-type: decimal">
+<li><em>Intervalo de confianza:</em> Si el <strong>intervalo de confianza de cola superior</strong> <strong>contiene</strong> la hipótesis nula</li>
+</ol>
+<p><span class="math display">\[\mu_0\in (l,u)=(\bar{x}-z_{0.05} \frac{\sigma}{\sqrt{n}}, \infty)\]</span>
+donde <span class="math inline">\(z_{0.05}=\phi^{-1}(0.95)=\)</span><code>qnorm(0.95)</code>, entonces <strong>aceptamos</strong> <span class="math inline">\(H_0\)</span> con una confianza de <span class="math inline">\(95\%\)</span>. Ten en cuenta que esta prueba es desde el punto de vista de los <strong>datos</strong> y que no estamos centrando el intervalo de confianza alrededor de <span class="math inline">\(\bar{x}\)</span>, sino que estamos dejando todo el <span class="math inline">\(5\%\)</span> que corresponde a los casos raros a la izquierda del promedio. Por lo tanto, nos estamos preguntando si la hipótesis nula es menor que el promedio.</p>
+<ol start="2" style="list-style-type: decimal">
+<li><em>Región de rechazo/aceptación:</em> Si la estadística observada <span class="math inline">\(z_{obs}\)</span> bajo la hipótesis nula <strong>está</strong> en la región de aceptación</li>
+</ol>
+<p><span class="math display">\[z_{obs}=\frac{\bar{x}-\mu_0}{\frac{\sigma}{\sqrt{n}}} \in (-\infty, z_{0.05})\]</span></p>
+<p>entonces <strong>aceptamos</strong> <span class="math inline">\(H_0\)</span> con una confianza de <span class="math inline">\(95\%\)</span>. Ten en cuenta que esta prueba es desde el punto de vista de la <strong>hipótesis nula</strong>. Dejamos todo el <span class="math inline">\(5\%\)</span> que corresponde a los promedios raros a la derecha de la hipótesis nula y, por lo tanto, nos preguntamos si el promedio es claramente mayor que la hipótesis nula.</p>
+<ol start="3" style="list-style-type: decimal">
+<li><span class="math inline">\(pvalor\)</span>: Si el P valor de <strong>cola superior</strong> <span class="math display">\[pvalor= 1-\phi(z_{obs})\]</span></li>
+</ol>
+<p><code>1-pnorm(zobs)</code> es mayor que <span class="math inline">\(\alpha=1-0.95=0.05\)</span></p>
+<p><span class="math display">\[pvalor \geq \alpha =0.05\]</span></p>
+<p>entonces <strong>aceptamos</strong> <span class="math inline">\(H_0\)</span> con una confianza del <span class="math inline">\(95\%\)</span>. Ten en cuenta que esta prueba es nuevamente desde el punto de vista de la <strong>hipótesis nula</strong>. Nos estamos preguntando: si tuviéramos que tomar otro promedio, ¿cuál es la probabilidad de que sea mayor que el observado?</p>
+<p><strong>Ejemplo (Cables)</strong></p>
+<p>En el ejemplo de los cables, nos puede interesar solo en el caso de que los cables sean una versión mejorada de lo que afirma el fabricante. Por lo tanto, la hipótesis de cola superior es</p>
+<ol style="list-style-type: lower-alpha">
+<li><span class="math inline">\(H_0:\mu \leq 13\)</span> (Los cables pueden romperse <strong>como máximo</strong> como afirma el fabricante: status quo)</li>
+<li><span class="math inline">\(H_1:\mu &gt; 13\)</span> (Los cables pueden romperse <strong>al menos</strong> como afirma el fabricante: interés de investigación)</li>
+</ol>
+<p>Probaremos la cola superior de la distribución.
+Para los datos que discutimos antes, de tal forma que <strong>rechazamos</strong> <span class="math inline">\(H_0\)</span> a <span class="math inline">\(95\%\)</span> de confianza debido a cualquiera de los tres contrastes equivalentes:</p>
+<ol style="list-style-type: decimal">
+<li>El intervalo de confianza <strong>de cola superior</strong> no contiene la hipótesis nula <span class="math inline">\(\mu_0=13\)</span></li>
+</ol>
+<p><span class="math display">\[\mu_0=13 \notin (\bar{x}-z_{0.05} \frac{\sigma}{\sqrt{n}}, \infty)=(13.00914, \infty)\]</span>
+donde <span class="math inline">\(z_{0.05}=\)</span><code>qnorm(0.95)=1.644854</code></p>
+<ol start="2" style="list-style-type: decimal">
+<li>Tenemos que la región de aceptación para <span class="math inline">\(H_0\)</span> es:</li>
+</ol>
+<p><span class="math display">\[(-\infty, z_{0.05})=( -\infty, 1.644854)\]</span></p>
+<p>y que el error estandarizado observado no está en la región
+<span class="math display">\[z_{obs} = \frac{13.21268-13}{\frac{0.35}{\sqrt{8}}}=1.7187 \notin ( -\infty, 1.644854)\]</span></p>
+<ol start="3" style="list-style-type: decimal">
+<li>El <span class="math inline">\(pvalor\)</span> de cola superior es menor que <span class="math inline">\(\alpha=0.05\)</span>
+<span class="math display">\[pvalor=1-\phi(1.7187)=0.04283451 &lt;0.05\]</span></li>
+</ol>
+<p>donde <span class="math inline">\(pvalor=\)</span><code>1-pnorm(1.7187)</code>.</p>
+<p>La prueba de hipótesis se puede realizar en R, especificando el parámetro “alternative” como “greater”:</p>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="contraste-de-hipótesis.html#cb48-1" tabindex="-1"></a><span class="fu">z.test</span>(<span class="fu">c</span>(<span class="fl">13.34642</span>, <span class="fl">13.32620</span>, <span class="fl">13.01459</span>, <span class="fl">13.10811</span>,</span>
+<span id="cb48-2"><a href="contraste-de-hipótesis.html#cb48-2" tabindex="-1"></a>         <span class="fl">12.96999</span>, <span class="fl">13.55309</span>, <span class="fl">13.75557</span>, <span class="fl">12.62747</span>), </span>
+<span id="cb48-3"><a href="contraste-de-hipótesis.html#cb48-3" tabindex="-1"></a>       <span class="at">mu=</span><span class="dv">13</span>, <span class="at">alternative=</span><span class="st">&quot;greater&quot;</span>, <span class="at">sigma.x=</span><span class="fl">0.35</span>)</span></code></pre></div>
+<pre><code>## 
+##  One-sample z-Test
+## 
+## data:  c(13.34642, 13.3262, 13.01459, 13.10811, 12.96999, 13.55309,     13.75557, 12.62747)
+## z = 1.7187, p-value = 0.04283
+## alternative hypothesis: true mean is greater than 13
+## 95 percent confidence interval:
+##  13.00914       NA
+## sample estimates:
+## mean of x 
+##  13.21268</code></pre>
+<p><img src="_main_files/figure-html/unnamed-chunk-111-1.png" width="672" /></p>
+</div>
+</div>
+<div id="caso-2-para-la-media-con-varianza-desconocida" class="section level2 hasAnchor" number="14.5">
+<h2><span class="header-section-number">14.5</span> Caso 2 (para la media con varianza desconocida)<a href="contraste-de-hipótesis.html#caso-2-para-la-media-con-varianza-desconocida" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Un contraste de hipótesis de <strong>dos colas</strong> de la forma</p>
+<ol style="list-style-type: lower-alpha">
+<li><span class="math inline">\(H_0:\mu = \mu_0\)</span> (status quo)</li>
+<li><span class="math inline">\(H_1:\mu \neq \mu_0\)</span> (interés de investigación)</li>
+</ol>
+<p>se puede probar cuando no sabemos <span class="math inline">\(\sigma^2\)</span> a partir del <strong>caso 2</strong>, es decir, cuando</p>
+<ol style="list-style-type: decimal">
+<li><span class="math inline">\(X\)</span> es una variable normal, <span class="math inline">\(X \rightarrow N(\mu, \sigma^2)\)</span>, y</li>
+<li><strong>no</strong> sabemos el valor de <span class="math inline">\(\sigma^2\)</span></li>
+</ol>
+<p>Recordemos que en este caso el <strong>error estandarizado</strong> con respecto a la <strong>desviación estándar de la muestra</strong> <span class="math inline">\(S\)</span></p>
+<p><span class="math display">\[T=\frac{\bar{X}-\mu}{\frac{S}{\sqrt{n}}}\]</span></p>
+<p>Sigue una distribución <span class="math inline">\(t\)</span> con <span class="math inline">\(n-1\)</span> grados de libertad. Por lo tanto, podemos aplicar <strong>los tres criterios</strong> como en el <strong>caso 1</strong> pero reemplazando <span class="math inline">\(s\)</span> por <span class="math inline">\(\sigma\)</span> y <span class="math inline">\(Z\)</span> por <span class="math inline">\(T\)</span>.</p>
+<p><strong>Criterios de decisión:</strong></p>
+<ol style="list-style-type: decimal">
+<li><em>Intervalo de confianza:</em> Si el intervalo de confianza <strong>contiene</strong> la hipótesis nula</li>
+</ol>
+<p><span class="math display">\[\mu_0\in (l,u)=(\bar{x}-t_{0.025,n-1} \frac{s}{\sqrt{n}}, \bar{x}+t_{0.025, n-1} \frac{s}{\sqrt{n}})\]</span> entonces <strong>aceptamos</strong> <span class="math inline">\(H_0\)</span> con una confianza de <span class="math inline">\(95\%\)</span>.</p>
+<ol start="2" style="list-style-type: decimal">
+<li><em>Región de rechazo/aceptación:</em> Si la estadística observada <span class="math inline">\(t_{obs}\)</span> bajo la hipótesis nula <strong>está</strong> en la región de aceptación</li>
+</ol>
+<p><span class="math display">\[t_{obs}=\frac{\bar{x}-\mu_0}{\frac{s}{\sqrt{n}}} \in (-t_{0.025}, t_{0.025})\]</span></p>
+<p>donde <span class="math inline">\(t_{0.025}=F_t^{-1}(0.975, n-1)=\)</span><code>qt(0.975, n-1)</code>, entonces <strong>aceptamos</strong> <span class="math inline">\(H_0\)</span> con <span class="math inline">\(95 \%\)</span> confianza.</p>
+<ol start="3" style="list-style-type: decimal">
+<li><span class="math inline">\(pvalor\)</span>: Si el <span class="math display">\[pvalor= 2 (1-F_t(|t_{obs}|))\]</span></li>
+</ol>
+<p><code>2*(1-pt(abs(tobs), n-1))</code> es</p>
+<p><span class="math inline">\(pvalor \geq \alpha =1-0.95=0.05\)</span></p>
+<p>entonces <strong>aceptamos</strong> <span class="math inline">\(H_0\)</span> con una confianza de <span class="math inline">\(95\%\)</span>. Si se cumple un criterio se cumplen los otros. En el caso de no se cumplan entonces no aceptamos <span class="math inline">\(H_0\)</span> y la rechazamos.</p>
+<p><strong>Ejemplo (Cables)</strong></p>
+<p>Para el contraste de hipótesis para la carga de rotura de los cables</p>
+<ol style="list-style-type: lower-alpha">
+<li><span class="math inline">\(H_0:\mu = 13\)</span></li>
+<li><span class="math inline">\(H_1:\mu\neq 13\)</span></li>
+</ol>
+<p>Supondremos que la rotura de los cables se distribuye normalmente</p>
+<ol style="list-style-type: decimal">
+<li><span class="math inline">\(X \rightarrow N(\mu=13, \sigma^2=?)\)</span></li>
+<li>No sabemos <span class="math inline">\(\sigma^2\)</span></li>
+</ol>
+<p>Habiendo obtenido la muestra</p>
+<pre><code>## [1] 13.34642 13.32620 13.01459 13.10811 12.96999 13.55309 13.75557 12.62747</code></pre>
+<p><strong>aceptamos</strong> <span class="math inline">\(H_0\)</span> con confianza de <span class="math inline">\(95\%\)</span> debido a cualquiera de los siguientes contrastes:</p>
+<ol style="list-style-type: decimal">
+<li>El intervalo de confianza</li>
+</ol>
+<p><span class="math display">\[(\bar{x}-t_{0.025, n-1} \frac{s}{\sqrt{n}}, \bar{x}+t_{0.025, n-1} \frac{s}{ \sqrt{n}})=(12.91409, 13.51127)\]</span></p>
+<p>contiene <span class="math inline">\(H_0:\mu=13\)</span>.</p>
+<ol start="2" style="list-style-type: decimal">
+<li>La región de aceptación para <span class="math inline">\(H_0\)</span> es:</li>
+</ol>
+<p><span class="math display">\[(-t_{0.025,7}, t_{0.025,7})=( -2.36, 2.36)\]</span></p>
+<p>y el error estandarizado observado de <span class="math inline">\(H_0\)</span> es
+<span class="math display">\[t_{obs} = \frac{13.21268-13}{\frac{0.3571565}{\sqrt{8}}}=1.6843\]</span></p>
+<p>el cual está dentro de la región de aceptación.</p>
+<ol start="3" style="list-style-type: decimal">
+<li>El <span class="math display">\[pvalor=2(1-F_{t,7}(1.6843))=0.136\]</span></li>
+</ol>
+<p>es mayor que <span class="math inline">\(\alpha=0.05\)</span>. El <span class="math inline">\(pvalor\)</span> se calcula R como <code>2*(1-pt(1.6843,7))</code></p>
+<p>En R estos contrastes se realizan con la función t.test:</p>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="contraste-de-hipótesis.html#cb51-1" tabindex="-1"></a><span class="fu">t.test</span>(<span class="fu">c</span>(<span class="fl">13.34642</span>, <span class="fl">13.32620</span>, <span class="fl">13.01459</span>, <span class="fl">13.10811</span>,</span>
+<span id="cb51-2"><a href="contraste-de-hipótesis.html#cb51-2" tabindex="-1"></a>         <span class="fl">12.96999</span>, <span class="fl">13.55309</span>, <span class="fl">13.75557</span>, <span class="fl">12.62747</span>), </span>
+<span id="cb51-3"><a href="contraste-de-hipótesis.html#cb51-3" tabindex="-1"></a>       <span class="at">mu=</span><span class="dv">13</span>)</span></code></pre></div>
+<pre><code>## 
+##  One Sample t-test
+## 
+## data:  c(13.34642, 13.3262, 13.01459, 13.10811, 12.96999, 13.55309, 13.75557, 12.62747)
+## t = 1.6843, df = 7, p-value = 0.136
+## alternative hypothesis: true mean is not equal to 13
+## 95 percent confidence interval:
+##  12.91409 13.51127
+## sample estimates:
+## mean of x 
+##  13.21268</code></pre>
+<p><img src="_main_files/figure-html/unnamed-chunk-114-1.png" width="672" /></p>
+<p><strong>Ejemplo (NaCl)</strong></p>
+<p><span class="math inline">\(11.6 g\)</span> de NaCl se disuelven en <span class="math inline">\(100 g\)</span> de agua, correpondiendo a una concentración molar de <span class="math inline">\(1.92 mol/L\)</span>.</p>
+<p>Diseñamos un proceso para eliminar la sal de esta concentración y obtenemos los siguientes resultados</p>
+<pre><code>## [1] 1.716 1.889 1.783 1.849 1.891</code></pre>
+<p>Queremos probar con una confianza del <span class="math inline">\(95º%\)</span> si el proceso cambia la concentración de sal en cualquier dirección. Por lo tanto, proponemos una hipótesis de dos colas:</p>
+<ol style="list-style-type: lower-alpha">
+<li><span class="math inline">\(H_0:\mu=1.92\)</span></li>
+<li><span class="math inline">\(H_1:\mu\neq 1.92\)</span></li>
+</ol>
+<p>Supondremos que <span class="math inline">\(X\)</span> es normal y que no conocemos la varianza <span class="math inline">\(\sigma^2\)</span>. Por lo tanto, estamos en el <strong>caso 2</strong> que probamos con una prueba t.</p>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="contraste-de-hipótesis.html#cb54-1" tabindex="-1"></a><span class="fu">t.test</span>(<span class="fu">c</span>(<span class="fl">1.716</span>, <span class="fl">1.889</span>, <span class="fl">1.783</span>, <span class="fl">1.849</span>, <span class="fl">1.891</span>), </span>
+<span id="cb54-2"><a href="contraste-de-hipótesis.html#cb54-2" tabindex="-1"></a>       <span class="at">mu=</span><span class="fl">1.92</span>, <span class="at">alternative =</span> <span class="st">&quot;two.sided&quot;</span>)</span></code></pre></div>
+<pre><code>## 
+##  One Sample t-test
+## 
+## data:  c(1.716, 1.889, 1.783, 1.849, 1.891)
+## t = -2.8038, df = 4, p-value = 0.04862
+## alternative hypothesis: true mean is not equal to 1.92
+## 95 percent confidence interval:
+##  1.732122 1.919078
+## sample estimates:
+## mean of x 
+##    1.8256</code></pre>
+<p>De tal forma que rechazamos la hipótesis nula: el <span class="math inline">\(pvalor\)</span> es menor que <span class="math inline">\(0.05\)</span> y el intervalo de confianza no contiene a <span class="math inline">\(\mu_0=1.92\)</span>. Concluimos pues que el proceso <strong>altera</strong> la concentración de sal.</p>
+<div id="hipótesis-la-cola-inferior" class="section level3 hasAnchor" number="14.5.1">
+<h3><span class="header-section-number">14.5.1</span> Hipótesis la cola inferior<a href="contraste-de-hipótesis.html#hipótesis-la-cola-inferior" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Si solo estamos interesados en el caso de que podamos eliminar la sal de la concentración, entonces proponemos una hipótesis de <strong>cola inferior</strong>:</p>
+<ol style="list-style-type: lower-alpha">
+<li><span class="math inline">\(H_0:\mu \geq 1.92\)</span> (Después del proceso de desalinización la concentración de sal es al menos la inicial: status quo)</li>
+<li><span class="math inline">\(H_1:\mu &lt; 1.92\)</span> (Después del proceso de desalinización la concentración es menor a la inicial: interés de investigación)</li>
+</ol>
+<p>Ten en cuenta que la cola inferior viene dada por la alternativa <span class="math inline">\(H_1\)</span>. Queremos probar que la concentración promedio después del proceso es menor que la concentración inicial. Los criterios de contraste son los mismos que para los otros tipos de hipótesis. Para este tipo de hipótesis, <strong>aceptaremos</strong> la hipótesis nula si</p>
+<ol style="list-style-type: decimal">
+<li><p><span class="math inline">\(\mu_0\)</span> está en el intervalo de confianza:
+<span class="math display">\[\mu_0\in (l,u)=(-\infty, \bar{x}+t_{0.05,n-1} \frac{s}{\sqrt{n}})\]</span></p></li>
+<li><p>o <span class="math inline">\(t_{obs}\)</span> está en la región de aceptación:</p></li>
+</ol>
+<p><span class="math display">\[t_{obs}\in (t_{0.05,n-1}, \infty)\]</span></p>
+<ol start="3" style="list-style-type: decimal">
+<li>o el <span class="math inline">\(pvalor\)</span> de la cola inferior
+<span class="math display">\[pvalor=F_t(t_{obs},n-1)\]</span>
+es inferior a <span class="math inline">\(\alpha=0.05\)</span></li>
+</ol>
+<p>Si no se complen estos criterios, rechazamos <span class="math inline">\(H_0\)</span> y aceptamos la hipótesis alternativa <span class="math inline">\(H_1\)</span>.</p>
+<p><strong>Ejemplo (NaCl)</strong></p>
+<p>Para el contraste inferior de la cola</p>
+<ol style="list-style-type: lower-alpha">
+<li><span class="math inline">\(H_0:\mu\geq 1.92\)</span></li>
+<li><span class="math inline">\(H_1:\mu &lt; 1.92\)</span></li>
+</ol>
+<p>Podemos suponer que la concentración es normal y que no sabemos <span class="math inline">\(\sigma^2\)</span>. Por lo tanto, estamos en el <strong>caso 2</strong> para el cual solo necesitamos cambiar el argumento “alternative” en la función t.test. Así pues rechazamos la hipótesis nula.</p>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="contraste-de-hipótesis.html#cb56-1" tabindex="-1"></a><span class="fu">t.test</span>(<span class="fu">c</span>(<span class="fl">1.716</span>, <span class="fl">1.889</span>, <span class="fl">1.783</span>, <span class="fl">1.849</span>, <span class="fl">1.891</span>), </span>
+<span id="cb56-2"><a href="contraste-de-hipótesis.html#cb56-2" tabindex="-1"></a>       <span class="at">mu=</span><span class="fl">1.92</span>, <span class="at">alternative =</span> <span class="st">&quot;less&quot;</span>)</span></code></pre></div>
+<pre><code>## 
+##  One Sample t-test
+## 
+## data:  c(1.716, 1.889, 1.783, 1.849, 1.891)
+## t = -2.8038, df = 4, p-value = 0.02431
+## alternative hypothesis: true mean is less than 1.92
+## 95 percent confidence interval:
+##      -Inf 1.897376
+## sample estimates:
+## mean of x 
+##    1.8256</code></pre>
+<p>El resultado es mas significativo que el de dos colas, ya que el <span class="math inline">\(pvalor\)</span> es menor. Concluimos con mas confianza que el proceso <strong>reduce</strong> la concentración de sal.</p>
+<p><strong>Ejemplo 2 (soporífero)</strong></p>
+<p>En algunos casos, no estamos seguros del valor numérico de la hipótesis a contrastar, pero sabemos que queremos mejorar el valor de un parámetro en una nueva condición.</p>
+<p>En su artículo original, Gosset analizó el efecto de dos medicamentos soporíferos.</p>
+<ul>
+<li>A 10 individuos se les dio el <strong>soporífero 1</strong> y se anotaron las horas adicionales dormidas bajo tratamiento, con una media de <span class="math inline">\(0.75\)</span></li>
+</ul>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="contraste-de-hipótesis.html#cb58-1" tabindex="-1"></a>medicine1 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">0.7</span>,<span class="sc">-</span><span class="fl">1.6</span>,<span class="sc">-</span><span class="fl">0.2</span>,<span class="sc">-</span><span class="fl">1.2</span>,<span class="sc">-</span><span class="fl">0.1</span>,<span class="fl">3.4</span>,<span class="fl">3.7</span>,<span class="fl">0.8</span>,<span class="dv">0</span>,<span class="dv">2</span>)</span>
+<span id="cb58-2"><a href="contraste-de-hipótesis.html#cb58-2" tabindex="-1"></a>medicine1</span></code></pre></div>
+<pre><code>##  [1]  0.7 -1.6 -0.2 -1.2 -0.1  3.4  3.7  0.8  0.0  2.0</code></pre>
+<ul>
+<li>Los mismos 10 individuos recibieron el <strong>soporífero 2</strong> y anotaron las horas adicionales dormidas bajo tratamiento, con una media de <span class="math inline">\(2.33\)</span></li>
+</ul>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="contraste-de-hipótesis.html#cb60-1" tabindex="-1"></a>medicine2 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">1.9</span>,<span class="fl">0.8</span>,<span class="fl">1.1</span>,<span class="fl">0.1</span>,<span class="sc">-</span><span class="fl">0.1</span>,<span class="fl">4.4</span>,<span class="fl">5.5</span>,<span class="fl">1.6</span>,<span class="fl">4.6</span>,<span class="fl">3.4</span>)</span>
+<span id="cb60-2"><a href="contraste-de-hipótesis.html#cb60-2" tabindex="-1"></a>medicine2</span></code></pre></div>
+<pre><code>##  [1]  1.9  0.8  1.1  0.1 -0.1  4.4  5.5  1.6  4.6  3.4</code></pre>
+<p>La hipótesis científica era que el soporífero 2 era mejor que el soporífero 1. Para cada individuo, Gosset calculó la diferencia entre los tratamientos. Tomando <span class="math inline">\(X\)</span> como la <strong>diferencia</strong> entre tratamientos, esta fue la muestra observada para <span class="math inline">\(X\)</span></p>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="contraste-de-hipótesis.html#cb62-1" tabindex="-1"></a>x <span class="ot">&lt;-</span> medicine2<span class="sc">-</span>medicine1</span>
+<span id="cb62-2"><a href="contraste-de-hipótesis.html#cb62-2" tabindex="-1"></a>x</span></code></pre></div>
+<pre><code>##  [1] 1.2 2.4 1.3 1.3 0.0 1.0 1.8 0.8 4.6 1.4</code></pre>
+<p>encontrando un promedio de ganancia de tratamiento del soporífero 2 con respecto al soporífero 1 de <span class="math inline">\(1.58\)</span>, y <span class="math inline">\(s=1.229995\)</span></p>
+<p>La pregunta científica se puede establecer como prueba t pareada <strong>de cola superior</strong>:</p>
+<ol style="list-style-type: lower-alpha">
+<li><span class="math inline">\(H_0:\mu \leq \mu_0=0\)</span> (sin diferencia de tratamiento: <span class="math inline">\(\mu_2-\mu_1=0\)</span>)</li>
+<li><span class="math inline">\(H_1:\mu &gt; \mu_0= 0\)</span> (tratamiento 2 superior al tratamiento 1: <span class="math inline">\(\mu_2-\mu_1&gt;0\)</span>)</li>
+</ol>
+<p>Donde <span class="math inline">\(\mu\)</span> es la media de las <strong>diferencias</strong> entre tratamientos, y la hipótesis nula dice que no hay diferencia <span class="math inline">\(\mu_0=0\)</span>.</p>
+<p>Si suponemos que <span class="math inline">\(X\)</span> es normal y no sabemos <span class="math inline">\(\sigma^2\)</span> entonces estamos en el <strong>caso 2</strong>. El <strong>error estandarizado</strong> es:</p>
+<p><span class="math display">\[T=\frac{\bar{X}}{\frac{S}{\sqrt{n}}}\]</span></p>
+<p>y su observación</p>
+<p><span class="math display">\[t_{obs}=\frac{\bar{x}}{\frac{s}{\sqrt{n}}}\]</span>
+que también se conoce como la relación <strong>señal</strong> a <strong>ruido</strong>.</p>
+<p>Podemos probar la hipotesis sobre la diferencia <span class="math inline">\(X=medicina_1-medicina_2\)</span></p>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="contraste-de-hipótesis.html#cb64-1" tabindex="-1"></a><span class="fu">t.test</span>(x,<span class="at">alternative=</span><span class="st">&quot;greater&quot;</span>)</span></code></pre></div>
+<pre><code>## 
+##  One Sample t-test
+## 
+## data:  x
+## t = 4.0621, df = 9, p-value = 0.001416
+## alternative hypothesis: true mean is greater than 0
+## 95 percent confidence interval:
+##  0.8669947       Inf
+## sample estimates:
+## mean of x 
+##      1.58</code></pre>
+<p>Esto también se conoce como una prueba t pareada, donde introducimos cada condición por separado y afirmamos que las observaciones están pareadas</p>
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="contraste-de-hipótesis.html#cb66-1" tabindex="-1"></a><span class="fu">t.test</span>(medicine2, medicine1,</span>
+<span id="cb66-2"><a href="contraste-de-hipótesis.html#cb66-2" tabindex="-1"></a>       <span class="at">paired =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb66-3"><a href="contraste-de-hipótesis.html#cb66-3" tabindex="-1"></a>       <span class="at">alternative=</span><span class="st">&quot;greater&quot;</span>)</span></code></pre></div>
+<pre><code>## 
+##  Paired t-test
+## 
+## data:  medicine2 and medicine1
+## t = 4.0621, df = 9, p-value = 0.001416
+## alternative hypothesis: true mean difference is greater than 0
+## 95 percent confidence interval:
+##  0.8669947       Inf
+## sample estimates:
+## mean difference 
+##            1.58</code></pre>
+<p><img src="_main_files/figure-html/unnamed-chunk-123-1.png" width="672" /></p>
+</div>
+<div id="prueba-de-hipótesis-con-n-grande-y-cualquier-distribución" class="section level3 hasAnchor" number="14.5.2">
+<h3><span class="header-section-number">14.5.2</span> Prueba de hipótesis con n grande y cualquier distribución<a href="contraste-de-hipótesis.html#prueba-de-hipótesis-con-n-grande-y-cualquier-distribución" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>En muchas ocasiones, <span class="math inline">\(X\)</span> no se distribuye normalmente pero si podemos tomar muestras grandes <span class="math inline">\(n \ge 30\)</span> entonces podemos usar el CLT:</p>
+<p>De tal forma que el <strong>error estandarizado</strong> de la hipótesis nula se puede aproximar a una distribución estándar</p>
+<p><span class="math display">\[Z=\frac{\bar{X}-\mu}{\frac{\sigma}{\sqrt{n}}} \rightarrow N(0,1)\]</span></p>
+<p>Por lo tando procedemos como en el <strong>caso 1</strong>. Si no se desconoce <span class="math inline">\(\sigma\)</span>, lo reemplazamos por su estimación <span class="math inline">\(s\)</span> y procedemos como en el <strong>caso 2</strong> usando la estadística t</p>
+<p><span class="math display">\[T=\frac{\bar{X}-\mu_0}{\frac{S}{\sqrt{n}}}\]</span></p>
+</div>
+</div>
+<div id="caso-3-para-proporciones" class="section level2 hasAnchor" number="14.6">
+<h2><span class="header-section-number">14.6</span> Caso 3 (para proporciones)<a href="contraste-de-hipótesis.html#caso-3-para-proporciones" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Si nuestro experimento aleatorio es un ensayo de Bernoulli <span class="math inline">\(X \rightarrow Bernoulli(p)\)</span>, podemos formular contrastes de hipótesis para la probabilidad <span class="math inline">\(p\)</span> de un evento en el ensayo. Considera una hipótesis de cola superior</p>
+<ol style="list-style-type: lower-alpha">
+<li><span class="math inline">\(H_0: p \leq p_0\)</span> (status quo)</li>
+<li><span class="math inline">\(H_1: p&gt; p_0\)</span> (interés de investigación)</li>
+</ol>
+<p>En este <strong>caso 3</strong>, podemos probar el valor de la proporción si</p>
+<ol style="list-style-type: decimal">
+<li><span class="math inline">\(X\)</span> es un ensayo de Bernoulli, y</li>
+<li><span class="math inline">\(np\)</span>, <span class="math inline">\(n(1-p)\)</span> son ambos mayores que <span class="math inline">\(5\)</span>, lo que nos permite aplicar el teorema central del límite.</li>
+</ol>
+<p>Recuerda que si tomamos una muestra de <span class="math inline">\(n\)</span> ensayos de Bernoulli <span class="math inline">\((1,0,1,...0)\)</span>, <span class="math inline">\(\bar{X}=\frac{1}{n}\sum_{i=1 }^n X_i\)</span> es la frecuencia relativa de “unos” en la muestra. Este es un estimador de <span class="math inline">\(p\)</span>.</p>
+<p>Si asumimos que la hipótesis nula es verdadera entonces <span class="math inline">\(X \rightarrow Bernoulli(p_0)\)</span> y el error estandarizado que cometemos cuando estimamos <span class="math inline">\(p_0\)</span> con <span class="math inline">\(\bar{X}\)</span> es</p>
+<p><span class="math display">\[Z=\frac{\bar{X}-p_0}{\frac{\sqrt{p_0(1-p_0)}}{\sqrt{n}}} \rightarrow N(0,1)\]</span></p>
+<p><span class="math inline">\(\sigma=\sqrt{p_0(1-p_0)}\)</span> es la desviación estándar de <span class="math inline">\(X\)</span>, cuando la hipótesis nula es verdadera: <span class="math inline">\(V(X)=\sigma^2=p_0(1-p_0)\)</span>. Con esta estadística <span class="math inline">\(Z\)</span>, podemos aceptar o rechazar la hipótesis nula usando cualquiera de los tres riterios de decisión.</p>
+<p><strong>Ejemplo (mejora de procesos)</strong></p>
+<p>Podemos estar satisfechos con un nuevo proceso si el <span class="math inline">\(90\%\)</span> de las veces mejoramos el proceso anterior.</p>
+<p>Si tomamos una muestra de <span class="math inline">\(200\)</span> nuevos procesos y encontramos que <span class="math inline">\(188\)</span> veces mejoramos el proceso anterior, ¿podemos estar satisfechos con el nuevo proceso con una confianza de <span class="math inline">\(95\%\)</span>?</p>
+<p>Para esto formulamos un contraste de hipótesis de cola superior para la hipótesis nula <span class="math inline">\(p_0=0.9\)</span>. Por lo tanto, las hipótesis nula y alternativa son</p>
+<ul>
+<li><span class="math inline">\(H_0: p \leq p_0=0.9\)</span> (No satisfactorio)</li>
+<li><span class="math inline">\(H_1: p&gt; p_0=0.9\)</span> (Satisfactorio)</li>
+</ul>
+<p>Suponemos que si la hipótesis nula es verdadera entonces</p>
+<ol style="list-style-type: decimal">
+<li>la distribución de un experimento aleatorio es</li>
+</ol>
+<p><span class="math display">\[X \rightarrow Bernoulli (p_0)\]</span></p>
+<ol start="2" style="list-style-type: decimal">
+<li>además <span class="math inline">\(p_0n=180&gt;5\)</span> y <span class="math inline">\((1-p_0)=n=20&gt;5\)</span></li>
+</ol>
+<p>Y por lo tanto podemos aplicar <strong>caso 3</strong>.</p>
+<p>Podemos usar cualquiera de los tres criterios para probar la hipótesis. En cualquier caso, <strong>rechazaremos</strong> <span class="math inline">\(H_0\)</span> con una confianza de <span class="math inline">\(95\%\)</span> porque:</p>
+<ol style="list-style-type: decimal">
+<li>El intervalo de confianza <strong>de cola superior</strong> para <span class="math inline">\(p\)</span> no incluye <span class="math inline">\(p_0\)</span></li>
+</ol>
+<p><span class="math display">\[p_0=0.9 \notin (\bar{x}-z_{0.05}\big[\frac{\bar{x}(1-\bar{x})}{n} \big]^{1/2},1)= (0.912,1)\]</span></p>
+<ol start="2" style="list-style-type: decimal">
+<li>El error estandarizado observado bajo la hipótesis nula no está en la región de aceptación</li>
+</ol>
+<p><span class="math display">\[z_{obs}= \frac{\bar{X}-p_0}{\big[\frac{p_0(1-p_0)}{n} \big]^{1/2}} =\frac{0.94 -0.90}{\sqrt{0.00045}}=1.88563 \notin (-\infty, z_{0.05})=(-\infty, 1.644)\]</span>
+Nota que para este caso usamos <span class="math inline">\(p_0\)</span> para calcular <span class="math inline">\(z_{obs}\)</span> porque estamos suponiendo que la hipótesis nula es verdad. Por lo tanto conocemos exactamente la media y la varianza de las observaciones.</p>
+<ol start="3" style="list-style-type: decimal">
+<li>El <span class="math inline">\(pvalor\)</span> de cola superior es menor que <span class="math inline">\(\alpha=0.05\)</span>:</li>
+</ol>
+<p><span class="math display">\[pvalor=1-\phi(1.885618)=0.02967323&lt;0.05\]</span></p>
+<p>en R: <code>1-pnorm(1.885618)</code></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-124-1.png" width="672" /></p>
+<p>La prueba se puede realizar en R usando la función prop.test. Sin embargo nota que los intervalos de confianza no son idénticos a los dados en el criterio 1, porque ahí suponemos que <span class="math inline">\(\bar{X}\)</span> es exactamente normal mientras que prop.test usa una aproximación mas adecuada</p>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="contraste-de-hipótesis.html#cb68-1" tabindex="-1"></a><span class="fu">prop.test</span>(<span class="dv">188</span>, <span class="dv">200</span>, <span class="at">p=</span><span class="fl">0.9</span>, <span class="at">alternative =</span> <span class="st">&quot;greater&quot;</span> , <span class="at">correct=</span><span class="cn">FALSE</span>)</span></code></pre></div>
+<pre><code>## 
+##  1-sample proportions test without continuity correction
+## 
+## data:  188 out of 200, null probability 0.9
+## X-squared = 3.5556, df = 1, p-value = 0.02967
+## alternative hypothesis: true p is greater than 0.9
+## 95 percent confidence interval:
+##  0.9060689 1.0000000
+## sample estimates:
+##    p 
+## 0.94</code></pre>
+</div>
+<div id="caso-4-para-la-varianza" class="section level2 hasAnchor" number="14.7">
+<h2><span class="header-section-number">14.7</span> Caso 4 (para la varianza)<a href="contraste-de-hipótesis.html#caso-4-para-la-varianza" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>En muchos casos, se realizan experimentos para probar valores específicos de la dispersión de datos.</p>
+<p>Como</p>
+<ul>
+<li><p>al cumplir con estándares de diseño donde las medidas deben estar entre ciertos valores.</p></li>
+<li><p>cuando se aplican diferentes tratamientos a diferentes grupos, queremos ver la dispersión de los resultados entre los grupos.</p></li>
+</ul>
+<p>Un contraste de hipótesis <strong>de dos colas</strong> para la varianza es de la forma</p>
+<ol style="list-style-type: lower-alpha">
+<li><span class="math inline">\(H_0:\sigma^2 = \sigma^2_0\)</span> (status quo)</li>
+<li><span class="math inline">\(H_1:\sigma^2 \neq \sigma^2_0\)</span> (interés de investigación)</li>
+</ol>
+<p>Esta hipótesis para <span class="math inline">\(\sigma^2\)</span> (<strong>caso 4</strong>) y se puede probar cuando</p>
+<ol style="list-style-type: decimal">
+<li><span class="math inline">\(X\)</span> es una variable normal</li>
+</ol>
+<p>Recuerda que si tomamos una muestra de <span class="math inline">\(n\)</span> ensayos de Bernoulli <span class="math inline">\((1,0,1,...0)\)</span>, <span class="math inline">\(S^2=\frac{1}{n-1}\sum_{i=1 }^n (X_i-\bar{X})^2\)</span> es la varianza de la muestra. Este es un estimador de <span class="math inline">\(\sigma^2\)</span>.</p>
+<p>Si asumimos que la hipótesis nula es verdadera, entonces <span class="math inline">\(X \rightarrow N(\mu, \sigma_0)\)</span> y la <strong>proporción de error</strong> que cometemos cuando estimamos <span class="math inline">\(\sigma^2\)</span> con <span class="math inline">\(s^2\)</span> es</p>
+<p><span class="math display">\[W=\frac{(n-1)S^2}{\sigma_0^2}\]</span></p>
+<p>cuando <span class="math inline">\(W=1\)</span> no cometemos ningún error. <span class="math inline">\(W\)</span> tiene una distribución <span class="math inline">\(\chi^2\)</span> (chi-cuadrado) con n-1 grados de libertad.</p>
+<p><span class="math display">\[W \rightarrow \chi^2(n-1)\]</span></p>
+<p>Con <span class="math inline">\(W\)</span>, podemos aceptar o rechazar la hipótesis nula usando cualquiera de los tres criterios de decisión.</p>
+<p><strong>Ejemplo (semiconductor)</strong></p>
+<p>La producción de un chip semiconductor está regulada por un proceso que requiere que el espesor de una capa en particular no varíe en más de <span class="math inline">\(\sigma_0=0.6mm\)</span>, de su media de <span class="math inline">\(25mm\)</span>.</p>
+<p>Para llevar el control del proceso cada cierto tiempo se toma una muestra de <span class="math inline">\(20\)</span> especímenes.</p>
+<p>En una ocasión se toma una muestra del espesor de 20 semiconductores.</p>
+<pre><code>##  [1] 24.51239 24.79975 26.35608 25.06134 25.11248 26.49211 25.40100 23.89940
+##  [9] 24.40244 24.61227 26.06495 25.31304 25.34867 25.09629 24.51642 26.55461
+## [17] 25.43313 23.28904 25.61018 24.58867</code></pre>
+<p>La desviación estándar estimada para estos datos es <span class="math inline">\(s=0.8462188\)</span>. ¿Estaba el proceso fuera de control con una confianza de <span class="math inline">\(0.99\%\)</span> y debería detenerse?</p>
+<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="contraste-de-hipótesis.html#cb71-1" tabindex="-1"></a><span class="fu">sd</span>(x)</span></code></pre></div>
+<pre><code>## [1] 0.8462188</code></pre>
+<p>Por lo tanto, queremos contrastar las hipótesis de la cola superior</p>
+<ol style="list-style-type: lower-alpha">
+<li><span class="math inline">\(H_0:\sigma^2 \leq \sigma^2_0=0.6^2\)</span> (El proceso está bajo control)</li>
+<li><span class="math inline">\(H_1:\sigma^2 &gt; \sigma^2_0=0.6^2\)</span> (El proceso está fuera de control)</li>
+</ol>
+<p>Probemos la hipótesis usando la <strong>región de aceptación</strong>.</p>
+<p>La estadística de contraste son <span class="math display">\[W=\frac{(n-1)S^2}{\sigma_0^2} \rightarrow \chi^2(n-1)\]</span></p>
+<p>y el límite de umbral <span class="math inline">\(\alpha=0.01=0-0.99\)</span>. Por lo tanto, la región de aceptación <span class="math inline">\(P(W\leq \chi^2_{0.01,19})=0.99\)</span> es</p>
+<p><span class="math display">\[(0, \chi^2_{0.01,19})=(0,36.19)\]</span></p>
+<p>En R: <span class="math inline">\(\chi^2_{0.01,19}=\)</span><code>qchisq(0.99,19)</code><span class="math inline">\(= 36.19\)</span></p>
+<p>Para nuestros datos, la <strong>proporción de error estandarizado</strong> observada es:</p>
+<p><span class="math display">\[w_{obs}=\frac{19 (0.8462188)^2}{0.60^2}=37.79344\]</span></p>
+<p>Que cae fuera de la región de aceptación.</p>
+<p><span class="math display">\[w_{obs}=37.79344\notin (0,36.19)\]</span></p>
+<p>Por lo tanto, rechazamos la hipótesis nula y concluimos que sí! el proceso está fuera de control.</p>
+<p>Si nosotros, alternativamente, calculamos el <span class="math inline">\(pvalor\)</span> de cola superior</p>
+<p><span class="math display">\[pvalor=1-F_{\chi^2,19}(37.79344)= 0.006\]</span>
+vemos que es menor que <span class="math inline">\(\alpha=0.01\)</span> y rechazamos la hipótesis nula.</p>
+<p>R: <code>1-pchisq(37.79344, 19)</code></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-128-1.png" width="672" /></p>
+<p>Para probar la hipótesis, podemos usar la función varTest de la biblioteca EnvStats. Si la biblioteca no está instalada, primero ejecuta</p>
+<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="contraste-de-hipótesis.html#cb73-1" tabindex="-1"></a><span class="fu">install.packages</span>(EnvStats)</span></code></pre></div>
+<p>y después</p>
+<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="contraste-de-hipótesis.html#cb74-1" tabindex="-1"></a><span class="fu">library</span>(EnvStats);</span>
+<span id="cb74-2"><a href="contraste-de-hipótesis.html#cb74-2" tabindex="-1"></a><span class="fu">varTest</span>(x, <span class="at">sigma.squared =</span> <span class="fl">0.6</span><span class="sc">^</span><span class="dv">2</span>, <span class="at">alternative =</span> <span class="st">&quot;greater&quot;</span>, <span class="at">conf.level =</span> <span class="fl">0.99</span>) </span></code></pre></div>
+<pre><code>## 
+## Results of Hypothesis Test
+## --------------------------
+## 
+## Null Hypothesis:                 variance = 0.36
+## 
+## Alternative Hypothesis:          True variance is greater than 0.36
+## 
+## Test Name:                       Chi-Squared Test on Variance
+## 
+## Estimated Parameter(s):          variance = 0.7160863
+## 
+## Data:                            x
+## 
+## Test Statistic:                  Chi-Squared = 37.79344
+## 
+## Test Statistic Parameter:        df = 19
+## 
+## P-value:                         0.006304231
+## 
+## 99% Confidence Interval:         LCL = 0.3759412
+##                                  UCL =       Inf</code></pre>
+<p>También vemos que <span class="math inline">\(\sigma_0^2=0.6^2=0.36\)</span> no está en el intervalo de confianza, por lo que se rechaza la hipótesis nula.</p>
+</div>
+<div id="errores-en-la-prueba-de-hipótesis" class="section level2 hasAnchor" number="14.8">
+<h2><span class="header-section-number">14.8</span> Errores en la prueba de hipótesis<a href="contraste-de-hipótesis.html#errores-en-la-prueba-de-hipótesis" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>El resultado de una prueba de hipótesis de cola superior puede ser <strong>rechazar</strong> la hipótesis nula:</p>
+<p><span class="math display">\[H_0: \mu\leq\mu_0\]</span></p>
+<p>cuando <span class="math inline">\(H_0\)</span> realmente <strong>es verdad</strong>. Debemos tener en cuenta que la decisión se toma con base en los datos. Bien puede ser que el estadístico observado haya caido, por aleatoridad, lejos de la hipótesis nula, en la zona de rechazo de <span class="math inline">\(H_0\)</span> aún cuando esta sea verdad. Cuando realizamos la prueba de hipótesis, no sabemos si <span class="math inline">\(H_0\)</span> es verdad, por lo que si ahora lo sabemos es porque asumimos que lo hemos averiguado de alguna otra forma. Aún así, la probabilidad de rechazar <span class="math inline">\(H_0\)</span> cuando es verdad es precisamente el nivel de significación estadística <span class="math inline">\(\alpha\)</span>. Llamamos a esta probabilidad la probabilidad de cometer un error de <strong>tipo 1</strong>. Tomando el ejemplo para el <strong>caso 1</strong>, un test de cola superior, y una confianza del <span class="math inline">\(95\%\)</span> tenemos que</p>
+<p><span class="math display">\[\alpha = P(Z&gt; z_{0.05})=0.05\]</span></p>
+<p>donde <span class="math inline">\(z_{0.05}=\phi^{-1}(0.95)=\)</span> <code>qnorm(0.95)=1.644</code></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-131-1.png" width="672" /></p>
+<p>Un error del tipo 1 también se llama un <strong>falso positivo</strong> porque nuestro interés de investigación está en <span class="math inline">\(H_1\)</span>. Cuando rechazamos <span class="math inline">\(H_0\)</span>, aceptamos <span class="math inline">\(H_1\)</span> y decimos que nuestro test es <strong>positivo</strong>. Aceptar <span class="math inline">\(H_1\)</span> se traduce en anunciar un descubrimiento, por lo que el error de tipo 1 es anunciar un descubrimiento cuando este no existe: lo hemos hecho porque los datos nos lo han sugerido.</p>
+<p>Existe otro tipo de error. El resultado de una prueba de hipótesis de cola superior puede ser <strong>aceptar</strong> la hipótesis nula:</p>
+<p><span class="math display">\[H_0: \mu\leq\mu_0\]</span></p>
+<p>cuando <span class="math inline">\(H_0\)</span> realmente <strong>no es verdad</strong>. En este caso, puede ser que el estadístico observado haya caido, por aleatoridad, cerca de la hipótesis nula, en la zona de aceptación de <span class="math inline">\(H_0\)</span>, cuando realmente <span class="math inline">\(H_1\)</span> es verdad. Si averiguaramos de alguna forma que, por ejemplo, <span class="math inline">\(\mu\)</span> realmente tiene un valor <span class="math inline">\(\mu_1\)</span> entonces la hipóteisis alternativa sería exactamente:</p>
+<p><span class="math display">\[H_1: \mu=\mu_1\]</span></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-132-1.png" width="672" /></p>
+<p>Si <span class="math inline">\(H_1\)</span> es realemente verdadera (línea roja, que no sabemos cuando realizamos la prueba de hipótesis) entonces los estadísticos observados son <strong>realmente</strong> variables aleatorias <span class="math inline">\(Y\)</span> que se distribuyen con media (caso 1)</p>
+<p><span class="math display">\[E(Y)=\frac{\mu_1-\mu_0}{\frac{\sigma}{\sqrt{n}}}\]</span></p>
+<p>y en su mayoría caerán cerca de este valor, por lo tanto, en la zona de rechazo de <span class="math inline">\(H_0\)</span>, dando validez a la prueba de hipótesis. Sin embargo existen casos en que el estadístico observado cae en la zona de acepación de <span class="math inline">\(H_0\)</span> por aleatoreidad, apesar de que los estadísticos los produce <span class="math inline">\(H_1\)</span>. En estos casos aceptamos <span class="math inline">\(H_0\)</span> cuando no es verdad. Este error se llama <strong>un error de tipo 2</strong> o un <strong>falso negativo</strong>. Para el caso 1, con un test de cola superior y nivel de confianza del <span class="math inline">\(95\%\)</span> este es</p>
+<p><span class="math display">\[\beta= P(Y &lt; z_{0.05})\]</span>
+Donde <span class="math inline">\(Y \rightarrow N(\frac{\mu_1-\mu_0}{\sigma/\sqrt{n}},1)\)</span> es la <strong>verdadera distribución</strong> de los estadísticos observados.</p>
+<p><strong>Ejemplo (Bombilla)</strong></p>
+<p>La eficiencia energética de una nueva bombilla es una variable aleatoria normal con desviación estandar de <span class="math inline">\(5\)</span> vátios. Consideramos que las bombillas que producimos son eficientes si su media no supera los <span class="math inline">\(80\)</span> vátios, por lo que planteamos el contraste de hipótesis</p>
+<ol style="list-style-type: lower-alpha">
+<li><span class="math inline">\(H_0 : \mu \geq 80\)</span> (eficientes)</li>
+<li><span class="math inline">\(H_1 : \mu &lt; 80\)</span> (no eficientes)</li>
+</ol>
+<p>Queremos probar que producimos bombillas eficientes y planteamos realizar una muestra aleatoria de tamaño 100, con un nivel de significación estadística del <span class="math inline">\(5\%\)</span>. Si estudios previos han sugerído que las bombillas puedne tener una media de <span class="math inline">\(\mu=\mu_1=79\)</span> vátios ¿Qué error del tipo 2 esperamos?</p>
+<p>El contraste es para el <strong>caso 1</strong> con una <strong>cola inferior</strong>. Por lo tanto la probabilidad de aceptar la hipótesis nula (no prodicimos bombillas eficientes) es</p>
+<p><span class="math display">\[\alpha = P(Z&lt; z_{0.95})=0.05\]</span>
+y <span class="math inline">\(z_{0.95}=\)</span><code>qnorm(0.05)</code><span class="math inline">\(=-1.644\)</span>.</p>
+<p>El error de tipo 2 es por lo tanto</p>
+<p><span class="math display">\[\beta= P(Y &gt; -1.644)\]</span></p>
+<p>es decir, la probabilidad de aceptar que no producimos bombillas eficientes cuando en realidad sí lo hacemos. Al tener el <strong>caso 1</strong> porque conocemos <span class="math inline">\(\sigma\)</span> y la variable es normal, entonces los estadísticos observados realmente se distribuyten como</p>
+<p><span class="math display">\[Y \rightarrow N(\frac{79-80}{5/\sqrt{100}}=-2,1)\]</span> y el error de tipo 2 es</p>
+<p><span class="math display">\[\beta = 1-F(-1.644)=0.36\]</span></p>
+<p>calculado en R como <code>1-pnorm(-1.644,-2,1)=0.36</code>. De tal forma, que sólo un <span class="math inline">\(\alpha=5\%\)</span> de las veces anunciaríamos que producimos bombillas eficientes cuando realmente no lo son, mientras que un <span class="math inline">\(\beta=36\%\)</span> de las veces anunciaríamos tener una producción que no sirve cuando realmente sí sirve.</p>
+<p>Cuando realizamos una prueba de hipótesis tenemos dos posibilidades para cada condición</p>
+<ul>
+<li><span class="math inline">\(H_1\)</span> es en realidad : <strong>verdadera</strong> (<span class="math inline">\(\mu=\mu_1\)</span>) o <strong>falsa</strong> (<span class="math inline">\(\mu=\mu_0\)</span>)</li>
+<li>La prueba para <span class="math inline">\(H_1\)</span> es: <strong>positiva</strong> (<span class="math inline">\(z_{obs}\)</span> en zona de aceptación de <span class="math inline">\(H_1\)</span>) o <strong>negativa</strong> (<span class="math inline">\(z_{obs}\)</span> en zona de aceptación de <span class="math inline">\(H_0\)</span>)</li>
+</ul>
+<p><strong>Ejemplo (PCR)</strong></p>
+<p>Hacemos <strong>una</strong> PCR para probar una infección. El contraste de hipótesis es</p>
+<ol style="list-style-type: lower-alpha">
+<li><span class="math inline">\(H_0\)</span> no hay infección</li>
+<li><span class="math inline">\(H_1\)</span> hay infección</li>
+</ol>
+<p>Hacemos la prueba PCR y nos da</p>
+<ol style="list-style-type: lower-roman">
+<li>negativa: rechazamos la infección (<span class="math inline">\(H_1\)</span>)</li>
+<li>positiva: aceptamos la infección (<span class="math inline">\(H_1\)</span>)</li>
+</ol>
+<p>Podemos escribir la tabla de contingencia para las probabilidades de los resultados de la prueba de hipótesis como</p>
+<table>
+<thead>
+<tr class="header">
+<th align="center"></th>
+<th align="center"><span class="math inline">\(H_1\)</span> es verdadera</th>
+<th align="center"><span class="math inline">\(H_0\)</span> es verdadera</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><strong>La prueba en <span class="math inline">\(H_1\)</span> es positiva</strong></td>
+<td align="center"><span class="math inline">\(1-\beta\)</span></td>
+<td align="center"><span class="math inline">\(\alpha\)</span></td>
+</tr>
+<tr class="even">
+<td align="center"><strong>La prueba en <span class="math inline">\(H_1\)</span> es negativa</strong></td>
+<td align="center"><span class="math inline">\(\beta\)</span></td>
+<td align="center"><span class="math inline">\(1-\alpha\)</span></td>
+</tr>
+<tr class="odd">
+<td align="center"><strong>suma</strong></td>
+<td align="center">1</td>
+<td align="center">1</td>
+</tr>
+</tbody>
+</table>
+<p>De tal forma que tenemos</p>
+<ol style="list-style-type: decimal">
+<li>La tasa de <strong>error de tipo 2</strong>: probabilidad de un falso negativo (ignorar un descubrimiento cuando es verdadero)</li>
+</ol>
+<p><span class="math display">\[\beta=P(negativa|H_1)\]</span></p>
+<ol start="2" style="list-style-type: decimal">
+<li><p>Tasa de <strong>verdaderos positivos</strong>: Este es el poder o la sensibilidad de una prueba (afirmar un descubrimiento cuando es verdadero, el objetivo principal)
+<span class="math display">\[1-\beta=P(positiva|H_1)\]</span></p></li>
+<li><p>Tasa de <strong>error de tipo 1</strong>: probabilidad de un falso positivo (afirmar un descubrimiento cuando es falso)
+<span class="math display">\[\alpha=P(positiva|H_0)\]</span></p></li>
+<li><p>Tasa de <strong>verdaderos negativos</strong>: Esta es la especificidad de una prueba (ignorar un descubrimiento cuando es falso)
+<span class="math display">\[1-\alpha=P(negativa|H_0)\]</span></p></li>
+</ol>
+</div>
+<div id="ejercicios-12" class="section level2 hasAnchor" number="14.9">
+<h2><span class="header-section-number">14.9</span> Ejercicios<a href="contraste-de-hipótesis.html#ejercicios-12" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="ejercicio-1-12" class="section level4 hasAnchor" number="14.9.0.1">
+<h4><span class="header-section-number">14.9.0.1</span> Ejercicio 1<a href="contraste-de-hipótesis.html#ejercicio-1-12" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Imagina que tomamos una muestra aleatoria de tamaño <span class="math inline">\(n = 41\)</span> de una variable aleatoria normal <span class="math inline">\(X\)</span> y encontramos que el promedio de la muestra es de <span class="math inline">\(10\)</span> y la varianza de la muestra es de <span class="math inline">\(1.5\)</span>.</p>
+<ul>
+<li>¿Cuál es entonces el intervalo de confianza para la media de <span class="math inline">\(X\)</span> con un nivel de confianza de <span class="math inline">\(95\%\)</span>?</li>
+</ul>
+<p>Considera que <span class="math inline">\(t_{0.025,40}=\)</span> <code>qt(0.975, 40)</code> <span class="math inline">\(\sim 2\)</span>.</p>
+<ul>
+<li><p>Probar la hipótesis de que la media de <span class="math inline">\(X\)</span> es <strong>diferente</strong> de <span class="math inline">\(10.5\)</span>, utilizando un umbral de significancia de <span class="math inline">\(5\%\)</span>.</p></li>
+<li><p>Escriba el código para calcular el P valor para probar la hipótesis de que la media de <span class="math inline">\(\mu\)</span> es <strong>inferior</strong> a <span class="math inline">\(10.5\)</span>, utilizando un umbral de significancia de <span class="math inline">\(5\%\)</span>.</p></li>
+</ul>
+<p>Considera que el código para la distribución de probabilidad T con <span class="math inline">\(n-1\)</span> grados de libertad es <code>pt(tobs, n-1)</code>.</p>
+</div>
+<div id="ejercicio-2-12" class="section level4 hasAnchor" number="14.9.0.2">
+<h4><span class="header-section-number">14.9.0.2</span> Ejercicio 2<a href="contraste-de-hipótesis.html#ejercicio-2-12" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Una muestra de <span class="math inline">\(10\)</span> condensados de gas mostraron las siguientes concentraciones de mercurio (en <span class="math inline">\(ng/ml\)</span>):</p>
+<p><span class="math inline">\(23.3\)</span>, <span class="math inline">\(22.5\)</span>, <span class="math inline">\(21.9\)</span>, <span class="math inline">\(21.5\)</span>, <span class="math inline">\(19.9\)</span>, <span class="math inline">\(21.3\)</span>, <span class="math inline">\(21.7\)</span>, <span class="math inline">\(23.8\)</span>, <span class="math inline">\(22.6\)</span>, <span class="math inline">\(24.7\)</span></p>
+<p>Suponiendo que la concentración de mercurio se distribuye normalmente entre los condensados de gas, prueba la hipótesis de que un condensado no supera el límite de toxicidad establecido en <span class="math inline">\(24 ng/ml\)</span>.</p>
+</div>
+<div id="ejercicio-3-9" class="section level4 hasAnchor" number="14.9.0.3">
+<h4><span class="header-section-number">14.9.0.3</span> Ejercicio 3<a href="contraste-de-hipótesis.html#ejercicio-3-9" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>El fabricante de microarrays de expresión génica garantiza que al menos el <span class="math inline">\(97\%\)</span> de los microarrays que producen tienen señales de alta calidad. Un cliente recibe un lote de piezas de <span class="math inline">\(200\)</span> y descubre que <span class="math inline">\(8\)</span> no son buenas.</p>
+<p>¿Debe el cliente devolver el lote por mala calidad?</p>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="intervalos-de-confianza.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="soluciones-a-las-preguntas.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/14-HypothesisTesting.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

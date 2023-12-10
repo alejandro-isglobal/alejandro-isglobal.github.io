@@ -120,7 +120,7 @@
 
 \title{EEBE stats}
 \author{Alejandro Caceres}
-\date{2023-11-26}
+\date{2023-12-10}
 
 \begin{document}
 \maketitle
@@ -7689,7 +7689,7 @@ what is confidence interval for the variance of these data?
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
 \item
-  The standard deviation of the data is \(s^2=0.05155556\)
+  The standard deviation of the data is \(s=0.2270585\)
 \item
   \(n=10\)
 \item
@@ -7722,7 +7722,7 @@ what is confidence interval for the variance of these data?
 
 Therefore
 
-\[(l,u)= (\frac{0.227^2 (10-1)}{19.02277},\frac{0.227^2(10-1)}{2.700389})=(0.02,0.17)\]
+\[(l,u)= (\frac{0.2270585^2 (10-1)}{19.02277},\frac{0.2270585^2(10-1)}{2.700389})=(0.02,0.17)\]
 Note that when we computed the confidence interval for the mean and assumed \(\sigma^2=1\) (case 1), this was not consistent with the data because the confidence interval does not contain the value \(\sigma^2=1\).
 According to the data \(\sigma^2 \neq 1\) at \(95\%\) confidence.
 
@@ -7799,15 +7799,6 @@ In a scientific paper, the authors report a \(95\%\) confidence interval of \((2
   Compute the \(99\%\) confidence interval.
 \end{itemize}
 
-hints:
-
-\begin{itemize}
-\item
-  in R \(t_{0.025, 24}=\) qt(0.975, 24)\(\sim 2\)
-\item
-  in R \(t_{0.005, 24}=\)qt(0.995, 24)\(\sim 2.8\)
-\end{itemize}
-
 \hypertarget{exercise-2-11}{%
 \subsubsection{Exercise 2}\label{exercise-2-11}}
 
@@ -7833,7 +7824,7 @@ What is the confidence interval for population variance of a normal variable if 
 \hypertarget{practice}{%
 \section{Practice}\label{practice}}
 
-Load misophonia data data\_0.txt
+Load misophonia data \url{https://alejandro-isglobal.github.io/SDA/data/data_0.txt}
 
 \begin{itemize}
 \item
@@ -7843,6 +7834,1457 @@ Load misophonia data data\_0.txt
 \item
   Compute the confidence interval for the variance of the age (``Edad''). What is the cofidence interval for the standard deviation of the population?
 \end{itemize}
+
+\hypertarget{hypothesis-testing}{%
+\chapter{Hypothesis testing}\label{hypothesis-testing}}
+
+\hypertarget{objective-10}{%
+\section{Objective}\label{objective-10}}
+
+In this chapter we will study \textbf{hypothesis testing} of means and proportions. We will define what the null hypothesis and the alternative is and how to use data to choose between both.
+
+We will also introduce hypothesis testing of variances and the errors that are made when a hypothesis is tested. These error are known as false positives and false negatives.
+
+\hypertarget{hypothesis}{%
+\section{Hypothesis}\label{hypothesis}}
+
+When we run randomized experiments, we often want to test whether the changes we make to the experiment have a real effect. We want, for example, to know if we have been able to influence the experiment. Or, if we have submitted the experiment under a new condition, we want to know if that condition affects the result of the experiment. We usually have an idea of what the data should look like when these changes are not present. Since the results of the experiment are random with and without the change, how can we tell the difference between applying the change or not?
+
+The strategy is to formulate the change or the new condition in terms of the values that the \textbf{parameters} of the probability distributions associated with the random experiment can take. We then use the observations from the randomized experiment under the new condition to provide \textbf{evidence} about the possible influence on the parameters.
+
+\textbf{Examples (Tyres)}
+
+Tyre manufacturers want to know if the average life of the tyres they produce is at least 20000 km. Let's try to translate their interest into statistical terms. Imagine a random experiment that consists of measuring how long the useful life of a particular tyre lasts. Therefore, manufacturers are interested in knowing if the average useful life of a tyre is at least 20000 km.
+
+Let us formulate two dichotomous statements, that is, two mutually exclusive situations:
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi}.}
+\tightlist
+\item
+  The mean life of tyres may be \textbf{less} than 20 000km
+\item
+  The mean life of tyres may be \textbf{greater} than 20000km
+\end{enumerate}
+
+This means that only one can be true. The question is then how we can use data to decide between situation a. or situation b. Let's consider that \(\mu\) is the mean of the population distribution. Therefore, the statements a. and b. can also be written as
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi}.}
+\tightlist
+\item
+  \(H_0: \mu \leq 20000km\)
+\item
+  \(H_1: \mu > 20000km\)
+\end{enumerate}
+
+Where the statement \(H_0\) is where the cars do not run for the desired 20000 km while statement \(H_1\) is the desired case. \(H_0\) and \(H_1\) are called hypotheses.
+
+\textbf{Definition}
+
+In statistics, a statement (conjecture) about the distribution of a random variable is called a \textbf{hypothesis}.
+
+The hypothesis is usually written in two dichotomous statements
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi}.}
+\item
+  The \textbf{null} hypothesis: \(H_0\) when the conjecture is false usually refers to \textbf{status quo}. The data may be explained by the satus quo.
+\item
+  The \textbf{alternative} hypothesis: \(H_1\) when the conjecture is true usually refers to \textbf{research hypothesis}. The data may be explained by the desired alternative.
+\end{enumerate}
+
+\textbf{Example (Fertilizer)}
+
+So what are the null and the alternative hypothesis for the following situation?
+
+Fertilizer developers want to test whether their new product has a real effect on the growth of plants.
+
+Being \(\mu_0\) the mean growth of the plants \textbf{without} fertilizer (known) and \(\mu\) the mean growth of the plants with the fertilizer (unknown)
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi}.}
+\tightlist
+\item
+  \(H_0:\mu \leq \mu_0\) (The fertilizer may do nothing: status quo)
+\item
+  \(H_1:\mu > \mu_0\) (The fertilizer may have the desired effect: research interest)
+\end{enumerate}
+
+\textbf{Example (chemotherapy)}
+
+Pharmaceutical companies need to know if a novel chemotherapy can cure 90\% of cancer patients.
+
+Being \(p_0\) the proportion of patients that are cured \textbf{without} the chemotherapy (known) and \(p\) the proportion that are cures \textbf{with} the chemotherapy (unknown)
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi}.}
+\tightlist
+\item
+  \(H_0:p \leq p_0\) (The chemotherapy may do nothing: status quo)
+\item
+  \(H_1: p > p_0\) (The chemotherapy may have the desired effect: research interest)
+\end{enumerate}
+
+Note that our new improved experiment has the parameter \(p\) and we want to know how it compares to the experiment without \textbf{any improvement} that has the parameter \(p_0\).
+
+We want to decide between \(H_0\) and \(H_1\). There are two options:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  We reject the alternative hypothesis \(H_1\); that is, we accept the null hypothesis \(H_0\).
+\item
+  We accept the alternative hypothesis \(H_1\) (our interest); that is, we reject the null hypothesis \(H_0\).
+\end{enumerate}
+
+\hypertarget{hypothesis-testing-1}{%
+\section{Hypothesis testing}\label{hypothesis-testing-1}}
+
+Let us summarize the different cases, ways and types for testing hypothesis. We will then discuss each condition with a particular example.
+
+Hypotheses can be tested, or decided, using confidence intervals. Therefore, we are going to test hypothesis in the four \textbf{cases} that we saw for confidence intervals, namely:
+
+\begin{itemize}
+\item
+  \textbf{Case 1}: Hypothesis test for the mean \(\mu\), when \(X \rightarrow N(\mu, \sigma^2)\) and we know \(\sigma\)
+\item
+  \textbf{Case 2}: Hypothesis test for the mean \(\mu\), when \(X \rightarrow N(\mu, \sigma^2)\) and we do not know \(\sigma\)
+\item
+  \textbf{Case 3}: Hypothesis test for the proportion \(p\) when \(X \rightarrow Bernoulli(p)\) and both \(np\) and \(n(1-p)\) \(> 5\).
+\item
+  \textbf{Case 4}: Hypothesis test for the variance \(\sigma^2\), when \(X \rightarrow N(\mu, \sigma^2)\)
+\end{itemize}
+
+There are three \textbf{ways} to test the hypotheses:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Using \textbf{confidence intervals}
+\item
+  using a \textbf{rejection zone}
+\item
+  using a \(p-value\).
+\end{enumerate}
+
+All three options are equivalent. Finally, there are three \textbf{types} of hypothesis that we can test:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{Two} tailed
+\item
+  \textbf{Upper} tailed
+\item
+  \textbf{Lower} tailed
+\end{enumerate}
+
+\hypertarget{case-1-known-variance-1}{%
+\section{Case 1 (known variance)}\label{case-1-known-variance-1}}
+
+A \textbf{tow tailed} hypothesis contrast is of the form
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi}.}
+\tightlist
+\item
+  \(H_0:\mu = \mu_0\) (status quo)
+\item
+  \(H_1:\mu \neq \mu_0\) (research interest)
+\end{enumerate}
+
+This called two tailed because the alternative hypothesis \(H_1\) requires that the mean \(\mu\) is either lower or higher than \(\mu_0\). This hypothesis can be tested in different cases. The \textbf{case 1} is when
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \(X\) is a normal variable, and
+\item
+  we know the value of \(\sigma^2\)
+\end{enumerate}
+
+\hypertarget{hypothesis-test-with-a-confidence-interval}{%
+\subsection{Hypothesis test with a confidence interval}\label{hypothesis-test-with-a-confidence-interval}}
+
+For \textbf{case 1} the confidence interval at \(95\%\) is
+
+\[(l,u)=(\bar{x}-z_{0.025} \frac{\sigma}{\sqrt{n}}, \bar{x}+z_{0.025} \frac{\sigma}{\sqrt{n}})\]
+
+\textbf{Testing Criteria:}
+
+\begin{itemize}
+\tightlist
+\item
+  If the confidence interval \textbf{contains} the null hypothesis
+\end{itemize}
+
+\[\mu_0\in (l,u)\] then we \textbf{accept} \(H_0\) with \(95\%\) confidence.
+
+\begin{itemize}
+\tightlist
+\item
+  If the confidence interval does \textbf{not contain} the null hypothesis\[\mu_0\notin (l,u)\] then we \textbf{reject} \(H_0\) with \(95\%\) confidence.
+\end{itemize}
+
+\textbf{Example (Cables)}
+
+We buy \(8\) cables from a manufacturing company that claims that they break with \textbf{mean} of \(\mu_0=13\) Tons. We are not sure and may want to decide on whether the cables break \textbf{on average} at \(13\) Tons or not. We formulate the hypothesis contrast
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi}.}
+\tightlist
+\item
+  \(H_0:\mu = 13\) (The cables \textbf{may} break as the manufacturer claims: status quo)
+\item
+  \(H_1:\mu \neq 13\) (The cables \textbf{may not} break as the manufacturer claims: research interest)
+\end{enumerate}
+
+Since we do no know what is true, let's start by \textbf{assuming} that \textbf{the manufacturer is right} and the cables truly satisfy the null hypothesis and therefore
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \(X \rightarrow N(\mu=13, \sigma^2=0.35^2)\)
+\item
+  We know \(\sigma^2=0.35^2\)
+\end{enumerate}
+
+To decide between \(H_0\) or \(H_1\), we then perform \(8\) random experiments: Load a cable until it breaks and record the breaking load. These are the results.
+
+\begin{verbatim}
+## [1] 13.34642 13.32620 13.01459 13.10811 12.96999 13.55309 13.75557 12.62747
+\end{verbatim}
+
+The confidence interval \textbf{if} the manufacturer is right, namely if the null hypothesis is true, is
+
+\[(l,u)=(\bar{x}-z_{0.025} \frac{\sigma}{\sqrt{n}}, \bar{x}+z_{0.025} \frac{\sigma}{\sqrt{n}})= (12.97,13.45)\]
+The confidence interval tells us that we trust with \(95\%\) confidence that the true breaking load of the cables \(\mu\) is in the interval. We don't know the true value of \(\mu\) but we see that \(\mu=13\) Tons could be it. Since the interval caught \(\mu_0\)
+
+\[\mu_0\in (12.97,13.45)\]
+
+Our conclusion is to accept that \(H_0\) could have produced our \textbf{observed interval}. We also say that that the data supports with the manufacturer's claim. More technically, we say that we \textbf{do not reject} \(H_0\).
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-104-1.pdf}
+
+\hypertarget{hypothesis-test-with-acceptancerejection-zones}{%
+\subsection{Hypothesis test with acceptance/rejection zones}\label{hypothesis-test-with-acceptancerejection-zones}}
+
+An equivalent way to test the hypothesis is to see if our set of observations are either common or rare if we assume that the null hypothesis is true. Let's remember the hypothesis contrast
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi}.}
+\tightlist
+\item
+  \(H_0:\mu = \mu_0\) (status quo)
+\item
+  \(H_1:\mu \neq \mu_0\) (research interest)
+\end{enumerate}
+
+To test the hypothesis with a \textbf{rejection zone} we compute the standardized statistic
+
+\[Z=\frac{\bar{X}-\mu_0}{\frac{\sigma^2}{\sqrt{n}}}\]
+when the null hypothesis is true. Note that we are standardizing with \(\mu_0\) (the null hypothesis). We then see if the observed value of \(Z\) is within the interval
+
+\[(-z_{0.025}, z_{0.025})\]
+Remember that this interval defines the most common values of \(Z\) since \(P(-z_{0.025} \leq Z \leq z_{0.025})=0.95\)
+
+The interval \((-z_{0.025}, z_{0.025})\) is called \textbf{acceptance interval} of \(H_0\) at \(95\%\) confidence level.
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-105-1.pdf}
+
+\textbf{Testing criteria:}
+
+\begin{itemize}
+\tightlist
+\item
+  If the observed statistics \(z_{obs}\) under the null hypothesis \textbf{is} in the acceptance region
+\end{itemize}
+
+\[z_{obs} \in (-z_{0.025}, z_{0.025})\]
+
+then we \textbf{accept} \(H_0\) with \(95\%\) confidence.
+
+\begin{itemize}
+\tightlist
+\item
+  If the observed statistics \(z_{obs}\) under the null hypothesis \textbf{is not} in the acceptance region
+\end{itemize}
+
+\[z_{obs} \notin (-z_{0.025}, z_{0.025})\] then we \textbf{reject} \(H_0\) with \(95\%\) confidence.
+
+The region \((-z_{0.025}] \cup[z_{0.025})\) is called the \textbf{rejection zone}.
+
+\textbf{Example (Cables)}
+
+If \(H_0\) is true then the standardized statistic \(\bar{X}\)
+
+\[Z=\frac{\bar{X}-13}{\frac{0.35}{\sqrt{8}}}  \rightarrow N(0,1)\]
+is an estimation of \(\mu_0\) and therefore \(Z\) is the standardized error that we make when we perform the estimation. Because we are in \textbf{case 1}, \(Z\) is standard normal
+Since
+
+\[\bar{X} \rightarrow N(13, \frac{0.35^2}{8})\]
+
+For \textbf{our data} the standardized \textbf{observed error} is in the acceptance region
+
+\[z_{obs}=\frac{\bar{x}-13}{\frac{0.35}{\sqrt{8}}}=1.7187 \in (-z_{0.025}, z_{0.025})\]
+We conclude that our observed error is a typical observation of \(\bar{x}\) when the null hypothesis \(\mu_0\) is true. Therefore, we again accept that the data is consistent with the manufacturer's claim. We also say that we \textbf{do not reject} \(H_0\).
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-106-1.pdf}
+
+\hypertarget{hypothesis-test-with-a-p-value}{%
+\subsection{Hypothesis test with a P-value}\label{hypothesis-test-with-a-p-value}}
+
+We can also contrast the \textbf{two tail} hypothesis by calculating the probability that the average of another sample will be even rarer than the average we just observed. Because we are in **case 1*, We know that the standardized statistics \(Z\) is standar normal variable then we define the \(pvalue\) as
+
+\[pvalue = P(Z \leq -z_{obs}) + P(z_{obs} \leq Z) = 2 (1-\phi(|z_{obs}|))\]
+
+That is the probability that when we take another sample of the same size we are able to obtain an even rarer observation. If our observation is already rare then this value will be small.
+
+\textbf{Testing criteria:}
+
+\begin{itemize}
+\tightlist
+\item
+  If the observed \(pvalue\) is
+\end{itemize}
+
+\[pvalue \geq \alpha =1-0.95=0.05\]
+
+then we \textbf{accept} \(H_0\) with \(95\%\) confidence.
+
+\begin{itemize}
+\tightlist
+\item
+  If the observed \(pvalue\) is
+\end{itemize}
+
+\[pvalue < \alpha =1-0.95=0.05\]
+then we \textbf{reject} \(H_0\) with \(95\%\) confidence.
+
+\(\alpha\) is the significance level. It gives us how much of the distribution we are leaving out, and defines the region that we consider as rare observations.
+
+Remember: We always trust our data. If the null hypothesis says that our data is a \textbf{rare} observation we then distrust the null hypothesis, and reject it.
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-107-1.pdf}
+
+\textbf{Example (Cables)}
+
+For our data the observed statistic \(z_{obs}=1.718714\) and its \textbf{p-value} is then
+
+\[pvalue=2 (1-\phi(1.718714))=0.08567\]
+R: 2*(1-pnorm(1.718714))
+
+We conclude that if we performed a new sample is likely that we can get a more extreme result that the one we got. The null hypothesis can tolerate the observed error with \(95\%\) confidence. We therefore accept that \(H_0\) could have produced our data and say again that its is consistent with the manufacturer's claim.
+
+In R the entire hypothesis testing can be performed with the function z.test from the library BSDA (that needs to be previously installed)
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{install.packages}\NormalTok{(BSDA) }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(BSDA) }
+\FunctionTok{z.test}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\FloatTok{13.34642}\NormalTok{, }\FloatTok{13.32620}\NormalTok{, }\FloatTok{13.01459}\NormalTok{, }\FloatTok{13.10811}\NormalTok{, }
+         \FloatTok{12.96999}\NormalTok{, }\FloatTok{13.55309}\NormalTok{, }\FloatTok{13.75557}\NormalTok{, }\FloatTok{12.62747}\NormalTok{), }
+       \AttributeTok{mu=}\DecValTok{13}\NormalTok{, }
+       \AttributeTok{sigma.x=}\FloatTok{0.35}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  One-sample z-Test
+## 
+## data:  c(13.34642, 13.3262, 13.01459, 13.10811, 12.96999, 13.55309,     13.75557, 12.62747)
+## z = 1.7187, p-value = 0.08567
+## alternative hypothesis: true mean is not equal to 13
+## 95 percent confidence interval:
+##  12.97015 13.45521
+## sample estimates:
+## mean of x 
+##  13.21268
+\end{verbatim}
+
+\hypertarget{upper-tail-hypothesis}{%
+\subsection{Upper tail hypothesis}\label{upper-tail-hypothesis}}
+
+We may be interested in only testing for the fact that our experiment's means is higher mean than the null's mean.
+
+Upper-tailed test:
+
+\begin{itemize}
+\tightlist
+\item
+  \(H_0:\mu \leq 13\) (\textbf{at most} cables break as usual)
+\item
+  \(H_1:\mu > 13\) (cables break at a \textbf{higher} load)
+\end{itemize}
+
+This called \textbf{upper-tailed} because the alternative hypothesis \(H_1\) requires that the mean \(\mu\) is \textbf{higher} than \(\mu_0\). This hypothesis can be tested in different cases. The \textbf{case 1} is when
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \(X\) is a normal variable, and
+\item
+  we know the value of \(\sigma\)
+\end{enumerate}
+
+\textbf{Testing criteria:}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \emph{Confidence interval:} If the \textbf{upper-tailed} confidence interval \textbf{contains} the null hypothesis
+\end{enumerate}
+
+\[\mu_0\in (l,u)=(\bar{x}-z_{0.05} \frac{\sigma}{\sqrt{n}}, \infty)\]
+where \(z_{0.05}=\phi^{-1}(0.95)=\)qnorm(0.95), then we \textbf{accept} \(H_0\) with \(95\%\) confidence. Note that this test is from the point of view of the \textbf{data}, we are not centering the confidence interval around \(\bar{x}\), instead we are leaving all the \(5\%\) of the rare cases to the left of the average. We are therefore asking if the null hypothesis is lower than the average.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  \emph{Rejection/acceptance region:} If the observed statistics \(z_{obs}\) under the null hypothesis \textbf{is} in the acceptance region
+\end{enumerate}
+
+\[z_{obs}=\frac{\bar{x}-\mu_0}{\frac{\sigma}{\sqrt{n}}} \in (-\infty, z_{0.05})\]
+
+then we \textbf{accept} \(H_0\) with \(95\%\) confidence. Note that this test is from the point of view of the \textbf{null hypothesis}. We are leaving all the \(5\%\) of the rare averages to the right of the null hypothesis and therefore ask if the average is higher than the null hypothesis.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  \(pvalue\): If the observed \textbf{upper-tailed} \[pvalue= 1-\phi(z_{obs})\]
+\end{enumerate}
+
+1-pnorm(zobs) is greater than \(\alpha=1-0.95=0.05\)
+
+\[pvalue \geq \alpha =0.05\]
+
+then we \textbf{accept} \(H_0\) with \(95\%\) confidence. Note that this test is again from the point of view of the \textbf{null hypothesis}. We are asking: if we were to take another average what is the probability that is higher than the observed one?
+
+\textbf{Example (Cables)}
+
+In the example of the cables, we may be interested only in the case that the cables are an improved version from what the manufacturer claims. Therefore the upper-tailed hypothesis is
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi}.}
+\tightlist
+\item
+  \(H_0:\mu \leq 13\) (The cables may break \textbf{at most} as the manufacturer claims: status quo)
+\item
+  \(H_1:\mu > 13\) (The cables may break \textbf{at least} as the manufacturer claims: research interest)
+\end{enumerate}
+
+We will test the higher tail of the distribution.
+For the data that we discussed before, we then \textbf{reject} \(H_0\) at \(95\%\) confidence because of any of the three equivalent contrasts:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  The \textbf{upper tailed} confidence interval does not contain the null hypothesis \(\mu_0=13\)
+\end{enumerate}
+
+\[\mu_0=13 \notin (\bar{x}-z_{0.05} \frac{\sigma}{\sqrt{n}}, \infty)=(13.00914, \infty)\]
+where \(z_{0.05}=\)qnorm(0.95)=1.644854
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  We have that the acceptance region for \(H_0\) is:
+\end{enumerate}
+
+\[(-\infty, z_{0.05})=( -\infty,  1.644854)\]
+
+and that the observed standardized error is not in the region
+\[z_{obs} =  \frac{13.21268-13}{\frac{0.35}{\sqrt{8}}}=1.7187 \notin ( -\infty,  1.644854)\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  The upper tail \(pvalue\) is lower than \(\alpha=0.05\)
+  \[pvalue=1-\phi(1.7187)=0.04283451 <0.05\]
+\end{enumerate}
+
+where \(pvalue=\)1-pnorm(1.7187).
+
+The hypothesis test can be perform in R, changing the parameter alternative to greater:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{z.test}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\FloatTok{13.34642}\NormalTok{, }\FloatTok{13.32620}\NormalTok{, }\FloatTok{13.01459}\NormalTok{, }\FloatTok{13.10811}\NormalTok{,}
+         \FloatTok{12.96999}\NormalTok{, }\FloatTok{13.55309}\NormalTok{, }\FloatTok{13.75557}\NormalTok{, }\FloatTok{12.62747}\NormalTok{), }
+       \AttributeTok{mu=}\DecValTok{13}\NormalTok{, }\AttributeTok{alternative=}\StringTok{"greater"}\NormalTok{, }\AttributeTok{sigma.x=}\FloatTok{0.35}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  One-sample z-Test
+## 
+## data:  c(13.34642, 13.3262, 13.01459, 13.10811, 12.96999, 13.55309,     13.75557, 12.62747)
+## z = 1.7187, p-value = 0.04283
+## alternative hypothesis: true mean is greater than 13
+## 95 percent confidence interval:
+##  13.00914       NA
+## sample estimates:
+## mean of x 
+##  13.21268
+\end{verbatim}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-112-1.pdf}
+
+\hypertarget{case-2-unknown-variance-1}{%
+\section{Case 2 (unknown variance)}\label{case-2-unknown-variance-1}}
+
+A \textbf{tow tailed} hypothesis contrast of the form
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi}.}
+\tightlist
+\item
+  \(H_0:\mu = \mu_0\) (status quo)
+\item
+  \(H_1:\mu \neq \mu_0\) (research interest)
+\end{enumerate}
+
+can be tested when we do not know \(\sigma^2\) using \textbf{case 2}, namely when
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \(X\) is a normal variable, \(X \rightarrow N(\mu, \sigma^2)\), and
+\item
+  we do \textbf{not} know the value of \(\sigma^2\)
+\end{enumerate}
+
+Let's remember that in this case, then the \textbf{standardized error} with respect to the \textbf{sample standard deviation} \(S\)
+
+\[T=\frac{\bar{X}-\mu}{\frac{S}{\sqrt{n}}}\]
+
+Follows a \(t\)-distribution with \(n-1\) degrees of freedom. Therefore, we can apply \textbf{all three criteria} as in \textbf{case 1} but making the substitution of \(s\) for \(\sigma\) and \(Z\) for \(T\).
+
+\textbf{Testing criteria:}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \emph{Confidence interval:} If the confidence interval \textbf{contains} the null hypothesis
+\end{enumerate}
+
+\[\mu_0\in (l,u)=(\bar{x}-t_{0.025,n-1} \frac{s}{\sqrt{n}}, \bar{x}+t_{0.025,n-1} \frac{s}{\sqrt{n}})\] then we \textbf{accept} \(H_0\) with \(95\%\) confidence.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  \emph{Rejection/acceptance region:} If the observed statistics \(t_{obs}\) under the null hypothesis \textbf{is} in the acceptance region
+\end{enumerate}
+
+\[t_{obs}=\frac{\bar{x}-\mu_0}{\frac{s}{\sqrt{n}}} \in (-t_{0.025}, t_{0.025})\]
+
+where \(t_{0.025}=F_t^{-1}(0.975, n-1)=\)qt(0.975, n-1), then we \textbf{accept} \(H_0\) with \(95\%\) confidence.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  \(pvalue\): If the observed \(pvalue= 2 (1-F_t(|t_{obs}|))=\)2*(1-pt(abs(tobs), n-1)) is
+\end{enumerate}
+
+\[pvalue \geq \alpha =1-0.95=0.05\]
+
+then we \textbf{accept} \(H_0\) with \(95\%\) confidence.
+
+\textbf{Example (Cables)}
+
+For the hypothesis contrast for the braking load of the cables
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi}.}
+\tightlist
+\item
+  \(H_0:\mu = 13\)
+\item
+  \(H_1:\mu \neq 13\)
+\end{enumerate}
+
+We will only assume that the cables are normally distributed
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \(X \rightarrow N(\mu=13, \sigma^2=?)\)
+\item
+  We do not know \(\sigma^2\)
+\end{enumerate}
+
+Having obtained the sample
+
+\begin{verbatim}
+## [1] 13.34642 13.32620 13.01459 13.10811 12.96999 13.55309 13.75557 12.62747
+\end{verbatim}
+
+with this data, we accept \(H_0\) at \(95\%\) significance because of any of following equivalent contrasts:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  The confidence interval
+\end{enumerate}
+
+\[(\bar{x}-t_{0.025, n-1} \frac{s}{\sqrt{n}}, \bar{x}+t_{0.025, n-1} \frac{s}{\sqrt{n}})=(12.91409, 13.51127)\]
+
+contains \(H_0:\mu=13\).
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  The acceptance region for \(H_0\) is:
+\end{enumerate}
+
+\[(-t_{0.025,7}, t_{0.025,7})=( -2.36,  2.36)\]
+
+and the observed standardized error from \(H_0\) is
+\[t_{obs} =  \frac{13.21268-13}{\frac{0.3571565}{\sqrt{8}}}=1.6843\]
+
+within the acceptance region.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  The \[pvalue=2(1-F_{t,7}(1.6843))=0.136\]
+\end{enumerate}
+
+is greater then \(\alpha=0.05\). The \(pvalue\) is computed R like 2*(1-pt(1.6843,7))
+
+In R this contrasts are perform with the function t.test:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{t.test}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\FloatTok{13.34642}\NormalTok{, }\FloatTok{13.32620}\NormalTok{, }\FloatTok{13.01459}\NormalTok{, }\FloatTok{13.10811}\NormalTok{,}
+         \FloatTok{12.96999}\NormalTok{, }\FloatTok{13.55309}\NormalTok{, }\FloatTok{13.75557}\NormalTok{, }\FloatTok{12.62747}\NormalTok{), }
+       \AttributeTok{mu=}\DecValTok{13}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  One Sample t-test
+## 
+## data:  c(13.34642, 13.3262, 13.01459, 13.10811, 12.96999, 13.55309, 13.75557, 12.62747)
+## t = 1.6843, df = 7, p-value = 0.136
+## alternative hypothesis: true mean is not equal to 13
+## 95 percent confidence interval:
+##  12.91409 13.51127
+## sample estimates:
+## mean of x 
+##  13.21268
+\end{verbatim}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-115-1.pdf}
+
+\textbf{Example (NaCl)}
+
+\(11.6g\) of NaCl is dissolved in \(100 g\) of water and has a molar concentration of \(1.92 mol/L\)
+
+We design a process to remove salt from this concentration and obtain the following results
+
+\begin{verbatim}
+## [1] 1.716 1.889 1.783 1.849 1.891
+\end{verbatim}
+
+We want to test at \(0.95\) significance if the process changes the salt concentration in ay direction. Therefore we propose a two-tail hypothesis:
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi}.}
+\tightlist
+\item
+  \(H_0:\mu=1.92\)
+\item
+  \(H_1:\mu \neq 1.92\)
+\end{enumerate}
+
+We will assume that \(X\) is normal and that we do not know the variance \(\sigma^2\). Therefore, we are in \textbf{case 2} that we test with a t.test
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{t.test}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\FloatTok{1.716}\NormalTok{, }\FloatTok{1.889}\NormalTok{, }\FloatTok{1.783}\NormalTok{, }\FloatTok{1.849}\NormalTok{, }\FloatTok{1.891}\NormalTok{), }
+       \AttributeTok{mu=}\FloatTok{1.92}\NormalTok{, }\AttributeTok{alternative =} \StringTok{"two.sided"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  One Sample t-test
+## 
+## data:  c(1.716, 1.889, 1.783, 1.849, 1.891)
+## t = -2.8038, df = 4, p-value = 0.04862
+## alternative hypothesis: true mean is not equal to 1.92
+## 95 percent confidence interval:
+##  1.732122 1.919078
+## sample estimates:
+## mean of x 
+##    1.8256
+\end{verbatim}
+
+\hypertarget{lower-tail-hypothesis}{%
+\subsection{Lower tail hypothesis}\label{lower-tail-hypothesis}}
+
+If we are interested only in the case that we are able to remove salt from the concentration then we propose a \textbf{lower tail} hypothesis:
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi}.}
+\tightlist
+\item
+  \(H_0:\mu \geq 1.92\) (After the desalinization process the concentration o salt is at least the initial one: status quo)
+\item
+  \(H_1:\mu < 1.92\) (After the desalinization process the concentration is lower the initial one: research interest)
+\end{enumerate}
+
+Note that the lower tail is given by the alternative \(H_1\). We want to test that the average concentration after the process is lower than the initial concentration. The contrast criteria are the same as for the other types of hypothesis. For this type of hypothesis, we will accept the null hypothesis if
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \(\mu_0\) is in the confidence interval:
+  \[\mu_0\in (l,u)=(-\infty, \bar{x}+t_{0.05,n-1} \frac{s}{\sqrt{n}})\]
+\item
+  or, \(t_{obs}\) is in the aceptance region:
+\end{enumerate}
+
+\[t_{obs}\in (t_{0.05,n-1}, \infty)\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  or, the \(pvalue\) on the lower tail of the distribution.\\
+  \[pvalue=F_t(t_{obs},n-1)\]
+  is lower than \(\alpha=0.05\)
+\end{enumerate}
+
+In any other case, we reject \(H_0\) and accept the alternative hypothesis.
+
+\textbf{Example (NaCl)}
+
+For the lower tail contrast
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi}.}
+\tightlist
+\item
+  \(H_0:\mu \geq 1.92\)
+\item
+  \(H_1:\mu < 1.92\)
+\end{enumerate}
+
+We can assume that the concentration is normal and that we do not know \(\sigma^2\). Therefore, we are in \textbf{case 2} for which we only need to change the argument alternative to less in the function t.test.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{t.test}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\FloatTok{1.716}\NormalTok{, }\FloatTok{1.889}\NormalTok{, }\FloatTok{1.783}\NormalTok{, }\FloatTok{1.849}\NormalTok{, }\FloatTok{1.891}\NormalTok{), }
+       \AttributeTok{mu=}\FloatTok{1.92}\NormalTok{, }\AttributeTok{alternative =} \StringTok{"less"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  One Sample t-test
+## 
+## data:  c(1.716, 1.889, 1.783, 1.849, 1.891)
+## t = -2.8038, df = 4, p-value = 0.02431
+## alternative hypothesis: true mean is less than 1.92
+## 95 percent confidence interval:
+##      -Inf 1.897376
+## sample estimates:
+## mean of x 
+##    1.8256
+\end{verbatim}
+
+\textbf{Example 2 (soporific)}
+
+In some cases, we are not sure about the numerical value of the hypothesis to test, but we know that we want to improve the value of a parameter in two different conditions.
+
+In the original paper of Gosset, he analyzed the effect of two soporific medicines.
+
+\begin{itemize}
+\tightlist
+\item
+  10 individuals were given \textbf{soporific 1} and wrote down the additional hours slept under treatment, with a mean \(0.75\)
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{medicine1 }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\FloatTok{0.7}\NormalTok{,}\SpecialCharTok{{-}}\FloatTok{1.6}\NormalTok{,}\SpecialCharTok{{-}}\FloatTok{0.2}\NormalTok{,}\SpecialCharTok{{-}}\FloatTok{1.2}\NormalTok{,}\SpecialCharTok{{-}}\FloatTok{0.1}\NormalTok{,}\FloatTok{3.4}\NormalTok{,}\FloatTok{3.7}\NormalTok{,}\FloatTok{0.8}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{2}\NormalTok{)}
+\NormalTok{medicine1}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  [1]  0.7 -1.6 -0.2 -1.2 -0.1  3.4  3.7  0.8  0.0  2.0
+\end{verbatim}
+
+\begin{itemize}
+\tightlist
+\item
+  The same 10 individuals were given \textbf{soporific 2} and wrote down the additional hours slept under treatment, with a mean \(2.33\)
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{medicine2 }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\FloatTok{1.9}\NormalTok{,}\FloatTok{0.8}\NormalTok{,}\FloatTok{1.1}\NormalTok{,}\FloatTok{0.1}\NormalTok{,}\SpecialCharTok{{-}}\FloatTok{0.1}\NormalTok{,}\FloatTok{4.4}\NormalTok{,}\FloatTok{5.5}\NormalTok{,}\FloatTok{1.6}\NormalTok{,}\FloatTok{4.6}\NormalTok{,}\FloatTok{3.4}\NormalTok{)}
+\NormalTok{medicine2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  [1]  1.9  0.8  1.1  0.1 -0.1  4.4  5.5  1.6  4.6  3.4
+\end{verbatim}
+
+The scientific hypothesis was that soporific 2 was better than soporific 1. For each individual, Gosset computed the difference between the treatments. Taking \(X\) as the \textbf{difference} between treatments, this was the sample observed for \(X\)
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x }\OtherTok{\textless{}{-}}\NormalTok{ medicine2}\SpecialCharTok{{-}}\NormalTok{medicine1}
+\NormalTok{x}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  [1] 1.2 2.4 1.3 1.3 0.0 1.0 1.8 0.8 4.6 1.4
+\end{verbatim}
+
+finding an average of treatment gain from soporific 2 with respect to soporific 1 of \(1.58\), and \(s=1.229995\)
+
+The scientific question can be stated as \textbf{upper-tailed} paired t-test:
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi}.}
+\tightlist
+\item
+  \(H_0:\mu \leq 0\) (no treatment difference: \(\mu_2-\mu_1=0\))
+\item
+  \(H_1:\mu > 0\) (treatment 2 higher then treatment 1: \(\mu_2-\mu_1>0\))
+\end{enumerate}
+
+Where \(\mu\) is the mean of the \textbf{differences} between treatments.
+
+If we suppose that \(X\) is normal and we do not know \(\sigma^2\) then we are in \textbf{case 2}. the \textbf{standardized error} is:
+
+\[T=\frac{\bar{X}}{\frac{S}{\sqrt{n}}}\]
+
+and its observation
+
+\[t_{obs}=\frac{\bar{x}}{\frac{s}{\sqrt{n}}}\]
+which is also known as the \textbf{signal} to \textbf{noise} ratio.
+
+we can test the hipothsis in the difference \(X=medicine_1-medicine_2\)
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{t.test}\NormalTok{(x,}\AttributeTok{alternative=}\StringTok{"greater"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  One Sample t-test
+## 
+## data:  x
+## t = 4.0621, df = 9, p-value = 0.001416
+## alternative hypothesis: true mean is greater than 0
+## 95 percent confidence interval:
+##  0.8669947       Inf
+## sample estimates:
+## mean of x 
+##      1.58
+\end{verbatim}
+
+or as a paired t-test, where we introduce the each separate condition, and state that the observations are paired
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{t.test}\NormalTok{(medicine2, medicine1,}
+       \AttributeTok{paired =} \ConstantTok{TRUE}\NormalTok{,}
+       \AttributeTok{alternative=}\StringTok{"greater"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  Paired t-test
+## 
+## data:  medicine2 and medicine1
+## t = 4.0621, df = 9, p-value = 0.001416
+## alternative hypothesis: true mean difference is greater than 0
+## 95 percent confidence interval:
+##  0.8669947       Inf
+## sample estimates:
+## mean difference 
+##            1.58
+\end{verbatim}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-124-1.pdf}
+
+\hypertarget{hypothesis-testing-with-large-n-and-any-distribution}{%
+\subsection{Hypothesis testing with large n and any distribution}\label{hypothesis-testing-with-large-n-and-any-distribution}}
+
+On many occasions, \(X\) is not normally distributed but if we can take large samples \(n \ge 30\) then we can use the CLT:
+
+Then the \textbf{standardized error} from the null hypothesis can be approximated to a standard distribution
+
+\[Z=\frac{\bar{X}-\mu}{\frac{\sigma}{\sqrt{n}}}  \rightarrow N(0,1)\]
+
+and then we proceed as in \textbf{case 1}. If \(\sigma\) is unknown we then replace it with its estimate \(s\) and proceed as in \textbf{case 2} using the t-statistic
+
+\[T=\frac{\bar{X}-\mu_0}{\frac{S}{\sqrt{n}}}\]
+
+\hypertarget{case-3-proportions-1}{%
+\section{Case 3 (proportions)}\label{case-3-proportions-1}}
+
+If our random experiment is a Bernoulli trial \(X \rightarrow Bernoulli(p)\), we can formulate hypothesis contrasts for the probability \(p\) of and event in the trial. Consider an upper tailed hypothesis
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi}.}
+\tightlist
+\item
+  \(H_0: p \leq p_0\) (status quo)
+\item
+  \(H_1: p> p_0\) (research interest)
+\end{enumerate}
+
+In this \textbf{case 3}, we can test the for the value of the proportion if
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \(X\) is a Bernoulli trial, and
+\item
+  \(np\), \(n(1-p)\) are both greater than 5, so we can apply the central limit theorem.
+\end{enumerate}
+
+Remember that if we take a the sample of \(n\) Bernoulli trials \((1,0,1,...0)\), \(\bar{X}=\frac{1}{n}\sum_{i=1}^n X_i\) is the relative frequency of ones in the sample. This is an estimator of \(p\).
+
+If we assume that the null hypothesis is true then \(X \rightarrow Bernoulli(p_0)\) and the standardized error that we make when we estimate \(p_0\) with \(\bar{X}\) is
+
+\[Z=\frac{\bar{X}-p_0}{\frac{\sqrt{p_0(1-p_0)}}{\sqrt{n}}}  \rightarrow N(0,1)\]
+
+\(\sigma=\sqrt{p_0(1-p_0)}\) is the standard deviation of \(X\) when the null hypothesis is true: \(V(X)=\sigma^2=p_0(1-p_0)\). With this statistics \(Z\), we can accept or reject the null hypothesis using any of the three testing criteria.
+
+\textbf{Example (process improvement)}
+
+We may be satisfied with a new process if \(90\%\) of the times we improve the previous process.
+
+If we run a sample of \(200\) new processes and find that \(188\) times we improved the previous process, can we be satisfied with the new process at \(95\%\) confidence?
+
+We then formulate an upper-tailed hypothesis contrast for the null hypothesis \(p_0=0.9\). Therefore, the null and alternative hypotheses are
+
+\begin{itemize}
+\tightlist
+\item
+  \(H_0: p \leq p_0=0.9\) (Not satisfactory)
+\item
+  \(H_1: p> p_0=0.9\) (Satisfactory)
+\end{itemize}
+
+We assume that if the null hypothesis is true then
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  the distribution of a random experiment is
+\end{enumerate}
+
+\[X \rightarrow Bernoulli (p_0)\]
+2. and check that when \(p_0n=180>5\) and \((1-p_0)=n=20>5\)
+
+And therefore can apply \textbf{case 3}.
+
+We can use any of the three criteria to test the hypothesis. In any case, we will \textbf{reject} \(H_0\) at \(95\%\) confidence because:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  The upper tail confidence interval for the \(p\) does not include \(p_0\)
+\end{enumerate}
+
+\(p_0=0.9 \notin (\bar{x}-z_{0.05}\big[\frac{p_0(1-p_0)}{n} \big]^{1/2},1)= (0.905,1)\)
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  The observed standardized error from the null is not in the acceptance region
+\end{enumerate}
+
+\[z_{obs}= \frac{\bar{X}-p_0}{\big[\frac{p_0(1-p_0)}{n} \big]^{1/2}} =\frac{0.94-0.90}{\sqrt{0.00045}}=1.88563 \notin (-\infty, z_{0.05})=(-\infty, 1.644)\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  The upper tail \(pvalue\) is lower than \(\alpha=0.05\):
+\end{enumerate}
+
+\[pvalue=1-\phi(1.885618)=0.02967323<0.05\]
+
+in R: 1-pnorm(1.885618)
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-125-1.pdf}
+
+The test can be performed in R using the prop.test function
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{prop.test}\NormalTok{(}\DecValTok{188}\NormalTok{, }\DecValTok{200}\NormalTok{, }\AttributeTok{p=}\FloatTok{0.9}\NormalTok{, }\AttributeTok{alternative =} \StringTok{"greater"}\NormalTok{ , }\AttributeTok{correct=}\ConstantTok{FALSE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  1-sample proportions test without continuity correction
+## 
+## data:  188 out of 200, null probability 0.9
+## X-squared = 3.5556, df = 1, p-value = 0.02967
+## alternative hypothesis: true p is greater than 0.9
+## 95 percent confidence interval:
+##  0.9060689 1.0000000
+## sample estimates:
+##    p 
+## 0.94
+\end{verbatim}
+
+\hypertarget{case-4-variances}{%
+\section{Case 4 (variances)}\label{case-4-variances}}
+
+In many cases, experiments are run to test specific values of the dispersion of data.
+
+Such as
+
+\begin{itemize}
+\item
+  when complying with strict design standards where measurements must be between certain values.
+\item
+  when different treatments are applied to different groups, we want to see the dispersion of outcomes between the groups.
+\end{itemize}
+
+A \textbf{tow tailed} hypothesis contrast for the variance is of the form
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi}.}
+\tightlist
+\item
+  \(H_0:\sigma = \sigma_0\) (status quo)
+\item
+  \(H_1:\sigma \neq \sigma_0\) (research interest)
+\end{enumerate}
+
+This hypothesis for sigma (\textbf{case 4}) can be tested when
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \(X\) is a normal variable
+\end{enumerate}
+
+Remember that if we take a the sample of \(n\) Bernoulli trials \((1,0,1,...0)\), \(S^2=\frac{1}{n-1}\sum_{i=1}^n (X_i-\bar{X})^2\) is the sample variance. This is an estimator of \(\sigma^2\).
+
+If we assume that the null hypothesis is true then \(X \rightarrow N(\mu, \sigma_0)\) and the \textbf{error ratio} that we make when we estimate \(\sigma^2\) with \(s^2\) is
+
+\[W=\frac{(n-1)S^2}{\sigma_0^2}\]
+
+when \(W=1\) we make no error. \(W\) has a \(\chi^2\) (chi-squared) distribution with n-1 degrees of freedom.
+
+\[W \rightarrow \chi^2(n-1)\]
+
+With \(W\), we can accept or reject the null hypothesis using any of the three testing criteria.
+
+\textbf{Example (semiconductor)}
+
+The production of a semiconductor chip is regulated by a process that requires that the thickness of a particular layer does not vary in more than \(\sigma_0=0.6mm\), from its mean of \(25mm\).
+
+To keep control of the process every so often a sample of \(20\) specimens is taken.
+
+On one occasion a sample of the thickness of 20 semiconductors is
+
+\begin{verbatim}
+##  [1] 24.51239 24.79975 26.35608 25.06134 25.11248 26.49211 25.40100 23.89940
+##  [9] 24.40244 24.61227 26.06495 25.31304 25.34867 25.09629 24.51642 26.55461
+## [17] 25.43313 23.28904 25.61018 24.58867
+\end{verbatim}
+
+The estimated standard deviation for this data is \(s=0.8462188\) was the process out of control at \(0.99\%\) confidence and should be stopped?
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{sd}\NormalTok{(x)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.8462188
+\end{verbatim}
+
+We therefore want to contrast the upper tail hypotheses
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi}.}
+\tightlist
+\item
+  \(H_0:\sigma^2 \leq \sigma_0^2=0.6^2\) (Process is under control)
+\item
+  \(H_1:\sigma^2 > \sigma_0^2=0.6^2\) (Process is out of control)
+\end{enumerate}
+
+Let's test the hypothesis using the \textbf{acceptance region}.
+
+The contrast statistics is \[W=\frac{(n-1)S^2}{\sigma_0^2} \rightarrow \chi^2(n-1)\]
+
+and the threshold limit \(\alpha=0.01=0-0.99\). Therefore, the acceptance region \(P(W\leq \chi^2_{0.01,19})=0.99\) is
+
+\[(0, \chi^2_{0.01,19})=(0,36.19)\]
+
+In R: \(\chi^2_{0.01,19}=\)qchisq(0.99,19)\(= 36.19\)
+
+For our data, the observed \textbf{standardized error ratio} is:
+
+\[w_{obs}=\frac{19 (0.8462188)^2}{0.60^2}=37.79344\]
+
+That falls outside the acceptance region
+
+\[w_{obs}=37.79344\notin (0,36.19)\]
+
+Therefore, we reject the null hypothesis and conclude that that yes! the process is out of control.
+
+If we, alternativelly, calculate the upper tailed \(pvalue\)
+
+\[pvalue=1-F_{\chi^2,19}(37.79344)= 0.006\]
+we see that it is lower than \(\alpha=0.01\) and reject the null hypothesis.
+
+R: 1-pchisq(37.79344, 19)
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-129-1.pdf}
+
+For testing the hypothesis we can use the varTest function from EnvStats library. If the library is not installed first run
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{install.packages}\NormalTok{(EnvStats)}
+\end{Highlighting}
+\end{Shaded}
+
+then
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(EnvStats);}
+\FunctionTok{varTest}\NormalTok{(x, }\AttributeTok{sigma.squared =} \FloatTok{0.6}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{, }\AttributeTok{alternative =} \StringTok{"greater"}\NormalTok{, }\AttributeTok{conf.level =} \FloatTok{0.99}\NormalTok{) }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Results of Hypothesis Test
+## --------------------------
+## 
+## Null Hypothesis:                 variance = 0.36
+## 
+## Alternative Hypothesis:          True variance is greater than 0.36
+## 
+## Test Name:                       Chi-Squared Test on Variance
+## 
+## Estimated Parameter(s):          variance = 0.7160863
+## 
+## Data:                            x
+## 
+## Test Statistic:                  Chi-Squared = 37.79344
+## 
+## Test Statistic Parameter:        df = 19
+## 
+## P-value:                         0.006304231
+## 
+## 99% Confidence Interval:         LCL = 0.3759412
+##                                  UCL =       Inf
+\end{verbatim}
+
+We also see that \(\sigma_0^2=0.6^2=0.36\) is not in the confidence interval, thus rejecting the null hypothesis.
+
+\hypertarget{errors-in-hypothesis-testing}{%
+\section{Errors in hypothesis testing}\label{errors-in-hypothesis-testing}}
+
+The result of an upper tail hypothesis test may be to \textbf{reject} the null hypothesis:
+
+\[H_0: \mu\leq\mu_0\]
+
+when \(H_0\) is actually \textbf{true}. We must bear in mind that the decision is made based on the data. It may well be that the observed statistic has fallen, by chance, far from the null hypothesis, in the rejection zone of \(H_0\) even when this is true. When we perform the hypothesis test, we don't know if \(H_0\) is true. If we now know that \(H_0\) is true, it is because we are assuming that we have found it out in some other way. Still, the probability of rejecting \(H_0\) when it is true is precisely the level of statistical significance \(\alpha\). We call this probability the probability of making a \textbf{type 1} error. Taking the example for \textbf{case 1}, an upper tail test, and a confidence of \(95\%\) we have that
+
+\[\alpha = P(Z> z_{0.05})=0.05\]
+
+where \(z_{0.05}=\phi^{-1}(0.95)=\) qnorm(0.95)=1.644
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-132-1.pdf}
+
+A type 1 error is also called a \textbf{false positive} because our research interest is in \(H_1\). When we reject \(H_0\), we accept \(H_1\) and say that our test is \textbf{positive}. Accepting \(H_1\) translates to announcing a discovery, so the type 1 error is announcing a discovery when it doesn't exist: we did it because the data suggested it.
+
+There is another type of error. The result of an upper tail hypothesis test can be \textbf{accepting} the null hypothesis:
+
+\[H_0: \mu\leq\mu_0\]
+
+when this is \textbf{not true}. In this case, it may be that the observed statistic has fallen, due to randomness, close to the null hypothesis, in the zone of acceptance of \(H_0\), when really \(H_1\) is true. If we found out somehow that, for example, \(\mu\) really does have a value of \(\mu_1\) then the alternative hypothesis would be exactly:
+
+\[H_1: \mu=\mu_1\]
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-133-1.pdf}
+
+If \(H_1\) is indeed true (red line, which we don't know when we perform the hypothesis test) then the observed statistics are \textbf{really} random variables \(Y\) that are distributed with mean (case 1)
+
+\[E(Y)=\frac{\mu_1-\mu_0}{\frac{\sigma}{\sqrt{n}}}\]
+
+and most of them will fall close to this value, therefore, in the rejection area of \(H_0\), validating the hypothesis test. However, there are cases in which the observed statistic falls within the acceptance zone of \(H_0\) due to randomness, despite the fact that the statistics are produced by \(H_1\). In these cases we accept \(H_0\) when it is not true. This error is called \textbf{a type 2 error} or a \textbf{false negative}. For case 1, with an upper tailed test and a confidence level of \(95\%\), this is
+
+\[\beta= P(Y < z_{0.05})\]
+Where \(Y \rightarrow N(\frac{\mu_1-\mu_0}{\sigma/\sqrt{n}},1)\) is the \textbf{true distribution} of the observed statistics.
+
+\textbf{Example (Light bulb)}
+
+The energy efficiency of a new light bulb is a normal random variable with a standard deviation of \(5\) watts. We consider that the light bulbs we produce are efficient if their average does not exceed \(80\) watts, so we propose the hypothesis test
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi}.}
+\tightlist
+\item
+  \(H_0 : \mu \geq 80\) (efficient)
+\item
+  \(H_1 : \mu < 80\) (not efficient)
+\end{enumerate}
+
+We want to prove that we produce efficient light bulbs and we plan to draw a random sample of size 100, with a statistical significance level of \(5\%\). If previous studies have suggested that light bulbs may average \(\mu=\mu_1=79\) watts, what type 2 error do we expect?
+
+The contrast is for \textbf{case 1} with a \textbf{lower tail}. Therefore the probability of accepting the null hypothesis (we do not produce efficient light bulbs) is
+
+\[\alpha = P(Z< z_{0.95})=0.05\]
+and \(z_{0.95}=\)qnorm(0.05)\(=-1.644\).
+
+The type 2 error is therefore
+
+\[\beta= P(Y > -1.644)\]
+
+that is, the probability of accepting that we do not produce efficient light bulbs when in fact we do. Because we are in \textbf{case 1}, as we know \(\sigma\) and the variable is normal, the observed statistics are actually distributed as
+
+\[Y \rightarrow N(\frac{79-80}{5/\sqrt{100}}=-2,1)\] and the type 2 error is
+
+\[\beta = 1-F(-1.644)=0.36\]
+
+computed in R as 1-pnorm(-1.644,-2,1)=0.36. Therefore, only \(\alpha=5\%\) of the times we would announce that we produce efficient light bulbs when they really are not, while \(\beta=36\%\) of the times we would announce that we have a production that is not useful when it really does work.
+
+When we carry out a hypothesis test we have two possibilities for each condition
+
+\begin{itemize}
+\tightlist
+\item
+  \(H_1\) is actually : \textbf{true} (\(\mu=\mu_1\)) or \textbf{false} (\(\mu=\mu_0\))
+\item
+  The test for \(H_1\) is: \textbf{positive} (\(z_{obs}\) in the acceptance zone of \(H_1\)) or \textbf{negative} (\(z_{obs}\) in the acceptance zone of \(H_0\))
+\end{itemize}
+
+\textbf{Example (PCR)}
+
+We do \textbf{a} PCR to test for an infection. The hypothesis test is
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi}.}
+\tightlist
+\item
+  \(H_0\) no infection
+\item
+  \(H_1\) there is infection
+\end{enumerate}
+
+We do the PCR test and it gives us
+
+\begin{enumerate}
+\def\labelenumi{\roman{enumi}.}
+\tightlist
+\item
+  negative: we reject the infection (\(H_1\))
+\item
+  positive: we accept the infection (\(H_1\))
+\end{enumerate}
+
+We can write the contingency table for the probabilities of the results of the hypothesis test as
+
+\begin{longtable}[]{@{}ccc@{}}
+\toprule\noalign{}
+& \(H_1\) is true & \(H_0\) is true \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\textbf{The test on \(H_1\) is positive} & \(1-\beta\) & \(\alpha\) \\
+\textbf{The test on \(H_1\) is negative} & \(\beta\) & \(1-\alpha\) \\
+\textbf{sum} & 1 & 1 \\
+\end{longtable}
+
+we therefore have
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  The \textbf{type 2 error} rate: probability of a false negative (ignore a finding when it is true)
+\end{enumerate}
+
+\[\beta=P(negative|H_1)\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\item
+  \textbf{True positive} rate: This is the power or sensitivity of a test (affirming a discovery when it is true, the main objective)
+  \[1-\beta=P(positive|H_1)\]
+\item
+  \textbf{Type 1 error} rate: probability of a false positive (state a discovery when it is false)
+  \[\alpha=P(positive|H_0)\]
+\item
+  \textbf{True Negative} rate: This is the specificity of a test (ignore a finding when it is false)
+  \[1-\alpha=P(negative|H_0)\]
+\end{enumerate}
+
+\hypertarget{exercises-12}{%
+\section{Exercises}\label{exercises-12}}
+
+\hypertarget{exercise-1-12}{%
+\subsubsection{Exercise 1}\label{exercise-1-12}}
+
+Imagine we take a random sample of size \(n = 41\) of a normal random variable \(X\), and find that the sample average is \(10\) and the sample variance is \(1.5\).
+
+\begin{itemize}
+\tightlist
+\item
+  What is then the confidence interval for the mean of \(X\) at \(95\%\) confidence level?
+\end{itemize}
+
+Consider that \(t_{0.025,40}=\) qt(0.975, 40) \(\sim 2\).
+
+\begin{itemize}
+\item
+  Test the hypothesis that the mean of \(X\) is \textbf{different} than \(10.5\), using a \(5\%\) significance threshold.
+\item
+  Write the code to calculate the P-value to test the hypothesis that the mean of \(\mu\) is \textbf{lower} than \(10.5\), using a \(5\%\) significance threshold.
+\end{itemize}
+
+Consider that the code for the T probability distribution with \(n-1\) degrees of freedom is pt(tobs, n-1).
+
+\hypertarget{exercise-2-12}{%
+\subsubsection{Exercise 2}\label{exercise-2-12}}
+
+\(10\) gas condensates showed the following concentrations of mercury (in \(ng/ml\)):
+
+\(23.3\), \(22.5\), \(21.9\), \(21.5\), \(19.9\), \(21.3\), \(21.7\), \(23.8\), \(22.6\), \(24.7\)
+
+Assuming that the mercury concentration is distributed normally across gas condensates, test the hypothesis that condensate does not surpass the toxicity limit established at \(24 ng/ml\).
+
+\hypertarget{exercise-3-9}{%
+\subsubsection{Exercise 3}\label{exercise-3-9}}
+
+The manufacturer of gene expression microarrays guarantees that at least \(97\%\) of the microarrays they produce have high-quality signals. A customer receives a batch of \(200\) pieces and finds that \(8\) unperformed.
+
+Should the customer return the lot due to poor quality?
+
+\hypertarget{solutions-to-questions}{%
+\chapter{Solutions to Questions}\label{solutions-to-questions}}
+
+\hypertarget{chapter-2}{%
+\section{Chapter 2}\label{chapter-2}}
+
+\(\qquad\) 1.c; \(\qquad\) 2.a; \(\qquad\) 3.d; \(\qquad\) 4.d; \(\qquad\) 5.b
+
+\hypertarget{chapter-3}{%
+\section{Chapter 3}\label{chapter-3}}
+
+\(\qquad\) 1.a; \(\qquad\) 2.b; \(\qquad\) 3.b; \(\qquad\) 4.b; \(\qquad\) 5.a
+
+\hypertarget{chapter-4}{%
+\section{Chapter 4}\label{chapter-4}}
+
+\(\qquad\) 1.c; \(\qquad\) 2.b; \(\qquad\) 3.d; \(\qquad\) 4.b; \(\qquad\) 5.b
+
+\hypertarget{chapter-5}{%
+\section{Chapter 5}\label{chapter-5}}
+
+\(\qquad\) 1.d; \(\qquad\) 2.c; \(\qquad\) 3.b; \(\qquad\) 4.c; \(\qquad\) 5.b
+
+\hypertarget{chapter-7}{%
+\section{Chapter 7}\label{chapter-7}}
+
+\(\qquad\) 1.d; \(\qquad\) 2.a; \(\qquad\) 3.d; \(\qquad\) 4.a; \(\qquad\) 5.d
+
+\hypertarget{chapter-8}{%
+\section{Chapter 8}\label{chapter-8}}
+
+\(\qquad\) 1.d; \(\qquad\) 2.b; \(\qquad\) 3.a
+
+\hypertarget{chapter-9}{%
+\section{Chapter 9}\label{chapter-9}}
+
+\(\qquad\) 1.c; \(\qquad\) 2.a; \(\qquad\) 3.c; \(\qquad\) 4.d; \(\qquad\) 5.b
+
+\hypertarget{chapter-10}{%
+\section{Chapter 10}\label{chapter-10}}
+
+\(\qquad\) 1.a; \(\qquad\) 2.c; \(\qquad\) 3.d; \(\qquad\) 4.d; \(\qquad\) 5.c
+
+\hypertarget{chapter-11}{%
+\section{Chapter 11}\label{chapter-11}}
+
+\(\qquad\) 1.c; \(\qquad\) 2.b; \(\qquad\) 3.c
+
+\hypertarget{chapter-12}{%
+\section{Chapter 12}\label{chapter-12}}
+
+\(\qquad\) 1.d; \(\qquad\) 2.d; \(\qquad\) 3.b; \(\qquad\) 4.a
+
+\hypertarget{chapter-13}{%
+\section{Chapter 13}\label{chapter-13}}
+
+\(\qquad\) 1.b; \(\qquad\) 2.a; \(\qquad\) 3.d; \(\qquad\) 4.b; \(\qquad\) 5.b
 
   \bibliography{book.bib,packages.bib}
 

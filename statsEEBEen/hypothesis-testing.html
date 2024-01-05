@@ -23,7 +23,7 @@
 <meta name="author" content="Alejandro Caceres" />
 
 
-<meta name="date" content="2023-12-10" />
+<meta name="date" content="2024-01-05" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -455,7 +455,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><span class="math inline">\(H_1:\mu &gt; \mu_0\)</span> (The fertilizer may have the desired effect: research interest)</li>
 </ol>
 <p><strong>Example (chemotherapy)</strong></p>
-<p>Pharmaceutical companies need to know if a novel chemotherapy can cure 90% of cancer patients.</p>
+<p>Pharmaceutical companies need to know if a novel chemotherapy can cure <span class="math inline">\(90\%\)</span> of cancer patients.</p>
 <p>Being <span class="math inline">\(p_0\)</span> the proportion of patients that are cured <strong>without</strong> the chemotherapy (known) and <span class="math inline">\(p\)</span> the proportion that are cures <strong>with</strong> the chemotherapy (unknown)</p>
 <ol style="list-style-type: lower-alpha">
 <li><span class="math inline">\(H_0:p \leq p_0\)</span> (The chemotherapy may do nothing: status quo)</li>
@@ -543,7 +543,7 @@ The confidence interval tells us that we trust with <span class="math inline">\(
 <li><span class="math inline">\(H_1:\mu \neq \mu_0\)</span> (research interest)</li>
 </ol>
 <p>To test the hypothesis with a <strong>rejection zone</strong> we compute the standardized statistic</p>
-<p><span class="math display">\[Z=\frac{\bar{X}-\mu_0}{\frac{\sigma^2}{\sqrt{n}}}\]</span>
+<p><span class="math display">\[Z=\frac{\bar{X}-\mu_0}{\frac{\sigma}{\sqrt{n}}}\]</span>
 when the null hypothesis is true. Note that we are standardizing with <span class="math inline">\(\mu_0\)</span> (the null hypothesis). We then see if the observed value of <span class="math inline">\(Z\)</span> is within the interval</p>
 <p><span class="math display">\[(-z_{0.025}, z_{0.025})\]</span>
 Remember that this interval defines the most common values of <span class="math inline">\(Z\)</span> since <span class="math inline">\(P(-z_{0.025} \leq Z \leq z_{0.025})=0.95\)</span></p>
@@ -985,7 +985,7 @@ which is also known as the <strong>signal</strong> to <strong>noise</strong> rat
 <pre><code>##  [1] 24.51239 24.79975 26.35608 25.06134 25.11248 26.49211 25.40100 23.89940
 ##  [9] 24.40244 24.61227 26.06495 25.31304 25.34867 25.09629 24.51642 26.55461
 ## [17] 25.43313 23.28904 25.61018 24.58867</code></pre>
-<p>The estimated standard deviation for this data is <span class="math inline">\(s=0.8462188\)</span> was the process out of control at <span class="math inline">\(0.99\%\)</span> confidence and should be stopped?</p>
+<p>The estimated standard deviation for this data is <span class="math inline">\(s=0.8462188\)</span> was the process out of control at <span class="math inline">\(99\%\)</span> confidence and should be stopped?</p>
 <div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="hypothesis-testing.html#cb71-1" tabindex="-1"></a><span class="fu">sd</span>(x)</span></code></pre></div>
 <pre><code>## [1] 0.8462188</code></pre>
 <p>We therefore want to contrast the upper tail hypotheses</p>
@@ -1059,8 +1059,8 @@ Where <span class="math inline">\(Y \rightarrow N(\frac{\mu_1-\mu_0}{\sigma/\sqr
 <p><strong>Example (Light bulb)</strong></p>
 <p>The energy efficiency of a new light bulb is a normal random variable with a standard deviation of <span class="math inline">\(5\)</span> watts. We consider that the light bulbs we produce are efficient if their average does not exceed <span class="math inline">\(80\)</span> watts, so we propose the hypothesis test</p>
 <ol style="list-style-type: lower-alpha">
-<li><span class="math inline">\(H_0 : \mu \geq 80\)</span> (efficient)</li>
-<li><span class="math inline">\(H_1 : \mu &lt; 80\)</span> (not efficient)</li>
+<li><span class="math inline">\(H_0 : \mu \geq 80\)</span> (not efficient)</li>
+<li><span class="math inline">\(H_1 : \mu &lt; 80\)</span> (efficient)</li>
 </ol>
 <p>We want to prove that we produce efficient light bulbs and we plan to draw a random sample of size 100, with a statistical significance level of <span class="math inline">\(5\%\)</span>. If previous studies have suggested that light bulbs may average <span class="math inline">\(\mu=\mu_1=79\)</span> watts, what type 2 error do we expect?</p>
 <p>The contrast is for <strong>case 1</strong> with a <strong>lower tail</strong>. Therefore the probability of accepting the null hypothesis (we do not produce efficient light bulbs) is</p>
@@ -1135,25 +1135,23 @@ and <span class="math inline">\(z_{0.95}=\)</span><code>qnorm(0.05)</code><span 
 <h4><span class="header-section-number">14.9.0.1</span> Exercise 1<a href="hypothesis-testing.html#exercise-1-12" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Imagine we take a random sample of size <span class="math inline">\(n = 41\)</span> of a normal random variable <span class="math inline">\(X\)</span>, and find that the sample average is <span class="math inline">\(10\)</span> and the sample variance is <span class="math inline">\(1.5\)</span>.</p>
 <ul>
-<li>What is then the confidence interval for the mean of <span class="math inline">\(X\)</span> at <span class="math inline">\(95\%\)</span> confidence level?</li>
-</ul>
-<p>Consider that <span class="math inline">\(t_{0.025,40}=\)</span> <code>qt(0.975, 40)</code> <span class="math inline">\(\sim 2\)</span>.</p>
-<ul>
-<li><p>Test the hypothesis that the mean of <span class="math inline">\(X\)</span> is <strong>different</strong> than <span class="math inline">\(10.5\)</span>, using a <span class="math inline">\(5\%\)</span> significance threshold.</p></li>
+<li><p>What is then the confidence interval for the mean of <span class="math inline">\(X\)</span> at <span class="math inline">\(95\%\)</span> confidence level? (R:(9.61, 10.38))</p></li>
+<li><p>Test the hypothesis that the mean of <span class="math inline">\(X\)</span> is <strong>different</strong> than <span class="math inline">\(10.5\)</span>, using a <span class="math inline">\(5\%\)</span> significance threshold. (R: Reject the null)</p></li>
 <li><p>Write the code to calculate the P-value to test the hypothesis that the mean of <span class="math inline">\(\mu\)</span> is <strong>lower</strong> than <span class="math inline">\(10.5\)</span>, using a <span class="math inline">\(5\%\)</span> significance threshold.</p></li>
 </ul>
-<p>Consider that the code for the T probability distribution with <span class="math inline">\(n-1\)</span> degrees of freedom is <code>pt(tobs, n-1)</code>.</p>
+<p>Consider that the code for the T probability distribution with <span class="math inline">\(n-1\)</span> degrees of freedom is <code>pt(tobs, n-1)</code>. (R: <code>pt((10-10.5)/sqrt(1.5/41), 40)</code>)</p>
 </div>
 <div id="exercise-2-12" class="section level4 hasAnchor" number="14.9.0.2">
 <h4><span class="header-section-number">14.9.0.2</span> Exercise 2<a href="hypothesis-testing.html#exercise-2-12" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p><span class="math inline">\(10\)</span> gas condensates showed the following concentrations of mercury (in <span class="math inline">\(ng/ml\)</span>):</p>
 <p><span class="math inline">\(23.3\)</span>, <span class="math inline">\(22.5\)</span>, <span class="math inline">\(21.9\)</span>, <span class="math inline">\(21.5\)</span>, <span class="math inline">\(19.9\)</span>, <span class="math inline">\(21.3\)</span>, <span class="math inline">\(21.7\)</span>, <span class="math inline">\(23.8\)</span>, <span class="math inline">\(22.6\)</span>, <span class="math inline">\(24.7\)</span></p>
-<p>Assuming that the mercury concentration is distributed normally across gas condensates, test the hypothesis that condensate does not surpass the toxicity limit established at <span class="math inline">\(24 ng/ml\)</span>.</p>
+<p>Assuming that the mercury concentration is distributed normally across gas condensates, test the hypothesis that condensate does not surpass the toxicity limit established at <span class="math inline">\(24 ng/ml\)</span>. (R: p-value = 0.001, Reject the null)</p>
 </div>
 <div id="exercise-3-9" class="section level4 hasAnchor" number="14.9.0.3">
 <h4><span class="header-section-number">14.9.0.3</span> Exercise 3<a href="hypothesis-testing.html#exercise-3-9" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>The manufacturer of gene expression microarrays guarantees that at least <span class="math inline">\(97\%\)</span> of the microarrays they produce have high-quality signals. A customer receives a batch of <span class="math inline">\(200\)</span> pieces and finds that <span class="math inline">\(8\)</span> unperformed.</p>
-<p>Should the customer return the lot due to poor quality?</p>
+<p>Should the customer return the lot due to poor quality?
+(R:No, p-value = 0.20, Accept the null)</p>
 
 </div>
 </div>

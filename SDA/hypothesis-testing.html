@@ -23,7 +23,7 @@
 <meta name="author" content="Alejandro Caceres" />
 
 
-<meta name="date" content="2024-08-05" />
+<meta name="date" content="2024-08-18" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -496,17 +496,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="hypothesis" class="section level2 hasAnchor" number="14.2">
 <h2><span class="header-section-number">14.2</span> Hypothesis<a href="hypothesis-testing.html#hypothesis" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>When we perform an experiment, we often want to test whether the changes we make to the experiment have a real effect. We want, for example, to know if we are able to influence the experiment. Or, if we submit the experiment under a new condition, we want to know if that condition affects the results of the experiment. We usually have an idea of what the data should look like when the new conditions are <strong>not present</strong>. Since the results of the experiment are random in any circumstance, how can we tell the difference in the experiment when changing conditions?</p>
+<p>When we perform an experiment, we often want to test whether the changes we make to the experiment have a real effect. We want, for example, to know if we are able to influence the experiment. Or, if we submit the experiment under a new condition, we want to know if that condition affects the results of the experiment. We usually have <strong>an idea</strong> of what the data should look like when the new conditions are <strong>not present</strong>. Since the results of the experiment are random in any circumstance, how can we tell the difference in the experiment when changing conditions?</p>
 <p>The strategy is to formulate a probability model for the experiment and estimate the change in the model <strong>parameters</strong> between conditions. We then use observations from taking random samples of the experiment under the different conditions to assess the change in the parameters and thus provide evidence about the expected change in the experiment.</p>
 <p><strong>Examples (Tyres)</strong></p>
-<p>The mean life of a standard tyre is <span class="math inline">\(20,000\)</span> km. A tyre manufacturer wants to know if their improved tyres run longer than the standart type. Let’s try to translate their interest into statistical terms. Imagine a random experiment that consists of measuring how long the life of a particular tyre is. Therefore, the manufacturer is interested in knowing if the mean life of a new tyre is more than <span class="math inline">\(20,000\)</span> km.</p>
+<p>The mean life of a standard tyre is <span class="math inline">\(20,000\)</span> km. A tyre manufacturer wants to know if their improved tyres run longer than the standard type. Let’s try to translate their interest into statistical terms. Imagine a random experiment that consists of measuring how long the life of a particular tyre is. Therefore, the manufacturer is interested in knowing if the mean life of a new tyre is more than <span class="math inline">\(20,000\)</span> km.</p>
 <p>Let us formulate two dichotomous statements, that is, two mutually exclusive situations:</p>
+<p>either</p>
 <ol style="list-style-type: lower-alpha">
 <li>The mean life of the new tyre may be <strong>less</strong> than <span class="math inline">\(20,000\)</span> km</li>
+</ol>
+<p>or</p>
+<ol start="2" style="list-style-type: lower-alpha">
 <li>The mean life of the new tyre may be <strong>greater</strong> than <span class="math inline">\(20,000\)</span> km</li>
 </ol>
-<p>This means that only one can be true. The question is then how we can use data to decide between situation a. or situation b.</p>
-<p>Note than when running the experiment several times, some tyres will run for more than <span class="math inline">\(20,000\)</span> km and some for less than <span class="math inline">\(20,000\)</span> km. The question is whether <strong>the mean</strong>, as a parameter, is higher than <span class="math inline">\(20,000\)</span> km, not single observations. The statements a. and b. are general statements.</p>
+<p>Only one can be true. The question is then how we can use experiments to decide between situation a. or situation b.</p>
+<p>Note than when running the experiment several times, some tyres will run for more than <span class="math inline">\(20,000\)</span> km and some for less than <span class="math inline">\(20,000\)</span> km. Our question is then translated as whether <strong>the mean</strong>, as a parameter, is higher than <span class="math inline">\(20,000\)</span> km. The question is not about a single observation. The statements a. and b. are general statements.</p>
 <p>Let’s consider that <span class="math inline">\(\mu\)</span> is the mean of the random variable that measures the life of a new tyre. Therefore, the statements a. and b. can also be written as</p>
 <ol style="list-style-type: lower-alpha">
 <li><span class="math inline">\(H_0: \mu \leq 20000\)</span> km</li>
@@ -542,14 +546,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p>We <strong>accept</strong> the alternative hypothesis <span class="math inline">\(H_1\)</span> (our interest); that is, we reject the null hypothesis <span class="math inline">\(H_0\)</span>.</p></li>
 </ol>
 <p><strong>Example (Microprocessors)</strong></p>
-<p>We want to produce computers with a certain type of microprocessor. The design requires that the <strong>mean width</strong> of a microprocessor is about <span class="math inline">\(26\)</span>mm. We buy <span class="math inline">\(8\)</span> microprocessors for prototypes from a manufacturing company that claims that they produce them with <strong>mean</strong> with of <span class="math inline">\(\mu_0=26\)</span>mm. We are not sure and want to decide on whether the microprocessors of the company do measure <strong>on average</strong> <span class="math inline">\(26\)</span>mm or not. We formulate the hypothesis contrast</p>
+<p>We want to produce computers with a certain type of microprocessor. The design requires that the <strong>mean width</strong> of a microprocessor is about <span class="math inline">\(26\)</span>mm. We buy <span class="math inline">\(8\)</span> microprocessors from a manufacturing company that claims that they produce them with <strong>mean</strong> with of <span class="math inline">\(\mu_0=26\)</span>mm. We are not sure and want to decide on whether the microprocessors of the company do measure <strong>on average</strong> <span class="math inline">\(26\)</span>mm or not. We formulate the hypothesis contrast</p>
 <ol style="list-style-type: lower-alpha">
 <li><span class="math inline">\(H_0:\mu = \mu_0\)</span> (The manufacturer claim: status quo)</li>
 <li><span class="math inline">\(H_1:\mu \neq \mu_0\)</span> (Our doubt that the manufacturer is not right: research interest)</li>
 </ol>
-<p>To decide between <span class="math inline">\(H_0\)</span> or <span class="math inline">\(H_1\)</span>, we measure the width of the purchased sample of <span class="math inline">\(8\)</span> microprocessors</p>
+<p>To decide between <span class="math inline">\(H_0\)</span> or <span class="math inline">\(H_1\)</span>, we measure the width of the purchased sample of <span class="math inline">\(8\)</span> microprocessors.</p>
 <pre><code>## [1] 26.69284 26.65240 26.02918 26.21622 25.93998 27.10618 27.51114 25.25494</code></pre>
-<p>The idea is simple. The average of the sample width is <span class="math inline">\(\bar{x}=26.42536\)</span> which would make us believe that the microprocessors are too thick. But the manufacturer would argue that <span class="math inline">\(\bar{x}\)</span> is the observation of a random variable and that <span class="math inline">\(\bar{x}&gt;26\)</span> is not a sufficient argument that he is not right (<span class="math inline">\(H_0\)</span> is not true) because sometimes <span class="math inline">\(\bar{X}\)</span> would be higher than <span class="math inline">\(26\)</span> and sometimes it will me lower. Being more technical, he asks us to account for the variability of <span class="math inline">\(\bar{X}\)</span> as an estimator of the <span class="math inline">\(\mu_0=26\)</span>. We would then ask ourselves: Is <span class="math inline">\(\bar{x}=26.42536\)</span> what we would typically observe when we estimate <span class="math inline">\(\mu_0=26\)</span> by <span class="math inline">\(\bar{x}\)</span>? or are those <span class="math inline">\(0.42536\)</span> too high to believe that the microprocessors are build with of expected value of <span class="math inline">\(26\)</span>mm?</p>
+<p>The idea is simple. The average of the sample width is <span class="math inline">\(\bar{x}=26.42536\)</span> which would make us believe that the microprocessors are too thick. But the manufacturer would argue that <span class="math inline">\(\bar{x}\)</span> is the observation of a random variable and that <span class="math inline">\(\bar{x}&gt;26\)</span> is not a sufficient argument that they are not right (<span class="math inline">\(H_0\)</span> is not true) because sometimes <span class="math inline">\(\bar{X}\)</span> would be higher than <span class="math inline">\(26\)</span> and sometimes it will me lower. Being more technical, the manufacturer asks us to account for the variability of <span class="math inline">\(\bar{X}\)</span> as an estimator of the <span class="math inline">\(\mu_0=26\)</span>.</p>
+<p>We would then ask ourselves: Is <span class="math inline">\(\bar{x}=26.42536\)</span> what we would typically observe when we estimate <span class="math inline">\(\mu_0=26\)</span> by <span class="math inline">\(\bar{x}\)</span>? or are those <span class="math inline">\(0.42536\)</span> decimal figures too high to believe that the microprocessors are build with of expected value of precisely <span class="math inline">\(26\)</span>mm?</p>
 <p>To test these ideas, we need a decision process that we describe now.</p>
 </div>
 <div id="hypothesis-testing-1" class="section level2 hasAnchor" number="14.3">
@@ -612,9 +617,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ol>
 <p>The confidence interval for the mean of our sample <span class="math inline">\(\mu\)</span> is</p>
 <p><span class="math display">\[(l,u)=(\bar{x}-z_{0.025} \frac{\sigma}{\sqrt{n}}, \bar{x}+z_{0.025} \frac{\sigma}{\sqrt{n}})= (25.94, 26.91)\]</span>
-The confidence interval tells us that we trust with <span class="math inline">\(95\%\)</span> confidence that the true width <span class="math inline">\(\mu\)</span> is in the interval. We don’t know the true value of <span class="math inline">\(\mu\)</span> but we see that <span class="math inline">\(\mu=26\)</span> mm could be it. Since the interval caught <span class="math inline">\(\mu_0\)</span> (the manufacturer’s claim)</p>
+The confidence interval tells us that we trust with <span class="math inline">\(95\%\)</span> confidence that the true width <span class="math inline">\(\mu\)</span> is in the interval. We don’t know the true value of <span class="math inline">\(\mu\)</span> but we see that <span class="math inline">\(\mu=26\)</span>mm could be it. Since the interval caught <span class="math inline">\(\mu_0\)</span> (the manufacturer’s claim)</p>
 <p><span class="math display">\[\mu_0\in (25.94, 26.91)\]</span></p>
-<p>our conclusion is to accept that <span class="math inline">\(H_0\)</span> could have produced our <strong>observed interval</strong>. We also say that that the data supports the manufacturer’s claim. More technically, we say that we <strong>do not reject</strong> <span class="math inline">\(H_0\)</span>.</p>
+<p>our conclusion is to accept that <span class="math inline">\(H_0\)</span> could have produced our <strong>observed interval</strong>. We also say that the data supports the manufacturer’s claim. More technically, we say that we <strong>do not reject</strong> <span class="math inline">\(H_0\)</span>.</p>
 <p><img src="_main_files/figure-html/unnamed-chunk-99-1.png" width="672" /></p>
 </div>
 <div id="hypothesis-test-with-acceptancerejection-zones" class="section level3 hasAnchor" number="14.4.2">
@@ -673,10 +678,10 @@ then we <strong>reject</strong> <span class="math inline">\(H_0\)</span> and acc
 <p>Remember: We always trust our data. If the null hypothesis says that our data is a <strong>rare</strong> observation we then distrust the null hypothesis, and reject it.</p>
 <p><img src="_main_files/figure-html/unnamed-chunk-102-1.png" width="672" /></p>
 <p><strong>Example (Microprocessors)</strong></p>
-<p>For our data the observed statistic <span class="math inline">\(z_{obs}=1.718714\)</span> and its <strong>p-value</strong> is then</p>
+<p>Fie, let’s think that the average <span class="math inline">\(\bar{x}=26.42536\)</span> was produced under the manufacturer’s claim. Perhaps, we were unlucky and happened to buy a sample made of thick microprocessors. If that is so then how unlucky were we? For our data the observed statistic <span class="math inline">\(z_{obs}=1.718714\)</span> and its <strong>p-value</strong> is then</p>
 <p><span class="math display">\[pvalue=2 (1-\phi(1.718714))=0.08567\]</span>
 Python: <code>2*(1- norm.cdf(1.718714))</code></p>
-<p>We conclude that if we purchase other <span class="math inline">\(8\)</span> microprocessors, it is likely, within <span class="math inline">\(8\%\)</span> of the purchases, that we get a higher average width than the one we got; if the manufacturer produces mean widths at <span class="math inline">\(26\)</span>mm. The null hypothesis can then tolerate the observed error with <span class="math inline">\(95\%\)</span> confidence. We, therefore, accept that the status quo could have produced our data and conclude again that the data is consistent with the manufacturer’s claim.</p>
+<p>We conclude that if we purchase another set of <span class="math inline">\(8\)</span> microprocessors, it is likely to obtain averages this far from the <span class="math inline">\(26\)</span>mm in <span class="math inline">\(8.5\%\)</span> of the <span class="math inline">\(8\)</span>-microprocessor-set purchases. Being <span class="math inline">\(8.5\%\)</span> unlucky is within the margin. Lower than <span class="math inline">\(5%\)</span> unlucky is the limit where we start to believe that it was not that we were unlucky but rather that the manufacturer is wrong. In this example the null hypothesis can tolerate the observed error with <span class="math inline">\(95\%\)</span> confidence. We, therefore, accept that the status quo could have produced our data and conclude again that the data is consistent with the manufacturer’s claim.</p>
 <p>In Python the entire hypothesis testing can be performed with the function ztest from the library bioinfokit (that needs to be previously installed)</p>
 <pre echo="FALSE," warning="FALSE," message="FALSE"><code># https://pypi.org/project/bioinfokit/
 
@@ -1250,6 +1255,7 @@ and <span class="math inline">\(z_{0.95}=\)</span><code>norm.ppf(0.05)</code><sp
 <li><p>Is excess in anxiety higher than 0 for men and women separately?</p></li>
 <li><p>Is the proportion of anxious patients different from <span class="math inline">\(0.03\)</span>?</p></li>
 </ol>
+<p><a href="https://colab.research.google.com/drive/13El5aoycT_6Wasvyx427TvglygiSPMpF?usp=sharing">Solutions</a></p>
 
 </div>
 </div>

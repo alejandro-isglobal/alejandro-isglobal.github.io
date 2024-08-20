@@ -120,7 +120,7 @@
 
 \title{Statistical Data Analysis}
 \author{Alejandro Caceres}
-\date{2024-08-04}
+\date{2024-08-18}
 
 \begin{document}
 \maketitle
@@ -337,14 +337,14 @@ We can list the observations using a \textbf{frequency table} of the outcomes (c
 ## 5 Neutrophil 10
 \end{verbatim}
 
-The table is putting together the outcomes (first column) and the observations (second column). From the table, we can say that, for example, \(n_1=34\) is the total number of T cells observed in the repetition of the experiment. We also note that the total number of repetitions is \(N=\sum_i n_i = 119\). The table may be regarded as the immune profile of the donor.
+The table is putting together the outcomes (first column) and the observations (second column). From the table, we can say that, for example, \(n_1=34\) is the total number of T cells observed in the repetition of the experiment. We also note that the total number of repetitions is \[\sum_{i=1}^M n_i= N = 119\], where \(M\) is the number of outcomes (number of rows in the table) and \(N\) the number of observations (repetitions of the random experiment). The table may be regarded as the immune profile of the donor.
 
 \hypertarget{relative-frequencies}{%
 \section{Relative frequencies}\label{relative-frequencies}}
 
 We can also summarize the observations by calculating the \textbf{proportion} of how many times we saw a particular result.
 
-\[f_i = \frac{n_i}{N}\] where \(N\) is the total number of observations
+\[f_i = \frac{n_i}{N}\]
 
 In our example, \(n_1=34\) T cells were recorded, so we can ask about the proportion of T cells from the total number of leukocytes observed: \(119\). We can copy these proportions \(f_i\) in the frequency table.
 
@@ -392,7 +392,7 @@ The leukocyte type in the examples above is a \textbf{categorical} nominal varia
 
 Sometimes \textbf{categorical} outcomes can be \textbf{sorted} when they have a natural ranking. This allows you to compute \textbf{cumulative frequencies}.
 
-\textbf{Example (Misophonia)}
+\textbf{Example (misophonia)}
 
 This is a clinical study on \(123\) patients who were examined for their degree of misophonia. Misophnia is uncontrolled anxiety/anger produced by particular sounds.
 
@@ -423,7 +423,7 @@ About \(25\%\) of the patients had misophonia grade 3. Note that the rows of tab
 \hypertarget{absolute-and-relative-cumulative-frequencies}{%
 \section{Absolute and relative cumulative frequencies}\label{absolute-and-relative-cumulative-frequencies}}
 
-Misophonia severity is \textbf{categorical} \textbf{ordinal} because its outcomes can be meaningfully ordered by their degree.
+misophonia severity is \textbf{categorical} \textbf{ordinal} because its outcomes can be meaningfully ordered by their degree.
 
 When the outcomes of a random experiment can be ordered, it is useful to ask how many observations were obtained up to a given outcome. We call this number the \textbf{absolute cumulative frequency} up to the outcome \(i\), and compute it with sum the relative frequencies up to \(i\)
 \[N_i =\sum_{k= 1}^i n_k\]
@@ -605,7 +605,7 @@ An important statistic that describes the central value of the observations (whe
 
 where \(x_j\) is the \textbf{observation} \(j\) from a total of \(N\) observations. We also call the average the \textbf{sample mean}. The sample is the set of observations, or the data obtained from the repetition of the random experiment.
 
-\textbf{Example (Misophonia)}
+\textbf{Example (misophonia)}
 
 The average convexity can be calculated directly from the \textbf{observations} in the usual way
 
@@ -622,7 +622,7 @@ where we went from adding \(N\) \textbf{observations} to adding \(M\) \textbf{ou
 
 The form \(\bar{x}= \sum_{i = 1}^M x_i f_i\) shows that the average is the \textbf{center of mass} of the data. As if each observation had a mass density given by \(f_i\).
 
-\textbf{Example (Misophonia)}
+\textbf{Example (misophonia)}
 
 The average \textbf{severity} of misophonia in the study can be calculated from the relative frequencies of the \textbf{outcomes}
 
@@ -647,7 +647,7 @@ The average is also the center of mass for continuous outcomes; that is, the poi
 Another measure of centrality is the median. The median \(x_m\), or \(q_{0.5}\), is the value below which we find half of the observations. When we order the observations \(x_1 <... x_j < x_{j+1} < x_N\), we count them until we find half of them, then we report that value \(x_m\). Therefore, \(x_m\) is the observation such that \(m\) satisfies
 
 \[\sum_{i\leq m} 1 = \frac{N}{2}\]
-\textbf{Example (Misophonia)}
+\textbf{Example (misophonia)}
 
 If we order the angles of convexity and cut them in half, we see that \(62\) observations (individuals) (\(N/2 \sim 123/2\)) are below \(7.96\). The \textbf{median convexity} is therefore \(q_{0.5}= x_{62}=7.96\)
 
@@ -679,7 +679,7 @@ to split them in half.
 
 In terms of frequencies, \(q_{0.5}\) makes the cumulative frequency \(F_x\) equal to \(0.5\)
 
-\[\sum_{i = 0}^m f_i =F_{q_{0.5}}=0.5\]
+\[\sum_{i = 1}^m f_i =F_{q_{0.5}}=0.5\]
 that is
 
 \[q_{ 0.5}= F^{-1}(0.5)\]
@@ -720,7 +720,7 @@ Take many observations and then make \(N/(N+1)\) close to \(a\), then \(s^2\) ca
 
 The square root of the sample variance, \(s\), is called \textbf{standard deviation} of the sample.
 
-\textbf{Example (Misophonia)}
+\textbf{Example (misophonia)}
 
 The standard deviation of the convexity angle is
 
@@ -902,6 +902,8 @@ Load misophonia data from \url{https://alejandro-isglobal.github.io/SDA/data/dat
   Draw a boxplot
 \end{itemize}
 
+\href{https://colab.research.google.com/drive/1ncTaoBgskCJcBIb0-PdnbUFr_AKU0XRF?usp=sharing}{Solutions}
+
 \hypertarget{probability}{%
 \chapter{Probability}\label{probability}}
 
@@ -977,7 +979,7 @@ Note that:
 
 What is the probability that we will get \(2\) on the roll of a die?
 
-\(P_2=1/6=0.166666\).
+\[P_2=1/6=0.166666\]
 
 We reason that all other \(5\) numbers in the dice are equally likely to \(2\).
 
@@ -1058,9 +1060,9 @@ New results came out and \(f_{12}\) is now only \(0.027\), and so we are only \(
 \hypertarget{relative-frequencies-at-infinity}{%
 \section{Relative frequencies at infinity}\label{relative-frequencies-at-infinity}}
 
-A crucial observation is that if we measure the probabilities of \(f_i\) with increasing values of \(N\) they \textbf{converge}!
+A crucial fact is that when we compute \(f_i\) with increasing values of \(N\), \(f_i\) \textbf{converges}!
 
-In this graph each vertical section gives the relative frequency of each observation. We see that after \(N=1000\) (\(log10(N)=3\)) the proportions hardly change with more \(N\).
+In this graph each vertical section gives the relative frequency of each observation. We see that after \(N=1000\) (\(log10(N)=3\)) the sections' proportions hardly change with more \(N\).
 
 \includegraphics{_main_files/figure-latex/unnamed-chunk-32-1.pdf}
 
@@ -1179,7 +1181,7 @@ Let's verify the axioms:
   Since \(S= \{ 1,2,3,4,5,6\}\) is made up of \textbf{mutually exclusive} outcomes, then
 \end{enumerate}
 
-\[P(S)=P(1\cup 2\cup ... \cup 6) = P(1)+P(2)+ ...+P(n)=1\]
+\[P(S)=P(1\cup 2\cup ... \cup 6) = P(1)+P(2)+ ...+P(6)=1\]
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi})}
@@ -1207,7 +1209,7 @@ The sample space can be made up of categorical or numerical outcomes.
 \item
   the size of a production line screw: \(S =( 70-72) mm\)
 \item
-  number of emails received in an hour: \(S = \{ 1, ...\infty \}\)
+  number of emails received in an hour: \(S = \{0, ...\infty \}\)
 \item
   the throw of a dice: \(S= \{ 1, 2, 3, 4, 5, 6\}\)
 \end{itemize}
@@ -1228,7 +1230,7 @@ An \textbf{event} \(A\) is a \textbf{subset} of the sample space. It is a \textb
 \item
   The event of receiving more than 4 emails in an hour: \(A= \{ 4, \infty \}\)
 \item
-  The event of obtaining a number less than or equal to 3 in the roll of a says: \(A= \{ 1,2,3\}\)
+  The event of obtaining a number less than or equal to 3 in the throw of a dice: \(A= \{ 1,2,3\}\)
 \end{itemize}
 
 An event refers to a possible set of \textbf{outcomes}.
@@ -1236,7 +1238,7 @@ An event refers to a possible set of \textbf{outcomes}.
 \hypertarget{algebra-of-events}{%
 \section{Algebra of events}\label{algebra-of-events}}
 
-For two events \(A\) and \(B\), we can construct the following Composite events using the basic set operations:
+For two events \(A\) and \(B\), we can construct the following \textbf{composite events} using the basic set operations:
 
 \begin{itemize}
 \tightlist
@@ -1277,17 +1279,19 @@ Let's see how we can build new events with set operations:
 
 Outcomes like rolling \(1\) and \(2\) on a die are events that cannot occur at the same time. We say that they are \textbf{mutually exclusive}.
 
-In general, two events denoted as \(E_1\) and \(E_2\) are mutually exclusive when
+In general, two events denoted as \(E_1\) and \(E_2\) are mutually exclusive when they have no element in common
 
 \[E_1\cap E_2=\emptyset\]
 
 \emph{Examples:}
 
+The following events are mutually exclusive.
+
 \begin{itemize}
 \item
-  The result of having a misophonia severity of \(1\) and a severity of \(4\).
+  The result of having a misophonia severity \(1\) and severity \(4\). Only one severity is possible.
 \item
-  The results of obtaining \(12\) and \(5\) by adding the throw of two dice.
+  The results of obtaining \(12\) and \(5\) in the roll of two dice. If we get \(12\) we do not get \(5\).
 \end{itemize}
 
 According to the Kolmogorov's properties, only \textbf{mutually exclusive} outcomes can be arranged in \textbf{probability tables}, as in relative frequency tables.
@@ -1607,6 +1611,8 @@ Load misophonia data \url{https://alejandro-isglobal.github.io/SDA/data/data_0.t
 \item
   Compare the differences with exercise 2.
 \end{itemize}
+
+\href{https://colab.research.google.com/drive/1ncTaoBgskCJcBIb0-PdnbUFr_AKU0XRF?usp=sharing}{Solutions}
 
 \hypertarget{conditional-probability}{%
 \chapter{Conditional probability}\label{conditional-probability}}
@@ -2366,6 +2372,8 @@ Load misophonia data from \url{https://alejandro-isglobal.github.io/SDA/data/dat
 \item
   Compute the conditional probability table of marital status (Estado) given misophonia (Misofonia.dic). What is the estimated probability of being married if the patient is misophonic?
 \end{itemize}
+
+\href{https://colab.research.google.com/drive/1ncTaoBgskCJcBIb0-PdnbUFr_AKU0XRF?usp=sharing}{Solutions}
 
 \hypertarget{discrete-random-variables}{%
 \chapter{Discrete Random Variables}\label{discrete-random-variables}}
@@ -7479,6 +7487,8 @@ Load misophonia data \url{https://alejandro-isglobal.github.io/SDA/data/data_0.t
   Compute the confidence interval for the variance of the age (``Edad''). What is the confidence interval for the standard deviation of the population?
 \end{itemize}
 
+\href{https://colab.research.google.com/drive/13El5aoycT_6Wasvyx427TvglygiSPMpF?usp=sharing}{Solutions}
+
 \hypertarget{hypothesis-testing}{%
 \chapter{Hypothesis testing}\label{hypothesis-testing}}
 
@@ -7492,28 +7502,38 @@ We will also introduce hypothesis testing of variances. Finally we will describe
 \hypertarget{hypothesis}{%
 \section{Hypothesis}\label{hypothesis}}
 
-When we perform an experiment, we often want to test whether the changes we make to the experiment have a real effect. We want, for example, to know if we are able to influence the experiment. Or, if we submit the experiment under a new condition, we want to know if that condition affects the results of the experiment. We usually have an idea of what the data should look like when the new conditions are \textbf{not present}. Since the results of the experiment are random in any circumstance, how can we tell the difference in the experiment when changing conditions?
+When we perform an experiment, we often want to test whether the changes we make to the experiment have a real effect. We want, for example, to know if we are able to influence the experiment. Or, if we submit the experiment under a new condition, we want to know if that condition affects the results of the experiment. We usually have \textbf{an idea} of what the data should look like when the new conditions are \textbf{not present}. Since the results of the experiment are random in any circumstance, how can we tell the difference in the experiment when changing conditions?
 
 The strategy is to formulate a probability model for the experiment and estimate the change in the model \textbf{parameters} between conditions. We then use observations from taking random samples of the experiment under the different conditions to assess the change in the parameters and thus provide evidence about the expected change in the experiment.
 
 \textbf{Examples (Tyres)}
 
-The mean life of a standard tyre is \(20,000\) km. A tyre manufacturer wants to know if their improved tyres run longer than the standart type. Let's try to translate their interest into statistical terms. Imagine a random experiment that consists of measuring how long the life of a particular tyre is. Therefore, the manufacturer is interested in knowing if the mean life of a new tyre is more than \(20,000\) km.
+The mean life of a standard tyre is \(20,000\) km. A tyre manufacturer wants to know if their improved tyres run longer than the standard type. Let's try to translate their interest into statistical terms. Imagine a random experiment that consists of measuring how long the life of a particular tyre is. Therefore, the manufacturer is interested in knowing if the mean life of a new tyre is more than \(20,000\) km.
 
 Let us formulate two dichotomous statements, that is, two mutually exclusive situations:
+
+either
 
 \begin{enumerate}
 \def\labelenumi{\alph{enumi}.}
 \tightlist
 \item
   The mean life of the new tyre may be \textbf{less} than \(20,000\) km
+\end{enumerate}
+
+or
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi}.}
+\setcounter{enumi}{1}
+\tightlist
 \item
   The mean life of the new tyre may be \textbf{greater} than \(20,000\) km
 \end{enumerate}
 
-This means that only one can be true. The question is then how we can use data to decide between situation a. or situation b.
+Only one can be true. The question is then how we can use experiments to decide between situation a. or situation b.
 
-Note than when running the experiment several times, some tyres will run for more than \(20,000\) km and some for less than \(20,000\) km. The question is whether \textbf{the mean}, as a parameter, is higher than \(20,000\) km, not single observations. The statements a. and b. are general statements.
+Note than when running the experiment several times, some tyres will run for more than \(20,000\) km and some for less than \(20,000\) km. Our question is then translated as whether \textbf{the mean}, as a parameter, is higher than \(20,000\) km. The question is not about a single observation. The statements a. and b. are general statements.
 
 Let's consider that \(\mu\) is the mean of the random variable that measures the life of a new tyre. Therefore, the statements a. and b. can also be written as
 
@@ -7585,6 +7605,31 @@ We want to decide between \(H_0\) and \(H_1\). There are two options:
 \item
   We \textbf{accept} the alternative hypothesis \(H_1\) (our interest); that is, we reject the null hypothesis \(H_0\).
 \end{enumerate}
+
+\textbf{Example (Microprocessors)}
+
+We want to produce computers with a certain type of microprocessor. The design requires that the \textbf{mean width} of a microprocessor is about \(26\)mm. We buy \(8\) microprocessors from a manufacturing company that claims that they produce them with \textbf{mean} with of \(\mu_0=26\)mm. We are not sure and want to decide on whether the microprocessors of the company do measure \textbf{on average} \(26\)mm or not. We formulate the hypothesis contrast
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi}.}
+\tightlist
+\item
+  \(H_0:\mu = \mu_0\) (The manufacturer claim: status quo)
+\item
+  \(H_1:\mu \neq \mu_0\) (Our doubt that the manufacturer is not right: research interest)
+\end{enumerate}
+
+To decide between \(H_0\) or \(H_1\), we measure the width of the purchased sample of \(8\) microprocessors.
+
+\begin{verbatim}
+## [1] 26.69284 26.65240 26.02918 26.21622 25.93998 27.10618 27.51114 25.25494
+\end{verbatim}
+
+The idea is simple. The average of the sample width is \(\bar{x}=26.42536\) which would make us believe that the microprocessors are too thick. But the manufacturer would argue that \(\bar{x}\) is the observation of a random variable and that \(\bar{x}>26\) is not a sufficient argument that they are not right (\(H_0\) is not true) because sometimes \(\bar{X}\) would be higher than \(26\) and sometimes it will me lower. Being more technical, the manufacturer asks us to account for the variability of \(\bar{X}\) as an estimator of the \(\mu_0=26\).
+
+We would then ask ourselves: Is \(\bar{x}=26.42536\) what we would typically observe when we estimate \(\mu_0=26\) by \(\bar{x}\)? or are those \(0.42536\) decimal figures too high to believe that the microprocessors are build with of expected value of precisely \(26\)mm?
+
+To test these ideas, we need a decision process that we describe now.
 
 \hypertarget{hypothesis-testing-1}{%
 \section{Hypothesis testing}\label{hypothesis-testing-1}}
@@ -7680,7 +7725,7 @@ For \textbf{case 1} the confidence interval at \(95\%\) is
 
 \textbf{Example (Microprocessors)}
 
-We want to produce computers with \(8\) microprocesors. The design requires that the mean width of the microprocessors is about \(26\)mm. We buy \(8\) microprocessors for a prototype from a manufacturing company that claims that they produce them with \textbf{mean} with of \(\mu_0=26\) mm. We are not sure and want to decide on whether the microprocessors of the company measure \textbf{on average} \(26\) mm or not. We formulate the hypothesis contrast
+We want to know whether the microprocessors on average \(26\)mm or not. Therefore, we test the following hypotheses
 
 \begin{enumerate}
 \def\labelenumi{\alph{enumi}.}
@@ -7691,7 +7736,7 @@ We want to produce computers with \(8\) microprocesors. The design requires that
   \(H_1:\mu \neq 26\) (The microprocessors \textbf{may not} have the width that the manufacturer claim: research interest)
 \end{enumerate}
 
-Since we do no know what is true, let's start by \textbf{assuming} that \textbf{the manufacturer is right} and the microprocessors truly satisfy the null hypothesis and therefore
+Since we do no know which one is true, let's start by estimating the mean of our sample (\(\mu\)). We then use \(\bar{x}=\hat{\mu}\). We do this as before, and consider \textbf{case 1} where the model of the widths are normal
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -7699,30 +7744,24 @@ Since we do no know what is true, let's start by \textbf{assuming} that \textbf{
 \item
   \(X \rightarrow N(\mu=26, \sigma^2=0.7^2)\)
 \item
-  We know \(\sigma^2=0.7^2\)
+  and, somehow we know \(\sigma^2=0.7^2\) (perhaps given by the manufacturer)
 \end{enumerate}
 
-To decide between \(H_0\) or \(H_1\), we measure the width of the purchased sample of \(8\) microprocessors
-
-\begin{verbatim}
-## [1] 26.69284 26.65240 26.02918 26.21622 25.93998 27.10618 27.51114 25.25494
-\end{verbatim}
-
-The confidence interval \textbf{if} the manufacturer is right, namely \textbf{if the null hypothesis is true}, is
+The confidence interval for the mean of our sample \(\mu\) is
 
 \[(l,u)=(\bar{x}-z_{0.025} \frac{\sigma}{\sqrt{n}}, \bar{x}+z_{0.025} \frac{\sigma}{\sqrt{n}})= (25.94, 26.91)\]
-The confidence interval tells us that we trust with \(95\%\) confidence that the true width \(\mu\) is in the interval. We don't know the true value of \(\mu\) but we see that \(\mu=26\) mm could be it. Since the interval caught \(\mu_0\) (the manufacturer's claim)
+The confidence interval tells us that we trust with \(95\%\) confidence that the true width \(\mu\) is in the interval. We don't know the true value of \(\mu\) but we see that \(\mu=26\)mm could be it. Since the interval caught \(\mu_0\) (the manufacturer's claim)
 
 \[\mu_0\in (25.94, 26.91)\]
 
-our conclusion is to accept that \(H_0\) could have produced our \textbf{observed interval}. We also say that that the data supports with the manufacturer's claim. More technically, we say that we \textbf{do not reject} \(H_0\).
+our conclusion is to accept that \(H_0\) could have produced our \textbf{observed interval}. We also say that the data supports the manufacturer's claim. More technically, we say that we \textbf{do not reject} \(H_0\).
 
 \includegraphics{_main_files/figure-latex/unnamed-chunk-99-1.pdf}
 
 \hypertarget{hypothesis-test-with-acceptancerejection-zones}{%
 \subsection{Hypothesis test with acceptance/rejection zones}\label{hypothesis-test-with-acceptancerejection-zones}}
 
-An equivalent way to test the hypothesis is to see if our set of observations are either common or rare if we assume that the null hypothesis is true. Let's remember the hypothesis contrast
+An equivalent way to test the hypothesis is to see if our set of observations are either common or rare \textbf{if} we assume that the \textbf{null hypothesis is true}. Let's remember the hypothesis contrast
 
 \begin{enumerate}
 \def\labelenumi{\alph{enumi}.}
@@ -7739,7 +7778,7 @@ To test the hypothesis with a \textbf{rejection zone} we compute the standardize
 when the null hypothesis is true. Note that we are standardizing with \(\mu_0\) (the null hypothesis). We then see if the observed value of \(Z\) is within the interval
 
 \[(-z_{0.025}, z_{0.025})\]
-Remember that this interval defines the most common values of \(Z\) since \(P(-z_{0.025} \leq Z \leq z_{0.025})=0.95\)
+Remember that this interval defines the most common values of \(Z\) since \[P(-z_{0.025} \leq Z \leq z_{0.025})=0.95\]
 
 The interval \((-z_{0.025}, z_{0.025})\) is called \textbf{acceptance interval} of \(H_0\) at \(95\%\) confidence level.
 
@@ -7769,11 +7808,11 @@ The region \((-z_{0.025}] \cup[z_{0.025})\) is called the \textbf{rejection zone
 
 \textbf{Example (Microprocessors)}
 
-If \(H_0\) is true then the standardized statistic \(\bar{X}\) is an estimation of \(\mu_0\) and therefore \(Z\)
+We want to test whether the manufacturer of microprocessors produce them with mean \(\mu_0=26\). Let's take the point of view of the manufacturer and ask whether the observation \(\bar{x}=26.42536\) is an expected average of a sample of \(8\) microprocessors when the expected value of the with of a microprocessor is \(\mu=26\). If \(H_0\) is true then \(\bar{X}\) is an estimator of \(\mu_0\) and therefore \(Z\)
 
 \[Z=\frac{\bar{X}-26}{\frac{0.7}{\sqrt{8}}}  \rightarrow N(0,1)\]
 
-is \textbf{the standardized error} that we make when we perform the estimation. Because we are in \textbf{case 1}, \(Z\) is standard normal
+is \textbf{the standardized error} that we make when we estimate \(\mu_0\) with \(\bar{X}\), as the manufacturer claims. Because we are in \textbf{case 1}, \(Z\) is standard normal
 Since
 
 \[\bar{X} \rightarrow N(26, \frac{0.7^2}{8})\]
@@ -7781,14 +7820,14 @@ Since
 For \textbf{our data} the standardized \textbf{observed error} is in the acceptance region
 
 \[z_{obs}=\frac{26.42536-26}{\frac{0.7}{\sqrt{8}}}=1.7187 \in (-z_{0.025}, z_{0.025})\]
-We conclude that our observed error is a typical observation of \(\bar{x}\) when the null hypothesis \(\mu_0\) is true. Therefore, we again accept that the data is consistent with the manufacturer's claim. We also say that we \textbf{do not reject} \(H_0\).
+Think of this regions as a region of tolerance for the error. Because our observation is within then everything is ok for the manufacturer. Had it not, we would have had have enough evidence to distrust the manufacturer's claim. We conclude that our observed average is a typical observation of \(\bar{x}\) when the null hypothesis \(\mu_0\) is true. Therefore, we again accept that the data is consistent with the manufacturer's claim. We also say that we \textbf{do not reject} \(H_0\).
 
 \includegraphics{_main_files/figure-latex/unnamed-chunk-101-1.pdf}
 
 \hypertarget{hypothesis-test-with-a-p-value}{%
 \subsection{Hypothesis test with a P-value}\label{hypothesis-test-with-a-p-value}}
 
-We can also contrast the \textbf{two tail} hypothesis by calculating the probability that the average of another sample from the null hypothesis will be even rarer than the average we just observed. Because we are in **case 1*, We know that the standardized statistics \(Z\) is standard normal variable then we define the \(pvalue\) as
+We can also contrast the \textbf{two tail} hypothesis by calculating the probability that the average of another sample from the null hypothesis will be even rarer than the average we just observed. Because we are in \textbf{case 1}, We know that the standardized statistics \(Z\) is standard normal variable then we define the \(pvalue\) as
 
 \[pvalue = P(Z \leq -z_{obs}) + P(z_{obs} \geq Z) = 2 (1-\phi(|z_{obs}|))\]
 
@@ -7823,12 +7862,13 @@ Remember: We always trust our data. If the null hypothesis says that our data is
 
 \textbf{Example (Microprocessors)}
 
-For our data the observed statistic \(z_{obs}=1.718714\) and its \textbf{p-value} is then
+Fie, let's think that the average \(\bar{x}=26.42536\) was produced under the manufacturer's claim. Perhaps, we were unlucky and happened to buy a sample made of thick microprocessors. If that is so then how unlucky were we? For our data the observed statistic \(z_{obs}=1.718714\) and its \textbf{p-value} is then
 
 \[pvalue=2 (1-\phi(1.718714))=0.08567\]
 Python: 2*(1- norm.cdf(1.718714))
 
-We conclude that if we purchase other \(8\) microprocessors, it is likely, within \(8\%\) of the purchases, that we get a higher average width than the one we got; if the manufacturer produces mean widths at \(26\)mm. The null hypothesis can then tolerate the observed error with \(95\%\) confidence. We, therefore, accept that the status quo could have produced our data and conclude again that the data is consistent with the manufacturer's claim.
+We conclude that if we purchase another set of \(8\) microprocessors, it is likely to obtain averages this far from the \(26\)mm in \(8.5\%\) of the \(8\)-microprocessor-set purchases. Being \(8.5\%\) unlucky is within the margin. Lower than \(5%
+\) unlucky is the limit where we start to believe that it was not that we were unlucky but rather that the manufacturer is wrong. In this example the null hypothesis can tolerate the observed error with \(95\%\) confidence. We, therefore, accept that the status quo could have produced our data and conclude again that the data is consistent with the manufacturer's claim.
 
 In Python the entire hypothesis testing can be performed with the function ztest from the library bioinfokit (that needs to be previously installed)
 
@@ -8873,6 +8913,8 @@ Test the following hypotheses
   Is the proportion of anxious patients different from \(0.03\)?
 \end{enumerate}
 
+\href{https://colab.research.google.com/drive/13El5aoycT_6Wasvyx427TvglygiSPMpF?usp=sharing}{Solutions}
+
 \hypertarget{contingency-tables}{%
 \chapter{Contingency tables}\label{contingency-tables}}
 
@@ -9394,6 +9436,8 @@ Load hospital data (\url{https://alejandro-isglobal.github.io/SDA/data/hospital.
 \item
   Make a bar plot
 \end{itemize}
+
+\href{https://colab.research.google.com/drive/1qHNmibyg9L7v8NcO3HHmknIGxt6_77KK?usp=sharing}{Solutions}
 
 \hypertarget{mean-differences-between-two-samples}{%
 \chapter{Mean differences between two samples}\label{mean-differences-between-two-samples}}
@@ -9993,6 +10037,8 @@ Load leptin data \url{https://alejandro-isglobal.github.io/SDA/data/dataleptin.t
 \item
   Make a bar plot and a boxplot for the latter case. Compute the confidence intervals for the weight, in each group.
 \end{itemize}
+
+\href{https://colab.research.google.com/drive/1F61puLHyUBuS5ERbbruy4002bQ3C3DjY?usp=sharing}{Solutions}
 
 \hypertarget{mean-differences-across-several-groups}{%
 \chapter{Mean differences across several groups}\label{mean-differences-across-several-groups}}
@@ -10901,6 +10947,8 @@ Load leptin data (
   Make a bar plot of weight across all conditions given by both factors
 \end{itemize}
 
+\href{https://colab.research.google.com/drive/1K2SlNEd5hNn3lI4XnKsgj1tDeXVyprVE?usp=sharing}{Solutions}
+
 \hypertarget{regression-and-correlation}{%
 \chapter{Regression and correlation}\label{regression-and-correlation}}
 
@@ -11590,6 +11638,8 @@ Answer the following questions:
 \item
   Is the interaction between age and sex significant on excess anxiety?
 \end{enumerate}
+
+\href{https://colab.research.google.com/drive/14i2h9AYxHh4KIfxBB9Px7VwnYdSFVBq5?usp=sharing}{Solutions}
 
 \hypertarget{group-work-sessions}{%
 \chapter{Group Work sessions}\label{group-work-sessions}}
@@ -12311,9 +12361,17 @@ and test the hypothesis \(H_0: \beta=0\) against \(H_1: \beta\neq 0\)
 
 \begin{enumerate}
 \def\labelenumi{\alph{enumi}.}
+\tightlist
 \item
   We plot the excess anxiety across groups (boxplot)
-  \includegraphics{_main_files/figure-latex/unnamed-chunk-194-1.pdf}
+\end{enumerate}
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-194-1.pdf}
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi}.}
+\setcounter{enumi}{1}
+\tightlist
 \item
   We test the hypothesizes \(H_0: \mu_{0}=\mu_{1} ... =\mu_{4}\) against \(H_1:\) at least one of them is different. We fit an ANOVA model.
 \end{enumerate}

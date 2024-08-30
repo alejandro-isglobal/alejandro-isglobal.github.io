@@ -120,7 +120,7 @@
 
 \title{EEBE Estadística}
 \author{Alejandro Cáceres (\href{mailto:alejandro.caceres.dominguez@upc.edu}{\nolinkurl{alejandro.caceres.dominguez@upc.edu}})}
-\date{2024-02-07}
+\date{2024-08-30}
 
 \begin{document}
 \maketitle
@@ -147,9 +147,7 @@ En este curso trataremos los \textbf{conceptos fundamentales} de estadística.
   2 horas de Solución de problemas con \textbf{R}: Sesiones presenciales con ordenador (Prácticas).
 \end{itemize}
 
-Las fechas de exámenes y material de estudio adicional se pueden encontrar en \textbf{ATENEA metacurso}:
-
-\includegraphics{./figures/notas.JPG}
+Las fechas de exámenes y material de estudio adicional se pueden encontrar en \textbf{ATENEA metacurso}.
 
 Objetivos de evaluación:
 
@@ -303,13 +301,13 @@ Por ejemplo, tomemos la serie de números que se producen por la repetición de 
 
 \ldots{} 1 0 0 1 0 \textbf{1} 0 1 1 \ldots{}
 
-El número en negrita es \textbf{una observación} en una repetición del experimento
+El número en negrita es \textbf{una observación} en una repetición del experimento.
 
 Un \textbf{resultado} es una \textbf{posible} observación que es el resultado de un experimento.
 
 \textbf{1} es un resultado, \textbf{0} es el otro resultado del experimento.
 
-Recuerda que la observación es \textbf{concreta} es el número que obtienes un día en el laboratorio. El resultado \textbf{abstracto} es una de las características del tipo de experimento que estás realizando.
+Recuerdemos que la observación es \textbf{concreta}. Es el número que obtenemos un día en el laboratorio. El resultado, por el contrario, es \textbf{abstracto} es una de las características del experimento que estamos realizando. No necesitamos ir al laboratorio para conocer los posibles resultados de un experimento. El razonamiento basta.
 
 \hypertarget{tipos-de-resultado}{%
 \section{Tipos de resultado}\label{tipos-de-resultado}}
@@ -330,7 +328,7 @@ Se puede decir que el tema de estudio de la estadística son los experimentos al
 
 \textbf{Definición:}
 
-Un \textbf{experimento aleatorio} es un experimento que da diferentes resultados cuando se repite de la misma manera.
+Un \textbf{experimento aleatorio} es un experimento que produce diferentes resultados cuando se repite de la misma manera.
 
 Los experimentos aleatorios son de diferentes tipos, dependiendo de cómo se realicen:
 
@@ -347,9 +345,9 @@ Los experimentos aleatorios son de diferentes tipos, dependiendo de cómo se rea
 \hypertarget{frecuencias-absolutas}{%
 \section{Frecuencias absolutas}\label{frecuencias-absolutas}}
 
-Cuando repetimos un experimento aleatorio con resultados \textbf{categóricos}, registramos una lista de resultados.
+Cuando repetimos un experimento aleatorio con resultados \textbf{categóricos}, lo peimero que hacemos es una lista con los posibles resultados.
 
-Resumimos las observaciones contando cuántas veces vimos un resultado particular.
+Resumimos las observaciones contando cuántas veces vimos cada uno de los resultados.
 
 \textbf{Frecuencia absoluta}:
 
@@ -359,13 +357,13 @@ es el número de veces que observamos el resultado \(i\).
 
 \textbf{Ejemplo (leucocitos)}
 
-Extraigamos un leucocito de \textbf{un} donante y anotemos su tipo. Repitamos el experimento \(N=119\) veces.
+Extraigamos un leucocito de la muestra de sangre de \textbf{un} donante y anotemos su tipo. Repitamos el experimento \(N=119\) veces.
 
 \begin{verbatim}
 (célula T, célula T, neutrófilo, ..., célula B)
 \end{verbatim}
 
-La segunda \textbf{célula T} en negrita es la segunda observación. La última \textbf{célula B} es la observación número 119.
+La segunda \textbf{célula T} en negrita es la segunda observación. La última \textbf{célula B} es la observación número \(119\).
 
 Podemos listar los \textbf{resultados} (categorías) en una \textbf{tabla de frecuencia}:
 
@@ -378,16 +376,18 @@ Podemos listar los \textbf{resultados} (categorías) en una \textbf{tabla de fre
 ## 5 Neutrophil 10
 \end{verbatim}
 
-De la tabla, podemos decir que, por ejemplo, \(n_1=34\) es el número total de células T observadas en la repetición del experimento. También notamos que el número total de repeticiones \(N=\sum_i n_i=119\).
+De la tabla, podemos decir que, por ejemplo, \(n_1=34\) es el número total de células T observadas en la repetición del experimento. También notamos que el número total de repeticiones \[\sum_{i=1}^M n_i=N=119\].
+
+Donde \(M\) es el número de resultados (número de filas en la table) y \(N\) el número de observaciones (repeticiones del experimento aleatorio). La tabla puede interpretarse como el perfil inmune del donante.
 
 \hypertarget{frecuencias-relativas}{%
 \section{Frecuencias relativas}\label{frecuencias-relativas}}
 
 También podemos resumir las observaciones calculando la \textbf{proporción} de cuántas veces vimos un resultado en particular.
 
-\[f_i=n_i/N\] donde \(N\) es el número total de observaciones
+\[f_i=n_i/N\]
 
-En nuestro ejemplo se registraron \(n_1=34\) células T, por lo que nos preguntamos por la proporción de células T del total de \(119\). Podemos agregar estas proporciones \(f_i\) en la tabla las frecuencias.
+En nuestro ejemplo se registraron \(n_1=34\) células T, por lo que su frecuencia relativa nos da la proporción de células T del total de \(119\). Podemos agregar estas proporciones \(f_i\) en la tabla de frecuencias.
 
 \begin{verbatim}
 ##      outcome ni         fi
@@ -398,24 +398,24 @@ En nuestro ejemplo se registraron \(n_1=34\) células T, por lo que nos pregunta
 ## 5 Neutrophil 10 0.08403361
 \end{verbatim}
 
-Las frecuencias relativas son \textbf{fundamentales} en estadística. Dan la proporción de un resultado en relación con los otros resultados. Más adelante las entenderemos como las observaciones de las probabilidades.
+Las frecuencias relativas son \textbf{fundamentales} en estadística. Dan la proporción de un resultado en relación con los otros resultados. Más adelante las entenderemos como observaciones de probabilidades, o mas precisamente, como estimaciones de las probabilidades.
 
 Para las frecuencias absolutas y relativas tenemos las propiedades
 
 \begin{itemize}
 \tightlist
 \item
-  \(\sum_{i=1..M} n_i = N\)
+  \(\sum_{i=1}^M n_i = N\)
 \item
-  \(\sum_{i=1..M} f_i = 1\)
+  \(\sum_{i=1}^M f_i = 1\)
 \end{itemize}
 
 donde \(M\) es el número de resultados.
 
-\hypertarget{diagrama-de-barras}{%
-\section{Diagrama de barras}\label{diagrama-de-barras}}
+\hypertarget{gruxe1fico-de-barras}{%
+\section{Gráfico de barras}\label{gruxe1fico-de-barras}}
 
-Cuando tenemos muchos resultados y queremos ver cuáles son los más probables, podemos usar un gráfico de barras que es una cifra de \(n_i\) Vs los resultados.
+Cuando tenemos muchos resultados y queremos ver cuáles son los más probables, podemos usar un gráfico de barras que es un grafico de \(n_i\) versus los resultados.
 
 \includegraphics{_main_files/figure-latex/unnamed-chunk-3-1.pdf}
 
@@ -424,7 +424,7 @@ Cuando tenemos muchos resultados y queremos ver cuáles son los más probables, 
 
 También podemos visualizar las frecuencias relativas con un gráfico de sectores.
 
-El área del círculo representa el 100\% de las observaciones (proporción = 1) y las secciones las frecuencias relativas de cada resultado.
+El área del círculo representa el \(100\%\) de las observaciones (proporción = 1) y las secciones las frecuencias relativas de cada resultado.
 
 \includegraphics{_main_files/figure-latex/unnamed-chunk-4-1.pdf}
 
@@ -433,11 +433,11 @@ El área del círculo representa el 100\% de las observaciones (proporción = 1)
 
 El tipo de leucocito de los ejemplos anteriores es una variable nominal \textbf{categórica}. Cada observación pertenece a una categoría (cualidad). Las categorías no siempre tienen un orden determindado.
 
-A veces, las variables \textbf{categóricas} se pueden \textbf{ordenar} cuando cumplen una clasificación natural. Esto permite introducir \textbf{frecuencias acumulativas}.
+A veces, las variables \textbf{categóricas} se pueden \textbf{ordenar} cuando cumplen una clasificación natural. Esto permite calcular \textbf{frecuencias acumuladas}.
 
 \textbf{Ejemplo (misofonía)}
 
-Este es un estudio clínico en 123 pacientes que fueron examinados por su grado de misofonía. La misofnía es ansiedad/ira descontrolada producida por ciertos sonidos.
+Este es un estudio clínico de \(123\) pacientes que fueron examinados por su grado de misofonía. La misofnía es ansiedad/ira descontrolada producida por ciertos sonidos.
 
 Cada paciente fue evaluado con un cuestionario (AMISO) y se clasificaron en 4 grupos diferentes según la gravedad.
 
@@ -450,7 +450,7 @@ Los resultados del estudio son
 ## [112] 3 0 3 2 1 2 3 3 4 2 3 2
 \end{verbatim}
 
-Cada observación es el resultado de un experimento aleatorio: medición del nivel de misofonía en un paciente. Esta serie de datos se puede resumir en términos de los resultados en la tabla de frecuencia
+Cada observación es el resultado de un experimento aleatorio: medición del nivel de misofonía en un paciente. Esta serie de datos se puede resumir en la siguente tabla de frecuencias
 
 \begin{verbatim}
 ##   outcome ni         fi
@@ -466,13 +466,13 @@ Cada observación es el resultado de un experimento aleatorio: medición del niv
 
 La gravedad de la misofonía es \textbf{categórica} \textbf{ordinal} porque sus resultados pueden ordenarse en relación con su grado.
 
-Cuando los resultados se pueden ordenar, es útil preguntar cuántas observaciones se obtuvieron hasta un resultado dado. Llamamos a este número la \textbf{frecuencia acumulada absoluta} hasta el resultado \(i\):
-\[N_i=\sum_{k=1..i} n_k\]
-También es útil para calcular la \textbf{proporción} de las observaciones que se obtuvo hasta un resultado dado
+Cuando los resultados se pueden ordenar, es útil preguntarnos por cuántas observaciones se obtuvieron hasta un resultado dado. Llamamos a este número la \textbf{frecuencia acumulada absoluta} hasta el resultado \(i\):
+\[N_i=\sum_{k=1}^i n_k\]
+También es útil calcular la \textbf{proporción} de las observaciones que se obtuvo hasta un resultado dado
 
-\[F_i=\sum_{k=1..i} f_k\]
+\[F_i=\sum_{k=1}^i f_k\]
 
-Podemos agregar estas frecuencias en la \textbf{tabla de frecuencias}
+Podemos agregar estas frecuencias a la \textbf{tabla de frecuencias}
 
 \begin{verbatim}
 ##   outcome ni         fi  Ni        Fi
@@ -483,31 +483,31 @@ Podemos agregar estas frecuencias en la \textbf{tabla de frecuencias}
 ## 4       4  9 0.07317073 123 1.0000000
 \end{verbatim}
 
-Por lo tanto, el \textbf{67 \%} de los pacientes tenían misofonía hasta la gravedad \textbf{2} y el \textbf{37 \%} de los pacientes tenían una gravedad inferior o igual a \textbf{1}.
+Vemos que el \textbf{67\%} de los pacientes tenían misofonía hasta la gravedad \textbf{2} y el \textbf{37 \%} de los pacientes tenían una gravedad inferior o igual a \textbf{1}.
 
 \hypertarget{gruxe1fica-de-frecuencia-acumulada}{%
 \section{Gráfica de frecuencia acumulada}\label{gruxe1fica-de-frecuencia-acumulada}}
 
-\(F_i\) es una cantidad importante porque nos permite definir la acumulación de probabilidades hasta niveles intermedios.
+\(F_i\) es una cantidad importante porque nos permite definir la acumulación de probabilidades para niveles intermedios.
 
-La probabilidad de un nivel intermedio \(x\) (\(i\leq x< i+1\)) es solo la acumulación hasta el nivel inferior \(F_x=F_i\).
+La acumulaci\textquotesingle on de frecuancia hasta un nivel intermedio \(x\) (\(i\leq x< i+1\)) de resultados \(i\) e \(i+1\) es la acumulación hasta el nivel inferior \[F_x=F_i\]
 
 \(F_x\) es por lo tanto una función de rango \textbf{continuo}. Podemos dibujarla con respecto a los resultados.
 
 \includegraphics{_main_files/figure-latex/unnamed-chunk-8-1.pdf}
 
-Por lo tanto, podemos decir que el \textbf{67 \%} de los pacientes tenían misofonía hasta gravedad \(2.3\), aunque \(2.3\) no es un resultado observado.
+Podemos decir, por ejemplo, que el \textbf{67 \%} de los pacientes tenían misofonía hasta gravedad \(2.3\), aunque \(2.3\) no sea un posible resultado del experimento aleatorio.
 
 \hypertarget{variables-numuxe9ricas}{%
 \section{Variables numéricas}\label{variables-numuxe9ricas}}
 
-El resultado de un experimento aleatorio puede producir un número. Si el número es \textbf{discreto}, podemos generar una tabla de frecuencias, con frecuencias absolutas, relativas y acumulativas, e ilustrarlas con gráficos de barras, de sectores y acumulativos.
+El resultado de un experimento aleatorio puede producir un número. Si el número es \textbf{discreto}, podemos generar una tabla de frecuencias, con frecuencias absolutas, relativas y acumuladas, e ilustrarlas con gráficos de barras, de sectores y acumulativos.
 
 Cuando el número es \textbf{continuo} las frecuencias no son útiles, lo más probable es que observemos o no un número contínuo en particular.
 
 \textbf{Ejemplo (misofonía)}
 
-Los investigadores se preguntaron si la convexidad de la mandíbula afectaría la gravedad de la misofonía. La hipótesis científica es que el ángulo de convexidad de la mandíbula puede influir en el oído y su sensibilidad. Estos son los resultados de la convexidad de la mandíbula (grados) para cada paciente:
+Los investigadores se preguntaron si la convexidad de la mandíbula afectaría la gravedad de la misofonía. La hipótesis científica es que el ángulo de convexidad de la mandíbula puede influir en el oído y su sensibilidad. Estos son los resultados de la convexidad de la mandíbula en grados para cada paciente:
 
 \begin{verbatim}
 ##   [1]  7.97 18.23 12.27  7.81  9.81 13.50 19.30  7.70 12.30  7.90 12.60 19.00
@@ -523,16 +523,18 @@ Los investigadores se preguntaron si la convexidad de la mandíbula afectaría l
 ## [121]  2.50 19.00  6.80
 \end{verbatim}
 
+Si bien, en este conjunto de observaciones, vemos la repetición del grado de convexidad \(7,90\), esto es el resultado del redondeo de las mediciones o de la resolución limitada del instrumento. Los grados son continuos y es poco probable que los pacientes tengan el mismo valor de convexidad, si tuviéramos suficiente resolución.
+
 \hypertarget{transformando-datos-continuos}{%
 \section{Transformando datos continuos}\label{transformando-datos-continuos}}
 
-Como los resultados continuos no se pueden contar (de manera informativa), los transformamos en variables categóricas ordenadas.
+Como los resultados continuos no se pueden contar, los transformamos en variables categóricas ordenadas.
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi})}
 \tightlist
 \item
-  Primero cubrimos el rango de las observaciones en intervalos regulares del mismo tamaño (contenedores)
+  Primero cubrimos el rango de las observaciones en intervalos regulares del mismo tamaño (bins)
 \end{enumerate}
 
 \begin{verbatim}
@@ -575,14 +577,14 @@ Como los resultados continuos no se pueden contar (de manera informativa), los t
 ## [121] "[-1.02,3.46]" "(16.8,21.3]"  "(3.46,7.92]"
 \end{verbatim}
 
-Por tanto, en lugar de decir que el primer paciente tenía un ángulo de convexidad de \(7.97\), decimos que su ángulo estaba entre el intervalo (o \textbf{bin}) \((7.92,12.4]\).
+Por lo tanto, en lugar de decir que el primer paciente tuvo un ángulo de convexidad de \(7.97\), decimos que su ángulo estuvo entre el intervalo (o \textbf{bin}) \((7.92,12.4]\).
 
-Ningún otro paciente tenía un ángulo de \(7.97\), pero muchos tenían ángulos entre \((7.92,12.4]\).
+Ningún otro paciente tuvo un ángulo de \(7.97\), pero muchos tuvieron ángulos entre \((7.92,12.4]\).
 
 \hypertarget{tabla-de-frecuencias-para-una-variable-continua}{%
 \section{Tabla de frecuencias para una variable continua}\label{tabla-de-frecuencias-para-una-variable-continua}}
 
-Para una partición regular dada del intervalo de resultados en intervalos, podemos producir una tabla de frecuencias como antes
+Para una partición regular dada del rango de los resultados, podemos producir una tabla de frecuencias como antes
 
 \begin{verbatim}
 ##        outcome ni         fi  Ni         Fi
@@ -596,15 +598,15 @@ Para una partición regular dada del intervalo de resultados en intervalos, pode
 \hypertarget{histograma}{%
 \section{Histograma}\label{histograma}}
 
-El histograma es la gráfica de \(n_i\) o \(f_i\) Vs los resultados en intervalos (bins). El histograma depende del tamaño de los bins.
+El histograma es el gráfico de \(n_i\) o \(f_i\) versus los resultados en intervalos (bins). El histograma depende del tamaño de los los intervalos
 
 \includegraphics{_main_files/figure-latex/unnamed-chunk-13-1.pdf}
 
-Este es un histograma con 20 bins.
+Este es un histograma con 20 intervalos
 
 \includegraphics{_main_files/figure-latex/unnamed-chunk-14-1.pdf}
 
-Vemos que la mayoría de las personas tienen ángulos dentro de \((7, 8]\)
+Vemos que la mayoría de las personas tienen ángulos entre \((7, 8]\).
 
 \hypertarget{gruxe1fica-de-frecuencia-acumulada-1}{%
 \section{Gráfica de frecuencia acumulada}\label{gruxe1fica-de-frecuencia-acumulada-1}}
@@ -639,28 +641,28 @@ Por ejemplo, tenemos estadísticas que describen los valores extremos:
 
 Una estadística importante que describe el valor central de los resultados (dónde esperar la mayoría de las observaciones) es el \textbf{promedio}
 
-\[\bar{x}=\frac{1}{N} \sum_{j=1..N} x_j\]
+\[\bar{x}=\frac{1}{N} \sum_{j=1}^N x_j\]
 
-donde \(x_j\) es la \textbf{observación} \(j\) de un total de \(N\).
+donde \(x_j\) es la \textbf{observación} \(j\) de un total de \(N\) observaciones.
 
-\textbf{Ejemplo (Misofonía)}
+\textbf{Ejemplo (misofonía)}
 
 La convexidad promedio se puede calcular directamente a partir de las \textbf{observaciones}
 
 \(\bar{x}= \frac{1}{N}\sum_j x_j\)
 
-\(= \frac{1}{N}(7.97 + 18.23 + 12.27... + 6.80) = 10.19894\)
+\(= \frac{1}{123}(7.97 + 18.23 + 12.27... + 6.80) = 10.19894\)
 
 Para variables \textbf{categóricamente ordenadas}, podemos usar las frecuencias relativas para calcular el promedio
 
-\(\bar{x}=\frac{1}{N}\sum_{i=1...N} x_j=\frac{1}{N}\sum_{i=1...M} x_i*n_ {i}\)
-\[=\sum_{i=1...M} x_i*f_{i}\]
+\(\bar{x}=\frac{1}{N}\sum_{i=1}^N x_j=\frac{1}{N}\sum_{i=1}^M x_in_ {i}\)
+\[=\sum_{i=1}^M x_if_{i}\]
 
 donde pasamos de sumar \(N\) \textbf{observaciones} a sumar \(M\) \textbf{resultados}.
 
-La forma \(\bar{x}= \sum_{i = 1...M} x_i f_i\) muestra que el promedio es el \textbf{centro de gravedad} de los resultados. Como si cada resultado tuviera una densidad de masa dada por \(f_i\).
+La forma \(\bar{x}= \sum_{i = 1}^M x_i f_i\) muestra que el promedio es el \textbf{centro de gravedad} de los resultados. Como si cada resultado tuviera una densidad de masa dada por \(f_i\).
 
-\textbf{Ejemplo (Misofonía)}
+\textbf{Ejemplo (misofonía)}
 
 La \textbf{severidad} promedio de la misofonía en el estudio se puede calcular a partir de las frecuencias relativas de los \textbf{resultados}
 
@@ -673,22 +675,20 @@ La \textbf{severidad} promedio de la misofonía en el estudio se puede calcular 
 ## 5       4  9 0.07317073
 \end{verbatim}
 
-\(\bar{x}=0*f_{0}+1*f_{1}+2*f_{2}+3*f_{3}+4*f_{4}=1.691057\)
-
-\hypertarget{promedio}{%
-\section{Promedio}\label{promedio}}
+\(\bar{x}=0\times f_{0}+1\times f_{1}+2\times f_{2}+3\times f_{3}+4\times f_{4}=1.691057\)
 
 El promedio es también el centro de gravedad de las variables continuas. Ese es el punto donde las frecuencias reativas se equilibran.
 
 \includegraphics{_main_files/figure-latex/unnamed-chunk-17-1.pdf}
 
 \hypertarget{mediana}{%
-\section{mediana}\label{mediana}}
+\section{Mediana}\label{mediana}}
 
 Otra medida de centralidad es la mediana. La mediana \(x_m\), o \(q_{0.5}\), es el valor por debajo del cual encontramos la mitad de las observaciones. Cuando ordenamos las observaciones \(x_1 <... x_j < x_{j+1} < x_N\), las contamos hasta encontrar la mitad de ellas. \(x_m\) es tal que
 
 \[\sum_{i\leq m} 1 = \frac{N}{2}\]
-\textbf{Ejemplo (Misofonía)}
+
+\textbf{Ejemplo (misofonía)}
 
 Si ordenamos los ángulos de convexidad, vemos que \(62\) observaciones (individuos) (\(N/2 \sim 123/2\)) están por debajo de \(7.96\). La \textbf{convexidad mediana} es por lo tanto \(q_{0.5}=x_{62}=7.96\)
 
@@ -710,13 +710,9 @@ Si ordenamos los ángulos de convexidad, vemos que \(62\) observaciones (individ
 ## [61] 21.30
 \end{verbatim}
 
-\begin{verbatim}
-## [1] 7.96
-\end{verbatim}
-
 En términos de frecuencias, \(q_{0.5}\) hace que la frecuencia acumulada \(F_x\) sea igual a \(0.5\)
 
-\[\sum_{i = 0, ... m} f_i =F_{q_{0.5}}=0.5\]
+\[\sum_{i = 1}^m f_i =F_{q_{0.5}}=0.5\]
 o
 
 \[q_{0.5}=F^{-1}(0.5)\]
@@ -736,28 +732,28 @@ Otras estadísticas de resumen importantes de las observaciones son las de \text
 
 Muchos experimentos pueden compartir su media, pero difieren en cuán \textbf{dispersos} son los valores.
 
-La dispersión de las observaciones es una medida del \textbf{ruido}.
+La dispersión de las observaciones es una medida del \textbf{ruido} o de la aleatoridad del experimento.
 
 \includegraphics{_main_files/figure-latex/unnamed-chunk-22-1.pdf} \includegraphics{_main_files/figure-latex/unnamed-chunk-22-2.pdf}
 
-\hypertarget{variaciuxf3n-de-la-muestra}{%
-\section{Variación de la muestra}\label{variaciuxf3n-de-la-muestra}}
+\hypertarget{varianza-muestral}{%
+\section{Varianza muestral}\label{varianza-muestral}}
 
 La dispersión sobre la media se mide con la varianza muestral
 
-\[s^2=\frac{1}{N-1} \sum_{j=1..N} (x_j-\bar{x})^2\]
+\[s^2=\frac{1}{N-1} \sum_{j=1}^N (x_j-\bar{x})^2\]
 
-Este número, mide la distancia cuadrada promedio de las \textbf{observaciones} al promedio. La razón de \(N-1\) se explicará cuando hablemos de inferencia, cuando estudiemos la dispersión de \(\bar{x}\), además de la dispersión de las observaciones.
+Este número, mide la distancia cuadrada promedio de las \textbf{observaciones} al promedio. La razón de dividir por \(N-1\) se explicará cuando hablemos de inferencia, cuando estudiemos la dispersión de \(\bar{x}\).
 
-En términos de las frecuencias de las variables \textbf{categóricas y ordenadas}
+En términos de las frecuencias relativas \textbf{categóricas y ordenadas}
 
-\[s^2=\frac{N}{N-1} \sum_{i=1... M} (x_i-\bar{x})^2 f_i\]
+\[s^2=\frac{N}{N-1} \sum_{i=1}^M (x_i-\bar{x})^2 f_i\]
 
 \(s^2\) se puede considerar como el \textbf{momento de inercia} de las observaciones.
 
 La raíz cuadrada de la varianza de la muestra se denomina \textbf{desviación estándar} \(s\).
 
-\textbf{Ejemplo (Misofonía)}
+\textbf{Ejemplo (misofonía)}
 
 La desviación estándar del ángulo de convexidad es
 
@@ -775,16 +771,17 @@ La dispersión de los datos también se puede medir con respecto a la mediana us
 \def\labelenumi{\arabic{enumi})}
 \tightlist
 \item
-  Definimos el \textbf{primer} cuartil como el valor \(x_m\) que hace que la frecuencia acumulada \(F_{q_{0.25}}\) sea igual a \(0.25\) (\(x\) donde hemos acumulado una cuarta parte de las observaciones)
+  Definimos el \textbf{primer} cuartil como el valor \(x_m\) que hace que la frecuencia acumulada \(F_{q_{0.25}}\) sea igual a \(0.25\) (\(x\) es donde hemos acumulado una cuarta parte de las observaciones)
 \end{enumerate}
 
 \[F_{q_{0.25}}=0.25\]
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi})}
+\setcounter{enumi}{1}
 \tightlist
 \item
-  Definimos el \textbf{tercer} cuartil como el valor \(x_m\) que hace que la frecuencia acumulada \(F_{q_{0.75}}\) sea igual a \(0.75\) (\(x\) donde hemos acumulado tres cuartos de observaciones)
+  Definimos el \textbf{tercer} cuartil como el valor \(x_m\) que hace que la frecuencia acumulada \(F_{q_{0.75}}\) sea igual a \(0.75\) (\(x\) es donde hemos acumulado tres cuartos de observaciones)
 \end{enumerate}
 
 \[F_{q_{0.75}}=0.75\]
@@ -794,15 +791,17 @@ La dispersión de los datos también se puede medir con respecto a la mediana us
 \setcounter{enumi}{2}
 \tightlist
 \item
-  El \textbf{rango intercuartílico} (IQR) es \(IQR=q_{0.75} - q_{0.25}\). Esa es la distancia entre el tercer y el primer cuartil y captura el \(50\%\) central de las observaciones
+  El \textbf{rango intercuartílico} (IQR) es \[IQR=q_{0.75} - q_{0.25}\]
 \end{enumerate}
+
+Es la distancia entre el tercer y el primer cuartil y captura el \(50\%\) central de las observaciones.
 
 \includegraphics{_main_files/figure-latex/unnamed-chunk-23-1.pdf}
 
 \hypertarget{diagrama-de-caja}{%
 \section{Diagrama de caja}\label{diagrama-de-caja}}
 
-El rango intercuartílico, la mediana y los \(5\%\) y \(95\%\) de los datos se pueden visualizar en un \textbf{diagrama de caja}.
+El rango intercuartílico, la mediana, el \(5\%\) y el \(95\%\) de los datos se pueden visualizar en un \textbf{diagrama de caja}.
 
 En el diagrama de caja, los valores de los resultados están en el eje y. El IQR es la caja, la mediana es la línea del medio y los bigotes marcan los \(5\%\) y \(95\%\) de los datos.
 
@@ -889,7 +888,7 @@ Responde las siguientes cuestiones:
 \item
   Calcula las frecuencias relativas de cada resultado y dibuja el histograma
 \item
-  Calcula las frecuencias acumulativas de cada resultado y dibuja la gráfica acumulativa.
+  Calcula las frecuencias acumuladas de cada resultado y dibuja la gráfica acumulativa.
 \item
   Dibuja un diagrama de caja .
 \end{itemize}
@@ -914,7 +913,7 @@ Recordemos el objetivo básico de la estadística. La estadística se ocupa de l
   Una \textbf{observación} es la adquisición de un número o una característica de un experimento
 \end{itemize}
 
-Las observaciones son realizaciones de \textbf{resultados}.
+Las observaciones son las realizaciones de los \textbf{resultados} posibles de un experimento.
 
 \begin{itemize}
 \tightlist
@@ -922,7 +921,7 @@ Las observaciones son realizaciones de \textbf{resultados}.
   Un \textbf{resultado} es una posible observación que es el resultado de un experimento.
 \end{itemize}
 
-Al realizar experimentos, a menudo obtenemos resultados diferentes. La descripción de la variabilidad de los resultados es uno de los objetivos de la estadística.
+Al realizar un experimento multiples veces, a menudo obtenemos resultados diferentes. La descripción de la variabilidad de los resultados es uno de los objetivos de la estadística.
 
 \begin{itemize}
 \tightlist
@@ -930,12 +929,12 @@ Al realizar experimentos, a menudo obtenemos resultados diferentes. La descripci
   Un \textbf{experimento aleatorio} es un experimento que da diferentes resultados cuando se repite de la misma manera.
 \end{itemize}
 
-La pregunta filosófica detrás es ¿Cómo podemos conocer algo si cada vez que lo miramos cambia?
+La pregunta filosófica detrás es ¿Cómo podemos llegar a conocer cualquier cosa si cada vez que observamos las cosas estas cambian?
 
-\hypertarget{probabilidad-de-mediciuxf3n}{%
-\section{Probabilidad de medición}\label{probabilidad-de-mediciuxf3n}}
+\hypertarget{medida-de-probabilidad}{%
+\section{Medida de probabilidad}\label{medida-de-probabilidad}}
 
-Nos gustaría tener una medida para el resultado de un experimento aleatorio que nos diga \textbf{cuán seguros} estamos de observar el resultado cuando realicemos un \textbf{futuro} experimento aleatorio.
+Nos gustaría tener una medida para un resultado de un experimento aleatorio de tal forma que nos diga \textbf{cuán seguros} estamos de observar el resultado cuando realicemos un \textbf{futuro} experimento aleatorio.
 
 Llamaremos a esta medida la probabilidad del resultado y le asignaremos valores:
 
@@ -943,7 +942,7 @@ Llamaremos a esta medida la probabilidad del resultado y le asignaremos valores:
 \item
   0, cuando estamos seguros de que la observación \textbf{no} ocurrirá.
 \item
-  1, cuando estamos seguros de que la observación sucederá.
+  1, cuando estamos seguros de que la observación \textbf{sí} sucederá.
 \end{itemize}
 
 \hypertarget{probabilidad-cluxe1sica}{%
@@ -953,21 +952,22 @@ Llamaremos a esta medida la probabilidad del resultado y le asignaremos valores:
 
 La probabilidad clásica fue defendida por Laplace (1814).
 
-Dado que cada resultado es \textbf{igualmente probable} en este tipo de experimento, declaramos una completa ignorancia y lo mejor que podemos hacer es distribuir equitativamente la misma probabilidad para cada resultado.
+Dado que cada resultado es \textbf{igualmente probable} en este tipo de experimento, declaramos una completa ignorancia y lo mejor que podemos hacer es distribuir equitativamente la misma probabilidad para cada resultado. Notemos que
 
 \begin{itemize}
 \tightlist
 \item
-  No observamos \(P_i\)
+  No observamos \(P_i\).
 \item
   Deducimos \(P_i\) de nuestra razón y no necesitamos realizar ningún experimento para conocerla.
 \end{itemize}
 
-\textbf{Ejemplo (dado):}
+\textbf{Ejemplo (dado)}
 
 ¿Cuál es la probabilidad de que obtengamos \(2\) en el lanzamiento de un dado?
 
-\(P_2=1/6=0.166666\).
+\[P_2=1/6=0.166666\]
+Diremos que estamos seguros de que uno entre seis lanzamientos es un \(2\) si lanzamos el dado muchas veces. También podemos decir que tenemos una seguridad del \(16\%\) de que el pr\textquotesingle oximo lanzamiento es en \(2\). O finalmente, decimos que la probabilidad de obtener \(2\) es de \(1/6\).
 
 \hypertarget{frecuencias-relativas-1}{%
 \section{Frecuencias relativas}\label{frecuencias-relativas-1}}
@@ -985,7 +985,7 @@ Imaginemos que repetimos un experimento aleatorio \(8\) veces y obtenemos las si
 \begin{itemize}
 \tightlist
 \item
-  ¿Qué tan seguro estamos de obtener el resultado \(12\) en la siguiente observación?
+  ¿Qué tan seguros estamos de obtener el resultado \(12\) en la siguiente observación?
 \end{itemize}
 
 La tabla de frecuencias es
@@ -1001,19 +1001,20 @@ La tabla de frecuencias es
 \end{verbatim}
 
 \includegraphics{_main_files/figure-latex/unnamed-chunk-28-1.pdf}
-La \textbf{frecuencia relativa} \(f_i=\frac{n_i}{N}\) parece una medida de probabilidad razonable porque
+
+La \textbf{frecuencia relativa} \(f_i=\frac{n_i}{N}\) parece una medida razonable de probabilidad porque
 
 \begin{itemize}
 \tightlist
 \item
-  es un número entre \(0\) y \(1\).
+  es un número entre \(0\) y \(1\); y
 \item
-  mide la proporción del total de observaciones que observamos de un resultado particular.
+  mide la proporción del total de observaciones para un resultado particular.
 \end{itemize}
 
-Como \(f_{12}=0.25\) entonces estaríamos un cuarto seguros, una de cada 4 observaciones, de obtener \(12\).
+Como observamos \(12\) un \(25\%\) de las veces, entonces \(f_{12}=0.25\) y estaríamos un cuarto seguros, una de cada 4 observaciones, de obtener \(12\).
 
-\textbf{Pregunta}: ¿Qué tan bueno es \(f_i\) como medida de certeza del resultado \(i\)?
+\textbf{Pregunta}: ¿Qué tan buena es \(f_i\) como medida de certeza del resultado \(i\)?
 
 \textbf{Ejemplo (experimento aleatorio con mas repeticiones)}
 
@@ -1040,19 +1041,20 @@ y el gráfico de barras es
 
 \includegraphics{_main_files/figure-latex/unnamed-chunk-30-1.pdf}
 
-Aparecieron nuevos resultados y \(f_{12}\) ahora es solo \(0.027\), y entonces estamos sólo un \(\sim 3\%\) seguros de obtener \(12\) en el próximo experimento. Las probabilidades medidas por \(f_i\) cambian con \(N\).
+Aparecieron nuevos resultados y \(f_{12}\) ahora es solo \(0.027\), y entonces estamos sólo un \(\sim 3\%\) seguros de obtener \(12\) en el próximo experimento. Por lo tanto, las probabilidades medidas por \(f_i\) cambian con \(N\).
 
 \hypertarget{frecuencias-relativas-en-el-infinito}{%
 \section{Frecuencias relativas en el infinito}\label{frecuencias-relativas-en-el-infinito}}
 
-Una observación crucial es que si medimos las probabilidades de \(f_i\) en valores crecientes de \(N\) ¡\textbf{convergen}!
+Una hecho crucial es que si calculamos \(f_i\) con valores crecientes de \(N\) ¡\(f_i\) \textbf{converge}!
 
-En este gráfico cada sección vertical da la frecuencia relativa de cada observación. Vemos que después de \(N=1000\) (\(log10(N)=3\)) las proporciones apenas varían con mas \(N\).
+En este gráfico cada sección vertical da la frecuencia relativa de cada observación. Vemos que después de \(N=1000\) (\(log10(N)=3\)) las proporciones de las secciones apenas varían con mas \(N\).
 
 \includegraphics{_main_files/figure-latex/unnamed-chunk-31-1.pdf}
 Encontramos que cada una de las frecuencias relativas \(f_i\) converge a un valor constante
 
 \[lim_{N\rightarrow \infty} f_i = P_i\]
+Observemos que \(f_i\) es una cantidad derivada de experiencias conctretas y que en infinito se convierte en una cantidad abstracta \(P_i\). Esta relación es fundamental. Nos dice que podemos usar la experiencia para acceder a conceptos generales.
 
 \hypertarget{probabilidad-frecuentista}{%
 \section{Probabilidad frecuentista}\label{probabilidad-frecuentista}}
@@ -1066,7 +1068,7 @@ Defendida por Venn (1876), la definición frecuentista de probabilidad se deriva
 \item
   No observamos \(P_i\), observamos \(f_i\)
 \item
-  \textbf{Estimamos} \(P_i\) con \(f_i\) (normalmente cuando \(N\) es grande), escribimos: \[\hat{P_i}=f_i\]
+  \textbf{Estimamos} \(P_i\) con \(f_i\) (normalmente cuando \(N\) es grande), y escribimos: \[\hat{P_i}=f_i\]
 \end{itemize}
 
 Similar a la relación entre \textbf{observación} y \textbf{resultado}, tenemos la relación entre \textbf{frecuencia relativa} y \textbf{probabilidad} como un valor concreto de una cantidad abstracta.
@@ -1087,7 +1089,7 @@ Tenemos situaciones en las que se puede usar la probabilidad clásica para encon
 \begin{itemize}
 \tightlist
 \item
-  Si los resultados en los que estamos interesados pueden derivarse de otros resultados \textbf{igualmente probables}; Veremos más sobre esto cuando estudiemos los modelos de probabilidad.
+  Si los resultados en los que estamos interesados pueden derivarse de otros resultados \textbf{igualmente probables}. Veremos más sobre esto cuando estudiemos los modelos de probabilidad.
 \end{itemize}
 
 \textbf{Ejemplo (suma de dos dados)}
@@ -1118,15 +1120,15 @@ Una probabilidad es un número que se asigna a cada resultado posible de un expe
 \def\labelenumi{\arabic{enumi})}
 \tightlist
 \item
-  cuando los resultados \(E_1\) y \(E_2\) son mutuamente excluyentes; es decir, solo uno de ellos puede ocurrir, entonces la probabilidad de observar \(E_1\) \textbf{o} \(E_1\), escrito como \(E_1\cup E_2\), es su suma:
+  Cuando los resultados \(E_1\) y \(E_2\) son mutuamente excluyentes; es decir, solo uno de ellos puede ocurrir, entonces la probabilidad de observar \(E_1\) \textbf{o} \(E_1\), escrito como \(E_1\cup E_2\), es su suma:
   \[P(E_1\cup E_2) = P(E_1) + P(E_2)\]
 \item
-  cuando \(S\) es el conjunto de todos los resultados posibles, entonces su probabilidad es \(1\) (al menos se observa algo): \[P(S)=1\]
+  Cuando \(S\) es el conjunto de todos los resultados posibles, entonces su probabilidad es \(1\) (al menos se observa algo): \[P(S)=1\]
 \item
   La probabilidad de cualquier resultado está entre 0 y 1 \[P(E) \in [0,1]\]
 \end{enumerate}
 
-Propuesto por Kolmogorov's hace menos de 100 años (1933)
+Propuesto por Kolmogorov's hace menos de 100 años (1933).
 
 \hypertarget{tabla-de-probabilidades}{%
 \section{Tabla de probabilidades}\label{tabla-de-probabilidades}}
@@ -1139,7 +1141,7 @@ La tabla de probabilidad para el lanzamiento de un dado
 
 \begin{longtable}[]{@{}cc@{}}
 \toprule\noalign{}
-resultado & Probabilidad \\
+Resultado & Probabilidad \\
 \midrule\noalign{}
 \endhead
 \bottomrule\noalign{}
@@ -1163,14 +1165,14 @@ Verifiquemos los axiomas:
   Como \(S=\{1,2,3,4,5,6\}\) se compone de resultados \textbf{mutuamente excluyentes}, entonces
 \end{enumerate}
 
-\[P(S)=P(1\cup 2\cup ... \cup 6) = P(1)+P(2)+ ...+P(n)=1\]
+\[P(S)=P(1\cup 2\cup ... \cup 6) = P(1)+P(2)+ ...+P(6)=1\]
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi})}
 \setcounter{enumi}{2}
 \tightlist
 \item
-  Las probabilidades de cada uno de resultados están entre \(0\) y \(1\).
+  Las probabilidades de cada uno de resultados están entre \(0\) y \(1\), como se verifica en la tabla.
 \end{enumerate}
 
 \hypertarget{espacio-muestral}{%
@@ -1191,7 +1193,7 @@ El espacio muestral puede estar formado por resultados categóricos o numéricos
 \item
   el tamaño de un tornillo de una línea de producción: \(S=(70-72) mm\)
 \item
-  número de correos electrónicos recibidos en una hora: \(S =\{1, ...\infty \}\)
+  número de correos electrónicos recibidos en una hora: \(S =\{0, ...\infty \}\)
 \item
   el lanzamiento de un dado: \(S=\{1, 2, 3, 4, 5, 6\}\)
 \end{itemize}
@@ -1206,13 +1208,13 @@ Un \textbf{evento} \(A\) es un \textbf{subconjunto} del espacio muestral. Es una
 \begin{itemize}
 \tightlist
 \item
-  El evento de una temperatura saludable: \(A=37-38\) grados Celsius
+  El evento de una temperatura normal: \(A=37-38\) grados Celsius
 \item
   El evento de producir un tornillo con un tamaño: \(A=71.5mm\)
 \item
   El evento de recibir más de 4 emails en una hora: \(A=\{4, \infty \}\)
 \item
-  El evento de obtener un número menor o igual a 3 en la tirada de a dice: \(A=\{1,2,3\}\)
+  El evento de obtener un número menor o igual a 3 en el lanzamiento de un dado: \(A=\{1,2,3\}\)
 \end{itemize}
 
 Un evento se refiere a un posible conjunto de \textbf{resultados}.
@@ -1220,7 +1222,7 @@ Un evento se refiere a un posible conjunto de \textbf{resultados}.
 \hypertarget{uxe1lgebra-de-eventos}{%
 \section{Álgebra de eventos}\label{uxe1lgebra-de-eventos}}
 
-Para dos eventos \(A\) y \(B\), podemos construir los siguientes eventos derivados utilizando las operaciones básicas de conjuntos:
+Para dos eventos \(A\) y \(B\), podemos construir los siguientes \textbf{eventos compuestos} utilizando las operaciones básicas de conjuntos:
 
 \begin{itemize}
 \tightlist
@@ -1234,7 +1236,7 @@ Para dos eventos \(A\) y \(B\), podemos construir los siguientes eventos derivad
 
 \textbf{Ejemplo (dado)}
 
-Lancemos un dado y veamos los eventos (conjunto de resultados):
+Lancemos un dado y veamos los eventos (resultados compuestos):
 
 \begin{itemize}
 \tightlist
@@ -1259,19 +1261,21 @@ Veamos como podemos construir nuevos eventos con las operaciones de conjuntos:
 \hypertarget{resultados-mutuamente-excluyentes}{%
 \section{Resultados mutuamente excluyentes}\label{resultados-mutuamente-excluyentes}}
 
-Los resultados como tirar \(1\) y \(2\) en un dado son eventos que no pueden ocurrir al mismo tiempo. Decimos que son \textbf{mutuamente excluyentes}.
+Los resultados como lanzar \(1\) y \(2\) en un dado son eventos que no pueden ocurrir al mismo tiempo. Decimos que son \textbf{mutuamente excluyentes}.
 
-En general, dos eventos denotados como \(E_1\) y \(E_2\) son mutuamente excluyentes cuando
+En general, dos eventos denotados como \(E_1\) y \(E_2\) son mutuamente excluyentes cuando no tienen nada en común
 
 \[E_1\cap E_2=\emptyset\]
 
 \emph{Ejemplos:}
 
+Los siguientes eventos son mutamente excluyentes.
+
 \begin{itemize}
 \item
-  El resultado de tener una gravedad de misofonía de \(1\) y una gravedad de \(4\).
+  El resultado de tener misofonía de gravedad \(1\) y gravedad \(4\). Sólo es posibl tener una severidad.
 \item
-  Los resultados de obtener \(12\) y \(5\) al sumar el lanzamiento de dos dados.
+  Los resultados de obtener \(12\) y \(5\) al sumar el lanzamiento de dos dados. Si obtenemos \(12\) no obtenemos \(5\).
 \end{itemize}
 
 De acuerdo con las propiedades de Kolmogorov, solo los resultados \textbf{mutuamente excluyentes} se pueden organizar en \textbf{tablas de probabilidad}, como en las tablas de frecuencias relativas.
@@ -1283,9 +1287,9 @@ La \textbf{probabilidad conjunta} de \(A\) y \(B\) es la probabilidad de \(A\) y
 
 Para escribir probabilidades conjuntas de eventos no mutuamente excluyentes (\(A \cap B \neq \emptyset\)) en una tabla de probabilidad, notamos que siempre podemos descomponer el espacio muestral en conjuntos \textbf{mutuamente excluyentes} que involucran las intersecciones:
 
-\(S=\{A\cap B, A \cap B', A'\cap B, A'\cap B'\}\)
+\[S=\{A\cap B, A \cap B', A'\cap B, A'\cap B'\}\]
 
-\textbf{Consideremos el diagrama de Ven} para el ejemplo donde \(A\) es el evento que corresponde a sacar número menor o igual que 3 y \(B\) corresponde a un número par:
+\textbf{Consideremos el diagrama de Ven} para el ejemplo donde \(A\) es el evento que corresponde a sacar número menor o igual que \(3\) y \(B\) corresponde a un número par:
 
 Las \textbf{marginales} de \(A\) y \(B\) son la probabilidad de \(A\) y la probabilidad de \(B\), respectivamente:
 
@@ -1581,7 +1585,7 @@ En este capítulo, introduciremos la probabilidad condicional.
 
 Usaremos la probabilidad condicional para definir la independencia estadística.
 
-Discutiremos el teorema de Bayes y discutiremos una de sus principales aplicaciones, que es la eficacia de predicción de una herramienta de diagnóstico.
+Discutiremos el teorema de Bayes y discutiremos una de sus principales aplicaciones: la eficacia de predicción de una herramienta de diagnóstico.
 
 \hypertarget{probabilidad-conjunta}{%
 \section{Probabilidad conjunta}\label{probabilidad-conjunta}}
@@ -1600,7 +1604,7 @@ Ahora, imagina experimentos aleatorios que miden dos tipos diferentes de resulta
 \item
   el lanzamiento de dos dados: (\(n_1\),\(n_2\))
 \item
-  cruzar dos semáforos en verde: (\(\bar{R_ 1}\) , \(\bar{R_2}\))
+  cruzar dos semáforos en verde (no rojo): (\(R'_1\) , \(R'_2\))
 \end{itemize}
 
 A menudo nos interesa saber si los valores de un resultado \textbf{condicionan} los valores del otro.
@@ -1664,7 +1668,7 @@ donde, por ejemplo, la probabilidad conjunta de \(F\) y \(D\) es
   \(P(D,F)=0.005\)
 \end{itemize}
 
-y las probabilidades marginales son
+y las \textbf{probabilidades marginales} son
 
 \begin{itemize}
 \tightlist
@@ -1681,13 +1685,13 @@ La conductividad defectuosa es \textbf{independiente} de tener fallas estructura
 
 Consideremos primero solamente los materiales que tienen fallas.
 
-Dentro de aquellos materiales que tienen fallas (\(F\)), ¿cuál es la probabilidad estimada de que sean defectuosos?
+Dentro de aquellos materiales que tienen fallas (\(F\)), ¿cuál es la probabilidad estimada de que tengan conductividad defectuosa?
 
 \(\hat{P}(D|F)=\frac{n_{F,D}}{n_{F}}=\frac{n_{F,D}/n}{n_{F}/n}= \frac{f_{F,D}}{f_{F}}\)
-\[= \frac{\hat{P}(F,D)}{\hat{P}(F)}\]
+\[= \frac{\hat{P}(D,F)}{\hat{P}(F)}\]
 Por lo tanto, en el límite cuando \(N \rightarrow \infty\), tenemos
 
-\[P(D|F)=\frac{P(F, D)}{P(D)}=\frac{P(F \cap D)}{P(D)}\]
+\[P(D|F)=\frac{P(F, D)}{P(F)}=\frac{P(F \cap D)}{P(F)}\]
 \textbf{Definición:}
 
 La \emph{probabilidad condicional} de un evento \(B\) dado un evento \(A\), indicado como \(P(A|B)\), es
@@ -1699,25 +1703,27 @@ Podemos probar que la probabilidad condicional satisface los axiomas de probabil
 
 Si dividimos las columnas de la tabla de probabilidad conjunta por las probabilidades marginales de los efectos condicionantes (\(F\) y \(F'\)), podemos escribir \textbf{una tabla de contingencia condicional}
 
-\begin{longtable}[]{@{}
-  >{\centering\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3438}}
-  >{\centering\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3438}}
-  >{\centering\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3125}}@{}}
-\toprule\noalign{}
-\begin{minipage}[b]{\linewidth}\centering
-\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
 F
-\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+
 F'
-\end{minipage} \\
-\midrule\noalign{}
-\endhead
-\bottomrule\noalign{}
-\endlastfoot
-D & P(D {\textbar{}} F) & P(D {\textbar{}} F') \\
-D' & P(D' {\textbar{}} F) & P(D' {\textbar{}} F') \\
-suma & 1 & 1 \\
-\end{longtable}
+
+D
+
+P( D {\textbar{}} F)
+
+P(D {\textbar{}} F')
+
+D'
+
+P(D' {\textbar{}} F)
+
+P(D' {\textbar{}} F')
+
+suma
+
+1
+
+1
 
 Donde las probabilidades por columnas suman uno. La primera columna muestra las probabilidades de ser defectuoso o no solo de que los materiales que tienen fallas (primera condición: \(F\)). La segunda columna muestra las probabilidades solo para los materiales que no tienen fallas (segunda condición: \(F'\)).
 
@@ -1798,7 +1804,7 @@ y por la definición de probabilidad condicional
 
 Esta tercera forma es un enunciado sobre las probabilidades conjuntas. Dice que podemos obtener probabilidades conjuntas por la multiplicación de las marginales.
 
-En nuestra tabla de probabilidad conjunta original
+En nuestra tabla de \textbf{probabilidad conjunta} original
 
 \begin{longtable}[]{@{}cccc@{}}
 \toprule\noalign{}
@@ -1812,7 +1818,7 @@ D' & \(0.095\) & \(0.855\) & \(0.95\) \\
 suma & \(0.1\) & \(0.9\) & 1 \\
 \end{longtable}
 
-podemos confirmar que todas las entradas de la matriz son el producto de las marginales. Por ejemplo: \(P(F)P(D)= P(D \cap F)\) y \(P(D')P(F')=P(D' \cap F')\). Por lo tanto, ser defectuoso es independiente de tener un defecto.
+podemos confirmar que todas las entradas de la matriz son el producto de las marginales. Por ejemplo: \(P(F)P(D)= P(D \cap F)\) y \(P(D')P(F')=P(D' \cap F')\). Por lo tanto, tener una falla estructural es independiente de tener conductividad defectuosa.
 
 \textbf{Ejemplo (Monedas)}
 
@@ -1846,9 +1852,9 @@ T & \(1/4\) & \(1/4\) & \(1/2\) \\
 suma & \(1/2\) & \(1/2\) & 1 \\
 \end{longtable}
 
-De esta tabla vemos que la probabilidad de obtener una cara y luego una cruz es el producto de las marginales \(P(H, T)=P(H)*P(T)=1/4\). Por lo tanto, el evento de cara en la primera moneda y cruz en la segunda son independientes.
+De esta tabla vemos que la probabilidad de obtener una cara y luego una cruz es el producto de las marginales \(P(H, T)=P(H)P(T)=1/4\). Por lo tanto, el evento de cara en la primera moneda y cruz en la segunda son independientes.
 
-Si elaboramos la tabla de contingencia condicional sobre el lanzamiento de la primera moneda veremos que obtener cruz en la segunda moneda no está condicionado por haber obtenido cara en la primera moneda: \(P(T|H)=P(T) =1/2\)
+Si elaboramos la tabla probabilidad condicional sobre el lanzamiento de la primera moneda veremos que obtener cruz en la segunda moneda no está condicionado por haber obtenido cara en la primera moneda: \(P(T|H)=P(T) =1/2\).
 
 \hypertarget{dependencia-estaduxedstica}{%
 \section{Dependencia estadística}\label{dependencia-estaduxedstica}}
@@ -1878,7 +1884,9 @@ Por ejemplo, probamos una batería para saber cuánto tiempo puede durar. Tensam
 \hypertarget{prueba-de-diagnuxf3stico}{%
 \section{Prueba de diagnóstico}\label{prueba-de-diagnuxf3stico}}
 
-Consideremos diagnosticar una infección con una nueva prueba. Estado de infección:
+Consideremos diagnosticar una infección con una nueva prueba.
+
+Estado de infección:
 
 \begin{itemize}
 \tightlist
@@ -1900,38 +1908,40 @@ Prueba:
 
 La \textbf{tabla de contingencia condicional} es lo que obtenemos en un ambiente controlado (laboratorio)
 
-\begin{longtable}[]{@{}
-  >{\centering\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3438}}
-  >{\centering\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3438}}
-  >{\centering\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3125}}@{}}
-\toprule\noalign{}
-\begin{minipage}[b]{\linewidth}\centering
-\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
-Infección: si
-\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
-Infección: No
-\end{minipage} \\
-\midrule\noalign{}
-\endhead
-\bottomrule\noalign{}
-\endlastfoot
-Test: positivo & P(positivo {\textbar{}} si) & P(positivo {\textbar{}} no) \\
-Test: negativo & P(negativo {\textbar{}} si) & P(negativo {\textbar{}} no) \\
-suma & 1 & 1 \\
-\end{longtable}
+Infección: sí
+
+Infección: no
+
+Test: positivo
+
+P(pos {\textbar{}} sí)
+
+P(pos {\textbar{}} no)
+
+Test: negativo
+
+P(neg {\textbar{}} sí)
+
+P(neg {\textbar{}} no)
+
+suma
+
+1
+
+1
 
 Miremos las entradas de la tabla
-1) Tasa de verdaderos positivos (Sensibilidad): La probabilidad de dar positivo \textbf{si} tiene la enfermedad \(P(positivo|si)\)
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi})}
-\setcounter{enumi}{1}
 \item
-  Tasa de verdaderos negativos (Especificidad): La probabilidad de dar negativo \textbf{si} no tiene la enfermedad \(P(negativo|no)\)
+  Tasa de verdaderos positivos (Sensibilidad): La probabilidad de dar positivo \textbf{si} tiene la enfermedad \(P(pos|sí)\)
 \item
-  Tasa de falsos positivos: la probabilidad de dar positivo \textbf{si} no tiene la enfermedad \(P(positivo|no)\)
+  Tasa de verdaderos negativos (Especificidad): La probabilidad de dar negativo \textbf{si} no tiene la enfermedad \(P(neg|no)\)
 \item
-  Tasa de falsos negativos: la probabilidad de dar negativo \textbf{si} tiene la enfermedad \(P(negativo|si)\)
+  Tasa de falsos positivos: la probabilidad de dar positivo \textbf{si} no tiene la enfermedad \(P(pos|no)\)
+\item
+  Tasa de falsos negativos: la probabilidad de dar negativo \textbf{si} tiene la enfermedad \(P(neg|si)\)
 \end{enumerate}
 
 Alta correlación (dependencia estadística) entre la prueba y la infección significa valores altos de las probabilidades 1 y 2 \textbf{y} valores bajos para las probabilidades 3 y 4.
@@ -1950,40 +1960,42 @@ Ahora consideremos una situación real. En los días iniciales de la pandemia de
 
 La tabla de contingencia condicional es
 
-\begin{longtable}[]{@{}
-  >{\centering\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3438}}
-  >{\centering\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3438}}
-  >{\centering\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3125}}@{}}
-\toprule\noalign{}
-\begin{minipage}[b]{\linewidth}\centering
-\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
-Infección: si
-\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
-Infección: No
-\end{minipage} \\
-\midrule\noalign{}
-\endhead
-\bottomrule\noalign{}
-\endlastfoot
-Test: positivo & P(positivo{\textbar{}}si)=0.7 & P(positivo{\textbar{}}no)=0.06 \\
-Test: negativo & P(negativo{\textbar{}}si)=0.3 & P(negativo{\textbar{}}no)=0.94 \\
-suma & 1 & 1 \\
-\end{longtable}
+Infección: sí
+
+Infección: no
+
+Test: positivo
+
+P(pos {\textbar{}} sí)=0.7
+
+P(pos {\textbar{}} no)=0.06
+
+Test: negativo
+
+P(neg {\textbar{}} sí)=0.3
+
+P(neg {\textbar{}} no)=0.94
+
+suma
+
+1
+
+1
 
 Por lo tanto, los errores en las pruebas de diagnóstico fueron:
 
 \begin{itemize}
 \tightlist
 \item
-  La tasa de falsos positivos es \(P(positivo|no)=0.06\)
+  La tasa de falsos positivos es \(P(pos|no)=0.06\)
 \item
-  La tasa de falsos negativos es \(P(negativo|si)=0.3\)
+  La tasa de falsos negativos es \(P(neg|si)=0.3\)
 \end{itemize}
 
 \hypertarget{probabilidades-inversas}{%
 \section{Probabilidades inversas}\label{probabilidades-inversas}}
 
-Nos interesa encontrar la probabilidad de estar infectado si la prueba da positivo: \[P(si|positivo)\]
+Nos interesa encontrar la probabilidad de estar infectado si la prueba da positivo: \[P(sí|pos)\]
 
 Para eso:
 
@@ -2002,7 +2014,7 @@ Para eso:
 \toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\centering
 \end{minipage} & \begin{minipage}[b]{\linewidth}\centering
-Infección: si
+Infección: sí
 \end{minipage} & \begin{minipage}[b]{\linewidth}\centering
 Infección: No
 \end{minipage} & \begin{minipage}[b]{\linewidth}\centering
@@ -2012,9 +2024,9 @@ suma
 \endhead
 \bottomrule\noalign{}
 \endlastfoot
-Test: positivo & P(positivo {\textbar{}} si)P(si) & P(positivo {\textbar{}} no)P(no) & P(positivo) \\
-Test: negativo & P(negativo {\textbar{}} si)P(si) & P(negativo {\textbar{}} no) P(no) & P(negativo) \\
-suma & P(si) & P(no) & 1 \\
+Test: positivo & P(pos {\textbar{}} sí)P(sí) & P(pos {\textbar{}} no)P(no) & P(pos) \\
+Test: negativo & P(neg {\textbar{}} sí)P(sí) & P(neg {\textbar{}} no) P(no) & P(neg) \\
+suma & P(sí) & P(no) & 1 \\
 \end{longtable}
 
 \begin{enumerate}
@@ -2025,54 +2037,56 @@ suma & P(si) & P(no) & 1 \\
   Usamos la definición de probabilidades condicionales para filas en lugar de columnas (dividimos por la marginal de los resultados de la prueba)
 \end{enumerate}
 
-\begin{longtable}[]{@{}
-  >{\centering\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2619}}
-  >{\centering\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2619}}
-  >{\centering\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2381}}
-  >{\centering\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2381}}@{}}
-\toprule\noalign{}
-\begin{minipage}[b]{\linewidth}\centering
-\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
-Infección: si
-\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
-Infección: No
-\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
-suma
-\end{minipage} \\
-\midrule\noalign{}
-\endhead
-\bottomrule\noalign{}
-\endlastfoot
-Test: positivo & P(si{\textbar{}}positivo) & P(sin{\textbar{}}positivo) & 1 \\
-Test: negativo & P(si{\textbar{}}negativo) & P(sin{\textbar{}}negativo) & 1 \\
-\end{longtable}
+Infección: sí
+
+Infección: no
+
+sum
+
+Test: positivo
+
+P(sí{\textbar{}}pos)
+
+P(no{\textbar{}}pos)
+
+1
+
+Test: negative
+
+P(sí{\textbar{}}neg)
+
+P(no{\textbar{}}neg)
+
+1
+
+Donde ahora las filas suman 1. Para encontrar las entradas de esta tabla debemos dividir la probabilidad conjunta por las marginales de las filas.
 
 Por ejemplo:
 
-\[P(si|positivo)=\frac{P(positivo|si)P(si)}{P(positivo)}\]
+\[P(si|pos)=\frac{P(pos|si)P(si)}{P(pos)}\]
 
-Para aplicar esta fórmula necesitamos las marginales \(P(si)\) (incidencia) y \(P(positivo)\).
+\(P(pos|yes)\) was the result of the study (0.7). Sin embargo, para aplicar esta fórmula necesitamos las marginales \(P(si)\) (incidencia) y \(P(pos)\).
 
 \begin{itemize}
 \item
-  Para encontrar \(P(si)\), necesitamos un nuevo estudio: el primer estudio de prevalencia en España mostró que durante el confinamiento \(P(si)=0.05\), \(P(no)=0.95\), antes del verano de 2020.
+  \(P(si)\) tiene que \textbf{ser dada}. Por ejemplo, necesitamos un nuevo estudio: el primer estudio de prevalencia en España mostró que durante el confinamiento \(P(si)=0.05\), \(P(no)=0.95\), antes del verano de 2020.
 \item
-  Para encontrar \(P(positivo)\), podemos usar la definición de probabilidad marginal y condicional:
+  Para encontrar \(P(pos)\), podemos usar la definición de probabilidad marginal en términos de las condicionales:
 \end{itemize}
 
-\(P(positivo)=P(positivo \cap si) + P(positivo \cap no)\)
-\[= P(positivo|si)P(si)+P(positivo|no)P(no)\]
+\(P(pos)=P(pos \cap sí) + P(pos \cap no)\)
+\[= P(pos|sí)P(sí)+P(pos|no)P(no)\]
 Esta última relación de las marginales se llama \textbf{regla de probabilidad total}.
 
 \hypertarget{teorema-de-bayes}{%
 \section{Teorema de Bayes}\label{teorema-de-bayes}}
 
-Después de sustituir la regla de probabilidad total en \(P(si|positivo)\), tenemos
+Después de sustituir la regla de probabilidad total en \(P(sí|pos)\), tenemos
 
-\[P(si|positivo)=\frac{P(positivo|si)P(si)}{P(positivo|si)P(si)+P(positivo|no)P(no)}\]
+\[P(sí|pos)=\frac{P(pos|sí)P(sí)}{P(pos|sí)P(sí)+P(pos|no)P(no)}\]
 Esta expresión se conoce como \textbf{teorema de Bayes}. Nos permite invertir los condicionales:
 
-\[P(positivo|si) \rightarrow P(si|positivo)\]
+\[P(pos|si) \rightarrow P(si|pos)\]
 O \textbf{evaluar} una prueba en una condición controlada (infección) y luego usarla para \textbf{inferir} la probabilidad de la condición cuando la prueba es positiva.
 
 \textbf{Ejemplo (COVID)}:
@@ -2081,9 +2095,9 @@ El rendimiento de la prueba fue:
 
 \begin{itemize}
 \item
-  Sensibilidad: \(P(positivo|si)=0.70\)
+  Sensibilidad: \(P(pos|si)=0.70\)
 \item
-  Tasa de falsos positivos: \(P(positivo|no)=1- P(negativo|no)=0.06\)
+  Tasa de falsos positivos: \(P(pos|no)=1- P(neg|no)=0.06\)
 \end{itemize}
 
 El estudio en población española dio:
@@ -2091,37 +2105,37 @@ El estudio en población española dio:
 \begin{itemize}
 \tightlist
 \item
-  \(P(si)=0.05\)
+  \(P(sí)=0.05\)
 \item
-  \(P(no)=1-P(si)=0.95\).
+  \(P(no)=1-P(sí)=0.95\).
 \end{itemize}
 
 Por lo tanto, la probabilidad de estar infectado en caso de dar positivo era:
 
-\[P(si|positivo)=0.38\]
+\[P(si|pos)=0.38\]
 
 Concluimos que en ese momento las PCR no eran muy buenas para \textbf{confirmar} infecciones.
 
 Sin embargo, apliquemos ahora el teorema de Bayes a la probabilidad de no estar infectado si la prueba fue negativa.
 
-\[P(no|negativo) = \frac{P(negativo|no) P(no)}{P(negativo|no) P(no)+P(negativo|si)P(si)}\]
+\[P(no|neg) = \frac{P(neg|no) P(no)}{P(neg|no) P(no)+P(neg|sí)P(sí)}\]
 
 La sustitución de todos los valores da
 
-\[P(no|negativo)=0.98\]
+\[P(no|neg)=0.98\]
 
-Por lo tanto, las pruebas eran buenas para \textbf{descartar} infecciones y un requisito justo para viajar.
+Por lo tanto, las pruebas eran buenas para \textbf{descartar} infecciones y un justo requisito para viajar.
 
 \textbf{Teorema de Bayes}
 
-En general, podemos tener más de dos eventos condicionantes. Por lo tanto, el teorema de Baye dice:
+En general, podemos tener más de dos eventos condicionantes. Pensemos por ejemplo en diferentes grados de enfermedad (leve, moderado, crítico). Por lo tanto, el teorema de Baye dice:
 
-Si \(E1, E2, ..., Ek\) son \(k\) eventos mutuamente excluyentes y exhaustivos y \(B\) es cualquier evento, entonces la probabilidad inversa \(P(Ei|B)\) es
+Si \(E_1, E_2, ..., E_k\) son \(k\) eventos mutuamente excluyentes y exhaustivos (grados de enfermedad) y \(B\) es cualquier evento (hospitalización), entonces la probabilidad inversa \(P(E_i|B)\) (la probabilidad de encontar pacientes con severidad \(i\) en en hospital) es
 
-\[P(Ei|B)=\frac{P(B|Ei)P(Ei)}{P(B|E1)P(E1) +...+ P(B|Ek)P(Ek)} \]
-El denominador es la regla de probabilidad total para la marginal \(P(B)\), en términos de las marginales \(P(E1), P(E2), ... P(Ek)\).
+\[P(E_i| B)= \frac{P(B|E_i)P(E_i)}{P(B|E_0)P(E_0) +...+ P(B|E_k)P(E_k)}\]
+El denominador es la regla de probabilidad total para la marginal \(P(B)\) (probabiliadd de hospitalización), en términos de las marginales \(P(E_1), P(E_2), ... P(E_k)\) (probabilidad de cada severidad).
 
-\[P(B)=P(B|E1)P(E1) +...+ P(B|Ek)P(Ek)\]
+\[P(B)=P(B|E_0)P(E_0) +...+ P(B|E_k)P(E_k)\]
 
 \textbf{Árbol condicional}
 
@@ -2129,7 +2143,7 @@ La regla de probabilidad total también se puede ilustrar usando un árbol \text
 
 \includegraphics{./figures/treetot.PNG}
 
-\textbf{Regla de probabilidad total} para la marginal de \(B\): ¿De cuántas maneras puedo obtener el resultado \(B\)?
+\textbf{Regla de probabilidad total} para la marginal de \(B\) se puede resumir resolviendo esta pregunta ¿De cuántas maneras puedo obtener el resultado \(B\), si conozco \(A\) y sus probabilidades condicionales?
 
 \(P(B)=P(B|A)P(A)+P(B|A')P(A')\)
 
@@ -2162,7 +2176,7 @@ Recopilamos la edad y categoría de 100 deportistas en una competición
 
 \textbf{\(\qquad\)a:} \(\frac{8/9}{8/9+3/9}*1/9\); \textbf{\(\qquad\)b:} \(\frac{3/9}{8/9+3/9}*1/9\); \textbf{\(\qquad\)c:} \(\frac{3/9*8/9}{8/9*1/9+3/9*8/9}\); \textbf{\(\qquad\)d:} \(\frac{8/9*1/9}{8/9*1/9+3/9*8/9}\);
 
-\textbf{4)} Como se comenta en las notas, una prueba PCR para coronavirus tenía una sensibilidad del 70 \% y una especificidad del 94 \% y en España durante el confinamiento hubo una incidencia del 5 \%. Con estos datos, ¿cuál era la probabilidad de dar positivo en España (\(P(positivo)\))
+\textbf{4)} Como se comenta en las notas, una prueba PCR para coronavirus tenía una sensibilidad del 70 \% y una especificidad del 94 \% y en España durante el confinamiento hubo una incidencia del 5 \%. Con estos datos, ¿cuál era la probabilidad de dar positivo en España (\(P(pos)\))
 
 \textbf{\(\qquad\)a:} \(0.035\); \textbf{\(\qquad\)b:} \(0.092\); \textbf{\(\qquad\)c:} \(0.908\); \textbf{\(\qquad\)d:} \(0.95\)
 
@@ -2308,7 +2322,7 @@ consejos:
 \begin{itemize}
 \item
   Si la probabilidad de que un semáforo esté en rojo depende únicamente del anterior, entonces
-  \(P(R_3|R_2,R_1)=P(R_3|R_2,\bar{R}_1)=P(R_3|R_2)\) y \(P(R_3|\bar{R}_2,R_1)=P(R_3 |\bar{R}_2,\bar{R}_1)=P(R_3|\bar{R}_2)\)
+  \(P(R_3|R_2,R_1)=P(R_3|R_2,R'_1)=P(R_3|R_2)\) y \(P(R_3|R'_2,R_1)=P(R_3 |R'_2,R'_1)=P(R_3|R'_2)\)
 \item
   La probabilidad conjunta de encontrar tres semáforos en rojo se puede escribir como:
   \(P(R_1,R_2,R_3)=P(R_3|R_2)P(R_2|R_1)P(R_1)\)
@@ -2322,12 +2336,12 @@ Una prueba de calidad en un ladrillo aleatorio se define por los eventos:
 \begin{itemize}
 \tightlist
 \item
-  Pasar la prueba de calidad: \(E\), no pasar la prueba de calidad: \(\bar{E}\)
+  Pasar la prueba de calidad: \(E\), no pasar la prueba de calidad: \(E'\)
 \item
-  Defectuoso: \(D\), no defectuoso: \(\bar{D}\)
+  Defectuoso: \(D\), no defectuoso: \(D'\)
 \end{itemize}
 
-Si la prueba diagnóstica tiene sensibilidad \(P(E|\bar{D})=0.99\) y especificidad \(P(\bar{E}|D)=0.98\), y la probabilidad de pasar la prueba es \(P(E) =0.893\) entonces
+Si la prueba diagnóstica tiene sensibilidad \(P(E|D')=0.99\) y especificidad \(P(E'|D)=0.98\), y la probabilidad de pasar la prueba es \(P(E) =0.893\) entonces
 
 \begin{itemize}
 \item
@@ -2337,7 +2351,7 @@ Si la prueba diagnóstica tiene sensibilidad \(P(E|\bar{D})=0.99\) y especificid
 \item
   La probabilidad de que un ladrillo no sea defectuoso \textbf{y} que no pase la prueba (R:0.009)
 \item
-  ¿Son \(D\) y \(\bar{E}\) estadísticamente independientes? (No)
+  ¿Son \(D\) y \(E'\) estadísticamente independientes? (No)
 \end{itemize}
 
 \hypertarget{variables-aleatorias-discretas}{%
@@ -3647,7 +3661,7 @@ Cuando tenemos un experimento aleatorio con \(M\) resultados posibles, necesitam
 
 Sin embargo, \textbf{en muchos casos}, podemos formular funciones de probabilidad \(f(x)\) que dependen únicamente de \textbf{muy pocos} números. Al igual que en el ejemplo 2 anterior, solo necesitábamos saber cuántos resultados posibles puede dar un dado.
 
-\textbf{Ejemplo (probabilidad clásica):}
+\textbf{Ejemplo (probabilidad clásica)}
 
 Un experimento aleatorio con \(M\) resultados igualmente probables tiene una función de masa de probabilidad:
 \[f(x)=P(X=x)=1/M\]
@@ -3688,7 +3702,7 @@ Veamos algunas funciones de masa de probabilidad en la familia de modelos param�
 \hypertarget{distribuciuxf3n-uniforme-dos-paruxe1metros}{%
 \section{Distribución uniforme (dos parámetros)}\label{distribuciuxf3n-uniforme-dos-paruxe1metros}}
 
-Consideremos ahora un nuevo modelo de probabilidad \textbf{uniforme} con \textbf{dos parámetros}: los resultados mínimo y máximo.
+Consideremos ahora un nuevo modelo de probabilidad \textbf{uniforme} con \textbf{dos parámetros}: el mínimo y máximo de los resultados.
 
 Si la variable aleatoria toma valores en \(\{a, a+1, ...b\}\), donde \(a\) y \(b\) son números enteros y todos los resultados son igualmente probables, entonces
 
@@ -3733,7 +3747,7 @@ Veamos algunas funciones de masa de probabilidad en la familia de modelos param�
 
 \includegraphics{_main_files/figure-latex/unnamed-chunk-53-1.pdf}
 
-\textbf{Ejemplo (clases escolares):}
+\textbf{Ejemplo (clases escolares)}
 
 ¿Cuál es la probabilidad de observar a un niño de una edad particular en una escuela primaria (si todas las clases tienen la misma cantidad de niños)?
 
@@ -3741,7 +3755,7 @@ Del diseño del experimento sabemos: \(a=6\) y \(b=11\) entonces
 
 \[X \rightarrow Unif(a=6, b=11)\] eso es
 
-\[f(x)=\frac{1}{6}\] para \(x\in \{6,7,8,9,10,11\}\), y \(0\) en caso contrario.
+\[f(x)=\frac{1}{6}\] para \(x\in \{6,7,8,9,10,11\}\), y \(0\) en caso contrario. Por lo tanto la probabilidad de que un niño tenga edad de \(9\) años es \(1/6\), igual que cualquier otra edad.
 
 La media y la varianza de esta función de masa de probabilidad es:
 
@@ -3779,19 +3793,19 @@ En nuestro ejemplo, \(a\) representa la edad mínima en la escuela y \(b\) la ed
 \hypertarget{ensayo-de-bernoulli}{%
 \section{Ensayo de Bernoulli}\label{ensayo-de-bernoulli}}
 
-Ahora considermos un modelo con solo dos resultados posibles (\(A\) y \(B\)) que tienen probabilidades \textbf{desiguales}
+Ahora considermos un modelo con solo dos resultados posibles (\(A\) y \(A'\)) que tienen probabilidades \textbf{desiguales}
 
 \textbf{Ejemplos:}
 
 \begin{itemize}
 \item
-  Anotar el sexo de un paciente que acude a urgencias de un hospital (\(A:masculino\) y \(B:femenino\)).
+  Anotar el sexo de un paciente que acude a urgencias de un hospital (\(A:masculino\) y \(A':femenino\)).
 \item
-  Registrar si una máquina fabricada es defectuosa o no (\(A:defectuosa\) y \(B:no\,\,defectuosa\)).
+  Registrar si una máquina fabricada es defectuosa o no (\(A:defectuosa\) y \(A':no\,\,defectuosa\)).
 \item
-  Dar en el blanco (\(A:éxito\) y \(B:fracaso\)).
+  Dar en el blanco (\(A:éxito\) y \(A':fracaso\)).
 \item
-  Transmitir un píxel correctamente (\(A:sí\) y \(B:no\)).
+  Transmitir un píxel correctamente (\(A:sí\) y \(A':no\)).
 \end{itemize}
 
 En estos ejemplos, la probabilidad del resultado \(A\) suele ser \textbf{desconocida}.
@@ -3815,17 +3829,17 @@ Introduciremos la probabilidad de un resultado (\(A\)) como el \textbf{parámetr
 \bottomrule\noalign{}
 \endlastfoot
 \(A\) & \(p\) \\
-\(B\) & \(1-p\) \\
+\(A'\) & \(1-p\) \\
 \end{longtable}
 
 \begin{itemize}
 \tightlist
 \item
-  \(i \in \{A,B\}\)
+  \(i \in \{A,A'\}\)
 \item
   resultado \(A\) (éxito): tiene probabilidad \(p\) (parámetro)
 \item
-  resultado \(B\) (fracaso): tiene una probabilidad \(1-p\)
+  resultado \(A'\) (fracaso): tiene una probabilidad \(1-p\)
 \end{itemize}
 
 \begin{enumerate}
@@ -3833,14 +3847,14 @@ Introduciremos la probabilidad de un resultado (\(A\)) como el \textbf{parámetr
 \setcounter{enumi}{1}
 \tightlist
 \item
-  Como función de masa de probabilidad de la variable aleatoria \(K\) tomando valores \(\{0, 1\}\) para \(B\) y \(A\), respectivamente.
+  Como función de masa de probabilidad de la variable aleatoria \(K\) tomando valores \(\{0, 1\}\) para \(A'\) y \(A\), respectivamente.
 \end{enumerate}
 
 \[
     f(k)= 
 \begin{cases}
-    1-p,&  k=0\, (event\, B)\\
-    p,& k=1\, (event\, A) 
+    1-p,&  k=0\, (evento\, A')\\
+    p,& k=1\, (evento\, A) 
 \end{cases}
 \]
 
@@ -3904,15 +3918,15 @@ Si estamos interesados en predecir \textbf{frecuencias absolutas} cuando conocem
 
 Cuando repetimos \(n\) veces una ensayo de Bernoulli, observamos un valor para \(n_A\). Si realizamos otros \(n\) ensayos de Bernoulli, entonces \(n_A\) cambia de valor. \(X=N_A\) es por lo tanto una variable aleatoria y \(X=n_A\) es su observación.
 
-\textbf{Ejemplos (Algunos experimentos binomiales):}
+\textbf{Ejemplos (Algunos experimentos binomiales)}
 
 \begin{itemize}
 \item
   Anotamos el sexo de \(n=10\) pacientes que acuden a urgencias de un hospital. ¿Cuál es la probabilidad de que \(9\) (\(X=9\)) pacientes sean hombres cuando \(p=0.8\)?
 \item
-  Intentamos \(n=5\) veces de dar en un blanco (\(A:éxito\) y \(B:fracaso\)). ¿Cuál es la probabilidad de que alcancemos el objetivo \(5\) (\(X=5\)) veces cuando normalmente lo hacemos el \(25\%\) de las veces (\(p=0.25\))?
+  Intentamos \(n=5\) veces de dar en un blanco (\(A:éxito\) y \(A':fracaso\)). ¿Cuál es la probabilidad de que alcancemos el objetivo \(5\) (\(X=5\)) veces cuando normalmente lo hacemos el \(25\%\) de las veces (\(p=0.25\))?
 \item
-  Transmitimos \(n=100\) píxeles correctamente (\(A:sí\) y \(B:no\)). ¿Cuál es la probabilidad de que \(2\) (\(X=2\)) píxeles sean errores, cuando la probabilidad de error es \(p=0.1\)?
+  Transmitimos \(n=100\) píxeles correctamente (\(A:sí\) y \(A':no\)). ¿Cuál es la probabilidad de que \(2\) (\(X=2\)) píxeles sean errores, cuando la probabilidad de error es \(p=0.1\)?
 \end{itemize}
 
 \hypertarget{funciuxf3n-de-probabilidad-binomial}{%
@@ -3931,7 +3945,7 @@ Consideremos que
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi})}
 \item
-  Una variable aleatoria del \textbf{experimento de transmisión} es el vector \[(K_1, K_2, K_3, K_4)\] donde una observación puede ser \((K_1=0, K_2=1, K_3=0, K_4= 1)\) o \((0, 1, 0, 1)\).
+  Una variable aleatoria del \textbf{experimento de transmisión} es el vector \[T=(K_1, K_2, K_3, K_4)\] donde \textbf{una} observación de \(T\) puede ser \((K_1=0, K_2=1, K_3=0, K_4= 1)\) o \(t=(0, 1, 0, 1)\).
 \item
   Cada \[K_i \rightarrow Bernoulli(p)\] \(k_i \in \{0, 1\}\)
 \item
@@ -3949,7 +3963,7 @@ Ahora veamos las probabilidades del número de \textbf{errores} y luego las gene
 
 La probabilidad de observar \(4\) errores es la probabilidad de observar un error en \(1^{er}\) \textbf{y} \(2^{o}\) \textbf{y} \(3^{o}\) \textbf{y} \(4 ^{o}\) píxel:
 
-\[P(X=4)=P(1,1,1,1)=p*p*p*p=p^4\]
+\[P(X=4)=P(1,1,1,1)=p\times p\times p\times p=p^4\]
 
 porque \(K_i\) son \textbf{independientes}.
 
@@ -3989,15 +4003,15 @@ porque todos estos eventos son \textbf{mutuamente excluyentes}.
 \[
     f(x)= 
 \begin{cases}
-    1*p^0(1-p)^4,&  x=0 \\
-    4*p^1(1-p)^3,&  x=1 \\
-    6*p^2(1-p)^2,&  x=2 \\
-    4*p^3(1-p)^1,&  x=3 \\
-    1*p^4(1-p)^0,&  x=4 \\
+    1\times p^0(1-p)^4,&  x=0 \\
+    4\times p^1(1-p)^3,&  x=1 \\
+    6\times p^2(1-p)^2,&  x=2 \\
+    4\times p^3(1-p)^1,&  x=3 \\
+    1\times p^4(1-p)^0,&  x=4 \\
 \end{cases}
 \]
 
-o más en breve
+o más brevemente
 
 \[f(x)=\binom 4 xp^x(1-p)^{4-x}\]
 para \(x=0,1,2,3,4\)
@@ -4055,7 +4069,7 @@ y
 
 \(V(X)=V(\sum_{i=1}^n K_i)=n(1-p)p\)
 
-\textbf{Ejemplo (transmisión de píxeles):}
+\textbf{Ejemplo (transmisión de píxeles)}
 
 \begin{itemize}
 \item
@@ -4111,15 +4125,15 @@ Ahora imaginemos que estamos interesados en contar los píxeles bien transmitido
 
 Nuestro experimento aleatorio ahora es: Repetir las pruebas de Bernoulli hasta que observemos que el resultado \(A\) aparece \(r\) veces.
 
-El resultado del experimento es el número de eventos \(B\) es decir \(n_B=y\).
+El resultado del experimento es el número de eventos \(A'\) es decir \(n_{A'}=y\).
 
-Estamos interesados en encontrar la probabilidad de observar un número particular de eventos \(B\), \(P(Y=y)\), donde \(Y=N_B\) es la variable aleatoria.
+Estamos interesados en encontrar la probabilidad de observar un número particular de eventos \(A'\), \(P(Y=y)\), donde \(Y=N_{A'}\) es la variable aleatoria.
 
 \textbf{Ejemplo (transmisión de píxeles):}
 
-¿Cuál es la probabilidad de observar \(y\) píxeles bien transmitidos (\(B\)) antes de \(r\) errores (\(A\))?
+¿Cuál es la probabilidad de observar \(y\) píxeles bien transmitidos (\(A'\)) antes de \(r\) errores (\(A\))?
 
-Primero encontremos la probabilidad de \textbf{un} evento de transmisión \textbf{en particular} con \(y\) número de píxeles correctos (\(B\)) y \(r\) número de errores (\(A\)).
+Primero encontremos la probabilidad de \textbf{un} evento de transmisión \textbf{en particular} con \(y\) número de píxeles correctos (\(A'\)) y \(r\) número de errores (\(A\)).
 
 \[(0,0,1,., 0,1,...0,1)\]
 
@@ -4187,27 +4201,36 @@ Ya que estamos repitiendo un ensayo de Bernoulli hasta \(r=3\) se observan event
 
 \[Y \rightarrow NB(r=3, p=0.0005)\]
 
-Por lo tanto, el número esperado de solicitudes antes de que el sistema falle es:
+Por lo tanto, el número esperado de solicitudes exitosas antes de que el sistema falle es:
 
 \(E(Y)=r\frac{1-p}{p}=3\frac{1-0.0005}{0.0005}=5997\)
 
-Ten en cuenta que en realidad hay pruebas de \(6000\).
+Si \(Z\) es el \textbf{número total} de solicitudes entonces \(Z=Y+r\). Y el valor esperado del totalde solicitudes es \(E(Z)=E(Y)+r=5997+3=6000\)
 
 \begin{itemize}
 \tightlist
 \item
-  ¿Cuál es la probabilidad de observar \(5\) solicitudes exitosas antes de que el sistema falle?
+  ¿Cuál es la probabilidad de observar \(5\) \textbf{solicitudes exitosas} antes de que el sistema falle?
 \end{itemize}
 
 \(f(5)=\binom {7} 5 0.0005^3 0.9995^5=2.618444 \times 10^{-9}\)
+
+En R esto se calcula con dnbinom(5,3,0.0005)
+
+\begin{itemize}
+\tightlist
+\item
+  Sin embargo si queremos la probabilidad de observar un \textbf{total} de \(5\) antes de que el sistema falle entonces:
+\end{itemize}
+
+\[P(Z=5)=P(Y+3=5)=P(Y=2)=f(2)=7.49 \times10^{-10}\]
+En R dnbinom(2,3,0.0005)
 
 \begin{itemize}
 \tightlist
 \item
   ¿Cuál es la probabilidad de tratar con un máximo de \(5\) solicitudes exitosas antes de que el sistema falle?
 \end{itemize}
-
-En R esto se calcula con dnbinom(5,3,0.0005)
 
 Por lo tanto, queremos calcular la distribución de probabilidad en \(5\):
 
@@ -4252,7 +4275,7 @@ en R dnbinom(2, 4, 0.55)
 
 Llamamos \textbf{distribución geométrica} a la distribución \textbf{binomial negativa} con \(r=1\)
 
-La probabilidad de observar \(B\) eventos antes de observar el \textbf{primer} evento de tipo \(A\) es
+La probabilidad de observar \(A'\) eventos antes de observar el \textbf{primer} evento de tipo \(A\) es
 
 \[P(Y=y)=f(y)= p(1-p)^y\]
 
@@ -4272,7 +4295,7 @@ que tiene
 
 El \textbf{modelo hipergeométrico} surge cuando queremos contar el número de eventos de tipo \(A\) que se extraen de una población finita.
 
-El modelo general es considerar \(N\) bolas totales en una urna. Marquemos \(K\) con la etiqueta \(A\) y \(NK\) con la etiqueta \(B\). Saquemos \(n\) bolas una por una sin reemplazo en la urna y luego contemos cuántos \(A\) obtuvimos.
+El modelo general es considerar \(N\) bolas totales en una urna. Marquemos \(K\) con la etiqueta \(A\) y \(K\) con la etiqueta \(A'\). Saquemos \(n\) bolas una por una sin reemplazo en la urna y luego contemos cuántos \(A\) obtuvimos.
 
 El modelo \textbf{Binomial} se puede derivar del modelo \textbf{Hipergeométrico} cuando consideramos que \(N\) es infinito, o que cada vez que sacamos una bola la volvemos a colocar en la urna.
 
@@ -4284,9 +4307,9 @@ Una escuela de \(N=600\) niños tiene una epidemia de varicela. Testamos a \(n=2
 
 La probabilidad de obtener \(x\) casos (tipo \(A\)) en una muestra de \(n\) extraída de una población de \(N\) donde \(K\) son casos (tipo \(A\)).
 
-\(P(X=x)=P(una\,muestra) \times (Número\, de\, formas\, de\, obteniendo\, x)\)
+\(P(X=x)=P(una\,muestra) \times (Número\, de\, formas\, de\, obtener\, x)\)
 
-\[=\frac{1}{\binom N n}\binom K x \binom {NK} {nx}\]
+\[=\frac{1}{\binom N n}\binom K x \binom {N-K} {n-x}\]
 
 donde \(k \in \{\max(0, n+KN), ... \min(K, n) \}\)
 
@@ -4452,7 +4475,7 @@ El último modelo es para procesos de Poisson que describen la repetición de un
 \hypertarget{experimento-de-poissson}{%
 \section{Experimento de Poissson}\label{experimento-de-poissson}}
 
-Imagina que estamos observando eventos que \textbf{dependen} de \textbf{intervalos} de tiempo o distancia.
+Imaginemos que estamos observando eventos que \textbf{ocurren} aleatoriamente en un \textbf{intervalo} de tiempo o distancia.
 
 Por ejemplo:
 
@@ -4470,9 +4493,9 @@ Supongamos que los eventos son resultados de ensayos de Bernoulli \textbf{indepe
 
 ¿Cuál es la probabilidad de observar \(X\) eventos en una unidad de intervalo (tiempo o distancia)?
 
-\textbf{Ejemplo (Impurezas en un alambre):}
+\textbf{Ejemplo (Impurezas en un alambre)}
 
-Imaginemos que algunas impurezas se depositan al azar a lo largo de un cable de cobre. Quieremos contar el número de impurezas en un centímetro de alambre (\(X\)).
+Imaginemos que algunas impurezas se depositan al azar a lo largo de un cable de cobre. Queremos contar el número de impurezas en un centímetro de alambre (\(X\)).
 
 Considera que sabemos que en promedio hay \(10\) impurezas por centímetro \(\lambda=10/cm\).
 
@@ -4488,9 +4511,9 @@ Los micrómetros son lo suficientemente pequeños como para
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi})}
 \item
-  que hay ao no haya una impureza en cada micrómetro
+  que no haya una impureza en cada micrómetro
 \item
-  cada micrómetro se pueda considerar como un \textbf{ensayo de Bernoulli}
+  que cada micrómetro se pueda considerar como un \textbf{ensayo de Bernoulli}
 \end{enumerate}
 
 \includegraphics{./figures/Pois.JPG}
@@ -4503,13 +4526,13 @@ La probabilidad de observar \(X\) impurezas en \(n=10,000\mu\) (1cm) sigue aprox
 
 donde \(p\) es la probabilidad de encontrar una impureza en un micrómetro.
 
-Dado que el valor esperado de una variable Binomial es \(E(X)=np\). Este es el número promedio de impurezas por 1 cm o \(\lambda=np\). Por lo tanto, sustituimos \(p=\lambda/n\)
+Dado que el valor esperado de una variable Binomial es \(E(X)=np\). Este es el número promedio de impurezas por 1cm o \(\lambda=np\). Por lo tanto, sustituimos \(p=\lambda/n\)
 
 \[f(x) \sim \binom nx \big(\frac{\lambda}{n}\big)^x(1-\frac{\lambda}{n})^{nx}\]
 
-Dado que \textbf{podría} haber todavía dos impurezas en un micrómetro, necesitamos aumentar la partición del alambre y \(n \rightarrow \infty\).
+Como \textbf{podría} haber todavía dos impurezas en un micrómetro, necesitamos aumentar la partición del alambre y \(n \rightarrow \infty\).
 
-Luego en el límite:
+Por lo tanto en el límite:
 
 \[f(x)= \frac{e^{-\lambda}\lambda^x}{x!}\]
 
@@ -4527,7 +4550,7 @@ en el límite (\(n \rightarrow \infty\))
 \item
   \(\frac{1}{n^x}\binom n x =\frac{1}{n^x}\frac{n!}{x! (n-x)!}=\frac{(n-x)!(n-x+1)...(n-1)n}{n^x x! (n-x)!}=\frac{n(n-1)..(n-x+1)}{n^x x!} \rightarrow \frac{1}{x!}\)
 \item
-  \((1-\frac{\lambda}{n})^{n} \rightarrow e^{-\lambda}\) (definition of exponential)
+  \((1-\frac{\lambda}{n})^{n} \rightarrow e^{-\lambda}\) (definición de la función exponencial)
 \item
   \((1-\frac{\lambda}{n})^{-x} \rightarrow 1\)
 \end{enumerate}
@@ -4546,11 +4569,11 @@ Dado
 \item
   un intervalo en los números reales
 \item
-  hay eventos que ocurren al azar en el intervalo
+  eventos que ocurren al azar en el intervalo
 \item
-  se conoce el número promedio de eventos en el intervalo (\(\lambda\))
+  que se conoce el número promedio de eventos en el intervalo (\(\lambda\))
 \item
-  si se puede encontrar una pequeña partición regular del intervalo tal que en cada partición la podamos considerar como un ensayo de Bernoulli.
+  que se puede encontrar una pequeña partición regular del intervalo tal que en cada partición la podamos considerar como un ensayo de Bernoulli.
 \end{enumerate}
 
 Entonces, la variable aleatoria \(X\) que cuenta eventos a lo largo del intervalo es una variable \textbf{Poisson} con función de masa de probabilidad
@@ -4594,7 +4617,7 @@ in R dpois(4,1)
   ¿Cuál es la probabilidad de recibir 4 correos electrónicos en \textbf{tres horas}, cuando el promedio de correos electrónicos en una hora es de \(1\)?
 \end{enumerate}
 
-La unidad sobre la cual hacemos los conteos ha cambiado de 1 hora a 2 horas, por lo tanto tenemos que \textbf{re-escalar} \(\lambda\). Si antes el promedio de correos era \(\lambda=1\) en una hora, el promedio de correos en tres horas es ahora 3: \(\lambda_{3h}=3\lambda_{1h}=3*1=3\)
+La unidad sobre la cual hacemos los conteos ha cambiado de 1 hora a 3 horas, por lo tanto tenemos que \textbf{re-escalar} \(\lambda\). Si antes el promedio de correos era \(\lambda=1\) en una hora, el promedio de correos en tres horas es ahora 3: \(\lambda_{3h}=3\lambda_{1h}=3*1=3\)
 
 Tenemos que la varible es de Poisson: \(X \rightarrow Poiss(\lambda_{3h})\) con \(\lambda_{3h}=3\) y su función de masa de probabilidad es:
 
@@ -4670,7 +4693,7 @@ Volvamos a un \textbf{proceso de Poisson} definido por la probabilidad
 
 para el número de eventos (\(k\)) en un intervalo.
 
-Consideremos ahora que estamos interesados en la duración/tiempo que debemos esperar hasta que ocurra el \textbf{primer} conteo.
+Consideremos ahora que estamos interesados en la duración/tiempo que debemos esperar hasta que ocurra el \textbf{primer} evento.
 
 Podemos preguntarnos por la probabilidad de que el primer evento ocurra después de la duración/tiempo \(X\).
 
@@ -4691,7 +4714,7 @@ Podemos tratar esto como la probabilidad condicional de \(0\) eventos dada una d
 
 \[f(x|0)=C f(0|x)=C e^{-x\lambda}\]
 
-Esta es la \textbf{probabilidad de observar una distancia} \(x\) para \(0\) eventos. Esta es la distancia hasta el primer evento.
+Esta es la \textbf{probabilidad de observar una distancia} \(x\) para \(0\) eventos, o la distancia hasta el primer evento.La constante \(C\) es simplemente función de las marginales que podemos encontrar fácilmente porque la función debe integrar a 1.
 
 \textbf{Definición}
 
@@ -4757,11 +4780,11 @@ Recuerda que esta probabilidad \(F(a)=P(X \leq a)\) es la densidad de probabilid
 
 \[P(X > a)=1- P(X \leq a)= 1- F(a) = e^{-a\lambda}\]
 
-Veamos un par de distribuciones exponenciales de la familia exponencial
+Veamos un par de \textbf{distribuciones} exponenciales de la familia exponencial
 
 \includegraphics{_main_files/figure-latex/unnamed-chunk-63-1.pdf}
 
-La mediana \(x_m\) es tal que \(F(x_m)=0.5\). Eso es \(x_m=\frac{\log(2)}{\lambda}\)
+La mediana \(x_m\) es tal que \(F(x_m)=0.5\). Eso es \(x_m=\frac{\log(2)}{\lambda}\) o el tiempo/distancia media de decaimiento.
 
 \textbf{Ejemplos}
 
@@ -4883,7 +4906,7 @@ Gauss supuso que
 \item
   el error a una distancia \(-\epsilon\) del varlor en la posición de Ceres era igualmente probable que una distancia \(\epsilon\)
 \item
-  la pisición más \textbf{verosimil} (que nos creemos más) de Ceres en un momento dado en el cielo era el \textbf{promedio} de múltiples mediciones de altitud en esa latitud.
+  la pisición más \textbf{verosimil} (que nos creemos más) de Ceres en un momento dado en el cielo era el \textbf{promedio} de múltiples mediciones de la altitud de Ceres desde el horizonte.
 \end{enumerate}
 
 Eso fue suficiente para mostrar que las desviaciones de las observaciones \(y\) \textbf{de la órbita} satisfacian la ecuación
@@ -4932,7 +4955,7 @@ La variable tiene
 
 \[E(X) = \mu\]
 
-que para Gauss representaba la posición real de Ceres.
+que para Gauss representaba la posición real de Ceres desde el horizonte.
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi})}
@@ -4943,7 +4966,7 @@ que para Gauss representaba la posición real de Ceres.
   \[V (X) = \sigma^2\]
 \end{enumerate}
 
-que representaba la dispersión del error en las observaciones, que depende de la calidad del telescopio.
+que representaba la dispersión del error en las observaciones, que dependía de la calidad del telescopio.
 
 \(\mu\) y \(\sigma\) son los \textbf{dos parámetros} que describen completamente la función de densidad normal y su \textbf{interpretación} depende del experimento aleatorio.
 
@@ -4965,7 +4988,7 @@ La distribución de probabilidad de la densidad Normal:
 es la función de \textbf{error} definida por el área bajo la curva de \(-\infty\) a \(a\)
 
 \[F(a)=\int_{-\infty}^{a}\frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{(x-\mu) ^2}{2\sigma^2}} dx\]
-La función se encuentra en la mayoría de los programas de computadora y no tiene una forma cerrada de funciones conocidas.
+La función se encuentra en la mayoría de los programas de software estadístico y no tiene una forma cerrada en términos de funciones conocidas.
 
 \textbf{Ejemplo (altura de mujeres)}
 
@@ -4973,7 +4996,7 @@ La función se encuentra en la mayoría de los programas de computadora y no tie
 \def\labelenumi{\arabic{enumi})}
 \tightlist
 \item
-  ¿Cuál es la probabilidad de que una mujer de la población tenga una altura máxima de \(150 cm\) si las mujeres tienen una altura media de \(165 cm\) con una desviación estándar de \(8 cm\)?
+  ¿Cuál es la probabilidad de que una mujer de la población tenga una altura máxima de \(150cm\) si las mujeres tienen una altura media de \(165cm\) con una desviación estándar de \(8cm\)?
 \end{enumerate}
 
 \(P(X\le 150)=F(150, \mu=165, \sigma=8)=0.03039636\)
@@ -5019,7 +5042,7 @@ en R qnorm(0.25, 165, 8)
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi})}
 \item
-  la media \(\mu\) es también la mediana ya que divide las medidas en dos
+  la media \(\mu\) es también la mediana ya que divide los resultados del experimento aleatorio en dos
 \item
   Los valores de \(x\) que caen más allá de 2\(\sigma\) se consideran \textbf{raros} \(5\%\)
 \item
@@ -5070,13 +5093,13 @@ La densidad normal estándar es la densidad particular de la familia normal
 
 \[f(x; \mu, \sigma^2)=\frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{(x-\mu)^2}{2\sigma^2}}, x \in {\mathbb R}\]
 
-Por lo tanto, es la densidad con
+Con
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi})}
 \tightlist
 \item
-  media
+  media cero
 \end{enumerate}
 
 \[E(X)= \mu = 0\]
@@ -5086,12 +5109,12 @@ Por lo tanto, es la densidad con
 \setcounter{enumi}{1}
 \tightlist
 \item
-  y varianza
+  y varianza uno
 \end{enumerate}
 
 \[V (X)= \sigma^2 =1\]
 
-Cuando una variable aleatoria sigue una densidad de probabilidad normal, decimos que se distribuye normalmente y escribimos
+Cuando una variable aleatoria sigue una densidad de probabilidad estandar decimos que es normal estandar y escribimos
 
 \[X \rightarrow N(0,1)\]
 
@@ -5106,11 +5129,11 @@ es la función \textbf{error} definida por
 
 \[\phi(a)=\int_{-\infty}^{a} \frac{1}{\sqrt{2\pi}}e^{-\frac{z^2}{2}} dz\]
 
-Debido a que la distribución estándar es especial y aparecerá con frecuencia, usamos la letra \(\phi\) para ello.
+Debido a que la distribución estándar es especial y aparecerá con frecuencia, usamos la letra \(\phi\) para referirnos a ella
 
 \includegraphics{./figures/st.png}
 
-Puedes encontrarla en la mayoría de los programas de computadora. En R es pnorm(x) con los parámetros predeterminados, 0 y 1.
+Esta función se puede encontrar en la mayoría de los programas estadísticos de ordenador. En R es pnorm(x) con los parámetros predeterminados, 0 y 1.
 
 Normalmente definimos los límites de las \textbf{observaciones más comunes} para la variable estándar
 
@@ -5164,7 +5187,7 @@ Por lo tanto, para cualquier \(X \rightarrow N(\mu, \sigma^2)\)
 
 \includegraphics{./figures/stand.png}
 
-Puedes demostrar esto reemplazando \(x=\sigma z+\mu\) y \(dx=\sigma dz\) en la expresión de probabilidad que tenemos
+Podemos demostrar esto reemplazando \(x=\sigma z+\mu\) y \(dx=\sigma dz\) en la probabilidad
 
 \(P(x\leq X \leq x +dx)=P(z\leq Z \leq z +dz)\)
 \[=\frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{(x-\mu)^2}{2\sigma^2}}dx\] \[=\frac{1}{ \sqrt{2\pi}}e^{-\frac{z^2}{2}} dz\]
@@ -5210,11 +5233,11 @@ V(X)
 \endlastfoot
 Uniforme & número entero o real & \([a,b]\) & \(\frac{1}{n}\) & \(\frac{b+a}{2}\) & \(\frac{(b-a+1)^2-1}{12}\) \\
 Bernoulli & evento A (1) & 0,1 & \((1-p)^{1-x}p^x\) & \(p\) & \(p(1-p)\) \\
-Binomial & \# de eventos A en \(n\) repeticiones de ensayos de Bernoulli & 0,1,\ldots{} & \(\binom nx (1-p)^{nx}p^x\) & \(np\) & \(np(1-p)\) \\
-Binomial negativo para eventos & \# de eventos B (0) en repeticiones de Bernoulli antes de \(r\) eventos A (1) & 0,1,.. & \(\binom {x+r-1} x (1-p)^xp^r\) & \(\frac{r(1-p)}{p}\) & \(\frac{r(1-p)}{p^2}\) \\
-Hipergeométrico & \# de eventos A en una muestra \(n\) de la población \(N\) con \(K\) numero de As & \(\max(0, n+KN)\), \ldots{} \(\min(K, n)\) & \(\frac{1}{\binom N n}\binom K x \binom {N-K} {n-x}\) & \(n*\frac{N}{K}\) & \(n \frac{N}{K} (1-\frac{N}{K})\frac{Nn}{N-1}\) \\
-Poisson & \# de eventos A en un intervalo & 0,1, .. & \(\frac{e^{-\lambda}\lambda^x}{x!}\) & \(\lambda\) & \(\lambda\) \\
-Exponencial & Intervalo entre dos eventos A & \([0,\infty)\) & \(\lambda e^{-\lambda x}\) & \(\frac{1}{\lambda}\) & \(\frac{1}{\lambda^2}\) \\
+Binomial & \# de eventos \(A\) en \(n\) repeticiones de ensayos de Bernoulli & 0,1,\ldots{} & \(\binom nx (1-p)^{nx}p^x\) & \(np\) & \(np(1-p)\) \\
+Binomial negativo para eventos & \# de eventos \(A'\) (0) en repeticiones de Bernoulli antes de \(r\) eventos \(A\) (1) & 0,1,.. & \(\binom {x+r-1} x (1-p)^xp^r\) & \(\frac{r(1-p)}{p}\) & \(\frac{r(1-p)}{p^2}\) \\
+Hipergeométrico & \# de eventos \(A\) en una muestra \(n\) de la población \(N\) con \(K\) numero de \(A\)s & \(\max(0, n+KN)\), \ldots{} \(\min(K, n)\) & \(\frac{1}{\binom N n}\binom K x \binom {N-K} {n-x}\) & \(n*\frac{N}{K}\) & \(n \frac{N}{K} (1-\frac{N}{K})\frac{Nn}{N-1}\) \\
+Poisson & \# de eventos \(A\) en un intervalo & 0,1, .. & \(\frac{e^{-\lambda}\lambda^x}{x!}\) & \(\lambda\) & \(\lambda\) \\
+Exponencial & Intervalo entre dos eventos \(A\) & \([0,\infty)\) & \(\lambda e^{-\lambda x}\) & \(\frac{1}{\lambda}\) & \(\frac{1}{\lambda^2}\) \\
 Normal & medida con errores simétricos cuyo valor más probable es la media & \((-\infty, \infty)\) & \(\frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{(x-\mu)^2}{2\sigma^2 }}\) & \(\mu\) & \(\sigma^2\) \\
 \end{longtable}
 
@@ -5330,11 +5353,11 @@ La media muestral y la varianza muestral tienen funciones de densidad de probabi
 
 \textbf{Ejemplo (Cables)}
 
-Imagina que un cliente le pide a tu empresa metalúrgica que le venda cables a \(8\) que pueden transportar hasta \(96\) Toneladas; eso es \(12\) Toneladas cada uno. Debes garantizar que ninguno de ellos romperá con este peso.
+Imaginemos que un cliente le pide a un empresa metalúrgica que le venda cables a \(8\) que pueden transportar hasta \(96\) Toneladas; eso es \(12\) Toneladas cada uno. La empresa debe garantizar que ninguno de ellos romperá con este peso.
 
-Tienes en \textbf{existencia} un conjunto de cables que podrían servir, pero no estás seguro. Por lo que tomas \(8\) cables aleatoriamente, y los cargas hasta que se rompen.
+La empresa tiene en \textbf{existencia} un conjunto de cables que podrían servir, pero el ingeniero de materiales no está seguro. Por lo que toma \(8\) cables aleatoriamente, y los carga hasta romperlos.
 
-Decimos que tomas una \textbf{muestra aleatoria} de tamaño \(8\), lo que significa que repites el experimento aleatorio \(8\) veces. Aquí están los resultados
+Decimos que el ingeniero toma una \textbf{muestra aleatoria} de tamaño \(8\), lo que significa que repite el experimento aleatorio \(8\) veces. Aquí están los resultados
 
 \begin{verbatim}
 ## [1] 13.34642 13.32620 13.01459 13.10811 12.96999 13.55309 13.75557 12.62747
@@ -5363,7 +5386,7 @@ donde \(X_i\) es la \emph{i-ésima} repetición del experimento aleatorio con di
 \end{itemize}
 
 \[(x_1, x_2, ... x_n)\]
-Nuestra \textbf{observación} de la muestra de tamaño \(8\) cables fue
+La \textbf{observación} de la muestra de tamaño \(8\) cables hecha por el ingeniero fue
 
 \begin{verbatim}
 ## [1] 13.34642 13.32620 13.01459 13.10811 12.96999 13.55309 13.75557 12.62747
@@ -5381,9 +5404,11 @@ En la muestra observada de la carga de rotura de los cables se observó que
   Hubo uno que rompió en \(12.62747\) Toneladas.
 \end{enumerate}
 
-¿Te arriesgas y vendes una muestra aleatoria de \(8\) cables de tu stock? ¿Qué sucede si su empresa es responsable de la rotura de un cable y tiene que pagar una multa elevada?
+¿Es razonable que la empresa arriesgue y venda una muestra aleatoria de \(8\) cables de su stock?
 
-Para garantizar al cliente que los cables no se romperán a \(12\) Toneladas, nos gustaría ver que \(P(X \leq 12)\) es razonablemente bajo.
+La empresa es responsable de la rotura de un cable y tiene que pagar los daños y una multa elevada si esto ocurre.
+
+Para garantizarle al cliente que los cables no se romperán a \(12\) Toneladas, nos gustaría ver que \(P(X \leq 12)\) es razonablemente bajo.
 
 \hypertarget{cuxe1lculo-de-probabilidades}{%
 \section{Cálculo de probabilidades}\label{cuxe1lculo-de-probabilidades}}
@@ -5407,7 +5432,7 @@ Para calcular \(P(X \leq 12)\), necesitamos los parámetros \(\mu\) y \(\sigma^2
 \hypertarget{estimaciuxf3n-de-los-paruxe1metros}{%
 \section{Estimación de los parámetros}\label{estimaciuxf3n-de-los-paruxe1metros}}
 
-Para encontrar valores probables para los parámetros usamos datos. Por lo tanto, tomamos una \textbf{muestra aleatoria}. Es decir, repetimos el experimento \(n\) veces, recolectamos datos y los usamos para estimar los parámetros.
+Para encontrar valores plausibes para los parámetros usamos datos. Por lo tanto, tomamos una \textbf{muestra aleatoria}. Es decir, repetimos el experimento \(n\) veces, recolectamos datos y los usamos para estimar los parámetros.
 
 \textbf{Estimación de la media y la varianza}
 
@@ -5419,14 +5444,14 @@ que es el centro de gravedad de las \textbf{probabilidades}, donde \(f(x_i)\) es
 
 \[\bar{x}= \frac{1}{n} \sum_{i}^n x_i = \sum_{i}^m x_if_i\]
 
-que definimos como \textbf{promedio}, y donde \(f_i\) son las frecuencias relativas. Recuerda que \(n\) es el número de observaciones (puede ser tan grande como queramos) y \(m\) es el número de resultados posibles (normalmente fijado por el espacio muestral). Discutimos que cuando \(n \rightarrow \infty\) entonces
+que definimos como \textbf{promedio}, y donde \(f_i\) son las frecuencias relativas. Recordemos que \(n\) es el número de observaciones (puede ser tan grande como queramos) y \(m\) es el número de resultados posibles (normalmente fijado por el espacio muestral). Habíamos dicho entonces que cuando \(n \rightarrow \infty\) entonces
 
 \[\hat{P}(X=x)=f_i\]
-Esto significa que las probabilidades pueden ser \textbf{estimadas} (poniéndose un \textbf{sombrero}) por las frecuencias relativas cuando \(n\) es grande, porque \(lim_{n\rightarrow \infty}f_i=f(x_i)\). Por lo tanto, también deberíamos tener que la \textbf{media} \(\mu\) puede ser estimada por el \textbf{promedio} \(\bar{x}\)
+Esto significa que las probabilidades pueden ser \textbf{estimadas} (poniéndoles un \textbf{sombrero}) por las frecuencias relativas cuando \(n\) es grande, porque \(lim_{n\rightarrow \infty}f_i=f(x_i)\). Por lo tanto, también deberíamos tener que la \textbf{media} \(\mu\) puede ser estimada por el \textbf{promedio} \(\bar{x}\)
 
 \[\hat{\mu}=\bar{x}= \sum_{i}^m x_i\hat{P}(X=x)\]
 
-Asi pues, podemos tomar el centro de la función de probabilidad como el centro de gravedad de los datos. Al hacer esto cometeremos un error que podemos asumir, como explicaremos luego.
+Asi pues, podemos tomar el centro de gravedad de la función de probabilidad como el centro de gravedad de los datos. Al hacer esto cometeremos un error que podemos asumir, como explicaremos luego. Insistamos aquí que \(\bar{\mu}\) es una cantidad obtenida de los datos mientras que \(\mu\) es un parámetro desconocido de la funcioón de probabilidad.
 
 Con la varianza
 
@@ -5444,10 +5469,10 @@ Suponiendo que la carga de rotura de nuestro cable es una variable aleatoria nor
 
 \[X \rightarrow N(x; \mu, \sigma^2)\]
 
-\textbf{usamos} las estimaciones \(\bar{x}_{stock}=13,21\) (mean(x)) y \(s^2=0.3571565^2\) (sd( x)\^{}2) como los valores de \(\mu\) y \(\sigma^2\). De tal forma que el modelo \textbf{ajustado} es
+\textbf{usamos} las estimaciones \(\bar{x}_{stock}=13.21\) (mean(x)) y \(s^2=0.3571565^2\) (sd( x)\^{}2) como los valores de \(\mu\) y \(\sigma^2\). De tal forma que el modelo \textbf{ajustado} es
 
 \[X \rightarrow N(x; \mu=13.21, \sigma^2=0.3571565^2)\]
-En este problema \textbf{no sabíamos} \(\mu\) o \(\sigma\) y, por lo tanto, estamos adivinando su valor y el modelo subyacente
+En este problema \textbf{no sabíamos} \(\mu\) o \(\sigma\) y, por lo tanto, estamos adivinando sus valores y, en consequencia, el modelo subyacente.
 
 \includegraphics{_main_files/figure-latex/unnamed-chunk-71-1.pdf}
 
@@ -5461,19 +5486,19 @@ entonces
 
 En R pnorm(12,13.21, 0.3571565)\(=0.000352188\)
 
-Dada la muestra \textbf{observada}, existe una probabilidad estimada de \(0.03\%\) de que un solo cable se rompa en \(12\) Toneladas. Tenemos un argumento probabilístico para vender los cables.
+Dada la muestra \textbf{observada}, existe una probabilidad estimada de \(0.03\%\) de que un cable se rompa a las \(12\) toneladas. Tenemos un argumento probabilístico para vender los cables. Hay muchas otras actividades avaladas con mayor riesgo que este.
 
-\hypertarget{margen-de-error-de-las-estimaciones}{%
-\section{Margen de error de las estimaciones}\label{margen-de-error-de-las-estimaciones}}
+\hypertarget{ley-de-los-grandes-nuxfameros}{%
+\section{Ley de los grandes números}\label{ley-de-los-grandes-nuxfameros}}
 
 Cuando estimamos los parámetros usando datos, como al tomar el valor de \[\hat{\mu}=\bar{x}\]
 
 por el valor de \(\mu\); y el valor de
 
 \[\hat{\sigma}^2=s^2\]
-por el valor de \(\sigma^2\), sabemos que estamos \textbf{cometiendo un error}. Sabemos que si tomamos otra muestra de tamaño \(8\) cables \textbf{la estimación cambiará}, porque el promedio \(\bar{x}\) cambiará.
+por el valor de \(\sigma^2\), sabemos que estamos \textbf{cometiendo un error}. Sabemos que si tomamos otra muestra diferente de \(8\) cables \textbf{la estimación cambiará}, porque el promedio \(\bar{x}\) cambiará.
 
-¿Podemos tener una idea de cuán grande es el error de nuestra estimación?
+¿Podemos tener una idea de qué tan grande es el error de nuestra estimación?
 
 Lo primero que debemos darnos cuenta es que el valor numérico que obtenemos para \[\bar{x}\] es la observación de una \textbf{variable aleatoria} \[\bar{X}\]
 
@@ -5495,11 +5520,10 @@ El número \(\bar{x}\) se puede usar para \textbf{estimar} el parámetro descono
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi})}
-\tightlist
 \item
-  es \textbf{insesgada}: \[E(\bar{X})=\mu\]
+  El valor esperado de \(\bar{X}\) es precisamente el parámetro \(\mu\): \[E(\bar{X})=\mu\]
 \item
-  es \textbf{consistente}: \[lim_{n \rightarrow \infty} V(\bar{X}) = 0\]
+  La varianza de \(\bar{X}\) se hace pequeña con valores grandes de la muestra: \[lim_{n \rightarrow \infty} V(\bar{X}) = 0\]
 \end{enumerate}
 
 La primera propiedad se tiene porque
@@ -5508,7 +5532,7 @@ La primera propiedad se tiene porque
 La segunda propiedad se tien porque
 \[V(\bar{X})=V\big(\frac{1}{n}\sum_{i=1}^n X_i\big)=\frac{V(\sum_{i=1}^ nX_i)}{n^2}=\frac{V(X)}{n}=\frac{\sigma^2}{n}\]
 
-Que utiliza el hecho de que cada experimento aleatorio en la muestra es independiente y por lo tanto \(V(\sum_{i=1}^n X_i)=nV(X)\).
+aquí usamos el hecho de que cada experimento aleatorio en la muestra es independiente y por lo tanto \(V(\sum_{i=1}^n X_i)=nV(X)\).
 
 \emph{Estimación de \(\mu\)}
 
@@ -5516,16 +5540,18 @@ Como consecuencia de las propiedades 1 y 2, entendemos que el valor \(\bar{x}\) 
 
 \[\bar{x}=\hat{\mu}\]
 
-se vuelve más y más pequeño a medida que la muestra se hace más y más grande porque la varianza de \(\bar{x}\) disminuye cuando \(n\) aumenta.
+se vuelve más y más pequeño a medida que la muestra se hace más y más grande. Esto es porque la varianza de \(\bar{x}\) disminuye cuando \(n\) aumenta.
 
 \hypertarget{inferencia}{%
 \section{Inferencia}\label{inferencia}}
 
 Sabemos que cuando tomamos muestras grandes, nuestro error es pequeño. Sin embargo, para un valor dado de \(n\) queremos tener una \textbf{medida del error}. Por lo tanto, nos preguntamos por la \textbf{probabilidad de cometer un error} de un tamaño dado cuando estimamos \(\mu\) con \(\bar{x}\).
 
-Cuando calculamos probabilidades en un estimador, decimos que estamos haciendo una \textbf{inferencia}. Los problemas de inferencia suelen surgir cuando nos interesa calcular la probabilidad de cometer un error al estimar \(\mu\) con \(\bar{x}\).
+Cuando calculamos probabilidades en un estimador, decimos que estamos haciendo una \textbf{inferencia}. Los problemas de inferencia suelen surgir cuando nos interesa calcular la probabilidad de cometer un error de magnitud \(m\) al estimar \(\mu\) con \(\bar{x}\). En términos matemáticos, nos interesa la probabilidad
 
-Para calcular probabilidades necesitamos
+\[P(-m \leq \bar{X}-\mu \leq m) \]
+Esto es la probabilidad de que la diferencia entre el promedio y la media este a una distacia de \(m\).
+Para calcular estaprobabilidades de \(\bar{X}\) necesitamos
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -5541,9 +5567,9 @@ Estas funciones de probabilidad se denominan \textbf{funciones de probabilidad d
 
 \textbf{Ejemplo (cables)}
 
-Hagamos una pregunta de inferencia. Imagina que nuestros cables están \textbf{certificados} para romperse con una carga promedio de \(\mu = 13\) Toneladas con varianza \(\sigma^2=0.35^2\).
+Hagamos una pregunta de inferencia. Imagina que nuestros cables están \textbf{certificados} para romperse con una carga promedio de \(\mu = 13\) toneladas con varianza \(\sigma^2=0.35^2\). Ahora vamos a pretender que conocemos los parámtros del modelo.
 
-Si tomamos una muestra aleatoria de \(8\) cables, ¿Cuál es la probabilidad de que la media de la muestra \(\bar{X}\) esté dentro de un \textbf{margen de error} de \(0.25\) Toneladas de la media \(\mu\)?
+Si tomamos una muestra aleatoria de \(8\) cables, ¿Cuál es la probabilidad de que la media de la muestra \(\bar{X}\) esté dentro de un \textbf{margen de error} de \(0.25\) toneladas de la media \(\mu\)?
 
 \[P(- 0.25\leq \bar{X}-\mu \leq 0.25)\]
 
@@ -5564,14 +5590,14 @@ y \(\bar{X}\) tiene
 \item
   media
   \[E(\bar{X})=\mu\]
-  decimos que \(\bar{X}\) es insesgado porque su valor esperado es \(\mu\)
+  decimos que \(\bar{X}\) es \textbf{insesgado} porque su valor esperado es \(\mu\)
 \item
   varianza
   \[V(\bar{X})=\frac{\sigma^2}{n}\]
-  Decimos que \(\bar{X}\) es consistente porque tiende a cero cuando \(n\) es grande.
+  Decimos que \(\bar{X}\) es \textbf{consistente} porque tiende a cero cuando \(n\) es grande. La media y la varianza de \(\bar{X}\) es por lo tanto un caso particular la ley de los grandes números, para distribuciones normales.
 \end{enumerate}
 
-Llamamos \(se=\sqrt{V(\bar{X})}\) al \textbf{error estándar} de la media muestral. El error estándar también se escribe como \(\sigma_{\bar{x}}\). Ten en cuenta que este es el error que esperamos cuando usamos \(\bar{x}\) como el valor de \(\mu\), y es el sesgo que necesitábamos corregir para \(S_n^2\).
+Llamamos \[se=\sqrt{V(\bar{X})}=\sigma/\sqrt{n}\] al \textbf{error estándar} de la media muestral. El error estándar también se escribe como \(\sigma_{\bar{x}}\). Remarquemos aquí que este es el error que esperamos cuando usamos \(\bar{x}\) como el valor de \(\mu\), y es el sesgo que necesitábamos corregir cuando estmamos la varianza (Seccion 10.9).
 
 Entonces, si \textbf{sabemos} \(\mu\) y \(\sigma\), podemos calcular las \textbf{probabilidades de} \(\bar{X}\) usando la distribución normal.
 
@@ -5638,14 +5664,14 @@ Asumiendo que \(\mu=13\) entonces nuestro \textbf{error observado} en la estimac
 
 \[\bar{x}_{stock}-\mu=13.21-13=0.21\]
 
-Lo cual está dentro del margen de error de \(95.6\%\) y por lo tanto, debemos considerar que el proceso de fabricación está funcionando como se esperaba.
+El cual está dentro del margen de error de \(95.6\%\) y por lo tanto, debemos considerar que el proceso de fabricación está funcionando como se espera dada la certificación.
 
 \includegraphics{_main_files/figure-latex/unnamed-chunk-76-1.pdf}
 
 \hypertarget{suma-muestral}{%
-\subsection{Suma muestral}\label{suma-muestral}}
+\section{Suma muestral}\label{suma-muestral}}
 
-Si estamos interesados en usar todos los \(8\) cables al mismo tiempo para transportar un total de \(96\) Toneladas, entonces deberíamos considerar \textbf{sumar} sus contribuciones individuales.
+Si estamos interesados en usar todos los \(8\) cables al mismo tiempo para transportar un total de \(96\) toneladas, entonces deberíamos considerar \textbf{sumar} sus contribuciones individuales.
 
 La \textbf{suma muestral} es la \textbf{estadística}
 
@@ -5698,14 +5724,14 @@ En R podemos calcularlo como:
 
 pnorm(106, 104, 0.9899495)-pnorm(102, 104, 0.9899495)=0.956.
 
-Por lo tanto \(95.6\%\) del peso total que pueden llevar \(8\) cables están entre \(102\) y \(106\) Toneladas, o una distancia de \(8*0.25=2\) Toneladas de la media total \(n\mu=104\).
+Por lo tanto, \(95.6\%\) de los pesos totales que pueden cargar \(8\) cables están entre \(102\) y \(106\) toneladas, o a una distancia de \(8*0.25=2\) toneladas de la media total \(n\mu=104\).
 
 \hypertarget{variaza-muestral}{%
 \section{Variaza muestral}\label{variaza-muestral}}
 
 Al estimar la varianza
 
-\[s^2=\hat{\sigma}\]
+\[s^2=\hat{\sigma}^2\]
 
 También cometemos un error. ¿Cómo podemos estimar el error que cometemos?
 
@@ -5730,7 +5756,7 @@ es la dispersión de las medidas al rededor de \(\bar{X}\). En nuestra muestra d
   consistente: \(n \rightarrow \infty\), \(V(\bar{S^2}) \rightarrow 0\)
 \end{enumerate}
 
-y por lo tanto \(S^2\) estima consistentemente \(\sigma^2\)
+y por lo tanto \(S^2\) estima consistentemente \(\sigma^2\).
 
 Podemos tomar un valor de \(s^2\) como estimación para \(\sigma^2\) o
 
@@ -5754,7 +5780,7 @@ Podríamos proponer estimar \(\sigma^2\) dividiendo las diferencias cuadráticas
   pero consistente \(V(S_n^2) \rightarrow 0\) cuando \(n\rightarrow \infty\)
 \end{enumerate}
 
-El término de sesgo \(\frac{\sigma^2}{n}\) surge porque \(S_n^2\) mide la dispersión al rededor de \(\bar{X}\) y no al rededor de \(\mu\). Recuerda que el error que cometemos cuando sustituimos \(\bar{x}\) por \(\mu\) es la varianza de \(\bar{X}\): \(\sigma^2/n\). Corrijamos el sesgo, escribiendo la ecuación 1 anterior como:
+El término de sesgo \(\frac{\sigma^2}{n}\) surge porque \(S_n^2\) mide la dispersión al rededor de \(\bar{X}\) y no al rededor de \(\mu\). Recordemos que el error que cometemos cuando sustituimos \(\bar{x}\) por \(\mu\) es la varianza de \(\bar{X}\): \(\sigma^2/n\). Corrijamos el sesgo, escribiendo la ecuación 1 anterior como:
 
 \[E(\frac{n}{n-1}S_n^2)=\sigma^2\]
 
@@ -5762,13 +5788,15 @@ Podemos definir la \textbf{varianza muestral} (corregida) \[S^2=\frac{n}{n-1}S_n
 
 que es un estimador insesgado de \(\sigma^2\) porque \(E(S^2)=\sigma^2\).
 
-También podemos tener problemas de inferencia cuando estamos interesados en la probabilidad de la \textbf{varianza muestral} \(S^2\).
+\textbf{Ejemplo (control de calidad)}
+
+Nos encotramos un problema de inferencia cuando estamos interesados en calcular probabilidades de la \textbf{varianza muestral} \(S^2\).
 
 Considera un proceso de control de calidad que requiera que los cables se produzcan cerca del valor especificado \(\mu\). No queremos cables que se rompan demasiado lejos de la media.
 
 Si una muestra de tamaño \(8\) cables está muy dispersa (\(S^2>0.3\)), detenemos la producción: el proceso está fuera de control.
 
-¿Cuál es la probabilidad de que la varianza muestral de una muestra de tamaño \(8\) cables sea mayor que los \(0.3\) requeridos?
+¿Cuál es la probabilidad de que la varianza muestral de una muestra de tamaño \(8\) cables sea mayor que \(0.3\)?
 
 \hypertarget{probabilidades-de-la-varianza-muestral}{%
 \section{Probabilidades de la varianza muestral}\label{probabilidades-de-la-varianza-muestral}}
@@ -5806,7 +5834,8 @@ La densidad de probabilidad \(\chi^2\) tiene un parámetro \(df=n-1\), llamado g
 
 \textbf{Ejemplo (variaciones en la rotura del cable)}
 
-Si \textbf{sabemos} que nuestros cables
+Si \textbf{sabemos} que nuestros cables están certificados como
+
 \[X \rightarrow N(\mu=13, \sigma^2=0.35^2)\]
 
 entonces
@@ -5814,7 +5843,7 @@ entonces
 \[W=\frac{(n-1)S^2}{\sigma^2}= \frac{7S^2}{0.35^2} \rightarrow \chi^2(n-1)\]
 
 podemos calcular \[P(S^2 > 0.3)=P(\frac{(n-1)S^2}{\sigma^2} > \frac{(n-1)0.3}{\sigma^2 })\]
-\(=P(W > \frac{7*0.3}{0.35^2})=P(W > 17.14286)\)
+\(=P(W > \frac{7\times0.3}{0.35^2})=P(W > 17.14286)\)
 
 \(=1-P(W \leq 17.14286)\)
 
@@ -5823,11 +5852,9 @@ podemos calcular \[P(S^2 > 0.3)=P(\frac{(n-1)S^2}{\sigma^2} > \frac{(n-1)0.3}{\s
 En R
 1-pchisq(17.14286, df=7)=0.016
 
-Solo hay una probabilidad de \(1\%\) de obtener un valor superior a \(s^2=0.3\). Por lo tanto, \(s^2>0.3\) parece ser un buen criterio para detener la producción y revisar el proceso.
+Solo hay una probabilidad del \(1\%\) de obtener un valor superior a \(s^2=0.3\). Por lo tanto, \(s^2>0.3\) parece ser un buen criterio para detener la producción y revisar el proceso.
 
-Si tomamos una muestra aleatoria y obtenemos un valor de \(s ^2\) que es mayor que \(0.3\), será una observación rara si todo está bien. Solemos creer que los valores observados son comunes, no raros, por lo que podemos pensar que algo no está bien.
-
-Cuando realizamos el muestreo aleatorio observamos:
+Imaginamos ahora que la muetra de \(8\) cables fue usada como una muestra de control de calidad
 
 \begin{verbatim}
 ## [1] 13.34642 13.32620 13.01459 13.10811 12.96999 13.55309 13.75557 12.62747
@@ -5835,7 +5862,7 @@ Cuando realizamos el muestreo aleatorio observamos:
 
 Por lo tanto, nuestro valor observado fue \(s^2_{stock}=0.1275608\)
 
-La muestra no está muy dispersa porque \(s^2_{stock} < 0.3\) y creemos que todo está bien y la producción está bajo control.
+La muestra no está muy dispersa porque \(s^2_{stock} < 0.3\) y creemos que todo está bien y por lo tanto la producción está bajo control.
 
 \hypertarget{preguntas-7}{%
 \section{Preguntas}\label{preguntas-7}}
@@ -7171,7 +7198,7 @@ Si \(\bar{X}\) se distribuye normalmente, entonces el margen de error es
 \[m=z_{0.025} \frac{\sigma}{\sqrt{n}}=1.96\times se\]
 donde \(z_{0.025}=\phi^{-1}(0.975)=\) qnorm(0.975)
 
-\textbf{Ejemplo (cables):}
+\textbf{Ejemplo (cables)}
 
 Tomamos una muestra aleatoria de tamaño \(8\): Cargamos un cable hasta que se rompan y registramos la carga de rotura.
 
@@ -7263,7 +7290,7 @@ Eso es:
 
 \[(l,u)=(\bar{x} - z_{0.025} \frac{\sigma}{\sqrt{n}}, \bar{x} + z_{0.025} \frac{\sigma}{ \sqrt{n}})\]
 
-\textbf{Ejemplo (cables):}
+\textbf{Ejemplo (cables)}
 
 En nuestro ejemplo, asumimos que \(X\) se distribuye normalmente y que sabemos \(\sigma^2=0.35^2\).
 
@@ -7313,11 +7340,11 @@ Para nuestros cables, el intervalo de confianza de \(99\%\) es
 
 Si queremos tener más confianza, ¡necesitamos intervalos de confianza más grandes!
 
-\textbf{Ejemplo (Energía de impacto):}
+\textbf{Ejemplo (Energía de impacto)}
 
 Un material metálico se prueba por impacto para medir la energía requerida para cortarlo a una temperatura dada. Se cortaron diez probetas de acero A238 a 60ºC con las siguientes energías de impacto (J):
 
-\(64.1, 64.7, 64.5, 64.6, 64.5, 64.3, 64.6, 64.8, 64.2, 64.3\)
+\[64.1,\, 64.7,\, 64.5,\, 64.6,\, 64.5,\, 64.3,\, 64.6,\, 64.8,\, 64.2,\, 64.3\]
 
 Si \textbf{suponemos} que la energía del impacto se distribuye normalmente con \(\sigma=1J\), ¿cuál es el intervalo de confianza de \(95\%\) para la media de estos datos?
 
@@ -7352,6 +7379,10 @@ En R:
 \FunctionTok{library}\NormalTok{(BSDA) }
 \end{Highlighting}
 \end{Shaded}
+
+\begin{verbatim}
+## Warning: package 'BSDA' was built under R version 4.3.3
+\end{verbatim}
 
 \begin{verbatim}
 ## Loading required package: lattice
@@ -7441,11 +7472,11 @@ Eso es:
 \[(l,u)=(\bar{x} - t_{0.025, n-1} \frac{s}{\sqrt{n}}, \bar{x} + t_{0.025, n-1} \frac{s}{\sqrt{n}})\]
 donde \(t_{0.025, n-1}=F^{-1}(0.975)\)=qt(0.975, n-1)
 
-\textbf{Ejemplo (Energía de impacto):}
+\textbf{Ejemplo (Energía de impacto)}
 
 Un material metálico se prueba por impacto para medir la energía requerida para cortarlo a una temperatura dada. Se cortaron diez probetas de acero A238 a 60ºC con las siguientes energías de impacto (J):
 
-\(64.1, 64.7, 64.5, 64.6, 64.5, 64.3, 64.6, 64.8, 64.2, 64.3\)
+\[64.1,\, 64.7,\, 64.5,\, 64.6,\, 64.5,\, 64.3,\, 64.6,\, 64.8,\, 64.2,\, 64.3\]
 
 Si \textbf{suponemos} que la energía del impacto se distribuye normalmente pero \textbf{no conocemos} la varianza, ¿cuál es el intervalo de confianza de \(95\%\) para la media de estos datos?
 
@@ -7469,7 +7500,7 @@ El intervalo de confianza es entonces
 
 \[=(64.46-2.26 \frac{0.227}{\sqrt{10}},64.46+2.26 \frac{0.227}{\sqrt{10}})\] \[=(64.29,64.62)\]
 
-Tenga en cuenta que cuando asumimos \(\sigma=1\) el intervalo de confianza \((63.84,65.08)\) era mayor. Por lo tanto, los datos sugieren que \(\sigma<1\).
+Tengamos en cuenta que cuando asumimos \(\sigma=1\) el intervalo de confianza \((63.84,65.08)\) era mayor. Por lo tanto, los datos sugieren que \(\sigma<1\).
 
 En R, podemos calcular el intervalo de confianza con:
 
@@ -7496,7 +7527,7 @@ En R, podemos calcular el intervalo de confianza con:
 \hypertarget{estimaciuxf3n-de-proporciones}{%
 \section{Estimación de proporciones}\label{estimaciuxf3n-de-proporciones}}
 
-\textbf{Ejemplo (vacuna):}
+\textbf{Ejemplo (vacuna)}
 
 Se seleccionó una muestra aleatoria de \(400\) pacientes para probar una nueva vacuna contra el virus de la influenza, después de \(6\) meses de vacunación, \(134\) estaban enfermos. ¿Cuál es la eficacia esperada de la vacuna?
 
@@ -7505,33 +7536,32 @@ Dado que cada vacunación \(X_i\) es un ensayo de Bernoulli
 \[X \rightarrow Bernoulli(p)\]
 Con media \(\mu=p\) y varianza \(\sigma^2=p(1-p)\).
 
-La muestra es algo como
-\[(x_1,x_2, x_3, ...x_n)=(0,1,0,.. 1, 0)_{400}\] con \(134\) unos y en un total de \(400\) repeticiones. La muestra tiene un promedio de \(\bar{x}=\frac{1}{400}\sum_i^{400} x_i=134/400=0.34\). Dado que la media muestral es un estimador insesgado de \(\mu\), entonces podemos tener una estimación puntual para \(p\)
+La muestra sería algo como
+\[(x_1,x_2, x_3, ...x_n)=(0,1,0,.. 1, 0)_{400}\] con \(134\) unos y en un total de \(400\) repeticiones. La muestra tiene un promedio de
+
+\[\bar{x}=\frac{1}{400}\sum_i^{400} x_i=134/400=0.34\]
+
+. Dado que la media muestral es un estimador insesgado de \(\mu\), entonces podemos tener una estimación puntual para \(p\)
 
 \[\hat{p}=\bar{x}=134/400=0.34\]
 
 Esto tiene sentido porque \(\bar{x}\) es la frecuencia relativa observada para el número de \textbf{unos} en la muestra (\(f_1\)). Y como tal, es un estimador de la probabilidad de observar un uno en un ensayo de Bernoulli.
 
 \[f_1 =\hat{P}(X=1)\]
-Esto es consistente con la definición frecuentista de probabilidad que vimos en el capítulo 2. Pero, ¿qué confianza tenemos en esta estimación? Queremos un intervalo de confianza para \(p\)
+Esto es consistente con la definición frecuentista de probabilidad que vimos en el capítulo 2. Pero, ¿qué confianza tenemos en esta estimación? Queremos un intervalo de confianza para \(p\).
 
 \hypertarget{caso-3-proporciones}{%
 \subsection{Caso 3 (proporciones)}\label{caso-3-proporciones}}
 
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\tightlist
-\item
-  Cuando \(\hat{p}n>5\) y \((\hat{p}-1)n>5\), la \textbf{estadística estandarizada} de \(\bar{X}\) se puede aproximar mediante un estándar distribución (TCL)
-\end{enumerate}
+Cuando \(\hat{p}n>5\) y \((\hat{p}-1)n>5\), la \textbf{estadística estandarizada} de \(\bar{X}\) se puede aproximar a una variale normal estándar por el TCL
 
 \[Z=\frac{\bar{X}-\mu}{\sigma/\sqrt{n}}= \frac{\bar{X}-p}{\big[\frac{p(1-p)}{n} \big]^{1/2}}\rightarrow N(0,1)\]
-y el intervalo de CI al \(95\%\) de \(p\) es:
+Entonces el intervalo de confianza al \(95\%\) de \(p\) es:
 
 \[CI=(l,u)=(\bar{x}-z_{0.025}\big[\frac{\bar{x}(1-\bar{x})}{n} \big]^{ 1/2}, \bar{x}+z_{0.025}\big[\frac{\bar{x}(1-\bar{x})}{n} \big]^{1/2})\]
 Donde estimamos la varianza de Bernoulli \(\sigma^2=p(1-p)\) por \(\hat{\sigma}^2=\bar{x}(1-\bar{x})\). Es decir \(\hat{\sigma}=\sqrt{\bar{x}(1-\bar{x})}\).
 
-\textbf{Ejemplo (vacuna):}
+\textbf{Ejemplo (vacuna)}
 
 En nuestro caso, estamos contando \(134\) fallos de inmunización de \(400\) inoculaciones.
 
@@ -7602,7 +7632,7 @@ Dado que \(S^2\) es una variable aleatoria, la estimación de la varianza cambia
 
 Un material metálico se prueba por impacto para medir la energía requerida para cortarlo a una temperatura dada. Se cortaron diez probetas de acero A238 a 60ºC con las siguientes energías de impacto (J):
 
-\(64.1, 64.7, 64.5, 64.6, 64.5, 64.3, 64.6, 64.8, 64.2, 64.3\)
+\[64.1,\, 64.7,\, 64.5,\, 64.6,\, 64.5,\, 64.3,\, 64.6,\, 64.8,\, 64.2,\, 64.3\]
 
 ¿Cuál es la estimación de la varianza de estos datos?
 
@@ -7681,7 +7711,7 @@ dónde
 
 Un material metálico se prueba por impacto para medir la energía requerida para cortarlo a una temperatura dada. Se cortaron diez probetas de acero A238 a 60ºC con las siguientes energías de impacto (J):
 
-\(64.1, 64.7, 64.5, 64.6, 64.5, 64.3, 64.6, 64.8, 64.2, 64.3\)
+\[64.1,\, 64.7,\, 64.5,\, 64.6,\, 64.5,\, 64.3,\, 64.6,\, 64.8,\, 64.2,\, 64.3\]
 
 ¿Cuál es el intervalo de confianza para la varianza de estos datos?
 
@@ -7851,9 +7881,11 @@ También presentaremos la prueba de hipótesis de varianzas y los errores que se
 \hypertarget{hipuxf3tesis}{%
 \section{Hipótesis}\label{hipuxf3tesis}}
 
-Cuando llevamos a cabo experimentos aleatorios, a menudo queremos probar si los cambios que realizamos sobre el experimento tienen un efecto real. Queremos, por ejemplo, saber si hemos podido influenciar el experimento. O, sihemos sometido el experimento bajo una nueva condición, queremos saber si esa condición affecta el desarrollo del experimento. Usualmente tenemos una idea de cómo deberían ser los datos cuando estos cambios no están presente. Dado que los resultatos del experimento son aleatorios con y sin el cambio ¿cómo podemos diferenciar entre aplicar el cambio o no?
+Cuando llevamos a cabo experimentos aleatorios, a menudo queremos probar si los cambios que hacemos del experimento tienen un efecto real. Queremos, por ejemplo, saber si hemos podido influenciar el experimento. O, si hemos sometido el experimento a una nueva condición, queremos saber si esa condición afecta los resultados del experimento.
 
-La estrategia es formular el cambio o la nueva condición en términos de los valores que pueden tomar los \textbf{parámetros} de las distribuciones de probabilidad asociadas al experimento aleatorio. Después, usamos las observaciones del experimento aleatorio bajo la nueva condición para propocionar \textbf{evidencia} sobre la posible influencia en los parámetros.
+Usualmente tenemos una idea de cómo deberían ser los datos cuando estos cambios no están presentes. Dado que los resultatos del experimento son aleatorios con y sin el cambio ¿cómo podemos diferenciar entre aplicar el cambio o no?
+
+La estrategia es formular el cambio o la nueva condición en términos de los valores que pueden tomar los \textbf{parámetros} de los modelos probabilísticos del experimento aleatorio. Entonces, usamos las observaciones del experimento aleatorio bajo la nueva condición para estimar el parámetro y ver su posible cambio.
 
 \textbf{Ejemplos (Neumáticos)}
 
@@ -7861,7 +7893,7 @@ Los fabricantes de neumáticos quieren saber si la vida media de los neumáticos
 
 \newpage
 
-Formulemos dos declaraciones dicotómicas, es decir dos situaciones excluyentes:
+Formulemos dos afirmaciones dicotómicas, es decir dos situaciones excluyentes:
 
 \begin{enumerate}
 \def\labelenumi{\alph{enumi}.}
@@ -7872,7 +7904,7 @@ Formulemos dos declaraciones dicotómicas, es decir dos situaciones excluyentes:
   La vida media de los neumáticos puede ser \textbf{superior} a 20000 km
 \end{enumerate}
 
-Esto significa que sólo una puede ser verdadera. La pregunta es entonces cómo podemos usar los datos para \textbf{decidir} entre la situación a. o situación b. Consideremos que \(\mu\) es la media de la distribución de la población. Por lo tanto, las afirmaciones a. y B. también se puede escribir como
+Esto significa que sólo una puede ser verdadera. La pregunta es entonces ¿Cómo podemos usar los datos para \textbf{decidir} entre la situación a. o situación b? Consideremos que \(\mu\) es la media de la distribución de la población. Por lo tanto, las afirmaciones a. y b. también se pueden escribir como
 
 \begin{enumerate}
 \def\labelenumi{\alph{enumi}.}
@@ -7883,20 +7915,20 @@ Esto significa que sólo una puede ser verdadera. La pregunta es entonces cómo 
   \(H_1: \mu > 20000km\)
 \end{enumerate}
 
-Donde la declaración \(H_0\) es para la cual los autos \textbf{no recorren} los 20000 km deseados mientras que la declaración \(H_1\) es \textbf{el caso deseado}. \(H_0\) y \(H_1\) se llaman hipótesis.
+Donde la afirmación \(H_0\) es para la cual los neumáticos \textbf{no recorren} los 20000 km deseados mientras que la declaración \(H_1\) es el caso que \textbf{sí} los recorren. \(H_0\) y \(H_1\) se llaman hipótesis.
 
 \textbf{Definición}
 
 En estadística, una afirmación (conjetura) sobre la distribución de una variable aleatoria se denomina \textbf{hipótesis}.
 
-Las hipótesis generalmente se escriben en dos declaraciones dicotómicas.
+Las hipótesis generalmente se escriben en dos afirmaciones dicotómicas.
 
 \begin{enumerate}
 \def\labelenumi{\alph{enumi}.}
 \item
-  La hipótesis \textbf{nula}: \(H_0\) cuando la conjetura es falsa generalmente se refiere al \textbf{statu quo}. Los datos pueden ser explicados por el satus quo.
+  La hipótesis \textbf{nula} \(H_0\): cuando la conjetura es falsa. Generalmente se refiere al \textbf{statu quo}. Los datos pueden ser explicados por el satus quo.
 \item
-  La \textbf{hipótesis alternativa}: \(H_1\) cuando la conjetura es verdadera generalmente se refiere a la \textbf{hipótesis de investigación}. Los datos pueden ser explicados por la alternativa deseada.
+  La \textbf{hipótesis alternativa} \(H_1\): cuando la conjetura es verdadera. Generalmente se refiere a la \textbf{hipótesis de investigación}. Los datos pueden ser explicados por la alternativa al estatus quo.
 \end{enumerate}
 
 \textbf{Ejemplo (Fertilizante)}
@@ -7927,7 +7959,7 @@ Las farmacéuticas necesitan saber si una nueva quimioterapia puede curar al 90\
   \(H_1: p > p_0\) (La quimioterapia puede tener el efecto deseado: interés de investigación)
 \end{enumerate}
 
-Ten en cuenta que nuestro nuevo experimento mejorado tiene el parámetro \(p\) y queremos saber cómo se compara con el experimento sin \textbf{ningúna mejora} que tiene el parámetro \(p_0\).
+Tengamos en cuenta que nuestro nuevo experimento mejorado tiene el parámetro \(p\) y queremos saber cómo se compara con el experimento sin \textbf{ningúna mejora} que tiene el parámetro \(p_0\).
 
 Queremos decidir entre \(H_0\) y \(H_1\). Hay dos opciones:
 
@@ -7957,7 +7989,7 @@ Las hipótesis se pueden probar o decidir utilizando intervalos de confianza. Po
   \textbf{Caso 4}: Prueba de hipótesis para la varianza \(\sigma^2\), cuando \(X \rightarrow N(\mu, \sigma^2)\)
 \end{itemize}
 
-Hay tres \textbf{maneras} de probar las hipótesis:
+Hay tres \textbf{formas} de probar las hipótesis:
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -7986,7 +8018,7 @@ Las tres opciones son equivalentes. Finalmente, hay tres \textbf{tipos} de hipó
 \hypertarget{caso-1-para-la-media-con-varianza-conocida}{%
 \section{Caso 1 (para la media con varianza conocida)}\label{caso-1-para-la-media-con-varianza-conocida}}
 
-Un contraste de hipótesis de \textbf{cola de dos colas} es de la forma
+Un contraste de hipótesis de \textbf{dos colas} es de la forma
 
 \begin{enumerate}
 \def\labelenumi{\alph{enumi}.}
@@ -7997,7 +8029,7 @@ Un contraste de hipótesis de \textbf{cola de dos colas} es de la forma
   \(H_1:\mu \neq \mu_0\) (interés de investigación)
 \end{enumerate}
 
-Este contraste se llama de dos colas porque la hipótesis alternativa \(H_1\) requiere que la media \(\mu\) sea menor o mayor que \(\mu_0\). Esta hipótesis se puede probar en diferentes casos. El \textbf{caso 1} es cuando
+Este contraste se llama de dos colas porque la hipótesis alternativa \(H_1\) requiere que la media \(\mu\) sea o menor o mayor que \(\mu_0\). Esta hipótesis se puede probar en diferentes casos. El \textbf{caso 1} es cuando
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -8064,7 +8096,7 @@ Para decidir entre \(H_0\) o \(H_1\), realizamos una muestra de \(8\) experiment
 El intervalo de confianza \textbf{si} el fabricante tiene razón, es decir, si la hipótesis nula es verdadera, es
 
 \[(l,u)=(\bar{x}-z_{0.025} \frac{\sigma}{\sqrt{n}}, \bar{x}+z_{0.025} \frac{\sigma}{ \sqrt{n}})= (12.97,13.45)\]
-El intervalo de confianza nos dice que podmeos tener un \(95\%\) de confianza en que la media de la carga de rotura \(\mu\) de los cables que promabos está en el intervalo. No sabemos el valor real de \(\mu\) pero vemos un valor podría ser \(\mu=13\) Toneladas, ya que el intervalo atrapó \(\mu_0\)
+El intervalo de confianza nos dice que podemos tener un \(95\%\) de confianza en que la media de la carga de rotura \(\mu\) de los cables que probamos está en el intervalo. No sabemos el valor real de \(\mu\) pero entendemos que un valor pausible podría ser \(\mu=13\) toneladas, ya que el intervalo atrapó \(\mu_0\)
 
 \[\mu_0\in (12.97,13.45)\]
 
@@ -8089,10 +8121,10 @@ Una forma equivalente de probar la hipótesis es ver si nuestro conjunto de obse
 Para probar la hipótesis con una \textbf{zona de rechazo} calculamos la estadística estandarizada
 
 \[Z=\frac{\bar{X}-\mu_0}{\frac{\sigma}{\sqrt{n}}}\]
-Cuando la hipótesis nula es verdadera. Ten en cuenta que estamos estandarizando con \(\mu_0\) (la hipótesis nula). Este es el error estandarizado que cometemos al estimar \(\mu_0\) con \(\bar{X}\). Luego vemos si el valor observado de \(Z\) está dentro del intervalo
+Cuando la hipótesis nula es verdadera. Tengamos en cuenta que estamos estandarizando con \(\mu_0\) (la hipótesis nula). Este es el error estandarizado que cometemos al estimar \(\mu_0\) con \(\bar{X}\). Luego vemos si el valor observado de \(Z\) está dentro del intervalo
 
 \[(-z_{0.025}, z_{0.025})\]
-Recuerda que este intervalo define los valores más comunes de \(Z\) ya que \(P(-z_{0.025} \leq Z \leq z_{0.025})=0.95\).
+Recordemos que este intervalo define los valores más comunes de \(Z\) ya que \[P(-z_{0.025} \leq Z \leq z_{0.025})=0.95\]
 
 El intervalo \((-z_{0.025}, z_{0.025})\) se denomina \textbf{intervalo de aceptación} de \(H_0\) con un nivel de confianza de \(95\%\).
 
@@ -8139,7 +8171,7 @@ Concluimos que nuestro error observado es típico al \(95\%\) cuando la hipótes
 \hypertarget{prueba-de-hipuxf3tesis-con-un-p-valor}{%
 \subsection{Prueba de hipótesis con un P valor}\label{prueba-de-hipuxf3tesis-con-un-p-valor}}
 
-También podemos contrastar la hipótesis de \textbf{dos colas} calculando la probabilidad de que el promedio de una nueva muestra aleatoria sea aún más raro que el promedio que acabamos de observar. Debido a que estamos en el **caso 1*, sabemos que la estadística estandarizada \(Z\) es una variable normal estándar, entonces definimos el \(pvalor\) como
+También podemos contrastar la hipótesis de \textbf{dos colas} calculando la probabilidad de que el promedio de una nueva muestra aleatoria sea aún más raro que el promedio que acabamos de observar. Debido a que estamos en el \textbf{caso 1}, sabemos que la estadística estandarizada \(Z\) es una variable normal estándar, entonces definimos el \(pvalor\) como
 
 \[pvalor = P(Z \leq -z_{obs}) + P(z_{obs} \leq Z) = 2 (1-\phi(|z_{obs}|))\]
 
@@ -8168,7 +8200,7 @@ entonces \textbf{rechazamos} \(H_0\) con una confianza de \(95\%\).
 
 \(\alpha\) es el nivel de significancia. Nos dice cuánto de la distribución estamos omitiendo y define la región que consideramos como observaciones raras.
 
-Recuerda: siempre confiamos en nuestros datos. Si la hipótesis nula dice que nuestros datos son una observación \textbf{rara} entonces desconfiamos de la hipótesis nula y la rechazamos.
+Recuerdemos que siempre confiamos en nuestros datos. Si la hipótesis nula dice que nuestros datos son una observación \textbf{rara} entonces desconfiamos de la hipótesis nula y la rechazamos.
 
 \includegraphics{_main_files/figure-latex/unnamed-chunk-106-1.pdf}
 
@@ -8249,7 +8281,7 @@ Esto se llama \textbf{de cola superior} porque la hipótesis alternativa \(H_1\)
 \end{enumerate}
 
 \[\mu_0\in (l,u)=(\bar{x}-z_{0.05} \frac{\sigma}{\sqrt{n}}, \infty)\]
-donde \(z_{0.05}=\phi^{-1}(0.95)=\)qnorm(0.95), entonces \textbf{aceptamos} \(H_0\) con una confianza de \(95\%\). Ten en cuenta que esta prueba es desde el punto de vista de los \textbf{datos} y que no estamos centrando el intervalo de confianza alrededor de \(\bar{x}\), sino que estamos dejando todo el \(5\%\) que corresponde a los casos raros a la izquierda del promedio. Por lo tanto, nos estamos preguntando si la hipótesis nula es menor que el promedio.
+donde \(z_{0.05}=\phi^{-1}(0.95)=\)qnorm(0.95), entonces \textbf{aceptamos} \(H_0\) con una confianza de \(95\%\). Tengamos en cuenta que esta prueba es desde el punto de vista de los \textbf{datos} y que no estamos centrando el intervalo de confianza alrededor de \(\bar{x}\), sino que estamos dejando todo el \(5\%\) que corresponde a los casos raros a la izquierda del promedio. Por lo tanto, nos estamos preguntando si la hipótesis nula es menor que el promedio.
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -8261,7 +8293,7 @@ donde \(z_{0.05}=\phi^{-1}(0.95)=\)qnorm(0.95), entonces \textbf{aceptamos} \(H_
 
 \[z_{obs}=\frac{\bar{x}-\mu_0}{\frac{\sigma}{\sqrt{n}}} \in (-\infty, z_{0.05})\]
 
-entonces \textbf{aceptamos} \(H_0\) con una confianza de \(95\%\). Ten en cuenta que esta prueba es desde el punto de vista de la \textbf{hipótesis nula}. Dejamos todo el \(5\%\) que corresponde a los promedios raros a la derecha de la hipótesis nula y, por lo tanto, nos preguntamos si el promedio es claramente mayor que la hipótesis nula.
+entonces \textbf{aceptamos} \(H_0\) con una confianza de \(95\%\). Esta prueba es desde el punto de vista de la \textbf{hipótesis nula}. Dejamos todo el \(5\%\) que corresponde a los promedios raros a la derecha de la hipótesis nula y, por lo tanto, nos preguntamos si el promedio es claramente mayor que la hipótesis nula.
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -8525,8 +8557,7 @@ Diseñamos un proceso para eliminar la sal de esta concentración y obtenemos lo
 ## [1] 1.716 1.889 1.783 1.849 1.891
 \end{verbatim}
 
-Queremos probar con una confianza del \(95º%
-\) si el proceso cambia la concentración de sal en cualquier dirección. Por lo tanto, proponemos una hipótesis de dos colas:
+Queremos probar con una confianza del \(95\%\) si el proceso cambia la concentración de sal en cualquier dirección. Por lo tanto, proponemos una hipótesis de dos colas:
 
 \begin{enumerate}
 \def\labelenumi{\alph{enumi}.}
@@ -8576,7 +8607,7 @@ Si solo estamos interesados en el caso de que podamos eliminar la sal de la conc
   \(H_1:\mu < 1.92\) (Después del proceso de desalinización la concentración es menor a la inicial: interés de investigación)
 \end{enumerate}
 
-Ten en cuenta que la cola inferior viene dada por la alternativa \(H_1\). Queremos probar que la concentración promedio después del proceso es menor que la concentración inicial. Los criterios de contraste son los mismos que para los otros tipos de hipótesis. Para este tipo de hipótesis, \textbf{aceptaremos} la hipótesis nula si
+Tengamos en cuenta que la cola inferior viene dada por la alternativa \(H_1\). Queremos probar que la concentración promedio después del proceso es menor que la concentración inicial. Los criterios de contraste son los mismos que para los otros tipos de hipótesis. Para este tipo de hipótesis, \textbf{aceptaremos} la hipótesis nula si
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -8603,7 +8634,7 @@ Si no se complen estos criterios, rechazamos \(H_0\) y aceptamos la hipótesis a
 
 \textbf{Ejemplo (NaCl)}
 
-Para el contraste inferior de la cola
+Para el contraste de cola inferior
 
 \begin{enumerate}
 \def\labelenumi{\alph{enumi}.}
@@ -8643,7 +8674,7 @@ El resultado es mas significativo que el de dos colas, ya que el \(pvalor\) es m
 
 En algunos casos, no estamos seguros del valor numérico de la hipótesis a contrastar, pero sabemos que queremos mejorar el valor de un parámetro en una nueva condición.
 
-En su artículo original, Gosset analizó el efecto de dos medicamentos soporíferos.
+En su artículo original, Gosset al proponer la distribución t, analizó el efecto de dos medicamentos soporíferos.
 
 \begin{itemize}
 \tightlist
@@ -8705,7 +8736,7 @@ La pregunta científica se puede establecer como prueba t pareada \textbf{de col
   \(H_1:\mu > \mu_0= 0\) (tratamiento 2 superior al tratamiento 1: \(\mu_2-\mu_1>0\))
 \end{enumerate}
 
-Donde \(\mu\) es la media de las \textbf{diferencias} entre tratamientos, y la hipótesis nula dice que no hay diferencia \(\mu_0=0\).
+Donde \(\mu\) es la media de las \textbf{diferencias} entre tratamientos, y la hipótesis nula dice que no hay diferencia.
 
 Si suponemos que \(X\) es normal y no sabemos \(\sigma^2\) entonces estamos en el \textbf{caso 2}. El \textbf{error estandarizado} es:
 
@@ -8802,9 +8833,9 @@ En este \textbf{caso 3}, podemos probar el valor de la proporción si
   \(np\), \(n(1-p)\) son ambos mayores que \(5\), lo que nos permite aplicar el teorema central del límite.
 \end{enumerate}
 
-Recuerda que si tomamos una muestra de \(n\) ensayos de Bernoulli \((1,0,1,...0)\), \(\bar{X}=\frac{1}{n}\sum_{i=1 }^n X_i\) es la frecuencia relativa de ``unos'' en la muestra. Este es un estimador de \(p\).
+Recuerdemos que si tomamos una muestra de \(n\) ensayos de Bernoulli \((1,0,1,...0)\), \[\bar{X}=\frac{1}{n}\sum_{i=1 }^n X_i\] es la frecuencia relativa de ``unos'' en la muestra. Este es un estimador de \(p\).
 
-Si asumimos que la hipótesis nula es verdadera entonces \(X \rightarrow Bernoulli(p_0)\) y el error estandarizado que cometemos cuando estimamos \(p_0\) con \(\bar{X}\) es
+Si asumimos que la hipótesis nula es verdadera entonces \[X \rightarrow Bernoulli(p_0)\] y el error estandarizado que cometemos cuando estimamos \(p_0\) con \(\bar{X}\) es
 
 \[Z=\frac{\bar{X}-p_0}{\frac{\sqrt{p_0(1-p_0)}}{\sqrt{n}}} \rightarrow N(0,1)\]
 
@@ -8842,7 +8873,7 @@ Suponemos que si la hipótesis nula es verdadera entonces
 \setcounter{enumi}{1}
 \tightlist
 \item
-  además \(p_0n=180>5\) y \((1-p_0)=n=20>5\)
+  además \(np_0=180>5\) y \(n(1-p_0)=20>5\)
 \end{enumerate}
 
 Y por lo tanto podemos aplicar \textbf{caso 3}.
@@ -9068,7 +9099,7 @@ El resultado de una prueba de hipótesis de cola superior puede ser \textbf{rech
 
 \[H_0: \mu\leq\mu_0\]
 
-cuando \(H_0\) realmente \textbf{es verdad}. Debemos tener en cuenta que la decisión se toma con base en los datos. Bien puede ser que el estadístico observado haya caido, por aleatoridad, lejos de la hipótesis nula, en la zona de rechazo de \(H_0\) aún cuando esta sea verdad. Cuando realizamos la prueba de hipótesis, no sabemos si \(H_0\) es verdad, por lo que si ahora lo sabemos es porque asumimos que lo hemos averiguado de alguna otra forma. Aún así, la probabilidad de rechazar \(H_0\) cuando es verdad es precisamente el nivel de significación estadística \(\alpha\). Llamamos a esta probabilidad la probabilidad de cometer un error de \textbf{tipo 1}. Tomando el ejemplo para el \textbf{caso 1}, un test de cola superior, y una confianza del \(95\%\) tenemos que
+cuando \(H_0\) realmente \textbf{es verdad}. Debemos tener en cuenta que la decisión se toma con base en los datos. Bien puede ser que el estadístico observado haya caido, por aleatoridad, lejos de la hipótesis nula, en la zona de rechazo de \(H_0\) aún cuando esta sea verdad. La probabilidad de rechazar \(H_0\) cuando es verdadera es precisamente el nivel de significación estadística \(\alpha\). Llamamos a esta probabilidad la probabilidad de cometer un error de \textbf{tipo 1}. Tomando el ejemplo para el \textbf{caso 1}, un test de cola superior, y una confianza del \(95\%\) tenemos que
 
 \[\alpha = P(Z> z_{0.05})=0.05\]
 

@@ -23,7 +23,7 @@
 <meta name="author" content="Alejandro Caceres" />
 
 
-<meta name="date" content="2024-08-18" />
+<meta name="date" content="2024-08-30" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -612,7 +612,7 @@ For our cables, the <span class="math inline">\(99\%\)</span> confidence interva
 <p>If we want to be more confident then we need larger confidence intervals. The more confidence we demand the less precision we obtain.</p>
 <p><strong>Example (Impact energy)</strong></p>
 <p>A metallic material is tested for impact to measure the energy required to cut it at a given temperature. Ten specimens of A238 steel were cut at 60ºC at the following impact energies (J):</p>
-<p><span class="math inline">\(64.1, 64.7, 64.5, 64.6, 64.5, 64.3, 64.6, 64.8, 64.2, 64.3\)</span></p>
+<p><span class="math display">\[64.1,\, 64.7,\, 64.5,\, 64.6,\, 64.5,\, 64.3,\, 64.6,\, 64.8,\, 64.2,\, 64.3\]</span></p>
 <p>If we <strong>asume</strong> that the impact energy is normally distributed with <span class="math inline">\(\sigma=1J\)</span> what is the <span class="math inline">\(95\%\)</span> confidence interval for the mean of these data?</p>
 <p>We know</p>
 <ol style="list-style-type: decimal">
@@ -664,7 +664,7 @@ where <span class="math display">\[m=t_{0.025, n-1} \frac{s}{\sqrt{n}}\]</span><
 where <span class="math inline">\(t_{0.025, n-1}=F^{-1}(0.975)\)</span><code>=t.ppf(0.975, n-1)</code></p>
 <p><strong>Example (Impact energy)</strong></p>
 <p>A metallic material is tested for impact to measure the energy required to cut it at a given temperature. Ten specimens of A238 steel were cut at 60ºC at the following impact energies (J):</p>
-<p><span class="math inline">\(64.1, 64.7, 64.5, 64.6, 64.5, 64.3, 64.6, 64.8, 64.2, 64.3\)</span></p>
+<p><span class="math display">\[64.1,\, 64.7,\, 64.5,\, 64.6,\, 64.5,\, 64.3,\, 64.6,\, 64.8,\, 64.2,\, 64.3\]</span></p>
 <p>If we <strong>asumme</strong> that the impact energy is normally distributed but we <strong>do not know</strong> the variance, what is the <span class="math inline">\(95\%\)</span> confidence interval for the mean of these data?</p>
 <p>We compute from the data</p>
 <ul>
@@ -703,9 +703,7 @@ with mean <span class="math inline">\(\mu=p\)</span> and variance <span class="m
 This is is consistent with frequentist definition of probability that we saw in chapter 2. However, how confident are we about this estimation? That is, how confident are we to take the relative frequency as the value of the probability? We want a confidence interval for <span class="math inline">\(p\)</span>.</p>
 <div id="case-3-proportions" class="section level3 hasAnchor" number="13.6.1">
 <h3><span class="header-section-number">13.6.1</span> Case 3 (proportions)<a href="interval-estimation.html#case-3-proportions" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<ol style="list-style-type: decimal">
-<li>When <span class="math inline">\(\hat{p}n&gt;5\)</span> and <span class="math inline">\((\hat{p}-1)n&gt;5\)</span>, the <strong>standardized statistic</strong> of <span class="math inline">\(\bar{X}\)</span> can be approximated by a standard distribution (CLT)</li>
-</ol>
+<p>When <span class="math inline">\(\hat{p}n&gt;5\)</span> and <span class="math inline">\((\hat{p}-1)n&gt;5\)</span>, the <strong>standardized statistic</strong> of <span class="math inline">\(\bar{X}\)</span> can be approximated to a standard normal variable by the CLT</p>
 <p><span class="math display">\[Z=\frac{\bar{X}-\mu}{\sigma/\sqrt{n}}= \frac{\bar{X}-p}{\big[\frac{p(1-p)}{n} \big]^{1/2}}\rightarrow N(0,1)\]</span>
 and the <span class="math inline">\(95\%\)</span> CI interval of <span class="math inline">\(p\)</span> is:</p>
 <p><span class="math display">\[CI=(l,u)=(\bar{x}-z_{0.025}\big[\frac{\bar{x}(1-\bar{x})}{n} \big]^{1/2},  \bar{x}+z_{0.025}\big[\frac{\bar{x}(1-\bar{x})}{n} \big]^{1/2})\]</span>
@@ -742,7 +740,7 @@ is an estimator of the mean <span class="math inline">\(\sigma^2\)</span> of the
 <p>Since <span class="math inline">\(S^2\)</span> is a random variable the estimation of the variance changes when we take another sample.</p>
 <p><strong>Example (impact energy)</strong></p>
 <p>A metallic material is tested for impact to measure the energy required to cut it at a given temperature. Ten specimens of A238 steel were cut at 60ºC at the following impact energies (J):</p>
-<p><span class="math inline">\(64.1, 64.7, 64.5, 64.6, 64.5, 64.3, 64.6, 64.8, 64.2, 64.3\)</span></p>
+<p><span class="math display">\[64.1,\, 64.7,\, 64.5,\, 64.6,\, 64.5,\, 64.3,\, 64.6,\, 64.8,\, 64.2,\, 64.3\]</span></p>
 <p>what is estimation of the variance of these data?</p>
 <p><span class="math display">\[s^2=0.05155556\]</span></p>
 <p>In Python:</p>
@@ -792,7 +790,7 @@ with <span class="math inline">\(95\%\)</span> confidence</p>
 </ul>
 <p><strong>Example (impact energy)</strong></p>
 <p>A metallic material is tested for impact to measure the energy required to cut it at a given temperature. Ten specimens of A238 steel were cut at 60ºC at the following impact energies (J):</p>
-<p><span class="math inline">\(64.1, 64.7, 64.5, 64.6, 64.5, 64.3, 64.6, 64.8, 64.2, 64.3\)</span></p>
+<p><span class="math display">\[64.1,\, 64.7,\, 64.5,\, 64.6,\, 64.5,\, 64.3,\, 64.6,\, 64.8,\, 64.2,\, 64.3\]</span></p>
 <p>what is confidence interval for the variance of these data?</p>
 <p><span class="math display">\[(l,u) = (\frac{s^2 (n-1)}{\chi^2_{0.025,n-1}},\frac{s^2(n-1)}{\chi^2_{0.975,n-1}})\]</span></p>
 <ol style="list-style-type: decimal">

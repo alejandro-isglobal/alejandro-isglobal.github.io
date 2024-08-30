@@ -120,7 +120,7 @@
 
 \title{Statistical Data Analysis}
 \author{Alejandro Caceres}
-\date{2024-08-18}
+\date{2024-08-30}
 
 \begin{document}
 \maketitle
@@ -5641,7 +5641,7 @@ We say that \(\bar{X}\) is an \textbf{unbiased} estimator of \(\mu\) because its
 We call
 
 \[se=\sqrt{V(\bar{X})}=\sigma/\sqrt{n}\]
-the \textbf{standard error} of the sample mean. The standard error is also written as \(\sigma_{\bar{x}}\), to emphasize that it is the standard deviation of the sample mean. Note that this is the error we expect when using \(\bar{x}\) as the value of \(\mu\), and it is the bias we need to correct when estimating the variance (Section 10.8).
+the \textbf{standard error} of the sample mean. The standard error is also written as \(\sigma_{\bar{x}}\), to emphasize that it is the standard deviation of the sample mean. Note that this is the error we expect when using \(\bar{x}\) as the value of \(\mu\), and it is the bias we need to correct when estimating the variance (Section 10.9).
 
 So, if we \textbf{know} \(\mu\) and \(\sigma\), we can calculate the \textbf{probabilities of} \(\bar{X}\) using the normal distribution.
 
@@ -5756,14 +5756,14 @@ In Python we can calculate it as:
 
 norm.cdf(106, 104, 0.9899495)-norm.cdf(102, 104, 0.9899495)=0.956.
 
-Therefore, \(95.6\%\) of the total weight that \(8\) cables can carry is between \(102\) and \(106\) Tons, or a distance of \(8\times0.25=2\) Tons from the total mean \(n\mu=104\). This result offers an insight. If the cables are independent, the collective effect of many cables is determined by \(n\)-times the properties of a single cable.Here, we have a strong argument to study the collective from the individual \textbf{if} individuals do not interact. Think, for instance, of a gas made of non-interacting particles.
+Therefore, \(95.6\%\) of the total weight that \(8\) cables can carry is between \(102\) and \(106\) Tons, or a distance of \(8\times0.25=2\) Tons from the total mean \(n\mu=104\). This result offers an insight. If the cables are independent, the collective effect of many cables is determined by \(n\)-times the properties of a single cable. Here, we have a strong argument to study the collective from the individual \textbf{if} individuals do not interact. Think, for instance, of a gas made of non-interacting particles.
 
 \hypertarget{sample-variance-1}{%
 \section{Sample variance}\label{sample-variance-1}}
 
 By estimating the variance
 
-\[s^2=\hat{\sigma}\]
+\[s^2=\hat{\sigma}^2\]
 
 We also make a mistake. How can we estimate the error we make?
 
@@ -5872,7 +5872,7 @@ so
 \[W=\frac{(n-1)S^2}{\sigma^2}= \frac{7S^2}{0.35^2} \rightarrow \chi^2(n-1)\]
 
 we can calculate \[P(S^2 > 0.3)=P(\frac{(n-1)S^2}{\sigma^2} > \frac{(n-1)0.3}{\sigma^2 } )\]
-\(=P(W > \frac{7*0.3}{0.35^2})=P(W > 17.14286)\)
+\(=P(W > \frac{7\times0.3}{0.35^2})=P(W > 17.14286)\)
 
 \(=1-P(W \leq 17.14286)\)
 
@@ -7032,7 +7032,7 @@ If we want to be more confident then we need larger confidence intervals. The mo
 
 A metallic material is tested for impact to measure the energy required to cut it at a given temperature. Ten specimens of A238 steel were cut at 60ºC at the following impact energies (J):
 
-\(64.1, 64.7, 64.5, 64.6, 64.5, 64.3, 64.6, 64.8, 64.2, 64.3\)
+\[64.1,\, 64.7,\, 64.5,\, 64.6,\, 64.5,\, 64.3,\, 64.6,\, 64.8,\, 64.2,\, 64.3\]
 
 If we \textbf{asume} that the impact energy is normally distributed with \(\sigma=1J\) what is the \(95\%\) confidence interval for the mean of these data?
 
@@ -7122,7 +7122,7 @@ where \(t_{0.025, n-1}=F^{-1}(0.975)\)=t.ppf(0.975, n-1)
 
 A metallic material is tested for impact to measure the energy required to cut it at a given temperature. Ten specimens of A238 steel were cut at 60ºC at the following impact energies (J):
 
-\(64.1, 64.7, 64.5, 64.6, 64.5, 64.3, 64.6, 64.8, 64.2, 64.3\)
+\[64.1,\, 64.7,\, 64.5,\, 64.6,\, 64.5,\, 64.3,\, 64.6,\, 64.8,\, 64.2,\, 64.3\]
 
 If we \textbf{asumme} that the impact energy is normally distributed but we \textbf{do not know} the variance, what is the \(95\%\) confidence interval for the mean of these data?
 
@@ -7190,12 +7190,7 @@ This is is consistent with frequentist definition of probability that we saw in 
 \hypertarget{case-3-proportions}{%
 \subsection{Case 3 (proportions)}\label{case-3-proportions}}
 
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\tightlist
-\item
-  When \(\hat{p}n>5\) and \((\hat{p}-1)n>5\), the \textbf{standardized statistic} of \(\bar{X}\) can be approximated by a standard distribution (CLT)
-\end{enumerate}
+When \(\hat{p}n>5\) and \((\hat{p}-1)n>5\), the \textbf{standardized statistic} of \(\bar{X}\) can be approximated to a standard normal variable by the CLT
 
 \[Z=\frac{\bar{X}-\mu}{\sigma/\sqrt{n}}= \frac{\bar{X}-p}{\big[\frac{p(1-p)}{n} \big]^{1/2}}\rightarrow N(0,1)\]
 and the \(95\%\) CI interval of \(p\) is:
@@ -7261,7 +7256,7 @@ Since \(S^2\) is a random variable the estimation of the variance changes when w
 
 A metallic material is tested for impact to measure the energy required to cut it at a given temperature. Ten specimens of A238 steel were cut at 60ºC at the following impact energies (J):
 
-\(64.1, 64.7, 64.5, 64.6, 64.5, 64.3, 64.6, 64.8, 64.2, 64.3\)
+\[64.1,\, 64.7,\, 64.5,\, 64.6,\, 64.5,\, 64.3,\, 64.6,\, 64.8,\, 64.2,\, 64.3\]
 
 what is estimation of the variance of these data?
 
@@ -7347,7 +7342,7 @@ where
 
 A metallic material is tested for impact to measure the energy required to cut it at a given temperature. Ten specimens of A238 steel were cut at 60ºC at the following impact energies (J):
 
-\(64.1, 64.7, 64.5, 64.6, 64.5, 64.3, 64.6, 64.8, 64.2, 64.3\)
+\[64.1,\, 64.7,\, 64.5,\, 64.6,\, 64.5,\, 64.3,\, 64.6,\, 64.8,\, 64.2,\, 64.3\]
 
 what is confidence interval for the variance of these data?
 
@@ -7557,9 +7552,9 @@ The hypothesis is usually written in two dichotomous statements
 \begin{enumerate}
 \def\labelenumi{\alph{enumi}.}
 \item
-  The \textbf{null} hypothesis: \(H_0\) when the conjecture is false usually refers to \textbf{status quo}. The data may be explained by the satus quo.
+  The \textbf{null} hypothesis \(H_0\): when the conjecture is false. It usually refers to the \textbf{status quo}. The data may be explained by the satus quo.
 \item
-  The \textbf{alternative} hypothesis: \(H_1\) when the conjecture is true usually refers to \textbf{research hypothesis}. The data may be explained by the desired alternative.
+  The \textbf{alternative} hypothesis \(H_1\): when the conjecture is true. It usually refers to \textbf{research hypothesis}. The data may be explained by the alternative to the status quo.
 \end{enumerate}
 
 \textbf{Example (Fertilizer)}
@@ -8379,7 +8374,7 @@ The scientific question can be stated as \textbf{upper-tailed} paired t-test:
   \(H_1:\mu > 0\) (treatment 2 higher then treatment 1: \(\mu_2-\mu_1>0\))
 \end{enumerate}
 
-Where \(\mu\) is the mean of the \textbf{differences} between treatments.
+Where \(\mu\) is the mean of the \textbf{differences} between treatments, and the null hypothesis states that there is no difference.
 
 If we suppose that \(X\) is normal and we do not know \(\sigma^2\) then we are in \textbf{case 2}. The \textbf{standardized error} is:
 
@@ -8493,7 +8488,7 @@ We assume that if the null hypothesis is true then
 \end{enumerate}
 
 \[X \rightarrow Bernoulli (p_0)\]
-2. and check that when \(p_0n=180>5\) and \((1-p_0)=n=20>5\)
+2. and check that when \(np_0=180>5\) and \(n(1-p_0)=20>5\)
 
 Therefore, we can apply \textbf{case 3}.
 

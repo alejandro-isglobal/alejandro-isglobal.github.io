@@ -23,7 +23,7 @@
 <meta name="author" content="Alejandro Caceres" />
 
 
-<meta name="date" content="2024-08-18" />
+<meta name="date" content="2024-08-30" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -632,7 +632,7 @@ This particular case, fully agrees with the law of large numbers, as it should, 
 <p>We say that <span class="math inline">\(\bar{X}\)</span> is an <strong>unbiased</strong> estimator of <span class="math inline">\(\mu\)</span> because its expected value is exactly what it wants to estimate: <span class="math inline">\(\mu\)</span>; a dart player who on average hits the bull’s-eye. We also say that <span class="math inline">\(\bar{X}\)</span> is a <strong>consistent</strong> estimator because its variance gets smaller with large <span class="math inline">\(n\)</span>; a dart’s player with better darts hits closer the bull’s-eye.</p>
 <p>We call</p>
 <p><span class="math display">\[se=\sqrt{V(\bar{X})}=\sigma/\sqrt{n}\]</span>
-the <strong>standard error</strong> of the sample mean. The standard error is also written as <span class="math inline">\(\sigma_{\bar{x}}\)</span>, to emphasize that it is the standard deviation of the sample mean. Note that this is the error we expect when using <span class="math inline">\(\bar{x}\)</span> as the value of <span class="math inline">\(\mu\)</span>, and it is the bias we need to correct when estimating the variance (Section 10.8).</p>
+the <strong>standard error</strong> of the sample mean. The standard error is also written as <span class="math inline">\(\sigma_{\bar{x}}\)</span>, to emphasize that it is the standard deviation of the sample mean. Note that this is the error we expect when using <span class="math inline">\(\bar{x}\)</span> as the value of <span class="math inline">\(\mu\)</span>, and it is the bias we need to correct when estimating the variance (Section 10.9).</p>
 <p>So, if we <strong>know</strong> <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\sigma\)</span>, we can calculate the <strong>probabilities of</strong> <span class="math inline">\(\bar{X}\)</span> using the normal distribution.</p>
 <p>Remember that we have <strong>two probability functions</strong>:</p>
 <ol style="list-style-type: decimal">
@@ -692,12 +692,12 @@ the <strong>standard error</strong> of the sample mean. The standard error is al
 <span class="math inline">\(=F(102; n\mu, n\sigma^2)-F(106; n\mu, n\sigma^2)\)</span></p>
 <p>In Python we can calculate it as:</p>
 <p><code>norm.cdf(106, 104, 0.9899495)-norm.cdf(102, 104, 0.9899495)=0.956</code>.</p>
-<p>Therefore, <span class="math inline">\(95.6\%\)</span> of the total weight that <span class="math inline">\(8\)</span> cables can carry is between <span class="math inline">\(102\)</span> and <span class="math inline">\(106\)</span> Tons, or a distance of <span class="math inline">\(8\times0.25=2\)</span> Tons from the total mean <span class="math inline">\(n\mu=104\)</span>. This result offers an insight. If the cables are independent, the collective effect of many cables is determined by <span class="math inline">\(n\)</span>-times the properties of a single cable.Here, we have a strong argument to study the collective from the individual <strong>if</strong> individuals do not interact. Think, for instance, of a gas made of non-interacting particles.</p>
+<p>Therefore, <span class="math inline">\(95.6\%\)</span> of the total weight that <span class="math inline">\(8\)</span> cables can carry is between <span class="math inline">\(102\)</span> and <span class="math inline">\(106\)</span> Tons, or a distance of <span class="math inline">\(8\times0.25=2\)</span> Tons from the total mean <span class="math inline">\(n\mu=104\)</span>. This result offers an insight. If the cables are independent, the collective effect of many cables is determined by <span class="math inline">\(n\)</span>-times the properties of a single cable. Here, we have a strong argument to study the collective from the individual <strong>if</strong> individuals do not interact. Think, for instance, of a gas made of non-interacting particles.</p>
 </div>
 <div id="sample-variance-1" class="section level2 hasAnchor" number="10.9">
 <h2><span class="header-section-number">10.9</span> Sample variance<a href="sampling-distributions.html#sample-variance-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>By estimating the variance</p>
-<p><span class="math display">\[s^2=\hat{\sigma}\]</span></p>
+<p><span class="math display">\[s^2=\hat{\sigma}^2\]</span></p>
 <p>We also make a mistake. How can we estimate the error we make?</p>
 <p><strong>Definition</strong></p>
 <p>The <strong>sample variance</strong> <span class="math inline">\(S^2\)</span> of a random sample of size <span class="math inline">\(n\)</span></p>
@@ -755,7 +755,7 @@ Similar to <span class="math inline">\(\hat{\mu}\)</span>, the error of this est
 <p>so</p>
 <p><span class="math display">\[W=\frac{(n-1)S^2}{\sigma^2}= \frac{7S^2}{0.35^2} \rightarrow \chi^2(n-1)\]</span></p>
 <p>we can calculate <span class="math display">\[P(S^2 &gt; 0.3)=P(\frac{(n-1)S^2}{\sigma^2} &gt; \frac{(n-1)0.3}{\sigma^2 } )\]</span>
-<span class="math inline">\(=P(W &gt; \frac{7*0.3}{0.35^2})=P(W &gt; 17.14286)\)</span></p>
+<span class="math inline">\(=P(W &gt; \frac{7\times0.3}{0.35^2})=P(W &gt; 17.14286)\)</span></p>
 <p><span class="math inline">\(=1-P(W \leq 17.14286)\)</span></p>
 <p><span class="math inline">\(= 1- F_{\chi^2,df=7}(17.14286)=0.016\)</span></p>
 <p>in Python

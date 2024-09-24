@@ -120,7 +120,7 @@
 
 \title{Statistical Data Analysis}
 \author{Alejandro Caceres}
-\date{2024-08-30}
+\date{2024-09-24}
 
 \begin{document}
 \maketitle
@@ -159,7 +159,7 @@ The statistics theory is covered in three weeks of intense work. They comprise a
   Group work session 2 (3 hours)
 \end{enumerate}
 
-Evaluation: There will be a written exam (\(60\%\)) on the \textbf{31st of October} and a report of group practicals (\(40\%\)). These grades will constitute the \(64\%\) of the SDA grade. Machine learning (\(18\%\)) and Bayesian statistics (\(18\%\)) modules comprise the rest.
+Evaluation: There will be a written exam (\(40\%\)) on the \textbf{30th of October} and a report of group practicals (\(20\%\)). These grades will constitute the \(60\%\) of the SDA grade. Machine learning (\(20\%\)) and Bayesian statistics (\(20\%\)) modules comprise the rest.
 
 Evaluation objectives:
 
@@ -4090,7 +4090,7 @@ and
 
 \(V(X)=V(\sum_{i=1}^n K_i)=n(1-p)p\)
 
-The last equation requieres independence of the Bernoulli trials.
+The last equation requires independence of the Bernoulli trials.
 
 \textbf{Example (transmission of pixels)}
 
@@ -4189,7 +4189,7 @@ Note that
   The total number of ways in which \(y\) number of zeros can be allocated in \(y + r-1\) pixels (the last pixel is fixed with value 1) is: \(\binom {y + r-1} y\)
 \end{enumerate}
 
-Therefore, the probability of observing \(y\) 1's before \(r\) 0's (each 1 with probability \(p\)) is
+Therefore, the probability of observing \(y\) 0's before \(r\) 1's (each 1 with probability \(p\)) is
 
 \[P(Y=y)=f(y)=\binom {y+r-1} y p^r(1-p)^y\]
 
@@ -8935,9 +8935,9 @@ Let's take a sample of patients arriving to the hospital. We write down the diag
 
 where the first patient has hepatitis and the last one does not.
 
-Hepatitis C diagnosis is a Bernoulli trial \(X\) with outcomes (0:no hepatitis and 1:hepatitis) that has a probability mass function
+Hepatitis C diagnosis is a Bernoulli trial \(Y\) with outcomes (0:no hepatitis and 1:hepatitis) that has a probability mass function
 
-\[X_A \rightarrow Bernoulli (p_A)\]
+\[Y_A \rightarrow Bernoulli (p_A)\]
 The parameter \(p_A\) is the probability of hepatitis at hospital \(A\).
 
 We also write down the hepatitis status of a patient who goes to \textbf{hospital B}, and observe
@@ -8946,7 +8946,7 @@ We also write down the hepatitis status of a patient who goes to \textbf{hospita
 
 Diagnosis at this hospital is a Bernoulli trial with probability \(p_B\)
 
-\[K_B \rightarrow Bernoulli (p_B)\]
+\[Y_B \rightarrow Bernoulli (p_B)\]
 
 \hypertarget{difference-between-proportions-1}{%
 \section{Difference between proportions}\label{difference-between-proportions-1}}
@@ -9052,7 +9052,7 @@ For hospital \(A\) we have that the estimated probability of infection is the \t
 \begin{itemize}
 \tightlist
 \item
-  \(\bar{x}_A=\hat{p}_A=18/200=0.09\)
+  \(\bar{y}_A=\hat{p}_A=18/200=0.09\)
 \end{itemize}
 
 Consequently, for hospital \(B\), we have that the estimated probability of infection is
@@ -9060,23 +9060,23 @@ Consequently, for hospital \(B\), we have that the estimated probability of infe
 \begin{itemize}
 \tightlist
 \item
-  \(\bar{x}_B=\hat{p}_B=46/400=0.115\)
+  \(\bar{y}_B=\hat{p}_B=46/400=0.115\)
 \end{itemize}
 
 If the null hypothesis is true then the rate of infection \(p\) can be estimated from either hospital, or from the two hospitals \textbf{taken together}, as if they were same hospital:
 
-\[\hat{p}=\frac{n_A\bar{x}_A+n_B\bar{x}_B}{n_A+n_B}=\frac{18+46}{200+400}=0.1066667\]
+\[\hat{p}=\frac{n_A\bar{y}_A+n_B\bar{y}_B}{n_A+n_B}=\frac{18+46}{200+400}=0.1066667\]
 
 \hypertarget{chi2-test}{%
 \section{\texorpdfstring{\(\chi^2\) test}{\textbackslash chi\^{}2 test}}\label{chi2-test}}
 
 For the first hospital the \textbf{standardized error} observed when we estimate the rate of infection \(\hat{p}\) using only the average rate of infections at this hospital is
 
-\[Z_A= \frac{\bar{X}_A-\hat{p}}{\sqrt\frac{\hat{p}(1-\hat{p})}{n_A}}\]
+\[Z_A= \frac{\bar{Y}_A-\hat{p}}{\sqrt\frac{\hat{p}(1-\hat{p})}{n_A}}\]
 
 The error made in hospital \(B\) is
 
-\[Z_B= \frac{\bar{X}_B-\hat{p}}{\sqrt\frac{\hat{p}(1-\hat{p})}{n_B}}\]
+\[Z_B= \frac{\bar{Y}_B-\hat{p}}{\sqrt\frac{\hat{p}(1-\hat{p})}{n_B}}\]
 
 \includegraphics{_main_files/figure-latex/unnamed-chunk-116-1.pdf}
 
@@ -9143,7 +9143,18 @@ If the observed value for \(W\) is a rare error from the null hypothesis, for a 
 
 When we compute the observed value of \(W\), using the first form, we find
 
-\[w_{obs}= \frac{0.09-0.1066667}{\sqrt{\frac{0.1066667(1-0.1066667)}{200}}}+ \frac{0.115-0.1066667}{\sqrt{\frac{0.1066667(1-0.1066667)}{400}}}= 0.87453\]
+\[w_{obs}= (\frac{0.09-0.1066667}{\sqrt{\frac{0.1066667(1-0.1066667)}{200}}})^2+( \frac{0.115-0.1066667}{\sqrt{\frac{0.1066667(1-0.1066667)}{400}}})^2= 0.87453\]
+
+In terms of the expected value of \(W\) the null hypothesis is rewritten:
+
+\begin{itemize}
+\tightlist
+\item
+  \(H_0:w=0\) (Disease and Hospital are statistically \textbf{independent} and the error in estimation is low)
+\item
+  \(H_1:w>0\)
+  (Disease and Hospital A are statistically \textbf{dependent} and the error in estimation is high)
+\end{itemize}
 
 We can test whether this value is large under the null hypothesis. If the null is true this statistics is close to zero, otherwise is large. We can then compute the \(pvalue\) given by
 
@@ -9219,19 +9230,19 @@ The alternative hypothesis assumes that the parameter of hospital \(A\) is lower
 \hypertarget{hypergeometric-distribution}{%
 \section{Hypergeometric distribution}\label{hypergeometric-distribution}}
 
-The probability of obtaining \(x\) hepatitis C cases in a sample of \(n\) drawn from a population of \(N\) where \(K\) have hepatitis C is
+The probability of obtaining \(Y\) hepatitis C cases in a sample of \(n\) drawn from a population of \(N\) where \(K\) have hepatitis C is
 
-\(P(X=x)=P(one\,sample) \times (Number\, of\, ways\, of\, obtaining\, x)\)
+\(P(Y=y)=P(one\,sample) \times (Number\, of\, ways\, of\, obtaining\, x)\)
 
-\[=\frac{1}{\binom N n}\binom K x \binom {N-K} {n-x}\]
+\[=\frac{1}{\binom N n}\binom K y \binom {N-K} {n-y}\]
 
-\[X \rightarrow Hypergeometric(N,K,n)\]
+\[Y \rightarrow Hypergeometric(N,K,n)\]
 
 \includegraphics{_main_files/figure-latex/unnamed-chunk-118-1.pdf}
 
-If the observed value for \(x=18\) is a rare low \textbf{observation} from the null hypothesis, we then reject the null hypothesis. The lower tail \(pvalue\) for an observation \(X=18\) is
+If the observed value for \(y=18\) is a rare low \textbf{observation} from the null hypothesis, we then reject the null hypothesis. The lower tail \(pvalue\) for an observation \(Y=18\) is
 
-\[pvalue=P_{hyper}(X \leq 18) =0.2147683\]
+\[pvalue=P_{hyper}(Y \leq 18) =0.2147683\]
 In Python
 
 \begin{verbatim}
@@ -9336,7 +9347,7 @@ which is a random variable that follows a \(\chi^2\) distribution with \(4=5-1\)
 
 Each term in \(W\) is the squared \textbf{standardized error} observed when we estimate the probability of infection \(\hat{p}\) using only the frequency of infections at each hospital. The estimated probability of proportion across hospitals is
 
-\[\hat{p}=\frac{n_A\bar{x}_A+n_B\bar{x}_B+n_C\bar{x}_C+n_D\bar{x}_D+n_E\bar{x}_E}{n_A+n_B+n_C+n_D+n_E}=\frac{18+46+25+15+10}{200+400+400+100+100}=0.095\]
+\[\hat{p}=\frac{n_A\bar{y}_A+n_B\bar{y}_B+n_C\bar{y}_C+n_D\bar{y}_D+n_E\bar{y}_E}{n_A+n_B+n_C+n_D+n_E}=\frac{18+46+25+15+10}{200+400+400+100+100}=0.095\]
 
 The computation of the observed \textbf{standardized squared error} is
 \[w_{obs}=10.381\]

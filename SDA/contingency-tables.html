@@ -23,7 +23,7 @@
 <meta name="author" content="Alejandro Caceres" />
 
 
-<meta name="date" content="2024-08-30" />
+<meta name="date" content="2024-09-24" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -502,13 +502,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Let’s take a sample of patients arriving to the hospital. We write down the diagnosis of hepatitis C of a patient who is treated at <strong>hospital A</strong>. In hospital <span class="math inline">\(A\)</span>, we observe</p>
 <p><span class="math display">\[1, 0, 0, 1, 0, ... 0\]</span></p>
 <p>where the first patient has hepatitis and the last one does not.</p>
-<p>Hepatitis C diagnosis is a Bernoulli trial <span class="math inline">\(X\)</span> with outcomes (0:no hepatitis and 1:hepatitis) that has a probability mass function</p>
-<p><span class="math display">\[X_A \rightarrow Bernoulli (p_A)\]</span>
+<p>Hepatitis C diagnosis is a Bernoulli trial <span class="math inline">\(Y\)</span> with outcomes (0:no hepatitis and 1:hepatitis) that has a probability mass function</p>
+<p><span class="math display">\[Y_A \rightarrow Bernoulli (p_A)\]</span>
 The parameter <span class="math inline">\(p_A\)</span> is the probability of hepatitis at hospital <span class="math inline">\(A\)</span>.</p>
 <p>We also write down the hepatitis status of a patient who goes to <strong>hospital B</strong>, and observe</p>
 <p><span class="math display">\[0, 0, 1, 0, 0, ... 1\]</span></p>
 <p>Diagnosis at this hospital is a Bernoulli trial with probability <span class="math inline">\(p_B\)</span></p>
-<p><span class="math display">\[K_B \rightarrow Bernoulli (p_B)\]</span></p>
+<p><span class="math display">\[Y_B \rightarrow Bernoulli (p_B)\]</span></p>
 </div>
 <div id="difference-between-proportions-1" class="section level2 hasAnchor" number="15.3">
 <h2><span class="header-section-number">15.3</span> Difference between proportions<a href="contingency-tables.html#difference-between-proportions-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -601,21 +601,21 @@ Therefore the hypothesis contrast is:</p>
 </ul>
 <p>For hospital <span class="math inline">\(A\)</span> we have that the estimated probability of infection is the <strong>relative frequency</strong> of infections, that is</p>
 <ul>
-<li><span class="math inline">\(\bar{x}_A=\hat{p}_A=18/200=0.09\)</span></li>
+<li><span class="math inline">\(\bar{y}_A=\hat{p}_A=18/200=0.09\)</span></li>
 </ul>
 <p>Consequently, for hospital <span class="math inline">\(B\)</span>, we have that the estimated probability of infection is</p>
 <ul>
-<li><span class="math inline">\(\bar{x}_B=\hat{p}_B=46/400=0.115\)</span></li>
+<li><span class="math inline">\(\bar{y}_B=\hat{p}_B=46/400=0.115\)</span></li>
 </ul>
 <p>If the null hypothesis is true then the rate of infection <span class="math inline">\(p\)</span> can be estimated from either hospital, or from the two hospitals <strong>taken together</strong>, as if they were same hospital:</p>
-<p><span class="math display">\[\hat{p}=\frac{n_A\bar{x}_A+n_B\bar{x}_B}{n_A+n_B}=\frac{18+46}{200+400}=0.1066667\]</span></p>
+<p><span class="math display">\[\hat{p}=\frac{n_A\bar{y}_A+n_B\bar{y}_B}{n_A+n_B}=\frac{18+46}{200+400}=0.1066667\]</span></p>
 </div>
 <div id="chi2-test" class="section level2 hasAnchor" number="15.6">
 <h2><span class="header-section-number">15.6</span> <span class="math inline">\(\chi^2\)</span> test<a href="contingency-tables.html#chi2-test" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>For the first hospital the <strong>standardized error</strong> observed when we estimate the rate of infection <span class="math inline">\(\hat{p}\)</span> using only the average rate of infections at this hospital is</p>
-<p><span class="math display">\[Z_A= \frac{\bar{X}_A-\hat{p}}{\sqrt\frac{\hat{p}(1-\hat{p})}{n_A}}\]</span></p>
+<p><span class="math display">\[Z_A= \frac{\bar{Y}_A-\hat{p}}{\sqrt\frac{\hat{p}(1-\hat{p})}{n_A}}\]</span></p>
 <p>The error made in hospital <span class="math inline">\(B\)</span> is</p>
-<p><span class="math display">\[Z_B= \frac{\bar{X}_B-\hat{p}}{\sqrt\frac{\hat{p}(1-\hat{p})}{n_B}}\]</span></p>
+<p><span class="math display">\[Z_B= \frac{\bar{Y}_B-\hat{p}}{\sqrt\frac{\hat{p}(1-\hat{p})}{n_B}}\]</span></p>
 <p><img src="_main_files/figure-html/unnamed-chunk-116-1.png" width="672" /></p>
 <p>In the plot, each cross is a diagnosis (either <span class="math inline">\(1\)</span> or <span class="math inline">\(0\)</span>) the dotted line is the estimated probability <span class="math inline">\(\hat{p}\)</span> of both hospitals taken together and the dots are the estimated probabilities of each separate hospital.</p>
 <p>The conditional probability table by hospital is</p>
@@ -683,7 +683,13 @@ Hospital: <span class="math inline">\(B\)</span>
 <p>If the observed value for <span class="math inline">\(W\)</span> is a rare error from the null hypothesis, for a <span class="math inline">\(\chi^2\)</span> variable, we then reject the null hypothesis. The value of <span class="math inline">\(W\)</span> is exactly the same however we compute it.</p>
 <p><strong>Example (Hepatitis C)</strong></p>
 <p>When we compute the observed value of <span class="math inline">\(W\)</span>, using the first form, we find</p>
-<p><span class="math display">\[w_{obs}= \frac{0.09-0.1066667}{\sqrt{\frac{0.1066667(1-0.1066667)}{200}}}+ \frac{0.115-0.1066667}{\sqrt{\frac{0.1066667(1-0.1066667)}{400}}}= 0.87453\]</span></p>
+<p><span class="math display">\[w_{obs}= (\frac{0.09-0.1066667}{\sqrt{\frac{0.1066667(1-0.1066667)}{200}}})^2+( \frac{0.115-0.1066667}{\sqrt{\frac{0.1066667(1-0.1066667)}{400}}})^2= 0.87453\]</span></p>
+<p>In terms of the expected value of <span class="math inline">\(W\)</span> the null hypothesis is rewritten:</p>
+<ul>
+<li><span class="math inline">\(H_0:w=0\)</span> (Disease and Hospital are statistically <strong>independent</strong> and the error in estimation is low)</li>
+<li><span class="math inline">\(H_1:w&gt;0\)</span>
+(Disease and Hospital A are statistically <strong>dependent</strong> and the error in estimation is high)</li>
+</ul>
 <p>We can test whether this value is large under the null hypothesis. If the null is true this statistics is close to zero, otherwise is large. We can then compute the <span class="math inline">\(pvalue\)</span> given by</p>
 <p><span class="math display">\[pvalue=P(W \geq w_{obs}) =0.3497\]</span></p>
 <p>or in Python</p>
@@ -726,13 +732,13 @@ P-value: 0.3497</code></pre>
 </div>
 <div id="hypergeometric-distribution" class="section level2 hasAnchor" number="15.8">
 <h2><span class="header-section-number">15.8</span> Hypergeometric distribution<a href="contingency-tables.html#hypergeometric-distribution" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>The probability of obtaining <span class="math inline">\(x\)</span> hepatitis C cases in a sample of <span class="math inline">\(n\)</span> drawn from a population of <span class="math inline">\(N\)</span> where <span class="math inline">\(K\)</span> have hepatitis C is</p>
-<p><span class="math inline">\(P(X=x)=P(one\,sample) \times (Number\, of\, ways\, of\, obtaining\, x)\)</span></p>
-<p><span class="math display">\[=\frac{1}{\binom N n}\binom K x \binom {N-K} {n-x}\]</span></p>
-<p><span class="math display">\[X \rightarrow Hypergeometric(N,K,n)\]</span></p>
+<p>The probability of obtaining <span class="math inline">\(Y\)</span> hepatitis C cases in a sample of <span class="math inline">\(n\)</span> drawn from a population of <span class="math inline">\(N\)</span> where <span class="math inline">\(K\)</span> have hepatitis C is</p>
+<p><span class="math inline">\(P(Y=y)=P(one\,sample) \times (Number\, of\, ways\, of\, obtaining\, x)\)</span></p>
+<p><span class="math display">\[=\frac{1}{\binom N n}\binom K y \binom {N-K} {n-y}\]</span></p>
+<p><span class="math display">\[Y \rightarrow Hypergeometric(N,K,n)\]</span></p>
 <p><img src="_main_files/figure-html/unnamed-chunk-118-1.png" width="672" /></p>
-<p>If the observed value for <span class="math inline">\(x=18\)</span> is a rare low <strong>observation</strong> from the null hypothesis, we then reject the null hypothesis. The lower tail <span class="math inline">\(pvalue\)</span> for an observation <span class="math inline">\(X=18\)</span> is</p>
-<p><span class="math display">\[pvalue=P_{hyper}(X \leq 18) =0.2147683\]</span>
+<p>If the observed value for <span class="math inline">\(y=18\)</span> is a rare low <strong>observation</strong> from the null hypothesis, we then reject the null hypothesis. The lower tail <span class="math inline">\(pvalue\)</span> for an observation <span class="math inline">\(Y=18\)</span> is</p>
+<p><span class="math display">\[pvalue=P_{hyper}(Y \leq 18) =0.2147683\]</span>
 In Python</p>
 <pre><code>from scipy.stats import hypergeom
 
@@ -821,7 +827,7 @@ P-value: 0.2148</code></pre>
 <p><span class="math display">\[W= Z_A^2+Z_B^2+Z_C^2+Z_D^2+Z_E^2\rightarrow \chi^2(4)\]</span></p>
 <p>which is a random variable that follows a <span class="math inline">\(\chi^2\)</span> distribution with <span class="math inline">\(4=5-1\)</span> degrees of freedom (number of hospitals <span class="math inline">\(-1\)</span>).</p>
 <p>Each term in <span class="math inline">\(W\)</span> is the squared <strong>standardized error</strong> observed when we estimate the probability of infection <span class="math inline">\(\hat{p}\)</span> using only the frequency of infections at each hospital. The estimated probability of proportion across hospitals is</p>
-<p><span class="math display">\[\hat{p}=\frac{n_A\bar{x}_A+n_B\bar{x}_B+n_C\bar{x}_C+n_D\bar{x}_D+n_E\bar{x}_E}{n_A+n_B+n_C+n_D+n_E}=\frac{18+46+25+15+10}{200+400+400+100+100}=0.095\]</span></p>
+<p><span class="math display">\[\hat{p}=\frac{n_A\bar{y}_A+n_B\bar{y}_B+n_C\bar{y}_C+n_D\bar{y}_D+n_E\bar{y}_E}{n_A+n_B+n_C+n_D+n_E}=\frac{18+46+25+15+10}{200+400+400+100+100}=0.095\]</span></p>
 <p>The computation of the observed <strong>standardized squared error</strong> is
 <span class="math display">\[w_{obs}=10.381\]</span></p>
 <p>For which we can test how rare an observation is, using a <span class="math inline">\(pvalue\)</span></p>

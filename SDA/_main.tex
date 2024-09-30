@@ -120,7 +120,7 @@
 
 \title{Statistical Data Analysis}
 \author{Alejandro Caceres}
-\date{2024-09-24}
+\date{2024-09-30}
 
 \begin{document}
 \maketitle
@@ -10708,9 +10708,9 @@ which is the sum of the depressions across the sex-leptin conditions. \(S_e^2\) 
 Now, we can also estimate the variance of the averages in each group of factor 1 about the overall average
 
 \[S^2_{tr1}=\frac{1}{k-1} \sum_{j=1}^k(\bar{Y}_{j\cdot}-\bar{Y})^2\]
-That is an estimator of \(\sigma^2/k\) under the null hypothesis. Again we define the \(F\) statistics
+That is an estimator of \(\sigma^2/nm\) under the null hypothesis. Again we define the \(F\) statistics
 
-\[F_1=\frac{kmS_{tr1}^2}{S_{e}^2} \rightarrow Fisher(k-1,(kmn-1)-(k-1)-(m-1))\]
+\[F_1=\frac{nmS_{tr1}^2}{S_{e}^2} \rightarrow Fisher(k-1,(kmn-1)-(k-1)-(m-1))\]
 
 that will be close to \(1\) if the first null hypothesis is true: There is no difference between means \(\mu_{j\cdot}\) across the groups of factor 1. In this case the sample variance of treatments (groups) for factor \(1\) will reduce to zero with large \(n\), because all the treatment means of factor 1 are the same as the grand mean (\(\mu_{j\cdot}=\mu\)). If the alternative is true then at least one treatment mean is different from the grand mean and the statistic will be far from \(1\) (at least one \(\mu_{j\cdot}\neq\mu\)).
 
@@ -10718,7 +10718,7 @@ We can also define another statistic that test the second hypothesis contrast. F
 
 \[S^2_{tr2}=\frac{1}{m-1} \sum_{r=1}^m(\bar{Y}_{\cdot r}-\bar{Y})^2\]
 
-and we can define \[F_2=\frac{kmS_{tr2}^2}{S_{e}^2}\rightarrow Fisher(m-1,(kmn-1)-(k-1)-(m-1))\]
+and we can define \[F_2=\frac{nkS_{tr2}^2}{S_{e}^2}\rightarrow Fisher(m-1,(kmn-1)-(k-1)-(m-1))\]
 
 Then, observed values of \(F_2\) far from \(1\) suggest that the means between groups of the second factor significantly \textbf{differ}, rejecting the null.
 
@@ -12533,6 +12533,112 @@ and test the hypothesis \(H_0: \beta=0\) against \(H_1: \beta\neq 0\)
 \textbf{Chapter 18}
 
 \(\qquad\) 1.d; \(\qquad\) 2.a; \(\qquad\) 3.b; \(\qquad\) 4.c; \(\qquad\) 5.b
+
+\hypertarget{summary-of-probability-models-1}{%
+\section{Summary of probability models}\label{summary-of-probability-models-1}}
+
+\begin{longtable}[]{@{}
+  >{\centering\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1667}}
+  >{\centering\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1905}}
+  >{\centering\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1905}}
+  >{\centering\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1667}}
+  >{\centering\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1429}}
+  >{\centering\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1429}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\centering
+Model
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+Experiment
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+range of X
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+f(x)
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+E(X)
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+V(X)
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Uniform & Measuring an integer or real number & \([a, b]\) & \(\frac{1}{n}\) & \(\frac{b+a}{2}\) & \(\frac{(b-a+1)^2-1}{12}\) \\
+Bernoulli & Observing \(A\) & \((0,1)\) & \((1-p)^{1-x}p^x\) & \(p\) & \(p(1-p)\) \\
+Binomial & Counting \# of \(A\) events in \(n\) repetitions of Bernoulli trials & \((0,1,.., n)\) & \(\binom n x (1-p)^{n-x}p^x\) & \(np\) & \(np(1-p)\) \\
+Negative Binomial for events & Counting \# of \(A'\) events in repetitions of Bernoulli trials until \(r\) events \(A\) are observed & \((0,1,..)\) & \(\binom {x+r-1} x (1-p)^xp^r\) & \(\frac{r(1-p)}{p}\) & \(\frac{r(1-p)}{p^2}\) \\
+Hypergeom & Counting \# of \(A\) events in a sample \(n\) from population \(N\) with \(K\) \# of \(A\) events & \(\max(0, n+K-N)\), \ldots{} \(\min(K, n)\) & \(\frac{1}{\binom N n}\binom K x \binom {N-K} {n-x}\) & \(n*\frac{N}{K}\) & \(n \frac{N}{K} (1-\frac{N}{K})\frac{N-n}{N-1}\) \\
+Poisson & Counting \# \(A\) events in an interval & 0,1, .. & \(\frac{e^{-\lambda}\lambda^x}{x!}\) & \(\lambda\) & \(\lambda\) \\
+Exponential & Measuring an interval between two events \(A\) & \([0,\infty)\) & \(\lambda e^{-\lambda x}\) & \(\frac{1}{\lambda}\) & \(\frac{1}{\lambda^2}\) \\
+Normal & Measuring values with symmetric errors whose most likely value is the average & \((-\infty, \infty)\) & \(\frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{(x-\mu)^2}{2\sigma^2}}\) & \(\mu\) & \(\sigma^2\) \\
+\end{longtable}
+
+\newpage
+
+\hypertarget{python-functions-of-probability-models-1}{%
+\section{Python functions of probability models}\label{python-functions-of-probability-models-1}}
+
+\begin{longtable}[]{@{}lc@{}}
+\toprule\noalign{}
+Model & Python \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Uniform (continuous) & uniform.pdf(x, a, b) \\
+Binomial & binom.pmf(x,n,p) \\
+Negative Binomial for events & nbinom.pmf(x,r,p) \\
+Hypergeom & hypergeom.pmf(x, N, K, n) \\
+Poisson & poisson.pmf(x, lambda) \\
+Exponential & expon.pdf(x,0,1/lambda) \\
+Normal & norm.pdf(x, mu, sigma) \\
+\end{longtable}
+
+\hypertarget{summary-of-hypothesis}{%
+\section{Summary of hypothesis}\label{summary-of-hypothesis}}
+
+\begin{longtable}[]{@{}
+  >{\centering\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1667}}
+  >{\centering\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1905}}
+  >{\centering\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1905}}
+  >{\centering\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1667}}
+  >{\centering\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1429}}
+  >{\centering\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1429}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\centering
+Outcome (Y)
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+Condition1 (X)
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+Condition2 (Z)
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+Null
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+test
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+Python code
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Normal & - & - & \(\mu=\mu_0\) & T-test & stats.ttest\_1samp(data, popmean) \\
+Normal & - & - & \(\sigma^2=\sigma_0^2\) & \(\chi^2\)-test & p\_value = 1 - stats.chi2.cdf(chi\_square, df) \\
+& & & & & \\
+Normal & - & - & \(\mu_1 -\mu_2=0\) & paired T-test & stats.ttest\_rel(x1,x2) \\
+Binary & - & - & \(p=p_0\) & Z-test & proportions\_ztest(count, nobs, value) \\
+Binary (exact) & - & - & \(p=p_0\) & Binomial-test & binomtest(successes, trials, p) \\
+Categorical & Categorical (A,B,\ldots) & - & \(p_A= p_B=...\) & \(\chi^2\)-test & chi2\_contingency(observed) \\
+Categorical & Categorical (A,B) & - & \(p_A= p_B\) & Fisher-exact test & hypergeom.cdf(x, N, K, n) \\
+Normal & Binary & - & \(\mu_A=\mu_B\) & T-test & stats.ttest\_ind(groupA, groupB, equal\_var) \\
+Normal & Categorical (A, B, \ldots) & - & \(\mu_A=\mu_B=...\) & ANOVA (F-test) & model = ols(`Y \textasciitilde{} X', data).fit(); sm.stats.anova\_lm(model) \\
+Normal & Categorical (A, B, \ldots) & Categorical (L, M, \ldots) & \(\alpha_A=\alpha_B=..; \beta_L=\beta_M=...\) & 2-way ANOVA (F-test) & model = ols(`Y \textasciitilde{} X+Z', data).fit(); sm.stats.anova\_lm(model) \\
+Normal & Categorical (A, B, \ldots) & Categorical (L, M, \ldots) & \(\alpha_A\times \beta_L=0\) & 2-way interaction (F-test) & model = ols('Y \textasciitilde{} X*Z', data).fit(); sm.stats.anova\_lm(model) \\
+& & & & & \\
+Normal & Normal & - & \(\rho=\rho_0\) & Correlation-test & pearsonr(X, Y) \\
+Normal & any type & - & \(\beta=0\) & Regression & ols(`Y \textasciitilde{} X', data).fit() \\
+Normal & any type & any type & \(\beta=0\) & Adjusted regression & ols(`Y \textasciitilde{} X+Z', data).fit() \\
+Normal & any type & any type & \(\delta_{x,z}=0\) & Regression with interaction & ols('Y \textasciitilde{} X*Z', data).fit() \\
+\end{longtable}
 
   \bibliography{book.bib,packages.bib}
 

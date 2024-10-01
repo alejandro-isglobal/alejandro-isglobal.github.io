@@ -10260,15 +10260,15 @@ where \(j\) indicates the groups (\(A\), \(B\), \(C\)) and \(\bar{Y}\) is the av
 If the null \textbf{hypothesis is true} and we take more and more observations in each group then all the group averages get closer to the overall average \(\bar{Y}\), and the overall average gets closer to the grand mean \(\mu\) (which is unknown). In particular the ratio of
 
 \[F=\frac{S_{tr}^2}{\frac{S_e^2}{n}}\]
-is a statistic that is close to \(1\), when \(H_0\) is true, because it gives us the error ratio \(\sigma^2_{\bar{Y}}/\frac{\sigma^2}{n}\) in the estimation of the average variance when the null hypothesis is true.
+is a statistic that is close to \(1\), when \(H_0\) is true, because it gives us the error ratio \(\sigma^2_{\bar{Y}}/\frac{\sigma^2}{n}\) in the estimation of the variance's average when the null hypothesis is true. Written as \(n \sigma^2_{\bar{Y}}/\sigma^2\) it gives a measure of the separation of the averages in relation to the within group noise.
 
 If the null \textbf{hypothesis is not true} and we take more and more observations in each group then at least one average will not get close to the other averages, for instance \(\mu_A=\mu_B=\mu \neq \mu_C\). Therefore, the expected value of \(S^2_{tr}\) will substantially differ from \(\frac{\sigma^2}{n}\), as there is an irreducible variance given by the group that is different, which, for instance, concentrates at \(\mu_C\) and not at \(\mu\) for group \(C\). We also say that there is an additional variance in the data given by the treatment (or group difference). We managed to significantly change the outcome of the random experiment by changing the condition. In this case, the \(F\) statistic will be greater than 1, and the probability of getting a more extreme value is very low if the null is true.
 
-The \(F\) statistic can also be computed as the ratio of sums of squares
+The \(F\) statistic can also be computed as the ratio of sums of squares, which result from writing \(F\) in terms of the averages and a subsequent rearrangement
 
 \[F=\frac{MST}{MSE}\]
 
-The numerator \(MST\) is called the mean sum of squares of treatments (groups) and the denominator \(MSE\) is the sum of squares of errors (residuals). Since the variables within each group are considered normal, the variance estimators follow \(\chi^2\) distributions with their respective degrees of freedom, and the ratio \(F\) follows an (\(F\)) Fisher distribution with \(k-1\) and \(k(n-1)\) degrees of freedom
+The numerator \[MST=\frac{1}{k-1}\sum_{j=1}^k n(\bar{Y}_j-\bar{Y})^2=\frac{1}{k-1}SSq_{group}\] is called the mean sum of squares of treatments (groups) and the denominator \[MSE= \frac{1}{k(n-1)}\sum_{i=1}^n \sum_{j=1}^k (Y_{ji}-\bar{Y_j}^2)=\frac{1}{k(n-1)}SSq_{Residual}\] is the sum of squares of errors (residuals). Since the variables within each group are considered normal, the variance estimators follow \(\chi^2\) distributions with their respective degrees of freedom, and the ratio \(F\) follows an (\(F\)) Fisher distribution with \(k-1\) and \(k(n-1)\) degrees of freedom
 
 \[F \rightarrow Fisher(k-1, k(n-1))\]
 

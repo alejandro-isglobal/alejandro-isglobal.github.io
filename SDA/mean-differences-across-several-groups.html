@@ -691,14 +691,6 @@ The upper tailed p-value for <span class="math inline">\(f_{obs}\)</span> using 
 <p><img src="_main_files/figure-html/unnamed-chunk-137-1.png" width="672" /></p>
 <p>This <span class="math inline">\(pvalue\)</span> (the yellow area at the far right of the plot) is exactly the same as the one we obtained with the <span class="math inline">\(t\)</span>-test with equal variances. Therefore, we reject the hypothesis that the weights between wild types and leptin knock outs are the same.</p>
 <p>We can check the ANOVA table</p>
-<pre><code>## Analysis of Variance Table
-## 
-## Response: weight
-##           Df  Sum Sq Mean Sq F value    Pr(&gt;F)    
-## group      1 1583.33 1583.33  156.45 3.377e-11 ***
-## Residuals 21  212.53   10.12                      
-## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 <pre><code>import pandas as pd
 import statsmodels.api as sm
 from statsmodels.formula.api import ols
@@ -1023,16 +1015,6 @@ To test the second contrast, we define the corresponding <span class="math inlin
 Finally, to test the hypothesis contrast for the interaction term, we compute the <span class="math inline">\(F_I\)</span> statistic given by the dispersion of group averages to the overall average with respect the the dispersion of the residuals</p>
 <p><span class="math display">\[F_I=\frac{MSI}{MSE}\rightarrow Fisher((k-1)(m-1),(nkm-1) -(k-1)-(m-1)-(k-1)(m-1))\]</span></p>
 <p>These statistics are given in the ANOVA table with interaction</p>
-<pre><code>## Analysis of Variance Table
-## 
-## Response: weight
-##           Df Sum Sq Mean Sq  F value  Pr(&gt;F)    
-## group      1 4980.4  4980.4 212.4335 &lt; 2e-16 ***
-## sex        1   74.1    74.1   3.1595 0.08418 .  
-## group:sex  1  104.8   104.8   4.4699 0.04169 *  
-## Residuals 35  820.6    23.4                     
-## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 <pre><code>import pandas as pd
 import statsmodels.api as sm
 from statsmodels.formula.api import ols

@@ -771,56 +771,58 @@ Only <span class="math inline">\(7\%\)</span> of the variability is explained by
 <p>Consider the previous regression and color the points according to their sex</p>
 <p><img src="_main_files/figure-html/unnamed-chunk-161-1.png" width="672" /></p>
 <p>We clearly see that the negative association between leptin and fat mass is given by the <strong>effect of sex</strong>. As males have lower leptin levels and higher fat mass then the negative correlation between leptin and fat mass is due to sex.</p>
-<p>If we run the regression <strong>separating</strong>, or stratifying, by sex, we find a positive association between leptin and fat mass, as it is expected from the literature.</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-162-1.png" width="672" /></p>
 </div>
 <div id="multiple-regression" class="section level2 hasAnchor" number="18.14">
 <h2><span class="header-section-number">18.14</span> Multiple Regression<a href="regression-and-correlation.html#multiple-regression" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>The linear regression can be extended to include several number of factors. Consider the <strong>linear model</strong> with one additional factor</p>
 <p><span class="math display">\[Y_{jr} = \alpha + \beta x_j +\gamma z_{r}+E_{jr}\]</span></p>
 <p>Here, our effect of interest is the coefficient <span class="math inline">\(\beta\)</span> of <span class="math inline">\(x_i\)</span> (leptin) and we want to adjust for the effect of <span class="math inline">\(z_j\)</span> (sex). The mode is similar to the linear model we used for ANOVA, only that now the treatment effects are continuous and depend on the variable <span class="math inline">\(X\)</span>.</p>
-<p>When we include both sex and age as additional factors in the regression, we observe that there is a positive increase in leptin when we adjust for sex. Males have a negative association with leptin, compared with women, and age has an almost significant association with leptin. Now, everything fits.</p>
+<p>When we include both sex as an additional factor in the regression, we observe that there is a positive increase in leptin when we adjust for sex. Males have a negative association with leptin, compared with women. Now, everything fits.</p>
 <pre><code>import pandas as pd
 from scipy.stats import pearsonr
+from statsmodels.formula.api import ols
 
 data = pd.read_csv(&#39;https://alejandro-isglobal.github.io/SDA/data/leptinFatmass.txt&#39;, 
 sep=&#39;\t&#39;)
 
-model = ols(&#39;leptin ~ fatmass + sex + age&#39;, data=data).fit()
+model = ols(&#39;leptin ~ fatmass + sex&#39;, data=data).fit()
 
 print(model.summary())</code></pre>
 <pre><code>                            OLS Regression Results                            
 ==============================================================================
-Dep. Variable:                 leptin   R-squared:                       0.491
-Model:                            OLS   Adj. R-squared:                  0.482
-Method:                 Least Squares   F-statistic:                     59.09
-Date:                Mon, 04 Sep 2023   Prob (F-statistic):           8.47e-27
-Time:                        09:40:31   Log-Likelihood:                -175.66
-No. Observations:                 188   AIC:                             359.3
-Df Residuals:                     184   BIC:                             372.3
-Df Model:                           3                                         
+Dep. Variable:                 leptin   R-squared:                       0.482
+Model:                            OLS   Adj. R-squared:                  0.476
+Method:                 Least Squares   F-statistic:                     85.93
+Date:                Tue, 01 Oct 2024   Prob (F-statistic):           4.05e-27
+Time:                        16:09:49   Log-Likelihood:                -177.32
+No. Observations:                 188   AIC:                             360.6
+Df Residuals:                     185   BIC:                             370.3
+Df Model:                           2                                         
 Covariance Type:            nonrobust                                         
 ==============================================================================
                  coef    std err          t      P&gt;|t|      [0.025      0.975]
 ------------------------------------------------------------------------------
-Intercept      1.4826      0.304      4.870      0.000       0.882       2.083
-sex[T.M]      -1.6120      0.136    -11.864      0.000      -1.880      -1.344
-fatmass        0.0276      0.006      4.596      0.000       0.016       0.039
-age            0.0054      0.003      1.811      0.072      -0.000       0.011
+Intercept      1.7163      0.277      6.187      0.000       1.169       2.264
+sex[T.M]      -1.6358      0.136    -12.023      0.000      -1.904      -1.367
+fatmass        0.0279      0.006      4.630      0.000       0.016       0.040
 ==============================================================================
-Omnibus:                        4.457   Durbin-Watson:                   1.685
-Prob(Omnibus):                  0.108   Jarque-Bera (JB):                4.067
-Skew:                          -0.345   Prob(JB):                        0.131
-Kurtosis:                       3.207   Cond. No.                         475.
+Omnibus:                        4.596   Durbin-Watson:                   1.688
+Prob(Omnibus):                  0.100   Jarque-Bera (JB):                4.164
+Skew:                          -0.330   Prob(JB):                        0.125
+Kurtosis:                       3.308   Cond. No.                         326.
 ==============================================================================</code></pre>
+<p>we find a positive association between leptin and fat mass, adjusting by sex, as it is expected from the literature. The regression lines for each sex will be parallel but displaced by the average effect of changing from female (reference) to male.</p>
+<p><img src="_main_files/figure-html/unnamed-chunk-163-1.png" width="672" /></p>
 </div>
 <div id="multiple-regression-interaction" class="section level2 hasAnchor" number="18.15">
 <h2><span class="header-section-number">18.15</span> Multiple Regression interaction<a href="regression-and-correlation.html#multiple-regression-interaction" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>If we run the regression <strong>separating</strong>, or stratifying, by sex, we find that the strength of the association between leptin and fat mass depends on sex. The slopes of the regression lines depend on sex.</p>
+<p><img src="_main_files/figure-html/unnamed-chunk-164-1.png" width="672" /></p>
 <p>We can furthermore include interactions between conditions in the regression.</p>
 <p>Consider the <strong>linear model</strong></p>
 <p><span class="math display">\[Y_{jr} = \alpha + \beta x_{j} +\gamma z_{r} + \delta (xz)_{jr} +E_{jr}\]</span>
 The parameter <span class="math inline">\(\delta\)</span> will add a contribution to the slope <span class="math inline">\(\beta\)</span> that is <strong>specific</strong> to the condition <span class="math inline">\(r\)</span>. For instance, if <span class="math inline">\(z_i \in (0,1)\)</span> then when <span class="math inline">\(z=0\)</span> the coefficient of <span class="math inline">\(x_i\)</span> is <span class="math inline">\(\beta\)</span>. But when <span class="math inline">\(z=1\)</span> the coefficient of <span class="math inline">\(x_i\)</span> is <span class="math inline">\(\beta+\gamma\)</span>.</p>
-<p>In our example, if <span class="math inline">\(z\)</span> is sex, then <span class="math inline">\(\gamma\)</span> will test the differences in <span class="math inline">\(\beta\)</span>s between males and females. We can furhter adjust by age.</p>
+<p>In our example, if <span class="math inline">\(z\)</span> is sex, then <span class="math inline">\(\gamma\)</span> will test the differences in <span class="math inline">\(\beta\)</span>s between males and females. We can further adjust by age.</p>
 <p><span class="math display">\[Y_{jrs} = \alpha + \beta\times fatmass_{j} +\gamma\times sex_{r} + \delta\times (fatmass\times sex)_{jr} + \epsilon_s age+E_{jrs}\]</span></p>
 <pre><code>import pandas as pd
 from scipy.stats import pearsonr
@@ -857,9 +859,7 @@ Prob(Omnibus):                  0.028   Jarque-Bera (JB):                6.943
 Skew:                          -0.459   Prob(JB):                       0.0311
 Kurtosis:                       3.209   Cond. No.                     1.27e+03
 ==============================================================================</code></pre>
-<p>Our data suggest a steeper increase of leptin with body fat in males than in females (interaction: <span class="math inline">\(0.028427\)</span>, <span class="math inline">\(pvalue=0.03\)</span>), as we saw in the figures of the stratified analysis. A positive and significant interaction means that the slope for males is higher than the slope for females.</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-165-1.png" width="672" /></p>
-<p>The model now explains <span class="math inline">\(50\%\)</span> of the variance <span class="math inline">\(R^2=0.5\)</span></p>
+<p>Our data suggest a steeper increase of leptin with body fat in males than in females (interaction: <span class="math inline">\(0.028427\)</span>, <span class="math inline">\(pvalue=0.03\)</span>), as we saw in the figures of the stratified analysis. A positive and significant interaction means that the slope for males is higher than the slope for females, as we had seen in the stratified analysis. The model now explains <span class="math inline">\(50\%\)</span> of the variance <span class="math inline">\(R^2=0.5\)</span></p>
 </div>
 <div id="model-diagnostics" class="section level2 hasAnchor" number="18.16">
 <h2><span class="header-section-number">18.16</span> Model diagnostics<a href="regression-and-correlation.html#model-diagnostics" class="anchor-section" aria-label="Anchor link to header"></a></h2>

@@ -11183,7 +11183,7 @@ We then use the statistic \(R\) to test whether there is a dependency between \(
 
 \[r_{obs}=\hat{\rho}=\frac{\sum_{i=0}^n(x_i-\bar{x})(y_i-\bar{y})}{\sqrt{\sum_{i=1}^n(x_i-\bar{x})^2}\sqrt{\sum_{i=1}^n(y_i-\bar{y})^2}}\]
 
-and compute its \(pvalue\). That is the probability that we obtain a larger value if we repeat the sample when the \textbf{null hypothesis} is true. Under the null hypothesis \(\rho=0\), we then we compute the two-tailed \(pvalue\)
+and compute its \(pvalue\). That is the probability that we obtain a larger value if we repeat the sample when the \textbf{null hypothesis} is true. Under the null hypothesis \(\rho=0\), we then compute the two-tailed \(pvalue\)
 
 \[pvalue=2(1- F(|r_{obs}|)= 2(1- F_{normal}(|z_{obs}|)  \]
 
@@ -11307,7 +11307,7 @@ Null hypothesis:
 
 \includegraphics{_main_files/figure-latex/unnamed-chunk-156-1.pdf}
 
-Note that all marginal probability (projection of the probability on the \(y\) axis) would be identical to all the conditional probabilities.
+Note that the marginal probability (projection of the probability on the \(y\) axis) would be identical to all the conditional probabilities.
 
 Alternative hypothesis:
 
@@ -11319,9 +11319,9 @@ Alternative hypothesis:
   \(H_1: \beta\neq 0\). \(Y\) and \(X\) are statistically \textbf{dependent}. If this is the case then we have the following model
 \end{enumerate}
 
-Note that all marginal probability would be the combination of the conditional probabilities.
-
 \includegraphics{_main_files/figure-latex/unnamed-chunk-157-1.pdf}
+
+Note that the marginal probability would be the combination of the conditional probabilities.
 
 \hypertarget{estimators-1}{%
 \section{Estimators}\label{estimators-1}}
@@ -11356,10 +11356,13 @@ with mean \(E(B)=\beta\) and, therefore, it is an unbiased estimator.
 \hypertarget{hypothesis-testing-2}{%
 \section{Hypothesis testing}\label{hypothesis-testing-2}}
 
-Under the null hypothesis, \(\beta=0\) and the standardized error from the null hypothesis are
+The standardized error, we make when we estimate \(\beta\) with \(B\) is
 
-\[\frac{\hat{\beta}}{\sqrt{\frac{ns^2_y}{{(n-2)s^2_x}}}} \rightarrow T(n-2)\]
-follows a t-distribution with \(n-2\) degrees of freedom.
+\[\frac{B -\beta}{\sqrt{\frac{ns^2_y}{{(n-2)s^2_x}}}} \rightarrow T(n-2)\]
+that follows a t-distribution with \(n-2\) degrees of freedom. If the null hypothesis is true then \(\beta=0\) and the observed error is
+
+\[t_{obs}= \frac{\hat{\beta}}{\sqrt{\frac{ns^2_y}{{(n-2)s^2_x}}}} \rightarrow T(n-2)\]
+Where \(\hat{\beta}\) is the observed value of the random variable \(B\).
 
 \textbf{Example (leptin and fatmass)}
 
@@ -11403,28 +11406,28 @@ Kurtosis:                       2.254   Cond. No.                         249.
 
 \end{verbatim}
 
-where the observed value of \(B\) is
+The observed value of \(B\) is
 
-\[\beta_{obs}= \frac{\sum_{i=1}^m(x_i-\bar{x})(y_i-\bar{y})}{\sum_{i=1}^n(x_i-\bar{x})^2}= -0.02262\]
-and
+\[\hat{\beta}= \frac{\sum_{i=1}^m(x_i-\bar{x})(y_i-\bar{y})}{\sum_{i=1}^n(x_i-\bar{x})^2}= -0.02262\]
+and the observed value of \(A\) is
 
-\[\alpha_{obs}=\bar{y}-\beta_{obs}\bar{x}= 3.72012\]
-and only \(7\%\) of the variability is explained by the regression line
+\[\hat{\alpha}=\bar{y}-\hat{\beta}\bar{x}= 3.72012\]
+Only \(7\%\) of the variability is explained by the regression line, since
 
-\[R^2=0.07653\]
+\[r_{obs}^2=0.07653\]
 
 We can draw the regression line
 
 \includegraphics{_main_files/figure-latex/unnamed-chunk-159-1.pdf}
 
-We can see that the regression line is negative and there is quite a bit of dispersion about it. Remember that the correct way to interpret the line is to think that these are the values of \(Y\) \textbf{conditioned} on \(X\).
+We see that the regression line is negative and there is quite a bit of dispersion about it. Remember that the correct way to interpret the line is to think that these are the mean values of \(Y\) \textbf{conditioned} on \(X\).
 
 \hypertarget{stratified-analysis}{%
 \section{Stratified analysis}\label{stratified-analysis}}
 
 We can include other conditions in the regression, such as sex or age. In general, it is important \textbf{to adjust} for other factors that we believe are correlated with the outcome \(Y\) and the condition \(x\), as they may explain part of the association.
 
-Our study then includes the outcome \(Y\) with multiple regressors, or explanatory variables. For instance, the first observations of the complete dataset look like
+Our study then includes the outcome \(Y\) with multiple regressors, or explanatory variables. For instance, the first observations of the complete data set looks like
 
 \begin{verbatim}
 ##     leptin fatmass sex age
@@ -11442,7 +11445,7 @@ Consider the previous regression and color the points according to their sex
 
 We clearly see that the negative association between leptin and fat mass is given by the \textbf{effect of sex}. As males have lower leptin levels and higher fat mass then the negative correlation between leptin and fat mass is due to sex.
 
-If we run regression \textbf{separating}, or stratifying, by sex we find a positive association between leptin and fat mass, as it is expected from the literature.
+If we run the regression \textbf{separating}, or stratifying, by sex, we find a positive association between leptin and fat mass, as it is expected from the literature.
 
 \includegraphics{_main_files/figure-latex/unnamed-chunk-162-1.pdf}
 
@@ -11453,9 +11456,9 @@ The linear regression can be extended to include several number of factors. Cons
 
 \[Y_{jr} = \alpha + \beta x_j +\gamma z_{r}+E_{jr}\]
 
-Here, our effect of interest is the coefficient \(\beta\) of \(x_i\) (leptin) and we want to adjust for the effect of \(z_j\) (sex). The mode is similar to the linear model we used for ANOVA, only that now the treatment effects are continous and depend on the variable \(X\).
+Here, our effect of interest is the coefficient \(\beta\) of \(x_i\) (leptin) and we want to adjust for the effect of \(z_j\) (sex). The mode is similar to the linear model we used for ANOVA, only that now the treatment effects are continuous and depend on the variable \(X\).
 
-When we include both sex and age as additional factors in the regression, we observe that there is a positive increase in leptin when we correct for sex. Males have a negative assotiation with leptin, compared with women, and age has an almost significant association with leptin. Now, everything fits.
+When we include both sex and age as additional factors in the regression, we observe that there is a positive increase in leptin when we adjust for sex. Males have a negative association with leptin, compared with women, and age has an almost significant association with leptin. Now, everything fits.
 
 \begin{verbatim}
 import pandas as pd

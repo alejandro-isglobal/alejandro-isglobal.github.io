@@ -608,7 +608,7 @@ The new variable <span class="math inline">\(Z\)</span> is a normal variable</p>
 </ol>
 <p>We then use the statistic <span class="math inline">\(R\)</span> to test whether there is a dependency between <span class="math inline">\(y\)</span> and <span class="math inline">\(x\)</span>. For testing the hypothesis contrast, we take the observed value of <span class="math inline">\(R\)</span></p>
 <p><span class="math display">\[r_{obs}=\hat{\rho}=\frac{\sum_{i=0}^n(x_i-\bar{x})(y_i-\bar{y})}{\sqrt{\sum_{i=1}^n(x_i-\bar{x})^2}\sqrt{\sum_{i=1}^n(y_i-\bar{y})^2}}\]</span></p>
-<p>and compute its <span class="math inline">\(pvalue\)</span>. That is the probability that we obtain a larger value if we repeat the sample when the <strong>null hypothesis</strong> is true. Under the null hypothesis <span class="math inline">\(\rho=0\)</span>, we then we compute the two-tailed <span class="math inline">\(pvalue\)</span></p>
+<p>and compute its <span class="math inline">\(pvalue\)</span>. That is the probability that we obtain a larger value if we repeat the sample when the <strong>null hypothesis</strong> is true. Under the null hypothesis <span class="math inline">\(\rho=0\)</span>, we then compute the two-tailed <span class="math inline">\(pvalue\)</span></p>
 <p><span class="math display">\[pvalue=2(1- F(|r_{obs}|)= 2(1- F_{normal}(|z_{obs}|)  \]</span></p>
 <p>where</p>
 <p><span class="math display">\[Z \rightarrow_{aprox} N(0, \frac{1}{n-3})\]</span></p>
@@ -680,13 +680,13 @@ and</p>
 <li><span class="math inline">\(H_0: \beta=0\)</span>. <span class="math inline">\(Y\)</span> and <span class="math inline">\(X\)</span> are statistically <strong>independent</strong>, and therefore <span class="math inline">\(f(y|x)=f(y)\)</span>. If this is the case then the regression line is flat and we have the following model</li>
 </ol>
 <p><img src="_main_files/figure-html/unnamed-chunk-156-1.png" width="672" /></p>
-<p>Note that all marginal probability (projection of the probability on the <span class="math inline">\(y\)</span> axis) would be identical to all the conditional probabilities.</p>
+<p>Note that the marginal probability (projection of the probability on the <span class="math inline">\(y\)</span> axis) would be identical to all the conditional probabilities.</p>
 <p>Alternative hypothesis:</p>
 <ol start="2" style="list-style-type: lower-alpha">
 <li><span class="math inline">\(H_1: \beta\neq 0\)</span>. <span class="math inline">\(Y\)</span> and <span class="math inline">\(X\)</span> are statistically <strong>dependent</strong>. If this is the case then we have the following model</li>
 </ol>
-<p>Note that all marginal probability would be the combination of the conditional probabilities.</p>
 <p><img src="_main_files/figure-html/unnamed-chunk-157-1.png" width="672" /></p>
+<p>Note that the marginal probability would be the combination of the conditional probabilities.</p>
 </div>
 <div id="estimators-1" class="section level2 hasAnchor" number="18.11">
 <h2><span class="header-section-number">18.11</span> Estimators<a href="regression-and-correlation.html#estimators-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -707,9 +707,11 @@ with respect to <span class="math inline">\(\alpha\)</span> and <span class="mat
 </div>
 <div id="hypothesis-testing-2" class="section level2 hasAnchor" number="18.12">
 <h2><span class="header-section-number">18.12</span> Hypothesis testing<a href="regression-and-correlation.html#hypothesis-testing-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Under the null hypothesis, <span class="math inline">\(\beta=0\)</span> and the standardized error from the null hypothesis are</p>
-<p><span class="math display">\[\frac{\hat{\beta}}{\sqrt{\frac{ns^2_y}{{(n-2)s^2_x}}}} \rightarrow T(n-2)\]</span>
-follows a t-distribution with <span class="math inline">\(n-2\)</span> degrees of freedom.</p>
+<p>The standardized error, we make when we estimate <span class="math inline">\(\beta\)</span> with <span class="math inline">\(B\)</span> is</p>
+<p><span class="math display">\[\frac{B -\beta}{\sqrt{\frac{ns^2_y}{{(n-2)s^2_x}}}} \rightarrow T(n-2)\]</span>
+that follows a t-distribution with <span class="math inline">\(n-2\)</span> degrees of freedom. If the null hypothesis is true then <span class="math inline">\(\beta=0\)</span> and the observed error is</p>
+<p><span class="math display">\[t_{obs}= \frac{\hat{\beta}}{\sqrt{\frac{ns^2_y}{{(n-2)s^2_x}}}} \rightarrow T(n-2)\]</span>
+Where <span class="math inline">\(\hat{\beta}\)</span> is the observed value of the random variable <span class="math inline">\(B\)</span>.</p>
 <p><strong>Example (leptin and fatmass)</strong></p>
 <p>We can perform the statistical test</p>
 <pre><code>import pandas as pd
@@ -745,20 +747,20 @@ Kurtosis:                       2.254   Cond. No.                         249.
 ==============================================================================
 
 </code></pre>
-<p>where the observed value of <span class="math inline">\(B\)</span> is</p>
-<p><span class="math display">\[\beta_{obs}= \frac{\sum_{i=1}^m(x_i-\bar{x})(y_i-\bar{y})}{\sum_{i=1}^n(x_i-\bar{x})^2}= -0.02262\]</span>
-and</p>
-<p><span class="math display">\[\alpha_{obs}=\bar{y}-\beta_{obs}\bar{x}= 3.72012\]</span>
-and only <span class="math inline">\(7\%\)</span> of the variability is explained by the regression line</p>
-<p><span class="math display">\[R^2=0.07653\]</span></p>
+<p>The observed value of <span class="math inline">\(B\)</span> is</p>
+<p><span class="math display">\[\hat{\beta}= \frac{\sum_{i=1}^m(x_i-\bar{x})(y_i-\bar{y})}{\sum_{i=1}^n(x_i-\bar{x})^2}= -0.02262\]</span>
+and the observed value of <span class="math inline">\(A\)</span> is</p>
+<p><span class="math display">\[\hat{\alpha}=\bar{y}-\hat{\beta}\bar{x}= 3.72012\]</span>
+Only <span class="math inline">\(7\%\)</span> of the variability is explained by the regression line, since</p>
+<p><span class="math display">\[r_{obs}^2=0.07653\]</span></p>
 <p>We can draw the regression line</p>
 <p><img src="_main_files/figure-html/unnamed-chunk-159-1.png" width="672" /></p>
-<p>We can see that the regression line is negative and there is quite a bit of dispersion about it. Remember that the correct way to interpret the line is to think that these are the values of <span class="math inline">\(Y\)</span> <strong>conditioned</strong> on <span class="math inline">\(X\)</span>.</p>
+<p>We see that the regression line is negative and there is quite a bit of dispersion about it. Remember that the correct way to interpret the line is to think that these are the mean values of <span class="math inline">\(Y\)</span> <strong>conditioned</strong> on <span class="math inline">\(X\)</span>.</p>
 </div>
 <div id="stratified-analysis" class="section level2 hasAnchor" number="18.13">
 <h2><span class="header-section-number">18.13</span> Stratified analysis<a href="regression-and-correlation.html#stratified-analysis" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>We can include other conditions in the regression, such as sex or age. In general, it is important <strong>to adjust</strong> for other factors that we believe are correlated with the outcome <span class="math inline">\(Y\)</span> and the condition <span class="math inline">\(x\)</span>, as they may explain part of the association.</p>
-<p>Our study then includes the outcome <span class="math inline">\(Y\)</span> with multiple regressors, or explanatory variables. For instance, the first observations of the complete dataset look like</p>
+<p>Our study then includes the outcome <span class="math inline">\(Y\)</span> with multiple regressors, or explanatory variables. For instance, the first observations of the complete data set looks like</p>
 <pre><code>##     leptin fatmass sex age
 ## 1 3.355677  45.721   F  45
 ## 2 2.272126  43.895   F  77
@@ -769,15 +771,15 @@ and only <span class="math inline">\(7\%\)</span> of the variability is explaine
 <p>Consider the previous regression and color the points according to their sex</p>
 <p><img src="_main_files/figure-html/unnamed-chunk-161-1.png" width="672" /></p>
 <p>We clearly see that the negative association between leptin and fat mass is given by the <strong>effect of sex</strong>. As males have lower leptin levels and higher fat mass then the negative correlation between leptin and fat mass is due to sex.</p>
-<p>If we run regression <strong>separating</strong>, or stratifying, by sex we find a positive association between leptin and fat mass, as it is expected from the literature.</p>
+<p>If we run the regression <strong>separating</strong>, or stratifying, by sex, we find a positive association between leptin and fat mass, as it is expected from the literature.</p>
 <p><img src="_main_files/figure-html/unnamed-chunk-162-1.png" width="672" /></p>
 </div>
 <div id="multiple-regression" class="section level2 hasAnchor" number="18.14">
 <h2><span class="header-section-number">18.14</span> Multiple Regression<a href="regression-and-correlation.html#multiple-regression" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>The linear regression can be extended to include several number of factors. Consider the <strong>linear model</strong> with one additional factor</p>
 <p><span class="math display">\[Y_{jr} = \alpha + \beta x_j +\gamma z_{r}+E_{jr}\]</span></p>
-<p>Here, our effect of interest is the coefficient <span class="math inline">\(\beta\)</span> of <span class="math inline">\(x_i\)</span> (leptin) and we want to adjust for the effect of <span class="math inline">\(z_j\)</span> (sex). The mode is similar to the linear model we used for ANOVA, only that now the treatment effects are continous and depend on the variable <span class="math inline">\(X\)</span>.</p>
-<p>When we include both sex and age as additional factors in the regression, we observe that there is a positive increase in leptin when we correct for sex. Males have a negative assotiation with leptin, compared with women, and age has an almost significant association with leptin. Now, everything fits.</p>
+<p>Here, our effect of interest is the coefficient <span class="math inline">\(\beta\)</span> of <span class="math inline">\(x_i\)</span> (leptin) and we want to adjust for the effect of <span class="math inline">\(z_j\)</span> (sex). The mode is similar to the linear model we used for ANOVA, only that now the treatment effects are continuous and depend on the variable <span class="math inline">\(X\)</span>.</p>
+<p>When we include both sex and age as additional factors in the regression, we observe that there is a positive increase in leptin when we adjust for sex. Males have a negative association with leptin, compared with women, and age has an almost significant association with leptin. Now, everything fits.</p>
 <pre><code>import pandas as pd
 from scipy.stats import pearsonr
 

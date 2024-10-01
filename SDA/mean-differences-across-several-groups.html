@@ -23,7 +23,7 @@
 <meta name="author" content="Alejandro Caceres" />
 
 
-<meta name="date" content="2024-09-30" />
+<meta name="date" content="2024-10-01" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -582,42 +582,62 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">17.5</span> Hypothesis test<a href="mean-differences-across-several-groups.html#hypothesis-test-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Let us formulate the hypothesis contrast</p>
 <ol style="list-style-type: lower-alpha">
-<li><p><span class="math inline">\(H_0: \mu_A=\mu_B=\mu_C\)</span> The null hypothesis (status quo) assumes that there are no differences between group means.</p></li>
-<li><p><span class="math inline">\(H_1\)</span>: at least one mean <span class="math inline">\(\mu_i\)</span>is different from the rest (research interest).</p></li>
+<li><p><span class="math inline">\(H_0: \mu_A=\mu_B=\mu_C\)</span>. The null hypothesis (status quo) assumes that there are no differences between group. All the bars in the bar plot have he same height.</p></li>
+<li><p><span class="math inline">\(H_1: \mu_i\neq 0\)</span>. The alternative hypothesis assumes that at least one group mean <span class="math inline">\(\mu_i\)</span> is different from the rest (research interest). At least one bar in the bar plot is distinctively different from the rest.</p></li>
 </ol>
-<p>How can we test this hypothesis? Is there a statistic that we can formulate such that its value give us information on whether we should accept or reject <span class="math inline">\(H_0\)</span>?</p>
-<p>Let’s look at the dispersion of <strong>all the data points</strong> at wach group.
-Within each group the data disperses about their averages. Therefore an estimator of the variance for each group, for example for group <span class="math inline">\(A\)</span>, the sample variance</p>
-<p><span class="math display">\[S_A^2=\frac{1}{n-1} \sum_{i=1}^n (Y_{Ai}-\bar{Y}_{A})^2\]</span></p>
-<p>is an estimator of the variance <span class="math inline">\(\sigma^2\)</span> of the weights in group <span class="math inline">\(A\)</span>. <span class="math inline">\(n\)</span> is the number of observations made in group <span class="math inline">\(A\)</span>. Since we are assuming that in all groups the data disperses with the same variance <span class="math inline">\(\sigma^2\)</span> then the average of the sample variances</p>
-<p><span class="math display">\[Se^2 = \frac{1}{3}(S_A^2+S_B^2+S_C^2)\]</span></p>
-<p>is another estimator of the variance <span class="math inline">\(\sigma^2\)</span> that takes into account the estimators at each group. <span class="math inline">\(S_e^2\)</span> is called the <strong>mean square error</strong>.</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-136-1.png" width="672" /></p>
-<p>Let’s now look at the dispersion of <strong>averages</strong> of each group, instead. That is the right part of the plot above (<span class="math inline">\(Y\_bar\)</span>), where we look at how the averages disperse about the overall mean of the data. We know, for instance, that <span class="math inline">\(\bar{Y}_A\)</span> is normal with mean <span class="math inline">\(\mu_A\)</span> and variance <span class="math inline">\(\frac{\sigma^2}{n}\)</span>.</p>
-<p>If the <strong>null hypothesis is true</strong> there are no differences between the means and then</p>
+<p>How can we test these hypotheses? Is there a statistic that we can formulate such that its value give us information on whether we should accept or reject <span class="math inline">\(H_0\)</span>?</p>
+<p>Let’s assume for the moment that all the groups have the same number of observations <span class="math inline">\(n_A=n_B=n_c=n\)</span> (the same number of mice in each condition). This is called a <strong>balanced design</strong> but the following discussion will hold when the number of observations in each group are different and we take <span class="math inline">\(n\)</span> as the average number of observations per group.</p>
+<p>If the <strong>null hypothesis is true</strong> there are no differences between the means and coincide with the a single mean <span class="math inline">\(\mu\)</span></p>
 <p><span class="math display">\[\mu_A=\mu_B=\mu_C=\mu\]</span>
-Therefore <span class="math inline">\(\bar{Y}_A, \bar{Y}_B, \bar{Y}_C \rightarrow N(\mu, \sigma^2/n)\)</span> and <span class="math inline">\((\bar{y}_A, \bar{y}_B, \bar{y}_C )\)</span> is the observed sample of size <span class="math inline">\(k=3\)</span> of the same random experiment: one that takes averages on the weights of animals in groups that are identical between each other (no differences between groups). In this experiments of averages, the sample variance</p>
+Therefore, all the averages from each group have the same distribution <span class="math display">\[\bar{Y}_A, \bar{Y}_B, \bar{Y}_C \rightarrow N(\mu, \sigma^2/n)\]</span> and
+<span class="math display">\[m=(\bar{y}_A, \bar{y}_B, \bar{y}_C )\]</span> is the observed sample of size <span class="math inline">\(k=3\)</span> of an averaging experiment: one that takes the averages of the weights of <span class="math inline">\(n\)</span> animals. The null hypothesis assumes that we have repeated the same averaging experiment three times (one for each condition) expecting to estimate the same underlying mean <span class="math inline">\(\mu\)</span>.</p>
+<p>Now notice that we have two sources of dispersion</p>
+<ol style="list-style-type: decimal">
+<li><p>The <strong>within group</strong> variance <span class="math inline">\(\sigma^2\)</span>, which is the dispersion of the weights in each condition.</p></li>
+<li><p>The <strong>between group</strong> variance <span class="math inline">\(\sigma^2_{\bar{Y}}\)</span>, which is the dispersion of the weight averages.</p></li>
+</ol>
+<p>Under the null hypothesis, changing conditions does not affect the averages (the bars in the bar plot are similar), and they should get close to <span class="math inline">\(\mu\)</span> as the number of mice tested in each group (<span class="math inline">\(n\)</span>) increases. Therefore, the variation of the averages should decrease with <span class="math inline">\(n\)</span>, following the law of great numbers</p>
+<ol style="list-style-type: lower-alpha">
+<li><span class="math inline">\(H_0: \sigma^2_{\bar{Y}}=\frac{\sigma^2}{n}\)</span></li>
+</ol>
+<p>But, if there is a group whose mean value is not <span class="math inline">\(\mu\)</span> then its average will not get close to <span class="math inline">\(\mu\)</span> as <span class="math inline">\(n\)</span> increases and then the within group variance will be higher than expected</p>
+<ol start="2" style="list-style-type: lower-alpha">
+<li><span class="math inline">\(H_1: \sigma^2_{\bar{Y}}&gt;\frac{\sigma^2}{n}\)</span></li>
+</ol>
+<p>Now let’s get estimators for <span class="math inline">\(\sigma^2\)</span> and <span class="math inline">\(\sigma^2_{\bar{Y}}\)</span> that allows us to test the null hypothesis.</p>
+<p>In the first case, <strong>within each group</strong>, the data disperses about their averages. Therefore an estimator of the variance <span class="math inline">\(\sigma^2\)</span>, using only
+group <span class="math inline">\(A\)</span> is</p>
+<p><span class="math display">\[S_A^2=\frac{1}{n-1} \sum_{i=1}^n (Y_{Ai}-\bar{Y}_{A})^2\]</span></p>
+<p>That is, if we look only at the control mice, we can calculate the standard deviation of the weights and that will estimate <span class="math inline">\(\sigma^2\)</span>.</p>
+<p>Since we are assuming that in all groups the data disperses with the same variance <span class="math inline">\(\sigma^2\)</span> then the average of the sample variances</p>
+<p><span class="math display">\[Se^2 = \frac{1}{3}(S_A^2+S_B^2+S_C^2)\]</span></p>
+<p>is another estimator of the variance <span class="math inline">\(\sigma^2\)</span>, one that incorporates the estimations at each group. It is just the average of the standard deviations that we get from each condition. <span class="math inline">\(S_e^2\)</span> is called the <strong>mean square error</strong>.</p>
+<p><img src="_main_files/figure-html/unnamed-chunk-136-1.png" width="672" /></p>
+<p>Let’s now look at the dispersion of the <strong>averages</strong>. That is the right part of the plot above (<span class="math inline">\(Y\_bar\)</span>), where we look at how the averages disperse about the overall mean of the data. We know, for instance, that <span class="math inline">\(\bar{Y}_A\)</span> is normal with mean <span class="math inline">\(\mu_A\)</span> and variance <span class="math inline">\(\frac{\sigma^2}{n}\)</span>. Under the null hypothesis we are repeating this experiment three times.</p>
+<p>In this experiment of averages, the sample variance is</p>
 <p><span class="math display">\[S^2_{tr}=\frac{1}{k-1} \sum_{j=1}^k(\bar{Y}_{j}-\bar{Y})^2\]</span></p>
-<p>estimates the sample mean variance <span class="math inline">\(\sigma^2/n\)</span>. <span class="math inline">\(j\)</span> indicates the groups (<span class="math inline">\(A\)</span>, <span class="math inline">\(B\)</span>, <span class="math inline">\(C\)</span>) and <span class="math inline">\(\bar{Y}\)</span> is the average of the averages or put simply: the average for all observations (the black dot in the figure) <span class="math display">\[\bar{Y}=\frac{1}{nk}\sum_j \sum_i Y_{ji}\]</span></p>
-<p>If the null <strong>hypothesis is true</strong> and we take more and more observations in each group then all the group averages get closer to the overall average, and the overall average gets closer to the grand mean <span class="math inline">\(\mu\)</span> (which is unknown). Since <span class="math inline">\(S_{tr}^2\)</span> estimates <span class="math inline">\(\sigma^2/n\)</span> and <span class="math inline">\(S_e^2\)</span> estimates <span class="math inline">\(\sigma^2\)</span> then the ratio</p>
-<p><span class="math display">\[F=\frac{n S_{tr}^2}{S_e^2}\]</span>
-is a statistic that is close to <span class="math inline">\(1\)</span>, when <span class="math inline">\(H_0\)</span> is true.</p>
-<p>If the null <strong>hypothesis is not true</strong> and we take more and more observations in each group then at least one average will not get close to the other averages, for instance <span class="math inline">\(\mu_A=\mu_B=\mu \neq \mu_C\)</span>. Therefore the expected value of <span class="math inline">\(nS^2_{tr}\)</span> will not get close to <span class="math inline">\(\sigma^2\)</span>, as there is an irreducible variance given by the group that is different, for instance group <span class="math inline">\(C\)</span>. We also say that there is an additional variance in the data given by the treatment. In this case the statistic</p>
-<p><span class="math display">\[F=\frac{n S_{tr}^2}{S_e^2}=\frac{MST}{MSE}\]</span></p>
-<p>will be greater than 1 with high probability. The numerator <span class="math inline">\(MST\)</span> is called the mean sum of squares of treatments (groups) and the denominator <span class="math inline">\(MSE\)</span> is the sum of squares of errors (residuals). Since the variables within each group are considered normal, the variance estimators follow <span class="math inline">\(\chi^2\)</span> distributions with their respective degrees of freedom, and the ratio <span class="math inline">\(F\)</span> follows an (<span class="math inline">\(F\)</span>) Fisher distribution with <span class="math inline">\(k-1\)</span> and <span class="math inline">\(kn-1)\)</span> degrees of freedom</p>
+<p>where <span class="math inline">\(j\)</span> indicates the groups (<span class="math inline">\(A\)</span>, <span class="math inline">\(B\)</span>, <span class="math inline">\(C\)</span>) and <span class="math inline">\(\bar{Y}\)</span> is the average of the averages or put simply: the average for all observations (the black dot in the figure) <span class="math display">\[\bar{Y}=\frac{1}{nk}\sum_j \sum_i Y_{ji}\]</span></p>
+<p><span class="math inline">\(S^2_{tr}\)</span> estimates the between group variance <span class="math inline">\(\sigma^2_{\bar{Y}}\)</span>.</p>
+<p>If the null <strong>hypothesis is true</strong> and we take more and more observations in each group then all the group averages get closer to the overall average <span class="math inline">\(\bar{Y}\)</span>, and the overall average gets closer to the grand mean <span class="math inline">\(\mu\)</span> (which is unknown). In particular the ratio of</p>
+<p><span class="math display">\[F=\frac{S_{tr}^2}{\frac{S_e^2}{n}}\]</span>
+is a statistic that is close to <span class="math inline">\(1\)</span>, when <span class="math inline">\(H_0\)</span> is true, because it gives us the error ratio <span class="math inline">\(\sigma^2_{\bar{Y}}/\frac{\sigma^2}{n}\)</span> in the estimation of the average variance when the null hypothesis is true.</p>
+<p>If the null <strong>hypothesis is not true</strong> and we take more and more observations in each group then at least one average will not get close to the other averages, for instance <span class="math inline">\(\mu_A=\mu_B=\mu \neq \mu_C\)</span>. Therefore, the expected value of <span class="math inline">\(S^2_{tr}\)</span> will substantially differ from <span class="math inline">\(\frac{\sigma^2}{n}\)</span>, as there is an irreducible variance given by the group that is different, which, for instance, concentrates at <span class="math inline">\(\mu_C\)</span> and not at <span class="math inline">\(\mu\)</span> for group <span class="math inline">\(C\)</span>. We also say that there is an additional variance in the data given by the treatment (or group difference). We managed to significantly change the outcome of the random experiment by changing the condition. In this case, the <span class="math inline">\(F\)</span> statistic will be greater than 1, and the probability of getting a more extreme value is very low if the null is true.</p>
+<p>The <span class="math inline">\(F\)</span> statistic can also be computed as the ratio of sums of squares</p>
+<p><span class="math display">\[F=\frac{MST}{MSE}\]</span></p>
+<p>The numerator <span class="math inline">\(MST\)</span> is called the mean sum of squares of treatments (groups) and the denominator <span class="math inline">\(MSE\)</span> is the sum of squares of errors (residuals). Since the variables within each group are considered normal, the variance estimators follow <span class="math inline">\(\chi^2\)</span> distributions with their respective degrees of freedom, and the ratio <span class="math inline">\(F\)</span> follows an (<span class="math inline">\(F\)</span>) Fisher distribution with <span class="math inline">\(k-1\)</span> and <span class="math inline">\(k(n-1)\)</span> degrees of freedom</p>
 <p><span class="math display">\[F \rightarrow Fisher(k-1, k(n-1))\]</span></p>
 <p>where <span class="math inline">\(k\)</span> is the number of groups and <span class="math inline">\(n\)</span> is the average number of observations per group.</p>
 </div>
 <div id="analysis-of-variance-anova" class="section level2 hasAnchor" number="17.6">
 <h2><span class="header-section-number">17.6</span> Analysis of variance (ANOVA)<a href="mean-differences-across-several-groups.html#analysis-of-variance-anova" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>The hypothesis test for the difference in means across several groups is then</p>
-<ul>
-<li><span class="math inline">\(H_0: \mu_1=\mu_2, ...=\mu_k\)</span> There are no difference between group means</li>
-</ul>
+<ol style="list-style-type: lower-alpha">
+<li><span class="math inline">\(H_0: \mu_1=\mu_2, ...=\mu_k\)</span>. There are no difference between group means</li>
+</ol>
 <p>Then, the observed value of <span class="math inline">\(F\)</span>, <em>e.g</em> <span class="math inline">\(f_{obs}\)</span> will be near <span class="math inline">\(1\)</span>.</p>
-<ul>
+<ol start="2" style="list-style-type: lower-alpha">
 <li><span class="math inline">\(H_1\)</span> at least one <span class="math inline">\(\mu_i\)</span> is different</li>
-</ul>
+</ol>
 <p>Then, the observed value of <span class="math inline">\(F\)</span>, <em>e.g</em> <span class="math inline">\(f_{obs}\)</span> will be <strong>greater</strong> than <span class="math inline">\(1\)</span>.</p>
 <p><strong>Example (mice knockouts)</strong></p>
 <p>The value of the <span class="math inline">\(f_{obs}\)</span> computed from the group (treatments) mean and residual (error) mean squares can be calculated in any statistical software that usually outputs the ANOVA table</p>
@@ -739,7 +759,7 @@ stats.ttest_ind(groupA, groupB, equal_var=True, nan_policy=&#39;omit&#39;)</code
 </div>
 <div id="way-anova" class="section level2 hasAnchor" number="17.9">
 <h2><span class="header-section-number">17.9</span> 2-way ANOVA<a href="mean-differences-across-several-groups.html#way-anova" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>The ANOVA approach allows for the analysis of the joint effect of <strong>two</strong> or more different factors each with different numner of groups.</p>
+<p>The ANOVA approach allows for the analysis of the joint effect of <strong>two</strong> or more different factors each with different number of groups.</p>
 <p>Let us include an additional factor given by the sex of the mice and ask: Is there an effect of sex when leptin groups are taken into account?</p>
 <p>Here there are two simultaneous questions:</p>
 <ul>
@@ -803,6 +823,7 @@ stats.ttest_ind(groupA, groupB, equal_var=True, nan_policy=&#39;omit&#39;)</code
 ## 77  21.90   KOplus   F
 ## 78  23.70   KOplus   F
 ## 79  21.00   KOplus   F</code></pre>
+<p>Note that we will not include the normal mice only for simplicity of explanation.</p>
 </div>
 <div id="modeling-residuals" class="section level2 hasAnchor" number="17.11">
 <h2><span class="header-section-number">17.11</span> Modeling residuals<a href="mean-differences-across-several-groups.html#modeling-residuals" class="anchor-section" aria-label="Anchor link to header"></a></h2>

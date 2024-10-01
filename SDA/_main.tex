@@ -120,7 +120,7 @@
 
 \title{Statistical Data Analysis}
 \author{Alejandro Caceres}
-\date{2024-09-30}
+\date{2024-10-01}
 
 \begin{document}
 \maketitle
@@ -10186,47 +10186,89 @@ Let us formulate the hypothesis contrast
 \begin{enumerate}
 \def\labelenumi{\alph{enumi}.}
 \item
-  \(H_0: \mu_A=\mu_B=\mu_C\) The null hypothesis (status quo) assumes that there are no differences between group means.
+  \(H_0: \mu_A=\mu_B=\mu_C\). The null hypothesis (status quo) assumes that there are no differences between group. All the bars in the bar plot have he same height.
 \item
-  \(H_1\): at least one mean \(\mu_i\)is different from the rest (research interest).
+  \(H_1: \mu_i\neq 0\). The alternative hypothesis assumes that at least one group mean \(\mu_i\) is different from the rest (research interest). At least one bar in the bar plot is distinctively different from the rest.
 \end{enumerate}
 
-How can we test this hypothesis? Is there a statistic that we can formulate such that its value give us information on whether we should accept or reject \(H_0\)?
+How can we test these hypotheses? Is there a statistic that we can formulate such that its value give us information on whether we should accept or reject \(H_0\)?
 
-Let's look at the dispersion of \textbf{all the data points} at wach group.
-Within each group the data disperses about their averages. Therefore an estimator of the variance for each group, for example for group \(A\), the sample variance
+Let's assume for the moment that all the groups have the same number of observations \(n_A=n_B=n_c=n\) (the same number of mice in each condition). This is called a \textbf{balanced design} but the following discussion will hold when the number of observations in each group are different and we take \(n\) as the average number of observations per group.
+
+If the \textbf{null hypothesis is true} there are no differences between the means and coincide with the a single mean \(\mu\)
+
+\[\mu_A=\mu_B=\mu_C=\mu\]
+Therefore, all the averages from each group have the same distribution \[\bar{Y}_A, \bar{Y}_B, \bar{Y}_C \rightarrow N(\mu, \sigma^2/n)\] and
+\[m=(\bar{y}_A, \bar{y}_B, \bar{y}_C )\] is the observed sample of size \(k=3\) of an averaging experiment: one that takes the averages of the weights of \(n\) animals. The null hypothesis assumes that we have repeated the same averaging experiment three times (one for each condition) expecting to estimate the same underlying mean \(\mu\).
+
+Now notice that we have two sources of dispersion
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  The \textbf{within group} variance \(\sigma^2\), which is the dispersion of the weights in each condition.
+\item
+  The \textbf{between group} variance \(\sigma^2_{\bar{Y}}\), which is the dispersion of the weight averages.
+\end{enumerate}
+
+Under the null hypothesis, changing conditions does not affect the averages (the bars in the bar plot are similar), and they should get close to \(\mu\) as the number of mice tested in each group (\(n\)) increases. Therefore, the variation of the averages should decrease with \(n\), following the law of great numbers
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi}.}
+\tightlist
+\item
+  \(H_0: \sigma^2_{\bar{Y}}=\frac{\sigma^2}{n}\)
+\end{enumerate}
+
+But, if there is a group whose mean value is not \(\mu\) then its average will not get close to \(\mu\) as \(n\) increases and then the within group variance will be higher than expected
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi}.}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  \(H_1: \sigma^2_{\bar{Y}}>\frac{\sigma^2}{n}\)
+\end{enumerate}
+
+Now let's get estimators for \(\sigma^2\) and \(\sigma^2_{\bar{Y}}\) that allows us to test the null hypothesis.
+
+In the first case, \textbf{within each group}, the data disperses about their averages. Therefore an estimator of the variance \(\sigma^2\), using only
+group \(A\) is
 
 \[S_A^2=\frac{1}{n-1} \sum_{i=1}^n (Y_{Ai}-\bar{Y}_{A})^2\]
 
-is an estimator of the variance \(\sigma^2\) of the weights in group \(A\). \(n\) is the number of observations made in group \(A\). Since we are assuming that in all groups the data disperses with the same variance \(\sigma^2\) then the average of the sample variances
+That is, if we look only at the control mice, we can calculate the standard deviation of the weights and that will estimate \(\sigma^2\).
+
+Since we are assuming that in all groups the data disperses with the same variance \(\sigma^2\) then the average of the sample variances
 
 \[Se^2 = \frac{1}{3}(S_A^2+S_B^2+S_C^2)\]
 
-is another estimator of the variance \(\sigma^2\) that takes into account the estimators at each group. \(S_e^2\) is called the \textbf{mean square error}.
+is another estimator of the variance \(\sigma^2\), one that incorporates the estimations at each group. It is just the average of the standard deviations that we get from each condition. \(S_e^2\) is called the \textbf{mean square error}.
 
 \includegraphics{_main_files/figure-latex/unnamed-chunk-136-1.pdf}
 
-Let's now look at the dispersion of \textbf{averages} of each group, instead. That is the right part of the plot above (\(Y\_bar\)), where we look at how the averages disperse about the overall mean of the data. We know, for instance, that \(\bar{Y}_A\) is normal with mean \(\mu_A\) and variance \(\frac{\sigma^2}{n}\).
+Let's now look at the dispersion of the \textbf{averages}. That is the right part of the plot above (\(Y\_bar\)), where we look at how the averages disperse about the overall mean of the data. We know, for instance, that \(\bar{Y}_A\) is normal with mean \(\mu_A\) and variance \(\frac{\sigma^2}{n}\). Under the null hypothesis we are repeating this experiment three times.
 
-If the \textbf{null hypothesis is true} there are no differences between the means and then
-
-\[\mu_A=\mu_B=\mu_C=\mu\]
-Therefore \(\bar{Y}_A, \bar{Y}_B, \bar{Y}_C \rightarrow N(\mu, \sigma^2/n)\) and \((\bar{y}_A, \bar{y}_B, \bar{y}_C )\) is the observed sample of size \(k=3\) of the same random experiment: one that takes averages on the weights of animals in groups that are identical between each other (no differences between groups). In this experiments of averages, the sample variance
+In this experiment of averages, the sample variance is
 
 \[S^2_{tr}=\frac{1}{k-1} \sum_{j=1}^k(\bar{Y}_{j}-\bar{Y})^2\]
 
-estimates the sample mean variance \(\sigma^2/n\). \(j\) indicates the groups (\(A\), \(B\), \(C\)) and \(\bar{Y}\) is the average of the averages or put simply: the average for all observations (the black dot in the figure) \[\bar{Y}=\frac{1}{nk}\sum_j \sum_i Y_{ji}\]
+where \(j\) indicates the groups (\(A\), \(B\), \(C\)) and \(\bar{Y}\) is the average of the averages or put simply: the average for all observations (the black dot in the figure) \[\bar{Y}=\frac{1}{nk}\sum_j \sum_i Y_{ji}\]
 
-If the null \textbf{hypothesis is true} and we take more and more observations in each group then all the group averages get closer to the overall average, and the overall average gets closer to the grand mean \(\mu\) (which is unknown). Since \(S_{tr}^2\) estimates \(\sigma^2/n\) and \(S_e^2\) estimates \(\sigma^2\) then the ratio
+\(S^2_{tr}\) estimates the between group variance \(\sigma^2_{\bar{Y}}\).
 
-\[F=\frac{n S_{tr}^2}{S_e^2}\]
-is a statistic that is close to \(1\), when \(H_0\) is true.
+If the null \textbf{hypothesis is true} and we take more and more observations in each group then all the group averages get closer to the overall average \(\bar{Y}\), and the overall average gets closer to the grand mean \(\mu\) (which is unknown). In particular the ratio of
 
-If the null \textbf{hypothesis is not true} and we take more and more observations in each group then at least one average will not get close to the other averages, for instance \(\mu_A=\mu_B=\mu \neq \mu_C\). Therefore the expected value of \(nS^2_{tr}\) will not get close to \(\sigma^2\), as there is an irreducible variance given by the group that is different, for instance group \(C\). We also say that there is an additional variance in the data given by the treatment. In this case the statistic
+\[F=\frac{S_{tr}^2}{\frac{S_e^2}{n}}\]
+is a statistic that is close to \(1\), when \(H_0\) is true, because it gives us the error ratio \(\sigma^2_{\bar{Y}}/\frac{\sigma^2}{n}\) in the estimation of the average variance when the null hypothesis is true.
 
-\[F=\frac{n S_{tr}^2}{S_e^2}=\frac{MST}{MSE}\]
+If the null \textbf{hypothesis is not true} and we take more and more observations in each group then at least one average will not get close to the other averages, for instance \(\mu_A=\mu_B=\mu \neq \mu_C\). Therefore, the expected value of \(S^2_{tr}\) will substantially differ from \(\frac{\sigma^2}{n}\), as there is an irreducible variance given by the group that is different, which, for instance, concentrates at \(\mu_C\) and not at \(\mu\) for group \(C\). We also say that there is an additional variance in the data given by the treatment (or group difference). We managed to significantly change the outcome of the random experiment by changing the condition. In this case, the \(F\) statistic will be greater than 1, and the probability of getting a more extreme value is very low if the null is true.
 
-will be greater than 1 with high probability. The numerator \(MST\) is called the mean sum of squares of treatments (groups) and the denominator \(MSE\) is the sum of squares of errors (residuals). Since the variables within each group are considered normal, the variance estimators follow \(\chi^2\) distributions with their respective degrees of freedom, and the ratio \(F\) follows an (\(F\)) Fisher distribution with \(k-1\) and \(kn-1)\) degrees of freedom
+The \(F\) statistic can also be computed as the ratio of sums of squares
+
+\[F=\frac{MST}{MSE}\]
+
+The numerator \(MST\) is called the mean sum of squares of treatments (groups) and the denominator \(MSE\) is the sum of squares of errors (residuals). Since the variables within each group are considered normal, the variance estimators follow \(\chi^2\) distributions with their respective degrees of freedom, and the ratio \(F\) follows an (\(F\)) Fisher distribution with \(k-1\) and \(k(n-1)\) degrees of freedom
 
 \[F \rightarrow Fisher(k-1, k(n-1))\]
 
@@ -10237,19 +10279,22 @@ where \(k\) is the number of groups and \(n\) is the average number of observati
 
 The hypothesis test for the difference in means across several groups is then
 
-\begin{itemize}
+\begin{enumerate}
+\def\labelenumi{\alph{enumi}.}
 \tightlist
 \item
-  \(H_0: \mu_1=\mu_2, ...=\mu_k\) There are no difference between group means
-\end{itemize}
+  \(H_0: \mu_1=\mu_2, ...=\mu_k\). There are no difference between group means
+\end{enumerate}
 
 Then, the observed value of \(F\), \emph{e.g} \(f_{obs}\) will be near \(1\).
 
-\begin{itemize}
+\begin{enumerate}
+\def\labelenumi{\alph{enumi}.}
+\setcounter{enumi}{1}
 \tightlist
 \item
   \(H_1\) at least one \(\mu_i\) is different
-\end{itemize}
+\end{enumerate}
 
 Then, the observed value of \(F\), \emph{e.g} \(f_{obs}\) will be \textbf{greater} than \(1\).
 
@@ -10442,7 +10487,7 @@ This in only a formulation, a useful and popular formulation. We again use the \
 \hypertarget{way-anova}{%
 \section{2-way ANOVA}\label{way-anova}}
 
-The ANOVA approach allows for the analysis of the joint effect of \textbf{two} or more different factors each with different numner of groups.
+The ANOVA approach allows for the analysis of the joint effect of \textbf{two} or more different factors each with different number of groups.
 
 Let us include an additional factor given by the sex of the mice and ask: Is there an effect of sex when leptin groups are taken into account?
 
@@ -10528,6 +10573,8 @@ The data looks like
 ## 78  23.70   KOplus   F
 ## 79  21.00   KOplus   F
 \end{verbatim}
+
+Note that we will not include the normal mice only for simplicity of explanation.
 
 \hypertarget{modeling-residuals}{%
 \section{Modeling residuals}\label{modeling-residuals}}

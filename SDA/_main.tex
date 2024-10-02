@@ -120,7 +120,7 @@
 
 \title{Statistical Data Analysis}
 \author{Alejandro Caceres}
-\date{2024-10-01}
+\date{2024-10-02}
 
 \begin{document}
 \maketitle
@@ -10176,7 +10176,7 @@ We can see the differences in distributions with a violin plot
 
 \includegraphics{_main_files/figure-latex/unnamed-chunk-135-1.pdf}
 
-When we test for the difference in means between \textbf{two groups}, the null hypothesis assumes that the means are equal. When we consider more than two groups, we ask if \textbf{at least one} of the means is different.
+When we test for the difference in means between \textbf{two groups}, the null hypothesis assumes that the means are equal. When we consider more than two groups, the null hypothesis is that \textbf{all groups} have the same mean. The alternative is that at least one group has a different mean from the rest.
 
 \hypertarget{hypothesis-test-2}{%
 \section{Hypothesis test}\label{hypothesis-test-2}}
@@ -10186,32 +10186,31 @@ Let us formulate the hypothesis contrast
 \begin{enumerate}
 \def\labelenumi{\alph{enumi}.}
 \item
-  \(H_0: \mu_A=\mu_B=\mu_C\). The null hypothesis (status quo) assumes that there are no differences between group. All the bars in the bar plot have he same height.
+  \(H_0: \mu_A=\mu_B=\mu_C\). The null hypothesis (status quo) assumes that there are no differences among the groups. All the bars in the bar plot have he same height, at least bounded by the confidence intervals.
 \item
   \(H_1: \mu_i\neq 0\). The alternative hypothesis assumes that at least one group mean \(\mu_i\) is different from the rest (research interest). At least one bar in the bar plot is distinctively different from the rest.
 \end{enumerate}
 
 How can we test these hypotheses? Is there a statistic that we can formulate such that its value give us information on whether we should accept or reject \(H_0\)?
 
-Let's assume for the moment that all the groups have the same number of observations \(n_A=n_B=n_c=n\) (the same number of mice in each condition). This is called a \textbf{balanced design} but the following discussion will hold when the number of observations in each group are different and we take \(n\) as the average number of observations per group.
+Let's assume for the moment that all the groups have the same number of observations \(n_A=n_B=n_c=n\) (the same number of mice in each condition). This is called a \textbf{balanced design} but the following discussion will hold if we take \(n\) as the \textbf{average number of observations} per group, and let the experimental conditions have different number of mice.
 
-If the \textbf{null hypothesis is true} there are no differences between the means and coincide with the a single mean \(\mu\)
+If the \textbf{null hypothesis is true} there are no differences between the means among conditions and they all coincide with the single mean \(\mu\)
 
 \[\mu_A=\mu_B=\mu_C=\mu\]
 Therefore, all the averages from each group have the same distribution \[\bar{Y}_A, \bar{Y}_B, \bar{Y}_C \rightarrow N(\mu, \sigma^2/n)\] and
-\[m=(\bar{y}_A, \bar{y}_B, \bar{y}_C )\] is the observed sample of size \(k=3\) of an averaging experiment: one that takes the averages of the weights of \(n\) animals. The null hypothesis assumes that we have repeated the same averaging experiment three times (one for each condition) expecting to estimate the same underlying mean \(\mu\).
+\[m=(\bar{y}_A, \bar{y}_B, \bar{y}_C )\] is the observed sample of size \(k=3\) of an averaging experiment: one that computes the averages of the weights of \(n\) animals. The null hypothesis assumes that we have repeated the same averaging experiment three times (one for each condition) expecting to estimate the same underlying mean \(\mu\).
 
 Now notice that we have two sources of dispersion
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
 \item
-  The \textbf{within group} variance \(\sigma^2\), which is the dispersion of the weights in each condition.
+  The \textbf{within group} variance \(\sigma^2\), which is the dispersion of the weights in each condition. That is the variance of the random experiment.
 \item
-  The \textbf{between group} variance \(\sigma^2_{\bar{Y}}\), which is the dispersion of the weight averages.
+  The \textbf{between group} variance \(\sigma^2_{\bar{Y}}\), which is the dispersion of the weight averages. That is the variance of the sample mean.\\
+  Under the null hypothesis, changing conditions does not affect the averages (the bars in the bar plot keep being similar), and they should get close to \(\mu\) as the number of mice tested in each group (\(n\)) increases. Therefore, the variation of the averages should decrease with \(n\), following the law of great numbers
 \end{enumerate}
-
-Under the null hypothesis, changing conditions does not affect the averages (the bars in the bar plot are similar), and they should get close to \(\mu\) as the number of mice tested in each group (\(n\)) increases. Therefore, the variation of the averages should decrease with \(n\), following the law of great numbers
 
 \begin{enumerate}
 \def\labelenumi{\alph{enumi}.}
@@ -10243,11 +10242,11 @@ Since we are assuming that in all groups the data disperses with the same varian
 
 \[Se^2 = \frac{1}{3}(S_A^2+S_B^2+S_C^2)\]
 
-is another estimator of the variance \(\sigma^2\), one that incorporates the estimations at each group. It is just the average of the squared standard deviations that we get from each condition. \(S_e^2\) is called the \textbf{mean square error}.
+is another estimator of \(\sigma^2\), one that incorporates the estimations of all groups. It is just the average of the squared standard deviations that we get from each condition. \(S_e^2\) is called the \textbf{mean square error}.
 
 \includegraphics{_main_files/figure-latex/unnamed-chunk-136-1.pdf}
 
-Let's now look at the dispersion of the \textbf{averages}. That is the right part of the plot above (\(Y\_bar\)), where we look at how the averages disperse about the overall mean of the data. We know, for instance, that \(\bar{Y}_A\) is normal with mean \(\mu_A\) and variance \(\frac{\sigma^2}{n}\). Under the null hypothesis we are repeating this experiment three times.
+Let's now look at the dispersion of the \textbf{averages}. That is the right part of the plot above (\(Y\_bar\)), where we look at how the averages (dots) disperse about the overall mean of the data. We know, for instance, that \(\bar{Y}_A\) is normal with mean \(\mu_A\) and variance \(\frac{\sigma^2}{n}\). Under the null hypothesis, we are repeating this experiment three times.
 
 In this experiment of averages, the sample variance is
 
@@ -10260,15 +10259,15 @@ where \(j\) indicates the groups (\(A\), \(B\), \(C\)) and \(\bar{Y}\) is the av
 If the null \textbf{hypothesis is true} and we take more and more observations in each group then all the group averages get closer to the overall average \(\bar{Y}\), and the overall average gets closer to the grand mean \(\mu\) (which is unknown). In particular the ratio of
 
 \[F=\frac{S_{tr}^2}{\frac{S_e^2}{n}}\]
-is a statistic that is close to \(1\), when \(H_0\) is true, because it estimates the error ratio \(\sigma^2_{\bar{Y}}/\frac{\sigma^2}{n}\) of the variance's average when the null hypothesis is true. Written as \(n \sigma^2_{\bar{Y}}/\sigma^2\) it gives a measure of the separation of the averages in relation to the within group noise.
+is a statistic that is close to \(1\), when \(H_0\) is true, because it estimates the error ratio \(\sigma^2_{\bar{Y}}/\frac{\sigma^2}{n}\) of the average's variance when the null hypothesis is true. Typically written as \(n \sigma^2_{\bar{Y}}/\sigma^2\) it gives a measure of the separation of the averages in relation to the within group noise.
 
-If the null \textbf{hypothesis is not true} and we take more and more observations in each group then at least one average will not get close to the other averages, for instance \(\mu_A=\mu_B=\mu \neq \mu_C\). Therefore, the expected value of \(S^2_{tr}\) will substantially differ from \(\frac{\sigma^2}{n}\), as there is an irreducible variance given by the group that is different, which, for instance, concentrates at \(\mu_C\) and not at \(\mu\) for group \(C\). We also say that there is an additional variance in the data given by the treatment (or group difference). If this is the case, we then managed to significantly change the outcome of the random experiment by changing at least one condition. Consequently, the \(F\) statistic will be greater than 1, rejecting the null.
+If the null \textbf{hypothesis is not true} and we take more and more observations in each group then at least one average will not get close to the other averages, for instance \(\mu_A=\mu_B=\mu \neq \mu_C\). Therefore, the expected value of \(S^2_{tr}\) will substantially differ from \(\frac{\sigma^2}{n}\), as there is an irreducible variance given by the group that is different, which, for instance, concentrates at \(\mu_C\) and not at \(\mu\) for group \(C\). We also say that there is an additional variance in the data given by difference in the treatment (or group difference). If this is the case, we then managed to significantly change the outcome of the random experiment by changing at least one condition. Consequently, the \(F\) statistic will be greater than 1, rejecting the null.
 
-The \(F\) statistic can also be computed as the ratio of sums of squares, which results from writing \(F\) in terms of the averages and a subsequent rearrangement
+The \(F\) statistic can also be computed as the ratio of sums of squares, as reported in statistical software, which results from writing \(F\) in terms of the averages and a subsequent rearrangement
 
 \[F=\frac{MST}{MSE}\]
 
-The numerator \[MST=\frac{1}{k-1}\sum_{j=1}^k n(\bar{Y}_j-\bar{Y})^2=\frac{1}{k-1}SSq_{group}\] is called the mean sum of squares of treatments (groups) and the denominator \[MSE= \frac{1}{k(n-1)}\sum_{i=1}^n \sum_{j=1}^k (Y_{ji}-\bar{Y_j}^2)=\frac{1}{k(n-1)}SSq_{Residual}\] is the sum of squares of errors (residuals). Since the variables within each group are considered normal, the variance estimators follow \(\chi^2\) distributions with their respective degrees of freedom, and the ratio \(F\) follows an (\(F\)) Fisher distribution with \(k-1\) and \(k(n-1)\) degrees of freedom
+More explicitly, the numerator \[MST=\frac{1}{k-1}\sum_{j=1}^k n(\bar{Y}_j-\bar{Y})^2=\frac{1}{k-1}SSq_{group}\] is called the mean sum of squares of treatments (groups) and the denominator \[MSE= \frac{1}{k(n-1)}\sum_{i=1}^n \sum_{j=1}^k (Y_{ji}-\bar{Y_j}^2)=\frac{1}{k(n-1)}SSq_{Residual}\] is the sum of squares of errors (residuals). Since the variables within each group are considered normal, the variance estimators follow \(\chi^2\) distributions with their respective degrees of freedom, and the ratio \(F\) follows an (\(F\)) Fisher distribution with \(k-1\) and \(k(n-1)\) degrees of freedom
 
 \[F \rightarrow Fisher(k-1, k(n-1))\]
 
@@ -10293,7 +10292,7 @@ Then, the observed value of \(F\), \emph{e.g} \(f_{obs}\) will be near \(1\).
 \setcounter{enumi}{1}
 \tightlist
 \item
-  \(H_1\) at least one \(\mu_i\) is different
+  \(H_1:\) at least one \(\mu_i\) is different from the rest.
 \end{enumerate}
 
 Then, the observed value of \(F\), \emph{e.g} \(f_{obs}\) will be \textbf{greater} than \(1\).
@@ -10350,7 +10349,7 @@ which is much lower than \(\alpha=0.05\), suggesting significant differences in 
 \hypertarget{anova-for-two-groups}{%
 \section{ANOVA for two groups}\label{anova-for-two-groups}}
 
-We can explicitly compute the observed value of \(F\) when we have only two groups:
+ANOVA for two groups coincides with the two sample t-test. ANOVA is its generalization fro several groups. We can explicitly compute the observed value of \(F\) when we have only two groups:
 
 \[f_{obs}=\frac{n(\bar{y}_{A}-\bar{y}_{B})^2}{s^2_p}\]
 where \(s^2_p\) is the pooled variance:
@@ -11445,10 +11444,6 @@ Consider the previous regression and color the points according to their sex
 
 We clearly see that the negative association between leptin and fat mass is given by the \textbf{effect of sex}. As males have lower leptin levels and higher fat mass then the negative correlation between leptin and fat mass is due to sex.
 
-If we run the regression \textbf{separating}, or stratifying, by sex, we find a positive association between leptin and fat mass, as it is expected from the literature.
-
-\includegraphics{_main_files/figure-latex/unnamed-chunk-162-1.pdf}
-
 \hypertarget{multiple-regression}{%
 \section{Multiple Regression}\label{multiple-regression}}
 
@@ -11458,16 +11453,17 @@ The linear regression can be extended to include several number of factors. Cons
 
 Here, our effect of interest is the coefficient \(\beta\) of \(x_i\) (leptin) and we want to adjust for the effect of \(z_j\) (sex). The mode is similar to the linear model we used for ANOVA, only that now the treatment effects are continuous and depend on the variable \(X\).
 
-When we include both sex and age as additional factors in the regression, we observe that there is a positive increase in leptin when we adjust for sex. Males have a negative association with leptin, compared with women, and age has an almost significant association with leptin. Now, everything fits.
+When we include both sex as an additional factor in the regression, we observe that there is a positive increase in leptin when we adjust for sex. Males have a negative association with leptin, compared with women. Now, everything fits.
 
 \begin{verbatim}
 import pandas as pd
 from scipy.stats import pearsonr
+from statsmodels.formula.api import ols
 
 data = pd.read_csv('https://alejandro-isglobal.github.io/SDA/data/leptinFatmass.txt', 
 sep='\t')
 
-model = ols('leptin ~ fatmass + sex + age', data=data).fit()
+model = ols('leptin ~ fatmass + sex', data=data).fit()
 
 print(model.summary())
 \end{verbatim}
@@ -11475,32 +11471,39 @@ print(model.summary())
 \begin{verbatim}
                             OLS Regression Results                            
 ==============================================================================
-Dep. Variable:                 leptin   R-squared:                       0.491
-Model:                            OLS   Adj. R-squared:                  0.482
-Method:                 Least Squares   F-statistic:                     59.09
-Date:                Mon, 04 Sep 2023   Prob (F-statistic):           8.47e-27
-Time:                        09:40:31   Log-Likelihood:                -175.66
-No. Observations:                 188   AIC:                             359.3
-Df Residuals:                     184   BIC:                             372.3
-Df Model:                           3                                         
+Dep. Variable:                 leptin   R-squared:                       0.482
+Model:                            OLS   Adj. R-squared:                  0.476
+Method:                 Least Squares   F-statistic:                     85.93
+Date:                Tue, 01 Oct 2024   Prob (F-statistic):           4.05e-27
+Time:                        16:09:49   Log-Likelihood:                -177.32
+No. Observations:                 188   AIC:                             360.6
+Df Residuals:                     185   BIC:                             370.3
+Df Model:                           2                                         
 Covariance Type:            nonrobust                                         
 ==============================================================================
                  coef    std err          t      P>|t|      [0.025      0.975]
 ------------------------------------------------------------------------------
-Intercept      1.4826      0.304      4.870      0.000       0.882       2.083
-sex[T.M]      -1.6120      0.136    -11.864      0.000      -1.880      -1.344
-fatmass        0.0276      0.006      4.596      0.000       0.016       0.039
-age            0.0054      0.003      1.811      0.072      -0.000       0.011
+Intercept      1.7163      0.277      6.187      0.000       1.169       2.264
+sex[T.M]      -1.6358      0.136    -12.023      0.000      -1.904      -1.367
+fatmass        0.0279      0.006      4.630      0.000       0.016       0.040
 ==============================================================================
-Omnibus:                        4.457   Durbin-Watson:                   1.685
-Prob(Omnibus):                  0.108   Jarque-Bera (JB):                4.067
-Skew:                          -0.345   Prob(JB):                        0.131
-Kurtosis:                       3.207   Cond. No.                         475.
+Omnibus:                        4.596   Durbin-Watson:                   1.688
+Prob(Omnibus):                  0.100   Jarque-Bera (JB):                4.164
+Skew:                          -0.330   Prob(JB):                        0.125
+Kurtosis:                       3.308   Cond. No.                         326.
 ==============================================================================
 \end{verbatim}
 
+we find a positive association between leptin and fat mass, adjusting by sex, as it is expected from the literature. The regression lines for each sex will be parallel but displaced by the average effect of changing from female (reference) to male.
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-163-1.pdf}
+
 \hypertarget{multiple-regression-interaction}{%
 \section{Multiple Regression interaction}\label{multiple-regression-interaction}}
+
+If we run the regression \textbf{separating}, or stratifying, by sex, we find that the strength of the association between leptin and fat mass depends on sex. The slopes of the regression lines depend on sex.
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-164-1.pdf}
 
 We can furthermore include interactions between conditions in the regression.
 
@@ -11509,7 +11512,7 @@ Consider the \textbf{linear model}
 \[Y_{jr} = \alpha + \beta x_{j} +\gamma z_{r} + \delta (xz)_{jr} +E_{jr}\]
 The parameter \(\delta\) will add a contribution to the slope \(\beta\) that is \textbf{specific} to the condition \(r\). For instance, if \(z_i \in (0,1)\) then when \(z=0\) the coefficient of \(x_i\) is \(\beta\). But when \(z=1\) the coefficient of \(x_i\) is \(\beta+\gamma\).
 
-In our example, if \(z\) is sex, then \(\gamma\) will test the differences in \(\beta\)s between males and females. We can furhter adjust by age.
+In our example, if \(z\) is sex, then \(\gamma\) will test the differences in \(\beta\)s between males and females. We can further adjust by age.
 
 \[Y_{jrs} = \alpha + \beta\times fatmass_{j} +\gamma\times sex_{r} + \delta\times (fatmass\times sex)_{jr} + \epsilon_s age+E_{jrs}\]
 
@@ -11554,11 +11557,7 @@ Kurtosis:                       3.209   Cond. No.                     1.27e+03
 ==============================================================================
 \end{verbatim}
 
-Our data suggest a steeper increase of leptin with body fat in males than in females (interaction: \(0.028427\), \(pvalue=0.03\)), as we saw in the figures of the stratified analysis. A positive and significant interaction means that the slope for males is higher than the slope for females.
-
-\includegraphics{_main_files/figure-latex/unnamed-chunk-165-1.pdf}
-
-The model now explains \(50\%\) of the variance \(R^2=0.5\)
+Our data suggest a steeper increase of leptin with body fat in males than in females (interaction: \(0.028427\), \(pvalue=0.03\)), as we saw in the figures of the stratified analysis. A positive and significant interaction means that the slope for males is higher than the slope for females, as we had seen in the stratified analysis. The model now explains \(50\%\) of the variance \(R^2=0.5\)
 
 \hypertarget{model-diagnostics}{%
 \section{Model diagnostics}\label{model-diagnostics}}

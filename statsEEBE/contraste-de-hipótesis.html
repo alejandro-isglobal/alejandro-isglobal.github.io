@@ -23,7 +23,7 @@
 <meta name="author" content="Alejandro Cáceres (alejandro.caceres.dominguez@upc.edu)" />
 
 
-<meta name="date" content="2024-08-30" />
+<meta name="date" content="2024-11-11" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -531,7 +531,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 El intervalo de confianza nos dice que podemos tener un <span class="math inline">\(95\%\)</span> de confianza en que la media de la carga de rotura <span class="math inline">\(\mu\)</span> de los cables que probamos está en el intervalo. No sabemos el valor real de <span class="math inline">\(\mu\)</span> pero entendemos que un valor pausible podría ser <span class="math inline">\(\mu=13\)</span> toneladas, ya que el intervalo atrapó <span class="math inline">\(\mu_0\)</span></p>
 <p><span class="math display">\[\mu_0\in (12.97,13.45)\]</span></p>
 <p>Nuestra conclusión es aceptar que <span class="math inline">\(H_0\)</span> podría haber producido nuestro <strong>intervalo observado</strong>. También decimos que los datos respaldan la afirmación del fabricante. Más técnicamente, decimos que <strong>no rechazamos</strong> la hipótesis nula <span class="math inline">\(H_0\)</span>.</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-103-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-105-1.png" width="672" /></p>
 </div>
 <div id="prueba-de-hipótesis-con-zonas-de-aceptaciónrechazo" class="section level3 hasAnchor" number="14.4.2">
 <h3><span class="header-section-number">14.4.2</span> Prueba de hipótesis con zonas de aceptación/rechazo<a href="contraste-de-hipótesis.html#prueba-de-hipótesis-con-zonas-de-aceptaciónrechazo" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -546,7 +546,7 @@ Cuando la hipótesis nula es verdadera. Tengamos en cuenta que estamos estandari
 <p><span class="math display">\[(-z_{0.025}, z_{0.025})\]</span>
 Recordemos que este intervalo define los valores más comunes de <span class="math inline">\(Z\)</span> ya que <span class="math display">\[P(-z_{0.025} \leq Z \leq z_{0.025})=0.95\]</span></p>
 <p>El intervalo <span class="math inline">\((-z_{0.025}, z_{0.025})\)</span> se denomina <strong>intervalo de aceptación</strong> de <span class="math inline">\(H_0\)</span> con un nivel de confianza de <span class="math inline">\(95\%\)</span>.</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-104-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-106-1.png" width="672" /></p>
 <p><strong>Criterios de decisión:</strong></p>
 <ul>
 <li>Si la estadística observada <span class="math inline">\(z_{obs}\)</span> bajo la hipótesis nula <strong>está</strong> en la región de aceptación</li>
@@ -566,7 +566,7 @@ es el error en estimación de <span class="math inline">\(\mu_0\)</span> que com
 <p>Para <strong>nuestros datos</strong>, el <strong>error observado</strong> estandarizado está en la región de aceptación</p>
 <p><span class="math display">\[z_{obs}=\frac{\bar{x}-13}{\frac{0.35}{\sqrt{8}}}=1.7187 \in (-z_{0.025}, z_{0.025})\]</span>
 Concluimos que nuestro error observado es típico al <span class="math inline">\(95\%\)</span> cuando la hipótesis nula <span class="math inline">\(\mu_0\)</span> es verdadera. Por lo tanto, nuevamente aceptamos que los datos son consistentes con la afirmación del fabricante. También decimos que <strong>no rechazamos</strong> <span class="math inline">\(H_0\)</span>.</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-105-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-107-1.png" width="672" /></p>
 </div>
 <div id="prueba-de-hipótesis-con-un-p-valor" class="section level3 hasAnchor" number="14.4.3">
 <h3><span class="header-section-number">14.4.3</span> Prueba de hipótesis con un P valor<a href="contraste-de-hipótesis.html#prueba-de-hipótesis-con-un-p-valor" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -586,19 +586,19 @@ Concluimos que nuestro error observado es típico al <span class="math inline">\
 entonces <strong>rechazamos</strong> <span class="math inline">\(H_0\)</span> con una confianza de <span class="math inline">\(95\%\)</span>.</p>
 <p><span class="math inline">\(\alpha\)</span> es el nivel de significancia. Nos dice cuánto de la distribución estamos omitiendo y define la región que consideramos como observaciones raras.</p>
 <p>Recuerdemos que siempre confiamos en nuestros datos. Si la hipótesis nula dice que nuestros datos son una observación <strong>rara</strong> entonces desconfiamos de la hipótesis nula y la rechazamos.</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-106-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-108-1.png" width="672" /></p>
 <p><strong>Ejemplo (Cables)</strong></p>
 <p>Para nuestros datos, la estadística observada <span class="math inline">\(z_{obs}=1.718714\)</span> y su <strong>P valor</strong> es entonces</p>
 <p><span class="math display">\[pvalor=2 (1-\phi(1.718714))=0.08567\]</span>
 R: <code>2*(1-pnorm(1.718714))</code></p>
 <p>Concluimos que si realizamos una nueva muestra es probable que podamos obtener un resultado más extremo que el que obtuvimos. La hipótesis nula puede tolerar el error observado con una confianza de <span class="math inline">\(95\%\)</span>. Por lo tanto, aceptamos que <span class="math inline">\(H_0\)</span> podría haber producido nuestros datos y decimos nuevamente que es consistente con la afirmación del fabricante.</p>
 <p>En R todo el contraste de hipótesis se puede realizar con la función z.test de la librería BSDA (que es necesario instalar previamente)</p>
-<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="contraste-de-hipótesis.html#cb45-1" tabindex="-1"></a><span class="fu">install.packages</span>(BSDA) </span></code></pre></div>
-<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="contraste-de-hipótesis.html#cb46-1" tabindex="-1"></a><span class="fu">library</span>(BSDA) </span>
-<span id="cb46-2"><a href="contraste-de-hipótesis.html#cb46-2" tabindex="-1"></a><span class="fu">z.test</span>(<span class="fu">c</span>(<span class="fl">13.34642</span>, <span class="fl">13.32620</span>, <span class="fl">13.01459</span>, <span class="fl">13.10811</span>, </span>
-<span id="cb46-3"><a href="contraste-de-hipótesis.html#cb46-3" tabindex="-1"></a>         <span class="fl">12.96999</span>, <span class="fl">13.55309</span>, <span class="fl">13.75557</span>, <span class="fl">12.62747</span>), </span>
-<span id="cb46-4"><a href="contraste-de-hipótesis.html#cb46-4" tabindex="-1"></a>       <span class="at">mu=</span><span class="dv">13</span>, </span>
-<span id="cb46-5"><a href="contraste-de-hipótesis.html#cb46-5" tabindex="-1"></a>       <span class="at">sigma.x=</span><span class="fl">0.35</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="contraste-de-hipótesis.html#cb46-1" tabindex="-1"></a><span class="fu">install.packages</span>(BSDA) </span></code></pre></div>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="contraste-de-hipótesis.html#cb47-1" tabindex="-1"></a><span class="fu">library</span>(BSDA) </span>
+<span id="cb47-2"><a href="contraste-de-hipótesis.html#cb47-2" tabindex="-1"></a><span class="fu">z.test</span>(<span class="fu">c</span>(<span class="fl">13.34642</span>, <span class="fl">13.32620</span>, <span class="fl">13.01459</span>, <span class="fl">13.10811</span>, </span>
+<span id="cb47-3"><a href="contraste-de-hipótesis.html#cb47-3" tabindex="-1"></a>         <span class="fl">12.96999</span>, <span class="fl">13.55309</span>, <span class="fl">13.75557</span>, <span class="fl">12.62747</span>), </span>
+<span id="cb47-4"><a href="contraste-de-hipótesis.html#cb47-4" tabindex="-1"></a>       <span class="at">mu=</span><span class="dv">13</span>, </span>
+<span id="cb47-5"><a href="contraste-de-hipótesis.html#cb47-5" tabindex="-1"></a>       <span class="at">sigma.x=</span><span class="fl">0.35</span>)</span></code></pre></div>
 <pre><code>## 
 ##  One-sample z-Test
 ## 
@@ -666,9 +666,9 @@ donde <span class="math inline">\(z_{0.05}=\)</span><code>qnorm(0.95)=1.644854</
 </ol>
 <p>donde <span class="math inline">\(pvalor=\)</span><code>1-pnorm(1.7187)</code>.</p>
 <p>La prueba de hipótesis se puede realizar en R, especificando el parámetro “alternative” como “greater”:</p>
-<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="contraste-de-hipótesis.html#cb48-1" tabindex="-1"></a><span class="fu">z.test</span>(<span class="fu">c</span>(<span class="fl">13.34642</span>, <span class="fl">13.32620</span>, <span class="fl">13.01459</span>, <span class="fl">13.10811</span>,</span>
-<span id="cb48-2"><a href="contraste-de-hipótesis.html#cb48-2" tabindex="-1"></a>         <span class="fl">12.96999</span>, <span class="fl">13.55309</span>, <span class="fl">13.75557</span>, <span class="fl">12.62747</span>), </span>
-<span id="cb48-3"><a href="contraste-de-hipótesis.html#cb48-3" tabindex="-1"></a>       <span class="at">mu=</span><span class="dv">13</span>, <span class="at">alternative=</span><span class="st">&quot;greater&quot;</span>, <span class="at">sigma.x=</span><span class="fl">0.35</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="contraste-de-hipótesis.html#cb49-1" tabindex="-1"></a><span class="fu">z.test</span>(<span class="fu">c</span>(<span class="fl">13.34642</span>, <span class="fl">13.32620</span>, <span class="fl">13.01459</span>, <span class="fl">13.10811</span>,</span>
+<span id="cb49-2"><a href="contraste-de-hipótesis.html#cb49-2" tabindex="-1"></a>         <span class="fl">12.96999</span>, <span class="fl">13.55309</span>, <span class="fl">13.75557</span>, <span class="fl">12.62747</span>), </span>
+<span id="cb49-3"><a href="contraste-de-hipótesis.html#cb49-3" tabindex="-1"></a>       <span class="at">mu=</span><span class="dv">13</span>, <span class="at">alternative=</span><span class="st">&quot;greater&quot;</span>, <span class="at">sigma.x=</span><span class="fl">0.35</span>)</span></code></pre></div>
 <pre><code>## 
 ##  One-sample z-Test
 ## 
@@ -680,7 +680,7 @@ donde <span class="math inline">\(z_{0.05}=\)</span><code>qnorm(0.95)=1.644854</
 ## sample estimates:
 ## mean of x 
 ##  13.21268</code></pre>
-<p><img src="_main_files/figure-html/unnamed-chunk-111-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-113-1.png" width="672" /></p>
 </div>
 </div>
 <div id="caso-2-para-la-media-con-varianza-desconocida" class="section level2 hasAnchor" number="14.5">
@@ -745,9 +745,9 @@ donde <span class="math inline">\(z_{0.05}=\)</span><code>qnorm(0.95)=1.644854</
 </ol>
 <p>es mayor que <span class="math inline">\(\alpha=0.05\)</span>. El <span class="math inline">\(pvalor\)</span> se calcula R como <code>2*(1-pt(1.6843,7))</code></p>
 <p>En R estos contrastes se realizan con la función t.test:</p>
-<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="contraste-de-hipótesis.html#cb51-1" tabindex="-1"></a><span class="fu">t.test</span>(<span class="fu">c</span>(<span class="fl">13.34642</span>, <span class="fl">13.32620</span>, <span class="fl">13.01459</span>, <span class="fl">13.10811</span>,</span>
-<span id="cb51-2"><a href="contraste-de-hipótesis.html#cb51-2" tabindex="-1"></a>         <span class="fl">12.96999</span>, <span class="fl">13.55309</span>, <span class="fl">13.75557</span>, <span class="fl">12.62747</span>), </span>
-<span id="cb51-3"><a href="contraste-de-hipótesis.html#cb51-3" tabindex="-1"></a>       <span class="at">mu=</span><span class="dv">13</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="contraste-de-hipótesis.html#cb52-1" tabindex="-1"></a><span class="fu">t.test</span>(<span class="fu">c</span>(<span class="fl">13.34642</span>, <span class="fl">13.32620</span>, <span class="fl">13.01459</span>, <span class="fl">13.10811</span>,</span>
+<span id="cb52-2"><a href="contraste-de-hipótesis.html#cb52-2" tabindex="-1"></a>         <span class="fl">12.96999</span>, <span class="fl">13.55309</span>, <span class="fl">13.75557</span>, <span class="fl">12.62747</span>), </span>
+<span id="cb52-3"><a href="contraste-de-hipótesis.html#cb52-3" tabindex="-1"></a>       <span class="at">mu=</span><span class="dv">13</span>)</span></code></pre></div>
 <pre><code>## 
 ##  One Sample t-test
 ## 
@@ -759,7 +759,7 @@ donde <span class="math inline">\(z_{0.05}=\)</span><code>qnorm(0.95)=1.644854</
 ## sample estimates:
 ## mean of x 
 ##  13.21268</code></pre>
-<p><img src="_main_files/figure-html/unnamed-chunk-114-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-116-1.png" width="672" /></p>
 <p><strong>Ejemplo (NaCl)</strong></p>
 <p><span class="math inline">\(11.6 g\)</span> de NaCl se disuelven en <span class="math inline">\(100 g\)</span> de agua, correpondiendo a una concentración molar de <span class="math inline">\(1.92 mol/L\)</span>.</p>
 <p>Diseñamos un proceso para eliminar la sal de esta concentración y obtenemos los siguientes resultados</p>
@@ -770,8 +770,8 @@ donde <span class="math inline">\(z_{0.05}=\)</span><code>qnorm(0.95)=1.644854</
 <li><span class="math inline">\(H_1:\mu\neq 1.92\)</span></li>
 </ol>
 <p>Supondremos que <span class="math inline">\(X\)</span> es normal y que no conocemos la varianza <span class="math inline">\(\sigma^2\)</span>. Por lo tanto, estamos en el <strong>caso 2</strong> que probamos con una prueba t.</p>
-<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="contraste-de-hipótesis.html#cb54-1" tabindex="-1"></a><span class="fu">t.test</span>(<span class="fu">c</span>(<span class="fl">1.716</span>, <span class="fl">1.889</span>, <span class="fl">1.783</span>, <span class="fl">1.849</span>, <span class="fl">1.891</span>), </span>
-<span id="cb54-2"><a href="contraste-de-hipótesis.html#cb54-2" tabindex="-1"></a>       <span class="at">mu=</span><span class="fl">1.92</span>, <span class="at">alternative =</span> <span class="st">&quot;two.sided&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="contraste-de-hipótesis.html#cb55-1" tabindex="-1"></a><span class="fu">t.test</span>(<span class="fu">c</span>(<span class="fl">1.716</span>, <span class="fl">1.889</span>, <span class="fl">1.783</span>, <span class="fl">1.849</span>, <span class="fl">1.891</span>), </span>
+<span id="cb55-2"><a href="contraste-de-hipótesis.html#cb55-2" tabindex="-1"></a>       <span class="at">mu=</span><span class="fl">1.92</span>, <span class="at">alternative =</span> <span class="st">&quot;two.sided&quot;</span>)</span></code></pre></div>
 <pre><code>## 
 ##  One Sample t-test
 ## 
@@ -811,8 +811,8 @@ es superior a <span class="math inline">\(\alpha=0.05\)</span></li>
 <li><span class="math inline">\(H_1:\mu &lt; 1.92\)</span></li>
 </ol>
 <p>Podemos suponer que la concentración es normal y que no sabemos <span class="math inline">\(\sigma^2\)</span>. Por lo tanto, estamos en el <strong>caso 2</strong> para el cual solo necesitamos cambiar el argumento “alternative” en la función t.test. Así pues rechazamos la hipótesis nula.</p>
-<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="contraste-de-hipótesis.html#cb56-1" tabindex="-1"></a><span class="fu">t.test</span>(<span class="fu">c</span>(<span class="fl">1.716</span>, <span class="fl">1.889</span>, <span class="fl">1.783</span>, <span class="fl">1.849</span>, <span class="fl">1.891</span>), </span>
-<span id="cb56-2"><a href="contraste-de-hipótesis.html#cb56-2" tabindex="-1"></a>       <span class="at">mu=</span><span class="fl">1.92</span>, <span class="at">alternative =</span> <span class="st">&quot;less&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="contraste-de-hipótesis.html#cb57-1" tabindex="-1"></a><span class="fu">t.test</span>(<span class="fu">c</span>(<span class="fl">1.716</span>, <span class="fl">1.889</span>, <span class="fl">1.783</span>, <span class="fl">1.849</span>, <span class="fl">1.891</span>), </span>
+<span id="cb57-2"><a href="contraste-de-hipótesis.html#cb57-2" tabindex="-1"></a>       <span class="at">mu=</span><span class="fl">1.92</span>, <span class="at">alternative =</span> <span class="st">&quot;less&quot;</span>)</span></code></pre></div>
 <pre><code>## 
 ##  One Sample t-test
 ## 
@@ -831,18 +831,18 @@ es superior a <span class="math inline">\(\alpha=0.05\)</span></li>
 <ul>
 <li>A 10 individuos se les dio el <strong>soporífero 1</strong> y se anotaron las horas adicionales dormidas bajo tratamiento, con una media de <span class="math inline">\(0.75\)</span></li>
 </ul>
-<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="contraste-de-hipótesis.html#cb58-1" tabindex="-1"></a>medicine1 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">0.7</span>,<span class="sc">-</span><span class="fl">1.6</span>,<span class="sc">-</span><span class="fl">0.2</span>,<span class="sc">-</span><span class="fl">1.2</span>,<span class="sc">-</span><span class="fl">0.1</span>,<span class="fl">3.4</span>,<span class="fl">3.7</span>,<span class="fl">0.8</span>,<span class="dv">0</span>,<span class="dv">2</span>)</span>
-<span id="cb58-2"><a href="contraste-de-hipótesis.html#cb58-2" tabindex="-1"></a>medicine1</span></code></pre></div>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="contraste-de-hipótesis.html#cb59-1" tabindex="-1"></a>medicine1 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">0.7</span>,<span class="sc">-</span><span class="fl">1.6</span>,<span class="sc">-</span><span class="fl">0.2</span>,<span class="sc">-</span><span class="fl">1.2</span>,<span class="sc">-</span><span class="fl">0.1</span>,<span class="fl">3.4</span>,<span class="fl">3.7</span>,<span class="fl">0.8</span>,<span class="dv">0</span>,<span class="dv">2</span>)</span>
+<span id="cb59-2"><a href="contraste-de-hipótesis.html#cb59-2" tabindex="-1"></a>medicine1</span></code></pre></div>
 <pre><code>##  [1]  0.7 -1.6 -0.2 -1.2 -0.1  3.4  3.7  0.8  0.0  2.0</code></pre>
 <ul>
 <li>Los mismos 10 individuos recibieron el <strong>soporífero 2</strong> y anotaron las horas adicionales dormidas bajo tratamiento, con una media de <span class="math inline">\(2.33\)</span></li>
 </ul>
-<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="contraste-de-hipótesis.html#cb60-1" tabindex="-1"></a>medicine2 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">1.9</span>,<span class="fl">0.8</span>,<span class="fl">1.1</span>,<span class="fl">0.1</span>,<span class="sc">-</span><span class="fl">0.1</span>,<span class="fl">4.4</span>,<span class="fl">5.5</span>,<span class="fl">1.6</span>,<span class="fl">4.6</span>,<span class="fl">3.4</span>)</span>
-<span id="cb60-2"><a href="contraste-de-hipótesis.html#cb60-2" tabindex="-1"></a>medicine2</span></code></pre></div>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="contraste-de-hipótesis.html#cb61-1" tabindex="-1"></a>medicine2 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">1.9</span>,<span class="fl">0.8</span>,<span class="fl">1.1</span>,<span class="fl">0.1</span>,<span class="sc">-</span><span class="fl">0.1</span>,<span class="fl">4.4</span>,<span class="fl">5.5</span>,<span class="fl">1.6</span>,<span class="fl">4.6</span>,<span class="fl">3.4</span>)</span>
+<span id="cb61-2"><a href="contraste-de-hipótesis.html#cb61-2" tabindex="-1"></a>medicine2</span></code></pre></div>
 <pre><code>##  [1]  1.9  0.8  1.1  0.1 -0.1  4.4  5.5  1.6  4.6  3.4</code></pre>
 <p>La hipótesis científica era que el soporífero 2 era mejor que el soporífero 1. Para cada individuo, Gosset calculó la diferencia entre los tratamientos. Tomando <span class="math inline">\(X\)</span> como la <strong>diferencia</strong> entre tratamientos, esta fue la muestra observada para <span class="math inline">\(X\)</span></p>
-<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="contraste-de-hipótesis.html#cb62-1" tabindex="-1"></a>x <span class="ot">&lt;-</span> medicine2<span class="sc">-</span>medicine1</span>
-<span id="cb62-2"><a href="contraste-de-hipótesis.html#cb62-2" tabindex="-1"></a>x</span></code></pre></div>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="contraste-de-hipótesis.html#cb63-1" tabindex="-1"></a>x <span class="ot">&lt;-</span> medicine2<span class="sc">-</span>medicine1</span>
+<span id="cb63-2"><a href="contraste-de-hipótesis.html#cb63-2" tabindex="-1"></a>x</span></code></pre></div>
 <pre><code>##  [1] 1.2 2.4 1.3 1.3 0.0 1.0 1.8 0.8 4.6 1.4</code></pre>
 <p>encontrando un promedio de ganancia de tratamiento del soporífero 2 con respecto al soporífero 1 de <span class="math inline">\(1.58\)</span>, y <span class="math inline">\(s=1.229995\)</span></p>
 <p>La pregunta científica se puede establecer como prueba t pareada <strong>de cola superior</strong>:</p>
@@ -857,7 +857,7 @@ es superior a <span class="math inline">\(\alpha=0.05\)</span></li>
 <p><span class="math display">\[t_{obs}=\frac{\bar{x}}{\frac{s}{\sqrt{n}}}\]</span>
 que también se conoce como la relación <strong>señal</strong> a <strong>ruido</strong>.</p>
 <p>Podemos probar la hipotesis sobre la diferencia <span class="math inline">\(X=medicina_1-medicina_2\)</span></p>
-<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="contraste-de-hipótesis.html#cb64-1" tabindex="-1"></a><span class="fu">t.test</span>(x,<span class="at">alternative=</span><span class="st">&quot;greater&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="contraste-de-hipótesis.html#cb65-1" tabindex="-1"></a><span class="fu">t.test</span>(x,<span class="at">alternative=</span><span class="st">&quot;greater&quot;</span>)</span></code></pre></div>
 <pre><code>## 
 ##  One Sample t-test
 ## 
@@ -870,9 +870,9 @@ que también se conoce como la relación <strong>señal</strong> a <strong>ruido
 ## mean of x 
 ##      1.58</code></pre>
 <p>Esto también se conoce como una prueba t pareada, donde introducimos cada condición por separado y afirmamos que las observaciones están pareadas</p>
-<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="contraste-de-hipótesis.html#cb66-1" tabindex="-1"></a><span class="fu">t.test</span>(medicine2, medicine1,</span>
-<span id="cb66-2"><a href="contraste-de-hipótesis.html#cb66-2" tabindex="-1"></a>       <span class="at">paired =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb66-3"><a href="contraste-de-hipótesis.html#cb66-3" tabindex="-1"></a>       <span class="at">alternative=</span><span class="st">&quot;greater&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="contraste-de-hipótesis.html#cb67-1" tabindex="-1"></a><span class="fu">t.test</span>(medicine2, medicine1,</span>
+<span id="cb67-2"><a href="contraste-de-hipótesis.html#cb67-2" tabindex="-1"></a>       <span class="at">paired =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb67-3"><a href="contraste-de-hipótesis.html#cb67-3" tabindex="-1"></a>       <span class="at">alternative=</span><span class="st">&quot;greater&quot;</span>)</span></code></pre></div>
 <pre><code>## 
 ##  Paired t-test
 ## 
@@ -884,7 +884,7 @@ que también se conoce como la relación <strong>señal</strong> a <strong>ruido
 ## sample estimates:
 ## mean difference 
 ##            1.58</code></pre>
-<p><img src="_main_files/figure-html/unnamed-chunk-123-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-125-1.png" width="672" /></p>
 </div>
 <div id="prueba-de-hipótesis-con-n-grande-y-cualquier-distribución" class="section level3 hasAnchor" number="14.5.2">
 <h3><span class="header-section-number">14.5.2</span> Prueba de hipótesis con n grande y cualquier distribución<a href="contraste-de-hipótesis.html#prueba-de-hipótesis-con-n-grande-y-cualquier-distribución" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -943,9 +943,9 @@ Nota que para este caso usamos <span class="math inline">\(p_0\)</span> para cal
 </ol>
 <p><span class="math display">\[pvalor=1-\phi(1.885618)=0.02967323&lt;0.05\]</span></p>
 <p>en R: <code>1-pnorm(1.885618)</code></p>
-<p><img src="_main_files/figure-html/unnamed-chunk-124-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-126-1.png" width="672" /></p>
 <p>La prueba se puede realizar en R usando la función prop.test. Sin embargo nota que los intervalos de confianza no son idénticos a los dados en el criterio 1, porque ahí suponemos que <span class="math inline">\(\bar{X}\)</span> es exactamente normal mientras que prop.test usa una aproximación mas adecuada</p>
-<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="contraste-de-hipótesis.html#cb68-1" tabindex="-1"></a><span class="fu">prop.test</span>(<span class="dv">188</span>, <span class="dv">200</span>, <span class="at">p=</span><span class="fl">0.9</span>, <span class="at">alternative =</span> <span class="st">&quot;greater&quot;</span> , <span class="at">correct=</span><span class="cn">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="contraste-de-hipótesis.html#cb69-1" tabindex="-1"></a><span class="fu">prop.test</span>(<span class="dv">188</span>, <span class="dv">200</span>, <span class="at">p=</span><span class="fl">0.9</span>, <span class="at">alternative =</span> <span class="st">&quot;greater&quot;</span> , <span class="at">correct=</span><span class="cn">FALSE</span>)</span></code></pre></div>
 <pre><code>## 
 ##  1-sample proportions test without continuity correction
 ## 
@@ -989,7 +989,7 @@ Nota que para este caso usamos <span class="math inline">\(p_0\)</span> para cal
 ##  [9] 24.40244 24.61227 26.06495 25.31304 25.34867 25.09629 24.51642 26.55461
 ## [17] 25.43313 23.28904 25.61018 24.58867</code></pre>
 <p>La desviación estándar estimada para estos datos es <span class="math inline">\(s=0.8462188\)</span>. ¿Estaba el proceso fuera de control con una confianza de <span class="math inline">\(99\%\)</span> y debería detenerse?</p>
-<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="contraste-de-hipótesis.html#cb71-1" tabindex="-1"></a><span class="fu">sd</span>(x)</span></code></pre></div>
+<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="contraste-de-hipótesis.html#cb72-1" tabindex="-1"></a><span class="fu">sd</span>(x)</span></code></pre></div>
 <pre><code>## [1] 0.8462188</code></pre>
 <p>Por lo tanto, queremos contrastar las hipótesis de la cola superior</p>
 <ol style="list-style-type: lower-alpha">
@@ -1010,12 +1010,12 @@ Nota que para este caso usamos <span class="math inline">\(p_0\)</span> para cal
 <p><span class="math display">\[pvalor=1-F_{\chi^2,19}(37.79344)= 0.006\]</span>
 vemos que es menor que <span class="math inline">\(\alpha=0.01\)</span> y rechazamos la hipótesis nula.</p>
 <p>R: <code>1-pchisq(37.79344, 19)</code></p>
-<p><img src="_main_files/figure-html/unnamed-chunk-128-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-130-1.png" width="672" /></p>
 <p>Para probar la hipótesis, podemos usar la función varTest de la biblioteca EnvStats. Si la biblioteca no está instalada, primero ejecuta</p>
-<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="contraste-de-hipótesis.html#cb73-1" tabindex="-1"></a><span class="fu">install.packages</span>(EnvStats)</span></code></pre></div>
+<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="contraste-de-hipótesis.html#cb74-1" tabindex="-1"></a><span class="fu">install.packages</span>(EnvStats)</span></code></pre></div>
 <p>y después</p>
-<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="contraste-de-hipótesis.html#cb74-1" tabindex="-1"></a><span class="fu">library</span>(EnvStats);</span>
-<span id="cb74-2"><a href="contraste-de-hipótesis.html#cb74-2" tabindex="-1"></a><span class="fu">varTest</span>(x, <span class="at">sigma.squared =</span> <span class="fl">0.6</span><span class="sc">^</span><span class="dv">2</span>, <span class="at">alternative =</span> <span class="st">&quot;greater&quot;</span>, <span class="at">conf.level =</span> <span class="fl">0.99</span>) </span></code></pre></div>
+<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="contraste-de-hipótesis.html#cb75-1" tabindex="-1"></a><span class="fu">library</span>(EnvStats);</span>
+<span id="cb75-2"><a href="contraste-de-hipótesis.html#cb75-2" tabindex="-1"></a><span class="fu">varTest</span>(x, <span class="at">sigma.squared =</span> <span class="fl">0.6</span><span class="sc">^</span><span class="dv">2</span>, <span class="at">alternative =</span> <span class="st">&quot;greater&quot;</span>, <span class="at">conf.level =</span> <span class="fl">0.99</span>) </span></code></pre></div>
 <pre><code>## 
 ## Results of Hypothesis Test
 ## --------------------------
@@ -1047,13 +1047,13 @@ vemos que es menor que <span class="math inline">\(\alpha=0.01\)</span> y rechaz
 <p>cuando <span class="math inline">\(H_0\)</span> realmente <strong>es verdad</strong>. Debemos tener en cuenta que la decisión se toma con base en los datos. Bien puede ser que el estadístico observado haya caido, por aleatoridad, lejos de la hipótesis nula, en la zona de rechazo de <span class="math inline">\(H_0\)</span> aún cuando esta sea verdad. La probabilidad de rechazar <span class="math inline">\(H_0\)</span> cuando es verdadera es precisamente el nivel de significación estadística <span class="math inline">\(\alpha\)</span>. Llamamos a esta probabilidad la probabilidad de cometer un error de <strong>tipo 1</strong>. Tomando el ejemplo para el <strong>caso 1</strong>, un test de cola superior, y una confianza del <span class="math inline">\(95\%\)</span> tenemos que</p>
 <p><span class="math display">\[\alpha = P(Z&gt; z_{0.05})=0.05\]</span></p>
 <p>donde <span class="math inline">\(z_{0.05}=\phi^{-1}(0.95)=\)</span> <code>qnorm(0.95)=1.644</code></p>
-<p><img src="_main_files/figure-html/unnamed-chunk-131-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-133-1.png" width="672" /></p>
 <p>Un error del tipo 1 también se llama un <strong>falso positivo</strong> porque nuestro interés de investigación está en <span class="math inline">\(H_1\)</span>. Cuando rechazamos <span class="math inline">\(H_0\)</span>, aceptamos <span class="math inline">\(H_1\)</span> y decimos que nuestro test es <strong>positivo</strong>. Aceptar <span class="math inline">\(H_1\)</span> se traduce en anunciar un descubrimiento, por lo que el error de tipo 1 es anunciar un descubrimiento cuando este no existe: lo hemos hecho porque los datos nos lo han sugerido.</p>
 <p>Existe otro tipo de error. El resultado de una prueba de hipótesis de cola superior puede ser <strong>aceptar</strong> la hipótesis nula:</p>
 <p><span class="math display">\[H_0: \mu\leq\mu_0\]</span></p>
 <p>cuando <span class="math inline">\(H_0\)</span> realmente <strong>no es verdad</strong>. En este caso, puede ser que el estadístico observado haya caido, por aleatoridad, cerca de la hipótesis nula, en la zona de aceptación de <span class="math inline">\(H_0\)</span>, cuando realmente <span class="math inline">\(H_1\)</span> es verdad. Si averiguaramos de alguna forma que, por ejemplo, <span class="math inline">\(\mu\)</span> realmente tiene un valor <span class="math inline">\(\mu_1\)</span> entonces la hipóteisis alternativa sería exactamente:</p>
 <p><span class="math display">\[H_1: \mu=\mu_1\]</span></p>
-<p><img src="_main_files/figure-html/unnamed-chunk-132-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-134-1.png" width="672" /></p>
 <p>Si <span class="math inline">\(H_1\)</span> es realemente verdadera (línea roja, que no sabemos cuando realizamos la prueba de hipótesis) entonces los estadísticos observados son <strong>realmente</strong> variables aleatorias <span class="math inline">\(Y\)</span> que se distribuyen con media (caso 1)</p>
 <p><span class="math display">\[E(Y)=\frac{\mu_1-\mu_0}{\frac{\sigma}{\sqrt{n}}}\]</span></p>
 <p>y en su mayoría caerán cerca de este valor, por lo tanto, en la zona de rechazo de <span class="math inline">\(H_0\)</span>, dando validez a la prueba de hipótesis. Sin embargo existen casos en que el estadístico observado cae en la zona de acepación de <span class="math inline">\(H_0\)</span> por aleatoreidad, apesar de que los estadísticos los produce <span class="math inline">\(H_1\)</span>. En estos casos aceptamos <span class="math inline">\(H_0\)</span> cuando no es verdad. Este error se llama <strong>un error de tipo 2</strong> o un <strong>falso negativo</strong>. Para el caso 1, con un test de cola superior y nivel de confianza del <span class="math inline">\(95\%\)</span> este es</p>

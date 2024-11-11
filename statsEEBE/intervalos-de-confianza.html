@@ -23,7 +23,7 @@
 <meta name="author" content="Alejandro Cáceres (alejandro.caceres.dominguez@upc.edu)" />
 
 
-<meta name="date" content="2024-08-30" />
+<meta name="date" content="2024-11-11" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -458,17 +458,17 @@ Ahora, tomamos la muestra aleatoria y encontramos los resultados.</p>
 <p><span class="math display">\[\bar{x}-\mu=13.21-13=0.21\]</span>
 El <strong>error observado</strong> está dentro del margen de error</p>
 <p><span class="math display">\[\bar{x}-\mu &lt;m\]</span></p>
-<p><img src="_main_files/figure-html/unnamed-chunk-88-1.png" width="672" /></p>
-<p><img src="_main_files/figure-html/unnamed-chunk-89-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-90-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-91-1.png" width="672" /></p>
 </div>
 <div id="estimación-de-intervalo-para-la-media" class="section level2 hasAnchor" number="13.4">
 <h2><span class="header-section-number">13.4</span> Estimación de intervalo para la media<a href="intervalos-de-confianza.html#estimación-de-intervalo-para-la-media" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>El problema es que en la vida real <strong>no sabemos</strong> los valores reales de <span class="math inline">\(\mu\)</span> o <span class="math inline">\(\sigma\)</span> para</p>
 <p><span class="math display">\[X \rightarrow N(\mu, \sigma^2)\]</span>
 Empezamos tomando la muestra</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-90-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-92-1.png" width="672" /></p>
 <p>y luego calcular la media</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-91-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-93-1.png" width="672" /></p>
 <p>¿Cuál es el valor de <span class="math inline">\(\mu\)</span>?</p>
 <p>Nuestros datos sugieren que es <span class="math inline">\(\bar{x}=13.21\)</span>. Reemplazar <span class="math inline">\(\mu\)</span> por <span class="math inline">\(\bar{x}\)</span> se denomina <strong>estimación puntual</strong> del parámetro. Pero ¿qué tan <strong>seguros</strong> estamos al hacer este remplazo? después de todo, sabemos que estamos cometiendo un error, pero no sabemos qué tan grande es.</p>
 <p>Definimos el intervalo de confianza para <span class="math inline">\(\mu\)</span>. De la ecuación del margen de error</p>
@@ -505,9 +505,9 @@ donde <span class="math display">\[m=z_{0.025} \frac{\sigma}{\sqrt{n}}\]</span><
 <p>o también podemos escribirlo como</p>
 <p><span class="math display">\[\hat{\mu}=\bar{x} \pm m = 13.21 \pm 0.24\]</span>
 Esto significa que, al estimar la media por el promedio, confiamos en las unidades pero no tanto en los lugares decimales.</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-92-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-94-1.png" width="672" /></p>
 <p>Recuerda que el intervalo de confianza <span class="math inline">\((l,u)\)</span> es una observación del intervalo de confianza aleatorio <span class="math inline">\((L,U)\)</span>. Por lo tanto, cada vez que obtenemos una nueva muestra entonces <span class="math inline">\((l,u)\)</span> cambia. Si realizamos muestras de <span class="math inline">\(100\)</span> de tamaño <span class="math inline">\(n\)</span> entonces <span class="math inline">\(95%\)</span> de los intervalos de confianza contendrán <span class="math inline">\(\mu\)</span>, ¡pero no sabemos cuál!</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-93-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-95-1.png" width="672" /></p>
 </div>
 <div id="nivel-de-confianza" class="section level3 hasAnchor" number="13.4.2">
 <h3><span class="header-section-number">13.4.2</span> Nivel de confianza<a href="intervalos-de-confianza.html#nivel-de-confianza" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -538,7 +538,7 @@ Para nuestros cables, el intervalo de confianza de <span class="math inline">\(9
 <p><span class="math display">\[\hat{\mu}=64.46 \pm 0.61\]</span></p>
 <p>esto nos dice que podemos estar seguros del primer dígito (6), algo seguros del segundo (4) e inseguros de los decimales (46).</p>
 <p>En R:</p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="intervalos-de-confianza.html#cb27-1" tabindex="-1"></a><span class="fu">library</span>(BSDA) </span></code></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="intervalos-de-confianza.html#cb28-1" tabindex="-1"></a><span class="fu">library</span>(BSDA) </span></code></pre></div>
 <pre><code>## Warning: package &#39;BSDA&#39; was built under R version 4.3.3</code></pre>
 <pre><code>## Loading required package: lattice</code></pre>
 <pre><code>## 
@@ -546,8 +546,8 @@ Para nuestros cables, el intervalo de confianza de <span class="math inline">\(9
 <pre><code>## The following object is masked from &#39;package:datasets&#39;:
 ## 
 ##     Orange</code></pre>
-<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="intervalos-de-confianza.html#cb32-1" tabindex="-1"></a><span class="fu">z.test</span>(<span class="fu">c</span>(<span class="fl">64.1</span>, <span class="fl">64.7</span>, <span class="fl">64.5</span>, <span class="fl">64.6</span>, <span class="fl">64.5</span>, <span class="fl">64.3</span>, <span class="fl">64.6</span>, <span class="fl">64.8</span>, <span class="fl">64.2</span>, <span class="fl">64.3</span>), </span>
-<span id="cb32-2"><a href="intervalos-de-confianza.html#cb32-2" tabindex="-1"></a>       <span class="at">sigma.x=</span><span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="intervalos-de-confianza.html#cb33-1" tabindex="-1"></a><span class="fu">z.test</span>(<span class="fu">c</span>(<span class="fl">64.1</span>, <span class="fl">64.7</span>, <span class="fl">64.5</span>, <span class="fl">64.6</span>, <span class="fl">64.5</span>, <span class="fl">64.3</span>, <span class="fl">64.6</span>, <span class="fl">64.8</span>, <span class="fl">64.2</span>, <span class="fl">64.3</span>), </span>
+<span id="cb33-2"><a href="intervalos-de-confianza.html#cb33-2" tabindex="-1"></a>       <span class="at">sigma.x=</span><span class="dv">1</span>)</span></code></pre></div>
 <pre><code>## 
 ##  One-sample z-Test
 ## 
@@ -573,7 +573,7 @@ desde que <strong>sabíamos</strong> <span class="math inline">\(\sigma\)</span>
 <p><span class="math display">\[T=\frac{\bar{X}-\mu}{\frac{S}{\sqrt{n}}}\]</span>
 Sigue una distribución <span class="math inline">\(t\)</span> con <span class="math inline">\(n-1\)</span> grados de libertad, donde <span class="math inline">\(S^2=\frac{1}{n-1} \sum_{i=1}^n (X_i-\bar{X})^2\)</span>. Por lo tanto, podemos calcular probabilidades para <span class="math inline">\(\bar{X}\)</span>, incluso si no conocemos <span class="math inline">\(\sigma\)</span>.</p>
 <p>Veamos algunas densidades de probabilidad en la familia de las distribuciones <span class="math inline">\(T\)</span>.</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-95-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-97-1.png" width="672" /></p>
 <p>Ahora necesitamos volver a calcular el margen de error <span class="math inline">\(m\)</span> al nivel de <span class="math inline">\(5\%\)</span> cuando usamos la distribución <span class="math inline">\(t\)</span></p>
 <p><span class="math inline">\(P(\mu-m \leq \bar{X} \leq\mu + m)\)</span>
 <span class="math display">\[=P(-\frac{m}{s/\sqrt{n}} \leq T \leq\frac{m}{s/\sqrt{n}})=0.95\]</span></p>
@@ -608,7 +608,7 @@ donde <span class="math inline">\(t_{0.025, n-1}=F^{-1}(0.975)\)</span><code>=qt
 <p><span class="math display">\[=(64.46-2.26 \frac{0.227}{\sqrt{10}},64.46+2.26 \frac{0.227}{\sqrt{10}})\]</span> <span class="math display">\[=(64.29,64.62)\]</span></p>
 <p>Tengamos en cuenta que cuando asumimos <span class="math inline">\(\sigma=1\)</span> el intervalo de confianza <span class="math inline">\((63.84,65.08)\)</span> era mayor. Por lo tanto, los datos sugieren que <span class="math inline">\(\sigma&lt;1\)</span>.</p>
 <p>En R, podemos calcular el intervalo de confianza con:</p>
-<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="intervalos-de-confianza.html#cb34-1" tabindex="-1"></a><span class="fu">t.test</span>(<span class="fu">c</span>(<span class="fl">64.1</span>,<span class="fl">64.7</span>,<span class="fl">64.5</span>,<span class="fl">64.6</span>,<span class="fl">64.5</span>,<span class="fl">64.3</span>,<span class="fl">64.6</span>,<span class="fl">64.8</span>,<span class="fl">64.2</span>,<span class="fl">64.3</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="intervalos-de-confianza.html#cb35-1" tabindex="-1"></a><span class="fu">t.test</span>(<span class="fu">c</span>(<span class="fl">64.1</span>,<span class="fl">64.7</span>,<span class="fl">64.5</span>,<span class="fl">64.6</span>,<span class="fl">64.5</span>,<span class="fl">64.3</span>,<span class="fl">64.6</span>,<span class="fl">64.8</span>,<span class="fl">64.2</span>,<span class="fl">64.3</span>))</span></code></pre></div>
 <pre><code>## 
 ##  One Sample t-test
 ## 
@@ -657,7 +657,7 @@ Donde estimamos la varianza de Bernoulli <span class="math inline">\(\sigma^2=p(
 <p>La probabilidad de fracaso de la vacuna es</p>
 <p><span class="math display">\[\hat{p}=0.34 \pm 0.05\]</span></p>
 <p>en R</p>
-<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="intervalos-de-confianza.html#cb36-1" tabindex="-1"></a><span class="fu">prop.test</span>(<span class="dv">134</span>, <span class="dv">400</span>, <span class="at">correct=</span><span class="cn">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="intervalos-de-confianza.html#cb37-1" tabindex="-1"></a><span class="fu">prop.test</span>(<span class="dv">134</span>, <span class="dv">400</span>, <span class="at">correct=</span><span class="cn">FALSE</span>)</span></code></pre></div>
 <pre><code>## 
 ##  1-sample proportions test without continuity correction
 ## 
@@ -702,7 +702,7 @@ sigue una distribución <span class="math inline">\(\chi^2\)</span> con <span cl
 <p><span class="math display">\[\frac{S^2}{\sigma^2}(n-1)\rightarrow \chi^2_{n-1}\]</span></p>
 <p>Por lo tanto, podemos calcular probabilidades para <span class="math inline">\(W\)</span>.</p>
 <p>Veamos algunas densidades de probabilidad en la familia de las distribuciones <span class="math inline">\(\chi^2\)</span>.</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-98-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-100-1.png" width="672" /></p>
 </div>
 <div id="intervalo-de-confianza-para-la-varianza-1" class="section level3 hasAnchor" number="13.8.2">
 <h3><span class="header-section-number">13.8.2</span> Intervalo de confianza para la varianza<a href="intervalos-de-confianza.html#intervalo-de-confianza-para-la-varianza-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -740,26 +740,26 @@ con <span class="math inline">\(95\%\)</span> de confianza</p>
 <li><p><span class="math inline">\(n=10\)</span></p></li>
 <li><p>Luego calculamos <span class="math inline">\(\chi^2_{0.025,n-1}\)</span> y <span class="math inline">\(\chi^2_{0.975,n-1}\)</span></p></li>
 </ol>
-<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="intervalos-de-confianza.html#cb38-1" tabindex="-1"></a>chi0<span class="fl">.975</span> <span class="ot">&lt;-</span> <span class="fu">qchisq</span>(<span class="fl">0.025</span>, <span class="at">df=</span><span class="dv">9</span>)</span>
-<span id="cb38-2"><a href="intervalos-de-confianza.html#cb38-2" tabindex="-1"></a>chi0<span class="fl">.975</span></span></code></pre></div>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="intervalos-de-confianza.html#cb39-1" tabindex="-1"></a>chi0<span class="fl">.975</span> <span class="ot">&lt;-</span> <span class="fu">qchisq</span>(<span class="fl">0.025</span>, <span class="at">df=</span><span class="dv">9</span>)</span>
+<span id="cb39-2"><a href="intervalos-de-confianza.html#cb39-2" tabindex="-1"></a>chi0<span class="fl">.975</span></span></code></pre></div>
 <pre><code>[1] 2.700389</code></pre>
-<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="intervalos-de-confianza.html#cb40-1" tabindex="-1"></a>chi0<span class="fl">.025</span> <span class="ot">&lt;-</span> <span class="fu">qchisq</span>(<span class="fl">0.975</span>, <span class="at">df=</span><span class="dv">9</span>)</span>
-<span id="cb40-2"><a href="intervalos-de-confianza.html#cb40-2" tabindex="-1"></a>chi0<span class="fl">.025</span></span></code></pre></div>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="intervalos-de-confianza.html#cb41-1" tabindex="-1"></a>chi0<span class="fl">.025</span> <span class="ot">&lt;-</span> <span class="fu">qchisq</span>(<span class="fl">0.975</span>, <span class="at">df=</span><span class="dv">9</span>)</span>
+<span id="cb41-2"><a href="intervalos-de-confianza.html#cb41-2" tabindex="-1"></a>chi0<span class="fl">.025</span></span></code></pre></div>
 <pre><code>[1] 19.02277</code></pre>
-<p><img src="_main_files/figure-html/unnamed-chunk-99-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-101-1.png" width="672" /></p>
 <p>Por lo tanto</p>
 <p><span class="math display">\[(l,u)= (\frac{0.2270585^2 (10-1)}{19.02277},\frac{0.2270585^2(10-1)}{2.700389})=(0.02,0.17)\]</span></p>
 <p>Recuerda que cuando habíamos calculado el intervalo de confianza para la media, asumimos <span class="math inline">\(\sigma^2=1\)</span> (caso 1). Ahora podemos decir que esta elección no fue consistente con los datos porque vemos que el intervalo de confianza no contiene el valor <span class="math inline">\(\sigma^2=1\)</span> .</p>
 <p>Según los datos, <span class="math inline">\(\sigma^2 \neq 1\)</span> con una confianza de <span class="math inline">\(95\%\)</span>.</p>
 <p>en R:</p>
-<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="intervalos-de-confianza.html#cb42-1" tabindex="-1"></a><span class="fu">library</span>(Ecfun)</span>
-<span id="cb42-2"><a href="intervalos-de-confianza.html#cb42-2" tabindex="-1"></a><span class="fu">confint.var</span>(<span class="fl">0.05155556</span>, <span class="dv">9</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="intervalos-de-confianza.html#cb43-1" tabindex="-1"></a><span class="fu">library</span>(Ecfun)</span>
+<span id="cb43-2"><a href="intervalos-de-confianza.html#cb43-2" tabindex="-1"></a><span class="fu">confint.var</span>(<span class="fl">0.05155556</span>, <span class="dv">9</span>)</span></code></pre></div>
 <pre><code>##           lower     upper
 ## [1,] 0.02439183 0.1718271
 ## attr(,&quot;level&quot;)
 ## [1] 0.95</code></pre>
 <p>El intervalo para la varianza <strong>no es simétrico</strong> y no podemos formularlo como un margen de error con <span class="math inline">\(\pm\)</span>.</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-101-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-103-1.png" width="672" /></p>
 </div>
 </div>
 <div id="preguntas-10" class="section level2 hasAnchor" number="13.9">
@@ -812,8 +812,8 @@ con <span class="math inline">\(95\%\)</span> de confianza</p>
 <li><p>El año anterior <span class="math inline">\(2\%\)</span> presentó complicaciones. ¿Podemos decir con <span class="math inline">\(99\%\)</span> de confianza que este año hay una caída significativa en las complicaciones de la influenza? (R:No)</p></li>
 </ul>
 </div>
-<div id="ejercicio-4-4" class="section level4 hasAnchor" number="13.10.0.4">
-<h4><span class="header-section-number">13.10.0.4</span> Ejercicio 4<a href="intervalos-de-confianza.html#ejercicio-4-4" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div id="ejercicio-4-5" class="section level4 hasAnchor" number="13.10.0.4">
+<h4><span class="header-section-number">13.10.0.4</span> Ejercicio 4<a href="intervalos-de-confianza.html#ejercicio-4-5" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>¿Cuál es el intervalo de confianza para la varianza poblacional de una variable normal si tomamos una muestra aleatoria de tamaño <span class="math inline">\(n=10\)</span> y observamos una varianza muestral de <span class="math inline">\(0.5\)</span>? (R:(0.236, 1.666))</p>
 </div>
 </div>

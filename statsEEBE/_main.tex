@@ -120,7 +120,7 @@
 
 \title{EEBE Estadística}
 \author{Alejandro Cáceres (\href{mailto:alejandro.caceres.dominguez@upc.edu}{\nolinkurl{alejandro.caceres.dominguez@upc.edu}})}
-\date{2024-08-30}
+\date{2024-11-11}
 
 \begin{document}
 \maketitle
@@ -5913,7 +5913,7 @@ una desviación estándar de 10 ohmios. La distribución de la resistencia es no
 
 \begin{itemize}
 \item
-  ¿Cuál es la media muestral de \(n=25\) resistencias? (R:100)
+  ¿Cuál es el valor esperado de la media muestral de \(n=25\) resistencias? (R:100)
 \item
   ¿Cuál es la varianza de la media muestral de \(n=25\) resistencias? (R:4)
 \item
@@ -6086,9 +6086,9 @@ Por lo tanto, la media y el error estándar de \(\bar{X}\) son:
 
 Como \(n \geq 30\)
 
-\[Z=\frac{\bar{X}-\lambda}{\sqrt{\frac{1}{n\lambda^2}}}\]
+\[Z=\frac{\bar{X}-\frac{1}{\lambda}}{\sqrt{\frac{1}{n\lambda^2}}}\]
 
-es una variable normal estándar y: \(\bar{X} \sim_{aprox} N(\lambda, \frac{1}{n\lambda^2})\)
+es una variable normal estándar y: \(\bar{X} \sim_{aprox} N(\frac{1}{\lambda}, \frac{1}{n\lambda^2})\)
 
 El margen de error al nivel de \(5\%\) se puede calcular de nuevo con la distribución estándar
 
@@ -6112,9 +6112,9 @@ con
 \def\labelenumi{\arabic{enumi})}
 \tightlist
 \item
-  media \[E(Y)=n\mu\]
+  media \[E(Y)=nE(\bar{X})=n\mu\]
 \item
-  variancia \[V(Y)=nV(X)=n^2V(\bar{X})\]
+  variancia \[V(Y)=n^2V(\bar{X})=n\sigma^2\]
 \end{enumerate}
 
 El TCL nos dice que para cualquier variable aleatoria \(X\) con distribución \textbf{desconocida} (cualquier tipo de)
@@ -6129,11 +6129,11 @@ se aproxima a una distribución estándar
 
 \[Z \rightarrow_d N(0,1)\] cuando \(n\rightarrow \infty\). \(Z\) tembién se puede escribir como
 
-\[Z=\frac{n\bar{X}-nE(\bar{X})}{\sqrt{n^2V(\bar{X})}}=\frac{Y-E(Y)}{\sqrt{V(Y)}}\]
+\[Z=\frac{n\bar{X}-nE(\bar{X})}{\sqrt{n^2V(\bar{X})}}=\frac{Y-E(Y)}{\sqrt{V(Y)}}=\frac{Y-n\mu}{\sqrt{n}\sigma}\]
 
 \textbf{Consecuencia:} Podemos calcular probabilidades para la suma muestral \(Y=n\bar{X}\) si \(n\) es grande, usando la distribución normal:
 
-\[Y \sim_{aprox}  N(nE(X), nV(X))\]
+\[Y \sim_{aprox}  N(n\mu, n\sigma^2)\]
 
 \textbf{Ejemplo (Ensayo de Bernoulli)}
 
@@ -6224,7 +6224,7 @@ Una máquina automática llena tubos de ensayo con muestras biológicas con una 
   para una muestra aleatoria de tamaño \(50\). ¿Cuál es la probabilidad de que
   la media muestral (promedio) esté entre \(128\)mg y \(132\)mg? (R:0.995)
 \item
-  ¿Cuál debería ser el tamaño de la muestra (\(n\)) tal que la media muestral \(\bar{X}\) sea superior a \(131\)gr con una probabilidad menor o igual a \(0.025\)?(R:97)
+  ¿Cuál debería ser el tamaño de la muestra (\(n\)) tal que la media muestral \(\bar{X}\) sea superior a \(131\)mg con una probabilidad menor o igual a \(0.025\)?(R:97)
 \end{itemize}
 
 \hypertarget{ejercicio-4-3}{%
@@ -6234,7 +6234,7 @@ En el Caribe, parece haber un promedio de huracanes de \(6\) por año. Teniendo 
 
 \begin{itemize}
 \item
-  ¿Cuál es la probabilidad de que su promedio muestral esté entre \(45\) y \(60\) días? (R:0.39)
+  ¿Cuál es la probabilidad de que su promedio muestral esté entre \(50\) y \(60\) días? (R:0.385975)
 \item
   ¿Cuál debe ser el tamaño de la muestra para que tengan una probabilidad de \(0.025\) de que la media muestral sea mayor a \(70\) días? (R:169)
 \end{itemize}
@@ -7047,6 +7047,23 @@ Toma una variable aleatoria con la siguiente función de densidad de probabilida
   ¿Es \(\alpha\) un estimador insesgado y consistente de \(E(Y)\), donde \(Y=\sum_1^n X_i\)? (R: Es insesgado, no es consistente)
 \end{itemize}
 
+\hypertarget{ejercicio-4-4}{%
+\subsubsection{Ejercicio 4}\label{ejercicio-4-4}}
+
+En 1910, Rutherford y Geiger contaron que el número de partículas \(\alpha\) que se emitían de una muestra de polonio cada 7.5 segundos. Las frequencias relativas reportadas en su artículo original para el número de partículas en 7.5 segundos en 2608 observaciones fueron
+
+\begin{verbatim}
+##   0   1   2   3   4   5   6   7   8   9  10  11  12  13  14 
+##  57 203 383 525 532 408 273 139  45  27  10   4   0   1   1
+\end{verbatim}
+
+observaron, por ejemplo, que 57 veces no contaron ninguna partícula en 7.5 segundos, 203 veces contaron 1 partícula en 7.5 segundos, etc. Bateman mostró que la variable que cuenta el número de particulas en 7.5 segundos era una variable aleatoria de Poisson y estimó su valor usando el método de máxima verosimilitud. ¿Cuál es el valor estimado del parámetro \(\lambda\) usando el método de máxima verosimilitud? (R: 3.871549)
+
+En este experimento Rutherford y Geiger muestran una gran coincidencia entre los datos y el modelo demostrando que los átomos radioactivos emiten partículas alpha de forma independiente y aleatoria.
+
+\includegraphics{_main_files/figure-latex/unnamed-chunk-88-1.pdf}
+\includegraphics{./figures/alpha.PNG}
+
 \hypertarget{muxe9todo-de-los-momentos-1}{%
 \section{Método de los momentos}\label{muxe9todo-de-los-momentos-1}}
 
@@ -7224,9 +7241,9 @@ El \textbf{error observado} está dentro del margen de error
 
 \[\bar{x}-\mu <m\]
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-88-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-90-1.pdf}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-89-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-91-1.pdf}
 
 \hypertarget{estimaciuxf3n-de-intervalo-para-la-media}{%
 \section{Estimación de intervalo para la media}\label{estimaciuxf3n-de-intervalo-para-la-media}}
@@ -7236,11 +7253,11 @@ El problema es que en la vida real \textbf{no sabemos} los valores reales de \(\
 \[X \rightarrow N(\mu, \sigma^2)\]
 Empezamos tomando la muestra
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-90-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-92-1.pdf}
 
 y luego calcular la media
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-91-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-93-1.pdf}
 
 ¿Cuál es el valor de \(\mu\)?
 
@@ -7311,12 +7328,12 @@ o también podemos escribirlo como
 \[\hat{\mu}=\bar{x} \pm m = 13.21 \pm 0.24\]
 Esto significa que, al estimar la media por el promedio, confiamos en las unidades pero no tanto en los lugares decimales.
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-92-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-94-1.pdf}
 
 Recuerda que el intervalo de confianza \((l,u)\) es una observación del intervalo de confianza aleatorio \((L,U)\). Por lo tanto, cada vez que obtenemos una nueva muestra entonces \((l,u)\) cambia. Si realizamos muestras de \(100\) de tamaño \(n\) entonces \(95%
 \) de los intervalos de confianza contendrán \(\mu\), ¡pero no sabemos cuál!
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-93-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-95-1.pdf}
 
 \hypertarget{nivel-de-confianza}{%
 \subsection{Nivel de confianza}\label{nivel-de-confianza}}
@@ -7440,7 +7457,7 @@ Sigue una distribución \(t\) con \(n-1\) grados de libertad, donde \(S^2=\frac{
 
 Veamos algunas densidades de probabilidad en la familia de las distribuciones \(T\).
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-95-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-97-1.pdf}
 
 Ahora necesitamos volver a calcular el margen de error \(m\) al nivel de \(5\%\) cuando usamos la distribución \(t\)
 
@@ -7660,7 +7677,7 @@ Por lo tanto, podemos calcular probabilidades para \(W\).
 
 Veamos algunas densidades de probabilidad en la familia de las distribuciones \(\chi^2\).
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-98-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-100-1.pdf}
 
 \hypertarget{intervalo-de-confianza-para-la-varianza-1}{%
 \subsection{Intervalo de confianza para la varianza}\label{intervalo-de-confianza-para-la-varianza-1}}
@@ -7749,7 +7766,7 @@ Un material metálico se prueba por impacto para medir la energía requerida par
 [1] 19.02277
 \end{verbatim}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-99-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-101-1.pdf}
 
 Por lo tanto
 
@@ -7777,7 +7794,7 @@ en R:
 
 El intervalo para la varianza \textbf{no es simétrico} y no podemos formularlo como un margen de error con \(\pm\).
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-101-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-103-1.pdf}
 
 \hypertarget{preguntas-10}{%
 \section{Preguntas}\label{preguntas-10}}
@@ -7849,8 +7866,8 @@ Este año, \(17\) de \(1000\) de pacientes con influenza desarrollaron complicac
   El año anterior \(2\%\) presentó complicaciones. ¿Podemos decir con \(99\%\) de confianza que este año hay una caída significativa en las complicaciones de la influenza? (R:No)
 \end{itemize}
 
-\hypertarget{ejercicio-4-4}{%
-\subsubsection{Ejercicio 4}\label{ejercicio-4-4}}
+\hypertarget{ejercicio-4-5}{%
+\subsubsection{Ejercicio 4}\label{ejercicio-4-5}}
 
 ¿Cuál es el intervalo de confianza para la varianza poblacional de una variable normal si tomamos una muestra aleatoria de tamaño \(n=10\) y observamos una varianza muestral de \(0.5\)? (R:(0.236, 1.666))
 
@@ -8102,7 +8119,7 @@ El intervalo de confianza nos dice que podemos tener un \(95\%\) de confianza en
 
 Nuestra conclusión es aceptar que \(H_0\) podría haber producido nuestro \textbf{intervalo observado}. También decimos que los datos respaldan la afirmación del fabricante. Más técnicamente, decimos que \textbf{no rechazamos} la hipótesis nula \(H_0\).
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-103-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-105-1.pdf}
 
 \hypertarget{prueba-de-hipuxf3tesis-con-zonas-de-aceptaciuxf3nrechazo}{%
 \subsection{Prueba de hipótesis con zonas de aceptación/rechazo}\label{prueba-de-hipuxf3tesis-con-zonas-de-aceptaciuxf3nrechazo}}
@@ -8128,7 +8145,7 @@ Recordemos que este intervalo define los valores más comunes de \(Z\) ya que \[
 
 El intervalo \((-z_{0.025}, z_{0.025})\) se denomina \textbf{intervalo de aceptación} de \(H_0\) con un nivel de confianza de \(95\%\).
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-104-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-106-1.pdf}
 
 \textbf{Criterios de decisión:}
 
@@ -8166,7 +8183,7 @@ Para \textbf{nuestros datos}, el \textbf{error observado} estandarizado está en
 \[z_{obs}=\frac{\bar{x}-13}{\frac{0.35}{\sqrt{8}}}=1.7187 \in (-z_{0.025}, z_{0.025})\]
 Concluimos que nuestro error observado es típico al \(95\%\) cuando la hipótesis nula \(\mu_0\) es verdadera. Por lo tanto, nuevamente aceptamos que los datos son consistentes con la afirmación del fabricante. También decimos que \textbf{no rechazamos} \(H_0\).
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-105-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-107-1.pdf}
 
 \hypertarget{prueba-de-hipuxf3tesis-con-un-p-valor}{%
 \subsection{Prueba de hipótesis con un P valor}\label{prueba-de-hipuxf3tesis-con-un-p-valor}}
@@ -8202,7 +8219,7 @@ entonces \textbf{rechazamos} \(H_0\) con una confianza de \(95\%\).
 
 Recuerdemos que siempre confiamos en nuestros datos. Si la hipótesis nula dice que nuestros datos son una observación \textbf{rara} entonces desconfiamos de la hipótesis nula y la rechazamos.
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-106-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-108-1.pdf}
 
 \textbf{Ejemplo (Cables)}
 
@@ -8383,7 +8400,7 @@ La prueba de hipótesis se puede realizar en R, especificando el parámetro ``al
 ##  13.21268
 \end{verbatim}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-111-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-113-1.pdf}
 
 \hypertarget{caso-2-para-la-media-con-varianza-desconocida}{%
 \section{Caso 2 (para la media con varianza desconocida)}\label{caso-2-para-la-media-con-varianza-desconocida}}
@@ -8545,7 +8562,7 @@ En R estos contrastes se realizan con la función t.test:
 ##  13.21268
 \end{verbatim}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-114-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-116-1.pdf}
 
 \textbf{Ejemplo (NaCl)}
 
@@ -8793,7 +8810,7 @@ Esto también se conoce como una prueba t pareada, donde introducimos cada condi
 ##            1.58
 \end{verbatim}
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-123-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-125-1.pdf}
 
 \hypertarget{prueba-de-hipuxf3tesis-con-n-grande-y-cualquier-distribuciuxf3n}{%
 \subsection{Prueba de hipótesis con n grande y cualquier distribución}\label{prueba-de-hipuxf3tesis-con-n-grande-y-cualquier-distribuciuxf3n}}
@@ -8912,7 +8929,7 @@ Nota que para este caso usamos \(p_0\) para calcular \(z_{obs}\) porque estamos 
 
 en R: 1-pnorm(1.885618)
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-124-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-126-1.pdf}
 
 La prueba se puede realizar en R usando la función prop.test. Sin embargo nota que los intervalos de confianza no son idénticos a los dados en el criterio 1, porque ahí suponemos que \(\bar{X}\) es exactamente normal mientras que prop.test usa una aproximación mas adecuada
 
@@ -9046,7 +9063,7 @@ vemos que es menor que \(\alpha=0.01\) y rechazamos la hipótesis nula.
 
 R: 1-pchisq(37.79344, 19)
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-128-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-130-1.pdf}
 
 Para probar la hipótesis, podemos usar la función varTest de la biblioteca EnvStats. Si la biblioteca no está instalada, primero ejecuta
 
@@ -9105,7 +9122,7 @@ cuando \(H_0\) realmente \textbf{es verdad}. Debemos tener en cuenta que la deci
 
 donde \(z_{0.05}=\phi^{-1}(0.95)=\) qnorm(0.95)=1.644
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-131-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-133-1.pdf}
 
 Un error del tipo 1 también se llama un \textbf{falso positivo} porque nuestro interés de investigación está en \(H_1\). Cuando rechazamos \(H_0\), aceptamos \(H_1\) y decimos que nuestro test es \textbf{positivo}. Aceptar \(H_1\) se traduce en anunciar un descubrimiento, por lo que el error de tipo 1 es anunciar un descubrimiento cuando este no existe: lo hemos hecho porque los datos nos lo han sugerido.
 
@@ -9117,7 +9134,7 @@ cuando \(H_0\) realmente \textbf{no es verdad}. En este caso, puede ser que el e
 
 \[H_1: \mu=\mu_1\]
 
-\includegraphics{_main_files/figure-latex/unnamed-chunk-132-1.pdf}
+\includegraphics{_main_files/figure-latex/unnamed-chunk-134-1.pdf}
 
 Si \(H_1\) es realemente verdadera (línea roja, que no sabemos cuando realizamos la prueba de hipótesis) entonces los estadísticos observados son \textbf{realmente} variables aleatorias \(Y\) que se distribuyen con media (caso 1)
 

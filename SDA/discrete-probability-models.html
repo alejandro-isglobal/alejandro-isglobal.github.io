@@ -1,0 +1,1047 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 7 Discrete Probability Models | Statistical Data Analysis for Experimental Sciences</title>
+  <meta name="description" content="This is a markdown book titled Statistical Data Analysis for Experimental Sciences by Alejandro Caceres" />
+  <meta name="generator" content="bookdown 0.36 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 7 Discrete Probability Models | Statistical Data Analysis for Experimental Sciences" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="This is a markdown book titled Statistical Data Analysis for Experimental Sciences by Alejandro Caceres" />
+  <meta name="github-repo" content="alejandro-isglobal/master" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 7 Discrete Probability Models | Statistical Data Analysis for Experimental Sciences" />
+  
+  <meta name="twitter:description" content="This is a markdown book titled Statistical Data Analysis for Experimental Sciences by Alejandro Caceres" />
+  
+
+<meta name="author" content="Alejandro Cáceres" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="continous-random-variables.html"/>
+<link rel="next" href="poisson-and-exponential-models.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">SDA</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#how-to-read-the-book"><i class="fa fa-check"></i><b>1.1</b> How to read the book</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#acknowledgements"><i class="fa fa-check"></i><b>1.2</b> Acknowledgements</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="data-description.html"><a href="data-description.html"><i class="fa fa-check"></i><b>2</b> Data description</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="data-description.html"><a href="data-description.html#scientific-method"><i class="fa fa-check"></i><b>2.1</b> Scientific method</a></li>
+<li class="chapter" data-level="2.2" data-path="data-description.html"><a href="data-description.html#data"><i class="fa fa-check"></i><b>2.2</b> Data</a></li>
+<li class="chapter" data-level="2.3" data-path="data-description.html"><a href="data-description.html#types-of-outcomes"><i class="fa fa-check"></i><b>2.3</b> Types of outcomes</a></li>
+<li class="chapter" data-level="2.4" data-path="data-description.html"><a href="data-description.html#random-experiments"><i class="fa fa-check"></i><b>2.4</b> Random experiments</a></li>
+<li class="chapter" data-level="2.5" data-path="data-description.html"><a href="data-description.html#absolute-frequencies"><i class="fa fa-check"></i><b>2.5</b> Absolute frequencies</a></li>
+<li class="chapter" data-level="2.6" data-path="data-description.html"><a href="data-description.html#relative-frequencies"><i class="fa fa-check"></i><b>2.6</b> Relative frequencies</a></li>
+<li class="chapter" data-level="2.7" data-path="data-description.html"><a href="data-description.html#bar-chart"><i class="fa fa-check"></i><b>2.7</b> Bar chart</a></li>
+<li class="chapter" data-level="2.8" data-path="data-description.html"><a href="data-description.html#pie-chart"><i class="fa fa-check"></i><b>2.8</b> Pie chart</a></li>
+<li class="chapter" data-level="2.9" data-path="data-description.html"><a href="data-description.html#ordinal-categorical-outcomes"><i class="fa fa-check"></i><b>2.9</b> Ordinal categorical outcomes</a></li>
+<li class="chapter" data-level="2.10" data-path="data-description.html"><a href="data-description.html#absolute-and-relative-cumulative-frequencies"><i class="fa fa-check"></i><b>2.10</b> Absolute and relative cumulative frequencies</a></li>
+<li class="chapter" data-level="2.11" data-path="data-description.html"><a href="data-description.html#cumulative-frequency-graph"><i class="fa fa-check"></i><b>2.11</b> Cumulative frequency graph</a></li>
+<li class="chapter" data-level="2.12" data-path="data-description.html"><a href="data-description.html#numerical-outcomes"><i class="fa fa-check"></i><b>2.12</b> Numerical outcomes</a></li>
+<li class="chapter" data-level="2.13" data-path="data-description.html"><a href="data-description.html#transforming-continuous-data"><i class="fa fa-check"></i><b>2.13</b> Transforming continuous data</a></li>
+<li class="chapter" data-level="2.14" data-path="data-description.html"><a href="data-description.html#frequency-table-for-a-continuous-variable"><i class="fa fa-check"></i><b>2.14</b> Frequency table for a continuous variable</a></li>
+<li class="chapter" data-level="2.15" data-path="data-description.html"><a href="data-description.html#histogram"><i class="fa fa-check"></i><b>2.15</b> Histogram</a></li>
+<li class="chapter" data-level="2.16" data-path="data-description.html"><a href="data-description.html#cumulative-frequency-graph-1"><i class="fa fa-check"></i><b>2.16</b> Cumulative frequency graph</a></li>
+<li class="chapter" data-level="2.17" data-path="data-description.html"><a href="data-description.html#summary-statistics"><i class="fa fa-check"></i><b>2.17</b> Summary Statistics</a></li>
+<li class="chapter" data-level="2.18" data-path="data-description.html"><a href="data-description.html#average-sample-mean"><i class="fa fa-check"></i><b>2.18</b> Average (sample mean)</a></li>
+<li class="chapter" data-level="2.19" data-path="data-description.html"><a href="data-description.html#median"><i class="fa fa-check"></i><b>2.19</b> Median</a></li>
+<li class="chapter" data-level="2.20" data-path="data-description.html"><a href="data-description.html#dispersion"><i class="fa fa-check"></i><b>2.20</b> Dispersion</a></li>
+<li class="chapter" data-level="2.21" data-path="data-description.html"><a href="data-description.html#sample-variance"><i class="fa fa-check"></i><b>2.21</b> Sample variance</a></li>
+<li class="chapter" data-level="2.22" data-path="data-description.html"><a href="data-description.html#interquartile-range-iqr"><i class="fa fa-check"></i><b>2.22</b> Interquartile range (IQR)</a></li>
+<li class="chapter" data-level="2.23" data-path="data-description.html"><a href="data-description.html#boxplot"><i class="fa fa-check"></i><b>2.23</b> Boxplot</a></li>
+<li class="chapter" data-level="2.24" data-path="data-description.html"><a href="data-description.html#questions"><i class="fa fa-check"></i><b>2.24</b> Questions</a></li>
+<li class="chapter" data-level="2.25" data-path="data-description.html"><a href="data-description.html#exercises"><i class="fa fa-check"></i><b>2.25</b> Exercises</a></li>
+<li class="chapter" data-level="2.26" data-path="data-description.html"><a href="data-description.html#practice"><i class="fa fa-check"></i><b>2.26</b> Practice</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="probability.html"><a href="probability.html"><i class="fa fa-check"></i><b>3</b> Probability</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="probability.html"><a href="probability.html#probability-mesurement"><i class="fa fa-check"></i><b>3.1</b> Probability mesurement</a></li>
+<li class="chapter" data-level="3.2" data-path="probability.html"><a href="probability.html#classical-probability"><i class="fa fa-check"></i><b>3.2</b> Classical probability</a></li>
+<li class="chapter" data-level="3.3" data-path="probability.html"><a href="probability.html#relative-frequencies-1"><i class="fa fa-check"></i><b>3.3</b> Relative frequencies</a></li>
+<li class="chapter" data-level="3.4" data-path="probability.html"><a href="probability.html#frequentist-probability"><i class="fa fa-check"></i><b>3.4</b> Frequentist probability</a></li>
+<li class="chapter" data-level="3.5" data-path="probability.html"><a href="probability.html#classical-and-frequentist-probabilities"><i class="fa fa-check"></i><b>3.5</b> Classical and frequentist probabilities</a></li>
+<li class="chapter" data-level="3.6" data-path="probability.html"><a href="probability.html#sample-space"><i class="fa fa-check"></i><b>3.6</b> Sample space</a></li>
+<li class="chapter" data-level="3.7" data-path="probability.html"><a href="probability.html#events"><i class="fa fa-check"></i><b>3.7</b> Events</a></li>
+<li class="chapter" data-level="3.8" data-path="probability.html"><a href="probability.html#algebra-of-events"><i class="fa fa-check"></i><b>3.8</b> Algebra of events</a></li>
+<li class="chapter" data-level="3.9" data-path="probability.html"><a href="probability.html#mutually-exclusive-events"><i class="fa fa-check"></i><b>3.9</b> Mutually exclusive events</a></li>
+<li class="chapter" data-level="3.10" data-path="probability.html"><a href="probability.html#definition-of-probability"><i class="fa fa-check"></i><b>3.10</b> Definition of probability</a></li>
+<li class="chapter" data-level="3.11" data-path="probability.html"><a href="probability.html#probability-table"><i class="fa fa-check"></i><b>3.11</b> Probability table</a></li>
+<li class="chapter" data-level="3.12" data-path="probability.html"><a href="probability.html#joint-probabilities"><i class="fa fa-check"></i><b>3.12</b> Joint probabilities</a></li>
+<li class="chapter" data-level="3.13" data-path="probability.html"><a href="probability.html#contingency-table"><i class="fa fa-check"></i><b>3.13</b> Contingency table</a></li>
+<li class="chapter" data-level="3.14" data-path="probability.html"><a href="probability.html#the-addition-rule"><i class="fa fa-check"></i><b>3.14</b> The addition rule</a></li>
+<li class="chapter" data-level="3.15" data-path="probability.html"><a href="probability.html#questions-1"><i class="fa fa-check"></i><b>3.15</b> Questions</a></li>
+<li class="chapter" data-level="3.16" data-path="probability.html"><a href="probability.html#exercises-1"><i class="fa fa-check"></i><b>3.16</b> Exercises</a></li>
+<li class="chapter" data-level="3.17" data-path="probability.html"><a href="probability.html#practice-1"><i class="fa fa-check"></i><b>3.17</b> Practice</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="conditional-probability.html"><a href="conditional-probability.html"><i class="fa fa-check"></i><b>4</b> Conditional probability</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="conditional-probability.html"><a href="conditional-probability.html#joint-probability"><i class="fa fa-check"></i><b>4.1</b> Joint probability</a></li>
+<li class="chapter" data-level="4.2" data-path="conditional-probability.html"><a href="conditional-probability.html#statistical-independence-and-correlation"><i class="fa fa-check"></i><b>4.2</b> Statistical independence and correlation</a></li>
+<li class="chapter" data-level="4.3" data-path="conditional-probability.html"><a href="conditional-probability.html#conditional-probability-1"><i class="fa fa-check"></i><b>4.3</b> Conditional probability</a></li>
+<li class="chapter" data-level="4.4" data-path="conditional-probability.html"><a href="conditional-probability.html#conditional-contingency-table"><i class="fa fa-check"></i><b>4.4</b> Conditional contingency table</a></li>
+<li class="chapter" data-level="4.5" data-path="conditional-probability.html"><a href="conditional-probability.html#statistical-independence"><i class="fa fa-check"></i><b>4.5</b> Statistical independence</a></li>
+<li class="chapter" data-level="4.6" data-path="conditional-probability.html"><a href="conditional-probability.html#statistical-dependency"><i class="fa fa-check"></i><b>4.6</b> Statistical dependency</a></li>
+<li class="chapter" data-level="4.7" data-path="conditional-probability.html"><a href="conditional-probability.html#diagnostic-test"><i class="fa fa-check"></i><b>4.7</b> Diagnostic test</a></li>
+<li class="chapter" data-level="4.8" data-path="conditional-probability.html"><a href="conditional-probability.html#inverse-probabilities"><i class="fa fa-check"></i><b>4.8</b> Inverse probabilities</a></li>
+<li class="chapter" data-level="4.9" data-path="conditional-probability.html"><a href="conditional-probability.html#bayes-theorem"><i class="fa fa-check"></i><b>4.9</b> Bayes’ Theorem</a></li>
+<li class="chapter" data-level="4.10" data-path="conditional-probability.html"><a href="conditional-probability.html#questions-2"><i class="fa fa-check"></i><b>4.10</b> Questions</a></li>
+<li class="chapter" data-level="4.11" data-path="conditional-probability.html"><a href="conditional-probability.html#exercises-2"><i class="fa fa-check"></i><b>4.11</b> Exercises</a></li>
+<li class="chapter" data-level="4.12" data-path="conditional-probability.html"><a href="conditional-probability.html#practice-2"><i class="fa fa-check"></i><b>4.12</b> Practice</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html"><i class="fa fa-check"></i><b>5</b> Discrete Random Variables</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html#definition-of-a-random-variable"><i class="fa fa-check"></i><b>5.1</b> Definition of a Random Variable</a></li>
+<li class="chapter" data-level="5.2" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html#the-value-of-a-random-variable"><i class="fa fa-check"></i><b>5.2</b> The value of a random variable</a></li>
+<li class="chapter" data-level="5.3" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html#probability-of-random-variables"><i class="fa fa-check"></i><b>5.3</b> Probability of random variables</a></li>
+<li class="chapter" data-level="5.4" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html#probability-functions"><i class="fa fa-check"></i><b>5.4</b> Probability functions</a></li>
+<li class="chapter" data-level="5.5" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html#probability-mass-functions"><i class="fa fa-check"></i><b>5.5</b> Probability mass functions</a></li>
+<li class="chapter" data-level="5.6" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html#mean-or-expected-value"><i class="fa fa-check"></i><b>5.6</b> Mean or expected value</a></li>
+<li class="chapter" data-level="5.7" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html#variance"><i class="fa fa-check"></i><b>5.7</b> Variance</a></li>
+<li class="chapter" data-level="5.8" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html#probability-functions-for-functions-of-x"><i class="fa fa-check"></i><b>5.8</b> Probability functions for functions of <span class="math inline">\(X\)</span></a></li>
+<li class="chapter" data-level="5.9" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html#probability-distribution"><i class="fa fa-check"></i><b>5.9</b> Probability distribution</a></li>
+<li class="chapter" data-level="5.10" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html#probability-function-and-probability-distribution"><i class="fa fa-check"></i><b>5.10</b> Probability function and probability distribution</a></li>
+<li class="chapter" data-level="5.11" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html#quantiles"><i class="fa fa-check"></i><b>5.11</b> Quantiles</a></li>
+<li class="chapter" data-level="5.12" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html#summary"><i class="fa fa-check"></i><b>5.12</b> Summary</a></li>
+<li class="chapter" data-level="5.13" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html#questions-3"><i class="fa fa-check"></i><b>5.13</b> Questions</a></li>
+<li class="chapter" data-level="5.14" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html#exercises-3"><i class="fa fa-check"></i><b>5.14</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="continous-random-variables.html"><a href="continous-random-variables.html"><i class="fa fa-check"></i><b>6</b> Continous Random Variables</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="continous-random-variables.html"><a href="continous-random-variables.html#probabilities-of-continuous-random-variables"><i class="fa fa-check"></i><b>6.1</b> Probabilities of continuous random variables</a></li>
+<li class="chapter" data-level="6.2" data-path="continous-random-variables.html"><a href="continous-random-variables.html#relative-frequencies-2"><i class="fa fa-check"></i><b>6.2</b> Relative frequencies</a></li>
+<li class="chapter" data-level="6.3" data-path="continous-random-variables.html"><a href="continous-random-variables.html#probability-density-function"><i class="fa fa-check"></i><b>6.3</b> Probability Density Function</a></li>
+<li class="chapter" data-level="6.4" data-path="continous-random-variables.html"><a href="continous-random-variables.html#total-area-under-the-curve"><i class="fa fa-check"></i><b>6.4</b> Total area under the curve</a></li>
+<li class="chapter" data-level="6.5" data-path="continous-random-variables.html"><a href="continous-random-variables.html#probabilities-of-continous-variables"><i class="fa fa-check"></i><b>6.5</b> Probabilities of continous variables</a></li>
+<li class="chapter" data-level="6.6" data-path="continous-random-variables.html"><a href="continous-random-variables.html#probability-distribution-1"><i class="fa fa-check"></i><b>6.6</b> Probability distribution</a></li>
+<li class="chapter" data-level="6.7" data-path="continous-random-variables.html"><a href="continous-random-variables.html#probability-plots"><i class="fa fa-check"></i><b>6.7</b> Probability plots</a></li>
+<li class="chapter" data-level="6.8" data-path="continous-random-variables.html"><a href="continous-random-variables.html#mean"><i class="fa fa-check"></i><b>6.8</b> Mean</a></li>
+<li class="chapter" data-level="6.9" data-path="continous-random-variables.html"><a href="continous-random-variables.html#variance-1"><i class="fa fa-check"></i><b>6.9</b> Variance</a></li>
+<li class="chapter" data-level="6.10" data-path="continous-random-variables.html"><a href="continous-random-variables.html#functions-of-x"><i class="fa fa-check"></i><b>6.10</b> Functions of <span class="math inline">\(X\)</span></a></li>
+<li class="chapter" data-level="6.11" data-path="continous-random-variables.html"><a href="continous-random-variables.html#exercises-4"><i class="fa fa-check"></i><b>6.11</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="discrete-probability-models.html"><a href="discrete-probability-models.html"><i class="fa fa-check"></i><b>7</b> Discrete Probability Models</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="discrete-probability-models.html"><a href="discrete-probability-models.html#probability-model"><i class="fa fa-check"></i><b>7.1</b> Probability model</a></li>
+<li class="chapter" data-level="7.2" data-path="discrete-probability-models.html"><a href="discrete-probability-models.html#parametric-models"><i class="fa fa-check"></i><b>7.2</b> Parametric models</a></li>
+<li class="chapter" data-level="7.3" data-path="discrete-probability-models.html"><a href="discrete-probability-models.html#uniform-probability-mass-function-one-parameter"><i class="fa fa-check"></i><b>7.3</b> Uniform probability mass function (one parameter)</a></li>
+<li class="chapter" data-level="7.4" data-path="discrete-probability-models.html"><a href="discrete-probability-models.html#uniform-probability-mass-function-two-parameters"><i class="fa fa-check"></i><b>7.4</b> Uniform probability mass function (two parameters)</a></li>
+<li class="chapter" data-level="7.5" data-path="discrete-probability-models.html"><a href="discrete-probability-models.html#bernoulli-trial"><i class="fa fa-check"></i><b>7.5</b> Bernoulli trial</a></li>
+<li class="chapter" data-level="7.6" data-path="discrete-probability-models.html"><a href="discrete-probability-models.html#binomial-experiment"><i class="fa fa-check"></i><b>7.6</b> Binomial experiment</a></li>
+<li class="chapter" data-level="7.7" data-path="discrete-probability-models.html"><a href="discrete-probability-models.html#binomial-probability-function"><i class="fa fa-check"></i><b>7.7</b> Binomial probability function</a></li>
+<li class="chapter" data-level="7.8" data-path="discrete-probability-models.html"><a href="discrete-probability-models.html#negative-binomial"><i class="fa fa-check"></i><b>7.8</b> Negative binomial</a></li>
+<li class="chapter" data-level="7.9" data-path="discrete-probability-models.html"><a href="discrete-probability-models.html#geometric-distribution"><i class="fa fa-check"></i><b>7.9</b> Geometric distribution</a></li>
+<li class="chapter" data-level="7.10" data-path="discrete-probability-models.html"><a href="discrete-probability-models.html#hypergeometric-model"><i class="fa fa-check"></i><b>7.10</b> Hypergeometric model</a></li>
+<li class="chapter" data-level="7.11" data-path="discrete-probability-models.html"><a href="discrete-probability-models.html#questions-4"><i class="fa fa-check"></i><b>7.11</b> Questions</a></li>
+<li class="chapter" data-level="7.12" data-path="discrete-probability-models.html"><a href="discrete-probability-models.html#exercises-5"><i class="fa fa-check"></i><b>7.12</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="poisson-and-exponential-models.html"><a href="poisson-and-exponential-models.html"><i class="fa fa-check"></i><b>8</b> Poisson and Exponential Models</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="poisson-and-exponential-models.html"><a href="poisson-and-exponential-models.html#discrete-probability-models-1"><i class="fa fa-check"></i><b>8.1</b> Discrete probability models</a></li>
+<li class="chapter" data-level="8.2" data-path="poisson-and-exponential-models.html"><a href="poisson-and-exponential-models.html#poissson-experiment"><i class="fa fa-check"></i><b>8.2</b> Poissson experiment</a></li>
+<li class="chapter" data-level="8.3" data-path="poisson-and-exponential-models.html"><a href="poisson-and-exponential-models.html#poisson-probability-mass-function"><i class="fa fa-check"></i><b>8.3</b> Poisson probability mass function</a></li>
+<li class="chapter" data-level="8.4" data-path="poisson-and-exponential-models.html"><a href="poisson-and-exponential-models.html#continuous-probability-models"><i class="fa fa-check"></i><b>8.4</b> Continuous probability models</a></li>
+<li class="chapter" data-level="8.5" data-path="poisson-and-exponential-models.html"><a href="poisson-and-exponential-models.html#exponential-process"><i class="fa fa-check"></i><b>8.5</b> Exponential process</a></li>
+<li class="chapter" data-level="8.6" data-path="poisson-and-exponential-models.html"><a href="poisson-and-exponential-models.html#exponential-probability-density"><i class="fa fa-check"></i><b>8.6</b> Exponential probability density</a></li>
+<li class="chapter" data-level="8.7" data-path="poisson-and-exponential-models.html"><a href="poisson-and-exponential-models.html#exponential-distribution"><i class="fa fa-check"></i><b>8.7</b> Exponential Distribution</a></li>
+<li class="chapter" data-level="8.8" data-path="poisson-and-exponential-models.html"><a href="poisson-and-exponential-models.html#questions-5"><i class="fa fa-check"></i><b>8.8</b> Questions</a></li>
+<li class="chapter" data-level="8.9" data-path="poisson-and-exponential-models.html"><a href="poisson-and-exponential-models.html#exercises-6"><i class="fa fa-check"></i><b>8.9</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="normal-distribution.html"><a href="normal-distribution.html"><i class="fa fa-check"></i><b>9</b> Normal Distribution</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="normal-distribution.html"><a href="normal-distribution.html#history"><i class="fa fa-check"></i><b>9.1</b> History</a></li>
+<li class="chapter" data-level="9.2" data-path="normal-distribution.html"><a href="normal-distribution.html#normal-probability-density"><i class="fa fa-check"></i><b>9.2</b> Normal probability density</a></li>
+<li class="chapter" data-level="9.3" data-path="normal-distribution.html"><a href="normal-distribution.html#probability-distribution-2"><i class="fa fa-check"></i><b>9.3</b> Probability distribution</a></li>
+<li class="chapter" data-level="9.4" data-path="normal-distribution.html"><a href="normal-distribution.html#quantiles-of-the-normal-distribution"><i class="fa fa-check"></i><b>9.4</b> Quantiles of the normal distribution</a></li>
+<li class="chapter" data-level="9.5" data-path="normal-distribution.html"><a href="normal-distribution.html#standard-normal-density"><i class="fa fa-check"></i><b>9.5</b> Standard normal density</a></li>
+<li class="chapter" data-level="9.6" data-path="normal-distribution.html"><a href="normal-distribution.html#standard-distribution"><i class="fa fa-check"></i><b>9.6</b> Standard distribution</a></li>
+<li class="chapter" data-level="9.7" data-path="normal-distribution.html"><a href="normal-distribution.html#standardization"><i class="fa fa-check"></i><b>9.7</b> Standardization</a></li>
+<li class="chapter" data-level="9.8" data-path="normal-distribution.html"><a href="normal-distribution.html#questions-6"><i class="fa fa-check"></i><b>9.8</b> Questions</a></li>
+<li class="chapter" data-level="9.9" data-path="normal-distribution.html"><a href="normal-distribution.html#exercises-7"><i class="fa fa-check"></i><b>9.9</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="sampling-distributions.html"><a href="sampling-distributions.html"><i class="fa fa-check"></i><b>10</b> Sampling distributions</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="sampling-distributions.html"><a href="sampling-distributions.html#random-sample"><i class="fa fa-check"></i><b>10.1</b> Random sample</a></li>
+<li class="chapter" data-level="10.2" data-path="sampling-distributions.html"><a href="sampling-distributions.html#parameter-estimation"><i class="fa fa-check"></i><b>10.2</b> Parameter estimation</a></li>
+<li class="chapter" data-level="10.3" data-path="sampling-distributions.html"><a href="sampling-distributions.html#law-of-large-numbers"><i class="fa fa-check"></i><b>10.3</b> Law of Large Numbers</a></li>
+<li class="chapter" data-level="10.4" data-path="sampling-distributions.html"><a href="sampling-distributions.html#inference"><i class="fa fa-check"></i><b>10.4</b> Inference</a></li>
+<li class="chapter" data-level="10.5" data-path="sampling-distributions.html"><a href="sampling-distributions.html#sample-mean"><i class="fa fa-check"></i><b>10.5</b> Sample mean</a></li>
+<li class="chapter" data-level="10.6" data-path="sampling-distributions.html"><a href="sampling-distributions.html#prediction"><i class="fa fa-check"></i><b>10.6</b> Prediction</a></li>
+<li class="chapter" data-level="10.7" data-path="sampling-distributions.html"><a href="sampling-distributions.html#validation"><i class="fa fa-check"></i><b>10.7</b> Validation</a></li>
+<li class="chapter" data-level="10.8" data-path="sampling-distributions.html"><a href="sampling-distributions.html#sample-sum"><i class="fa fa-check"></i><b>10.8</b> Sample Sum</a></li>
+<li class="chapter" data-level="10.9" data-path="sampling-distributions.html"><a href="sampling-distributions.html#sample-variance-1"><i class="fa fa-check"></i><b>10.9</b> Sample Variance</a>
+<ul>
+<li class="chapter" data-level="10.9.1" data-path="sampling-distributions.html"><a href="sampling-distributions.html#example-cables"><i class="fa fa-check"></i><b>10.9.1</b> Example (Cables)</a></li>
+</ul></li>
+<li class="chapter" data-level="10.10" data-path="sampling-distributions.html"><a href="sampling-distributions.html#distribution-of-the-sample-variance"><i class="fa fa-check"></i><b>10.10</b> Distribution of the Sample Variance</a></li>
+<li class="chapter" data-level="10.11" data-path="sampling-distributions.html"><a href="sampling-distributions.html#the-chi2-distribution"><i class="fa fa-check"></i><b>10.11</b> The <span class="math inline">\(\chi^2\)</span> Distribution</a></li>
+<li class="chapter" data-level="10.12" data-path="sampling-distributions.html"><a href="sampling-distributions.html#questions-7"><i class="fa fa-check"></i><b>10.12</b> Questions</a></li>
+<li class="chapter" data-level="10.13" data-path="sampling-distributions.html"><a href="sampling-distributions.html#exercises-8"><i class="fa fa-check"></i><b>10.13</b> Exercises</a>
+<ul>
+<li class="chapter" data-level="10.13.1" data-path="sampling-distributions.html"><a href="sampling-distributions.html#from-estimation-to-inference"><i class="fa fa-check"></i><b>10.13.1</b> From Estimation to Inference</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="central-limit-theorem.html"><a href="central-limit-theorem.html"><i class="fa fa-check"></i><b>11</b> Central limit theorem</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="central-limit-theorem.html"><a href="central-limit-theorem.html#margin-of-error"><i class="fa fa-check"></i><b>11.1</b> Margin of error</a></li>
+<li class="chapter" data-level="11.2" data-path="central-limit-theorem.html"><a href="central-limit-theorem.html#averages-of-normal-variables"><i class="fa fa-check"></i><b>11.2</b> Averages of normal variables</a></li>
+<li class="chapter" data-level="11.3" data-path="central-limit-theorem.html"><a href="central-limit-theorem.html#central-limit-theorem-1"><i class="fa fa-check"></i><b>11.3</b> Central Limit Theorem</a></li>
+<li class="chapter" data-level="11.4" data-path="central-limit-theorem.html"><a href="central-limit-theorem.html#sample-sum-and-clt"><i class="fa fa-check"></i><b>11.4</b> Sample sum and CLT</a></li>
+<li class="chapter" data-level="11.5" data-path="central-limit-theorem.html"><a href="central-limit-theorem.html#unknown-sigma"><i class="fa fa-check"></i><b>11.5</b> Unknown <span class="math inline">\(\sigma\)</span></a></li>
+<li class="chapter" data-level="11.6" data-path="central-limit-theorem.html"><a href="central-limit-theorem.html#t-statistic"><i class="fa fa-check"></i><b>11.6</b> T-statistic</a></li>
+<li class="chapter" data-level="11.7" data-path="central-limit-theorem.html"><a href="central-limit-theorem.html#questions-8"><i class="fa fa-check"></i><b>11.7</b> Questions</a></li>
+<li class="chapter" data-level="11.8" data-path="central-limit-theorem.html"><a href="central-limit-theorem.html#exercises-9"><i class="fa fa-check"></i><b>11.8</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="maximum-likelihood.html"><a href="maximum-likelihood.html"><i class="fa fa-check"></i><b>12</b> Maximum likelihood</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="maximum-likelihood.html"><a href="maximum-likelihood.html#statistic"><i class="fa fa-check"></i><b>12.1</b> Statistic</a></li>
+<li class="chapter" data-level="12.2" data-path="maximum-likelihood.html"><a href="maximum-likelihood.html#properties"><i class="fa fa-check"></i><b>12.2</b> Properties</a></li>
+<li class="chapter" data-level="12.3" data-path="maximum-likelihood.html"><a href="maximum-likelihood.html#maximum-likelihood-1"><i class="fa fa-check"></i><b>12.3</b> Maximum likelihood</a></li>
+<li class="chapter" data-level="12.4" data-path="maximum-likelihood.html"><a href="maximum-likelihood.html#maximum-likelihood-2"><i class="fa fa-check"></i><b>12.4</b> Maximum likelihood</a></li>
+<li class="chapter" data-level="12.5" data-path="maximum-likelihood.html"><a href="maximum-likelihood.html#questions-9"><i class="fa fa-check"></i><b>12.5</b> Questions</a></li>
+<li class="chapter" data-level="12.6" data-path="maximum-likelihood.html"><a href="maximum-likelihood.html#exercises-10"><i class="fa fa-check"></i><b>12.6</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="interval-estimation.html"><a href="interval-estimation.html"><i class="fa fa-check"></i><b>13</b> Interval estimation</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="interval-estimation.html"><a href="interval-estimation.html#revisiting-parameter-estimation-and-marging-of-error"><i class="fa fa-check"></i><b>13.1</b> Revisiting parameter estimation and marging of error</a></li>
+<li class="chapter" data-level="13.2" data-path="interval-estimation.html"><a href="interval-estimation.html#interval-estimation-for-the-mean"><i class="fa fa-check"></i><b>13.2</b> Interval estimation for the mean</a></li>
+<li class="chapter" data-level="13.3" data-path="interval-estimation.html"><a href="interval-estimation.html#confidence-interval-estimation"><i class="fa fa-check"></i><b>13.3</b> Confidence Interval Estimation</a>
+<ul>
+<li class="chapter" data-level="13.3.1" data-path="interval-estimation.html"><a href="interval-estimation.html#estimation-of-the-mean-for-normal-variables"><i class="fa fa-check"></i><b>13.3.1</b> Estimation of the mean for normal variables</a></li>
+<li class="chapter" data-level="13.3.2" data-path="interval-estimation.html"><a href="interval-estimation.html#estimation-of-the-proportion-for-dichotomic-variables"><i class="fa fa-check"></i><b>13.3.2</b> Estimation of the proportion for dichotomic variables</a></li>
+</ul></li>
+<li class="chapter" data-level="13.4" data-path="interval-estimation.html"><a href="interval-estimation.html#estimation-of-the-variance"><i class="fa fa-check"></i><b>13.4</b> Estimation of the variance</a></li>
+<li class="chapter" data-level="13.5" data-path="interval-estimation.html"><a href="interval-estimation.html#confidence-interval-for-the-variance"><i class="fa fa-check"></i><b>13.5</b> Confidence interval for the variance</a></li>
+<li class="chapter" data-level="13.6" data-path="interval-estimation.html"><a href="interval-estimation.html#questions-10"><i class="fa fa-check"></i><b>13.6</b> Questions</a></li>
+<li class="chapter" data-level="13.7" data-path="interval-estimation.html"><a href="interval-estimation.html#exercises-11"><i class="fa fa-check"></i><b>13.7</b> Exercises</a></li>
+<li class="chapter" data-level="13.8" data-path="interval-estimation.html"><a href="interval-estimation.html#practice-3"><i class="fa fa-check"></i><b>13.8</b> Practice</a></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html"><i class="fa fa-check"></i><b>14</b> Hypothesis Testing</a>
+<ul>
+<li class="chapter" data-level="14.1" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#hypothesis-formulation"><i class="fa fa-check"></i><b>14.1</b> Hypothesis formulation</a></li>
+<li class="chapter" data-level="14.2" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#hypothesis-testing-1"><i class="fa fa-check"></i><b>14.2</b> Hypothesis Testing</a></li>
+<li class="chapter" data-level="14.3" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#hypothesis-testing-for-the-mean"><i class="fa fa-check"></i><b>14.3</b> Hypothesis testing for the mean</a>
+<ul>
+<li class="chapter" data-level="14.3.1" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#hypothesis-test-with-a-confidence-interval"><i class="fa fa-check"></i><b>14.3.1</b> Hypothesis test with a confidence interval</a></li>
+<li class="chapter" data-level="14.3.2" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#hypothesis-test-with-acceptancerejection-zones"><i class="fa fa-check"></i><b>14.3.2</b> Hypothesis test with acceptance/rejection zones</a></li>
+<li class="chapter" data-level="14.3.3" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#hypothesis-test-with-a-p-value"><i class="fa fa-check"></i><b>14.3.3</b> Hypothesis test with a P-value</a></li>
+<li class="chapter" data-level="14.3.4" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#upper-tail-hypothesis"><i class="fa fa-check"></i><b>14.3.4</b> Upper tail hypothesis</a></li>
+<li class="chapter" data-level="14.3.5" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#paired-t-test"><i class="fa fa-check"></i><b>14.3.5</b> Paired t-test</a></li>
+<li class="chapter" data-level="14.3.6" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#lower-tail-hypothesis"><i class="fa fa-check"></i><b>14.3.6</b> Lower tail hypothesis</a></li>
+</ul></li>
+<li class="chapter" data-level="14.4" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#hypothesis-testing-for-the-proportion"><i class="fa fa-check"></i><b>14.4</b> Hypothesis testing for the proportion</a></li>
+<li class="chapter" data-level="14.5" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#hypothesis-testing-for-the-variance"><i class="fa fa-check"></i><b>14.5</b> Hypothesis Testing for the Variance</a></li>
+<li class="chapter" data-level="14.6" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#errors-in-hypothesis-testing"><i class="fa fa-check"></i><b>14.6</b> Errors in hypothesis testing</a>
+<ul>
+<li class="chapter" data-level="14.6.1" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#sensitivity-and-specificity"><i class="fa fa-check"></i><b>14.6.1</b> Sensitivity and Specificity</a></li>
+</ul></li>
+<li class="chapter" data-level="14.7" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#exercises-12"><i class="fa fa-check"></i><b>14.7</b> Exercises</a></li>
+<li class="chapter" data-level="14.8" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#practice-4"><i class="fa fa-check"></i><b>14.8</b> Practice</a></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="contingency-tables.html"><a href="contingency-tables.html"><i class="fa fa-check"></i><b>15</b> Contingency tables</a>
+<ul>
+<li class="chapter" data-level="15.1" data-path="contingency-tables.html"><a href="contingency-tables.html#difference-between-proportions"><i class="fa fa-check"></i><b>15.1</b> Difference between proportions</a></li>
+<li class="chapter" data-level="15.2" data-path="contingency-tables.html"><a href="contingency-tables.html#difference-between-proportions-1"><i class="fa fa-check"></i><b>15.2</b> Difference between proportions</a></li>
+<li class="chapter" data-level="15.3" data-path="contingency-tables.html"><a href="contingency-tables.html#contingency-table-of-conditional-probabilities"><i class="fa fa-check"></i><b>15.3</b> Contingency table of conditional probabilities</a></li>
+<li class="chapter" data-level="15.4" data-path="contingency-tables.html"><a href="contingency-tables.html#test-for-the-difference-between-proportions"><i class="fa fa-check"></i><b>15.4</b> Test for the difference between proportions</a></li>
+<li class="chapter" data-level="15.5" data-path="contingency-tables.html"><a href="contingency-tables.html#chi2-test"><i class="fa fa-check"></i><b>15.5</b> <span class="math inline">\(\chi^2\)</span> test</a></li>
+<li class="chapter" data-level="15.6" data-path="contingency-tables.html"><a href="contingency-tables.html#fishers-exact-test"><i class="fa fa-check"></i><b>15.6</b> Fisher’s exact test</a></li>
+<li class="chapter" data-level="15.7" data-path="contingency-tables.html"><a href="contingency-tables.html#hypergeometric-distribution"><i class="fa fa-check"></i><b>15.7</b> Hypergeometric distribution</a></li>
+<li class="chapter" data-level="15.8" data-path="contingency-tables.html"><a href="contingency-tables.html#difference-between-several-proportions"><i class="fa fa-check"></i><b>15.8</b> Difference between several proportions</a></li>
+<li class="chapter" data-level="15.9" data-path="contingency-tables.html"><a href="contingency-tables.html#goodness-of-fit"><i class="fa fa-check"></i><b>15.9</b> Goodness of fit</a></li>
+<li class="chapter" data-level="15.10" data-path="contingency-tables.html"><a href="contingency-tables.html#questions-11"><i class="fa fa-check"></i><b>15.10</b> Questions</a></li>
+<li class="chapter" data-level="15.11" data-path="contingency-tables.html"><a href="contingency-tables.html#practice-5"><i class="fa fa-check"></i><b>15.11</b> Practice</a></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="mean-differences-between-two-samples.html"><a href="mean-differences-between-two-samples.html"><i class="fa fa-check"></i><b>16</b> Mean differences between two samples</a>
+<ul>
+<li class="chapter" data-level="16.1" data-path="mean-differences-between-two-samples.html"><a href="mean-differences-between-two-samples.html#difference-in-means-between-two-groups"><i class="fa fa-check"></i><b>16.1</b> Difference in means between two groups</a></li>
+<li class="chapter" data-level="16.2" data-path="mean-differences-between-two-samples.html"><a href="mean-differences-between-two-samples.html#data-1"><i class="fa fa-check"></i><b>16.2</b> Data</a></li>
+<li class="chapter" data-level="16.3" data-path="mean-differences-between-two-samples.html"><a href="mean-differences-between-two-samples.html#difference-between-means"><i class="fa fa-check"></i><b>16.3</b> Difference between means</a></li>
+<li class="chapter" data-level="16.4" data-path="mean-differences-between-two-samples.html"><a href="mean-differences-between-two-samples.html#hypothesis-test"><i class="fa fa-check"></i><b>16.4</b> Hypothesis test</a></li>
+<li class="chapter" data-level="16.5" data-path="mean-differences-between-two-samples.html"><a href="mean-differences-between-two-samples.html#estiamtor-of-the-mean-difference"><i class="fa fa-check"></i><b>16.5</b> Estiamtor of the mean difference</a></li>
+<li class="chapter" data-level="16.6" data-path="mean-differences-between-two-samples.html"><a href="mean-differences-between-two-samples.html#standardized-error"><i class="fa fa-check"></i><b>16.6</b> Standardized error</a></li>
+<li class="chapter" data-level="16.7" data-path="mean-differences-between-two-samples.html"><a href="mean-differences-between-two-samples.html#standardized-error-for-the-null"><i class="fa fa-check"></i><b>16.7</b> Standardized error for the null</a></li>
+<li class="chapter" data-level="16.8" data-path="mean-differences-between-two-samples.html"><a href="mean-differences-between-two-samples.html#mean-differences-when-n-is-small"><i class="fa fa-check"></i><b>16.8</b> Mean differences when <span class="math inline">\(n\)</span> is small</a></li>
+<li class="chapter" data-level="16.9" data-path="mean-differences-between-two-samples.html"><a href="mean-differences-between-two-samples.html#data-2"><i class="fa fa-check"></i><b>16.9</b> Data</a></li>
+<li class="chapter" data-level="16.10" data-path="mean-differences-between-two-samples.html"><a href="mean-differences-between-two-samples.html#difference-between-means-1"><i class="fa fa-check"></i><b>16.10</b> Difference between means</a></li>
+<li class="chapter" data-level="16.11" data-path="mean-differences-between-two-samples.html"><a href="mean-differences-between-two-samples.html#hypothesis-test-1"><i class="fa fa-check"></i><b>16.11</b> Hypothesis test</a></li>
+<li class="chapter" data-level="16.12" data-path="mean-differences-between-two-samples.html"><a href="mean-differences-between-two-samples.html#estimator-of-the-mean-difference"><i class="fa fa-check"></i><b>16.12</b> Estimator of the mean difference</a></li>
+<li class="chapter" data-level="16.13" data-path="mean-differences-between-two-samples.html"><a href="mean-differences-between-two-samples.html#standardized-error-for-the-null-1"><i class="fa fa-check"></i><b>16.13</b> Standardized error for the null</a></li>
+<li class="chapter" data-level="16.14" data-path="mean-differences-between-two-samples.html"><a href="mean-differences-between-two-samples.html#mean-differences-with-unequall-variances"><i class="fa fa-check"></i><b>16.14</b> Mean differences with unequall variances</a></li>
+<li class="chapter" data-level="16.15" data-path="mean-differences-between-two-samples.html"><a href="mean-differences-between-two-samples.html#data-3"><i class="fa fa-check"></i><b>16.15</b> Data</a></li>
+<li class="chapter" data-level="16.16" data-path="mean-differences-between-two-samples.html"><a href="mean-differences-between-two-samples.html#questions-12"><i class="fa fa-check"></i><b>16.16</b> Questions</a></li>
+<li class="chapter" data-level="16.17" data-path="mean-differences-between-two-samples.html"><a href="mean-differences-between-two-samples.html#practice-6"><i class="fa fa-check"></i><b>16.17</b> Practice</a></li>
+</ul></li>
+<li class="chapter" data-level="17" data-path="mean-differences-across-several-groups.html"><a href="mean-differences-across-several-groups.html"><i class="fa fa-check"></i><b>17</b> Mean differences across several groups</a>
+<ul>
+<li class="chapter" data-level="17.1" data-path="mean-differences-across-several-groups.html"><a href="mean-differences-across-several-groups.html#different-means-among-several-conditions"><i class="fa fa-check"></i><b>17.1</b> Different means among several conditions</a></li>
+<li class="chapter" data-level="17.2" data-path="mean-differences-across-several-groups.html"><a href="mean-differences-across-several-groups.html#data-4"><i class="fa fa-check"></i><b>17.2</b> Data</a></li>
+<li class="chapter" data-level="17.3" data-path="mean-differences-across-several-groups.html"><a href="mean-differences-across-several-groups.html#difference-between-means-2"><i class="fa fa-check"></i><b>17.3</b> Difference between means</a></li>
+<li class="chapter" data-level="17.4" data-path="mean-differences-across-several-groups.html"><a href="mean-differences-across-several-groups.html#hypothesis-test-2"><i class="fa fa-check"></i><b>17.4</b> Hypothesis test</a>
+<ul>
+<li class="chapter" data-level="17.4.1" data-path="mean-differences-across-several-groups.html"><a href="mean-differences-across-several-groups.html#distribution-of-group-means-under-h_0"><i class="fa fa-check"></i><b>17.4.1</b> Distribution of group means under <span class="math inline">\(H_0\)</span></a></li>
+<li class="chapter" data-level="17.4.2" data-path="mean-differences-across-several-groups.html"><a href="mean-differences-across-several-groups.html#sources-of-variation"><i class="fa fa-check"></i><b>17.4.2</b> Sources of variation</a></li>
+</ul></li>
+<li class="chapter" data-level="17.5" data-path="mean-differences-across-several-groups.html"><a href="mean-differences-across-several-groups.html#variance-components-estimators"><i class="fa fa-check"></i><b>17.5</b> Variance components estimators</a></li>
+<li class="chapter" data-level="17.6" data-path="mean-differences-across-several-groups.html"><a href="mean-differences-across-several-groups.html#analysis-of-variance-anova"><i class="fa fa-check"></i><b>17.6</b> Analysis of variance (ANOVA)</a></li>
+<li class="chapter" data-level="17.7" data-path="mean-differences-across-several-groups.html"><a href="mean-differences-across-several-groups.html#anova-for-two-groups"><i class="fa fa-check"></i><b>17.7</b> ANOVA for Two Groups</a></li>
+<li class="chapter" data-level="17.8" data-path="mean-differences-across-several-groups.html"><a href="mean-differences-across-several-groups.html#linear-model"><i class="fa fa-check"></i><b>17.8</b> Linear model</a></li>
+<li class="chapter" data-level="17.9" data-path="mean-differences-across-several-groups.html"><a href="mean-differences-across-several-groups.html#way-anova"><i class="fa fa-check"></i><b>17.9</b> 2-way ANOVA</a></li>
+<li class="chapter" data-level="17.10" data-path="mean-differences-across-several-groups.html"><a href="mean-differences-across-several-groups.html#data-5"><i class="fa fa-check"></i><b>17.10</b> Data</a></li>
+<li class="chapter" data-level="17.11" data-path="mean-differences-across-several-groups.html"><a href="mean-differences-across-several-groups.html#modeling-residuals"><i class="fa fa-check"></i><b>17.11</b> Modeling residuals</a></li>
+<li class="chapter" data-level="17.12" data-path="mean-differences-across-several-groups.html"><a href="mean-differences-across-several-groups.html#way-anova-linear-model"><i class="fa fa-check"></i><b>17.12</b> 2-way ANOVA linear model</a></li>
+<li class="chapter" data-level="17.13" data-path="mean-differences-across-several-groups.html"><a href="mean-differences-across-several-groups.html#hypothesis-tests"><i class="fa fa-check"></i><b>17.13</b> Hypothesis tests</a></li>
+<li class="chapter" data-level="17.14" data-path="mean-differences-across-several-groups.html"><a href="mean-differences-across-several-groups.html#variance-components"><i class="fa fa-check"></i><b>17.14</b> Variance components</a></li>
+<li class="chapter" data-level="17.15" data-path="mean-differences-across-several-groups.html"><a href="mean-differences-across-several-groups.html#way-anova-with-interaction"><i class="fa fa-check"></i><b>17.15</b> 2-way ANOVA with interaction</a></li>
+<li class="chapter" data-level="17.16" data-path="mean-differences-across-several-groups.html"><a href="mean-differences-across-several-groups.html#linear-model-1"><i class="fa fa-check"></i><b>17.16</b> Linear model</a></li>
+<li class="chapter" data-level="17.17" data-path="mean-differences-across-several-groups.html"><a href="mean-differences-across-several-groups.html#hypothesis-tests-1"><i class="fa fa-check"></i><b>17.17</b> Hypothesis tests</a></li>
+<li class="chapter" data-level="17.18" data-path="mean-differences-across-several-groups.html"><a href="mean-differences-across-several-groups.html#variance-components-1"><i class="fa fa-check"></i><b>17.18</b> Variance components</a></li>
+<li class="chapter" data-level="17.19" data-path="mean-differences-across-several-groups.html"><a href="mean-differences-across-several-groups.html#questions-13"><i class="fa fa-check"></i><b>17.19</b> Questions</a></li>
+<li class="chapter" data-level="17.20" data-path="mean-differences-across-several-groups.html"><a href="mean-differences-across-several-groups.html#practice-7"><i class="fa fa-check"></i><b>17.20</b> Practice</a></li>
+</ul></li>
+<li class="chapter" data-level="18" data-path="regression-and-correlation.html"><a href="regression-and-correlation.html"><i class="fa fa-check"></i><b>18</b> Regression and Correlation</a>
+<ul>
+<li class="chapter" data-level="18.1" data-path="regression-and-correlation.html"><a href="regression-and-correlation.html#correlations"><i class="fa fa-check"></i><b>18.1</b> Correlations</a></li>
+<li class="chapter" data-level="18.2" data-path="regression-and-correlation.html"><a href="regression-and-correlation.html#data-6"><i class="fa fa-check"></i><b>18.2</b> Data</a></li>
+<li class="chapter" data-level="18.3" data-path="regression-and-correlation.html"><a href="regression-and-correlation.html#normal-bivariate"><i class="fa fa-check"></i><b>18.3</b> Normal bivariate</a></li>
+<li class="chapter" data-level="18.4" data-path="regression-and-correlation.html"><a href="regression-and-correlation.html#estimators"><i class="fa fa-check"></i><b>18.4</b> Estimators</a></li>
+<li class="chapter" data-level="18.5" data-path="regression-and-correlation.html"><a href="regression-and-correlation.html#correlation-coefficient"><i class="fa fa-check"></i><b>18.5</b> Correlation coefficient</a></li>
+<li class="chapter" data-level="18.6" data-path="regression-and-correlation.html"><a href="regression-and-correlation.html#hypothesis-contrast"><i class="fa fa-check"></i><b>18.6</b> Hypothesis contrast</a></li>
+<li class="chapter" data-level="18.7" data-path="regression-and-correlation.html"><a href="regression-and-correlation.html#regression-analysis"><i class="fa fa-check"></i><b>18.7</b> Regression analysis</a></li>
+<li class="chapter" data-level="18.8" data-path="regression-and-correlation.html"><a href="regression-and-correlation.html#linear-model-2"><i class="fa fa-check"></i><b>18.8</b> Linear model</a></li>
+<li class="chapter" data-level="18.9" data-path="regression-and-correlation.html"><a href="regression-and-correlation.html#hypothesis-contrast-1"><i class="fa fa-check"></i><b>18.9</b> Hypothesis contrast</a></li>
+<li class="chapter" data-level="18.10" data-path="regression-and-correlation.html"><a href="regression-and-correlation.html#estimators-1"><i class="fa fa-check"></i><b>18.10</b> Estimators</a></li>
+<li class="chapter" data-level="18.11" data-path="regression-and-correlation.html"><a href="regression-and-correlation.html#hypothesis-testing-2"><i class="fa fa-check"></i><b>18.11</b> Hypothesis testing</a></li>
+<li class="chapter" data-level="18.12" data-path="regression-and-correlation.html"><a href="regression-and-correlation.html#stratified-analysis"><i class="fa fa-check"></i><b>18.12</b> Stratified analysis</a></li>
+<li class="chapter" data-level="18.13" data-path="regression-and-correlation.html"><a href="regression-and-correlation.html#multiple-regression"><i class="fa fa-check"></i><b>18.13</b> Multiple Regression</a></li>
+<li class="chapter" data-level="18.14" data-path="regression-and-correlation.html"><a href="regression-and-correlation.html#multiple-regression-interaction"><i class="fa fa-check"></i><b>18.14</b> Multiple Regression interaction</a></li>
+<li class="chapter" data-level="18.15" data-path="regression-and-correlation.html"><a href="regression-and-correlation.html#model-diagnostics"><i class="fa fa-check"></i><b>18.15</b> Model diagnostics</a></li>
+<li class="chapter" data-level="18.16" data-path="regression-and-correlation.html"><a href="regression-and-correlation.html#questions-14"><i class="fa fa-check"></i><b>18.16</b> Questions</a></li>
+<li class="chapter" data-level="18.17" data-path="regression-and-correlation.html"><a href="regression-and-correlation.html#practice-8"><i class="fa fa-check"></i><b>18.17</b> Practice</a></li>
+</ul></li>
+<li class="chapter" data-level="19" data-path="apendix.html"><a href="apendix.html"><i class="fa fa-check"></i><b>19</b> Apendix</a>
+<ul>
+<li class="chapter" data-level="19.1" data-path="apendix.html"><a href="apendix.html#solutions-to-questions"><i class="fa fa-check"></i><b>19.1</b> Solutions to Questions</a></li>
+<li class="chapter" data-level="19.2" data-path="apendix.html"><a href="apendix.html#summary-tables-python-and-r-code"><i class="fa fa-check"></i><b>19.2</b> Summary tables, Python and R code</a>
+<ul>
+<li class="chapter" data-level="19.2.1" data-path="apendix.html"><a href="apendix.html#creating-data-frames-and-loading-text-files"><i class="fa fa-check"></i><b>19.2.1</b> Creating Data Frames and Loading Text Files</a></li>
+<li class="chapter" data-level="19.2.2" data-path="apendix.html"><a href="apendix.html#python-and-r-functions-for-data-description"><i class="fa fa-check"></i><b>19.2.2</b> Python and R Functions for Data Description</a></li>
+</ul></li>
+<li class="chapter" data-level="19.3" data-path="apendix.html"><a href="apendix.html#summary-of-common-probability-models"><i class="fa fa-check"></i><b>19.3</b> Summary of common probability models</a>
+<ul>
+<li class="chapter" data-level="19.3.1" data-path="apendix.html"><a href="apendix.html#python-and-r-functions-for-probability-models"><i class="fa fa-check"></i><b>19.3.1</b> Python and R Functions for Probability Models</a></li>
+</ul></li>
+<li class="chapter" data-level="19.4" data-path="apendix.html"><a href="apendix.html#summary-of-hypothesis"><i class="fa fa-check"></i><b>19.4</b> Summary of hypothesis</a>
+<ul>
+<li class="chapter" data-level="19.4.1" data-path="apendix.html"><a href="apendix.html#python-and-r-functions-for-hypothesis-tesing"><i class="fa fa-check"></i><b>19.4.1</b> Python and R Functions for Hypothesis tesing</a></li>
+<li class="chapter" data-level="19.4.2" data-path="apendix.html"><a href="apendix.html#python-libraries-required"><i class="fa fa-check"></i><b>19.4.2</b> Python Libraries Required</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Statistical Data Analysis
+for
+Experimental Sciences</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="discrete-probability-models" class="section level1 hasAnchor" number="7">
+<h1><span class="header-section-number">Chapter 7</span> Discrete Probability Models<a href="discrete-probability-models.html#discrete-probability-models" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>We seek to develop models to describe the probabilities of random experiments. Models are the first elements elements to consider when constructing a theory to explain such experiments. A suitable model not only allows us to describe the likelihoods of outcomes more accurately but also provides valuable insights into the experiment’s properties. These properties often include intrinsic quantities that characterize the experiment, which we may attempt to influence or relate to other natural phenomena.</p>
+<p>Consider, for instance, the distribution of deaths in London’s Soho during the cholera outbreak of 1854. John Snow observed that the probability of dying from cholera was significantly higher near the Broad Street water pump supplied by the Southwark and Vauxhull Company. By identifying the location as a probabilistic property of the outbreak, he hypothesized that the disease was transmitted through contaminated water. Acting on this reasoning, he had the pump handle removed, which led to a reduction in mortality. While he ruled out airborne transmission, the germ theory of cholera was only achieved by the critical knowledge from the additional experiments of Robert Koch <span class="citation">(<a href="#ref-Lippi2014">Lippi and Gotuzzo 2014</a>)</span>.</p>
+<p>In this chapter we will see some probability mass functions that are used to describe common random experiments. When we propose a model and we give the probability of an outcome, we make a <strong>prediction</strong> for the outcome. That is a statement about the likelihood of its future observation.</p>
+<p>We will introduce the concept of parameter, as an intrinsic characteristic of the experiment, and of parametric models, as a set of similar experiments that differ only on that characteristic. In particular, we will discuss the uniform and Bernoulli probability functions and how they are used to derive the binomial and negative binomial probability models. We will show how to use Python and R functions to compute the probabilities of these models.</p>
+<div id="probability-model" class="section level2 hasAnchor" number="7.1">
+<h2><span class="header-section-number">7.1</span> Probability model<a href="discrete-probability-models.html#probability-model" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>A <strong>probability model</strong> is a probability mass function that may represent the probabilities of a random experiment.</p>
+<p><strong>Example (Physical simulator)</strong></p>
+<p>The probability mass function defined by the table</p>
+<p><span class="math display">\[
+\begin{array}{cc}
+x &amp; f(x) \\
+-2 &amp; 1/8 \\
+-1 &amp; 2/8 \\
+0  &amp; 2/8 \\
+1  &amp; 2/8 \\
+2  &amp; 1/8 \\
+\end{array}
+\]</span></p>
+<p>represents the experiment of drawing <strong>one</strong> ball from an urn where there are two balls with labels: <span class="math inline">\(-1, 0, 1\)</span> and one ball fore each label: <span class="math inline">\(-2, 2\)</span>.</p>
+<p><strong>Example (Dice)</strong></p>
+<p>The probability mass function <span class="math inline">\(f(x)=1/6\)</span>, for <span class="math inline">\(x\in\{1,2,3,4,5,6\}\)</span>, represents the throw of a dice.</p>
+</div>
+<div id="parametric-models" class="section level2 hasAnchor" number="7.2">
+<h2><span class="header-section-number">7.2</span> Parametric models<a href="discrete-probability-models.html#parametric-models" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>When we have a random experiment with <span class="math inline">\(m\)</span> possible outcomes, we need to find <span class="math inline">\(m\)</span> numbers to determine the probability mass function. As in the first example above, we needed <span class="math inline">\(5\)</span> values in the column <span class="math inline">\(f(x)\)</span> of the probability table.</p>
+<p>However, <strong>in many cases</strong>, we can formulate probability functions <span class="math inline">\(f(x)\)</span> that depend on <strong>very few</strong> numbers only. As in the second example above, we only needed to know how many possible outcomes the throw of a dice has.</p>
+<p><strong>Example (Classical probability)</strong></p>
+<p>A random experiment with <span class="math inline">\(m\)</span> equally likely outcomes has a probability mass function:
+<span class="math display">\[f(x)=\frac{1}{m}\]</span></p>
+<p>We only need to know <span class="math inline">\(m\)</span>.</p>
+<p>The numbers we <strong>need to know</strong> to fully determine a probability function are called <strong>parameters</strong>.</p>
+</div>
+<div id="uniform-probability-mass-function-one-parameter" class="section level2 hasAnchor" number="7.3">
+<h2><span class="header-section-number">7.3</span> Uniform probability mass function (one parameter)<a href="discrete-probability-models.html#uniform-probability-mass-function-one-parameter" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The previous example is the classical interpretation of probability, and defines our first parametric model.</p>
+<p><strong>Definition</strong></p>
+<p>A random variable <span class="math inline">\(X\)</span> with outcomes <span class="math inline">\(\{1,...m\}\)</span> has a discrete <strong>uniform distribution</strong> if all its <span class="math inline">\(m\)</span> outcomes have the same probability</p>
+<p><span class="math display">\[f(x)=\frac{1}{m}\]</span></p>
+<p><span class="math inline">\(m\)</span> is the natural parameter of the model. Once we define <span class="math inline">\(m\)</span> for an experiment, we choose a particular probability mass function. The function above is really a family of probability mass functions that depend on <span class="math inline">\(m\)</span>: <span class="math inline">\(f(x; m)\)</span>.</p>
+<p>The mean and variance of a variable that follows a uniform distribution are:</p>
+<p><span class="math display">\[\mu= \frac{m+1}{2}\]</span></p>
+<p>and</p>
+<p><span class="math display">\[\sigma^2= \frac{m^2-1}{12}\]</span>
+which are derived from the definitions.</p>
+<p>Note that <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\sigma^2\)</span> are also <strong>parameters</strong>. Remember that they are expected value, and the expected squared distance from the expected value. If we know any of them then we can fully determine the distribution. Using the equations above, we can have three different <strong>parametrizations</strong> of the uniform distribution</p>
+<p><span class="math display">\[f(x)=\frac{1}{m}=\frac{1}{2\mu-1}=\frac{1}{\sqrt{12\sigma^2+1}}\]</span>
+The two last are cumbersome. The first one is natural, as the parameter <span class="math inline">\(m\)</span> has the simple interpretation of the number of possible outcomes. Let us look at some probability mass functions in the family of uniform parametric models. Here are four members of the family, each characterized by a different <span class="math inline">\(m\)</span></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-89-1.png" width="672" /></p>
+<p><strong>Example (Normality of <span class="math inline">\(\pi\)</span>)</strong></p>
+<p>A normal number is a real number with infinitely many decimal places, where each digit appears with equal probability. In 1909, Borel hypothesized that <span class="math inline">\(\pi\)</span> is a normal number, yet after more than a 100 years mathematicians have not been able to prove it.</p>
+<p><span class="math inline">\(\pi\)</span> has infinite digits and their values can be computed sequentially but the value at any given position is difficult to <strong>predict</strong>. If <span class="math inline">\(\pi\)</span> is normal, the numbers from <span class="math inline">\(0\)</span> to <span class="math inline">\(9\)</span> should each appear exactly <strong>one-tenth</strong> of the time in the infinite sequence of <span class="math inline">\(\pi\)</span>. Borel’s conjecture is that the probability mass function for the digits of <span class="math inline">\(\pi\)</span> is</p>
+<p><span class="math display">\[
+f(x) = \frac{1}{m}
+\]</span></p>
+<p>where <span class="math inline">\(m\)</span> is the base of the numerical system used to express <span class="math inline">\(\pi\)</span>.</p>
+<p>If <span class="math inline">\(\pi\)</span> is expressed in <strong>binary</strong>, the probability of each digit (0 or 1) should be <span class="math inline">\(f(x) = \frac{1}{2}\)</span> for <span class="math inline">\(x \in \{0,1\}\)</span>. Bailey an colleagues computed four trillion hexadecimal digits of
+in <strong>hexadecimal</strong>, where 16 digits are used (from 0 to F), and obtained relative frequencies near <span class="math inline">\(\frac{1}{16}\)</span> <span class="citation">(<a href="#ref-Bailey2012">Bailey et al. 2012</a>)</span>. They obtained empirical evidence of what we believe is a truth that could be derived from pure mathematical reasoning.</p>
+</div>
+<div id="uniform-probability-mass-function-two-parameters" class="section level2 hasAnchor" number="7.4">
+<h2><span class="header-section-number">7.4</span> Uniform probability mass function (two parameters)<a href="discrete-probability-models.html#uniform-probability-mass-function-two-parameters" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Let us introduce a new <strong>uniform</strong> probability model with <strong>two parameters</strong>: The minimum and maximum outcomes.</p>
+<p>If the random variable takes values in <span class="math inline">\(\{a, a+1, ...b\}\)</span>, where <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> are integers and all the outcomes are equally probable then</p>
+<p><span class="math display">\[f(x)=\frac{1}{b-a+1}\]</span></p>
+<p>as the total number of outcomes is <span class="math inline">\(m=b-a+1\)</span>.</p>
+<p>If the random variable has the probability mass function <span class="math inline">\(f(x)\)</span> above, we then say that <span class="math inline">\(X\)</span> distributes uniformly between <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> and write</p>
+<p><span class="math display">\[X \sim Unif(a,b)\]</span></p>
+<p><strong>Properties</strong></p>
+<p>The mean and variance of a variable that follows a two parameter uniform distribution are:</p>
+<p><span class="math display">\[\mu= \frac{b+a}{2}\]</span>
+and</p>
+<p><span class="math display">\[\sigma^2= \frac{(b-a+1)^2-1}{12}\]</span></p>
+<p>To prove this, change variables <span class="math inline">\(X=Y+a-1\)</span>, <span class="math inline">\(y \in \{1,...m\}\)</span>, and apply the properties of the mean and variance of a linear function.</p>
+<p><strong>Probability mass functions</strong></p>
+<p>Let us look at some probability mass functions in the family of uniform parametric models:</p>
+<p><img src="_main_files/figure-html/unnamed-chunk-91-1.png" width="672" /></p>
+<p><strong>Example (Children age)</strong></p>
+<p>Consider the following prediction: What is the probability that a child is 9 years old if chosen at random from a primary school?</p>
+<p>We propose a model. Based on the setup of the experiment, and depending on the country, the minimum age in primary school is <span class="math inline">\(a = 6\)</span> and the maximum is <span class="math inline">\(b = 11\)</span>. If all grades have the same number of students and each grade contains the same number of classes, then the appropriate probabilistic model for this random experiment is a discrete uniform distribution:</p>
+<p><span class="math display">\[
+X \sim \text{Unif}(a = 6, b = 11)
+\]</span></p>
+<p>That is,</p>
+<p><span class="math display">\[
+f(x) = \frac{1}{6} \quad \text{for } x \in \{6, 7, 8, 9, 10, 11\}.
+\]</span></p>
+<p>Therefore, our prediction is that <span class="math inline">\(1\)</span> in <span class="math inline">\(6\)</span> children are 9 years old.</p>
+<p>The mean and variance of this probability mass function are:</p>
+<p><span class="math display">\[
+\mu = 8.5 \quad \text{and} \quad \sigma^2 = 2.916\overline{6}.
+\]</span></p>
+<p>These values are also <strong>predictions of the model</strong>: they indicate that we expect to observe ages of about <span class="math inline">\(\mu = 8.5\)</span>, with a typical deviations of approximately <span class="math inline">\(\sigma = 1.70\)</span>.</p>
+<p><img src="_main_files/figure-html/unnamed-chunk-93-1.png" width="672" /></p>
+<p><strong>Parametric models</strong></p>
+<p>A model is <strong>one</strong> particular function <span class="math inline">\(f(x)\)</span> that describes the probabilities of our experiment. If the function depends only on a few parameters to be fully determined then by changing the values of the parameters, we recreate a <strong>family of models</strong> <span class="math inline">\(f(x; a,b)\)</span>. A family of models are models that differ only on those parameters.</p>
+<p>Ideally, the model and the parameters are <strong>interpretable</strong>. In our example, <span class="math inline">\(a\)</span> represents the the minimum age at school and <span class="math inline">\(b\)</span> the maximum age.The family represents experiments that differ on those intrinsic characteristics, say the family of different school systems with different levels. Knowledge of the model that represents our experiment is then reduced to knowing the value of the parameters <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span>. They can be considered as the <strong>physical properties</strong> or intrinsic characteristics of the experiment.</p>
+<p>Note that in cases like this, we can fully specify the model parameters by <strong>deduction</strong> based on the design of the experiment and reasonable assumptions, without the need to run an actual experiment. Here, complete knowledge can be attained through pure reasoning alone, and predictions be made from the armchair.</p>
+</div>
+<div id="bernoulli-trial" class="section level2 hasAnchor" number="7.5">
+<h2><span class="header-section-number">7.5</span> Bernoulli trial<a href="discrete-probability-models.html#bernoulli-trial" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>We now move beyond the equal probability case. Suppose we have a simple model with only two possible outcomes, <span class="math inline">\(A\)</span> and <span class="math inline">\(A&#39;\)</span>, which have <strong>unequal</strong> probabilities.</p>
+<p><strong>Examples:</strong></p>
+<ul>
+<li><p>Recording the sex of a patient who enters a hospital emergency room (<span class="math inline">\(A: \text{male}\)</span>, <span class="math inline">\(A&#39;: \text{female}\)</span>).</p></li>
+<li><p>Checking whether a manufactured machine is defective or not (<span class="math inline">\(A: \text{defective}\)</span>, <span class="math inline">\(A&#39;: \text{not defective}\)</span>).</p></li>
+<li><p>Hitting a target (<span class="math inline">\(A: \text{success}\)</span>, <span class="math inline">\(A&#39;: \text{failure}\)</span>).</p></li>
+<li><p>Transmitting one pixel correctly (<span class="math inline">\(A: \text{yes}\)</span>, <span class="math inline">\(A&#39;: \text{no}\)</span>).</p></li>
+</ul>
+<p>Note that in all these examples, the probability of outcome <span class="math inline">\(A\)</span> is typically <strong>unknown</strong> and cannot be deduced from the experimental set up.</p>
+<p><strong>Probability model</strong></p>
+<p>We will introduce the probability of an outcome (<span class="math inline">\(A\)</span>) as the <strong>parameter</strong> of the model, yet to be determined. The model can be expressed in three equivalent forms:</p>
+<ol style="list-style-type: decimal">
+<li>As a probability table</li>
+</ol>
+<p><span class="math display">\[
+\begin{array}{cc}
+\textbf{Outcome} &amp; \textbf{Probability} \\
+A&#39; &amp; 1 - p \\
+A &amp; p \\
+\end{array}
+\]</span></p>
+<ul>
+<li>Outcome <span class="math inline">\(A&#39;\)</span> (failure/outcome of no interest) has probability <span class="math inline">\(1 - p\)</span>.<br />
+</li>
+<li>Outcome <span class="math inline">\(A\)</span> (success/outcome of interest) has probability <span class="math inline">\(p\)</span> (the parameter).</li>
+</ul>
+<ol start="2" style="list-style-type: decimal">
+<li>As a probability mass function of a random variable <span class="math inline">\(K\)</span> taking values <span class="math inline">\(\{0, 1\}\)</span> for <span class="math inline">\(A&#39;\)</span> and <span class="math inline">\(A\)</span>, respectively</li>
+</ol>
+<p><span class="math display">\[
+f(k) =
+\begin{cases}
+1 - p, &amp; k = 0 \quad (event \, A&#39;) \\
+p, &amp; k = 1 \quad (event \, A)
+\end{cases}
+\]</span></p>
+<ol start="3" style="list-style-type: decimal">
+<li>As a concise probability mass function</li>
+</ol>
+<p><span class="math display">\[
+f(k; p) = p^k (1 - p)^{1 - k}
+\]</span></p>
+<p>for <span class="math inline">\(k \in \{0,1\}\)</span>.</p>
+<p>We then say that <span class="math inline">\(X\)</span> follows a Bernoulli probability mass function with parameter <span class="math inline">\(p\)</span>
+<span class="math display">\[X \sim Bernoulli(p)\]</span></p>
+<p>We call these types of experiments Bernoulli trials. A Bernoulli trial is the simplest form of a random experiment, designed to produce either the observation of a single event or its absence. The defining characteristic of the experiment is the probability
+<span class="math inline">\(p\)</span> of the event, represented as a parameter that is yet to be determined.</p>
+<p>The simplicity of the trial should not be underestimated. It is the “atom” of probabilistic models, forming the foundation for more complex models. Moreover, it provides the insight that probabilities are intrinsic properties of the random experiment itself, existing independently of any repetition. Repetition of the experiment is simply the way we reveal these probabilities.</p>
+<p>Understanding probabilities as abstract constructs (parameters), and demonstrating how they are revealed through the Law of Large Numbers, was Jacob Bernoulli’s great achievement <span class="citation">(<a href="#ref-Bernoulli2006">Bernoulli 2006</a>)</span>—one that laid the foundation for mathematical statistics. As we will see in an example further below.</p>
+<p><strong>Properties:</strong></p>
+<p>The mean and variance of a variable that follows a Bernoulli distribution are:</p>
+<p><span class="math display">\[\mu=p\]</span>
+and</p>
+<p><span class="math display">\[\sigma^2=p(1-p)\]</span></p>
+<p>Note that the parameter <span class="math inline">\(p\)</span> is the probability of the outcome <span class="math inline">\(A\)</span>,
+which is the same as the value of the probability mass function at <span class="math inline">\(1\)</span></p>
+<p><span class="math display">\[p=P(A)=P(K=1)=f(1)\]</span></p>
+<p>The parameter fully determines the probability mass function, including its mean and variance.</p>
+<p>Let us look at some probability mass functions in the family of Bernoulli distributions</p>
+<p><img src="_main_files/figure-html/unnamed-chunk-95-1.png" width="672" /></p>
+</div>
+<div id="binomial-experiment" class="section level2 hasAnchor" number="7.6">
+<h2><span class="header-section-number">7.6</span> Binomial experiment<a href="discrete-probability-models.html#binomial-experiment" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Now we consider the repetitions of the random experiment. When we repeat the random experiment <span class="math inline">\(n\)</span> times, we first count the number of times an outcome was observed (<span class="math inline">\(n_A\)</span>), we then divide by <span class="math inline">\(n\)</span> to obtain the relative frequencies (<span class="math inline">\(f_A=n_A/n\)</span>).</p>
+<p>In the repetition of the experiment, we obtain one single value for <span class="math inline">\(n_A\)</span>. However, if we perform other <span class="math inline">\(n\)</span> repetitions of the experiment <span class="math inline">\(n_A\)</span> changes its value. Consequently, <span class="math inline">\(n_A\)</span> is the observation of a new random variable <span class="math inline">\(X=N_A\)</span>. This random variable is a measurement of an outcome of a new random experiment: The repetition of the original experiment <span class="math inline">\(n\)</span> times.</p>
+<p>When the outcome <span class="math inline">\(A\)</span> is obtained from a Bernoulli trial with probability <span class="math inline">\(p\)</span> then the repetition of the trial <span class="math inline">\(n\)</span> times produces an outcome <span class="math inline">\(n_A=x\)</span> with some probability. We are interested in describing the probability that <span class="math inline">\(X\)</span> takes a given value <span class="math inline">\(x\)</span>.</p>
+<p><strong>Examples (Repetitions of Bernoulli trials):</strong></p>
+<ul>
+<li><p>Writing down the sex of <span class="math inline">\(n=10\)</span> patients (<span class="math inline">\(A:man\)</span> and <span class="math inline">\(A&#39;:woman\)</span>) who go into an emergency room of a hospital. What is the probability that at a given time <span class="math inline">\(X=9\)</span> patients are men, when the probability that a patient in the room is a man is <span class="math inline">\(p=0.8\)</span>?</p></li>
+<li><p>Trying <span class="math inline">\(n=5\)</span> times to hit a target (<span class="math inline">\(A:success\)</span> and <span class="math inline">\(A&#39;:failure\)</span>). What is the probability that I hit the target <span class="math inline">\(X=5\)</span> times when I usually hit it <span class="math inline">\(25\%\)</span> of the times (<span class="math inline">\(p=0.25\)</span>)?</p></li>
+<li><p>Transmitting a <span class="math inline">\(100\)</span>-pixel picture with errors (<span class="math inline">\(A:error\)</span> and <span class="math inline">\(A&#39;:correct\)</span>). What is the probability that <span class="math inline">\(X=2\)</span> pixels are errors, when the probability of one error is <span class="math inline">\(p=0.1\)</span>?</p></li>
+</ul>
+</div>
+<div id="binomial-probability-function" class="section level2 hasAnchor" number="7.7">
+<h2><span class="header-section-number">7.7</span> Binomial probability function<a href="discrete-probability-models.html#binomial-probability-function" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In what follows, we will assume that the true value of the Bernoulli trial parameter <span class="math inline">\(p\)</span> <strong>is known</strong>. The question of how to determine <span class="math inline">\(p\)</span> is central to statistics and will be addressed later.</p>
+<p>When we repeat a Bernoulli trial and stop at <span class="math inline">\(n\)</span>, is the value <span class="math inline">\(x\)</span> that gives the total number of observed events <span class="math inline">\(A\)</span> common or rare? what is its probability mass function <span class="math inline">\(P(X=x)=f(x)\)</span>?</p>
+<p><strong>Example (Transmission of pixels)</strong></p>
+<p>What is the probability of transmitting <span class="math inline">\(X=2\)</span> errors in a <span class="math inline">\(4\)</span>-pixel picture, if the probability of a single error is <span class="math inline">\(p=0.1\)</span>?</p>
+<p>Regard the transmission of a <span class="math inline">\(4\)</span>-pixel picture as a random experiment where</p>
+<ol style="list-style-type: decimal">
+<li><p>The transmission of each single pixel is a <strong>Bernoulli trial</strong> <span class="math display">\[K_i \sim Bernoulli(p)\]</span> were <span class="math inline">\(k_i \in \{no\,error:0, error:1\}\)</span> and, <span class="math inline">\(i\)</span> is the pixel transmitted <span class="math inline">\(i=\{1,2,3,4\}\)</span>. For instance <span class="math inline">\(K_3=0\)</span> is the event of no error in transmitting pixel <span class="math inline">\(3\)</span>.</p></li>
+<li><p><strong>The random variable</strong> of the picture is: <span class="math display">\[(K_1, K_2, K_3, K_4)\]</span> For instance, we may obtain the <strong>outcome</strong> <span class="math inline">\((K_1=0, K_2=1, K_3=0, K_4=1)\)</span> or <span class="math inline">\((0, 1, 0, 1)\)</span> as a picture with an error in the second and in the fourth pixels, and no errors in the first and third pixels. If we send a new picture, will obtain another 4-size vector of zeros and ones.</p></li>
+<li><p><strong>The random variable</strong> for the number of errors <span class="math display">\[X=\sum_{i=1}^4 K_i\]</span>
+counts the number of errors in the picture.
+Therefore, the possible number of errors in the transmission are values <span class="math inline">\(x\in \{0,1,2,3,4\}\)</span>. For example <span class="math inline">\(X\)</span> takes the value <span class="math inline">\(2\)</span> (<span class="math inline">\(X=2\)</span>) for the outcome <span class="math inline">\((0, 1, 0, 1)\)</span> because <span class="math inline">\(x=0+1+0+1\)</span>.</p></li>
+</ol>
+<p>Before we give the general formula of the probabilities, it is illustrative to first inspect the probabilities of particular <strong>number of errors</strong>:</p>
+<ul>
+<li>What is the probability of transmitting a picture with <span class="math inline">\(4\)</span> <strong>errors</strong>?</li>
+</ul>
+<p>The probability of <span class="math inline">\(4\)</span> errors is the <strong>joint probability</strong> of transmitting an error in the <span class="math inline">\(1^{st}\)</span> <strong>and</strong> <span class="math inline">\(2^{nd}\)</span> <strong>and</strong> <span class="math inline">\(3^{rd}\)</span> <strong>and</strong> <span class="math inline">\(4^{th}\)</span> pixel:</p>
+<p><span class="math display">\[P(X=4)=P(1,1,1,1)=p\times p\times p\times p=p^4\]</span></p>
+<p>because <span class="math inline">\(K_i\)</span> are <strong>independent</strong> the probabilities of the errors at each pixel multiply.</p>
+<ul>
+<li>What is the probability of transmitting a picture with <strong>no errors</strong>?</li>
+</ul>
+<p>The probability of <span class="math inline">\(0\)</span> errors is the joint probability of transmitting <strong>no error</strong> in <strong>any</strong> pixel:</p>
+<p><span class="math display">\[P(X=0)=P(0,0,0,0)=(1-p)(1-p)(1-p)(1-p)=(1-p)^4\]</span></p>
+<ul>
+<li>What is the probability of tranmitting <span class="math inline">\(3\)</span> <strong>errors</strong>?</li>
+</ul>
+<p>The probability of <span class="math inline">\(3\)</span> errors is the <strong>addition</strong> of the probabilities of all possible pictures with <span class="math inline">\(3\)</span> errors:</p>
+<p><span class="math display">\[P(X=3)=P(0,1,1,1)+P(1,0,1,1)+P(1,1,0,1)+P(1,1,1,0)=4p^3(1-p)^1\]</span>
+because all off these outcomes (pictures) are <strong>mutually exclusive</strong>.</p>
+<p>Therefore, the probability of <span class="math inline">\(x\)</span> <strong>errors</strong> is</p>
+<p><span class="math display">\[
+    f(x)=
+\begin{cases}
+    1\times p^0(1-p)^4,&amp;  x=0 \\
+    4\times p^1(1-p)^3,&amp;  x=1 \\
+    6\times p^2(1-p)^2,&amp;  x=2 \\
+    4\times p^3(1-p)^1,&amp;  x=3 \\
+    1\times p^4(1-p)^0,&amp;  x=4 \\
+\end{cases}
+\]</span></p>
+<p>or more shortly</p>
+<p><span class="math display">\[f(x)=\binom 4 x p^x(1-p)^{4-x}\]</span>
+for <span class="math inline">\(x=0,1,2,3,4\)</span></p>
+<p>where <span class="math inline">\(\binom 4 x\)</span> is the number of <strong>possible</strong> 4-pixel pictures with <span class="math inline">\(x\)</span> errors. For instance, <span class="math inline">\(\binom 4 2=6\)</span> in the formula above.</p>
+<p><strong>Definition:</strong></p>
+<p>The <strong>binomial probability</strong> function is the probability mass function of observing <span class="math inline">\(x\)</span> outcomes of type <span class="math inline">\(A\)</span> in <span class="math inline">\(n\)</span> independent Bernoulli trials, where <span class="math inline">\(A\)</span> has the same probability <span class="math inline">\(p\)</span> in each trial.</p>
+<p>The function is given by</p>
+<p><span class="math display">\[f(x)=\binom n x p^x(1-p)^{n-x}\]</span>
+for <span class="math inline">\(x=0,1,...n\)</span> and <span class="math inline">\(\binom n x= \frac{n!}{x!(n-x)!}\)</span> is called <strong>the binomial coefficient</strong> and gives the number of ways one can obtain <span class="math inline">\(x\)</span> outcomes of type <span class="math inline">\(A\)</span> in a set of <span class="math inline">\(n\)</span>.</p>
+<p>When a variable <span class="math inline">\(X\)</span> has a binomial probability function, we say it distributes binomially and write</p>
+<p><span class="math display">\[X\sim Binomial(n,p)\]</span></p>
+<p>where <span class="math inline">\(n\)</span> and <span class="math inline">\(p\)</span> are parameters.</p>
+<p>Let us look at some probability mass functions in the family of binomial parametric models:</p>
+<p><img src="_main_files/figure-html/unnamed-chunk-97-1.png" width="672" /></p>
+<p><strong>Properties:</strong></p>
+<p>The mean and variance of a variable that follows a Binomial distribution are</p>
+<p><span class="math display">\[\mu=np\]</span>
+<span class="math display">\[\sigma^2=np(1-p)\]</span></p>
+<p>Note that the mean and variance of a binomial variable is <span class="math inline">\(n\)</span> times the mean and variance of a Bernoulli variable. These properties can be demonstrated by the fact that <span class="math inline">\(X\)</span> is the sum of <span class="math inline">\(n\)</span> independent Bernoulli variables. Therefore,</p>
+<p><span class="math inline">\(E(X)=E(\sum_{i=1}^n K_i)=np\)</span></p>
+<p>and</p>
+<p><span class="math inline">\(V(X)=V(\sum_{i=1}^n K_i)=n(1-p)p\)</span></p>
+<p>The last equation requires independence of the Bernoulli trials.</p>
+<p><strong>Example (Transmission of pixels)</strong></p>
+<ul>
+<li><p>The expected value for the number of errors in the transmission of <span class="math inline">\(4\)</span> pixels is <span class="math inline">\(np=4\times 0.1=0.4\)</span> when the probability of an error is <span class="math inline">\(0.1\)</span>.</p></li>
+<li><p>The variance is <span class="math inline">\(n(1-p)p=0.36\)</span></p></li>
+<li><p>What is the probability of observing <span class="math inline">\(4\)</span> errors?</p></li>
+</ul>
+<p>Since we are repeating a Bernoulli trial <span class="math inline">\(n=4\)</span> times and counting the number of events of type <span class="math inline">\(A\)</span> (errors), when <span class="math inline">\(P(A)=p=0.1\)</span> then</p>
+<p><span class="math display">\[X \sim Binomial(n=4, p=0.1)\]</span>
+That is from <span class="math display">\[f(x)=\binom 4 x 0.1^x(1-0.1)^{4-x}\]</span></p>
+<p>We compte</p>
+<p><span class="math inline">\(P(X=4)=f(4)=\binom 4 4 0.1^4 0.9^{0}=0.1^4=10^{-4}\)</span></p>
+<p>which can be done in Python and R with the following code</p>
+<p><span class="math display">\[
+\begin{array}{l|l}
+\textbf{Python} &amp; \textbf{R}  \\
+\texttt{from scipy.stats import binom} &amp; \texttt{dbinom(4,4,0.1)}
+\\
+\texttt{binom.pmf(4,4,0.1)}&amp; \\
+\end{array}
+\]</span></p>
+<ul>
+<li>What is the probability of observing <span class="math inline">\(2\)</span> errors?</li>
+</ul>
+<p><span class="math inline">\(P(X=2)=\binom 4 2 0.1^2 0.9^2=0.0486\)</span></p>
+<p>Computed with the functions:</p>
+<pre><code>Python: binom.pmf(2,4,0.1)
+R: dbinom(2,4,0.1)</code></pre>
+<p><strong>Example (Earth’s rings)</strong></p>
+<p>Tomkins and colleagues presented evidence suggesting that during the Ordovician period, the Earth may have had rings similar to those of Saturn. These rings were likely formed when a large asteroid became trapped in Earth’s orbit and was subsequently pulverized by tidal forces. Fourteen meteorite impact craters were identified within the time window between 466 and 450 million years ago <span class="citation">(<a href="#ref-Tomkins2024">Tomkins et al. 2024</a>)</span>, all located within a band of <span class="math inline">\(\pm30^\circ\)</span> latitude around the equator.</p>
+<p>To assess the significance of this pattern, Tomkins et al. calculated the probability of observing at least 14 meteorite impacts within that equatorial band, assuming that meteorites fall uniformly over the Earth’s surface. The equatorial band covers approximately <span class="math inline">\(29.4\%\)</span> of the Earth’s surface area, so the probability of a single impact falling within it is <span class="math inline">\(p = 0.294\)</span>. What is the probability that all 14 meteorites fell in the band, when the probability of a single hit is about <span class="math inline">\(3\)</span> in <span class="math inline">\(10\)</span>?</p>
+<p>Let <span class="math inline">\(X\)</span> be the random variable denoting the number of impacts (out of 14) that fall within the equatorial band. Then,</p>
+<p><span class="math display">\[
+X \sim \text{Binomial}(n=14, p=0.294)
+\]</span></p>
+<p>with probability mass function:</p>
+<p><span class="math display">\[
+f(x) = \binom{14}{x} (0.294)^x (0.706)^{14 - x}
+\]</span></p>
+<p>The probability of observing all 14 impacts in the band is:</p>
+<p><span class="math display">\[
+P(X = 14) = f(14) = \binom{14}{14} (0.294)^{14} \approx 3.96 \times 10^{-8}
+\]</span></p>
+<p>which we can compute with the functions</p>
+<pre><code>Python: 1-binom.cdf(13, 14, 0.9)
+R: 1-pbinom(13, 14, 0.296)</code></pre>
+<p>As reported by Tomkins and colleagues, this probability is extremely low, suggesting that the assumption that the meteorites came from every direction with the same probability is unlikely. This supports the alternative explanation that the meteorites originated from the same direction—possibly from a disintegrating ring that once surrounded the Earth during that time. The presence of such a ring coincides with a global icehouse period, likely caused by the cooling effect of the ring’s shadows.</p>
+<p><strong>Quantiles</strong></p>
+<p>We can ask for the values of the binomial variable <span class="math inline">\(X\)</span> that accumulate up to a quarter, half, or three-quarters of the probability. These values correspond to the first quartile, median, and third quartile. More generally, we can determine any level of accumulation:</p>
+<p><span class="math display">\[x_q = F^{-1}(q)\]</span></p>
+<p>where <span class="math inline">\(q\)</span> is a quantile, a value between <span class="math inline">\(0\)</span> and <span class="math inline">\(1\)</span> that refers to the proportion of probability accumulated up to it. The interquartile range is</p>
+<p><span class="math display">\[\text{IQR} = x_{0.75}-x_{0.25}\]</span></p>
+<p>For the 4-pixel transmission <span class="math inline">\(x_{0.25}=0\)</span>, <span class="math inline">\(x_{0.75}=1\)</span> and <span class="math inline">\(\text{IQR}=1\)</span>, or</p>
+<p><span class="math display">\[P(0 \leq X \leq 1)=0.5\]</span>
+which means that half of the probability is captured between pictures with <span class="math inline">\(0\)</span> and <span class="math inline">\(1\)</span> errors.</p>
+<p><img src="_main_files/figure-html/unnamed-chunk-99-1.png" width="672" /></p>
+<p>The inter quartile range can be computed as</p>
+<pre><code>Python: binom.ppf(0.75, 4, 0.1)- binom.ppf(0.25, 4, 0.1)
+R: qbinom(0.75, 4, 0.1)- qbinom(0.25, 4, 0.1)</code></pre>
+<p><strong>Example (Bernoulli’s insight)</strong></p>
+<p>Bernoulli’s insight is that the probability <span class="math inline">\(p\)</span> of an event <span class="math inline">\(A\)</span> can be experimentally inferred by repeating the experiment <span class="math inline">\(n\)</span> times and computing the relative frequency <span class="math inline">\(f_A = \frac{n_A}{n}\)</span>, where <span class="math inline">\(n_A\)</span> is the number of times <span class="math inline">\(A\)</span> occurs.</p>
+<p>To formalize this idea, Bernoulli used the properties of the binomial function to compute the interquartile range (IQR) of the relative frequency <span class="math inline">\(f_A = \frac{X}{n}\)</span>. Here, <span class="math inline">\(X\)</span> is the random variable that counts how many times we observe <span class="math inline">\(A\)</span>; its realization is <span class="math inline">\(n_A\)</span>. Since <span class="math inline">\(X \sim \text{Binomial}(n, p)\)</span>, we can define its interquartile range as the interval between the 25th and 75th percentiles:</p>
+<p><span class="math display">\[
+P(x_{0.25} \leq X \leq x_{0.75}) = 0.5
+\]</span></p>
+<p>Dividing the inequality by <span class="math inline">\(n\)</span>, we obtain:</p>
+<p><span class="math display">\[
+P\left(\frac{x_{0.25}}{n} \leq \frac{X}{n} \leq \frac{x_{0.75}}{n}\right) = 0.5
+\]</span></p>
+<p>Therefore, we can use the binomial distribution to compute the interquartile range of the relative frequency as:</p>
+<p><span class="math display">\[
+\text{IQR}(f_A) = \frac{x_{0.75}}{n} - \frac{x_{0.25}}{n}
+\]</span></p>
+<p>For the 4-pixel picture this is simply <span class="math inline">\(IQR(f_A)=1/4-0/4=1/4\)</span>. Now, with the help of the binomial function, Bernoulli saw that if we compute this range for larger and larger values of <span class="math inline">\(n\)</span>, <span class="math inline">\(\text{IQR}(f_A)\)</span> gets smaller and smaller</p>
+<p><img src="_main_files/figure-html/unnamed-chunk-101-1.png" width="672" />
+Therefore, the two values that capture the middle 50% of the relative frequencies get closer. As <span class="math inline">\(n\)</span> grows, the distribution of <span class="math inline">\(f_A\)</span> becomes more concentrated around <span class="math inline">\(p\)</span> <span class="citation">(<a href="#ref-Bernoulli2006">Bernoulli 2006</a>)</span>, meaning the frequency stabilizes near the true probability. In short, he provided a formal justification of</p>
+<p><span class="math display">\[
+\lim_{n \rightarrow \infty} f_A = p
+\]</span></p>
+</div>
+<div id="negative-binomial" class="section level2 hasAnchor" number="7.8">
+<h2><span class="header-section-number">7.8</span> Negative binomial<a href="discrete-probability-models.html#negative-binomial" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>We can now repeat the Bernoulli trial in different ways. Imagine that we are interested in counting the well-transmitted pixels (<span class="math inline">\(A&#39;\)</span>) before a <strong>given number</strong> of errors occur. Say, we can <strong>tolerate</strong> <span class="math inline">\(r\)</span> errors in the transmission.</p>
+<p>Our random experiment is now: Repeat Bernoulli trials until we observe the outcome <span class="math inline">\(A\)</span> appears <span class="math inline">\(r\)</span> times. Stop and count how many <span class="math inline">\(A&#39;\)</span> you have got.</p>
+<p>The outcome of the experiment is the number of <span class="math inline">\(A&#39;\)</span> events before <span class="math inline">\(r\)</span> <span class="math inline">\(A\)</span>’s occur, that is the frequency <span class="math inline">\(n_{A&#39;}=y\)</span>.</p>
+<p>We are interested in finding the probability of observing a particular number of events <span class="math inline">\(A&#39;\)</span>, <span class="math inline">\(P(Y=y)\)</span>, where <span class="math inline">\(Y=N_{A&#39;}\)</span> is the random variable.</p>
+<p><strong>Example (Transmission of pixels)</strong></p>
+<p>What is the probability of observing <span class="math inline">\(y\)</span> well-transmitted (<span class="math inline">\(A&#39;\)</span>) pixels before <span class="math inline">\(r\)</span> errors (<span class="math inline">\(A\)</span>)?</p>
+<p>Let us first find the probability of <strong>one particular</strong> picture with <span class="math inline">\(y\)</span> number of correct pixels (<span class="math inline">\(A&#39;\)</span>) and <span class="math inline">\(r\)</span> number of errors (<span class="math inline">\(A\)</span>). One observation of the experiment can be schematically reresented as</p>
+<p><span class="math display">\[(0,0,1,., 0,1,...0,1)\]</span></p>
+<p>where we consider that there are <span class="math inline">\(y\)</span> zeros and <span class="math inline">\(r\)</span> ones. Therefore, we observe <span class="math inline">\(y\)</span> correct pixels in a total of <span class="math inline">\(y + r\)</span> pixels.</p>
+<p>The probability of this picture is:</p>
+<p><span class="math display">\[P(0,0,1,., 0,1,...0,1)=p^r(1-p)^y\]</span></p>
+<p>Remember that <span class="math inline">\(p\)</span> is the probability for a single pixel error (<span class="math inline">\(A\)</span>).</p>
+<p>How many pictures can have <span class="math inline">\(y\)</span> correct pixels (<span class="math inline">\(0\)</span>’s) before <span class="math inline">\(r\)</span> errors (<span class="math inline">\(1\)</span>’s)?</p>
+<p>Note that</p>
+<ol style="list-style-type: decimal">
+<li><p>The last pixel is fixed (marks the end of transmission)</p></li>
+<li><p>The total number of ways in which <span class="math inline">\(y\)</span> number of zeros can be allocated in <span class="math inline">\(y + r-1\)</span> pixels (the last pixel is fixed with value 1) is: <span class="math inline">\(\binom {y + r-1} y\)</span></p></li>
+</ol>
+<p>Therefore, the probability of observing <span class="math inline">\(y\)</span> <span class="math inline">\(0\)</span>’s before <span class="math inline">\(r\)</span> <span class="math inline">\(1\)</span>’s (each 1 with probability <span class="math inline">\(p\)</span>) is</p>
+<p><span class="math display">\[P(Y=y)=f(y)=\binom {y+r-1} y p^r(1-p)^y\]</span></p>
+<p>for <span class="math inline">\(y=0,1,...\)</span></p>
+<p>We then say that <span class="math inline">\(Y\)</span> follows a negative binomial distribution and we write</p>
+<p><span class="math display">\[Y\sim NB(r,p)\]</span></p>
+<p>where <span class="math inline">\(r\)</span> and <span class="math inline">\(p\)</span> are parameters representing the tolerance and the probability of a single error (event <span class="math inline">\(A\)</span>).</p>
+<p><strong>Properties:</strong></p>
+<p>The mean and variance of a variable that follows a negative binomial distribution are</p>
+<p><span class="math display">\[\mu
+= r\frac{1-p}{p}\]</span></p>
+<p>and</p>
+<p><span class="math display">\[\sigma^2= r\frac{1-p}{p^2}\]</span></p>
+<p>Let us look at some probability mass functions in the family of negative binomial parametric models:</p>
+<p><img src="_main_files/figure-html/unnamed-chunk-103-1.png" width="672" /></p>
+<p><strong>Example (Website)</strong></p>
+<p>A website has three servers. One server operates at a time and, only when a request fails, another server is used.</p>
+<p>If the probability of failure for a request is known to be <span class="math inline">\(p=0.0005\)</span> then</p>
+<ul>
+<li>What is the expected number of successful requests before the three computers fail?</li>
+</ul>
+<p>Since we are repeating a Bernoulli trial until <span class="math inline">\(r=3\)</span> events of type <span class="math inline">\(A\)</span> (failure) are observed (each with <span class="math inline">\(P(A)=p=0.0005\)</span>) and are counting the number of events of type <span class="math inline">\(A&#39;\)</span> (successful requests) then</p>
+<p><span class="math display">\[Y \sim NB(r=3, p=0.0005)\]</span></p>
+<p>Therefore, the expected number of requests before the system fails is:</p>
+<p><span class="math inline">\(\mu=r\frac{1-p}{p}=3\frac{1-0.0005}{0.0005}=5997\)</span></p>
+<p>Note that there are actually <span class="math inline">\(6000\)</span> trials.</p>
+<ul>
+<li>What is the probability of dealing with at most <span class="math inline">\(5\)</span> successful requests before the system fails?</li>
+</ul>
+<p>We, therefore, want to compute the probability distribution at <span class="math inline">\(5\)</span>:</p>
+<p><span class="math inline">\(F(5)=P(Y\leq 5)=\Sigma_{y=0}^5 f(y)\)</span></p>
+<p><span class="math inline">\(=\sum_{y=0}^5\binom {y+2} y 0.0005^r0.9995^y\)</span></p>
+<p><span class="math inline">\(=\binom {2} 0 0.0005^3 0.9995^0 +\binom {3} 1 0.0005^3 0.9995^1\)</span></p>
+<p><span class="math inline">\(+\binom {4} 2 0.0005^3 0.9995^2 +\binom {5} 3 0.0005^3 0.9995^3\)</span></p>
+<p><span class="math inline">\(+\binom {6} 4 0.0005^3 0.9995^4 +\binom {7} 5 0.0005^3 0.9995^5\)</span></p>
+<p><span class="math inline">\(= 6.9\times 10^{-9}\)</span></p>
+<p>which can be done with</p>
+<pre><code>Pthyon: nbinom.cdf(5,3,0.0005)
+R: pnbinom(5,3,0.0005)</code></pre>
+<p><strong>Example (Sex differences in COVID mortality)</strong></p>
+<p>Men were three-fold more likely to die during the COVID-19 pandemic than women. The <strong>fatality ratio</strong> was reported as <span class="math inline">\(FR = 3.5\)</span> <span class="citation">(<a href="#ref-DehingiaRaj2021">Dehingia and Raj 2021</a>)</span>. The fatality ratio is defined as the ratio of death probabilities between men and women:</p>
+<p><span class="math display">\[
+FR = \frac{P(D \mid M)}{P(D \mid W)}
+\]</span></p>
+<p>From this, we can compute the probability that a deceased patient was a <strong>woman</strong> using <strong>Bayes’ theorem</strong>:</p>
+<p><span class="math display">\[
+P(W \mid D) = \frac{P(D \mid W) \cdot P(W)}{P(D \mid W) \cdot P(W) + P(D \mid M) \cdot P(M)}
+\]</span></p>
+<p>Substituting the fatality ratio and assuming an equal gender distribution in the population (<span class="math inline">\(P(W) = P(M) = 0.5\)</span>):</p>
+<p><span class="math display">\[
+P(W \mid D) = \frac{(1/3.5) \cdot 0.5}{(1/3.5) \cdot 0.5 + 0.5} = 0.22
+\]</span></p>
+<p>How likely is it that at most 175 men died before 50 women did?</p>
+<p>We model this using the negative binomial distribution, which gives the number of male deaths required before 50 women have died, assuming each deceased individual is female with probability <span class="math inline">\(p = 0.22\)</span>.</p>
+<p>We want to compute the probability that at most 175 men (<span class="math inline">\(X\)</span>) died before 50 women (<span class="math inline">\(r = 50\)</span>) did:</p>
+<p><span class="math display">\[
+P(X \leq 175) = F(175; r = 50, p = 0.22)
+\]</span></p>
+<p>This gives approximately:</p>
+<p><span class="math display">\[
+P(X \leq 175) \approx 0.49
+\]</span></p>
+<p>That is, 175 male deaths is around the <strong>median</strong> number expected before observing 50 female deaths.</p>
+<pre><code>Pthyon: nbinom.pmf(175, 50, 0.22)
+R: pnbinom(175, 50, 0.22)</code></pre>
+<p>Note that the ratio of deaths at the median, 175 men to 50 women, gives <span class="math inline">\(175/50=3.5\)</span>. This matches the fatality ratio, reinforcing the model’s consistency.</p>
+</div>
+<div id="geometric-distribution" class="section level2 hasAnchor" number="7.9">
+<h2><span class="header-section-number">7.9</span> Geometric distribution<a href="discrete-probability-models.html#geometric-distribution" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>We call <strong>geometric distribution</strong> to the <strong>negative binomial</strong> distribution with <span class="math inline">\(r=1\)</span></p>
+<p>The probability of observing <span class="math inline">\(A&#39;\)</span> events before observing the <strong>first</strong> event of type <span class="math inline">\(A\)</span> is</p>
+<p><span class="math display">\[P(Y=y)=f(y)= p(1-p)^y\]</span></p>
+<p><span class="math display">\[Y\sim Geom(p)\]</span></p>
+<p>The mean and variance of a variable that follows a geometric distribution are</p>
+<p><span class="math display">\[\mu= \frac{1-p}{p}\]</span></p>
+<p>and</p>
+<p><span class="math display">\[\sigma^2= \frac{1-p}{p^2}\]</span></p>
+<p>Note that the mean and variance of a negative binomial variable is <span class="math inline">\(r\)</span> times the mean and variance of a geometric variable.</p>
+</div>
+<div id="hypergeometric-model" class="section level2 hasAnchor" number="7.10">
+<h2><span class="header-section-number">7.10</span> Hypergeometric model<a href="discrete-probability-models.html#hypergeometric-model" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The <strong>hypergeometric model</strong> arises from the urn experiment, with a total number fo <span class="math inline">\(N\)</span> balls and, we draw <span class="math inline">\(n\)</span> balls without replacing them back in the urn. If the balls are labeled with <span class="math inline">\(A\)</span> and <span class="math inline">\(A&#39;\)</span>, what is the probability of drawing <span class="math inline">\(x\)</span> balls of type <span class="math inline">\(A\)</span> in a total of <span class="math inline">\(n\)</span> draws?</p>
+<p>The general model is to consider <span class="math inline">\(N\)</span> total balls in a urn. Mark <span class="math inline">\(K\)</span> with label <span class="math inline">\(A\)</span> and <span class="math inline">\(N-K\)</span> with label <span class="math inline">\(A&#39;\)</span>. Take out <span class="math inline">\(n\)</span> balls one by one with no replacement in the urn, and then count how many <span class="math inline">\(A\)</span>’s you obtained.</p>
+<p>The <strong>Binomial</strong> model can be derived from the <strong>Hypergeometric</strong> model when we consider that either <span class="math inline">\(N\)</span> is infinite, or that every time we draw a ball we replace it back in the urn.</p>
+<p><strong>Example (measles)</strong></p>
+<p>By July 2025, the U.S. reported <span class="math inline">\(N=1288\)</span> confirmed measles cases. Over <span class="math inline">\(90\%\)</span> of cases involved unvaccinated individuals or those with unknown vaccination status, that is <span class="math inline">\(K=1159\)</span> patients.</p>
+<p>Of those reported cases, imagine we ask <span class="math inline">\(n=200\)</span> and find that <span class="math inline">\(x=183\)</span> did not vaccinate. What is the probability of the observing at least <span class="math inline">\(183\)</span> unvaccinated people in our survey?</p>
+<p><strong>Definition:</strong></p>
+<p>The probability of obtaining <span class="math inline">\(x\)</span> cases (type <span class="math inline">\(A\)</span>) in a sample of <span class="math inline">\(n\)</span>, drawn from a population of <span class="math inline">\(N\)</span> where <span class="math inline">\(K\)</span> are cases (type <span class="math inline">\(A\)</span>) is</p>
+<p><span class="math inline">\(P(X=x)=P(one\,sample) \times (Number\, of\, ways\, of\, obtaining\, x)\)</span></p>
+<p><span class="math display">\[=\frac{1}{\binom N n}\binom K x \binom {N-K} {n-x}\]</span></p>
+<p>where <span class="math inline">\(x \in \{\max(0, n-(N-K), ... \min(K, n) \}\)</span>. The first limit includes the case where we draw more balls than <span class="math inline">\(A&#39;\)</span>-labeled balls, and the second limit when we draw all he <span class="math inline">\(A\)</span>-labeled balls.</p>
+<p>We then say that <span class="math inline">\(X\)</span> follows a hypergeometric distribution and write</p>
+<p><span class="math display">\[X \sim Hypergeometric(N,K,n)\]</span>
+The hypergeometric model has three parameters.</p>
+<p><strong>Properties:</strong></p>
+<p>The mean and variance of a variable that follows a hypergeometric distribution are:</p>
+<p><span class="math display">\[\mu =  n  \frac{K}{N} = np\]</span>
+and</p>
+<p><span class="math display">\[\sigma^2 = np(1-p)\frac{N-n}{N-1}\]</span></p>
+<p><span class="math inline">\(p=\frac{K}{N}\)</span> is the proportion of chickenpox in a population of size <span class="math inline">\(N\)</span>. Note that when <span class="math inline">\(N \rightarrow \infty\)</span> or we replace the ball, <span class="math inline">\(K=n_A\)</span> and then we recover the binomial properties.</p>
+<p>Let us look at some probability mass functions in the family of hypergeometric parametric models:</p>
+<p><img src="_main_files/figure-html/unnamed-chunk-105-1.png" width="672" /></p>
+<p><strong>Example (measles)</strong></p>
+<ul>
+<li>what is the probability that at least <span class="math inline">\(183\)</span> measles patients are unvaccinated in a particular survey of <span class="math inline">\(200\)</span> patients, drawn from a population of <span class="math inline">\(1288\)</span> patients where <span class="math inline">\(1159\)</span> did not vaccinate?</li>
+</ul>
+<p>Given <span class="math inline">\(X \sim Hypergeometric(N=1159,K=1159,n=200)\)</span>, the probability that we need to compute is
+<span class="math inline">\(1-P(X \leq 183)=F(183)=0.18\)</span></p>
+<p>That is about <span class="math inline">\(18\%\)</span> of the 200-patient surveys will report more than <span class="math inline">\(187\)</span> unvaccinated people.</p>
+<pre><code>Python: 1- hypergeom.cdf(183, 1288, 200, 1159)
+R: 1- phyper(183, 1159, 1288 - 1159, 200)
+</code></pre>
+<p>The solution is the addition of the blue needles in the plot.</p>
+<p><img src="_main_files/figure-html/unnamed-chunk-107-1.png" width="672" /></p>
+</div>
+<div id="questions-4" class="section level2 hasAnchor" number="7.11">
+<h2><span class="header-section-number">7.11</span> Questions<a href="discrete-probability-models.html#questions-4" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><strong>1)</strong> What is the expected value and the variance of the number of failures in <span class="math inline">\(100\)</span> prototypes, when the probability of a failure is <span class="math inline">\(0.25\)</span></p>
+<p><strong><span class="math inline">\(\qquad\)</span>a:</strong> <span class="math inline">\(0.25\)</span>, <span class="math inline">\(0.1875\)</span>;
+<strong><span class="math inline">\(\qquad\)</span>b:</strong> <span class="math inline">\(25\)</span>, <span class="math inline">\(0.1875\)</span>;
+<strong><span class="math inline">\(\qquad\)</span>c:</strong> <span class="math inline">\(0.25\)</span>, <span class="math inline">\(18.75\)</span>;<br />
+<strong><span class="math inline">\(\qquad\)</span>d:</strong> <span class="math inline">\(25\)</span>, <span class="math inline">\(18.75\)</span></p>
+<p><strong>2)</strong> The number of available tables at lunch time in a restaurant is better described by which probability model</p>
+<p><strong><span class="math inline">\(\qquad\)</span>a:</strong> Binomial;
+<strong><span class="math inline">\(\qquad\)</span>b:</strong> Uniform;
+<strong><span class="math inline">\(\qquad\)</span>c:</strong> Negative Binomial;<br />
+<strong><span class="math inline">\(\qquad\)</span>d:</strong> Hypergeometric</p>
+<p><strong>3)</strong> The expected value of a Binomial distribution is not</p>
+<p><strong><span class="math inline">\(\qquad\)</span>a:</strong> <span class="math inline">\(n\)</span> times the expected value of a Bernoulli;
+<strong><span class="math inline">\(\qquad\)</span>b:</strong> the expected value of a Hypergeometric, when the population is very big;
+<strong><span class="math inline">\(\qquad\)</span>c:</strong> <span class="math inline">\(np\)</span>;<br />
+<strong><span class="math inline">\(\qquad\)</span>d:</strong> the limit of the relative frequency when the number of repetitions is large</p>
+<p><strong>4)</strong> Opinion polls for the USA 2022 election give a probability of <span class="math inline">\(0.55\)</span> that a voter favors the republican party. If we conduct our own poll and ask 100 random people on the street, How would you compute the probability that in our poll democrats win the election?</p>
+<p><strong><span class="math inline">\(\qquad\)</span>a:</strong><code>binom.cdf(49, 100, 0.55)=0.13</code>;
+<strong><span class="math inline">\(\qquad\)</span>b:</strong><code>1-binom.cdf(49, 100, 0.55)=0.86</code>;
+<strong><span class="math inline">\(\qquad\)</span>c:</strong><code>binom.cdf(51, 100, 0.45)=0.90</code>; <strong><span class="math inline">\(\qquad\)</span>d:</strong><code>1-binom.cdf(51, 100, 0.45)=0.095</code></p>
+<p><strong>5)</strong> In an exam a student chooses at random one of the four answers that he does not know. If he doesn’t know <span class="math inline">\(10\)</span> questions what is the probability that more than <span class="math inline">\(5\)</span> (<span class="math inline">\(&gt;5\)</span>) questions are correct?</p>
+<p><strong><span class="math inline">\(\qquad\)</span>a:</strong><code>binom.pmf(5, 10, 0.25)~ 0.05</code>; <strong><span class="math inline">\(\qquad\)</span>b:</strong><code>binom.cdf(5, 10, 0.75)~ 0.07</code>; <strong><span class="math inline">\(\qquad\)</span>c:</strong><code>binom.pmf(5, 10, 0.75)~ 0.05</code>; <strong><span class="math inline">\(\qquad\)</span>d:</strong><code>1-binom.cdf(5, 10, 0.25)~ 0.01</code></p>
+</div>
+<div id="exercises-5" class="section level2 hasAnchor" number="7.12">
+<h2><span class="header-section-number">7.12</span> Exercises<a href="discrete-probability-models.html#exercises-5" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="exercise-1-4" class="section level4 hasAnchor" number="7.12.0.1">
+<h4><span class="header-section-number">7.12.0.1</span> Exercise 1<a href="discrete-probability-models.html#exercise-1-4" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>If 20% of the bolts produced by a machine are defective, determine the probability that, out of
+4 bolts chosen at random</p>
+<ul>
+<li>1 bolts will be defective (A:0:4096)</li>
+<li>0 bolts will be defective (A::4096)</li>
+<li>at most 2 bolts will be defective (A:0:9728)</li>
+</ul>
+</div>
+<div id="exercise-2-4" class="section level4 hasAnchor" number="7.12.0.2">
+<h4><span class="header-section-number">7.12.0.2</span> Exercise 2<a href="discrete-probability-models.html#exercise-2-4" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>In a population, the probability that a baby boy is born is <span class="math inline">\(p=0.51\)</span>. Consider a family of 4 children</p>
+<ul>
+<li>What is the probability that a family has only one boy?(A: 0.240)</li>
+<li>What is the probability that a family has only one girl?(A: 0.259)</li>
+<li>What is the probability that a family has only one boy or only one girl?(A: 0.4999)</li>
+<li>What is the probability that the family has at least two boys?(A: 0.7023)</li>
+<li>What is the number of children that a family should have such that the probability of having at least one girl is more than <span class="math inline">\(0.75\)</span>?(A:<span class="math inline">\(n=3&gt;\log(0.25)/\log(0.51)\)</span>)</li>
+</ul>
+</div>
+<div id="exercise-3-4" class="section level4 hasAnchor" number="7.12.0.3">
+<h4><span class="header-section-number">7.12.0.3</span> Exercise 3<a href="discrete-probability-models.html#exercise-3-4" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>A search engine fails to retrieve information with a probability <span class="math inline">\(0.1\)</span></p>
+<ul>
+<li><p>If we system receives <span class="math inline">\(50\)</span> search requests, what is the probability that the system fails to answer three of them?(A:0.1385651)</p></li>
+<li><p>What is the probability that the engine successfully completes <span class="math inline">\(15\)</span> searches before the first failure?(A:0.020)</p></li>
+<li><p>We consider that a search engine works sufficiently well when it is able to find information for moe than <span class="math inline">\(10\)</span> requests for every <span class="math inline">\(2\)</span> failures. What is the probability that in a reliability trial our search engine is satisfactory?(A: 0.697)</p></li>
+</ul>
+
+</div>
+</div>
+</div>
+<h3>References</h3>
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-Bailey2012" class="csl-entry">
+Bailey, David H., Jonathan M. Borwein, Cristian S. Calude, Michael J. Dinneen, Monica Dumitrescu, and Alex Yee. 2012. <span>“An Empirical Approach to the Normality of <span class="math inline">\(\pi\)</span>.”</span> <em>Experimental Mathematics</em> 21 (4): 375–84. <a href="https://doi.org/10.1080/10586458.2012.665333">https://doi.org/10.1080/10586458.2012.665333</a>.
+</div>
+<div id="ref-Bernoulli2006" class="csl-entry">
+Bernoulli, Jacob. 2006. <em>The Art of Conjecturing: Together with Letter to a Friend on Sets in Court Tennis</em>. Translated by Edith Dudley Sylla. Baltimore, MD: Johns Hopkins University Press.
+</div>
+<div id="ref-DehingiaRaj2021" class="csl-entry">
+Dehingia, Nabamallika, and Anita Raj. 2021. <span>“Sex Differences in COVID-19 Case Fatality: Do We Know Enough?”</span> <em>The Lancet Global Health</em> 9 (1): e14–15. <a href="https://doi.org/10.1016/S2214-109X(20)30464-2">https://doi.org/10.1016/S2214-109X(20)30464-2</a>.
+</div>
+<div id="ref-Lippi2014" class="csl-entry">
+Lippi, Davide, and Eduardo Gotuzzo. 2014. <span>“The Greatest Steps Towards the Discovery of Vibrio Cholerae.”</span> <em>Clinical Microbiology and Infection</em> 20 (3): 191–95. <a href="https://doi.org/10.1111/1469-0691.12390">https://doi.org/10.1111/1469-0691.12390</a>.
+</div>
+<div id="ref-Tomkins2024" class="csl-entry">
+Tomkins, Andrew G., Erin L. Martin, Peter A. Cawood, and et al. 2024. <span>“Evidence Suggesting That Earth Had a Ring in the Ordovician.”</span> <em>Earth and Planetary Science Letters</em> 646: 118991. <a href="https://doi.org/10.1016/j.epsl.2024.118991">https://doi.org/10.1016/j.epsl.2024.118991</a>.
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="continous-random-variables.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="poisson-and-exponential-models.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/06-DiscreteModels.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

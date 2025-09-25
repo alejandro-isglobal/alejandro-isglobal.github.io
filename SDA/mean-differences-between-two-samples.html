@@ -1,0 +1,947 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 16 Mean differences between two samples | Statistical Data Analysis for Experimental Sciences</title>
+  <meta name="description" content="This is a markdown book titled Statistical Data Analysis for Experimental Sciences by Alejandro Caceres" />
+  <meta name="generator" content="bookdown 0.36 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 16 Mean differences between two samples | Statistical Data Analysis for Experimental Sciences" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="This is a markdown book titled Statistical Data Analysis for Experimental Sciences by Alejandro Caceres" />
+  <meta name="github-repo" content="alejandro-isglobal/master" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 16 Mean differences between two samples | Statistical Data Analysis for Experimental Sciences" />
+  
+  <meta name="twitter:description" content="This is a markdown book titled Statistical Data Analysis for Experimental Sciences by Alejandro Caceres" />
+  
+
+<meta name="author" content="Alejandro Cáceres" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="contingency-tables.html"/>
+<link rel="next" href="mean-differences-across-several-groups.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">SDA</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#how-to-read-the-book"><i class="fa fa-check"></i><b>1.1</b> How to read the book</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#acknowledgements"><i class="fa fa-check"></i><b>1.2</b> Acknowledgements</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="data-description.html"><a href="data-description.html"><i class="fa fa-check"></i><b>2</b> Data description</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="data-description.html"><a href="data-description.html#scientific-method"><i class="fa fa-check"></i><b>2.1</b> Scientific method</a></li>
+<li class="chapter" data-level="2.2" data-path="data-description.html"><a href="data-description.html#data"><i class="fa fa-check"></i><b>2.2</b> Data</a></li>
+<li class="chapter" data-level="2.3" data-path="data-description.html"><a href="data-description.html#types-of-outcomes"><i class="fa fa-check"></i><b>2.3</b> Types of outcomes</a></li>
+<li class="chapter" data-level="2.4" data-path="data-description.html"><a href="data-description.html#random-experiments"><i class="fa fa-check"></i><b>2.4</b> Random experiments</a></li>
+<li class="chapter" data-level="2.5" data-path="data-description.html"><a href="data-description.html#absolute-frequencies"><i class="fa fa-check"></i><b>2.5</b> Absolute frequencies</a></li>
+<li class="chapter" data-level="2.6" data-path="data-description.html"><a href="data-description.html#relative-frequencies"><i class="fa fa-check"></i><b>2.6</b> Relative frequencies</a></li>
+<li class="chapter" data-level="2.7" data-path="data-description.html"><a href="data-description.html#bar-chart"><i class="fa fa-check"></i><b>2.7</b> Bar chart</a></li>
+<li class="chapter" data-level="2.8" data-path="data-description.html"><a href="data-description.html#pie-chart"><i class="fa fa-check"></i><b>2.8</b> Pie chart</a></li>
+<li class="chapter" data-level="2.9" data-path="data-description.html"><a href="data-description.html#ordinal-categorical-outcomes"><i class="fa fa-check"></i><b>2.9</b> Ordinal categorical outcomes</a></li>
+<li class="chapter" data-level="2.10" data-path="data-description.html"><a href="data-description.html#absolute-and-relative-cumulative-frequencies"><i class="fa fa-check"></i><b>2.10</b> Absolute and relative cumulative frequencies</a></li>
+<li class="chapter" data-level="2.11" data-path="data-description.html"><a href="data-description.html#cumulative-frequency-graph"><i class="fa fa-check"></i><b>2.11</b> Cumulative frequency graph</a></li>
+<li class="chapter" data-level="2.12" data-path="data-description.html"><a href="data-description.html#numerical-outcomes"><i class="fa fa-check"></i><b>2.12</b> Numerical outcomes</a></li>
+<li class="chapter" data-level="2.13" data-path="data-description.html"><a href="data-description.html#transforming-continuous-data"><i class="fa fa-check"></i><b>2.13</b> Transforming continuous data</a></li>
+<li class="chapter" data-level="2.14" data-path="data-description.html"><a href="data-description.html#frequency-table-for-a-continuous-variable"><i class="fa fa-check"></i><b>2.14</b> Frequency table for a continuous variable</a></li>
+<li class="chapter" data-level="2.15" data-path="data-description.html"><a href="data-description.html#histogram"><i class="fa fa-check"></i><b>2.15</b> Histogram</a></li>
+<li class="chapter" data-level="2.16" data-path="data-description.html"><a href="data-description.html#cumulative-frequency-graph-1"><i class="fa fa-check"></i><b>2.16</b> Cumulative frequency graph</a></li>
+<li class="chapter" data-level="2.17" data-path="data-description.html"><a href="data-description.html#summary-statistics"><i class="fa fa-check"></i><b>2.17</b> Summary Statistics</a></li>
+<li class="chapter" data-level="2.18" data-path="data-description.html"><a href="data-description.html#average-sample-mean"><i class="fa fa-check"></i><b>2.18</b> Average (sample mean)</a></li>
+<li class="chapter" data-level="2.19" data-path="data-description.html"><a href="data-description.html#median"><i class="fa fa-check"></i><b>2.19</b> Median</a></li>
+<li class="chapter" data-level="2.20" data-path="data-description.html"><a href="data-description.html#dispersion"><i class="fa fa-check"></i><b>2.20</b> Dispersion</a></li>
+<li class="chapter" data-level="2.21" data-path="data-description.html"><a href="data-description.html#sample-variance"><i class="fa fa-check"></i><b>2.21</b> Sample variance</a></li>
+<li class="chapter" data-level="2.22" data-path="data-description.html"><a href="data-description.html#interquartile-range-iqr"><i class="fa fa-check"></i><b>2.22</b> Interquartile range (IQR)</a></li>
+<li class="chapter" data-level="2.23" data-path="data-description.html"><a href="data-description.html#boxplot"><i class="fa fa-check"></i><b>2.23</b> Boxplot</a></li>
+<li class="chapter" data-level="2.24" data-path="data-description.html"><a href="data-description.html#questions"><i class="fa fa-check"></i><b>2.24</b> Questions</a></li>
+<li class="chapter" data-level="2.25" data-path="data-description.html"><a href="data-description.html#exercises"><i class="fa fa-check"></i><b>2.25</b> Exercises</a></li>
+<li class="chapter" data-level="2.26" data-path="data-description.html"><a href="data-description.html#practice"><i class="fa fa-check"></i><b>2.26</b> Practice</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="probability.html"><a href="probability.html"><i class="fa fa-check"></i><b>3</b> Probability</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="probability.html"><a href="probability.html#probability-mesurement"><i class="fa fa-check"></i><b>3.1</b> Probability mesurement</a></li>
+<li class="chapter" data-level="3.2" data-path="probability.html"><a href="probability.html#classical-probability"><i class="fa fa-check"></i><b>3.2</b> Classical probability</a></li>
+<li class="chapter" data-level="3.3" data-path="probability.html"><a href="probability.html#relative-frequencies-1"><i class="fa fa-check"></i><b>3.3</b> Relative frequencies</a></li>
+<li class="chapter" data-level="3.4" data-path="probability.html"><a href="probability.html#frequentist-probability"><i class="fa fa-check"></i><b>3.4</b> Frequentist probability</a></li>
+<li class="chapter" data-level="3.5" data-path="probability.html"><a href="probability.html#classical-and-frequentist-probabilities"><i class="fa fa-check"></i><b>3.5</b> Classical and frequentist probabilities</a></li>
+<li class="chapter" data-level="3.6" data-path="probability.html"><a href="probability.html#sample-space"><i class="fa fa-check"></i><b>3.6</b> Sample space</a></li>
+<li class="chapter" data-level="3.7" data-path="probability.html"><a href="probability.html#events"><i class="fa fa-check"></i><b>3.7</b> Events</a></li>
+<li class="chapter" data-level="3.8" data-path="probability.html"><a href="probability.html#algebra-of-events"><i class="fa fa-check"></i><b>3.8</b> Algebra of events</a></li>
+<li class="chapter" data-level="3.9" data-path="probability.html"><a href="probability.html#mutually-exclusive-events"><i class="fa fa-check"></i><b>3.9</b> Mutually exclusive events</a></li>
+<li class="chapter" data-level="3.10" data-path="probability.html"><a href="probability.html#definition-of-probability"><i class="fa fa-check"></i><b>3.10</b> Definition of probability</a></li>
+<li class="chapter" data-level="3.11" data-path="probability.html"><a href="probability.html#probability-table"><i class="fa fa-check"></i><b>3.11</b> Probability table</a></li>
+<li class="chapter" data-level="3.12" data-path="probability.html"><a href="probability.html#joint-probabilities"><i class="fa fa-check"></i><b>3.12</b> Joint probabilities</a></li>
+<li class="chapter" data-level="3.13" data-path="probability.html"><a href="probability.html#contingency-table"><i class="fa fa-check"></i><b>3.13</b> Contingency table</a></li>
+<li class="chapter" data-level="3.14" data-path="probability.html"><a href="probability.html#the-addition-rule"><i class="fa fa-check"></i><b>3.14</b> The addition rule</a></li>
+<li class="chapter" data-level="3.15" data-path="probability.html"><a href="probability.html#questions-1"><i class="fa fa-check"></i><b>3.15</b> Questions</a></li>
+<li class="chapter" data-level="3.16" data-path="probability.html"><a href="probability.html#exercises-1"><i class="fa fa-check"></i><b>3.16</b> Exercises</a></li>
+<li class="chapter" data-level="3.17" data-path="probability.html"><a href="probability.html#practice-1"><i class="fa fa-check"></i><b>3.17</b> Practice</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="conditional-probability.html"><a href="conditional-probability.html"><i class="fa fa-check"></i><b>4</b> Conditional probability</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="conditional-probability.html"><a href="conditional-probability.html#joint-probability"><i class="fa fa-check"></i><b>4.1</b> Joint probability</a></li>
+<li class="chapter" data-level="4.2" data-path="conditional-probability.html"><a href="conditional-probability.html#statistical-independence-and-correlation"><i class="fa fa-check"></i><b>4.2</b> Statistical independence and correlation</a></li>
+<li class="chapter" data-level="4.3" data-path="conditional-probability.html"><a href="conditional-probability.html#conditional-probability-1"><i class="fa fa-check"></i><b>4.3</b> Conditional probability</a></li>
+<li class="chapter" data-level="4.4" data-path="conditional-probability.html"><a href="conditional-probability.html#conditional-contingency-table"><i class="fa fa-check"></i><b>4.4</b> Conditional contingency table</a></li>
+<li class="chapter" data-level="4.5" data-path="conditional-probability.html"><a href="conditional-probability.html#statistical-independence"><i class="fa fa-check"></i><b>4.5</b> Statistical independence</a></li>
+<li class="chapter" data-level="4.6" data-path="conditional-probability.html"><a href="conditional-probability.html#statistical-dependency"><i class="fa fa-check"></i><b>4.6</b> Statistical dependency</a></li>
+<li class="chapter" data-level="4.7" data-path="conditional-probability.html"><a href="conditional-probability.html#diagnostic-test"><i class="fa fa-check"></i><b>4.7</b> Diagnostic test</a></li>
+<li class="chapter" data-level="4.8" data-path="conditional-probability.html"><a href="conditional-probability.html#inverse-probabilities"><i class="fa fa-check"></i><b>4.8</b> Inverse probabilities</a></li>
+<li class="chapter" data-level="4.9" data-path="conditional-probability.html"><a href="conditional-probability.html#bayes-theorem"><i class="fa fa-check"></i><b>4.9</b> Bayes’ Theorem</a></li>
+<li class="chapter" data-level="4.10" data-path="conditional-probability.html"><a href="conditional-probability.html#questions-2"><i class="fa fa-check"></i><b>4.10</b> Questions</a></li>
+<li class="chapter" data-level="4.11" data-path="conditional-probability.html"><a href="conditional-probability.html#exercises-2"><i class="fa fa-check"></i><b>4.11</b> Exercises</a></li>
+<li class="chapter" data-level="4.12" data-path="conditional-probability.html"><a href="conditional-probability.html#practice-2"><i class="fa fa-check"></i><b>4.12</b> Practice</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html"><i class="fa fa-check"></i><b>5</b> Discrete Random Variables</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html#definition-of-a-random-variable"><i class="fa fa-check"></i><b>5.1</b> Definition of a Random Variable</a></li>
+<li class="chapter" data-level="5.2" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html#the-value-of-a-random-variable"><i class="fa fa-check"></i><b>5.2</b> The value of a random variable</a></li>
+<li class="chapter" data-level="5.3" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html#probability-of-random-variables"><i class="fa fa-check"></i><b>5.3</b> Probability of random variables</a></li>
+<li class="chapter" data-level="5.4" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html#probability-functions"><i class="fa fa-check"></i><b>5.4</b> Probability functions</a></li>
+<li class="chapter" data-level="5.5" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html#probability-mass-functions"><i class="fa fa-check"></i><b>5.5</b> Probability mass functions</a></li>
+<li class="chapter" data-level="5.6" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html#mean-or-expected-value"><i class="fa fa-check"></i><b>5.6</b> Mean or expected value</a></li>
+<li class="chapter" data-level="5.7" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html#variance"><i class="fa fa-check"></i><b>5.7</b> Variance</a></li>
+<li class="chapter" data-level="5.8" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html#probability-functions-for-functions-of-x"><i class="fa fa-check"></i><b>5.8</b> Probability functions for functions of <span class="math inline">\(X\)</span></a></li>
+<li class="chapter" data-level="5.9" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html#probability-distribution"><i class="fa fa-check"></i><b>5.9</b> Probability distribution</a></li>
+<li class="chapter" data-level="5.10" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html#probability-function-and-probability-distribution"><i class="fa fa-check"></i><b>5.10</b> Probability function and probability distribution</a></li>
+<li class="chapter" data-level="5.11" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html#quantiles"><i class="fa fa-check"></i><b>5.11</b> Quantiles</a></li>
+<li class="chapter" data-level="5.12" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html#summary"><i class="fa fa-check"></i><b>5.12</b> Summary</a></li>
+<li class="chapter" data-level="5.13" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html#questions-3"><i class="fa fa-check"></i><b>5.13</b> Questions</a></li>
+<li class="chapter" data-level="5.14" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html#exercises-3"><i class="fa fa-check"></i><b>5.14</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="continous-random-variables.html"><a href="continous-random-variables.html"><i class="fa fa-check"></i><b>6</b> Continous Random Variables</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="continous-random-variables.html"><a href="continous-random-variables.html#probabilities-of-continuous-random-variables"><i class="fa fa-check"></i><b>6.1</b> Probabilities of continuous random variables</a></li>
+<li class="chapter" data-level="6.2" data-path="continous-random-variables.html"><a href="continous-random-variables.html#relative-frequencies-2"><i class="fa fa-check"></i><b>6.2</b> Relative frequencies</a></li>
+<li class="chapter" data-level="6.3" data-path="continous-random-variables.html"><a href="continous-random-variables.html#probability-density-function"><i class="fa fa-check"></i><b>6.3</b> Probability Density Function</a></li>
+<li class="chapter" data-level="6.4" data-path="continous-random-variables.html"><a href="continous-random-variables.html#total-area-under-the-curve"><i class="fa fa-check"></i><b>6.4</b> Total area under the curve</a></li>
+<li class="chapter" data-level="6.5" data-path="continous-random-variables.html"><a href="continous-random-variables.html#probabilities-of-continous-variables"><i class="fa fa-check"></i><b>6.5</b> Probabilities of continous variables</a></li>
+<li class="chapter" data-level="6.6" data-path="continous-random-variables.html"><a href="continous-random-variables.html#probability-distribution-1"><i class="fa fa-check"></i><b>6.6</b> Probability distribution</a></li>
+<li class="chapter" data-level="6.7" data-path="continous-random-variables.html"><a href="continous-random-variables.html#probability-plots"><i class="fa fa-check"></i><b>6.7</b> Probability plots</a></li>
+<li class="chapter" data-level="6.8" data-path="continous-random-variables.html"><a href="continous-random-variables.html#mean"><i class="fa fa-check"></i><b>6.8</b> Mean</a></li>
+<li class="chapter" data-level="6.9" data-path="continous-random-variables.html"><a href="continous-random-variables.html#variance-1"><i class="fa fa-check"></i><b>6.9</b> Variance</a></li>
+<li class="chapter" data-level="6.10" data-path="continous-random-variables.html"><a href="continous-random-variables.html#functions-of-x"><i class="fa fa-check"></i><b>6.10</b> Functions of <span class="math inline">\(X\)</span></a></li>
+<li class="chapter" data-level="6.11" data-path="continous-random-variables.html"><a href="continous-random-variables.html#exercises-4"><i class="fa fa-check"></i><b>6.11</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="discrete-probability-models.html"><a href="discrete-probability-models.html"><i class="fa fa-check"></i><b>7</b> Discrete Probability Models</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="discrete-probability-models.html"><a href="discrete-probability-models.html#probability-model"><i class="fa fa-check"></i><b>7.1</b> Probability model</a></li>
+<li class="chapter" data-level="7.2" data-path="discrete-probability-models.html"><a href="discrete-probability-models.html#parametric-models"><i class="fa fa-check"></i><b>7.2</b> Parametric models</a></li>
+<li class="chapter" data-level="7.3" data-path="discrete-probability-models.html"><a href="discrete-probability-models.html#uniform-probability-mass-function-one-parameter"><i class="fa fa-check"></i><b>7.3</b> Uniform probability mass function (one parameter)</a></li>
+<li class="chapter" data-level="7.4" data-path="discrete-probability-models.html"><a href="discrete-probability-models.html#uniform-probability-mass-function-two-parameters"><i class="fa fa-check"></i><b>7.4</b> Uniform probability mass function (two parameters)</a></li>
+<li class="chapter" data-level="7.5" data-path="discrete-probability-models.html"><a href="discrete-probability-models.html#bernoulli-trial"><i class="fa fa-check"></i><b>7.5</b> Bernoulli trial</a></li>
+<li class="chapter" data-level="7.6" data-path="discrete-probability-models.html"><a href="discrete-probability-models.html#binomial-experiment"><i class="fa fa-check"></i><b>7.6</b> Binomial experiment</a></li>
+<li class="chapter" data-level="7.7" data-path="discrete-probability-models.html"><a href="discrete-probability-models.html#binomial-probability-function"><i class="fa fa-check"></i><b>7.7</b> Binomial probability function</a></li>
+<li class="chapter" data-level="7.8" data-path="discrete-probability-models.html"><a href="discrete-probability-models.html#negative-binomial"><i class="fa fa-check"></i><b>7.8</b> Negative binomial</a></li>
+<li class="chapter" data-level="7.9" data-path="discrete-probability-models.html"><a href="discrete-probability-models.html#geometric-distribution"><i class="fa fa-check"></i><b>7.9</b> Geometric distribution</a></li>
+<li class="chapter" data-level="7.10" data-path="discrete-probability-models.html"><a href="discrete-probability-models.html#hypergeometric-model"><i class="fa fa-check"></i><b>7.10</b> Hypergeometric model</a></li>
+<li class="chapter" data-level="7.11" data-path="discrete-probability-models.html"><a href="discrete-probability-models.html#questions-4"><i class="fa fa-check"></i><b>7.11</b> Questions</a></li>
+<li class="chapter" data-level="7.12" data-path="discrete-probability-models.html"><a href="discrete-probability-models.html#exercises-5"><i class="fa fa-check"></i><b>7.12</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="poisson-and-exponential-models.html"><a href="poisson-and-exponential-models.html"><i class="fa fa-check"></i><b>8</b> Poisson and Exponential Models</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="poisson-and-exponential-models.html"><a href="poisson-and-exponential-models.html#discrete-probability-models-1"><i class="fa fa-check"></i><b>8.1</b> Discrete probability models</a></li>
+<li class="chapter" data-level="8.2" data-path="poisson-and-exponential-models.html"><a href="poisson-and-exponential-models.html#poissson-experiment"><i class="fa fa-check"></i><b>8.2</b> Poissson experiment</a></li>
+<li class="chapter" data-level="8.3" data-path="poisson-and-exponential-models.html"><a href="poisson-and-exponential-models.html#poisson-probability-mass-function"><i class="fa fa-check"></i><b>8.3</b> Poisson probability mass function</a></li>
+<li class="chapter" data-level="8.4" data-path="poisson-and-exponential-models.html"><a href="poisson-and-exponential-models.html#continuous-probability-models"><i class="fa fa-check"></i><b>8.4</b> Continuous probability models</a></li>
+<li class="chapter" data-level="8.5" data-path="poisson-and-exponential-models.html"><a href="poisson-and-exponential-models.html#exponential-process"><i class="fa fa-check"></i><b>8.5</b> Exponential process</a></li>
+<li class="chapter" data-level="8.6" data-path="poisson-and-exponential-models.html"><a href="poisson-and-exponential-models.html#exponential-probability-density"><i class="fa fa-check"></i><b>8.6</b> Exponential probability density</a></li>
+<li class="chapter" data-level="8.7" data-path="poisson-and-exponential-models.html"><a href="poisson-and-exponential-models.html#exponential-distribution"><i class="fa fa-check"></i><b>8.7</b> Exponential Distribution</a></li>
+<li class="chapter" data-level="8.8" data-path="poisson-and-exponential-models.html"><a href="poisson-and-exponential-models.html#questions-5"><i class="fa fa-check"></i><b>8.8</b> Questions</a></li>
+<li class="chapter" data-level="8.9" data-path="poisson-and-exponential-models.html"><a href="poisson-and-exponential-models.html#exercises-6"><i class="fa fa-check"></i><b>8.9</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="normal-distribution.html"><a href="normal-distribution.html"><i class="fa fa-check"></i><b>9</b> Normal Distribution</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="normal-distribution.html"><a href="normal-distribution.html#history"><i class="fa fa-check"></i><b>9.1</b> History</a></li>
+<li class="chapter" data-level="9.2" data-path="normal-distribution.html"><a href="normal-distribution.html#normal-probability-density"><i class="fa fa-check"></i><b>9.2</b> Normal probability density</a></li>
+<li class="chapter" data-level="9.3" data-path="normal-distribution.html"><a href="normal-distribution.html#probability-distribution-2"><i class="fa fa-check"></i><b>9.3</b> Probability distribution</a></li>
+<li class="chapter" data-level="9.4" data-path="normal-distribution.html"><a href="normal-distribution.html#quantiles-of-the-normal-distribution"><i class="fa fa-check"></i><b>9.4</b> Quantiles of the normal distribution</a></li>
+<li class="chapter" data-level="9.5" data-path="normal-distribution.html"><a href="normal-distribution.html#standard-normal-density"><i class="fa fa-check"></i><b>9.5</b> Standard normal density</a></li>
+<li class="chapter" data-level="9.6" data-path="normal-distribution.html"><a href="normal-distribution.html#standard-distribution"><i class="fa fa-check"></i><b>9.6</b> Standard distribution</a></li>
+<li class="chapter" data-level="9.7" data-path="normal-distribution.html"><a href="normal-distribution.html#standardization"><i class="fa fa-check"></i><b>9.7</b> Standardization</a></li>
+<li class="chapter" data-level="9.8" data-path="normal-distribution.html"><a href="normal-distribution.html#questions-6"><i class="fa fa-check"></i><b>9.8</b> Questions</a></li>
+<li class="chapter" data-level="9.9" data-path="normal-distribution.html"><a href="normal-distribution.html#exercises-7"><i class="fa fa-check"></i><b>9.9</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="sampling-distributions.html"><a href="sampling-distributions.html"><i class="fa fa-check"></i><b>10</b> Sampling distributions</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="sampling-distributions.html"><a href="sampling-distributions.html#random-sample"><i class="fa fa-check"></i><b>10.1</b> Random sample</a></li>
+<li class="chapter" data-level="10.2" data-path="sampling-distributions.html"><a href="sampling-distributions.html#parameter-estimation"><i class="fa fa-check"></i><b>10.2</b> Parameter estimation</a></li>
+<li class="chapter" data-level="10.3" data-path="sampling-distributions.html"><a href="sampling-distributions.html#law-of-large-numbers"><i class="fa fa-check"></i><b>10.3</b> Law of Large Numbers</a></li>
+<li class="chapter" data-level="10.4" data-path="sampling-distributions.html"><a href="sampling-distributions.html#inference"><i class="fa fa-check"></i><b>10.4</b> Inference</a></li>
+<li class="chapter" data-level="10.5" data-path="sampling-distributions.html"><a href="sampling-distributions.html#sample-mean"><i class="fa fa-check"></i><b>10.5</b> Sample mean</a></li>
+<li class="chapter" data-level="10.6" data-path="sampling-distributions.html"><a href="sampling-distributions.html#prediction"><i class="fa fa-check"></i><b>10.6</b> Prediction</a></li>
+<li class="chapter" data-level="10.7" data-path="sampling-distributions.html"><a href="sampling-distributions.html#validation"><i class="fa fa-check"></i><b>10.7</b> Validation</a></li>
+<li class="chapter" data-level="10.8" data-path="sampling-distributions.html"><a href="sampling-distributions.html#sample-sum"><i class="fa fa-check"></i><b>10.8</b> Sample Sum</a></li>
+<li class="chapter" data-level="10.9" data-path="sampling-distributions.html"><a href="sampling-distributions.html#sample-variance-1"><i class="fa fa-check"></i><b>10.9</b> Sample Variance</a>
+<ul>
+<li class="chapter" data-level="10.9.1" data-path="sampling-distributions.html"><a href="sampling-distributions.html#example-cables"><i class="fa fa-check"></i><b>10.9.1</b> Example (Cables)</a></li>
+</ul></li>
+<li class="chapter" data-level="10.10" data-path="sampling-distributions.html"><a href="sampling-distributions.html#distribution-of-the-sample-variance"><i class="fa fa-check"></i><b>10.10</b> Distribution of the Sample Variance</a></li>
+<li class="chapter" data-level="10.11" data-path="sampling-distributions.html"><a href="sampling-distributions.html#the-chi2-distribution"><i class="fa fa-check"></i><b>10.11</b> The <span class="math inline">\(\chi^2\)</span> Distribution</a></li>
+<li class="chapter" data-level="10.12" data-path="sampling-distributions.html"><a href="sampling-distributions.html#questions-7"><i class="fa fa-check"></i><b>10.12</b> Questions</a></li>
+<li class="chapter" data-level="10.13" data-path="sampling-distributions.html"><a href="sampling-distributions.html#exercises-8"><i class="fa fa-check"></i><b>10.13</b> Exercises</a>
+<ul>
+<li class="chapter" data-level="10.13.1" data-path="sampling-distributions.html"><a href="sampling-distributions.html#from-estimation-to-inference"><i class="fa fa-check"></i><b>10.13.1</b> From Estimation to Inference</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="central-limit-theorem.html"><a href="central-limit-theorem.html"><i class="fa fa-check"></i><b>11</b> Central limit theorem</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="central-limit-theorem.html"><a href="central-limit-theorem.html#margin-of-error"><i class="fa fa-check"></i><b>11.1</b> Margin of error</a></li>
+<li class="chapter" data-level="11.2" data-path="central-limit-theorem.html"><a href="central-limit-theorem.html#averages-of-normal-variables"><i class="fa fa-check"></i><b>11.2</b> Averages of normal variables</a></li>
+<li class="chapter" data-level="11.3" data-path="central-limit-theorem.html"><a href="central-limit-theorem.html#central-limit-theorem-1"><i class="fa fa-check"></i><b>11.3</b> Central Limit Theorem</a></li>
+<li class="chapter" data-level="11.4" data-path="central-limit-theorem.html"><a href="central-limit-theorem.html#sample-sum-and-clt"><i class="fa fa-check"></i><b>11.4</b> Sample sum and CLT</a></li>
+<li class="chapter" data-level="11.5" data-path="central-limit-theorem.html"><a href="central-limit-theorem.html#unknown-sigma"><i class="fa fa-check"></i><b>11.5</b> Unknown <span class="math inline">\(\sigma\)</span></a></li>
+<li class="chapter" data-level="11.6" data-path="central-limit-theorem.html"><a href="central-limit-theorem.html#t-statistic"><i class="fa fa-check"></i><b>11.6</b> T-statistic</a></li>
+<li class="chapter" data-level="11.7" data-path="central-limit-theorem.html"><a href="central-limit-theorem.html#questions-8"><i class="fa fa-check"></i><b>11.7</b> Questions</a></li>
+<li class="chapter" data-level="11.8" data-path="central-limit-theorem.html"><a href="central-limit-theorem.html#exercises-9"><i class="fa fa-check"></i><b>11.8</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="maximum-likelihood.html"><a href="maximum-likelihood.html"><i class="fa fa-check"></i><b>12</b> Maximum likelihood</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="maximum-likelihood.html"><a href="maximum-likelihood.html#statistic"><i class="fa fa-check"></i><b>12.1</b> Statistic</a></li>
+<li class="chapter" data-level="12.2" data-path="maximum-likelihood.html"><a href="maximum-likelihood.html#properties"><i class="fa fa-check"></i><b>12.2</b> Properties</a></li>
+<li class="chapter" data-level="12.3" data-path="maximum-likelihood.html"><a href="maximum-likelihood.html#maximum-likelihood-1"><i class="fa fa-check"></i><b>12.3</b> Maximum likelihood</a></li>
+<li class="chapter" data-level="12.4" data-path="maximum-likelihood.html"><a href="maximum-likelihood.html#maximum-likelihood-2"><i class="fa fa-check"></i><b>12.4</b> Maximum likelihood</a></li>
+<li class="chapter" data-level="12.5" data-path="maximum-likelihood.html"><a href="maximum-likelihood.html#questions-9"><i class="fa fa-check"></i><b>12.5</b> Questions</a></li>
+<li class="chapter" data-level="12.6" data-path="maximum-likelihood.html"><a href="maximum-likelihood.html#exercises-10"><i class="fa fa-check"></i><b>12.6</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="interval-estimation.html"><a href="interval-estimation.html"><i class="fa fa-check"></i><b>13</b> Interval estimation</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="interval-estimation.html"><a href="interval-estimation.html#revisiting-parameter-estimation-and-marging-of-error"><i class="fa fa-check"></i><b>13.1</b> Revisiting parameter estimation and marging of error</a></li>
+<li class="chapter" data-level="13.2" data-path="interval-estimation.html"><a href="interval-estimation.html#interval-estimation-for-the-mean"><i class="fa fa-check"></i><b>13.2</b> Interval estimation for the mean</a></li>
+<li class="chapter" data-level="13.3" data-path="interval-estimation.html"><a href="interval-estimation.html#confidence-interval-estimation"><i class="fa fa-check"></i><b>13.3</b> Confidence Interval Estimation</a>
+<ul>
+<li class="chapter" data-level="13.3.1" data-path="interval-estimation.html"><a href="interval-estimation.html#estimation-of-the-mean-for-normal-variables"><i class="fa fa-check"></i><b>13.3.1</b> Estimation of the mean for normal variables</a></li>
+<li class="chapter" data-level="13.3.2" data-path="interval-estimation.html"><a href="interval-estimation.html#estimation-of-the-proportion-for-dichotomic-variables"><i class="fa fa-check"></i><b>13.3.2</b> Estimation of the proportion for dichotomic variables</a></li>
+</ul></li>
+<li class="chapter" data-level="13.4" data-path="interval-estimation.html"><a href="interval-estimation.html#estimation-of-the-variance"><i class="fa fa-check"></i><b>13.4</b> Estimation of the variance</a></li>
+<li class="chapter" data-level="13.5" data-path="interval-estimation.html"><a href="interval-estimation.html#confidence-interval-for-the-variance"><i class="fa fa-check"></i><b>13.5</b> Confidence interval for the variance</a></li>
+<li class="chapter" data-level="13.6" data-path="interval-estimation.html"><a href="interval-estimation.html#questions-10"><i class="fa fa-check"></i><b>13.6</b> Questions</a></li>
+<li class="chapter" data-level="13.7" data-path="interval-estimation.html"><a href="interval-estimation.html#exercises-11"><i class="fa fa-check"></i><b>13.7</b> Exercises</a></li>
+<li class="chapter" data-level="13.8" data-path="interval-estimation.html"><a href="interval-estimation.html#practice-3"><i class="fa fa-check"></i><b>13.8</b> Practice</a></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html"><i class="fa fa-check"></i><b>14</b> Hypothesis Testing</a>
+<ul>
+<li class="chapter" data-level="14.1" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#hypothesis-formulation"><i class="fa fa-check"></i><b>14.1</b> Hypothesis formulation</a></li>
+<li class="chapter" data-level="14.2" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#hypothesis-testing-1"><i class="fa fa-check"></i><b>14.2</b> Hypothesis Testing</a></li>
+<li class="chapter" data-level="14.3" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#hypothesis-testing-for-the-mean"><i class="fa fa-check"></i><b>14.3</b> Hypothesis testing for the mean</a>
+<ul>
+<li class="chapter" data-level="14.3.1" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#hypothesis-test-with-a-confidence-interval"><i class="fa fa-check"></i><b>14.3.1</b> Hypothesis test with a confidence interval</a></li>
+<li class="chapter" data-level="14.3.2" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#hypothesis-test-with-acceptancerejection-zones"><i class="fa fa-check"></i><b>14.3.2</b> Hypothesis test with acceptance/rejection zones</a></li>
+<li class="chapter" data-level="14.3.3" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#hypothesis-test-with-a-p-value"><i class="fa fa-check"></i><b>14.3.3</b> Hypothesis test with a P-value</a></li>
+<li class="chapter" data-level="14.3.4" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#upper-tail-hypothesis"><i class="fa fa-check"></i><b>14.3.4</b> Upper tail hypothesis</a></li>
+<li class="chapter" data-level="14.3.5" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#paired-t-test"><i class="fa fa-check"></i><b>14.3.5</b> Paired t-test</a></li>
+<li class="chapter" data-level="14.3.6" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#lower-tail-hypothesis"><i class="fa fa-check"></i><b>14.3.6</b> Lower tail hypothesis</a></li>
+</ul></li>
+<li class="chapter" data-level="14.4" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#hypothesis-testing-for-the-proportion"><i class="fa fa-check"></i><b>14.4</b> Hypothesis testing for the proportion</a></li>
+<li class="chapter" data-level="14.5" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#hypothesis-testing-for-the-variance"><i class="fa fa-check"></i><b>14.5</b> Hypothesis Testing for the Variance</a></li>
+<li class="chapter" data-level="14.6" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#errors-in-hypothesis-testing"><i class="fa fa-check"></i><b>14.6</b> Errors in hypothesis testing</a>
+<ul>
+<li class="chapter" data-level="14.6.1" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#sensitivity-and-specificity"><i class="fa fa-check"></i><b>14.6.1</b> Sensitivity and Specificity</a></li>
+</ul></li>
+<li class="chapter" data-level="14.7" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#exercises-12"><i class="fa fa-check"></i><b>14.7</b> Exercises</a></li>
+<li class="chapter" data-level="14.8" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#practice-4"><i class="fa fa-check"></i><b>14.8</b> Practice</a></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="contingency-tables.html"><a href="contingency-tables.html"><i class="fa fa-check"></i><b>15</b> Contingency tables</a>
+<ul>
+<li class="chapter" data-level="15.1" data-path="contingency-tables.html"><a href="contingency-tables.html#difference-between-proportions"><i class="fa fa-check"></i><b>15.1</b> Difference between proportions</a></li>
+<li class="chapter" data-level="15.2" data-path="contingency-tables.html"><a href="contingency-tables.html#difference-between-proportions-1"><i class="fa fa-check"></i><b>15.2</b> Difference between proportions</a></li>
+<li class="chapter" data-level="15.3" data-path="contingency-tables.html"><a href="contingency-tables.html#contingency-table-of-conditional-probabilities"><i class="fa fa-check"></i><b>15.3</b> Contingency table of conditional probabilities</a></li>
+<li class="chapter" data-level="15.4" data-path="contingency-tables.html"><a href="contingency-tables.html#test-for-the-difference-between-proportions"><i class="fa fa-check"></i><b>15.4</b> Test for the difference between proportions</a></li>
+<li class="chapter" data-level="15.5" data-path="contingency-tables.html"><a href="contingency-tables.html#chi2-test"><i class="fa fa-check"></i><b>15.5</b> <span class="math inline">\(\chi^2\)</span> test</a></li>
+<li class="chapter" data-level="15.6" data-path="contingency-tables.html"><a href="contingency-tables.html#fishers-exact-test"><i class="fa fa-check"></i><b>15.6</b> Fisher’s exact test</a></li>
+<li class="chapter" data-level="15.7" data-path="contingency-tables.html"><a href="contingency-tables.html#hypergeometric-distribution"><i class="fa fa-check"></i><b>15.7</b> Hypergeometric distribution</a></li>
+<li class="chapter" data-level="15.8" data-path="contingency-tables.html"><a href="contingency-tables.html#difference-between-several-proportions"><i class="fa fa-check"></i><b>15.8</b> Difference between several proportions</a></li>
+<li class="chapter" data-level="15.9" data-path="contingency-tables.html"><a href="contingency-tables.html#goodness-of-fit"><i class="fa fa-check"></i><b>15.9</b> Goodness of fit</a></li>
+<li class="chapter" data-level="15.10" data-path="contingency-tables.html"><a href="contingency-tables.html#questions-11"><i class="fa fa-check"></i><b>15.10</b> Questions</a></li>
+<li class="chapter" data-level="15.11" data-path="contingency-tables.html"><a href="contingency-tables.html#practice-5"><i class="fa fa-check"></i><b>15.11</b> Practice</a></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="mean-differences-between-two-samples.html"><a href="mean-differences-between-two-samples.html"><i class="fa fa-check"></i><b>16</b> Mean differences between two samples</a>
+<ul>
+<li class="chapter" data-level="16.1" data-path="mean-differences-between-two-samples.html"><a href="mean-differences-between-two-samples.html#difference-in-means-between-two-groups"><i class="fa fa-check"></i><b>16.1</b> Difference in means between two groups</a></li>
+<li class="chapter" data-level="16.2" data-path="mean-differences-between-two-samples.html"><a href="mean-differences-between-two-samples.html#data-1"><i class="fa fa-check"></i><b>16.2</b> Data</a></li>
+<li class="chapter" data-level="16.3" data-path="mean-differences-between-two-samples.html"><a href="mean-differences-between-two-samples.html#difference-between-means"><i class="fa fa-check"></i><b>16.3</b> Difference between means</a></li>
+<li class="chapter" data-level="16.4" data-path="mean-differences-between-two-samples.html"><a href="mean-differences-between-two-samples.html#hypothesis-test"><i class="fa fa-check"></i><b>16.4</b> Hypothesis test</a></li>
+<li class="chapter" data-level="16.5" data-path="mean-differences-between-two-samples.html"><a href="mean-differences-between-two-samples.html#estiamtor-of-the-mean-difference"><i class="fa fa-check"></i><b>16.5</b> Estiamtor of the mean difference</a></li>
+<li class="chapter" data-level="16.6" data-path="mean-differences-between-two-samples.html"><a href="mean-differences-between-two-samples.html#standardized-error"><i class="fa fa-check"></i><b>16.6</b> Standardized error</a></li>
+<li class="chapter" data-level="16.7" data-path="mean-differences-between-two-samples.html"><a href="mean-differences-between-two-samples.html#standardized-error-for-the-null"><i class="fa fa-check"></i><b>16.7</b> Standardized error for the null</a></li>
+<li class="chapter" data-level="16.8" data-path="mean-differences-between-two-samples.html"><a href="mean-differences-between-two-samples.html#mean-differences-when-n-is-small"><i class="fa fa-check"></i><b>16.8</b> Mean differences when <span class="math inline">\(n\)</span> is small</a></li>
+<li class="chapter" data-level="16.9" data-path="mean-differences-between-two-samples.html"><a href="mean-differences-between-two-samples.html#data-2"><i class="fa fa-check"></i><b>16.9</b> Data</a></li>
+<li class="chapter" data-level="16.10" data-path="mean-differences-between-two-samples.html"><a href="mean-differences-between-two-samples.html#difference-between-means-1"><i class="fa fa-check"></i><b>16.10</b> Difference between means</a></li>
+<li class="chapter" data-level="16.11" data-path="mean-differences-between-two-samples.html"><a href="mean-differences-between-two-samples.html#hypothesis-test-1"><i class="fa fa-check"></i><b>16.11</b> Hypothesis test</a></li>
+<li class="chapter" data-level="16.12" data-path="mean-differences-between-two-samples.html"><a href="mean-differences-between-two-samples.html#estimator-of-the-mean-difference"><i class="fa fa-check"></i><b>16.12</b> Estimator of the mean difference</a></li>
+<li class="chapter" data-level="16.13" data-path="mean-differences-between-two-samples.html"><a href="mean-differences-between-two-samples.html#standardized-error-for-the-null-1"><i class="fa fa-check"></i><b>16.13</b> Standardized error for the null</a></li>
+<li class="chapter" data-level="16.14" data-path="mean-differences-between-two-samples.html"><a href="mean-differences-between-two-samples.html#mean-differences-with-unequall-variances"><i class="fa fa-check"></i><b>16.14</b> Mean differences with unequall variances</a></li>
+<li class="chapter" data-level="16.15" data-path="mean-differences-between-two-samples.html"><a href="mean-differences-between-two-samples.html#data-3"><i class="fa fa-check"></i><b>16.15</b> Data</a></li>
+<li class="chapter" data-level="16.16" data-path="mean-differences-between-two-samples.html"><a href="mean-differences-between-two-samples.html#questions-12"><i class="fa fa-check"></i><b>16.16</b> Questions</a></li>
+<li class="chapter" data-level="16.17" data-path="mean-differences-between-two-samples.html"><a href="mean-differences-between-two-samples.html#practice-6"><i class="fa fa-check"></i><b>16.17</b> Practice</a></li>
+</ul></li>
+<li class="chapter" data-level="17" data-path="mean-differences-across-several-groups.html"><a href="mean-differences-across-several-groups.html"><i class="fa fa-check"></i><b>17</b> Mean differences across several groups</a>
+<ul>
+<li class="chapter" data-level="17.1" data-path="mean-differences-across-several-groups.html"><a href="mean-differences-across-several-groups.html#different-means-among-several-conditions"><i class="fa fa-check"></i><b>17.1</b> Different means among several conditions</a></li>
+<li class="chapter" data-level="17.2" data-path="mean-differences-across-several-groups.html"><a href="mean-differences-across-several-groups.html#data-4"><i class="fa fa-check"></i><b>17.2</b> Data</a></li>
+<li class="chapter" data-level="17.3" data-path="mean-differences-across-several-groups.html"><a href="mean-differences-across-several-groups.html#difference-between-means-2"><i class="fa fa-check"></i><b>17.3</b> Difference between means</a></li>
+<li class="chapter" data-level="17.4" data-path="mean-differences-across-several-groups.html"><a href="mean-differences-across-several-groups.html#hypothesis-test-2"><i class="fa fa-check"></i><b>17.4</b> Hypothesis test</a>
+<ul>
+<li class="chapter" data-level="17.4.1" data-path="mean-differences-across-several-groups.html"><a href="mean-differences-across-several-groups.html#distribution-of-group-means-under-h_0"><i class="fa fa-check"></i><b>17.4.1</b> Distribution of group means under <span class="math inline">\(H_0\)</span></a></li>
+<li class="chapter" data-level="17.4.2" data-path="mean-differences-across-several-groups.html"><a href="mean-differences-across-several-groups.html#sources-of-variation"><i class="fa fa-check"></i><b>17.4.2</b> Sources of variation</a></li>
+</ul></li>
+<li class="chapter" data-level="17.5" data-path="mean-differences-across-several-groups.html"><a href="mean-differences-across-several-groups.html#variance-components-estimators"><i class="fa fa-check"></i><b>17.5</b> Variance components estimators</a></li>
+<li class="chapter" data-level="17.6" data-path="mean-differences-across-several-groups.html"><a href="mean-differences-across-several-groups.html#analysis-of-variance-anova"><i class="fa fa-check"></i><b>17.6</b> Analysis of variance (ANOVA)</a></li>
+<li class="chapter" data-level="17.7" data-path="mean-differences-across-several-groups.html"><a href="mean-differences-across-several-groups.html#anova-for-two-groups"><i class="fa fa-check"></i><b>17.7</b> ANOVA for Two Groups</a></li>
+<li class="chapter" data-level="17.8" data-path="mean-differences-across-several-groups.html"><a href="mean-differences-across-several-groups.html#linear-model"><i class="fa fa-check"></i><b>17.8</b> Linear model</a></li>
+<li class="chapter" data-level="17.9" data-path="mean-differences-across-several-groups.html"><a href="mean-differences-across-several-groups.html#way-anova"><i class="fa fa-check"></i><b>17.9</b> 2-way ANOVA</a></li>
+<li class="chapter" data-level="17.10" data-path="mean-differences-across-several-groups.html"><a href="mean-differences-across-several-groups.html#data-5"><i class="fa fa-check"></i><b>17.10</b> Data</a></li>
+<li class="chapter" data-level="17.11" data-path="mean-differences-across-several-groups.html"><a href="mean-differences-across-several-groups.html#modeling-residuals"><i class="fa fa-check"></i><b>17.11</b> Modeling residuals</a></li>
+<li class="chapter" data-level="17.12" data-path="mean-differences-across-several-groups.html"><a href="mean-differences-across-several-groups.html#way-anova-linear-model"><i class="fa fa-check"></i><b>17.12</b> 2-way ANOVA linear model</a></li>
+<li class="chapter" data-level="17.13" data-path="mean-differences-across-several-groups.html"><a href="mean-differences-across-several-groups.html#hypothesis-tests"><i class="fa fa-check"></i><b>17.13</b> Hypothesis tests</a></li>
+<li class="chapter" data-level="17.14" data-path="mean-differences-across-several-groups.html"><a href="mean-differences-across-several-groups.html#variance-components"><i class="fa fa-check"></i><b>17.14</b> Variance components</a></li>
+<li class="chapter" data-level="17.15" data-path="mean-differences-across-several-groups.html"><a href="mean-differences-across-several-groups.html#way-anova-with-interaction"><i class="fa fa-check"></i><b>17.15</b> 2-way ANOVA with interaction</a></li>
+<li class="chapter" data-level="17.16" data-path="mean-differences-across-several-groups.html"><a href="mean-differences-across-several-groups.html#linear-model-1"><i class="fa fa-check"></i><b>17.16</b> Linear model</a></li>
+<li class="chapter" data-level="17.17" data-path="mean-differences-across-several-groups.html"><a href="mean-differences-across-several-groups.html#hypothesis-tests-1"><i class="fa fa-check"></i><b>17.17</b> Hypothesis tests</a></li>
+<li class="chapter" data-level="17.18" data-path="mean-differences-across-several-groups.html"><a href="mean-differences-across-several-groups.html#variance-components-1"><i class="fa fa-check"></i><b>17.18</b> Variance components</a></li>
+<li class="chapter" data-level="17.19" data-path="mean-differences-across-several-groups.html"><a href="mean-differences-across-several-groups.html#questions-13"><i class="fa fa-check"></i><b>17.19</b> Questions</a></li>
+<li class="chapter" data-level="17.20" data-path="mean-differences-across-several-groups.html"><a href="mean-differences-across-several-groups.html#practice-7"><i class="fa fa-check"></i><b>17.20</b> Practice</a></li>
+</ul></li>
+<li class="chapter" data-level="18" data-path="regression-and-correlation.html"><a href="regression-and-correlation.html"><i class="fa fa-check"></i><b>18</b> Regression and Correlation</a>
+<ul>
+<li class="chapter" data-level="18.1" data-path="regression-and-correlation.html"><a href="regression-and-correlation.html#correlations"><i class="fa fa-check"></i><b>18.1</b> Correlations</a></li>
+<li class="chapter" data-level="18.2" data-path="regression-and-correlation.html"><a href="regression-and-correlation.html#data-6"><i class="fa fa-check"></i><b>18.2</b> Data</a></li>
+<li class="chapter" data-level="18.3" data-path="regression-and-correlation.html"><a href="regression-and-correlation.html#normal-bivariate"><i class="fa fa-check"></i><b>18.3</b> Normal bivariate</a></li>
+<li class="chapter" data-level="18.4" data-path="regression-and-correlation.html"><a href="regression-and-correlation.html#estimators"><i class="fa fa-check"></i><b>18.4</b> Estimators</a></li>
+<li class="chapter" data-level="18.5" data-path="regression-and-correlation.html"><a href="regression-and-correlation.html#correlation-coefficient"><i class="fa fa-check"></i><b>18.5</b> Correlation coefficient</a></li>
+<li class="chapter" data-level="18.6" data-path="regression-and-correlation.html"><a href="regression-and-correlation.html#hypothesis-contrast"><i class="fa fa-check"></i><b>18.6</b> Hypothesis contrast</a></li>
+<li class="chapter" data-level="18.7" data-path="regression-and-correlation.html"><a href="regression-and-correlation.html#regression-analysis"><i class="fa fa-check"></i><b>18.7</b> Regression analysis</a></li>
+<li class="chapter" data-level="18.8" data-path="regression-and-correlation.html"><a href="regression-and-correlation.html#linear-model-2"><i class="fa fa-check"></i><b>18.8</b> Linear model</a></li>
+<li class="chapter" data-level="18.9" data-path="regression-and-correlation.html"><a href="regression-and-correlation.html#hypothesis-contrast-1"><i class="fa fa-check"></i><b>18.9</b> Hypothesis contrast</a></li>
+<li class="chapter" data-level="18.10" data-path="regression-and-correlation.html"><a href="regression-and-correlation.html#estimators-1"><i class="fa fa-check"></i><b>18.10</b> Estimators</a></li>
+<li class="chapter" data-level="18.11" data-path="regression-and-correlation.html"><a href="regression-and-correlation.html#hypothesis-testing-2"><i class="fa fa-check"></i><b>18.11</b> Hypothesis testing</a></li>
+<li class="chapter" data-level="18.12" data-path="regression-and-correlation.html"><a href="regression-and-correlation.html#stratified-analysis"><i class="fa fa-check"></i><b>18.12</b> Stratified analysis</a></li>
+<li class="chapter" data-level="18.13" data-path="regression-and-correlation.html"><a href="regression-and-correlation.html#multiple-regression"><i class="fa fa-check"></i><b>18.13</b> Multiple Regression</a></li>
+<li class="chapter" data-level="18.14" data-path="regression-and-correlation.html"><a href="regression-and-correlation.html#multiple-regression-interaction"><i class="fa fa-check"></i><b>18.14</b> Multiple Regression interaction</a></li>
+<li class="chapter" data-level="18.15" data-path="regression-and-correlation.html"><a href="regression-and-correlation.html#model-diagnostics"><i class="fa fa-check"></i><b>18.15</b> Model diagnostics</a></li>
+<li class="chapter" data-level="18.16" data-path="regression-and-correlation.html"><a href="regression-and-correlation.html#questions-14"><i class="fa fa-check"></i><b>18.16</b> Questions</a></li>
+<li class="chapter" data-level="18.17" data-path="regression-and-correlation.html"><a href="regression-and-correlation.html#practice-8"><i class="fa fa-check"></i><b>18.17</b> Practice</a></li>
+</ul></li>
+<li class="chapter" data-level="19" data-path="apendix.html"><a href="apendix.html"><i class="fa fa-check"></i><b>19</b> Apendix</a>
+<ul>
+<li class="chapter" data-level="19.1" data-path="apendix.html"><a href="apendix.html#solutions-to-questions"><i class="fa fa-check"></i><b>19.1</b> Solutions to Questions</a></li>
+<li class="chapter" data-level="19.2" data-path="apendix.html"><a href="apendix.html#summary-tables-python-and-r-code"><i class="fa fa-check"></i><b>19.2</b> Summary tables, Python and R code</a>
+<ul>
+<li class="chapter" data-level="19.2.1" data-path="apendix.html"><a href="apendix.html#creating-data-frames-and-loading-text-files"><i class="fa fa-check"></i><b>19.2.1</b> Creating Data Frames and Loading Text Files</a></li>
+<li class="chapter" data-level="19.2.2" data-path="apendix.html"><a href="apendix.html#python-and-r-functions-for-data-description"><i class="fa fa-check"></i><b>19.2.2</b> Python and R Functions for Data Description</a></li>
+</ul></li>
+<li class="chapter" data-level="19.3" data-path="apendix.html"><a href="apendix.html#summary-of-common-probability-models"><i class="fa fa-check"></i><b>19.3</b> Summary of common probability models</a>
+<ul>
+<li class="chapter" data-level="19.3.1" data-path="apendix.html"><a href="apendix.html#python-and-r-functions-for-probability-models"><i class="fa fa-check"></i><b>19.3.1</b> Python and R Functions for Probability Models</a></li>
+</ul></li>
+<li class="chapter" data-level="19.4" data-path="apendix.html"><a href="apendix.html#summary-of-hypothesis"><i class="fa fa-check"></i><b>19.4</b> Summary of hypothesis</a>
+<ul>
+<li class="chapter" data-level="19.4.1" data-path="apendix.html"><a href="apendix.html#python-and-r-functions-for-hypothesis-tesing"><i class="fa fa-check"></i><b>19.4.1</b> Python and R Functions for Hypothesis tesing</a></li>
+<li class="chapter" data-level="19.4.2" data-path="apendix.html"><a href="apendix.html#python-libraries-required"><i class="fa fa-check"></i><b>19.4.2</b> Python Libraries Required</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Statistical Data Analysis
+for
+Experimental Sciences</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="mean-differences-between-two-samples" class="section level1 hasAnchor" number="16">
+<h1><span class="header-section-number">Chapter 16</span> Mean differences between two samples<a href="mean-differences-between-two-samples.html#mean-differences-between-two-samples" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Testing statistical dependence lies at the core of statistical inference. In many scientific studies, we want to know whether changes in one factor are associated with changes in an outcome. To answer this, experiments are planned with great care so that we can identify and measure the sources of variation in the data.</p>
+<p>Variation in an outcome can come from several sources. Some of it is due to measurement error, which improved techniques can often reduce. Some comes from intrinsic differences between the observational units (people, animals, samples, etc.). If these differences are irrelevant to the main question, we can control for them — for example, by grouping similar units together and repeating the experiment under the same conditions. Sometimes, however, controlling all conditions is impractical or undesirable. In those cases, we can use randomization so that uncontrolled influences become part of the random error, which can then be handled statistically.</p>
+<p>In the kind of experiments we consider here, we deliberately change one condition of interest, repeat the random experiment, and record the outcome. Each experimental unit is observed under only one condition — we do not (or cannot) measure the same unit under multiple conditions.</p>
+<p>When the outcome is a continuous variable, we may ask how its expected value changes as the condition changes. The theoretical question is: Does changing the condition alter the probability distribution of the outcome, and therefore its mean? Experimentally, if the averages differ between conditions, we want to know: To what extent can we conclude that the outcome is statistically dependent on the condition?</p>
+<p>In this chapter, we will focus on testing statistical independence between one continuous variable and two discrete conditions (or groups). We will start with the case where <span class="math inline">\(n\)</span> is large and the central limit theorem applies, and illustrate its use using the transformative finding in preventive health from the Framingham cohort that established hypertension as a risk factor for stroke.</p>
+<p>Next, we will introduce the <span class="math inline">\(t\)</span>-test, which applies when <span class="math inline">\(n\)</span> is small and the outcomes are normally distributed with equal variances. This will be illustrated with James Clerk Maxwell’s counterintuitive discovery that gas viscosity is independent of pressure — a key finding in the foundation of statistical mechanics.</p>
+<p>Finally, we will consider the case where the conditions also change the variances of normally distributed outcomes. Here, we will present the two-sample <span class="math inline">\(t\)</span>-test for unequal variances and demonstrate its application to comparing the weights of leptin knocked out mice, demonstrating that hormone encoded by the gene plays a role in obesity.</p>
+<div id="difference-in-means-between-two-groups" class="section level2 hasAnchor" number="16.1">
+<h2><span class="header-section-number">16.1</span> Difference in means between two groups<a href="mean-differences-between-two-samples.html#difference-in-means-between-two-groups" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>We will consider an outcome of a random experiment that follows a normal probability model:</p>
+<p><span class="math display">\[ Y \sim N(\mu, \sigma^2) \]</span></p>
+<p>We aim to measure this outcome several times under two different conditions, or in two groups, called <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span>. Our goal is to determine whether the expected value (mean) of the random variable changes between these conditions.</p>
+<p>When testing a hypothesis about the mean, but without knowing a fixed reference value <span class="math inline">\(\mu_0\)</span> for comparison, we often estimate it by repeating the experiment under a reference condition <span class="math inline">\(A\)</span>, often referred to as the control condition. We then compare this estimate to the mean obtained under a new condition <span class="math inline">\(B\)</span>, where we may have applied a new treatment or selected units from a specific case. Examples include testing clinical differences between cases and controls, comparing a drug to a placebo, or changing the conditions of a physical system.</p>
+<p><strong>Example (Framingham cohort)</strong></p>
+<p>In 1948, 5209 men and women from Fremingham, Massachusetts, were recruited to be followed during their life course to find the causes of hart disease. The cohort, was transform epidemiological research with unprecedented insights into cardiovascular disease. From this investigations we now know, for example, that hypertension is a risk factor for stroke <span class="citation">(<a href="#ref-kannel1961factors">Kannel et al. 1961</a>)</span>, which has changed clinical practice, ever since.</p>
+<p>Let us explore this finding with available data from the cohort. While access to three generations of full data can be obtained to perform comprehensive analysis, here we will illustrate the fining with the teaching data set from the Framingham Heart Study.</p>
+<p>In this data matrix, we have can take for instance two conditions: <span class="math inline">\(A:Stroke\)</span> and <span class="math inline">\(B:No \,stroke\)</span> and assume that</p>
+<ol style="list-style-type: decimal">
+<li>the level of systolic blood preasure (SYBP) in a randomly chosen man between 40 and 59 years of age who reported a stroke has a probability density</li>
+</ol>
+<p><span class="math display">\[Y_A \sim N(\mu_A, \sigma_A^2)\]</span></p>
+<ol start="2" style="list-style-type: decimal">
+<li>the level in a man with the same characteristics but who has not suffer a stroke has a probability density for SYBP</li>
+</ol>
+<p><span class="math display">\[Y_B \sim N(\mu_B, \sigma_B^2)\]</span></p>
+</div>
+<div id="data-1" class="section level2 hasAnchor" number="16.2">
+<h2><span class="header-section-number">16.2</span> Data<a href="mean-differences-between-two-samples.html#data-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>One random experiment has two variables: <span class="math inline">\((c, y)\)</span>:</p>
+<ol style="list-style-type: decimal">
+<li><p><span class="math inline">\(C \in \{A,B\}\)</span> is a discrete variable with two possible outcomes, one for each experimental condition.</p></li>
+<li><p><span class="math inline">\(Y\)</span> a continuous variable, whose observation produces the outcome of interest</p></li>
+</ol>
+<p>The repetition of the random experiment <span class="math inline">\(n\)</span> times is therefore a table such as</p>
+<p><span class="math display">\[
+\begin{array}{ccc}
+\mathbf{Individual} &amp; \mathbf{Condition} &amp; \mathbf{Outcome} \\
+c_1 &amp; \text{A} &amp; \text{121.0} \\
+c_2 &amp; \text{A} &amp; \text{127.5} \\
+c_3 &amp; \text{A} &amp; \text{141.0} \\
+\vdots &amp; \vdots &amp; \vdots \\
+c_{n-2} &amp; \text{B} &amp; \text{153.5} \\
+c_{n-1} &amp; \text{B} &amp; \text{160.0} \\
+c_{n}&amp; \text{B} &amp; \text{173.0} \\
+\end{array}
+\]</span></p>
+<p>For example, subject <span class="math inline">\(1\)</span> was under condition <span class="math inline">\(A\)</span> and had outcome <span class="math inline">\(121.0\)</span> for <span class="math inline">\(Y\)</span>.</p>
+<p><strong>Example (Framingham cohort)</strong></p>
+<p>In the Framingham cohort the SYBP is a continuous outcome in 40-59 year old man</p>
+<ul>
+<li><span class="math inline">\(SYBP \in (83.5, 217)\)</span></li>
+</ul>
+<p>And the condition is whether the same individual reported having a stroke or not:</p>
+<ul>
+<li><span class="math inline">\(stroke \in \{yes:A,no:B\}\)</span></li>
+</ul>
+<p><span class="math inline">\(201\)</span> men reported having a stroke and <span class="math inline">\(2760\)</span> reported not having one. We want to know whether the probability of having high systolic blood pressure changes between stroke patients or controls. We may also ask whether the expected value of SYBP is significantly higher in stroke patients. Our research interest is to show that SYSBP is statistically dependent from stroke status.</p>
+</div>
+<div id="difference-between-means" class="section level2 hasAnchor" number="16.3">
+<h2><span class="header-section-number">16.3</span> Difference between means<a href="mean-differences-between-two-samples.html#difference-between-means" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>We take the SYSBP levels <strong>conditioned to</strong> each stroke, and observed:</p>
+<ul>
+<li><p><span class="math inline">\(n_A=201\)</span> stroke patients had a mean of <span class="math inline">\(\bar{y}_A=140.91\)</span> and <span class="math inline">\(s=21.79\)</span></p></li>
+<li><p>$n_B=2760 $ non-stroke controls had a mean of <span class="math inline">\(\bar{y}_B=133.99\)</span> and <span class="math inline">\(s=18.42\)</span></p></li>
+</ul>
+<p>We can show a plot for the mean in each condition overlying the histogram of the data.</p>
+<p><img src="_main_files/figure-html/unnamed-chunk-175-1.png" width="672" /></p>
+<p>Or we can overlay the histograms horizontally</p>
+<p><img src="_main_files/figure-html/unnamed-chunk-176-1.png" width="672" /></p>
+<p>The plots suggest that stroke patients will have more probability of high SYBP than controls, however some stroke patients will have very low SYBP, and some controls high. The dispersion of the outcome is large in both groups but, <strong>on average</strong> stroke patients have more SYPD. Is the difference between the averages <span class="math inline">\(\bar{y}_A\)</span> and <span class="math inline">\(\bar{y}_B\)</span> (the dots at the bottom of the histogram) <strong>statistically significant</strong>?</p>
+<p>How confident are we on the magnitude of this difference? That is, could have we got this lower higher levels of SYBP in stroke patients by chance alone (null hypothesis) or there is biological difference that cannot be fully explained by chance (alternative hypothesis)?</p>
+</div>
+<div id="hypothesis-test" class="section level2 hasAnchor" number="16.4">
+<h2><span class="header-section-number">16.4</span> Hypothesis test<a href="mean-differences-between-two-samples.html#hypothesis-test" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Let us formulate the hypothesis contrast</p>
+<ol style="list-style-type: lower-alpha">
+<li><p><span class="math inline">\(H_0: \mu_A=\mu_B\)</span> The null hypothesis is that both groups have the same mean.</p></li>
+<li><p><span class="math inline">\(H_1: \mu_A \neq \mu_B\)</span> The alternative hypothesis (research interest) is that the means are different between groups.</p></li>
+</ol>
+<p>Only one can be true. How would the data decide? To make things easier let us redefine the contrast.</p>
+<p>If we consider <span class="math inline">\(\delta\)</span>, the difference between means <span class="math inline">\(\delta=\mu_A-\mu_B\)</span>, then the hypotheses can be written as</p>
+<ol style="list-style-type: lower-alpha">
+<li><span class="math inline">\(H_0: \delta=0\)</span></li>
+<li><span class="math inline">\(H_1: \delta\neq 0\)</span></li>
+</ol>
+<p>Either the difference between the means is zero or not. <span class="math inline">\(\delta\)</span> is the <strong>parameter of interest</strong> in our study, and to test hypotheses on it, we need to find an <strong>estimator</strong> for it.</p>
+</div>
+<div id="estiamtor-of-the-mean-difference" class="section level2 hasAnchor" number="16.5">
+<h2><span class="header-section-number">16.5</span> Estiamtor of the mean difference<a href="mean-differences-between-two-samples.html#estiamtor-of-the-mean-difference" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The statistic <span class="math inline">\(D=\bar{Y}_A-\bar{Y}_B\)</span>, that is the difference in averages, is an estimator of <span class="math inline">\(\delta\)</span>. In particular, we can show that the the estimator is</p>
+<ul>
+<li>unbiased because its expected value is the parameter</li>
+</ul>
+<p><span class="math display">\[E(D)=E(\bar{Y}_A-\bar{Y}_B)=\mu_A-\mu_B=\delta\]</span></p>
+<ul>
+<li>and consistent because its variance gets smaller when <span class="math inline">\(n=n_A+n_B\)</span> gets bigger</li>
+</ul>
+<p><span class="math display">\[\sigma_D^2=V(\bar{Y}_A-\bar{Y}_B)=\frac{\sigma^2_A}{n_A}+\frac{\sigma^2_B}{n_B}\]</span></p>
+<p>This means that we can take one observed value of <span class="math inline">\(D\)</span>, that is <span class="math inline">\(d_{obs}\)</span>, for the estimation of the parameter <span class="math inline">\(\delta\)</span>.</p>
+<p>It is important to have a clear idea of the different components in the estimation and the hypothesis test, as they are shown below. Those are the distributions of the data, the distributions of the averages and the means for each condition, and their difference.</p>
+<p><img src="_main_files/figure-html/unnamed-chunk-177-1.png" width="672" /></p>
+<p>Remember that, for instance, the average <span class="math inline">\(\bar{Y}_A\)</span> is also called the sample mean, and it has a distribution that is centered on <span class="math inline">\(\mu_A\)</span> and has variance <span class="math inline">\(\frac{\sigma_A^2}{n_A}\)</span>.</p>
+</div>
+<div id="standardized-error" class="section level2 hasAnchor" number="16.6">
+<h2><span class="header-section-number">16.6</span> Standardized error<a href="mean-differences-between-two-samples.html#standardized-error" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>If <span class="math inline">\(Y_A\)</span> and <span class="math inline">\(Y_B\)</span> are both normal independent variables, their averages are normal and so it is their difference <span class="math inline">\(D\)</span>. Therefore, the standardization of <span class="math inline">\(D\)</span> is approximately standard normal</p>
+<p><span class="math display">\[Z=\frac{D-\delta}{\sqrt{V(D)}}=\frac{\bar{Y}_A-\bar{Y}_B -\delta}{\sqrt{\frac{s^2_A}{n_A}+\frac{s^2_B}{n_B}}} \sim_{approx} N(0,1)\]</span></p>
+<p>when both <span class="math inline">\(n_A\)</span> and <span class="math inline">\(n_B\)</span> are large. It is approximate because as we do not know the variances <span class="math inline">\(\sigma^2_A\)</span> and <span class="math inline">\(\sigma^2_B\)</span>, we estimated them with <span class="math inline">\(s_A^2\)</span> and <span class="math inline">\(s_B^2\)</span>.</p>
+<p>We can also use this approximation when <strong>we do not know the distributions</strong> of <span class="math inline">\(Y_A\)</span> and <span class="math inline">\(Y_B\)</span>, as a result of the central limit theorem, when both groups have large sample sizes.</p>
+</div>
+<div id="standardized-error-for-the-null" class="section level2 hasAnchor" number="16.7">
+<h2><span class="header-section-number">16.7</span> Standardized error for the null<a href="mean-differences-between-two-samples.html#standardized-error-for-the-null" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>If the null hypothesis is true (<span class="math inline">\(\delta=0\)</span>), then when we estimate <span class="math inline">\(\delta\)</span> with <span class="math inline">\(D\)</span> we make an error. When <span class="math inline">\(n\)</span> is large, the <strong>standardized error</strong> from the null hypothesis is the statistic</p>
+<p><span class="math display">\[Z=\frac{\bar{Y}_A-\bar{Y}_B}{\sqrt{\frac{s_A^2}{n_A}+\frac{s^2_B}{n_B}}}\]</span></p>
+<p>that follows a standard normal distribution because of the central limit theorem.</p>
+<p>To test the hypothesis we then ask if the observed <span class="math inline">\(z_{obs}\)</span> is within the acceptance region of the null hypothesis.</p>
+<p>In particular, we ask: is the probability of observing a more extreme value than <span class="math inline">\(z_{obs}\)</span> lower than <span class="math inline">\(\alpha=0.05\)</span> if the null hypothesis is true?</p>
+<p>The value of <span class="math inline">\(z_{obs}\)</span> is the standardized value of the observed difference between the averages:</p>
+<p><span class="math display">\[z_{obs}=\frac{d_{obs}}{\sqrt{\frac{s_A^2}{n_A}+\frac{s^2_B}{n_B}}}\]</span></p>
+<p>For our data, we have that the <strong>observed</strong> standardized mean difference is</p>
+<p><span class="math display">\[z_{obs}=\frac{\bar{y}_A-\bar{y}_B }{\sqrt{\frac{s^2_A}{n_A}+\frac{s^2_B}{n_B}}}=\frac{140.91-131.99}{\sqrt{\frac{21.79}{201}+\frac{18.42}{2760}}}=5.95\]</span></p>
+<p>Since our hypothesis is two tailed then the the two-tailed <span class="math inline">\(pvalue\)</span> is</p>
+<p><span class="math display">\[pvalue=2(1-\Phi(5.95))=2.68 \times 10^{-9}\]</span></p>
+<p>which is much lower than <span class="math inline">\(\alpha\)</span>.</p>
+<p>Therefore, we reject the null hypothesis that <span class="math inline">\(H_0:\delta=0\)</span> that is that the SYBP in stroke patients and controls are equal. In other words, we have strong evidence that the mean SYBP between conditions are different.</p>
+<p>In Python and R, we use the fact that the standardized statistic <span class="math inline">\(Z\)</span> when <span class="math inline">\(n\)</span> is large is close to a <span class="math inline">\(t\)</span> distribution with large degrees of freedom, even when the outcome distributions are not normal. We can use the <span class="math inline">\(t\)</span>-test as an approximation for the normal standard in this cases</p>
+<pre><code>Python
+import pandas as pd
+from scipy import stats
+
+# Assuming dat is already a pandas DataFrame
+# Example: dat = pd.DataFrame({&quot;SYSBP&quot;: [...], &quot;STROKE&quot;: [...]})
+
+# Split into two groups
+group_no_stroke = dat.loc[dat[&quot;STROKE&quot;] == &quot;No Stroke&quot;, &quot;SYSBP&quot;]
+group_stroke = dat.loc[dat[&quot;STROKE&quot;] == &quot;Stroke&quot;, &quot;SYSBP&quot;]
+
+# Perform independent two-sample t-test (equal_var=False is Welch&#39;s t-test)
+t_stat, p_value = stats.ttest_ind(group_no_stroke,
+group_stroke, equal_var=False)
+
+##Framingham Data
+library(riskCommunicator)
+data(framingham)
+sel &lt;- framingham$SEX == 1 &amp;
+       framingham$AGE &gt; 40 &amp;
+       framingham$AGE &lt; 59
+
+dat &lt;- data.frame(
+  SYSBP = framingham$SYSBP[sel],
+  STROKE = factor(framingham$STROKE[sel], labels = c(&quot;No Stroke&quot;, &quot;Stroke&quot;))
+)
+
+t.test(SYSBP~STROKE, data=dat)</code></pre>
+<p>We may conclude that systolic blood pressure is different between stroke patients and control, suggesting high SYBP as a potential factor for the disease. However, this simple preliminary approach needs to be taken with care. The data analyzed did not record whether the SYBP was measured after or before the stroke. In addition, we do not know which of those control patients had a stroke after they reported their status. To determine whether SYBP is an independent cause of stroke, the Framingham cohort followed the patients for several years recording SYBP and cardiovascular health. Their more refined analysis took the continuous values of SYBP as conditions for the occurrence of stroke during follow up.</p>
+<p>We can illustrate the results of the comparison between two group means in three different ways:</p>
+<ol style="list-style-type: decimal">
+<li><p>Using a bar plot with confidence intervals for the estimate in the mean of each group. Note that in a report we usually add the confidence intervals for the means. Non-overlapping confidence intervals also indicate that the difference between means is <strong>statistically significant</strong>, as this is an equivalent criteria to reject the null hypothesis.</p></li>
+<li><p>Using a boxplot. In this plot, we do not show the means but a summary of the distribution properties of the data at each condition. Remember that the properties are the median (the middle line), the quartiles (the box edges) and the <span class="math inline">\(5\%\)</span> and <span class="math inline">\(95\%\)</span> quantiles (the whiskers).</p></li>
+<li><p>Using a violin plot. These are smoothed mirrored histograms overlaid. Here, you do not see the averages of each group but the modes (peaks of the histograms). However, you get the idea that the probability of high SYBP is higher in stroke patients that in controls.</p></li>
+</ol>
+<p><img src="_main_files/figure-html/unnamed-chunk-178-1.png" width="672" /></p>
+</div>
+<div id="mean-differences-when-n-is-small" class="section level2 hasAnchor" number="16.8">
+<h2><span class="header-section-number">16.8</span> Mean differences when <span class="math inline">\(n\)</span> is small<a href="mean-differences-between-two-samples.html#mean-differences-when-n-is-small" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><strong>Example (Gas viscosity)</strong></p>
+<p>James C. Maxwell grounded the field of statistical mechanics with a remarkable prediction. He developed the theory, designed the experiment and measure in the laboratory the fact that the viscosity of gases do not depend on their pressure <span class="citation">(<a href="#ref-maxwell1866viscosity">Maxwell 1866</a>)</span>.</p>
+<p>This counter-intuitive phenomena was derived from the molecular properties of gasses and help convince the scientific community that statistical properties of molecules underlie some properties of macroscopic objects.</p>
+<p>Theoretically, we showed that gas viscosity depends on two phenomena that exactly cancel out. He deigned a rotating pendulum in a container that could be subject to different gas pressures. When the pendulum rotates then its period to complete a full swing gets longer as the number of molecules in the gas get larger because it hits more molecules slowing it down. However, in gases, as the pendulum hits the molecules, if the pressure is increased, then those molecules would not travel far and get dragged along with the pendulum, creating a gas pocked around it diminishing the drag force. These to phenomena cancel out making the viscosity independent of the pressure.</p>
+<p>We how the results of Maxwell’s experiment, dividing the pressures reported into two conditions low (<span class="math inline">\(&lt;6\)</span>)mmHg and high (<span class="math inline">\(&gt;19\)</span>)mmHg and the time the pendulum took for a full swing (s). While the pressures were low to examine rarefied gases, the change of in pressure in the experiment was threefold. Maxwell pre-processed the time periods to compute the rate of decay of arc lengths to compare it with theoretical values. Here, we illustrate the raw measurements of gas viscosity throughout pendulum periods.</p>
+<p><span class="math display">\[
+\begin{array}{ccc}
+\mathbf{Experiment} &amp; \mathbf{Pressure} &amp; \mathbf{Period} \\
+1 &amp;      \text{Low}&amp; 362.66\\
+2 &amp;      \text{Low}&amp; 362.80\\
+3 &amp;      \text{Low}&amp; 364.04\\
+4 &amp;      \text{Low}&amp; 362.72\\
+5 &amp;      \text{Low}&amp; 362.94\\
+6 &amp;      \text{Low}&amp; 363.80\\
+7 &amp;     \text{High}&amp; 362.64\\
+8 &amp;     \text{High}&amp; 362.50\\
+9 &amp;     \text{High}&amp; 362.86\\
+10&amp;     \text{High}&amp; 363.80\\
+11&amp;     \text{High}&amp; 362.89\\
+12&amp;     \text{High}&amp; 363.90\\
+\end{array}
+\]</span></p>
+<p>The experiment was then repeated a small number of times <span class="math inline">\(12\)</span>. We can make a boxplot for each condition.</p>
+<p><img src="_main_files/figure-html/unnamed-chunk-180-1.png" width="672" /></p>
+<p>We assume that</p>
+<ol style="list-style-type: decimal">
+<li>the period of the pendulum under high pressure is normal random variable</li>
+</ol>
+<p><span class="math display">\[Y_A \sim N(\mu_A, \sigma^2)\]</span></p>
+<ol start="2" style="list-style-type: decimal">
+<li>the period of the pendulum under low pressure is also normally distributed</li>
+</ol>
+<p><span class="math display">\[Y_B \sim N(\mu_B, \sigma^2)\]</span></p>
+<ol start="3" style="list-style-type: decimal">
+<li>both distributions have <strong>the same</strong> variance <span class="math inline">\(\sigma^2\)</span>.</li>
+</ol>
+</div>
+<div id="data-2" class="section level2 hasAnchor" number="16.9">
+<h2><span class="header-section-number">16.9</span> Data<a href="mean-differences-between-two-samples.html#data-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>One random experiment has two outcomes: <span class="math inline">\((preassure, period)\)</span>.</p>
+<p>The pressure is a categorical variable and determines the conditions of the experiment:</p>
+<ul>
+<li><span class="math inline">\(Pressure \in \{High:A, Low:B\}\)</span></li>
+</ul>
+<p>The period is a continuous variable and it is the outcome of interest.</p>
+<ul>
+<li><span class="math inline">\(T \in (360, 365)\)</span> (seconds)</li>
+</ul>
+</div>
+<div id="difference-between-means-1" class="section level2 hasAnchor" number="16.10">
+<h2><span class="header-section-number">16.10</span> Difference between means<a href="mean-differences-between-two-samples.html#difference-between-means-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Maxwell measured the periods <strong>conditioned to</strong> two different pressures, and observed:</p>
+<ul>
+<li><p><span class="math inline">\(n_A=6\)</span> experiments under high pressure had period average <span class="math inline">\(\bar{y}_A=363.0983\)</span> an standard deviation <span class="math inline">\(s_A=0.600547\)</span></p></li>
+<li><p><span class="math inline">\(n_B=6\)</span> experiments under low pressure had period average <span class="math inline">\(\bar{y}_B=363.16\)</span> an standard deviation <span class="math inline">\(s_B=0.6009326\)</span></p></li>
+</ul>
+<p>We can draw violin plots per group</p>
+<p><img src="_main_files/figure-html/unnamed-chunk-181-1.png" width="672" /></p>
+<p>We see that the distributions are very similar similar and their means differ in 0.06 seconds. Can we have a statistical test for this difference?</p>
+</div>
+<div id="hypothesis-test-1" class="section level2 hasAnchor" number="16.11">
+<h2><span class="header-section-number">16.11</span> Hypothesis test<a href="mean-differences-between-two-samples.html#hypothesis-test-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>We can again formulate the hypothesis on the difference between means <span class="math inline">\(\delta=\mu_{high} -\mu_{low}\)</span></p>
+<ol style="list-style-type: lower-alpha">
+<li><p><span class="math inline">\(H_0: \delta=0\)</span>. The null hypothesis (research interest) assumes that the pendulum will take the same time to swing in high and low pressures.</p></li>
+<li><p><span class="math inline">\(H_1: \delta \neq 0\)</span>. Therefore, the alternative hypothesis is that the mean periods under different pressures are different.</p></li>
+</ol>
+</div>
+<div id="estimator-of-the-mean-difference" class="section level2 hasAnchor" number="16.12">
+<h2><span class="header-section-number">16.12</span> Estimator of the mean difference<a href="mean-differences-between-two-samples.html#estimator-of-the-mean-difference" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The statistic <span class="math inline">\(D=\bar{Y}_A-\bar{Y}_B\)</span> is again an unbiased estimator of <span class="math inline">\(\delta\)</span></p>
+<p><span class="math display">\[E(D)=\delta\]</span></p>
+<p>Since the periods for <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are normal variables with the same variance <span class="math inline">\(\sigma^2\)</span> each sample variance in each group is an estimator of <span class="math inline">\(\sigma^2\)</span>. That is <span class="math display">\[\hat{\sigma}^2=s^2_A=s^2_B\]</span></p>
+<p>then (Theorem) the <strong>standardized error</strong></p>
+<p><span class="math display">\[T=\frac{\bar{Y}_A-\bar{Y}_B -\delta}{\sqrt{s_p^2(\frac{1}{n_A}+\frac{1}{n_B})}} \sim T(n_A+n_B-2)\]</span></p>
+<p>follows exactly a T-distribution with <span class="math inline">\(n_A+n_B-2\)</span> degrees of freedom.</p>
+<p>The <strong>pooled variance</strong> <span class="math inline">\(s_p^2\)</span>, is an estimator of <span class="math inline">\(\sigma^2\)</span></p>
+<p><span class="math display">\[\hat{\sigma}^2=s_p^2= \frac{(n_A-1) s^2_A+(n_B-1) s^2_B}{n_A+n_B-2}\]</span></p>
+</div>
+<div id="standardized-error-for-the-null-1" class="section level2 hasAnchor" number="16.13">
+<h2><span class="header-section-number">16.13</span> Standardized error for the null<a href="mean-differences-between-two-samples.html#standardized-error-for-the-null-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>If the null hypothesis is true (<span class="math inline">\(\delta=0\)</span>), then when we estimate <span class="math inline">\(\delta\)</span> with <span class="math inline">\(D\)</span> we make an error. The <strong>standardized error</strong> from the null hypothesis is the statistic</p>
+<p><span class="math display">\[T=\frac{\bar{Y}_A-\bar{Y}_B }{\sqrt{s_p^2(\frac{1}{n_A}+\frac{1}{n_B})}} \sim T(n_A+n_B-2)\]</span></p>
+<p>that follows a T-distribution.</p>
+<p>To test the hypothesis, we then ask if the observed <span class="math inline">\(t_{obs}\)</span> falls within the acceptance region of the null hypothesis.</p>
+<p>In particular, we ask: is the probability of observing a more extreme value than <span class="math inline">\(t_{obs}\)</span> lower than <span class="math inline">\(\alpha=0.05\)</span>, if the null hypothesis is true?</p>
+<p>The value of <span class="math inline">\(t_{obs}\)</span> is the standardized value of the observed difference between the averages:</p>
+<p><span class="math inline">\(t_{obs}=\frac{d_{obs}}{\sqrt{s_p^2(\frac{1}{n_A}+\frac{1}{n_B})}}\)</span></p>
+<p><span class="math display">\[=\frac{\bar{y}_A-\bar{y}_B }{\sqrt{\frac{s^2_p}{n_A}+\frac{s^2_p}{n_B}}}=\frac{363.0983-363.16}{\sqrt{\frac{0.3608883}{6}+\frac{0.3608883}{6}}}=-0.178\]</span></p>
+<p>The two-tailed <span class="math inline">\(pvalue\)</span> of <span class="math inline">\(t_{obs}\)</span> is</p>
+<p><span class="math display">\[pvalue=2(1-F_{t,10}(0.138))=0.89\]</span></p>
+<p>which is higher than <span class="math inline">\(\alpha=0.05\)</span>. Therefore, the data shows that there are no significant differences between the periods under low or high pressure, which is consistent with Maxwell’s theoretical prediction, and gave experimental support to a counter-intuitive gas property that could be satisfactory explained from the statistical properties of its molecular components.</p>
+<p>We can compute this in Python and R</p>
+<pre><code>Pyhton:
+import pandas as pd
+from scipy import stats
+# Create the dataframe
+dat = pd.DataFrame({
+    &quot;Pressure&quot;: [&quot;Low&quot;]*6 + [&quot;High&quot;]*6,
+    &quot;Period&quot;: [362.66, 362.8, 364.04, 362.72, 362.94, 363.8,
+               362.64, 362.5, 362.86, 363.8, 362.89, 363.9]})
+# Split into groups
+low = dat.loc[dat[&quot;Pressure&quot;] == &quot;Low&quot;, &quot;Period&quot;]
+high = dat.loc[dat[&quot;Pressure&quot;] == &quot;High&quot;, &quot;Period&quot;]
+
+# Two-sample t-test with equal variances
+t_stat, p_val = stats.ttest_ind(low, high, equal_var=True)
+print(&quot;t-statistic:&quot;, t_stat)
+print(&quot;p-value:&quot;, p_val)
+
+R:
+dat &lt;- data.frame(Pressure=c(&quot;Low&quot;, &quot;Low&quot;, &quot;Low&quot;, &quot;Low&quot;, &quot;Low&quot;, &quot;Low&quot;,
+&quot;High&quot;, &quot;High&quot;, &quot;High&quot;, &quot;High&quot;, &quot;High&quot;, &quot;High&quot;), 
+Period=c(362.66, 362.8, 364.04, 362.72, 362.94, 363.8, 
+362.64, 362.5, 362.86, 363.8, 362.89, 363.9))
+
+t.test(Period ~Pressure, data=dat, var.equal=TRUE)</code></pre>
+</div>
+<div id="mean-differences-with-unequall-variances" class="section level2 hasAnchor" number="16.14">
+<h2><span class="header-section-number">16.14</span> Mean differences with unequall variances<a href="mean-differences-between-two-samples.html#mean-differences-with-unequall-variances" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><strong>Exemple (Leptin knockouts)</strong></p>
+<p>Leptin is an adipose tissue hormone that creates the sensation of satiety after eating. It is believe to play an important role into the development of obesity at early ages. Ramos-Lobos and colleagues tested the additional effect of leptin during neurodevelopment in mice <span class="citation">(<a href="#ref-Ramos-Lobo2019">Ramos-Lobo et al. 2019</a>)</span>. They produced 7 male mice for which their leptin gene was knocked out, and could not produce the hormone. While 16 mice were left with normal leptin function. These are called wild type.</p>
+<p>We can use this data to show that the levels leptin can produce weight gains in the animals. We therefore ask whether the mean weight of the animals is different between wild types and knock-outs. As the event of knocking out a gene is clearly before the development of obesity, this type of genetic experiments are considered to suggest a causal link between a gene and a trait.</p>
+<p>We assume that</p>
+<ol style="list-style-type: decimal">
+<li>the weight of the control animals (wild type) has a probability density</li>
+</ol>
+<p><span class="math display">\[Y_A \sim N(\mu_A, \sigma^2)\]</span></p>
+<ol start="2" style="list-style-type: decimal">
+<li>the weight of the animals with no leptin gene has a probability density</li>
+</ol>
+<p><span class="math display">\[Y_B \sim N(\mu_B, \sigma^2)\]</span></p>
+<ol start="3" style="list-style-type: decimal">
+<li>both distributions have the same variance <span class="math inline">\(\sigma^2\)</span>.</li>
+</ol>
+</div>
+<div id="data-3" class="section level2 hasAnchor" number="16.15">
+<h2><span class="header-section-number">16.15</span> Data<a href="mean-differences-between-two-samples.html#data-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>One random experiment in this study has two outcome types: <span class="math inline">\((leptin, weight)\)</span>.</p>
+<p>Leptin is categorical variable that determines the condition of the experiment whether the animal has a functioning gene (leptin+) or not (leptin-)</p>
+<ul>
+<li><span class="math inline">\(leptin \in \{leptin+:A,leptin-:B\}\)</span></li>
+</ul>
+<p>The outcome of interest is the weight of the animal, and it is a continuous variable</p>
+<ul>
+<li><span class="math inline">\(weigth \in (20, 60)\)</span></li>
+</ul>
+<p>The data looks like</p>
+<p><span class="math display">\[
+\begin{array}{ccc}
+\mathbf{Mouse} &amp; \mathbf{Leptin} &amp; \mathbf{Weigth} \\
+1 &amp;\text{Leptin}  &amp;27.67\\
+2 &amp;\text{Leptin+}  &amp;27.40\\
+3 &amp;\text{Leptin+}  &amp;25.77\\
+4 &amp;\text{Leptin+}  &amp;25.60\\
+5 &amp;\text{Leptin+}  &amp;25.03\\
+6 &amp;\text{Leptin+}  &amp;25.90\\
+7 &amp;\text{Leptin+}  &amp;26.67\\
+8 &amp;\text{Leptin+}  &amp;25.60\\
+9 &amp;\text{Leptin+}  &amp;28.93\\
+10 &amp;\text{Leptin+}  &amp;31.83\\
+11 &amp;\text{Leptin+}  &amp;25.90\\
+12 &amp;\text{Leptin+}  &amp;26.30\\
+13 &amp;\text{Leptin+}  &amp;27.90\\
+14 &amp;\text{Leptin+}  &amp;26.77\\
+15 &amp;\text{Leptin+}  &amp;25.83\\
+16 &amp;\text{Leptin+}  &amp;20.87\\
+17 &amp;\text{Leptin-}  &amp;46.57\\
+18 &amp;\text{Leptin-}  &amp;40.43\\
+19 &amp;\text{Leptin-}  &amp;41.97\\
+20 &amp;\text{Leptin-}  &amp;41.17\\
+21 &amp;\text{Leptin-}  &amp;41.57\\
+22 &amp;\text{Leptin+}  &amp;46.17\\
+23 &amp;\text{Leptin+}  &amp;53.83
+\end{array}
+\]</span></p>
+<p>The box plot suggests that the variances for each group are different because the box for the leptin- group is thinner (less dispersed) than the box for the leptin+ group. It appears that knocking out the gene not only reduces the mean weight but also the weight variance.</p>
+<p><img src="_main_files/figure-html/unnamed-chunk-183-1.png" width="672" /></p>
+<p>Therefore it is better to assume that</p>
+<ol style="list-style-type: decimal">
+<li>the weight of the wild type animal (leptin+) has a probability density</li>
+</ol>
+<p><span class="math display">\[Y_A \sim N(\mu_A, \sigma_A^2)\]</span></p>
+<ol start="2" style="list-style-type: decimal">
+<li>the weight of the animal with no leptin has a probability density</li>
+</ol>
+<p><span class="math display">\[Y_B \sim N(\mu_B, \sigma_B^2)\]</span></p>
+<p>When we assume unequal variances in each group, the <strong>standardized error</strong> for the null hypothesis (<span class="math inline">\(\delta=0\)</span>)</p>
+<p><span class="math display">\[T=\frac{\bar{Y}_A-\bar{Y}_B }{\sqrt{\frac{s_A^2}{n_A}+\frac{s_B^2}{n_B}}} \sim_{aprox} T(\nu)\]</span></p>
+<p>approximately follows a t-distribution with
+<span class="math display">\[\nu=\frac{(\frac{s_A^2}{n_A}+\frac{s_B^2}{n_B})^2}{\frac{(s_A^2/n_B)^2}{n_A-1}+\frac{(s_B^2/n_B)^2}{n_B-1}}\]</span>
+degrees of freedom. The brilliant idea of Welsh was to fix the form of the variance of <span class="math inline">\(D\)</span> (denominator of <span class="math inline">\(T\)</span>), and then ask which was the closest <span class="math inline">\(t\)</span>-distribution that would describe <span class="math inline">\(T\)</span>. For that he needed to adjust the degrees of freedom. This is called a Welsh test.</p>
+<p>In Python and R, the Welsh test is obtained by setting the parameter of equal variances to false in the t-test functions</p>
+<pre><code>Python:
+stats.ttest_ind(groupA, groupB, equal_var=False)
+
+R:
+t.test(groupA, groupB, var.equal=FALSE)</code></pre>
+<p>For the mouse data, we observe a very significant increase in <span class="math inline">\(18.03\)</span>gr (<span class="math inline">\(pvalue=2.444 \times 10^{-5}\)</span>) in weight between the wild-type mice and leptin knockouts, demonstrating the effect of leptin hormone in mouse weight and a possible role in human obesity.</p>
+<p>Additional studies also required to supplement the knockout mice with leptin hormone and observe the reduction of weight. Such interventions demonstrated the causal role of the hormone on weight. For human studies, similar evidence could be obtained from randomized drug-placebo studies of patients with leptin deficiency who are given leptin supplementation or placebo.</p>
+<p>Note that if we had use the equal variances <span class="math inline">\(t\)</span>-test, we would have obtained a more significant result <span class="math inline">\(pvalue=3.376854 \times 10^{-11}\)</span> but this model is less appropriate based on how the data distributes.</p>
+</div>
+<div id="questions-12" class="section level2 hasAnchor" number="16.16">
+<h2><span class="header-section-number">16.16</span> Questions<a href="mean-differences-between-two-samples.html#questions-12" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><strong>1)</strong> We test for the difference between the means of two random variables when we have measured</p>
+<p><strong><span class="math inline">\(\qquad\)</span>a:</strong> two continuous random variables;
+<strong><span class="math inline">\(\qquad\)</span>b:</strong> two categorical random variables;
+<strong><span class="math inline">\(\qquad\)</span>c:</strong> one dichotomic variable and one continuous random variable;
+<strong><span class="math inline">\(\qquad\)</span>d:</strong> any categorical variable and one continuous random variable;</p>
+<p><strong>2)</strong> The statistic <span class="math inline">\(D=\bar{Y}_A-\bar{Y}_B\)</span> estimates</p>
+<p><strong><span class="math inline">\(\qquad\)</span>a:</strong> The difference between the averages of <span class="math inline">\(Y_A\)</span> and <span class="math inline">\(Y_B\)</span>;
+<strong><span class="math inline">\(\qquad\)</span>b:</strong> The difference between the means of <span class="math inline">\(Y_A\)</span> and <span class="math inline">\(Y_B\)</span>;
+<strong><span class="math inline">\(\qquad\)</span>c:</strong> The variation of <span class="math inline">\(\bar{Y}_A\)</span> with respect to <span class="math inline">\(\bar{Y}_B\)</span>;
+<strong><span class="math inline">\(\qquad\)</span>d:</strong> <span class="math inline">\(d_{obs}\)</span></p>
+<p><strong>3)</strong> We can use a <span class="math inline">\(Z\)</span>-test only when</p>
+<p><strong><span class="math inline">\(\qquad\)</span>a:</strong> we have a large sample of the continuous variable in one of the conditions;
+<strong><span class="math inline">\(\qquad\)</span>b:</strong> we have large samples of the continuous variable in each condition;
+<strong><span class="math inline">\(\qquad\)</span>c:</strong> the variances of the continuous variable are equal in each conditions;
+<strong><span class="math inline">\(\qquad\)</span>d:</strong> when the distributions of the continuous variable in each condition are normal</p>
+<p><strong>4)</strong> We can use a <span class="math inline">\(t\)</span>-test only when</p>
+<p><strong><span class="math inline">\(\qquad\)</span>a:</strong> we have small samples of the continuous variable in
+each condition;
+<strong><span class="math inline">\(\qquad\)</span>b:</strong> the distributions of the continuous variable in each condition are normal;
+<strong><span class="math inline">\(\qquad\)</span>c:</strong> <span class="math inline">\(D\)</span> is unbiased;
+<strong><span class="math inline">\(\qquad\)</span>d:</strong> we cannot use a <span class="math inline">\(Z\)</span>-test</p>
+<p><strong>5)</strong> For the data</p>
+<p><span class="math display">\[
+\begin{array}{ccc}
+\mathbf{Subject} &amp; \mathbf{Y} &amp; \mathbf{C} \\
+1&amp;1.1&amp;A\\
+2&amp;0.9&amp;A\\
+3&amp;0.8&amp;B\\
+4&amp;0.6&amp;B\\
+\end{array}
+\]</span></p>
+<p>assuming that <span class="math inline">\(Y\)</span> is normally distributed, which is the best test?</p>
+<p><strong><span class="math inline">\(\qquad\)</span>a:</strong> <span class="math inline">\(t\)</span>-test with equal variances
+<strong><span class="math inline">\(\qquad\)</span>b:</strong> <span class="math inline">\(t\)</span>-test with unequal variances
+<strong><span class="math inline">\(\qquad\)</span>c:</strong> <span class="math inline">\(z\)</span>-test with equal variances
+<strong><span class="math inline">\(\qquad\)</span>d:</strong> <span class="math inline">\(z\)</span>-test with unequal variances</p>
+</div>
+<div id="practice-6" class="section level2 hasAnchor" number="16.17">
+<h2><span class="header-section-number">16.17</span> Practice<a href="mean-differences-between-two-samples.html#practice-6" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Load leptin data <code><a href="https://alejandro-isglobal.github.io/SDA/data/dataleptin.txt" class="uri">https://alejandro-isglobal.github.io/SDA/data/dataleptin.txt</a></code></p>
+<ul>
+<li><p>Test the hypothesis that in the control animals, the weight of females is different than the weight of males</p></li>
+<li><p>Test the hypothesis that the leptin KO animals have higher weight than the KO animals with supplemented leptin</p></li>
+<li><p>Make a bar plot and a boxplot for the latter case. Compute the confidence intervals for the weight, in each group.</p></li>
+</ul>
+<p><a href="https://colab.research.google.com/drive/1F61puLHyUBuS5ERbbruy4002bQ3C3DjY?usp=sharing">Solutions</a></p>
+
+</div>
+</div>
+<h3>References</h3>
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-kannel1961factors" class="csl-entry">
+Kannel, William B., Thomas R. Dawber, A. Kagan, N. Revotskie, and Joseph III Stokes. 1961. <span>“Factors of Risk in the Development of Coronary Heart Disease—Six-Year Follow-up Experience: The Framingham Study.”</span> <em>Annals of Internal Medicine</em> 55 (1): 33–50. <a href="https://doi.org/10.7326/0003-4819-55-1-33">https://doi.org/10.7326/0003-4819-55-1-33</a>.
+</div>
+<div id="ref-maxwell1866viscosity" class="csl-entry">
+Maxwell, James Clerk. 1866. <span>“On the Viscosity or Internal Friction of Air and Other Gases.”</span> <em>Philosophical Transactions of the Royal Society of London</em> 156: 249–68.
+</div>
+<div id="ref-Ramos-Lobo2019" class="csl-entry">
+Ramos-Lobo, Angela M., Pryscila D. S. Teixeira, Isadora C. Furigo, Helen M. Melo, Natalia de M. Lyra e Silva, Fernanda G. De Felice, and José Donato. 2019. <span>“Long-Term Consequences of the Absence of Leptin Signaling in Early Life.”</span> <em>eLife</em> 8: e40970. <a href="https://doi.org/10.7554/eLife.40970">https://doi.org/10.7554/eLife.40970</a>.
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="contingency-tables.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="mean-differences-across-several-groups.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/16-MeanDifferences.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

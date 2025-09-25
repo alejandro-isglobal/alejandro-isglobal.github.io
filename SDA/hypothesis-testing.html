@@ -1,0 +1,1188 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 14 Hypothesis Testing | Statistical Data Analysis for Experimental Sciences</title>
+  <meta name="description" content="This is a markdown book titled Statistical Data Analysis for Experimental Sciences by Alejandro Caceres" />
+  <meta name="generator" content="bookdown 0.36 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 14 Hypothesis Testing | Statistical Data Analysis for Experimental Sciences" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="This is a markdown book titled Statistical Data Analysis for Experimental Sciences by Alejandro Caceres" />
+  <meta name="github-repo" content="alejandro-isglobal/master" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 14 Hypothesis Testing | Statistical Data Analysis for Experimental Sciences" />
+  
+  <meta name="twitter:description" content="This is a markdown book titled Statistical Data Analysis for Experimental Sciences by Alejandro Caceres" />
+  
+
+<meta name="author" content="Alejandro Cáceres" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="interval-estimation.html"/>
+<link rel="next" href="contingency-tables.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">SDA</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#how-to-read-the-book"><i class="fa fa-check"></i><b>1.1</b> How to read the book</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#acknowledgements"><i class="fa fa-check"></i><b>1.2</b> Acknowledgements</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="data-description.html"><a href="data-description.html"><i class="fa fa-check"></i><b>2</b> Data description</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="data-description.html"><a href="data-description.html#scientific-method"><i class="fa fa-check"></i><b>2.1</b> Scientific method</a></li>
+<li class="chapter" data-level="2.2" data-path="data-description.html"><a href="data-description.html#data"><i class="fa fa-check"></i><b>2.2</b> Data</a></li>
+<li class="chapter" data-level="2.3" data-path="data-description.html"><a href="data-description.html#types-of-outcomes"><i class="fa fa-check"></i><b>2.3</b> Types of outcomes</a></li>
+<li class="chapter" data-level="2.4" data-path="data-description.html"><a href="data-description.html#random-experiments"><i class="fa fa-check"></i><b>2.4</b> Random experiments</a></li>
+<li class="chapter" data-level="2.5" data-path="data-description.html"><a href="data-description.html#absolute-frequencies"><i class="fa fa-check"></i><b>2.5</b> Absolute frequencies</a></li>
+<li class="chapter" data-level="2.6" data-path="data-description.html"><a href="data-description.html#relative-frequencies"><i class="fa fa-check"></i><b>2.6</b> Relative frequencies</a></li>
+<li class="chapter" data-level="2.7" data-path="data-description.html"><a href="data-description.html#bar-chart"><i class="fa fa-check"></i><b>2.7</b> Bar chart</a></li>
+<li class="chapter" data-level="2.8" data-path="data-description.html"><a href="data-description.html#pie-chart"><i class="fa fa-check"></i><b>2.8</b> Pie chart</a></li>
+<li class="chapter" data-level="2.9" data-path="data-description.html"><a href="data-description.html#ordinal-categorical-outcomes"><i class="fa fa-check"></i><b>2.9</b> Ordinal categorical outcomes</a></li>
+<li class="chapter" data-level="2.10" data-path="data-description.html"><a href="data-description.html#absolute-and-relative-cumulative-frequencies"><i class="fa fa-check"></i><b>2.10</b> Absolute and relative cumulative frequencies</a></li>
+<li class="chapter" data-level="2.11" data-path="data-description.html"><a href="data-description.html#cumulative-frequency-graph"><i class="fa fa-check"></i><b>2.11</b> Cumulative frequency graph</a></li>
+<li class="chapter" data-level="2.12" data-path="data-description.html"><a href="data-description.html#numerical-outcomes"><i class="fa fa-check"></i><b>2.12</b> Numerical outcomes</a></li>
+<li class="chapter" data-level="2.13" data-path="data-description.html"><a href="data-description.html#transforming-continuous-data"><i class="fa fa-check"></i><b>2.13</b> Transforming continuous data</a></li>
+<li class="chapter" data-level="2.14" data-path="data-description.html"><a href="data-description.html#frequency-table-for-a-continuous-variable"><i class="fa fa-check"></i><b>2.14</b> Frequency table for a continuous variable</a></li>
+<li class="chapter" data-level="2.15" data-path="data-description.html"><a href="data-description.html#histogram"><i class="fa fa-check"></i><b>2.15</b> Histogram</a></li>
+<li class="chapter" data-level="2.16" data-path="data-description.html"><a href="data-description.html#cumulative-frequency-graph-1"><i class="fa fa-check"></i><b>2.16</b> Cumulative frequency graph</a></li>
+<li class="chapter" data-level="2.17" data-path="data-description.html"><a href="data-description.html#summary-statistics"><i class="fa fa-check"></i><b>2.17</b> Summary Statistics</a></li>
+<li class="chapter" data-level="2.18" data-path="data-description.html"><a href="data-description.html#average-sample-mean"><i class="fa fa-check"></i><b>2.18</b> Average (sample mean)</a></li>
+<li class="chapter" data-level="2.19" data-path="data-description.html"><a href="data-description.html#median"><i class="fa fa-check"></i><b>2.19</b> Median</a></li>
+<li class="chapter" data-level="2.20" data-path="data-description.html"><a href="data-description.html#dispersion"><i class="fa fa-check"></i><b>2.20</b> Dispersion</a></li>
+<li class="chapter" data-level="2.21" data-path="data-description.html"><a href="data-description.html#sample-variance"><i class="fa fa-check"></i><b>2.21</b> Sample variance</a></li>
+<li class="chapter" data-level="2.22" data-path="data-description.html"><a href="data-description.html#interquartile-range-iqr"><i class="fa fa-check"></i><b>2.22</b> Interquartile range (IQR)</a></li>
+<li class="chapter" data-level="2.23" data-path="data-description.html"><a href="data-description.html#boxplot"><i class="fa fa-check"></i><b>2.23</b> Boxplot</a></li>
+<li class="chapter" data-level="2.24" data-path="data-description.html"><a href="data-description.html#questions"><i class="fa fa-check"></i><b>2.24</b> Questions</a></li>
+<li class="chapter" data-level="2.25" data-path="data-description.html"><a href="data-description.html#exercises"><i class="fa fa-check"></i><b>2.25</b> Exercises</a></li>
+<li class="chapter" data-level="2.26" data-path="data-description.html"><a href="data-description.html#practice"><i class="fa fa-check"></i><b>2.26</b> Practice</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="probability.html"><a href="probability.html"><i class="fa fa-check"></i><b>3</b> Probability</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="probability.html"><a href="probability.html#probability-mesurement"><i class="fa fa-check"></i><b>3.1</b> Probability mesurement</a></li>
+<li class="chapter" data-level="3.2" data-path="probability.html"><a href="probability.html#classical-probability"><i class="fa fa-check"></i><b>3.2</b> Classical probability</a></li>
+<li class="chapter" data-level="3.3" data-path="probability.html"><a href="probability.html#relative-frequencies-1"><i class="fa fa-check"></i><b>3.3</b> Relative frequencies</a></li>
+<li class="chapter" data-level="3.4" data-path="probability.html"><a href="probability.html#frequentist-probability"><i class="fa fa-check"></i><b>3.4</b> Frequentist probability</a></li>
+<li class="chapter" data-level="3.5" data-path="probability.html"><a href="probability.html#classical-and-frequentist-probabilities"><i class="fa fa-check"></i><b>3.5</b> Classical and frequentist probabilities</a></li>
+<li class="chapter" data-level="3.6" data-path="probability.html"><a href="probability.html#sample-space"><i class="fa fa-check"></i><b>3.6</b> Sample space</a></li>
+<li class="chapter" data-level="3.7" data-path="probability.html"><a href="probability.html#events"><i class="fa fa-check"></i><b>3.7</b> Events</a></li>
+<li class="chapter" data-level="3.8" data-path="probability.html"><a href="probability.html#algebra-of-events"><i class="fa fa-check"></i><b>3.8</b> Algebra of events</a></li>
+<li class="chapter" data-level="3.9" data-path="probability.html"><a href="probability.html#mutually-exclusive-events"><i class="fa fa-check"></i><b>3.9</b> Mutually exclusive events</a></li>
+<li class="chapter" data-level="3.10" data-path="probability.html"><a href="probability.html#definition-of-probability"><i class="fa fa-check"></i><b>3.10</b> Definition of probability</a></li>
+<li class="chapter" data-level="3.11" data-path="probability.html"><a href="probability.html#probability-table"><i class="fa fa-check"></i><b>3.11</b> Probability table</a></li>
+<li class="chapter" data-level="3.12" data-path="probability.html"><a href="probability.html#joint-probabilities"><i class="fa fa-check"></i><b>3.12</b> Joint probabilities</a></li>
+<li class="chapter" data-level="3.13" data-path="probability.html"><a href="probability.html#contingency-table"><i class="fa fa-check"></i><b>3.13</b> Contingency table</a></li>
+<li class="chapter" data-level="3.14" data-path="probability.html"><a href="probability.html#the-addition-rule"><i class="fa fa-check"></i><b>3.14</b> The addition rule</a></li>
+<li class="chapter" data-level="3.15" data-path="probability.html"><a href="probability.html#questions-1"><i class="fa fa-check"></i><b>3.15</b> Questions</a></li>
+<li class="chapter" data-level="3.16" data-path="probability.html"><a href="probability.html#exercises-1"><i class="fa fa-check"></i><b>3.16</b> Exercises</a></li>
+<li class="chapter" data-level="3.17" data-path="probability.html"><a href="probability.html#practice-1"><i class="fa fa-check"></i><b>3.17</b> Practice</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="conditional-probability.html"><a href="conditional-probability.html"><i class="fa fa-check"></i><b>4</b> Conditional probability</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="conditional-probability.html"><a href="conditional-probability.html#joint-probability"><i class="fa fa-check"></i><b>4.1</b> Joint probability</a></li>
+<li class="chapter" data-level="4.2" data-path="conditional-probability.html"><a href="conditional-probability.html#statistical-independence-and-correlation"><i class="fa fa-check"></i><b>4.2</b> Statistical independence and correlation</a></li>
+<li class="chapter" data-level="4.3" data-path="conditional-probability.html"><a href="conditional-probability.html#conditional-probability-1"><i class="fa fa-check"></i><b>4.3</b> Conditional probability</a></li>
+<li class="chapter" data-level="4.4" data-path="conditional-probability.html"><a href="conditional-probability.html#conditional-contingency-table"><i class="fa fa-check"></i><b>4.4</b> Conditional contingency table</a></li>
+<li class="chapter" data-level="4.5" data-path="conditional-probability.html"><a href="conditional-probability.html#statistical-independence"><i class="fa fa-check"></i><b>4.5</b> Statistical independence</a></li>
+<li class="chapter" data-level="4.6" data-path="conditional-probability.html"><a href="conditional-probability.html#statistical-dependency"><i class="fa fa-check"></i><b>4.6</b> Statistical dependency</a></li>
+<li class="chapter" data-level="4.7" data-path="conditional-probability.html"><a href="conditional-probability.html#diagnostic-test"><i class="fa fa-check"></i><b>4.7</b> Diagnostic test</a></li>
+<li class="chapter" data-level="4.8" data-path="conditional-probability.html"><a href="conditional-probability.html#inverse-probabilities"><i class="fa fa-check"></i><b>4.8</b> Inverse probabilities</a></li>
+<li class="chapter" data-level="4.9" data-path="conditional-probability.html"><a href="conditional-probability.html#bayes-theorem"><i class="fa fa-check"></i><b>4.9</b> Bayes’ Theorem</a></li>
+<li class="chapter" data-level="4.10" data-path="conditional-probability.html"><a href="conditional-probability.html#questions-2"><i class="fa fa-check"></i><b>4.10</b> Questions</a></li>
+<li class="chapter" data-level="4.11" data-path="conditional-probability.html"><a href="conditional-probability.html#exercises-2"><i class="fa fa-check"></i><b>4.11</b> Exercises</a></li>
+<li class="chapter" data-level="4.12" data-path="conditional-probability.html"><a href="conditional-probability.html#practice-2"><i class="fa fa-check"></i><b>4.12</b> Practice</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html"><i class="fa fa-check"></i><b>5</b> Discrete Random Variables</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html#definition-of-a-random-variable"><i class="fa fa-check"></i><b>5.1</b> Definition of a Random Variable</a></li>
+<li class="chapter" data-level="5.2" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html#the-value-of-a-random-variable"><i class="fa fa-check"></i><b>5.2</b> The value of a random variable</a></li>
+<li class="chapter" data-level="5.3" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html#probability-of-random-variables"><i class="fa fa-check"></i><b>5.3</b> Probability of random variables</a></li>
+<li class="chapter" data-level="5.4" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html#probability-functions"><i class="fa fa-check"></i><b>5.4</b> Probability functions</a></li>
+<li class="chapter" data-level="5.5" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html#probability-mass-functions"><i class="fa fa-check"></i><b>5.5</b> Probability mass functions</a></li>
+<li class="chapter" data-level="5.6" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html#mean-or-expected-value"><i class="fa fa-check"></i><b>5.6</b> Mean or expected value</a></li>
+<li class="chapter" data-level="5.7" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html#variance"><i class="fa fa-check"></i><b>5.7</b> Variance</a></li>
+<li class="chapter" data-level="5.8" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html#probability-functions-for-functions-of-x"><i class="fa fa-check"></i><b>5.8</b> Probability functions for functions of <span class="math inline">\(X\)</span></a></li>
+<li class="chapter" data-level="5.9" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html#probability-distribution"><i class="fa fa-check"></i><b>5.9</b> Probability distribution</a></li>
+<li class="chapter" data-level="5.10" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html#probability-function-and-probability-distribution"><i class="fa fa-check"></i><b>5.10</b> Probability function and probability distribution</a></li>
+<li class="chapter" data-level="5.11" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html#quantiles"><i class="fa fa-check"></i><b>5.11</b> Quantiles</a></li>
+<li class="chapter" data-level="5.12" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html#summary"><i class="fa fa-check"></i><b>5.12</b> Summary</a></li>
+<li class="chapter" data-level="5.13" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html#questions-3"><i class="fa fa-check"></i><b>5.13</b> Questions</a></li>
+<li class="chapter" data-level="5.14" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html#exercises-3"><i class="fa fa-check"></i><b>5.14</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="continous-random-variables.html"><a href="continous-random-variables.html"><i class="fa fa-check"></i><b>6</b> Continous Random Variables</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="continous-random-variables.html"><a href="continous-random-variables.html#probabilities-of-continuous-random-variables"><i class="fa fa-check"></i><b>6.1</b> Probabilities of continuous random variables</a></li>
+<li class="chapter" data-level="6.2" data-path="continous-random-variables.html"><a href="continous-random-variables.html#relative-frequencies-2"><i class="fa fa-check"></i><b>6.2</b> Relative frequencies</a></li>
+<li class="chapter" data-level="6.3" data-path="continous-random-variables.html"><a href="continous-random-variables.html#probability-density-function"><i class="fa fa-check"></i><b>6.3</b> Probability Density Function</a></li>
+<li class="chapter" data-level="6.4" data-path="continous-random-variables.html"><a href="continous-random-variables.html#total-area-under-the-curve"><i class="fa fa-check"></i><b>6.4</b> Total area under the curve</a></li>
+<li class="chapter" data-level="6.5" data-path="continous-random-variables.html"><a href="continous-random-variables.html#probabilities-of-continous-variables"><i class="fa fa-check"></i><b>6.5</b> Probabilities of continous variables</a></li>
+<li class="chapter" data-level="6.6" data-path="continous-random-variables.html"><a href="continous-random-variables.html#probability-distribution-1"><i class="fa fa-check"></i><b>6.6</b> Probability distribution</a></li>
+<li class="chapter" data-level="6.7" data-path="continous-random-variables.html"><a href="continous-random-variables.html#probability-plots"><i class="fa fa-check"></i><b>6.7</b> Probability plots</a></li>
+<li class="chapter" data-level="6.8" data-path="continous-random-variables.html"><a href="continous-random-variables.html#mean"><i class="fa fa-check"></i><b>6.8</b> Mean</a></li>
+<li class="chapter" data-level="6.9" data-path="continous-random-variables.html"><a href="continous-random-variables.html#variance-1"><i class="fa fa-check"></i><b>6.9</b> Variance</a></li>
+<li class="chapter" data-level="6.10" data-path="continous-random-variables.html"><a href="continous-random-variables.html#functions-of-x"><i class="fa fa-check"></i><b>6.10</b> Functions of <span class="math inline">\(X\)</span></a></li>
+<li class="chapter" data-level="6.11" data-path="continous-random-variables.html"><a href="continous-random-variables.html#exercises-4"><i class="fa fa-check"></i><b>6.11</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="discrete-probability-models.html"><a href="discrete-probability-models.html"><i class="fa fa-check"></i><b>7</b> Discrete Probability Models</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="discrete-probability-models.html"><a href="discrete-probability-models.html#probability-model"><i class="fa fa-check"></i><b>7.1</b> Probability model</a></li>
+<li class="chapter" data-level="7.2" data-path="discrete-probability-models.html"><a href="discrete-probability-models.html#parametric-models"><i class="fa fa-check"></i><b>7.2</b> Parametric models</a></li>
+<li class="chapter" data-level="7.3" data-path="discrete-probability-models.html"><a href="discrete-probability-models.html#uniform-probability-mass-function-one-parameter"><i class="fa fa-check"></i><b>7.3</b> Uniform probability mass function (one parameter)</a></li>
+<li class="chapter" data-level="7.4" data-path="discrete-probability-models.html"><a href="discrete-probability-models.html#uniform-probability-mass-function-two-parameters"><i class="fa fa-check"></i><b>7.4</b> Uniform probability mass function (two parameters)</a></li>
+<li class="chapter" data-level="7.5" data-path="discrete-probability-models.html"><a href="discrete-probability-models.html#bernoulli-trial"><i class="fa fa-check"></i><b>7.5</b> Bernoulli trial</a></li>
+<li class="chapter" data-level="7.6" data-path="discrete-probability-models.html"><a href="discrete-probability-models.html#binomial-experiment"><i class="fa fa-check"></i><b>7.6</b> Binomial experiment</a></li>
+<li class="chapter" data-level="7.7" data-path="discrete-probability-models.html"><a href="discrete-probability-models.html#binomial-probability-function"><i class="fa fa-check"></i><b>7.7</b> Binomial probability function</a></li>
+<li class="chapter" data-level="7.8" data-path="discrete-probability-models.html"><a href="discrete-probability-models.html#negative-binomial"><i class="fa fa-check"></i><b>7.8</b> Negative binomial</a></li>
+<li class="chapter" data-level="7.9" data-path="discrete-probability-models.html"><a href="discrete-probability-models.html#geometric-distribution"><i class="fa fa-check"></i><b>7.9</b> Geometric distribution</a></li>
+<li class="chapter" data-level="7.10" data-path="discrete-probability-models.html"><a href="discrete-probability-models.html#hypergeometric-model"><i class="fa fa-check"></i><b>7.10</b> Hypergeometric model</a></li>
+<li class="chapter" data-level="7.11" data-path="discrete-probability-models.html"><a href="discrete-probability-models.html#questions-4"><i class="fa fa-check"></i><b>7.11</b> Questions</a></li>
+<li class="chapter" data-level="7.12" data-path="discrete-probability-models.html"><a href="discrete-probability-models.html#exercises-5"><i class="fa fa-check"></i><b>7.12</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="poisson-and-exponential-models.html"><a href="poisson-and-exponential-models.html"><i class="fa fa-check"></i><b>8</b> Poisson and Exponential Models</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="poisson-and-exponential-models.html"><a href="poisson-and-exponential-models.html#discrete-probability-models-1"><i class="fa fa-check"></i><b>8.1</b> Discrete probability models</a></li>
+<li class="chapter" data-level="8.2" data-path="poisson-and-exponential-models.html"><a href="poisson-and-exponential-models.html#poissson-experiment"><i class="fa fa-check"></i><b>8.2</b> Poissson experiment</a></li>
+<li class="chapter" data-level="8.3" data-path="poisson-and-exponential-models.html"><a href="poisson-and-exponential-models.html#poisson-probability-mass-function"><i class="fa fa-check"></i><b>8.3</b> Poisson probability mass function</a></li>
+<li class="chapter" data-level="8.4" data-path="poisson-and-exponential-models.html"><a href="poisson-and-exponential-models.html#continuous-probability-models"><i class="fa fa-check"></i><b>8.4</b> Continuous probability models</a></li>
+<li class="chapter" data-level="8.5" data-path="poisson-and-exponential-models.html"><a href="poisson-and-exponential-models.html#exponential-process"><i class="fa fa-check"></i><b>8.5</b> Exponential process</a></li>
+<li class="chapter" data-level="8.6" data-path="poisson-and-exponential-models.html"><a href="poisson-and-exponential-models.html#exponential-probability-density"><i class="fa fa-check"></i><b>8.6</b> Exponential probability density</a></li>
+<li class="chapter" data-level="8.7" data-path="poisson-and-exponential-models.html"><a href="poisson-and-exponential-models.html#exponential-distribution"><i class="fa fa-check"></i><b>8.7</b> Exponential Distribution</a></li>
+<li class="chapter" data-level="8.8" data-path="poisson-and-exponential-models.html"><a href="poisson-and-exponential-models.html#questions-5"><i class="fa fa-check"></i><b>8.8</b> Questions</a></li>
+<li class="chapter" data-level="8.9" data-path="poisson-and-exponential-models.html"><a href="poisson-and-exponential-models.html#exercises-6"><i class="fa fa-check"></i><b>8.9</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="normal-distribution.html"><a href="normal-distribution.html"><i class="fa fa-check"></i><b>9</b> Normal Distribution</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="normal-distribution.html"><a href="normal-distribution.html#history"><i class="fa fa-check"></i><b>9.1</b> History</a></li>
+<li class="chapter" data-level="9.2" data-path="normal-distribution.html"><a href="normal-distribution.html#normal-probability-density"><i class="fa fa-check"></i><b>9.2</b> Normal probability density</a></li>
+<li class="chapter" data-level="9.3" data-path="normal-distribution.html"><a href="normal-distribution.html#probability-distribution-2"><i class="fa fa-check"></i><b>9.3</b> Probability distribution</a></li>
+<li class="chapter" data-level="9.4" data-path="normal-distribution.html"><a href="normal-distribution.html#quantiles-of-the-normal-distribution"><i class="fa fa-check"></i><b>9.4</b> Quantiles of the normal distribution</a></li>
+<li class="chapter" data-level="9.5" data-path="normal-distribution.html"><a href="normal-distribution.html#standard-normal-density"><i class="fa fa-check"></i><b>9.5</b> Standard normal density</a></li>
+<li class="chapter" data-level="9.6" data-path="normal-distribution.html"><a href="normal-distribution.html#standard-distribution"><i class="fa fa-check"></i><b>9.6</b> Standard distribution</a></li>
+<li class="chapter" data-level="9.7" data-path="normal-distribution.html"><a href="normal-distribution.html#standardization"><i class="fa fa-check"></i><b>9.7</b> Standardization</a></li>
+<li class="chapter" data-level="9.8" data-path="normal-distribution.html"><a href="normal-distribution.html#questions-6"><i class="fa fa-check"></i><b>9.8</b> Questions</a></li>
+<li class="chapter" data-level="9.9" data-path="normal-distribution.html"><a href="normal-distribution.html#exercises-7"><i class="fa fa-check"></i><b>9.9</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="sampling-distributions.html"><a href="sampling-distributions.html"><i class="fa fa-check"></i><b>10</b> Sampling distributions</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="sampling-distributions.html"><a href="sampling-distributions.html#random-sample"><i class="fa fa-check"></i><b>10.1</b> Random sample</a></li>
+<li class="chapter" data-level="10.2" data-path="sampling-distributions.html"><a href="sampling-distributions.html#parameter-estimation"><i class="fa fa-check"></i><b>10.2</b> Parameter estimation</a></li>
+<li class="chapter" data-level="10.3" data-path="sampling-distributions.html"><a href="sampling-distributions.html#law-of-large-numbers"><i class="fa fa-check"></i><b>10.3</b> Law of Large Numbers</a></li>
+<li class="chapter" data-level="10.4" data-path="sampling-distributions.html"><a href="sampling-distributions.html#inference"><i class="fa fa-check"></i><b>10.4</b> Inference</a></li>
+<li class="chapter" data-level="10.5" data-path="sampling-distributions.html"><a href="sampling-distributions.html#sample-mean"><i class="fa fa-check"></i><b>10.5</b> Sample mean</a></li>
+<li class="chapter" data-level="10.6" data-path="sampling-distributions.html"><a href="sampling-distributions.html#prediction"><i class="fa fa-check"></i><b>10.6</b> Prediction</a></li>
+<li class="chapter" data-level="10.7" data-path="sampling-distributions.html"><a href="sampling-distributions.html#validation"><i class="fa fa-check"></i><b>10.7</b> Validation</a></li>
+<li class="chapter" data-level="10.8" data-path="sampling-distributions.html"><a href="sampling-distributions.html#sample-sum"><i class="fa fa-check"></i><b>10.8</b> Sample Sum</a></li>
+<li class="chapter" data-level="10.9" data-path="sampling-distributions.html"><a href="sampling-distributions.html#sample-variance-1"><i class="fa fa-check"></i><b>10.9</b> Sample Variance</a>
+<ul>
+<li class="chapter" data-level="10.9.1" data-path="sampling-distributions.html"><a href="sampling-distributions.html#example-cables"><i class="fa fa-check"></i><b>10.9.1</b> Example (Cables)</a></li>
+</ul></li>
+<li class="chapter" data-level="10.10" data-path="sampling-distributions.html"><a href="sampling-distributions.html#distribution-of-the-sample-variance"><i class="fa fa-check"></i><b>10.10</b> Distribution of the Sample Variance</a></li>
+<li class="chapter" data-level="10.11" data-path="sampling-distributions.html"><a href="sampling-distributions.html#the-chi2-distribution"><i class="fa fa-check"></i><b>10.11</b> The <span class="math inline">\(\chi^2\)</span> Distribution</a></li>
+<li class="chapter" data-level="10.12" data-path="sampling-distributions.html"><a href="sampling-distributions.html#questions-7"><i class="fa fa-check"></i><b>10.12</b> Questions</a></li>
+<li class="chapter" data-level="10.13" data-path="sampling-distributions.html"><a href="sampling-distributions.html#exercises-8"><i class="fa fa-check"></i><b>10.13</b> Exercises</a>
+<ul>
+<li class="chapter" data-level="10.13.1" data-path="sampling-distributions.html"><a href="sampling-distributions.html#from-estimation-to-inference"><i class="fa fa-check"></i><b>10.13.1</b> From Estimation to Inference</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="central-limit-theorem.html"><a href="central-limit-theorem.html"><i class="fa fa-check"></i><b>11</b> Central limit theorem</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="central-limit-theorem.html"><a href="central-limit-theorem.html#margin-of-error"><i class="fa fa-check"></i><b>11.1</b> Margin of error</a></li>
+<li class="chapter" data-level="11.2" data-path="central-limit-theorem.html"><a href="central-limit-theorem.html#averages-of-normal-variables"><i class="fa fa-check"></i><b>11.2</b> Averages of normal variables</a></li>
+<li class="chapter" data-level="11.3" data-path="central-limit-theorem.html"><a href="central-limit-theorem.html#central-limit-theorem-1"><i class="fa fa-check"></i><b>11.3</b> Central Limit Theorem</a></li>
+<li class="chapter" data-level="11.4" data-path="central-limit-theorem.html"><a href="central-limit-theorem.html#sample-sum-and-clt"><i class="fa fa-check"></i><b>11.4</b> Sample sum and CLT</a></li>
+<li class="chapter" data-level="11.5" data-path="central-limit-theorem.html"><a href="central-limit-theorem.html#unknown-sigma"><i class="fa fa-check"></i><b>11.5</b> Unknown <span class="math inline">\(\sigma\)</span></a></li>
+<li class="chapter" data-level="11.6" data-path="central-limit-theorem.html"><a href="central-limit-theorem.html#t-statistic"><i class="fa fa-check"></i><b>11.6</b> T-statistic</a></li>
+<li class="chapter" data-level="11.7" data-path="central-limit-theorem.html"><a href="central-limit-theorem.html#questions-8"><i class="fa fa-check"></i><b>11.7</b> Questions</a></li>
+<li class="chapter" data-level="11.8" data-path="central-limit-theorem.html"><a href="central-limit-theorem.html#exercises-9"><i class="fa fa-check"></i><b>11.8</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="maximum-likelihood.html"><a href="maximum-likelihood.html"><i class="fa fa-check"></i><b>12</b> Maximum likelihood</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="maximum-likelihood.html"><a href="maximum-likelihood.html#statistic"><i class="fa fa-check"></i><b>12.1</b> Statistic</a></li>
+<li class="chapter" data-level="12.2" data-path="maximum-likelihood.html"><a href="maximum-likelihood.html#properties"><i class="fa fa-check"></i><b>12.2</b> Properties</a></li>
+<li class="chapter" data-level="12.3" data-path="maximum-likelihood.html"><a href="maximum-likelihood.html#maximum-likelihood-1"><i class="fa fa-check"></i><b>12.3</b> Maximum likelihood</a></li>
+<li class="chapter" data-level="12.4" data-path="maximum-likelihood.html"><a href="maximum-likelihood.html#maximum-likelihood-2"><i class="fa fa-check"></i><b>12.4</b> Maximum likelihood</a></li>
+<li class="chapter" data-level="12.5" data-path="maximum-likelihood.html"><a href="maximum-likelihood.html#questions-9"><i class="fa fa-check"></i><b>12.5</b> Questions</a></li>
+<li class="chapter" data-level="12.6" data-path="maximum-likelihood.html"><a href="maximum-likelihood.html#exercises-10"><i class="fa fa-check"></i><b>12.6</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="interval-estimation.html"><a href="interval-estimation.html"><i class="fa fa-check"></i><b>13</b> Interval estimation</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="interval-estimation.html"><a href="interval-estimation.html#revisiting-parameter-estimation-and-marging-of-error"><i class="fa fa-check"></i><b>13.1</b> Revisiting parameter estimation and marging of error</a></li>
+<li class="chapter" data-level="13.2" data-path="interval-estimation.html"><a href="interval-estimation.html#interval-estimation-for-the-mean"><i class="fa fa-check"></i><b>13.2</b> Interval estimation for the mean</a></li>
+<li class="chapter" data-level="13.3" data-path="interval-estimation.html"><a href="interval-estimation.html#confidence-interval-estimation"><i class="fa fa-check"></i><b>13.3</b> Confidence Interval Estimation</a>
+<ul>
+<li class="chapter" data-level="13.3.1" data-path="interval-estimation.html"><a href="interval-estimation.html#estimation-of-the-mean-for-normal-variables"><i class="fa fa-check"></i><b>13.3.1</b> Estimation of the mean for normal variables</a></li>
+<li class="chapter" data-level="13.3.2" data-path="interval-estimation.html"><a href="interval-estimation.html#estimation-of-the-proportion-for-dichotomic-variables"><i class="fa fa-check"></i><b>13.3.2</b> Estimation of the proportion for dichotomic variables</a></li>
+</ul></li>
+<li class="chapter" data-level="13.4" data-path="interval-estimation.html"><a href="interval-estimation.html#estimation-of-the-variance"><i class="fa fa-check"></i><b>13.4</b> Estimation of the variance</a></li>
+<li class="chapter" data-level="13.5" data-path="interval-estimation.html"><a href="interval-estimation.html#confidence-interval-for-the-variance"><i class="fa fa-check"></i><b>13.5</b> Confidence interval for the variance</a></li>
+<li class="chapter" data-level="13.6" data-path="interval-estimation.html"><a href="interval-estimation.html#questions-10"><i class="fa fa-check"></i><b>13.6</b> Questions</a></li>
+<li class="chapter" data-level="13.7" data-path="interval-estimation.html"><a href="interval-estimation.html#exercises-11"><i class="fa fa-check"></i><b>13.7</b> Exercises</a></li>
+<li class="chapter" data-level="13.8" data-path="interval-estimation.html"><a href="interval-estimation.html#practice-3"><i class="fa fa-check"></i><b>13.8</b> Practice</a></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html"><i class="fa fa-check"></i><b>14</b> Hypothesis Testing</a>
+<ul>
+<li class="chapter" data-level="14.1" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#hypothesis-formulation"><i class="fa fa-check"></i><b>14.1</b> Hypothesis formulation</a></li>
+<li class="chapter" data-level="14.2" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#hypothesis-testing-1"><i class="fa fa-check"></i><b>14.2</b> Hypothesis Testing</a></li>
+<li class="chapter" data-level="14.3" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#hypothesis-testing-for-the-mean"><i class="fa fa-check"></i><b>14.3</b> Hypothesis testing for the mean</a>
+<ul>
+<li class="chapter" data-level="14.3.1" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#hypothesis-test-with-a-confidence-interval"><i class="fa fa-check"></i><b>14.3.1</b> Hypothesis test with a confidence interval</a></li>
+<li class="chapter" data-level="14.3.2" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#hypothesis-test-with-acceptancerejection-zones"><i class="fa fa-check"></i><b>14.3.2</b> Hypothesis test with acceptance/rejection zones</a></li>
+<li class="chapter" data-level="14.3.3" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#hypothesis-test-with-a-p-value"><i class="fa fa-check"></i><b>14.3.3</b> Hypothesis test with a P-value</a></li>
+<li class="chapter" data-level="14.3.4" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#upper-tail-hypothesis"><i class="fa fa-check"></i><b>14.3.4</b> Upper tail hypothesis</a></li>
+<li class="chapter" data-level="14.3.5" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#paired-t-test"><i class="fa fa-check"></i><b>14.3.5</b> Paired t-test</a></li>
+<li class="chapter" data-level="14.3.6" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#lower-tail-hypothesis"><i class="fa fa-check"></i><b>14.3.6</b> Lower tail hypothesis</a></li>
+</ul></li>
+<li class="chapter" data-level="14.4" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#hypothesis-testing-for-the-proportion"><i class="fa fa-check"></i><b>14.4</b> Hypothesis testing for the proportion</a></li>
+<li class="chapter" data-level="14.5" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#hypothesis-testing-for-the-variance"><i class="fa fa-check"></i><b>14.5</b> Hypothesis Testing for the Variance</a></li>
+<li class="chapter" data-level="14.6" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#errors-in-hypothesis-testing"><i class="fa fa-check"></i><b>14.6</b> Errors in hypothesis testing</a>
+<ul>
+<li class="chapter" data-level="14.6.1" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#sensitivity-and-specificity"><i class="fa fa-check"></i><b>14.6.1</b> Sensitivity and Specificity</a></li>
+</ul></li>
+<li class="chapter" data-level="14.7" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#exercises-12"><i class="fa fa-check"></i><b>14.7</b> Exercises</a></li>
+<li class="chapter" data-level="14.8" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#practice-4"><i class="fa fa-check"></i><b>14.8</b> Practice</a></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="contingency-tables.html"><a href="contingency-tables.html"><i class="fa fa-check"></i><b>15</b> Contingency tables</a>
+<ul>
+<li class="chapter" data-level="15.1" data-path="contingency-tables.html"><a href="contingency-tables.html#difference-between-proportions"><i class="fa fa-check"></i><b>15.1</b> Difference between proportions</a></li>
+<li class="chapter" data-level="15.2" data-path="contingency-tables.html"><a href="contingency-tables.html#difference-between-proportions-1"><i class="fa fa-check"></i><b>15.2</b> Difference between proportions</a></li>
+<li class="chapter" data-level="15.3" data-path="contingency-tables.html"><a href="contingency-tables.html#contingency-table-of-conditional-probabilities"><i class="fa fa-check"></i><b>15.3</b> Contingency table of conditional probabilities</a></li>
+<li class="chapter" data-level="15.4" data-path="contingency-tables.html"><a href="contingency-tables.html#test-for-the-difference-between-proportions"><i class="fa fa-check"></i><b>15.4</b> Test for the difference between proportions</a></li>
+<li class="chapter" data-level="15.5" data-path="contingency-tables.html"><a href="contingency-tables.html#chi2-test"><i class="fa fa-check"></i><b>15.5</b> <span class="math inline">\(\chi^2\)</span> test</a></li>
+<li class="chapter" data-level="15.6" data-path="contingency-tables.html"><a href="contingency-tables.html#fishers-exact-test"><i class="fa fa-check"></i><b>15.6</b> Fisher’s exact test</a></li>
+<li class="chapter" data-level="15.7" data-path="contingency-tables.html"><a href="contingency-tables.html#hypergeometric-distribution"><i class="fa fa-check"></i><b>15.7</b> Hypergeometric distribution</a></li>
+<li class="chapter" data-level="15.8" data-path="contingency-tables.html"><a href="contingency-tables.html#difference-between-several-proportions"><i class="fa fa-check"></i><b>15.8</b> Difference between several proportions</a></li>
+<li class="chapter" data-level="15.9" data-path="contingency-tables.html"><a href="contingency-tables.html#goodness-of-fit"><i class="fa fa-check"></i><b>15.9</b> Goodness of fit</a></li>
+<li class="chapter" data-level="15.10" data-path="contingency-tables.html"><a href="contingency-tables.html#questions-11"><i class="fa fa-check"></i><b>15.10</b> Questions</a></li>
+<li class="chapter" data-level="15.11" data-path="contingency-tables.html"><a href="contingency-tables.html#practice-5"><i class="fa fa-check"></i><b>15.11</b> Practice</a></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="mean-differences-between-two-samples.html"><a href="mean-differences-between-two-samples.html"><i class="fa fa-check"></i><b>16</b> Mean differences between two samples</a>
+<ul>
+<li class="chapter" data-level="16.1" data-path="mean-differences-between-two-samples.html"><a href="mean-differences-between-two-samples.html#difference-in-means-between-two-groups"><i class="fa fa-check"></i><b>16.1</b> Difference in means between two groups</a></li>
+<li class="chapter" data-level="16.2" data-path="mean-differences-between-two-samples.html"><a href="mean-differences-between-two-samples.html#data-1"><i class="fa fa-check"></i><b>16.2</b> Data</a></li>
+<li class="chapter" data-level="16.3" data-path="mean-differences-between-two-samples.html"><a href="mean-differences-between-two-samples.html#difference-between-means"><i class="fa fa-check"></i><b>16.3</b> Difference between means</a></li>
+<li class="chapter" data-level="16.4" data-path="mean-differences-between-two-samples.html"><a href="mean-differences-between-two-samples.html#hypothesis-test"><i class="fa fa-check"></i><b>16.4</b> Hypothesis test</a></li>
+<li class="chapter" data-level="16.5" data-path="mean-differences-between-two-samples.html"><a href="mean-differences-between-two-samples.html#estiamtor-of-the-mean-difference"><i class="fa fa-check"></i><b>16.5</b> Estiamtor of the mean difference</a></li>
+<li class="chapter" data-level="16.6" data-path="mean-differences-between-two-samples.html"><a href="mean-differences-between-two-samples.html#standardized-error"><i class="fa fa-check"></i><b>16.6</b> Standardized error</a></li>
+<li class="chapter" data-level="16.7" data-path="mean-differences-between-two-samples.html"><a href="mean-differences-between-two-samples.html#standardized-error-for-the-null"><i class="fa fa-check"></i><b>16.7</b> Standardized error for the null</a></li>
+<li class="chapter" data-level="16.8" data-path="mean-differences-between-two-samples.html"><a href="mean-differences-between-two-samples.html#mean-differences-when-n-is-small"><i class="fa fa-check"></i><b>16.8</b> Mean differences when <span class="math inline">\(n\)</span> is small</a></li>
+<li class="chapter" data-level="16.9" data-path="mean-differences-between-two-samples.html"><a href="mean-differences-between-two-samples.html#data-2"><i class="fa fa-check"></i><b>16.9</b> Data</a></li>
+<li class="chapter" data-level="16.10" data-path="mean-differences-between-two-samples.html"><a href="mean-differences-between-two-samples.html#difference-between-means-1"><i class="fa fa-check"></i><b>16.10</b> Difference between means</a></li>
+<li class="chapter" data-level="16.11" data-path="mean-differences-between-two-samples.html"><a href="mean-differences-between-two-samples.html#hypothesis-test-1"><i class="fa fa-check"></i><b>16.11</b> Hypothesis test</a></li>
+<li class="chapter" data-level="16.12" data-path="mean-differences-between-two-samples.html"><a href="mean-differences-between-two-samples.html#estimator-of-the-mean-difference"><i class="fa fa-check"></i><b>16.12</b> Estimator of the mean difference</a></li>
+<li class="chapter" data-level="16.13" data-path="mean-differences-between-two-samples.html"><a href="mean-differences-between-two-samples.html#standardized-error-for-the-null-1"><i class="fa fa-check"></i><b>16.13</b> Standardized error for the null</a></li>
+<li class="chapter" data-level="16.14" data-path="mean-differences-between-two-samples.html"><a href="mean-differences-between-two-samples.html#mean-differences-with-unequall-variances"><i class="fa fa-check"></i><b>16.14</b> Mean differences with unequall variances</a></li>
+<li class="chapter" data-level="16.15" data-path="mean-differences-between-two-samples.html"><a href="mean-differences-between-two-samples.html#data-3"><i class="fa fa-check"></i><b>16.15</b> Data</a></li>
+<li class="chapter" data-level="16.16" data-path="mean-differences-between-two-samples.html"><a href="mean-differences-between-two-samples.html#questions-12"><i class="fa fa-check"></i><b>16.16</b> Questions</a></li>
+<li class="chapter" data-level="16.17" data-path="mean-differences-between-two-samples.html"><a href="mean-differences-between-two-samples.html#practice-6"><i class="fa fa-check"></i><b>16.17</b> Practice</a></li>
+</ul></li>
+<li class="chapter" data-level="17" data-path="mean-differences-across-several-groups.html"><a href="mean-differences-across-several-groups.html"><i class="fa fa-check"></i><b>17</b> Mean differences across several groups</a>
+<ul>
+<li class="chapter" data-level="17.1" data-path="mean-differences-across-several-groups.html"><a href="mean-differences-across-several-groups.html#different-means-among-several-conditions"><i class="fa fa-check"></i><b>17.1</b> Different means among several conditions</a></li>
+<li class="chapter" data-level="17.2" data-path="mean-differences-across-several-groups.html"><a href="mean-differences-across-several-groups.html#data-4"><i class="fa fa-check"></i><b>17.2</b> Data</a></li>
+<li class="chapter" data-level="17.3" data-path="mean-differences-across-several-groups.html"><a href="mean-differences-across-several-groups.html#difference-between-means-2"><i class="fa fa-check"></i><b>17.3</b> Difference between means</a></li>
+<li class="chapter" data-level="17.4" data-path="mean-differences-across-several-groups.html"><a href="mean-differences-across-several-groups.html#hypothesis-test-2"><i class="fa fa-check"></i><b>17.4</b> Hypothesis test</a>
+<ul>
+<li class="chapter" data-level="17.4.1" data-path="mean-differences-across-several-groups.html"><a href="mean-differences-across-several-groups.html#distribution-of-group-means-under-h_0"><i class="fa fa-check"></i><b>17.4.1</b> Distribution of group means under <span class="math inline">\(H_0\)</span></a></li>
+<li class="chapter" data-level="17.4.2" data-path="mean-differences-across-several-groups.html"><a href="mean-differences-across-several-groups.html#sources-of-variation"><i class="fa fa-check"></i><b>17.4.2</b> Sources of variation</a></li>
+</ul></li>
+<li class="chapter" data-level="17.5" data-path="mean-differences-across-several-groups.html"><a href="mean-differences-across-several-groups.html#variance-components-estimators"><i class="fa fa-check"></i><b>17.5</b> Variance components estimators</a></li>
+<li class="chapter" data-level="17.6" data-path="mean-differences-across-several-groups.html"><a href="mean-differences-across-several-groups.html#analysis-of-variance-anova"><i class="fa fa-check"></i><b>17.6</b> Analysis of variance (ANOVA)</a></li>
+<li class="chapter" data-level="17.7" data-path="mean-differences-across-several-groups.html"><a href="mean-differences-across-several-groups.html#anova-for-two-groups"><i class="fa fa-check"></i><b>17.7</b> ANOVA for Two Groups</a></li>
+<li class="chapter" data-level="17.8" data-path="mean-differences-across-several-groups.html"><a href="mean-differences-across-several-groups.html#linear-model"><i class="fa fa-check"></i><b>17.8</b> Linear model</a></li>
+<li class="chapter" data-level="17.9" data-path="mean-differences-across-several-groups.html"><a href="mean-differences-across-several-groups.html#way-anova"><i class="fa fa-check"></i><b>17.9</b> 2-way ANOVA</a></li>
+<li class="chapter" data-level="17.10" data-path="mean-differences-across-several-groups.html"><a href="mean-differences-across-several-groups.html#data-5"><i class="fa fa-check"></i><b>17.10</b> Data</a></li>
+<li class="chapter" data-level="17.11" data-path="mean-differences-across-several-groups.html"><a href="mean-differences-across-several-groups.html#modeling-residuals"><i class="fa fa-check"></i><b>17.11</b> Modeling residuals</a></li>
+<li class="chapter" data-level="17.12" data-path="mean-differences-across-several-groups.html"><a href="mean-differences-across-several-groups.html#way-anova-linear-model"><i class="fa fa-check"></i><b>17.12</b> 2-way ANOVA linear model</a></li>
+<li class="chapter" data-level="17.13" data-path="mean-differences-across-several-groups.html"><a href="mean-differences-across-several-groups.html#hypothesis-tests"><i class="fa fa-check"></i><b>17.13</b> Hypothesis tests</a></li>
+<li class="chapter" data-level="17.14" data-path="mean-differences-across-several-groups.html"><a href="mean-differences-across-several-groups.html#variance-components"><i class="fa fa-check"></i><b>17.14</b> Variance components</a></li>
+<li class="chapter" data-level="17.15" data-path="mean-differences-across-several-groups.html"><a href="mean-differences-across-several-groups.html#way-anova-with-interaction"><i class="fa fa-check"></i><b>17.15</b> 2-way ANOVA with interaction</a></li>
+<li class="chapter" data-level="17.16" data-path="mean-differences-across-several-groups.html"><a href="mean-differences-across-several-groups.html#linear-model-1"><i class="fa fa-check"></i><b>17.16</b> Linear model</a></li>
+<li class="chapter" data-level="17.17" data-path="mean-differences-across-several-groups.html"><a href="mean-differences-across-several-groups.html#hypothesis-tests-1"><i class="fa fa-check"></i><b>17.17</b> Hypothesis tests</a></li>
+<li class="chapter" data-level="17.18" data-path="mean-differences-across-several-groups.html"><a href="mean-differences-across-several-groups.html#variance-components-1"><i class="fa fa-check"></i><b>17.18</b> Variance components</a></li>
+<li class="chapter" data-level="17.19" data-path="mean-differences-across-several-groups.html"><a href="mean-differences-across-several-groups.html#questions-13"><i class="fa fa-check"></i><b>17.19</b> Questions</a></li>
+<li class="chapter" data-level="17.20" data-path="mean-differences-across-several-groups.html"><a href="mean-differences-across-several-groups.html#practice-7"><i class="fa fa-check"></i><b>17.20</b> Practice</a></li>
+</ul></li>
+<li class="chapter" data-level="18" data-path="regression-and-correlation.html"><a href="regression-and-correlation.html"><i class="fa fa-check"></i><b>18</b> Regression and Correlation</a>
+<ul>
+<li class="chapter" data-level="18.1" data-path="regression-and-correlation.html"><a href="regression-and-correlation.html#correlations"><i class="fa fa-check"></i><b>18.1</b> Correlations</a></li>
+<li class="chapter" data-level="18.2" data-path="regression-and-correlation.html"><a href="regression-and-correlation.html#data-6"><i class="fa fa-check"></i><b>18.2</b> Data</a></li>
+<li class="chapter" data-level="18.3" data-path="regression-and-correlation.html"><a href="regression-and-correlation.html#normal-bivariate"><i class="fa fa-check"></i><b>18.3</b> Normal bivariate</a></li>
+<li class="chapter" data-level="18.4" data-path="regression-and-correlation.html"><a href="regression-and-correlation.html#estimators"><i class="fa fa-check"></i><b>18.4</b> Estimators</a></li>
+<li class="chapter" data-level="18.5" data-path="regression-and-correlation.html"><a href="regression-and-correlation.html#correlation-coefficient"><i class="fa fa-check"></i><b>18.5</b> Correlation coefficient</a></li>
+<li class="chapter" data-level="18.6" data-path="regression-and-correlation.html"><a href="regression-and-correlation.html#hypothesis-contrast"><i class="fa fa-check"></i><b>18.6</b> Hypothesis contrast</a></li>
+<li class="chapter" data-level="18.7" data-path="regression-and-correlation.html"><a href="regression-and-correlation.html#regression-analysis"><i class="fa fa-check"></i><b>18.7</b> Regression analysis</a></li>
+<li class="chapter" data-level="18.8" data-path="regression-and-correlation.html"><a href="regression-and-correlation.html#linear-model-2"><i class="fa fa-check"></i><b>18.8</b> Linear model</a></li>
+<li class="chapter" data-level="18.9" data-path="regression-and-correlation.html"><a href="regression-and-correlation.html#hypothesis-contrast-1"><i class="fa fa-check"></i><b>18.9</b> Hypothesis contrast</a></li>
+<li class="chapter" data-level="18.10" data-path="regression-and-correlation.html"><a href="regression-and-correlation.html#estimators-1"><i class="fa fa-check"></i><b>18.10</b> Estimators</a></li>
+<li class="chapter" data-level="18.11" data-path="regression-and-correlation.html"><a href="regression-and-correlation.html#hypothesis-testing-2"><i class="fa fa-check"></i><b>18.11</b> Hypothesis testing</a></li>
+<li class="chapter" data-level="18.12" data-path="regression-and-correlation.html"><a href="regression-and-correlation.html#stratified-analysis"><i class="fa fa-check"></i><b>18.12</b> Stratified analysis</a></li>
+<li class="chapter" data-level="18.13" data-path="regression-and-correlation.html"><a href="regression-and-correlation.html#multiple-regression"><i class="fa fa-check"></i><b>18.13</b> Multiple Regression</a></li>
+<li class="chapter" data-level="18.14" data-path="regression-and-correlation.html"><a href="regression-and-correlation.html#multiple-regression-interaction"><i class="fa fa-check"></i><b>18.14</b> Multiple Regression interaction</a></li>
+<li class="chapter" data-level="18.15" data-path="regression-and-correlation.html"><a href="regression-and-correlation.html#model-diagnostics"><i class="fa fa-check"></i><b>18.15</b> Model diagnostics</a></li>
+<li class="chapter" data-level="18.16" data-path="regression-and-correlation.html"><a href="regression-and-correlation.html#questions-14"><i class="fa fa-check"></i><b>18.16</b> Questions</a></li>
+<li class="chapter" data-level="18.17" data-path="regression-and-correlation.html"><a href="regression-and-correlation.html#practice-8"><i class="fa fa-check"></i><b>18.17</b> Practice</a></li>
+</ul></li>
+<li class="chapter" data-level="19" data-path="apendix.html"><a href="apendix.html"><i class="fa fa-check"></i><b>19</b> Apendix</a>
+<ul>
+<li class="chapter" data-level="19.1" data-path="apendix.html"><a href="apendix.html#solutions-to-questions"><i class="fa fa-check"></i><b>19.1</b> Solutions to Questions</a></li>
+<li class="chapter" data-level="19.2" data-path="apendix.html"><a href="apendix.html#summary-tables-python-and-r-code"><i class="fa fa-check"></i><b>19.2</b> Summary tables, Python and R code</a>
+<ul>
+<li class="chapter" data-level="19.2.1" data-path="apendix.html"><a href="apendix.html#creating-data-frames-and-loading-text-files"><i class="fa fa-check"></i><b>19.2.1</b> Creating Data Frames and Loading Text Files</a></li>
+<li class="chapter" data-level="19.2.2" data-path="apendix.html"><a href="apendix.html#python-and-r-functions-for-data-description"><i class="fa fa-check"></i><b>19.2.2</b> Python and R Functions for Data Description</a></li>
+</ul></li>
+<li class="chapter" data-level="19.3" data-path="apendix.html"><a href="apendix.html#summary-of-common-probability-models"><i class="fa fa-check"></i><b>19.3</b> Summary of common probability models</a>
+<ul>
+<li class="chapter" data-level="19.3.1" data-path="apendix.html"><a href="apendix.html#python-and-r-functions-for-probability-models"><i class="fa fa-check"></i><b>19.3.1</b> Python and R Functions for Probability Models</a></li>
+</ul></li>
+<li class="chapter" data-level="19.4" data-path="apendix.html"><a href="apendix.html#summary-of-hypothesis"><i class="fa fa-check"></i><b>19.4</b> Summary of hypothesis</a>
+<ul>
+<li class="chapter" data-level="19.4.1" data-path="apendix.html"><a href="apendix.html#python-and-r-functions-for-hypothesis-tesing"><i class="fa fa-check"></i><b>19.4.1</b> Python and R Functions for Hypothesis tesing</a></li>
+<li class="chapter" data-level="19.4.2" data-path="apendix.html"><a href="apendix.html#python-libraries-required"><i class="fa fa-check"></i><b>19.4.2</b> Python Libraries Required</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Statistical Data Analysis
+for
+Experimental Sciences</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="hypothesis-testing" class="section level1 hasAnchor" number="14">
+<h1><span class="header-section-number">Chapter 14</span> Hypothesis Testing<a href="hypothesis-testing.html#hypothesis-testing" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>When we perform an experiment, we often want to determine whether changes we introduce have a real effect. For instance, we might want to know if we can influence the outcome of the experiment, or whether a new condition alters the results in a meaningful way. Often, we already have expectations—based on prior knowledge—of how the data should behave when these new conditions are <strong>not present</strong>. But since the outcomes of experiments are subject to random variation in any case, how can we distinguish a real effect from random noise?</p>
+<p>The strategy is to construct a probability model for the experiment and assess how the model’s <strong>parameters</strong> change under different conditions. We use random samples to estimate the parameters and by comparing the estimations under different conditions, we can decide whether the parameters shift in a way that provides evidence of a significant effect.</p>
+<p>The key challenge is to determine whether the observed variation in the parameter estimation is genuinely due to the changes in conditions or simply a result of sampling variability.</p>
+<p>In this chapter, we introduce the framework of <strong>hypothesis testing</strong> for means, proportions, and variances. We will define the <strong>null hypothesis</strong> (which assumes no change or effect) and the <strong>alternative hypothesis</strong> (which assumes a meaningful change). Using data, we will learn how to decide whether the evidence supports rejecting the null hypothesis in favor of the alternative.</p>
+<p>Finally, we will discuss the types of errors that can occur in hypothesis testing—<strong>false positives</strong> (Type I errors) and <strong>false negatives</strong> (Type II errors)—and how they affect our conclusions.</p>
+<div id="hypothesis-formulation" class="section level2 hasAnchor" number="14.1">
+<h2><span class="header-section-number">14.1</span> Hypothesis formulation<a href="hypothesis-testing.html#hypothesis-formulation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><strong>Example (Lithium-ion (Li-ion) batteries)</strong></p>
+<p>Li-ion batteries are expected to play a pivotal role in supporting the global transition to clean energy and electrified transportation. Their performance, measured in discharged capacity (in milliampere-hours, mAh), is highly sensitive to storage conditions such as temperature and state of charge (SOC). The CALCE battery group systematically studied how different storage temperatures and SOC levels affect long-term battery degradation <span class="citation">(<a href="#ref-CALCE_StorageData2025">Center for Advanced Life Cycle Engineering (CALCE) 2025</a>)</span>.</p>
+<p>The discharged capacity refers to the total amount of electric charge a battery can deliver during a full discharge cycle after being fully charged. For example, batteries stored fully charged for three weeks at 50°C show a discharged capacity of 1.561 mAh after being recharged. This raises a practical and important question:</p>
+<p>Does storing the battery in a fully discharged state instead improve its discharged capacity after storage?</p>
+<p>Or more broadly:</p>
+<p>Should a battery be stored fully charged or fully discharged to minimize degradation over time?</p>
+<p>We are interested in testing whether the mean discharged capacity of batteries stored fully discharged for three weeks differs from 1.561 mAh, after they have been fully recharged.</p>
+<p>To answer this, we can formulate two mutually exclusive statements:</p>
+<ul>
+<li><ol style="list-style-type: lower-alpha">
+<li>The mean discharged capacity of the discharged-storage batteries is equal to 1.561 mAh<br />
+</li>
+</ol></li>
+<li><ol start="2" style="list-style-type: lower-alpha">
+<li>The mean discharged capacity of the discharged-storage batteries is different from 1.561 mAh</li>
+</ol></li>
+</ul>
+<p>Only one of these statements can be true. The goal of the experiment is to collect data and decide which of the two better reflects the behavior of the batteries.</p>
+<p>It is important to note that due to natural variability, some individual batteries may show capacities greater than 1.561 mAh, and some lower. The key question is about the mean performance of the group, not individual observations.</p>
+<p>Let <span class="math inline">\(\mu\)</span> represent the mean discharged capacity of batteries stored fully discharged. Then, the above statements can be reformulated as statistical hypotheses:</p>
+<ol style="list-style-type: lower-alpha">
+<li><span class="math inline">\(H_0: \mu = 1.561\,\text{mAh}\)</span> (null hypothesis)<br />
+</li>
+<li><span class="math inline">\(H_1: \mu \neq 1.561\,\text{mAh}\)</span> (alternative hypothesis)</li>
+</ol>
+<p>Here, <span class="math inline">\(H_0\)</span> assumes no effect of storage condition—that is, fully discharged storage results in the same capacity as fully charged storage. In contrast, <span class="math inline">\(H_1\)</span> suggests that the storage condition does influence the battery’s performance. These two statements constitute the basis for hypothesis testing.</p>
+<p><strong>Definition</strong></p>
+<p>In statistics, a statement (conjecture) about the probability function of a random variable is called a <strong>hypothesis</strong>.</p>
+<p>The hypothesis is usually written in two dichotomous statements</p>
+<ol style="list-style-type: lower-alpha">
+<li><p>The <strong>null</strong> hypothesis <span class="math inline">\(H_0\)</span>: when the conjecture is false. It usually refers to the <strong>status quo</strong>. The data may be explained by the status quo.</p></li>
+<li><p>The <strong>alternative</strong> hypothesis <span class="math inline">\(H_1\)</span>: when the conjecture is true. It usually refers to <strong>research hypothesis</strong>. The data may be explained by the alternative to the status quo.</p></li>
+</ol>
+<p><strong>Example (Fertilizer)</strong></p>
+<p>What are the null and the alternative hypothesis for the following situation?</p>
+<p>Fertilizer developers want to test whether their new product has a real effect on the growth of plants.</p>
+<p>Being <span class="math inline">\(\mu_0\)</span> the mean growth of the plants <strong>without</strong> fertilizer (known) and <span class="math inline">\(\mu\)</span> the mean growth of the plants with the fertilizer (unknown)</p>
+<ol style="list-style-type: lower-alpha">
+<li><span class="math inline">\(H_0:\mu \leq \mu_0\)</span> (The fertilizer may do nothing: status quo)</li>
+<li><span class="math inline">\(H_1:\mu &gt; \mu_0\)</span> (The fertilizer may have the desired effect: research interest)</li>
+</ol>
+<p><strong>Example (Chemotherapy)</strong></p>
+<p>Pharmaceutical companies need to know if a novel chemotherapy can cure 90% of cancer patients.</p>
+<p>Being <span class="math inline">\(p_0\)</span> the proportion of patients that are cured <strong>without</strong> the chemotherapy (known) and <span class="math inline">\(p\)</span> the proportion that are cures <strong>with</strong> the chemotherapy (unknown)</p>
+<ol style="list-style-type: lower-alpha">
+<li><span class="math inline">\(H_0:p \leq p_0\)</span> (The chemotherapy may do nothing: status quo)</li>
+<li><span class="math inline">\(H_1: p &gt; p_0\)</span> (The chemotherapy may have the desired effect: research interest)</li>
+</ol>
+<p>Note that our new improved experiment has the parameter <span class="math inline">\(p\)</span> and we want to know how it compares to the experiment without <strong>any additional improvement</strong> that has the parameter <span class="math inline">\(p_0\)</span>.</p>
+<p>We want to decide between <span class="math inline">\(H_0\)</span> and <span class="math inline">\(H_1\)</span>. There are two options:</p>
+<ol style="list-style-type: decimal">
+<li><p>We <strong>reject</strong> the alternative hypothesis <span class="math inline">\(H_1\)</span>; that is, we accept the null hypothesis <span class="math inline">\(H_0\)</span>.</p></li>
+<li><p>We <strong>accept</strong> the alternative hypothesis <span class="math inline">\(H_1\)</span> (our interest); that is, we reject the null hypothesis <span class="math inline">\(H_0\)</span>.</p></li>
+</ol>
+<p><strong>Example (Li-ion Batteries)</strong></p>
+<p>Suppose we want to store Li-ion batteries but are unsure whether to store them fully charged or fully discharged to minimize long-term degradation.</p>
+<p>To address this, we formulate a hypothesis test:</p>
+<ul>
+<li><span class="math inline">\(H_0: \mu = 1.561\,\text{mAh}\)</span>. The mean discharge capacity is the same whether batteries are stored fully charged or fully discharged.<br />
+</li>
+<li><span class="math inline">\(H_1: \mu \neq 1.561\,\text{mAh}\)</span>. The mean discharge capacity differs when batteries are stored fully discharged compared to fully charged.</li>
+</ul>
+<p>To decide between <span class="math inline">\(H_0\)</span> and <span class="math inline">\(H_1\)</span>, we measure the discharge capacity of 12 batteries that were stored fully discharged for three weeks.</p>
+<p><img src="_main_files/figure-html/unnamed-chunk-152-1.png" width="384" /></p>
+<p>From the data, the average discharge capacity of the 12 batteries stored fully discharged is<br />
+<span class="math inline">\(\bar{x} = 1.569232\)</span> mAh. At first glance, this might suggest that storing batteries discharged reduces degradation compared to storing them fully charged.</p>
+<p>However, we must consider that <span class="math inline">\(\bar{x}\)</span> is the result of a random sample and may vary. Sometimes it will be higher than 1.561mAh, and sometimes lower. Therefore, the observation <span class="math inline">\(\bar{x} \ne 1.561\)</span> is not, by itself, sufficient evidence to reject <span class="math inline">\(H_0\)</span>.</p>
+<p>This leads us to ask:</p>
+<p>If <span class="math inline">\(H_0\)</span> is true, what range of values would we typically expect for <span class="math inline">\(\bar{x}\)</span>, based on a sample of 12 batteries?</p>
+<p>In other words, is <span class="math inline">\(\bar{x} = 1.569232\)</span> a typical result, assuming the expected value of the new experiment is indeed 1.561 mAh?</p>
+<p>To answer this, we need a formal decision process, which we introduce in the following sections.</p>
+</div>
+<div id="hypothesis-testing-1" class="section level2 hasAnchor" number="14.2">
+<h2><span class="header-section-number">14.2</span> Hypothesis Testing<a href="hypothesis-testing.html#hypothesis-testing-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Let us summarize the different <strong>cases</strong>, <strong>methods</strong>, and <strong>types</strong> of hypothesis testing. We will then discuss each case using a specific example.</p>
+<p>Hypotheses can be tested — or decided upon — using confidence intervals. Therefore, we will focus on the same <strong>cases</strong> we encountered when constructing confidence intervals, namely:</p>
+<ul>
+<li>Hypothesis test for the mean <span class="math inline">\(\mu\)</span>, when <span class="math inline">\(X \sim N(\mu, \sigma^2)\)</span></li>
+<li>Hypothesis test for the proportion <span class="math inline">\(p\)</span>, when <span class="math inline">\(X \sim \text{Bernoulli}(p)\)</span> and both <span class="math inline">\(np &gt; 5\)</span> and <span class="math inline">\(n(1-p) &gt; 5\)</span></li>
+<li>Hypothesis test for the variance <span class="math inline">\(\sigma^2\)</span>, when <span class="math inline">\(X \sim N(\mu, \sigma^2)\)</span></li>
+</ul>
+<p>There are three <strong>methods</strong> for testing hypotheses:</p>
+<ol style="list-style-type: decimal">
+<li>Using <strong>confidence intervals</strong></li>
+<li>Using a <strong>rejection region</strong></li>
+<li>Using a <strong>p-value</strong></li>
+</ol>
+<p>All three methods are mathematically equivalent and lead to the same decision.</p>
+<p>Finally, there are three <strong>types</strong> of hypothesis tests:</p>
+<ol style="list-style-type: decimal">
+<li><strong>Two-tailed</strong> test</li>
+<li><strong>Upper-tailed</strong> test</li>
+<li><strong>Lower-tailed</strong> test</li>
+</ol>
+</div>
+<div id="hypothesis-testing-for-the-mean" class="section level2 hasAnchor" number="14.3">
+<h2><span class="header-section-number">14.3</span> Hypothesis testing for the mean<a href="hypothesis-testing.html#hypothesis-testing-for-the-mean" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>A <strong>tow tailed</strong> hypothesis contrast is of the form</p>
+<ol style="list-style-type: lower-alpha">
+<li><span class="math inline">\(H_0:\mu = \mu_0\)</span> (status quo)</li>
+<li><span class="math inline">\(H_1:\mu \neq \mu_0\)</span> (research interest)</li>
+</ol>
+<p>This is called two tailed because the alternative hypothesis <span class="math inline">\(H_1\)</span> requires that the mean <span class="math inline">\(\mu\)</span> of the new experiment is either lower or higher than the mean <span class="math inline">\(\mu_0\)</span> of the old experiment, or gold standard. This hypothesis can be tested in different cases. For these hypothesis we will assume that <span class="math inline">\(X\)</span> is a normal variable.</p>
+<div id="hypothesis-test-with-a-confidence-interval" class="section level3 hasAnchor" number="14.3.1">
+<h3><span class="header-section-number">14.3.1</span> Hypothesis test with a confidence interval<a href="hypothesis-testing.html#hypothesis-test-with-a-confidence-interval" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Remember that the confidence interval at <span class="math inline">\(95\%\)</span> for the mean is</p>
+<p><span class="math display">\[(l,u)=(\bar{x}-t_{0.025, n-1} \frac{s}{\sqrt{n}},\bar{x}+t_{0.025, n-1} \frac{s}{\sqrt{n}})\]</span></p>
+<p>when the outcomes of the random experiment distribute normally <span class="math inline">\(X\sim N(\mu, \sigma^2)\)</span>.</p>
+<p><strong>Testing Criteria:</strong></p>
+<p>We can have only two options:</p>
+<ul>
+<li>If the confidence interval <strong>contains</strong> the null hypothesis <span class="math inline">\(\mu_0\)</span>:</li>
+</ul>
+<p><span class="math display">\[\mu_0\in (l,u)\]</span> then we <strong>accept</strong> <span class="math inline">\(H_0\)</span> with <span class="math inline">\(95\%\)</span> confidence. We do not know where the mean the experiment under the new conditions is but we are confident that it is within the confidence interval. Since <span class="math inline">\(\mu_0\)</span> is within the interval we cannot discard that <span class="math inline">\(\mu_0\)</span> is the expected value of our experiment. We then say that the data could have been produced by the old experiment, rendering the new conditions irrelevant.</p>
+<ul>
+<li>If the confidence interval does <strong>not contain</strong> the null hypothesis<span class="math display">\[\mu_0\notin (l,u)\]</span> then we <strong>reject</strong> <span class="math inline">\(H_0\)</span> with <span class="math inline">\(95\%\)</span> confidence. Since we are confident that the mean of the new experiment is within the interval and <span class="math inline">\(\mu_0\)</span> is not within it, then we can discard that the mean is <span class="math inline">\(\mu_0\)</span>. We then say that the data could not have been produced by the old experiment, rendering the new conditions meaningful.</li>
+</ul>
+<p><strong>Example (Li-ion Batteries)</strong></p>
+<p>Twelve fully discharged Li-ion batteries were stored for three weeks, then they were re-charged and their discharged capacity was measured</p>
+<p>1.5681, 1.5578, 1.572, 1.5637, 1.5769, 1.5627, 1.5757, 1.5782, 1.5806, 1.5645, 1.5484, 1.5821</p>
+<p>From the histogram of the data we see that we can assume that the discharge capacity distributes normally</p>
+<p><img src="_main_files/figure-html/unnamed-chunk-153-1.png" width="672" /></p>
+<p>Therefore, we can compute the confidence interval for the mean <span class="math inline">\(\mu\)</span> of this sample</p>
+<p><span class="math display">\[(l,u)= (1.562, 1.575)\]</span>
+The confidence interval tells us that we trust with <span class="math inline">\(95\%\)</span> confidence that the <span class="math inline">\(\mu\)</span> is in the interval. We don not know the true value of <span class="math inline">\(\mu\)</span> but we see that <span class="math inline">\(\mu_0=1.561\)</span> is not in it.</p>
+<p><span class="math display">\[\mu_0\notin (1.562, 1.575)\]</span></p>
+<p>our conclusion is to reject that <span class="math inline">\(H_0\)</span> could have produced our <strong>observed interval</strong>. We also say that the data supports the research question that storing discharged batteries prevents their deterioration. More technically, we say that we <strong>do not reject</strong> <span class="math inline">\(H_0\)</span>.</p>
+<p><img src="_main_files/figure-html/unnamed-chunk-154-1.png" width="384" /></p>
+</div>
+<div id="hypothesis-test-with-acceptancerejection-zones" class="section level3 hasAnchor" number="14.3.2">
+<h3><span class="header-section-number">14.3.2</span> Hypothesis test with acceptance/rejection zones<a href="hypothesis-testing.html#hypothesis-test-with-acceptancerejection-zones" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>An equivalent way to test the hypothesis is to see if our set of observations are either common or rare <strong>if</strong> we assume that the <strong>null hypothesis is true</strong>. Let us remember the hypothesis contrast</p>
+<ol style="list-style-type: lower-alpha">
+<li><span class="math inline">\(H_0:\mu = \mu_0\)</span> (status quo)</li>
+<li><span class="math inline">\(H_1:\mu \neq \mu_0\)</span> (research interest)</li>
+</ol>
+<p>To test the hypothesis with a <strong>rejection zone</strong> we compute the standardized statistic</p>
+<p><span class="math display">\[T=\frac{\bar{X}-\mu_0}{\frac{S}{\sqrt{n}}}\]</span>
+when the null hypothesis is true. This is the standardized error that we will make if we estimate <span class="math inline">\(\mu_0\)</span> with the average <span class="math inline">\(\bar{X}\)</span> of the experiment under the new conditions.</p>
+<p>Note that we are standardizing with respect to <span class="math inline">\(\mu_0\)</span> (the null hypothesis). Remember that the interval</p>
+<p><span class="math display">\[(-t_{0.025, n-1}, t_{0.025, n-1})\]</span>
+defines the most common values of <span class="math inline">\(T\)</span> since they capture <span class="math inline">\(95\%\)</span> of the probability ouf the outcomes of T</p>
+<p><span class="math display">\[P(-t_{0.025, n-1} \leq T \leq t_{0.025, n-1})=0.95\]</span></p>
+<p><strong>Testing criteria:</strong></p>
+<ul>
+<li>If the observed statistics <span class="math inline">\(t_{obs}\)</span> under the null hypothesis <strong>is</strong> in the acceptance region</li>
+</ul>
+<p><span class="math display">\[t_{obs}=\frac{\bar{x}-\mu_0}{\frac{s}{\sqrt{n}}} \in (-t_{0.025, n-1}, t_{0.025, n-1})\]</span>
+we <strong>accept</strong> <span class="math inline">\(H_0\)</span> with <span class="math inline">\(95\%\)</span> confidence. In this case, the observed error that we make when we estimate <span class="math inline">\(\mu_0\)</span> by <span class="math inline">\(\bar{x}\)</span> is a typical sampling error.</p>
+<p>The interval <span class="math inline">\((-t_{0.025, n-1}, t_{0.025, n-1})\)</span> is called <strong>acceptance interval</strong> of <span class="math inline">\(H_0\)</span> at <span class="math inline">\(95\%\)</span> confidence level.</p>
+<ul>
+<li>If the observed statistics <span class="math inline">\(t_{obs}\)</span> under the null hypothesis <strong>is not</strong> in the acceptance region</li>
+</ul>
+<p><span class="math display">\[t_{obs} \notin (-t_{0.025, n-1}, t_{0.025, n-1})\]</span> then we <strong>reject</strong> <span class="math inline">\(H_0\)</span> with <span class="math inline">\(95\%\)</span> confidence. In this case, the observed error that we make when we estimate <span class="math inline">\(\mu_0\)</span> by <span class="math inline">\(\bar{x}\)</span> is too large for sampling error, and therefore the assumption that the null hypothesis was true does not hold.</p>
+<p>The region <span class="math inline">\((-t_{0.025, n-1}] \cup[t_{0.025, n-1})\)</span> is called the <strong>rejection zone</strong>.</p>
+<p><img src="_main_files/figure-html/unnamed-chunk-155-1.png" width="672" /></p>
+<p><strong>Example (Li-ion Batteries)</strong></p>
+<p>To test whether storing discharged batteries is better than storing them fully charged, we calculate the <strong>the standardized error</strong> that we make when we estimate <span class="math inline">\(\mu_0\)</span> with <span class="math inline">\(\bar{X}\)</span></p>
+<p><span class="math display">\[t_{obs}=\frac{\bar{x}-\mu_0}{\frac{s}{\sqrt{n}}}=2.7921 \notin (-t_{0.025, n-1}=-2.20, t_{0.025, n-1}=2.20)\]</span>
+Think of this regions as a region of tolerance for the error. Because our observation is not within, we have enough evidence to distrust the that the changing the storage conditions is irrelevant. We conclude that our observed average is not a typical observation of <span class="math inline">\(\bar{x}\)</span> when the null hypothesis <span class="math inline">\(\mu_0\)</span> is true. Therefore, we again reject that the data is consistent <span class="math inline">\(H_0\)</span> and say that we have evidence that support the notion that storing discharged batteries is better.</p>
+</div>
+<div id="hypothesis-test-with-a-p-value" class="section level3 hasAnchor" number="14.3.3">
+<h3><span class="header-section-number">14.3.3</span> Hypothesis test with a P-value<a href="hypothesis-testing.html#hypothesis-test-with-a-p-value" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>We can also contrast the <strong>two tail</strong> hypothesis by calculating the probability that the average of another sample from the null hypothesis will be even rarer than the average we just observed. We define the <span class="math inline">\(pvalue\)</span> as</p>
+<p><span class="math display">\[pvalue = P(T \leq -t_{obs}) + P(t_{obs} \geq T) = 2 (1-F(|t_{obs}|))\]</span></p>
+<p>That is the probability that if we were to we take another sample of the same size from the null hypothesis, we are able to obtain at least the error that we observed. If our observed error is rare for the null hypothesis then this probability value will be small.</p>
+<p><strong>Testing criteria:</strong></p>
+<ul>
+<li>If the observed <span class="math inline">\(pvalue\)</span> is</li>
+</ul>
+<p><span class="math display">\[pvalue \geq \alpha =1-0.95=0.05\]</span></p>
+<p>then we <strong>accept</strong> the null hypothesis <span class="math inline">\(H_0\)</span> with <span class="math inline">\(95\%\)</span> confidence.</p>
+<ul>
+<li>If the observed <span class="math inline">\(pvalue\)</span> is</li>
+</ul>
+<p><span class="math display">\[pvalue &lt; \alpha =1-0.95=0.05\]</span></p>
+<p>then we <strong>reject</strong> <span class="math inline">\(H_0\)</span> and accept our research question with <span class="math inline">\(5\%\)</span> significance level.</p>
+<p><span class="math inline">\(\alpha\)</span> is the significance level. It gives us how much of the distribution we are leaving out, and defines the region that we consider estimation errors to be beyond the tolerance of the null hypothesis.</p>
+<p>Remember: We always trust our data. If the null hypothesis says that our data is a <strong>rare</strong> observation we then distrust the null hypothesis, and reject it.</p>
+<p><strong>Example (Li-ion Batteries)</strong></p>
+<p>Let us think that the average <span class="math inline">\(\bar{x}=1.569232\)</span> could be achieved by batteries that were stored fully charged. Perhaps, we were lucky and select a sample made of good batteries with high discharge capacity, no matter the storage conditions. If that is so then how lucky were we? For our data the observed statistic was <span class="math inline">\(t_{obs}=2.7921\)</span> and its <strong>p-value</strong> is</p>
+<p><span class="math display">\[pvalue=2\times (1-F(2.7921))=0.017\]</span></p>
+<pre><code>Python: 
+2*(1- t.sf(2.7921, df=11))
+
+R: 
+2*(1- pt(2.7921, 11))
+</code></pre>
+<p><img src="_main_files/figure-html/unnamed-chunk-156-1.png" width="672" /></p>
+<p>We conclude that if we test <span class="math inline">\(12\)</span> batteries and store them fully charged, it is unlikely to obtain an average discharge capacity this far from the <span class="math inline">\(1.561mAh\)</span>. Only about <span class="math inline">\(1\%\)</span> of fully charged battery samples will get this far. Since this probability is lower than our tolerance, or significance level <span class="math inline">\(alpha=0.05\)</span>, again conclude that storing discharged batteries is a better option.</p>
+<p>The entire analysis in Python and R can be done with the following code</p>
+<pre echo="FALSE," warning="FALSE," message="FALSE"><code>Python:
+from scipy import stats
+data = [1.5681, 1.5578, 1.572, 1.5637, 1.5769,
+        1.5627, 1.5757, 1.5782, 1.5806, 1.5645,
+        1.5484, 1.5821]
+stats.ttest_1samp(data, popmean=1.561)
+R:
+x &lt;- c(1.5681, 1.5578, 1.572, 1.5637, 1.5769,
+        1.5627, 1.5757, 1.5782, 1.5806, 1.5645,
+        1.5484, 1.5821)
+t.test(observaciones, mu=1.561)</code></pre>
+</div>
+<div id="upper-tail-hypothesis" class="section level3 hasAnchor" number="14.3.4">
+<h3><span class="header-section-number">14.3.4</span> Upper tail hypothesis<a href="hypothesis-testing.html#upper-tail-hypothesis" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>We may be interested in only testing for the fact that our experiment’s mean has a higher mean than the null hypothesis’ mean.</p>
+<p>The upper-tailed test is</p>
+<ul>
+<li><span class="math inline">\(H_0:\mu \leq \mu\)</span>. The new conditions of the experiment have a mean that is <strong>at most</strong> the null hypothesis mean.</li>
+<li><span class="math inline">\(H_1:\mu &gt; \mu\)</span>. The new conditions of the experiment have a mean that is <strong>higher</strong> the null hypothesis mean.</li>
+</ul>
+<p>This is called <strong>upper-tailed</strong> test because the alternative hypothesis <span class="math inline">\(H_1\)</span> requires that the mean <span class="math inline">\(\mu\)</span> is <strong>higher</strong> than <span class="math inline">\(\mu_0\)</span>. The testing criteria are the same as those for the <strong>two tail</strong> hypothesis.</p>
+<p><strong>Testing criteria:</strong></p>
+<ol style="list-style-type: decimal">
+<li><em>Confidence interval:</em> If the <strong>upper-tailed</strong> confidence interval <strong>contains</strong> the null hypothesis</li>
+</ol>
+<p><span class="math display">\[\mu_0\in (l,u)=(\bar{x}-t_{0.05} \frac{s}{\sqrt{n}}, \infty)\]</span>
+where <span class="math inline">\(t_{0.05, n-1}=F^{-1}(0.95)=\)</span><code>t.ppf(1-0.05, df=n-1)</code>, then we <strong>accept</strong> <span class="math inline">\(H_0\)</span> with <span class="math inline">\(95\%\)</span> confidence. Otherwise we reject it.</p>
+<p>Note that this test is from the point of view of the <strong>data</strong>, we are not centering the confidence interval around <span class="math inline">\(\bar{x}\)</span>, instead we are leaving all the <span class="math inline">\(5\%\)</span> of the rare errors to the left of the average. We are, therefore, asking if <span class="math inline">\(\mu_0\)</span> is significant lower than the average.</p>
+<ol start="2" style="list-style-type: decimal">
+<li><em>Rejection/acceptance region:</em> If the observed statistics <span class="math inline">\(t_{obs}\)</span> under the null hypothesis <strong>is</strong> in the acceptance region</li>
+</ol>
+<p><span class="math display">\[t_{obs}=\frac{\bar{x}-\mu_0}{\frac{s}{\sqrt{n}}} \in (-\infty, t_{0.05, n-1})\]</span></p>
+<p>then we <strong>accept</strong> <span class="math inline">\(H_0\)</span> with <span class="math inline">\(95\%\)</span> confidence. Otherwise, we reject it.</p>
+<p>Note that this test is from the point of view of the <strong>null hypothesis</strong>. We are leaving all the <span class="math inline">\(5\%\)</span> of the rare errors to the right of the null hypothesis and therefore ask if the average is significantly higher than <span class="math inline">\(\mu_0\)</span>.</p>
+<ol start="3" style="list-style-type: decimal">
+<li><span class="math inline">\(pvalue\)</span>: If the observed <strong>upper-tailed</strong> <span class="math display">\[pvalue= 1-F(t_{obs})\]</span></li>
+</ol>
+<p><code>1-t.cdf(zobs, df=n-1)</code> is greater than <span class="math inline">\(\alpha=1-0.95=0.05\)</span></p>
+<p><span class="math display">\[pvalue \geq \alpha =0.05\]</span></p>
+<p>then we <strong>accept</strong> <span class="math inline">\(H_0\)</span> with <span class="math inline">\(95\%\)</span> confidence. Otherwise we reject it. Note that this test is again from the point of view of the <strong>null hypothesis</strong>. We are asking: if we were to take another average from sampling the experiments of the null hypothesis, what is the probability that it will be higher than the observed one?</p>
+<p><strong>Example (Li-ion Batteries)</strong></p>
+<p>In the example of the Li-ion batteries, we may be interested to test whether storage discharged batteries improves discharge capacity. Therefore, the upper-tailed hypothesis is</p>
+<ol style="list-style-type: lower-alpha">
+<li><span class="math inline">\(H_0:\mu \leq 1.561\)</span> (storing discharged batteries is <strong>at most</strong> as good as storing them fully charged)</li>
+<li><span class="math inline">\(H_1:\mu &gt; 1.561\)</span> (storing discharged batteries is <strong>better</strong> then storing them fully charged: <strong>research interest</strong>)</li>
+</ol>
+<p>We will test the higher tail of the distribution.
+For the data that we discussed before, we then <strong>reject</strong> <span class="math inline">\(H_0\)</span> at <span class="math inline">\(95\%\)</span> confidence because of any of the three equivalent contrasts:</p>
+<ol style="list-style-type: decimal">
+<li>The <strong>upper tailed</strong> confidence interval does not contain the null hypothesis <span class="math inline">\(\mu_0=1.561\)</span></li>
+</ol>
+<p><span class="math display">\[\mu_0=1.561 \notin (\bar{x}-t_{0.05, n-1} \frac{s}{\sqrt{n}}, \infty)=(1.563937, \infty)\]</span>
+where <span class="math inline">\(t_{0.05, n-1}=\)</span><code>t.ppf(0.95, 11)= 1.795885</code></p>
+<ol start="2" style="list-style-type: decimal">
+<li>We have that the acceptance region for <span class="math inline">\(H_0\)</span> is:</li>
+</ol>
+<p><span class="math display">\[(-\infty, t_{0.05, n-1})=( -\infty,  1.795885)\]</span></p>
+<p>and that the observed standardized error is not in the region
+<span class="math display">\[t_{obs} =  \frac{1.569232-1.561}{\frac{0.01}{\sqrt{12}}}=2.7921 \notin ( -\infty,  1.795885)\]</span></p>
+<ol start="3" style="list-style-type: decimal">
+<li>The upper tail <span class="math inline">\(pvalue\)</span> is lower than <span class="math inline">\(\alpha=0.05\)</span>
+<span class="math display">\[pvalue=1-F(2.7921)=0.0087 &lt;0.05\]</span></li>
+</ol>
+<p>where <span class="math inline">\(pvalue=\)</span><code>t.sf(2.7921, 11)</code>.</p>
+<p>The hypothesis test is performed in Python and R like</p>
+<pre><code>Python:
+from scipy import stats
+
+data = [1.5681, 1.5578, 1.572, 1.5637, 1.5769,
+        1.5627, 1.5757, 1.5782, 1.5806, 1.5645,
+        1.5484, 1.5821]
+
+stats.ttest_1samp(data, popmean=1.561, alternative=&#39;greater&#39;)
+R:
+x &lt;- c(1.5681, 1.5578, 1.572, 1.5637, 1.5769,
+        1.5627, 1.5757, 1.5782, 1.5806, 1.5645,
+        1.5484, 1.5821)
+t.test(observaciones, mu=1.561, alternative=&quot;greater&quot;)</code></pre>
+<p>We then conclude that evidence show that storing battering fully discharge improves discharge capacity.</p>
+<p><img src="_main_files/figure-html/unnamed-chunk-157-1.png" width="672" /></p>
+</div>
+<div id="paired-t-test" class="section level3 hasAnchor" number="14.3.5">
+<h3><span class="header-section-number">14.3.5</span> Paired t-test<a href="hypothesis-testing.html#paired-t-test" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><strong>Example (Gosset’s Soporific)</strong></p>
+<p>In some cases, we are not sure about the numerical value of a parameter under the null hypothesis, but we know that we want to improve the value of a parameter in two different conditions.</p>
+<p>In the famous 1908 paper of Gosset, titled “The probable error of the mean”, were he proposed the <span class="math inline">\(T\)</span> statistics <span class="citation">(<a href="#ref-student1908probable">Student 1908</a>)</span>, he analyzed the soporific effect of the hyoscyamine hydrobromide. It was already known at the time that the change of the structural configuration from dextro (deviating polarized light to the right) to leaevo (deviating polarized light to the left) of the molecule would hchange its biological effect. To test the differences<br />
+- Ten individuals were given the <strong>dextro</strong> version of the molecule and wrote down the additional hours slept under this treatment</p>
+<p>0.7, -1.6, -0.2, -1.2, -0.1, 3.4, 3.7, 0.8, 0, 2</p>
+<p>with average <span class="math inline">\(0.75\)</span></p>
+<ul>
+<li>The same 10 individuals were given the <strong>laevo</strong> version of the molecule and wrote down the additional hours slept under this treatment
+1.9, 0.8, 1.1, 0.1, -0.1, 4.4, 5.5, 1.6, 4.6, 3.4</li>
+</ul>
+<p>with average <span class="math inline">\(2.33\)</span></p>
+<p>The scientific hypothesis was that the laevo version of the molecule was better than the dextro one. For each individual, Gosset computed the difference between the treatments. Taking <span class="math inline">\(X\)</span> as the <strong>difference</strong> between treatments, this was the sample observed for <span class="math inline">\(X\)</span></p>
+<p>1.2, 2.4, 1.3, 1.3, 0, 1, 1.8, 0.8, 4.6, 1.4</p>
+<p>The average hours gained by laevo with respect to dextro was <span class="math inline">\(1.58\)</span>, and its standard deviation <span class="math inline">\(s=1.229995\)</span>.</p>
+<p>The scientific question can be stated as <strong>upper-tailed</strong> paired t-test:</p>
+<ol style="list-style-type: lower-alpha">
+<li><span class="math inline">\(H_0:\mu \leq 0\)</span> (no treatment difference: <span class="math inline">\(\mu_2-\mu_1=0\)</span>)</li>
+<li><span class="math inline">\(H_1:\mu &gt; 0\)</span> (treatment 2-laeveo have higher gains in sleeping hours than treatment 1-dextro: <span class="math inline">\(\mu_2-\mu_1&gt;0\)</span>)</li>
+</ol>
+<p>Where <span class="math inline">\(\mu\)</span> is the mean of the <strong>differences</strong> between treatments, and the null hypothesis states that there is no difference.</p>
+<p>If we suppose that <span class="math inline">\(X\)</span> is normal, the <strong>standardized error</strong> that we make when we estimate the null difference <span class="math inline">\(\mu_0=0\)</span> by the average of the differences is</p>
+<p><span class="math display">\[T=\frac{\bar{X}}{\frac{S}{\sqrt{n}}}\]</span></p>
+<p>and its observation</p>
+<p><span class="math display">\[t_{obs}=\frac{\bar{x}}{\frac{s}{\sqrt{n}}}\]</span>
+which is also known as the <strong>signal</strong> to <strong>noise</strong> ratio.</p>
+<p>we can test the hypothesis for the difference <span class="math inline">\(X=treatmet_1-treatment_2\)</span> using a upper tailed test which give us</p>
+<p><span class="math display">\[\bar{x}=1.58\]</span> and <span class="math display">\[pvalue=0.0014\]</span>
+This is obtained from the following code in Python and R</p>
+<pre><code>Python:
+from scipy import stats
+x = [1.2, 2.4, 1.3, 1.3, 0, 
+     1, 1.8, 0.8, 4.6, 1.4]
+stats.ttest_1samp(x, popmean=0, alternative=&#39;greater&#39;)
+
+R:
+x &lt;- c(1.2, 2.4, 1.3, 1.3, 0, 
+     1, 1.8, 0.8, 4.6, 1.4)
+t.test(x, mean=0, alternative=&quot;greater&quot;) </code></pre>
+<p>Gosset therefore observed a significant increase in <span class="math inline">\(1.58\)</span> hours of sleep between laevo and dextro-hyoscyamine hydrobromide. We thus reject that the difference between soporific means is <span class="math inline">\(0\)</span> or that their means are equal. Equivalently, we can test the hypothesis using a paired t-test, where we introduce the observation for each separate condition, and state that the observations are paired.</p>
+<pre><code>Python:
+from scipy import stats
+medicine1 &lt;- [0.7, -1.6, -0.2, -1.2, -0.1,
+              3.4, 3.7, 0.8, 0, 2]
+medicine2 &lt;- [1.9, 0.8, 1.1, 0.1, -0.1, 
+              4.4, 5.5, 1.6, 4.6, 3.4]
+
+stats.ttest_rel(medicine2, medicine1, alternative=&#39;greater&#39;)
+
+R:
+medicine1 &lt;- c(0.7,-1.6,-0.2,-1.2,-0.1,3.4,3.7,0.8,0,2)
+medicine2 &lt;- c(1.9,0.8,1.1,0.1,-0.1,4.4,5.5,1.6,4.6,3.4)
+
+t.test(medicine2, medicine1, alternative=&quot;greater&quot;, paired = TRUE) </code></pre>
+<p>The experiment not only confirmed the biological consequences of isomers but it was the first ever <strong>cross-over design</strong> of a clinical trial. Gosset thus designed and used a statistical tool with key consequences in the analysis and design of pharmacological experiments, among others.</p>
+<p>In the following plot, we show all the statistical elements for this example. In red, we show the null hypothesis of no difference between treatments. The <span class="math inline">\(95\%\)</span> confidence interval for the difference is shown in the upper part. The CI does not contain the null. In the second row, we see the data represented in a box plot. At the bottom row, we see the raw data, that is the individual observations for the change in hours for each patient.</p>
+<p><img src="_main_files/figure-html/unnamed-chunk-160-1.png" width="672" /></p>
+</div>
+<div id="lower-tail-hypothesis" class="section level3 hasAnchor" number="14.3.6">
+<h3><span class="header-section-number">14.3.6</span> Lower tail hypothesis<a href="hypothesis-testing.html#lower-tail-hypothesis" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><strong>Example (NaCl)</strong></p>
+<p>When <span class="math inline">\(11.6g\)</span> of NaCl is dissolved in <span class="math inline">\(100 g\)</span> of water it has a molar concentration of <span class="math inline">\(1.92 mol/L\)</span>. Imagine we design a process to remove salt from this concentration and obtain the following results</p>
+<p>1.716, 1.889, 1.783, 1.849, 1.891</p>
+<p>If we are interested only in the case that we are able to remove salt from the concentration then we rather propose a <strong>lower tail</strong> hypothesis.</p>
+<p>The lower tail hypothesis are of the form</p>
+<ol style="list-style-type: lower-alpha">
+<li><p><span class="math inline">\(H_0:\mu \geq \mu_0\)</span>. The new conditions of the experiment give an expectation that is <strong>at most</strong> as the initial one -status quo.</p></li>
+<li><p><span class="math inline">\(H_1:\mu &lt; \mu_0\)</span>. The new conditions of the experiment give an expectation that is <strong>lower than</strong> the initial one -research interest</p></li>
+</ol>
+<p><strong>Testing criteria:</strong></p>
+<p>Note that the lower tail is given by the alternative <span class="math inline">\(H_1\)</span>. We want to test that the average concentration after the process is lower than the initial concentration. The contrast criteria are the same as for the other types of hypothesis. For this type of hypothesis, we will accept the null hypothesis if</p>
+<ol style="list-style-type: decimal">
+<li><p><span class="math inline">\(\mu_0\)</span> is in the confidence interval:
+<span class="math display">\[\mu_0\in (l,u)=(-\infty, \bar{x}+t_{0.05,n-1} \frac{s}{\sqrt{n}})\]</span></p></li>
+<li><p>or, <span class="math inline">\(t_{obs}\)</span> is in the aceptance region:</p></li>
+</ol>
+<p><span class="math display">\[t_{obs}\in (t_{0.05,n-1}, \infty)\]</span></p>
+<ol start="3" style="list-style-type: decimal">
+<li>or, the <span class="math inline">\(pvalue\)</span> on the lower tail of the distribution.<br />
+<span class="math display">\[pvalue=F_t(t_{obs},n-1)\]</span>
+is higher than <span class="math inline">\(\alpha=0.05\)</span></li>
+</ol>
+<p>In any other case, we reject <span class="math inline">\(H_0\)</span> and accept the alternative hypothesis.</p>
+<p><strong>Example(NaCl)</strong></p>
+<p>If we are efficient at removing salt then we would like to provide evidence for the alternative lower tail hypothesis.</p>
+<ol style="list-style-type: lower-alpha">
+<li><span class="math inline">\(H_0:\mu \geq 1.92\)</span> (null)</li>
+<li><span class="math inline">\(H_1:\mu &lt; 1.92\)</span> (alternative)</li>
+</ol>
+<p>We can assume that the concentration is normal. Therefore, we only need to change the “alternative” argument to “less” in the t-test functions</p>
+<pre eval="FALSE"><code>Python:
+from scipy import stats
+data = [1.716, 1.889, 1.783, 1.849, 1.891]
+
+stats.ttest_1samp(data, popmean=1.92, alternative=&#39;less&#39;)
+
+R:
+x &lt;- c(1.716, 1.889, 1.783, 1.849, 1.891)
+t.test(x, mu=1.92, alternative=&quot;less&quot;)</code></pre>
+<p>We see that the expected value of the null hypothesis <span class="math inline">\(\mu_0=1.92\)</span> is not within the <span class="math inline">\(95\%\)</span> lower-tail confidence interval <span class="math inline">\((-\infty, 1.897376)\)</span>, and that the <span class="math inline">\(pvalue=0.002\)</span> is lower than the significance level <span class="math inline">\(\alpha=0.05\)</span>. Therefore, we can reject the null hypothesis and say that our eveidence support the alternative, meaning that the prototipe is able to exctract salt from the mix.</p>
+<p>If we compare result with that of the two tail test, we will see that the <span class="math inline">\(pvalue\)</span> is reduced in half, and therefore we have more confidence in rejecting the lower tail hypothesis than the two-sided hypothesis.</p>
+<p><strong>Hypothesis Testing with Large <span class="math inline">\(n\)</span> and Any Distribution</strong></p>
+<p>On many occasions, <span class="math inline">\(X\)</span> is not normally distributed, but if we can take large samples (<span class="math inline">\(n \ge 30\)</span>), then we can use the <strong>Central Limit Theorem (CLT)</strong>. The CLT tells us that the sampling distribution of the sample mean <span class="math inline">\(\bar{X}\)</span> is approximately normal, regardless of the distribution of <span class="math inline">\(X\)</span>, provided <span class="math inline">\(X\)</span> has finite variance.</p>
+<p>The <strong>standardized error</strong> from the null hypothesis can then be approximated by a standard normal distribution:</p>
+<p><span class="math display">\[
+Z = \frac{\bar{X} - \mu_0}{\frac{\sigma}{\sqrt{n}}} \approx N(0, 1)
+\]</span></p>
+<p>If the population standard deviation <span class="math inline">\(\sigma\)</span> is unknown, we replace it with the sample standard deviation <span class="math inline">\(S\)</span>, and use the <strong>t-statistic</strong>:</p>
+<p><span class="math display">\[
+T = \frac{\bar{X} - \mu_0}{\frac{S}{\sqrt{n}}} \sim t_{n-1}
+\]</span></p>
+<p>For large <span class="math inline">\(n\)</span>, the t-distribution approaches the standard normal distribution, so we may approximate:</p>
+<p><span class="math display">\[
+T \approx N(0, 1) \quad \text{for large } n
+\]</span></p>
+<p><strong>Note:</strong> The use of the normal approximation for the <span class="math inline">\(T\)</span>-statistic is common when <span class="math inline">\(n \ge 30\)</span>, but strictly speaking, the statistic follows a <span class="math inline">\(t\)</span>-distribution with <span class="math inline">\(n-1\)</span> degrees of freedom.</p>
+</div>
+</div>
+<div id="hypothesis-testing-for-the-proportion" class="section level2 hasAnchor" number="14.4">
+<h2><span class="header-section-number">14.4</span> Hypothesis testing for the proportion<a href="hypothesis-testing.html#hypothesis-testing-for-the-proportion" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>If our random experiment is a Bernoulli trial <span class="math inline">\(X \sim Bernoulli(p)\)</span>, we can formulate hypothesis contrasts for the probability <span class="math inline">\(p\)</span> of an event in the trial, or the proportion. Consider an upper tailed hypothesis</p>
+<ol style="list-style-type: lower-alpha">
+<li><span class="math inline">\(H_0: p \leq p_0\)</span> (status quo)</li>
+<li><span class="math inline">\(H_1: p&gt; p_0\)</span> (research interest)</li>
+</ol>
+<p>In this case, we test a hypothesis for the proportion if</p>
+<ol style="list-style-type: decimal">
+<li><span class="math inline">\(X\)</span> is a Bernoulli trial, and</li>
+<li><span class="math inline">\(np\)</span>, <span class="math inline">\(n(1-p)\)</span> are both greater than <span class="math inline">\(5\)</span>, so we can apply the central limit theorem.</li>
+</ol>
+<p>Remember that if we take a the sample of <span class="math inline">\(n\)</span> Bernoulli trials <span class="math inline">\((1,0,1,...0)\)</span>, <span class="math display">\[\bar{X}=\frac{1}{n}\sum_{i=1}^n X_i\]</span> is the relative frequency for the number of ‘’ones’’ obtained in the sample. This is an estimator of <span class="math inline">\(p\)</span>.</p>
+<p>If we assume that the null hypothesis is true then <span class="math inline">\(X \sim Bernoulli(p_0)\)</span> and the standardized error that we make when we estimate <span class="math inline">\(p_0\)</span> with <span class="math inline">\(\bar{X}\)</span> is</p>
+<p><span class="math display">\[Z=\frac{\bar{X}-p_0}{\frac{\sqrt{p_0(1-p_0)}}{\sqrt{n}}}  \sim N(0,1)\]</span></p>
+<p><span class="math inline">\(\sigma=\sqrt{p_0(1-p_0)}\)</span> is the standard deviation of <span class="math inline">\(X\)</span> when the null hypothesis is true. Remeber that <span class="math inline">\(V(X)=\sigma^2=p_0(1-p_0)\)</span>. With this <span class="math inline">\(Z\)</span> statistic, we can accept or reject the null hypothesis using any of the three testing criteria.</p>
+<p><strong>Example (Process Improvement)</strong></p>
+<p>We may be satisfied with a new process if <span class="math inline">\(90\%\)</span> of the times we improve the previous process. If we run a sample of <span class="math inline">\(200\)</span> new processes and find that <span class="math inline">\(188\)</span> times we improved the old process. This makes a relative frequency of <span class="math inline">\(0.94\)</span> or we managed to improve the process <span class="math inline">\(94%\)</span> of the times. Can we be satisfied with the new process at <span class="math inline">\(95\%\)</span> confidence?</p>
+<p>To answer this questions, we can formulate an upper-tailed hypothesis contrast for the null hypothesis <span class="math inline">\(p_0=0.9\)</span>. Therefore, the null and alternative hypotheses are</p>
+<ol style="list-style-type: lower-alpha">
+<li><span class="math inline">\(H_0: p \leq p_0=0.9\)</span> (The new process is not satisfactory to the requires reliability: status quo)</li>
+<li><span class="math inline">\(H_1: p&gt; p_0=0.9\)</span> (The new process improves the older one reliably: research interest)</li>
+</ol>
+<p>We assume that if the null hypothesis is true then</p>
+<ol style="list-style-type: decimal">
+<li>The probability model of a random experiment is</li>
+</ol>
+<p><span class="math display">\[X \sim Bernoulli (p_0)\]</span>
+2. and check that when <span class="math inline">\(np_0=180&gt;5\)</span> and <span class="math inline">\(n(1-p_0)=20&gt;5\)</span></p>
+<p>Therefore, we can apply the test for the proportions.</p>
+<p>We can use any of the three criteria to test the hypothesis. For this example, we believe that have a satisfactory process because, we <strong>reject</strong> <span class="math inline">\(H_0\)</span> at <span class="math inline">\(95\%\)</span> following</p>
+<ol style="list-style-type: decimal">
+<li>The upper tail confidence interval for the <span class="math inline">\(p\)</span> does not include <span class="math inline">\(p_0\)</span></li>
+</ol>
+<p><span class="math inline">\(p_0=0.9 \notin (\bar{x}-z_{0.05}\big[\frac{p_0(1-p_0)}{n} \big]^{1/2},1)= (0.905,1)\)</span></p>
+<ol start="2" style="list-style-type: decimal">
+<li>The observed standardized error from the null is not in the acceptance region</li>
+</ol>
+<p><span class="math display">\[z_{obs}= \frac{\bar{X}-p_0}{\big[\frac{p_0(1-p_0)}{n} \big]^{1/2}} =\frac{0.94-0.90}{\sqrt{0.00045}}=1.88563 \notin (-\infty, z_{0.05})=(-\infty, 1.644)\]</span></p>
+<ol start="3" style="list-style-type: decimal">
+<li>The upper tail <span class="math inline">\(pvalue\)</span> is lower than <span class="math inline">\(\alpha=0.05\)</span>:</li>
+</ol>
+<p><span class="math display">\[pvalue=1-\Phi(1.885618)=0.02967323&lt;0.05\]</span></p>
+<pre><code>Python: 
+1-norm.cdf(1.885618)
+R:
+1-pnorm(1.885618)</code></pre>
+<p><img src="_main_files/figure-html/unnamed-chunk-162-1.png" width="672" /></p>
+<p>The test can be performed in Python and R using the code</p>
+<pre><code>Python:
+from statsmodels.stats.proportion import proportions_ztest
+proportions_ztest(188, 200, value=0.9, alternative=&#39;larger&#39;)
+
+R:
+prop.test(188, 200, p=0.9, alternative=&quot;greater&quot;, correct = FALSE)</code></pre>
+</div>
+<div id="hypothesis-testing-for-the-variance" class="section level2 hasAnchor" number="14.5">
+<h2><span class="header-section-number">14.5</span> Hypothesis Testing for the Variance<a href="hypothesis-testing.html#hypothesis-testing-for-the-variance" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In many cases, experiments are run to test the dispersion of data. Such as, when complying with strict design standards where measurements must be between certain values. Or when different treatments are applied to different groups, we want to see the dispersion of outcomes between the groups. Also the dispersion of the data may be a property that offer important insights into the system under study.</p>
+<p>A <strong>tow tailed</strong> hypothesis contrast for the variance is of the form</p>
+<ol style="list-style-type: lower-alpha">
+<li><span class="math inline">\(H_0:\sigma = \sigma_0\)</span> (status quo)</li>
+<li><span class="math inline">\(H_1:\sigma \neq \sigma_0\)</span> (research interest)</li>
+</ol>
+<p>This hypothesis for <span class="math inline">\(\sigma\)</span>, or equivalently for <span class="math inline">\(\sigma^2\)</span>, can be tested when the random variable <span class="math inline">\(X\)</span> is a normally distributed.</p>
+<p>Remember that if we take a random sample <span class="math display">\[S^2=\frac{1}{n-1}\sum_{i=1}^n (X_i-\bar{X})^2\]</span> is the sample variance. This is an unbiased and consistent estimator of <span class="math inline">\(\sigma^2\)</span>.</p>
+<p>If we assume that the null hypothesis is true and <span class="math inline">\(X \sim N(\mu, \sigma_0)\)</span> then the <strong>error ratio</strong> that we make when we estimate <span class="math inline">\(\sigma^2\)</span> with <span class="math inline">\(s^2\)</span> is</p>
+<p><span class="math display">\[W=\frac{(n-1)S^2}{\sigma_0^2}\]</span></p>
+<p>Note that when <span class="math inline">\(W=n-1\)</span>, we make no error. <span class="math inline">\(W\)</span> follows a <span class="math inline">\(\chi^2\)</span> (chi-squared) distribution with <span class="math inline">\(n-1\)</span> degrees of freedom.</p>
+<p><span class="math display">\[W \sim \chi^2(n-1)\]</span></p>
+<p>With the observation of <span class="math inline">\(W\)</span>, we can accept or reject the null hypothesis using any of the three testing criteria.</p>
+<p><strong>Example (Hart Rate Variability)</strong></p>
+<p>The heart rate, as measured by an electrocardiogram (ECG), shows a distinct periodic pattern, with the peak signal corresponding to the R-wave of the QRS complex. However, the periodicity of the hart rate is not exact. In fact, heart rates that get close to perfect periodicity is bad news. The lack of variability in the intervals between successive R-peaks—known as RR intervals—is indicative of cardiac dysfunction and is a known predictor of mortality. Conversely, high variability in the heart rate is associated with better cardiovascular health. The fractal and nonlinear complexity of this variability is the focus of ongoing research in cardiology, as it reflects the dynamic interplay of autonomic regulation and physiological adaptability.</p>
+<p>Irurzun and colleagues measured RR intervals by 24 hour Holter monitoring on <strong>147 healthy</strong> patients to determine RR change at different ages and between sexes<span class="citation">(<a href="#ref-irurzun2021rr">Irurzun et al. 2021</a>)</span>. Patient “00” was, for instance, a 53 year old male with the following distribution of pre-processed RR values during waking hours in milliseconds.</p>
+<p><img src="_main_files/figure-html/unnamed-chunk-163-1.png" width="672" /></p>
+<p>The sample variance of the patient is <span class="math inline">\(s^2=8029.751\)</span>. The expected RR healthy variability of a 53 year is <span class="math inline">\(\sigma^2_0=8000ms\)</span>, according to the reference Framingham Heart Study. Is patient “00” within the range of the expected value of healthy RR variability and a suitable candidate for the study?</p>
+<p>We therefore want to contrast the two tailed tail hypotheses</p>
+<ol style="list-style-type: lower-alpha">
+<li><span class="math inline">\(H_0:\sigma^2 \leq \sigma_0^2=8000\)</span> (Patient has a very normal RR variability)</li>
+<li><span class="math inline">\(H_1:\sigma^2 \neq \sigma_0^2=8000\)</span> (Patient has a RR variability different than the expected value)</li>
+</ol>
+<p>Let us test the hypothesis using the <strong>acceptance region</strong>.</p>
+<p>The contrast statistics is <span class="math display">\[W=\frac{(n-1)S^2}{\sigma_0^2} \sim \chi^2(n-1)\]</span></p>
+<p>and the threshold limit <span class="math inline">\(\alpha=0.05\)</span>. Therefore, the acceptance region <span class="math inline">\(P(\chi^2_{0.975,2999} \leq W\leq \chi^2_{0.025,29999})=0.95\)</span> is</p>
+<p><span class="math display">\[(\chi^2_{0.975,2999}, \chi^2_{0.025,2999})=(2849.11,3152.678)\]</span></p>
+<pre><code>Python:
+chi2.ppf(0.975,19)
+chi2.ppf(0.025,19)
+
+R:
+qchisq(0.025, 2999)
+qchisq(0.975, 2999)
+</code></pre>
+<p>For our data, the observed <strong>standardized error ratio</strong> is:</p>
+<p><span class="math display">\[w_{obs}=\frac{2999 \times8029.751}{8000}=3010.153\]</span></p>
+<p>which falls within the acceptance region</p>
+<p><span class="math display">\[w_{obs}=3010.153\in (2849.11,3152.678)\]</span></p>
+<p>and therefore we do not reject the null hypothesis and conclude that RR data of patient “00” supports that he has a very normal RR variability.</p>
+<p><img src="_main_files/figure-html/unnamed-chunk-164-1.png" width="672" /></p>
+<p>The <span class="math inline">\(95\%\)</span> CI interval for his RR variance is</p>
+<p><span class="math inline">\((l,u) = (\frac{s^2 (n-1)}{\chi^2_{0.025,n-1}},\frac{s^2(n-1)}{\chi^2_{0.975,n-1}})\)</span>
+<span class="math display">\[( 7902.782, 8159.819)\]</span></p>
+<p>which clearly contains the expected value <span class="math inline">\(\sigma^2_0=8000\)</span> for his age and sex. This patient, has a RR variance that it is very close to the expected variance measured as a gold reference in a large population sample. The healthy range, contrasted with clinical data, is, however, much larger <span class="math inline">\((3600, 14400)ms^2\)</span>. Obtaining a RR variance within the specified interval provides reassurance that the patient is healthy, supporting the decision to be included in the study.</p>
+</div>
+<div id="errors-in-hypothesis-testing" class="section level2 hasAnchor" number="14.6">
+<h2><span class="header-section-number">14.6</span> Errors in hypothesis testing<a href="hypothesis-testing.html#errors-in-hypothesis-testing" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The result of an upper tail hypothesis test may be to <strong>reject</strong> the null hypothesis:</p>
+<p><span class="math display">\[H_0: \mu\leq\mu_0\]</span></p>
+<p>when <span class="math inline">\(H_0\)</span> is actually <strong>true</strong>. In the case of the batteries, we rejected the null hypothesis that the discharge capacity of stored batteries will not change if they were stored fully charged or discharged. Data made us believe that storing discharged batteries was better and can recommend this type of storage.</p>
+<p>We must bear in mind that the decisions are based on the data. It may well be that the observed statistic has fallen, <strong>by chance</strong>, far from the null hypothesis, in the rejection zone of <span class="math inline">\(H_0\)</span> even when this hypothesis is true. The statistic is a random variable and one observation can have a large value by chance.</p>
+<p>In our experiment, we selected, without knowing, batteries that had a previously high discharge capacity in any condition. Larger than the null <span class="math inline">\(\mu_0=1.561\)</span>. If the selection error is systematic we call it <strong>selection bias</strong>.</p>
+<p>Another possible source of the error could be that the type of batteries that we are testing do not have a discharge capacity of <span class="math inline">\(\mu_0=1.561\)</span> when fully charged. They have a higher discharged capacity equal to that when they are stored fully discharged. The null hypothesis is badly represented by <span class="math inline">\(\mu_0\)</span>, which we really do not know in our experiment. We need a <strong>control group</strong> to assess it. A solution is to test the same battery in two different conditions, randomly prescribed, and perform a paired test. In the case that the first test influences the outcome of second test on the same specimen, two random samples of each condition can be taken and its difference compared.</p>
+<p>When we perform the hypothesis test, we do not know if <span class="math inline">\(H_0\)</span> is true. Let us imagine that we found by other means that <span class="math inline">\(H_0\)</span> is really true. The probability of rejecting the truth (<span class="math inline">\(H_0\)</span>) is precisely the level of statistical significance <span class="math inline">\(\alpha\)</span>. We call this probability the probability of making a <strong>type 1</strong> error.
+Taking an upper tailed hypothesis test for the mean at significance level <span class="math inline">\(5\%\)</span>, we have that the probability that the <strong>standardized error</strong> falls in the rejection zone is</p>
+<p><span class="math display">\[\alpha = P(Z&gt; t_{0.05, n-1})=0.05\]</span>
+<img src="_main_files/figure-html/unnamed-chunk-166-1.png" width="672" /></p>
+<p>A type 1 error is also called a <strong>false positive</strong> because our research interest is in <span class="math inline">\(H_1\)</span>. When we reject <span class="math inline">\(H_0\)</span>, we accept <span class="math inline">\(H_1\)</span> and say that our test is <strong>positive</strong>. Accepting <span class="math inline">\(H_1\)</span> translates to announcing a discovery, so the type 1 error is announcing a discovery that is not true: we falsely claimed a discovery because the data suggested it, we were fooled by it.</p>
+<p>There is another type of error. The result of an upper tail hypothesis test can be <strong>accepting</strong> the null hypothesis:</p>
+<p><span class="math display">\[H_0: \mu\leq\mu_0\]</span></p>
+<p>when this is <strong>not true</strong>. Again for the batteries, imagine now that our data made us accept that the changing conditions of the batteries do not affect their discharged capacity (<span class="math inline">\(H_0\)</span>) when actually it does. We chose by chance batteries that had already a lower discharged capacity no matter the condition.</p>
+<p>In this case, it may be that the observed random error fell, due to randomness, close to the null hypothesis, in the acceptance zone of <span class="math inline">\(H_0\)</span>, when really <span class="math inline">\(H_1\)</span> is true. If we found out somehow that, for example, <span class="math inline">\(\mu\)</span> really does have a value of <span class="math inline">\(\mu_1\)</span> (blue dot in the plot) then the alternative hypothesis would be exactly:</p>
+<p><span class="math display">\[H_1: \mu=\mu_1\]</span>
+<img src="_main_files/figure-html/unnamed-chunk-167-1.png" width="672" /></p>
+<p>If <span class="math inline">\(H_1\)</span> is indeed true (blue line, which we do not know when we perform the hypothesis test) then the statistic is <strong>really</strong> a random variable <span class="math inline">\(Y\)</span> that has mean</p>
+<p><span class="math display">\[E(Y)=\frac{\mu_1-\mu_0}{\frac{s}{\sqrt{n}}}\]</span></p>
+<p>and most of them will fall close to this value, therefore, in the rejection area of <span class="math inline">\(H_0\)</span>, validating the hypothesis test. However, there are cases in which the observed statistic falls within the acceptance zone of <span class="math inline">\(H_0\)</span> due to randomness (in the blue shaded area), despite the fact that the statistics are produced by <span class="math inline">\(H_1\)</span>. In these cases we accept <span class="math inline">\(H_0\)</span> when it is not true. This error is called <strong>a type 2 error</strong> or a <strong>false negative</strong>. Since our research interest is in <span class="math inline">\(H_1\)</span> we failed to accept it. rejecting <span class="math inline">\(H_1\)</span> translates to discarding a discovery, so the type 2 error is ignoring a discovery that is actually true.</p>
+<p>For an upper tailed test for the mean and a significance level <span class="math inline">\(\alpha\)</span> this probability is</p>
+<p><span class="math display">\[\beta= P(Y &lt; t_{0.05, n-1})\]</span>
+Where <span class="math inline">\(Y \sim T(n-1, ncp=\frac{\mu_1-\mu_0}{s/\sqrt{n}})\)</span> is the <strong>true distribution</strong> of the observed statistics, and corresponds to a t-distributions shifted to the right by the parameter <span class="math inline">\(ncp\)</span>. We also say that the statistical <strong>power</strong> of the test is <span class="math inline">\(1-\beta\)</span>.</p>
+<p><strong>Example (Power Calculation of Gossets’ Soporifics)</strong></p>
+<p>The results of pre-clinical findings, like those of Gosset, would require extensive validation to be approved for clinical use. A clinical trial, aimed to validate an effect, needs to compute the statistical power expected to reject the null to be approved. Imagine we aim to validate Gossets experiments, replicating his findings. The hypotheses that we want to contrast are</p>
+<ol style="list-style-type: lower-alpha">
+<li><span class="math inline">\(H_0 : \mu = 0\)</span> (no soporific difference between treatments)</li>
+<li><span class="math inline">\(H_1 : \mu &gt; 0\)</span> (higher soporific effect of the laevo isomer than the dextro one)</li>
+</ol>
+<p>and prove that the mean difference between treatments is positive on <span class="math inline">\(100\)</span> patients, with a statistical significance level of <span class="math inline">\(5\%\)</span>. Assuming the values of the previous Gosset’s study that suggested that the difference between the means was <span class="math inline">\(\mu=\mu_1=1.58\)</span> hours and <span class="math inline">\(\sigma=1.23\)</span> hours, what is the type 2 error we should expect if we repeat Gosset’s experiment using a sample size of <span class="math inline">\(100\)</span> patients?</p>
+<p>The probability of accepting the null hypothesis is</p>
+<p><span class="math display">\[\alpha = P(T&gt; t_{0.05, 100-1})=0.05\]</span>
+where <span class="math inline">\(t_{0.05, 99}\)</span><code>t.ppf(1-0.05, 99)</code><span class="math inline">\(=1.66\)</span>. The type 2 error is therefore</p>
+<p><span class="math display">\[\beta= P(Y &gt; 1.66)\]</span></p>
+<p>that is, the probability of accepting that the laevo version of the molecule does not produce higher soporific effects that the dexo one, when in fact it does. For the upper tailed test for the mean, the observed statistics actually distributes as</p>
+<p><span class="math display">\[Y \sim T(100-1, ncp=\frac{1.58}{1.23/\sqrt{10}}= 4.06)\]</span> and the type 2 error is</p>
+<p><span class="math display">\[\beta = F_{t(n-1, ncp)}(4.06)=0.008\]</span></p>
+<pre><code>Python:
+nct.cdf(1.66, 99, ncp=12.84553)
+R:
+pt(1.66, 99, ncp=12.84553)</code></pre>
+<p>Therefore, if were were to repeat Gosset’s experiment using <span class="math inline">\(100\)</span> patients an infinite amount of times, only <span class="math inline">\(\alpha=5\%\)</span> of the times we would announce that the laevo molecule is more soporific than the dextro one when it really is not, while <span class="math inline">\(\beta=0.8\%\)</span> of the times we would announce that we do no see a difference when there is one. In this case, the statistical power to detect a biological effect of changing the molecule’s chirality is <span class="math inline">\(1-\beta=0.991\)</span> or <span class="math inline">\(99.1\%\)</span>.</p>
+<p>When designing an experiment is customary to fix the power at <span class="math inline">\(80\%\)</span> and then compute the sample size <span class="math inline">\(n\)</span> required to achieve this power. For Gosset’s experiment, the effect is so strong that with only <span class="math inline">\(4\)</span> patients we will achieve a statistical power of <span class="math inline">\(80\%\)</span>.</p>
+<div id="sensitivity-and-specificity" class="section level3 hasAnchor" number="14.6.1">
+<h3><span class="header-section-number">14.6.1</span> Sensitivity and Specificity<a href="hypothesis-testing.html#sensitivity-and-specificity" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>When we carry out a hypothesis test we have two possibilities for each condition:</p>
+<ul>
+<li><span class="math inline">\(H_1\)</span> is actually : <strong>true</strong> (<span class="math inline">\(\mu=\mu_1\)</span>) or <strong>false</strong> (<span class="math inline">\(\mu=\mu_0\)</span>).</li>
+</ul>
+<p>We also have two outcomes of the hypothesis test:</p>
+<ul>
+<li>The test for <span class="math inline">\(H_1\)</span> is: <strong>positive</strong> (<span class="math inline">\(t_{obs}\)</span> in the acceptance zone of <span class="math inline">\(H_1\)</span>) or <strong>negative</strong> (<span class="math inline">\(t_{obs}\)</span> in the acceptance zone of <span class="math inline">\(H_0\)</span>).</li>
+</ul>
+<p><strong>Example (PCR)</strong></p>
+<p>We do <strong>a</strong> PCR to test for an infection. The hypothesis test is</p>
+<ol style="list-style-type: lower-alpha">
+<li><span class="math inline">\(H_0\)</span> no infection</li>
+<li><span class="math inline">\(H_1\)</span> there is infection</li>
+</ol>
+<p>We do the PCR test and it gives us</p>
+<ol style="list-style-type: lower-roman">
+<li>negative: we reject the infection (<span class="math inline">\(H_1\)</span>)</li>
+<li>positive: we accept the infection (<span class="math inline">\(H_1\)</span>)</li>
+</ol>
+<p>We can write the contingency table for the probabilities of the results of the hypothesis test as</p>
+<table>
+<thead>
+<tr class="header">
+<th align="center"></th>
+<th align="center"><span class="math inline">\(H_1\)</span> is true</th>
+<th align="center"><span class="math inline">\(H_1\)</span> is false</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><strong>The test on <span class="math inline">\(H_1\)</span> is positive</strong></td>
+<td align="center"><span class="math inline">\(1-\beta\)</span></td>
+<td align="center"><span class="math inline">\(\alpha\)</span></td>
+</tr>
+<tr class="even">
+<td align="center"><strong>The test on <span class="math inline">\(H_1\)</span> is negative</strong></td>
+<td align="center"><span class="math inline">\(\beta\)</span></td>
+<td align="center"><span class="math inline">\(1-\alpha\)</span></td>
+</tr>
+<tr class="odd">
+<td align="center"><strong>sum</strong></td>
+<td align="center">1</td>
+<td align="center">1</td>
+</tr>
+</tbody>
+</table>
+<p>we therefore have</p>
+<ol style="list-style-type: decimal">
+<li>The <strong>type 2 error</strong> rate: probability of a false negative (ignore a finding when it is true)</li>
+</ol>
+<p><span class="math display">\[\beta=P(negative|H_1)\]</span></p>
+<ol start="2" style="list-style-type: decimal">
+<li><p>The <strong>True positive</strong> rate: This is the power or sensitivity of a test (claiming a discovery when it is true, the main objective)
+<span class="math display">\[1-\beta=P(positive|H_1)\]</span></p></li>
+<li><p>The <strong>Type 1 error</strong> rate: probability of a false positive (state a discovery when it is false)
+<span class="math display">\[\alpha=P(positive|H_0)\]</span></p></li>
+<li><p>The <strong>True Negative</strong> rate: This is the specificity of a test (ignore a finding when it is false)
+<span class="math display">\[1-\alpha=P(negative|H_0)\]</span></p></li>
+</ol>
+</div>
+</div>
+<div id="exercises-12" class="section level2 hasAnchor" number="14.7">
+<h2><span class="header-section-number">14.7</span> Exercises<a href="hypothesis-testing.html#exercises-12" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="exercise-1-11" class="section level4 hasAnchor" number="14.7.0.1">
+<h4><span class="header-section-number">14.7.0.1</span> Exercise 1<a href="hypothesis-testing.html#exercise-1-11" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Imagine we take a random sample of size <span class="math inline">\(n = 41\)</span> of a normal random variable <span class="math inline">\(X\)</span>, and find that the sample average is <span class="math inline">\(10\)</span> and the sample variance is <span class="math inline">\(1.5\)</span>.</p>
+<ul>
+<li>What is then the confidence interval for the mean of <span class="math inline">\(X\)</span> at <span class="math inline">\(95\%\)</span> confidence level?</li>
+</ul>
+<p>Consider that <span class="math inline">\(t_{0.025,40}=\)</span> <code>t.ppf(0.975, 40)</code> <span class="math inline">\(\sim 2\)</span>.</p>
+<ul>
+<li><p>Test the hypothesis that the mean of <span class="math inline">\(X\)</span> is <strong>different</strong> than <span class="math inline">\(10.5\)</span>, using a <span class="math inline">\(5\%\)</span> significance threshold.</p></li>
+<li><p>Write the code to calculate the P-value to test the hypothesis that the mean of <span class="math inline">\(\mu\)</span> is <strong>lower</strong> than <span class="math inline">\(10.5\)</span>, using a <span class="math inline">\(5\%\)</span> significance threshold.</p></li>
+</ul>
+<p>Consider that the code for the T probability distribution with <span class="math inline">\(n-1\)</span> degrees of freedom is <code>t.cdf(tobs, n-1)</code>.</p>
+</div>
+<div id="exercise-2-11" class="section level4 hasAnchor" number="14.7.0.2">
+<h4><span class="header-section-number">14.7.0.2</span> Exercise 2<a href="hypothesis-testing.html#exercise-2-11" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p><span class="math inline">\(10\)</span> gas condensates showed the following concentrations of mercury (in <span class="math inline">\(ng/ml\)</span>):</p>
+<p><span class="math inline">\(23.3\)</span>, <span class="math inline">\(22.5\)</span>, <span class="math inline">\(21.9\)</span>, <span class="math inline">\(21.5\)</span>, <span class="math inline">\(19.9\)</span>, <span class="math inline">\(21.3\)</span>, <span class="math inline">\(21.7\)</span>, <span class="math inline">\(23.8\)</span>, <span class="math inline">\(22.6\)</span>, <span class="math inline">\(24.7\)</span></p>
+<p>Assuming that the mercury concentration is distributed normally across gas condensates, test the hypothesis that condensate does not surpass the toxicity limit established at <span class="math inline">\(24 ng/ml\)</span>.</p>
+</div>
+<div id="exercise-3-9" class="section level4 hasAnchor" number="14.7.0.3">
+<h4><span class="header-section-number">14.7.0.3</span> Exercise 3<a href="hypothesis-testing.html#exercise-3-9" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>The manufacturer of gene expression microarrays guarantees that at least <span class="math inline">\(97\%\)</span> of the microarrays they produce have high-quality signals. A customer receives a batch of <span class="math inline">\(200\)</span> pieces and finds that <span class="math inline">\(8\)</span> unperformed.</p>
+<p>Should the customer return the lot due to poor quality?</p>
+</div>
+</div>
+<div id="practice-4" class="section level2 hasAnchor" number="14.8">
+<h2><span class="header-section-number">14.8</span> Practice<a href="hypothesis-testing.html#practice-4" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Load misophonia data <code><a href="https://alejandro-isglobal.github.io/SDA/data/data_0.txt" class="uri">https://alejandro-isglobal.github.io/SDA/data/data_0.txt</a></code></p>
+<p>We have four measures of anxiety:</p>
+<ul>
+<li>Trait: ansiedad.rasgo (are you an anxious person?) continuous:0-100</li>
+<li>State: ansiedad.estado (are you currently feeling anxious?) continuous:0-100</li>
+<li>Diagnosed: ansiedad.medicada (have you been diagnosed with an anxiety disorder?) binary (si, no)</li>
+<li>Excess: ansiedad.dif (difference between State and Trait)</li>
+</ul>
+<p>We are interested in the variable misofonia.dif, that is the observed <strong>excess</strong> of anxiety from the trait</p>
+<p><span class="math inline">\(excess = state - trait\)</span></p>
+<p>Test the following hypotheses</p>
+<ol style="list-style-type: lower-alpha">
+<li><p>Is excess in anxiety different from 0? is it higher?</p></li>
+<li><p>Is excess in anxiety higher than 0 for men and women separately?</p></li>
+<li><p>Is the proportion of anxious patients different from <span class="math inline">\(0.03\)</span>?</p></li>
+</ol>
+<p><a href="https://colab.research.google.com/drive/13El5aoycT_6Wasvyx427TvglygiSPMpF?usp=sharing">Solutions</a></p>
+
+</div>
+</div>
+<h3>References</h3>
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-CALCE_StorageData2025" class="csl-entry">
+Center for Advanced Life Cycle Engineering (CALCE). 2025. <span>“PL Sample Storage Data &amp; Test Description for Lithium‑ion Cells (PLN_number_SOC_temp_StoragePeriod).”</span> University of Maryland, CALCE. <a href="https://calce.umd.edu/battery-data#PL">https://calce.umd.edu/battery-data#PL</a>.
+</div>
+<div id="ref-irurzun2021rr" class="csl-entry">
+Irurzun, I. M., L. Garavaglia, M. M. Defeo, and J. Thomas Mailland. 2021. <span>“RR Interval Time Series from Healthy Subjects (Version 1.0.0).”</span> <a href="https://doi.org/10.13026/51yd-d219" class="uri">https://doi.org/10.13026/51yd-d219</a>.
+</div>
+<div id="ref-student1908probable" class="csl-entry">
+Student. 1908. <span>“The Probable Error of a Mean.”</span> <em>Biometrika</em> 6 (1): 1–25. <a href="https://doi.org/10.2307/2331554">https://doi.org/10.2307/2331554</a>.
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="interval-estimation.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="contingency-tables.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/14-HypothesisTesting.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

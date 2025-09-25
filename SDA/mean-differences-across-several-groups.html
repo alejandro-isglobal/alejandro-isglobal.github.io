@@ -1,0 +1,1368 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 17 Mean differences across several groups | Statistical Data Analysis for Experimental Sciences</title>
+  <meta name="description" content="This is a markdown book titled Statistical Data Analysis for Experimental Sciences by Alejandro Caceres" />
+  <meta name="generator" content="bookdown 0.36 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 17 Mean differences across several groups | Statistical Data Analysis for Experimental Sciences" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="This is a markdown book titled Statistical Data Analysis for Experimental Sciences by Alejandro Caceres" />
+  <meta name="github-repo" content="alejandro-isglobal/master" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 17 Mean differences across several groups | Statistical Data Analysis for Experimental Sciences" />
+  
+  <meta name="twitter:description" content="This is a markdown book titled Statistical Data Analysis for Experimental Sciences by Alejandro Caceres" />
+  
+
+<meta name="author" content="Alejandro Cáceres" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="mean-differences-between-two-samples.html"/>
+<link rel="next" href="regression-and-correlation.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">SDA</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#how-to-read-the-book"><i class="fa fa-check"></i><b>1.1</b> How to read the book</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#acknowledgements"><i class="fa fa-check"></i><b>1.2</b> Acknowledgements</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="data-description.html"><a href="data-description.html"><i class="fa fa-check"></i><b>2</b> Data description</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="data-description.html"><a href="data-description.html#scientific-method"><i class="fa fa-check"></i><b>2.1</b> Scientific method</a></li>
+<li class="chapter" data-level="2.2" data-path="data-description.html"><a href="data-description.html#data"><i class="fa fa-check"></i><b>2.2</b> Data</a></li>
+<li class="chapter" data-level="2.3" data-path="data-description.html"><a href="data-description.html#types-of-outcomes"><i class="fa fa-check"></i><b>2.3</b> Types of outcomes</a></li>
+<li class="chapter" data-level="2.4" data-path="data-description.html"><a href="data-description.html#random-experiments"><i class="fa fa-check"></i><b>2.4</b> Random experiments</a></li>
+<li class="chapter" data-level="2.5" data-path="data-description.html"><a href="data-description.html#absolute-frequencies"><i class="fa fa-check"></i><b>2.5</b> Absolute frequencies</a></li>
+<li class="chapter" data-level="2.6" data-path="data-description.html"><a href="data-description.html#relative-frequencies"><i class="fa fa-check"></i><b>2.6</b> Relative frequencies</a></li>
+<li class="chapter" data-level="2.7" data-path="data-description.html"><a href="data-description.html#bar-chart"><i class="fa fa-check"></i><b>2.7</b> Bar chart</a></li>
+<li class="chapter" data-level="2.8" data-path="data-description.html"><a href="data-description.html#pie-chart"><i class="fa fa-check"></i><b>2.8</b> Pie chart</a></li>
+<li class="chapter" data-level="2.9" data-path="data-description.html"><a href="data-description.html#ordinal-categorical-outcomes"><i class="fa fa-check"></i><b>2.9</b> Ordinal categorical outcomes</a></li>
+<li class="chapter" data-level="2.10" data-path="data-description.html"><a href="data-description.html#absolute-and-relative-cumulative-frequencies"><i class="fa fa-check"></i><b>2.10</b> Absolute and relative cumulative frequencies</a></li>
+<li class="chapter" data-level="2.11" data-path="data-description.html"><a href="data-description.html#cumulative-frequency-graph"><i class="fa fa-check"></i><b>2.11</b> Cumulative frequency graph</a></li>
+<li class="chapter" data-level="2.12" data-path="data-description.html"><a href="data-description.html#numerical-outcomes"><i class="fa fa-check"></i><b>2.12</b> Numerical outcomes</a></li>
+<li class="chapter" data-level="2.13" data-path="data-description.html"><a href="data-description.html#transforming-continuous-data"><i class="fa fa-check"></i><b>2.13</b> Transforming continuous data</a></li>
+<li class="chapter" data-level="2.14" data-path="data-description.html"><a href="data-description.html#frequency-table-for-a-continuous-variable"><i class="fa fa-check"></i><b>2.14</b> Frequency table for a continuous variable</a></li>
+<li class="chapter" data-level="2.15" data-path="data-description.html"><a href="data-description.html#histogram"><i class="fa fa-check"></i><b>2.15</b> Histogram</a></li>
+<li class="chapter" data-level="2.16" data-path="data-description.html"><a href="data-description.html#cumulative-frequency-graph-1"><i class="fa fa-check"></i><b>2.16</b> Cumulative frequency graph</a></li>
+<li class="chapter" data-level="2.17" data-path="data-description.html"><a href="data-description.html#summary-statistics"><i class="fa fa-check"></i><b>2.17</b> Summary Statistics</a></li>
+<li class="chapter" data-level="2.18" data-path="data-description.html"><a href="data-description.html#average-sample-mean"><i class="fa fa-check"></i><b>2.18</b> Average (sample mean)</a></li>
+<li class="chapter" data-level="2.19" data-path="data-description.html"><a href="data-description.html#median"><i class="fa fa-check"></i><b>2.19</b> Median</a></li>
+<li class="chapter" data-level="2.20" data-path="data-description.html"><a href="data-description.html#dispersion"><i class="fa fa-check"></i><b>2.20</b> Dispersion</a></li>
+<li class="chapter" data-level="2.21" data-path="data-description.html"><a href="data-description.html#sample-variance"><i class="fa fa-check"></i><b>2.21</b> Sample variance</a></li>
+<li class="chapter" data-level="2.22" data-path="data-description.html"><a href="data-description.html#interquartile-range-iqr"><i class="fa fa-check"></i><b>2.22</b> Interquartile range (IQR)</a></li>
+<li class="chapter" data-level="2.23" data-path="data-description.html"><a href="data-description.html#boxplot"><i class="fa fa-check"></i><b>2.23</b> Boxplot</a></li>
+<li class="chapter" data-level="2.24" data-path="data-description.html"><a href="data-description.html#questions"><i class="fa fa-check"></i><b>2.24</b> Questions</a></li>
+<li class="chapter" data-level="2.25" data-path="data-description.html"><a href="data-description.html#exercises"><i class="fa fa-check"></i><b>2.25</b> Exercises</a></li>
+<li class="chapter" data-level="2.26" data-path="data-description.html"><a href="data-description.html#practice"><i class="fa fa-check"></i><b>2.26</b> Practice</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="probability.html"><a href="probability.html"><i class="fa fa-check"></i><b>3</b> Probability</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="probability.html"><a href="probability.html#probability-mesurement"><i class="fa fa-check"></i><b>3.1</b> Probability mesurement</a></li>
+<li class="chapter" data-level="3.2" data-path="probability.html"><a href="probability.html#classical-probability"><i class="fa fa-check"></i><b>3.2</b> Classical probability</a></li>
+<li class="chapter" data-level="3.3" data-path="probability.html"><a href="probability.html#relative-frequencies-1"><i class="fa fa-check"></i><b>3.3</b> Relative frequencies</a></li>
+<li class="chapter" data-level="3.4" data-path="probability.html"><a href="probability.html#frequentist-probability"><i class="fa fa-check"></i><b>3.4</b> Frequentist probability</a></li>
+<li class="chapter" data-level="3.5" data-path="probability.html"><a href="probability.html#classical-and-frequentist-probabilities"><i class="fa fa-check"></i><b>3.5</b> Classical and frequentist probabilities</a></li>
+<li class="chapter" data-level="3.6" data-path="probability.html"><a href="probability.html#sample-space"><i class="fa fa-check"></i><b>3.6</b> Sample space</a></li>
+<li class="chapter" data-level="3.7" data-path="probability.html"><a href="probability.html#events"><i class="fa fa-check"></i><b>3.7</b> Events</a></li>
+<li class="chapter" data-level="3.8" data-path="probability.html"><a href="probability.html#algebra-of-events"><i class="fa fa-check"></i><b>3.8</b> Algebra of events</a></li>
+<li class="chapter" data-level="3.9" data-path="probability.html"><a href="probability.html#mutually-exclusive-events"><i class="fa fa-check"></i><b>3.9</b> Mutually exclusive events</a></li>
+<li class="chapter" data-level="3.10" data-path="probability.html"><a href="probability.html#definition-of-probability"><i class="fa fa-check"></i><b>3.10</b> Definition of probability</a></li>
+<li class="chapter" data-level="3.11" data-path="probability.html"><a href="probability.html#probability-table"><i class="fa fa-check"></i><b>3.11</b> Probability table</a></li>
+<li class="chapter" data-level="3.12" data-path="probability.html"><a href="probability.html#joint-probabilities"><i class="fa fa-check"></i><b>3.12</b> Joint probabilities</a></li>
+<li class="chapter" data-level="3.13" data-path="probability.html"><a href="probability.html#contingency-table"><i class="fa fa-check"></i><b>3.13</b> Contingency table</a></li>
+<li class="chapter" data-level="3.14" data-path="probability.html"><a href="probability.html#the-addition-rule"><i class="fa fa-check"></i><b>3.14</b> The addition rule</a></li>
+<li class="chapter" data-level="3.15" data-path="probability.html"><a href="probability.html#questions-1"><i class="fa fa-check"></i><b>3.15</b> Questions</a></li>
+<li class="chapter" data-level="3.16" data-path="probability.html"><a href="probability.html#exercises-1"><i class="fa fa-check"></i><b>3.16</b> Exercises</a></li>
+<li class="chapter" data-level="3.17" data-path="probability.html"><a href="probability.html#practice-1"><i class="fa fa-check"></i><b>3.17</b> Practice</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="conditional-probability.html"><a href="conditional-probability.html"><i class="fa fa-check"></i><b>4</b> Conditional probability</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="conditional-probability.html"><a href="conditional-probability.html#joint-probability"><i class="fa fa-check"></i><b>4.1</b> Joint probability</a></li>
+<li class="chapter" data-level="4.2" data-path="conditional-probability.html"><a href="conditional-probability.html#statistical-independence-and-correlation"><i class="fa fa-check"></i><b>4.2</b> Statistical independence and correlation</a></li>
+<li class="chapter" data-level="4.3" data-path="conditional-probability.html"><a href="conditional-probability.html#conditional-probability-1"><i class="fa fa-check"></i><b>4.3</b> Conditional probability</a></li>
+<li class="chapter" data-level="4.4" data-path="conditional-probability.html"><a href="conditional-probability.html#conditional-contingency-table"><i class="fa fa-check"></i><b>4.4</b> Conditional contingency table</a></li>
+<li class="chapter" data-level="4.5" data-path="conditional-probability.html"><a href="conditional-probability.html#statistical-independence"><i class="fa fa-check"></i><b>4.5</b> Statistical independence</a></li>
+<li class="chapter" data-level="4.6" data-path="conditional-probability.html"><a href="conditional-probability.html#statistical-dependency"><i class="fa fa-check"></i><b>4.6</b> Statistical dependency</a></li>
+<li class="chapter" data-level="4.7" data-path="conditional-probability.html"><a href="conditional-probability.html#diagnostic-test"><i class="fa fa-check"></i><b>4.7</b> Diagnostic test</a></li>
+<li class="chapter" data-level="4.8" data-path="conditional-probability.html"><a href="conditional-probability.html#inverse-probabilities"><i class="fa fa-check"></i><b>4.8</b> Inverse probabilities</a></li>
+<li class="chapter" data-level="4.9" data-path="conditional-probability.html"><a href="conditional-probability.html#bayes-theorem"><i class="fa fa-check"></i><b>4.9</b> Bayes’ Theorem</a></li>
+<li class="chapter" data-level="4.10" data-path="conditional-probability.html"><a href="conditional-probability.html#questions-2"><i class="fa fa-check"></i><b>4.10</b> Questions</a></li>
+<li class="chapter" data-level="4.11" data-path="conditional-probability.html"><a href="conditional-probability.html#exercises-2"><i class="fa fa-check"></i><b>4.11</b> Exercises</a></li>
+<li class="chapter" data-level="4.12" data-path="conditional-probability.html"><a href="conditional-probability.html#practice-2"><i class="fa fa-check"></i><b>4.12</b> Practice</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html"><i class="fa fa-check"></i><b>5</b> Discrete Random Variables</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html#definition-of-a-random-variable"><i class="fa fa-check"></i><b>5.1</b> Definition of a Random Variable</a></li>
+<li class="chapter" data-level="5.2" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html#the-value-of-a-random-variable"><i class="fa fa-check"></i><b>5.2</b> The value of a random variable</a></li>
+<li class="chapter" data-level="5.3" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html#probability-of-random-variables"><i class="fa fa-check"></i><b>5.3</b> Probability of random variables</a></li>
+<li class="chapter" data-level="5.4" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html#probability-functions"><i class="fa fa-check"></i><b>5.4</b> Probability functions</a></li>
+<li class="chapter" data-level="5.5" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html#probability-mass-functions"><i class="fa fa-check"></i><b>5.5</b> Probability mass functions</a></li>
+<li class="chapter" data-level="5.6" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html#mean-or-expected-value"><i class="fa fa-check"></i><b>5.6</b> Mean or expected value</a></li>
+<li class="chapter" data-level="5.7" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html#variance"><i class="fa fa-check"></i><b>5.7</b> Variance</a></li>
+<li class="chapter" data-level="5.8" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html#probability-functions-for-functions-of-x"><i class="fa fa-check"></i><b>5.8</b> Probability functions for functions of <span class="math inline">\(X\)</span></a></li>
+<li class="chapter" data-level="5.9" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html#probability-distribution"><i class="fa fa-check"></i><b>5.9</b> Probability distribution</a></li>
+<li class="chapter" data-level="5.10" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html#probability-function-and-probability-distribution"><i class="fa fa-check"></i><b>5.10</b> Probability function and probability distribution</a></li>
+<li class="chapter" data-level="5.11" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html#quantiles"><i class="fa fa-check"></i><b>5.11</b> Quantiles</a></li>
+<li class="chapter" data-level="5.12" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html#summary"><i class="fa fa-check"></i><b>5.12</b> Summary</a></li>
+<li class="chapter" data-level="5.13" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html#questions-3"><i class="fa fa-check"></i><b>5.13</b> Questions</a></li>
+<li class="chapter" data-level="5.14" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html#exercises-3"><i class="fa fa-check"></i><b>5.14</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="continous-random-variables.html"><a href="continous-random-variables.html"><i class="fa fa-check"></i><b>6</b> Continous Random Variables</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="continous-random-variables.html"><a href="continous-random-variables.html#probabilities-of-continuous-random-variables"><i class="fa fa-check"></i><b>6.1</b> Probabilities of continuous random variables</a></li>
+<li class="chapter" data-level="6.2" data-path="continous-random-variables.html"><a href="continous-random-variables.html#relative-frequencies-2"><i class="fa fa-check"></i><b>6.2</b> Relative frequencies</a></li>
+<li class="chapter" data-level="6.3" data-path="continous-random-variables.html"><a href="continous-random-variables.html#probability-density-function"><i class="fa fa-check"></i><b>6.3</b> Probability Density Function</a></li>
+<li class="chapter" data-level="6.4" data-path="continous-random-variables.html"><a href="continous-random-variables.html#total-area-under-the-curve"><i class="fa fa-check"></i><b>6.4</b> Total area under the curve</a></li>
+<li class="chapter" data-level="6.5" data-path="continous-random-variables.html"><a href="continous-random-variables.html#probabilities-of-continous-variables"><i class="fa fa-check"></i><b>6.5</b> Probabilities of continous variables</a></li>
+<li class="chapter" data-level="6.6" data-path="continous-random-variables.html"><a href="continous-random-variables.html#probability-distribution-1"><i class="fa fa-check"></i><b>6.6</b> Probability distribution</a></li>
+<li class="chapter" data-level="6.7" data-path="continous-random-variables.html"><a href="continous-random-variables.html#probability-plots"><i class="fa fa-check"></i><b>6.7</b> Probability plots</a></li>
+<li class="chapter" data-level="6.8" data-path="continous-random-variables.html"><a href="continous-random-variables.html#mean"><i class="fa fa-check"></i><b>6.8</b> Mean</a></li>
+<li class="chapter" data-level="6.9" data-path="continous-random-variables.html"><a href="continous-random-variables.html#variance-1"><i class="fa fa-check"></i><b>6.9</b> Variance</a></li>
+<li class="chapter" data-level="6.10" data-path="continous-random-variables.html"><a href="continous-random-variables.html#functions-of-x"><i class="fa fa-check"></i><b>6.10</b> Functions of <span class="math inline">\(X\)</span></a></li>
+<li class="chapter" data-level="6.11" data-path="continous-random-variables.html"><a href="continous-random-variables.html#exercises-4"><i class="fa fa-check"></i><b>6.11</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="discrete-probability-models.html"><a href="discrete-probability-models.html"><i class="fa fa-check"></i><b>7</b> Discrete Probability Models</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="discrete-probability-models.html"><a href="discrete-probability-models.html#probability-model"><i class="fa fa-check"></i><b>7.1</b> Probability model</a></li>
+<li class="chapter" data-level="7.2" data-path="discrete-probability-models.html"><a href="discrete-probability-models.html#parametric-models"><i class="fa fa-check"></i><b>7.2</b> Parametric models</a></li>
+<li class="chapter" data-level="7.3" data-path="discrete-probability-models.html"><a href="discrete-probability-models.html#uniform-probability-mass-function-one-parameter"><i class="fa fa-check"></i><b>7.3</b> Uniform probability mass function (one parameter)</a></li>
+<li class="chapter" data-level="7.4" data-path="discrete-probability-models.html"><a href="discrete-probability-models.html#uniform-probability-mass-function-two-parameters"><i class="fa fa-check"></i><b>7.4</b> Uniform probability mass function (two parameters)</a></li>
+<li class="chapter" data-level="7.5" data-path="discrete-probability-models.html"><a href="discrete-probability-models.html#bernoulli-trial"><i class="fa fa-check"></i><b>7.5</b> Bernoulli trial</a></li>
+<li class="chapter" data-level="7.6" data-path="discrete-probability-models.html"><a href="discrete-probability-models.html#binomial-experiment"><i class="fa fa-check"></i><b>7.6</b> Binomial experiment</a></li>
+<li class="chapter" data-level="7.7" data-path="discrete-probability-models.html"><a href="discrete-probability-models.html#binomial-probability-function"><i class="fa fa-check"></i><b>7.7</b> Binomial probability function</a></li>
+<li class="chapter" data-level="7.8" data-path="discrete-probability-models.html"><a href="discrete-probability-models.html#negative-binomial"><i class="fa fa-check"></i><b>7.8</b> Negative binomial</a></li>
+<li class="chapter" data-level="7.9" data-path="discrete-probability-models.html"><a href="discrete-probability-models.html#geometric-distribution"><i class="fa fa-check"></i><b>7.9</b> Geometric distribution</a></li>
+<li class="chapter" data-level="7.10" data-path="discrete-probability-models.html"><a href="discrete-probability-models.html#hypergeometric-model"><i class="fa fa-check"></i><b>7.10</b> Hypergeometric model</a></li>
+<li class="chapter" data-level="7.11" data-path="discrete-probability-models.html"><a href="discrete-probability-models.html#questions-4"><i class="fa fa-check"></i><b>7.11</b> Questions</a></li>
+<li class="chapter" data-level="7.12" data-path="discrete-probability-models.html"><a href="discrete-probability-models.html#exercises-5"><i class="fa fa-check"></i><b>7.12</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="poisson-and-exponential-models.html"><a href="poisson-and-exponential-models.html"><i class="fa fa-check"></i><b>8</b> Poisson and Exponential Models</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="poisson-and-exponential-models.html"><a href="poisson-and-exponential-models.html#discrete-probability-models-1"><i class="fa fa-check"></i><b>8.1</b> Discrete probability models</a></li>
+<li class="chapter" data-level="8.2" data-path="poisson-and-exponential-models.html"><a href="poisson-and-exponential-models.html#poissson-experiment"><i class="fa fa-check"></i><b>8.2</b> Poissson experiment</a></li>
+<li class="chapter" data-level="8.3" data-path="poisson-and-exponential-models.html"><a href="poisson-and-exponential-models.html#poisson-probability-mass-function"><i class="fa fa-check"></i><b>8.3</b> Poisson probability mass function</a></li>
+<li class="chapter" data-level="8.4" data-path="poisson-and-exponential-models.html"><a href="poisson-and-exponential-models.html#continuous-probability-models"><i class="fa fa-check"></i><b>8.4</b> Continuous probability models</a></li>
+<li class="chapter" data-level="8.5" data-path="poisson-and-exponential-models.html"><a href="poisson-and-exponential-models.html#exponential-process"><i class="fa fa-check"></i><b>8.5</b> Exponential process</a></li>
+<li class="chapter" data-level="8.6" data-path="poisson-and-exponential-models.html"><a href="poisson-and-exponential-models.html#exponential-probability-density"><i class="fa fa-check"></i><b>8.6</b> Exponential probability density</a></li>
+<li class="chapter" data-level="8.7" data-path="poisson-and-exponential-models.html"><a href="poisson-and-exponential-models.html#exponential-distribution"><i class="fa fa-check"></i><b>8.7</b> Exponential Distribution</a></li>
+<li class="chapter" data-level="8.8" data-path="poisson-and-exponential-models.html"><a href="poisson-and-exponential-models.html#questions-5"><i class="fa fa-check"></i><b>8.8</b> Questions</a></li>
+<li class="chapter" data-level="8.9" data-path="poisson-and-exponential-models.html"><a href="poisson-and-exponential-models.html#exercises-6"><i class="fa fa-check"></i><b>8.9</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="normal-distribution.html"><a href="normal-distribution.html"><i class="fa fa-check"></i><b>9</b> Normal Distribution</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="normal-distribution.html"><a href="normal-distribution.html#history"><i class="fa fa-check"></i><b>9.1</b> History</a></li>
+<li class="chapter" data-level="9.2" data-path="normal-distribution.html"><a href="normal-distribution.html#normal-probability-density"><i class="fa fa-check"></i><b>9.2</b> Normal probability density</a></li>
+<li class="chapter" data-level="9.3" data-path="normal-distribution.html"><a href="normal-distribution.html#probability-distribution-2"><i class="fa fa-check"></i><b>9.3</b> Probability distribution</a></li>
+<li class="chapter" data-level="9.4" data-path="normal-distribution.html"><a href="normal-distribution.html#quantiles-of-the-normal-distribution"><i class="fa fa-check"></i><b>9.4</b> Quantiles of the normal distribution</a></li>
+<li class="chapter" data-level="9.5" data-path="normal-distribution.html"><a href="normal-distribution.html#standard-normal-density"><i class="fa fa-check"></i><b>9.5</b> Standard normal density</a></li>
+<li class="chapter" data-level="9.6" data-path="normal-distribution.html"><a href="normal-distribution.html#standard-distribution"><i class="fa fa-check"></i><b>9.6</b> Standard distribution</a></li>
+<li class="chapter" data-level="9.7" data-path="normal-distribution.html"><a href="normal-distribution.html#standardization"><i class="fa fa-check"></i><b>9.7</b> Standardization</a></li>
+<li class="chapter" data-level="9.8" data-path="normal-distribution.html"><a href="normal-distribution.html#questions-6"><i class="fa fa-check"></i><b>9.8</b> Questions</a></li>
+<li class="chapter" data-level="9.9" data-path="normal-distribution.html"><a href="normal-distribution.html#exercises-7"><i class="fa fa-check"></i><b>9.9</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="sampling-distributions.html"><a href="sampling-distributions.html"><i class="fa fa-check"></i><b>10</b> Sampling distributions</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="sampling-distributions.html"><a href="sampling-distributions.html#random-sample"><i class="fa fa-check"></i><b>10.1</b> Random sample</a></li>
+<li class="chapter" data-level="10.2" data-path="sampling-distributions.html"><a href="sampling-distributions.html#parameter-estimation"><i class="fa fa-check"></i><b>10.2</b> Parameter estimation</a></li>
+<li class="chapter" data-level="10.3" data-path="sampling-distributions.html"><a href="sampling-distributions.html#law-of-large-numbers"><i class="fa fa-check"></i><b>10.3</b> Law of Large Numbers</a></li>
+<li class="chapter" data-level="10.4" data-path="sampling-distributions.html"><a href="sampling-distributions.html#inference"><i class="fa fa-check"></i><b>10.4</b> Inference</a></li>
+<li class="chapter" data-level="10.5" data-path="sampling-distributions.html"><a href="sampling-distributions.html#sample-mean"><i class="fa fa-check"></i><b>10.5</b> Sample mean</a></li>
+<li class="chapter" data-level="10.6" data-path="sampling-distributions.html"><a href="sampling-distributions.html#prediction"><i class="fa fa-check"></i><b>10.6</b> Prediction</a></li>
+<li class="chapter" data-level="10.7" data-path="sampling-distributions.html"><a href="sampling-distributions.html#validation"><i class="fa fa-check"></i><b>10.7</b> Validation</a></li>
+<li class="chapter" data-level="10.8" data-path="sampling-distributions.html"><a href="sampling-distributions.html#sample-sum"><i class="fa fa-check"></i><b>10.8</b> Sample Sum</a></li>
+<li class="chapter" data-level="10.9" data-path="sampling-distributions.html"><a href="sampling-distributions.html#sample-variance-1"><i class="fa fa-check"></i><b>10.9</b> Sample Variance</a>
+<ul>
+<li class="chapter" data-level="10.9.1" data-path="sampling-distributions.html"><a href="sampling-distributions.html#example-cables"><i class="fa fa-check"></i><b>10.9.1</b> Example (Cables)</a></li>
+</ul></li>
+<li class="chapter" data-level="10.10" data-path="sampling-distributions.html"><a href="sampling-distributions.html#distribution-of-the-sample-variance"><i class="fa fa-check"></i><b>10.10</b> Distribution of the Sample Variance</a></li>
+<li class="chapter" data-level="10.11" data-path="sampling-distributions.html"><a href="sampling-distributions.html#the-chi2-distribution"><i class="fa fa-check"></i><b>10.11</b> The <span class="math inline">\(\chi^2\)</span> Distribution</a></li>
+<li class="chapter" data-level="10.12" data-path="sampling-distributions.html"><a href="sampling-distributions.html#questions-7"><i class="fa fa-check"></i><b>10.12</b> Questions</a></li>
+<li class="chapter" data-level="10.13" data-path="sampling-distributions.html"><a href="sampling-distributions.html#exercises-8"><i class="fa fa-check"></i><b>10.13</b> Exercises</a>
+<ul>
+<li class="chapter" data-level="10.13.1" data-path="sampling-distributions.html"><a href="sampling-distributions.html#from-estimation-to-inference"><i class="fa fa-check"></i><b>10.13.1</b> From Estimation to Inference</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="central-limit-theorem.html"><a href="central-limit-theorem.html"><i class="fa fa-check"></i><b>11</b> Central limit theorem</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="central-limit-theorem.html"><a href="central-limit-theorem.html#margin-of-error"><i class="fa fa-check"></i><b>11.1</b> Margin of error</a></li>
+<li class="chapter" data-level="11.2" data-path="central-limit-theorem.html"><a href="central-limit-theorem.html#averages-of-normal-variables"><i class="fa fa-check"></i><b>11.2</b> Averages of normal variables</a></li>
+<li class="chapter" data-level="11.3" data-path="central-limit-theorem.html"><a href="central-limit-theorem.html#central-limit-theorem-1"><i class="fa fa-check"></i><b>11.3</b> Central Limit Theorem</a></li>
+<li class="chapter" data-level="11.4" data-path="central-limit-theorem.html"><a href="central-limit-theorem.html#sample-sum-and-clt"><i class="fa fa-check"></i><b>11.4</b> Sample sum and CLT</a></li>
+<li class="chapter" data-level="11.5" data-path="central-limit-theorem.html"><a href="central-limit-theorem.html#unknown-sigma"><i class="fa fa-check"></i><b>11.5</b> Unknown <span class="math inline">\(\sigma\)</span></a></li>
+<li class="chapter" data-level="11.6" data-path="central-limit-theorem.html"><a href="central-limit-theorem.html#t-statistic"><i class="fa fa-check"></i><b>11.6</b> T-statistic</a></li>
+<li class="chapter" data-level="11.7" data-path="central-limit-theorem.html"><a href="central-limit-theorem.html#questions-8"><i class="fa fa-check"></i><b>11.7</b> Questions</a></li>
+<li class="chapter" data-level="11.8" data-path="central-limit-theorem.html"><a href="central-limit-theorem.html#exercises-9"><i class="fa fa-check"></i><b>11.8</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="maximum-likelihood.html"><a href="maximum-likelihood.html"><i class="fa fa-check"></i><b>12</b> Maximum likelihood</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="maximum-likelihood.html"><a href="maximum-likelihood.html#statistic"><i class="fa fa-check"></i><b>12.1</b> Statistic</a></li>
+<li class="chapter" data-level="12.2" data-path="maximum-likelihood.html"><a href="maximum-likelihood.html#properties"><i class="fa fa-check"></i><b>12.2</b> Properties</a></li>
+<li class="chapter" data-level="12.3" data-path="maximum-likelihood.html"><a href="maximum-likelihood.html#maximum-likelihood-1"><i class="fa fa-check"></i><b>12.3</b> Maximum likelihood</a></li>
+<li class="chapter" data-level="12.4" data-path="maximum-likelihood.html"><a href="maximum-likelihood.html#maximum-likelihood-2"><i class="fa fa-check"></i><b>12.4</b> Maximum likelihood</a></li>
+<li class="chapter" data-level="12.5" data-path="maximum-likelihood.html"><a href="maximum-likelihood.html#questions-9"><i class="fa fa-check"></i><b>12.5</b> Questions</a></li>
+<li class="chapter" data-level="12.6" data-path="maximum-likelihood.html"><a href="maximum-likelihood.html#exercises-10"><i class="fa fa-check"></i><b>12.6</b> Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="interval-estimation.html"><a href="interval-estimation.html"><i class="fa fa-check"></i><b>13</b> Interval estimation</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="interval-estimation.html"><a href="interval-estimation.html#revisiting-parameter-estimation-and-marging-of-error"><i class="fa fa-check"></i><b>13.1</b> Revisiting parameter estimation and marging of error</a></li>
+<li class="chapter" data-level="13.2" data-path="interval-estimation.html"><a href="interval-estimation.html#interval-estimation-for-the-mean"><i class="fa fa-check"></i><b>13.2</b> Interval estimation for the mean</a></li>
+<li class="chapter" data-level="13.3" data-path="interval-estimation.html"><a href="interval-estimation.html#confidence-interval-estimation"><i class="fa fa-check"></i><b>13.3</b> Confidence Interval Estimation</a>
+<ul>
+<li class="chapter" data-level="13.3.1" data-path="interval-estimation.html"><a href="interval-estimation.html#estimation-of-the-mean-for-normal-variables"><i class="fa fa-check"></i><b>13.3.1</b> Estimation of the mean for normal variables</a></li>
+<li class="chapter" data-level="13.3.2" data-path="interval-estimation.html"><a href="interval-estimation.html#estimation-of-the-proportion-for-dichotomic-variables"><i class="fa fa-check"></i><b>13.3.2</b> Estimation of the proportion for dichotomic variables</a></li>
+</ul></li>
+<li class="chapter" data-level="13.4" data-path="interval-estimation.html"><a href="interval-estimation.html#estimation-of-the-variance"><i class="fa fa-check"></i><b>13.4</b> Estimation of the variance</a></li>
+<li class="chapter" data-level="13.5" data-path="interval-estimation.html"><a href="interval-estimation.html#confidence-interval-for-the-variance"><i class="fa fa-check"></i><b>13.5</b> Confidence interval for the variance</a></li>
+<li class="chapter" data-level="13.6" data-path="interval-estimation.html"><a href="interval-estimation.html#questions-10"><i class="fa fa-check"></i><b>13.6</b> Questions</a></li>
+<li class="chapter" data-level="13.7" data-path="interval-estimation.html"><a href="interval-estimation.html#exercises-11"><i class="fa fa-check"></i><b>13.7</b> Exercises</a></li>
+<li class="chapter" data-level="13.8" data-path="interval-estimation.html"><a href="interval-estimation.html#practice-3"><i class="fa fa-check"></i><b>13.8</b> Practice</a></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html"><i class="fa fa-check"></i><b>14</b> Hypothesis Testing</a>
+<ul>
+<li class="chapter" data-level="14.1" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#hypothesis-formulation"><i class="fa fa-check"></i><b>14.1</b> Hypothesis formulation</a></li>
+<li class="chapter" data-level="14.2" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#hypothesis-testing-1"><i class="fa fa-check"></i><b>14.2</b> Hypothesis Testing</a></li>
+<li class="chapter" data-level="14.3" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#hypothesis-testing-for-the-mean"><i class="fa fa-check"></i><b>14.3</b> Hypothesis testing for the mean</a>
+<ul>
+<li class="chapter" data-level="14.3.1" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#hypothesis-test-with-a-confidence-interval"><i class="fa fa-check"></i><b>14.3.1</b> Hypothesis test with a confidence interval</a></li>
+<li class="chapter" data-level="14.3.2" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#hypothesis-test-with-acceptancerejection-zones"><i class="fa fa-check"></i><b>14.3.2</b> Hypothesis test with acceptance/rejection zones</a></li>
+<li class="chapter" data-level="14.3.3" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#hypothesis-test-with-a-p-value"><i class="fa fa-check"></i><b>14.3.3</b> Hypothesis test with a P-value</a></li>
+<li class="chapter" data-level="14.3.4" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#upper-tail-hypothesis"><i class="fa fa-check"></i><b>14.3.4</b> Upper tail hypothesis</a></li>
+<li class="chapter" data-level="14.3.5" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#paired-t-test"><i class="fa fa-check"></i><b>14.3.5</b> Paired t-test</a></li>
+<li class="chapter" data-level="14.3.6" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#lower-tail-hypothesis"><i class="fa fa-check"></i><b>14.3.6</b> Lower tail hypothesis</a></li>
+</ul></li>
+<li class="chapter" data-level="14.4" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#hypothesis-testing-for-the-proportion"><i class="fa fa-check"></i><b>14.4</b> Hypothesis testing for the proportion</a></li>
+<li class="chapter" data-level="14.5" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#hypothesis-testing-for-the-variance"><i class="fa fa-check"></i><b>14.5</b> Hypothesis Testing for the Variance</a></li>
+<li class="chapter" data-level="14.6" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#errors-in-hypothesis-testing"><i class="fa fa-check"></i><b>14.6</b> Errors in hypothesis testing</a>
+<ul>
+<li class="chapter" data-level="14.6.1" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#sensitivity-and-specificity"><i class="fa fa-check"></i><b>14.6.1</b> Sensitivity and Specificity</a></li>
+</ul></li>
+<li class="chapter" data-level="14.7" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#exercises-12"><i class="fa fa-check"></i><b>14.7</b> Exercises</a></li>
+<li class="chapter" data-level="14.8" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#practice-4"><i class="fa fa-check"></i><b>14.8</b> Practice</a></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="contingency-tables.html"><a href="contingency-tables.html"><i class="fa fa-check"></i><b>15</b> Contingency tables</a>
+<ul>
+<li class="chapter" data-level="15.1" data-path="contingency-tables.html"><a href="contingency-tables.html#difference-between-proportions"><i class="fa fa-check"></i><b>15.1</b> Difference between proportions</a></li>
+<li class="chapter" data-level="15.2" data-path="contingency-tables.html"><a href="contingency-tables.html#difference-between-proportions-1"><i class="fa fa-check"></i><b>15.2</b> Difference between proportions</a></li>
+<li class="chapter" data-level="15.3" data-path="contingency-tables.html"><a href="contingency-tables.html#contingency-table-of-conditional-probabilities"><i class="fa fa-check"></i><b>15.3</b> Contingency table of conditional probabilities</a></li>
+<li class="chapter" data-level="15.4" data-path="contingency-tables.html"><a href="contingency-tables.html#test-for-the-difference-between-proportions"><i class="fa fa-check"></i><b>15.4</b> Test for the difference between proportions</a></li>
+<li class="chapter" data-level="15.5" data-path="contingency-tables.html"><a href="contingency-tables.html#chi2-test"><i class="fa fa-check"></i><b>15.5</b> <span class="math inline">\(\chi^2\)</span> test</a></li>
+<li class="chapter" data-level="15.6" data-path="contingency-tables.html"><a href="contingency-tables.html#fishers-exact-test"><i class="fa fa-check"></i><b>15.6</b> Fisher’s exact test</a></li>
+<li class="chapter" data-level="15.7" data-path="contingency-tables.html"><a href="contingency-tables.html#hypergeometric-distribution"><i class="fa fa-check"></i><b>15.7</b> Hypergeometric distribution</a></li>
+<li class="chapter" data-level="15.8" data-path="contingency-tables.html"><a href="contingency-tables.html#difference-between-several-proportions"><i class="fa fa-check"></i><b>15.8</b> Difference between several proportions</a></li>
+<li class="chapter" data-level="15.9" data-path="contingency-tables.html"><a href="contingency-tables.html#goodness-of-fit"><i class="fa fa-check"></i><b>15.9</b> Goodness of fit</a></li>
+<li class="chapter" data-level="15.10" data-path="contingency-tables.html"><a href="contingency-tables.html#questions-11"><i class="fa fa-check"></i><b>15.10</b> Questions</a></li>
+<li class="chapter" data-level="15.11" data-path="contingency-tables.html"><a href="contingency-tables.html#practice-5"><i class="fa fa-check"></i><b>15.11</b> Practice</a></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="mean-differences-between-two-samples.html"><a href="mean-differences-between-two-samples.html"><i class="fa fa-check"></i><b>16</b> Mean differences between two samples</a>
+<ul>
+<li class="chapter" data-level="16.1" data-path="mean-differences-between-two-samples.html"><a href="mean-differences-between-two-samples.html#difference-in-means-between-two-groups"><i class="fa fa-check"></i><b>16.1</b> Difference in means between two groups</a></li>
+<li class="chapter" data-level="16.2" data-path="mean-differences-between-two-samples.html"><a href="mean-differences-between-two-samples.html#data-1"><i class="fa fa-check"></i><b>16.2</b> Data</a></li>
+<li class="chapter" data-level="16.3" data-path="mean-differences-between-two-samples.html"><a href="mean-differences-between-two-samples.html#difference-between-means"><i class="fa fa-check"></i><b>16.3</b> Difference between means</a></li>
+<li class="chapter" data-level="16.4" data-path="mean-differences-between-two-samples.html"><a href="mean-differences-between-two-samples.html#hypothesis-test"><i class="fa fa-check"></i><b>16.4</b> Hypothesis test</a></li>
+<li class="chapter" data-level="16.5" data-path="mean-differences-between-two-samples.html"><a href="mean-differences-between-two-samples.html#estiamtor-of-the-mean-difference"><i class="fa fa-check"></i><b>16.5</b> Estiamtor of the mean difference</a></li>
+<li class="chapter" data-level="16.6" data-path="mean-differences-between-two-samples.html"><a href="mean-differences-between-two-samples.html#standardized-error"><i class="fa fa-check"></i><b>16.6</b> Standardized error</a></li>
+<li class="chapter" data-level="16.7" data-path="mean-differences-between-two-samples.html"><a href="mean-differences-between-two-samples.html#standardized-error-for-the-null"><i class="fa fa-check"></i><b>16.7</b> Standardized error for the null</a></li>
+<li class="chapter" data-level="16.8" data-path="mean-differences-between-two-samples.html"><a href="mean-differences-between-two-samples.html#mean-differences-when-n-is-small"><i class="fa fa-check"></i><b>16.8</b> Mean differences when <span class="math inline">\(n\)</span> is small</a></li>
+<li class="chapter" data-level="16.9" data-path="mean-differences-between-two-samples.html"><a href="mean-differences-between-two-samples.html#data-2"><i class="fa fa-check"></i><b>16.9</b> Data</a></li>
+<li class="chapter" data-level="16.10" data-path="mean-differences-between-two-samples.html"><a href="mean-differences-between-two-samples.html#difference-between-means-1"><i class="fa fa-check"></i><b>16.10</b> Difference between means</a></li>
+<li class="chapter" data-level="16.11" data-path="mean-differences-between-two-samples.html"><a href="mean-differences-between-two-samples.html#hypothesis-test-1"><i class="fa fa-check"></i><b>16.11</b> Hypothesis test</a></li>
+<li class="chapter" data-level="16.12" data-path="mean-differences-between-two-samples.html"><a href="mean-differences-between-two-samples.html#estimator-of-the-mean-difference"><i class="fa fa-check"></i><b>16.12</b> Estimator of the mean difference</a></li>
+<li class="chapter" data-level="16.13" data-path="mean-differences-between-two-samples.html"><a href="mean-differences-between-two-samples.html#standardized-error-for-the-null-1"><i class="fa fa-check"></i><b>16.13</b> Standardized error for the null</a></li>
+<li class="chapter" data-level="16.14" data-path="mean-differences-between-two-samples.html"><a href="mean-differences-between-two-samples.html#mean-differences-with-unequall-variances"><i class="fa fa-check"></i><b>16.14</b> Mean differences with unequall variances</a></li>
+<li class="chapter" data-level="16.15" data-path="mean-differences-between-two-samples.html"><a href="mean-differences-between-two-samples.html#data-3"><i class="fa fa-check"></i><b>16.15</b> Data</a></li>
+<li class="chapter" data-level="16.16" data-path="mean-differences-between-two-samples.html"><a href="mean-differences-between-two-samples.html#questions-12"><i class="fa fa-check"></i><b>16.16</b> Questions</a></li>
+<li class="chapter" data-level="16.17" data-path="mean-differences-between-two-samples.html"><a href="mean-differences-between-two-samples.html#practice-6"><i class="fa fa-check"></i><b>16.17</b> Practice</a></li>
+</ul></li>
+<li class="chapter" data-level="17" data-path="mean-differences-across-several-groups.html"><a href="mean-differences-across-several-groups.html"><i class="fa fa-check"></i><b>17</b> Mean differences across several groups</a>
+<ul>
+<li class="chapter" data-level="17.1" data-path="mean-differences-across-several-groups.html"><a href="mean-differences-across-several-groups.html#different-means-among-several-conditions"><i class="fa fa-check"></i><b>17.1</b> Different means among several conditions</a></li>
+<li class="chapter" data-level="17.2" data-path="mean-differences-across-several-groups.html"><a href="mean-differences-across-several-groups.html#data-4"><i class="fa fa-check"></i><b>17.2</b> Data</a></li>
+<li class="chapter" data-level="17.3" data-path="mean-differences-across-several-groups.html"><a href="mean-differences-across-several-groups.html#difference-between-means-2"><i class="fa fa-check"></i><b>17.3</b> Difference between means</a></li>
+<li class="chapter" data-level="17.4" data-path="mean-differences-across-several-groups.html"><a href="mean-differences-across-several-groups.html#hypothesis-test-2"><i class="fa fa-check"></i><b>17.4</b> Hypothesis test</a>
+<ul>
+<li class="chapter" data-level="17.4.1" data-path="mean-differences-across-several-groups.html"><a href="mean-differences-across-several-groups.html#distribution-of-group-means-under-h_0"><i class="fa fa-check"></i><b>17.4.1</b> Distribution of group means under <span class="math inline">\(H_0\)</span></a></li>
+<li class="chapter" data-level="17.4.2" data-path="mean-differences-across-several-groups.html"><a href="mean-differences-across-several-groups.html#sources-of-variation"><i class="fa fa-check"></i><b>17.4.2</b> Sources of variation</a></li>
+</ul></li>
+<li class="chapter" data-level="17.5" data-path="mean-differences-across-several-groups.html"><a href="mean-differences-across-several-groups.html#variance-components-estimators"><i class="fa fa-check"></i><b>17.5</b> Variance components estimators</a></li>
+<li class="chapter" data-level="17.6" data-path="mean-differences-across-several-groups.html"><a href="mean-differences-across-several-groups.html#analysis-of-variance-anova"><i class="fa fa-check"></i><b>17.6</b> Analysis of variance (ANOVA)</a></li>
+<li class="chapter" data-level="17.7" data-path="mean-differences-across-several-groups.html"><a href="mean-differences-across-several-groups.html#anova-for-two-groups"><i class="fa fa-check"></i><b>17.7</b> ANOVA for Two Groups</a></li>
+<li class="chapter" data-level="17.8" data-path="mean-differences-across-several-groups.html"><a href="mean-differences-across-several-groups.html#linear-model"><i class="fa fa-check"></i><b>17.8</b> Linear model</a></li>
+<li class="chapter" data-level="17.9" data-path="mean-differences-across-several-groups.html"><a href="mean-differences-across-several-groups.html#way-anova"><i class="fa fa-check"></i><b>17.9</b> 2-way ANOVA</a></li>
+<li class="chapter" data-level="17.10" data-path="mean-differences-across-several-groups.html"><a href="mean-differences-across-several-groups.html#data-5"><i class="fa fa-check"></i><b>17.10</b> Data</a></li>
+<li class="chapter" data-level="17.11" data-path="mean-differences-across-several-groups.html"><a href="mean-differences-across-several-groups.html#modeling-residuals"><i class="fa fa-check"></i><b>17.11</b> Modeling residuals</a></li>
+<li class="chapter" data-level="17.12" data-path="mean-differences-across-several-groups.html"><a href="mean-differences-across-several-groups.html#way-anova-linear-model"><i class="fa fa-check"></i><b>17.12</b> 2-way ANOVA linear model</a></li>
+<li class="chapter" data-level="17.13" data-path="mean-differences-across-several-groups.html"><a href="mean-differences-across-several-groups.html#hypothesis-tests"><i class="fa fa-check"></i><b>17.13</b> Hypothesis tests</a></li>
+<li class="chapter" data-level="17.14" data-path="mean-differences-across-several-groups.html"><a href="mean-differences-across-several-groups.html#variance-components"><i class="fa fa-check"></i><b>17.14</b> Variance components</a></li>
+<li class="chapter" data-level="17.15" data-path="mean-differences-across-several-groups.html"><a href="mean-differences-across-several-groups.html#way-anova-with-interaction"><i class="fa fa-check"></i><b>17.15</b> 2-way ANOVA with interaction</a></li>
+<li class="chapter" data-level="17.16" data-path="mean-differences-across-several-groups.html"><a href="mean-differences-across-several-groups.html#linear-model-1"><i class="fa fa-check"></i><b>17.16</b> Linear model</a></li>
+<li class="chapter" data-level="17.17" data-path="mean-differences-across-several-groups.html"><a href="mean-differences-across-several-groups.html#hypothesis-tests-1"><i class="fa fa-check"></i><b>17.17</b> Hypothesis tests</a></li>
+<li class="chapter" data-level="17.18" data-path="mean-differences-across-several-groups.html"><a href="mean-differences-across-several-groups.html#variance-components-1"><i class="fa fa-check"></i><b>17.18</b> Variance components</a></li>
+<li class="chapter" data-level="17.19" data-path="mean-differences-across-several-groups.html"><a href="mean-differences-across-several-groups.html#questions-13"><i class="fa fa-check"></i><b>17.19</b> Questions</a></li>
+<li class="chapter" data-level="17.20" data-path="mean-differences-across-several-groups.html"><a href="mean-differences-across-several-groups.html#practice-7"><i class="fa fa-check"></i><b>17.20</b> Practice</a></li>
+</ul></li>
+<li class="chapter" data-level="18" data-path="regression-and-correlation.html"><a href="regression-and-correlation.html"><i class="fa fa-check"></i><b>18</b> Regression and Correlation</a>
+<ul>
+<li class="chapter" data-level="18.1" data-path="regression-and-correlation.html"><a href="regression-and-correlation.html#correlations"><i class="fa fa-check"></i><b>18.1</b> Correlations</a></li>
+<li class="chapter" data-level="18.2" data-path="regression-and-correlation.html"><a href="regression-and-correlation.html#data-6"><i class="fa fa-check"></i><b>18.2</b> Data</a></li>
+<li class="chapter" data-level="18.3" data-path="regression-and-correlation.html"><a href="regression-and-correlation.html#normal-bivariate"><i class="fa fa-check"></i><b>18.3</b> Normal bivariate</a></li>
+<li class="chapter" data-level="18.4" data-path="regression-and-correlation.html"><a href="regression-and-correlation.html#estimators"><i class="fa fa-check"></i><b>18.4</b> Estimators</a></li>
+<li class="chapter" data-level="18.5" data-path="regression-and-correlation.html"><a href="regression-and-correlation.html#correlation-coefficient"><i class="fa fa-check"></i><b>18.5</b> Correlation coefficient</a></li>
+<li class="chapter" data-level="18.6" data-path="regression-and-correlation.html"><a href="regression-and-correlation.html#hypothesis-contrast"><i class="fa fa-check"></i><b>18.6</b> Hypothesis contrast</a></li>
+<li class="chapter" data-level="18.7" data-path="regression-and-correlation.html"><a href="regression-and-correlation.html#regression-analysis"><i class="fa fa-check"></i><b>18.7</b> Regression analysis</a></li>
+<li class="chapter" data-level="18.8" data-path="regression-and-correlation.html"><a href="regression-and-correlation.html#linear-model-2"><i class="fa fa-check"></i><b>18.8</b> Linear model</a></li>
+<li class="chapter" data-level="18.9" data-path="regression-and-correlation.html"><a href="regression-and-correlation.html#hypothesis-contrast-1"><i class="fa fa-check"></i><b>18.9</b> Hypothesis contrast</a></li>
+<li class="chapter" data-level="18.10" data-path="regression-and-correlation.html"><a href="regression-and-correlation.html#estimators-1"><i class="fa fa-check"></i><b>18.10</b> Estimators</a></li>
+<li class="chapter" data-level="18.11" data-path="regression-and-correlation.html"><a href="regression-and-correlation.html#hypothesis-testing-2"><i class="fa fa-check"></i><b>18.11</b> Hypothesis testing</a></li>
+<li class="chapter" data-level="18.12" data-path="regression-and-correlation.html"><a href="regression-and-correlation.html#stratified-analysis"><i class="fa fa-check"></i><b>18.12</b> Stratified analysis</a></li>
+<li class="chapter" data-level="18.13" data-path="regression-and-correlation.html"><a href="regression-and-correlation.html#multiple-regression"><i class="fa fa-check"></i><b>18.13</b> Multiple Regression</a></li>
+<li class="chapter" data-level="18.14" data-path="regression-and-correlation.html"><a href="regression-and-correlation.html#multiple-regression-interaction"><i class="fa fa-check"></i><b>18.14</b> Multiple Regression interaction</a></li>
+<li class="chapter" data-level="18.15" data-path="regression-and-correlation.html"><a href="regression-and-correlation.html#model-diagnostics"><i class="fa fa-check"></i><b>18.15</b> Model diagnostics</a></li>
+<li class="chapter" data-level="18.16" data-path="regression-and-correlation.html"><a href="regression-and-correlation.html#questions-14"><i class="fa fa-check"></i><b>18.16</b> Questions</a></li>
+<li class="chapter" data-level="18.17" data-path="regression-and-correlation.html"><a href="regression-and-correlation.html#practice-8"><i class="fa fa-check"></i><b>18.17</b> Practice</a></li>
+</ul></li>
+<li class="chapter" data-level="19" data-path="apendix.html"><a href="apendix.html"><i class="fa fa-check"></i><b>19</b> Apendix</a>
+<ul>
+<li class="chapter" data-level="19.1" data-path="apendix.html"><a href="apendix.html#solutions-to-questions"><i class="fa fa-check"></i><b>19.1</b> Solutions to Questions</a></li>
+<li class="chapter" data-level="19.2" data-path="apendix.html"><a href="apendix.html#summary-tables-python-and-r-code"><i class="fa fa-check"></i><b>19.2</b> Summary tables, Python and R code</a>
+<ul>
+<li class="chapter" data-level="19.2.1" data-path="apendix.html"><a href="apendix.html#creating-data-frames-and-loading-text-files"><i class="fa fa-check"></i><b>19.2.1</b> Creating Data Frames and Loading Text Files</a></li>
+<li class="chapter" data-level="19.2.2" data-path="apendix.html"><a href="apendix.html#python-and-r-functions-for-data-description"><i class="fa fa-check"></i><b>19.2.2</b> Python and R Functions for Data Description</a></li>
+</ul></li>
+<li class="chapter" data-level="19.3" data-path="apendix.html"><a href="apendix.html#summary-of-common-probability-models"><i class="fa fa-check"></i><b>19.3</b> Summary of common probability models</a>
+<ul>
+<li class="chapter" data-level="19.3.1" data-path="apendix.html"><a href="apendix.html#python-and-r-functions-for-probability-models"><i class="fa fa-check"></i><b>19.3.1</b> Python and R Functions for Probability Models</a></li>
+</ul></li>
+<li class="chapter" data-level="19.4" data-path="apendix.html"><a href="apendix.html#summary-of-hypothesis"><i class="fa fa-check"></i><b>19.4</b> Summary of hypothesis</a>
+<ul>
+<li class="chapter" data-level="19.4.1" data-path="apendix.html"><a href="apendix.html#python-and-r-functions-for-hypothesis-tesing"><i class="fa fa-check"></i><b>19.4.1</b> Python and R Functions for Hypothesis tesing</a></li>
+<li class="chapter" data-level="19.4.2" data-path="apendix.html"><a href="apendix.html#python-libraries-required"><i class="fa fa-check"></i><b>19.4.2</b> Python Libraries Required</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Statistical Data Analysis
+for
+Experimental Sciences</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="mean-differences-across-several-groups" class="section level1 hasAnchor" number="17">
+<h1><span class="header-section-number">Chapter 17</span> Mean differences across several groups<a href="mean-differences-across-several-groups.html#mean-differences-across-several-groups" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Experiments may be subjected to more than two conditions. We will first consider experiments with categorical and mutually exclusive conditions: if an experimental unit belongs to one condition, it cannot belong to another. For instance, in a study of all-cause mortality, patients may die from coronary disease, cancer, or respiratory conditions; or in a population genetics study, we may examine allele frequencies across different global populations. In both cases, we would like to know whether the set of conditions under study influences the outcome. If at least one condition changes the outcome, that is enough to conclude that the categorical random variable encoding the conditions (as different levels) influences the properties of the experiment, and therefore its outcomes.</p>
+<p>If the outcome is a continuous variable, we are often interested in how its <strong>mean</strong> changes across the categories of the condition variable. The categories of the condition variable are usually referred to as <em>groups</em>. In this chapter, we will generalize the test for differences between two means to the case of many groups, that is, many levels of a categorical variable. We will do this using <strong>analysis of variance (ANOVA)</strong>, which compares the variance <em>within groups</em> against the variance <em>between groups</em>. We will illustrate this analysis with data showing that leptin deficiency can cause obesity.</p>
+<p>In ANOVA, we explain the observed variation by decomposing it into additive sources. Some sources of variation are of primary interest and define the hypotheses we want to test, while others correspond to systematic error that we try to control for. Using Michelson and Morley’s classic data, we will see that accounting for multiple sources of variation in the measurement of the speed of light was key to showing that light travels at the same speed in any direction.</p>
+<p>Conditions may also arise from different types of categorical variables, and in such cases they are not mutually exclusive. For example, when studying mortality, <em>disease type</em> (cause of death) may be one condition type, and <em>sex</em> another; in genetics, we may study allele frequencies across different <em>regions</em> (first type of condition) and across different <em>species</em> (second type). To handle these situations, we will introduce the <strong>two-way ANOVA</strong>, which allows us to measure the independent contributions of two different condition types.</p>
+<p>Finally, we will use two-way ANOVA with <strong>interaction</strong>, which tests whether at least one combination of the two categorical variables produces effects that cannot be explained by the independent contributions of each variable alone. We will illustrate this by analyzing the differential effect of leptin deficiency in the weight of females.</p>
+<div id="different-means-among-several-conditions" class="section level2 hasAnchor" number="17.1">
+<h2><span class="header-section-number">17.1</span> Different means among several conditions<a href="mean-differences-across-several-groups.html#different-means-among-several-conditions" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><strong>Example (Leptin knockouts)</strong></p>
+<p>Leptin is a hormone that regulates satiety. Ramos-Lobo and colleagues tested the additional effect of leptin during neurodevelopment in mice <span class="citation">(<a href="#ref-Ramos-Lobo2019">Ramos-Lobo et al. 2019</a>)</span>. In their study, they reported the weight of 16 male mice with normal leptin function, 7 male mice in which the leptin gene was knocked out, and 10 knockout mice that received leptin hormone injections. The inclusion of this third group demonstrates that lean weight can be partially restored by leptin supplementation, showing that leptin deficiency itself causes weight gain.</p>
+<p>For this data, we assume three experimental conditions:</p>
+<ol style="list-style-type: decimal">
+<li><p>The weight of the control animals (wild type, Leptin+) follows</p>
+<p><span class="math display">\[
+Y_A \sim N(\mu_A, \sigma^2)
+\]</span></p></li>
+<li><p>The weight of the knockout animals injected with leptin follows (Leptin-(sup))</p>
+<p><span class="math display">\[
+Y_B \sim N(\mu_B, \sigma^2)
+\]</span></p></li>
+<li><p>The weight of the knockout animals without leptin follows (Leptin-)</p>
+<p><span class="math display">\[
+Y_C \sim N(\mu_C, \sigma^2)
+\]</span></p></li>
+</ol>
+</div>
+<div id="data-4" class="section level2 hasAnchor" number="17.2">
+<h2><span class="header-section-number">17.2</span> Data<a href="mean-differences-across-several-groups.html#data-4" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>One random experiment in this study can be considered to have two outcome components: <span class="math inline">\((\text{leptin}, \text{weight})\)</span>.</p>
+<ul>
+<li><p><strong>Leptin status</strong> is a categorical variable determining the experimental condition:<br />
+<span class="math display">\[
+leptin \in \{ \text{Leptin+ : A},\ \text{Leptin-(sup) : B},\ \text{Leptin- : C} \}
+\]</span></p></li>
+<li><p><strong>Weight</strong> is the continuous outcome of interest:<br />
+<span class="math display">\[
+weight \in (20, 60)
+\]</span></p></li>
+</ul>
+<p>The data look like:</p>
+<p><small>
+<span class="math display">\[
+  \begin{array}{ccc}
+  \mathbf{Mouse} &amp; \mathbf{Leptin} &amp; \mathbf{Weight} \\
+  1 &amp; \text{Leptin+} &amp; 27.67 \\
+  2 &amp; \text{Leptin+} &amp; 27.40 \\
+  3 &amp; \text{Leptin+} &amp; 25.77 \\
+  4 &amp; \text{Leptin+} &amp; 25.60 \\
+  5 &amp; \text{Leptin+} &amp; 25.03 \\
+  6 &amp; \text{Leptin+} &amp; 25.90 \\
+  7 &amp; \text{Leptin+} &amp; 26.67 \\
+  8 &amp; \text{Leptin+} &amp; 25.60 \\
+  9 &amp; \text{Leptin+} &amp; 28.93 \\
+  10 &amp; \text{Leptin+} &amp; 31.83 \\
+  11 &amp; \text{Leptin+} &amp; 25.90 \\
+  12 &amp; \text{Leptin+} &amp; 26.30 \\
+  13 &amp; \text{Leptin+} &amp; 27.90 \\
+  14 &amp; \text{Leptin+} &amp; 26.77 \\
+  15 &amp; \text{Leptin+} &amp; 25.83 \\
+  16 &amp; \text{Leptin+} &amp; 20.87 \\
+  17 &amp; \text{Leptin-(sup)} &amp; 24.33 \\
+  18 &amp; \text{Leptin-(sup)} &amp; 22.37 \\
+  19 &amp; \text{Leptin-(sup)} &amp; 26.10 \\
+  20 &amp; \text{Leptin-(sup)} &amp; 17.50 \\
+  21 &amp; \text{Leptin-(sup)} &amp; 35.17 \\
+  22 &amp; \text{Leptin-(sup)} &amp; 25.97 \\
+  23 &amp; \text{Leptin-(sup)} &amp; 27.67 \\
+  24 &amp; \text{Leptin-(sup)} &amp; 23.37 \\
+  25 &amp; \text{Leptin-(sup)} &amp; 31.83 \\
+  26 &amp; \text{Leptin-(sup)} &amp; 22.37 \\
+  27 &amp; \text{Leptin-} &amp; 46.57 \\
+  28 &amp; \text{Leptin-} &amp; 40.43 \\
+  29 &amp; \text{Leptin-} &amp; 41.97 \\
+  30 &amp; \text{Leptin-} &amp; 41.17 \\
+  31 &amp; \text{Leptin-} &amp; 41.57 \\
+  32 &amp; \text{Leptin-} &amp; 46.17 \\
+  33 &amp; \text{Leptin-} &amp; 53.83 \\
+  \end{array}
+\]</span>
+</small></p>
+</div>
+<div id="difference-between-means-2" class="section level2 hasAnchor" number="17.3">
+<h2><span class="header-section-number">17.3</span> Difference between means<a href="mean-differences-across-several-groups.html#difference-between-means-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>We compute the mean and standard deviation of weights <strong>within each group</strong>:</p>
+<ul>
+<li><span class="math inline">\(n_A = 16\)</span> control mice (Leptin+) had a mean <span class="math inline">\(\bar{y}_A = 26.50\)</span> and <span class="math inline">\(s_A = 2.25\)</span></li>
+<li><span class="math inline">\(n_B = 10\)</span> knockout mice with leptin replacement (Leptin-(sup)) had a mean <span class="math inline">\(\bar{y}_B = 25.67\)</span> and <span class="math inline">\(s_B = 5.03\)</span></li>
+<li><span class="math inline">\(n_C = 7\)</span> knockout mice without leptin (Leptin-) had a mean <span class="math inline">\(\bar{y}_C = 44.53\)</span> and <span class="math inline">\(s_C = 4.77\)</span></li>
+</ul>
+<p>We can visualize the distributions with bar plots and violin plots:</p>
+<p><img src="_main_files/figure-html/unnamed-chunk-185-1.png" width="672" /></p>
+<p>The wild type mice (Leptin+) and the knockout mice that received leptin supplementation (Leptin-(sup)) show similar mean weights. In contrast, knockout mice without leptin (Leptin-) have a much higher average weight. Since the confidence interval for this group does not overlap with those of the other two groups, we conclude that the mean weight of leptin-deficient mice is significantly higher. The violin plots further illustrate differences in the distribution of weights across groups.</p>
+<p>When testing differences in means between two groups, the null hypothesis assumes that the means are equal. When comparing more than two groups, the null hypothesis is that all groups share the same mean. The alternative is that at least one group has a different mean. This motivates the use of analysis of variance (ANOVA).</p>
+</div>
+<div id="hypothesis-test-2" class="section level2 hasAnchor" number="17.4">
+<h2><span class="header-section-number">17.4</span> Hypothesis test<a href="mean-differences-across-several-groups.html#hypothesis-test-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Let us now formulate the hypothesis contrast:</p>
+<ol style="list-style-type: lower-alpha">
+<li><p><strong>Null hypothesis</strong><br />
+<span class="math display">\[
+H_0: \mu=\mu_A = \mu_B = \mu_C
+\]</span><br />
+The null hypothesis assumes that there are no differences among the group means. In this case, all bars in the bar plot would align at the same height, within the margin of their confidence intervals.</p></li>
+<li><p><strong>Alternative hypothesis</strong><br />
+<span class="math display">\[
+H_1: \text{at least one } \mu \neq \mu_i \quad \text{for some $j$}
+\]</span><br />
+The alternative hypothesis assumes that at least one group mean is different from the others. At least one bar in the bar plot is clearly distinct from the rest.</p></li>
+</ol>
+<p>How can we test these hypotheses? We seek a statistic whose value allows us to decide whether to reject or retain <span class="math inline">\(H_0\)</span>.</p>
+<p>For simplicity, assume that all groups have the same number of observations,<br />
+<span class="math display">\[
+n_A = n_B = n_C = n
+\]</span><br />
+This means each condition contains the same number of mice in the leptin example, for a total of <span class="math inline">\(3n.\)</span> mice. Such a situation is called a <strong>balanced design</strong>. The results we will derive still hold approximately if we replace <span class="math inline">\(n\)</span> by the <strong>average number of observations per group</strong>,<br />
+<span class="math display">\[
+n = \frac{1}{k} \sum_{i=1}^k n_i.
+\]</span></p>
+<div id="distribution-of-group-means-under-h_0" class="section level3 hasAnchor" number="17.4.1">
+<h3><span class="header-section-number">17.4.1</span> Distribution of group means under <span class="math inline">\(H_0\)</span><a href="mean-differences-across-several-groups.html#distribution-of-group-means-under-h_0" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>If the null hypothesis is true, there are no differences between group means and they all coincide with a single common mean <span class="math inline">\(\mu\)</span>:</p>
+<p><span class="math display">\[
+\mu_A = \mu_B = \mu_C = \mu.
+\]</span></p>
+<p>Therefore, each group average follows the same distribution:<br />
+<span class="math display">\[
+\bar{Y}_A, \bar{Y}_B, \bar{Y}_C \sim N\!\left(\mu, \frac{\sigma^2}{n.}\right).
+\]</span></p>
+<p>The observed vector of means,<br />
+<span class="math display">\[
+m = (\bar{y}_A, \bar{y}_B, \bar{y}_C),
+\]</span><br />
+can be interpreted as the result of an <strong>averaging experiment</strong>: we repeatedly sample <span class="math inline">\(n\)</span> weights in each of the three conditions and take their averages. If <span class="math inline">\(H_0\)</span> holds, these three averages are independent estimates of the same underlying mean <span class="math inline">\(\mu\)</span>.</p>
+</div>
+<div id="sources-of-variation" class="section level3 hasAnchor" number="17.4.2">
+<h3><span class="header-section-number">17.4.2</span> Sources of variation<a href="mean-differences-across-several-groups.html#sources-of-variation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>We can distinguish two sources of dispersion in the obervatons of the experiment:</p>
+<ol style="list-style-type: decimal">
+<li><p><strong>Within-group variance</strong> (<span class="math inline">\(\sigma^2\)</span>)<br />
+– the natural dispersion of individual outcomes in each condition, which reflects the variability of the original random experiment.</p></li>
+<li><p><strong>Between-group variance</strong> (<span class="math inline">\(\sigma^2_{\bar{Y}}\)</span>)<br />
+– the dispersion of the group averages, which reflects how different the sample means are from one another.</p></li>
+</ol>
+<p>Under the null hypothesis, changing conditions does not affect the group averages, because the outcomes are independent of the conditions. By the law of large numbers, as the number of experiments <span class="math inline">\(n\)</span> in each group increases, the averages converge to <span class="math inline">\(\mu\)</span>. Hence, the variance of the averages decreases as<br />
+<span class="math display">\[
+H_0: \quad \sigma^2_{\bar{Y}} = \frac{\sigma^2}{n}.
+\]</span></p>
+<p>If, however, one group has a true mean different from <span class="math inline">\(\mu\)</span>, its average will not get close to <span class="math inline">\(\mu\)</span> as <span class="math inline">\(n.\)</span> grows. In that case, the between-group variance will be <strong>larger than expected</strong> under the null:<br />
+<span class="math display">\[
+H_1: \quad \sigma^2_{\bar{Y}} &gt; \frac{\sigma^2}{n}.
+\]</span></p>
+</div>
+</div>
+<div id="variance-components-estimators" class="section level2 hasAnchor" number="17.5">
+<h2><span class="header-section-number">17.5</span> Variance components estimators<a href="mean-differences-across-several-groups.html#variance-components-estimators" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>To test the null hypothesis, we need estimators for the two variance components:</p>
+<ul>
+<li>the <strong>within-group variance</strong> <span class="math inline">\(\sigma^2\)</span>,<br />
+</li>
+<li>the <strong>between-group variance</strong> <span class="math inline">\(\sigma^2_{\bar{Y}}\)</span>.</li>
+</ul>
+<p><strong>Estimator of the within-group variance</strong></p>
+<p>Within each group, the data vary around their group mean. For example, in group <span class="math inline">\(A\)</span>, the sample variance is</p>
+<p><span class="math display">\[
+S_A^2=\frac{1}{n-1} \sum_{i=1}^{n} (Y_{Ai}-\bar{Y}_{A})^2.
+\]</span></p>
+<p>where <span class="math inline">\(i\)</span> denotes the <span class="math inline">\(i\)</span>-th repetition of the experiment under condition <span class="math inline">\(A\)</span>. If we only considered the control mice (group <span class="math inline">\(A\)</span>), this sample variance <span class="math inline">\(S_A^2\)</span> would be an unbiased estimator of the population variance <span class="math inline">\(\sigma^2\)</span>.</p>
+<p>Since we assume all groups share the same variance <span class="math inline">\(\sigma^2\)</span>, we can combine information from all groups by averaging their sample variances:</p>
+<p><span class="math display">\[
+S_e^2 = \frac{1}{k}\sum_{j=1}^k S_j^2.
+\]</span></p>
+<p>where <span class="math inline">\(k\)</span> is the number of groups, or conditions of the experiment. This pooled estimator <span class="math inline">\(S_e^2\)</span> is called the <strong>mean square error (MSE)</strong>. It represents the variability of the random experiment <em>within</em> conditions.</p>
+<p><img src="_main_files/figure-html/unnamed-chunk-186-1.png" width="672" /></p>
+<p><strong>Estimator of the between-group variance</strong></p>
+<p>Now let us look at the variability of the <strong>group means</strong>. This is the right-hand side of the plot, where we see how the group means disperse around the overall mean (black point in in the plot).</p>
+<p>For each group mean <span class="math inline">\(\bar{Y}_j\)</span>:</p>
+<p><span class="math display">\[
+V(\bar{Y}_j) = \frac{\sigma^2}{n}, \quad \text{if } H_0 \text{ is true}.
+\]</span></p>
+<p>Thus, under the null hypothesis, the group means behave like repeated estimates of the same mean <span class="math inline">\(\mu\)</span>.</p>
+<p>The sample variance of the group means is</p>
+<p><span class="math display">\[
+S^2_{tr}=\frac{1}{k-1} \sum_{j=1}^k (\bar{Y}_{j}-\bar{Y})^2,
+\]</span></p>
+<p>where <span class="math inline">\(\bar{Y}\)</span> is the overall mean across all observations:</p>
+<p><span class="math display">\[
+\bar{Y}=\frac{1}{k}\sum_{j=1}^k \bar{Y}_j = \frac{1}{kn}\sum_{j=1}^k \sum_{i=1}^n Y_{ji}.
+\]</span></p>
+<p>This statistic <span class="math inline">\(S^2_{tr}\)</span> estimates the variance of the group means, <span class="math inline">\(\sigma^2_{\bar{Y}}\)</span>.</p>
+<p><strong>The F-ratio</strong></p>
+<p>If the null hypothesis is <strong>true</strong> and the number of observations per group grows large, then all the group means converge to the same overall mean <span class="math inline">\(\mu\)</span>. Consequently, the variance of the group means should be close to its expected value <span class="math inline">\(\sigma^2/n\)</span>. Remember that <span class="math inline">\(V(\bar{Y})=\sigma^2/n\)</span> which is estimated by <span class="math inline">\(S_{tr}^2\)</span>.</p>
+<p>On the other hand, <span class="math inline">\(S_e^2\)</span> estimates <span class="math inline">\(\sigma^2\)</span> and therefore <span class="math inline">\(S_e^2/n\)</span> is another estimation of the group variance <span class="math inline">\(\sigma^2/n\)</span>.</p>
+<p>This leads to the <strong>F statistic</strong>:</p>
+<p><span class="math display">\[
+F=\frac{S_{tr}^2}{S_e^2/n}.
+\]</span></p>
+<ul>
+<li>Under <span class="math inline">\(H_0\)</span>, <span class="math inline">\(F\)</span> is close to <span class="math inline">\(1\)</span>. As <span class="math inline">\(n\)</span> increases the outcomes get close to their means, which get close to the overall mean.</li>
+</ul>
+<p>If the null hypothesis is <strong>not true</strong> and we take more and more observations in each group, then at least one group mean will not converge to the common mean. For example, if <span class="math inline">\(\mu_B=\mu_C=\mu \neq \mu_A\)</span>, the averages from groups <span class="math inline">\(B\)</span> and <span class="math inline">\(C\)</span> will get closer to <span class="math inline">\(\mu\)</span>, but the average from group <span class="math inline">\(A\)</span> will concentrate around <span class="math inline">\(\mu_A \neq \mu\)</span>. As a result, the expected value of <span class="math inline">\(S^2_{tr}\)</span> will be larger than <span class="math inline">\(\frac{\sigma^2}{n}\)</span>, because there is an irreducible component of variability due to the difference of the group <span class="math inline">\(A\)</span> with the rest.</p>
+<p>In this situation, we say that the data contain <strong>treatment variance</strong> (variance explained by group differences) in addition to the random within-group variance. Consequently, the <span class="math inline">\(F\)</span> statistic will tend to be greater than 1, providing evidence to reject the null hypothesis.</p>
+<ul>
+<li>Under <span class="math inline">\(H_a\)</span>, at least one group mean differs, so <span class="math inline">\(S_{tr}^2\)</span> becomes larger than <span class="math inline">\(\sigma^2/n\)</span>, making <span class="math inline">\(F &gt; 1\)</span>.</li>
+</ul>
+<p>Intuitively, <span class="math inline">\(F\)</span> measures how much the group means are separated relative to the noise inside groups.</p>
+<p><strong>Sums of squares formulation</strong></p>
+<p>In practice, the <span class="math inline">\(F\)</span>-statistic is reported as a ratio of <strong>mean sums of squares</strong>:</p>
+<p><span class="math display">\[
+F = \frac{MST}{MSE},
+\]</span></p>
+<p>where</p>
+<ul>
+<li><p><strong>Mean Square for Treatments (MST):</strong><br />
+<span class="math display">\[
+MST = \frac{1}{k-1}\sum_{j=1}^k n(\bar{Y}_j-\bar{Y})^2
+= \frac{SS_{Group}}{k-1},
+\]</span></p></li>
+<li><p><strong>Mean Square Error (MSE):</strong><br />
+<span class="math display">\[
+MSE = \frac{1}{k(n-1)}\sum_{j=1}^k\sum_{i=1}^n (Y_{ji}-\bar{Y}_j)^2
+= \frac{SS_{Residual}}{k(n-1)}.
+\]</span></p></li>
+</ul>
+<p>Since sums of squares are quadratic forms of normally distributed variables, each scaled variance follows a chi-square distribution with its respective degrees of freedom. Their ratio follows an <strong>F distribution</strong>:</p>
+<p><span class="math display">\[
+F \sim F(k-1,\,k(n-1)).
+\]</span></p>
+<p>Here, <span class="math inline">\(k\)</span> is the number of groups, and <span class="math inline">\(n\)</span> the number of observations per group (balanced design). In unbalanced designs, <span class="math inline">\(n\)</span> is replaced by the actual group sizes, and the degrees of freedom are adjusted accordingly.</p>
+</div>
+<div id="analysis-of-variance-anova" class="section level2 hasAnchor" number="17.6">
+<h2><span class="header-section-number">17.6</span> Analysis of variance (ANOVA)<a href="mean-differences-across-several-groups.html#analysis-of-variance-anova" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The hypothesis test for the difference in means across several groups is then</p>
+<ol style="list-style-type: lower-alpha">
+<li><p><span class="math inline">\(H_0: \mu_1=\mu_2= ...=\mu_k\)</span>. There are no difference between group means. Then, the observed value of <span class="math inline">\(F\)</span>, <em>e.g</em> <span class="math inline">\(f_{obs}\)</span> will be near <span class="math inline">\(1\)</span>.</p></li>
+<li><p><span class="math inline">\(H_1:\)</span> at least one <span class="math inline">\(\mu_i\)</span> is different from the rest. Then, the observed value of <span class="math inline">\(F\)</span>, <em>e.g</em> <span class="math inline">\(f_{obs}\)</span> will be <strong>greater</strong> than <span class="math inline">\(1\)</span>.</p></li>
+</ol>
+<p><strong>Example (Mice knockouts)</strong></p>
+<p>The value of the <span class="math inline">\(f_{obs}\)</span> computed from the group (treatments) mean and residual (error) mean squares can be calculated in any statistical software that usually outputs the ANOVA table</p>
+<pre><code>Python:
+import pandas as pd
+import statsmodels.api as sm
+from statsmodels.formula.api import ols
+dat = pd.DataFrame({&quot;group&quot;: [&quot;Leptin+&quot;, &quot;Leptin+&quot;,
+&quot;Leptin+&quot;, &quot;Leptin+&quot;, &quot;Leptin+&quot;,&quot;Leptin+&quot;, &quot;Leptin+&quot;,
+&quot;Leptin+&quot;, &quot;Leptin+&quot;, &quot;Leptin+&quot;,
+&quot;Leptin+&quot;, &quot;Leptin+&quot;, &quot;Leptin+&quot;, &quot;Leptin+&quot;, &quot;Leptin+&quot;,
+&quot;Leptin+&quot;,  Leptin-&quot;, &quot;Leptin-&quot;, &quot;Leptin-&quot;, &quot;Leptin-&quot;,
+&quot;Leptin-&quot;, &quot;Leptin-&quot;, &quot;Leptin-&quot;, &quot;Leptin-(sup)&quot;,
+&quot;Leptin-(sup)&quot;, &quot;Leptin-(sup)&quot;, &quot;Leptin-(sup)&quot;,
+&quot;Leptin-(sup)&quot;, &quot;Leptin-(sup)&quot;, &quot;Leptin-(sup)&quot;,
+&quot;Leptin-(sup)&quot;, &quot;Leptin-(sup)&quot;, &quot;Leptin-(sup)&quot;],
+&quot;weight&quot;: [27.67, 27.4, 25.77, 25.6, 25.03, 25.9, 26.67, 25.6, 
+28.93, 31.83, 25.9, 26.3, 27.9, 26.77, 25.83, 20.87,
+46.57, 40.43, 41.97, 41.17, 41.57, 46.17, 53.83, 
+24.33, 22.37, 26.1, 17.5, 35.17, 25.97, 27.67,
+23.37, 31.83, 22.37]})
+model = ols(&#39;weight ~ group&#39;, data=dat).fit()
+anova_table = sm.stats.anova_lm(model, typ=2)
+print(anova_table)
+
+R:
+dat &lt;- data.frame(
+group=c(&quot;Leptin+&quot;, &quot;Leptin+&quot;, &quot;Leptin+&quot;, &quot;Leptin+&quot;,
+&quot;Leptin+&quot;, &quot;Leptin+&quot;, &quot;Leptin+&quot;, &quot;Leptin+&quot;, &quot;Leptin+&quot;,
+&quot;Leptin+&quot;, &quot;Leptin+&quot;, &quot;Leptin+&quot;, &quot;Leptin+&quot;, &quot;Leptin+&quot;,
+&quot;Leptin+&quot;,&quot;Leptin+&quot;, &quot;Leptin-&quot;, &quot;Leptin-&quot;, &quot;Leptin-&quot;,
+&quot;Leptin-&quot;, &quot;Leptin-&quot;, &quot;Leptin-&quot;, &quot;Leptin-&quot;,
+&quot;Leptin-(sup)&quot;, &quot;Leptin-(sup)&quot;, &quot;Leptin-(sup)&quot;,
+&quot;Leptin-(sup)&quot;, &quot;Leptin-(sup)&quot;, &quot;Leptin-(sup)&quot;,
+&quot;Leptin-(sup)&quot;,&quot;Leptin-(sup)&quot;, &quot;Leptin-(sup)&quot;,
+&quot;Leptin-(sup)&quot;), weight=c(27.67, 27.4, 25.77, 25.6,
+25.03, 25.9, 26.67, 25.6, 28.93, 31.83, 25.9, 26.3,
+27.9, 26.77, 25.83, 20.87, 46.57, 40.43, 41.97, 41.17,
+41.57, 46.17, 53.83, 24.33, 22.37, 26.1, 17.5, 35.17,
+25.97, 27.67, 23.37, 31.83, 22.37))
+summary(aov(lm(weight~group, data=dat)))</code></pre>
+<p><small>
+<span class="math display">\[
+\begin{array}{cccccc}
+&amp;\mathbf{Df} &amp; \mathbf{Sum Sq} &amp; \mathbf{Mean Sq} &amp; \mathbf{F value} &amp; \mathbf{Pr(&gt;F)} \\
+\mathbf{group}    &amp;    2 &amp;1861.5&amp;   930.8 &amp; 63.37 &amp;1.69\times10^{-11}\\
+\mathbf{Residuals}&amp;   30  &amp;440.6&amp;    14.7 &amp;  &amp; \\  
+\end{array}
+\]</span>
+</small></p>
+<p>In this table <span class="math inline">\(MST\)</span> is the mean squares for the group (treatment), computed as the corresponding sum of squares divided by the degrees of freedom (<span class="math inline">\(k-1=2\)</span>).</p>
+<p><span class="math display">\[MST=\frac{1}{k-1}SSq_{group}=930.77\]</span>
+<span class="math inline">\(MSE\)</span> is the mean squares for the residuals (error), computed as the corresponding sum of squares divided by the degrees on freedom (<span class="math inline">\(k(n-1)=30\)</span>), where <span class="math inline">\(n=(16 + 7 + 10)/3=11\)</span> is the average number of observations in each group</p>
+<p><span class="math display">\[MSE=\frac{1}{k(n-1)}SSq_{Residual}=14.69\]</span></p>
+<p>The observed value of the statistic is</p>
+<p><span class="math display">\[f_{obs}=\frac{MST}{MSE}=63.373\]</span></p>
+<p>To test the the null hypothesis, we then compute the probability that in a future experiment, if the null hypothesis is true, we observe a higher value than <span class="math inline">\(63.373\)</span>: <span class="math inline">\(P(F&gt;63.373)\)</span>. This probability is the <strong>upper tailed p-value</strong></p>
+<p><span class="math display">\[pvalue=1-F_{Fisher(2,30)}(63.373)=1.694 \times 10^{-11}\]</span></p>
+<p>which is much lower than <span class="math inline">\(\alpha=0.05\)</span>, suggesting significant differences in at least one group mean. Therefore, we reject the null hypothesis and accept that at least one of the groups has a different mean from the rest.</p>
+<p>In this experiment, we observed a significant difference between groups (ANOVA test <span class="math inline">\(F(2,30)=63.373, pvalue= 1.69 \times 10^{-11}\)</span>), indicating that at least one group has a different mean from the rest. We call it an omnibus test. ANOVA test is simultaneously testing all the groups and by itself it does not tell us which groups or group is different. Clearly, from the plots, the knockout mice has higher weights than the other two groups.</p>
+</div>
+<div id="anova-for-two-groups" class="section level2 hasAnchor" number="17.7">
+<h2><span class="header-section-number">17.7</span> ANOVA for Two Groups<a href="mean-differences-across-several-groups.html#anova-for-two-groups" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>ANOVA is often complemented by pairwise comparisons. When there are only two groups, ANOVA is equivalent to the two-sample <span class="math inline">\(t\)</span>-test. In fact, the <span class="math inline">\(F\)</span>-test in ANOVA can be seen as a direct generalization of the <span class="math inline">\(t\)</span>-test to more than two groups.</p>
+<p>Let us explicitly compute the observed value of <span class="math inline">\(F\)</span> when we have only two groups of equal size <span class="math inline">\(n\)</span>:</p>
+<p><span class="math display">\[
+f_{obs}=\frac{\tfrac{1}{2}(\bar{y}_{A}-\bar{y}_{B})^2}{\tfrac{s_p^2}{n}}
+\]</span></p>
+<p>Here, the numerator comes from simplifying <span class="math inline">\(S_{tr}^2\)</span> for two groups, and <span class="math inline">\(s_p^2\)</span> is the <strong>pooled variance</strong>:</p>
+<p><span class="math display">\[
+s_p^2 = \frac{s_A^2 + s_B^2}{2}
+\]</span></p>
+<p>which is obtained from <span class="math inline">\(S_e^2\)</span> when both groups have the same number of observations.</p>
+<p>Taking the square root of <span class="math inline">\(f_{obs}\)</span> and rearranging, we recover the familiar <span class="math inline">\(t\)</span>-statistic:</p>
+<p><span class="math display">\[
+t_{obs} = \sqrt{f_{obs}} = \frac{\bar{y}_{A} - \bar{y}_{B}}{\sqrt{\tfrac{2s_p^2}{n}}}
+\]</span></p>
+<p>Thus, the two-sample <span class="math inline">\(t\)</span>-test for the difference between two balanced groups with equal variances is just a special case of the ANOVA <span class="math inline">\(F\)</span>-test, with <span class="math inline">\(f_{obs}=t_{obs}^2\)</span>. In other words, ANOVA is a direct generalization of the <span class="math inline">\(t\)</span>-test to multiple groups.</p>
+<p><strong>Example (Wild type and knockout mice)</strong></p>
+<p>We are now interested in comparing the weights between knockout mice with supplemented leptin (group B) and wild type mice (group C). The goal is to confirm that lean weight has been restored by exogenous supplementation of the hormone. We perform a <span class="math inline">\(t\)</span>-test. The observed statistic is</p>
+<p><span class="math display">\[t_{obs}=\frac{\bar{y}_A-\bar{y}_B }{\sqrt{\frac{s^2_p}{n_A}+\frac{s^2_p}{n_B}}}=\frac{26.49813-25.668}{\sqrt{\frac{12.66079}{10}+\frac{12.66079}{7}}}=0.5787438\]</span></p>
+<p>using the pooled variance for unbalanced groups.</p>
+<p>Therefore, the observed <span class="math inline">\(F\)</span> is</p>
+<p><span class="math display">\[f_{obs}=t_{obs}^2=(0.5787)^2=0.3349\]</span></p>
+<p>The upper-tailed p-value for <span class="math inline">\(f_{obs}\)</span> using the Fisher distribution is</p>
+<p><span class="math display">\[pvalue=1-F_{Fisher,1,18}(0.3349)= 0.56\]</span></p>
+<p>with <span class="math inline">\(k=2\)</span> and <span class="math inline">\(n=18\)</span> as the average number of observations per group.</p>
+<p>We can confirm that the <span class="math inline">\(t\)</span>-test and the ANOVA for two groups give the same result.</p>
+<pre><code>R:
+t.test(weight~group, data=dat, subset = which(dat$group!=&quot;Leptin-&quot;), 
+equal.variance=FALSE)
+
+summary(aov(lm(weight~group, data=dat, subset = which(dat$group!=&quot;Leptin-&quot;))))</code></pre>
+<p>Note that knockout mice with leptin supplementation recovered wild-type weight. When we perform a two-sample <span class="math inline">\(t\)</span>-test between these two groups, we find that we cannot reject the hypothesis that their expected weights are the same (<span class="math inline">\(t_{obs}=0.5787\)</span>, <span class="math inline">\(pvalue=0.56\)</span>). Demonstrating that a phenotype caused by knocking out a gene can be rescued by exogenous supplementation provides strong evidence that leptin deficiency can lead to significant weight gain.</p>
+</div>
+<div id="linear-model" class="section level2 hasAnchor" number="17.8">
+<h2><span class="header-section-number">17.8</span> Linear model<a href="mean-differences-across-several-groups.html#linear-model" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The following formulation is useful for integrating different types of analyses. Let us classify the observations of the random variable <span class="math inline">\(Y\)</span> using the group <span class="math inline">\(j\)</span> and the particular observation <span class="math inline">\(i\)</span>.</p>
+<p>Let us consider first a group <span class="math inline">\(j\)</span> and that the expected value of <span class="math inline">\(Y\)</span> in group <span class="math inline">\(j\)</span> is</p>
+<p><span class="math display">\[E(Y_j)=E(Y_{ji}\mid j)=\mu_j.\]</span></p>
+<p>We are making explicit that each condition has its own mean, which we estimate with the sample average <span class="math inline">\(\bar{Y}_j\)</span>. Now we can write</p>
+<p><span class="math display">\[\mu_j=\mu + \alpha_j,\]</span></p>
+<p>where <span class="math inline">\(\mu\)</span> is the overall expected value of all outcomes across groups (<span class="math inline">\(E(Y)=\mu\)</span>), and <span class="math inline">\(\alpha_j\)</span> is the amount by which the mean in group <span class="math inline">\(j\)</span> deviates from <span class="math inline">\(\mu\)</span>. For example, <span class="math inline">\(\mu_{\text{leptin+}}\)</span> is the expected weight of a wild-type mouse, <span class="math inline">\(\mu\)</span> is the overall average weight across all groups, and <span class="math inline">\(\alpha_{\text{leptin+}}\)</span> is the deviation of the wild-type mean from the overall mean. Under the null hypothesis, <span class="math inline">\(\alpha_j=0\)</span> for all <span class="math inline">\(j\)</span>.</p>
+<p>Let us now take a random sample of size <span class="math inline">\(n_j\)</span> from condition <span class="math inline">\(j\)</span>:</p>
+<p><span class="math display">\[M=(Y_{j1}, Y_{j2}, \ldots, Y_{jn_j}).\]</span></p>
+<p>For instance, <span class="math inline">\(Y_{\text{leptin+},3}\)</span> is the random variable measuring the weight of the 3rd mouse under the wild-type condition, while <span class="math inline">\(y_{\text{leptin+},3}\)</span> denotes its observed value.</p>
+<p>We now assume that we can separate the systematic and random components of the variation and write the <strong>linear model</strong>:</p>
+<p><span class="math display">\[Y_{ji} = \mu_j + \varepsilon_{ji},\]</span></p>
+<p>or equivalently,</p>
+<p><span class="math display">\[Y_{ji} = \mu + \alpha_j + \varepsilon_{ji},\]</span></p>
+<p>where <span class="math inline">\(\varepsilon_{ji}\)</span> is a <strong>random variable</strong> called the error, which has expected value <span class="math inline">\(E(\varepsilon_{ji})=0\)</span> and variance <span class="math inline">\(V(\varepsilon_{ji})=\sigma^2\)</span>. It represents the deviation of the individual observation from its group mean. For instance, <span class="math inline">\(\varepsilon_{\text{leptin+},3}\)</span> is the difference between the weight of the 3rd wild-type mouse and the group mean <span class="math inline">\(\mu_{\text{leptin+}}\)</span>.</p>
+<p>In ANOVA, we assume that the variance of <span class="math inline">\(Y\)</span> is the same across groups (homoscedasticity):</p>
+<p><span class="math display">\[V(Y_j)=\sigma^2 \quad \text{for all } j.\]</span></p>
+<p>This formulation makes explicit all the components that contribute to the variation of each observation in the experiment.</p>
+<p><strong>Sources of variation</strong></p>
+<p>When repeating a random experiment under condition <span class="math inline">\(j\)</span> for the <span class="math inline">\(i\)</span>-th time, the outcome <span class="math inline">\(Y_{ji}\)</span> can be explained as the sum of:</p>
+<ul>
+<li>the overall mean <span class="math inline">\(\mu\)</span><br />
+</li>
+<li>the effect of condition <span class="math inline">\(j\)</span> on the overall mean <span class="math inline">\(\alpha_j\)</span><br />
+</li>
+<li>the random error <span class="math inline">\(\varepsilon_{ji}\)</span> around the group mean <span class="math inline">\(\mu_j\)</span>, with variance <span class="math inline">\(\sigma^2\)</span></li>
+</ul>
+<p><strong>Hypothesis contrast</strong></p>
+<p>In this formulation the hypothesis contrast can be written as:</p>
+<ul>
+<li><span class="math inline">\(H_0:\ \alpha_j=0 \ \text{for all } j\)</span>. That is, there are no differences between the group means and the overall mean <span class="math inline">\(\mu\)</span>.<br />
+</li>
+<li><span class="math inline">\(H_1: \alpha_j \neq 0\)</span> for at least one <span class="math inline">\(j\)</span>. At least one group mean differs from the overall mean <span class="math inline">\(\mu\)</span>.</li>
+</ul>
+<p>We again use the <span class="math inline">\(F\)</span> statistic to decide between the two hypotheses.</p>
+<p><strong>Example (Speed of light)</strong></p>
+<p>In 1887, Michelson and Morley attempted to explain why stars appear to slightly change their positions in the sky depending on the Earth’s motion around the Sun <span class="citation">(<a href="#ref-michelson1887ether">Michelson and Morley 1887</a>)</span>. If the Earth were moving away from a star, its light would arrive later, creating a small apparent shift in its position when compared to the stars toward which the Earth is moving. If light behaves as a wave, then the Earth would be moving relative to the medium that supports the wave — the so-called ether. However, the angular deviations predicted by this theory were much larger than those actually observed.</p>
+<p>To address this discrepancy, Michelson and Morley devised their famous experiment. They mounted a device on the edge of a rotating platform and sent a light beam into it. The beam was split at the center of the platform into two perpendicular rays. Each ray was reflected by mirrors placed at the edges of the apparatus and then recombined at the center, producing an interference pattern directed back toward the starting point. The interference generated a bright fringe whose position could be precisely measured. Crucially, the position of this fringe depended on the relative distances traveled by the two rays, which in turn should have been affected by the direction and speed of the Earth’s motion through the ether.</p>
+<p>They reasoned that when the apparatus was rotated to an angle <span class="math inline">\(r\)</span> such that one ray aligned with the Earth’s motion through the ether, the other ray would experience the maximum relative path difference. In that configuration, the displacement of the interference fringe would also reach its maximum at <span class="math inline">\(r\)</span>.</p>
+<p>The apparatus, mounted on a mercury-supported rotating table, was turned through 16 different orientations (with the final position coinciding with the first) and the measurements repeated over three consecutive days. The outcomes, expressed in units of screw divisions (each corresponding to 50 times the wavelength of light), recorded the observed fringe deviations.</p>
+<p><small>
+<span class="math display">\[
+\begin{array}{cccc}
+\mathbf{Angle} &amp; \mathbf{July 8} &amp; \mathbf{July 9} &amp; \mathbf{July 10} \\
+1&amp;   44.7&amp;  57.4&amp;   27.3\\
+2&amp;   44.0&amp;  57.3&amp;   23.5\\
+3&amp;   43.5&amp;  58.2&amp;   22.0\\
+4&amp;   39.7&amp;  59.2&amp;   19.3\\
+5&amp;   35.2&amp;  58.7&amp;   19.2\\
+6&amp;   34.7&amp;  60.2&amp;   19.3\\
+7&amp;   34.3&amp;  60.8&amp;   18.7\\
+8&amp;   32.5&amp;  62.2&amp;   18.8\\
+9&amp;   28.2&amp;  61.5&amp;   16.2\\
+10&amp;  26.2&amp;  63.3&amp;   14.3\\
+11&amp;  23.8&amp;  65.8&amp;   13.3\\
+12&amp;  23.2&amp;  67.3&amp;   12.8\\
+13&amp;  20.3&amp;  69.7&amp;   13.3\\
+14&amp;  18.7&amp;  70.7&amp;   12.3\\
+15&amp;  17.5&amp;  73.0&amp;   10.2\\
+16&amp;  16.8&amp;  70.2&amp;    7.3\\
+17&amp;  13.7&amp;  72.2&amp;    6.5\\
+\end{array}
+\]</span>
+</small></p>
+<p>If we treat the angles as different experimental conditions, each measured three times (once per day), then we can write</p>
+<p><span class="math display">\[Y_{angle, day} = \mu + \alpha_{angle} +\varepsilon_{angle,day}\]</span></p>
+<p>where <span class="math inline">\(E(Y_{\text{angle}, \text{day}})=\mu_{\text{angle}}=\mu + \alpha_{\text{angle}}\)</span>, and <span class="math inline">\(\text{day}\in\{\text{July 8}\)</span>, <span class="math inline">\(\text{July 9}\)</span>, <span class="math inline">\(\text{July 10}\}\)</span>. Our goal is to determine whether at least one <span class="math inline">\(\alpha_{\text{angle}}\)</span> differs from the others, thereby rejecting the null hypothesis using ANOVA. When the board is set at a particular angle <span class="math inline">\(r\)</span> such that the path difference between the two rays is maximal, the deviation of the fringe should also be maximal, and thus so should <span class="math inline">\(\alpha_r\)</span>.</p>
+<p>However, as the figure shows, the experiment displayed large systematic errors that do not conform to an ANOVA model. First, within a single day, the measurements exhibited linear trends: the shift increased steadily with the angle. Second, across days, the results were systematically different: the measurements were consistently highest on July 9 and lowest on July 10.</p>
+<p><img src="_main_files/figure-html/unnamed-chunk-187-1.png" width="672" /></p>
+<p>To address the first error, the technique of the time was to compute the difference between the 17th and the 1st angle (which coincide because the board completes a full rotation) and divide it by 16. Each of these accumulated errors was then successively subtracted from the original measurements, producing a normalized outcome <span class="math inline">\(Y^*_{\text{angle}, i}\)</span>. The modern equivalent of this correction is to fit a regression line and use the residuals, as we will see in the next section.</p>
+<p>For the second error, we average the measurements across days and explicitly include the day effect in the model of the normalized outcomes:</p>
+<p><span class="math display">\[
+Y^*_{\text{angle}, \,\text{day}} = \mu^* + \alpha^*_{\text{angle}} + \beta^*_{\text{day}} + \varepsilon^*_{\text{angle},\text{day}} .
+\]</span></p>
+<p>A further corrected outcome, obtained by subtracting the daily mean <span class="math inline">\(\beta^*_{\text{day}}\)</span>, satisfies the ANOVA model we want to test:</p>
+<p><span class="math display">\[
+Y^{**}_{\text{angle}, \,\text{day}} \;=\; Y^{*}_{\text{angle}, \,\text{day}} - \beta^*_{\text{day}} \;=\; \mu^* + \alpha^*_{\text{angle}} + \varepsilon^*_{\text{angle},\text{day}} .
+\]</span></p>
+<p>The bar plot shows that the corrected normalized outcomes at a given angle can now be considered as replications of the same experiment across three days. Michelson and Morley focused their analysis on half a rotation of the board (up to angle 8), resembling the pattern shown for the noon measurements, although they did not report in detail how they treated systematic errors <span class="citation">(<a href="#ref-handschy1982reexamination">Handschy 1982</a>)</span>.</p>
+<p>In the plot, we can identify all the components of the model. The estimate of <span class="math inline">\(\mu^*\)</span> is represented by the dotted line around zero, as the daily variation <span class="math inline">\(\beta^*_{\text{day}}\)</span> has been removed. The effect of the angle <span class="math inline">\(\alpha^*_{\text{angle}}\)</span> is shown by the bars, and the within-angle variability is reflected in the scatter of the individual points. The observed values of the model (denoted with lowercase) are</p>
+<p><span class="math display">\[
+y^{**}_{\text{angle}, \,\text{day}} \;=\; \hat{\mu}^* + \hat{\alpha}^*_{\text{angle}} + r^*_{\text{angle}, \,\text{day}} ,
+\]</span></p>
+<p>where <span class="math inline">\(r^*_{\text{angle}, \,\text{day}}\)</span> are the residuals (the observed errors), <span class="math inline">\(\hat{\mu}^*\)</span> is the overall mean of the corrected normalized observations, and <span class="math inline">\(\hat{\alpha}^*_{\text{angle}}\)</span> are the estimated deviations at a fixed angle. Since the corrections for systematic errors were applied uniformly across all angles, they do not affect the hypothesis test, whose aim is to detect a privileged direction of Earth’s movement relative to the ether, and thus a maximal fringe shift at a specific angle.</p>
+<p>The ANOVA table for the normalized data is</p>
+<p><small>
+<span class="math display">\[
+\begin{array}{cccccc}
+&amp;\mathbf{Df} &amp; \mathbf{Sum Sq} &amp; \mathbf{Mean Sq} &amp; \mathbf{F value} &amp; \mathbf{Pr(&gt;F)} \\
+\mathbf{Angle}     &amp;     1  &amp; 0.06  &amp; 0.0633    &amp; 0.04  &amp; 0.842 \\
+\mathbf{Residuals} &amp;   22 &amp; 34.44 &amp; 1.5653 &amp; &amp;\\
+\end{array}
+\]</span>
+</small></p>
+<p>This ANOVA table shows that the data are consistent with the null hypothesis (<span class="math inline">\(pvalue = 0.842\)</span>), meaning that all angles have the same average fringe shift after correcting for systematic errors. Thus, the experiment supports a model in which there is no privileged direction along which the speed of light could be reduced.</p>
+<p>Based solely on the maximum observed fringe shift, Michelson and Morley’s original analysis concluded that the Earth’s velocity relative to the ether was undetectable with their apparatus, with an estimated measurement error of about one-sixth of the Earth’s orbital speed. Later, Einstein argued that their results are consistent with the principle that the speed of light is invariant and constitutes the maximum possible speed, and he derived the theoretical consequences in the theory of special relativity.</p>
+</div>
+<div id="way-anova" class="section level2 hasAnchor" number="17.9">
+<h2><span class="header-section-number">17.9</span> 2-way ANOVA<a href="mean-differences-across-several-groups.html#way-anova" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The ANOVA approach allows the analysis of the joint effects of <strong>two</strong> or more different types of conditions, each with potentially different numbers of groups. In the Michelson and Morley experiment, they had six unreported measurements for each angle on each day, and they reported only the averages. In the original (unavailable) data, not only the angle but also the day could be considered as two different types of conditions, each with its own levels or groups.</p>
+<p><strong>Example (Leptin knockout)</strong></p>
+<p>Let us consider again the experiment of Ramos-Lobo on leptin knockout mice <span class="citation">(<a href="#ref-Ramos-Lobo2019">Ramos-Lobo et al. 2019</a>)</span>. In this experiment, female mice were also included, introducing an additional condition: sex. Since weight depends on the sex of the animal, we may ask whether weight is still statistically dependent on leptin deficiency even when we further condition on sex.</p>
+<p>Here we are asking two simultaneous questions:</p>
+<ul>
+<li>Is there an effect of <strong>sex</strong> on the weight of the mice?<br />
+</li>
+<li>Is there an effect of <strong>leptin deficiency</strong> on the weight of the mice?</li>
+</ul>
+</div>
+<div id="data-5" class="section level2 hasAnchor" number="17.10">
+<h2><span class="header-section-number">17.10</span> Data<a href="mean-differences-across-several-groups.html#data-5" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>We introduce a conditional outcome. One random experiment — that is, one mouse — has three measurements: <span class="math inline">\((leptin, sex, weight)\)</span>.</p>
+<p>Categorical variable for the first condition (leptin status) with two groups:</p>
+<ul>
+<li><span class="math inline">\(leptin \in \{\text{KOplus: A}, \text{knockout: B}\}\)</span></li>
+</ul>
+<p>Categorical variable for the second condition (sex) with two groups:</p>
+<ul>
+<li><span class="math inline">\(sex \in \{\text{male: a}, \text{female: b}\}\)</span></li>
+</ul>
+<p>Outcome of interest (continuous variable):</p>
+<ul>
+<li><span class="math inline">\(weight \in (20, 60)\)</span></li>
+</ul>
+<p>The data looks like</p>
+<p><small>
+<span class="math display">\[
+\begin{array}{cccc}
+\mathbf{Mouse} &amp; \mathbf{Leptin} &amp; \mathbf{Sex} &amp; \mathbf{Weigth} \\
+1&amp;\text{Leptin-}&amp;\text{M}&amp;46.57 \\
+2&amp;\text{Leptin-}&amp;\text{M}&amp;40.43 \\
+3&amp;\text{Leptin-}&amp;\text{M}&amp;41.97 \\
+4&amp;\text{Leptin-}&amp;\text{M}&amp;41.17 \\
+5&amp;\text{Leptin-}&amp;\text{M}&amp;41.57 \\
+6&amp;\text{Leptin-}&amp;\text{M}&amp;46.17 \\
+7&amp;\text{Leptin-}&amp;\text{M}&amp;53.83 \\
+8 &amp; \text{Leptin-(sup)}&amp;\text{M}&amp;24.33 \\
+9 &amp; \text{Leptin-(sup)}&amp;\text{M}&amp;22.37 \\
+10&amp; \text{Leptin-(sup)}&amp;\text{M}&amp;26.10 \\
+11&amp; \text{Leptin-(sup)}&amp;\text{M}&amp;17.50 \\
+12&amp; \text{Leptin-(sup)}&amp;\text{M}&amp;35.17 \\
+13&amp; \text{Leptin-(sup)}&amp;\text{M}&amp;25.97 \\
+14&amp; \text{Leptin-(sup)}&amp;\text{M}&amp;27.67 \\
+15&amp; \text{Leptin-(sup)}&amp;\text{M}&amp;23.37 \\
+16&amp; \text{Leptin-(sup)}&amp;\text{M}&amp;31.83 \\
+17&amp; \text{Leptin-(sup)}&amp;\text{M}&amp;22.37 \\
+18&amp;\text{Leptin-}&amp;\text{F}&amp;  65.80 \\
+19&amp;\text{Leptin-}&amp;\text{F}&amp;  51.40 \\
+20&amp;\text{Leptin-}&amp;\text{F}&amp;  54.60 \\
+21&amp;\text{Leptin-}&amp;\text{F}&amp;  48.30 \\
+22&amp;\text{Leptin-}&amp;\text{F}&amp;  50.60 \\
+23&amp;\text{Leptin-}&amp;\text{F}&amp;  48.90 \\
+24&amp;\text{Leptin-}&amp;\text{F}&amp;  51.20 \\
+25&amp;\text{Leptin-}&amp;\text{F}&amp;  46.80 \\
+26&amp;\text{Leptin-}&amp;\text{F}&amp;  50.90 \\
+27&amp;\text{Leptin-}&amp;\text{F}&amp;  42.70 \\
+28&amp; \text{Leptin-(sup)}&amp;\text{F}&amp;  28.70 \\
+29&amp; \text{Leptin-(sup)}&amp;\text{F}&amp;  25.60 \\
+30&amp; \text{Leptin-(sup)}&amp;\text{F}&amp;  26.40 \\
+31&amp; \text{Leptin-(sup)}&amp;\text{F}&amp;  22.90 \\
+32&amp; \text{Leptin-(sup)}&amp;\text{F}&amp;  30.00 \\
+33&amp; \text{Leptin-(sup)}&amp;\text{F}&amp;  29.70 \\
+34&amp; \text{Leptin-(sup)}&amp;\text{F}&amp;  26.10 \\
+35&amp; \text{Leptin-(sup)}&amp;\text{F}&amp;  21.40 \\
+36&amp; \text{Leptin-(sup)}&amp;\text{F}&amp;  29.50 \\
+37 &amp;\text{Leptin-(sup)}&amp;\text{F}&amp;  21.90 \\
+38 &amp;\text{Leptin-(sup)}&amp;\text{F}&amp;  23.70 \\
+39 &amp;\text{Leptin-(sup)}&amp;\text{F}&amp;  21.00 \\
+\end{array}
+\]</span>
+</small></p>
+<p>Note that we will examine the association with sex only for the knockout mice that differ in leptin supplementation.</p>
+</div>
+<div id="modeling-residuals" class="section level2 hasAnchor" number="17.11">
+<h2><span class="header-section-number">17.11</span> Modeling residuals<a href="mean-differences-across-several-groups.html#modeling-residuals" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Using the following model, we want to test for significant differences in the expected weight between male and female mice, ignoring the leptin condition:</p>
+<p><span class="math display">\[Y_{sex,i}= \mu + \alpha_{sex} + \varepsilon_{sex,i}\]</span>
+From the ANOVA table</p>
+<p><small>
+<span class="math display">\[
+\begin{array}{cccccc}
+&amp;\mathbf{Df} &amp; \mathbf{Sum Sq} &amp; \mathbf{Mean Sq} &amp; \mathbf{F value} &amp; \mathbf{Pr(&gt;F)} \\
+\mathbf{sex}       &amp; 1.0 &amp;  134.9 &amp; 134.9&amp;  0.85  &amp; 0.36 \\
+\mathbf{Residual}  &amp; 37.0  &amp; 5844.8 &amp; 157.9  &amp;     &amp;      \end{array}
+\]</span>
+</small></p>
+<p>we see that there is no significant effect of sex on the weight of the mice when the leptin groups are not considered. From the bar plot, we also observe that the confidence intervals for each sex overlap, indicating that we cannot reject the null hypothesis that the mean weights are equal between sexes.</p>
+<p><img src="_main_files/figure-html/unnamed-chunk-190-1.png" width="672" /></p>
+<p>We see, however, that the points are clustered by leptin group, suggesting that we should adjust for differences in leptin status before testing for differences by sex. It is possible that, after removing the effect of leptin, the mean weight of males may be lower than that of females.</p>
+<p>The way to remove the effect of leptin is to perform an ANOVA of mouse weight on the leptin group and then obtain the residuals for each observation. These residuals represent the <strong>observed</strong> values of the error term <span class="math inline">\(\varepsilon_{leptin,i}\)</span> and are computed as:</p>
+<p><span class="math display">\[
+r_{leptin,i} = y_{leptin,i} - \bar{y}_{leptin}
+\]</span></p>
+<p>That is, we subtract the mean of the leptin group from each observation <span class="math inline">\(i\)</span> within that group. These residuals can then be used to test the effect of sex independent of leptin status.</p>
+<pre><code>Python:
+model1 = sm.OLS.from_formula(&#39;weight ~ leptin&#39;, data=filtered_data).fit()
+
+model1.resid
+
+R:
+dat$residual.weight &lt;- summary(lm(weight ~ leptin, data=dat))$residuals</code></pre>
+<p>Then we can perform another ANOVA using the leptin-corrected residuals to test for differences by sex. Let the leptin-corrected outcome be:</p>
+<p><span class="math display">\[
+Y^*_{leptin,sex,i} = Y_{leptin,sex,i} - \bar{Y}_{leptin} = \mu^* + \alpha^*_{sex} + \varepsilon^*_{sex,i}
+\]</span></p>
+<p>where <span class="math inline">\(\bar{Y}_{leptin}\)</span> is the mean weight of the leptin group for each observation, <span class="math inline">\(\alpha^*_{sex}\)</span> is the effect of sex after correcting for leptin, and <span class="math inline">\(\varepsilon^*_{sex,i}\)</span> is the random error variable within sex.</p>
+<p>The ANOVA table for weight corrected for leptin differences is:</p>
+<p><small>
+<span class="math display">\[
+\begin{array}{cccccc}
+&amp;\mathbf{Df} &amp; \mathbf{Sum Sq} &amp; \mathbf{Mean Sq} &amp; \mathbf{F value} &amp; \mathbf{Pr(&gt;F)} \\
+\mathbf{sex}       &amp; 1 &amp; 73.94 &amp;  73.94  &amp; 2.956 &amp; 0.093 \\
+\mathbf{Residual}  &amp; 37 &amp; 925.49 &amp; 25.013  &amp;     &amp; \\      \end{array}
+\]</span>
+</small></p>
+<p>The lower weight in males is almost significant for the leptin-corrected residuals. However, from this model we cannot determine the contribution of the leptin group to the overall variability of the data. Additionally, if the sample size <span class="math inline">\(n\)</span> is large, it is possible that even if the null hypothesis is true, the means of each sex may still not be close to the grand mean due to a significant effect of leptin.</p>
+<p>The bar plot of the residuals shows that we have effectively adjusted for the differences in leptin, as the dots for males and females are now intermixed, indicating that the leptin effect has been removed.</p>
+<p><img src="_main_files/figure-html/unnamed-chunk-193-1.png" width="672" /></p>
+<p>We can generalize ANOVA to explain the simultaneous contributions of sex and leptin groups.</p>
+</div>
+<div id="way-anova-linear-model" class="section level2 hasAnchor" number="17.12">
+<h2><span class="header-section-number">17.12</span> 2-way ANOVA linear model<a href="mean-differences-across-several-groups.html#way-anova-linear-model" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The ANOVA approach allows for the simultaneous analysis of two factors, each with multiple groups or levels. For simplicity, we discuss a balanced design, where we have <span class="math inline">\(n\)</span> repetitions of the random experiment in each condition (or the average number of repetitions in the general case).</p>
+<p>Consider the <strong>linear model</strong>:</p>
+<p><span class="math display">\[
+Y_{jri} = \mu + \alpha_j + \beta_r + \varepsilon_{jri}
+\]</span></p>
+<p>for the <span class="math inline">\(i\)</span>-th repetition of the random experiment (<span class="math inline">\(i = 1, \dots, n\)</span>) in condition <span class="math inline">\(j\)</span> of factor 1 and condition <span class="math inline">\(r\)</span> of factor 2, with:</p>
+<ul>
+<li><strong>Grand mean</strong>:</li>
+</ul>
+<p><span class="math display">\[
+E(Y_{jri}) = \mu
+\]</span></p>
+<p>which is the expected value of all observations, estimated by the overall average <span class="math inline">\(\bar{Y}\)</span>.</p>
+<ul>
+<li><strong>Random error</strong>:</li>
+</ul>
+<p><span class="math display">\[
+\varepsilon_{jri}
+\]</span></p>
+<p>a <strong>random variable</strong> with mean <span class="math inline">\(E(\varepsilon_{jri}) = 0\)</span> and variance <span class="math inline">\(V(\varepsilon_{jri}) = \sigma^2\)</span>.</p>
+<ul>
+<li><strong>Deviations of factor 1 (leptin) from the grand mean</strong>:</li>
+</ul>
+<p><span class="math display">\[
+\alpha_j = \mu_{j\cdot} - \mu
+\]</span></p>
+<p>for each group <span class="math inline">\(j \in \{1, \dots, k\}\)</span>, with <span class="math inline">\(\sum_j \alpha_j = 0\)</span>.</p>
+<ul>
+<li><strong>Deviations of factor 2 (sex) from the grand mean</strong>:</li>
+</ul>
+<p><span class="math display">\[
+\beta_r = \mu_{\cdot r} - \mu
+\]</span></p>
+<p>for each group <span class="math inline">\(r \in \{1, \dots, m\}\)</span>, with <span class="math inline">\(\sum_r \beta_r = 0\)</span>.</p>
+<p>Here, the dot indicates that we ignore the other factor when computing the mean.</p>
+<p>The model can also be expressed as:</p>
+<p><span class="math display">\[
+Y_{jri} = \mu_{jr} + \varepsilon_{jri}, \quad \text{where } \mu_{jr} = \mu_{j\cdot} + \mu_{\cdot r} - \mu
+\]</span></p>
+<p>is the mean in the <strong>condition</strong> defined by group <span class="math inline">\(j\)</span> of factor 1 <strong>and</strong> group <span class="math inline">\(r\)</span> of factor 2. For example, the condition “male and leptin-” is one of these groups. In our leptin example, there are four such groups corresponding to all combinations of sex and leptin status.</p>
+</div>
+<div id="hypothesis-tests" class="section level2 hasAnchor" number="17.13">
+<h2><span class="header-section-number">17.13</span> Hypothesis tests<a href="mean-differences-across-several-groups.html#hypothesis-tests" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>ANOVA allows testing the effects of the two factors simultaneously:</p>
+<p><strong>Factor 1 (leptin):</strong></p>
+<ul>
+<li><span class="math inline">\(H_0: \alpha_1 = \alpha_2 = \dots = \alpha_k = 0\)</span> — no differences between group means for factor 1.</li>
+<li><span class="math inline">\(H_1\)</span>: at least one <span class="math inline">\(\alpha_j \neq 0\)</span>.</li>
+</ul>
+<p><strong>Factor 2 (sex):</strong></p>
+<ul>
+<li><span class="math inline">\(H_0: \beta_1 = \beta_2 = \dots = \beta_m = 0\)</span> — no differences between group means for factor 2.</li>
+<li><span class="math inline">\(H_1\)</span>: at least one <span class="math inline">\(\beta_r \neq 0\)</span>.</li>
+</ul>
+</div>
+<div id="variance-components" class="section level2 hasAnchor" number="17.14">
+<h2><span class="header-section-number">17.14</span> Variance components<a href="mean-differences-across-several-groups.html#variance-components" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>To evaluate each hypothesis contrast, we need appropriate test statistics. We can estimate the dispersion of the outcomes from their means in each <strong>condition</strong>, determined by both factors.</p>
+<p>For instance, the mean for knockout (KO) males (M) is</p>
+<p><span class="math display">\[
+\mu_{KO,M} = \mu_{\cdot M} + \mu_{KO\cdot} - \mu
+\]</span></p>
+<p>and can be estimated by the sample averages:</p>
+<p><span class="math display">\[
+\hat{\mu}_{KO,M} = \bar{Y}_{\cdot M} + \bar{Y}_{KO\cdot} - \bar{Y}
+\]</span></p>
+<p>These estimated means correspond to the dots in the following plot.</p>
+<p><img src="_main_files/figure-html/unnamed-chunk-194-1.png" width="672" />
+The dispersion of the knockout male observations around the estimated mean <span class="math inline">\(\hat{\mu}_{KO,M}\)</span> is given by the sample variance:</p>
+<p><span class="math display">\[
+S^2_{KO,M} = \frac{1}{n-1} \sum_{i=1}^n \left(Y_{KO,M,i} - \hat{\mu}_{KO,M}\right)^2
+\]</span></p>
+<p>If we assume that the variance of weight is the same across all sex–leptin conditions, <span class="math inline">\(\sigma^2\)</span>, we can estimate it with the pooled sample variance:</p>
+<p><span class="math display">\[
+S_e^2 = \frac{1}{km} \sum_{j=1}^k \sum_{r=1}^m S^2_{jr}
+\]</span></p>
+<p>which sums the within-condition variances across all sex–leptin groups. <span class="math inline">\(S_e^2\)</span> is an estimator of <span class="math inline">\(\sigma^2\)</span>.</p>
+<p>We can also estimate the variance of the averages in each group of <strong>factor 1</strong> (e.g., leptin) relative to the overall mean:</p>
+<p><span class="math display">\[
+S^2_{tr1} = \frac{1}{k-1} \sum_{j=1}^k \left(\bar{Y}_{j\cdot} - \bar{Y}\right)^2
+\]</span></p>
+<p>This is an estimator of <span class="math inline">\(\sigma^2 / (nm)\)</span> under the null hypothesis. The corresponding <span class="math inline">\(F\)</span> statistic is</p>
+<p><span class="math display">\[
+F_1 = \frac{nm S^2_{tr1}}{S_e^2} \sim F(k-1, (kmn-1)-(k-1)-(m-1))
+\]</span></p>
+<p>If the null hypothesis is true (no differences between factor 1 group means), <span class="math inline">\(F_1\)</span> will be close to 1. If the alternative is true, at least one group mean differs from the grand mean, and <span class="math inline">\(F_1\)</span> will be greater than 1.</p>
+<p>Similarly, for <strong>factor 2</strong> (e.g., sex), we define</p>
+<p><span class="math display">\[
+S^2_{tr2} = \frac{1}{m-1} \sum_{r=1}^m \left(\bar{Y}_{\cdot r} - \bar{Y}\right)^2
+\]</span></p>
+<p>and</p>
+<p><span class="math display">\[
+F_2 = \frac{nk S^2_{tr2}}{S_e^2} \sim F(m-1, (kmn-1)-(k-1)-(m-1))
+\]</span></p>
+<p>Observed values of <span class="math inline">\(F_2\)</span> far from 1 indicate significant differences between the means of factor 2, leading to rejection of the null hypothesis.</p>
+<p>All of this is summarized in a <strong>two-way ANOVA table</strong>:</p>
+<pre><code>import pandas as pd
+import statsmodels.api as sm
+from statsmodels.formula.api import ols
+dat = pd.DataFrame({
+    &quot;Mouse&quot;: range(1, 40),
+    &quot;Leptin&quot;: [
+        &quot;Leptin-&quot;, &quot;Leptin-&quot;, ...
+    ],
+    &quot;Sex&quot;: [
+        &quot;M&quot;,&quot;M&quot;,...
+    ],
+    &quot;Weight&quot;: [
+        46.57, 40.43, 41.97, ...
+    ]
+})
+
+# Two-way ANOVA
+model = ols(&#39;Weight ~ Sex + Leptin&#39;, data=dat).fit()
+anova_table = sm.stats.anova_lm(model, typ=2)
+print(anova_table)
+
+
+R: 
+dat &lt;- data.frame(
+  Mouse = 1:39,
+  Leptin = c(
+    rep(&quot;Leptin-&quot;, 7),
+    rep(&quot;Leptin-(sup)&quot;, 10),
+    rep(&quot;Leptin-&quot;, 10),
+    rep(&quot;Leptin-(sup)&quot;, 12)
+  ),
+  Sex = c(
+    rep(&quot;M&quot;, 17),
+    rep(&quot;F&quot;, 22)
+  ),
+  Weight = c(
+    46.57, 40.43, 41.97, 41.17, 41.57, 46.17, 53.83,
+    24.33, 22.37, 26.10, 17.50, 35.17, 25.97, 27.67, 23.37, 31.83, 22.37,
+    65.80, 51.40, 54.60, 48.30, 50.60, 48.90, 51.20, 46.80, 50.90, 42.70,
+    28.70, 25.60, 26.40, 22.90, 30.00, 29.70, 26.10, 21.40, 29.50, 21.90,
+    23.70, 21.00
+  )
+)
+
+# Two-way ANOVA 
+summary(aov(Weight ~ Sex + Leptin, data = dat))
+</code></pre>
+<p><small>
+<span class="math display">\[ \begin{array}{lccccc} &amp;\mathbf{Df} &amp; \mathbf{Sum\ Sq} &amp; \mathbf{Mean\ Sq} &amp; \mathbf{F\ value} &amp; \mathbf{Pr(&gt;F)} \\ \mathbf{sex} &amp; 1 &amp; 134.98 &amp; 134.98 &amp; 5.251 &amp; 0.0279 \\ \mathbf{group} &amp; 1 &amp; 4919.51 &amp; 4919.51 &amp; 191.389 &amp; 5.59 \times 10^{-16} \\ \mathbf{Residual} &amp; 36 &amp; 925.35 &amp; 25.704 &amp; &amp; \\ \end{array} \]</span>
+</small></p>
+<p>For example, the observed value of <span class="math inline">\(F_1\)</span> is</p>
+<p><span class="math display">\[
+f_{1,obs} = \frac{MST_1}{MSE}
+= \frac{\frac{1}{k-1} SSq_{Sex}}{\frac{1}{(kmn-1)-(k-1)-(m-1)} SSq_{Residual}}
+= 5.251
+\]</span></p>
+<p>This value is sufficiently large, indicating rejection of the null hypothesis (<span class="math inline">\(pvalue = 0.028 &lt; 0.05\)</span>). Therefore, there is a <strong>significant effect of sex</strong> when correcting for leptin differences.</p>
+<p>From the dispersion plot above, males appear to have lower weights than females, both in the leptin-supplemented (sup) and non-supplemented (KO) groups.</p>
+</div>
+<div id="way-anova-with-interaction" class="section level2 hasAnchor" number="17.15">
+<h2><span class="header-section-number">17.15</span> 2-way ANOVA with interaction<a href="mean-differences-across-several-groups.html#way-anova-with-interaction" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In the previous ANOVA model, we computed the means at each sex-leptin condition <span class="math inline">\((j,r)\)</span> as the sum of the contributions of group <span class="math inline">\(j\)</span> from factor 1 (sex) and group <span class="math inline">\(r\)</span> from factor 2 (leptin) to the overall mean:</p>
+<p><span class="math display">\[
+\mu_{jr} = \alpha_{j} + \beta_{r} + \mu
+\]</span></p>
+<p>However, the distribution of the data around these means is not symmetrical, because these are not the means computed <strong>within each condition</strong>.</p>
+<p>When we take weights conditioned on each leptin-by-sex group, we observe:</p>
+<ul>
+<li><span class="math inline">\(n_{sup,F} = 12\)</span> supplemented leptin <strong>female</strong> mice had a weight average of <span class="math inline">\(\bar{y}_{F,plus} = 25.575\)</span>.<br />
+</li>
+<li><span class="math inline">\(n_{sup,M} = 10\)</span> supplemented leptin <strong>male</strong> mice had a weight average of <span class="math inline">\(\bar{y}_{M,plus} = 25.668\)</span>.<br />
+</li>
+<li><span class="math inline">\(n_{KO,F} = 10\)</span> control <strong>female</strong> mice had a weight average of <span class="math inline">\(\bar{y}_{F,KO} = 51.120\)</span>.<br />
+</li>
+<li><span class="math inline">\(n_{KO,M} = 7\)</span> leptin KO <strong>male</strong> mice had a weight average of <span class="math inline">\(\bar{y}_{M,KO} = 44.530\)</span>.</li>
+</ul>
+<p>These condition-specific means can be visualized with a barplot including confidence intervals.</p>
+<p><img src="_main_files/figure-html/unnamed-chunk-195-1.png" width="672" /></p>
+<p>From this plot, we can see that most of the difference between male and female weights comes from the knock-out condition. In the leptin-supplemented groups, the sexes seem to have similar weights. However, the differences between sexes appear larger in the knock-out mice than in the supplemented-with-leptin mice.</p>
+<p>How can we test the hypothesis that a particular combination of conditions has an effect on the weight of mice? For instance, how can we test whether male knock-outs are less sensitive to weight gain than female knock-outs?</p>
+<p>The apparently lower-than-expected weight gain of leptin- (KO) males suggests a specific interaction between leptin KO and being male.</p>
+</div>
+<div id="linear-model-1" class="section level2 hasAnchor" number="17.16">
+<h2><span class="header-section-number">17.16</span> Linear model<a href="mean-differences-across-several-groups.html#linear-model-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>We can then formulate the <strong>linear model</strong> with an <strong>interaction term</strong> that accounts for the specific contribution of each condition given by the groups <span class="math inline">\((j,r)\)</span> of each factor:</p>
+<p><span class="math display">\[
+Y_{jri} = \mu + \alpha_j + \beta_r + (\alpha\beta)_{jr} + \varepsilon_{jri}
+\]</span></p>
+<p>Here, each observation in a condition <span class="math inline">\((j,r)\)</span> has a specific expected value:</p>
+<p><span class="math display">\[
+E(Y \mid j,r) = \mu + \alpha_j + \beta_r + (\alpha\beta)_{jr}
+\]</span></p>
+<p>This is the mean <strong>conditioned</strong> on the groups <span class="math inline">\((j,r)\)</span>. The condition mean can be computed as the sum of the independent contributions of each group (<span class="math inline">\(\mu_{jr}\)</span>) plus the specific contribution of the condition <span class="math inline">\((\alpha\beta)_{jr}\)</span>:</p>
+<p><span class="math display">\[
+E(Y \mid j,r) = \mu_{jr} + (\alpha\beta)_{jr}
+\]</span></p>
+</div>
+<div id="hypothesis-tests-1" class="section level2 hasAnchor" number="17.17">
+<h2><span class="header-section-number">17.17</span> Hypothesis tests<a href="mean-differences-across-several-groups.html#hypothesis-tests-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>This ANOVA model allows testing three null hypotheses:</p>
+<p><strong>First:</strong></p>
+<p><span class="math display">\[
+H_0: \alpha_1 = \alpha_2 = \dots = \alpha_k = 0
+\]</span></p>
+<p>There is no difference between group means in the first factor.</p>
+<p><strong>Second:</strong></p>
+<p><span class="math display">\[
+H_0: \beta_1 = \beta_2 = \dots = \beta_m = 0
+\]</span></p>
+<p>There is no difference between group means in the second factor.</p>
+<p><strong>Third:</strong></p>
+<p><span class="math display">\[
+H_0: (\alpha\beta)_{jr} = 0
+\]</span></p>
+<p>There is no difference between specific condition means.</p>
+<p>The alternatives are that at least one of the terms is different from 0.</p>
+</div>
+<div id="variance-components-1" class="section level2 hasAnchor" number="17.18">
+<h2><span class="header-section-number">17.18</span> Variance components<a href="mean-differences-across-several-groups.html#variance-components-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The first two hypothesis contrasts can be tested as shown in the previous section.</p>
+<p>To test the first contrast, we define the <span class="math inline">\(F_1\)</span> statistic that measures the dispersion of the group means of factor 1 relative to the dispersion of the residuals:</p>
+<p><span class="math display">\[
+F_1 = \frac{MS_1}{MSE} \sim F(k-1, (n-1) - (k-1) - (m-1))
+\]</span></p>
+<p>To test the second contrast, we define the corresponding <span class="math inline">\(F_2\)</span> statistic for factor 2:</p>
+<p><span class="math display">\[
+F_2 = \frac{MS_2}{MSE} \sim F(m-1, (n-1) - (k-1) - (m-1))
+\]</span></p>
+<p>Finally, to test the hypothesis for the interaction term, we compute the <span class="math inline">\(F_I\)</span> statistic, given by the dispersion of the group averages relative to the overall average with respect to the dispersion of the residuals:</p>
+<p><span class="math display">\[
+F_I = \frac{MS_I}{MSE} \sim F\Big((k-1)(m-1), (nkm-1) - (k-1) - (m-1) - (k-1)(m-1)\Big)
+\]</span></p>
+<p>These statistics are summarized in the ANOVA table with interaction, which can be obtained with the following code:</p>
+<pre><code>Python:
+
+model = ols(&#39;weight ~ sex*group&#39;, data=filtered_data).fit()
+anova_table = sm.stats.anova_lm(model, typ=1)
+print(anova_table)
+
+R:
+summary(aov(Weight ~ Sex*Leptin, data = dat))
+</code></pre>
+<p><small> <span class="math display">\[ \begin{array}{lccccc} &amp;\mathbf{Df} &amp; \mathbf{Sum\ Sq} &amp; \mathbf{Mean\ Sq} &amp; \mathbf{F\ value} &amp; \mathbf{Pr(&gt;F)} \\ \mathbf{sex} &amp; 1 &amp; 134.98 &amp; 134.98 &amp; 5.757 &amp; 0.02188 \\ \mathbf{group} &amp; 1 &amp; 4919.51 &amp; 4919.51 &amp; 209.836 &amp; 2.37 \times 10^{-16} \\ \mathbf{sex:group} &amp; 1 &amp; 104.79 &amp; 104.79 &amp; 4.470 &amp; 0.04169 \\ \mathbf{Residual} &amp; 35 &amp; 820.56 &amp; 23.445 &amp; &amp; \\ \end{array} \]</span> </small></p>
+<p>As we observed from the bar plots, the statistical inference confirms that there are significant differences in weight between leptin groups, significant differences between sexes, and significant interactions between sex and leptin groups. In particular, being male reduces weight in knock-out mice, whereas it increases weight in mice with leptin supplementation. In other words, the effect of sex changes depending on the leptin context.</p>
+<p>Interactions are better represented in plots displaying the means conditioned on both factors. Significant interactions are indicated by non-parallel lines in such plots.</p>
+<p><img src="_main_files/figure-html/unnamed-chunk-197-1.png" width="672" /></p>
+</div>
+<div id="questions-13" class="section level2 hasAnchor" number="17.19">
+<h2><span class="header-section-number">17.19</span> Questions<a href="mean-differences-across-several-groups.html#questions-13" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><strong>1)</strong> We test ANOVA when we have</p>
+<p><strong><span class="math inline">\(\qquad\)</span>a:</strong> several continuous random variables;
+<strong><span class="math inline">\(\qquad\)</span>b:</strong> several categorical variables;
+<strong><span class="math inline">\(\qquad\)</span>c:</strong> several continuous random variables and several categorical variables;
+<strong><span class="math inline">\(\qquad\)</span>d:</strong> a continuous random variable and several categorical outcomes;</p>
+<p><strong>2)</strong> The statistic <span class="math inline">\(F=\frac{MST}{MSE}\)</span> is</p>
+<p><strong><span class="math inline">\(\qquad\)</span>a:</strong> the estimation of <span class="math inline">\(\sigma^2\)</span> by the residuals;
+<strong><span class="math inline">\(\qquad\)</span>b:</strong> the estimation of <span class="math inline">\(\sigma^2\)</span> by the group means;
+<strong><span class="math inline">\(\qquad\)</span>c:</strong> the estimation of <span class="math inline">\(\sigma^2\)</span> by the group means minus by the estimation of <span class="math inline">\(\sigma^2\)</span> by the residuals;
+<strong><span class="math inline">\(\qquad\)</span>d:</strong> the estimation of <span class="math inline">\(\sigma^2\)</span> by the group means divided by the estimation of <span class="math inline">\(\sigma^2\)</span> by the residuals</p>
+<p><strong>3)</strong> We accept the null hypothesis that the groups have equal means when the value of <span class="math inline">\(F=\frac{MST}{MSE}\)</span> is</p>
+<p><strong><span class="math inline">\(\qquad\)</span>a:</strong> close to 1;
+<strong><span class="math inline">\(\qquad\)</span>b:</strong> different from 1;
+<strong><span class="math inline">\(\qquad\)</span>c:</strong> small;
+<strong><span class="math inline">\(\qquad\)</span>d:</strong> large;</p>
+<p><strong>4)</strong> ANOVA assumes that the observations in each condition have</p>
+<p><strong><span class="math inline">\(\qquad\)</span>a:</strong> the same mean <span class="math inline">\(\mu\)</span>;
+<strong><span class="math inline">\(\qquad\)</span>b:</strong> the same variance <span class="math inline">\(\sigma^2\)</span>;
+<strong><span class="math inline">\(\qquad\)</span>c:</strong> different variances;
+<strong><span class="math inline">\(\qquad\)</span>d:</strong> different means;</p>
+<p><strong>5)</strong> The interaction term in a an ANOVA tests that</p>
+<p><strong><span class="math inline">\(\qquad\)</span>a:</strong> the group means of factor 1 are different from the group means of factor 2 ;
+<strong><span class="math inline">\(\qquad\)</span>b:</strong> the mean of a group of factor 1 is different from the mean of the other groups of factor 1;
+<strong><span class="math inline">\(\qquad\)</span>c:</strong> the means of the groups across both factors are not added contributions of each factor;
+<strong><span class="math inline">\(\qquad\)</span>d:</strong> the means of the groups across both factors are different;</p>
+</div>
+<div id="practice-7" class="section level2 hasAnchor" number="17.20">
+<h2><span class="header-section-number">17.20</span> Practice<a href="mean-differences-across-several-groups.html#practice-7" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Load leptin data (
+<code><a href="https://alejandro-isglobal.github.io/SDA/data/dataleptin.txt" class="uri">https://alejandro-isglobal.github.io/SDA/data/dataleptin.txt</a></code>)</p>
+<ul>
+<li><p>Use a t-test to test the hypothesis that the weight between sexes is different.</p></li>
+<li><p>Use an ANOVA to test that the weight between sexes is different.</p></li>
+<li><p>Extract residuals from the ANOVA on leptin group and do a second anova on sex.</p></li>
+<li><p>Use an ANOVA on sex and group to test the whether sex and leptin groups are significantly associated with weight</p></li>
+<li><p>Include an interaction term in the previous ANOVA</p></li>
+<li><p>Make a bar plot of weight across all conditions given by both factors</p></li>
+</ul>
+<p><a href="https://colab.research.google.com/drive/1K2SlNEd5hNn3lI4XnKsgj1tDeXVyprVE?usp=sharing">Solutions</a></p>
+
+</div>
+</div>
+<h3>References</h3>
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-handschy1982reexamination" class="csl-entry">
+Handschy, M. A. 1982. <span>“Re‐examination of the 1887 Michelson–Morley Experiment.”</span> <em>American Journal of Physics</em> 50 (11): 987–90. <a href="https://doi.org/10.1119/1.12938">https://doi.org/10.1119/1.12938</a>.
+</div>
+<div id="ref-michelson1887ether" class="csl-entry">
+Michelson, Albert A., and Edward W. Morley. 1887. <span>“On the Relative Motion of the Earth and the Luminiferous Ether.”</span> <em>American Journal of Science</em> 34 (203): 333–45.
+</div>
+<div id="ref-Ramos-Lobo2019" class="csl-entry">
+Ramos-Lobo, Angela M., Pryscila D. S. Teixeira, Isadora C. Furigo, Helen M. Melo, Natalia de M. Lyra e Silva, Fernanda G. De Felice, and José Donato. 2019. <span>“Long-Term Consequences of the Absence of Leptin Signaling in Early Life.”</span> <em>eLife</em> 8: e40970. <a href="https://doi.org/10.7554/eLife.40970">https://doi.org/10.7554/eLife.40970</a>.
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="mean-differences-between-two-samples.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="regression-and-correlation.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/17-ANOVA.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

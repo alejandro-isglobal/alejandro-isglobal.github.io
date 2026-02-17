@@ -1,0 +1,1771 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Biomarkers: Statistical session</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Alejandro Cáceres" />
+    <link href="Biomarkdown_files/remark-css/default.css" rel="stylesheet" />
+    <link href="Biomarkdown_files/remark-css/default-fonts.css" rel="stylesheet" />
+    <link rel="stylesheet" href="my.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Biomarkers: Statistical session
+## Almirall
+### <a href="#alejandro-caceres">Alejandro Cáceres</a>
+### 2021/15/03
+
+---
+
+
+
+
+class: middle, center
+
+## Who am I?
+
+---
+
+class: middle
+
+##Experience
+
+- &lt;b&gt;Senior statistician&lt;/b&gt; in the Bioinformatics group at Barcelona Institute of Global Health &lt;https://www.isglobal.org/&gt;
+  
+- Adjunct &lt;b&gt;lecturer&lt;/b&gt; in statustics at the Universitat Politectica de Catalunya &lt;https://eebe.upc.edu/es&gt;
+  
+- Over 13 years of experience analyzing biomedical data
+
+- Develop novel analysis methods for &lt;b&gt;biomarker discovery&lt;/b&gt;
+
+- High dimensional data including imaging and omic data: genomic, transcriptomic, exposomic, etc.
+
+- I write scientific articles and implement methods in software packages (R/Matlab).
+
+---
+
+class: middle
+
+##You can find me at 
+  
+- [linkedin](https://es.linkedin.com/in/alejandro-caceres-dominguez-7449aa176)
+
+- [google scholar](https://scholar.google.es/citations?user=s1D-6WAAAAAJ&amp;hl=es)
+
+- [gitHub](https://github.com/alejandro-isglobal)
+
+- [my blog](https://alejandro-isglobal.github.io/)
+
+
+---
+
+class: middle, center
+
+##Some examples of my work 
+
+Analytical validation of a biomarker: Functional magnetic resonance imaging
+
+&lt;img src="img/fmri.png" style="width:75%"  align="center"&gt;
+
+
+
+---
+
+class: middle, center
+
+##Some examples of my work 
+
+Discovery of risk Biomarker: Chromosome Y function and risk of disease in men 
+
+&lt;img src="img/jnci.png" style="width:75%"  align="center"&gt;
+
+---
+
+class: middle, center
+
+##Aim of the talk 
+
+
+- What is the utility of surveying thousand/million biomarkers in drug development?
+  
+- How is biomarker utility assessed in terms of statistical evidence?
+
+
+---
+
+class: middle
+
+##Content  
+
+- Introduction:
+  - Biomarker definition
+  - Types of biomarkers (context of use)
+  - Guidance for qualification and reporting (FDA)
+- Statistical evidence of biomarker utility in assessing treatment efficacy:
+  - Biomarker's sensitivity and specificity
+  - Regression analyses of biomarker levels on efficacy (stratified and with interactions by treatment)
+   - Multiple/Composite Biomarkers
+- Examples:
+   - Assessment of HIV antiviral resistance with a composite genomic biomarker (ROC curve, pubmed: https://pubmed.ncbi.nlm.nih.gov/12060770/)
+   - Prediction of Brodalumab treatment on psoriasis area severity index using gene expression data. (https://pubmed.ncbi.nlm.nih.gov/31883845/)
+
+---
+
+class: middle
+
+## Introduction: Biomarker definition
+&lt;/br&gt;
+&lt;/br&gt;
+**Definition**:
+  - A biomarker is a &lt;b&gt;biological measurement&lt;/b&gt; that has the potential to inform **decision-making** in relation to a clinical treatment or intervention. 
+
+&lt;/br&gt;
+**Properties**:
+  - Source material or matrix 
+  - Method of measurement
+  - Purpose
+
+
+---
+
+class: middle
+
+## Biomarker's source
+
+- Source material or matrix:
+  - specific analyte (e.g., cholesterol)
+  - anatomic feature (e.g., joint angle)
+  - physiological characteristic (e.g., blood pressure) 
+
+- when they are composite
+  - how the compoenents are interrelated (e.g. genomic data)
+  - how is the process of obtaining the biomarker (e.g. algorithm, score)
+
+
+
+---
+
+class: middle
+
+
+## Biomarker's Method of measurement
+
+  - molecular
+  
+  - histologic
+  
+  - radiographic
+  
+  - physiologic characteristic
+  
+  - composite (algorithmic)
+
+
+---
+
+class: middle
+
+## Biomarkers are continuously created
+
+- New methods of measurements  
+
+- New analyses are constantly developed 
+
+&lt;/br&gt;
+
+*The aim is to address outstanding &lt;b&gt;needs&lt;/b&gt;!*
+
+
+---
+
+class: middle, center
+
+
+## How do biomarkers inform decision-making during drug development?
+
+
+---
+
+class: middle
+
+
+## Context of use (COU) 
+
+
+COU is a description of the biomarker's specific use in drug development:
+  
+**1. Category**
+
+- Disease-related: (Who should be studied?)
+  - Diagnostic (selection)
+  - Prognostic (stratification)
+  - Susceptibility/risk (enrich)
+
+- Treatment-related: 
+  - Predictive (Who should be treated?)
+  - Safety (Should we stop treatment?)
+  - Monitoring (Should we continue with treatment?)
+  - Pharmacodynamic/response biomarker (What is the outcome of treatment? surrogate endpoint)
+
+
+---
+
+class: middle
+
+## Types of biomarkers 
+
+  | Role        | Description   | 
+  | ----------  | ------------- | 
+  | Diagnosis of a disease | To make a diagnosis more reliably, more rapidly, or more inexpensively than available methods |
+  | Severity assessment | To identify a subgroup of patients with a severe form of a disease associated with an increased probability of death or severe outcome
+| Risk assessment | To identify a subgroup of patients who may experience better (or worse) outcome when exposed to an intervention
+| Prediction of drug effects | To identify the pharmacological response of a patient exposed to a drug (efficacy, toxicity, and pharmacokinetics) 
+| Monitoring | To assess the response to a therapeutic intervention
+
+
+---
+
+class: middle
+
+
+## Types of biomarkers
+
+
+**2. Use**
+
+  - Purpose of use in drug development (safety biomarker to evaluate drug-induced injury)
+  
+  - Stage of use (phase 1 clinical trial)
+  
+  - Population (healthy adults, psoriasis patients)
+  
+  - Therapeutic mechanisms of action for which the biomarkers offer information.
+
+---
+
+class: middle
+
+## Guidance for qualification (FDA)
+
+
+- **Qualification** of a biomarker is a determination the biomarker can be relied on to have a specific interpretation and application in drug development and regulatory review. 
+
+- Biomarker Qualification: Evidentiary Framework [doc](https://alejandro-isglobal.github.io/teaching/docs/fdabiomarker.pdf)
+
+- When using a biomarker:
+  - what has a biomarker been qualified for?  
+
+- when developing a biomarker:
+  - What are the evidentiary requirements for demonstrating the utility of the biomarker?
+
+
+---
+
+class: middle
+
+## Guidance for qualification (FDA)
+
+
+FDA Guidance for biomarker qualification (2018) for section 507 of the Federal Food, and Cosmetic Act (FD&amp;C Act):
+
+**A**. Define the **need**
+  - i.e disease needs and added value of the biomarker to drug development
+
+**B**. Define the context of use **COU**
+
+  - i.e Prediction: identify patients that respond to treatment
+
+**C**. Assess **benefits** and **risks** 
+
+  - i.e. Benefit: Don't treat a patient who won't benefit (specificity), treat a patient who will benefit (sensitivity). 
+  - i.e. Risk: not treat a patient who could benefit, treat a patient who won't benefit. 
+
+
+**D**. Determine evidence that is **statistically** sufficient to support COU.
+
+
+
+---
+
+class: middle
+
+## Statistical evidence 
+
+**D**. Determining evidence that is **statistically** sufficient to support COU
+
+  - Analytical considerations: Is the test reliable?
+  
+    - validation of the Biomarkers test’s technical performance
+    
+    - cost-effectiveness, feasibility
+    
+    - assessment of measurement error 
+
+
+---
+
+class: middle
+
+## Statistical evidence 
+
+
+Examples:
+
+- Gene expression biomarkers:
+  - RNAseq experiments have been experimentally validated, ready to include in a clinical trial 
+
+- Composite biomarkers derived from gene expression data through algorithms need to be validated
+
+
+---
+
+class: middle
+
+## Statistical evidence 
+
+  
+Establish the relationship between a biomarker and an outcome of interest from:
+
+  - Randomized controlled trial
+  - Single-arm/historical control trial
+  - Cohort study
+  - Case-control study (including nested)
+  - Cross-sectional study
+  - Case series or case reports
+  - Registry information
+  - Meta-analysis
+
+Strongest evidence comes from &lt;b&gt;prospective studies&lt;/b&gt; that are specifically designed but data from studies conducted for &lt;b&gt;other purposes&lt;/b&gt; can be used to support biomarker utility.
+
+
+---
+
+class: middle
+
+## Statistical evidence 
+
+ 
+- The aim is to provide statistical evidence for the **correlation** between the biomarker and the outcome according to the COU:
+    - i.e. Predictive biomarker: correlation between the biomarker and efficacy of treatment.  
+
+---
+
+class: middle, center
+
+## Types of statistical analysis 
+
+---
+
+class: middle
+
+## Sensitivity and specificity 
+
+
+- Suppose we have a collection of **treated** individuals with measurements of  
+  - efficacy as a **response** variable
+  - a test to detect the presence of a **biomarker**
+
+- The **Response** measurement is dichotomous and has the events:
+  - yes (the patient responded to treatment)
+  - no (the patient did not respond to treatment)
+
+- The **Biomarker** measurement is dichotomous (dichotomized by a cut-off) and has the events:
+  - positive (the biomarker was detected)
+  - negative (the biomarker was not detection detected)
+
+
+---
+
+class: middle
+
+## Sensitivity and specificity 
+
+
+|  Subject  |  Response  |  Biomarker  |
+| ------------- | ------------- | ---------- |
+| `\(s_1\)`         |   yes        | positive |
+| `\(s_2\)`         |   no         | negative |
+| `\(s_3\)`         |   yes        | positive |
+|...            |   ...        | ...      |
+| `\(s_i\)`         |   no         | positive* |
+|...            |   ...        | ...      |
+|...            |   ...        | ...      |
+| `\(s_3\)`         |   yes        | negative* |
+|...            |   ...        | ...      |
+  
+- Each individual has two measurements: (Response, Biomarker)
+  
+  
+
+---
+
+class: middle
+
+## Sensitivity and specificity 
+  
+Let's think first in terms of the response
+
+&lt;/br&gt;
+
+Within those who responded to treatment (yes), how many 
+were detected with the biomarker (positive)?
+
+&lt;/br&gt;
+
+
+&lt;b&gt;Sensitivity&lt;/b&gt; (true positive rate)
+`$$fr(positive|yes)=\frac{n_{positive|yes}}{n_{negative|yes}+n_{negative|yes}}$$`
+
+
+---
+
+class: middle
+
+## Sensitivity and specificity 
+
+Let's think first in terms of the response
+
+&lt;/br&gt;
+
+Among those who did not respond to treatment (no), how many were not detected with the biomarker (negative)?
+
+&lt;/br&gt;
+
+&lt;b&gt;specificity&lt;/b&gt; (True negative rate)
+
+`$$fr(negative|no)=\frac{n_{negative|no}}{n_{positive|no}+n_{negative|no}}$$`
+  
+  
+
+---
+
+class: middle
+
+## Sensitivity and specificity 
+  
+|  | Response: Yes |  Response: No |
+| --------- | --------- | -------- |
+| &lt;b&gt;Biomarker: positive&lt;/b&gt; | fr(positive&lt;span&gt;&amp;#124;&lt;/span&gt;yes) | fr(positive&lt;span&gt;&amp;#124;&lt;/span&gt;no) | 
+| &lt;b&gt;Biomarker: negative&lt;/b&gt; | fr(negative&lt;span&gt;&amp;#124;&lt;/span&gt;yes) | fr(negative&lt;span&gt;&amp;#124;&lt;/span&gt;no) | 
+| &lt;b&gt;sum&lt;/b&gt;      | 1                | 1               |
+  
+&lt;/br&gt;  
+
+|  | Response: Yes | Response: No |
+| --------- | --------- | -------- |
+| &lt;b&gt;Biomarker: positive&lt;/b&gt; |True positive rate (&lt;b&gt;sensitivity&lt;/b&gt;) | False positive rate| 
+| &lt;b&gt;Biomarker: negative&lt;/b&gt; | False negative rate| True negative rate (&lt;b&gt;specificity&lt;/b&gt;)| 
+| &lt;b&gt;sum&lt;/b&gt;      | 1                | 1               |
+
+&lt;/br&gt;
+
+  
+- The trade-off between sensitivity and specificity needs to be evaluated in the Context of Use and usefulness of the biomarker's test 
+
+
+---
+
+class: middle
+
+## Sensitivity and specificity 
+
+Let's think in terms of the biomarker test
+
+&lt;/br&gt;
+
+Within those whose biomarker was detected (positive), how many responded to treatment (yes)?
+
+&lt;/br&gt;
+
+&lt;b&gt;Positive predictive value&lt;/b&gt;:
+
+`$$fr(yes|positive)=\frac{n_{yes|positive}}{n_{yes|positive}+n_{no|positive}}$$`
+  
+
+---
+
+class: middle
+
+## Sensitivity and specificity 
+  
+Let's think in terms of the biomarker test
+
+&lt;/br&gt;
+
+Within those whose biomarker was not detected (negative), how many did not respond to treatment (no)?
+
+&lt;/br&gt;
+
+&lt;b&gt;Negative predictive value&lt;/b&gt; 
+
+`$$fr(no|negative)=\frac{n_{no|negative}}{n_{yes|negative}+n_{no|negative}}$$`
+
+
+
+---
+
+class: middle
+
+## Sensitivity and specificity 
+
+|  | Response: Yes  |  Response: No |  sum  |
+| --------- | --------- | -------- | ------ |
+| &lt;b&gt;Biomarker: positive&lt;/b&gt; | PPV: fr(yes&lt;span&gt;&amp;#124;&lt;/span&gt;positive) | fr(no&lt;span&gt;&amp;#124;&lt;/span&gt;positive) | 1 |
+| &lt;b&gt;Biomarker: negative&lt;/b&gt; | fr(yes&lt;span&gt;&amp;#124;&lt;/span&gt;negative) | NPV: fr(no&lt;span&gt;&amp;#124;&lt;/span&gt;negative) | 1 |
+
+
+- PPV: positive predicted value
+- NPV: negative predicted value
+
+- These are really the values that we want to know. They depend on the probability of response to treatment. 
+
+
+
+---
+
+class: middle
+
+## Sensitivity and specificity 
+
+There is a way to convert from **sensitivity** to **positive predicted value** (Baye's rule)
+
+`$$fr(yes|possitive)=\frac{fr(positive|yes)}{fr(possitive)}fr(yes)$$`
+  
+which can be rewritten 
+
+`$$\frac{fr(yes|possitive)}{1-fr(yes|possitive)}=\frac{fr(positive|yes)}{fr(negative|yes)} \frac{fr(yes)}{1-fr(yes)}$$`
+Odds pre-test `\(\rightarrow\)` odds post-test  
+
+---
+
+class: middle
+
+## Sensitivity and specificity 
+
+`$$ODD_{posttest}=LHR*ODD_{pretest}$$`
+&lt;/br&gt;
+&lt;/br&gt;
+    
+`$$LHR+=\frac{sensitivity}{1-specificity}$$`
+
+&lt;/br&gt;
+&lt;/br&gt;
+      
+|  | LHR+ |
+| --- | --- |
+| Excellent Efficacy Value | &gt;10 |
+| Good Efficacy Value | 5-10 |
+| Poor Efficacy Value | 1-5 |
+| No Efficacy Value | 1 |
+  
+ 
+ 
+---
+
+class: middle
+      
+## Regression analyses
+
+      
+- When the levels of the biomarker are continuous then a regression analysis can be used to determine the association with the outcome (response to treatment).
+    
+- The type of correlation depends on the COU.
+    
+    
+          
+---
+
+class: middle
+      
+## Regression analyses
+
+- Let´s consider the following [study](https://www.nature.com/articles/s41398-019-0521-7):
+
+- **Biomarkers for response in major depression: comparing paroxetine and venlafaxine from two randomized placebo-controlled clinical studies.** Carboni et al. *Translational psychiatry*. 2019
+    
+    
+---
+
+class: middle
+      
+## Regression analyses
+      
+- Features of the study 
+    
+  - Two placebo-controlled studies evaluating the efficacy and tolerability of novel drug candidates.
+    
+  - Two drug treatments: paroxetine or venlafaxine as active comparators
+    
+  - panel of peripheral biomarkers (including IL-6, IL-10, TNF-α, TNFRII, BDNF, CRP, MMP9 and PAI1) in depressed patients receiving paroxetine, venlafaxine, or placebo
+    
+- Aim: assess the correlation between **biomarker levels** and response outcome: 17 item scale of depression symptoms; responders &gt;50% in reduction from baseline (reduction from 2 to 1 = reduction from 10 to 5)
+    
+---
+
+class: middle
+      
+## Regression analyses
+     
+- Demographics:
+      
+&lt;img src="img/tab1.JPG" style="width:100%"  align="center"&gt;
+      
+---
+
+class: middle
+      
+## Regression analyses
+      
+**Analysis 1.**
+    
+Associations between biomarker levels and depression severity at **base-line**: 
+
+*Which are state biomarkers?* (CUO: diagnosis) 
+      
+`$$D_{base} \rightarrow B_{base}$$`
+      
+- paroxetine sutudy: IL-6 (r=0.23, p=0.018), IL-10 (r=0.19, p=0.045), stratifying by sex no significant associations were found for females. 
+    
+- veroxine study: No significant correlations were found. 
+The biomarkers do not show diagnostic capacity.
+    
+    
+    
+---
+
+class: middle
+      
+## Regression analyses
+     
+**Analysis 2.**
+    
+Associations between biomarkers' changes and changes in depression symptoms: 
+
+*Which are biomarkers of treatment efficacy?* (CUO: surrogate endpoints) 
+
+`$$\Delta D=D_{w10}-  D_{base} \rightarrow \Delta B= B_{w10} - B_{base}$$`
+
+- Adjusting for sex and `\(B_{base}\)` and `\(D_{base}\)` in **full** population
+
+
+
+---
+
+class: middle
+      
+## Regression analyses
+
+&lt;img src="img/tab2.JPG" style="width:100%"  align="center"&gt;
+
+- TNF-α, IL-6, IL-10 and CRP significantly reduced with `\(\Delta D\)` in the paroxetine study, none in the venlafaxine.
+
+
+
+
+---
+
+class: middle
+      
+## Regression analyses
+
+**Analysis 3.**
+
+Associations between changes in symptoms and biomarkers' levels at baseline: 
+
+*Which biomarkers predict improvement in symptoms when treated?* (CUO: prognostic under treatment biomarker)
+      
+- Similar to the sensibility and specificity analysis we can condition (stratify) on treated only
+    
+`$$B_{base|treated} \rightarrow \Delta D$$`
+      
+- Adjusting by `\(D_{base|treated}\)` and sex
+    
+---
+
+class: middle
+      
+## Regression analyses
+
+**Analysis 3.** 
+
+&lt;img src="img/tab3.JPG" style="width:75%"  align="center"&gt;
+
+
+- For those treated with paroxetine: IL-10 and TNF-α are at baseline were significantly associated changes in depression symptoms at week 10. 
+    
+- IL-10 and TNF-α showed predictive capacity under paroxetine treatment
+    
+    
+---
+
+class: middle
+      
+## Regression analyses
+      
+**Analysis 3.**
+    
+Associations between changes in symptoms and biomarkers' levels at baseline: 
+
+*Which biomarkers predict response when not treated?*
+(CUO: Prognosis biomarkers)
+
+`$$B_{base|placebo} \rightarrow \Delta D$$`
+
+- Adjusting by `\(D_{base|treated}\)` and sex
+
+---
+
+class: middle
+      
+## Regression analyses
+
+**Analysis 3.** 
+
+&lt;img src="img/tab3.JPG" style="width:75%"  align="center"&gt;
+
+
+- CPR was associated with improvement of symptoms in the veroxine study.
+
+- This indicates that improvement of symptoms, when treated with paroxetine, may not be due to placebo effects. 
+
+
+---
+
+class: middle
+      
+## Regression analyses
+
+**Analysis 3.**
+
+Associations of symptoms changes and the interaction between baseline biomarkers' levels and treatment (CUO: Predictive biomarkers for treatment) 
+    
+`$$B_{base}\times T \rightarrow \Delta D$$`
+      
+- Adjusting by `\(D_{base}\)` and sex
+
+---
+
+class: middle
+      
+## Regression analyses
+
+**Analysis 3.** 
+
+&lt;img src="img/tab3.JPG" style="width:75%"  align="center"&gt;
+
+
+    
+- For those treated with paroxetine: treatment interactions with IL-10 and TNF-α showed a trend to significance (P=0.054, P=0.085).
+    
+- While testing for interactions requires more power, this suggests that individuals with low values of IL-10 will respond better to treatment than those with high values.
+    
+- Where to set the threshold?
+
+---
+
+class: middle
+      
+## Multiple/Composite Biomarkers
+
+- One of the main problems when analyzing multiple biomarkers independently is **multiplicity**
+      
+  - Take a biomarker with no correlation with efficacy and test the correlation in 100 clinical trials: 5% of studies with finding significant results. 
+    
+  - Take 100 biomarkers with no correlation with efficacy in one clinical trial: 5% of biomarkers will be declared significant. 
+    
+- In any such clinical trial is almost sure that will have at least one significant biomarker. 
+    
+- You want that only 5% of null trials report a significant biomarker. 
+    
+    
+    
+---
+
+class: middle
+      
+## Multiple/Composite Biomarkers
+    
+      
+- A correct threshold of significance (correction for multiple comparisons):
+      
+  - **Bonferroni**: divide the P-value by the number of biomarkers. In the Depression study then `\(P &lt; 0.05/8 = 0.0062\)`: None of the results are significant!
+      
+  - **False discovery rate**: Order the 8 Pvalues from lower to higher: `\(P_i\)` for `\(i=1...8\)` and select `\(i\)` such that `\(P_i \leq i/8*0.05\)`. All P values between 0 and i are declared significant.      
+    
+- Both methods are widely implemented in statistical software. Bonferroni is more conservative than FDR, and FDR is most commonly used in omic studies.  
+    
+---
+
+class: middle
+      
+## Multiple/Composite Biomarkers
+      
+      
+- Another alternative is to **construct** a composite Biomarker. 
+  - Computational processed and/or algorithms using machine learning and AI to discover a subset of individuals where treatment effect is maximum. 
+    
+  - Use the biomarkers to measure a new biological quantity that could be in the disease pathway. 
+    
+    
+---
+
+class: middle
+      
+
+## Genetic mosaicisms 
+    
+&lt;img src="img/mosaicism_med.jpeg" style="width:50%"  align="center"&gt;
+      
+- One most common somatic mutation in man is the loss of chromosome Y.
+    
+- In a sample, we can measure the loss of RNA transcription from genes in chromosome Y from cells that do not produce RNA from chromosome Y because they lost it.
+    
+- We convert 1000 biomarkers into 1 with biological sense. 
+    
+- We have shown that the lost of transcription of chromosome Y is associates with cancer, BMI, lower immune cell count in the blood.          
+
+---
+
+class: middle, center
+      
+
+## Examples 
+  
+
+---
+
+class: middle
+      
+
+## Examples 
+  
+
+To run the examples in R.
+
+- Install R (https://cran.r-project.org/)
+
+- In the command line install the following packages (copy-paste the following code)
+
+
+```r
+if (!requireNamespace("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")
+
+BiocManager::install(c("RCurl", "clusterProfiler", "cvAUC","pROC", "drc", "org.Hs.eg.db", "AnnotationDbi", "BiocGenerics", "Biobase", "sva", "limma", "repmis", ))
+```
+
+
+- just copy-paste in the command line all the code that I show! 
+
+
+---
+
+class: middle
+      
+
+## Examples 
+  
+load all the libraries
+
+
+```r
+library(cvAUC)
+library(RCurl)
+library(clusterProfiler)
+library(cvAUC)
+library(pROC)
+library(drc)
+library(sva)
+library(limma)
+library(repmis)
+```
+
+---
+
+class: middle, center
+      
+
+## Example 1
+
+---
+
+class: middle
+      
+
+## Example 1 
+  
+  
+  If we have detected one biomarker with continuous levels that is associated with efficacy, how do we select the threshold for clinical applications?
+  
+  [Diversity and complexity of HIV-1 drug resistance: a bioinformatics approach to predicting phenotype from genotype](https://pubmed.ncbi.nlm.nih.gov/12060770)
+
+- Response:  Antiretroviral drug resistance
+
+- Biomarker: Score that stratifies patients with genomic data using a machine learning method
+
+
+
+
+
+---
+
+class: middle
+      
+
+## Example 1: ROC curve 
+
+  
+
+```r
+hiv &lt;- read.delim("https://github.com/alejandro-isglobal/Biomarkers/raw/master/data/hiv.txt")
+head(hiv)
+```
+
+```
+##   response      test
+## 1        1 -0.438185
+## 2        1 -0.766791
+## 3        1  0.695282
+## 4        1 -0.689079
+## 5        1  0.325977
+## 6        1  0.704040
+```
+
+
+---
+
+class: middle
+      
+
+## Example 1: ROC curve 
+  
+
+```r
+table(hiv$response)
+```
+
+```
+## 
+##  -1   1 
+## 267  78
+```
+
+- resistance: &lt;b&gt;no&lt;/b&gt;, no resistance to drug treatment: &lt;b&gt;-1&lt;/b&gt;
+  
+- resistance: &lt;b&gt;yes&lt;/b&gt;, resistance to drug treatment: &lt;b&gt;1&lt;/b&gt;
+
+---
+
+class: middle
+
+## Example 1: ROC curve 
+  
+
+```r
+hist(hiv$test)
+```
+
+&lt;img src="Biomarkdown_files/figure-html/unnamed-chunk-5-1.png" width="50%" /&gt;
+
+- Biomarkers test: ranges from `\(-2\)` to `\(2\)`
+
+---
+
+class: middle
+      
+
+## Example 1: ROC curve 
+
+cut-off at `\(-1\)`
+  
+- Biomarker: &lt;b&gt;negative&lt;/b&gt;: `\(test &lt; -1\)` 
+- Biomarker: &lt;b&gt;positive&lt;/b&gt;: `\(test &gt; -1\)` 
+
+
+```r
+Biomarker &lt;- hiv$test &gt; -1 
+Resistance &lt;- factor(hiv$response, labels = c("No", "Yes"))
+table(Resistance, Biomarker)
+```
+
+```
+##           Biomarker
+## Resistance FALSE TRUE
+##        No    192   75
+##        Yes     9   69
+```
+
+---
+
+class: middle
+      
+
+## Example 1: ROC curve 
+
+  
+
+```r
+br &lt;- seq(-2,2,0.25)
+
+hist(hiv$test[hiv$response==-1], 
+     br=br, freq=F,xlab="RF", main="")
+
+hist(hiv$test[hiv$response==1], 
+     br=br, freq=F, add=T, col="blue")
+
+legend("toprigh",
+       legend=c("no resis.", "yes resis."),          
+       col=c(1,2), lty=1)
+```
+
+
+---
+
+class: middle
+      
+
+## Example 1: ROC curve 
+
+cut-off at `\(-1\)`
+  
+- Biomarker: &lt;b&gt;negative&lt;/b&gt;: `\(test &lt; -1\)` 
+- Biomarker: &lt;b&gt;positive&lt;/b&gt;: `\(test &gt; -1\)` 
+  
+&lt;img src="Biomarkdown_files/figure-html/unnamed-chunk-8-1.png" width="50%" /&gt;
+
+  
+  
+  
+---
+
+class: middle
+      
+
+## Example 1: ROC curve 
+
+  
+Biomarker was *positive* ( `\(&gt; -1\)` ) when there was  resistance (yes)
+  
+**Sensitivity**: `\(fr_{[cut-off=-1]}(positive|yes)\)`
+  
+
+```r
+mean(hiv$test[hiv$response==1] &gt; -1 )
+```
+
+```
+## [1] 0.8846154
+```
+
+&lt;img src="Biomarkdown_files/figure-html/unnamed-chunk-10-1.png" width="50%" /&gt;
+
+---
+
+class: middle
+      
+
+## Example 1: ROC curve 
+
+  
+Biomarker was *positive* ( `\(&gt; -1\)` ) when there was no resistance (no)
+
+**False positive rate** ( `\(1 - specificity\)` ): `\(fr_{[cut-off=-1]}(positive|no)\)`
+  
+
+```r
+mean(hiv$test[hiv$response==-1] &gt; -1 )
+```
+
+```
+## [1] 0.2808989
+```
+
+
+
+&lt;img src="Biomarkdown_files/figure-html/unnamed-chunk-12-1.png" width="50%" /&gt;
+
+
+---
+
+class: middle
+      
+
+## Example 1: ROC curve 
+
+`\((1 - specificity, sensitivity)_{[cut-off]}= (FPR, TPR)_{[cut-off]}\)`
+
+for each cutt-off we get one point, i.e: `\((0.280, 0.884)_{[-1]}\)`
+  
+
+```r
+out &lt;- cvAUC(hiv$test, hiv$response) #compute ROC
+plot(out$perf, col="blue", main="ROC") #plot
+lines(c(0,1),c(0,1)); points(0.28, 0.88, pch=16) #cutoff=-1
+```
+
+&lt;img src="Biomarkdown_files/figure-html/unnamed-chunk-13-1.png" width="40%" /&gt;
+
+---
+
+class: middle
+      
+
+## Example 1: ROC curve 
+
+Area under the curve
+
+`\(AUC=Pr(X2 &lt; X1)\)`
+  
+  Where `\(X1\)` is the outcome of a positive test  and `\(X2\)` the outcome of a negative test 
+
+
+```r
+ci.cvAUC(hiv$test, hiv$response)
+```
+
+```
+## $cvAUC
+## [1] 0.9047825
+## 
+## $se
+## [1] 0.02276935
+## 
+## $ci
+## [1] 0.8601554 0.9494096
+## 
+## $confidence
+## [1] 0.95
+```
+
+---
+
+class: middle
+      
+
+## Example 1: ROC curve 
+
+  
+
+```r
+rocobj &lt;- roc(hiv$response, hiv$test)
+```
+
+```
+## Setting levels: control = -1, case = 1
+```
+
+```
+## Setting direction: controls &lt; cases
+```
+
+```r
+coords(rocobj, "best", best.method="youden")
+```
+
+```
+##   threshold specificity sensitivity
+## 1 -0.700003   0.9138577   0.7948718
+```
+
+It optimizes `\(sensitivity-(1-specificity)\)`
+  
+---
+
+class: middle
+      
+
+## Example 1: ROC curve 
+
+  
+  
+
+```r
+out &lt;- cvAUC(hiv$test, hiv$response) #calcular ROC
+plot(out$perf, col="blue", main="ROC") #plot
+lines(c(0,1),c(0,1)); 
+points(0.280, 0.884, pch=16)#cutoff=-1
+points(1-0.9138, 0.7948, pch=16, col="red")  #optimal
+```
+
+&lt;img src="Biomarkdown_files/figure-html/unnamed-chunk-16-1.png" width="50%" /&gt;
+
+---
+
+class: middle, center
+      
+
+## Example 2
+
+   
+---
+
+class: middle
+      
+
+## Example2. Prediction of response to treatment
+  
+  [Short-term transcriptional response to IL-17 receptor-A antagonism in the treatment of psoriasis](https://pubmed.ncbi.nlm.nih.gov/31883845/]). JACI. 2020
+
+&lt;img src="img/abs.JPG" style="width:75%"  align="center"&gt;
+  
+  
+---
+
+class: middle
+      
+
+## Example2. Prediction of response to treatment
+
+- They used transcription data from a panel of genes associated with psoriasis. 
+
+- They show that the improvement in  of psoriasis transcriptome with Brodalumbad treatment by responders. 
+
+COU: supprogate end point. Improvement of psoriasis transcriptome showing causal action of the drug in a biological pathway. 
+
+
+&lt;img src="img/paper.JPG" style="width:75%"  align="center"&gt;
+  
+  
+---
+
+class: middle
+      
+
+## Example2. Prediction of response to treatment
+
+  
+  The question of whether the biomarkers can be used to predict Brodalumbad remains. 
+
+I downloaded the data from [GEO](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE117468) to find predictors of the efficacy. 
+
+
+```r
+source_data("https://github.com/alejandro-isglobal/Biomarkers/raw/master/data/GSE117468.Rdata")
+```
+
+```
+## [1] "phenodat"    "expr"        "genesid"     "genesentrez"
+```
+
+  
+---
+
+class: middle
+      
+
+## Example2. Prediction of response to treatment
+
+
+```r
+dim(expr)
+```
+
+```
+## [1] 53951    96
+```
+
+```r
+expr[1:5,1:5]
+```
+
+```
+##           GSM3300910 GSM3300916 GSM3300920 GSM3300928 GSM3300932
+## 1007_s_at   9.975898   8.947814  10.544516  10.088859   9.948196
+## 1053_at     7.264437   7.323783   6.468845   7.648613   7.304800
+## 117_at      6.066067   6.010792   6.373146   6.520405   6.567029
+## 121_at      6.037013   6.100783   6.261066   5.624866   6.403674
+## 1255_g_at   3.013214   2.937823   3.087177   2.914161   3.672842
+```
+
+- These are gene transcription data of nonlesional tissue of psoriasis patients at baseline.
+  
+---
+
+class: middle
+      
+
+## Example2. Prediction of response to treatment
+
+
+```r
+dim(phenodat)
+```
+
+```
+## [1] 96  8
+```
+
+```r
+head(phenodat)
+```
+
+```
+##            age    bmi     patient          t   eff      effdif effbase effend
+## GSM3300910  53 20.750 10216001001 brodalumab  TRUE  1.00000000    12.4    0.0
+## GSM3300916  51 35.235 10216001004    placebo  TRUE  0.44791667    19.2   10.6
+## GSM3300920  47 35.471 10216001005    placebo FALSE -0.16417910    13.4   15.6
+## GSM3300928  38 33.272 10216003001 brodalumab  TRUE  0.85427136    19.9    2.9
+## GSM3300932  47 36.553 10216003002    placebo FALSE -0.67980296    20.3   34.1
+## GSM3300936  64 32.189 10216003003    placebo FALSE -0.08116883    30.8   33.3
+```
+
+- &lt;code&gt;t=1,2&lt;/code&gt;: placebo, Brodalumab 210mg or 140 mg. 
+- &lt;code&gt;effdif&lt;/code&gt;: percentage of improvement in PASI (psoriasis area-and-severity-index) between baseline and w12 (PASI (W0-W12)/W0).
+- &lt;code&gt;eff=1,0&lt;/code&gt;: PASI improvement  W12 &lt; W0
+
+  
+---
+
+class: middle
+      
+
+## Example2. Prediction of response to treatment
+
+**Analysis 1.** 
+
+I aimed to test for which biomarkers significantly correlated with improvement in PASI (predictors of efficacy)
+
+`$$\Delta PASI \times T \rightarrow B_{base}$$`
+  
+  
+
+```r
+table(phenodat$eff, phenodat$t)
+```
+
+```
+##        
+##         placebo brodalumab
+##   FALSE       9          1
+##   TRUE       16         70
+```
+
+- Only one individual under treatment did not improve PASI but 16 placebos improved PASI. Conditioning on the treated individuals is not suitable. 
+
+- Placebos still have information.    
+
+  
+---
+
+class: middle
+      
+
+## Example2. Prediction of response to treatment
+
+  
+
+```r
+mod0 &lt;- model.matrix( ~  t + eff  + age + bmi, data = phenodat)
+mod &lt;- model.matrix( ~ t:eff + t + eff  + age + bmi, data = phenodat)
+ns &lt;- num.sv(expr, mod, method="be")
+ss &lt;- sva(expr, mod, mod0, n.sv=ns)$sv
+modss &lt;- cbind(mod, ss)
+
+#estimate associations
+fit &lt;- lmFit(expr, modss)
+fit &lt;- eBayes(fit)
+
+tt &lt;- topTable(fit, number=Inf, coef="tbrodalumab:effTRUE")
+```
+
+
+  
+---
+
+class: middle
+      
+
+## Example2. Prediction of response to treatment
+
+  
+
+```r
+source_data("https://github.com/alejandro-isglobal/Biomarkers/raw/master/data/tt.RData")
+```
+
+```
+## [1] "fit" "tt"
+```
+
+
+
+
+  
+---
+
+class: middle
+      
+
+## Example2. Prediction of response to treatment
+
+
+
+```r
+head(tt)
+```
+
+```
+##                 logFC  AveExpr         t      P.Value    adj.P.Val        B
+## 204622_x_at -3.110576 6.517228 -8.155612 4.312802e-12 2.326800e-07 14.25881
+## 211868_x_at -3.644099 4.872004 -7.726811 2.949329e-11 7.955961e-07 12.79006
+## 215565_at   -2.831032 2.754007 -7.551538 6.452170e-11 1.160337e-06 12.18802
+## 210090_at   -2.534860 3.629721 -7.344970 1.618297e-10 2.182719e-06 11.47802
+## 215036_at   -2.370792 4.318090 -7.178871 3.380056e-10 3.647148e-06 10.90720
+## 234884_x_at -3.816265 4.428421 -7.019798 6.824035e-10 6.004875e-06 10.36100
+```
+
+
+  
+---
+
+class: middle
+      
+
+## Example2. Prediction of response to treatment
+
+**Volcano plot**
+  
+
+```r
+volcanoplot(fit, highlight=11, coef="tbrodalumab:effTRUE", 
+            names=genesid[rownames(fit$coefficients)],cex=0.1)
+```
+
+
+  
+---
+
+class: middle
+      
+
+## Example2. Prediction of response to treatment
+
+**Volcano plot**
+ 
+![](Biomarkdown_files/figure-html/unnamed-chunk-25-1.png)&lt;!-- --&gt;
+
+
+  
+---
+
+class: middle
+      
+
+## Example2. Prediction of response to treatment
+
+We identified 87 tranctripts from 48 genes significantly (adjsuted `\(P &lt;0.05\)`) associated with efficacy when treated with brodalumab. 
+
+
+
+```r
+trascriptname &lt;- rownames(tt)
+sigGenespso &lt;- trascriptname[tt$adj.P.Val&lt;0.05]
+length(sigGenespso)
+```
+
+```
+## [1] 87
+```
+
+  
+---
+
+class: middle
+      
+
+## Example2. Prediction of response to treatment
+
+  
+We select significant genes and asked which metabolic **pathways** are enriched with those genes
+
+
+
+```r
+#select genes in the format of ENTREZ
+mappedgenesIds &lt;- genesentrez[sigGenespso]
+mappedgenesIds &lt;- unique(unlist(strsplit(mappedgenesIds, " /// ")))
+
+
+#run enrichment in GO
+GO &lt;- enrichGO(gene = mappedgenesIds, 'org.Hs.eg.db', ont="MF", pvalueCutoff=0.05, pAdjustMethod="BH")
+
+dotplot(GO)
+```
+
+  
+---
+
+class: middle
+      
+
+## Example2. Prediction of response to treatment
+
+**pathways**
+
+![](Biomarkdown_files/figure-html/unnamed-chunk-28-1.png)&lt;!-- --&gt;
+
+
+  
+---
+
+class: middle
+      
+
+## Example2. Prediction of response to treatment
+
+  
+**Analysis 2.** 
+
+I used new causal inference methods (random causal forest) that I have recently implemented for transcriptomic data. 
+
+The method 
+
+- builds a predictor from the transcription data of the relevant genes
+- estimates the probability at baseline of the response to a potential brodalumab treatment
+- predict probabilities on 19 randomly selected individuals not used to build the predictor.       
+
+
+  
+---
+
+class: middle
+      
+
+## Example2. Prediction of response to treatment
+
+
+
+```r
+source_data("https://github.com/alejandro-isglobal/Biomarkers/raw/master/data/pred.Rdata")
+```
+
+```
+## [1] "pred"
+```
+
+  
+---
+
+class: middle
+      
+
+## Example2. Prediction of response to treatment
+
+
+- &lt;code&gt;pasi_imp&lt;/code&gt; is PASI improvement: 
+
+`\(\Delta PASI = \frac{PASI_{W0}-PASI_{W12}}{PASI_{W0}}\)`
+
+- &lt;code&gt;prob&lt;/code&gt; probability of brodalumab response at baseline 
+- &lt;code&gt;t&lt;/code&gt;: 1=Placebo, 2=Brodalumab
+
+
+
+```r
+head(pred)
+```
+
+```
+##      pasi_imp      prob          t
+## 1  0.08522727 0.3279899    placebo
+## 2  1.00000000 0.3818976 brodalumab
+## 3  0.92333333 0.3433848 brodalumab
+## 4  0.80152672 0.3193873 brodalumab
+## 5 -0.67980296 0.4011619    placebo
+## 6  0.99019608 0.3488585 brodalumab
+```
+
+
+
+  
+---
+
+class: middle
+      
+
+## Example2. Prediction of response to treatment
+
+  
+We can test the dose-response relationship between the brodalumab response at baseline (dose) and PASI improvement (response).
+
+
+```r
+met &lt;- drm(pasi_imp ~ prob, t, fct=LL.4(), data=pred)
+plot(met, legendPos=c(0.36,-0.25))    
+```
+
+&lt;img src="Biomarkdown_files/figure-html/unnamed-chunk-31-1.png" width="50%" /&gt;
+
+---
+
+class: middle
+      
+## Example2. Prediction of response to treatment
+
+We can test if the dose-response model is significant
+
+
+
+```r
+noEffect(met)
+```
+
+```
+## Chi-square test              Df         p-value 
+##    4.163001e+01    7.000000e+00    6.126367e-07
+```
+---
+
+class: middle
+      
+## Example2. Prediction of response to treatment
+
+- Gene expression data at baseline in nonelesional skin can strongly predict the level of response to brodalumab 12-week treatment.
+
+- The top gene *NR4A2* is mechanistically involved in the  IL-23/Th17 axis. Blockage of *NR4A2* prevents Th17 from producing IL-17 and IL-21 in vitro.  
+
+- *NR4A2* offers additional treatment targeting or biomarker testing for response. 
+
+
+---
+class: middle
+name: Alejandro-Caceres
+
+.left-col-50[
+&lt;img src="img/caceres.jfif" width = "180px"/&gt;
+### Alejandro Cáceres
+&lt;i class="fas fa-flask"&gt;&lt;/i&gt;&amp;nbsp;ISGlobal Bioinformatics&lt;br /&gt;
+&lt;i class="fas fa-envelope"&gt;&lt;/i&gt;&amp;nbsp;alejandro.caceres@isglobal.org&lt;br /&gt;
+]
+
+.rigth-col-50[
+
+## Thank you for your attention
+
+### Find the slides [online](https://alejandro-isglobal.github.io/teaching/Biomarkdown.html).
+]
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

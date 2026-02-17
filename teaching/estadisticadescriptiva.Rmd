@@ -1,0 +1,712 @@
+---
+title: "Estadística Descriptiva"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+
+*La inferencia estadística esta enraizada en la estadística descriptiva. Los conceptos abtractos deben responder al resultado de observaciones. Aquí motivaré el objeto de estudio de la estadística desde una perspectiva conceptual. Intentaré demarcar lo que la estadística estudia, por qué y su utilidad. Usaré datos globales de parques eólicos para ilustrar los conceptos básicos*  
+
+<img src="eolic.jpg" style="width:30%;  margin-right: 20px" align="left">
+
+El pensamiento estadístico fue fundamental para establacer las bases del método científico. Sin embargo, la estadística sólo fue considerada un area de estudio en sí misma hasta principios del siglo XX, después del trabajo de Francis Galton, Karl Pearson y Ronal A. Fisher; mentes brillantes que lograron liberar los métodos estadísticos del trabajo particular de la física, astronomía, economía, política y biología. Sin ataduras empíricas, la estadística moderna nació como una diciplina académica libre de ser aplicada con rigor a las ciencias e, inclusive, mal aplicada y sin rigor a las ideologías, como la del supremacismo racial de la época.  
+
+Por varios siglos, los conceptos estadísticos que surgían en una ciencia encontraban utilidad en otra, al margen de su interpretación y uso. Por ejemplo, el promedio, necesario para que Gauss estableciera la posición mas verosímil del asteroide Ceres en el cielo, fue utilizado por Galton para medir la correlación entre la altura de los padres e hijos. Sin embargo, la justificiación del uso del promedio como un número con significado estadístico hizo que surgiera el estudio de su necesidad teórica. 
+
+El objeto de estudio de la estadística son los datos y sus propiedades. Los datos ententidos como la observación de un hecho repetible, incluyen la medición, o recolección, de las cualidades numéricas de esos hechos. Así pues, una concepción general de los datos es aplicable en muchos contextos, y el estudio de sus propiedades teóricas permite acumular conocimiento progresivamente. 
+
+La centralidad de los datos es fundamental en el método científico. La observación, reflejada en la recolección de los datos, es una pata del trípode que sostiene el sistema que el hombre moderno ha desarrollado para resolver problemas de forma sistemática. Las otras dos patas del trípode son el análisis matemático, representado por la construcción de funciones matemáticas que describen los datos y llamamos modelos abstractos, y la tecnonogía, representada por la implementación y desarrollo de experimentos que generan datos nuevos.     
+
+
+
+
+<img src="./stats.JPG" style="width:40%;  margin-right: 20px" align="right">
+
+Estos tres elementos: experimentos, modelos y datos combian las acitivdades de acción, razomiento y observación en la resolución de los problemas que son abordados por las diferentes ciencias. El conocimiento se genera apartir de la interacción compleja de estas tres compomentes. 
+
+La estadística, por un lado, no se interesa por la tecnología usada para generar una serie de datos, pero sí se interesa por describir con funciones matemáticas el proceso que genera los datos. Por lo tanto, la estadística estudia la relación entre los modelos y los datos. Pregúntas estadísticas son por ejemplo: ¿Dado un conjunto de datos con ciertas propiedades, cuál es el mejor modelo del proceso que los ha generado? o ¿Dado un modelo, cómo deberían ser los datos que este genera?  
+
+El cuerpo teórico de una ciencia es el conjunto articulado de modelos que describen los procesos de interés. Los modelos que describen la suspención de los coches están articulados por la ley de elasticidad de Hook. O el modelo de depredador-presa de Lotka-Volterra puede dar cuenta de la diámica entre las poblaciones de dos especies. Los modelos dependen de parámetros ($k$ en el caso de la ley de Hook, y $\alpha, \beta, \gamma, \delta$ para Lotka-Volterrra) que toman valores específicos para un conjunto de datos en concreto y describen las propiedades físicas del sistema. Si medimos el desplazamiento de un muelle y la fuerza necesaria para alcanzarlo, la constante de elasticidad $k$ será, de acuerdo con Hook, el cociente entre la fuerza y el desplazamiento. El proceso de obtener el valor $k$ de un muelle mediante las mediciones se denomina inferencia. Mientras que si predecimos el valor del desplazamiento de un muelle de constante $k$ bajo una fuerza dada, hablamos de predicción. 
+
+Tanto la inferencia como la predicción no requieren consideraciones adicionales si los datos obtenidos no tienen error alguno. Cuando podemos asumir que el error es despreciable, tenemos la situación ideal. En gran cantidad de mediciones la presencia del error es lo común. Así pues, la pregunta esencial en la estadística es ¿Cómo es posible realizar inferencias o predicciones en presencia de errores? 
+
+Debido a que la generación de errores es un proceso en sí, entonces debemos intentar conocer los modelos asociados a la generación de los errores en los datos. El estudio del error, de la variación aletoria en los datos, y de cómo podemos separalo de la señal que proviene del proceso de interés es el tema central de la estadística. Gran esfuerzo es puesto en lo que no nos interesa, es decir, en tratar de entender y modelar la variación en los datos que se obtiene al repetir un experimento exactamente bajo las mismas condiciones. 
+
+
+### Experimento aleatorio
+
+Si bien la estadística trata con elementos abstractos y con una teoría para su manipulación, ella es una ciencia con un interés primordialemente empírico. Su objetivo es entendimiento de los datos y por lo tanto en el proceso que da como resultado una observación dada. El dato primordial en estadística es numérico, por lo que supone un proceso de medición. La medición es, en términos generales, la comparación de una propiedad numérica de un objeto o evento con respecto a un patrón, o el resultado de calsificar el objeto en un grupo con características determinadas.   
+
+En escencia, cuado realizamos una observació adquirimos un número o una característica como resultado de llevar a cabo un experimento. Imaginemos por ejemplo que realizamos una serie de experimentos, pleaneados de manera idéntica, de los cuales  obtenemos los valores $0$ o $1$:
+
+ ... 1 0 0 1 0 **1** 0 1 1 ... 
+ 
+Podemos pensar el valor $1$ como el resultado de medir la presencia de una característica: de tener una impureza, cierto color, de ser mujer, o de detectar un fallo. El $0$ sería la ausencia de la característica. El número $1$ en negrita sería entonces la observación de un experimento dado. Cada experimento arroja pues un valor diferente. El conjutno de datos que puede arrojar este experimento es $\{0,1\}$. Por lo tanto entendemos este conjunto cómo el que contiene todos los posibles resultados del experimento.    
+
+La distición entre observación y resultado es la primer distinción fundamental. Un **resultado** es uno de los valores posibles de las **observaciones** de un experimento. Así pues las observaciones son concretas, se obtienen de nuestra interacción con la naturaleza e interpelan a un experimento, un objeto o un evento específico. El resultado, por otro lado, es la característica obtenida de esa interacción y por lo tanto es una cantidad abstracta; en el sentido de que no depende de un experimento en concrero y es común a varios de ellos. En breve, la observación es un elemento de nuestros sentidos, el resutlado es un elemento nuestra razón. Observamos que Socrates es mortal pero razonamos que ser mortal es el resultado de ser hombre.    
+
+Los resultados pueden ser de dos clases. En primer lugar los datos pueden ser **categóricos** si el resultado de un experimento sólo puede tomar valores en un conjunto discretos, como por ejemplo número de piezas de automóvil producidas por hora o el tipo de molécula encontrada en un gas. En segundo lugar los datos pueden ser **continuos** cuando el resultado de un experimento sólo puede tomar valores continuos, como por ejemplo el estado de carga de la batería o la temperatura de un motor.
+
+Vale la pena mencionar que los experimentos pueden ser relizados sobre un mismo individuo multiples veces, para el cual la medida de su característica varía cada vez que se realiza el experimento. Así mismo el experimento puede consistir en medir una característica fija pero que varía en diferentes individuos. Imaginemos que el experimento es medir la altura de una persona, y su repetición consiste en medir la altura de otra persona. Por último, también podemos pensar en la medición de un acontencimiento. ¿cuántos correos electrónicos recibo en una hora? Repeticiones de este experimento pueden ser contar correos en diferentes horas. Así pues, el receptor de una medición puede ser tanto un objeto como un evento, y su repetición puede ser en el mismo objeto/evento o en diferentes, dependiendo de la naturaleza del experimiento. Es claro que establecer las mismas condiciones para repetir el experimiento no es del todo trivial, pero imaginaremos que como mínimo son las condiciones que esperaríamos encontrar al repetir el experimiento en un futuro. 
+
+Un aspecto fundamental de los experimentos es que al repetirlos, bajo las mismas condiciones, sus observaciones pueden dar diferentes resultados. Cuando este es el caso, decimos que este conjunto de experimentos constituye un experimento **aleatorio**. Si, por el contrario, los experimentos siempre dan un sólo resultado posible entonces estos experimentos son realizaciones de un experimento **reproducible**. 
+
+Los experimientos concretos oscilan entre estas dos idealizaciones, pues tienen una componente aleatoria y otra reproducible. También llamamos ruido a la componente alearoria y señal a la reproducible. Una observación entonces se compone se ruido y señal. La señal por un lado es la componente fiable y predictiva de la observación, mientras que el ruido es la poco fiable e impredecible. Por ejemplo, podemos tomar la temperatura de un paciente cada hora. Si bien la temperatura varía en décimas de grado, claramente se agrupara alrededor de un valor, 37 grados, si no tiene fiebre. En este caso el error (en décimas de grado) y la señal (en unidades de grado) son medidas con diferente orden de magnitud y es posible separar la señal del ruido. En otros casos es posible que su fiebre incremente gradualmente, y no sea tan sencillo detectar ese incremento porque es del mismo orden del error. Uno de los objetivos centrales de la estadística es poder separar el ruido del la señal.       
+
+¿Cómo separar el ruido de la señal? Para esto debemos empezar por hacer un catálogo de los posibles resultados de un experimento. Si el experimento es totalmente reproducible obtenemos sólamente un resultado cada vez que lo repetimos. Si por el contrario, obtenemos varios resultados con la misma frecuencia o propensión, entonces el exprimento es totalmente aleatorio. En este experimento ningún resultado es mas frecuente que otro y por lo tanto tenemos una ignoracia total sobre cualquier observación futura. 
+
+La freceuncia es una medición en sí misma sobre la repetición del experimento, y consiste en contar cuantas veces hemos observado un resultado en particular cuando hemos repetido el experimento  un número de veces. Este es un número importante porque habla de nuestra experiencia pasada y nos ayuda a proyectar el futuro. Cuando hablamos de frequencias en el futuro, hablamos de la propensión o la probabilidad de que un resultado ocurra. La observación repetida de un experimento aleatorio sienta las bases de lo que podemos esperar en el futuro. Las variaciones de las frecuencias entre los resultados posibles son las que en últimas separan el error de la señal. La descripción y resumen de las frecuencias de los resultados de un experimento aleatorio hace parte de la estadística descriptiva, mientras que su caracterización por medio de probabilidades hace parte de la inferencia estadística. 
+
+Más allá de la estadística, el esfuerzo teórico de una actividad científica particular se centra en dar sentido a esas señales inferidas, en forma de parámetros, como cantidades conservadas de una ley natural. Así el desarrollo de modelos y teorías  motivarán el desarrollo de nuevos experimentos y datos asociados a ellos.   
+
+### Descripción de datos categóricos
+
+Tomemos una base de datos e interpretémosla en los términos que hemos hablado de experimentos aletorios, observaciones, resultados y frecuencias. En el [World Global Resource Institute](
+https://www.wri.org/publication/global-power-plant-database)
+se han recopilado datos sobre 299910 plantas eléctricas en 64 paises entre los años de 2014-2017. Entre las características que se observaron de cada planta se encuentran, entre otros, el país en donde fue instalada, su tipo (eólica, termoléctrica, etc ) y su capacidad de producción (GWH). Carguemos en R los datos tal como han sido descargados de la página web
+
+```{r}
+global <- read.csv("./global_power_plant_database.csv")
+
+#número de plantas por número de características
+dim(global)
+
+#características recogidas de cada planta
+names(global)
+```
+Imaginemos que estamos interesados en la distribución global de los parques eólicos duarante este periodo. 
+
+```{r}
+#seleccionamos tipo de planta: wind
+selwind <- global$primary_fuel=="Wind"
+
+#seleccionamos las características de interés
+selvars <- c("name", "country", "primary_fuel")
+
+#base de datos reducida a parques eólicos
+wind <- global[selwind, selvars]
+
+#número de filas que corresponde al número de parques eólicos
+nrow(wind)
+```
+
+Vemos que hay 5188 parques eólicos. Inspeccionemos los primeros 6 de ellos
+```{r}
+#primeros parques eólicos
+head(wind)
+```
+
+Cada línea representa un parque eólico, con un nombre, un país de procedencia y el tipo de de fuente eléctrica. Por ejemplo el parque eólico GENERAL ACHA procede de Argentina (ARG). Obtengamos el listado de los paises de cada parque eólico. Ilustremos los primeros 100 de ellos.  
+
+```{r}
+country <- wind$country
+head(country, 100)
+```
+
+Entendemos que la cada uno de estos elementos: el país al que pertenece cada parque eólico, es una observación de un experimento aleatorio. El experimento consistió en escoger un parque eólico y registrar su país. Al repetir el experimento; es decir, cuando se escogío otro parque eólico, entonces su pais pudo ser otro. En el conjunto total de 5188 observaciones los paises cambiaron de valor. Si bien las observaciones son reportadas en orden alfabético, esto no quiere decir que las observaciones fueron realizadas en ese orden. Los resultados tampoco implican que el proceso de observación necesariamente es aleatorio. Es posible que los datos se hayan recogido de forma sistemática por países. El experimento aleatorio unicamente se refiere a que las observaciones (paises) toman diferentes resutados. Veamos los posibles resultados de estas observaciones    
+
+```{r}
+results <- unique(country)
+results
+length(results)
+```
+Hay un total de $m=58$ de resultados. Cuando repetimos un experimento aleatorio, hacemos el catálogo de los resultados y resumimos las observaciones **categóricas** contando cuántas veces vimos un resultado en particular. La observación de un país es una variable categórica que tomar valores en el conjunto de los resultados que hemos visto arriba. 
+
+Tomemos $i$ como un número entero que indica uno de los resultados. Estamos interesados en contar el número de veces que observamos el resultado $i$. $n_i$ se denomina la frecuencia absoluta del resultado $i$ y se puede calcular como
+
+$$n_i = \sum_{j=1}^n \delta_{ij}$$
+donde $\delta_{ij}$ es la delta de Kronecker, que toma el valor de $0$ cuando $j\neq i$ y $1$ cuando $j=i$, $n$ es el número total de observaciones.   
+
+En nuestro ejemplo, pensemos en ARG (Argentina) como el primer **resultado** posible para la observación del **país** del que procede de un parque eólico. Indicamos Argentina como el primer reultado, y por lo tanto el número de parques eólicos observados en Argentina lo denotaríamos $n_1$. Para responder cuántos parques eólicos hay en cada país, podemos hacer una tabla de frecuencias 
+
+```{r}
+tb <- table(country)
+df <- data.frame(outcome=names(tb), ni=as.vector(tb)) 
+rownames(df) <- 1:length(tb)
+df
+```
+
+Así vemos que 12 parques eólicos fueron observados en Argentina mientras que en Brasil fueron 412. Podemos graficar $n_i$ con respecto a los resultados usando un **gráfico de barras**
+
+```{r}
+barplot(df$ni, names.arg=df$outcome, las=2, cex.names=0.5)
+```
+
+
+Las frecuencias se pueden expresar tambien como una **proporción** de las veces que observamos un resultado en particular en relación al número total de observaciones. Definimos frequencia relativas a un resultado $i$ como 
+
+$$f_i= \frac{n_i}{n}$$ 
+En nuestro ejemplo, la frecuencia relativa es la proporción de parques eólicos observada para cada país de un total de  $n= 5188$.
+
+
+```{r}
+tb2 <- prop.table(tb)
+df <- data.frame(outcome=names(tb), ni=as.vector(tb), fi=as.vector(tb2)) 
+rownames(df) <- 1:length(tb)
+df
+```
+
+La tabla de frecuencias es una tabla sobre los resultados de las observaciones, así pues la línea 7 de la tabla  
+
+```{r, echo=FALSE}
+df[7,]
+```
+Da el número de observaciones para el **resultado** BRA ($n_7=412$) y su proporcion respecto al total ($f_7=7\%$). Recordemos, por contraste, que las **observaciones** son líneas en la base de datos original y por ejemplo
+
+```{r, echo=FALSE}
+wind[150,]
+```
+es la **observación** de una repetición del experimento aleatorio: ver el país de un parque eólico.
+
+En la tabla de frecuencias, tanto $n_i$ como $f_i$ toman $m$ diferentes valores, uno por cada resultado posible. De tal forma que la suma de las frecuencias absolutas sobre el número total de resultados da el número total de observaciones 
+
+$$\sum_{i= 1}^m n_i= n$$
+
+mientras que la suma de las frecuencias relativas da $1$
+
+$$\sum_{i= 1}^m f_i= 1$$
+
+donde $m$ es la cantidad total de posibles resultados observados en los datos, que para los parques eólicos es $m=58$. 
+
+La frecuencia relativa $f_i$ es una cantidad fundamental. $f_i$ es una medida relativa a los otros resultados y claramente indica que si al repetir el experimento aleatorio muchas veces, el resultado $i$ tiene una frecuencia alta, entonces, es esperable que la propensidad de ser observado en una futura repetición sea alta. Este no es el caso de la frecuencia absoluta $n_i$. El número $n_i$ puede ser grande por el simple hecho de haber repetido el experimento muchísimas veces y no nos dice nada sobre valor respecto a las otras observaciones. Al dividir por $n$, ponemos a todas las $n_i$ en el mismo rango ($0,1$) para poderlas comparar; inclusive para para diferentes valores de $n$. 
+
+Entenderemos las frecuencias relativas $f_i$ como observaciones propias del proceso que está detrás de la generación a un dato cualquiera. Nuestro esfuerzo estará en los siguientes capítulos en caracetirizarlas por medio de cantidades propias del proceso como son las probabilidades o en un número mas reducido como son los parámetros.  
+
+Podemos visualizar las frecuencias relativas con un **gráfico de sectores**, donde el área del círculo representa el 100% de las observaciones (proporción= 1) y las secciones del círculo representan las frecuencias relativas de cada uno de los resultados.
+
+```{r}
+pie(tb)
+```
+
+El gráfico de sectores es importante para visualizar cuales son, por ejemplo, los resultados con las frecuencias relativas mas altas. Vemos rápidamente como USA, GBR, FRA, CHN, BRA y ESP son los países con mas parques eólicos, sin tener que recurrir a la tabla.
+
+
+### Descripción de datos categóricos ordenados
+
+Los países no tienen un orden intrínseco con respecto a los resultados. Sin embargo, a veces las variables **categóricas** se pueden **ordenar**, por ejemplo como las medidad temporales o la severidad de una enfermedad.
+
+
+La misofonía es un desorden de ansiedad desencadenado por sonidos específicos. En un estudio de misofonía se estudiaron las características de 123 pacientes. Su nivel de ansiedad se clasificó en 4 grupos diferentes de acuerdo al test AMISO.  
+
+
+Los resultados del diagnóstico de los pacientes por severidad fueron
+
+```{r, echo=FALSE}
+data <- read.delim("./miso.txt")
+data$Misofonia.dic
+```
+
+La tabla de frecuencias del estudio para la severidad es
+
+```{r, echo=FALSE}
+tb <- table(data$Misofonia.dic)
+tb2 <- data.frame(outcome =0:4, ni=as.vector(tb) , fi=as.vector(prop.table(tb)))
+tb2
+
+```
+
+
+
+La severidad $0$ se refiere a no tener misofonía y la $4$ al grado más alto de ansiedad. La misofonía es por lo tanto una variable **categorica** y **ordenada**.
+
+Cuando los resultados se pueden ordenar es útil preguntarnos por el número de observaciones hasta un resultado en concreto. Definimos la frecuencia absoluta acumulada hasta el resultado $i$ como
+
+$$N_i=\sum_{k=1..i} n_k$$
+$n_i$ es equivalente a $N_i$ ya que se puede derivar de: 
+
+$$n_i = N_{i}-N_{i-1}$$
+si tenemos en cuenta que  $N_{i+1}-N_{i}=\sum_{k= 1}^{i} n_k - \sum_{k= 1}^{i-1} n_k=n_i$
+
+Así mismo, definimos la proporción de observaciones hasta el resultado $i$ por medio de la frecuencia relativa acumulada
+
+$$F_i=\sum_{k=1..i} f_k$$
+
+$F_i$ toma valores de $0$ a $1$, pues definimos
+
+$$F_0=0$$ 
+o $F_j=0$ para $j<1$, y tenemos
+$$F_m=\sum_{k= 1}^m f_k=1$$
+y $F_l=0$ para $l>m$.
+
+La frecuencia relativa acumulada y la frecuencia relativa son cantidades equivalentes, podemos obtener $f_i$ mediante
+
+$$f_i=F_{i}-F_{i-1}$$
+
+
+```{r}
+df <- data.frame(tb2, 
+                 Ni= cumsum(as.vector(tb2$ni)), 
+                 Fi=cumsum(as.vector(tb2$fi))) 
+
+rownames(df) <- 1:length(tb)
+df
+```
+
+Vemos que el **67%** de los pacientes tienen como mucho misofonia de grado **2**, mientras que **37%** de los pacientes tienen sevridad menor o igual a **1**.
+
+
+$F_i$ es una cantidad interesante porque permite definir frecuencias acumuladas en resultados intermedios no observados. Si $x$ es una cantidad continua tal que $x=x_k$ coincide con los resultados discretos observados, nos podemos preguntar por la frecuencia acumulada cuando $x$ es un punto intermedio $x \in [x_k, x_{k+1})$ definiendo 
+
+$$F(x) = F_k$$ para $x_k \leq x<x_{k+1}$.
+
+Asi tememos que la proporción de severidad de misofonía hasta una gravedad de $2.5$ es la proporción hasta gravedad $2$, siendo que $2.5$ no es un resultado observado. 
+
+Podemos graficar $F(x)$ con respecto a los resultados, e ilustrar su valor en $2.5$ 
+
+
+```{r}
+plot(0:4, df$Fi, type="s", col="red", ylab="F", xlab="Severity")
+
+points(df$outcome, c(0,df$Fi[-4]), col="red", bg="white", pch=21)
+points(2.5, df[3,"Fi"], col="red", pch=19)
+
+legend("topleft", legend="Valor de F en 2.5", pch=19, col="red")
+```
+
+
+### Descripción de datos continuos
+
+
+El resultado de un experimento aleatorio también puede dar resultados **continuos**. En la universidad de Maryland el grupo CALCE hace experimentos sobre la capacidad de carga de baterías de litio. Los datos de sus experimentos se pueden [descargar]( https://web.calce.umd.edu/batteries/data.htm). 
+
+```{r}
+batery <- read.csv("PLN_Number_SOC_Temp_StoragePeriod.csv")
+head(batery)
+```
+
+La capacity de descarga (en
+miliamperios-hora) fue medida en 150 baterías. La variable $X$ denota si la betería no estaba en buen estado. Veamos la capacidad de descarga quitando las baterias en mal estado
+
+```{r}
+sel <- batery$X !="bad"
+capacity <- batery$Discharge.Capacity[sel]
+capacity
+```
+
+Consideraremos ahora que hemos repetido un experimento aleatorio 135 veces, en donde cada vez obtenemos un valor continuo diferente, y que correnden a la capacidad de descarga de cada batería.
+
+Para describir estas observaciones, primero nos preguntamos por el rango que pueden que pueden tomar estos valores. Obstenemos así el máximo y el mínimo.
+
+
+```{r}
+mn <- min(capacity)
+mn
+max <- max(capacity)
+max
+```
+
+Vemos que la capacidad de descarga oscila entre (1.52,1. 59). Como los resultados continuos no se pueden contar entonces primero cubrimos el rango de los resultados con pequeños intervalos regulares, todos del mismo tamaño (subintervalos). Los puntos de corte son:
+
+
+```{r}
+br <- seq(mn,max,length=9)
+round(br, 3)
+```
+Con estos puntos de corte, creamos una serie de resultados **categóricos ordenados**. Cortamos el intervalo en 8 posibles subintervalos donde los resultados continuos se pueden encontrar. Por ejemplo a las primeras observaciones continuas
+
+```{r}
+obs <- head(capacity)
+obs
+```
+
+les asignamos las observaciones intervalares:
+
+```{r, eval=FALSE}
+cut(obs, br, include.lowest=TRUE)
+```
+Es decir que la primer observación esta entre (1.567,1.575], mientras que la cuarta está entre (1.56,1.567]. Estos datos de capacidad de descarga tomaran valores intervalares
+
+```{r, echo=FALSE}
+dfbin <- data.frame(capacity, "bined.capacity"=cut(capacity, br, include.lowest=TRUE))
+
+head(dfbin)
+```
+Para las observaciones intervalares podemos calcular las frecuancias absolutas y relativas como antes
+
+```{r}
+tb <- table(dfbin$bined.capacity)
+tb2 <- prop.table(tb)
+
+df <- data.frame(outcome=names(tb), 
+                 ni=as.vector(tb), 
+                 fi=as.vector(tb2), 
+                 Ni= cumsum(as.vector(tb)), 
+                 Fi=cumsum(as.vector(tb2))) 
+
+rownames(df) <- 1:length(tb)
+df
+```
+La visualización de $n_i$ o $f_i$ para cada uno de los resultados intervalares es un **histograma**. Este es un gráfico de barras para las resultados continuos categorizados en intervalos
+
+```{r}
+h <- hist(capacity, xlab="Capacity (outcome)", ylab="n", breaks = br)
+```
+
+El histograma depende del tamaño de la partición del rango de las observaciones continuas. Al hacer la partición mas fina de 50 subintervalos vemos por ejemplo que hay cuatro descargas frequentes, en vex de una sola. Así pues, diferentes visualizaciones de los datos revelan diferentes propiedades de las observaciones. Tratar de discernir este tipo de situaciónes es uno de los objetivos de la inferencia estadística. 
+
+```{r}
+hist(capacity, xlab="Capacity (outcome)", ylab="n", br=50)
+```
+
+También podemos graficar la frecuencia acumulada con respecto a los resultados intervalares. 
+
+```{r}
+plot(h$breaks, c(0,df$Fi), 
+     type="s", col="red", 
+     ylab="F", 
+     xla="Capacity")
+```
+
+Esta $F(x)$ de resutados intervalares está definida para todos los valores continuos en el rango de las observaciones. Sin embargo, los saltos discontinuos dependen del tamaño de los intervalos. 
+
+Podemos tener la versión de mayor resolución para $F(x)$ si la calculamos a partir de las observaciones y no de los resultados. Asignemos un índice $j$ a cada una de las observaciones oredenando sus valores $x_j$ de menor a mayor ($x_1  <... x_j < x_{j+1} < x_n$). Si $x$ es un número que está entre dos observaciones $k$ y $k+1$ su frecuencia acumulada es  
+
+$$F(x) = \sum_{j \leq k} f_j$$
+donde sumamos la frecuencia de cada una de las **observaciones** y no de los resultados. Como la frecuencia relativa de la obsevación  $j$ de un total de $n$ es $\frac{1}{n}$, tenemos 
+
+$$F(x)=\sum_{j \leq k} \frac{1}{n} = \frac{k}{n}$$.  
+
+
+```{r}
+k <- 1:length(capacity)
+Fx <- k/length(capacity)
+
+#ordemamos las observaciones crecientemente
+#para hacer coincidir su valor con su índice.
+
+sorted_capacity <- sort(capacity)
+plot(sorted_capacity, Fx, type="l", col="red")
+```
+
+Vemos que $F(X)$ es una cantidad interesante porque no depende de los intervalos sino de de las observaciones y además se puede definir para resultados continuos posibles pero no observados. $F(x)$ se conoce como **función de distribución** de frecuencias. El gráfico de $F(x)$ nos permite ver un salto discontinuo al rededor de $1.564$, coincidiendo con el máximo del histograma de menor resolución.   
+
+
+### Estadísticos descriptivos
+
+Los estadísticos descriptivos son números calculados a partir de los datos que nos dicen características importantes de las variables numéricas (categóricas o continuas). En la estadística inferencial, intentaremos en muchos casos relacionar estos números con parámetros de interés para algún modelo que explique la generación de los datos. Por el momento, vemos unos casos concretos. Por ejemplo, cuando tenemos observaciones numéricas, el **mínimo** y **máximo** resultados posibles suelen ser de interés. 
+
+Una caracterísitica de interés es el valor central que toman los resultados. Una medida de centralidad es el promedio que se define como
+
+$$\bar{x}= \frac{1}{n} \sum_{j= 1}^n x_j$$
+
+donde $x_j$ es la **observación** $j$ de un total de $n$. Este valor es una suma ponderada que le da una carga de $\frac{1}{n}$ a cada observación. Por lo tanto $\bar{x}$ es una medida del centro de gravedad de las observaciones. 
+
+Por ejemplo, la capacidad de descarga media de las baterías está dada por
+
+$\bar{c}= \frac{1}{n}\sum_j c_j$
+$= \frac{1}{n}(1.568073 + 1.557777 +1.571983 +1.563704 1.576870 +1.562722+ ...)$
+$= 1.56$
+
+```{r}
+head(capacity)
+mean(capacity)
+```
+
+Para variables categoricas ordenadas podemos usar la tabla de frecuencias para calcular el promedio, miremos el caso de los grados de misofonía
+
+```{r}
+#frecuencias absolutas
+tb <- table(data$Misofonia.dic)
+
+#frecuencias relativas
+tb2 <- prop.table(tb)
+df <- data.frame(outcome=names(tb), 
+                 ni=as.vector(tb), 
+                 fi=as.vector(tb2)) 
+
+rownames(df) <- 1:length(tb)
+df
+```
+
+El promedio de gravedad **también** se puede calcular a partir de las frecuencias relativas como  
+
+$$\bar{x}= \sum_{i = 1}^m x_i f_i$$
+de un total de $m$ posibles resultados categóricos ordenados. Vemos que esta expresión para $\bar{x}$ es la versión usual del centro de gravedad de los resultados, como si cada resultado tuviera una densidad de masa $f_i$.
+
+
+```{r}
+mean(data$Misofonia.dic)
+sum(as.numeric(df$outcome)*df$fi)
+```
+
+Estas dos versiones del promedio son equivalentes pues
+
+$\bar{x}=\frac{1}{n}\sum_{j=1}^nx_j$
+
+$=\frac{1}{n}\sum_{i=1}^m x_i n_{i}$
+
+$=\sum_{i=1}^m x_i f_{i}$
+
+$=0^*f_{1}+1*f_{2}+2*f_{3}+3*f_{4}+3*f_{4}$
+
+$=1.691057$
+
+
+En donde pasamos de sumar las observaciones a sumar los resultados en la segunda línea. 
+
+
+El promedio no es el resultado de una observación del experimento aletorio sino el resultado de una serie de observaciones. Describe el número en el que se equilibran los valores observados. Es por esto que es posible tener un valor del promedio que no ha sido observado, por ejemplo el año $1.691057$.
+
+Miremos el promedio de la capacidad de descarga de las baterías junto con su histograma
+
+```{r}
+h <- hist(capacity, 
+          xlab="Capacity", 
+          ylab="n", 
+          main="", br=50)
+
+mn <- mean(capacity)
+
+lines(c(mn, mn), c(0,40), lty=2, lwd=2)
+
+legend("topright", "Mean", lty=2)
+
+points(mn,0, pch=2)
+```
+
+Otra medida de centralidad es la mediana. La mediana $x_{0.5}$ es el valor de $x$ debajo del cual encontramos la mitad de las observaciones, es decir
+
+$$\sum_{x\leq x_{0.5}} 1 = \frac{n}{2}$$
+
+o en términos de $F(x)$
+
+$$F(x_{0.5})=\sum_{j \leq n/2} \frac{1}{n} = \frac{1}{2}$$
+
+Por lo tanto la mediana es el valor $x_{0.5}$ que hace que la frecuencia acumulada $F(x)$ sea igual a $1/2$. La mediana da el punto que divide la masa de probabilidad en 2. Cuando los datos son simétricos al rededor de la probabilidad, entonces la media y el promedio coinciden
+
+
+```{r}
+h <- hist(capacity, 
+          xlab="Capacity", 
+          ylab="n", 
+          main="", br=50)
+
+mn <- mean(capacity)
+lines(c(mn, mn), c(0,6), lty=2, lwd=2)
+points(mn,0, pch=2)
+
+md <- median(capacity)
+lines(c(md, md), c(0,6), lty=2, col="red", lwd=2)
+points(md,0, pch=2, col="red")
+
+legend("topright", c("Mean", "Median") , lty=2, col=c("black", "red"))
+```
+
+Si miramos los datos originales de la capacidad de descarga, inlcuyendo las beterias defectuosas vemos que el promedio y la mediana no coinciden. El promedio cambia sustancialemente al incluir los datos defectuosos, mientras que la mediana no. Decimos entonces que la mediana es mas robusta a datos atípicos 
+
+```{r}
+h <- hist(batery$Discharge.Capacity, 
+          xlab="Capacity", 
+          ylab="n", 
+          main="", br=50)
+
+mn <- mean(batery$Discharge.Capacity)
+lines(c(mn, mn), c(0,20), lty=2, lwd=2)
+points(mn,0, pch=2)
+
+md <- median(batery$Discharge.Capacity)
+lines(c(md, md), c(0,20), lty=2, col="red", lwd=2)
+points(md,0, pch=2, col="red")
+
+legend("topright", c("Mean", "Median") , lty=2, col=c("black", "red"))
+```
+
+Otra medida importante de los resultados es su **dispersión**. Muchos experimentos pueden compartir su media, pero difieren en la dispersión de los valores. Imaginemos que queremos medir con precisión la posición de un a estrella en el cielo. Debido al aparato de medida o condiciones atmosféricas nuestras mediciones cambian y nuestro experimento es aleatorio. Si creemos que el promedio es el valor mas verosimil para la posición de la estrella, la dispersión de las observaciones al rededor de la media nos da una medida del error. 
+
+
+```{r, echo=FALSE}
+par(mfrow=c(1,2))
+hist(rnorm(100, 100, 7.5), xlab="outcome", ylab="n", br=seq(2.5,202.5,5), main="")
+lines(c(100, 100), c(0,1000), lty=2, col="red")
+points(100,0, pch=2, col="red")
+
+hist(rnorm(100, 100, 20), xlab="outcome", ylab="n", br=seq(2.5,202.5,5), main="")
+lines(c(100, 100), c(0,1000), lty=2, col="red")
+points(100,0, pch=2, col="red")
+```
+
+
+La dispersión sobre la media se puede medir con la varianza muestral
+
+$$s^2=\frac{1}{n-1} \sum_{j=1}^n (x_j-\bar{x})^2$$
+que da la distancia cuadrada promedio de las **observaciones** al promedio. La razón de dividir por $n-1$ y no por $n$ se explicará cuando hablemos del promedio como una herramienta para inferir la verdadera posición de la estrella. Para variables **categóricas** ordenadas podemos escribir $s^2$ en términos de los resultados y las frecuencias relativas como
+
+$$s^2=\frac{n}{n-1} \sum_{i=1}^m (x_i-\bar{x_i})^2 f_i$$
+sumando ahora sobre observaciones hasta $m$ y no sobre resultados hasta $n$. Esta relación claramente se asemeja al momento de inercia de $m$ masas con densidad $f_i$. La raíz cuadrada de la varianza muestral $s$ se llama **desviación estándar** o típica y es una medida del error intrínseco de los datos, o de su variación, dependiendo de la interpretación. Por ejemplo la desviación estándar de la capacidad de descarga de las baterías es
+
+$s= [\frac{1}{n-1}((1.56-1.568073)^2+  (1.56-1.568073)^2$  
+</br>$+ (1.56-1.568073)^2 + ...)]^{1/2} = 0.01204489$
+
+Es decir que la capacidad de descarga varía al rededor del promedio en $0.012$ (miliamperios-hora).
+
+Existen otras formas de medir la dispersión de los datos. Si por ejemplo estamos interesados en medir la dispersión al rededor de la mediana, usamos el rango **rango intercuartíco**. Para esto primero definimos el primer cuartil como el valor $x_{0.25}$  en el que se encuentran el primer 25% de las observaciones, por lo tanto 
+
+$$F(x_{0.25})=\sum_{j \leq n/4} \frac{1}{n} = 0.25$$
+
+Así mismo definimos el tercer cuartil como el valor de $x_{0.75}$ por encima del cual se encuentran el 25% de las observaciones
+
+$$F(x_{0.75})= 0.75$$
+En términos generales, entendemos la función de distribución de frecuencias como la función que da el *q*-quantil de cada resultado: $F(x_q)=q$, y en R se calcula como <code>quantile(x=datos, prob=q)</code>.
+
+La distancia entre el tercer cuartil y el primer cuartil se llama **rango intercuartil** (IQR) y por lo tanto captura el 50% central de las observaciones
+
+$$IQR=x_{0.75}-x_{0.25}$$
+$F(x_{0.25} \leq x \leq x_{0.75})=F(0.75) - F(0.25)=0.5$
+
+
+```{r}
+stats <- summary(capacity)
+stats
+
+
+iqr <- IQR(capacity)
+iqr
+```
+
+Por lo tanto las 50% de las capacidades de descarga estan en un intervalo de magnitud $0.018$ entre el primer y tercer quartil.
+
+```{r}
+h <- hist(capacity, 
+          xlab="Capacity (outcome)", 
+          ylab="n", 
+          main="", br=50)
+
+q1 <- stats[["1st Qu."]]
+mn <- stats[["Median"]]
+q3 <- stats[["3rd Qu."]]
+
+lines(c(q1, q1), c(0,6), lty=2, col="blue")
+points(q1,0, pch=2, col="blue")
+
+lines(c(mn, mn), c(0,6), lty=2, col="red")
+points(mn,0, pch=2, col="red")
+
+
+lines(c(q3, q3), c(0,6), lty=2, col="orange")
+points(q3,0, pch=2, col="orange")
+
+
+legend("topright", c("1st quartile", 
+                     "2nd quartile (median)", 
+                     "3nd quartile") , 
+       lty=2, 
+       col=c("blue", "red", "orange"))
+
+```
+
+
+El rango intercuartílico, la mediana y el 5% y el 95% de los datos se pueden visualizar en una **gráfica de caja**, aquí los valores de los resultados están en el eje $y$. El IQR es la caja, la mediana la línea en el medio y los bigotes marcan el 5% y el 95% de los datos.
+
+```{r}
+boxplot(capacity, ylab="Capacity (outcome)")
+```
+
+Debido a que la mediana, el primer y tercer cuartil son medidas robustas, se suele tomar una distancia de 3 rangos cuartíclicos desde la mediana como una región en donde se esperan los datos típicos. Datos que se encruentren fuera de esta región son atípicos y sospechamos que estos datos no comparten algunas de las características del experimento aleatorio de interés. Si retomamos los datos de capacidad de descarga con las baterías defectuosas podemos ver que su capacidad de descarga está fuera de esta región. Estos datos, por su distribución de frecuencias, son atípicos lo que es confirmado en la base de datos porque corresponden a baterias defectuosas. 
+
+```{r}
+h <- hist(batery$Discharge.Capacity, 
+          xlab="Capacity (outcome)", 
+          ylab="n", 
+          main="", br=50,
+          xlim=c(1.30,1.70))
+
+cp <- batery$Discharge.Capacity
+
+q1 <- quantile(cp, 0.25)
+lines(c(q1, q1), c(0,20), lty=2, col="blue")
+points(q1,0, pch=2, col="blue")
+
+mn <- median(cp)
+lines(c(mn, mn), c(0,20), lty=2, col="red")
+points(mn,0, pch=2, col="red")
+
+q3 <- quantile(cp, 0.75)
+lines(c(q3, q3), c(0,20), lty=2, col="orange")
+points(q3,0, pch=2, col="orange")
+
+legend("topright", c("1st quartile", 
+                     "2nd quartile (median)", 
+                     "3nd quartile") , 
+       lty=2, 
+       col=c("blue", "red", "orange"))
+
+
+iqr <- q3 - q1
+lines(c(mn -3*iqr, mn - 3*iqr), c(0,20), lty=2, col="black")
+
+
+iqr <- q3 - q1
+lines(c(mn + 3*iqr, mn + 3*iqr), c(0,20), lty=2, col="black")
+
+```
+
+
+
+### Hacia las probabilidades
+Los paises de procedencia de los parques eólicos los hemos descrito imaginando que la observación del país de cada parque eólico es un experimento aleatorio. Sin embargo, si queremos describir cómo se han generado las observaciones topamos con un problema de interpretación. Es difícil saber en qué medida las observaciones han sido influenciadas por el obsorvador. Es decir, es posible tener un experimento aleatorio en el que se elija qué observaciones anotar. Existirá pues una estructura en los datos diferente a la de la aleatoridad intrínseca del experimento. 
+
+Para poder generalizar las frecuencias relativas en probabilidades, consideremos un experimento aleatorio donde el único papel del experimentador es anotar los resultados. 
+
+Lanzemos un dado 10 veces, usando la función de simulación <code>sample</code>, que pone en un saco 6 bolas marcadas de 1 a 6, saca una a la vez, la anota y la devuelve al saco. Calculemos las frecuencias para cada resultado
+
+```{r}
+tb <- table(sample(1:6, 10, replace=TRUE))
+tb2 <- prop.table(tb) 
+
+df <- data.frame(outcome=names(tb), 
+                 ni=as.vector(tb), 
+                 fi=as.vector(tb2), 
+                 Ni= cumsum(as.vector(tb)), 
+                 Fi=cumsum(as.vector(tb2))) 
+df
+```
+
+Vemos que las frecuencias relativas difieren entre sí. ¿Qué ocurre cuando $n$ aumenta a 1,000?
+
+```{r}
+tb <- table(sample(1:6, 1000, replace=TRUE))
+tb2 <- prop.table(tb) 
+
+df <- data.frame(outcome=names(tb), 
+                 ni=as.vector(tb), 
+                 fi=as.vector(tb2), 
+                 Ni= cumsum(as.vector(tb)), 
+                 Fi=cumsum(as.vector(tb2))) 
+df
+```
+
+y ¿cuando $n \rightarrow \infty$?
+
+
+```{r}
+frdice <- lapply(c(100, 1000, 10000, 100000, 1000000), 
+                 function(n) cumsum(prop.table(table(sample(1:6, n, replace=TRUE)))))
+
+frdice <- do.call(cbind, frdice)
+
+plot(c(0,1), c(0,1), pch="", ylim=c(0,1), xlim=c(2,6), ylab=" ",
+     xlab="log10(N)", 
+     main="Dice frequencies as function of log10(N)",
+     axes=FALSE)
+
+polygon(c(2:6,6:2), c(rep(0,5), rep(1,5)), col="white")
+polygon(c(2:6,6:2), c(rep(0,5),frdice[1,5:1]), col="grey")
+polygon(c(2:6,6:2), c(frdice[2,1:5],frdice[3,5:1]), col="grey")
+polygon(c(2:6,6:2), c(frdice[4,1:5],frdice[5,5:1]), col="grey")
+
+for(i in 1:6)
+  text(1.9,frdice[i,5]-0.07, paste0("f", i))
+```
+
+Podemos ver que las frecuencias relativas de los resultados del dado cada vez se asemejan mas unas a otras, cuando $n \rightarrow \infty$. Interpretamos así la **Probabilidad** $P_i$ como el límite cuando $n \rightarrow \infty$ de la frecuencia de observación $f_i$ del resultado $i$ de un experimento aleatorio.
+
+A pesar de que las probabilidades son abstracciones de $f_i$,las entendemos como características del experimento aletorio, no dependen del experimentador ni del observador: describen las cosas como son.
+
+Sin embargo, como no podemos hacer un experimento infinitas veces, nos pregutamos si podemos razonar al revés. Es decir, si creemos que los $P_i$ describen las cosas como son, ¿podemos **predecir** de ellos los valores observados de $f_i$ a cuando $n$ es finito?
+
+Contruimos así las probabilidades como cantidades matemáticas con propiedades lógicas, heredadas de $f_i$, e hipotetizamos sus valores. Sólo los experimientos nos dirán si esas hipótesis son consistentes con las observaciones.    
+
